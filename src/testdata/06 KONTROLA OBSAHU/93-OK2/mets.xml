@@ -1,0 +1,686 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mets:mets xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mets="http://www.loc.gov/METS/" xmlns:ns3="info:lc/xmlns/premis-v2" xmlns:nsesss="http://www.mvcr.cz/nsesss/v3" xmlns:ns5="http://desa.i.cz/nsext/v3" xmlns:tp="http://nsess.public.cz/erms_trans/v_01_01" xmlns:tns="http://mvcr.cz/ess/v_1.0.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OBJID="8f71128b-c157-4ef9-a2b4-863f940d8859" LABEL="Datový balíček pro provedení skartačního řízení" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 TransakcniProtokolNavrh_verze1.7.xsd">
+  <mets:metsHdr CREATEDATE="2018-09-10T07:50:35.652+02:00" LASTMODDATE="2018-09-10T07:50:35.652+02:00">
+    <mets:agent ID="agent_001" ROLE="CREATOR" TYPE="ORGANIZATION">
+      <mets:name>Městská část Praha 3</mets:name>
+      <mets:note>prod</mets:note>
+    </mets:agent>
+    <mets:agent ID="agent_002" ROLE="CREATOR" TYPE="INDIVIDUAL">
+      <mets:name>SPS Administrátor</mets:name>
+      <mets:note>spsadmin</mets:note>
+    </mets:agent>
+  </mets:metsHdr>
+  <mets:dmdSec ID="DM_0001">
+    <mets:mdWrap LABEL="Schéma XML pro předávání dokumentů a jejich metadat do archivu" MDTYPE="OTHER" OTHERMDTYPE="NSESSS" MDTYPEVERSION="3.0" MIMETYPE="text/xml">
+      <mets:xmlData>
+        <nsesss:Dokument ID="RECORD_p3_10_138225_8f71128b-c157-4ef9-a2b4-863f940d8859">
+          <nsesss:EvidencniUdaje>
+            <nsesss:Identifikace>
+              <nsesss:Identifikator zdroj="ERMS">p3_10_138225</nsesss:Identifikator>
+            </nsesss:Identifikace>
+            <nsesss:Popis>
+              <nsesss:Nazev>[20#0562394#6092] Usnesení o zrušení EP</nsesss:Nazev>
+            </nsesss:Popis>
+            <nsesss:Evidence>
+              <nsesss:EvidencniCislo>UMCP3 073799/2010</nsesss:EvidencniCislo>
+              <nsesss:PoradoveCislo>73799</nsesss:PoradoveCislo>
+              <nsesss:UrceneCasoveObdobi>
+                <nsesss:Rok>2010</nsesss:Rok>
+              </nsesss:UrceneCasoveObdobi>
+              <nsesss:NazevEvidenceDokumentu>ERMS</nsesss:NazevEvidenceDokumentu>
+            </nsesss:Evidence>
+            <nsesss:Puvod>
+              <nsesss:VlastniDokument>
+                <nsesss:DatumVytvoreni>2010-11-18</nsesss:DatumVytvoreni>
+                <nsesss:VytvoreneMnozstvi>1/0/0/-</nsesss:VytvoreneMnozstvi>
+                <nsesss:Autor>
+                  <nsesss:Subjekt>
+                    <nsesss:IdentifikatorOrganizace zdroj="IČ">063517</nsesss:IdentifikatorOrganizace>
+                    <nsesss:NazevOrganizace>Městská část Praha 3, Úřad městské části</nsesss:NazevOrganizace>
+                    <nsesss:IdentifikatorFyzickeOsoby zdroj="ERMS">9120531</nsesss:IdentifikatorFyzickeOsoby>
+                    <nsesss:NazevFyzickeOsoby>Helena Štěpánková</nsesss:NazevFyzickeOsoby>
+                    <nsesss:OrganizacniUtvar>oddělení správy dokumentů</nsesss:OrganizacniUtvar>
+                    <nsesss:PracovniPozice>referent oddělení správy dokumentů</nsesss:PracovniPozice>
+                    <nsesss:SidloOrganizace>Havlíčkovo nám. 9/700, 130 85 Praha 3</nsesss:SidloOrganizace>
+                  </nsesss:Subjekt>
+                </nsesss:Autor>
+              </nsesss:VlastniDokument>
+            </nsesss:Puvod>
+            <nsesss:Trideni>
+              <nsesss:JednoduchySpisovyZnak>82.</nsesss:JednoduchySpisovyZnak>
+              <nsesss:PlneUrcenySpisovyZnak>82.</nsesss:PlneUrcenySpisovyZnak>
+              <nsesss:TypDokumentu>
+                <nsesss:Identifikator zdroj="ERMS">DP</nsesss:Identifikator>
+                <nsesss:Nazev>Doručená písemnost</nsesss:Nazev>
+              </nsesss:TypDokumentu>
+              <nsesss:MaterskeEntity>
+                <nsesss:VecnaSkupina ID="ID-52e280c7-20d1-4ad0-998a-dbcb2969d4ff">
+                  <nsesss:EvidencniUdaje>
+                    <nsesss:Identifikace>
+                      <nsesss:Identifikator zdroj="ERMS">778</nsesss:Identifikator>
+                    </nsesss:Identifikace>
+                    <nsesss:Popis>
+                      <nsesss:Nazev>Cizí</nsesss:Nazev>
+                    </nsesss:Popis>
+                    <nsesss:Puvod>
+                      <nsesss:DatumVytvoreni>2001-01-01+01:00</nsesss:DatumVytvoreni>
+                    </nsesss:Puvod>
+                    <nsesss:Trideni>
+                      <nsesss:JednoduchySpisovyZnak>82.</nsesss:JednoduchySpisovyZnak>
+                      <nsesss:PlneUrcenySpisovyZnak>82.</nsesss:PlneUrcenySpisovyZnak>
+                      <nsesss:SpisovyPlan ID="ID-3a8b14da-3989-4369-a1c9-ff71098bca68">
+                        <nsesss:Identifikator zdroj="ERMS">30</nsesss:Identifikator>
+                        <nsesss:Nazev>Položka klasifikace</nsesss:Nazev>
+                        <nsesss:Manipulace>
+                          <nsesss:DatumOtevreni>1900-01-01+01:00</nsesss:DatumOtevreni>
+                          <nsesss:DatumUzavreni>2013-12-19+01:00</nsesss:DatumUzavreni>
+                        </nsesss:Manipulace>
+                        <nsesss:Vydavatel>
+                          <nsesss:Subjekt>
+                            <nsesss:IdentifikatorOrganizace zdroj="ERMS">prod</nsesss:IdentifikatorOrganizace>
+                            <nsesss:NazevOrganizace>Městská část Praha 3</nsesss:NazevOrganizace>
+                            <nsesss:SidloOrganizace>Havlíčkovo nám. 9, Praha 3</nsesss:SidloOrganizace>
+                          </nsesss:Subjekt>
+                        </nsesss:Vydavatel>
+                      </nsesss:SpisovyPlan>
+                    </nsesss:Trideni>
+                    <nsesss:Vyrazovani>
+                      <nsesss:SkartacniRezim>
+                        <nsesss:Identifikator zdroj="ERMS">25</nsesss:Identifikator>
+                        <nsesss:Nazev>S5 Dokumenty určené ke skartaci</nsesss:Nazev>
+                        <nsesss:Oduvodneni>Instrukce MVČR ze dne 25. 5. 1992 čj. VSC/1-793/92</nsesss:Oduvodneni>
+                        <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+                        <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+                        <nsesss:SpousteciUdalost>AFTER_ENTITY_CLOSED</nsesss:SpousteciUdalost>
+                      </nsesss:SkartacniRezim>
+                    </nsesss:Vyrazovani>
+                    <nsesss:Manipulace>
+                      <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                      <nsesss:DatumOtevreni>1900-01-01+01:00</nsesss:DatumOtevreni>
+                      <nsesss:DatumUzavreni>2013-12-19+01:00</nsesss:DatumUzavreni>
+                    </nsesss:Manipulace>
+                  </nsesss:EvidencniUdaje>
+                </nsesss:VecnaSkupina>
+              </nsesss:MaterskeEntity>
+            </nsesss:Trideni>
+            <nsesss:Vyrizeni>
+              <nsesss:Datum>2010-11-18</nsesss:Datum>
+              <nsesss:Zpusob>jiný způsob</nsesss:Zpusob>
+              <nsesss:ObsahVyrizeni>náleží UP přeposláno vo DS UP</nsesss:ObsahVyrizeni>
+              <nsesss:Oduvodneni>náleží UP přeposláno vo DS UP</nsesss:Oduvodneni>
+              <nsesss:Zpracovatel>
+                <nsesss:Subjekt>
+                  <nsesss:IdentifikatorOrganizace zdroj="IČ">063517</nsesss:IdentifikatorOrganizace>
+                  <nsesss:NazevOrganizace>Městská část Praha 3, Úřad městské části</nsesss:NazevOrganizace>
+                  <nsesss:IdentifikatorFyzickeOsoby zdroj="ERMS">26769681</nsesss:IdentifikatorFyzickeOsoby>
+                  <nsesss:NazevFyzickeOsoby>Markéta Kratochvílová</nsesss:NazevFyzickeOsoby>
+                  <nsesss:OrganizacniUtvar>oddělení správy dokumentů</nsesss:OrganizacniUtvar>
+                  <nsesss:PracovniPozice>referent oddělení správy dokumentů</nsesss:PracovniPozice>
+                  <nsesss:SidloOrganizace>Havlíčkovo nám. 9/700, 130 85 Praha 3</nsesss:SidloOrganizace>
+                </nsesss:Subjekt>
+              </nsesss:Zpracovatel>
+              <nsesss:DatumOdeslani>2010-11-18</nsesss:DatumOdeslani>
+              <nsesss:OdeslaneMnozstvi>1/0/0/-</nsesss:OdeslaneMnozstvi>
+              <nsesss:Prijemce>
+                <nsesss:Subjekt>
+                  <nsesss:IdentifikatorOrganizace zdroj="ERMS">37457582</nsesss:IdentifikatorOrganizace>
+                  <nsesss:NazevOrganizace>Úřad práce hl.m.Prahy</nsesss:NazevOrganizace>
+                  <nsesss:SidloOrganizace>Úřad práce hl.m.Prahy, Domažlická 11/1139, 130 00 Praha 3</nsesss:SidloOrganizace>
+                  <nsesss:ElektronickyKontakt>DS:5v2ad2u</nsesss:ElektronickyKontakt>
+                </nsesss:Subjekt>
+              </nsesss:Prijemce>
+            </nsesss:Vyrizeni>
+            <nsesss:Vyrazovani>
+              <nsesss:SkartacniRezim>
+                <nsesss:Identifikator zdroj="ERMS">S5</nsesss:Identifikator>
+                <nsesss:Nazev>Dokumenty určené ke skartaci</nsesss:Nazev>
+                <nsesss:Komentar/>
+                <nsesss:Oduvodneni>Instrukce MVČR ze dne 25. 5. 1992 čj. VSC/1-793/92</nsesss:Oduvodneni>
+                <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+                <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+                <nsesss:SpousteciUdalost>AFTER_ENTITY_CLOSED</nsesss:SpousteciUdalost>
+              </nsesss:SkartacniRezim>
+              <nsesss:DataceVyrazeni>
+                <nsesss:RokSpousteciUdalosti>2010</nsesss:RokSpousteciUdalosti>
+                <nsesss:RokSkartacniOperace>2016</nsesss:RokSkartacniOperace>
+              </nsesss:DataceVyrazeni>
+            </nsesss:Vyrazovani>
+            <nsesss:Manipulace>
+              <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+              <nsesss:UkladaciJednotka>UMCP3 030740/2011</nsesss:UkladaciJednotka>
+            </nsesss:Manipulace>
+          </nsesss:EvidencniUdaje>
+          <nsesss:Komponenty>
+            <nsesss:Komponenta ID="FILE_24164856_8f71128b-c157-4ef9-a2b4-863f940d8859" poradi="1" druh="dokument" verze="1" forma_uchovani="koncept">
+              <nsesss:EvidencniUdaje>
+                <nsesss:Identifikace>
+                  <nsesss:Identifikator zdroj="ERMS">26576f5b-7b22-4868-8e92-8c7291e724a6</nsesss:Identifikator>
+                </nsesss:Identifikace>
+                <nsesss:Popis>
+                  <nsesss:Nazev>p3_10_138225_24164856_Usneseni_o_zruseni_exekucnich_prikazu.pdf</nsesss:Nazev>
+                  <nsesss:Komentar/>
+                </nsesss:Popis>
+                <nsesss:Trideni>
+                  <nsesss:JednoduchySpisovyZnak>82.2</nsesss:JednoduchySpisovyZnak>
+                  <nsesss:PlneUrcenySpisovyZnak>82.2</nsesss:PlneUrcenySpisovyZnak>
+                </nsesss:Trideni>
+              </nsesss:EvidencniUdaje>
+            </nsesss:Komponenta>
+            <nsesss:Komponenta ID="FILE_24169147_8f71128b-c157-4ef9-a2b4-863f940d8859" poradi="1" druh="dokument" verze="1" forma_uchovani="koncept">
+              <nsesss:EvidencniUdaje>
+                <nsesss:Identifikace>
+                  <nsesss:Identifikator zdroj="ERMS">28828bee-02e8-4a5c-84ac-f6e86909b753</nsesss:Identifikator>
+                </nsesss:Identifikace>
+                <nsesss:Popis>
+                  <nsesss:Nazev>p3_10_138225_24169147_dorucenka_30046174.zfo</nsesss:Nazev>
+                  <nsesss:Komentar/>
+                </nsesss:Popis>
+                <nsesss:Trideni>
+                  <nsesss:JednoduchySpisovyZnak>82.2</nsesss:JednoduchySpisovyZnak>
+                  <nsesss:PlneUrcenySpisovyZnak>82.2</nsesss:PlneUrcenySpisovyZnak>
+                </nsesss:Trideni>
+              </nsesss:EvidencniUdaje>
+            </nsesss:Komponenta>
+            <nsesss:Komponenta ID="FILE_92189688_8f71128b-c157-4ef9-a2b4-863f940d8859" poradi="1" druh="dokument" verze="1" forma_uchovani="koncept">
+              <nsesss:EvidencniUdaje>
+                <nsesss:Identifikace>
+                  <nsesss:Identifikator zdroj="ERMS">e1721927-e59e-4fa3-a5f5-b7a0a014f725</nsesss:Identifikator>
+                </nsesss:Identifikace>
+                <nsesss:Popis>
+                  <nsesss:Nazev>p3_10_138225_92189688_original_dz_30046174.zfo</nsesss:Nazev>
+                  <nsesss:Komentar/>
+                </nsesss:Popis>
+                <nsesss:Trideni>
+                  <nsesss:JednoduchySpisovyZnak>82.2</nsesss:JednoduchySpisovyZnak>
+                  <nsesss:PlneUrcenySpisovyZnak>82.2</nsesss:PlneUrcenySpisovyZnak>
+                </nsesss:Trideni>
+              </nsesss:EvidencniUdaje>
+            </nsesss:Komponenta>
+            <nsesss:Komponenta ID="FILE_92189690_8f71128b-c157-4ef9-a2b4-863f940d8859" poradi="1" druh="dokument" verze="1" forma_uchovani="koncept">
+              <nsesss:EvidencniUdaje>
+                <nsesss:Identifikace>
+                  <nsesss:Identifikator zdroj="ERMS">be06d890-3a89-4ef5-99c6-724b2130b338</nsesss:Identifikator>
+                </nsesss:Identifikace>
+                <nsesss:Popis>
+                  <nsesss:Nazev>p3_10_138225_92189690_protokol_dz_30046174.pdf</nsesss:Nazev>
+                  <nsesss:Komentar/>
+                </nsesss:Popis>
+                <nsesss:Trideni>
+                  <nsesss:JednoduchySpisovyZnak>82.2</nsesss:JednoduchySpisovyZnak>
+                  <nsesss:PlneUrcenySpisovyZnak>82.2</nsesss:PlneUrcenySpisovyZnak>
+                </nsesss:Trideni>
+              </nsesss:EvidencniUdaje>
+            </nsesss:Komponenta>
+          </nsesss:Komponenty>
+        </nsesss:Dokument>
+      </mets:xmlData>
+    </mets:mdWrap>
+  </mets:dmdSec>
+  <mets:amdSec ID="AMD_FILE_24164856_8f71128b-c157-4ef9-a2b4-863f940d8859">
+    <mets:digiprovMD ID="ID-bca52056-3190-4984-a594-71cf8cca4ac1">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>e8a85bbc-560f-49f0-8b12-4799ec36ac9e</tns:HodnotaID>
+                <tns:ZdrojID>UUID</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2018-09-10T07:50:36.095+02:00</tp:DatumVzniku>
+              <tp:DatumCasOd>2010-11-18T00:00:00.000+01:00</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-09-10T07:50:36.095+02:00</tp:DatumCasDo>
+              <tp:Software>ICZ DESA</tp:Software>
+              <tp:VerzeSoftware>2.14.0.0</tp:VerzeSoftware>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>26576f5b-7b22-4868-8e92-8c7291e724a6</tns:HodnotaID>
+                  <tns:ZdrojID>ERMS</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti/>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="AMD_FILE_24169147_8f71128b-c157-4ef9-a2b4-863f940d8859">
+    <mets:digiprovMD ID="ID-a0faa9b7-af6f-493d-98b1-124ff37042b1">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>4c5a65ca-d662-4618-a52f-09eb07c904e6</tns:HodnotaID>
+                <tns:ZdrojID>UUID</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2018-09-10T07:50:36.095+02:00</tp:DatumVzniku>
+              <tp:DatumCasOd>2010-11-18T00:00:00.000+01:00</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-09-10T07:50:36.095+02:00</tp:DatumCasDo>
+              <tp:Software>ICZ DESA</tp:Software>
+              <tp:VerzeSoftware>2.14.0.0</tp:VerzeSoftware>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>28828bee-02e8-4a5c-84ac-f6e86909b753</tns:HodnotaID>
+                  <tns:ZdrojID>ERMS</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti/>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="AMD_FILE_92189688_8f71128b-c157-4ef9-a2b4-863f940d8859">
+    <mets:digiprovMD ID="ID-67d6a5d6-2534-4e73-8853-f1a8fb472a3d">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>8ee6dc28-5174-4411-b1b7-06a2489ee8ce</tns:HodnotaID>
+                <tns:ZdrojID>UUID</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2018-09-10T07:50:36.095+02:00</tp:DatumVzniku>
+              <tp:DatumCasOd>2010-11-18T00:00:00.000+01:00</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-09-10T07:50:36.095+02:00</tp:DatumCasDo>
+              <tp:Software>ICZ DESA</tp:Software>
+              <tp:VerzeSoftware>2.14.0.0</tp:VerzeSoftware>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>e1721927-e59e-4fa3-a5f5-b7a0a014f725</tns:HodnotaID>
+                  <tns:ZdrojID>ERMS</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti/>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="AMD_FILE_92189690_8f71128b-c157-4ef9-a2b4-863f940d8859">
+    <mets:digiprovMD ID="ID-61dc8636-df2c-42a9-964c-dfc594d69231">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>b9d5abbb-a753-4989-8e01-71b95ecbebf5</tns:HodnotaID>
+                <tns:ZdrojID>UUID</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2018-09-10T07:50:36.095+02:00</tp:DatumVzniku>
+              <tp:DatumCasOd>2010-11-18T00:00:00.000+01:00</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-09-10T07:50:36.095+02:00</tp:DatumCasDo>
+              <tp:Software>ICZ DESA</tp:Software>
+              <tp:VerzeSoftware>2.14.0.0</tp:VerzeSoftware>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>be06d890-3a89-4ef5-99c6-724b2130b338</tns:HodnotaID>
+                  <tns:ZdrojID>ERMS</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti/>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="LOG_0001">
+    <mets:digiprovMD ID="ID-c6544f6b-6e9e-47fe-be77-addf849a5c8e">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>75473ebd-646b-4c92-b5e8-3c044a614bfc</tns:HodnotaID>
+                <tns:ZdrojID>UUID</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2018-09-10T07:50:36.095+02:00</tp:DatumVzniku>
+              <tp:DatumCasOd>2010-11-18T00:00:00.000+01:00</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-09-10T07:50:36.095+02:00</tp:DatumCasDo>
+              <tp:Software>ICZ DESA</tp:Software>
+              <tp:VerzeSoftware>2.14.0.0</tp:VerzeSoftware>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>VecnaSkupina</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>778</tns:HodnotaID>
+                  <tns:ZdrojID>ERMS</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti>
+              <tp:Udalost>
+                <tp:Poradi>1</tp:Poradi>
+                <tp:DatumVzniku>2010-11-18T00:00:00.000+01:00</tp:DatumVzniku>
+                <tp:provedlKdo>super organizace</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Otevreni</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>2</tp:Poradi>
+                <tp:DatumVzniku>2013-12-19T00:00:00.000+01:00</tp:DatumVzniku>
+                <tp:provedlKdo>super organizace</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uzavreni</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+            </tp:Udalosti>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="LOG_0002">
+    <mets:digiprovMD ID="ID-9be67376-7abd-4303-9426-5d4b7e1b38b2">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>9d36c507-be1b-4552-b9ad-284f2934e773</tns:HodnotaID>
+                <tns:ZdrojID>UUID</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2018-09-10T07:50:36.095+02:00</tp:DatumVzniku>
+              <tp:DatumCasOd>1900-01-01T00:00:00.000+01:00</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-09-10T07:50:36.095+02:00</tp:DatumCasDo>
+              <tp:Software>ICZ DESA</tp:Software>
+              <tp:VerzeSoftware>2.14.0.0</tp:VerzeSoftware>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>SpisovyPlan</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>30</tns:HodnotaID>
+                  <tns:ZdrojID>ERMS</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti>
+              <tp:Udalost>
+                <tp:Poradi>3</tp:Poradi>
+                <tp:DatumVzniku>1900-01-01T00:00:00.000+01:00</tp:DatumVzniku>
+                <tp:provedlKdo>super organizace</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Otevreni</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>4</tp:Poradi>
+                <tp:DatumVzniku>2013-12-19T00:00:00.000+01:00</tp:DatumVzniku>
+                <tp:provedlKdo>super organizace</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uzavreni</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+            </tp:Udalosti>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="LOG_0003">
+    <mets:digiprovMD ID="ID-c8bf11ab-35df-42b4-ac39-fb50f3279e14">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>da319231-98eb-4631-aca9-eef9caf8cbf5</tns:HodnotaID>
+                <tns:ZdrojID>UUID</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2018-09-10T05:50:36.200Z</tp:DatumVzniku>
+              <tp:DatumCasOd>2018-08-14T16:12:17.577Z</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-08-15T07:59:53.840Z</tp:DatumCasDo>
+              <tp:Software>ICZ DESA</tp:Software>
+              <tp:VerzeSoftware>2.14.0.0</tp:VerzeSoftware>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Dokument</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>p3_10_138225</tns:HodnotaID>
+                  <tns:ZdrojID>ERMS</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti>
+              <tp:Udalost>
+                <tp:Poradi>23576411</tp:Poradi>
+                <tp:DatumVzniku>2018-08-14T16:12:17.577Z</tp:DatumVzniku>
+                <tp:provedlKdo>Suchánková Jana - suchankova.jana</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:ParametryUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                    <tp:HodnotaParametru>INF_QA_102</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                    <tp:HodnotaParametru>9d63b9b6-34d3-47b6-bec2-6d541de4adbf</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                    <tp:HodnotaParametru>8f71128b-c157-4ef9-a2b4-863f940d8859</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                </tp:ParametryUdalosti>
+                <tp:PopisUdalosti>Balíček obsahuje XML soubor metadat METS.</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>23576412</tp:Poradi>
+                <tp:DatumVzniku>2018-08-14T16:12:17.673Z</tp:DatumVzniku>
+                <tp:provedlKdo>Suchánková Jana - suchankova.jana</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:ParametryUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                    <tp:HodnotaParametru>INF_QA_101</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                    <tp:HodnotaParametru>9d63b9b6-34d3-47b6-bec2-6d541de4adbf</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                    <tp:HodnotaParametru>8f71128b-c157-4ef9-a2b4-863f940d8859</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                </tp:ParametryUdalosti>
+                <tp:PopisUdalosti>Formát XML metadat vstupního balíčku je validní.</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>23576413</tp:Poradi>
+                <tp:DatumVzniku>2018-08-14T16:12:17.687Z</tp:DatumVzniku>
+                <tp:provedlKdo>Suchánková Jana - suchankova.jana</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:ParametryUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                    <tp:HodnotaParametru>INF_IC_102</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                    <tp:HodnotaParametru>9d63b9b6-34d3-47b6-bec2-6d541de4adbf</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                    <tp:HodnotaParametru>8f71128b-c157-4ef9-a2b4-863f940d8859</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                </tp:ParametryUdalosti>
+                <tp:PopisUdalosti>Struktura vstupního balíčku je v pořádku</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>23576414</tp:Poradi>
+                <tp:DatumVzniku>2018-08-14T16:12:18.407Z</tp:DatumVzniku>
+                <tp:provedlKdo>Suchánková Jana - suchankova.jana</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:ParametryUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                    <tp:HodnotaParametru>INF_IC_112</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                    <tp:HodnotaParametru>9d63b9b6-34d3-47b6-bec2-6d541de4adbf</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                    <tp:HodnotaParametru>8f71128b-c157-4ef9-a2b4-863f940d8859</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                </tp:ParametryUdalosti>
+                <tp:PopisUdalosti>Byl založen nový balíček AIP. K tomuto dokumentu neexistuje žádná předchozí verze.</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>23576415</tp:Poradi>
+                <tp:DatumVzniku>2018-08-14T16:12:18.470Z</tp:DatumVzniku>
+                <tp:provedlKdo>Suchánková Jana - suchankova.jana</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:ParametryUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                    <tp:HodnotaParametru>INF_IC_116</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                    <tp:HodnotaParametru>9d63b9b6-34d3-47b6-bec2-6d541de4adbf</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                    <tp:HodnotaParametru>8f71128b-c157-4ef9-a2b4-863f940d8859</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                </tp:ParametryUdalosti>
+                <tp:PopisUdalosti>Generování technických metadat o komponentách balíčku</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>23576416</tp:Poradi>
+                <tp:DatumVzniku>2018-08-14T16:12:18.560Z</tp:DatumVzniku>
+                <tp:provedlKdo>Suchánková Jana - suchankova.jana</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:ParametryUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                    <tp:HodnotaParametru>INF_IC_105</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                    <tp:HodnotaParametru>9d63b9b6-34d3-47b6-bec2-6d541de4adbf</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                    <tp:HodnotaParametru>8f71128b-c157-4ef9-a2b4-863f940d8859</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                </tp:ParametryUdalosti>
+                <tp:PopisUdalosti>Validace umístění fyzické kopie proběhla v pořádku.</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>23576417</tp:Poradi>
+                <tp:DatumVzniku>2018-08-14T16:12:18.720Z</tp:DatumVzniku>
+                <tp:provedlKdo>Suchánková Jana - suchankova.jana</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:ParametryUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                    <tp:HodnotaParametru>INF_AC_100</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                    <tp:HodnotaParametru>9d63b9b6-34d3-47b6-bec2-6d541de4adbf</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                    <tp:HodnotaParametru>8f71128b-c157-4ef9-a2b4-863f940d8859</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                </tp:ParametryUdalosti>
+                <tp:PopisUdalosti>Metadata byla uložena do databáze modulu DM.</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>23576418</tp:Poradi>
+                <tp:DatumVzniku>2018-08-14T16:12:18.997Z</tp:DatumVzniku>
+                <tp:provedlKdo>-</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>Ověření integrity</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:ParametryUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                    <tp:HodnotaParametru>INF_DM_160</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                    <tp:HodnotaParametru>9d63b9b6-34d3-47b6-bec2-6d541de4adbf</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                    <tp:HodnotaParametru>8f71128b-c157-4ef9-a2b4-863f940d8859</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                </tp:ParametryUdalosti>
+                <tp:PopisUdalosti>Byl úspěšně ověřen kontrolní součet u kopie balíčku umístěné v úložišti DiskA.</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>23592436</tp:Poradi>
+                <tp:DatumVzniku>2018-08-15T07:59:53.840Z</tp:DatumVzniku>
+                <tp:provedlKdo>-</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>VlozeniDoSkartacnihoNavrhu</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:ParametryUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                    <tp:HodnotaParametru>INF_RD_131</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                  <tp:ParametrUdalosti>
+                    <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                    <tp:HodnotaParametru>8f71128b-c157-4ef9-a2b4-863f940d8859</tp:HodnotaParametru>
+                  </tp:ParametrUdalosti>
+                </tp:ParametryUdalosti>
+                <tp:PopisUdalosti>Balíček byl zařazen do skartačního návrhu Postoupeno podatelna 2011-2016.</tp:PopisUdalosti>
+              </tp:Udalost>
+            </tp:Udalosti>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:structMap TYPE="LOGICAL">
+    <mets:div DMDID="ID-3a8b14da-3989-4369-a1c9-ff71098bca68" ADMID="LOG_0002" TYPE="spisový plán">
+      <mets:div DMDID="ID-52e280c7-20d1-4ad0-998a-dbcb2969d4ff" ADMID="LOG_0001" TYPE="věcná skupina">
+        <mets:div ORDER="1" LABEL="[20#0562394#6092] Usnesení o zrušení EP" DMDID="RECORD_p3_10_138225_8f71128b-c157-4ef9-a2b4-863f940d8859" ADMID="LOG_0003" TYPE="dokument">
+          <mets:div DMDID="FILE_24164856_8f71128b-c157-4ef9-a2b4-863f940d8859" ADMID="AMD_FILE_24164856_8f71128b-c157-4ef9-a2b4-863f940d8859" TYPE="komponenta"/>
+          <mets:div DMDID="FILE_24169147_8f71128b-c157-4ef9-a2b4-863f940d8859" ADMID="AMD_FILE_24169147_8f71128b-c157-4ef9-a2b4-863f940d8859" TYPE="komponenta"/>
+          <mets:div DMDID="FILE_92189688_8f71128b-c157-4ef9-a2b4-863f940d8859" ADMID="AMD_FILE_92189688_8f71128b-c157-4ef9-a2b4-863f940d8859" TYPE="komponenta"/>
+          <mets:div DMDID="FILE_92189690_8f71128b-c157-4ef9-a2b4-863f940d8859" ADMID="AMD_FILE_92189690_8f71128b-c157-4ef9-a2b4-863f940d8859" TYPE="komponenta"/>
+        </mets:div>
+      </mets:div>
+    </mets:div>
+  </mets:structMap>
+</mets:mets>

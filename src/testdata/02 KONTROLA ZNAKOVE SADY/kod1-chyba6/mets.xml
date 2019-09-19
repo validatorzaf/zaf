@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- latin2-utf -->
+<mets:mets xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v2 http://www.mvcr.cz/nsesss/v2/nsesss.xsd" OBJID="GS_ea183e38-a932-4a68-bb16-4a7871ab56a7"
+           LABEL="Datový balíèek pro pøedávání dokumentù a jejich metadat do archivu - Submission Information Package (SIP)" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:nsesss="http://www.mvcr.cz/nsesss/v2"
+           xmlns:mets="http://www.loc.gov/METS/">
+	<mets:metsHdr CREATEDATE="2015-06-29T23:33:05.0195493Z" LASTMODDATE="2015-06-29T23:33:05.0195493Z">
+		<mets:agent TYPE="ORGANIZATION" ROLE="CREATOR" ID="id1">
+			<mets:name>GORDIC</mets:name>
+		</mets:agent>
+		<mets:agent TYPE="INDIVIDUAL" ROLE="CREATOR" ID="id2">
+			<mets:name>Václav Svoboda</mets:name>
+		</mets:agent>
+		<mets:agent TYPE="ORGANIZATION" ROLE="ARCHIVIST" ID="id3">
+			<mets:name>Archiv hlavního mìsta Prahy</mets:name>
+		</mets:agent>
+		<mets:agent TYPE="INDIVIDUAL" ROLE="ARCHIVIST" ID="id4">
+			<mets:name>Karel Novák</mets:name>
+		</mets:agent>
+	</mets:metsHdr>
+	<mets:dmdSec ID="dmd001">
+		<mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="NSESSS" MDTYPEVERSION="2.0" MIMETYPE="text/xml" LABEL="Schéma XML pro pøedávání dokumentù a jejich metadat do archivu">
+			<mets:xmlData>
+				<nsesss:Dokument ID="MP12P00BTZ3Z" xsi:schemaLocation="http://www.mvcr.cz/nsesss/v2 http://www.mvcr.cz/nsesss/v2/nsesss.xsd" xmlns:nsesss="http://www.mvcr.cz/nsesss/v2">
+					<nsesss:EvidencniUdaje>
+						<nsesss:Identifikace>
+							<nsesss:Identifikator zdroj="Gordic.Ginis.MP12.X">MP12P00BTZ3Z</nsesss:Identifikator>
+						</nsesss:Identifikace>
+						<nsesss:Popis>
+							<nsesss:Nazev>Odvod poplatkù mìstu Desná</nsesss:Nazev>
+							<nsesss:Komentar>Odvod poplatkù mìstu Desná\nPoplatek za ubytovací kapacity a rekreaèní poplatek</nsesss:Komentar>
+						</nsesss:Popis>
+						<nsesss:Pristupnost>
+							<nsesss:BezpecnostniKategorie>
+								<nsesss:Identifikator zdroj="Gordic.Ginis.MP12.BK">0</nsesss:Identifikator>
+								<nsesss:Nazev>Dokument ke zveøejnìní</nsesss:Nazev>
+								<nsesss:BezpecnostniStupen>Dokument ke zveøejnìní</nsesss:BezpecnostniStupen>
+							</nsesss:BezpecnostniKategorie>
+						</nsesss:Pristupnost>
+						<nsesss:Neevidence>
+							<nsesss:Oduvodneni>Dokumentu nebylo pøidìleno evidenèní èíslo</nsesss:Oduvodneni>
+						</nsesss:Neevidence>
+						<nsesss:Jazyky>
+							<nsesss:Jazyk>cze</nsesss:Jazyk>
+						</nsesss:Jazyky>
+						<nsesss:Puvod>
+							<nsesss:VlastniDokument>
+								<nsesss:DatumVytvoreni datum="2012-01-25T09:22:55.000+01:00">2012-01-25</nsesss:DatumVytvoreni>
+								<nsesss:VytvoreneMnozstvi>1-1/0/2-4</nsesss:VytvoreneMnozstvi>
+								<nsesss:Autor>
+									<nsesss:Subjekt>
+										<nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.ISU">MP12SE00A013</nsesss:IdentifikatorOrganizace>
+										<nsesss:NazevOrganizace>Úøad mìstské èásti Praha 12</nsesss:NazevOrganizace>
+										<nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MP12.SZ">MP12SZ00CZU4</nsesss:IdentifikatorFyzickeOsoby>
+										<nsesss:NazevFyzickeOsoby>Krejèíková Pavlína</nsesss:NazevFyzickeOsoby>
+										<nsesss:OrganizacniUtvar>Odbor provozní</nsesss:OrganizacniUtvar>
+										<nsesss:PracovniPozice>objednávky a faktury OPR</nsesss:PracovniPozice>
+										<nsesss:SidloOrganizace>Úøad mìstské èásti Praha 12,  Písková 25/830,  14300 Praha 412, podatelna@p12.mepnet.cz</nsesss:SidloOrganizace>
+									</nsesss:Subjekt>
+								</nsesss:Autor>
+							</nsesss:VlastniDokument>
+						</nsesss:Puvod>
+						<nsesss:Trideni>
+							<nsesss:JednoduchySpisovyZnak>087.1</nsesss:JednoduchySpisovyZnak>
+							<nsesss:PlneUrcenySpisovyZnak>2005-087.1-</nsesss:PlneUrcenySpisovyZnak>
+							<nsesss:TypDokumentu>
+								<nsesss:Identifikator zdroj="Gordic.Ginis.MP12.ITD">00000400000G</nsesss:Identifikator>
+								<nsesss:Nazev>neurèen</nsesss:Nazev>
+								<nsesss:Komentar>Neurèen</nsesss:Komentar>
+							</nsesss:TypDokumentu>
+							<nsesss:MaterskeEntity>
+								<nsesss:VecnaSkupina ID="MP12P00BTZ3Z_Gordic.Ginis.V.S.2005-087.1">
+									<nsesss:EvidencniUdaje>
+										<nsesss:Identifikace>
+											<nsesss:Identifikator zdroj="Gordic.Ginis.MP12.SPZ">2005-087.1</nsesss:Identifikator>
+										</nsesss:Identifikace>
+										<nsesss:Popis>
+											<nsesss:Nazev>Dokumenty na vìdomí a dokumenty bez è.j.</nsesss:Nazev>
+											<nsesss:Komentar>
+											</nsesss:Komentar>
+										</nsesss:Popis>
+										<nsesss:Puvod>
+											<nsesss:DatumVytvoreni datum="2008-03-20T00:00:00.000+01:00">2008-03-20</nsesss:DatumVytvoreni>
+										</nsesss:Puvod>
+										<nsesss:Trideni>
+											<nsesss:JednoduchySpisovyZnak>087.1</nsesss:JednoduchySpisovyZnak>
+											<nsesss:PlneUrcenySpisovyZnak>2005-087.1</nsesss:PlneUrcenySpisovyZnak>
+											<nsesss:SpisovyPlan ID="MP12P00BTZ3Z_Gordic.Ginis.V.S.2005">
+												<nsesss:Identifikator zdroj="Gordic.Ginis.MP12.SPL">2005</nsesss:Identifikator>
+												<nsesss:Nazev>MP12 2005</nsesss:Nazev>
+												<nsesss:Komentar>Spisový plán MP12 2005 -</nsesss:Komentar>
+												<nsesss:Manipulace>
+													<nsesss:DatumOtevreni datum="1980-01-01T00:00:00.000+01:00">1980-01-01</nsesss:DatumOtevreni>
+													<nsesss:DatumUzavreni datum="2999-01-01T00:00:00.000+01:00">2999-01-01</nsesss:DatumUzavreni>
+												</nsesss:Manipulace>
+												<nsesss:Vydavatel>
+													<nsesss:Subjekt>
+														<nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.SE">MP12SE00A013</nsesss:IdentifikatorOrganizace>
+														<nsesss:NazevOrganizace>Úøad mìstské èásti Praha 12</nsesss:NazevOrganizace>
+														<nsesss:SidloOrganizace>Úøad mìstské èásti Praha 12,  Písková 25/830,  14300 Praha 412, podatelna@p12.mepnet.cz</nsesss:SidloOrganizace>
+														<nsesss:ElektronickyKontakt>e-mail:podatelna@p12.mepnet.cz;tel:244 028 111;DS:</nsesss:ElektronickyKontakt>
+													</nsesss:Subjekt>
+												</nsesss:Vydavatel>
+											</nsesss:SpisovyPlan>
+										</nsesss:Trideni>
+										<nsesss:Vyrazovani>
+											<nsesss:SkartacniRezim>
+												<nsesss:Identifikator zdroj="Gordic.Ginis.MP12.ISR">2005/087.1</nsesss:Identifikator>
+												<nsesss:Nazev>Dokumenty na vìdomí a dokumenty bez è.j.</nsesss:Nazev>
+												<nsesss:Komentar>
+												</nsesss:Komentar>
+												<nsesss:Oduvodneni>Vyplývá ze spisového plánu organizace</nsesss:Oduvodneni>
+												<nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+												<nsesss:SkartacniLhuta>1</nsesss:SkartacniLhuta>
+												<nsesss:SpousteciUdalost>datum uzavøení</nsesss:SpousteciUdalost>
+											</nsesss:SkartacniRezim>
+											<nsesss:DataceVyrazeni>
+												<nsesss:RokSpousteciUdalosti>9999</nsesss:RokSpousteciUdalosti>
+												<nsesss:RokSkartacniOperace>9999</nsesss:RokSkartacniOperace>
+											</nsesss:DataceVyrazeni>
+										</nsesss:Vyrazovani>
+										<nsesss:Manipulace>
+											<nsesss:NezbytnyDokument>ano</nsesss:NezbytnyDokument>
+											<nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+											<nsesss:DatumOtevreni datum="2008-03-20T00:00:00.000+01:00">2008-03-20</nsesss:DatumOtevreni>
+											<nsesss:DatumUzavreni datum="2999-01-01T00:00:00.000+01:00">2999-01-01</nsesss:DatumUzavreni>
+										</nsesss:Manipulace>
+									</nsesss:EvidencniUdaje>
+								</nsesss:VecnaSkupina>
+							</nsesss:MaterskeEntity>
+						</nsesss:Trideni>
+						<nsesss:Vyrizeni>
+							<nsesss:Datum datum="2012-10-10T00:00:00.000+01:00">2012-10-10</nsesss:Datum>
+							<nsesss:Zpusob>vzetí na vìdomí</nsesss:Zpusob>
+							<nsesss:ObsahVyrizeni>, Vyøízeno vzetím na vìdomí.</nsesss:ObsahVyrizeni>
+							<nsesss:Oduvodneni>Vyøízeno vzetím na vìdomí</nsesss:Oduvodneni>
+							<nsesss:Zpracovatel>
+								<nsesss:Subjekt>
+									<nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.ISU">MP12SE00A013</nsesss:IdentifikatorOrganizace>
+									<nsesss:NazevOrganizace>Úøad mìstské èásti Praha 12</nsesss:NazevOrganizace>
+									<nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MP12.SZ">MP12SZ00CZU4</nsesss:IdentifikatorFyzickeOsoby>
+									<nsesss:NazevFyzickeOsoby>Krejèíková Pavlína</nsesss:NazevFyzickeOsoby>
+									<nsesss:OrganizacniUtvar>Odbor provozní</nsesss:OrganizacniUtvar>
+									<nsesss:PracovniPozice>objednávky a faktury OPR</nsesss:PracovniPozice>
+									<nsesss:SidloOrganizace>Úøad mìstské èásti Praha 12,  Písková 25/830,  14300 Praha 412, podatelna@p12.mepnet.cz</nsesss:SidloOrganizace>
+								</nsesss:Subjekt>
+							</nsesss:Zpracovatel>
+							<nsesss:Schvalovani>
+								<nsesss:Schvaleni>
+									<nsesss:DatumSchvaleni datum="2012-01-25T09:31:26.000+01:00">2012-01-25</nsesss:DatumSchvaleni>
+									<nsesss:Schvalovatel>
+										<nsesss:Subjekt>
+											<nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.ISU">MP12SE00A013</nsesss:IdentifikatorOrganizace>
+											<nsesss:NazevOrganizace>Úøad mìstské èásti Praha 12</nsesss:NazevOrganizace>
+											<nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MP12.SZ">MP12SZ00CZU4</nsesss:IdentifikatorFyzickeOsoby>
+											<nsesss:NazevFyzickeOsoby>Krejèíková Pavlína</nsesss:NazevFyzickeOsoby>
+											<nsesss:OrganizacniUtvar>Odbor provozní</nsesss:OrganizacniUtvar>
+											<nsesss:PracovniPozice>objednávky a faktury OPR</nsesss:PracovniPozice>
+											<nsesss:SidloOrganizace>Úøad mìstské èásti Praha 12,  Písková 25/830,  14300 Praha 412, podatelna@p12.mepnet.cz</nsesss:SidloOrganizace>
+										</nsesss:Subjekt>
+									</nsesss:Schvalovatel>
+								</nsesss:Schvaleni>
+							</nsesss:Schvalovani>
+							<nsesss:DatumOdeslani datum="2012-01-25T09:51:20.000+01:00">2012-01-25</nsesss:DatumOdeslani>
+							<nsesss:Prijemce>
+								<nsesss:Subjekt>
+									<nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.SE">MP12SE03079T</nsesss:IdentifikatorOrganizace>
+									<nsesss:NazevOrganizace>Mìsto Desná</nsesss:NazevOrganizace>
+									<nsesss:SidloOrganizace>Mìsto Desná,  Krkono¹ská 318/,  46861 Desná, mesto-desna@telecom.cz</nsesss:SidloOrganizace>
+									<nsesss:ElektronickyKontakt>e-mail:mesto-desna@telecom.cz;tel:483 383 167;DS:8pva7vt</nsesss:ElektronickyKontakt>
+								</nsesss:Subjekt>
+							</nsesss:Prijemce>
+						</nsesss:Vyrizeni>
+						<nsesss:Vyrazovani>
+							<nsesss:SkartacniRezim>
+								<nsesss:Identifikator zdroj="Gordic.Ginis.MP12.ISR">2005/087.1</nsesss:Identifikator>
+								<nsesss:Nazev>Dokumenty na vìdomí a dokumenty bez è.j.</nsesss:Nazev>
+								<nsesss:Komentar>
+								</nsesss:Komentar>
+								<nsesss:Oduvodneni>Vyplývá ze spisového plánu organizace</nsesss:Oduvodneni>
+								<nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+								<nsesss:SkartacniLhuta>1</nsesss:SkartacniLhuta>
+								<nsesss:SpousteciUdalost>datum uzavøení</nsesss:SpousteciUdalost>
+							</nsesss:SkartacniRezim>
+							<nsesss:DataceVyrazeni>
+								<nsesss:RokSpousteciUdalosti>2012</nsesss:RokSpousteciUdalosti>
+								<nsesss:RokSkartacniOperace>2014</nsesss:RokSkartacniOperace>
+							</nsesss:DataceVyrazeni>
+						</nsesss:Vyrazovani>
+						<nsesss:Manipulace>
+							<nsesss:NezbytnyDokument>ano</nsesss:NezbytnyDokument>
+							<nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+							<nsesss:SpravceSpisovny>
+								<nsesss:Subjekt>
+									<nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.SE">MP12SE00A013</nsesss:IdentifikatorOrganizace>
+									<nsesss:NazevOrganizace>Úøad mìstské èásti Praha 12</nsesss:NazevOrganizace>
+									<nsesss:SidloOrganizace>Úøad mìstské èásti Praha 12,  Písková 25/830,  14300 Praha 412, podatelna@p12.mepnet.cz</nsesss:SidloOrganizace>
+									<nsesss:ElektronickyKontakt>e-mail:podatelna@p12.mepnet.cz;tel:244 028 111;DS:</nsesss:ElektronickyKontakt>
+								</nsesss:Subjekt>
+							</nsesss:SpravceSpisovny>
+						</nsesss:Manipulace>
+					</nsesss:EvidencniUdaje>
+					<nsesss:Komponenty>
+						<nsesss:Komponenta ID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC">
+							<nsesss:EvidencniUdaje>
+								<nsesss:Identifikace>
+									<nsesss:Identifikator zdroj="Gordic.Ginis.MP12.E">MP120B04D1FC</nsesss:Identifikator>
+								</nsesss:Identifikace>
+								<nsesss:Popis>
+									<nsesss:Nazev>dopis MìÚ Desná - poplatky</nsesss:Nazev>
+									<nsesss:Komentar>dopis MìÚ Desná - poplatky.doc</nsesss:Komentar>
+								</nsesss:Popis>
+								<nsesss:Trideni>
+									<nsesss:JednoduchySpisovyZnak>2005/087.1</nsesss:JednoduchySpisovyZnak>
+									<nsesss:PlneUrcenySpisovyZnak>2005/087.1/</nsesss:PlneUrcenySpisovyZnak>
+								</nsesss:Trideni>
+							</nsesss:EvidencniUdaje>
+						</nsesss:Komponenta>
+					</nsesss:Komponenty>
+				</nsesss:Dokument>
+			</mets:xmlData>
+		</mets:mdWrap>
+	</mets:dmdSec>
+	<mets:fileSec>
+		<mets:fileGrp>
+			<mets:file ID="MP120B04D1FC" MIMETYPE="application/pdf" OWNERID="MP120B04D1FC" SIZE="489060" CREATED="2015-11-09T17:02:33" CHECKSUM="52e31b6ee463d098798af0e034b6735d" CHECKSUMTYPE="MD5">
+				<mets:FContent>
+          <mets:binData>YQ==</mets:binData>
+        </mets:FContent>
+			</mets:file>
+		</mets:fileGrp>
+	</mets:fileSec>
+	<mets:structMap>
+		<mets:div DMDID="MP12P00BTZ3Z_Gordic.Ginis.V.S.2005" TYPE="spisový plán">
+			<mets:div DMDID="MP12P00BTZ3Z_Gordic.Ginis.V.S.2005-087.1" TYPE="vìcná skupina">
+				<mets:div DMDID="MP12P00BTZ3Z" TYPE="dokument">
+				</mets:div>
+			</mets:div>
+		</mets:div>
+	</mets:structMap>
+</mets:mets>

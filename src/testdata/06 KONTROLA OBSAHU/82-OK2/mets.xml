@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mets:mets xmlns:tns="http://mvcr.cz/ess/v_1.0.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:nsesss="http://www.mvcr.cz/nsesss/v3" xmlns:tp="http://nsess.public.cz/erms_trans/v_01_01" xmlns:mets="http://www.loc.gov/METS/" ID="GS_0c4df64a-c713-4b82-87ff-ca4bcc53c95b" OBJID="GS_0c4df64a-c713-4b82-87ff-ca4bcc53c95b" LABEL="Datový balíček pro provedení skartačního řízení" TYPE="dokument" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 TransakcniProtokolNavrh_verze1.7.xsd">
+  <mets:metsHdr ID="G_704822bd-0c84-450c-bc90-e47ef7bed84d" CREATEDATE="2018-06-01T08:57:45.0494838Z" LASTMODDATE="2018-06-01T08:57:45.0494838Z" RECORDSTATUS="Mets-1.9_Nsesss-3.0_Generator-2018.05.24">
+    <mets:agent ID="MHMPSE009Q14" ROLE="CREATOR" TYPE="ORGANIZATION">
+      <mets:name>Hlavní město PRAHA,  Mariánské nám. 2,  11000 PRAHA 1</mets:name>
+      <mets:note>GINIS</mets:note>
+    </mets:agent>
+    <mets:agent ID="MHMPSR00BR8X" ROLE="CREATOR" TYPE="INDIVIDUAL">
+      <mets:name>Beránková Helena</mets:name>
+      <mets:note>GINIS</mets:note>
+    </mets:agent>
+  </mets:metsHdr>
+  <mets:dmdSec ID="dmd001">
+    <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="NSESSS" MDTYPEVERSION="3.0" MIMETYPE="text/xml" LABEL="Schéma XML pro předávání dokumentů a jejich metadat do archivu">
+      <mets:xmlData>
+        <nsesss:Dokument ID="MHMPP00ZH52O">
+          <nsesss:EvidencniUdaje>
+            <nsesss:Identifikace>
+              <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.X">MHMPP00ZH52O</nsesss:Identifikator>
+            </nsesss:Identifikace>
+            <nsesss:Popis>
+              <nsesss:Nazev>Poskyt. požad. inf. za účelem vytvář. vypovíd. sys</nsesss:Nazev>
+              <nsesss:Komentar>Poskyt. požad. inf. za účelem vytvář. vypovíd. systému vykazování vynaložených finanč. prostředků na _odvětví školství za městskou část Praha - Štěrboholy</nsesss:Komentar>
+            </nsesss:Popis>
+            <nsesss:Pristupnost>
+              <nsesss:BezpecnostniKategorie>
+                <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.BK">10</nsesss:Identifikator>
+                <nsesss:Nazev>Dokument ke zveřejnění</nsesss:Nazev>
+                <nsesss:BezpecnostniStupen>Dokument ke zveřejnění</nsesss:BezpecnostniStupen>
+              </nsesss:BezpecnostniKategorie>
+            </nsesss:Pristupnost>
+            <nsesss:Neevidence>
+              <nsesss:Oduvodneni>Dokumentu nebylo přiděleno evidenční číslo</nsesss:Oduvodneni>
+            </nsesss:Neevidence>
+            <nsesss:Jazyky>
+              <nsesss:Jazyk>cze</nsesss:Jazyk>
+            </nsesss:Jazyky>
+            <nsesss:Puvod>
+              <nsesss:DorucenyDokument>
+                <nsesss:DatumVytvoreni datum="2005-10-28T19:38:59.000+01:00">2005-10-28</nsesss:DatumVytvoreni>
+                <nsesss:Autor>
+                  <nsesss:Subjekt>
+                    <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MHMP.SE">MHMPSE00JNLB</nsesss:IdentifikatorOrganizace>
+                    <nsesss:NazevOrganizace>MČ Štěrboholy</nsesss:NazevOrganizace>
+                    <nsesss:SidloOrganizace>MČ Štěrboholy,  Ústřední 0/15,  10200 Praha 10,</nsesss:SidloOrganizace>
+                    <nsesss:ElektronickyKontakt>e-mail:;tel:;DS:</nsesss:ElektronickyKontakt>
+                  </nsesss:Subjekt>
+                </nsesss:Autor>
+                <nsesss:DatumDoruceni datum="2000-02-29T00:00:00.000+01:00">2000-02-29</nsesss:DatumDoruceni>
+                <nsesss:OdesilatelovoEvidencniCislo>
+                </nsesss:OdesilatelovoEvidencniCislo>
+                <nsesss:DoruceneMnozstvi>0-0/0/0-</nsesss:DoruceneMnozstvi>
+                <nsesss:Odesilatel>
+                  <nsesss:Subjekt>
+                    <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MHMP.SE">MHMPSE00JNLB</nsesss:IdentifikatorOrganizace>
+                    <nsesss:NazevOrganizace>MČ Štěrboholy</nsesss:NazevOrganizace>
+                    <nsesss:SidloOrganizace>MČ Štěrboholy,  Ústřední 0/15,  10200 Praha 10,</nsesss:SidloOrganizace>
+                    <nsesss:ElektronickyKontakt>e-mail:;tel:;DS:</nsesss:ElektronickyKontakt>
+                  </nsesss:Subjekt>
+                </nsesss:Odesilatel>
+              </nsesss:DorucenyDokument>
+            </nsesss:Puvod>
+            <nsesss:Trideni>
+              <nsesss:JednoduchySpisovyZnak>451.</nsesss:JednoduchySpisovyZnak>
+              <nsesss:PlneUrcenySpisovyZnak>451.</nsesss:PlneUrcenySpisovyZnak>
+              <nsesss:TypDokumentu>
+                <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.ITD">00000400000G</nsesss:Identifikator>
+                <nsesss:Nazev>neurčen</nsesss:Nazev>
+                <nsesss:Komentar>neurčen</nsesss:Komentar>
+              </nsesss:TypDokumentu>
+              <nsesss:MaterskeEntity>
+                <nsesss:VecnaSkupina ID="MHMP0200AZSD">
+                  <nsesss:EvidencniUdaje>
+                    <nsesss:Identifikace>
+                      <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.SPZ">MHMP0200AZSD</nsesss:Identifikator>
+                    </nsesss:Identifikace>
+                    <nsesss:Popis>
+                      <nsesss:Nazev>ostatní písemnosti</nsesss:Nazev>
+                      <nsesss:Komentar>ostatní písemnosti</nsesss:Komentar>
+                    </nsesss:Popis>
+                    <nsesss:Puvod>
+                      <nsesss:DatumVytvoreni datum="1900-01-01T00:00:00.000+01:00">1900-01-01</nsesss:DatumVytvoreni>
+                    </nsesss:Puvod>
+                    <nsesss:Trideni>
+                      <nsesss:JednoduchySpisovyZnak>451.</nsesss:JednoduchySpisovyZnak>
+                      <nsesss:PlneUrcenySpisovyZnak>451.</nsesss:PlneUrcenySpisovyZnak>
+                      <nsesss:SpisovyPlan ID="MHMPP00ZH52O_Gordic.Ginis.V.S.2002">
+                        <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.SPL">2002</nsesss:Identifikator>
+                        <nsesss:Nazev>2002</nsesss:Nazev>
+                        <nsesss:Komentar>-</nsesss:Komentar>
+                        <nsesss:Manipulace>
+                          <nsesss:DatumOtevreni datum="2002-01-01T00:00:00.000+01:00">2002-01-01</nsesss:DatumOtevreni>
+                          <nsesss:DatumUzavreni datum="2004-12-31T00:00:00.000+01:00">2004-12-31</nsesss:DatumUzavreni>
+                        </nsesss:Manipulace>
+                        <nsesss:Vydavatel>
+                          <nsesss:Subjekt>
+                            <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MHMP.SE">MHMPSE009Q14</nsesss:IdentifikatorOrganizace>
+                            <nsesss:NazevOrganizace>Hlavní město PRAHA</nsesss:NazevOrganizace>
+                            <nsesss:SidloOrganizace>Hlavní město PRAHA,  Mariánské nám. 2,  11000 PRAHA 1</nsesss:SidloOrganizace>
+                            <nsesss:ElektronickyKontakt>e-mail:;tel:236001111;DS:48ia97h</nsesss:ElektronickyKontakt>
+                          </nsesss:Subjekt>
+                        </nsesss:Vydavatel>
+                      </nsesss:SpisovyPlan>
+                    </nsesss:Trideni>
+                    <nsesss:Vyrazovani>
+                      <nsesss:SkartacniRezim>
+                        <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.ISR">MHMPAW90A0QL</nsesss:Identifikator>
+                        <nsesss:Nazev>S 5</nsesss:Nazev>
+                        <nsesss:Komentar>
+                        </nsesss:Komentar>
+                        <nsesss:Oduvodneni>Vyplývá ze spisového plánu organizace</nsesss:Oduvodneni>
+                        <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+                        <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+                        <nsesss:SpousteciUdalost>Uzavření entity</nsesss:SpousteciUdalost>
+                      </nsesss:SkartacniRezim>
+                    </nsesss:Vyrazovani>
+                    <nsesss:Manipulace>
+                      <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                      <nsesss:DatumOtevreni datum="1900-01-01T00:00:00.000+01:00">1900-01-01</nsesss:DatumOtevreni>
+                      <nsesss:DatumUzavreni datum="2999-01-01T00:00:00.000+01:00">2999-01-01</nsesss:DatumUzavreni>
+                    </nsesss:Manipulace>
+                  </nsesss:EvidencniUdaje>
+                </nsesss:VecnaSkupina>
+              </nsesss:MaterskeEntity>
+            </nsesss:Trideni>
+            <nsesss:Vyrizeni>
+              <nsesss:Datum datum="2003-12-08T00:00:00.000+01:00">2003-12-08</nsesss:Datum>
+              <nsesss:Zpusob>vzetí na vědomí</nsesss:Zpusob>
+              <nsesss:ObsahVyrizeni>,</nsesss:ObsahVyrizeni>
+              <nsesss:Oduvodneni>Vyřízeno vzetím na vědomí</nsesss:Oduvodneni>
+              <nsesss:Zpracovatel>
+                <nsesss:Subjekt>
+                  <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MHMP.ISU">MHMPSE009Q14</nsesss:IdentifikatorOrganizace>
+                  <nsesss:NazevOrganizace>Hlavní město PRAHA</nsesss:NazevOrganizace>
+                  <nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MHMP.SZ">MHMPSZ010ES2</nsesss:IdentifikatorFyzickeOsoby>
+                  <nsesss:NazevFyzickeOsoby>Veselá Karla</nsesss:NazevFyzickeOsoby>
+                  <nsesss:OrganizacniUtvar>odd. sekretariátu (OMT)</nsesss:OrganizacniUtvar>
+                  <nsesss:PracovniPozice>Referent spisovny</nsesss:PracovniPozice>
+                  <nsesss:SidloOrganizace>Hlavní město PRAHA,  Mariánské nám. 2,  11000 PRAHA 1</nsesss:SidloOrganizace>
+                </nsesss:Subjekt>
+              </nsesss:Zpracovatel>
+            </nsesss:Vyrizeni>
+            <nsesss:Vyrazovani>
+              <nsesss:SkartacniRezim>
+                <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.ISR">MHMPAW90A0QL</nsesss:Identifikator>
+                <nsesss:Nazev>S 5</nsesss:Nazev>
+                <nsesss:Komentar>
+                </nsesss:Komentar>
+                <nsesss:Oduvodneni>Vyplývá ze spisového plánu organizace</nsesss:Oduvodneni>
+                <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+                <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+                <nsesss:SpousteciUdalost>Uzavření entity</nsesss:SpousteciUdalost>
+              </nsesss:SkartacniRezim>
+              <nsesss:DataceVyrazeni>
+                <nsesss:RokSpousteciUdalosti>2003</nsesss:RokSpousteciUdalosti>
+                <nsesss:RokSkartacniOperace>2009</nsesss:RokSkartacniOperace>
+              </nsesss:DataceVyrazeni>
+              <nsesss:SkartacniRizeni>
+                <nsesss:Datum datum="2006-12-31T00:00:00.000+01:00">2006-12-31</nsesss:Datum>
+                <nsesss:Mnozstvi>0-0/0/0-</nsesss:Mnozstvi>
+                <nsesss:SkartacniOperace>trvalé uložení</nsesss:SkartacniOperace>
+                <nsesss:Posuzovatel>
+                  <nsesss:Subjekt>
+                    <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MHMP.ISU">MHMPSE009Q14</nsesss:IdentifikatorOrganizace>
+                    <nsesss:NazevOrganizace>Hlavní město PRAHA</nsesss:NazevOrganizace>
+                    <nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MHMP.SZ">MHMPSZ01PIF2</nsesss:IdentifikatorFyzickeOsoby>
+                    <nsesss:NazevFyzickeOsoby>Neradová Martina Mgr.</nsesss:NazevFyzickeOsoby>
+                    <nsesss:OrganizacniUtvar>odd. hl. spisovny</nsesss:OrganizacniUtvar>
+                    <nsesss:PracovniPozice>Archivář</nsesss:PracovniPozice>
+                    <nsesss:SidloOrganizace>Hlavní město PRAHA,  Mariánské nám. 2,  11000 PRAHA 1</nsesss:SidloOrganizace>
+                  </nsesss:Subjekt>
+                </nsesss:Posuzovatel>
+              </nsesss:SkartacniRizeni>
+            </nsesss:Vyrazovani>
+            <nsesss:Manipulace>
+              <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+              <nsesss:SpravceSpisovny>
+                <nsesss:Subjekt>
+                  <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MHMP.SE">MHMPSE009Q14</nsesss:IdentifikatorOrganizace>
+                  <nsesss:NazevOrganizace>Hlavní město PRAHA</nsesss:NazevOrganizace>
+                  <nsesss:SidloOrganizace>Hlavní město PRAHA,  Mariánské nám. 2,  11000 PRAHA 1</nsesss:SidloOrganizace>
+                  <nsesss:ElektronickyKontakt>e-mail:;tel:236001111;DS:48ia97h</nsesss:ElektronickyKontakt>
+                </nsesss:Subjekt>
+              </nsesss:SpravceSpisovny>
+              <nsesss:UkladaciJednotka>C.s.    119/2014</nsesss:UkladaciJednotka>
+            </nsesss:Manipulace>
+          </nsesss:EvidencniUdaje>
+        </nsesss:Dokument>
+      </mets:xmlData>
+    </mets:mdWrap>
+  </mets:dmdSec>
+  <mets:amdSec ID="amd_spl_MHMPP00ZH52O_Gordic.Ginis.V.S.2002">
+    <mets:digiprovMD ID="dp_amd_spl_MHMPP00ZH52O_Gordic.Ginis.V.S.2002">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>MHMPP00ZH52O_Gordic.Ginis.V.S.2002</tns:HodnotaID>
+                <tns:ZdrojID>GINIS</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>0001-01-01T00:00:00</tp:DatumVzniku>
+              <tp:DatumCasOd>0001-01-01T00:00:00</tp:DatumCasOd>
+              <tp:DatumCasDo>0001-01-01T00:00:00</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>SpisovyPlan</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>2002</tns:HodnotaID>
+                  <tns:ZdrojID>Gordic.Ginis.MHMP.SPL</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti/>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd_vs_MHMP0200AZSD">
+    <mets:digiprovMD ID="dp_amd_vs_MHMP0200AZSD">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>MHMP0200AZSD</tns:HodnotaID>
+                <tns:ZdrojID>GINIS</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>0001-01-01T00:00:00</tp:DatumVzniku>
+              <tp:DatumCasOd>0001-01-01T00:00:00</tp:DatumCasOd>
+              <tp:DatumCasDo>0001-01-01T00:00:00</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>VecnaSkupina</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>MHMP0200AZSD</tns:HodnotaID>
+                  <tns:ZdrojID>Gordic.Ginis.MHMP.SPZ</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti/>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd_dok_MHMPP00ZH52O">
+    <mets:digiprovMD ID="dp_amd_dok_MHMPP00ZH52O">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>MHMPP00ZH52O</tns:HodnotaID>
+                <tns:ZdrojID>GINIS</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2018-06-01T10:57:45.5069907+02:00</tp:DatumVzniku>
+              <tp:DatumCasOd>2000-02-29T00:00:00</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-06-01T10:57:45.5069907+02:00</tp:DatumCasDo>
+              <tp:Software>GINIS - GSASPI01</tp:Software>
+              <tp:VerzeSoftware>480.5.40SPI0148005X24_380.3</tp:VerzeSoftware>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Dokument</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>MHMPP00ZH52O</tns:HodnotaID>
+                  <tns:ZdrojID>Gordic.Ginis.MHMP.X</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti>
+              <tp:Udalost>
+                <tp:Poradi>6521282</tp:Poradi>
+                <tp:DatumVzniku>2000-02-29T11:17:20</tp:DatumVzniku>
+                <tp:provedlKdo>Mojdlová Jaroslava, Zajišťování dílčích agend</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>Zalozeni</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Podání doručené písemnosti a přidělení uzlu &gt; odbor OSK &lt;</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>6521342</tp:Poradi>
+                <tp:DatumVzniku>2000-02-29T11:19:20</tp:DatumVzniku>
+                <tp:provedlKdo>Mojdlová Jaroslava, Zajišťování dílčích agend</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>Predani</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Předání do cílového uzlu redistribuce  &gt; odbor OSK &lt;</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>6522610</tp:Poradi>
+                <tp:DatumVzniku>2000-02-29T12:43:51</tp:DatumVzniku>
+                <tp:provedlKdo>Veselá Karla, Zajišť. dílčích administr</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>Predani</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Převzetí v rámci redistribuce uzlem   &gt; odbor OSK &lt; funkcí &gt; Veselá Karla, Zajišť. dílčích administr &lt;</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>34093044</tp:Poradi>
+                <tp:DatumVzniku>2003-12-08T13:46:47</tp:DatumVzniku>
+                <tp:provedlKdo>Veselá Karla, Sekretářka-spisovna (OMT)</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>Uprava</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Oprava evidenčních údajů podání a doručení písemnosti.</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>216494382</tp:Poradi>
+                <tp:DatumVzniku>2014-03-11T16:04:15</tp:DatumVzniku>
+                <tp:provedlKdo>Kolářová Kristýna Ing., Referent/ka spisovny</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>Predani</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Dodatečné převzetí funkcí &gt; Kolářová Kristýna Ing., Referent/ka spisovny &lt;</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>216494383</tp:Poradi>
+                <tp:DatumVzniku>2014-03-11T16:04:15</tp:DatumVzniku>
+                <tp:provedlKdo>Kolářová Kristýna Ing., Referent/ka spisovny</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>Predani</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Přímé přebrání funkcí &gt; Kolářová Kristýna Ing., Referent/ka spisovny &lt; na uzlu &gt; odbor AMP &lt;</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>216494638</tp:Poradi>
+                <tp:DatumVzniku>2014-03-11T16:06:48</tp:DatumVzniku>
+                <tp:provedlKdo>Kolářová Kristýna Ing., Referent/ka spisovny</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>MHMPAWZ11O7M byl vložen do balíku. [PID:MHMPAWZ11O7M]</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>216494765</tp:Poradi>
+                <tp:DatumVzniku>2014-03-11T16:07:48</tp:DatumVzniku>
+                <tp:provedlKdo>Kolářová Kristýna Ing., Referent/ka spisovny</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>Predani</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Přímé přebrání funkcí &gt; Kolářová Kristýna Ing., Referent/ka spisovny &lt; na uzlu &gt; odbor AMP &lt;</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>216494766</tp:Poradi>
+                <tp:DatumVzniku>2014-03-11T16:07:48</tp:DatumVzniku>
+                <tp:provedlKdo>Kolářová Kristýna Ing., Referent/ka spisovny</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>PrevzetiNaSpisovnu</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Vloženo do spisovny</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>237722206</tp:Poradi>
+                <tp:DatumVzniku>2014-10-06T14:19:56</tp:DatumVzniku>
+                <tp:provedlKdo>Neradová Martina Mgr., Archivář (SKU)</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Dokument či spis byl připraven pro skartační řízení.</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>249465217</tp:Poradi>
+                <tp:DatumVzniku>2015-01-21T14:41:36</tp:DatumVzniku>
+                <tp:provedlKdo>Neradová Martina Mgr., Archivář (SKU)</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Entita byla připravena pro skartační řízení.</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>276063424</tp:Poradi>
+                <tp:DatumVzniku>2015-07-21T10:07:07</tp:DatumVzniku>
+                <tp:provedlKdo>Neradová Martina Mgr., Archivář</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Entita byla připravena pro skartační řízení.</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>371300616</tp:Poradi>
+                <tp:DatumVzniku>2017-04-13T12:45:20</tp:DatumVzniku>
+                <tp:provedlKdo>Kolářová Kristýna Ing., Ved.odd.hlavní spisovny</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Změna aktuálního vlastníka dokumentu či spisu dle změny vlastníka balíku.</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>436532636</tp:Poradi>
+                <tp:DatumVzniku>2018-05-21T09:42:34</tp:DatumVzniku>
+                <tp:provedlKdo>Neradová Martina Mgr., Archivář</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Entita byla připravena pro skartační řízení.</tp:PopisUdalosti>
+              </tp:Udalost>
+            </tp:Udalosti>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:structMap>
+    <mets:div DMDID="MHMPP00ZH52O_Gordic.Ginis.V.S.2002" ADMID="amd_spl_MHMPP00ZH52O_Gordic.Ginis.V.S.2002" TYPE="spisový plán">
+      <mets:div DMDID="MHMP0200AZSD" ADMID="amd_vs_MHMP0200AZSD" TYPE="věcná skupina">
+        <mets:div DMDID="MHMPP00ZH52O" ADMID="amd_dok_MHMPP00ZH52O" TYPE="dokument"/>
+      </mets:div>
+    </mets:div>
+  </mets:structMap>
+</mets:mets>

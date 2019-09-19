@@ -1,0 +1,1120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:nsesss="http://www.mvcr.cz/nsesss/v3" xmlns:tns="http://mvcr.cz/ess/v_1.0.0.0" xmlns:tp="http://nsess.public.cz/erms_trans/v_01_01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" OBJID="NA_01" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 http://www.mvcr.cz/nsesss/v3/nsesss-TrP.xsd">
+  <mets:metsHdr CREATEDATE="2016-01-22T08:23:50" LASTMODDATE="2016-01-22T08:23:50">
+    <mets:agent ID="IDa1" ROLE="CREATOR" TYPE="ORGANIZATION">
+      <mets:name>Nemocnice XZ</mets:name>
+    </mets:agent>
+    <mets:agent ID="IDa2" ROLE="CREATOR" TYPE="INDIVIDUAL">
+      <mets:name>Prokop Buben, administrátor ESSL</mets:name>
+    </mets:agent>
+  </mets:metsHdr>
+  <mets:dmdSec ID="IDa5">
+    <mets:mdWrap LABEL="Schéma XML pro předávání dokumentů a jejich metadat do archivu" MDTYPE="OTHER" OTHERMDTYPE="NSESSS" MDTYPEVERSION="3.0" MIMETYPE="text/xml">
+      <mets:xmlData>
+        <!-- =============================================================================================== -->
+        <nsesss:Spis ID="ID7">
+          <nsesss:EvidencniUdaje>
+            <nsesss:Identifikace>
+              <nsesss:Identifikator zdroj="ERMS">identifikátor spisu_01</nsesss:Identifikator>
+            </nsesss:Identifikace>
+            <nsesss:Popis>
+              <nsesss:Nazev>název Spisu</nsesss:Nazev>
+            </nsesss:Popis>
+            <nsesss:Pristupnost>
+              <nsesss:BezpecnostniKategorie>
+                <nsesss:Identifikator zdroj="ERMS">BK_02</nsesss:Identifikator>
+                <nsesss:Nazev>Bezpečnostní kategorie - neveřejné</nsesss:Nazev>
+                <nsesss:BezpecnostniStupen>02 - neveřejné</nsesss:BezpecnostniStupen>
+              </nsesss:BezpecnostniKategorie>
+              <nsesss:JineOmezeni>Osobní údaje</nsesss:JineOmezeni>
+            </nsesss:Pristupnost>
+            <nsesss:Evidence>
+              <nsesss:EvidencniCislo>SpisFN-300/2012</nsesss:EvidencniCislo>
+              <nsesss:PoradoveCislo>300</nsesss:PoradoveCislo>
+              <nsesss:UrceneCasoveObdobi>
+                <nsesss:Rok>2012</nsesss:Rok>
+              </nsesss:UrceneCasoveObdobi>
+              <nsesss:NazevEvidenceDokumentu>Spisová služba XY, verze 3.2</nsesss:NazevEvidenceDokumentu>
+            </nsesss:Evidence>
+            <nsesss:Puvod>
+              <nsesss:DatumVytvoreni>2012-08-17</nsesss:DatumVytvoreni>
+            </nsesss:Puvod>
+            <nsesss:Trideni>
+              <nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
+              <nsesss:PlneUrcenySpisovyZnak>33.3</nsesss:PlneUrcenySpisovyZnak>
+              <nsesss:MaterskaEntita>
+                <nsesss:VecnaSkupina ID="ID2">
+                  <nsesss:EvidencniUdaje>
+                    <nsesss:Identifikace>
+                      <nsesss:Identifikator zdroj="ERMS">vecna_skupina_33_3</nsesss:Identifikator>
+                    </nsesss:Identifikace>
+                    <nsesss:Popis>
+                      <nsesss:Nazev>Součinnost se zřizovatelem</nsesss:Nazev>
+                    </nsesss:Popis>
+                    <nsesss:Puvod>
+                      <nsesss:DatumVytvoreni>2012-01-01</nsesss:DatumVytvoreni>
+                    </nsesss:Puvod>
+                    <nsesss:Trideni>
+                      <nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
+                      <nsesss:PlneUrcenySpisovyZnak>33.3</nsesss:PlneUrcenySpisovyZnak>
+                      <nsesss:MaterskaEntita>
+                        <nsesss:VecnaSkupina ID="ID3">
+                          <nsesss:EvidencniUdaje>
+                            <nsesss:Identifikace>
+                              <nsesss:Identifikator zdroj="ERMS">identifikátor_vecna_skupina_33</nsesss:Identifikator>
+                            </nsesss:Identifikace>
+                            <nsesss:Popis>
+                              <nsesss:Nazev>ZŘIZOVACÍ LISTINY, ZAKLÁDACÍ DOKUMENTY</nsesss:Nazev>
+                            </nsesss:Popis>
+                            <nsesss:Puvod>
+                              <nsesss:DatumVytvoreni>2012-01-01</nsesss:DatumVytvoreni>
+                            </nsesss:Puvod>
+                            <nsesss:Trideni>
+                              <nsesss:JednoduchySpisovyZnak>33</nsesss:JednoduchySpisovyZnak>
+                              <nsesss:PlneUrcenySpisovyZnak>33</nsesss:PlneUrcenySpisovyZnak>
+                              <nsesss:SpisovyPlan ID="ID4">
+                                <nsesss:Identifikator zdroj="ERMS">identifikátor_spisovy_plan_01</nsesss:Identifikator>
+                                <nsesss:Nazev>Spisový plán Nemocnice PARDUBICKÉHO KRAJE, 2012</nsesss:Nazev>
+                                <nsesss:Manipulace>
+                                  <nsesss:DatumOtevreni>2012-01-01</nsesss:DatumOtevreni>
+                                </nsesss:Manipulace>
+                                <nsesss:Vydavatel>
+                                  <nsesss:Subjekt>
+                                    <nsesss:IdentifikatorOrganizace zdroj="IČ">27520536</nsesss:IdentifikatorOrganizace>
+                                    <nsesss:NazevOrganizace>Nemocnice Pardubického kraje, a.s.</nsesss:NazevOrganizace>
+                                    <nsesss:SidloOrganizace>Kyjevská 44, 53203 Pardubice</nsesss:SidloOrganizace>
+                                    <nsesss:ElektronickyKontakt>kontaktnem@organizace.cz, ID DS eiefkcs</nsesss:ElektronickyKontakt>
+                                  </nsesss:Subjekt>
+                                </nsesss:Vydavatel>
+                              </nsesss:SpisovyPlan>
+                            </nsesss:Trideni>
+                            <nsesss:Vyrazovani/>
+                            <nsesss:Manipulace>
+                              <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+                              <nsesss:DatumOtevreni>2012-01-01</nsesss:DatumOtevreni>
+                            </nsesss:Manipulace>
+                          </nsesss:EvidencniUdaje>
+                        </nsesss:VecnaSkupina>
+                      </nsesss:MaterskaEntita>
+                    </nsesss:Trideni>
+                    <nsesss:Vyrazovani>
+                      <nsesss:SkartacniRezim>
+                        <nsesss:Identifikator zdroj="ERMS">skartacni_rezim_01</nsesss:Identifikator>
+                        <nsesss:Nazev>Skartační režim A 5</nsesss:Nazev>
+                        <nsesss:Oduvodneni>Zákon č. 567/2000 Sb., platný spisový a skartační plán</nsesss:Oduvodneni>
+                        <nsesss:SkartacniZnak>A</nsesss:SkartacniZnak>
+                        <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+                        <nsesss:SpousteciUdalost>vyřízení/uzavření</nsesss:SpousteciUdalost>
+                      </nsesss:SkartacniRezim>
+                    </nsesss:Vyrazovani>
+                    <nsesss:Manipulace>
+                      <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+                      <nsesss:DatumOtevreni>2012-01-01</nsesss:DatumOtevreni>
+                      <nsesss:DatumUzavreni>2015-12-31</nsesss:DatumUzavreni>
+                    </nsesss:Manipulace>
+                  </nsesss:EvidencniUdaje>
+                </nsesss:VecnaSkupina>
+              </nsesss:MaterskaEntita>
+            </nsesss:Trideni>
+            <nsesss:VyrizeniUzavreni>
+              <nsesss:Datum>2012-10-31</nsesss:Datum>
+              <nsesss:Zpusob>jiný způsob</nsesss:Zpusob>
+              <nsesss:ObsahVyrizeni>Podání informace</nsesss:ObsahVyrizeni>
+              <nsesss:Oduvodneni>Zadání do systému - NIS</nsesss:Oduvodneni>
+              <nsesss:Zpracovatel>
+                <nsesss:Subjekt>
+                  <nsesss:IdentifikatorOrganizace zdroj="IČ">27520536</nsesss:IdentifikatorOrganizace>
+                  <nsesss:NazevOrganizace>Nemocnice Pardubického kraje, a.s.</nsesss:NazevOrganizace>
+                  <nsesss:IdentifikatorFyzickeOsoby zdroj="osobní číslo">22765</nsesss:IdentifikatorFyzickeOsoby>
+                  <nsesss:NazevFyzickeOsoby>Evžen Hromádka</nsesss:NazevFyzickeOsoby>
+                  <nsesss:OrganizacniUtvar>Právní oddělení</nsesss:OrganizacniUtvar>
+                  <nsesss:PracovniPozice>právník</nsesss:PracovniPozice>
+                  <nsesss:SidloOrganizace>Kyjevská 44, 53203 Pardubice</nsesss:SidloOrganizace>
+                </nsesss:Subjekt>
+              </nsesss:Zpracovatel>
+              <nsesss:Schvalovani>
+                <nsesss:Schvaleni>
+                  <nsesss:DatumSchvaleni>2012-10-30</nsesss:DatumSchvaleni>
+                  <nsesss:Schvalovatel>
+                    <nsesss:Subjekt>
+                      <nsesss:IdentifikatorOrganizace zdroj="IČ">27520536</nsesss:IdentifikatorOrganizace>
+                      <nsesss:NazevOrganizace>Nemocnice Pardubického kraje, a.s.</nsesss:NazevOrganizace>
+                      <nsesss:IdentifikatorFyzickeOsoby zdroj="osobní číslo">98765</nsesss:IdentifikatorFyzickeOsoby>
+                      <nsesss:NazevFyzickeOsoby>Samuel Suchý</nsesss:NazevFyzickeOsoby>
+                      <nsesss:OrganizacniUtvar>Právní oddělení</nsesss:OrganizacniUtvar>
+                      <nsesss:PracovniPozice>právník, vedoucí</nsesss:PracovniPozice>
+                      <nsesss:SidloOrganizace>Kyjevská 44, 53203 Pardubice</nsesss:SidloOrganizace>
+                    </nsesss:Subjekt>
+                  </nsesss:Schvalovatel>
+                </nsesss:Schvaleni>
+              </nsesss:Schvalovani>
+              <nsesss:DatumOdeslani>2012-11-01</nsesss:DatumOdeslani>
+              <nsesss:Prijemce>
+                <nsesss:Subjekt>
+                  <nsesss:IdentifikatorOrganizace zdroj="IČ">70892822</nsesss:IdentifikatorOrganizace>
+                  <nsesss:NazevOrganizace>Krajský úřad Pardubického kraje</nsesss:NazevOrganizace>
+                  <nsesss:SidloOrganizace>Komenského nám. 125, 532 11 Pardubice</nsesss:SidloOrganizace>
+                  <nsesss:ElektronickyKontakt>posta@pardubickykraj.cz, ID DS: z28bwu9</nsesss:ElektronickyKontakt>
+                </nsesss:Subjekt>
+              </nsesss:Prijemce>
+            </nsesss:VyrizeniUzavreni>
+            <nsesss:Vyrazovani>
+              <nsesss:SkartacniRezim>
+                <nsesss:Identifikator zdroj="ERMS">skartacni_rezim_01</nsesss:Identifikator>
+                <nsesss:Nazev>Skartační režim A 5</nsesss:Nazev>
+                <nsesss:Oduvodneni>Zákon č. 567/2000 Sb., platný spisový a skartační plán</nsesss:Oduvodneni>
+                <nsesss:SkartacniZnak>A</nsesss:SkartacniZnak>
+                <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+                <nsesss:SpousteciUdalost>vyřízení/uzavření</nsesss:SpousteciUdalost>
+              </nsesss:SkartacniRezim>
+              <nsesss:DataceVyrazeni>
+                <nsesss:RokSpousteciUdalosti>2012</nsesss:RokSpousteciUdalosti>
+                <nsesss:RokSkartacniOperace>2018</nsesss:RokSkartacniOperace>
+              </nsesss:DataceVyrazeni>
+              <nsesss:SkartacniRizeni>
+                <nsesss:Datum>2018-01-10</nsesss:Datum>
+                <nsesss:SkartacniOperace>trvalé uložení</nsesss:SkartacniOperace>
+                <nsesss:Posuzovatel>
+                  <nsesss:Subjekt>
+                    <nsesss:IdentifikatorOrganizace zdroj="IČ">27520536</nsesss:IdentifikatorOrganizace>
+                    <nsesss:NazevOrganizace>Nemocnice Pardubického kraje, a.s.</nsesss:NazevOrganizace>
+                    <nsesss:IdentifikatorFyzickeOsoby zdroj="osobní číslo">112777</nsesss:IdentifikatorFyzickeOsoby>
+                    <nsesss:NazevFyzickeOsoby>Prokop Buben</nsesss:NazevFyzickeOsoby>
+                    <nsesss:OrganizacniUtvar>Sekretariát ředitele</nsesss:OrganizacniUtvar>
+                    <nsesss:PracovniPozice>referent spisové služby</nsesss:PracovniPozice>
+                    <nsesss:SidloOrganizace>Kyjevská 44, 53203 Pardubice</nsesss:SidloOrganizace>
+                  </nsesss:Subjekt>
+                </nsesss:Posuzovatel>
+              </nsesss:SkartacniRizeni>
+            </nsesss:Vyrazovani>
+            <nsesss:Manipulace>
+              <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+              <nsesss:DatumOtevreni>2012-08-17</nsesss:DatumOtevreni>
+              <nsesss:DatumUzavreni>2012-11-30</nsesss:DatumUzavreni>
+            </nsesss:Manipulace>
+          </nsesss:EvidencniUdaje>
+          <nsesss:Dokumenty>
+            <nsesss:Dokument ID="ID1">
+              <nsesss:EvidencniUdaje>
+                <nsesss:Identifikace>
+                  <nsesss:Identifikator zdroj="ERMS">identifikator_dokumentu_05</nsesss:Identifikator>
+                </nsesss:Identifikace>
+                <nsesss:Popis>
+                  <nsesss:Nazev>Název dokumentu, věc-doručený dokument, digitální</nsesss:Nazev>
+                </nsesss:Popis>
+                <nsesss:Evidence>
+                  <nsesss:EvidencniCislo>č.j.DDFN-300/2012</nsesss:EvidencniCislo>
+                  <nsesss:PoradoveCislo>300</nsesss:PoradoveCislo>
+                  <nsesss:UrceneCasoveObdobi>
+                    <nsesss:Rok>2012</nsesss:Rok>
+                  </nsesss:UrceneCasoveObdobi>
+                  <nsesss:NazevEvidenceDokumentu>Spisová služba XY, verze 3.2</nsesss:NazevEvidenceDokumentu>
+                </nsesss:Evidence>
+                <nsesss:Puvod>
+                  <nsesss:DorucenyDokument>
+                    <nsesss:DatumDoruceni>2012-08-13</nsesss:DatumDoruceni>
+                    <nsesss:OdesilatelovoEvidencniCislo>444/KUPCE/2012</nsesss:OdesilatelovoEvidencniCislo>
+                    <nsesss:Odesilatel>
+                      <nsesss:Subjekt>
+                        <nsesss:IdentifikatorOrganizace zdroj="IČ">70892822</nsesss:IdentifikatorOrganizace>
+                        <nsesss:NazevOrganizace>Krajský úřad Pardubického kraje</nsesss:NazevOrganizace>
+                        <nsesss:SidloOrganizace>Komenského nám. 125, 532 11 Pardubice</nsesss:SidloOrganizace>
+                        <nsesss:ElektronickyKontakt>posta@pardubickykraj.cz, ID DS: z28bwu9</nsesss:ElektronickyKontakt>
+                      </nsesss:Subjekt>
+                    </nsesss:Odesilatel>
+                  </nsesss:DorucenyDokument>
+                </nsesss:Puvod>
+                <nsesss:Trideni>
+                  <nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
+                  <nsesss:PlneUrcenySpisovyZnak>33.3</nsesss:PlneUrcenySpisovyZnak>
+                </nsesss:Trideni>
+                <nsesss:Vyrizeni>
+                  <nsesss:Datum>2012-08-18</nsesss:Datum>
+                  <nsesss:Zpusob>vyřízení dokumentem</nsesss:Zpusob>
+                  <nsesss:Zpracovatel>
+                    <nsesss:Subjekt>
+                      <nsesss:IdentifikatorOrganizace zdroj="IČ">27520536</nsesss:IdentifikatorOrganizace>
+                      <nsesss:NazevOrganizace>Nemocnice Pardubického kraje, a.s.</nsesss:NazevOrganizace>
+                      <nsesss:IdentifikatorFyzickeOsoby zdroj="osobní číslo">22765</nsesss:IdentifikatorFyzickeOsoby>
+                      <nsesss:NazevFyzickeOsoby>Evžen Hromádka</nsesss:NazevFyzickeOsoby>
+                      <nsesss:OrganizacniUtvar>Právní oddělení</nsesss:OrganizacniUtvar>
+                      <nsesss:PracovniPozice>právník</nsesss:PracovniPozice>
+                      <nsesss:SidloOrganizace>Kyjevská 44, 53203 Pardubice</nsesss:SidloOrganizace>
+                    </nsesss:Subjekt>
+                  </nsesss:Zpracovatel>
+                </nsesss:Vyrizeni>
+                <nsesss:Vyrazovani>
+                  <nsesss:SkartacniRezim>
+                    <nsesss:Identifikator zdroj="ERMS">skartacni_rezim_01</nsesss:Identifikator>
+                    <nsesss:Nazev>Skartační režim A 5</nsesss:Nazev>
+                    <nsesss:Oduvodneni>Zákon č. 567/2000 Sb., platný spisový a skartační plán</nsesss:Oduvodneni>
+                    <nsesss:SkartacniZnak>A</nsesss:SkartacniZnak>
+                    <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+                    <nsesss:SpousteciUdalost>vyřízení/uzavření</nsesss:SpousteciUdalost>
+                  </nsesss:SkartacniRezim>
+                  <nsesss:DataceVyrazeni>
+                    <nsesss:RokSpousteciUdalosti>2012</nsesss:RokSpousteciUdalosti>
+                    <nsesss:RokSkartacniOperace>2018</nsesss:RokSkartacniOperace>
+                  </nsesss:DataceVyrazeni>
+                </nsesss:Vyrazovani>
+                <nsesss:Manipulace>
+                  <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+                </nsesss:Manipulace>
+              </nsesss:EvidencniUdaje>
+              <nsesss:Komponenty>
+                <nsesss:Komponenta ID="ID5" poradi="1" druh="průvodní dopis" verze="1" forma_uchovani="originál ve výstupním datovém formátu">
+                  <nsesss:EvidencniUdaje>
+                    <nsesss:Identifikace>
+                      <nsesss:Identifikator zdroj="ERMS">identifikátor komponenty05</nsesss:Identifikator>
+                    </nsesss:Identifikace>
+                    <nsesss:Popis>
+                      <nsesss:Nazev>pruvodnidopis.pdf</nsesss:Nazev>
+                      <nsesss:Komentar>Průvodní dopis ve výstupním formátu, originál</nsesss:Komentar>
+                    </nsesss:Popis>
+                    <nsesss:Trideni>
+                      <nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
+                      <nsesss:PlneUrcenySpisovyZnak>33.3</nsesss:PlneUrcenySpisovyZnak>
+                    </nsesss:Trideni>
+                  </nsesss:EvidencniUdaje>
+                </nsesss:Komponenta>
+                <nsesss:Komponenta ID="ID6" poradi="2" druh="příloha" verze="1" forma_uchovani="originál ve výstupním datovém formátu">
+                  <nsesss:EvidencniUdaje>
+                    <nsesss:Identifikace>
+                      <nsesss:Identifikator zdroj="ERMS">identifikátor komponenty06</nsesss:Identifikator>
+                    </nsesss:Identifikace>
+                    <nsesss:Popis>
+                      <nsesss:Nazev>priloha.pdf</nsesss:Nazev>
+                      <nsesss:Komentar>Příloha dokumentu v pdf, originál</nsesss:Komentar>
+                    </nsesss:Popis>
+                    <nsesss:Trideni>
+                      <nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
+                      <nsesss:PlneUrcenySpisovyZnak>33.3</nsesss:PlneUrcenySpisovyZnak>
+                    </nsesss:Trideni>
+                  </nsesss:EvidencniUdaje>
+                </nsesss:Komponenta>
+              </nsesss:Komponenty>
+            </nsesss:Dokument>
+            <nsesss:Dokument ID="ID8">
+              <nsesss:EvidencniUdaje>
+                <nsesss:Identifikace>
+                  <nsesss:Identifikator zdroj="ERMS">identifikator_dokumentu_005</nsesss:Identifikator>
+                </nsesss:Identifikace>
+                <nsesss:Popis>
+                  <nsesss:Nazev>Název dokumentu, věc-vlastní dokument, digitální</nsesss:Nazev>
+                </nsesss:Popis>
+                <nsesss:Evidence>
+                  <nsesss:EvidencniCislo>č.j.DDFN-305/2012</nsesss:EvidencniCislo>
+                  <nsesss:PoradoveCislo>305</nsesss:PoradoveCislo>
+                  <nsesss:UrceneCasoveObdobi>
+                    <nsesss:Rok>2012</nsesss:Rok>
+                  </nsesss:UrceneCasoveObdobi>
+                  <nsesss:NazevEvidenceDokumentu>Spisová služba XY, verze 3.2</nsesss:NazevEvidenceDokumentu>
+                </nsesss:Evidence>
+                <nsesss:Puvod>
+                  <nsesss:VlastniDokument>
+                    <nsesss:DatumVytvoreni>2012-08-20</nsesss:DatumVytvoreni>
+                    <nsesss:Autor>
+                      <nsesss:Subjekt>
+                        <nsesss:IdentifikatorOrganizace zdroj="IČ">27520536</nsesss:IdentifikatorOrganizace>
+                        <nsesss:NazevOrganizace>Nemocnice Pardubického kraje, a.s.</nsesss:NazevOrganizace>
+                        <nsesss:IdentifikatorFyzickeOsoby zdroj="osobní číslo">22765</nsesss:IdentifikatorFyzickeOsoby>
+                        <nsesss:NazevFyzickeOsoby>Evžen Hromádka</nsesss:NazevFyzickeOsoby>
+                        <nsesss:OrganizacniUtvar>Právní oddělení</nsesss:OrganizacniUtvar>
+                        <nsesss:PracovniPozice>právník</nsesss:PracovniPozice>
+                        <nsesss:SidloOrganizace>Kyjevská 44, 53203 Pardubice</nsesss:SidloOrganizace>
+                      </nsesss:Subjekt>
+                    </nsesss:Autor>
+                  </nsesss:VlastniDokument>
+                </nsesss:Puvod>
+                <nsesss:Trideni>
+                  <nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
+                  <nsesss:PlneUrcenySpisovyZnak>33.3</nsesss:PlneUrcenySpisovyZnak>
+                </nsesss:Trideni>
+                <nsesss:Vyrizeni>
+                  <nsesss:Datum>2012-08-20</nsesss:Datum>
+                  <nsesss:Zpusob>vyřízení dokumentem</nsesss:Zpusob>
+                  <nsesss:Zpracovatel>
+                    <nsesss:Subjekt>
+                      <nsesss:IdentifikatorOrganizace zdroj="IČ">27520536</nsesss:IdentifikatorOrganizace>
+                      <nsesss:NazevOrganizace>Nemocnice Pardubického kraje, a.s.</nsesss:NazevOrganizace>
+                      <nsesss:IdentifikatorFyzickeOsoby zdroj="osobní číslo">22765</nsesss:IdentifikatorFyzickeOsoby>
+                      <nsesss:NazevFyzickeOsoby>Evžen Hromádka</nsesss:NazevFyzickeOsoby>
+                      <nsesss:OrganizacniUtvar>Právní oddělení</nsesss:OrganizacniUtvar>
+                      <nsesss:PracovniPozice>právník</nsesss:PracovniPozice>
+                      <nsesss:SidloOrganizace>Kyjevská 44, 53203 Pardubice</nsesss:SidloOrganizace>
+                    </nsesss:Subjekt>
+                  </nsesss:Zpracovatel>
+                  <nsesss:DatumOdeslani>2012-09-01</nsesss:DatumOdeslani>
+                  <nsesss:Prijemce>
+                    <nsesss:Subjekt>
+                      <nsesss:IdentifikatorOrganizace zdroj="IČ">70892822</nsesss:IdentifikatorOrganizace>
+                      <nsesss:NazevOrganizace>Krajský úřad Pardubického kraje</nsesss:NazevOrganizace>
+                      <nsesss:SidloOrganizace>Komenského nám. 125, 532 11 Pardubice</nsesss:SidloOrganizace>
+                      <nsesss:ElektronickyKontakt>posta@pardubickykraj.cz, ID DS: z28bwu9</nsesss:ElektronickyKontakt>
+                    </nsesss:Subjekt>
+                  </nsesss:Prijemce>
+                </nsesss:Vyrizeni>
+                <nsesss:Vyrazovani>
+                  <nsesss:SkartacniRezim>
+                    <nsesss:Identifikator zdroj="ERMS">skartacni_rezim_01</nsesss:Identifikator>
+                    <nsesss:Nazev>Skartační režim A 5</nsesss:Nazev>
+                    <nsesss:Oduvodneni>Zákon č. 567/2000 Sb., platný spisový a skartační plán</nsesss:Oduvodneni>
+                    <nsesss:SkartacniZnak>A</nsesss:SkartacniZnak>
+                    <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+                    <nsesss:SpousteciUdalost>vyřízení/uzavření</nsesss:SpousteciUdalost>
+                  </nsesss:SkartacniRezim>
+                  <nsesss:DataceVyrazeni>
+                    <nsesss:RokSpousteciUdalosti>2012</nsesss:RokSpousteciUdalosti>
+                    <nsesss:RokSkartacniOperace>2018</nsesss:RokSkartacniOperace>
+                  </nsesss:DataceVyrazeni>
+                </nsesss:Vyrazovani>
+                <nsesss:Manipulace>
+                  <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+                </nsesss:Manipulace>
+              </nsesss:EvidencniUdaje>
+              <nsesss:Komponenty>
+                <nsesss:Komponenta ID="ID9" poradi="1" druh="průvodní dopis" verze="1" forma_uchovani="originál ve výstupním datovém formátu">
+                  <nsesss:EvidencniUdaje>
+                    <nsesss:Identifikace>
+                      <nsesss:Identifikator zdroj="ERMS">identifikátor komponenty05_2</nsesss:Identifikator>
+                    </nsesss:Identifikace>
+                    <nsesss:Popis>
+                      <nsesss:Nazev>pruvodnidopis.pdf</nsesss:Nazev>
+                      <nsesss:Komentar>Průvodní dopis dokumentu 2 ve výstupním formátu, originál</nsesss:Komentar>
+                    </nsesss:Popis>
+                    <nsesss:Trideni>
+                      <nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
+                      <nsesss:PlneUrcenySpisovyZnak>33.3</nsesss:PlneUrcenySpisovyZnak>
+                    </nsesss:Trideni>
+                  </nsesss:EvidencniUdaje>
+                </nsesss:Komponenta>
+                <nsesss:Komponenta ID="ID10" poradi="2" druh="příloha" verze="1" forma_uchovani="originál ve výstupním datovém formátu">
+                  <nsesss:EvidencniUdaje>
+                    <nsesss:Identifikace>
+                      <nsesss:Identifikator zdroj="ERMS">identifikátor komponenty06_2</nsesss:Identifikator>
+                    </nsesss:Identifikace>
+                    <nsesss:Popis>
+                      <nsesss:Nazev>priloha.pdf</nsesss:Nazev>
+                      <nsesss:Komentar>Příloha dokumentu 2 v pdf, originál</nsesss:Komentar>
+                    </nsesss:Popis>
+                    <nsesss:Trideni>
+                      <nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
+                      <nsesss:PlneUrcenySpisovyZnak>33.3</nsesss:PlneUrcenySpisovyZnak>
+                    </nsesss:Trideni>
+                  </nsesss:EvidencniUdaje>
+                </nsesss:Komponenta>
+              </nsesss:Komponenty>
+            </nsesss:Dokument>
+          </nsesss:Dokumenty>
+        </nsesss:Spis>
+      </mets:xmlData>
+    </mets:mdWrap>
+  </mets:dmdSec>
+  <mets:amdSec ID="amd07">
+    <mets:digiprovMD ID="digiProv07">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" OTHERMDTYPE="TP" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>TP07_VApn</tns:HodnotaID>
+                <tns:ZdrojID>ERMS</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2012-08-17T08:12:45</tp:DatumVzniku>
+              <tp:DatumCasOd>2012-08-17T08:12:45</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-01-01T08:12:45</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Spis</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>identifikátor spisu_01</tns:HodnotaID>
+                  <tns:ZdrojID>ERMS</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti>
+              <tp:Udalost>
+                <tp:Poradi>1</tp:Poradi>
+                <tp:DatumVzniku>2012-08-17T08:12:45</tp:DatumVzniku>
+                <tp:provedlKdo>Evžen Hromádka</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Zalozeni</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Založení spisu</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>2</tp:Poradi>
+                <tp:DatumVzniku>2012-08-17T08:13:45</tp:DatumVzniku>
+                <tp:provedlKdo>ERMS</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>PripojeniCJ</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Označení spisovou značkou</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>3</tp:Poradi>
+                <tp:DatumVzniku>2012-08-17T08:14:45</tp:DatumVzniku>
+                <tp:provedlKdo>Evžen Hromádka</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Vložení do věcné skupiny, přidělení spisového znaku, skartačního režimu</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>4</tp:Poradi>
+                <tp:DatumVzniku>2012-08-20T08:14:45</tp:DatumVzniku>
+                <tp:provedlKdo>Evžen Hromádka</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Vložení vyřizujícího dokumentu - 2</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>5</tp:Poradi>
+                <tp:DatumVzniku>2012-11-30T08:12:45</tp:DatumVzniku>
+                <tp:provedlKdo>Evžen Hromádka</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Vyrizeni</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Uzavření spisu, vyřízení</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>6</tp:Poradi>
+                <tp:DatumVzniku>2013-12-13T10:31:45</tp:DatumVzniku>
+                <tp:provedlKdo>Evžen Hromádka</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>PredaniNaSpisovnu</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>7</tp:Poradi>
+                <tp:DatumVzniku>2013-12-15T10:31:45</tp:DatumVzniku>
+                <tp:provedlKdo>Aleš Hladový, spisovna</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>8</tp:Poradi>
+                <tp:DatumVzniku>2017-12-15T10:31:45</tp:DatumVzniku>
+                <tp:provedlKdo>Aleš Hladový, spisovna</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>VlozeniDoSkartacnihoNavrhu</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+            </tp:Udalosti>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd01">
+    <mets:digiprovMD ID="digiProv01">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" OTHERMDTYPE="TP" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>TP01_VApnS</tns:HodnotaID>
+                <tns:ZdrojID>ERMS</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2012-08-13T08:12:45</tp:DatumVzniku>
+              <tp:DatumCasOd>2012-08-13T08:12:45</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-01-01T08:12:45</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Dokument</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>identifikator_dokumentu_05</tns:HodnotaID>
+                  <tns:ZdrojID>ERMS</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti>
+              <tp:Udalost>
+                <tp:Poradi>1</tp:Poradi>
+                <tp:DatumVzniku>2012-08-13T08:12:45</tp:DatumVzniku>
+                <tp:provedlKdo>ERMS</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Doruceno</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>2</tp:Poradi>
+                <tp:DatumVzniku>2012-08-13T08:12:47</tp:DatumVzniku>
+                <tp:provedlKdo>ERMS</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Doruceno</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Kontrola škodlivého kódu</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>3</tp:Poradi>
+                <tp:DatumVzniku>2012-08-13T08:12:48</tp:DatumVzniku>
+                <tp:provedlKdo>ERMS</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Doruceno</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Ověření autentizačních prvků</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>4</tp:Poradi>
+                <tp:DatumVzniku>2012-08-13T08:12:49</tp:DatumVzniku>
+                <tp:provedlKdo>ERMS</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Přidělení identifikátorů</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>5</tp:Poradi>
+                <tp:DatumVzniku>2012-08-13T08:13:47</tp:DatumVzniku>
+                <tp:provedlKdo>Pilná Anežka, podatelna, im907075</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>ZmenaZpracovatele</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Přidělení spisovému uzlu 19. oddělení</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>6</tp:Poradi>
+                <tp:DatumVzniku>2012-08-13T11:45:47</tp:DatumVzniku>
+                <tp:provedlKdo>Nerudný Bedřich, vedoucí oddělení, im8754</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>ZmenaZpracovatele</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Přidělení spisovému uzlu 7. oddělení</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>7</tp:Poradi>
+                <tp:DatumVzniku>2012-08-13T11:46:47</tp:DatumVzniku>
+                <tp:provedlKdo>Plachý Jakub, vedoucí oddělení, im 43287</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>ZmenaZpracovatele</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Přidělení referentovi</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>8</tp:Poradi>
+                <tp:DatumVzniku>2012-08-13T12:00:47</tp:DatumVzniku>
+                <tp:provedlKdo>Evžen Hromádka</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>PripojeniCJ</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>9</tp:Poradi>
+                <tp:DatumVzniku>2012-08-17T08:12:45</tp:DatumVzniku>
+                <tp:provedlKdo>Evžen Hromádka</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>VlozeniDoSpisu</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>10</tp:Poradi>
+                <tp:DatumVzniku>2012-08-18T08:14:45</tp:DatumVzniku>
+                <tp:provedlKdo>Evžen Hromádka</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Vyrizeni</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+            </tp:Udalosti>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd02">
+    <mets:digiprovMD ID="digiProv02">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" OTHERMDTYPE="TP" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>TP02_VApnS</tns:HodnotaID>
+                <tns:ZdrojID>ERMS</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2012-08-13T08:12:45</tp:DatumVzniku>
+              <tp:DatumCasOd>2012-08-13T08:12:45</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-01-01T08:12:45</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>identifikátor komponenty05</tns:HodnotaID>
+                  <tns:ZdrojID>ERMS</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti>
+              <tp:Udalost>
+                <tp:Poradi>1</tp:Poradi>
+                <tp:DatumVzniku>2012-08-13T08:12:45</tp:DatumVzniku>
+                <tp:provedlKdo>ERMS</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Doruceno</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Ověření autentizačních prvků</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>2</tp:Poradi>
+                <tp:DatumVzniku>2012-08-13T08:12:49</tp:DatumVzniku>
+                <tp:provedlKdo>ERMS</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Přidělení identifikátoru</tp:PopisUdalosti>
+              </tp:Udalost>
+            </tp:Udalosti>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd03">
+    <mets:digiprovMD ID="digiProv03">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" OTHERMDTYPE="TP" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>TP03_VApnS</tns:HodnotaID>
+                <tns:ZdrojID>ERMS</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2012-08-13T08:12:45</tp:DatumVzniku>
+              <tp:DatumCasOd>2012-08-13T08:12:45</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-01-01T08:12:45</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>identifikátor komponenty06</tns:HodnotaID>
+                  <tns:ZdrojID>ERMS</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti>
+              <tp:Udalost>
+                <tp:Poradi>1</tp:Poradi>
+                <tp:DatumVzniku>2012-08-13T08:12:45</tp:DatumVzniku>
+                <tp:provedlKdo>ERMS</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Doruceno</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Ověření autentizačních prvků</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>2</tp:Poradi>
+                <tp:DatumVzniku>2012-08-13T08:12:49</tp:DatumVzniku>
+                <tp:provedlKdo>ERMS</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Přidělení identifikátoru</tp:PopisUdalosti>
+              </tp:Udalost>
+            </tp:Udalosti>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd08">
+    <mets:digiprovMD ID="digiProv08">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" OTHERMDTYPE="TP" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>TP08_VApnS</tns:HodnotaID>
+                <tns:ZdrojID>ERMS</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2012-08-20T08:12:45</tp:DatumVzniku>
+              <tp:DatumCasOd>2012-08-20T08:12:45</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-01-01T08:12:45</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Dokument</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>identifikator_dokumentu_005</tns:HodnotaID>
+                  <tns:ZdrojID>ERMS</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti>
+              <tp:Udalost>
+                <tp:Poradi>1</tp:Poradi>
+                <tp:DatumVzniku>2012-08-20T08:12:45</tp:DatumVzniku>
+                <tp:provedlKdo>Evžen Hromádka, právník</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Zalozeni</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>2</tp:Poradi>
+                <tp:DatumVzniku>2012-08-20T08:30:45</tp:DatumVzniku>
+                <tp:provedlKdo>Evžen Hromádka, právník</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>VlozeniDoSpisu</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>3</tp:Poradi>
+                <tp:DatumVzniku>2012-08-20T16:30:45</tp:DatumVzniku>
+                <tp:provedlKdo>Evžen Hromádka, právník</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Připojení komponenty 1</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>4</tp:Poradi>
+                <tp:DatumVzniku>2012-08-20T16:31:45</tp:DatumVzniku>
+                <tp:provedlKdo>Evžen Hromádka, právník</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Připojení komponenty 2</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>5</tp:Poradi>
+                <tp:DatumVzniku>2012-08-30T16:31:45</tp:DatumVzniku>
+                <tp:provedlKdo>Evžen Hromádka, právník</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Zadání kontaktů</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>9</tp:Poradi>
+                <tp:DatumVzniku>2012-08-31T16:32:45</tp:DatumVzniku>
+                <tp:provedlKdo>Evžen Hromádka, právník</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>PredaniVypravne</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>10</tp:Poradi>
+                <tp:DatumVzniku>2012-09-01T06:32:45</tp:DatumVzniku>
+                <tp:provedlKdo>Alfréd Přísný, výpravna</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Vypraveno</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>11</tp:Poradi>
+                <tp:DatumVzniku>2012-10-30T10:30:45</tp:DatumVzniku>
+                <tp:provedlKdo>Evžen Hromádka, právník</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Vyrizeni</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>12</tp:Poradi>
+                <tp:DatumVzniku>2013-10-13T10:31:45</tp:DatumVzniku>
+                <tp:provedlKdo>Evžen Hromádka, právník</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>PredaniNaSpisovnu</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>13</tp:Poradi>
+                <tp:DatumVzniku>2013-12-15T10:31:45</tp:DatumVzniku>
+                <tp:provedlKdo>Aleš Hladový, spisovna</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>14</tp:Poradi>
+                <tp:DatumVzniku>2017-12-15T10:31:45</tp:DatumVzniku>
+                <tp:provedlKdo>Aleš Hladový, spisovna</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>VlozeniDoSkartacnihoNavrhu</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+            </tp:Udalosti>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd09">
+    <mets:digiprovMD ID="digiProv09">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" OTHERMDTYPE="TP" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>TP09_VApnS</tns:HodnotaID>
+                <tns:ZdrojID>ERMS</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2012-08-20T08:12:45</tp:DatumVzniku>
+              <tp:DatumCasOd>2012-08-20T08:12:45</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-01-01T08:12:45</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>identifikátor komponenty05_2</tns:HodnotaID>
+                  <tns:ZdrojID>ERMS</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti>
+              <tp:Udalost>
+                <tp:Poradi>1</tp:Poradi>
+                <tp:DatumVzniku>2012-08-20T08:30:45</tp:DatumVzniku>
+                <tp:provedlKdo>Evžen Hromádka, právník</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>VlozeniKDokumentu</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Vložení komponenty - průvodní dopis</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>2</tp:Poradi>
+                <tp:DatumVzniku>2012-08-20T08:31:45</tp:DatumVzniku>
+                <tp:provedlKdo>Evžen Hromádka, právník</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>PripojeniPodpisu</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>3</tp:Poradi>
+                <tp:DatumVzniku>2012-08-20T08:32:45</tp:DatumVzniku>
+                <tp:provedlKdo>Evžen Hromádka, právník</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>PripojeniRazitka</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+            </tp:Udalosti>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd10">
+    <mets:digiprovMD ID="digiProv10">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" OTHERMDTYPE="TP" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>TP10_VApnS</tns:HodnotaID>
+                <tns:ZdrojID>ERMS</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2012-08-20T08:12:45</tp:DatumVzniku>
+              <tp:DatumCasOd>2012-08-20T08:12:45</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-01-01T08:12:45</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>identifikátor komponenty06_2</tns:HodnotaID>
+                  <tns:ZdrojID>ERMS</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti>
+              <tp:Udalost>
+                <tp:Poradi>1</tp:Poradi>
+                <tp:DatumVzniku>2012-08-20T08:12:45</tp:DatumVzniku>
+                <tp:provedlKdo>Evžen Hromádka, právník</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>VlozeniKDokumentu</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Připojení komponenty - příloha 1</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>2</tp:Poradi>
+                <tp:DatumVzniku>2012-08-20T08:20:45</tp:DatumVzniku>
+                <tp:provedlKdo>Evžen Hromádka, právník</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Připojení pečeti</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>3</tp:Poradi>
+                <tp:DatumVzniku>2012-08-20T08:21:45</tp:DatumVzniku>
+                <tp:provedlKdo>Evžen Hromádka, právník</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>PripojeniRazitka</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+            </tp:Udalosti>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd04">
+    <mets:digiprovMD ID="digiProv04">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" OTHERMDTYPE="TP" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>TP04_VApn</tns:HodnotaID>
+                <tns:ZdrojID>ERMS</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2012-01-01T00:00:01</tp:DatumVzniku>
+              <tp:DatumCasOd>2012-01-01T00:00:01</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-01-01T08:23:50</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>SpisovyPlan</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>identifikátor_spisovy_plan_01</tns:HodnotaID>
+                  <tns:ZdrojID>ERMS</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti>
+              <tp:Udalost>
+                <tp:Poradi>1</tp:Poradi>
+                <tp:DatumVzniku>2012-01-01T08:12:45</tp:DatumVzniku>
+                <tp:provedlKdo>Jedlička Antonín, administrátor systému, im34</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Otevreni</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+            </tp:Udalosti>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd05">
+    <mets:digiprovMD ID="digiProv05">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" OTHERMDTYPE="TP" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>TP05_VApn</tns:HodnotaID>
+                <tns:ZdrojID>ERMS</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2012-01-01T08:12:45</tp:DatumVzniku>
+              <tp:DatumCasOd>2012-01-01T08:12:45</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-01-01T08:12:45</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>VecnaSkupina</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>identifikátor_vecna_skupina_33</tns:HodnotaID>
+                  <tns:ZdrojID>ERMS</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti>
+              <tp:Udalost>
+                <tp:Poradi>1</tp:Poradi>
+                <tp:DatumVzniku>2012-01-01T08:12:45</tp:DatumVzniku>
+                <tp:provedlKdo>Jedlička Antonín, administrátor systému, im34</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Otevreni</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+            </tp:Udalosti>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd06">
+    <mets:digiprovMD ID="digiProv06">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" OTHERMDTYPE="TP" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>TP06_VApn</tns:HodnotaID>
+                <tns:ZdrojID>ERMS</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2012-01-01T08:12:45</tp:DatumVzniku>
+              <tp:DatumCasOd>2012-01-01T08:12:45</tp:DatumCasOd>
+              <tp:DatumCasDo>2015-12-31T18:12:45</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>VecnaSkupina</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>vecna_skupina_33_3</tns:HodnotaID>
+                  <tns:ZdrojID>ERMS</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti>
+              <tp:Udalost>
+                <tp:Poradi>1</tp:Poradi>
+                <tp:DatumVzniku>2012-01-01T08:12:45</tp:DatumVzniku>
+                <tp:provedlKdo>Jedlička Antonín, administrátor systému, im34</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Otevreni</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>2</tp:Poradi>
+                <tp:DatumVzniku>2015-12-31T18:12:45</tp:DatumVzniku>
+                <tp:provedlKdo>Jedlička Antonín, administrátor systému, im34</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uzavreni</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+              </tp:Udalost>
+            </tp:Udalosti>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:fileSec>
+    <mets:fileGrp>
+      <mets:file ID="IDf1" DMDID="ID5" MIMETYPE="application/pdf" CHECKSUM="fc1dda79c943a9d1d4e929b31db1deca747aa86b93f13c6a7e63bbd490107bbf" CHECKSUMTYPE="SHA-256" SIZE="44056" CREATED="2018-01-26T10:54:12">
+        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="komponenty/pruvodka.pdf"/>
+      </mets:file>
+      <mets:file ID="IDf2" DMDID="ID6" MIMETYPE="application/pdf" CHECKSUM="cec73aa7a821bb1fcf2b5cbc6877609c6db9967b4b4e201401cae9426c1e1f24" CHECKSUMTYPE="SHA-256" SIZE="61424" CREATED="2018-01-26T10:54:12">
+        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="komponenty/priloha.pdf"/>
+      </mets:file>
+      <mets:file ID="IDf3" DMDID="ID9" MIMETYPE="application/pdf" CHECKSUM="fc1dda79c943a9d1d4e929b31db1deca747aa86b93f13c6a7e63bbd490107bbf" CHECKSUMTYPE="SHA-256" SIZE="44056" CREATED="2018-01-26T10:54:12">
+        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="komponenty/pruvodka1.pdf"/>
+      </mets:file>
+      <mets:file ID="IDf4" DMDID="ID10" MIMETYPE="application/pdf" CHECKSUM="cec73aa7a821bb1fcf2b5cbc6877609c6db9967b4b4e201401cae9426c1e1f24" CHECKSUMTYPE="SHA-256" SIZE="61424" CREATED="2018-01-26T10:54:12">
+        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="komponenty/priloha1.pdf"/>
+      </mets:file>
+    </mets:fileGrp>
+  </mets:fileSec>
+  <mets:structMap>
+    <mets:div TYPE="spisový plán" DMDID="ID4" ADMID="amd04">
+      <mets:div TYPE="věcná skupina" DMDID="ID3" ADMID="amd05">
+        <mets:div TYPE="věcná skupina" DMDID="ID2" ADMID="amd06">
+          <mets:div TYPE="spis" DMDID="ID7" ADMID="amd07">
+            <mets:div TYPE="dokument" DMDID="ID1" ADMID="amd01">
+              <mets:div TYPE="komponenta" DMDID="ID5" ADMID="amd02">
+                <mets:fptr FILEID="IDf1"/>
+              </mets:div>
+              <mets:div TYPE="komponenta" DMDID="ID6" ADMID="amd03">
+                <mets:fptr FILEID="IDf2"/>
+              </mets:div>
+            </mets:div>
+            <mets:div TYPE="dokument" DMDID="ID8" ADMID="amd08">
+              <mets:div TYPE="komponenta" DMDID="ID9" ADMID="amd09">
+                <mets:fptr FILEID="IDf3"/>
+              </mets:div>
+              <mets:div TYPE="komponenta" DMDID="ID10" ADMID="amd10">
+                <mets:fptr FILEID="IDf4"/>
+              </mets:div>
+            </mets:div>
+          </mets:div>
+        </mets:div>
+      </mets:div>
+    </mets:div>
+  </mets:structMap>
+</mets:mets>
