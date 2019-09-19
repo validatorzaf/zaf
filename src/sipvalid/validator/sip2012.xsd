@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<schema elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="2012xmldsig-core-schema.xsd"/>
+  <import namespace="http://www.loc.gov/METS/" schemaLocation="2012mets.xsd"/>
+  <import namespace="http://www.w3.org/1999/xlink" schemaLocation="2012xlink.xsd"/>
+  <import namespace="http://www.mvcr.cz/nsesss/v2" schemaLocation="2012nsesss.xsd"/>
+</schema>
