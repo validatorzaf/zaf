@@ -91,7 +91,7 @@ public class ErrorHandlerValidaceXSD implements  ErrorHandler{
             vypsano = true;
         }
         
-        if(vypsano == false){
+        if(!vypsano){
             textChyby += " " +celaChybovaHlaska;
         }
 

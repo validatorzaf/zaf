@@ -181,21 +181,19 @@ public class SIP_MAIN_helper {
         return false;
     }
     
-    public static String get_vypisChyby_obsahova(SIP_MAIN sip, int index_pravidla){
-        for(int i = 0; i < sip.getSeznamKontrol().get(6).size(); i++){
-            if(index_pravidla == sip.getSeznamKontrol().get(6).get(i).getIndex()){
-                return sip.getSeznamKontrol().get(6).get(i).getVypis_chyby();
-            }
-        }
+    public static String get_vypisChyby_obsahova(SIP_MAIN sip, int indexPravidla){
+    	SIP_MAIN_kontrola_pravidlo pravidlo = sip.getSeznamKontrol().get(6).getPravidlo(indexPravidla);
+    	if(pravidlo!=null) {
+    		return pravidlo.getVypis_chyby();
+    	}
         return "";
     }
     
-    public static String get_mistoChyby_obsahova(SIP_MAIN sip, int index_pravidla){
-        for(int i = 0; i < sip.getSeznamKontrol().get(6).size(); i++){
-            if(index_pravidla == sip.getSeznamKontrol().get(6).get(i).getIndex()){
-                return sip.getSeznamKontrol().get(6).get(i).getMisto_chyby();
-            }
-        }
+    public static String get_mistoChyby_obsahova(SIP_MAIN sip, int indexPravidla){
+    	SIP_MAIN_kontrola_pravidlo pravidlo = sip.getSeznamKontrol().get(6).getPravidlo(indexPravidla);
+    	if(pravidlo!=null) {
+    		return pravidlo.getMisto_chyby();
+    	}
         return "";
     }
     

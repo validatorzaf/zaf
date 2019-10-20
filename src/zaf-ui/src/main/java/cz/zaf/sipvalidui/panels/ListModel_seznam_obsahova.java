@@ -9,6 +9,8 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import cz.zaf.sipvalid.sip.SIP_MAIN;
 import cz.zaf.sipvalid.sip.SIP_MAIN_helper;
+import cz.zaf.sipvalid.sip.SIP_MAIN_kontrola;
+import cz.zaf.sipvalid.sip.TypUrovenKontroly;
 
 
 /**
@@ -23,17 +25,18 @@ public class ListModel_seznam_obsahova{
     public ListModel_seznam_obsahova(SIP_MAIN sip) {
         modelListObsahova = new DefaultListModel();
         modelListChybObsahova = new DefaultListModel();
-        if(!sip.getSeznamKontrol().isEmpty()){
+        if(sip.isKontrolyProvedeny()){
             get_model_chyby(sip);
             get_model_all(sip); 
         }
     }
     
     private void  get_model_chyby(SIP_MAIN sip){
-        for(int i = 0; i < sip.getSeznamKontrol().get(6).size(); i++){
-            int index = sip.getSeznamKontrol().get(6).get(i).getIndex();
-            boolean stav = sip.getSeznamKontrol().get(6).get(i).getStav();
-            String id = sip.getSeznamKontrol().get(6).get(i).getId();
+    	SIP_MAIN_kontrola kontrola = sip.getUrovenKontroly(TypUrovenKontroly.OBSAHOVA);
+        for(int i = 0; i < kontrola.size(); i++){
+            int index = kontrola.get(i).getIndex();
+            boolean stav = kontrola.get(i).getStav();
+            String id = kontrola.get(i).getId();
             modelListChybObsahova.addElement(new EventListenerJFmainTableSeSipSoubory_object(index, id, stav));
         }
     }
@@ -41,14 +44,15 @@ public class ListModel_seznam_obsahova{
     private void get_model_all(SIP_MAIN sip){
         int[] seznamIndexuPravidel = getseznam();
 //        int siz = sip.getSeznamKontrol().get(6).size();
-        int t = 0;
-        int size = sip.getSeznamKontrol().get(6).size() - 1;
+        SIP_MAIN_kontrola kontrola = sip.getUrovenKontroly(TypUrovenKontroly.OBSAHOVA);
+        int t = 0;        
+        int size = kontrola.size() - 1;
             for(int i = 0; i < seznamIndexuPravidel.length; i++){
                 int j = seznamIndexuPravidel[i];
-                if(!sip.getSeznamKontrol().get(6).isEmpty()){
-                   if(sip.getSeznamKontrol().get(6).get(t).getIndex() == j){
-                    boolean stav = sip.getSeznamKontrol().get(6).get(t).getStav();
-                    String id = sip.getSeznamKontrol().get(6).get(t).getId();
+                if(!kontrola.isEmpty()){
+                   if(kontrola.get(t).getIndex() == j){
+                    boolean stav = kontrola.get(t).getStav();
+                    String id = kontrola.get(t).getId();
                     modelListObsahova.addElement(new EventListenerJFmainTableSeSipSoubory_object(j, id, stav));
                     if(t < size) t++;
                     }

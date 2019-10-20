@@ -6,6 +6,11 @@
 package cz.zaf.sipvalidui.analysis;
 
 import java.util.ArrayList;
+
+import cz.zaf.sipvalid.sip.SIP_MAIN;
+import cz.zaf.sipvalid.sip.SIP_MAIN_kontrola;
+import cz.zaf.sipvalid.sip.TypUrovenKontroly;
+
 import static cz.zaf.sipvalidui.panels.JFmain.seznamNahranychSouboru;
 
 /**
@@ -30,13 +35,16 @@ public final class Analys_main {
         obsahu = new Analys_main_control("Kontrola obsahu", 6, seznamNahranychSouboru.size());
 
         for(int i = 0; i < seznamNahranychSouboru.size(); i++){
-            zapis_kontrolu(i, seznamNahranychSouboru.get(i).getSeznamKontrol().get(0).getProvedena(), seznamNahranychSouboru.get(i).getSeznamKontrol().get(0).getStav(), skodlivehokodu);
-            zapis_kontrolu(i, seznamNahranychSouboru.get(i).getSeznamKontrol().get(1).getProvedena(), seznamNahranychSouboru.get(i).getSeznamKontrol().get(1).getStav(), datovestruktury);
-            zapis_kontrolu(i, seznamNahranychSouboru.get(i).getSeznamKontrol().get(2).getProvedena(), seznamNahranychSouboru.get(i).getSeznamKontrol().get(2).getStav(), znakovesady);
-            zapis_kontrolu(i, seznamNahranychSouboru.get(i).getSeznamKontrol().get(3).getProvedena(), seznamNahranychSouboru.get(i).getSeznamKontrol().get(3).getStav(), spravnostixml);
-            zapis_kontrolu(i, seznamNahranychSouboru.get(i).getSeznamKontrol().get(4).getProvedena(), seznamNahranychSouboru.get(i).getSeznamKontrol().get(4).getStav(), jmennychprostoru);
-            zapis_kontrolu(i, seznamNahranychSouboru.get(i).getSeznamKontrol().get(5).getProvedena(), seznamNahranychSouboru.get(i).getSeznamKontrol().get(5).getStav(), protischematu);
-            zapis_kontrolu(i, seznamNahranychSouboru.get(i).getSeznamKontrol().get(6).getProvedena(), seznamNahranychSouboru.get(i).getSeznamKontrol().get(6).getStav(), obsahu);
+        	SIP_MAIN sip = seznamNahranychSouboru.get(i);
+        	
+        	zapis_kontrolu(i, sip.getUrovenKontroly(TypUrovenKontroly.SKODLIVY_KOD), skodlivehokodu);
+        	zapis_kontrolu(i, sip.getUrovenKontroly(TypUrovenKontroly.DATOVE_STRUKTURY), datovestruktury);
+        	zapis_kontrolu(i, sip.getUrovenKontroly(TypUrovenKontroly.ZNAKOVE_SADY), znakovesady);
+        	zapis_kontrolu(i, sip.getUrovenKontroly(TypUrovenKontroly.SPRAVNOSTI), spravnostixml);
+        	zapis_kontrolu(i, sip.getUrovenKontroly(TypUrovenKontroly.JMENNE_PROSTORY_XML), jmennychprostoru);
+        	zapis_kontrolu(i, sip.getUrovenKontroly(TypUrovenKontroly.PROTI_SCHEMATU), protischematu);
+        	zapis_kontrolu(i, sip.getUrovenKontroly(TypUrovenKontroly.OBSAHOVA), obsahu);
+
             analys_obsahova_set(i);
             
             if(pomocnybol) list_validnich.add(i);
@@ -55,25 +63,31 @@ public final class Analys_main {
         
     }
     
-    void zapis_kontrolu(int index_sip, boolean probehla, boolean stav, Analys_main_control kontrola){
+    private void zapis_kontrolu(int indexSip, SIP_MAIN_kontrola kontrola, Analys_main_control vyslednySeznam) {
+
+    	zapis_kontrolu(indexSip, kontrola.isProvedena(), kontrola.getStav(), vyslednySeznam);
+	}
+
+	void zapis_kontrolu(int index_sip, boolean probehla, boolean stav, Analys_main_control vyslednySeznam){
         if(probehla){
-                kontrola.list_probehlych.add(index_sip);
-                if(stav) kontrola.list_bezchybnych.add(index_sip);
+        		vyslednySeznam.list_probehlych.add(index_sip);
+                if(stav) vyslednySeznam.list_bezchybnych.add(index_sip);
                 else{
-                    kontrola.list_chybnych.add(index_sip);
+                	vyslednySeznam.list_chybnych.add(index_sip);
                     pomocnybol = false;
                 }
             }
-            else kontrola.list_neprobehlych.add(index_sip);
+            else vyslednySeznam.list_neprobehlych.add(index_sip);
     }
     
     private void analys_obsahova_set(int index){
-        for(int i = 0; i < seznamNahranychSouboru.get(index).getSeznamKontrol().get(6).size(); i++){
-            int index_rule = seznamNahranychSouboru.get(index).getSeznamKontrol().get(6).get(i).getIndex();
+    	SIP_MAIN_kontrola kontrola = seznamNahranychSouboru.get(index).getUrovenKontroly(TypUrovenKontroly.OBSAHOVA);
+        for(int i = 0; i < kontrola.size(); i++){
+            int index_rule = kontrola.get(i).getIndex();
             if(!Analys_helper.equals_rule_with_index(analys_obsahova, index_rule)){
                 Analys_rule arule = new Analys_rule();
                 arule.index = index_rule; 
-                arule.id = seznamNahranychSouboru.get(index).getSeznamKontrol().get(6).get(i).getId();
+                arule.id = kontrola.get(i).getId();
                 arule.pocet_chybnych = 1;
                 arule.seznam_chybnych = new ArrayList<>();
                 arule.seznam_chybnych.add(index);

@@ -6,6 +6,8 @@
 package cz.zaf.sipvalid.sip;
 import java.util.ArrayList;
 
+import org.apache.commons.lang3.Validate;
+
 /**
  *
  * @author m000xz006159
@@ -17,7 +19,7 @@ public class SIP_MAIN{
     private int sip_type = -1, load_type = -1;
     private long lenght = 0;
     
-    private ArrayList<SIP_MAIN_kontrola> seznam_kontrol;
+    final protected ArrayList<SIP_MAIN_kontrola> seznam_kontrol = new ArrayList<>();
     
     private String sip_skznak = " - ", sip_sklhuta = " - ", sip_kodovani;
     private final String sip_relativni_cesta;
@@ -30,13 +32,12 @@ public class SIP_MAIN{
             this.name_zip = name_zip;
         }
         this.lenght = lenght;
-        seznam_kontrol = new ArrayList<>();
         this.sip_relativni_cesta = cesta;
         this.load_type = load_type;
     }
     
     public void reset_data_Kontroly(){
-        seznam_kontrol = new ArrayList<>();
+        seznam_kontrol.clear();
     }
     
     public boolean getLoadGood(){
@@ -87,7 +88,7 @@ public class SIP_MAIN{
         return lenght;
     }
     
-    public ArrayList<SIP_MAIN_kontrola> getSeznamKontrol(){
+    ArrayList<SIP_MAIN_kontrola> getSeznamKontrol(){
         return seznam_kontrol;
     }
 
@@ -122,5 +123,34 @@ public class SIP_MAIN{
     public void set_xsi_schemaLocation(String hodnota){
         xsi_schemaLocation = hodnota;
     }
+
+    /**
+     * Vrati uroven kontroly daneho typu
+     * @param typUrovneKontroly
+     * @return
+     */
+	public SIP_MAIN_kontrola getUrovenKontroly(TypUrovenKontroly typUrovneKontroly) {
+		for(SIP_MAIN_kontrola kontrola: seznam_kontrol) {
+			if(kontrola.getTypUrovneKontroly()==typUrovneKontroly) {
+				return kontrola;
+			}
+		}
+		return null;
+		
+	}
+
+	public void pridejKontrolu(SIP_MAIN_kontrola k) {
+		// kontrola, zda jiz nebyla pridana
+		SIP_MAIN_kontrola urovenKontroly = getUrovenKontroly(k.getTypUrovneKontroly());
+		Validate.isTrue(urovenKontroly==null);
+		seznam_kontrol.add(k);
+	}
+
+	public boolean isKontrolyProvedeny() {
+		if(seznam_kontrol!=null&&seznam_kontrol.size()==TypUrovenKontroly.values().length) {
+			return true;
+		}
+		return false;
+	}
     
 }

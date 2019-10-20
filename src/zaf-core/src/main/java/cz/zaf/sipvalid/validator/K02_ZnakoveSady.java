@@ -23,10 +23,13 @@ import org.xml.sax.SAXException;
 import com.ibm.icu.text.CharsetDetector; // lib ucu4j-56.jar
 import com.ibm.icu.text.CharsetMatch; // lib ucu4j-56.jar
 
+import cz.zaf.sipvalid.sip.KontrolaContext;
 import cz.zaf.sipvalid.sip.SIP_MAIN;
 import cz.zaf.sipvalid.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalid.sip.SIP_MAIN_kontrola;
 import cz.zaf.sipvalid.sip.SIP_MAIN_kontrola_pravidlo;
+import cz.zaf.sipvalid.sip.TypUrovenKontroly;
+import cz.zaf.sipvalid.sip.UrovenKontroly;
 
 /**
  * Kontroluje kódování SIP souboru. 
@@ -34,37 +37,16 @@ import cz.zaf.sipvalid.sip.SIP_MAIN_kontrola_pravidlo;
  *                              lib commons-io-2.4                                                               
  * @author m000xz006159
  */
-public class K02_ZnakoveSady {
-    String kodovaniSipSouboru = "Nezjištěno.", chybaKodovani = "Chyba kódování SIP souboru.";
+public class K02_ZnakoveSady
+	implements UrovenKontroly
+{
+	static final public String NAME = "kontrola znakové sady"; 
+	
+	String kodovaniSipSouboru = "Nezjištěno.", chybaKodovani = "Chyba kódování SIP souboru.";
     boolean jeKodovaniVPoradku = false;
     File sip_na_file;
     
-    public K02_ZnakoveSady(SIP_MAIN file, boolean proved) throws IOException, FileNotFoundException, ParserConfigurationException, SAXException, XMLStreamException {
-        // nastavuje obě hodnoty - pak rozepsat a uložit do SIP souboru
-        SIP_MAIN_kontrola k = new SIP_MAIN_kontrola("kontrola znakové sady", proved);
-        if(proved){
-            if(!SIP_MAIN_helper.ma_metsxml(file)){
-                jeKodovaniVPoradku = false;
-            }
-            else{
-                sip_na_file = new File(SIP_MAIN_helper.getCesta_mets(file));
-                jeKodovaniVPoradku = JsouSiKodovaniRovna(sip_na_file);
-            }
-
-
-            if(jeKodovaniVPoradku){
-                SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "kod1", true, "", 0, "");
-                k.add(p);
-                file.setKodovani(kodovaniSipSouboru);
-            }
-            else{
-                SIP_MAIN_kontrola_pravidlo p1 = new SIP_MAIN_kontrola_pravidlo(0, "kod1", false, chybaKodovani, 0, "");
-                k.setStav(false);
-                k.add(p1);
-                file.setKodovani(kodovaniSipSouboru);
-            }
-        }
-        file.getSeznamKontrol().add(k);          
+    public K02_ZnakoveSady() {
     }
     
     // zjistí jaké má soubor .xml kódování
@@ -155,5 +137,45 @@ public class K02_ZnakoveSady {
         return ret;
         
     }
+
+	@Override
+	public void provedKontrolu(KontrolaContext ctx)
+			throws IOException, FileNotFoundException, ParserConfigurationException, SAXException, XMLStreamException
+	{
+		boolean isFailed = ctx.isFailed();
+		
+        // nastavuje obě hodnoty - pak rozepsat a uložit do SIP souboru
+        SIP_MAIN_kontrola k = new SIP_MAIN_kontrola(TypUrovenKontroly.ZNAKOVE_SADY,
+        		NAME);
+        ctx.pridejKontrolu(k);
+        if(isFailed) {
+        	return;
+        }
+        
+        SIP_MAIN file = ctx.getSip();
+		if (!SIP_MAIN_helper.ma_metsxml(file)) {
+			jeKodovaniVPoradku = false;
+		} else {
+			sip_na_file = new File(SIP_MAIN_helper.getCesta_mets(file));
+			jeKodovaniVPoradku = JsouSiKodovaniRovna(sip_na_file);
+		}
+
+		if (jeKodovaniVPoradku) {
+			SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "kod1", true, "", 0, "");
+			k.add(p);
+			file.setKodovani(kodovaniSipSouboru);
+		} else {
+			SIP_MAIN_kontrola_pravidlo p1 = new SIP_MAIN_kontrola_pravidlo(0, "kod1", false, chybaKodovani, 0, "");
+			k.setStav(false);
+			k.add(p1);
+			file.setKodovani(kodovaniSipSouboru);
+		}
+		k.setProvedena(true);
+	}
+
+	@Override
+	public String getNazev() {
+		return NAME;
+	}
    
 }

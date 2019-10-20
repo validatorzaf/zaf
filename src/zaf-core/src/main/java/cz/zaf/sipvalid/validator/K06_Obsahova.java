@@ -20,10 +20,14 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import cz.zaf.sipvalid.sip.KontrolaContext;
 import cz.zaf.sipvalid.sip.SIP_MAIN;
 import cz.zaf.sipvalid.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalid.sip.SIP_MAIN_kontrola;
 import cz.zaf.sipvalid.sip.SIP_MAIN_kontrola_pravidlo;
+import cz.zaf.sipvalid.sip.TypUrovenKontroly;
+import cz.zaf.sipvalid.sip.UrovenKontroly;
 import cz.zaf.sipvalid.helper.Helper;
 import cz.zaf.sipvalid.helper.HelperArrayList;
 import cz.zaf.sipvalid.helper.HelperString;
@@ -46,40 +50,20 @@ import static cz.zaf.sipvalid.validator.RozparsovaniSipSouboru.zakladniEntity;
  *
  * @author m000xz006159
  */
-public class K06_Obsahova {
-       private String chyba_neupresneno = "Neupřesněno.";
-       private String popisChyby = "Pravidlo nesplněno.", misto_chyby = "";
-       SIP_MAIN sipSoubor;
+public class K06_Obsahova
+	implements UrovenKontroly
+{
+	
+	static final public String NAME = "kontrola obsahu"; 
+			
+	
+	private String chyba_neupresneno = "Neupřesněno.";
+	private String popisChyby = "Pravidlo nesplněno.", misto_chyby = "";
+	SIP_MAIN sipSoubor;
+	private int[] seznamPravidel;
        
-    public K06_Obsahova(int[] seznamPravidel, SIP_MAIN sipSoubor, boolean proved) throws IOException, ParseException {
-        this.sipSoubor = sipSoubor;
-        SIP_MAIN_kontrola k = new SIP_MAIN_kontrola("kontrola obsahu", proved);
-        if(proved){
-            for(int i = 0; i < seznamPravidel.length; i++){
-//            long start = System.currentTimeMillis();    
-                int j = seznamPravidel[i];
-                try{
-                    boolean jePravidloSplneno = udelejPravidloObsahovaSpolecna2018(j);
-                    if(!jePravidloSplneno){
-                        SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(j, getIDpravidla(j), false, popisChyby, j, misto_chyby);
-                        k.setStav(false);
-                        k.add(p);
-                    }
-                }
-                catch(NullPointerException ex){ 
-                    SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(j, getIDpravidla(j), false, "Nenalezeny základní elementy schématu mets a nsesss.", j, "Neupřesněno.");
-                    k.setStav(false);
-                    k.add(p);
-                }
-//                long konec = System.currentTimeMillis();
-//                Date d = Helper.getDuration(start, konec);
-//                System.out.println("    " +" p." + getIDpravidla(j) + "." + "   "  + "Doba: " + d);
-            }
-        }
-
-        
-        
-        sipSoubor.getSeznamKontrol().add(k);
+    public K06_Obsahova(int[] seznamPravidel) {
+    	this.seznamPravidel = seznamPravidel;
     } 
     
     private String getIDpravidla(int j){
@@ -3438,5 +3422,50 @@ public class K06_Obsahova {
         
         return false;
     }
+
+
+	@Override
+	public void provedKontrolu(KontrolaContext ctx) throws Exception {
+		boolean isFailed = ctx.isFailed();		
+        SIP_MAIN_kontrola k = new SIP_MAIN_kontrola(
+        		TypUrovenKontroly.OBSAHOVA,
+        		NAME);
+        ctx.pridejKontrolu(k);
+        if(isFailed) {
+        	return;
+        }
+		
+		this.sipSoubor = ctx.getSip();
+
+		for (int i = 0; i < seznamPravidel.length; i++) {
+//            long start = System.currentTimeMillis();    
+			int j = seznamPravidel[i];
+			try {
+				boolean jePravidloSplneno = udelejPravidloObsahovaSpolecna2018(j);
+				if (!jePravidloSplneno) {
+					SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(j, getIDpravidla(j), false,
+							popisChyby, j, misto_chyby);
+					k.setStav(false);
+					k.add(p);
+				}
+			} catch (NullPointerException ex) {
+				SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(j, getIDpravidla(j), false,
+						"Nenalezeny základní elementy schématu mets a nsesss.", j, "Neupřesněno.");
+				k.setStav(false);
+				k.add(p);
+			}
+//                long konec = System.currentTimeMillis();
+//                Date d = Helper.getDuration(start, konec);
+//                System.out.println("    " +" p." + getIDpravidla(j) + "." + "   "  + "Doba: " + d);
+		}
+		
+		k.setProvedena(true);
+
+	}
+
+	@Override
+	public String getNazev() {
+		return NAME;
+	}
 
 }

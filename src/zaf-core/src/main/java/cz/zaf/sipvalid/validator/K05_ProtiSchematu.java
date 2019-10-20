@@ -17,50 +17,27 @@ import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
+
+import cz.zaf.sipvalid.sip.KontrolaContext;
 import cz.zaf.sipvalid.sip.SIP_MAIN;
 import cz.zaf.sipvalid.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalid.sip.SIP_MAIN_kontrola;
 import cz.zaf.sipvalid.sip.SIP_MAIN_kontrola_pravidlo;
+import cz.zaf.sipvalid.sip.TypUrovenKontroly;
+import cz.zaf.sipvalid.sip.UrovenKontroly;
 
 /**
  *
  * @author m000xz006159
  */
-public class K05_ProtiSchematu {
-    SIP_MAIN_kontrola k;
+public class K05_ProtiSchematu
+	implements UrovenKontroly
+{
+	static final public String NAME = "kontrola proti schématu XSD"; 
+			
+	SIP_MAIN_kontrola k;
     
-    public K05_ProtiSchematu(SIP_MAIN file, boolean proved) throws MalformedURLException, SAXException {
-        k = new SIP_MAIN_kontrola("kontrola proti schématu XSD", proved);
-        if(proved){
-            if(!SIP_MAIN_helper.ma_metsxml(file)){
-                SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "val1", false, "SIP balíček neobsahoval kontrolovatelný soubor.", 0, "");
-                k.setStav(false);
-                k.add(p);
-            }
-            else{
-                try{
-                    ValidaceVResource("sip2017.xsd", file); 
-                    if(!ErrorHandlerValidaceXSD.nalezenaChyba){
-                        SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "val1", true, "", 0, "");
-                        k.add(p);
-                    }
-                } 
-                catch (SAXParseException se) {
-    //                String chyba = "CHYBA! " + "SAX " + "Řádek: " + Integer.toString(se.getLineNumber()) + " Sloupec: " + Integer.toString(se.getColumnNumber()) + " " + se.getLocalizedMessage();
-    //                SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "val", false, chyba, 0, "");
-    //                k.setStav(false);
-    //                k.add(p);
-                } 
-                // po jednom souboru
-                catch(IOException e) {
-                    String chyba = "CHYBA! " + "IO " + e.getLocalizedMessage();
-                    SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "val1", false, chyba, 0, "");
-                    k.setStav(false);
-                    k.add(p);
-                }
-            }
-        }
-        file.getSeznamKontrol().add(k);
+    public K05_ProtiSchematu() {
     }
     
     private void ValidaceVResource(String resource, SIP_MAIN file) throws MalformedURLException, SAXException, IOException {
@@ -76,5 +53,56 @@ public class K05_ProtiSchematu {
         nasValidator.setErrorHandler(handler);
         nasValidator.validate(xmlFile);          
     }
+
+	@Override
+	public void provedKontrolu(KontrolaContext ctx) throws Exception {
+		boolean isFailed = ctx.isFailed();		
+
+        k = new SIP_MAIN_kontrola(
+        		TypUrovenKontroly.PROTI_SCHEMATU,
+        		NAME);
+        ctx.pridejKontrolu(k);
+        if(isFailed) {
+        	return;
+        }
+
+		SIP_MAIN file = ctx.getSip();
+		if (!SIP_MAIN_helper.ma_metsxml(file)) {
+			SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "val1", false,
+					"SIP balíček neobsahoval kontrolovatelný soubor.", 0, "");
+			k.setStav(false);
+			k.add(p);
+		} else {
+			try {
+				ValidaceVResource("sip2017.xsd", file);
+				if (!ErrorHandlerValidaceXSD.nalezenaChyba) {
+					SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "val1", true, "", 0, "");
+					k.add(p);
+				}
+			} catch (SAXParseException se) {
+				// String chyba = "CHYBA! " + "SAX " + "Řádek: " +
+				// Integer.toString(se.getLineNumber()) + " Sloupec: " +
+				// Integer.toString(se.getColumnNumber()) + " " + se.getLocalizedMessage();
+				// SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "val",
+				// false, chyba, 0, "");
+				// k.setStav(false);
+				// k.add(p);
+			}
+			// po jednom souboru
+			catch (IOException e) {
+				String chyba = "CHYBA! " + "IO " + e.getLocalizedMessage();
+				SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "val1", false, chyba, 0, "");
+				k.setStav(false);
+				k.add(p);
+			}
+		}
+		k.setProvedena(true);
+
+	}
+
+	@Override
+	public String getNazev() {
+		return NAME;
+	}
   
 }

@@ -38,8 +38,10 @@ import org.xml.sax.SAXException;
 
 import cz.zaf.sipvalid.helper.Helper;
 import cz.zaf.sipvalid.helper.HelperTime;
+import cz.zaf.sipvalid.sip.KontrolaContext;
 import cz.zaf.sipvalid.sip.SIP_MAIN;
 import cz.zaf.sipvalid.sip.SIP_MAIN_helper;
+import cz.zaf.sipvalid.sip.UrovenKontroly;
 import cz.zaf.sipvalid.validator.K00_SkodlivehoKodu;
 import cz.zaf.sipvalid.validator.K01_DatoveStruktury;
 import cz.zaf.sipvalid.validator.K02_ZnakoveSady;
@@ -550,8 +552,43 @@ public class JFmain extends javax.swing.JFrame {
 
     }
     
+    /**
+     * Pripravi seznam kontrol
+     * @param seznamObsKontrol 
+     * @param skodlivyKodError 
+     * @param skodlivyKodOk 
+     * @return
+     */
+    static List<UrovenKontroly> pripravKontroly(boolean skodlivyKodOk, String skodlivyKodError, int[] seznamObsKontrol) {
+    	ArrayList<UrovenKontroly> kontroly = new ArrayList<>(6);
+    	
+        K00_SkodlivehoKodu ksk = new K00_SkodlivehoKodu(skodlivyKodOk, skodlivyKodError);
+        kontroly.add(ksk);
+        
+        K01_DatoveStruktury kds = new K01_DatoveStruktury();
+        kontroly.add(kds);
+        
+        K02_ZnakoveSady kko = new K02_ZnakoveSady();
+        kontroly.add(kko);        
+
+        K03_Spravnosti kwf = new K03_Spravnosti();
+        kontroly.add(kwf);
+
+        K04_JmennychProstoruXML kjp = new K04_JmennychProstoruXML();
+        kontroly.add(kjp);
+
+        K05_ProtiSchematu vxml = new K05_ProtiSchematu();
+        kontroly.add(vxml);
+
+        K06_Obsahova oks = new K06_Obsahova(seznamObsKontrol);
+        kontroly.add(oks);
+        
+    	return kontroly;
+    }
+    
     public static void do_contoll(String typ_kontroly, int[] seznam, String id_kontroly_zadane){
-        Thread t1 = new Thread(() -> {
+        Thread t1 = new Thread(() -> 
+        {
         long start_k=0, end_k=0;    
         JF_Kontrola_nastaveni.jProgressBar_kontrola.setStringPainted(true);
         worker = new ProgressWorker(JF_Kontrola_nastaveni.jProgressBar_kontrola, JF_Kontrola_nastaveni.jLabel_progresbar); 
@@ -563,35 +600,21 @@ public class JFmain extends javax.swing.JFrame {
                 ads = HelperTime.getActualDateString();
             }
             start_k = System.currentTimeMillis();
-            for(int i = 0; i < seznamNahranychSouboru.size(); i++){
+            for(int i = 0; i < seznamNahranychSouboru.size(); i++) {
                 SIP_MAIN svf = seznamNahranychSouboru.get(i);
                 svf.reset_data_Kontroly();
+                
+                List<UrovenKontroly> kontroly = pripravKontroly(true, null, seznam);
                 try {
-                    boolean pokracuj_v_kontrole;
                     RozparsovaniSipSouboru rss = new RozparsovaniSipSouboru(svf);
                     resetRow(i, svf); // přepsání hodnoty v tabulce sipsouborů
-                    K00_SkodlivehoKodu ksk = new K00_SkodlivehoKodu(svf, true, "");
-                    pokracuj_v_kontrole = SIP_MAIN_helper.get_pokracuj_v_kontrole(svf, 0);
                     
-                    K01_DatoveStruktury kds = new K01_DatoveStruktury(svf, pokracuj_v_kontrole);
-                    pokracuj_v_kontrole = SIP_MAIN_helper.get_pokracuj_v_kontrole(svf, 1);
-                    
-                    K02_ZnakoveSady kko = new K02_ZnakoveSady(svf, pokracuj_v_kontrole);
-                    pokracuj_v_kontrole = SIP_MAIN_helper.get_pokracuj_v_kontrole(svf, 2);
-                    
-
-                    K03_Spravnosti kwf = new K03_Spravnosti(svf, pokracuj_v_kontrole);
-                    pokracuj_v_kontrole = SIP_MAIN_helper.get_pokracuj_v_kontrole(svf, 3);
-
-                    K04_JmennychProstoruXML kjp = new K04_JmennychProstoruXML(svf, pokracuj_v_kontrole);
-                    pokracuj_v_kontrole = SIP_MAIN_helper.get_pokracuj_v_kontrole(svf, 4);
-
-                    K05_ProtiSchematu vxml = new K05_ProtiSchematu(svf, pokracuj_v_kontrole);
-                    pokracuj_v_kontrole = SIP_MAIN_helper.get_pokracuj_v_kontrole(svf, 5);
-
-                    K06_Obsahova oks = new K06_Obsahova(seznam, svf, pokracuj_v_kontrole);
-
-                } catch (ParserConfigurationException | ParseException | IOException | SAXException | XMLStreamException ex) {
+                    // provedeni kontrol
+                    KontrolaContext ctx = new KontrolaContext(svf);
+                    for(UrovenKontroly kontrola: kontroly) {
+                    	kontrola.provedKontrolu(ctx);
+                    }
+                } catch (Exception ex) {
                     Logger.getLogger(JFmain.class.getName()).log(Level.SEVERE, null, ex); 
                 }
                 
@@ -742,24 +765,17 @@ public class JFmain extends javax.swing.JFrame {
             }
             for(int i = 0; i < seznamNahranychSouboru.size(); i++){
                 SIP_MAIN svf = seznamNahranychSouboru.get(i);
+                
+                List<UrovenKontroly> kontroly = pripravKontroly(eset, eset_errors, seznam);
+                
                 try {
-                    boolean pokracuj_v_kontrole;
-                    RozparsovaniSipSouboru rss = new RozparsovaniSipSouboru(svf);
-                    K00_SkodlivehoKodu ksk = new K00_SkodlivehoKodu(svf, eset, eset_errors);
-                    pokracuj_v_kontrole = SIP_MAIN_helper.get_pokracuj_v_kontrole(svf, 0);
-                    K01_DatoveStruktury kds = new K01_DatoveStruktury(svf, pokracuj_v_kontrole);
-                    pokracuj_v_kontrole = SIP_MAIN_helper.get_pokracuj_v_kontrole(svf, 1);
-                    K02_ZnakoveSady kko = new K02_ZnakoveSady(svf, pokracuj_v_kontrole);
-                    pokracuj_v_kontrole = SIP_MAIN_helper.get_pokracuj_v_kontrole(svf, 2);
-                    K03_Spravnosti kwf = new K03_Spravnosti(svf, pokracuj_v_kontrole);
-                    pokracuj_v_kontrole = SIP_MAIN_helper.get_pokracuj_v_kontrole(svf, 3);
-                    K04_JmennychProstoruXML kjp = new K04_JmennychProstoruXML(svf, pokracuj_v_kontrole);
-                    pokracuj_v_kontrole = SIP_MAIN_helper.get_pokracuj_v_kontrole(svf, 4);
-                    K05_ProtiSchematu vxml = new K05_ProtiSchematu(svf, pokracuj_v_kontrole);
-                    pokracuj_v_kontrole = SIP_MAIN_helper.get_pokracuj_v_kontrole(svf, 5);
-                    K06_Obsahova oks = new K06_Obsahova(seznam, svf, pokracuj_v_kontrole);
                     
-                } catch (ParserConfigurationException | ParseException | IOException | SAXException | XMLStreamException ex) {
+                    // provedeni kontrol
+                    KontrolaContext ctx = new KontrolaContext(svf);
+                    for(UrovenKontroly kontrola: kontroly) {
+                    	kontrola.provedKontrolu(ctx);
+                    }
+                } catch (Exception ex) {
                     Logger.getLogger(JFmain.class.getName()).log(Level.SEVERE, null, ex); 
                 }
             }
@@ -807,6 +823,9 @@ public class JFmain extends javax.swing.JFrame {
                 
                 SIP_MAIN svf = seznamNahranychSouboru.get(i);
                 System.out.println("* SOUBOR: " + svf.getName());
+                
+                List<UrovenKontroly> kontroly = pripravKontroly(eset, eset_errors, seznam);
+
                 long zacatektestusouboru = System.currentTimeMillis();
                 try {
                     boolean pokracuj_v_kontrole;
@@ -815,49 +834,20 @@ public class JFmain extends javax.swing.JFrame {
                     long en = System.currentTimeMillis();
                     System.out.println("    " + "Parsování: " + Helper.getDuration(st, en));
                     
-                    st = System.currentTimeMillis();
-                    K00_SkodlivehoKodu ksk = new K00_SkodlivehoKodu(svf, eset, eset_errors);
-                    pokracuj_v_kontrole = SIP_MAIN_helper.get_pokracuj_v_kontrole(svf, 0);
-                    en = System.currentTimeMillis();
-                    System.out.println("    " + "Škodlivého kódu: " + Helper.getDuration(st, en));
                     
-                    st = System.currentTimeMillis();
-                    K01_DatoveStruktury kds = new K01_DatoveStruktury(svf, pokracuj_v_kontrole);
-                    pokracuj_v_kontrole = SIP_MAIN_helper.get_pokracuj_v_kontrole(svf, 1);
-                    en = System.currentTimeMillis();
-                    System.out.println("    " + "Dat.struktury: " + Helper.getDuration(st, en));
-                    
-                    st = System.currentTimeMillis();
-                    K02_ZnakoveSady kko = new K02_ZnakoveSady(svf, pokracuj_v_kontrole);
-                    pokracuj_v_kontrole = SIP_MAIN_helper.get_pokracuj_v_kontrole(svf, 2);
-                    en = System.currentTimeMillis();
-                    System.out.println("    " + "Zn.sady: " + Helper.getDuration(st, en));
-                    
-                    st = System.currentTimeMillis();
-                    K03_Spravnosti kwf = new K03_Spravnosti(svf, pokracuj_v_kontrole);
-                    pokracuj_v_kontrole = SIP_MAIN_helper.get_pokracuj_v_kontrole(svf, 3);
-                    en = System.currentTimeMillis();
-                    System.out.println("    " + "Správnosti: " + Helper.getDuration(st, en));
-                    
-                    st = System.currentTimeMillis();
-                    K04_JmennychProstoruXML kjp = new K04_JmennychProstoruXML(svf, pokracuj_v_kontrole);
-                    pokracuj_v_kontrole = SIP_MAIN_helper.get_pokracuj_v_kontrole(svf, 4);
-                    en = System.currentTimeMillis();
-                    System.out.println("    " + "Jm.prostorů: " + Helper.getDuration(st, en));
-                    
-                    st = System.currentTimeMillis();
-                    K05_ProtiSchematu vxml = new K05_ProtiSchematu(svf, pokracuj_v_kontrole);
-                    pokracuj_v_kontrole = SIP_MAIN_helper.get_pokracuj_v_kontrole(svf, 5);
-                    en = System.currentTimeMillis();
-                    System.out.println("    " + "Schématu: " + Helper.getDuration(st, en));
+                    // provedeni kontrol
+                    KontrolaContext ctx = new KontrolaContext(svf);
+                    for(UrovenKontroly kontrola: kontroly) {
+                        st = System.currentTimeMillis();
 
-                    st = System.currentTimeMillis();
-                    System.out.println("    " + "Obsahová start: " + Helper.getTimeRightNow());
-                    K06_Obsahova oks = new K06_Obsahova(seznam, svf, pokracuj_v_kontrole);
-                    en = System.currentTimeMillis();
-                    System.out.println("    " + "Obsahová: " + Helper.getDuration(st, en));
-                    
-                } catch (ParserConfigurationException | ParseException | IOException | SAXException | XMLStreamException ex) {
+                        kontrola.provedKontrolu(ctx);
+                        
+                        en = System.currentTimeMillis();
+                        
+                        System.out.println("    " + kontrola.getNazev() + ": " + Helper.getDuration(st, en));
+                    }
+                                        
+                } catch (Exception ex) {
                     Logger.getLogger(JFmain.class.getName()).log(Level.SEVERE, null, ex); 
                 }
                 long konectestusouboru = System.currentTimeMillis();

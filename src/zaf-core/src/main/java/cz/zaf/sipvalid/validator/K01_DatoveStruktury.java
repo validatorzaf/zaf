@@ -6,26 +6,26 @@
 package cz.zaf.sipvalid.validator;
 
 
+import cz.zaf.sipvalid.sip.KontrolaContext;
 import cz.zaf.sipvalid.sip.SIP_MAIN;
 import cz.zaf.sipvalid.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalid.sip.SIP_MAIN_kontrola;
 import cz.zaf.sipvalid.sip.SIP_MAIN_kontrola_pravidlo;
+import cz.zaf.sipvalid.sip.TypUrovenKontroly;
+import cz.zaf.sipvalid.sip.UrovenKontroly;
 
 
 /**
  *
  * @author standa
  */
-public class K01_DatoveStruktury {
+public class K01_DatoveStruktury
+	implements UrovenKontroly
+{
+	
+	static final public String NAME = "kontrola datové struktury"; 
     
-    public K01_DatoveStruktury(SIP_MAIN file, boolean proved) {
-        SIP_MAIN_kontrola k = new SIP_MAIN_kontrola("kontrola datové struktury", proved);
-        if(proved){
-            pravidlo1(k, file);
-            pravidlo2(k, file);
-            pravidlo3(k, file);
-        }
-        file.getSeznamKontrol().add(k);
+    public K01_DatoveStruktury() {
     }
     
     // Datový balíček SIP je soubor v datovém formátu ZIP (jeho MIME Content-type je detekován jako application/zip) nebo složka.
@@ -104,5 +104,29 @@ public class K01_DatoveStruktury {
             k.add(p2);
         }
     }
+
+	@Override
+	public void provedKontrolu(KontrolaContext ctx) {
+        SIP_MAIN_kontrola k = new SIP_MAIN_kontrola(TypUrovenKontroly.DATOVE_STRUKTURY,
+        		NAME);
+        boolean failed = ctx.isFailed();
+        ctx.pridejKontrolu(k);
+		if(failed) {
+			return;
+		}
+        
+        SIP_MAIN file = ctx.getSip();
+		
+        pravidlo1(k, file);
+        pravidlo2(k, file);
+        pravidlo3(k, file);
+        
+        k.setProvedena(true);        		
+	}
+
+	@Override
+	public String getNazev() {
+		return NAME;
+	}
     
 }

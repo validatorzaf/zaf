@@ -11,38 +11,90 @@ import java.util.ArrayList;
  *
  * @author m000xz006159
  */
-public class SIP_MAIN_kontrola extends ArrayList<SIP_MAIN_kontrola_pravidlo>{
-    String kontrola_nazev;
-    boolean kontrola_provedena = false, kontrola_stav;
+public class SIP_MAIN_kontrola {
+	
+	final TypUrovenKontroly urovenKontroly;
+	
+	ArrayList<SIP_MAIN_kontrola_pravidlo> pravidla = new ArrayList<>(); 
+	
+    String kontrolaNazev;
+    
+    /**
+     * Priznak, zda kontrola byla dokoncena
+     * true - dokoncena
+     * false - nedokoncena
+     */
+    boolean kontrolaProvedena = false;
+    
+    /**
+     * Stav provedeni kontroly
+     * 
+     * Standardne je kontrola oznacena jako ok
+     */
+    boolean kontrolaStav = true;
 
-    public SIP_MAIN_kontrola(String kontrola_nazev, boolean provedena){
-        kontrola_provedena = provedena;
-        kontrola_stav = provedena;
-        this.kontrola_nazev = kontrola_nazev;
+    public SIP_MAIN_kontrola(final TypUrovenKontroly urovenKontroly, 
+    		final String kontrolaNazev){
+    	this.urovenKontroly = urovenKontroly;
+        this.kontrolaNazev = kontrolaNazev;
     }
 
     public String getKontrola_nazev(){
-        if(kontrola_nazev == null){
+        if(kontrolaNazev == null){
             return "Nezadán název kontroly";
         }
-        return kontrola_nazev;
+        return kontrolaNazev;
         
     }
 
-    public boolean getProvedena(){
-        return kontrola_provedena;
+    public boolean isProvedena(){
+        return kontrolaProvedena;
+    }
+    
+    public void setProvedena(boolean provedena) {
+    	this.kontrolaProvedena = provedena;
     }
     
     public boolean getStav(){
-        return kontrola_stav;
+        return kontrolaStav;
     }
     
-    public void setProvedena(boolean bol){
-        kontrola_provedena = bol;
+    public void setStav(boolean kontrolaOk){
+        kontrolaStav = kontrolaOk;
     }
-    
-    public void setStav(boolean bol){
-        kontrola_stav = bol;
-    }
+
+	public SIP_MAIN_kontrola_pravidlo getPravidlo(int indexPravidla) {
+		for(SIP_MAIN_kontrola_pravidlo p: pravidla) {
+			if(p.getIndex()==indexPravidla) {
+				return p;
+			}
+		}
+		return null;
+	}
+
+	public void add(SIP_MAIN_kontrola_pravidlo p) {
+		pravidla.add(p);
+	}
+
+	public int size() {
+		return pravidla.size();
+	}
+
+	public SIP_MAIN_kontrola_pravidlo get(int i) {
+		return pravidla.get(i);
+	}
+
+	public boolean isEmpty() {
+		return pravidla.isEmpty();
+	}
+
+	public TypUrovenKontroly getTypUrovneKontroly() {
+		return urovenKontroly;
+	}
+
+	public boolean isFailed() {		
+		// pokud je stav false -> je selhana
+		return kontrolaStav==false;
+	}
     
 }
