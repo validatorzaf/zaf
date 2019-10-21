@@ -24,6 +24,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.apache.commons.lang.StringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -476,13 +477,19 @@ public class Create_xml {
 	}
 
 	private Node add_node_sip(SIP_MAIN sip) {
-		Node nodeSIP = kontrolaSip_root.appendChild(xml_parsed.createElement("sip"));
-		((Element) nodeSIP).setAttribute("sipID", sip.getID());
+		Element elemNodeSip = xml_parsed.createElement("sip");
+		String metsObjId = sip.getMetsObjId();
+		if(StringUtils.isNotEmpty(metsObjId)) {
+			elemNodeSip.setAttribute("sipID", metsObjId);
+		}
+
 		String g = sip.getNameZip();
-		if (g == null || g.equals("") || g.equals(" - ")) {
+		if (g == null) {
 			g = sip.getName();
 		}
-		((Element) nodeSIP).setAttribute("nazevSouboru", g);
+		elemNodeSip.setAttribute("nazevSouboru", g);
+		
+		Node nodeSIP = kontrolaSip_root.appendChild(elemNodeSip);		
 		nodeSIP.setTextContent("");
 		return nodeSIP;
 	}

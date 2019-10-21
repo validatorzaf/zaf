@@ -10,6 +10,9 @@ import static java.lang.Math.round;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +21,7 @@ import javax.swing.JFrame;
 
 import cz.zaf.sipvalid.helper.HelperTime;
 import cz.zaf.sipvalid.sip.SIP_MAIN;
+import cz.zaf.sipvalid.sip.SIP_MAIN.LoadType;
 import cz.zaf.sipvalid.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidui.panels.JFmain;
 import net.lingala.zip4j.ZipFile;
@@ -32,8 +36,8 @@ public class SIP_Opener {
     public static int sip_opener_index = 0, sip_opener_pocet = 0;
     public static String sip_opener_index_fileName = "";
     public static String sip_opener_actualdatestring= "";
-    // load sip_type: 0 dir, 1 xml, 2 zip, -1 nepovolený formát
-    static int load_like = -1;
+    // zpusob nahrani
+    static LoadType loadLike = LoadType.LT_UNKNOWN;
     static String zip_name = "";
     static boolean zip_good = true;
     static String theOutString;
@@ -58,30 +62,27 @@ public class SIP_Opener {
                         Logger.getLogger(SIP_Opener.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     
-                    File file = zpracuj_soubor(vybrane_soubory[i], null);
-                    // zip xml dir
-                    if(file != null){
-                        if(!is_in_list(file, JFmain.seznamNahranychSouboru)){
-                            long l = SIP_MAIN_helper.get_sip_lenght(file);
-                            SIP_MAIN new_sip = new SIP_MAIN(file.getName(), zip_name, load_like, l, file.getAbsolutePath());
-                            if(!zip_good){
-                                new_sip.setLoadGood(false);
-                                zip_good = true; // nastavit na true pro další soubor
-                            }
-                            JFmain.seznamNahranychSouboru.add(new_sip);
-                            pridejRadekDoTabulky(new_sip);  
-                        }
-                        
+                    Path srcPath = vybrane_soubory[i].toPath();
+                    
+                    Path finalSipPath = zpracuj_soubor(srcPath, null);
+                    boolean isBroken = false;
+                    if(finalSipPath==null) {
+                    	// broken
+                    	// pouzije se predchozi cesta
+                    	finalSipPath = srcPath;
+                    	isBroken = true;
                     }
-                    // nahrán jako něco jiného než zip dir nebo xml
-                    else{
-                        if(!is_in_list(vybrane_soubory[i], JFmain.seznamNahranychSouboru)){
-                            long l = SIP_MAIN_helper.get_sip_lenght(vybrane_soubory[i]);
-                            SIP_MAIN new_sip = new SIP_MAIN(vybrane_soubory[i].getName(), zip_name, load_like, l, vybrane_soubory[i].getAbsolutePath());
-                            JFmain.seznamNahranychSouboru.add(new_sip);
-                            pridejRadekDoTabulky(new_sip);  
-                        }  
+                    long l = SIP_MAIN_helper.get_sip_lenght(finalSipPath);
+                    String sipName = finalSipPath.getName(finalSipPath.getNameCount()-1).toString();
+                    SIP_MAIN sip = new SIP_MAIN(sipName, zip_name, loadLike, l, finalSipPath);
+                    if(isBroken) {
+                    	sip.setLoadGood(false);
                     }
+                    
+                    if(!is_in_list(sipName, JFmain.seznamNahranychSouboru)){
+                        JFmain.seznamNahranychSouboru.add(sip);
+                        pridejRadekDoTabulky(sip);
+                    }                    
                 }
                 
             worker.done();
@@ -97,7 +98,8 @@ public class SIP_Opener {
         }
     }
     
-    public static void getOpenFiles_web(File nahrany_soubor, String sip_or_directoryWithSips, String path_for_unzip){   
+    /*
+    public static void getOpenFiles_web(File nahrany_soubor, String sip_or_directoryWithSips, Path path_for_unzip){   
         File[] vybrane_soubory = null;
         if(sip_or_directoryWithSips.equals("true")){
             vybrane_soubory = new File[]{nahrany_soubor};
@@ -117,7 +119,7 @@ public class SIP_Opener {
                 if (file != null) {
                     if(!is_in_list(file, JFmain.seznamNahranychSouboru)){
                         long l = SIP_MAIN_helper.get_sip_lenght(file);
-                        SIP_MAIN new_sip = new SIP_MAIN(file.getName(), zip_name, load_like, l, file.getAbsolutePath());
+                        SIP_MAIN new_sip = new SIP_MAIN(file.getName(), zip_name, loadLike, l, file.getAbsolutePath());
                         if(!zip_good){
                             new_sip.setLoadGood(false);
                             zip_good = true; // nastavit na true pro další soubor
@@ -129,7 +131,7 @@ public class SIP_Opener {
                 else {
                     if (!is_in_list(vybrane_soubory1, JFmain.seznamNahranychSouboru)) {
                         long l = SIP_MAIN_helper.get_sip_lenght(vybrane_soubory1);
-                        SIP_MAIN new_sip = new SIP_MAIN(vybrane_soubory1.getName(), zip_name, load_like, l, vybrane_soubory1.getAbsolutePath());
+                        SIP_MAIN new_sip = new SIP_MAIN(vybrane_soubory1.getName(), zip_name, loadLike, l, vybrane_soubory1.getAbsolutePath());
                         JFmain.seznamNahranychSouboru.add(new_sip);
                     }else{
 
@@ -140,7 +142,7 @@ public class SIP_Opener {
         }
     }
      
-    public static void getOpenFiles_web_vypis(File nahrany_soubor, String sip_or_directoryWithSips, String path_for_unzip){   
+    public static void getOpenFiles_web_vypis(File nahrany_soubor, String sip_or_directoryWithSips, Path path_for_unzip){   
         File[] vybrane_soubory = null;
         if(sip_or_directoryWithSips.equals("true")){
             vybrane_soubory = new File[]{nahrany_soubor};
@@ -163,7 +165,7 @@ public class SIP_Opener {
                 if (file != null) {
                     if(!is_in_list(file, JFmain.seznamNahranychSouboru)){
                         long l = SIP_MAIN_helper.get_sip_lenght(file);
-                        SIP_MAIN new_sip = new SIP_MAIN(file.getName(), zip_name, load_like, l, file.getAbsolutePath());
+                        SIP_MAIN new_sip = new SIP_MAIN(file.getName(), zip_name, loadLike, l, file.getAbsolutePath());
                         if(!zip_good){
                             new_sip.setLoadGood(false);
                             System.out.println("   zpracován - problém při rozbalování");
@@ -179,7 +181,7 @@ public class SIP_Opener {
                     System.out.println("   CHYBASIP - nezpracován - nesplňuje podmínky sip balíčku");
                     if (!is_in_list(vybrane_soubory1, JFmain.seznamNahranychSouboru)) {
                         long l = SIP_MAIN_helper.get_sip_lenght(vybrane_soubory1);
-                        SIP_MAIN new_sip = new SIP_MAIN(vybrane_soubory1.getName(), zip_name, load_like, l, vybrane_soubory1.getAbsolutePath());
+                        SIP_MAIN new_sip = new SIP_MAIN(vybrane_soubory1.getName(), zip_name, loadLike, l, vybrane_soubory1.getAbsolutePath());
                         JFmain.seznamNahranychSouboru.add(new_sip);
                         System.out.println("   přidán do seznamu souborů");
                     }else{
@@ -191,92 +193,103 @@ public class SIP_Opener {
             System.out.println(HelperTime.getHodiny(System.currentTimeMillis()) + " - SOUBORY ZPRACOVÁNY. NAHRÁNO: " + vybrane_soubory.length + " ZPRACOVÁNO: " + JFmain.seznamNahranychSouboru.size());
             System.out.println("");
         }
-    }
+    }    
+     */
     
-    private static File zpracuj_soubor(File file, String path_for_unzip){
-        if(file.isDirectory()){
-            load_like = 0;
-            zip_name = "";
-            return file;
+    private static Path zpracuj_soubor(Path sipPath, Path pathForUnzip){
+    	zip_name = null;
+        if(Files.isDirectory(sipPath)){
+        	loadLike = LoadType.LT_DIR;            
+            return sipPath;
         }
         else{
-            if(file.getAbsolutePath().endsWith(".zip")){
-                zip_name = file.getName();
-                load_like = 2;
+            if(sipPath.toString().endsWith(".zip")){
+                zip_name = sipPath.getName(sipPath.getNameCount()-1).toString();
+                loadLike = LoadType.LT_ZIP;
                 //bere pouze directories
-                return get_unzipped_file(file, path_for_unzip);
+                Path dir = get_unzipped_file(sipPath, pathForUnzip);
+                if(dir!=null) {
+                	return dir;
+                }
+                return null;
             
             }
-            if(file.getAbsolutePath().endsWith(".xml")){
-                zip_name = "";
-                load_like = 1;
-                return file;
+            if(sipPath.toString().endsWith(".xml")){
+                loadLike = LoadType.LT_XML;
+                return sipPath;
             
             }
-            zip_name = "";
-            load_like = -1;
-            return file;  
+            loadLike = LoadType.LT_UNKNOWN;
+            return null;  
         }
     }
     
-    private static boolean is_in_list(File file, ArrayList<SIP_MAIN> seznamSIP){
+    private static boolean is_in_list(String sipName, ArrayList<SIP_MAIN> seznamSIP){
         for (SIP_MAIN sip : seznamSIP) {
-            if(file.getName().equals(sip.getName())) return true;
+            if(sipName.equals(sip.getName())) {
+            	return true;
+            }
         }
         return false;
     }
     
-    private static File get_unzipped_file(File zip, String path_for_unzip){
-        String path;
-        if(path_for_unzip == null || path_for_unzip.equals("undefined") || path_for_unzip.equals("null")){
-            try {
-                path = new File(".").getCanonicalPath() + File.separator + "rozbaleno" + File.separator + sip_opener_actualdatestring;
-            } catch (IOException ex) {
-                Logger.getLogger(SIP_Opener.class.getName()).log(Level.SEVERE, null, ex);
-                path = path_for_unzip + File.separator + sip_opener_actualdatestring;
-            }
+    /**
+     * Rozbali SIP a vraci cestu do adresare s rozbalenym
+     * @param zip
+     * @param path_for_unzip
+     * @return
+     */
+    private static Path get_unzipped_file(Path zipPath, Path pathForUnzip){
+    	if(pathForUnzip==null) {
+    		pathForUnzip = Paths.get("rozbaleno");    		
+    	}
+    	Path path = pathForUnzip.resolve(sip_opener_actualdatestring);
+    	if(!Files.isDirectory(path)) {
+    		try {
+				Files.createDirectories(path);
+			} catch (IOException e) {
+				// TODO: Lepsi osetreni chyb
+				e.printStackTrace();
+				return null;
+			}
+    	}
+    	
+    	ZipFile zipFile = new ZipFile(zipPath.toFile());
+    	zipFile.setCharset(Charset.forName("IBM852")); // extrakce českých znaků
+    	boolean isvalidZipFile = zipFile.isValidZipFile();
+    	if(!isvalidZipFile){
+    		// invalid ZIP file
+    		return null;
+    	}
+    	// ocekavane jmeno je bez koncovky .ZIP
+    	String ocekavanejmeno = zipFile.getFile().getName();
+    	ocekavanejmeno = ocekavanejmeno.substring(0, ocekavanejmeno.length()-4);
+
+        boolean spravnaStrukturaZipu = obsahujePraveAdresar(zipFile, ocekavanejmeno);
+        if(!spravnaStrukturaZipu) {
+        	return null;
         }
-        else{
-            path = path_for_unzip + File.separator + sip_opener_actualdatestring;
-        }
-        
-        new File(path).mkdir();
-        File rozbaleny;
-        try {
-            ZipFile zipFile = new ZipFile(zip);
-            zipFile.setCharset(Charset.forName("IBM852")); // extrakce českých znaků
-            boolean isvalidZipFile = zipFile.isValidZipFile();
-            if(isvalidZipFile){
-                boolean bol = canBeUnziped(zipFile);
-                if(bol){
-                    String n = zipFile.getFile().getName().substring(0, zipFile.getFile().getName().length()-4);
-                    zipFile.setRunInThread(false);
-                    zipFile.extractAll(path);
-                    rozbaleny = new File(path + File.separator + n);
-                    while(zipFile.getProgressMonitor().getPercentDone() == 100){
-                        return rozbaleny;
-                    }     
-                }
-                else{
-                    zip_good = false; 
-                    return zip;
-                }
-            }
-            else{
-                zip_good = false; 
-                return zip;
-            }
-            
+        try {                        
+        	zipFile.setRunInThread(false);
+            zipFile.extractAll(path.toString());
+            Path rozbaleny = path.resolve(ocekavanejmeno);
+            //?? smysl
+            /*while(zipFile.getProgressMonitor().getPercentDone() == 100){
+            	return rozbaleny;
+            }*/
+            return rozbaleny;
         } catch (ZipException ex) {
-            zip_good = false;
-            return zip;
-        }
-        return rozbaleny;
+            return null;
+        }        
     }
     
-    private static boolean canBeUnziped(ZipFile zipFile){
-        if(!zipFile.isValidZipFile()) return false;
-        String ocekavanejmeno = zipFile.getFile().getName().replaceFirst(".zip", "");
+	/**
+	 * Kontrola zda obsahuje jen jeden adresar
+	 * @param zipFile
+	 * @return
+	 */
+    private static boolean obsahujePraveAdresar(ZipFile zipFile, String ocekavanejmeno)
+    {
         try {
             ArrayList<FileHeader> list = (ArrayList<FileHeader>) zipFile.getFileHeaders();
             for(int i = 0; i < list.size(); i++){

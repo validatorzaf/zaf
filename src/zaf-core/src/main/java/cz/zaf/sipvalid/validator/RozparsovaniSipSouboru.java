@@ -32,9 +32,9 @@ public class RozparsovaniSipSouboru {
     public static Document parsedSAX_Sipsoubor;
     public static Node metsMets,metsDmdSec, metsMdWrap, xmlData, metsHdr;
     public static ArrayList<Node> zakladniEntity, identifikatory, nazvy, dokumenty, manipulace, urceneCasoveObdobi, plneurcenySpisovyZnak; 
-    public RozparsovaniSipSouboru(SIP_MAIN file) throws ParserConfigurationException, SAXException {
+    public RozparsovaniSipSouboru(SIP_MAIN sip) throws ParserConfigurationException, SAXException {
         
-        sip_to_file = new File(SIP_MAIN_helper.getCesta_mets(file));
+        sip_to_file = sip.getCesta_mets().toFile();
         parsedSAX_Sipsoubor = null;
         metsMets = null;
         metsDmdSec = null;
@@ -65,7 +65,7 @@ public class RozparsovaniSipSouboru {
             if(metsMets != null){
                 if(ValuesGetter.hasAttribut(metsMets, "OBJID")){
                     // nastaveni id SIP
-                    file.setID(ValuesGetter.getValueOfAttribut(metsMets, "OBJID"));
+                    sip.setMetsObjId(ValuesGetter.getValueOfAttribut(metsMets, "OBJID"));
                 }
             }
             // konec
@@ -93,11 +93,11 @@ public class RozparsovaniSipSouboru {
             metsHdr = ValuesGetter.getXChild(metsMets, "mets:metsHdr");
             if(zakladniEntity != null){
                 // 0 dok, 1 spi 2 dil
-                SIP_MAIN_helper.set_SIP_type(zakladniEntity.get(0).getNodeName(), file);
+                SIP_MAIN_helper.set_SIP_type(zakladniEntity.get(0).getNodeName(), sip);
                 Node skZnakMaterskeEntity = ValuesGetter.getXChild(zakladniEntity.get(0), "nsesss:EvidencniUdaje", "nsesss:Vyrazovani", "nsesss:SkartacniRezim", "nsesss:SkartacniZnak");
-                if(skZnakMaterskeEntity != null) file.setSKznak(skZnakMaterskeEntity.getTextContent());
+                if(skZnakMaterskeEntity != null) sip.setSKznak(skZnakMaterskeEntity.getTextContent());
                 Node skLhutaMaterskeEntity = ValuesGetter.getXChild(zakladniEntity.get(0), "nsesss:EvidencniUdaje", "nsesss:Vyrazovani", "nsesss:SkartacniRezim", "nsesss:SkartacniLhuta");
-                if(skLhutaMaterskeEntity != null) file.setSKLhuta(skLhutaMaterskeEntity.getTextContent());
+                if(skLhutaMaterskeEntity != null) sip.setSKLhuta(skLhutaMaterskeEntity.getTextContent());
             }  
         }
     }

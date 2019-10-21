@@ -98,7 +98,7 @@ public class EventListenerJFmainTableSeSipSoubory implements ListSelectionListen
             vypisKontrolaObsahova(sf); // obsahova
         }
         jTextAreaPredKontrola.setText(
-            "* CESTA K METS XML: " + SIP_MAIN_helper.getCesta_mets(sf) + "\n" + "\n"+
+            "* CESTA K METS XML: " + sf.getCesta_mets().toString() + "\n" + "\n"+
             "* CESTA K XML PRO WEB: " +  JFmain.cesta_xml_web +    
             vypis
         );

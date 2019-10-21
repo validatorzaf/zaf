@@ -43,7 +43,7 @@ public class K05_ProtiSchematu
     private void ValidaceVResource(String resource, SIP_MAIN file) throws MalformedURLException, SAXException, IOException {
         URL schemaFile = K05_ProtiSchematu.class.getResource(resource); // tady musí být šablona (např sip.xsd)
         //URL schemaFile = new File("d:\\5.xsd").toURI().toURL(); //cesta natvrdo 
-        File f = new File(SIP_MAIN_helper.getCesta_mets(file));
+        File f = file.getCesta_mets().toFile();
         Source xmlFile = new StreamSource(f);
         SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         Schema schema = schemaFactory.newSchema(schemaFile);
@@ -74,7 +74,7 @@ public class K05_ProtiSchematu
 			k.add(p);
 		} else {
 			try {
-				ValidaceVResource("sip2017.xsd", file);
+				ValidaceVResource("/schema/sip2017.xsd", file);
 				if (!ErrorHandlerValidaceXSD.nalezenaChyba) {
 					SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "val1", true, "", 0, "");
 					k.add(p);

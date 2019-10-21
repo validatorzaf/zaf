@@ -66,7 +66,8 @@ public class K04_JmennychProstoruXML
         else{
             if(ValuesGetter.hasAttribut(metsMets, "xsi:schemaLocation")){
                String hodnota = ValuesGetter.getValueOfAttribut(metsMets, "xsi:schemaLocation");
-               if(hodnota.equals("http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 TransakcniProtokolNavrh_verze1.7.xsd") || hodnota.equals("http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 http://www.mvcr.cz/nsesss/v3/nsesss-TrP.xsd")){
+               if(hodnota.equals("http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 TransakcniProtokolNavrh_verze1.7.xsd") || 
+            		   hodnota.equals("http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 http://www.mvcr.cz/nsesss/v3/nsesss-TrP.xsd")){
                     SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(1, "ns2", true, "atribut xsi:schemaLocation obsahuje očekávanou hodnotu: " + hodnota + ".", 0, "");
                     file.set_xsi_schemaLocation(hodnota);
                     k.add(p);

@@ -8,6 +8,7 @@ package cz.zaf.sipvalid.validator;
 
 import cz.zaf.sipvalid.sip.KontrolaContext;
 import cz.zaf.sipvalid.sip.SIP_MAIN;
+import cz.zaf.sipvalid.sip.SIP_MAIN.LoadType;
 import cz.zaf.sipvalid.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalid.sip.SIP_MAIN_kontrola;
 import cz.zaf.sipvalid.sip.SIP_MAIN_kontrola_pravidlo;
@@ -30,23 +31,23 @@ public class K01_DatoveStruktury
     
     // Datový balíček SIP je soubor v datovém formátu ZIP (jeho MIME Content-type je detekován jako application/zip) nebo složka.
     private void pravidlo1(SIP_MAIN_kontrola k, SIP_MAIN file){
-        int loadtype = file.getLoadType(); // load type: 0 dir, 1 xml, 2 zip, -1 nepovolený formát
+    	LoadType loadtype = file.getLoadType(); // load type: 0 dir, 1 xml, 2 zip, -1 nepovolený formát
         switch(loadtype){
-            case -1:
+            case LT_UNKNOWN:
                 SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "data1", false, "Datový balíček SIP není soubor v povoleném datovém formátu.", 4, "");
                 k.add(p);
                 k.setStav(false);
             break;    
-            case 1:
+            case LT_XML:
                 SIP_MAIN_kontrola_pravidlo p1 = new SIP_MAIN_kontrola_pravidlo(0, "data1", false, "Nejedná se o SIP balíček, ale nahrán jako samostatný soubor typu xml.", 4, "");
                 k.add(p1);
                 k.setStav(false);
             break;
-            case 0:
+            case LT_DIR:
                 SIP_MAIN_kontrola_pravidlo p2 = new SIP_MAIN_kontrola_pravidlo(0, "data1", true, "SIP balíček byl nahrán jako složka.", 0, "");
                 k.add(p2);
             break;
-            case 2:
+            case LT_ZIP:
                 if(!file.getLoadGood()){
                     SIP_MAIN_kontrola_pravidlo p3 = new SIP_MAIN_kontrola_pravidlo(0, "data1", false, "Datový balíček SIP není soubor v datovém formátu ZIP (jeho MIME Content-type není application/zip).", 4, "");
                     k.add(p3);
@@ -64,9 +65,8 @@ public class K01_DatoveStruktury
     // Pokud je datový balíček SIP komprimován do souboru v datovém formátu ZIP, 
     // po rozbalení obsahuje právě jednu složku. Ta má stejný název jako je název souboru v datovém formátu ZIP.
     private void pravidlo2(SIP_MAIN_kontrola k, SIP_MAIN file){
-        int t = file.getLoadType();
-        String typ = SIP_MAIN_helper.get_SIP_file_type(t);
-        if(t == 2){ //byl to zip
+    	LoadType loadtype = file.getLoadType();        
+        if(loadtype == LoadType.LT_ZIP){ //byl to zip
             if(file.getName().equals(file.getNameZip().replaceAll(".zip", ""))){
                 SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(1, "data2", true, "Nahraný soubor typu zip obsahoval očekávaný SIP balíček.", 0, "");
                 k.add(p);
@@ -78,7 +78,7 @@ public class K01_DatoveStruktury
             }
         }
         else{
-            SIP_MAIN_kontrola_pravidlo p2 = new SIP_MAIN_kontrola_pravidlo(1, "data2", true, "Nejedná se o SIP balíček, ale nahrán jako samostatný soubor typu " + typ + ".", 0, "");
+            SIP_MAIN_kontrola_pravidlo p2 = new SIP_MAIN_kontrola_pravidlo(1, "data2", true, "Nejedná se o SIP balíček, ale nahrán jako samostatný soubor typu " + loadtype.getName() + ".", 0, "");
             k.add(p2); 
         }
     }

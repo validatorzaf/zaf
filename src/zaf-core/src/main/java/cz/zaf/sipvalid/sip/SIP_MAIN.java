@@ -4,36 +4,99 @@
  * and open the template in the editor.
  */
 package cz.zaf.sipvalid.sip;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 import org.apache.commons.lang3.Validate;
 
 /**
- *
- * @author m000xz006159
+ * Informace o Sipu
+ * 
  */
 public class SIP_MAIN{
+	
+	public static enum LoadType {
+		LT_UNKNOWN("nepovolený formát"),
+		LT_DIR("složka"),
+		LT_XML("xml"),
+		LT_ZIP("zip");
+		
+		/**
+		 * Jmeno typu nahrani
+		 */
+		final String name;
+		
+		private LoadType(final String name) {
+			this.name = name;
+		}
+		
+		public String getName() {
+			return name;
+		}
+	}
+	
+	final public static String METS_XML = "mets.xml"; 
 
-    private String id = " - ", name = " - ", name_zip = " - ";
+	/**
+	 * ID sipu
+	 * 
+	 * Nacte se z mets.xml (OBJID)
+	 */
+    private String metsObjId;
+    
+    /**
+     * Jmeno SIPu
+     * 
+     * Jméno adresáře v němž je SIP uložen
+     */
+    final private String name;
+    
+    /**
+     * Jméno ZIP souboru se SIPem
+     * 
+     * Jméno ZIP soouboru v němž byl SIP zabalen
+     */
+    final private String nameZipFile;
+    
+    /**
+     * Cesta k SIPu
+     * 
+     * V zavislosti na typu vstupu nabyva hodnot:
+     * XML - cesta k mets.xml
+     * ZIP - cesta do rozbaleneho SIPu
+     * DIR - cesta do adresare SIPu
+     */
+    final private Path sipPath;
+    
     // sip_type 0 dok, 1 spi, 2 dil
-    private int sip_type = -1, load_type = -1;
+    private int sip_type = -1;
+
+    /**
+     * Typ zdroje SIPu
+     */
+    final private LoadType loadType;
     private long lenght = 0;
     
     final protected ArrayList<SIP_MAIN_kontrola> seznam_kontrol = new ArrayList<>();
     
-    private String sip_skznak = " - ", sip_sklhuta = " - ", sip_kodovani;
-    private final String sip_relativni_cesta;
+    private String sip_skznak = " - ", sip_sklhuta = " - ", sip_kodovani;    
     private String xsi_schemaLocation;
-    private boolean load_good = true;
-    // load sip_type: 0 dir, 1 xml, 2 zip, -1 nepovolený formát
-    public SIP_MAIN(String name, String name_zip, int load_type, long lenght, String cesta) {
+    
+    /**
+     * Priznak, zda byl datovy balicek nacten
+     * 
+     * false - deklarovany datovy format nebyl nacten
+     */
+    private boolean loadGood = true;
+    
+    public SIP_MAIN(final String name, final String nameZipFile, final LoadType loadType, 
+    		long lenght, final Path sipPath) {
         this.name = name;
-        if(!name_zip.equals("")){
-            this.name_zip = name_zip;
-        }
+        this.nameZipFile = nameZipFile;
+        this.loadType = loadType;
+        this.sipPath = sipPath;
+
         this.lenght = lenght;
-        this.sip_relativni_cesta = cesta;
-        this.load_type = load_type;
     }
     
     public void reset_data_Kontroly(){
@@ -41,35 +104,41 @@ public class SIP_MAIN{
     }
     
     public boolean getLoadGood(){
-        return load_good;
+        return loadGood;
     }
     
     public void setLoadGood(boolean bol){
-        load_good = bol;
+        loadGood = bol;
     }
     
-    public int getLoadType(){
-        return load_type;
+    public LoadType getLoadType(){
+        return loadType;
     }
     
-    public void setLoadType(int type){
-        load_type = type;
+    public Path getCesta(){
+        return sipPath;
     }
     
-    public String getCesta(){
-        return sip_relativni_cesta;
-    }
+    public Path getCesta_mets(){
+    	if(loadType==LoadType.LT_XML) {
+    		return sipPath;
+    	}
+    	if(sipPath!=null) {
+    		return sipPath.resolve(METS_XML);
+    	}
+        return null;
+    }    
     
-    public void setID(String objid){
-        id = objid;
+    public void setMetsObjId(String objid){
+    	metsObjId = objid;
     }
     
     public void setType(int typ){
         sip_type = typ;
     }
     
-    public String getID(){
-        return id;
+    public String getMetsObjId(){
+        return metsObjId;
     }
     
     public String getName(){
@@ -77,7 +146,7 @@ public class SIP_MAIN{
     }
 
     public String getNameZip(){
-        return name_zip;
+        return nameZipFile;
     }
 
     public int getType(){
@@ -116,7 +185,7 @@ public class SIP_MAIN{
         sip_kodovani = kodovani;
     }
     
-    public String get_xsi_schemaLocation(){
+	public String get_xsi_schemaLocation(){
         return xsi_schemaLocation;
     }
     

@@ -6,6 +6,10 @@
 package cz.zaf.sipvalid.sip;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import org.apache.commons.io.FileUtils;
 
 /**
@@ -14,27 +18,28 @@ import org.apache.commons.io.FileUtils;
  */
 public class SIP_MAIN_helper {
     
-    public static long get_sip_lenght(File sip){
+	// TODO: Nutno prepracovat
+    public static long get_sip_lenght(Path sipPath){
         long g = 0;
         try{
-            if(sip.exists()){
-                if(sip.isDirectory()){
-                    g = FileUtils.sizeOfDirectory(sip);
+            if(Files.exists(sipPath)){
+                if(Files.isDirectory(sipPath)){
+                    g = FileUtils.sizeOfDirectory(sipPath.toFile());
                 }
                 else{
-                    g = sip.length();
+                    g = Files.size(sipPath);
                 }
             }
             else{
                 g = -20;
             }
-
-                   
+            return g;                   
         }
         catch(IllegalArgumentException e){
-            g = -1;
-        }
-        return g;
+            return -1;
+        } catch (IOException e) {
+        	return -1;
+		}        
     }
     
     public static SIP_MAIN_kontrola get_Kontrola(SIP_MAIN sip, String nazev, int ocekavany_index_kontroly){
@@ -128,51 +133,27 @@ public class SIP_MAIN_helper {
         }
     }
     
-    
-    // load type: 0 dir, 1 xml, 2 zip, -1 nepovolený formát
-    public static String get_SIP_file_type(int index){
-
-        if(index == -1){
-            return "nepovolený formát";
-        }
         
-        if(index == 0){
-            return "složka";
-        }
-        if(index == 1){
-            return "xml";
-        }
-        if(index == 2){
-            return "zip";
-        }
-        
-        return " - ";
-    }
-    
     public static String getCesta_komponenty(SIP_MAIN sip){
         return sip.getCesta() + File.separator + "komponenty";  
     }
-    
-    public static String getCesta_mets(SIP_MAIN sip){
-        return sip.getCesta() + File.separator + "mets.xml";
-    }
-    
+        
     public static boolean maSlozku_komponenty(SIP_MAIN sip){
         File k = new File(getCesta_komponenty(sip));
         return k.exists();
     }
     
     public static boolean ma_metsxml(SIP_MAIN sip){
-        File m = new File(getCesta_mets(sip));
+        File m = sip.getCesta_mets().toFile();
         return m.exists();
     }
     
     public static boolean ma_pouze_povolene_soubory(SIP_MAIN sip){
         
-        File[] f = new File(sip.getCesta()).listFiles();
+        File[] f = sip.getCesta().toFile().listFiles();
         if(f != null){
             for(File s : f){
-                if(!(s.getName().toLowerCase().equals("komponenty") || s.getName().toLowerCase().equals("mets.xml"))){
+                if(!(s.getName().toLowerCase().equals("komponenty") || s.getName().toLowerCase().equals(SIP_MAIN.METS_XML))){
                     return false;
                 }
             }

@@ -152,23 +152,23 @@ public class K02_ZnakoveSady
         	return;
         }
         
-        SIP_MAIN file = ctx.getSip();
-		if (!SIP_MAIN_helper.ma_metsxml(file)) {
+        SIP_MAIN sip = ctx.getSip();
+		if (!SIP_MAIN_helper.ma_metsxml(sip)) {
 			jeKodovaniVPoradku = false;
 		} else {
-			sip_na_file = new File(SIP_MAIN_helper.getCesta_mets(file));
+			sip_na_file = sip.getCesta_mets().toFile();
 			jeKodovaniVPoradku = JsouSiKodovaniRovna(sip_na_file);
 		}
 
 		if (jeKodovaniVPoradku) {
 			SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "kod1", true, "", 0, "");
 			k.add(p);
-			file.setKodovani(kodovaniSipSouboru);
+			sip.setKodovani(kodovaniSipSouboru);
 		} else {
 			SIP_MAIN_kontrola_pravidlo p1 = new SIP_MAIN_kontrola_pravidlo(0, "kod1", false, chybaKodovani, 0, "");
 			k.setStav(false);
 			k.add(p1);
-			file.setKodovani(kodovaniSipSouboru);
+			sip.setKodovani(kodovaniSipSouboru);
 		}
 		k.setProvedena(true);
 	}

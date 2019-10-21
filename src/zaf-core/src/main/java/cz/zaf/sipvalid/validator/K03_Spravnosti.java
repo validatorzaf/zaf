@@ -86,7 +86,7 @@ public class K03_Spravnosti
 			// the "parse" method also validates XML, will throw an exception if
 			// misformatted
 			try {
-				File f = new File(SIP_MAIN_helper.getCesta_mets(file)); // kvůli diakritice aby pak použil file a ne
+				File f = file.getCesta_mets().toFile(); // kvůli diakritice aby pak použil file a ne
 																		// string
 				org.w3c.dom.Document document = builder.parse(f);
 				SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "wf1", true, "", 0, "");
