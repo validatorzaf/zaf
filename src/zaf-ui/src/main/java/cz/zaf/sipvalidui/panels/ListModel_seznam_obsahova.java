@@ -10,6 +10,7 @@ import javax.swing.JList;
 import cz.zaf.sipvalid.sip.SIP_MAIN;
 import cz.zaf.sipvalid.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalid.sip.SIP_MAIN_kontrola;
+import cz.zaf.sipvalid.sip.SipValidator;
 import cz.zaf.sipvalid.sip.TypUrovenKontroly;
 
 
@@ -70,16 +71,16 @@ public class ListModel_seznam_obsahova{
     
     private int[] getseznam(){
         if(JFmain.zvoleny_typ_kontroly == 1){
-            return JFmain.seznam_Prazdny;
+            return SipValidator.seznam_Prazdny;
         }
         if(JFmain.zvoleny_typ_kontroly == 2){
-            return JFmain.seznam_Plny;
+            return SipValidator.seznam_Plny;
         }
         if(JFmain.zvoleny_typ_kontroly == 3){
-            return JFmain.seznam_Prejimka;
+            return SipValidator.seznam_Prejimka;
         }
         
-        return JFmain.seznamStandaPrace;
+        return SipValidator.seznamStandaPrace;
     }
     
     

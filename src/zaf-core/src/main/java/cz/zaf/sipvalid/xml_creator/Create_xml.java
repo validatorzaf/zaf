@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.zaf.sipvalidui.xml_creator;
+package cz.zaf.sipvalid.xml_creator;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,7 +38,6 @@ import cz.zaf.sipvalid.sip.SIP_MAIN_kontrola;
 import cz.zaf.sipvalid.sip.SIP_MAIN_seznam;
 import cz.zaf.sipvalid.sip.TypUrovenKontroly;
 import cz.zaf.sipvalid.validator.K00_SkodlivehoKodu;
-import cz.zaf.sipvalidui.panels.JFmain;
 
 /**
  *
@@ -48,11 +48,23 @@ public class Create_xml {
 	private org.w3c.dom.Document xml_parsed;
 	private Node kontrolaSip_root;
 	public final File xml;
+	
+	/**
+	 * Pouzity seznam pro obsahovou kontrolu
+	 */
+	private int[] seznamObsKontroly;
+	private String programName;
+	private String programVersion;
 
-	public Create_xml(ArrayList<SIP_MAIN> seznamNahranychSouboru, String path_for_xml, String sip_name,
-			String typ_kontroly, String id_kontroly_zadane)
+	public Create_xml(List<SIP_MAIN> seznamNahranychSouboru, String path_for_xml, String sip_name,
+			String typ_kontroly, String id_kontroly_zadane, int[] seznamObsKontroly,
+			String programName,
+			String programVersion)
 			throws IOException, ParserConfigurationException, TransformerException, SAXException {
-		if (path_for_xml.equals("undefined") || path_for_xml.equals("")) {
+		this.seznamObsKontroly = seznamObsKontroly;
+		this.programName = programName;
+		this.programVersion = programVersion;
+		if (path_for_xml==null||path_for_xml.equals("undefined") || path_for_xml.equals("")) {
 			xml = create_xml(new File(".").getCanonicalPath() + File.separator + sip_name + ".xml");
 
 		} else {
@@ -103,8 +115,12 @@ public class Create_xml {
 		((Element) kontrolaSip_root).setAttribute("kontrolaID", kontrolaID);
 		((Element) kontrolaSip_root).setAttribute("datumKontroly", datumKontroly);
 		((Element) kontrolaSip_root).setAttribute("pouzitiKontroly", typ);
-		((Element) kontrolaSip_root).setAttribute("nazevAplikace", JFmain.program_name);
-		((Element) kontrolaSip_root).setAttribute("verzeAplikace", JFmain.program_version);
+		if(programName!=null) {
+			((Element) kontrolaSip_root).setAttribute("nazevAplikace", programName);
+		}
+		if(programVersion!=null) {
+			((Element) kontrolaSip_root).setAttribute("verzeAplikace", programVersion);
+		}
 		((Element) kontrolaSip_root).setAttribute("xsi:schemaLocation",
 				"http://digitalniarchiv.ahmp.cz/schema/kontrolasip/v1 http://digitalniarchiv.ahmp.cz/schema/kontrolasip/v1/kontrolasip.xsd");
 		((Element) kontrolaSip_root).setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
@@ -374,7 +390,7 @@ public class Create_xml {
 		boolean provedena = kontrola.isProvedena();
 		boolean stav = kontrola.getStav();
 		Node typ = add_node_typ("Kontrola obsahu", provedena, stav, sip);
-		int[] seznamIndexuPravidel = getseznam();
+		int[] seznamIndexuPravidel = seznamObsKontroly;
 		if (provedena) {
 //            for(int i = 0; i < sipPack.getSeznamKontrol().get(6).size(); i++){
 //                add_node_pravidlo(typ, 
@@ -537,20 +553,6 @@ public class Create_xml {
 		} catch (ParserConfigurationException | TransformerException pce) {
 		}
 		return file;
-	}
-
-	private int[] getseznam() {
-		if (JFmain.zvoleny_typ_kontroly == 1) {
-			return JFmain.seznam_Prazdny;
-		}
-		if (JFmain.zvoleny_typ_kontroly == 2) {
-			return JFmain.seznam_Plny;
-		}
-		if (JFmain.zvoleny_typ_kontroly == 3) {
-			return JFmain.seznam_Prejimka;
-		}
-
-		return JFmain.seznamStandaPrace;
 	}
 
 }

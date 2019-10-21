@@ -89,6 +89,11 @@ public class SIP_MAIN{
      */
     private boolean loadGood = true;
     
+    /**
+     * 
+     * @param loadType
+     * @param sipPath Cesta k rozbalenemu SIPu nebo primy odkaz na metsXML
+     */
     public SIP_MAIN(final String name, final String nameZipFile, final LoadType loadType, 
     		long lenght, final Path sipPath) {
         this.name = name;
@@ -98,8 +103,8 @@ public class SIP_MAIN{
 
         this.lenght = lenght;
     }
-    
-    public void reset_data_Kontroly(){
+
+	public void reset_data_Kontroly(){
         seznam_kontrol.clear();
     }
     

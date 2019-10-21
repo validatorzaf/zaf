@@ -42,17 +42,11 @@ import cz.zaf.sipvalid.sip.KontrolaContext;
 import cz.zaf.sipvalid.sip.SIP_MAIN;
 import cz.zaf.sipvalid.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalid.sip.UrovenKontroly;
-import cz.zaf.sipvalid.validator.K00_SkodlivehoKodu;
-import cz.zaf.sipvalid.validator.K01_DatoveStruktury;
-import cz.zaf.sipvalid.validator.K02_ZnakoveSady;
-import cz.zaf.sipvalid.validator.K03_Spravnosti;
-import cz.zaf.sipvalid.validator.K04_JmennychProstoruXML;
-import cz.zaf.sipvalid.validator.K05_ProtiSchematu;
-import cz.zaf.sipvalid.validator.K06_Obsahova;
+import cz.zaf.sipvalid.sip.SipValidator;
 import cz.zaf.sipvalid.validator.RozparsovaniSipSouboru;
 import cz.zaf.sipvalidui.analysis.Analys;
 import cz.zaf.sipvalidui.openFiles.SIP_Opener;
-import cz.zaf.sipvalidui.xml_creator.Create_xml;
+import cz.zaf.sipvalid.xml_creator.Create_xml;
 
 
 /**
@@ -74,13 +68,6 @@ public class JFmain extends javax.swing.JFrame {
     public static int zvoleny_typ_kontroly = 1; // přejímka 3, prázdný 1, plný 2 - kvůli výpisu modelu obsahové
     
 //    private int[] seznamVsechPravidelObsahovaNA2018 = IntStream.range(1, 99).toArray();
-    public static int[] seznamStandaPrace = {1,2,3,4,9,10,11,12,13,14,15,16,17,18,19,20,22,23,24,25,26,27,28,29,30,31,33,34,35,36,37,38,39,40,44,45,46,47,48,49,50,51,52,53,54,41,55,56,57,58,59,60,61,42,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,32,94,95,96,97,98};
-    // 1
-    public static int[] seznam_Prazdny = {1,2,4,9,10,11,12,13,14,15,16,17,18,19,20,22,23,24,25,26,27,28,29,30,31,33,34,35,36,37,38,39,54,41,57,58,59,61,42,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,81,82,83,84,85,86,87,88,89,90,91,92,93,32,94,95,96,97,98};
-    // 2
-    public static int[] seznam_Plny = {1,2,4,9,10,11,12,13,14,15,16,17,18,19,20,22,23,24,25,26,27,28,29,30,31,33,34,35,36,37,38,39,40,44,45,46,47,48,49,50,51,52,53,54,41,55,56,57,58,59,60,61,42,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,81,82,83,84,85,86,87,88,89,90,91,92,93,32,94,95,96,97,98};
-    // 3
-    public static int[] seznam_Prejimka = {1,3,4,9,10,11,12,13,14,15,16,17,18,19,20,22,23,24,25,26,27,28,29,30,31,33,34,35,36,37,38,39,40,44,45,46,47,48,49,50,51,52,53,54,41,55,56,57,58,59,60,61,42,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,32,94,95,96,97,98};
     
 
 //    // 28
@@ -552,40 +539,6 @@ public class JFmain extends javax.swing.JFrame {
 
     }
     
-    /**
-     * Pripravi seznam kontrol
-     * @param seznamObsKontrol 
-     * @param skodlivyKodError 
-     * @param skodlivyKodOk 
-     * @return
-     */
-    static List<UrovenKontroly> pripravKontroly(boolean skodlivyKodOk, String skodlivyKodError, int[] seznamObsKontrol) {
-    	ArrayList<UrovenKontroly> kontroly = new ArrayList<>(6);
-    	
-        K00_SkodlivehoKodu ksk = new K00_SkodlivehoKodu(skodlivyKodOk, skodlivyKodError);
-        kontroly.add(ksk);
-        
-        K01_DatoveStruktury kds = new K01_DatoveStruktury();
-        kontroly.add(kds);
-        
-        K02_ZnakoveSady kko = new K02_ZnakoveSady();
-        kontroly.add(kko);        
-
-        K03_Spravnosti kwf = new K03_Spravnosti();
-        kontroly.add(kwf);
-
-        K04_JmennychProstoruXML kjp = new K04_JmennychProstoruXML();
-        kontroly.add(kjp);
-
-        K05_ProtiSchematu vxml = new K05_ProtiSchematu();
-        kontroly.add(vxml);
-
-        K06_Obsahova oks = new K06_Obsahova(seznamObsKontrol);
-        kontroly.add(oks);
-        
-    	return kontroly;
-    }
-    
     public static void do_contoll(String typ_kontroly, int[] seznam, String id_kontroly_zadane){
         Thread t1 = new Thread(() -> 
         {
@@ -604,7 +557,7 @@ public class JFmain extends javax.swing.JFrame {
                 SIP_MAIN svf = seznamNahranychSouboru.get(i);
                 svf.reset_data_Kontroly();
                 
-                List<UrovenKontroly> kontroly = pripravKontroly(true, null, seznam);
+                List<UrovenKontroly> kontroly = SipValidator.pripravKontroly(true, null, seznam);
                 try {
                     RozparsovaniSipSouboru rss = new RozparsovaniSipSouboru(svf);
                     resetRow(i, svf); // přepsání hodnoty v tabulce sipsouborů
@@ -637,7 +590,7 @@ public class JFmain extends javax.swing.JFrame {
                 cola.addAll(col);
                 try {
                     if(ind > 0) ads_i = ads + "_" + ind;
-                    Create_xml c = new Create_xml(cola,"", ads_i, typ_kontroly, id_kontroly_zadane);
+                    Create_xml c = new Create_xml(cola,"", ads_i, typ_kontroly, id_kontroly_zadane, seznam, program_name, program_version);
                     
                     if(ind == 0) cesta_xml_web = c.xml.getAbsolutePath();
                     else{
@@ -766,7 +719,7 @@ public class JFmain extends javax.swing.JFrame {
             for(int i = 0; i < seznamNahranychSouboru.size(); i++){
                 SIP_MAIN svf = seznamNahranychSouboru.get(i);
                 
-                List<UrovenKontroly> kontroly = pripravKontroly(eset, eset_errors, seznam);
+                List<UrovenKontroly> kontroly = SipValidator.pripravKontroly(eset, eset_errors, seznam);
                 
                 try {
                     
@@ -788,7 +741,7 @@ public class JFmain extends javax.swing.JFrame {
                 cola.addAll(col);
                 try {
                     if(ind > 0) ads_i = ads + "_" + ind;
-                    Create_xml c = new Create_xml(cola,path_for_xml, ads_i, typ_kontroly, id_kontroly_zadane);
+                    Create_xml c = new Create_xml(cola,path_for_xml, ads_i, typ_kontroly, id_kontroly_zadane, seznam, program_name, program_version);
                     if(ind == 0) cesta_xml_web = c.xml.getAbsolutePath();
                     else{
                         cesta_xml_web += " - " + c.xml.getName();
@@ -824,7 +777,7 @@ public class JFmain extends javax.swing.JFrame {
                 SIP_MAIN svf = seznamNahranychSouboru.get(i);
                 System.out.println("* SOUBOR: " + svf.getName());
                 
-                List<UrovenKontroly> kontroly = pripravKontroly(eset, eset_errors, seznam);
+                List<UrovenKontroly> kontroly = SipValidator.pripravKontroly(eset, eset_errors, seznam);
 
                 long zacatektestusouboru = System.currentTimeMillis();
                 try {
@@ -878,7 +831,7 @@ public class JFmain extends javax.swing.JFrame {
                 cola.addAll(col);
                 try {
                     if(ind > 0) ads_i = ads + "_" + ind;
-                    Create_xml c = new Create_xml(cola,path_for_xml, ads_i, typ_kontroly, id_kontroly_zadane);
+                    Create_xml c = new Create_xml(cola,path_for_xml, ads_i, typ_kontroly, id_kontroly_zadane, seznam, program_name, program_version);
                     if(ind == 0) cesta_xml_web = c.xml.getAbsolutePath();
                     else{
                         cesta_xml_web += " - " + c.xml.getName();

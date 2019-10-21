@@ -32,7 +32,10 @@ public class SipLoader
 	private void loadSip(String inputPath) {		
 		detectLoadType(inputPath);
 		
-		//sip = new SIP_MAIN(sipName, sipZilFileName, loadType, lenght, cesta)
+		// TODO: osetreni unzip
+		long l = SIP_MAIN_helper.get_sip_lenght(sipPath);
+		sip = new SIP_MAIN(sipName, sipZilFileName, loadType, l, sipPath);
+		//sipName, sipZilFileName, loadType, lenght, cesta)
 	}
 
 	private void detectLoadType(String inputPath) {
