@@ -42,24 +42,7 @@ public class SIP_MAIN_helper {
         	return -1;
 		}        
     }
-    
-    public static VysledekKontroly get_Kontrola(SipInfo sip, String nazev, int ocekavany_index_kontroly){
-        String s = sip.getSeznamKontrol().get(ocekavany_index_kontroly).getKontrola_nazev();
-        if(s.toLowerCase().equals(nazev)){
-            return sip.getSeznamKontrol().get(ocekavany_index_kontroly);
-        }
-        else{
-            for(int i = 0; i < sip.getSeznamKontrol().size(); i++){
-                if(i != ocekavany_index_kontroly){
-                    if(sip.getSeznamKontrol().get(i).getKontrola_nazev().toLowerCase().equals(nazev)){
-                        return sip.getSeznamKontrol().get(i);
-                    }
-                }
-            } 
-        }
-        return null;
-    }
-    
+        
     public static String get_SIP_type(int index){
 
         if(index == 0){
@@ -99,21 +82,6 @@ public class SIP_MAIN_helper {
             return "SPI";
         }
         if(index == 2){
-            return "DÍL";
-        }
-        
-        return " - ";
-    }
-    
-    public static String get_SIP_type_XXX(String nodename){
-
-        if(nodename.equals("nsesss:Dokument")){
-            return "DOK";
-        }
-        if(nodename.equals("nsesss:Spis")){
-            return "SPI";
-        }
-        if(nodename.equals("nsesss:Dil")){
             return "DÍL";
         }
         
@@ -164,7 +132,7 @@ public class SIP_MAIN_helper {
     }
     
     public static String get_vypisChyby_obsahova(SipInfo sip, int indexPravidla){
-    	SIP_MAIN_kontrola_pravidlo pravidlo = sip.getSeznamKontrol().get(6).getPravidlo(indexPravidla);
+    	PravidloKontroly pravidlo = sip.getSeznamKontrol().get(6).getPravidlo(indexPravidla);
     	if(pravidlo!=null) {
     		return pravidlo.getVypis_chyby();
     	}
@@ -172,7 +140,7 @@ public class SIP_MAIN_helper {
     }
     
     public static String get_mistoChyby_obsahova(SipInfo sip, int indexPravidla){
-    	SIP_MAIN_kontrola_pravidlo pravidlo = sip.getSeznamKontrol().get(6).getPravidlo(indexPravidla);
+    	PravidloKontroly pravidlo = sip.getSeznamKontrol().get(6).getPravidlo(indexPravidla);
     	if(pravidlo!=null) {
     		return pravidlo.getMisto_chyby();
     	}
@@ -187,18 +155,5 @@ public class SIP_MAIN_helper {
         if(index_pravidla == 42) special_id = "61a";
         if(index_pravidla == 43) special_id = "94a";
         return special_id;
-    }
-    
-   
-    public static boolean get_pokracuj_v_kontrole(SipInfo sip, int indexKontroly) {
-    	VysledekKontroly vysl = sip.getKontrola(indexKontroly);
-    	
-    	Validate.notNull(vysl);
-
-    	StavKontroly stavKontroly = vysl.getStavKontroly();
-    	if(stavKontroly==StavKontroly.OK) {
-    		return true;
-    	}
-        return false;
     }
 }

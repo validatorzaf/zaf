@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
 import cz.zaf.sipvalidator.sip.KontrolaContext;
-import cz.zaf.sipvalidator.sip.SIP_MAIN_kontrola_pravidlo;
+import cz.zaf.sipvalidator.sip.PravidloKontroly;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.UrovenKontroly;
 import cz.zaf.sipvalidator.sip.VysledekKontroly;
@@ -60,7 +60,7 @@ public class K00_SkodlivehoKodu
 			}
 		}
 
-		SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, VIR1, kontrolaOk, descr, 0, "");
+		PravidloKontroly p = new PravidloKontroly(0, VIR1, kontrolaOk, descr, 0, "");
 		k.add(p);		
 	}
 

@@ -39,7 +39,7 @@ import cz.zaf.sipvalidator.helper.Helper;
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.sip.KontrolaContext;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
-import cz.zaf.sipvalidator.sip.SIP_MAIN_kontrola_pravidlo;
+import cz.zaf.sipvalidator.sip.PravidloKontroly;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.UrovenKontroly;
@@ -3443,12 +3443,12 @@ public class K06_Obsahova
 			try {
 				boolean jePravidloSplneno = udelejPravidloObsahovaSpolecna2018(j);
 				if (!jePravidloSplneno) {
-					SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(j, getIDpravidla(j), false,
+					PravidloKontroly p = new PravidloKontroly(j, getIDpravidla(j), false,
 							popisChyby, j, misto_chyby);
 					k.add(p);
 				}
 			} catch (NullPointerException ex) {
-				SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(j, getIDpravidla(j), false,
+				PravidloKontroly p = new PravidloKontroly(j, getIDpravidla(j), false,
 						"Nenalezeny základní elementy schématu mets a nsesss.", j, "Neupřesněno.");
 				k.add(p);
 			}

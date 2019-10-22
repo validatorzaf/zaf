@@ -4,7 +4,7 @@ package cz.zaf.sipvalidator.sip;
  * Vysledek kontroly jednoho pravidla
  * 
  */
-public class SIP_MAIN_kontrola_pravidlo {
+public class PravidloKontroly {
 	/**
 	 * Stav kontroly
 	 * true - probehla ok
@@ -16,7 +16,7 @@ public class SIP_MAIN_kontrola_pravidlo {
     final int popis_chyby_index;
     final String vypis_chyby, misto_chyby;
 
-    public SIP_MAIN_kontrola_pravidlo(int index, String id, boolean stav, String vypis_chyby, int popis_chyby_index, String misto_chyby) {
+    public PravidloKontroly(int index, String id, boolean stav, String vypis_chyby, int popis_chyby_index, String misto_chyby) {
         this.index = index;
         this.id = id;
         this.stav = stav;

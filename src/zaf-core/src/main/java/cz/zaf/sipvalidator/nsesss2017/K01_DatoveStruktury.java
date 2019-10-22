@@ -8,7 +8,7 @@ package cz.zaf.sipvalidator.nsesss2017;
 
 import cz.zaf.sipvalidator.sip.KontrolaContext;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
-import cz.zaf.sipvalidator.sip.SIP_MAIN_kontrola_pravidlo;
+import cz.zaf.sipvalidator.sip.PravidloKontroly;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.UrovenKontroly;
@@ -34,24 +34,24 @@ public class K01_DatoveStruktury
     	LoadType loadtype = file.getLoadType(); // load type: 0 dir, 1 xml, 2 zip, -1 nepovolený formát
         switch(loadtype){
             case LT_UNKNOWN:
-                SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "data1", false, "Datový balíček SIP není soubor v povoleném datovém formátu.", 4, "");
+                PravidloKontroly p = new PravidloKontroly(0, "data1", false, "Datový balíček SIP není soubor v povoleném datovém formátu.", 4, "");
                 k.add(p);
             break;    
             case LT_XML:
-                SIP_MAIN_kontrola_pravidlo p1 = new SIP_MAIN_kontrola_pravidlo(0, "data1", false, "Nejedná se o SIP balíček, ale nahrán jako samostatný soubor typu xml.", 4, "");
+                PravidloKontroly p1 = new PravidloKontroly(0, "data1", false, "Nejedná se o SIP balíček, ale nahrán jako samostatný soubor typu xml.", 4, "");
                 k.add(p1);
             break;
             case LT_DIR:
-                SIP_MAIN_kontrola_pravidlo p2 = new SIP_MAIN_kontrola_pravidlo(0, "data1", true, "SIP balíček byl nahrán jako složka.", 0, "");
+                PravidloKontroly p2 = new PravidloKontroly(0, "data1", true, "SIP balíček byl nahrán jako složka.", 0, "");
                 k.add(p2);
             break;
             case LT_ZIP:
                 if(!file.getLoadGood()){
-                    SIP_MAIN_kontrola_pravidlo p3 = new SIP_MAIN_kontrola_pravidlo(0, "data1", false, "Datový balíček SIP není soubor v datovém formátu ZIP (jeho MIME Content-type není application/zip).", 4, "");
+                    PravidloKontroly p3 = new PravidloKontroly(0, "data1", false, "Datový balíček SIP není soubor v datovém formátu ZIP (jeho MIME Content-type není application/zip).", 4, "");
                     k.add(p3);
                 }
                 else{
-                    SIP_MAIN_kontrola_pravidlo p4 = new SIP_MAIN_kontrola_pravidlo(0, "data1", true, "SIP balíček nahrán ze souboru typu zip.", 0, "");
+                    PravidloKontroly p4 = new PravidloKontroly(0, "data1", true, "SIP balíček nahrán ze souboru typu zip.", 0, "");
                     k.add(p4);
                 }
             break;    
@@ -65,16 +65,16 @@ public class K01_DatoveStruktury
     	LoadType loadtype = file.getLoadType();        
         if(loadtype == LoadType.LT_ZIP){ //byl to zip
             if(file.getName().equals(file.getNameZip().replaceAll(".zip", ""))){
-                SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(1, "data2", true, "Nahraný soubor typu zip obsahoval očekávaný SIP balíček.", 0, "");
+                PravidloKontroly p = new PravidloKontroly(1, "data2", true, "Nahraný soubor typu zip obsahoval očekávaný SIP balíček.", 0, "");
                 k.add(p);
             }
             else{
-                SIP_MAIN_kontrola_pravidlo p1 = new SIP_MAIN_kontrola_pravidlo(1, "data2", false, "Nahraný soubor typu zip neobsahoval očekávaný SIP balíček.", 5, "");
+                PravidloKontroly p1 = new PravidloKontroly(1, "data2", false, "Nahraný soubor typu zip neobsahoval očekávaný SIP balíček.", 5, "");
                 k.add(p1);
             }
         }
         else{
-            SIP_MAIN_kontrola_pravidlo p2 = new SIP_MAIN_kontrola_pravidlo(1, "data2", true, "Nejedná se o SIP balíček, ale nahrán jako samostatný soubor typu " + loadtype.getName() + ".", 0, "");
+            PravidloKontroly p2 = new PravidloKontroly(1, "data2", true, "Nejedná se o SIP balíček, ale nahrán jako samostatný soubor typu " + loadtype.getName() + ".", 0, "");
             k.add(p2); 
         }
     }
@@ -85,16 +85,16 @@ public class K01_DatoveStruktury
             if(SIP_MAIN_helper.ma_metsxml(file)){
                 String s = "SIP balíček obsahuje právě jeden soubor \"mets.xml\"";
                 if(SIP_MAIN_helper.maSlozku_komponenty(file)) s += " a složku komponenty."; else s += ".";
-                SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(2, "data3", true, s, 0, "");
+                PravidloKontroly p = new PravidloKontroly(2, "data3", true, s, 0, "");
                 k.add(p);
             }
             else{
-                SIP_MAIN_kontrola_pravidlo p1 = new SIP_MAIN_kontrola_pravidlo(2, "data3", false, "SIP balíček neobsahuje právě jeden soubor \"mets.xml\".", 9, "");
+                PravidloKontroly p1 = new PravidloKontroly(2, "data3", false, "SIP balíček neobsahuje právě jeden soubor \"mets.xml\".", 9, "");
                 k.add(p1);
             }
         }
         else{
-            SIP_MAIN_kontrola_pravidlo p2 = new SIP_MAIN_kontrola_pravidlo(2, "data3", false, "SIP balíček obsahuje nepovolené soubory.", 9, "");
+            PravidloKontroly p2 = new PravidloKontroly(2, "data3", false, "SIP balíček obsahuje nepovolené soubory.", 9, "");
             k.add(p2);
         }
     }

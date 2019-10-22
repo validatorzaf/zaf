@@ -20,7 +20,7 @@ import com.sun.org.apache.xerces.internal.impl.io.MalformedByteSequenceException
 
 import cz.zaf.sipvalidator.sip.KontrolaContext;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
-import cz.zaf.sipvalidator.sip.SIP_MAIN_kontrola_pravidlo;
+import cz.zaf.sipvalidator.sip.PravidloKontroly;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.UrovenKontroly;
@@ -41,19 +41,19 @@ public class K03_Spravnosti
     
     private void chybaMalFormedURL(MalformedURLException exception, VysledekKontroly k) throws MalformedURLException {
         String s1 = "Soubor nezpracován. " + exception.getLocalizedMessage() + ". Nepovolené znaky v názvu souboru, nebo na cestě k souboru.";
-        SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "wf1", false, s1, 0, "");
+        PravidloKontroly p = new PravidloKontroly(0, "wf1", false, s1, 0, "");
         k.add(p);
     }
     
     private void chybaSaxParse(SAXParseException exception, VysledekKontroly k) throws SAXParseException {
         String s1 = exception.getLocalizedMessage();
-        SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "wf1", false, s1, 0, "");
+        PravidloKontroly p = new PravidloKontroly(0, "wf1", false, s1, 0, "");
         k.add(p);        
     }
     
     private void chybaMalFormedByteSequence(MalformedByteSequenceException exception, VysledekKontroly k){
         String s1 = exception.getLocalizedMessage();
-        SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "wf1", false, s1, 0, "");
+        PravidloKontroly p = new PravidloKontroly(0, "wf1", false, s1, 0, "");
         k.add(p);
     }
 
@@ -70,7 +70,7 @@ public class K03_Spravnosti
 
 		SipInfo file = ctx.getSip();
 		if (!SIP_MAIN_helper.ma_metsxml(file)) {
-			SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "wf1", false,
+			PravidloKontroly p = new PravidloKontroly(0, "wf1", false,
 					"SIP balíček neobsahoval soubor mets.xml.", 0, "");
 			k.add(p);
 		} else {
@@ -84,7 +84,7 @@ public class K03_Spravnosti
 				File f = file.getCesta_mets().toFile(); // kvůli diakritice aby pak použil file a ne
 																		// string
 				org.w3c.dom.Document document = builder.parse(f);
-				SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "wf1", true, "", 0, "");
+				PravidloKontroly p = new PravidloKontroly(0, "wf1", true, "", 0, "");
 				k.add(p);
 				document = null;
 

@@ -9,7 +9,7 @@ import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-import cz.zaf.sipvalidator.sip.SIP_MAIN_kontrola_pravidlo;
+import cz.zaf.sipvalidator.sip.PravidloKontroly;
 import cz.zaf.sipvalidator.sip.VysledekKontroly;
 
 /**
@@ -96,7 +96,7 @@ public class ErrorHandlerValidaceXSD implements  ErrorHandler{
             textChyby += " " +celaChybovaHlaska;
         }
 
-        SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "val", false, textChyby, 0, mistoChyby);
+        PravidloKontroly p = new PravidloKontroly(0, "val", false, textChyby, 0, mistoChyby);
         k.add(p);
     }
     

@@ -20,7 +20,7 @@ import org.xml.sax.SAXParseException;
 
 import cz.zaf.sipvalidator.sip.KontrolaContext;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
-import cz.zaf.sipvalidator.sip.SIP_MAIN_kontrola_pravidlo;
+import cz.zaf.sipvalidator.sip.PravidloKontroly;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.UrovenKontroly;
@@ -68,14 +68,14 @@ public class K05_ProtiSchematu
 
 		SipInfo file = ctx.getSip();
 		if (!SIP_MAIN_helper.ma_metsxml(file)) {
-			SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "val1", false,
+			PravidloKontroly p = new PravidloKontroly(0, "val1", false,
 					"SIP balíček neobsahoval kontrolovatelný soubor.", 0, "");
 			k.add(p);
 		} else {
 			try {
 				ValidaceVResource("/schema/sip2017.xsd", file);
 				if (!ErrorHandlerValidaceXSD.nalezenaChyba) {
-					SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "val1", true, "", 0, "");
+					PravidloKontroly p = new PravidloKontroly(0, "val1", true, "", 0, "");
 					k.add(p);
 				}
 			} catch (SAXParseException se) {
@@ -90,7 +90,7 @@ public class K05_ProtiSchematu
 			// po jednom souboru
 			catch (IOException e) {
 				String chyba = "CHYBA! " + "IO " + e.getLocalizedMessage();
-				SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "val1", false, chyba, 0, "");
+				PravidloKontroly p = new PravidloKontroly(0, "val1", false, chyba, 0, "");
 				k.add(p);
 			}
 		}

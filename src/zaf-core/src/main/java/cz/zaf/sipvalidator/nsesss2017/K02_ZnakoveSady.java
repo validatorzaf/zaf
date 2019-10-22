@@ -25,7 +25,7 @@ import com.ibm.icu.text.CharsetMatch; // lib ucu4j-56.jar
 
 import cz.zaf.sipvalidator.sip.KontrolaContext;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
-import cz.zaf.sipvalidator.sip.SIP_MAIN_kontrola_pravidlo;
+import cz.zaf.sipvalidator.sip.PravidloKontroly;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.UrovenKontroly;
@@ -161,11 +161,11 @@ public class K02_ZnakoveSady
 		}
 
 		if (jeKodovaniVPoradku) {
-			SIP_MAIN_kontrola_pravidlo p = new SIP_MAIN_kontrola_pravidlo(0, "kod1", true, "", 0, "");
+			PravidloKontroly p = new PravidloKontroly(0, "kod1", true, "", 0, "");
 			k.add(p);
 			sip.setKodovani(kodovaniSipSouboru);
 		} else {
-			SIP_MAIN_kontrola_pravidlo p1 = new SIP_MAIN_kontrola_pravidlo(0, "kod1", false, chybaKodovani, 0, "");
+			PravidloKontroly p1 = new PravidloKontroly(0, "kod1", false, chybaKodovani, 0, "");
 			k.add(p1);
 			sip.setKodovani(kodovaniSipSouboru);
 		}

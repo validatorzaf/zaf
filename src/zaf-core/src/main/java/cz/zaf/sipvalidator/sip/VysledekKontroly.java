@@ -22,7 +22,7 @@ public class VysledekKontroly {
 	
 	final TypUrovenKontroly urovenKontroly;
 	
-	ArrayList<SIP_MAIN_kontrola_pravidlo> pravidla = new ArrayList<>(); 
+	ArrayList<PravidloKontroly> pravidla = new ArrayList<>(); 
 	
     String kontrolaNazev;
     
@@ -55,8 +55,8 @@ public class VysledekKontroly {
         this.stavKontroly = stavKontroly;
     }
 
-	public SIP_MAIN_kontrola_pravidlo getPravidlo(int indexPravidla) {
-		for(SIP_MAIN_kontrola_pravidlo p: pravidla) {
+	public PravidloKontroly getPravidlo(int indexPravidla) {
+		for(PravidloKontroly p: pravidla) {
 			if(p.getIndex()==indexPravidla) {
 				return p;
 			}
@@ -64,7 +64,7 @@ public class VysledekKontroly {
 		return null;
 	}
 
-	public void add(SIP_MAIN_kontrola_pravidlo p) {
+	public void add(PravidloKontroly p) {
 		pravidla.add(p);
 		// nastaveni stavu dle vysledku pravidla
 		if(!p.getStav()) {
@@ -83,7 +83,7 @@ public class VysledekKontroly {
 		return pravidla.size();
 	}
 
-	public SIP_MAIN_kontrola_pravidlo get(int i) {
+	public PravidloKontroly get(int i) {
 		return pravidla.get(i);
 	}
 
