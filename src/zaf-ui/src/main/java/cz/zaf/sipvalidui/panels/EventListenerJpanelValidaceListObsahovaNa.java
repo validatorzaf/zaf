@@ -10,9 +10,10 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import cz.zaf.sipvalid.sip.SIP_MAIN;
-import cz.zaf.sipvalid.sip.SIP_MAIN_helper;
-import cz.zaf.sipvalid.sip.SIP_MAIN_seznam;
+
+import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
+import cz.zaf.sipvalidator.sip.SIP_MAIN_seznam;
+import cz.zaf.sipvalidator.sip.SipInfo;
 
 /**
  *
@@ -22,7 +23,7 @@ public class EventListenerJpanelValidaceListObsahovaNa implements ListSelectionL
     JList<EventListenerJFmainTableSeSipSoubory_object> jListOBSAHOVANA;
     JTextArea jTextAreaPopisPravidel;
     JTable jTable1;
-    SIP_MAIN sf;
+    SipInfo sf;
 
     public EventListenerJpanelValidaceListObsahovaNa(JTextArea jTextAreaPopisPravidel, JList jListOBSAHOVANA){
         this.jListOBSAHOVANA = jListOBSAHOVANA;

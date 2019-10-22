@@ -13,7 +13,7 @@ import java.awt.Toolkit;
 
 import javax.swing.UIManager;
 
-import cz.zaf.sipvalid.sip.SipValidator;
+import cz.zaf.sipvalidator.sip.SipValidator;
 
 /**
  *

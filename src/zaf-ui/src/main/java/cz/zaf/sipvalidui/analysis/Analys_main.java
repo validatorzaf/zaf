@@ -7,9 +7,10 @@ package cz.zaf.sipvalidui.analysis;
 
 import java.util.ArrayList;
 
-import cz.zaf.sipvalid.sip.SIP_MAIN;
-import cz.zaf.sipvalid.sip.SIP_MAIN_kontrola;
-import cz.zaf.sipvalid.sip.TypUrovenKontroly;
+import cz.zaf.sipvalidator.sip.SipInfo;
+import cz.zaf.sipvalidator.sip.StavKontroly;
+import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
+import cz.zaf.sipvalidator.sip.VysledekKontroly;
 
 import static cz.zaf.sipvalidui.panels.JFmain.seznamNahranychSouboru;
 
@@ -35,7 +36,7 @@ public final class Analys_main {
         obsahu = new Analys_main_control("Kontrola obsahu", 6, seznamNahranychSouboru.size());
 
         for(int i = 0; i < seznamNahranychSouboru.size(); i++){
-        	SIP_MAIN sip = seznamNahranychSouboru.get(i);
+        	SipInfo sip = seznamNahranychSouboru.get(i);
         	
         	zapis_kontrolu(i, sip.getUrovenKontroly(TypUrovenKontroly.SKODLIVY_KOD), skodlivehokodu);
         	zapis_kontrolu(i, sip.getUrovenKontroly(TypUrovenKontroly.DATOVE_STRUKTURY), datovestruktury);
@@ -63,25 +64,31 @@ public final class Analys_main {
         
     }
     
-    private void zapis_kontrolu(int indexSip, SIP_MAIN_kontrola kontrola, Analys_main_control vyslednySeznam) {
+    private void zapis_kontrolu(int indexSip, VysledekKontroly kontrola, Analys_main_control vyslednySeznam) {
 
-    	zapis_kontrolu(indexSip, kontrola.isProvedena(), kontrola.getStav(), vyslednySeznam);
+    	zapis_kontrolu(indexSip, kontrola.getStavKontroly(), vyslednySeznam);
 	}
 
-	void zapis_kontrolu(int index_sip, boolean probehla, boolean stav, Analys_main_control vyslednySeznam){
-        if(probehla){
-        		vyslednySeznam.list_probehlych.add(index_sip);
-                if(stav) vyslednySeznam.list_bezchybnych.add(index_sip);
-                else{
-                	vyslednySeznam.list_chybnych.add(index_sip);
-                    pomocnybol = false;
-                }
-            }
-            else vyslednySeznam.list_neprobehlych.add(index_sip);
+	void zapis_kontrolu(int index_sip, StavKontroly stavKontroly, Analys_main_control vyslednySeznam){
+		switch(stavKontroly)
+		{
+		case NESPUSTENA:
+			vyslednySeznam.list_neprobehlych.add(index_sip);
+			break;
+		case OK:
+    		vyslednySeznam.list_probehlych.add(index_sip);
+    		vyslednySeznam.list_bezchybnych.add(index_sip);
+    		break;
+		case CHYBA:
+    		vyslednySeznam.list_probehlych.add(index_sip);
+        	vyslednySeznam.list_chybnych.add(index_sip);
+            pomocnybol = false;
+            break;
+		}
     }
     
     private void analys_obsahova_set(int index){
-    	SIP_MAIN_kontrola kontrola = seznamNahranychSouboru.get(index).getUrovenKontroly(TypUrovenKontroly.OBSAHOVA);
+    	VysledekKontroly kontrola = seznamNahranychSouboru.get(index).getUrovenKontroly(TypUrovenKontroly.OBSAHOVA);
         for(int i = 0; i < kontrola.size(); i++){
             int index_rule = kontrola.get(i).getIndex();
             if(!Analys_helper.equals_rule_with_index(analys_obsahova, index_rule)){

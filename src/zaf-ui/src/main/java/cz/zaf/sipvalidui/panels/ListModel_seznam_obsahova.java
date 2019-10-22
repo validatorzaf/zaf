@@ -7,11 +7,12 @@ package cz.zaf.sipvalidui.panels;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
-import cz.zaf.sipvalid.sip.SIP_MAIN;
-import cz.zaf.sipvalid.sip.SIP_MAIN_helper;
-import cz.zaf.sipvalid.sip.SIP_MAIN_kontrola;
-import cz.zaf.sipvalid.sip.SipValidator;
-import cz.zaf.sipvalid.sip.TypUrovenKontroly;
+
+import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
+import cz.zaf.sipvalidator.sip.SipInfo;
+import cz.zaf.sipvalidator.sip.SipValidator;
+import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
+import cz.zaf.sipvalidator.sip.VysledekKontroly;
 
 
 /**
@@ -23,7 +24,7 @@ public class ListModel_seznam_obsahova{
     JList jList_obsahova_chyby;
     DefaultListModel modelListObsahova, modelListChybObsahova;
     
-    public ListModel_seznam_obsahova(SIP_MAIN sip) {
+    public ListModel_seznam_obsahova(SipInfo sip) {
         modelListObsahova = new DefaultListModel();
         modelListChybObsahova = new DefaultListModel();
         if(sip.isKontrolyProvedeny()){
@@ -32,8 +33,8 @@ public class ListModel_seznam_obsahova{
         }
     }
     
-    private void  get_model_chyby(SIP_MAIN sip){
-    	SIP_MAIN_kontrola kontrola = sip.getUrovenKontroly(TypUrovenKontroly.OBSAHOVA);
+    private void  get_model_chyby(SipInfo sip){
+    	VysledekKontroly kontrola = sip.getUrovenKontroly(TypUrovenKontroly.OBSAHOVA);
         for(int i = 0; i < kontrola.size(); i++){
             int index = kontrola.get(i).getIndex();
             boolean stav = kontrola.get(i).getStav();
@@ -42,10 +43,10 @@ public class ListModel_seznam_obsahova{
         }
     }
     
-    private void get_model_all(SIP_MAIN sip){
+    private void get_model_all(SipInfo sip){
         int[] seznamIndexuPravidel = getseznam();
 //        int siz = sip.getSeznamKontrol().get(6).size();
-        SIP_MAIN_kontrola kontrola = sip.getUrovenKontroly(TypUrovenKontroly.OBSAHOVA);
+        VysledekKontroly kontrola = sip.getUrovenKontroly(TypUrovenKontroly.OBSAHOVA);
         int t = 0;        
         int size = kontrola.size() - 1;
             for(int i = 0; i < seznamIndexuPravidel.length; i++){

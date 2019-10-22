@@ -19,10 +19,10 @@ import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 
-import cz.zaf.sipvalid.helper.HelperTime;
-import cz.zaf.sipvalid.sip.SIP_MAIN;
-import cz.zaf.sipvalid.sip.SIP_MAIN.LoadType;
-import cz.zaf.sipvalid.sip.SIP_MAIN_helper;
+import cz.zaf.sipvalidator.helper.HelperTime;
+import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
+import cz.zaf.sipvalidator.sip.SipInfo;
+import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 import cz.zaf.sipvalidui.panels.JFmain;
 import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
@@ -74,7 +74,7 @@ public class SIP_Opener {
                     }
                     long l = SIP_MAIN_helper.get_sip_lenght(finalSipPath);
                     String sipName = finalSipPath.getName(finalSipPath.getNameCount()-1).toString();
-                    SIP_MAIN sip = new SIP_MAIN(sipName, zip_name, loadLike, l, finalSipPath);
+                    SipInfo sip = new SipInfo(sipName, zip_name, loadLike, l, finalSipPath);
                     if(isBroken) {
                     	sip.setLoadGood(false);
                     }
@@ -224,8 +224,8 @@ public class SIP_Opener {
         }
     }
     
-    private static boolean is_in_list(String sipName, ArrayList<SIP_MAIN> seznamSIP){
-        for (SIP_MAIN sip : seznamSIP) {
+    private static boolean is_in_list(String sipName, ArrayList<SipInfo> seznamSIP){
+        for (SipInfo sip : seznamSIP) {
             if(sipName.equals(sip.getName())) {
             	return true;
             }
@@ -306,7 +306,7 @@ public class SIP_Opener {
         return true;
     }
 
-    private static Object[] pridejRadekDoTabulky(SIP_MAIN souborSIP){
+    private static Object[] pridejRadekDoTabulky(SipInfo souborSIP){
         String g = souborSIP.getName();
         int index = JFmain.tabulkaSIPsouboru.getRowCount();
         Object[] row = new Object[]{" " + (index+1) + ".", "???",  "?" + "????", " " + souborSIP.getName(), getVelikostSipuProTabulku(souborSIP.getLenght())};

@@ -5,8 +5,8 @@
  */
 package cz.zaf.sipvalidui.panels;
 
+import static cz.zaf.sipvalidator.nsesss2017.SeznamPravidelSpolecna2018.seznam_pravidel_Datova_struktura;
 import static cz.zaf.sipvalidui.panels.JPanel_Kontrola_analyza.jTextArea_kontrola;
-import static cz.zaf.sipvalid.validator.SeznamPravidelSpolecna2018.seznam_pravidel_Datova_struktura;
 
 import java.awt.event.ActionEvent;
 
@@ -18,10 +18,10 @@ import javax.swing.JTextArea;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import cz.zaf.sipvalid.sip.SIP_MAIN;
-import cz.zaf.sipvalid.sip.SIP_MAIN_helper;
-import cz.zaf.sipvalid.sip.SIP_MAIN_kontrola;
-import cz.zaf.sipvalid.sip.TypUrovenKontroly;
+import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
+import cz.zaf.sipvalidator.sip.SipInfo;
+import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
+import cz.zaf.sipvalidator.sip.VysledekKontroly;
 
 
 
@@ -61,8 +61,8 @@ public class EventListenerJFmainTableSeSipSoubory implements ListSelectionListen
         jTextAreaPopisPravidel.setText("");
         int selectedRow = jTable1.getSelectedRow();
         if(selectedRow != -1){  
-            SIP_MAIN sf = JFmain.seznamNahranychSouboru.get(selectedRow);
-            SIP_MAIN_kontrola obsahova = sf.getUrovenKontroly(TypUrovenKontroly.OBSAHOVA);
+            SipInfo sf = JFmain.seznamNahranychSouboru.get(selectedRow);
+            VysledekKontroly obsahova = sf.getUrovenKontroly(TypUrovenKontroly.OBSAHOVA);
             if(obsahova!=null && obsahova.isProvedena()){ 
                 chboxObsahovaNa.setEnabled(true);
                 boolean zakrtnutoObsahovaNA = chboxObsahovaNa.isSelected();
@@ -86,7 +86,7 @@ public class EventListenerJFmainTableSeSipSoubory implements ListSelectionListen
         }
     }
     
-    private void vypis(SIP_MAIN sf){
+    private void vypis(SipInfo sf){
         String vypis = "";
         if(sf.isKontrolyProvedeny()){
             vypis = vypisKontrolaSkodlivehoKodu(sf)+ // vypis škodlivý kód
@@ -105,11 +105,11 @@ public class EventListenerJFmainTableSeSipSoubory implements ListSelectionListen
         
     }
     
-    private String vypisSpravnosti(SIP_MAIN sf){
-    	SIP_MAIN_kontrola kontrSpravnosti = sf.getUrovenKontroly(TypUrovenKontroly.SPRAVNOSTI);
+    private String vypisSpravnosti(SipInfo sf){
+    	VysledekKontroly kontrSpravnosti = sf.getUrovenKontroly(TypUrovenKontroly.SPRAVNOSTI);
         boolean b = kontrSpravnosti.isProvedena();
-        boolean bb = kontrSpravnosti.getStav();
-        if(sf.getUrovenKontroly(TypUrovenKontroly.ZNAKOVE_SADY).getStav()){
+        boolean bb = kontrSpravnosti.isOk();
+        if(sf.getUrovenKontroly(TypUrovenKontroly.ZNAKOVE_SADY).isOk()){
             String vypis = "\n" + "\n" + "* KONTROLA SPRÁVNOSTI XML:" + " ";
             if(!b) return vypis + "Kontrola ještě neproběhla";
             else{
@@ -127,11 +127,11 @@ public class EventListenerJFmainTableSeSipSoubory implements ListSelectionListen
         return "";
     }
     
-    private String vypisKodovani(SIP_MAIN sf){
-    	SIP_MAIN_kontrola kontrola = sf.getUrovenKontroly(TypUrovenKontroly.ZNAKOVE_SADY);
+    private String vypisKodovani(SipInfo sf){
+    	VysledekKontroly kontrola = sf.getUrovenKontroly(TypUrovenKontroly.ZNAKOVE_SADY);
         boolean b = kontrola.isProvedena();
-        boolean bb = kontrola.getStav();
-        if(sf.getUrovenKontroly(TypUrovenKontroly.DATOVE_STRUKTURY).getStav()){
+        boolean bb = kontrola.isOk();
+        if(sf.getUrovenKontroly(TypUrovenKontroly.DATOVE_STRUKTURY).isOk()){
             String vypis = "\n" + "\n" + "* KONTROLA ZNAKOVÉ SADY: ";
             if(!b){
                 vypis += "Kontrola ještě neproběhla";
@@ -151,11 +151,11 @@ public class EventListenerJFmainTableSeSipSoubory implements ListSelectionListen
         return "\n" + "\n" + "* KONTROLA ZNAKOVÉ SADY: NEPROVEDENA.";
     }
     
-    private String vypisValidaceXML(SIP_MAIN sf){
-    	SIP_MAIN_kontrola kontrola = sf.getUrovenKontroly(TypUrovenKontroly.PROTI_SCHEMATU);
+    private String vypisValidaceXML(SipInfo sf){
+    	VysledekKontroly kontrola = sf.getUrovenKontroly(TypUrovenKontroly.PROTI_SCHEMATU);
         boolean b = kontrola.isProvedena();
-        boolean bb = kontrola.getStav();
-        if(sf.getUrovenKontroly(TypUrovenKontroly.JMENNE_PROSTORY_XML).getStav()){
+        boolean bb = kontrola.isOk();
+        if(sf.getUrovenKontroly(TypUrovenKontroly.JMENNE_PROSTORY_XML).isOk()){
             String vypis ="\n" + "* KONTROLA PROTI SCHÉMATU XSD: ";
             String r = "Kontola ještě neproběhla.";
             if(!b) return vypis + r;
@@ -182,11 +182,11 @@ public class EventListenerJFmainTableSeSipSoubory implements ListSelectionListen
         return "\n" + "\n" + "* KONTROLA PROTI SCHÉMATU XSD: NEPROVEDENA.";
     }
 
-    private String vypisKontrolaObsahova(SIP_MAIN sf){
-    	SIP_MAIN_kontrola kontrola = sf.getUrovenKontroly(TypUrovenKontroly.OBSAHOVA);
+    private String vypisKontrolaObsahova(SipInfo sf){
+    	VysledekKontroly kontrola = sf.getUrovenKontroly(TypUrovenKontroly.OBSAHOVA);
         boolean b = kontrola.isProvedena();
-        boolean bb = kontrola.getStav();
-        if(sf.getUrovenKontroly(TypUrovenKontroly.PROTI_SCHEMATU).getStav()){
+        boolean bb = kontrola.isOk();
+        if(sf.getUrovenKontroly(TypUrovenKontroly.PROTI_SCHEMATU).isOk()){
             String vypis ="\n" + "* KONTROLA OBSAHU: ";
             String r = "Kontola ještě neproběhla.";
             if(!b) return vypis + r;
@@ -202,11 +202,11 @@ public class EventListenerJFmainTableSeSipSoubory implements ListSelectionListen
         }
         return "\n" + "\n" + "* KONTROLA OBSAHU: NEPROVEDENA.";
     }
-    private String vypisKontrolaDatoveStruktury(SIP_MAIN sf){
-    	SIP_MAIN_kontrola kontrola = sf.getUrovenKontroly(TypUrovenKontroly.DATOVE_STRUKTURY);
+    private String vypisKontrolaDatoveStruktury(SipInfo sf){
+    	VysledekKontroly kontrola = sf.getUrovenKontroly(TypUrovenKontroly.DATOVE_STRUKTURY);
         boolean b = kontrola.isProvedena();
-        boolean bb = kontrola.getStav();
-        if(sf.getUrovenKontroly(TypUrovenKontroly.SKODLIVY_KOD).getStav()){
+        boolean bb = kontrola.isOk();
+        if(sf.getUrovenKontroly(TypUrovenKontroly.SKODLIVY_KOD).isOk()){
             String vypis = "\n" + "\n" + "* KONTROLA DATOVÉ STRUKTURY: ";
             String r = "Kontrola ještě neproběhla";
             if(!b) return vypis + r;
@@ -232,10 +232,10 @@ public class EventListenerJFmainTableSeSipSoubory implements ListSelectionListen
         return "\n" + "\n" + "* KONTROLA DATOVÉ STRUKTURY: NEPROVEDENA.";        
     }
     
-    private String vypisKontrolaSkodlivehoKodu(SIP_MAIN sf){
-    	SIP_MAIN_kontrola kontrola = sf.getUrovenKontroly(TypUrovenKontroly.SKODLIVY_KOD);
+    private String vypisKontrolaSkodlivehoKodu(SipInfo sf){
+    	VysledekKontroly kontrola = sf.getUrovenKontroly(TypUrovenKontroly.SKODLIVY_KOD);
         boolean b = kontrola.isProvedena();
-        boolean bb = kontrola.getStav();
+        boolean bb = kontrola.isOk();
         String vypis = "\n" + "\n" + "* KONTROLA ŠKODLIVÉHO KÓDU: ";
         if(!b){
             vypis += "Kontrola ještě neproběhla";
@@ -254,11 +254,11 @@ public class EventListenerJFmainTableSeSipSoubory implements ListSelectionListen
         return vypis;
     }
     
-    private String vypisKOntrolaJmennychProstoru(SIP_MAIN sf){
-    	SIP_MAIN_kontrola kontrola = sf.getUrovenKontroly(TypUrovenKontroly.JMENNE_PROSTORY_XML);
+    private String vypisKOntrolaJmennychProstoru(SipInfo sf){
+    	VysledekKontroly kontrola = sf.getUrovenKontroly(TypUrovenKontroly.JMENNE_PROSTORY_XML);
         boolean provedena = kontrola.isProvedena();
-        boolean jeKontrolaBezChyby = kontrola.getStav();
-        if(sf.getUrovenKontroly(TypUrovenKontroly.SPRAVNOSTI).getStav()){
+        boolean jeKontrolaBezChyby = kontrola.isOk();
+        if(sf.getUrovenKontroly(TypUrovenKontroly.SPRAVNOSTI).isOk()){
             String vypis = "\n" + "\n" + "* KONTROLA JMENNÝCH PROSTORŮ XML: ";
             if(!provedena){
                 vypis += "Kontrola ještě neproběhla";

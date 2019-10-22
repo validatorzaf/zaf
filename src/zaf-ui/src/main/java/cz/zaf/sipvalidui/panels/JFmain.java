@@ -36,17 +36,17 @@ import javax.xml.transform.TransformerException;
 
 import org.xml.sax.SAXException;
 
-import cz.zaf.sipvalid.helper.Helper;
-import cz.zaf.sipvalid.helper.HelperTime;
-import cz.zaf.sipvalid.sip.KontrolaContext;
-import cz.zaf.sipvalid.sip.SIP_MAIN;
-import cz.zaf.sipvalid.sip.SIP_MAIN_helper;
-import cz.zaf.sipvalid.sip.UrovenKontroly;
-import cz.zaf.sipvalid.sip.SipValidator;
-import cz.zaf.sipvalid.validator.RozparsovaniSipSouboru;
 import cz.zaf.sipvalidui.analysis.Analys;
 import cz.zaf.sipvalidui.openFiles.SIP_Opener;
-import cz.zaf.sipvalid.xml_creator.Create_xml;
+import cz.zaf.sipvalidator.helper.Helper;
+import cz.zaf.sipvalidator.helper.HelperTime;
+import cz.zaf.sipvalidator.nsesss2017.RozparsovaniSipSouboru;
+import cz.zaf.sipvalidator.sip.Create_xml;
+import cz.zaf.sipvalidator.sip.KontrolaContext;
+import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
+import cz.zaf.sipvalidator.sip.SipInfo;
+import cz.zaf.sipvalidator.sip.SipValidator;
+import cz.zaf.sipvalidator.sip.UrovenKontroly;
 
 
 /**
@@ -59,7 +59,7 @@ public class JFmain extends javax.swing.JFrame {
     public static String program_name = "SipValid", program_version = "20190918";
     EventListenerJFmainTableSeSipSoubory listenerTableSeSip;
     public static DefaultTableModel tabulkaSIPsouboru;
-    public static ArrayList<SIP_MAIN> seznamNahranychSouboru;
+    public static ArrayList<SipInfo> seznamNahranychSouboru;
     static int davka = 1000;
     static JF_Kontrola_nastaveni jk;
     public static ProgressWorker worker;
@@ -406,12 +406,12 @@ public class JFmain extends javax.swing.JFrame {
         int pocetProCyklus = pocetJizNahranychSouboru;
         
         for(int i = pocetJizPridanychSIPvTabulce; i < pocetProCyklus; i++){
-            SIP_MAIN sipSoubor = seznamNahranychSouboru.get(i);
+            SipInfo sipSoubor = seznamNahranychSouboru.get(i);
             pridejRadekDoTabulky(i, sipSoubor);
         }  
     }
     
-    private Object[] pridejRadekDoTabulky(int index, SIP_MAIN souborSIP){
+    private Object[] pridejRadekDoTabulky(int index, SipInfo souborSIP){
         String g = souborSIP.getName();
         Object[] row = new Object[]{" " + (index+1) + ".", "???",  "?" + "????", " " + souborSIP.getName(), getVelikostSipuProTabulku(souborSIP.getLenght())};
         tabulkaSIPsouboru.addRow(row);
@@ -482,7 +482,7 @@ public class JFmain extends javax.swing.JFrame {
         }
         seznamNahranychSouboru.clear();
     }
-    static void resetRow(int i, SIP_MAIN souborSIP){
+    static void resetRow(int i, SipInfo souborSIP){
 //        if(!souborSIP.get_SIP_Parsed_Information().isEmpty()){
             tabulkaSIPsouboru.removeRow(i);
             Object[] o = new Object[]{" " + (i+1) + ".", SIP_MAIN_helper.get_SIP_type_XXX(souborSIP.getType()),  souborSIP.getSKznak() + souborSIP.getSKlhuta()," " + souborSIP.getName(), getVelikostSipuProTabulku(souborSIP.getLenght())};
@@ -554,7 +554,7 @@ public class JFmain extends javax.swing.JFrame {
             }
             start_k = System.currentTimeMillis();
             for(int i = 0; i < seznamNahranychSouboru.size(); i++) {
-                SIP_MAIN svf = seznamNahranychSouboru.get(i);
+                SipInfo svf = seznamNahranychSouboru.get(i);
                 svf.reset_data_Kontroly();
                 
                 List<UrovenKontroly> kontroly = SipValidator.pripravKontroly(true, null, seznam);
@@ -585,8 +585,8 @@ public class JFmain extends javax.swing.JFrame {
             String ads_i = ads;
             for(int start = 0; start < seznamNahranychSouboru.size(); start += davka){
                 int end = Math.min(start + davka, seznamNahranychSouboru.size());
-                List<SIP_MAIN> col = seznamNahranychSouboru.subList(start, end);
-                ArrayList<SIP_MAIN> cola = new ArrayList();
+                List<SipInfo> col = seznamNahranychSouboru.subList(start, end);
+                ArrayList<SipInfo> cola = new ArrayList();
                 cola.addAll(col);
                 try {
                     if(ind > 0) ads_i = ads + "_" + ind;
@@ -717,7 +717,7 @@ public class JFmain extends javax.swing.JFrame {
                 ads = HelperTime.getActualDateString();
             }
             for(int i = 0; i < seznamNahranychSouboru.size(); i++){
-                SIP_MAIN svf = seznamNahranychSouboru.get(i);
+                SipInfo svf = seznamNahranychSouboru.get(i);
                 
                 List<UrovenKontroly> kontroly = SipValidator.pripravKontroly(eset, eset_errors, seznam);
                 
@@ -736,8 +736,8 @@ public class JFmain extends javax.swing.JFrame {
             String ads_i = ads;
             for(int start = 0; start < seznamNahranychSouboru.size(); start += davka){
                 int end = Math.min(start + davka, seznamNahranychSouboru.size());
-                List<SIP_MAIN> col = seznamNahranychSouboru.subList(start, end);
-                ArrayList<SIP_MAIN> cola = new ArrayList();
+                List<SipInfo> col = seznamNahranychSouboru.subList(start, end);
+                ArrayList<SipInfo> cola = new ArrayList();
                 cola.addAll(col);
                 try {
                     if(ind > 0) ads_i = ads + "_" + ind;
@@ -774,7 +774,7 @@ public class JFmain extends javax.swing.JFrame {
             System.out.println("");
             for(int i = 0; i < seznamNahranychSouboru.size(); i++){
                 
-                SIP_MAIN svf = seznamNahranychSouboru.get(i);
+                SipInfo svf = seznamNahranychSouboru.get(i);
                 System.out.println("* SOUBOR: " + svf.getName());
                 
                 List<UrovenKontroly> kontroly = SipValidator.pripravKontroly(eset, eset_errors, seznam);
@@ -826,8 +826,8 @@ public class JFmain extends javax.swing.JFrame {
             
             for(int start = 0; start < seznamNahranychSouboru.size(); start += davka){
                 int end = Math.min(start + davka, seznamNahranychSouboru.size());
-                List<SIP_MAIN> col = seznamNahranychSouboru.subList(start, end);
-                ArrayList<SIP_MAIN> cola = new ArrayList();
+                List<SipInfo> col = seznamNahranychSouboru.subList(start, end);
+                ArrayList<SipInfo> cola = new ArrayList();
                 cola.addAll(col);
                 try {
                     if(ind > 0) ads_i = ads + "_" + ind;
