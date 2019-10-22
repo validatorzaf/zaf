@@ -36,7 +36,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.Helper;
-import cz.zaf.sipvalidator.helper.HelperArrayList;
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.sip.KontrolaContext;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
@@ -3374,7 +3373,7 @@ public class K06_Obsahova
         for(int i = 0; i < list.size(); i++){
             Node n = list.get(i);
             String idn = ValuesGetter.getValueOfAttribut(n, "ID");
-            if(!HelperArrayList.equalsString(idcka, idn)){
+            if(!idcka.contains(idn)){
                 idcka.add(idn);
             }
         }
