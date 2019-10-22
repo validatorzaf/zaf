@@ -24,8 +24,8 @@ import com.ibm.icu.text.CharsetDetector; // lib ucu4j-56.jar
 import com.ibm.icu.text.CharsetMatch; // lib ucu4j-56.jar
 
 import cz.zaf.sipvalidator.sip.KontrolaContext;
-import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.PravidloKontroly;
+import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.UrovenKontroly;
@@ -42,6 +42,8 @@ public class K02_ZnakoveSady
 {
 	static final public String NAME = "kontrola znakové sady"; 
 	
+    static final public String KOD1 = "kod1";
+
 	String kodovaniSipSouboru = "Nezjištěno.", chybaKodovani = "Chyba kódování SIP souboru.";
     boolean jeKodovaniVPoradku = false;
     File sip_na_file;
@@ -96,6 +98,7 @@ public class K02_ZnakoveSady
             }
             else kodovaniSipSouboru = encodingFromXMLDeclaration;
             }
+            //TODO - prepracovat
             catch(NullPointerException e){
                 kodovaniSipSouboru = "Neuvedeno kódování souboru: <?xml version=\"1.0\" encoding=\"utf-8\"?>.";
             }
@@ -161,11 +164,11 @@ public class K02_ZnakoveSady
 		}
 
 		if (jeKodovaniVPoradku) {
-			PravidloKontroly p = new PravidloKontroly(0, "kod1", true, "", 0, "");
+            PravidloKontroly p = new PravidloKontroly(0, KOD1, true, "", 0, "");
 			k.add(p);
 			sip.setKodovani(kodovaniSipSouboru);
 		} else {
-			PravidloKontroly p1 = new PravidloKontroly(0, "kod1", false, chybaKodovani, 0, "");
+            PravidloKontroly p1 = new PravidloKontroly(0, KOD1, false, chybaKodovani, 0, "");
 			k.add(p1);
 			sip.setKodovani(kodovaniSipSouboru);
 		}

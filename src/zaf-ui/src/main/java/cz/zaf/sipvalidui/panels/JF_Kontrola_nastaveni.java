@@ -5,15 +5,13 @@
  */
 package cz.zaf.sipvalidui.panels;
 
-import static cz.zaf.sipvalidui.panels.JFmain.do_contoll;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.UIManager;
 
-import cz.zaf.sipvalidator.sip.SipValidator;
+import cz.zaf.sipvalidator.nsesss2017.profily.ProfilyValidace;
 
 /**
  *
@@ -21,10 +19,13 @@ import cz.zaf.sipvalidator.sip.SipValidator;
  */
 public class JF_Kontrola_nastaveni extends javax.swing.JFrame {
 
+    final JFmain mainFrame;
+
     /**
      * Creates new form JF_Kontrola_nastaveni
      */
-    public JF_Kontrola_nastaveni() {
+    public JF_Kontrola_nastaveni(JFmain main) {
+        this.mainFrame = main;
         initComponents();
         setFramePosition();
         setIconImage("/icons/lupa-512.png");
@@ -131,33 +132,30 @@ public class JF_Kontrola_nastaveni extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>//GEN-END:initComponents    
 
     private void jButton_SPrazdnyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SPrazdnyActionPerformed
         // typ 1 
         zamkni();
-        JFmain.zvoleny_typ_kontroly = 1;
-        JFmain.davka = get_davka();
+        mainFrame.setVelikostDavky(get_davka());
         jLabel_progresbar.setText("ZAČÍNÁM ZPRACOVÁVAT");
-        do_contoll("skartační řízení (jen metadata)", SipValidator.seznam_Prazdny, jTextField_idkontroly.getText());
+        mainFrame.do_contoll(ProfilyValidace.SKARTACE_METADATA, jTextField_idkontroly.getText());
     }//GEN-LAST:event_jButton_SPrazdnyActionPerformed
 
     private void jButton_PrejimkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_PrejimkaActionPerformed
         // typ 3
         zamkni();
-        JFmain.zvoleny_typ_kontroly = 3;
-        JFmain.davka = get_davka();
+        mainFrame.setVelikostDavky(get_davka());
         jLabel_progresbar.setText("ZAČÍNÁM ZPRACOVÁVAT");
-        do_contoll("přejímka", SipValidator.seznam_Prejimka, jTextField_idkontroly.getText());
+        mainFrame.do_contoll(ProfilyValidace.PREJIMKA, jTextField_idkontroly.getText());
     }//GEN-LAST:event_jButton_PrejimkaActionPerformed
 
     private void jButton_SPlnyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SPlnyActionPerformed
         // typ 2
         zamkni();
-        JFmain.zvoleny_typ_kontroly = 2;
-        JFmain.davka = get_davka();
+        mainFrame.setVelikostDavky(get_davka());
         jLabel_progresbar.setText("ZAČÍNÁM ZPRACOVÁVAT");
-        do_contoll("skartační řízení (s komponentami)", SipValidator.seznam_Plny, jTextField_idkontroly.getText());
+        mainFrame.do_contoll(ProfilyValidace.SKARTACE_UPLNY, jTextField_idkontroly.getText());
     }//GEN-LAST:event_jButton_SPlnyActionPerformed
     private void zamkni(){
         jButton_Prejimka.setEnabled(false);
@@ -190,9 +188,9 @@ public class JF_Kontrola_nastaveni extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
+        /*java.awt.EventQueue.invokeLater(() -> {
             new JF_Kontrola_nastaveni().setVisible(true);
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

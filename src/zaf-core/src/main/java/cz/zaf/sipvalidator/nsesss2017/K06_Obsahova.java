@@ -29,7 +29,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.stream.IntStream;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.w3c.dom.Node;
@@ -37,9 +39,17 @@ import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.Helper;
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Metods;
+import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_amdSec;
+import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_dmdSec;
+import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_metsdiv;
+import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_return_bol_AL_Obj_amdSec;
+import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_return_bol_AL_Obj_dmdSec;
+import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_return_bol_AL_Obj_metsdiv;
+import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_return_bol_AL_node;
 import cz.zaf.sipvalidator.sip.KontrolaContext;
-import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.PravidloKontroly;
+import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.UrovenKontroly;
@@ -1169,25 +1179,27 @@ public class K06_Obsahova
             return add_popisy("Nenalezen element <mets:amdSec>.", false, chyba_neupresneno);
         }
         StructMap_Obj_return_bol_AL_Obj_amdSec ret_amd = StructMap_Metods.get_amdSec_list(amdSec_nodelist);
-        if(!ret_amd.bol){
+        if (!ret_amd.getBol()) {
             String mistoCh = "";
-            for(int i = 0; i < ret_amd.list.size(); i++){
-                mistoCh += get_misto_chyby(ret_amd.list.get(i).node) + " ";  
+            for (int i = 0; i < ret_amd.getList().size(); i++) {
+                mistoCh += get_misto_chyby(ret_amd.getList().get(i).getNode()) + " ";
             }
             String hlaska = "Nalezena chyba u elementu <mets:amdSec>.";
-            if(ret_amd.list.size() > 1) hlaska = "Nalezeny chyby u elementů <mets:amdSec>.";
+            if (ret_amd.getList().size() > 1)
+                hlaska = "Nalezeny chyby u elementů <mets:amdSec>.";
             return add_popisy(hlaska, false, mistoCh);
         }
-        ArrayList<StructMap_Obj_amdSec> amdSec_list = ret_amd.list;
+        List<StructMap_Obj_amdSec> amdSec_list = ret_amd.getList();
             //jedinečnost
         StructMap_Obj_return_bol_AL_node jedinecnost_amdSec = StructMap_Metods.test_amdSec_uniqueness(amdSec_list);
-        if(!jedinecnost_amdSec.bol){
+        if (!jedinecnost_amdSec.getBol()) {
             String mistoCh = "";
-            for(int i = 0; i < jedinecnost_amdSec.node_list.size(); i++){
-                mistoCh += get_misto_chyby(jedinecnost_amdSec.node_list.get(i)) + " ";  
+            for (int i = 0; i < jedinecnost_amdSec.getList().size(); i++) {
+                mistoCh += get_misto_chyby(jedinecnost_amdSec.getList().get(i)) + " ";
             }
             String hlaska = "Nalezena chyba duplicity u elementu <mets:amdSec>.";
-            if(ret_amd.list.size() > 1) hlaska = "Nalezeny chyby duplicity u elementů <mets:amdSec>.";
+            if (ret_amd.getList().size() > 1)
+                hlaska = "Nalezeny chyby duplicity u elementů <mets:amdSec>.";
             return add_popisy(hlaska, false, mistoCh);
         }
         // KONEC TESTU mets:amdSec
@@ -1198,67 +1210,72 @@ public class K06_Obsahova
             return add_popisy("Nenalezen element <mets:div>.", false, chyba_neupresneno);
         }
         StructMap_Obj_return_bol_AL_Obj_metsdiv ret_metsdiv = StructMap_Metods.get_metsdiv_list(metsdiv_nodelist);
-        if(!ret_metsdiv.bol){
+        if(!ret_metsdiv.getBol()){
             String mistoCh = "";
-            for(int i = 0; i < ret_metsdiv.list.size(); i++){
-                mistoCh += get_misto_chyby(ret_metsdiv.list.get(i).metsdiv) + " ";  
+            for (int i = 0; i < ret_metsdiv.getList().size(); i++) {
+                mistoCh += get_misto_chyby(ret_metsdiv.getList().get(i).getMetsDiv()) + " ";
             }
             String hlaska = "Nalezena chyba u elementu <mets:div>.";
-            if(ret_amd.list.size() > 1) hlaska = "Nalezeny chyby u elementů <mets:div>.";
+            if (ret_amd.getList().size() > 1)
+                hlaska = "Nalezeny chyby u elementů <mets:div>.";
             return add_popisy(hlaska, false, mistoCh);
         }
-        ArrayList<StructMap_Obj_metsdiv> metsdiv_list = ret_metsdiv.list;
+        List<StructMap_Obj_metsdiv> metsdiv_list = ret_metsdiv.getList();
             //jedinečnost
         StructMap_Obj_return_bol_AL_node jedinecnost_metsdiv = StructMap_Metods.test_metsdiv_uniqueness(metsdiv_list);
-        if(!jedinecnost_metsdiv.bol){
+        if(!jedinecnost_metsdiv.getBol()){
             String mistoCh = "";
-            for(int i = 0; i < jedinecnost_metsdiv.node_list.size(); i++){
-                mistoCh += get_misto_chyby(jedinecnost_metsdiv.node_list.get(i)) + " ";  
+            for(int i = 0; i < jedinecnost_metsdiv.getList().size(); i++){
+                mistoCh += get_misto_chyby(jedinecnost_metsdiv.getList().get(i)) + " ";  
             }
             String hlaska = "Nalezena chyba duplicity u elementu <mets:div>.";
-            if(ret_metsdiv.list.size() > 1) hlaska = "Nalezeny chyby duplicity u elementů <mets:div>.";
+            if (ret_metsdiv.getList().size() > 1)
+                hlaska = "Nalezeny chyby duplicity u elementů <mets:div>.";
             return add_popisy(hlaska, false, mistoCh);
         }
         // KONEC TESTU mets:div
         
         // TEST dmdSec
         StructMap_Obj_return_bol_AL_Obj_dmdSec ret_dmdsec = StructMap_Metods.get_dmdsec_list();
-        if(!ret_dmdsec.bol){
+        if (!ret_dmdsec.getBol()) {
             String mistoCh = "";
-            for(int i = 0; i < ret_dmdsec.list.size(); i++){
-                mistoCh += get_misto_chyby(ret_dmdsec.list.get(i).node) + " ";  
+            for (int i = 0; i < ret_dmdsec.getList().size(); i++) {
+                mistoCh += get_misto_chyby(ret_dmdsec.getList().get(i).getNode()) + " ";
             }
             String hlaska = "Nalezena chyba u elementu <mets:div>.";
-            if(ret_dmdsec.list.size() > 1) hlaska = "Nalezeny chyby u elementů <mets:div>.";
+            if (ret_dmdsec.getList().size() > 1)
+                hlaska = "Nalezeny chyby u elementů <mets:div>.";
             return add_popisy(hlaska, false, mistoCh);
         }
-        ArrayList<StructMap_Obj_dmdSec> metsdmdSec_list = ret_dmdsec.list;
+        List<StructMap_Obj_dmdSec> metsdmdSec_list = ret_dmdsec.getList();
         // KONEC TESTU dmdSec
         
         // TEST amdSec to metsdiv
         StructMap_Obj_return_bol_AL_node test_amd_to_div = StructMap_Metods.compare_amdSec_with_metsDiv(amdSec_list, metsdiv_list);
-        if(!test_amd_to_div.bol){
-            if(test_amd_to_div.node_list.size() == 1){
-                return add_popisy("Element <mets:amdSec> neodkazuje na žádný element <mets:div>.", false, get_misto_chyby(test_amd_to_div.node_list.get(0)));
+        if(!test_amd_to_div.getBol()){
+            if (test_amd_to_div.getList().size() == 1) {
+                return add_popisy("Element <mets:amdSec> neodkazuje na žádný element <mets:div>.", false,
+                                  get_misto_chyby(test_amd_to_div.getList().get(0)));
             }
             else{
-                String ch = get_misto_chyby(test_amd_to_div.node_list.get(0));
-                for(int i = 1; i < test_amd_to_div.node_list.size(); i++){
-                    ch+= " " + get_misto_chyby(test_amd_to_div.node_list.get(i));
+                String ch = get_misto_chyby(test_amd_to_div.getList().get(0));
+                for (int i = 1; i < test_amd_to_div.getList().size(); i++) {
+                    ch += " " + get_misto_chyby(test_amd_to_div.getList().get(i));
                 }
                 return add_popisy("Element <mets:amdSec> odkazuje na více elementů <mets:div>.", false, ch); 
             }
         }
         // TEST metsdiv to amd 
         StructMap_Obj_return_bol_AL_node test_div_toamd = StructMap_Metods.compare_metsDiv_with_amdSec(amdSec_list, metsdiv_list);
-        if(!test_div_toamd.bol){
-            if(test_div_toamd.node_list.size() == 1){
-                return add_popisy("Element <mets:div> neodkazuje na žádný element <mets:amdSec>.", false, get_misto_chyby(test_div_toamd.node_list.get(0)));
+        if(!test_div_toamd.getBol()){
+            if (test_div_toamd.getList().size() == 1) {
+                return add_popisy("Element <mets:div> neodkazuje na žádný element <mets:amdSec>.", false,
+                                  get_misto_chyby(test_div_toamd.getList().get(0)));
             }
             else{
-                String ch = get_misto_chyby(test_div_toamd.node_list.get(0));
-                for(int i = 1; i < test_div_toamd.node_list.size(); i++){
-                    ch+= " " + get_misto_chyby(test_div_toamd.node_list.get(i));
+                String ch = get_misto_chyby(test_div_toamd.getList().get(0));
+                for (int i = 1; i < test_div_toamd.getList().size(); i++) {
+                    ch += " " + get_misto_chyby(test_div_toamd.getList().get(i));
                 }
                 return add_popisy("Element <mets:div> odkazuje na více elementů <mets:amdScec>.", false, ch); 
             }
@@ -1267,20 +1284,22 @@ public class K06_Obsahova
         
         //TEST AMD TO DMDSEC
         StructMap_Obj_return_bol_AL_node test_amd_to_dmd = StructMap_Metods.compare_amdSec_dmdSec(amdSec_list, metsdmdSec_list);
-        if(!test_amd_to_dmd.bol){
-            if(test_amd_to_dmd.node_list.size() == 1){
-                String name = test_amd_to_dmd.node_list.get(0).getNodeName();
+        if(!test_amd_to_dmd.getBol()){
+            if (test_amd_to_dmd.getList().size() == 1) {
+                String name = test_amd_to_dmd.getList().get(0).getNodeName();
                 if(name.equals("mets:amdSec")){
-                    return add_popisy("Element <mets:amdSec> neodkazuje na žádný element v <mets:dmdSec>.", false, get_misto_chyby(test_amd_to_dmd.node_list.get(0)));
+                    return add_popisy("Element <mets:amdSec> neodkazuje na žádný element v <mets:dmdSec>.", false,
+                                      get_misto_chyby(test_amd_to_dmd.getList().get(0)));
                 }
                 else{
-                    return add_popisy("Element <" + name + "> neodkazuje na žádný element <mets:amdSec>.", false, get_misto_chyby(test_amd_to_dmd.node_list.get(0)));
+                    return add_popisy("Element <" + name + "> neodkazuje na žádný element <mets:amdSec>.", false,
+                                      get_misto_chyby(test_amd_to_dmd.getList().get(0)));
                 }       
             }
             else{
-                String ch = get_misto_chyby(test_amd_to_dmd.node_list.get(0));
-                for(int i = 1; i < test_amd_to_dmd.node_list.size(); i++){
-                    ch+= " " + get_misto_chyby(test_amd_to_dmd.node_list.get(i));
+                String ch = get_misto_chyby(test_amd_to_dmd.getList().get(0));
+                for (int i = 1; i < test_amd_to_dmd.getList().size(); i++) {
+                    ch += " " + get_misto_chyby(test_amd_to_dmd.getList().get(i));
                 }
                 return add_popisy("Elementy v <mets:dmdSec> neodkazují na žádný element v <mets:amdSec>.", false, ch); 
             }       
@@ -1311,14 +1330,15 @@ public class K06_Obsahova
         
         //TEST STRUKTURY PODLE METS DIV
         StructMap_Obj_return_bol_AL_node test_struktury = StructMap_Metods.compare_metsDiv_with_dmdSec_structure(metsdiv_list, metsdmdSec_list);
-        if(!test_struktury.bol){
-            if(test_struktury.node_list.size() == 1){
-                return add_popisy("Element <mets:div> je špatně zatříděn.", false, get_misto_chyby(test_struktury.node_list.get(0)));
+        if (!test_struktury.getBol()) {
+            if (test_struktury.getList().size() == 1) {
+                return add_popisy("Element <mets:div> je špatně zatříděn.", false, get_misto_chyby(test_struktury
+                        .getList().get(0)));
             }
             else{
-                String ch = get_misto_chyby(test_struktury.node_list.get(0));
-                for(int i = 1; i < test_struktury.node_list.size(); i++){
-                    ch+= " " + get_misto_chyby(test_struktury.node_list.get(i));
+                String ch = get_misto_chyby(test_struktury.getList().get(0));
+                for (int i = 1; i < test_struktury.getList().size(); i++) {
+                    ch += " " + get_misto_chyby(test_struktury.getList().get(i));
                 }
                 return add_popisy("Element <mets:div> a jeho rodičovský element <mets:div> odkazují na chybné elementy v <mets:dmdSec>.", false, ch);
             }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.zaf.sipvalidator.nsesss2017;
+package cz.zaf.sipvalidator.nsesss2017.structmap;
 
 import org.w3c.dom.Node;
 
@@ -20,5 +20,9 @@ public class StructMap_Obj_amdSec {
         this.identifikator = identifikator;
         this.zdroj = zdroj;
         this.node = node;
+    }
+
+    public Node getNode() {
+        return node;
     }
 }

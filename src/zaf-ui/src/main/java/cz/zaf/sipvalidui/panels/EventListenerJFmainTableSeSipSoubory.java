@@ -18,7 +18,6 @@ import javax.swing.JTextArea;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.VysledekKontroly;
@@ -37,14 +36,18 @@ public class EventListenerJFmainTableSeSipSoubory implements ListSelectionListen
     JList jListObsahovaNA;
     JCheckBox chboxObsahovaNa;
     JTextArea jTextAreaPopisPravidel;
+    private JFmain mainFrame;
     
     
-    public EventListenerJFmainTableSeSipSoubory(JTextArea jTextAreaPredKontrola, JTextArea jTextAreaPopisPravidel, JTable jTable1, JList jListObsahovaNA, JCheckBox chboxObsahovaNa) {
+    public EventListenerJFmainTableSeSipSoubory(JTextArea jTextAreaPredKontrola, JTextArea jTextAreaPopisPravidel,
+                                                JTable jTable1, JList jListObsahovaNA, JCheckBox chboxObsahovaNa,
+                                                JFmain jFmain) {
         this.jTextAreaPredKontrola = jTextAreaPredKontrola;
         this.jTextAreaPopisPravidel = jTextAreaPopisPravidel;
         this.jTable1 = jTable1;
         this.jListObsahovaNA = jListObsahovaNA;
         this.chboxObsahovaNa = chboxObsahovaNa;
+        this.mainFrame = jFmain;
         chboxObsahovaNa.addActionListener((ActionEvent e) -> { selectSipAction();
         });
         
@@ -67,7 +70,7 @@ public class EventListenerJFmainTableSeSipSoubory implements ListSelectionListen
                 chboxObsahovaNa.setEnabled(true);
                 boolean zakrtnutoObsahovaNA = chboxObsahovaNa.isSelected();
                 // tady zmena
-                ListModel_seznam_obsahova ls = new ListModel_seznam_obsahova(sf);
+                ListModel_seznam_obsahova ls = new ListModel_seznam_obsahova(sf, mainFrame.getProfilValidace());
                 if(zakrtnutoObsahovaNA) jListObsahovaNA.setModel(ls.modelListChybObsahova);
                 if(!zakrtnutoObsahovaNA) jListObsahovaNA.setModel(ls.modelListObsahova);
             }

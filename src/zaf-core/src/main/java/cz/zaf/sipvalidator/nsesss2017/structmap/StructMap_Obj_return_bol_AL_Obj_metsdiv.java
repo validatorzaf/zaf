@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.zaf.sipvalidator.nsesss2017;
+package cz.zaf.sipvalidator.nsesss2017.structmap;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -20,5 +21,11 @@ public class StructMap_Obj_return_bol_AL_Obj_metsdiv {
         this.list = list;
     }
     
-    
+    public List<StructMap_Obj_metsdiv> getList() {
+        return list;
+    }
+
+    public boolean getBol() {
+        return bol;
+    }
 }

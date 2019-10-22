@@ -3,13 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.zaf.sipvalidator.nsesss2017;
+package cz.zaf.sipvalidator.nsesss2017.structmap;
 
 import static cz.zaf.sipvalidator.nsesss2017.RozparsovaniSipSouboru.parsedSAX_Sipsoubor;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 /**
  *
@@ -66,7 +70,7 @@ public class StructMap_Metods {
 
     }
     
-    public static StructMap_Obj_return_bol_AL_node test_amdSec_uniqueness(ArrayList<StructMap_Obj_amdSec> list){
+    public static StructMap_Obj_return_bol_AL_node test_amdSec_uniqueness(List<StructMap_Obj_amdSec> list) {
         for(int i = 0; i < list.size(); i++){
             
             StructMap_Obj_amdSec amd_main = list.get(i);
@@ -115,7 +119,7 @@ public class StructMap_Metods {
 
     }
     
-    public static StructMap_Obj_return_bol_AL_node test_metsdiv_uniqueness(ArrayList<StructMap_Obj_metsdiv> list){
+    public static StructMap_Obj_return_bol_AL_node test_metsdiv_uniqueness(List<StructMap_Obj_metsdiv> list) {
         for(int i = 0; i < list.size(); i++){
             
             StructMap_Obj_metsdiv div_main = list.get(i);
@@ -283,7 +287,8 @@ public class StructMap_Metods {
     }
         
     // na prvním místě v seznamu je amdSec a na dalších ty metsy který se dublovaly
-    static StructMap_Obj_return_bol_AL_node compare_amdSec_dmdSec(ArrayList<StructMap_Obj_amdSec> amdSec_list, ArrayList<StructMap_Obj_dmdSec> dmdSec_list){
+    public static StructMap_Obj_return_bol_AL_node compare_amdSec_dmdSec(List<StructMap_Obj_amdSec> amdSec_list,
+                                                                  List<StructMap_Obj_dmdSec> dmdSec_list) {
             for(int i = 0; i < amdSec_list.size(); i++){
                 StructMap_Obj_amdSec amd = amdSec_list.get(i);
                 String amd_type = amd.node.getNodeName();
@@ -321,7 +326,8 @@ public class StructMap_Metods {
         return new StructMap_Obj_return_bol_AL_node(true, null);
     }
     
-    static StructMap_Obj_return_bol_AL_node compare_amdSec_with_metsDiv(ArrayList<StructMap_Obj_amdSec> amdSec_list, ArrayList<StructMap_Obj_metsdiv> metsdiv_list){
+    public static StructMap_Obj_return_bol_AL_node compare_amdSec_with_metsDiv(List<StructMap_Obj_amdSec> amdSec_list,
+                                                                        List<StructMap_Obj_metsdiv> metsdiv_list) {
         ArrayList<Node> seznam_chbnych_node = new ArrayList<>();
         
         for(int i = 0; i < amdSec_list.size(); i++){
@@ -362,7 +368,8 @@ public class StructMap_Metods {
         return new StructMap_Obj_return_bol_AL_node(true, null);
     }
     
-    static StructMap_Obj_return_bol_AL_node compare_metsDiv_with_amdSec(ArrayList<StructMap_Obj_amdSec> amdSec_list, ArrayList<StructMap_Obj_metsdiv> metsdiv_list){
+    public static StructMap_Obj_return_bol_AL_node compare_metsDiv_with_amdSec(List<StructMap_Obj_amdSec> amdSec_list,
+                                                                        List<StructMap_Obj_metsdiv> metsdiv_list) {
         ArrayList<Node> seznam_chbnych_node = new ArrayList<>();
         
         for(int i = 0; i < metsdiv_list.size(); i++){
@@ -443,7 +450,8 @@ public class StructMap_Metods {
         return new StructMap_Obj_return_bol_AL_node(true, null);
     }    
 
-    static StructMap_Obj_return_bol_AL_node compare_metsDiv_with_dmdSec_structure(ArrayList<StructMap_Obj_metsdiv> metsdiv_list, ArrayList<StructMap_Obj_dmdSec> dmdSec_list){
+    public static StructMap_Obj_return_bol_AL_node compare_metsDiv_with_dmdSec_structure(List<StructMap_Obj_metsdiv> metsdiv_list,
+                                                                                  List<StructMap_Obj_dmdSec> dmdSec_list) {
         for(int i = 0; i < metsdiv_list.size(); i++){
             StructMap_Obj_metsdiv div =  metsdiv_list.get(i);
             if(!div.parent_right){

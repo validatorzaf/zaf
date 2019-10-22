@@ -7,7 +7,6 @@ package cz.zaf.sipvalidator.sip;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,12 +32,13 @@ import org.xml.sax.SAXException;
 
 import cz.zaf.sipvalidator.helper.HelperTime;
 import cz.zaf.sipvalidator.nsesss2017.K00_SkodlivehoKodu;
+import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 
 /**
- *
- * @author standa
+ * Třída pro sestavení XML výstupu
+ * 
  */
-public class Create_xml {
+public class XmlReportBuilder {
 
 	private org.w3c.dom.Document xml_parsed;
 	private Node kontrolaSip_root;
@@ -51,12 +51,14 @@ public class Create_xml {
 	private String programName;
 	private String programVersion;
 
-	public Create_xml(List<SipInfo> seznamNahranychSouboru, String path_for_xml, String sip_name,
-			String typ_kontroly, String id_kontroly_zadane, int[] seznamObsKontroly,
+    public XmlReportBuilder(List<SipInfo> seznamNahranychSouboru, String path_for_xml,
+                            String sip_name,
+                            ProfilValidace profilValidace,
+                            String id_kontroly_zadane,
 			String programName,
 			String programVersion)
 			throws IOException, ParserConfigurationException, TransformerException, SAXException {
-		this.seznamObsKontroly = seznamObsKontroly;
+        this.seznamObsKontroly = profilValidace.getObsahoveKontroly();
 		this.programName = programName;
 		this.programVersion = programVersion;
 		if (path_for_xml==null||path_for_xml.equals("undefined") || path_for_xml.equals("")) {
@@ -72,7 +74,7 @@ public class Create_xml {
 		}
 //        String path = new File(".").getCanonicalPath();
 		Parse(xml);
-		set_root(id_kontroly_zadane, HelperTime.get_utc(), typ_kontroly);
+        set_root(id_kontroly_zadane, HelperTime.get_utc(), profilValidace.getNazev());
 		for (int i = 0; i < seznamNahranychSouboru.size(); i++) {
 			Node node_sip = add_node_sip(seznamNahranychSouboru.get(i));
 //            add_node_zakladniEntity(sip, seznamNahranychSouboru.get(i));
@@ -101,7 +103,7 @@ public class Create_xml {
 			xml_parsed = builder.parse(xml);
 
 		} catch (SAXException | IOException ex) {
-			Logger.getLogger(Create_xml.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(XmlReportBuilder.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 
@@ -250,6 +252,7 @@ public class Create_xml {
 	private void add_ko_zn_sady(Node sip, SipInfo sipPack) {
 		VysledekKontroly kontrola = sipPack.getUrovenKontroly(TypUrovenKontroly.ZNAKOVE_SADY);
 		Node typ = addKontrolaNode(kontrola, sip);
+        String mistoChyby = null, popisChyby = null, vypisChyby = null;
 		switch(kontrola.getStavKontroly()) {
 		case NESPUSTENA:
 			add_node_pravidlo(typ, "kod1", // id

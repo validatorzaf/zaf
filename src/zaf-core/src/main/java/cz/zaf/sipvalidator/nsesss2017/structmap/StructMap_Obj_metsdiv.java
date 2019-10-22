@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.zaf.sipvalidator.nsesss2017;
+package cz.zaf.sipvalidator.nsesss2017.structmap;
 
 import org.w3c.dom.Node;
+
+import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 /**
  *
@@ -57,6 +59,10 @@ public class StructMap_Obj_metsdiv {
                 return new StructMap_Obj_metsdiv(parent, "ERR", "ERR", "ERR", false);  
             }
         }
+    }
+
+    public Node getMetsDiv() {
+        return metsdiv;
     }
     
     
