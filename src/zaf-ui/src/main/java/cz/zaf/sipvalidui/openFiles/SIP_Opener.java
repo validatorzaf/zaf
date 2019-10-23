@@ -8,11 +8,6 @@ package cz.zaf.sipvalidui.openFiles;
 import static java.lang.Math.round;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,13 +15,10 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 import cz.zaf.sipvalidator.helper.HelperTime;
-import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
+import cz.zaf.sipvalidator.sip.SipLoader;
 import cz.zaf.sipvalidui.panels.JFmain;
-import net.lingala.zip4j.ZipFile;
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.model.FileHeader;
 
 /**
  *
@@ -62,8 +54,13 @@ public class SIP_Opener {
                         Logger.getLogger(SIP_Opener.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     
-                    Path srcPath = vybrane_soubory[i].toPath();
+                    //Path srcPath = vybrane_soubory[i].toPath();
+                    String srcPath = vybrane_soubory[i].getAbsolutePath();
                     
+                    SipLoader sipLoader = new SipLoader(srcPath, null);
+                    SipInfo sip = sipLoader.getSip();
+                    String sipName = sip.getName();
+                    /*
                     Path finalSipPath = zpracuj_soubor(srcPath, null);
                     boolean isBroken = false;
                     if(finalSipPath==null) {
@@ -72,17 +69,16 @@ public class SIP_Opener {
                     	finalSipPath = srcPath;
                     	isBroken = true;
                     }
-                    long l = SIP_MAIN_helper.get_sip_lenght(finalSipPath);
-                    String sipName = finalSipPath.getName(finalSipPath.getNameCount()-1).toString();
+                    long l = SipLoader.getSipLenght(finalSipPath);                    
                     SipInfo sip = new SipInfo(sipName, zip_name, loadLike, l, finalSipPath);
                     if(isBroken) {
                     	sip.setLoadGood(false);
-                    }
+                    }*/
                     
-                    if(!is_in_list(sipName, JFmain.seznamNahranychSouboru)){
+                    if (!is_in_list(sipName, JFmain.seznamNahranychSouboru)) {
                         JFmain.seznamNahranychSouboru.add(sip);
                         pridejRadekDoTabulky(sip);
-                    }                    
+                    }
                 }
                 
             worker.done();
@@ -196,34 +192,6 @@ public class SIP_Opener {
     }    
      */
     
-    private static Path zpracuj_soubor(Path sipPath, Path pathForUnzip){
-    	zip_name = null;
-        if(Files.isDirectory(sipPath)){
-        	loadLike = LoadType.LT_DIR;            
-            return sipPath;
-        }
-        else{
-            if(sipPath.toString().endsWith(".zip")){
-                zip_name = sipPath.getName(sipPath.getNameCount()-1).toString();
-                loadLike = LoadType.LT_ZIP;
-                //bere pouze directories
-                Path dir = get_unzipped_file(sipPath, pathForUnzip);
-                if(dir!=null) {
-                	return dir;
-                }
-                return null;
-            
-            }
-            if(sipPath.toString().endsWith(".xml")){
-                loadLike = LoadType.LT_XML;
-                return sipPath;
-            
-            }
-            loadLike = LoadType.LT_UNKNOWN;
-            return null;  
-        }
-    }
-    
     private static boolean is_in_list(String sipName, ArrayList<SipInfo> seznamSIP){
         for (SipInfo sip : seznamSIP) {
             if(sipName.equals(sip.getName())) {
@@ -232,79 +200,7 @@ public class SIP_Opener {
         }
         return false;
     }
-    
-    /**
-     * Rozbali SIP a vraci cestu do adresare s rozbalenym
-     * @param zip
-     * @param path_for_unzip
-     * @return
-     */
-    private static Path get_unzipped_file(Path zipPath, Path pathForUnzip){
-    	if(pathForUnzip==null) {
-    		pathForUnzip = Paths.get("rozbaleno");    		
-    	}
-    	Path path = pathForUnzip.resolve(sip_opener_actualdatestring);
-    	if(!Files.isDirectory(path)) {
-    		try {
-				Files.createDirectories(path);
-			} catch (IOException e) {
-				// TODO: Lepsi osetreni chyb
-				e.printStackTrace();
-				return null;
-			}
-    	}
-    	
-    	ZipFile zipFile = new ZipFile(zipPath.toFile());
-    	zipFile.setCharset(Charset.forName("IBM852")); // extrakce českých znaků
-    	boolean isvalidZipFile = zipFile.isValidZipFile();
-    	if(!isvalidZipFile){
-    		// invalid ZIP file
-    		return null;
-    	}
-    	// ocekavane jmeno je bez koncovky .ZIP
-    	String ocekavanejmeno = zipFile.getFile().getName();
-    	ocekavanejmeno = ocekavanejmeno.substring(0, ocekavanejmeno.length()-4);
 
-        boolean spravnaStrukturaZipu = obsahujePraveAdresar(zipFile, ocekavanejmeno);
-        if(!spravnaStrukturaZipu) {
-        	return null;
-        }
-        try {                        
-        	zipFile.setRunInThread(false);
-            zipFile.extractAll(path.toString());
-            Path rozbaleny = path.resolve(ocekavanejmeno);
-            //?? smysl
-            /*while(zipFile.getProgressMonitor().getPercentDone() == 100){
-            	return rozbaleny;
-            }*/
-            return rozbaleny;
-        } catch (ZipException ex) {
-            return null;
-        }        
-    }
-    
-	/**
-	 * Kontrola zda obsahuje jen jeden adresar
-	 * @param zipFile
-	 * @return
-	 */
-    private static boolean obsahujePraveAdresar(ZipFile zipFile, String ocekavanejmeno)
-    {
-        try {
-            ArrayList<FileHeader> list = (ArrayList<FileHeader>) zipFile.getFileHeaders();
-            for(int i = 0; i < list.size(); i++){
-                FileHeader fh = list.get(i);   
-                String s = fh.getFileName();
-                if(!(s.contains(ocekavanejmeno + File.separator) || s.contains(ocekavanejmeno + "/"))){
-                    return false;
-                }
-            }
-        } catch (ZipException ex) {
-            return false;
-        }
-
-        return true;
-    }
 
     private static Object[] pridejRadekDoTabulky(SipInfo souborSIP){
         String g = souborSIP.getName();

@@ -15,7 +15,7 @@ public class SipValidator {
      * @return
      */
     public static List<UrovenKontroly> pripravKontroly(boolean skodlivyKodOk, String skodlivyKodError, int[] seznamObsKontrol) {
-    	ArrayList<UrovenKontroly> kontroly = new ArrayList<>(6);
+        ArrayList<UrovenKontroly> kontroly = new ArrayList<>(7);
     	
         K00_SkodlivehoKodu ksk = new K00_SkodlivehoKodu(skodlivyKodOk, skodlivyKodError);
         kontroly.add(ksk);

@@ -6,72 +6,13 @@
 package cz.zaf.sipvalidator.sip;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.Validate;
 
 /**
  *
  * @author m000xz006159
  */
 public class SIP_MAIN_helper {
-    
-	// TODO: Nutno prepracovat
-    public static long get_sip_lenght(Path sipPath){
-        long g = 0;
-        try{
-            if(Files.exists(sipPath)){
-                if(Files.isDirectory(sipPath)){
-                    g = FileUtils.sizeOfDirectory(sipPath.toFile());
-                }
-                else{
-                    g = Files.size(sipPath);
-                }
-            }
-            else{
-                g = -20;
-            }
-            return g;                   
-        }
-        catch(IllegalArgumentException e){
-            return -1;
-        } catch (IOException e) {
-        	return -1;
-		}        
-    }
-        
-    public static String get_SIP_type(int index){
 
-        if(index == 0){
-            return "Dokument";
-        }
-        if(index == 1){
-            return "Spis";
-        }
-        if(index == 2){
-            return "Díl";
-        }
-        
-        return " - ";
-    }
-
-    public static String get_SIP_type(String nodename){
-
-        if(nodename.equals("nsesss:Dokument")){
-            return "Dokument";
-        }
-        if(nodename.equals("nsesss:Spis")){
-            return "Spis";
-        }
-        if(nodename.equals("nsesss:Dil")){
-            return "Díl";
-        }
-        
-        return " - ";
-    }
     
     public static String get_SIP_type_XXX(int index){
 

@@ -50,13 +50,15 @@ public class SipInfo{
      * Jmeno SIPu
      * 
      * Jméno adresáře v němž je SIP uložen
+     * Jen název bez cesty.
      */
     final private String name;
     
     /**
      * Jméno ZIP souboru se SIPem
      * 
-     * Jméno ZIP soouboru v němž byl SIP zabalen
+     * Jméno ZIP soouboru v němž byl SIP zabalen.
+     * Jen název bez cesty.
      */
     final private String nameZipFile;
     
