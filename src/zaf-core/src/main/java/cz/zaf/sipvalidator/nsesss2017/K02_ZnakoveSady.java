@@ -23,7 +23,6 @@ import org.xml.sax.SAXException;
 import com.ibm.icu.text.CharsetDetector; // lib ucu4j-56.jar
 import com.ibm.icu.text.CharsetMatch; // lib ucu4j-56.jar
 
-import cz.zaf.sipvalidator.sip.KontrolaContext;
 import cz.zaf.sipvalidator.sip.PravidloKontroly;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.SipInfo;
@@ -38,7 +37,7 @@ import cz.zaf.sipvalidator.sip.VysledekKontroly;
  * @author m000xz006159
  */
 public class K02_ZnakoveSady
-	implements UrovenKontroly
+        implements UrovenKontroly<KontrolaNsess2017Context>
 {
 	static final public String NAME = "kontrola znakové sady"; 
 	
@@ -142,7 +141,7 @@ public class K02_ZnakoveSady
     }
 
 	@Override
-	public void provedKontrolu(KontrolaContext ctx)
+    public void provedKontrolu(KontrolaNsess2017Context ctx)
 			throws IOException, FileNotFoundException, ParserConfigurationException, SAXException, XMLStreamException
 	{
 		boolean isFailed = ctx.isFailed();
@@ -159,7 +158,7 @@ public class K02_ZnakoveSady
 		if (!SIP_MAIN_helper.ma_metsxml(sip)) {
 			jeKodovaniVPoradku = false;
 		} else {
-			sip_na_file = sip.getCesta_mets().toFile();
+            sip_na_file = sip.getCestaMets().toFile();
 			jeKodovaniVPoradku = JsouSiKodovaniRovna(sip_na_file);
 		}
 

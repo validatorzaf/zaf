@@ -6,14 +6,13 @@
 package cz.zaf.sipvalidator.nsesss2017;
 
 
-import cz.zaf.sipvalidator.sip.KontrolaContext;
-import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.PravidloKontroly;
+import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.SipInfo;
+import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.UrovenKontroly;
 import cz.zaf.sipvalidator.sip.VysledekKontroly;
-import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 
 
 /**
@@ -21,7 +20,7 @@ import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
  * @author standa
  */
 public class K01_DatoveStruktury
-	implements UrovenKontroly
+        implements UrovenKontroly<KontrolaNsess2017Context>
 {
 	
 	static final public String NAME = "kontrola datové struktury"; 
@@ -100,7 +99,7 @@ public class K01_DatoveStruktury
     }
 
 	@Override
-	public void provedKontrolu(KontrolaContext ctx) {
+    public void provedKontrolu(KontrolaNsess2017Context ctx) {
         VysledekKontroly k = new VysledekKontroly(TypUrovenKontroly.DATOVE_STRUKTURY,
         		NAME);
         boolean failed = ctx.isFailed();

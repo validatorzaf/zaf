@@ -5,7 +5,6 @@
  */
 package cz.zaf.sipvalidator.nsesss2017.structmap;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.w3c.dom.Node;
@@ -16,9 +15,9 @@ import org.w3c.dom.Node;
  */
 public class StructMap_Obj_return_bol_AL_node {
     boolean bol;
-    ArrayList<Node> node_list;
+    List<Node> node_list;
 
-    public StructMap_Obj_return_bol_AL_node(boolean bol, ArrayList<Node> node_list) {
+    public StructMap_Obj_return_bol_AL_node(boolean bol, List<Node> node_list) {
         this.bol = bol;
         this.node_list = node_list;
     }

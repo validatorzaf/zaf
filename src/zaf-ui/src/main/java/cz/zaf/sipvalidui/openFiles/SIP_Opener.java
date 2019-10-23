@@ -8,14 +8,10 @@ package cz.zaf.sipvalidui.openFiles;
 import static java.lang.Math.round;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.swing.JFrame;
-
 import cz.zaf.sipvalidator.helper.HelperTime;
-import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 import cz.zaf.sipvalidator.sip.SipLoader;
 import cz.zaf.sipvalidui.panels.JFmain;
@@ -34,7 +30,7 @@ public class SIP_Opener {
     static boolean zip_good = true;
     static String theOutString;
     
-    public static void getOpenFiles(JFrame main_frame){
+    public static void getOpenFiles(JFmain main_frame) {
         File[] vybrane_soubory = new SIP_JFChooser().getOpenFiles();
         if(vybrane_soubory != null){
             Thread t1 = new Thread(() -> {
@@ -58,27 +54,7 @@ public class SIP_Opener {
                     String srcPath = vybrane_soubory[i].getAbsolutePath();
                     
                     SipLoader sipLoader = new SipLoader(srcPath, null);
-                    SipInfo sip = sipLoader.getSip();
-                    String sipName = sip.getName();
-                    /*
-                    Path finalSipPath = zpracuj_soubor(srcPath, null);
-                    boolean isBroken = false;
-                    if(finalSipPath==null) {
-                    	// broken
-                    	// pouzije se predchozi cesta
-                    	finalSipPath = srcPath;
-                    	isBroken = true;
-                    }
-                    long l = SipLoader.getSipLenght(finalSipPath);                    
-                    SipInfo sip = new SipInfo(sipName, zip_name, loadLike, l, finalSipPath);
-                    if(isBroken) {
-                    	sip.setLoadGood(false);
-                    }*/
-                    
-                    if (!is_in_list(sipName, JFmain.seznamNahranychSouboru)) {
-                        JFmain.seznamNahranychSouboru.add(sip);
-                        pridejRadekDoTabulky(sip);
-                    }
+                    main_frame.addSip(sipLoader);
                 }
                 
             worker.done();
@@ -191,24 +167,6 @@ public class SIP_Opener {
         }
     }    
      */
-    
-    private static boolean is_in_list(String sipName, ArrayList<SipInfo> seznamSIP){
-        for (SipInfo sip : seznamSIP) {
-            if(sipName.equals(sip.getName())) {
-            	return true;
-            }
-        }
-        return false;
-    }
-
-
-    private static Object[] pridejRadekDoTabulky(SipInfo souborSIP){
-        String g = souborSIP.getName();
-        int index = JFmain.tabulkaSIPsouboru.getRowCount();
-        Object[] row = new Object[]{" " + (index+1) + ".", "???",  "?" + "????", " " + souborSIP.getName(), getVelikostSipuProTabulku(souborSIP.getLenght())};
-        JFmain.tabulkaSIPsouboru.addRow(row);
-        return row;
-    }
     
     static String getVelikostSipuProTabulku(long sipSizeLong){
         int sipSizeInt = (int) sipSizeLong;

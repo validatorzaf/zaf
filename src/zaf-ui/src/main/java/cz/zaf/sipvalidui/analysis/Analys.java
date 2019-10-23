@@ -8,9 +8,10 @@ package cz.zaf.sipvalidui.analysis;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.JTextArea;
-import static cz.zaf.sipvalidui.panels.JFmain.seznamNahranychSouboru;
 
+import javax.swing.JTextArea;
+
+import cz.zaf.sipvalidui.panels.NahraneSoubory;
 /**
  *
  * @author m000xz006159
@@ -21,15 +22,16 @@ public class Analys {
     Analys_main analysa;
     
     
-    public Analys(JTextArea jtextarea, String k_id, String k_typ, long k_start, long k_end) {
+    public Analys(JTextArea jtextarea, String k_id, String k_typ, long k_start, long k_end,
+                  NahraneSoubory nahraneSoubory) {
         this.k_id = k_id;
         this.k_typ = k_typ;
         this.k_start = k_start;
         this.k_end = k_end;
         k_doba = get_doba();
         
-        analysa = new Analys_main();
-        write(jtextarea, seznamNahranychSouboru.size());
+        analysa = new Analys_main(nahraneSoubory);
+        write(jtextarea, nahraneSoubory.size());
         
     }
     

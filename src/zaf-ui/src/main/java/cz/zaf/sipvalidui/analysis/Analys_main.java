@@ -11,8 +11,7 @@ import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.StavKontroly;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.VysledekKontroly;
-
-import static cz.zaf.sipvalidui.panels.JFmain.seznamNahranychSouboru;
+import cz.zaf.sipvalidui.panels.NahraneSoubory;
 
 /**
  *
@@ -23,20 +22,23 @@ public final class Analys_main {
     ArrayList<Integer> list_validnich, list_nevalidnich;
     static ArrayList<Analys_rule> analys_obsahova;
     boolean pomocnybol = true;
-    public Analys_main() {
+    NahraneSoubory nahraneSoubory;
+
+    public Analys_main(NahraneSoubory nahraneSoubory) {
+        this.nahraneSoubory = nahraneSoubory;
         list_validnich = new ArrayList();
         list_nevalidnich = new ArrayList();
         analys_obsahova = new ArrayList();
-        skodlivehokodu = new Analys_main_control("Kontrola škodlivého kódu", 0, seznamNahranychSouboru.size());
-        datovestruktury = new Analys_main_control("Kontrola datové struktury", 1, seznamNahranychSouboru.size());
-        znakovesady = new Analys_main_control("Kontrola znakové sady", 2, seznamNahranychSouboru.size());
-        spravnostixml = new Analys_main_control("Kontrola správnosti xml", 3, seznamNahranychSouboru.size());
-        jmennychprostoru = new Analys_main_control("Kontrola jmenných prostorů", 4, seznamNahranychSouboru.size());
-        protischematu = new Analys_main_control("Kontrola proti schématu", 5, seznamNahranychSouboru.size());
-        obsahu = new Analys_main_control("Kontrola obsahu", 6, seznamNahranychSouboru.size());
+        skodlivehokodu = new Analys_main_control("Kontrola škodlivého kódu", 0, nahraneSoubory.size());
+        datovestruktury = new Analys_main_control("Kontrola datové struktury", 1, nahraneSoubory.size());
+        znakovesady = new Analys_main_control("Kontrola znakové sady", 2, nahraneSoubory.size());
+        spravnostixml = new Analys_main_control("Kontrola správnosti xml", 3, nahraneSoubory.size());
+        jmennychprostoru = new Analys_main_control("Kontrola jmenných prostorů", 4, nahraneSoubory.size());
+        protischematu = new Analys_main_control("Kontrola proti schématu", 5, nahraneSoubory.size());
+        obsahu = new Analys_main_control("Kontrola obsahu", 6, nahraneSoubory.size());
 
-        for(int i = 0; i < seznamNahranychSouboru.size(); i++){
-        	SipInfo sip = seznamNahranychSouboru.get(i);
+        for (int i = 0; i < nahraneSoubory.size(); i++) {
+            SipInfo sip = nahraneSoubory.get(i).getSip();
         	
         	zapis_kontrolu(i, sip.getUrovenKontroly(TypUrovenKontroly.SKODLIVY_KOD), skodlivehokodu);
         	zapis_kontrolu(i, sip.getUrovenKontroly(TypUrovenKontroly.DATOVE_STRUKTURY), datovestruktury);
@@ -88,7 +90,7 @@ public final class Analys_main {
     }
     
     private void analys_obsahova_set(int index){
-    	VysledekKontroly kontrola = seznamNahranychSouboru.get(index).getUrovenKontroly(TypUrovenKontroly.OBSAHOVA);
+        VysledekKontroly kontrola = nahraneSoubory.get(index).getSip().getUrovenKontroly(TypUrovenKontroly.OBSAHOVA);
         for(int i = 0; i < kontrola.size(); i++){
             int index_rule = kontrola.get(i).getIndex();
             if(!Analys_helper.equals_rule_with_index(analys_obsahova, index_rule)){

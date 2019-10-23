@@ -24,8 +24,11 @@ public class EventListenerJpanelValidaceListObsahovaNa implements ListSelectionL
     JTextArea jTextAreaPopisPravidel;
     JTable jTable1;
     SipInfo sf;
+    private NahraneSoubory nahraneSoubory;
 
-    public EventListenerJpanelValidaceListObsahovaNa(JTextArea jTextAreaPopisPravidel, JList jListOBSAHOVANA){
+    public EventListenerJpanelValidaceListObsahovaNa(JTextArea jTextAreaPopisPravidel, JList jListOBSAHOVANA,
+                                                     NahraneSoubory nahraneSoubory) {
+        this.nahraneSoubory = nahraneSoubory;
         this.jListOBSAHOVANA = jListOBSAHOVANA;
         this.jTextAreaPopisPravidel = jTextAreaPopisPravidel;
     }
@@ -33,8 +36,8 @@ public class EventListenerJpanelValidaceListObsahovaNa implements ListSelectionL
     @Override
     public void valueChanged(ListSelectionEvent e) {
         EventListenerJFmainTableSeSipSoubory_object selectedPravidlo = jListOBSAHOVANA.getSelectedValue();
-        if(JFmain.jTable1.getSelectedRow() != -1){
-            sf = JFmain.seznamNahranychSouboru.get(JFmain.jTable1.getSelectedRow());
+        if (JFmain.jTable1.getSelectedRow() >= 0) {
+            sf = nahraneSoubory.get(JFmain.jTable1.getSelectedRow()).getSip();
             if(selectedPravidlo != null){
                 jTextAreaPopisPravidel.setText(nastavTextPopisuPravidla(selectedPravidlo));
                 jTextAreaPopisPravidel.setCaretPosition(0);

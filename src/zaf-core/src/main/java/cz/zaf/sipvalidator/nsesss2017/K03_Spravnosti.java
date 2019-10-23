@@ -6,21 +6,17 @@
 package cz.zaf.sipvalidator.nsesss2017;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.MalformedURLException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
-import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 import com.sun.org.apache.xerces.internal.impl.io.MalformedByteSequenceException;
 
-import cz.zaf.sipvalidator.sip.KontrolaContext;
-import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.PravidloKontroly;
+import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.UrovenKontroly;
@@ -31,7 +27,7 @@ import cz.zaf.sipvalidator.sip.VysledekKontroly;
  * @author m000xz006159
  */
 public class K03_Spravnosti
-	implements UrovenKontroly
+        implements UrovenKontroly<KontrolaNsess2017Context>
 {
 	
 	static final public String NAME = "kontrola správnosti xml"; 
@@ -58,7 +54,7 @@ public class K03_Spravnosti
     }
 
 	@Override
-	public void provedKontrolu(KontrolaContext ctx) throws Exception {
+    public void provedKontrolu(KontrolaNsess2017Context ctx) throws Exception {
 		boolean isFailed = ctx.isFailed();
         VysledekKontroly k = new VysledekKontroly(
         		TypUrovenKontroly.SPRAVNOSTI,
@@ -81,7 +77,7 @@ public class K03_Spravnosti
 			// the "parse" method also validates XML, will throw an exception if
 			// misformatted
 			try {
-				File f = file.getCesta_mets().toFile(); // kvůli diakritice aby pak použil file a ne
+                File f = file.getCestaMets().toFile(); // kvůli diakritice aby pak použil file a ne
 																		// string
 				org.w3c.dom.Document document = builder.parse(f);
 				PravidloKontroly p = new PravidloKontroly(0, "wf1", true, "", 0, "");

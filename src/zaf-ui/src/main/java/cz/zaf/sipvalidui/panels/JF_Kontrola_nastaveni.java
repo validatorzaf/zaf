@@ -30,7 +30,7 @@ public class JF_Kontrola_nastaveni extends javax.swing.JFrame {
         setFramePosition();
         setIconImage("/icons/lupa-512.png");
         getContentPane().setBackground(Color.white);
-        jLabel_progresbar.setText("VYBRÁNO " + JFmain.seznamNahranychSouboru.size() + " SIP SOUBORŮ KE ZPRACOVÁNÍ");
+        jLabel_progresbar.setText("VYBRÁNO " + main.getNahraneSoubory().size() + " SIP SOUBORŮ KE ZPRACOVÁNÍ");
     }
 
     /**

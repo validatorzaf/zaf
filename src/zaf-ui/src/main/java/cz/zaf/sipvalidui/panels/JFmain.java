@@ -33,13 +33,11 @@ import javax.xml.transform.TransformerException;
 import org.xml.sax.SAXException;
 
 import cz.zaf.sipvalidator.helper.HelperTime;
-import cz.zaf.sipvalidator.nsesss2017.RozparsovaniSipSouboru;
 import cz.zaf.sipvalidator.nsesss2017.SipValidator;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
-import cz.zaf.sipvalidator.sip.KontrolaContext;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.SipInfo;
-import cz.zaf.sipvalidator.sip.UrovenKontroly;
+import cz.zaf.sipvalidator.sip.SipLoader;
 import cz.zaf.sipvalidator.sip.XmlReportBuilder;
 import cz.zaf.sipvalidui.analysis.Analys;
 import cz.zaf.sipvalidui.openFiles.SIP_Opener;
@@ -54,7 +52,9 @@ public class JFmain extends javax.swing.JFrame {
     public static String program_name = "SipValid", program_version = "20190918";
     EventListenerJFmainTableSeSipSoubory listenerTableSeSip;
     public static DefaultTableModel tabulkaSIPsouboru;
-    public static ArrayList<SipInfo> seznamNahranychSouboru;
+
+    NahraneSoubory nahraneSoubory = new NahraneSoubory();
+
     /**
      * Maximalni pocet SIPu v davce ke zpracovani
      */
@@ -93,14 +93,11 @@ public class JFmain extends javax.swing.JFrame {
         });
         jMenuItem1.setEnabled(false);
 
-        jTabbedPane.addTab("SIP validace", new JPanelValidace());
+        jTabbedPane.addTab("SIP validace", new JPanelValidace(nahraneSoubory));
         jTabbedPane.addTab("Analýza kontroly", new JPanel_Kontrola_analyza());
         //        jTabbedPane.addTab("SIP info", new JPanelSipInformation());
         //        jTabbedPane.addTab("Skartační návrh", new JPanelSkartacniNavrh());
         //        jTabbedPane.addTab("Dokumenty Entity", new JPanelSkartacniNavrhDokumentyEntit());
-
-        //vytvoř místo pro očekávaný seznam souborů
-        seznamNahranychSouboru = new ArrayList<>();
 
         tabulkaSIPsouboru = new DefaultTableModel() {
             // překrytí metody, abych nemohl editovat nějaké sloupce v tabulce
@@ -360,26 +357,28 @@ public class JFmain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nactiSouboryDoTabulkySeSeznamem() {
-        // důležité pro následné přidávání případných dalších souborů, aby se tabulka nemusela refreshovat celá znovu. Začnu prostě u posledního souboru, jež nebyl ještě přidán
-        int pocetJizNahranychSouboru = seznamNahranychSouboru.size();
-        if (seznamNahranychSouboru.isEmpty())
-            pocetJizNahranychSouboru = 0;
+        // důležité pro následné přidávání případných dalších souborů, 
+        // aby se tabulka nemusela refreshovat celá znovu. Začnu prostě 
+        // u posledního souboru, jež nebyl ještě přidán
+        int pocetJizNahranychSouboru = nahraneSoubory.size();
+
         int pocetJizPridanychSIPvTabulce = tabulkaSIPsouboru.getRowCount();
-        if (tabulkaSIPsouboru == null)
-            pocetJizPridanychSIPvTabulce = 0;
-        // jestliže už v tabulce mám vypsáno 20 souborů ze seznamNahranychSouboru, musím začít až od souboru 21, čili cyklus proběhne o 20 méně cyklů;
+
+        // jestliže už v tabulce mám vypsáno 20 souborů ze seznamNahranychSouboru, 
+        // musím začít až od souboru 21, čili cyklus proběhne o 20 méně cyklů;
         int pocetProCyklus = pocetJizNahranychSouboru;
 
         for (int i = pocetJizPridanychSIPvTabulce; i < pocetProCyklus; i++) {
-            SipInfo sipSoubor = seznamNahranychSouboru.get(i);
-            pridejRadekDoTabulky(i, sipSoubor);
+            SipLoader sipLoader = nahraneSoubory.get(i);
+            pridejRadekDoTabulky(i, sipLoader);
         }
     }
 
-    private Object[] pridejRadekDoTabulky(int index, SipInfo souborSIP) {
-        String g = souborSIP.getName();
-        Object[] row = new Object[] { " " + (index + 1) + ".", "???", "?" + "????", " " + souborSIP.getName(),
-                getVelikostSipuProTabulku(souborSIP.getLenght()) };
+    private Object[] pridejRadekDoTabulky(int index, SipLoader sipLoader) {
+        SipInfo sipInfo = sipLoader.getSip();
+        String g = sipInfo.getName();
+        Object[] row = new Object[] { " " + (index + 1) + ".", "???", "?" + "????", " " + sipInfo.getName(),
+                getVelikostSipuProTabulku(sipInfo.getLenght()) };
         tabulkaSIPsouboru.addRow(row);
         return row;
     }
@@ -448,7 +447,7 @@ public class JFmain extends javax.swing.JFrame {
         for (int i = 0; i < radky; i++) {
             tabulkaSIPsouboru.removeRow(0);
         }
-        seznamNahranychSouboru.clear();
+        nahraneSoubory.clear();
     }
 
     static void resetRow(int i, SipInfo souborSIP) {
@@ -468,14 +467,7 @@ public class JFmain extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuBarKontrolyMouseClicked
 
     private void jMenuSouborSmazatSipSouboryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSouborSmazatSipSouboryActionPerformed
-        if (seznamNahranychSouboru != null) {
-            resetAllRow();
-
-            //            for(int i = 0; i < seznamNahranychSouboru.size(); i++){
-            //                
-            //               
-            //            }
-        }
+        resetAllRow();
     }//GEN-LAST:event_jMenuSouborSmazatSipSouboryActionPerformed
 
     // OTEVŘI SIP
@@ -502,27 +494,17 @@ public class JFmain extends javax.swing.JFrame {
         worker = new ProgressWorker(JF_Kontrola_nastaveni.jProgressBar_kontrola,
                 JF_Kontrola_nastaveni.jLabel_progresbar);
 
-        if (seznamNahranychSouboru != null) {
-            progresbar_pocet = seznamNahranychSouboru.size();
+        progresbar_pocet = nahraneSoubory.size();
             start_k = System.currentTimeMillis();
-            for (int i = 0; i < seznamNahranychSouboru.size(); i++) {
-                SipInfo svf = seznamNahranychSouboru.get(i);
+        for (int i = 0; i < nahraneSoubory.size(); i++) {
+            SipLoader sl = nahraneSoubory.get(i);
+                SipInfo svf = sl.getSip();
                 svf.reset_data_Kontroly();
+                
+                SipValidator spv = new SipValidator(profilValidace);
+                spv.validate(sl);
 
-                List<UrovenKontroly> kontroly = SipValidator.pripravKontroly(true, null, profilValidace
-                        .getObsahoveKontroly());
-                try {
-                    RozparsovaniSipSouboru rss = new RozparsovaniSipSouboru(svf);
-                    resetRow(i, svf); // přepsání hodnoty v tabulce sipsouborů
-
-                    // provedeni kontrol
-                    KontrolaContext ctx = new KontrolaContext(svf);
-                    for (UrovenKontroly kontrola : kontroly) {
-                        kontrola.provedKontrolu(ctx);
-                    }
-                } catch (Exception ex) {
-                    Logger.getLogger(JFmain.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                resetRow(i, svf); // přepsání hodnoty v tabulce sipsouborů
 
                 try {
                     progresbar_index = i + 1;
@@ -543,14 +525,15 @@ public class JFmain extends javax.swing.JFrame {
             end_k = System.currentTimeMillis();
             jTextArea_kontrola.setCaretPosition(0);
 
-        }
+
         worker.done();
         worker.execute();
         jk.setVisible(false);
         //        Analys_kontrola analys = new Analys_kontrola(seznamNahranychSouboru, JPanel_Kontrola_analyza.jTextArea_kontrola, "id_test_01", "test Kontroly", start_k, end_k);
         Analys analys1 = new Analys(JPanel_Kontrola_analyza.jTextArea_kontrola, id_kontroly_zadane,
                 profilValidace.getNazev(),
-                start_k, end_k);
+                start_k, end_k,
+                nahraneSoubory);
 
     }
 
@@ -560,13 +543,40 @@ public class JFmain extends javax.swing.JFrame {
         t1.start();
     }
 
+    public void addSip(SipLoader sipLoader) {
+        SipInfo sip = sipLoader.getSip();
+        String sipName = sip.getName();
+
+        if (!nahraneSoubory.isLoaded(sipName)) {
+            nahraneSoubory.add(sipLoader);
+            pridejRadekDoTabulky(sip);
+        }
+    }
+
+    private boolean is_in_list(String sipName, ArrayList<SipLoader> seznamSIP) {
+        for (SipLoader sipLoader : seznamSIP) {
+            if (sipName.equals(sipLoader.getSip().getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private Object[] pridejRadekDoTabulky(SipInfo souborSIP) {
+        String g = souborSIP.getName();
+        int index = JFmain.tabulkaSIPsouboru.getRowCount();
+        Object[] row = new Object[] { " " + (index + 1) + ".", "???", "?" + "????", " " + souborSIP.getName(),
+                getVelikostSipuProTabulku(souborSIP.getLenght()) };
+        JFmain.tabulkaSIPsouboru.addRow(row);
+        return row;
+    }
+
     void ulozXml(String ads, ProfilValidace profilValidace, String id_kontroly_zadane) {
         int ind = 0;
-        for (int start = 0; start < seznamNahranychSouboru.size(); start += velikostDavky) {
-            int end = Math.min(start + velikostDavky, seznamNahranychSouboru.size());
-            List<SipInfo> col = seznamNahranychSouboru.subList(start, end);
-            ArrayList<SipInfo> cola = new ArrayList<>();
-            cola.addAll(col);
+        for (int start = 0; start < nahraneSoubory.size(); start += velikostDavky) {
+            int end = Math.min(start + velikostDavky, nahraneSoubory.size());
+
+            List<SipInfo> cola = nahraneSoubory.getSipy(start, end);//new ArrayList<>();
             try {
                 String ads_i;
                 if (ind > 0) {
@@ -707,5 +717,9 @@ public class JFmain extends javax.swing.JFrame {
      */
     ProfilValidace getProfilValidace() {
         return profilValidace;
+    }
+
+    public NahraneSoubory getNahraneSoubory() {
+        return nahraneSoubory;
     }
 }

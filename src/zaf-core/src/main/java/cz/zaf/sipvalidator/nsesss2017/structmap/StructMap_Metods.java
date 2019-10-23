@@ -5,11 +5,11 @@
  */
 package cz.zaf.sipvalidator.nsesss2017.structmap;
 
-import static cz.zaf.sipvalidator.nsesss2017.RozparsovaniSipSouboru.parsedSAX_Sipsoubor;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -138,19 +138,19 @@ public class StructMap_Metods {
         return new StructMap_Obj_return_bol_AL_node(true, null);
     }
     
-    public static StructMap_Obj_return_bol_AL_Obj_dmdSec get_dmdsec_list(){
+    public static StructMap_Obj_return_bol_AL_Obj_dmdSec get_dmdsec_list(Document document) {
         ArrayList<StructMap_Obj_dmdSec> all_dmdSec = new ArrayList<>();
         ArrayList<StructMap_Obj_dmdSec> error_all_dmdSec = new ArrayList<>();
-        NodeList plany_nodelist = ValuesGetter.getAllAnywhere("nsesss:SpisovyPlan", parsedSAX_Sipsoubor);
-        NodeList skupiny_nodelist = ValuesGetter.getAllAnywhere("nsesss:VecnaSkupina", parsedSAX_Sipsoubor);
-        NodeList soucasti_nodelist = ValuesGetter.getAllAnywhere("nsesss:Soucast", parsedSAX_Sipsoubor);
-        NodeList typoveSpisy_nodelist = ValuesGetter.getAllAnywhere("nsesss:TypovySpis", parsedSAX_Sipsoubor);
-        NodeList spisy_nodelist = ValuesGetter.getAllAnywhere("nsesss:Spis", parsedSAX_Sipsoubor);
-        NodeList dily_nodelist= ValuesGetter.getAllAnywhere("nsesss:Dil", parsedSAX_Sipsoubor);
-        NodeList dokumenty_nodelist = ValuesGetter.getAllAnywhere("nsesss:Dokument", parsedSAX_Sipsoubor);
-        NodeList komponenty_nodelist = ValuesGetter.getAllAnywhere("nsesss:Komponenta", parsedSAX_Sipsoubor);
-        NodeList skartacnirezim_nodelist = ValuesGetter.getAllAnywhere("nsesss:SkartacniRezim", parsedSAX_Sipsoubor);
-        NodeList typdokumentu_nodelist = ValuesGetter.getAllAnywhere("nsesss:TypDokumentu", parsedSAX_Sipsoubor);
+        NodeList plany_nodelist = ValuesGetter.getAllAnywhere("nsesss:SpisovyPlan", document);
+        NodeList skupiny_nodelist = ValuesGetter.getAllAnywhere("nsesss:VecnaSkupina", document);
+        NodeList soucasti_nodelist = ValuesGetter.getAllAnywhere("nsesss:Soucast", document);
+        NodeList typoveSpisy_nodelist = ValuesGetter.getAllAnywhere("nsesss:TypovySpis", document);
+        NodeList spisy_nodelist = ValuesGetter.getAllAnywhere("nsesss:Spis", document);
+        NodeList dily_nodelist = ValuesGetter.getAllAnywhere("nsesss:Dil", document);
+        NodeList dokumenty_nodelist = ValuesGetter.getAllAnywhere("nsesss:Dokument", document);
+        NodeList komponenty_nodelist = ValuesGetter.getAllAnywhere("nsesss:Komponenta", document);
+        NodeList skartacnirezim_nodelist = ValuesGetter.getAllAnywhere("nsesss:SkartacniRezim", document);
+        NodeList typdokumentu_nodelist = ValuesGetter.getAllAnywhere("nsesss:TypDokumentu", document);
         if(skartacnirezim_nodelist != null){
             work_values("skartační režim", plany_nodelist, all_dmdSec, error_all_dmdSec);
         }
@@ -191,12 +191,12 @@ public class StructMap_Metods {
         }
     }
     
-    public static StructMap_Obj_return_bol_AL_Obj_dmdSec get_dmdsec_specialObject_list(){
+    public static StructMap_Obj_return_bol_AL_Obj_dmdSec get_dmdsec_specialObject_list(Document document) {
         ArrayList<StructMap_Obj_dmdSec> all_dmdSec = new ArrayList<>();
         ArrayList<StructMap_Obj_dmdSec> error_all_dmdSec = new ArrayList<>();
-        NodeList bezpecnostni_kategorie_list = ValuesGetter.getAllAnywhere("nsesss:BezpecnostniKategorie", parsedSAX_Sipsoubor);
-        NodeList skartacni_rezim_list = ValuesGetter.getAllAnywhere("nsesss:SkartacniRezim", parsedSAX_Sipsoubor);
-        NodeList typ_dokumentu_list = ValuesGetter.getAllAnywhere("nsesss:TypDokumentu", parsedSAX_Sipsoubor);
+        NodeList bezpecnostni_kategorie_list = ValuesGetter.getAllAnywhere("nsesss:BezpecnostniKategorie", document);
+        NodeList skartacni_rezim_list = ValuesGetter.getAllAnywhere("nsesss:SkartacniRezim", document);
+        NodeList typ_dokumentu_list = ValuesGetter.getAllAnywhere("nsesss:TypDokumentu", document);
         if(bezpecnostni_kategorie_list != null){
             work_values_special("bezpečnostní kategorie", bezpecnostni_kategorie_list, all_dmdSec, error_all_dmdSec);
         }
@@ -291,13 +291,11 @@ public class StructMap_Metods {
                                                                   List<StructMap_Obj_dmdSec> dmdSec_list) {
             for(int i = 0; i < amdSec_list.size(); i++){
                 StructMap_Obj_amdSec amd = amdSec_list.get(i);
-                String amd_type = amd.node.getNodeName();
                 String amd_identifikator = amd.identifikator;
                 String amd_zdroj = amd.zdroj;
                 int counter = 0;
                 ArrayList<StructMap_Obj_dmdSec> novy_seznam = new ArrayList<>();
                 for(int j = 0; j < dmdSec_list.size(); j++){
-                    String naa = dmdSec_list.get(j).type;
                     String dmd_identifikator = dmdSec_list.get(j).identifikator;
                     String dmd_zdroj = dmdSec_list.get(j).zdroj;
                     if((amd_identifikator.equals(dmd_identifikator)) && (amd_zdroj.equals(dmd_zdroj))){
@@ -389,9 +387,7 @@ public class StructMap_Metods {
             // 0 - element amdsec neodkazuje na žádný element div
             // vrácený seznam má size 1
             if(chybne_amd.isEmpty()){
-                ArrayList<Node> l = new ArrayList();
-                l.add(div.metsdiv);
-                return new StructMap_Obj_return_bol_AL_node(false, l);
+                return new StructMap_Obj_return_bol_AL_node(false, Collections.singletonList(div.metsdiv));
             }
             // 1 - true
             // 2+ - na element amd sec odkazuje vice elementů mets div
@@ -415,14 +411,10 @@ public class StructMap_Metods {
         for(int i = 0; i < metsdiv_list.size(); i++){
             StructMap_Obj_metsdiv div =  metsdiv_list.get(i);
             int counter = 0;
-            String a1 = div.type;
-            String a2 = div.dmdid;
             ArrayList<StructMap_Obj_dmdSec> novy_seznam = new ArrayList<>();
             for(int j = 0; j < dmdSec_list.size(); j++){
                 StructMap_Obj_dmdSec dmd = dmdSec_list.get(j);
-                String b = dmd.type;
-                String b1 = dmd.identifikator;
-                String b2 = dmd.id;        
+
                 if((div.dmdid.equals(dmd.id)) && (div.type.equals(dmd.type))){
                     counter ++;
                 }
@@ -451,7 +443,8 @@ public class StructMap_Metods {
     }    
 
     public static StructMap_Obj_return_bol_AL_node compare_metsDiv_with_dmdSec_structure(List<StructMap_Obj_metsdiv> metsdiv_list,
-                                                                                  List<StructMap_Obj_dmdSec> dmdSec_list) {
+                                                                                  List<StructMap_Obj_dmdSec> dmdSec_list,
+                                                                                         Document document) {
         for(int i = 0; i < metsdiv_list.size(); i++){
             StructMap_Obj_metsdiv div =  metsdiv_list.get(i);
             if(!div.parent_right){
@@ -469,7 +462,7 @@ public class StructMap_Metods {
                     // if(!dmd.rodic_zatrideni.id.equals(div.rodic.dmdid) || !dmd.rodic_zatrideni.type.equals(div.rodic.type)){
                     if(!dmd.rodic_zatrideni.id.equals(div.rodic.dmdid) || !dmd.rodic_zatrideni.type.equals(div.rodic.type)){
                         if(!div.type.equals("spisový plán")){
-                            Node rodic_z_div_dmd = ValuesGetter.getNodeWithID(div.rodic.dmdid, ValuesGetter.prevod_type_to_nodeName(div.rodic.type), parsedSAX_Sipsoubor);
+                            Node rodic_z_div_dmd = ValuesGetter.getNodeWithID(div.rodic.dmdid, ValuesGetter.prevod_type_to_nodeName(div.rodic.type), document);
 //                            Node rodic_z_div_dmd = parsedSAX_Sipsoubor.getElementById(div.rodic.dmdid);
                             String[] rodic_z_div_dmd_udaje = ValuesGetter.get_node_identifikator_zdroj(rodic_z_div_dmd);
                             if(!rodic_z_div_dmd_udaje[1].equals(dmd.rodic_zatrideni.identifikator) || !rodic_z_div_dmd_udaje[2].equals(dmd.rodic_zatrideni.zdroj)){

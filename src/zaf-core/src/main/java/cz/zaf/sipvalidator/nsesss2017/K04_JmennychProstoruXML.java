@@ -5,15 +5,11 @@
  */
 package cz.zaf.sipvalidator.nsesss2017;
 
-import static cz.zaf.sipvalidator.nsesss2017.RozparsovaniSipSouboru.metsMets;
-import static cz.zaf.sipvalidator.nsesss2017.RozparsovaniSipSouboru.parsedSAX_Sipsoubor;
-
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import cz.zaf.sipvalidator.sip.KontrolaContext;
-import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.PravidloKontroly;
+import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.UrovenKontroly;
@@ -24,7 +20,7 @@ import cz.zaf.sipvalidator.sip.VysledekKontroly;
  * @author standa
  */
 public class K04_JmennychProstoruXML
-	implements UrovenKontroly
+        implements UrovenKontroly<KontrolaNsess2017Context>
 {
 	
 	static final public String NAME = "kontrola jmenných prostorů"; 
@@ -33,14 +29,14 @@ public class K04_JmennychProstoruXML
     }
     
     // Soubor obsahuje právě jeden kořenový element <mets:mets>.
-    private void jeJedenMets(VysledekKontroly k){
-        Node metsMets = parsedSAX_Sipsoubor.getDocumentElement();
+    private void jeJedenMets(KontrolaNsess2017Context ctx, VysledekKontroly k) {
+        Node metsMets = ctx.getMainDocument().getDocumentElement();
         if(metsMets == null || !metsMets.getNodeName().equals("mets:mets")){
             PravidloKontroly p = new PravidloKontroly(0, "ns1", false, "Datový balíček SIP neobsahuje kořenový element <mets:mets>.", 0, "");
             k.add(p);
         }
         else{
-            NodeList list = ValuesGetter.getAllAnywhere("mets:mets", parsedSAX_Sipsoubor);
+            NodeList list = ValuesGetter.getAllAnywhere("mets:mets", ctx.getMainDocument());
             if(list.getLength() > 1){
                 PravidloKontroly p = new PravidloKontroly(0, "ns1", false, "Datový balíček sip obsahuje více elementů <mets:mets>.", 0, "");
                 k.add(p);
@@ -54,7 +50,8 @@ public class K04_JmennychProstoruXML
     
     // Element <mets:mets> obsahuje atribut xsi:schemaLocation s hodnotou http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 TransakcniProtokolNavrh_verze1.7.xsd
     // nebo s hodnotou http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 http://www.mvcr.cz/nsesss/v3/nsesss-TrP.xsd.
-    private void atributyMets(VysledekKontroly k, SipInfo file){
+    private void atributyMets(KontrolaNsess2017Context ctx, VysledekKontroly k, SipInfo file) {
+        Node metsMets = ctx.getMetsParser().getMetsRootNode();
         if(metsMets == null){
             PravidloKontroly p = new PravidloKontroly(1, "ns2", false, "Datový balíček SIP neobsahuje kořenový element <mets:mets>.", 0, "");
             file.set_xsi_schemaLocation("Nenalezen kořenový element.");
@@ -83,7 +80,7 @@ public class K04_JmennychProstoruXML
     }
 
 	@Override
-	public void provedKontrolu(KontrolaContext ctx) throws Exception {
+    public void provedKontrolu(KontrolaNsess2017Context ctx) throws Exception {
 		boolean isFailed = ctx.isFailed();
 		
         VysledekKontroly k = new VysledekKontroly(
@@ -95,9 +92,9 @@ public class K04_JmennychProstoruXML
         }
 
         SipInfo file = ctx.getSip();        
-		if (parsedSAX_Sipsoubor != null) {
-			jeJedenMets(k);
-			atributyMets(k, file);
+        if (ctx.getMainDocument() != null) {
+            jeJedenMets(ctx, k);
+            atributyMets(ctx, k, file);
 		} else {
 			String s;
 			if (SIP_MAIN_helper.ma_metsxml(file)) {
@@ -113,7 +110,7 @@ public class K04_JmennychProstoruXML
 		}
 	}
 
-	@Override
+    @Override
 	public String getNazev() {
 		return NAME;
 	}

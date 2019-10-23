@@ -128,7 +128,7 @@ public class SipInfo{
         return sipPath;
     }
     
-    public Path getCesta_mets(){
+    public Path getCestaMets() {
     	if(loadType==LoadType.LT_XML) {
     		return sipPath;
     	}

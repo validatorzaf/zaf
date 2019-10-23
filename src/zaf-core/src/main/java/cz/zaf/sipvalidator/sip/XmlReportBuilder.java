@@ -7,6 +7,9 @@ package cz.zaf.sipvalidator.sip;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,9 +21,9 @@ import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
@@ -40,9 +43,9 @@ import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
  */
 public class XmlReportBuilder {
 
-	private org.w3c.dom.Document xml_parsed;
-	private Node kontrolaSip_root;
-	public final File xml;
+    private org.w3c.dom.Document document;
+    private Element rootElement;
+    public File xml;
 	
 	/**
 	 * Pouzity seznam pro obsahovou kontrolu
@@ -50,6 +53,51 @@ public class XmlReportBuilder {
 	private int[] seznamObsKontroly;
 	private String programName;
 	private String programVersion;
+    private String kontrolaID;
+    private String pouzitiKontroly;
+
+    public XmlReportBuilder(String kontrolaID,
+                            String programName,
+                            String programVersion,
+                            String pouzitiKontroly) throws ParserConfigurationException {
+        this.kontrolaID = kontrolaID;
+        this.programName = programName;
+        this.programVersion = programVersion;
+        this.pouzitiKontroly = pouzitiKontroly;
+
+        createRoot();
+    }
+
+    private void createRoot() throws ParserConfigurationException {
+        DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+        //
+        //        // root elements
+        document = docBuilder.newDocument();
+        rootElement = document.createElement("kontrolaSIP");
+        document.appendChild(rootElement);
+        
+        String datumKontroly = HelperTime.get_utc();
+        if(kontrolaID!=null) {
+            rootElement.setAttribute("kontrolaID", kontrolaID);
+        }
+        rootElement.setAttribute("datumKontroly", datumKontroly);
+        if(pouzitiKontroly!=null) {
+            rootElement.setAttribute("pouzitiKontroly", pouzitiKontroly);
+        }
+        if(programName!=null) {
+            rootElement.setAttribute("nazevAplikace", programName);
+        }
+        if(programVersion!=null) {
+            rootElement.setAttribute("verzeAplikace", programVersion);
+        }
+        rootElement.setAttribute("xsi:schemaLocation",
+                "http://digitalniarchiv.ahmp.cz/schema/kontrolasip/v1 http://digitalniarchiv.ahmp.cz/schema/kontrolasip/v1/kontrolasip.xsd");
+        rootElement.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
+        rootElement.setAttribute("xmlns", "http://digitalniarchiv.ahmp.cz/schema/kontrolasip/v1");
+        
+        
+    }
 
     public XmlReportBuilder(List<SipInfo> seznamNahranychSouboru, String path_for_xml,
                             String sip_name,
@@ -58,9 +106,7 @@ public class XmlReportBuilder {
 			String programName,
 			String programVersion)
 			throws IOException, ParserConfigurationException, TransformerException, SAXException {
-        this.seznamObsKontroly = profilValidace.getObsahoveKontroly();
-		this.programName = programName;
-		this.programVersion = programVersion;
+
 		if (path_for_xml==null||path_for_xml.equals("undefined") || path_for_xml.equals("")) {
 			xml = create_xml(new File(".").getCanonicalPath() + File.separator + sip_name + ".xml");
 
@@ -73,10 +119,9 @@ public class XmlReportBuilder {
 
 		}
 //        String path = new File(".").getCanonicalPath();
-		Parse(xml);
-        set_root(id_kontroly_zadane, HelperTime.get_utc(), profilValidace.getNazev());
+        Parse(xml);
 		for (int i = 0; i < seznamNahranychSouboru.size(); i++) {
-			Node node_sip = add_node_sip(seznamNahranychSouboru.get(i));
+            Node node_sip = addSipNode(seznamNahranychSouboru.get(i));
 //            add_node_zakladniEntity(sip, seznamNahranychSouboru.get(i));
 			add_kontrola("Kontrola škodlivého kódu", node_sip, seznamNahranychSouboru.get(i));
 			add_kontrola("Kontrola datové struktury", node_sip, seznamNahranychSouboru.get(i));
@@ -92,57 +137,17 @@ public class XmlReportBuilder {
 //            JFmain.main_pocitadlo++;
 
 		}
-		save();
-//        Transform_xml tx  = new Transform_xml(xml);
 	}
 
 	private void Parse(File xml) throws ParserConfigurationException {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
 		try {
-			xml_parsed = builder.parse(xml);
+            this.document = builder.parse(xml);
 
 		} catch (SAXException | IOException ex) {
 			Logger.getLogger(XmlReportBuilder.class.getName()).log(Level.SEVERE, null, ex);
 		}
-	}
-
-	private void set_root(String kontrolaID, String datumKontroly, String typ) throws TransformerException {
-		kontrolaSip_root = xml_parsed.getElementsByTagName("kontrolaSIP").item(0);
-		((Element) kontrolaSip_root).setAttribute("kontrolaID", kontrolaID);
-		((Element) kontrolaSip_root).setAttribute("datumKontroly", datumKontroly);
-		((Element) kontrolaSip_root).setAttribute("pouzitiKontroly", typ);
-		if(programName!=null) {
-			((Element) kontrolaSip_root).setAttribute("nazevAplikace", programName);
-		}
-		if(programVersion!=null) {
-			((Element) kontrolaSip_root).setAttribute("verzeAplikace", programVersion);
-		}
-		((Element) kontrolaSip_root).setAttribute("xsi:schemaLocation",
-				"http://digitalniarchiv.ahmp.cz/schema/kontrolasip/v1 http://digitalniarchiv.ahmp.cz/schema/kontrolasip/v1/kontrolasip.xsd");
-		((Element) kontrolaSip_root).setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
-		((Element) kontrolaSip_root).setAttribute("xmlns", "http://digitalniarchiv.ahmp.cz/schema/kontrolasip/v1");
-	}
-
-	private void save() throws TransformerConfigurationException, TransformerException {
-		Transformer transformer = TransformerFactory.newInstance().newTransformer();
-		Result output = new StreamResult(xml);
-
-		Source input = new DOMSource(xml_parsed);
-		xml_parsed.setXmlStandalone(true); // když je false tak se s tím pak nedá hýbat a je to default (standalone s
-											// eezobrazí vždy).
-		transformer.setOutputProperty(OutputKeys.METHOD, "xml");
-		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-		transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-		transformer.setOutputProperty("http://www.oracle.com/xml/is-standalone", "yes"); // dává novou řádku po
-																							// deklaraci - takže root je
-																							// na nové řádce
-//        transformer.setOutputProperty(OutputKeys.STANDALONE, "yes");
-
-		// odsazení
-		transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
-
-		transformer.transform(input, output);
 	}
 
 	private void add_kontrola(String nazev, Node sip, SipInfo sipPack) {
@@ -173,7 +178,7 @@ public class XmlReportBuilder {
 	
 	private Element addKontrolaNode(VysledekKontroly kontrola, Node parent)
 	{
-		Element elem = xml_parsed.createElement("typ");
+        Element elem = document.createElement("typ");
 		
 		elem.setAttribute("nazev", kontrola.getKontrola_nazev());
 		elem.setAttribute("stav", kontrola.getStavKontroly().toString());
@@ -465,7 +470,7 @@ public class XmlReportBuilder {
 	}
 
 	private Node add_node_typ(String nazev, boolean provedena, boolean stav, Node sip) {
-		Node typ = sip.appendChild(xml_parsed.createElement("typ"));
+        Node typ = sip.appendChild(document.createElement("typ"));
 		((Element) typ).setAttribute("nazev", nazev);
 		((Element) typ).setAttribute("provedena", String.valueOf(provedena));
 		((Element) typ).setAttribute("stav", String.valueOf(stav));
@@ -474,7 +479,7 @@ public class XmlReportBuilder {
 
 	private void add_node_pravidlo(Node parent, String id, String text, String chyba, String popisChyby,
 			String mistoChyby, String zdroj, boolean stav) {
-		Element pravidloElem = xml_parsed.createElement("pravidlo");
+        Element pravidloElem = document.createElement("pravidlo");
 		pravidloElem.setAttribute("id", id.replaceAll("\"", "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;"));
 		pravidloElem.setAttribute("text",
 				text.replaceAll("\"", "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;"));
@@ -500,14 +505,14 @@ public class XmlReportBuilder {
 	}
 
 	private void add_node_info() {
-		Node info = kontrolaSip_root.appendChild(xml_parsed.createElement("info"));
+        Node info = rootElement.appendChild(document.createElement("info"));
 		((Element) info).setAttribute("pocetChyb", "0");
 		((Element) info).setAttribute("dobaKontroly", "hh:mm:ss");
 		((Element) info).setAttribute("dalsi", "další podobné informace");
 	}
 
-	private Node add_node_sip(SipInfo sip) {
-		Element elemNodeSip = xml_parsed.createElement("sip");
+    public Element addSipNode(SipInfo sip) {
+        Element elemNodeSip = document.createElement("sip");
 		String metsObjId = sip.getMetsObjId();
 		if(StringUtils.isNotEmpty(metsObjId)) {
 			elemNodeSip.setAttribute("sipID", metsObjId);
@@ -519,13 +524,13 @@ public class XmlReportBuilder {
 		}
 		elemNodeSip.setAttribute("nazevSouboru", g);
 		
-		Node nodeSIP = kontrolaSip_root.appendChild(elemNodeSip);		
+        Node nodeSIP = rootElement.appendChild(elemNodeSip);
 		nodeSIP.setTextContent("");
-		return nodeSIP;
+        return elemNodeSip;
 	}
 
 	private void add_node_zakladniEntity(Node sip, SipInfo sipPackage) {
-		Node zaEn = sip.appendChild(xml_parsed.createElement("zakladniEntity"));
+        Node zaEn = sip.appendChild(document.createElement("zakladniEntity"));
 		((Element) zaEn).setAttribute("pocet", "0");
 		// cyklus
 		add_node_zakladni_entita(zaEn);
@@ -533,7 +538,7 @@ public class XmlReportBuilder {
 	}
 
 	private void add_node_zakladni_entita(Node parent) {
-		Node entita = parent.appendChild(xml_parsed.createElement("zakladniEntita"));
+        Node entita = parent.appendChild(document.createElement("zakladniEntita"));
 		((Element) entita).setAttribute("typ", "spis");
 		((Element) entita).setAttribute("zdroj", "erms");
 		((Element) entita).setAttribute("identifikator", "MSLSSSSS02");
@@ -569,4 +574,36 @@ public class XmlReportBuilder {
 		return file;
 	}
 
+    public void save(Path outputPath) throws Exception {
+        if (outputPath == null) {
+            Result output = new StreamResult(System.out);
+            saveTransformed(output);
+
+        } else {
+            try (OutputStream os = Files.newOutputStream(outputPath)) {
+                Result output = new StreamResult(os);
+                saveTransformed(output);
+            }
+        }
+        
+    }
+
+    private void saveTransformed(Result output) throws TransformerException, TransformerFactoryConfigurationError {
+        Transformer transformer = TransformerFactory.newInstance().newTransformer();
+
+        Source input = new DOMSource(document);
+        document.setXmlStandalone(true); // když je false tak se s tím pak nedá hýbat a je to default (standalone s
+                                          // eezobrazí vždy).
+        transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+        transformer.setOutputProperty("http://www.oracle.com/xml/is-standalone", "yes"); // dává novou řádku po
+                                                                                        // deklaraci - takže root je
+                                                                                        // na nové řádce
+                                                                                        //        transformer.setOutputProperty(OutputKeys.STANDALONE, "yes");
+        // odsazení
+        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+        transformer.transform(input, output);
+
+    }
 }

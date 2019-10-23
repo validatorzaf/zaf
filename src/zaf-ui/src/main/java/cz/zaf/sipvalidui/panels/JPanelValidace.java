@@ -6,6 +6,7 @@
 package cz.zaf.sipvalidui.panels;
 
 import java.awt.Dimension;
+
 import javax.swing.ListSelectionModel;
 
 
@@ -19,13 +20,14 @@ public class JPanelValidace extends javax.swing.JPanel {
     /**
      * Creates new form JPanelvalidace
      */
-    public JPanelValidace() {
+    public JPanelValidace(NahraneSoubory nahraneSoubory) {
         initComponents();
         jSplitPane1.getLeftComponent().setPreferredSize(new Dimension(150, 200));
         jListObsahovaNA.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         ListSelectionModel listSelection3 = jListObsahovaNA.getSelectionModel();
         
-        listSelection3.addListSelectionListener(new EventListenerJpanelValidaceListObsahovaNa(jTextAreaPopisPravidel, jListObsahovaNA));
+        listSelection3.addListSelectionListener(new EventListenerJpanelValidaceListObsahovaNa(jTextAreaPopisPravidel,
+                jListObsahovaNA, nahraneSoubory));
         jCheckBoxObsahovaNa.setSelected(true);
         
     }

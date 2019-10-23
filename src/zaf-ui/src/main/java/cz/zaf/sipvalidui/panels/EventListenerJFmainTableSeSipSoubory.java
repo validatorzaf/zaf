@@ -19,6 +19,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import cz.zaf.sipvalidator.sip.SipInfo;
+import cz.zaf.sipvalidator.sip.SipLoader;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.VysledekKontroly;
 
@@ -64,7 +65,8 @@ public class EventListenerJFmainTableSeSipSoubory implements ListSelectionListen
         jTextAreaPopisPravidel.setText("");
         int selectedRow = jTable1.getSelectedRow();
         if(selectedRow != -1){  
-            SipInfo sf = JFmain.seznamNahranychSouboru.get(selectedRow);
+            SipLoader sl = mainFrame.getNahraneSoubory().get(selectedRow);
+            SipInfo sf = sl.getSip();
             VysledekKontroly obsahova = sf.getUrovenKontroly(TypUrovenKontroly.OBSAHOVA);
             if(obsahova!=null && obsahova.isProvedena()){ 
                 chboxObsahovaNa.setEnabled(true);
@@ -101,7 +103,7 @@ public class EventListenerJFmainTableSeSipSoubory implements ListSelectionListen
             vypisKontrolaObsahova(sf); // obsahova
         }
         jTextAreaPredKontrola.setText(
-            "* CESTA K METS XML: " + sf.getCesta_mets().toString() + "\n" + "\n"+
+                                      "* CESTA K METS XML: " + sf.getCestaMets().toString() + "\n" + "\n" +
             "* CESTA K XML PRO WEB: " +  JFmain.cesta_xml_web +    
             vypis
         );

@@ -5,15 +5,18 @@
  */
 package cz.zaf.sipvalidator.nsesss2017;
 
+import static org.w3c.dom.Node.ELEMENT_NODE;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
-import static org.w3c.dom.Node.ELEMENT_NODE;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.Helper;
@@ -472,7 +475,8 @@ public class ValuesGetter {
         return false;
     }
     
-    public static Node getNodeByValueOfAtributFromSpecificList(ArrayList<Node> nodeList, String atributName, String atributValue){
+    public static Node getNodeByValueOfAtributFromSpecificList(List<Node> nodeList, String atributName,
+                                                               String atributValue) {
         for(int i = 0; i < nodeList.size(); i++){
             Node n = nodeList.get(i);
             boolean find = hasAttributValue(n, atributName, atributValue);
@@ -483,7 +487,8 @@ public class ValuesGetter {
         return null;
     }
     
-    public static Node getNodeByValueOfAtributFromSpecificList_andRemove(ArrayList<Node> nodeList, String atributName, String atributValue){
+    public static Node getNodeByValueOfAtributFromSpecificList_andRemove(List<Node> nodeList, String atributName,
+                                                                         String atributValue) {
         for(int i = 0; i < nodeList.size(); i++){
             Node n = nodeList.get(i);
             boolean find = hasAttributValue(n, atributName, atributValue);
@@ -495,7 +500,9 @@ public class ValuesGetter {
         return null;
     }
     
-    public static ArrayList<Node> getArrayListOfNodesByValueOfAtributFromSpecificArrayList(ArrayList<Node> nodeList, String atributName, String atributValue){
+    public static ArrayList<Node> getArrayListOfNodesByValueOfAtributFromSpecificArrayList(List<Node> nodeList,
+                                                                                           String atributName,
+                                                                                           String atributValue) {
         if(nodeList == null) return null;
         ArrayList<Node> list = new ArrayList<>();
         for(int i = 0; i < nodeList.size(); i++){

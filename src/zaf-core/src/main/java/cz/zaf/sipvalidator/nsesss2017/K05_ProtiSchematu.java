@@ -9,18 +9,19 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+
 import javax.xml.XMLConstants;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
+
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-import cz.zaf.sipvalidator.sip.KontrolaContext;
-import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.PravidloKontroly;
+import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.UrovenKontroly;
@@ -31,7 +32,7 @@ import cz.zaf.sipvalidator.sip.VysledekKontroly;
  * @author m000xz006159
  */
 public class K05_ProtiSchematu
-	implements UrovenKontroly
+        implements UrovenKontroly<KontrolaNsess2017Context>
 {
 	static final public String NAME = "kontrola proti schématu XSD"; 
 			
@@ -43,7 +44,7 @@ public class K05_ProtiSchematu
     private void ValidaceVResource(String resource, SipInfo file) throws MalformedURLException, SAXException, IOException {
         URL schemaFile = K05_ProtiSchematu.class.getResource(resource); // tady musí být šablona (např sip.xsd)
         //URL schemaFile = new File("d:\\5.xsd").toURI().toURL(); //cesta natvrdo 
-        File f = file.getCesta_mets().toFile();
+        File f = file.getCestaMets().toFile();
         Source xmlFile = new StreamSource(f);
         SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         Schema schema = schemaFactory.newSchema(schemaFile);
@@ -55,7 +56,7 @@ public class K05_ProtiSchematu
     }
 
 	@Override
-	public void provedKontrolu(KontrolaContext ctx) throws Exception {
+    public void provedKontrolu(KontrolaNsess2017Context ctx) throws Exception {
 		boolean isFailed = ctx.isFailed();		
 
         k = new VysledekKontroly(

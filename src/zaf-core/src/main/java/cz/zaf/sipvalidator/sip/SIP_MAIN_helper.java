@@ -28,21 +28,6 @@ public class SIP_MAIN_helper {
         
         return " - ";
     }
-    
-    public static void set_SIP_type(String nodename, SipInfo sip){
-        switch(nodename){
-            case "nsesss:Dokument": 
-            sip.setType(0);
-            break;
-            case "nsesss:Spis": 
-            sip.setType(1);
-            break;
-            case "nsesss:Dil": 
-            sip.setType(2);
-            break;
-        }
-    }
-    
         
     public static String getCesta_komponenty(SipInfo sip){
         return sip.getCesta() + File.separator + "komponenty";  
@@ -54,7 +39,7 @@ public class SIP_MAIN_helper {
     }
     
     public static boolean ma_metsxml(SipInfo sip){
-        File m = sip.getCesta_mets().toFile();
+        File m = sip.getCestaMets().toFile();
         return m.exists();
     }
     

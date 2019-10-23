@@ -23,6 +23,11 @@ import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+/**
+ * Nacteni XML, vytvoreni DOM a obohaceni o pozici
+ * 
+ *
+ */
 public class PositionalXMLReader {
     final static String LINE_NUMBER_KEY_NAME = "lineNumber";
 

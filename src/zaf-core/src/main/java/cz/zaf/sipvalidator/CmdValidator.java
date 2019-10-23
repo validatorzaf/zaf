@@ -1,8 +1,14 @@
 package cz.zaf.sipvalidator;
 
-import org.apache.commons.lang.NotImplementedException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
+import org.apache.commons.lang3.StringUtils;
+
+import cz.zaf.sipvalidator.nsesss2017.SipValidator;
 import cz.zaf.sipvalidator.sip.SipLoader;
+import cz.zaf.sipvalidator.sip.XmlReportBuilder;
 
 /**
  * Command line validator
@@ -30,6 +36,7 @@ public class CmdValidator {
         try {
             cmdValidator.validate();
         } catch (Exception e) {
+            e.printStackTrace();
             System.err.println("Failed to run: " + e.toString());
             System.exit(ERR_FAILED);
             return;
@@ -44,26 +51,17 @@ public class CmdValidator {
         }
     }
 
-    private void validateSip() {
+    private void validateSip() throws Exception {
         // nahrani sipu
         SipLoader sipLoader = new SipLoader(cmdParams.getInputPath(),
                 cmdParams.getWorkDir());
 
+        SipValidator sipValidator = new SipValidator(cmdParams.getProfilValidace());
+        sipValidator.setHrozba(cmdParams.getHrozba());
+        sipValidator.validate(sipLoader);
+        
+        writeResult(cmdParams.getOutput(), sipValidator);
         /*
-        SipInfo sip = sipLoader.getSip();
-        
-        ProfilValidace profilValidace = ProfilyValidace.SKARTACE_UPLNY;
-        
-        List<UrovenKontroly> kontroly = SipValidator.pripravKontroly(true, null, profilValidace.getObsahoveKontroly());
-        RozparsovaniSipSouboru rss = new RozparsovaniSipSouboru(sip);
-        
-        // provedeni kontrol
-        KontrolaContext ctx = new KontrolaContext(sip);
-        for (UrovenKontroly kontrola : kontroly) {
-            kontrola.provedKontrolu(ctx);
-        }
-        
-        
         // print result
         XmlReportBuilder xmlBuilder = new XmlReportBuilder(Collections.singletonList(sip),
                 null, sip.getName(), profilValidace, "",
@@ -71,8 +69,25 @@ public class CmdValidator {
                 */
     }
 
+    private void writeResult(String output, SipValidator sipValidator) throws Exception {
+        XmlReportBuilder xmlBuilder = new XmlReportBuilder(null, null, null, cmdParams.getProfilValidace().getNazev());
+
+        sipValidator.writeResult(xmlBuilder);
+
+        if (StringUtils.isNoneBlank(cmdParams.getOutput())) {
+            Path outputPath = Paths.get(cmdParams.getOutput());
+            if (Files.isDirectory(outputPath)) {
+                // create file name
+            } else {
+                xmlBuilder.save(outputPath);
+            }
+        } else {
+            xmlBuilder.save(null);
+        }
+
+    }
+
     private void validateDavka() {
-        throw new NotImplementedException();
     }
 
 }
