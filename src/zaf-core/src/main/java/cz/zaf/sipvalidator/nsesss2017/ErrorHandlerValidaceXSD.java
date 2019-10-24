@@ -18,7 +18,7 @@ import cz.zaf.sipvalidator.sip.VysledekKontroly;
  */
 public class ErrorHandlerValidaceXSD implements  ErrorHandler{
     VysledekKontroly k;
-    public static boolean nalezenaChyba = false;
+    public boolean nalezenaChyba = false;
 
     public ErrorHandlerValidaceXSD(VysledekKontroly k) {
         this.k = k;
@@ -96,8 +96,12 @@ public class ErrorHandlerValidaceXSD implements  ErrorHandler{
             textChyby += " " +celaChybovaHlaska;
         }
 
-        PravidloKontroly p = new PravidloKontroly(0, "val", false, textChyby, 0, mistoChyby);
+        PravidloKontroly p = new PravidloKontroly("val", false, null, textChyby, null, mistoChyby, null);
         k.add(p);
+    }
+
+    public boolean getNalezenaChyba() {
+        return nalezenaChyba;
     }
     
     

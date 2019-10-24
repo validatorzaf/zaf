@@ -6,102 +6,92 @@
 package cz.zaf.sipvalidator.nsesss2017;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
+import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-import com.sun.org.apache.xerces.internal.impl.io.MalformedByteSequenceException;
-
 import cz.zaf.sipvalidator.sip.PravidloKontroly;
-import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
-import cz.zaf.sipvalidator.sip.UrovenKontroly;
-import cz.zaf.sipvalidator.sip.VysledekKontroly;
 
 /**
  *
  * @author m000xz006159
  */
 public class K03_Spravnosti
-        implements UrovenKontroly<KontrolaNsess2017Context>
-{
-	
-	static final public String NAME = "kontrola správnosti xml"; 
+        extends KontrolaBase {
+
+    static final public String NAME = "kontrola správnosti xml";
+
+    static final public String WF1 = "wf1";
 
     public K03_Spravnosti() {
     }
-    
-    private void chybaMalFormedURL(MalformedURLException exception, VysledekKontroly k) throws MalformedURLException {
-        String s1 = "Soubor nezpracován. " + exception.getLocalizedMessage() + ". Nepovolené znaky v názvu souboru, nebo na cestě k souboru.";
-        PravidloKontroly p = new PravidloKontroly(0, "wf1", false, s1, 0, "");
-        k.add(p);
+
+    @Override
+    public void provedKontrolu() {
+
+        SipInfo file = ctx.getSip();
+
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setValidating(false);
+        factory.setNamespaceAware(true);
+        // the "parse" method also validates XML, will throw an exception if
+        // misformatted
+        boolean stav = false;
+        String detailChyby = null;
+        try {
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            File f = file.getCestaMets().toFile(); // kvůli diakritice aby pak použil file a ne
+
+            // testovaci rozparsovani
+            builder.parse(f);
+
+            stav = true;
+        } catch (MalformedURLException ex) {
+            // Logger.getLogger(K03_Spravnosti.class.getName()).log(Level.SEVERE, null, ex);
+            detailChyby = "Soubor nezpracován. " + ex.getLocalizedMessage()
+                + ". Nepovolené znaky v názvu souboru, nebo na cestě k souboru.";
+        } catch (SAXParseException exception) {
+            detailChyby = exception.getLocalizedMessage();
+        }
+        catch (SAXException e) {
+            detailChyby = e.getLocalizedMessage();
+        } catch (IOException e) {
+            detailChyby = e.getLocalizedMessage();
+        } catch (ParserConfigurationException e) {
+            detailChyby = e.getLocalizedMessage();
+        }
+        
+        String popisChybyObecny = null;
+        if(!stav) {
+            popisChybyObecny = "Datový balíček SIP nedodržuje syntaxi jazyka XML."; // popis chyby
+        }
+
+        PravidloKontroly p = new PravidloKontroly(WF1, stav,
+                "Soubor je well-formed.",
+                detailChyby,
+                popisChybyObecny,
+                null,
+                "Požadavek 11.2.2 NSESSS." // zdroj
+                );
+        vysledekKontroly.add(p);
     }
-    
-    private void chybaSaxParse(SAXParseException exception, VysledekKontroly k) throws SAXParseException {
-        String s1 = exception.getLocalizedMessage();
-        PravidloKontroly p = new PravidloKontroly(0, "wf1", false, s1, 0, "");
-        k.add(p);        
-    }
-    
-    private void chybaMalFormedByteSequence(MalformedByteSequenceException exception, VysledekKontroly k){
-        String s1 = exception.getLocalizedMessage();
-        PravidloKontroly p = new PravidloKontroly(0, "wf1", false, s1, 0, "");
-        k.add(p);
+
+    @Override
+    public String getNazev() {
+        return NAME;
     }
 
-	@Override
-    public void provedKontrolu(KontrolaNsess2017Context ctx) throws Exception {
-		boolean isFailed = ctx.isFailed();
-        VysledekKontroly k = new VysledekKontroly(
-        		TypUrovenKontroly.SPRAVNOSTI,
-        		NAME);
-        ctx.pridejKontrolu(k);
-		if(isFailed) {
-			return;
-		}
+    @Override
+    TypUrovenKontroly getUrovenKontroly() {
+        return TypUrovenKontroly.SPRAVNOSTI;
+    }
 
-		SipInfo file = ctx.getSip();
-		if (!SIP_MAIN_helper.ma_metsxml(file)) {
-			PravidloKontroly p = new PravidloKontroly(0, "wf1", false,
-					"SIP balíček neobsahoval soubor mets.xml.", 0, "");
-			k.add(p);
-		} else {
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			factory.setValidating(false);
-			factory.setNamespaceAware(true);
-			DocumentBuilder builder = factory.newDocumentBuilder();
-			// the "parse" method also validates XML, will throw an exception if
-			// misformatted
-			try {
-                File f = file.getCestaMets().toFile(); // kvůli diakritice aby pak použil file a ne
-																		// string
-				org.w3c.dom.Document document = builder.parse(f);
-				PravidloKontroly p = new PravidloKontroly(0, "wf1", true, "", 0, "");
-				k.add(p);
-				document = null;
-
-			} catch (MalformedURLException ex) {
-				// Logger.getLogger(K03_Spravnosti.class.getName()).log(Level.SEVERE, null, ex);
-				chybaMalFormedURL(ex, k);
-			} catch (SAXParseException exception) {
-				chybaSaxParse(exception, k);
-			}
-
-			catch (MalformedByteSequenceException exception) {
-				chybaMalFormedByteSequence(exception, k);
-			}
-		}
-	}
-
-	@Override
-	public String getNazev() {
-		return NAME;
-	}
-    
-   
-    
 }

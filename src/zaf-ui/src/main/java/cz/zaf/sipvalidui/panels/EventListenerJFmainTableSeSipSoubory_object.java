@@ -5,30 +5,34 @@
  */
 package cz.zaf.sipvalidui.panels;
 
+import cz.zaf.sipvalidator.sip.PravidloKontroly;
+
 /**
  *
  * @author m000xz006159
  */
 public class EventListenerJFmainTableSeSipSoubory_object {
-    int index;
-    String id;
-    boolean splneno;
+    final PravidloKontroly pravidlo;
 
-    public EventListenerJFmainTableSeSipSoubory_object(int index, String id, boolean splneno) {
-        this.index = index;
-        this.id = id;
-        this.splneno = splneno;
+    public EventListenerJFmainTableSeSipSoubory_object(final PravidloKontroly pravidlo) {
+        this.pravidlo = pravidlo;
     }
-    
-    
+
     @Override
     public String toString() {
-        String pravidlo, okNo;
-        if(splneno) okNo = "OK";
-        else okNo = "NO";
+        StringBuilder sb = new StringBuilder();
+        sb.append(" ");
+        if (pravidlo.getStav()) {
+            sb.append("OK");
+        } else {
+            sb.append("NO");
+        }
+        sb.append(" ").append(pravidlo.getId()).append(". ").append("PRAVIDLO");
         
-        pravidlo = " " + okNo + " " + id + ". " + "PRAVIDLO";
+        return sb.toString();
+    }
 
+    public PravidloKontroly getPravidlo() {
         return pravidlo;
     }
 }

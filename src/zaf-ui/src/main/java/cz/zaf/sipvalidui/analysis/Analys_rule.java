@@ -12,7 +12,6 @@ import java.util.ArrayList;
  * @author m000xz006159
  */
 public class Analys_rule {
-    int index;
     String id;
     int pocet_chybnych;
     ArrayList<Integer> seznam_chybnych;

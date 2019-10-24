@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import org.apache.commons.lang3.StringUtils;
 
 import cz.zaf.sipvalidator.nsesss2017.SipValidator;
+import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipLoader;
 import cz.zaf.sipvalidator.sip.XmlReportBuilder;
 
@@ -60,7 +61,7 @@ public class CmdValidator {
         sipValidator.setHrozba(cmdParams.getHrozba());
         sipValidator.validate(sipLoader);
         
-        writeResult(cmdParams.getOutput(), sipValidator);
+        writeResult(cmdParams.getOutput(), sipLoader.getSip());
         /*
         // print result
         XmlReportBuilder xmlBuilder = new XmlReportBuilder(Collections.singletonList(sip),
@@ -69,10 +70,10 @@ public class CmdValidator {
                 */
     }
 
-    private void writeResult(String output, SipValidator sipValidator) throws Exception {
+    private void writeResult(String output, SipInfo sipInfo) throws Exception {
         XmlReportBuilder xmlBuilder = new XmlReportBuilder(null, null, null, cmdParams.getProfilValidace().getNazev());
 
-        sipValidator.writeResult(xmlBuilder);
+        xmlBuilder.addSipNode(sipInfo);
 
         if (StringUtils.isNoneBlank(cmdParams.getOutput())) {
             Path outputPath = Paths.get(cmdParams.getOutput());

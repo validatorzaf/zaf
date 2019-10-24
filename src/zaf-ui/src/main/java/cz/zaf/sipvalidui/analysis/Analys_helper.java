@@ -14,23 +14,6 @@ import java.util.Collections;
  */
 public class Analys_helper {
     
-    public static boolean equals_rule_with_index(ArrayList<Analys_rule> analys_obsahova, int index){
-        for(Analys_rule ar : analys_obsahova){
-            if(ar.index == index){
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    public static Analys_rule get_rule_with_index(ArrayList<Analys_rule> analys_obsahova, int index){
-        for(Analys_rule ar : analys_obsahova){
-            if(ar.index == index){
-                return ar;
-            }
-        }
-        return null;
-    }
     // musí to výt od největšího po nejměnšího
     public static ArrayList<Analys_rule> sort_reverse(ArrayList<Analys_rule> analys_obsahova){
         ArrayList<Analys_rule> newlist = new ArrayList<>();

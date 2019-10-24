@@ -7,7 +7,6 @@ import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipLoader;
 import cz.zaf.sipvalidator.sip.UrovenKontroly;
-import cz.zaf.sipvalidator.sip.XmlReportBuilder;
 
 /**
  * SIP validator dle NSESSS 2017
@@ -23,6 +22,7 @@ public class SipValidator {
     K00_SkodlivehoKodu ksk;
 
     final List<UrovenKontroly<KontrolaNsess2017Context>> kontroly;
+    private KontrolaNsess2017Context ctx;
 
     public SipValidator(final ProfilValidace profilValidace) {
         this.profilValidace = profilValidace;
@@ -82,7 +82,7 @@ public class SipValidator {
 
         try {
             // provedeni kontrol
-            KontrolaNsess2017Context ctx = new KontrolaNsess2017Context(metsParser, sip);
+            ctx = new KontrolaNsess2017Context(metsParser, sip);
             for (UrovenKontroly<KontrolaNsess2017Context> kontrola : kontroly) {
                 kontrola.provedKontrolu(ctx);
             }
@@ -90,16 +90,5 @@ public class SipValidator {
             //TODO: odstranit..
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Zapsani aktualniho SIPu do vystupu
-     * 
-     * @param xmlBuilder
-     */
-    public void writeResult(XmlReportBuilder xmlBuilder) {
-        SipInfo sipInfo = sipLoader.getSip();
-        xmlBuilder.addSipNode(sipInfo);
-
     }
 }

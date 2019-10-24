@@ -38,6 +38,7 @@ public class SipInfo{
 	}
 	
 	final public static String METS_XML = "mets.xml"; 
+    final public static String KOMPONENTY = "komponenty";
 
 	/**
 	 * ID sipu

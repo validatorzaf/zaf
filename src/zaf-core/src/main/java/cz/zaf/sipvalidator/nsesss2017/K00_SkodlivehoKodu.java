@@ -10,16 +10,14 @@ import org.apache.commons.lang3.Validate;
 
 import cz.zaf.sipvalidator.sip.PravidloKontroly;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
-import cz.zaf.sipvalidator.sip.UrovenKontroly;
-import cz.zaf.sipvalidator.sip.VysledekKontroly;
 
 
 /**
- *
- * @author standa
+ * Kontrola skodliveho kodu
+ * 
  */
 public class K00_SkodlivehoKodu
-        implements UrovenKontroly<KontrolaNsess2017Context>
+        extends KontrolaBase
 {
 	
 	static public final String VIR1 = "vir1";
@@ -28,13 +26,6 @@ public class K00_SkodlivehoKodu
     private boolean kontrolaOk = true;
 	private String errorDescr;
 
-	// Kontrola je provedena jiz pred volanim validatoru
-	// V konstruktoru je jen predna vysledek kontroly
-	/**
-	 * 
-	 * @param stav
-	 * @param error
-	 */
     public K00_SkodlivehoKodu() {
     }
 
@@ -58,15 +49,14 @@ public class K00_SkodlivehoKodu
 	}
 
 	@Override
-    public void provedKontrolu(KontrolaNsess2017Context ctx) {
-		VysledekKontroly k = new VysledekKontroly(TypUrovenKontroly.SKODLIVY_KOD,
-				NAME);
-		ctx.pridejKontrolu(k);
-		
+    public void provedKontrolu() {
 		String descr;
+        String textPravidla;
 		if (kontrolaOk) {
 			descr = "Datový balíček SIP neobsahuje hrozbu.";
+            textPravidla = "Datový balíček SIP neobsahuje hrozbu.";
 		} else {
+            textPravidla = "Datový balíček SIP obsahuje hrozbu.";
 			if (errorDescr == null) {
 				descr = "Chybové hlášení nebylo předáno.";
 			} else {
@@ -74,12 +64,21 @@ public class K00_SkodlivehoKodu
 			}
 		}
 
-		PravidloKontroly p = new PravidloKontroly(0, VIR1, kontrolaOk, descr, 0, "");
-		k.add(p);		
+        String zdroj = "§ 21 odst. 6 vyhlášky č. 259/2012 Sb.";
+        PravidloKontroly p = new PravidloKontroly(VIR1, kontrolaOk,
+                textPravidla,
+                descr, null, null,
+                zdroj);
+        vysledekKontroly.add(p);
 	}
 
 	@Override
 	public String getNazev() {
 		return NAME;
 	}
+
+    @Override
+    TypUrovenKontroly getUrovenKontroly() {
+        return TypUrovenKontroly.SKODLIVY_KOD;
+    }
 }

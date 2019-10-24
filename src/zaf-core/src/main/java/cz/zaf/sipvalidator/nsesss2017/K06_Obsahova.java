@@ -37,23 +37,22 @@ import cz.zaf.sipvalidator.sip.PravidloKontroly;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
-import cz.zaf.sipvalidator.sip.UrovenKontroly;
-import cz.zaf.sipvalidator.sip.VysledekKontroly;
 
 
 /**
- *
- * @author m000xz006159
+ * Obsahova kontrola
+ * 
  */
 public class K06_Obsahova
-        implements UrovenKontroly<KontrolaNsess2017Context>
+        extends KontrolaBase
 {
 	
 	static final public String NAME = "kontrola obsahu"; 
 			
 	
 	private String chyba_neupresneno = "Neupřesněno.";
-	private String popisChyby = "Pravidlo nesplněno.", misto_chyby = "";
+    private String popisChyby = "Pravidlo nesplněno.";
+    private String misto_chyby = "";
 	SipInfo sipSoubor;
 	private int[] seznamPravidel;
 
@@ -3470,7 +3469,7 @@ public class K06_Obsahova
 
 
 	@Override
-    public void provedKontrolu(KontrolaNsess2017Context ctx) throws Exception {
+    public void provedKontrolu() {
         // Nastaveni promenych pro kontroly
         // bude nutne casem prepracovat
         this.metsParser = ctx.getMetsParser();
@@ -3486,36 +3485,38 @@ public class K06_Obsahova
         this.urceneCasoveObdobi = metsParser.getUrceneCasoveObdobi();
         this.identifikatory = metsParser.getIdentifikatory();
         this.plneurcenySpisovyZnak = metsParser.getPlneurcenySpisovyZnak();
-
-		boolean isFailed = ctx.isFailed();		
-        VysledekKontroly k = new VysledekKontroly(
-        		TypUrovenKontroly.OBSAHOVA,
-        		NAME);
-        ctx.pridejKontrolu(k);
-        if(isFailed) {
-        	return;
-        }
 		
 		this.sipSoubor = ctx.getSip();
 
 		for (int i = 0; i < seznamPravidel.length; i++) {
-//            long start = System.currentTimeMillis();    
 			int j = seznamPravidel[i];
-			try {
-				boolean jePravidloSplneno = udelejPravidloObsahovaSpolecna2018(j);
-				if (!jePravidloSplneno) {
-					PravidloKontroly p = new PravidloKontroly(j, getIDpravidla(j), false,
-							popisChyby, j, misto_chyby);
-					k.add(p);
-				}
-			} catch (NullPointerException ex) {
-				PravidloKontroly p = new PravidloKontroly(j, getIDpravidla(j), false,
-						"Nenalezeny základní elementy schématu mets a nsesss.", j, "Neupřesněno.");
-				k.add(p);
-			}
-//                long konec = System.currentTimeMillis();
-//                Date d = Helper.getDuration(start, konec);
-//                System.out.println("    " +" p." + getIDpravidla(j) + "." + "   "  + "Doba: " + d);
+
+            popisChyby = null;
+            misto_chyby = null;
+
+            // zavolani pravidla
+            boolean jePravidloSplneno = false;
+            
+            try {
+                jePravidloSplneno =  udelejPravidloObsahovaSpolecna2018(j);
+            } catch (IOException e) {
+                popisChyby = "IOException: " + e.getLocalizedMessage();
+            } catch (ParseException e) {
+                popisChyby = "ParseException: " + e.getLocalizedMessage();
+            }
+
+            String popisObecnyChyby = null;
+            if (!jePravidloSplneno) {
+                popisObecnyChyby = ZpravyObsahoveKontroly.get_popis_Obsahova(j);
+            }
+            PravidloKontroly p = new PravidloKontroly(getIDpravidla(j),
+                    jePravidloSplneno,
+                    ZpravyObsahoveKontroly.get_text_Obsahova(j),
+                    popisChyby,
+                    popisObecnyChyby,
+                    misto_chyby,
+                    ZpravyObsahoveKontroly.get_zdroje_Obsahova(j));
+            vysledekKontroly.add(p);
 		}
 		
 	}
@@ -3525,4 +3526,8 @@ public class K06_Obsahova
 		return NAME;
 	}
 
+    @Override
+    TypUrovenKontroly getUrovenKontroly() {
+        return TypUrovenKontroly.OBSAHOVA;
+    }
 }

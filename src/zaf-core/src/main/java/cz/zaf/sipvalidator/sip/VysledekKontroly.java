@@ -6,6 +6,7 @@
 package cz.zaf.sipvalidator.sip;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.lang3.Validate;
 
@@ -55,15 +56,6 @@ public class VysledekKontroly {
         this.stavKontroly = stavKontroly;
     }
 
-	public PravidloKontroly getPravidlo(int indexPravidla) {
-		for(PravidloKontroly p: pravidla) {
-			if(p.getIndex()==indexPravidla) {
-				return p;
-			}
-		}
-		return null;
-	}
-
 	public void add(PravidloKontroly p) {
 		pravidla.add(p);
 		// nastaveni stavu dle vysledku pravidla
@@ -107,5 +99,9 @@ public class VysledekKontroly {
 	public boolean isOk() {
 		return stavKontroly==StavKontroly.OK;
 	}
+
+    public List<PravidloKontroly> getPravidla() {
+        return pravidla;
+    }
     
 }

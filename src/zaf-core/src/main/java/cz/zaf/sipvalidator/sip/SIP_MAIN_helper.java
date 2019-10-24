@@ -38,41 +38,6 @@ public class SIP_MAIN_helper {
         return k.exists();
     }
     
-    public static boolean ma_metsxml(SipInfo sip){
-        File m = sip.getCestaMets().toFile();
-        return m.exists();
-    }
-    
-    public static boolean ma_pouze_povolene_soubory(SipInfo sip){
-        
-        File[] f = sip.getCesta().toFile().listFiles();
-        if(f != null){
-            for(File s : f){
-                if(!(s.getName().toLowerCase().equals("komponenty") || s.getName().toLowerCase().equals(SipInfo.METS_XML))){
-                    return false;
-                }
-            }
-            return true;
-        }
-        return false;
-    }
-    
-    public static String get_vypisChyby_obsahova(SipInfo sip, int indexPravidla){
-    	PravidloKontroly pravidlo = sip.getSeznamKontrol().get(6).getPravidlo(indexPravidla);
-    	if(pravidlo!=null) {
-    		return pravidlo.getVypis_chyby();
-    	}
-        return "";
-    }
-    
-    public static String get_mistoChyby_obsahova(SipInfo sip, int indexPravidla){
-    	PravidloKontroly pravidlo = sip.getSeznamKontrol().get(6).getPravidlo(indexPravidla);
-    	if(pravidlo!=null) {
-    		return pravidlo.getMisto_chyby();
-    	}
-        return "";
-    }
-    
     public static String get_special_ida(int index_pravidla){
         String special_id = Integer.toString(index_pravidla);
 //        if(index_pravidla == 21) special_id = "59b";

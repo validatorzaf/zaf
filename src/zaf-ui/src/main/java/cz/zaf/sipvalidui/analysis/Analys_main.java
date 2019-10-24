@@ -6,7 +6,9 @@
 package cz.zaf.sipvalidui.analysis;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
+import cz.zaf.sipvalidator.sip.PravidloKontroly;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.StavKontroly;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
@@ -91,21 +93,25 @@ public final class Analys_main {
     
     private void analys_obsahova_set(int index){
         VysledekKontroly kontrola = nahraneSoubory.get(index).getSip().getUrovenKontroly(TypUrovenKontroly.OBSAHOVA);
+
         for(int i = 0; i < kontrola.size(); i++){
-            int index_rule = kontrola.get(i).getIndex();
-            if(!Analys_helper.equals_rule_with_index(analys_obsahova, index_rule)){
+            PravidloKontroly pravidlo = kontrola.get(i);
+            // zjisteni zda jiz existuje
+            Optional<Analys_rule> found = analys_obsahova.stream().filter(ao -> ao.id.equals(pravidlo.getId()))
+                    .findFirst();
+            if (found.isPresent()) {
+                found.get().pocet_chybnych++;
+                found.get().seznam_chybnych.add(index);
+            } else {
+                // pridani
                 Analys_rule arule = new Analys_rule();
-                arule.index = index_rule; 
-                arule.id = kontrola.get(i).getId();
+                arule.id = pravidlo.getId();
                 arule.pocet_chybnych = 1;
                 arule.seznam_chybnych = new ArrayList<>();
                 arule.seznam_chybnych.add(index);
                 analys_obsahova.add(arule);
             }
-            else{
-                Analys_helper.get_rule_with_index(analys_obsahova, index_rule).pocet_chybnych++;
-                Analys_helper.get_rule_with_index(analys_obsahova, index_rule).seznam_chybnych.add(index);
-            }
+
         }
     }
     

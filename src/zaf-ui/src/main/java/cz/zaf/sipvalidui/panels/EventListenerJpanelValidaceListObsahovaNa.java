@@ -11,8 +11,9 @@ import javax.swing.JTextArea;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
-import cz.zaf.sipvalidator.sip.SIP_MAIN_seznam;
+import org.apache.commons.lang3.StringUtils;
+
+import cz.zaf.sipvalidator.sip.PravidloKontroly;
 import cz.zaf.sipvalidator.sip.SipInfo;
 
 /**
@@ -56,18 +57,34 @@ public class EventListenerJpanelValidaceListObsahovaNa implements ListSelectionL
     }
 
     private String nastavTextPopisuPravidla(EventListenerJFmainTableSeSipSoubory_object selectedPravidlo){
-        String vraceny =    "Znění pravidla: " + SIP_MAIN_seznam.get_text_Obsahova(selectedPravidlo.index) + "\n" + "\n" +
-                            "Číslo pravidla: " + selectedPravidlo.id + ". Index pravidla: " + selectedPravidlo.index + ". Stav: " + selectedPravidlo.splneno;
-        if(!selectedPravidlo.splneno){
-            vraceny += "\n" + "\n" + "Popis chyby: " + SIP_MAIN_helper.get_vypisChyby_obsahova(sf, selectedPravidlo.index);
-            vraceny += "\n" + "\n" + "Popis obecný: " + SIP_MAIN_seznam.get_popis_Obsahova(selectedPravidlo.index);
-            vraceny += "\n" + "\n" + "Místo chyby: " + SIP_MAIN_helper.get_mistoChyby_obsahova(sf, selectedPravidlo.index);
-            vraceny += "\n" + "\n" + "Zdroj: " + SIP_MAIN_seznam.get_zdroje_Obsahova(selectedPravidlo.index);
+        PravidloKontroly pravidlo = selectedPravidlo.getPravidlo();
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Znění pravidla: ").append(pravidlo.getTextPravidla()).append("\n\n")
+                .append("Číslo pravidla: ").append(pravidlo.getId()).append(". Stav: ").append(pravidlo.getStav())
+                .append("\n\n");
+
+        if(!pravidlo.getStav()){
+            String vypisChyby = pravidlo.getVypis_chyby();
+            if(StringUtils.isNotEmpty(vypisChyby)) {
+                sb.append("Popis chyby: ").append(vypisChyby).append("\n\n");
+            }
+
+            String popisChyby = pravidlo.getPopisChybyObecny();
+            if (StringUtils.isNotEmpty(popisChyby)) {
+                sb.append("Popis obecný: ").append(popisChyby).append("\n\n");
+            }
+
+            String mistoChyby = pravidlo.getMisto_chyby();
+            if (StringUtils.isNotEmpty(mistoChyby)) {
+                sb.append("Místo chyby: ").append(mistoChyby).append("\n\n");
+            }
         }
-        else{
-            vraceny += "\n" + "\n" + "Zdroj: " + SIP_MAIN_seznam.get_zdroje_Obsahova(selectedPravidlo.index);
+        String zdroj = pravidlo.getZdroj();
+        if (StringUtils.isNotEmpty(zdroj)) {
+            sb.append("Zdroj: ").append(zdroj);
         }
-        return vraceny;
+        return sb.toString();
     }
     
 }

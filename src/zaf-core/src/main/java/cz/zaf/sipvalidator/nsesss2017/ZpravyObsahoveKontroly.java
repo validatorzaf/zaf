@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.zaf.sipvalidator.sip;
+package cz.zaf.sipvalidator.nsesss2017;
 
 /**
  *
  * @author m000xz006159
  */
-public class SIP_MAIN_seznam {
+public class ZpravyObsahoveKontroly {
     static String[] list_text_obsahova = {
     "Pravidlo neexistuje.",
     //1. - 4.
@@ -395,48 +395,4 @@ public class SIP_MAIN_seznam {
         return list_popis_obsahova[index];
     }
     
-    
-    static String[] list_dat_struktura = {
-        //0 prazdná hodnota při true
-        "",
-        //1 data1
-        "Datový balíček SIP je soubor v datovém formátu ZIP (jeho MIME Content-type je detekován jako application/zip) nebo složka.",
-        //2 data2
-        "Pokud je datový balíček SIP komprimován do souboru v datovém formátu ZIP, po rozbalení obsahuje právě jednu složku. Ta má stejný název jako je název souboru v datovém formátu ZIP.",
-        //3 data3
-        "Složka obsahuje právě jeden soubor pojmenovaný mets.xml nebo právě jeden soubor pojmenovaný mets.xml a složku pojmenovanou komponenty.",
-        //4
-        "Datový balíček SIP je chybně strukturován.", // data1
-        //5
-        "Uvedeno je chybně označení datového balíčku SIP.", //data2
-        //6 zdroj d1
-        "Požadavek 11.2.9 a 11.2.1 NSESSS.",    
-        //7 zdroj d2
-        "Požadavek 11.2.9 NSESSS.",    
-        //8 zdroj d3
-        "Požadavek 11.2.2, 11.2.3 a 11.2.8 NSESSS.",    
-        //9 data 3
-        "Uvedena jsou chybně metadata a komponenty (počítačové soubory) v datovém balíčku SIP."    
-    };
-    
-    static String[] list_text_jmProstory = {
-        "",
-        //1 text ns1
-        "Soubor obsahuje právě jeden kořenový element <mets:mets>.",
-        //2 text ns2
-        "Element <mets:mets> obsahuje atribut xsi:schemaLocation s hodnotou http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 TransakcniProtokolNavrh_verze1.7.xsd nebo s hodnotou http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 http://www.mvcr.cz/nsesss/v3/nsesss-TrP.xsd."
-    };
-    public static String get_text_JmProstory(int index){
-        if(index >= list_text_jmProstory.length || index < 0){
-            return "chybný index";
-        }
-        return list_text_jmProstory[index];
-    }
-    
-    public static String get_DatovaStruktura(int index){
-        if(index >= list_dat_struktura.length || index < 0){
-            return "chybný index";
-        }
-        return list_dat_struktura[index];
-    }
 }

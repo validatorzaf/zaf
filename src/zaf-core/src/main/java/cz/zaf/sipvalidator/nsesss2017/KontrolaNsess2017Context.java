@@ -1,5 +1,7 @@
 package cz.zaf.sipvalidator.nsesss2017;
 
+import java.io.File;
+
 import org.w3c.dom.Document;
 
 import cz.zaf.sipvalidator.sip.KontrolaContext;
@@ -21,4 +23,15 @@ public class KontrolaNsess2017Context extends KontrolaContext {
     Document getMainDocument() {
         return metsParser.getDocument();
     }
+
+    /**
+     * Kontrola existence mets.xml
+     * 
+     * @return
+     */
+    public boolean maMetsXml() {
+        File m = sip.getCestaMets().toFile();
+        return m.exists();
+    }
+
 }

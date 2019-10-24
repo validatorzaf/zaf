@@ -2,8 +2,6 @@ package cz.zaf.sipvalidator.sip;
 
 import java.util.ArrayList;
 
-import org.apache.commons.lang3.Validate;
-
 /**
  * Kontext provadene kontroly
  *
@@ -23,7 +21,7 @@ public class KontrolaContext {
 
 		sip.pridejKontrolu(k);		
 		
-	}
+    }
 
 	/**
 	 * Kontrola, zda doslo k selhani
