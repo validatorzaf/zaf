@@ -108,6 +108,7 @@ public class K06_Obsahova
     static final public String OBS52 = "obs52";
     static final public String OBS53 = "obs53";
     static final public String OBS54 = "obs54";
+    static final public String OBS54A = "obs54a";
     static final public String OBS55 = "obs55";
     static final public String OBS56 = "obs56";
     static final public String OBS57 = "obs57";
@@ -202,11 +203,14 @@ public class K06_Obsahova
     } 
     
     private String getIDpravidla(int j){
-        if(j == 32) return "93a";
-        if(j == 41) return "54a";
-        if(j == 42) return "61a";
+        if (j == 32)
+            return "obs93a";
+        if (j == 41)
+            return "obs54a";
+        if (j == 42)
+            return "obs61a";
         if (j == 43)
-            return "94a";
+            return "obs94a";
 
         return "obs" + Integer.toString(j);
     }

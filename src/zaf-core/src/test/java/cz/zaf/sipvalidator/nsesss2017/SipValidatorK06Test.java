@@ -1109,4 +1109,517 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
                        new String[] { K06_Obsahova.OBS49 },
                        new String[] {});
     }
+
+    @Test
+    void testK06_50_01() {
+        testPackageK06("50-chyba1", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS50 });
+    }
+
+    @Test
+    void testK06_50_02() {
+        testPackageK06("50-chyba2", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS50 });
+    }
+
+    @Test
+    void testK06_50_03() {
+        testPackageK06("50-chyba3", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS50 });
+    }
+
+    @Test
+    void testK06_50_OK01() {
+        testPackageK06("50-OK1", null,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] { K06_Obsahova.OBS50 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_50_OK02() {
+        testPackageK06("50-OK2", null,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] { K06_Obsahova.OBS50 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_50_OK03() {
+        testPackageK06("50-OK3", null,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] { K06_Obsahova.OBS50 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_51_01() {
+        testPackageK06("51-chyba", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS51 });
+    }
+
+    @Test
+    void testK06_51_OK01() {
+        testPackageK06("51-OK", null,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] { K06_Obsahova.OBS51 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_52_01() {
+        testPackageK06("52-chyba1", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS52 });
+    }
+
+    @Test
+    void testK06_52_02() {
+        testPackageK06("52-chyba2", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS52 });
+    }
+
+    @Test
+    void testK06_52_03() {
+        testPackageK06("52-chyba3", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS52 });
+    }
+
+    @Test
+    void testK06_52_04() {
+        testPackageK06("52-chyba4", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS52 });
+    }
+
+    @Test
+    void testK06_52_OK01() {
+        testPackageK06("52-OK1", null,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] { K06_Obsahova.OBS52 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_52_OK02() {
+        testPackageK06("52-OK2", null,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] { K06_Obsahova.OBS52 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_53_01() {
+        testPackageK06("53-chyba", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS53 });
+    }
+
+    @Test
+    void testK06_53_OK01() {
+        testPackageK06("53-OK", null,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] { K06_Obsahova.OBS53 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_54_01() {
+        testPackageK06("54-chyba1", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS54 });
+    }
+
+    @Test
+    void testK06_54_02() {
+        testPackageK06("54-chyba2", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS54 });
+    }
+
+    @Test
+    void testK06_54_03() {
+        testPackageK06("54-chyba3", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS54 });
+    }
+
+    @Test
+    void testK06_54_04() {
+        testPackageK06("54-chyba4", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS54 });
+    }
+
+    @Test
+    void testK06_54_05() {
+        testPackageK06("54-chyba5", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS54 });
+    }
+
+    @Test
+    void testK06_54_06() {
+        testPackageK06("54-chyba6", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS54 });
+    }
+
+    @Test
+    void testK06_54_07() {
+        testPackageK06("54-chyba7", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS54 });
+    }
+
+    @Test
+    void testK06_54_08() {
+        testPackageK06("54-chyba8", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS54 });
+    }
+
+    @Test
+    void testK06_54_09() {
+        testPackageK06("54-chyba9", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS54 });
+    }
+
+    @Test
+    void testK06_54_OK01() {
+        testPackageK06("54-OK1", null,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] { K06_Obsahova.OBS54 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_54_OK02() {
+        testPackageK06("54-OK2", null,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] { K06_Obsahova.OBS54 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_54a_01() {
+        testPackageK06("54a-chyba1", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS54A });
+    }
+
+    @Test
+    void testK06_54a_02() {
+        testPackageK06("54a-chyba2", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS54A });
+    }
+
+    @Test
+    void testK06_54a_03() {
+        testPackageK06("54a-chyba3", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS54A });
+    }
+
+    @Test
+    void testK06_54a_04() {
+        testPackageK06("54a-chyba4", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS54A });
+    }
+
+    @Test
+    void testK06_54a_05() {
+        testPackageK06("54a-chyba5", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS54A });
+    }
+
+    @Test
+    void testK06_54a_OK01() {
+        testPackageK06("54a-OK1", null,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] { K06_Obsahova.OBS54A },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_54a_OK02() {
+        testPackageK06("54a-OK2", null,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] { K06_Obsahova.OBS54A },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_54a_OK03() {
+        testPackageK06("54a-OK3", null,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] { K06_Obsahova.OBS54A },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_55_01() {
+        testPackageK06("55-chyba1", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS55 });
+    }
+
+    @Test
+    void testK06_55_02() {
+        testPackageK06("55-chyba2", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS55 });
+    }
+
+    @Test
+    void testK06_55_OK01() {
+        testPackageK06("55-OK", null,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] { K06_Obsahova.OBS55 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_56_01() {
+        testPackageK06("56-chyba1", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS56 });
+    }
+
+    @Test
+    void testK06_56_02() {
+        testPackageK06("56-chyba2", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS56 });
+    }
+
+    @Test
+    void testK06_56_OK01() {
+        testPackageK06("56-OK", null,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] { K06_Obsahova.OBS56 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_57_01() {
+        testPackageK06("57-chyba1", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS57 });
+    }
+
+    @Test
+    void testK06_57_02() {
+        testPackageK06("57-chyba2", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS57 });
+    }
+
+    @Test
+    void testK06_57_03() {
+        testPackageK06("57-chyba3", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS57 });
+    }
+
+    @Test
+    void testK06_57_OK01() {
+        testPackageK06("57-OK", null,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] { K06_Obsahova.OBS57 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_58_01() {
+        testPackageK06("58-chyba1", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS58 });
+    }
+
+    @Test
+    void testK06_58_02() {
+        testPackageK06("58-chyba2", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS58 });
+    }
+
+    @Test
+    void testK06_58_OK01() {
+        testPackageK06("58-OK", null,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] { K06_Obsahova.OBS58 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_59_01() {
+        testPackageK06("59-chyba1", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS59 });
+    }
+
+    @Test
+    void testK06_59_02() {
+        testPackageK06("59-chyba2", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS59 });
+    }
+
+    @Test
+    void testK06_59_03() {
+        testPackageK06("59-chyba3", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS59 });
+    }
+
+    @Test
+    void testK06_59_04() {
+        testPackageK06("59-chyba4", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS59 });
+    }
+
+    @Test
+    void testK06_59_05() {
+        testPackageK06("59-chyba5", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS59 });
+    }
+
+    @Test
+    void testK06_59_06() {
+        testPackageK06("59-chyba6", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS59 });
+    }
+
+    @Test
+    void testK06_59_07() {
+        testPackageK06("59-chyba7", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS59 });
+    }
+
+    @Test
+    void testK06_59_08() {
+        testPackageK06("59-chyba8", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS59 });
+    }
+
+    @Test
+    void testK06_59_OK01() {
+        testPackageK06("59-OK1", null,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] { K06_Obsahova.OBS59 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_59_OK02() {
+        testPackageK06("59-OK2", null,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] { K06_Obsahova.OBS59 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_59_OK03() {
+        testPackageK06("59-OK3", null,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] { K06_Obsahova.OBS59 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_59_OK04() {
+        testPackageK06("59-OK4", null,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] { K06_Obsahova.OBS59 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_59_OK05() {
+        testPackageK06("59-OK5", null,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] { K06_Obsahova.OBS59 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_59_OK06() {
+        testPackageK06("59-OK6", null,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] { K06_Obsahova.OBS59 },
+                       new String[] {});
+    }
+
+    /*
+    @Test
+    void testK06_51_01() {
+        testPackageK06("51-chyba", StavKontroly.CHYBA,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { K06_Obsahova.OBS51 });
+    }
+    
+    @Test
+    void testK06_51_OK01() {
+        testPackageK06("51-OK", null,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] { K06_Obsahova.OBS51 },
+                       new String[] {});
+    }*/
 }
