@@ -22,7 +22,6 @@ import org.xml.sax.SAXException;
 import cz.zaf.sipvalidator.sip.PravidloKontroly;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
-import cz.zaf.sipvalidator.sip.VysledekKontroly;
 
 /**
  * Kontrola oproti schematu
@@ -33,8 +32,6 @@ public class K05_ProtiSchematu
     static final public String NAME = "kontrola proti schématu XSD";
 
     static final public String VAL1 = "val1";
-
-    VysledekKontroly k;
 
     public K05_ProtiSchematu() {
     }
@@ -63,7 +60,7 @@ public class K05_ProtiSchematu
 
         SipInfo file = ctx.getSip();
         try {
-            ErrorHandlerValidaceXSD handler = new ErrorHandlerValidaceXSD(k);
+            ErrorHandlerValidaceXSD handler = new ErrorHandlerValidaceXSD(vysledekKontroly);
             validaceVResource(handler, "/schema/sip2017.xsd", file);
             if (!handler.getNalezenaChyba()) {
                 stav = true;
@@ -84,15 +81,15 @@ public class K05_ProtiSchematu
             obecnyPopisChyby = "Datový balíček SIP není validní proti schématům http://www.loc.gov/standards/mets/mets.xsd, http://www.loc.gov/standards/mets/xlink.xsd, http://www.mvcr.cz/nsesss/v3/nsesss.xsd, http://www.mvcr.cz/nsesss/v3/nsesss-TrP.xsd, http://www.mvcr.cz/nsesss/v3/ess_ns.xsd a http://www.mvcr.cz/nsesss/v3/dmBaseTypes.xsd.";
         }
 
-        if(addPravidlo ) {
+        if (addPravidlo) {
             PravidloKontroly p = new PravidloKontroly(VAL1, stav,
                     "Soubor je validní proti schématům mets.xsd (v1.11), xlink.xsd (v2), nsesss.xsd (v3), nsesss-TrP.xsd, ess_ns.xsd a dmBaseTypes.xsd (v2.1).", // text
                     detailChyby,
                     obecnyPopisChyby,
                     null,
                     "Požadavek 11.2.5 NSESSS, bod 2.1. přílohy č. 3 NSESSS." // zdroj
-        );
-        k.add(p);
+            );
+            vysledekKontroly.add(p);
         }
 
     }

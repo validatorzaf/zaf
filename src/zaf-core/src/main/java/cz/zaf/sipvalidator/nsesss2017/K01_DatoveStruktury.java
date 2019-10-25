@@ -7,6 +7,7 @@ package cz.zaf.sipvalidator.nsesss2017;
 
 
 import java.io.File;
+import java.nio.file.Path;
 
 import cz.zaf.sipvalidator.sip.PravidloKontroly;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
@@ -134,7 +135,12 @@ public class K01_DatoveStruktury
     
     public static boolean ma_pouze_povolene_soubory(SipInfo sip) {
 
-        File[] f = sip.getCesta().toFile().listFiles();
+        Path cesta = sip.getCesta();
+        if (cesta == null) {
+            // cesta neni definovana -> nelze kontrolovat
+            return false;
+        }
+        File[] f = cesta.toFile().listFiles();
         if (f != null) {
             for (File s : f) {
                 if (!(s.getName().toLowerCase().equals(SipInfo.KOMPONENTY) || s.getName().toLowerCase().equals(

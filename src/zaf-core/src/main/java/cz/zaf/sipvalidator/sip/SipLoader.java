@@ -57,8 +57,10 @@ public class SipLoader
 		loadSip(inputPath);
 	}
 
-    // TODO: Nutno prepracovat
     public static long getSipLenght(Path sipPath) {
+        if (sipPath == null) {
+            return -1;
+        }
         long g = 0;
         try {
             if (Files.exists(sipPath)) {

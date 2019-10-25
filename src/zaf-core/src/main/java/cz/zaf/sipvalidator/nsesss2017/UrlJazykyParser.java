@@ -28,7 +28,7 @@ public class UrlJazykyParser {
     
     public void NactiJazykyZUrl() throws IOException{
        
-        InputStream res = getClass().getResourceAsStream("/sipvalid/validator/jazyky.txt");
+        InputStream res = getClass().getResourceAsStream("/jazyky.txt");
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(res))) {
             String line;
             while ((line = reader.readLine()) != null) {

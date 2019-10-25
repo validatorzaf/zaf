@@ -103,5 +103,14 @@ public class VysledekKontroly {
     public List<PravidloKontroly> getPravidla() {
         return pravidla;
     }
+
+    public PravidloKontroly getPravidlo(String kodPravidla) {
+        for (PravidloKontroly pravidlo : pravidla) {
+            if (pravidlo.getId().equals(kodPravidla)) {
+                return pravidlo;
+            }
+        }
+        return null;
+    }
     
 }

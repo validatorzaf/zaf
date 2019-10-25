@@ -8,6 +8,7 @@ package cz.zaf.sipvalidator.nsesss2017;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +51,12 @@ public class MetsParser {
     */
 
     public void parse(SipLoader sipLoader) {
-        try (InputStream is = Files.newInputStream(sipLoader.getSip().getCestaMets())) {
+        Path cestaMets = sipLoader.getSip().getCestaMets();
+        if(cestaMets==null) {
+            parserError = "Není definována cesta k mets.xml";
+            return;
+        }
+        try (InputStream is = Files.newInputStream(cestaMets)) {
             document = PositionalXMLReader.readXML(is);
 
             // vlastni nacteni dat
