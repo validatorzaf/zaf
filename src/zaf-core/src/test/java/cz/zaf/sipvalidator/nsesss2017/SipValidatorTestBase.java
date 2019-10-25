@@ -78,8 +78,11 @@ public abstract class SipValidatorTestBase {
         SipInfo sipInfo = sipLoader.getSip();
 
         VysledekKontroly vysledek = sipInfo.getUrovenKontroly(typUrovneKontroly);
-        assertEquals(vysledek.getStavKontroly(), stavKontroly, () -> "SIP: " + path + ", Očekávaný stav: "
-                + stavKontroly + ", výsledný stav: " + vysledek.getStavKontroly());
+
+        if (stavKontroly != null) {
+            assertEquals(vysledek.getStavKontroly(), stavKontroly, () -> "SIP: " + path + ", Očekávaný stav: "
+                    + stavKontroly + ", výsledný stav: " + vysledek.getStavKontroly());
+        }
 
         // overeni pravidel OK
         if (pravidlaOk != null) {

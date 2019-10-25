@@ -13,16 +13,16 @@ public class ZpravyObsahoveKontroly {
     static String[] list_text_obsahova = {
     "Pravidlo neexistuje.",
     //1. - 4.
-    "Element <mets:mets> obsahuje atribut OBJID s neprázdnou hodnotou.",
-    "Element <mets:mets> obsahuje atribut LABEL s hodnotou Datový balíček pro provedení skartačního řízení nebo Datový balíček pro předávání dokumentů a jejich metadat do archivu.",
-    "Element <mets:mets> obsahuje atribut LABEL s hodnotou Datový balíček pro předávání dokumentů a jejich metadat do archivu.",
-    "Element <mets:mets> obsahuje atribut xmlns:xsi s hodnotou http://www.w3.org/2001/XMLSchema-instance.",
+            "",
+            "",
+            "",
+            "",
     // 5.-9. volné indexy
-    "volný index",
-    "volný index",
-    "volný index",
-    "volný index",
-    "Element <mets:mets> obsahuje atribut xmlns:xlink s hodnotou http://www.w3.org/1999/xlink.",
+            "",
+            "",
+            "",
+            "",
+            "",
     //10. - 20.
     "Element <mets:mets> obsahuje dětský element <mets:metsHdr>.",
     "Element <mets:mets> obsahuje právě jeden dětský element <mets:dmdSec>.",
@@ -141,16 +141,16 @@ public class ZpravyObsahoveKontroly {
     static String[] list_zdroje_obsahova = {
     "0 volný index",
     //1. - 4.
-    "Bod 2.1. přílohy č. 3 NSESSS.",
-    "Bod 2.1. přílohy č. 3 NSESSS.",
-    "Bod 2.1. přílohy č. 3 NSESSS.",
-    "Bod 2.1. přílohy č. 3 NSESSS.",
+            "",
+            "",
+            "",
+            "",
     // 5.-9. volné indexy
-    "volný index",
-    "volný index",
-    "volný index",
-    "volný index",
-    "Bod 2.1. přílohy č. 3 NSESSS.",
+            "",
+            "",
+            "",
+            "",
+            "",
     //10. - 20.
     "Bod 2.2. přílohy č. 3 NSESSS.",
     "Bod 2.6. přílohy č. 3 NSESSS.",
@@ -273,16 +273,16 @@ public class ZpravyObsahoveKontroly {
     static String[] list_popis_obsahova = {
     "0 volný index",
     //1. - 4.
-    "Chybí identifikátor datového balíčku SIP.",
-    "Uveden je chybně popis datového balíčku SIP.",
-    "Uveden je chybně popis datového balíčku SIP.",
-    "Uvedena je chybně adresa jmenného prostoru schématu XML.",
+            "",
+            "",
+            "",
+            "",
     // 5.-9. volné indexy
-    "volný index",
-    "volný index",
-    "volný index",
-    "volný index",
-    "Uvedena je chybně adresa jmenného prostoru schématu XML.",
+            "",
+            "",
+            "",
+            "",
+            "",
     //10. - 20.
     "Chybí povinná část (záhlaví) struktury datového balíčku SIP.",
     "Chybí povinná (popisná) část struktury datového balíčku SIP.",
