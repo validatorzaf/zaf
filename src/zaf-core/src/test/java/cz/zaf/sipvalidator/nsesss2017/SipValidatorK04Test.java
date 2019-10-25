@@ -26,16 +26,9 @@ public class SipValidatorK04Test extends SipValidatorTestBase {
                        new String[] { K04_JmennychProstoruXML.NS1 });
     }
 
-    /*@Test
-    void testK04_02() {
-        testPackageK04("ns1-chyba2", StavKontroly.CHYBA,
-                       new String[] {},
-                       new String[] { K04_JmennychProstoruXML.NS1 });
-    }*/
-
     @Test
     void testK04_03() {
-        testPackageK04("ns1-chyba3", StavKontroly.CHYBA,
+        testPackageK04("ns1-chyba2", StavKontroly.CHYBA,
                        new String[] {},
                        new String[] { K04_JmennychProstoruXML.NS1 });
     }
