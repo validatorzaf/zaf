@@ -43,6 +43,9 @@ public abstract class SipValidatorTestBase {
     SipLoader loadSip(String sipPath, LoadType expLoadType) {
         ClassLoader classLoader = getClass().getClassLoader();
         URL url = classLoader.getResource(sipPath);
+        if (url == null) {
+            fail("Failed to locate sip, path: " + sipPath);
+        }
         String filePath;
         try {
             filePath = java.net.URLDecoder.decode(url.getFile(), StandardCharsets.UTF_8.name());

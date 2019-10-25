@@ -58,6 +58,17 @@ public class K06_Obsahova
     static final public String OBS3 = "obs3";
     static final public String OBS4 = "obs4";
     static final public String OBS9 = "obs9";
+
+    static final public String OBS10 = "obs10";
+    static final public String OBS11 = "obs11";
+    static final public String OBS12 = "obs12";
+    static final public String OBS13 = "obs13";
+    static final public String OBS14 = "obs14";
+    static final public String OBS15 = "obs15";
+    static final public String OBS16 = "obs16";
+    static final public String OBS17 = "obs17";
+    static final public String OBS18 = "obs18";
+    static final public String OBS19 = "obs19";
 			
 	
 	private String chyba_neupresneno = "Neupřesněno.";
@@ -444,7 +455,14 @@ public class K06_Obsahova
     }
     
     private String get_misto_chyby(Node node){
-        String point = node.getUserData("lineNumber").toString();
+        if (node == null) {
+            return null;
+        }
+        Object userData = node.getUserData("lineNumber");
+        if (userData == null) {
+            return null;
+        }
+        String point = userData.toString();
         String name = node.getNodeName();
         name = "<" + name + ">";
         return "Řádek " + point + ", element " + name + ".";
@@ -1059,6 +1077,9 @@ public class K06_Obsahova
     //32. OBSAHOVÁ 93a. Každá entia věcná skupina (<nsesss:VecnaSkupina>), jejíž rodičovská entita je spisový plán (<nsesss:SpisovyPlan>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> se stejnými hodnotami.
     private boolean pravidlo32(){
         NodeList vs_list = ValuesGetter.getAllAnywhere("nsesss:VecnaSkupina", metsParser.getDocument());
+        if(vs_list==null) {
+            return add_popisy("Věcná skupina neexistuje", false, get_misto_chyby(metsParser.getDocument()));
+        }
         for(int i = 0; i < vs_list.getLength(); i++){
             Node vs = vs_list.item(i);
             Node spl = ValuesGetter.getXChild(vs, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:SpisovyPlan");
@@ -2426,6 +2447,9 @@ public class K06_Obsahova
     //OBSAHOVÁ č.64 Pokud je základní entitou (<nsesss:Dokument>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> 
     // obsahuje element <nsesss:RokSkartacniOperace> hodnotu, která je součtem hodnoty elementu <nsesss:RokSpousteciUdalosti>, 1 a hodnoty elementu <nsesss:SkartacniLhuta> uvedeného v rodičovském elementu <nsesss:SkartacniRezim>.",
     private boolean pravidlo64(){
+        if (zakladniEntity == null) {
+            return add_popisy("Chybí základní entity.", false, null);
+        }
         for(int i = 0; i < zakladniEntity.size(); i++){
             Node zakladnientita = zakladniEntity.get(i);
             if(zakladnientita.getNodeName().equals("nsesss:Dokument")){
@@ -2474,6 +2498,10 @@ public class K06_Obsahova
     //OBSAHOVÁ č.65 Pokud je základní entitou díl (<nsesss:Dil>) nebo spis (<nsesss:Spis>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> obsahuje element <nsesss:RokSkartacniOperace> hodnotu, 
     // která je rovna vyšší hodnotě, přičemž jednou hodnotou je součet hodnoty elementu <nsesss:RokSpousteciUdalosti>, 1 a hodnoty elementu <nsesss:SkartacniLhuta> uvedeného v rodičovském elementu <nsesss:SkartacniRezim> a druhou hodnotou nejvyšší hodnota roku skartační operace jakékoli dětské entity dokument (nsesss:Dokument>).",
     private boolean pravidlo65(){
+        if (zakladniEntity == null) {
+            return add_popisy("Chybí základní entity.", false, null);
+        }
+
         for(int i = 0; i < zakladniEntity.size(); i++){
             Node zakladniEntita = zakladniEntity.get(i);
             String jmeno = zakladniEntita.getNodeName();
@@ -2567,6 +2595,9 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.66 Pokud je základní entitou díl (<nsesss:Dil>), spis (<nsesss:Spis> nebo dokument (<nsesss:Dokument>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> obsahuje element <nsesss:RokSkartacniOperace> hodnotu, která je menší nebo rovna aktuálnímu roku.",
     private boolean pravidlo66(){
+        if (zakladniEntity == null) {
+            return add_popisy("Chybí základní entity.", false, null);
+        }
         
         for(int i = 0; i < zakladniEntity.size(); i++){
             Node ze = zakladniEntity.get(i);
@@ -2588,6 +2619,9 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.67 Pokud je základní entitou díl (<nsesss:Dil>) nebo spis (<nsesss:Spis>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:SkartacniRezim> obsahuje element <nsesss:SkartacniZnak> hodnotu, která je rovna nejvyššímu skartačnímu znaku dětské entity dokument (<nsesss:Dokument>), přičemž priorita skartačních znaků od nejvyšší po nejnižší je v pořadí A, V, S.",
     private boolean pravidlo67(){
+        if (zakladniEntity == null) {
+            return add_popisy("Chybí základní entity.", false, null);
+        }
 
         for(int i = 0; i < zakladniEntity.size(); i++){
             Node zakladnientita = zakladniEntity.get(i);
@@ -2651,6 +2685,10 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.68 Každá entita věcná skupina (<nsesss:VecnaSkupina>), která je rodičovskou entitou spisu (<nsesss:Spis>) nebo dokumentu (<nsesss:Dokument>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani> element <nsesss:SkartacniRezim>.
     private boolean pravidlo68(){
+        if (zakladniEntity == null) {
+            return add_popisy("Chybí základní entity.", false, null);
+        }
+
         for(int i = 0; i < zakladniEntity.size(); i++){
             Node zakladnientita = zakladniEntity.get(i);
             if(zakladnientita.getNodeName().equals("nsesss:Dokument") || zakladnientita.getNodeName().equals("nsesss:Spis")){
@@ -2670,6 +2708,10 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.69 Pokud je základní entitou dokument (<nsesss:Dokument>), potom její element <nsesss:EvidencniUdaje> obsahuje dětský element <nsesss:Vyrizeni>.",
     private boolean pravidlo69(){
+        if (zakladniEntity == null) {
+            return add_popisy("Chybí základní entity.", false, null);
+        }
+
         for(int i = 0; i < zakladniEntity.size(); i++){
             Node ze = zakladniEntity.get(i);
             if(ze.getNodeName().equals("nsesss:Dokument")){
@@ -2817,6 +2859,10 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.76 Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano, potom rodičovské entity obsahují v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> se stejnou hodnotou.",
     private boolean pravidlo76(){
+        if (zakladniEntity == null) {
+            return add_popisy("Chybí základní entity.", false, null);
+        }
+
         for(int i = 0; i < zakladniEntity.size(); i++){
             Node zakladnientita = zakladniEntity.get(i);
             if(zakladnientita.getNodeName().equals("nsesss:Dil") || zakladnientita.getNodeName().equals("nsesss:Spis")){
@@ -2872,6 +2918,10 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.77 Pokud základní entita obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano, potom obsahuje v hierarchii dětských elementů <nsesss:Vyrazovani> a <nsesss:SkartacniRizeni> element <nsesss:Mnozstvi> s neprázdnou hodnotou.",
     private boolean pravidlo77(){
+        if (zakladniEntity == null) {
+            return add_popisy("Chybí základní entity.", false, null);
+        }
+
         for(int i = 0; i < zakladniEntity.size(); i++){
             Node zakladnientita = zakladniEntity.get(i);
             Node analogovy = ValuesGetter.getXChild(zakladnientita, "nsesss:EvidencniUdaje", "nsesss:Manipulace", "nsesss:AnalogovyDokument");
@@ -2893,6 +2943,10 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.78 Element <nsesss:SkartacniRizeni> je uveden pouze v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani> základní entity.",
     private boolean pravidlo78(){
+        if (zakladniEntity == null) {
+            return add_popisy("Chybí základní entity.", false, null);
+        }
+
         for(int i = 0; i < zakladniEntity.size(); i++){
             Node zakladnientita = zakladniEntity.get(i);
             ArrayList<Node> skartacniRizeni = ValuesGetter.getAllInNode(zakladnientita, "nsesss:SkartacniRizeni",
@@ -2915,6 +2969,10 @@ public class K06_Obsahova
     private boolean pravidlo79(){
         NodeList skartacniRizeni = ValuesGetter.getAllAnywhere("nsesss:SkartacniRizeni", metsParser.getDocument());
         if(skartacniRizeni == null){
+            if (zakladniEntity == null) {
+                return add_popisy("Chybí základní entity.", false, null);
+            }
+
             Node entita = zakladniEntity.get(0);
             return add_popisy("Nenalezen element <nsesss:SkartacniRizeni>. " + getJmenoIdentifikator(entita), false, chyba_neupresneno);
         }
@@ -2957,6 +3015,10 @@ public class K06_Obsahova
     private boolean pravidlo80(){
         NodeList nodeList = ValuesGetter.getAllAnywhere("nsesss:SkartacniRizeni", metsParser.getDocument());
         if(nodeList == null){
+            if (zakladniEntity == null) {
+                return add_popisy("Chybí základní entity.", false, null);
+            }
+
             return add_popisy("Nenalezen element <nsesss:SkartacniRizeni>. " + getJmenoIdentifikator(zakladniEntity.get(0)), false, chyba_neupresneno);
         }
         for(int i = 0; i < nodeList.getLength(); i++){
@@ -3089,6 +3151,10 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.85 Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano, potom element <nsesss:Manipulace> obsahuje dětský element <nsesss:UkladaciJednotka> s neprázdnou hodnotou.",
     private boolean pravidlo85(){
+        if (dokumenty == null) {
+            return add_popisy("Chybí dokumenty.", false, null);
+        }
+
         for(int i = 0; i < dokumenty.size(); i++){
             Node dokument = dokumenty.get(i);
             Node analog = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Manipulace", "nsesss:AnalogovyDokument");
@@ -3110,6 +3176,10 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.86 Pokud je základní entitou dokument (<nsesss:Dokument>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> element <nsesss:MaterskeEntity>.",
     private boolean pravidlo86(){
+        if (zakladniEntity == null) {
+            return add_popisy("Chybí základní entity.", false, null);
+        }
+
         for(int i = 0; i < zakladniEntity.size(); i++){
             Node zakladnientita = zakladniEntity.get(i);
             if(zakladnientita.getNodeName().equals("nsesss:Dokument")){
@@ -3143,6 +3213,10 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.88 Pokud element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano a současně element <nsesss:Vyrizeni> obsahuje dětský element <nsesss:DatumOdeslani>, pak element <nsesss:Vyrizeni> obsahuje element <nsesss:OdeslaneMnozstvi> s neprázdnou hodnotou.",
     private boolean pravidlo88(){
+        if (dokumenty == null) {
+            return add_popisy("Chybí dokumenty.", false, null);
+        }
+
         for(int i = 0; i < dokumenty.size(); i++){
             Node dokument = dokumenty.get(i);
             Node analog = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Manipulace", "nsesss:AnalogovyDokument");
@@ -3167,6 +3241,10 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.89 Pokud je základní entitou (<nsesss:Dokument>), potom obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> obsahuje element <nsesss:RokSpousteciUdalosti> hodnotu, v níž je uvedený rok větší nebo roven hodnotě uvedené v elementu <nsesss:Datum> v hierarchii elementů <nsesss:EvidencniUdaje> a <nsesss:Vyrizeni>.",
     private boolean pravidlo89(){
+        if (zakladniEntity == null) {
+            return add_popisy("Chybí základní entity.", false, null);
+        }
+
         for(int i = 0; i < zakladniEntity.size(); i++){
             Node entita = zakladniEntity.get(i);
             if(entita.getNodeName().equals("nsesss:Dokument")){
@@ -3191,6 +3269,10 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.90 Pokud je základní entitou dokument (<nsesss:Spis>), potom obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> element <nsesss:RokSpousteciUdalosti> hodnotu, v níž je uvedený rok větší nebo roven hodnotě uvedené v elementu <nsesss:Datum> v hierarchii elementů <nsesss:EvidencniUdaje> a <nsesss:VyrizeniUzavreni>.",
     private boolean pravidlo90(){
+        if (zakladniEntity == null) {
+            return add_popisy("Chybí základní entity.", false, null);
+        }
+
         for(int i = 0; i < zakladniEntity.size(); i++){
             Node spis = zakladniEntity.get(i);
             if(spis.getNodeName().equals("nsesss:Spis")){
@@ -3214,6 +3296,10 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.91 Pokud je základní entitou díl (<nsesss:Dil>), potom obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> element <nsesss:RokSpousteciUdalosti> hodnotu, v níž je uvedený rok větší nebo roven hodnotě uvedené v elementu <nsesss:Datum> v hierarchii elementů <nsesss:EvidencniUdaje> a <nsesss:Uzavreni>.",
     private boolean pravidlo91(){
+        if (zakladniEntity == null) {
+            return add_popisy("Chybí základní entity.", false, null);
+        }
+
         for(int i = 0; i < zakladniEntity.size(); i++){
             Node dil = zakladniEntity.get(i);
             if(dil.getNodeName().equals("nsesss:Dil")){
@@ -3354,6 +3440,10 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.96 Každá základní entita a každá entita typový spis (<nsesss:TypovySpis>) obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> se stejnými hodnotami, jaké obsahují v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> rodičovské entity věcná skupina (<nsesss:VecnaSkupina>) nebo součást (<nsesss:Soucast>).",
     private boolean pravidlo96(){
+        if (zakladniEntity == null) {
+            return add_popisy("Chybí základní entity.", false, null);
+        }
+
         for(int i = 0; i < zakladniEntity.size(); i++){
             Node zakladnientita = zakladniEntity.get(i);
             Node n_zakl_jsz = ValuesGetter.getXChild(zakladnientita, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:JednoduchySpisovyZnak");
@@ -3422,6 +3512,10 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.97 Pokud existuje více než jedna základní entita, všechny obsahují v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> se stejnými hodnotami.",
     private boolean pravidlo97(){
+        if (zakladniEntity == null) {
+            return add_popisy("Chybí základní entity.", false, null);
+        }
+
         if(zakladniEntity.size() > 1){
             Node ze0 = zakladniEntity.get(0);
             Node n0_j = ValuesGetter.getXChild(ze0, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:JednoduchySpisovyZnak");
@@ -3449,6 +3543,10 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.98 Pokud je základní entitou díl (<nsesss:Dil>) nebo spis (<nsesss:Spis>), obsahují v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> se stejnými hodnotami, jaké obsahují v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> jakékoli dětské entity dokument (<nsesss:Dokument>).",
     private boolean pravidlo98(){
+        if (zakladniEntity == null) {
+            return add_popisy("Chybí základní entity.", false, null);
+        }
+
         for(int i = 0; i < zakladniEntity.size(); i++){
             Node zakladnientita = zakladniEntity.get(i);
             if(zakladnientita.getNodeName().equals("nsesss:Dil") || zakladnientita.getNodeName().equals("nsesss:Spis")){
