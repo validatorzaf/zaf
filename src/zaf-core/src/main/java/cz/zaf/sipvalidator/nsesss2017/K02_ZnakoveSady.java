@@ -38,6 +38,8 @@ public class K02_ZnakoveSady
 
     static final public String KOD1 = "kod1";
 
+    static final public String BOM_PREFIX = "bom+";
+
     String kodovaniSipSouboru;
     String chybaKodovani;
 
@@ -72,8 +74,18 @@ public class K02_ZnakoveSady
     private String getKodovaniVDeklaraci() throws IOException, XMLStreamException, FactoryConfigurationError {
         String encodingFromXMLDeclaration;
         try (InputStream is = Files.newInputStream(ctx.getSip().getCestaMets())) {
-            final XMLStreamReader xmlStreamReader = XMLInputFactory.newInstance().createXMLStreamReader(is);
+            // lib commons-io-2.4
+            BOMInputStream bomIn = new BOMInputStream(is, false);
+
+            final XMLStreamReader xmlStreamReader = XMLInputFactory.newInstance().createXMLStreamReader(bomIn);
+
             encodingFromXMLDeclaration = xmlStreamReader.getCharacterEncodingScheme();
+
+            // Bom neni podporovan
+            if (bomIn.hasBOM()) {
+                return BOM_PREFIX + encodingFromXMLDeclaration;
+            }
+
             if (encodingFromXMLDeclaration != null) {
                 if (encodingFromXMLDeclaration.toLowerCase().equals("utf-8")) {
                     kodovaniSipSouboru = "Znakovou sadou souboru je Unicode/UCS v kódování UTF-8 bez BOM (Byte order mark).";
@@ -81,23 +93,6 @@ public class K02_ZnakoveSady
                     kodovaniSipSouboru = "Znakovou sadou souboru je " + encodingFromXMLDeclaration + ".";
                 }
 
-            }
-        }
-
-        // BLOK PŘIDÁN, PROTOŽE XMLSTREAMREADER NEUMÍ ČÍST UTF-8 S BOM
-        if (encodingFromXMLDeclaration == null) {
-            try (InputStream is = Files.newInputStream(ctx.getSip().getCestaMets())) {
-                // lib commons-io-2.4
-                BOMInputStream bomIn = new BOMInputStream(is, false); // FALSE ZNAMENÁ: PŘESKOČ ZNAKY BOM A DEJ MI JEN ZBYTEK - TÍM SE DOSTANE NA UTF-8
-                XMLStreamReader xmlS = XMLInputFactory.newInstance().createXMLStreamReader(bomIn);
-
-                encodingFromXMLDeclaration = xmlS.getCharacterEncodingScheme();
-                if (encodingFromXMLDeclaration != null && encodingFromXMLDeclaration.contains("utf-8")) {
-                    kodovaniSipSouboru = "UTF-8 BOM";
-                    return "UTF-8 BOM";
-                } else {
-                    kodovaniSipSouboru = encodingFromXMLDeclaration;
-                }
             }
         }
 
@@ -117,17 +112,18 @@ public class K02_ZnakoveSady
 
         if (vDeklaraci == null)
             return false;
-        //VYRAZENÍ VŠECH
+        
+        if (vDeklaraci.startsWith(BOM_PREFIX)) {
+            chybaKodovani = "Soubor obsahuje chybně BOM prefix. Deklarované kódování: " + vDeklaraci + ".";
+
+            return false;
+        }
 
         vDeklaraci = vDeklaraci.toLowerCase();
         String skutecneKodovani = getKodovani();
         if (!skutecneKodovani.toLowerCase().equals("utf-8")) {
             chybaKodovani = "Kódování souboru: " + skutecneKodovani + ". Deklarované kódování: " + vDeklaraci + ".";
 
-            return false;
-        }
-        if (skutecneKodovani.toLowerCase().equals("utf-8") && vDeklaraci.toLowerCase().equals("utf-8 bom")) {
-            chybaKodovani = "Kódování souboru: " + skutecneKodovani + ". Deklarované kódování: UTF-8 BOM.";
             return false;
         }
         boolean ret = vDeklaraci.equals(skutecneKodovani);

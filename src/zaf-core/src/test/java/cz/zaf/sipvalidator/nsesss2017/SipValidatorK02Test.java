@@ -89,7 +89,6 @@ public class SipValidatorK02Test extends SipValidatorTestBase {
                        new String[] { K02_ZnakoveSady.KOD1 });
     }
 
-    /*
     @Test
     void testK02_11() {
         testPackageK02("kod1-chyba11", StavKontroly.CHYBA,
@@ -103,7 +102,7 @@ public class SipValidatorK02Test extends SipValidatorTestBase {
                        new String[] {},
                        new String[] { K02_ZnakoveSady.KOD1 });
     }
-    */
+
     @Test
     void testK02_OK_1() {
         testPackageK02("kod1-OK", StavKontroly.OK,
