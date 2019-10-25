@@ -71,6 +71,7 @@ public class K06_Obsahova
     static final public String OBS19 = "obs19";
 
     static final public String OBS20 = "obs20";
+    //static final public String OBS21 = "obs21";
     static final public String OBS22 = "obs22";
     static final public String OBS23 = "obs23";
     static final public String OBS24 = "obs24";
@@ -79,6 +80,17 @@ public class K06_Obsahova
     static final public String OBS27 = "obs27";
     static final public String OBS28 = "obs28";
     static final public String OBS29 = "obs29";
+
+    static final public String OBS30 = "obs30";
+    static final public String OBS31 = "obs31";
+    //static final public String OBS32 = "obs32";
+    static final public String OBS33 = "obs33";
+    static final public String OBS34 = "obs34";
+    static final public String OBS35 = "obs35";
+    static final public String OBS36 = "obs36";
+    static final public String OBS37 = "obs37";
+    static final public String OBS38 = "obs38";
+    static final public String OBS39 = "obs39";
 	
 	private String chyba_neupresneno = "Neupřesněno.";
     private String popisChyby = "Pravidlo nesplněno.";
