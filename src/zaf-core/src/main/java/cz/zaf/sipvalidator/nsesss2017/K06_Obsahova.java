@@ -204,9 +204,13 @@ public class K06_Obsahova
         kontroly.put(OBS3, () -> pravidlo3());
         kontroly.put(OBS4, () -> pravidlo4());
         kontroly.put(OBS9, () -> pravidlo9());
-        kontroly.put(OBS98, new Pravidlo98(this));
+        pridejPravidlo(new Pravidlo98(this));
     } 
     
+    private void pridejPravidlo(K06PravidloBase pravidlo) {
+        kontroly.put(pravidlo.getKodPravidla(), pravidlo);
+    }
+
     private String getIDpravidla(int j){
         if (j == 32)
             return OBS93A;
@@ -360,7 +364,7 @@ public class K06_Obsahova
                 break;
             case 55:
                 vysledek = pravidlo55();
-                break;
+            break;
             case 56:
                 vysledek = pravidlo56();
                 break;

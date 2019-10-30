@@ -72,7 +72,7 @@ public abstract class K06PravidloBase implements Runnable {
      */
     protected List<Node> predpokladZakladniEntity() {
         List<Node> zaklEntity = kontrola.getZakladniEnity();
-        if (zaklEntity == null) {
+        if (zaklEntity == null || zaklEntity.size() == 0) {
             detailChyby = "Chybí základní entita/entity. Předpokladem kontroly je existence alespoň jedné základní entity.";
             return null;
         }
@@ -81,7 +81,7 @@ public abstract class K06PravidloBase implements Runnable {
 
     protected List<Node> predpokladDokumenty() {
         List<Node> dokumenty = kontrola.getDokumenty();
-        if (dokumenty == null) {
+        if (dokumenty == null || dokumenty.size() == 0) {
             detailChyby = "Chybí dokumenty. Předpokladem kontroly je existence alespoň jednoho dokumentu.";
             return null;
         }
@@ -99,5 +99,13 @@ public abstract class K06PravidloBase implements Runnable {
         this.detailChyby = detailChyby;
         this.mistoChyby = mistoChyby;
         return false;
+    }
+
+    public String getKodPravidla() {
+        return kodPravidla;
+    }
+
+    protected String getJmenoIdentifikator(Node node) {
+        return kontrola.getJmenoIdentifikator(node);
     }
 }
