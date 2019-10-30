@@ -23,11 +23,14 @@ import java.util.stream.IntStream;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.Helper;
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo96;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo97;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo98;
 import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Metods;
 import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_amdSec;
@@ -199,16 +202,26 @@ public class K06_Obsahova
     public K06_Obsahova(int[] seznamPravidel) {
     	this.seznamPravidel = seznamPravidel;
 
-        kontroly.put(OBS1, () -> pravidlo1());
-        kontroly.put(OBS2, () -> pravidlo2());
-        kontroly.put(OBS3, () -> pravidlo3());
-        kontroly.put(OBS4, () -> pravidlo4());
-        kontroly.put(OBS9, () -> pravidlo9());
+        pridejPravidlo(OBS1, () -> pravidlo1());
+        pridejPravidlo(OBS2, () -> pravidlo2());
+        pridejPravidlo(OBS3, () -> pravidlo3());
+        pridejPravidlo(OBS4, () -> pravidlo4());
+        pridejPravidlo(OBS9, () -> pravidlo9());
+
+        pridejPravidlo(new Pravidlo96(this));
+        pridejPravidlo(new Pravidlo97(this));
         pridejPravidlo(new Pravidlo98(this));
     } 
     
     private void pridejPravidlo(K06PravidloBase pravidlo) {
-        kontroly.put(pravidlo.getKodPravidla(), pravidlo);
+        String id = pravidlo.getKodPravidla();
+        pridejPravidlo(id, pravidlo);
+    }
+
+    private void pridejPravidlo(String id, Runnable pravidlo) {
+        Runnable p = kontroly.get(id);
+        Validate.isTrue(p == null);
+        kontroly.put(id, pravidlo);
     }
 
     private String getIDpravidla(int j){
@@ -484,12 +497,6 @@ public class K06_Obsahova
                 break;
             case 95:
                 vysledek = pravidlo95();
-                break;    
-            case 96:
-                vysledek = pravidlo96();
-                break;  
-            case 97:
-                vysledek = pravidlo97();
                 break;    
         }
         
@@ -3535,109 +3542,7 @@ public class K06_Obsahova
         return true;
     }
     
-    //OBSAHOVÁ č.96 Každá základní entita a každá entita typový spis (<nsesss:TypovySpis>) obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> se stejnými hodnotami, jaké obsahují v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> rodičovské entity věcná skupina (<nsesss:VecnaSkupina>) nebo součást (<nsesss:Soucast>).",
-    private boolean pravidlo96(){
-        if (zakladniEntity == null) {
-            return add_popisy("Chybí základní entity.", false, null);
-        }
-
-        for(int i = 0; i < zakladniEntity.size(); i++){
-            Node zakladnientita = zakladniEntity.get(i);
-            Node n_zakl_jsz = ValuesGetter.getXChild(zakladnientita, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:JednoduchySpisovyZnak");
-            Node n_zakl_pusz = ValuesGetter.getXChild(zakladnientita, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:PlneUrcenySpisovyZnak");
-            if(n_zakl_jsz == null) return add_popisy("Nenalezen element <nsesss:JednoduchySpisovyZnak> základní entity. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(zakladnientita));
-            if(n_zakl_pusz == null) return add_popisy("Nenalezen element <nsesss:PlneUrcenySpisovyZnak> základní entity. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(zakladnientita));
-            String jednoduchySpZnZaklEnt = n_zakl_jsz.getTextContent();
-            String plneUrcenySpZnZaklEnt = n_zakl_pusz.getTextContent();
-            
-            String jednoduchy, plneUrceny;
-            if(zakladnientita.getNodeName().equals("nsesss:Dil")){
-                Node n_soucast = ValuesGetter.getFirstInNode(zakladnientita, "nsesss:Soucast", metsParser
-                        .getDocument());
-                if(n_soucast == null) return add_popisy("Nenalezen element <nsesss:Soucast>. "  + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(zakladnientita));
-                Node n_soucast_jsz = ValuesGetter.getXChild(n_soucast, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:JednoduchySpisovyZnak");
-                if(n_soucast_jsz == null) return add_popisy("Nenalezen element <nsesss:JednoduchySpisovyZnak>. "  + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(n_soucast));
-                Node n_soucast_pusz = ValuesGetter.getXChild(n_soucast, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:PlneUrcenySpisovyZnak");
-                if(n_soucast_pusz == null) return add_popisy("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. "  + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(n_soucast));
-                
-                Node n_typ = ValuesGetter.getFirstInNode(zakladnientita, "nsesss:TypovySpis", metsParser.getDocument());
-                if(n_typ == null) return add_popisy("Nenalezen element <nsesss:TypovySpis>. "  + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(zakladnientita));
-                Node n_typ_jsz = ValuesGetter.getXChild(n_typ, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:JednoduchySpisovyZnak");
-                if(n_typ_jsz == null) return add_popisy("Nenalezen element <nsesss:JednoduchySpisovyZnak>. "  + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(n_typ));
-                Node n_typ_pusz = ValuesGetter.getXChild(n_typ, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:PlneUrcenySpisovyZnak");
-                if(n_typ_pusz == null) return add_popisy("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. "  + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(n_typ));
-                
-                
-                jednoduchy = n_soucast_jsz.getTextContent();
-                plneUrceny = n_soucast_pusz.getTextContent();
-                
-                String tyt_p = n_typ_pusz.getTextContent();
-                String typ_j = n_typ_jsz.getTextContent();
-                
-                boolean b = jednoduchySpZnZaklEnt.equals(jednoduchy) && plneUrcenySpZnZaklEnt.equals(plneUrceny);
-                if(!b) return add_popisy("Nesplněna podmínka pravidla. " + getJmenoIdentifikator(zakladnientita) + " " + getJmenoIdentifikator(n_soucast_jsz), false, getMistoChyby(n_zakl_jsz) + " " + getMistoChyby(n_zakl_pusz) + " " +getMistoChyby(n_soucast_jsz) + " " + getMistoChyby(n_soucast_pusz));
-                
-                ArrayList<Node> vecneSkupiny = ValuesGetter.getAllInNode(zakladnientita, "nsesss:VecnaSkupina",
-                                                                         metsParser.getDocument());
-                if(vecneSkupiny == null || vecneSkupiny.isEmpty()) return add_popisy("Nenalezen element <nsesss:VecnaSkupina> základní entity. "  + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(zakladnientita));
-                //ss
-                Node n_j = ValuesGetter.getXChild(vecneSkupiny.get(vecneSkupiny.size()-1), "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:JednoduchySpisovyZnak");
-                Node n_p = ValuesGetter.getXChild(vecneSkupiny.get(vecneSkupiny.size()-1), "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:PlneUrcenySpisovyZnak");
-                if(n_j == null) return add_popisy("Nenalezen element <nsesss:JednoduchySpisovyZnak>. "  + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(vecneSkupiny.get(vecneSkupiny.size()-1)));
-                if(n_p == null) return add_popisy("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. "  + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(vecneSkupiny.get(vecneSkupiny.size()-1)));
-                String jednoduchy_vs = n_j.getTextContent();
-                String plneUrceny_vs = n_p.getTextContent();
-                boolean b1 = jednoduchy_vs.equals(typ_j) && plneUrceny_vs.equals(tyt_p);
-                if(!b1) return add_popisy("Nesplněna podmínka pravidla. "  + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(n_zakl_jsz) + " " + getMistoChyby(n_zakl_pusz) + " " +getMistoChyby(n_typ_jsz) + " " + getMistoChyby(n_typ_pusz));
-            }
-            else{
-                ArrayList<Node> vecneSkupiny = ValuesGetter.getAllInNode(zakladnientita, "nsesss:VecnaSkupina",
-                                                                         metsParser.getDocument());
-                if(vecneSkupiny == null || vecneSkupiny.isEmpty()) return add_popisy("Nenalezen element <nsesss:VecnaSkupina> základní entity.", false, getMistoChyby(zakladnientita));
-                Node n_j = ValuesGetter.getXChild(vecneSkupiny.get(0), "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:JednoduchySpisovyZnak");
-                Node n_p = ValuesGetter.getXChild(vecneSkupiny.get(0), "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:PlneUrcenySpisovyZnak");
-                if(n_j == null) return add_popisy("Nenalezen element <nsesss:JednoduchySpisovyZnak>. "  + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(vecneSkupiny.get(0)));
-                if(n_p == null) return add_popisy("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. "  + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(vecneSkupiny.get(0)));
-                jednoduchy = n_j.getTextContent();
-                plneUrceny = n_p.getTextContent();
-                boolean b = jednoduchySpZnZaklEnt.equals(jednoduchy) && plneUrcenySpZnZaklEnt.equals(plneUrceny);
-                if(!b) return add_popisy("Nesplněna podmínka pravidla. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(n_zakl_jsz) + " " + getMistoChyby(n_zakl_pusz) + " " + getMistoChyby(n_j) + " " + getMistoChyby(n_p));
-            }
-        }
-        return true;
-    }
     
-    //OBSAHOVÁ č.97 Pokud existuje více než jedna základní entita, všechny obsahují v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> se stejnými hodnotami.",
-    private boolean pravidlo97(){
-        if (zakladniEntity == null) {
-            return add_popisy("Chybí základní entity.", false, null);
-        }
-
-        if(zakladniEntity.size() > 1){
-            Node ze0 = zakladniEntity.get(0);
-            Node n0_j = ValuesGetter.getXChild(ze0, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:JednoduchySpisovyZnak");
-            Node n0_p = ValuesGetter.getXChild(ze0, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:PlneUrcenySpisovyZnak"); 
-            if(n0_j == null) return add_popisy("Nenalezen element <nsesss:JednoduchySpisovyZnak> základní entity. " + getJmenoIdentifikator(ze0), false, getMistoChyby(ze0));
-            if(n0_p == null) return add_popisy("Nenalezen element <nsesss:PlneUrcenySpisovyZnak> základní entity. " + getJmenoIdentifikator(ze0), false, getMistoChyby(ze0));
-            String jednoduchy = n0_j.getTextContent();
-            String plneUrceny = n0_p.getTextContent();
-            
-            for(int i = 1; i < zakladniEntity.size(); i++){
-                Node zakladnientita = zakladniEntity.get(i);
-                Node n_j = ValuesGetter.getXChild(zakladnientita, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:JednoduchySpisovyZnak");
-                Node n_p = ValuesGetter.getXChild(zakladnientita, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:PlneUrcenySpisovyZnak"); 
-                if(n_j == null) return add_popisy("Nenalezen element <nsesss:JednoduchySpisovyZnak> základní entity. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(zakladnientita));
-                if(n_p == null) return add_popisy("Nenalezen element <nsesss:PlneUrcenySpisovyZnak> základní entity. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(zakladnientita));
-                String jednoduchySpZnZaklEnt = n_j.getTextContent();
-                String plneUrcenySpZnZaklEnt = n_p.getTextContent(); 
-                
-                boolean b = jednoduchySpZnZaklEnt.equals(jednoduchy) && plneUrcenySpZnZaklEnt.equals(plneUrceny);
-                if(!b) return add_popisy("Nesplněna podmínka pravidla. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(n0_j) + " " + getMistoChyby(n0_p) + " " + getMistoChyby(n_j) + " " + getMistoChyby(n_p));
-            }    
-        }
-        return true;
-    }
-
     private int pravidlo54_pocitadlo(){
         int a = 0;
         ArrayList<Node> plany = ValuesGetter.getAllAnywhereArrayList("nsesss:SpisovyPlan", metsParser.getDocument());
@@ -3731,7 +3636,7 @@ public class K06_Obsahova
         // Nastaveni promenych pro kontroly
         // bude nutne casem prepracovat
         this.metsParser = ctx.getMetsParser();
-        this.metsMets = ctx.getMetsParser().getMetsRootNode();
+        this.metsMets = metsParser.getMetsRootNode();
         this.metsHdr = metsParser.getMetsHdr();
         this.metsMdWrap = metsParser.getMetsMdWrap();
         this.metsDmdSec = metsParser.getMetsDmdSec();
@@ -3813,5 +3718,9 @@ public class K06_Obsahova
 
     public List<Node> getDokumenty() {
         return dokumenty;
+    }
+
+    public MetsParser getMetsParser() {
+        return metsParser;
     }
 }

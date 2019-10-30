@@ -23,6 +23,8 @@ public abstract class K06PravidloBase implements Runnable {
     final protected String obecnyPopisChyby;
     final protected String zdrojChyby;
 
+    protected MetsParser metsParser;
+
     public K06PravidloBase(final K06_Obsahova kontrola,
                            final String kodPravidla,
                            final String textPravidla,
@@ -47,6 +49,8 @@ public abstract class K06PravidloBase implements Runnable {
         boolean stav = false;
         mistoChyby = null;
         detailChyby = null;
+
+        this.metsParser = kontrola.getMetsParser();
 
         stav = kontrolaPravidla();
 

@@ -8,6 +8,11 @@ import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
+// OBSAHOVÁ č.97
+// Pokud existuje více než jedna základní entita, všechny obsahují
+// v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni>
+// elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak>
+// se stejnými hodnotami.
 public class Pravidlo97 extends K06PravidloBase {
 
     public Pravidlo97(K06_Obsahova kontrola) {
