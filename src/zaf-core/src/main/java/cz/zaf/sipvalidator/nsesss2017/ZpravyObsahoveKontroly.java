@@ -122,9 +122,7 @@ public class ZpravyObsahoveKontroly {
     "Pokud existuje jakýkoli element <nsesss:Identifikator> s atributem zdroj s hodnotou IČ nebo IČO, hodnota obsahuje číslo o osmi číslicích, přičemž vážený součet prvních sedmi číslic má po dělení jedenácti zbytek, který po odečtení od 11 a následném vydělení 10 má zbytek roven poslední číslici.",
     "Jakýkoli element <nsesss:Nazev> obsahuje neprázdnou hodnotu.",
     //94
-    "Každá entita vyjma jakéhokoli spisového plánu (<nsesss:SpisovyPlan>) obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> element <nsesss:PlneUrcenySpisovyZnak> s hodnotou, jejíž poslední část je stejná jako hodnota elementu <nsesss:JednoduchySpisovyZnak>.",
-    //95
-            "Každá entita věcná skupina (<nsesss:VecnaSkupina>) nebo součást (<nsesss:Soucast>), která se nachází v rodičovské entitě věcná skupina (<nsesss:VecnaSkupina>) nebo typový spis (<nsesss:TypovySpis>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> element <nsesss:PlneUrcenySpisovyZnak> s hodnotou obsahující hodnotu elementu <nsesss:PlneUrcenySpisovyZnak> rodičovské entity, oddělovač a hodnotu elementu <nsesss:JednoduchySpisovyZnak> výchozí entity.",
+            "Každá entita vyjma jakéhokoli spisového plánu (<nsesss:SpisovyPlan>) obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> element <nsesss:PlneUrcenySpisovyZnak> s hodnotou, jejíž poslední část je stejná jako hodnota elementu <nsesss:JednoduchySpisovyZnak>.",
     };
     
     public static String get_text_Obsahova(int index){
@@ -250,10 +248,9 @@ public class ZpravyObsahoveKontroly {
     "",
     "",
     "",
-            //93. - 95.
+            //93. - 94.
     "Příloha č. 2 NSESSS, ř. 167.",
-    "Požadavek 3.1.30 NSESSS.",
-    "Požadavek 3.1.30 NSESSS.",
+            "Požadavek 3.1.30 NSESSS.",
     };
     
     public static String get_zdroje_Obsahova(int index){
@@ -374,8 +371,7 @@ public class ZpravyObsahoveKontroly {
     "Není v souladu rok spouštěcí události a datum uzavření u dílu.",
     "Chybně je uvedeno IČO subjektu.",
     "Není uveden název.",
-    "Chybně jsou uvedeny spisové znaky.",
-    "Chybně jsou uvedeny spisové znaky.",
+            "Chybně jsou uvedeny spisové znaky.",
     };
     
     public static String get_popis_Obsahova(int index){

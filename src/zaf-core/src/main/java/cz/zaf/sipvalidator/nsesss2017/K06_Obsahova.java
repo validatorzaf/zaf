@@ -29,6 +29,7 @@ import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.Helper;
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo95;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo96;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo97;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo98;
@@ -166,7 +167,7 @@ public class K06_Obsahova
     static final public String OBS98 = "obs98";
     // static final public String OBS99 = "obs99";
 
-    private String chyba_neupresneno = "Neupřesněno.";
+    static final public String MISTO_CHYBY_NEUPRESNENO = "Neupřesněno.";
     private String popisChyby = "Pravidlo nesplněno.";
     private String misto_chyby = "";
 	SipInfo sipSoubor;
@@ -208,6 +209,7 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
 
+        pridejPravidlo(new Pravidlo95(this));
         pridejPravidlo(new Pravidlo96(this));
         pridejPravidlo(new Pravidlo97(this));
         pridejPravidlo(new Pravidlo98(this));
@@ -495,9 +497,6 @@ public class K06_Obsahova
             case 94:
                 vysledek = pravidlo94();
                 break;
-            case 95:
-                vysledek = pravidlo95();
-                break;    
         }
         
         return vysledek;
@@ -772,7 +771,7 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.10 Element <mets:mets> obsahuje právě jeden dětský element <mets:metsHdr>.",
     private boolean pravidlo10(){
-        if(metsMets == null) return add_popisy("Nenalezen kořenový element <mets:mets>.", false,chyba_neupresneno);
+        if(metsMets == null) return add_popisy("Nenalezen kořenový element <mets:mets>.", false,MISTO_CHYBY_NEUPRESNENO);
         if(!ValuesGetter.hasChildWithName(metsMets, "mets:metsHdr")){
             return add_popisy("Kořenový element <mets:mets> nemá žádný dětský element <mets:metsHdr>.", false, getMistoChyby(metsMets));
         }
@@ -784,7 +783,7 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.11 Element <mets:mets> obsahuje právě jeden dětský element <mets:dmdSec>.",
     private boolean pravidlo11(){
-        if(metsMets == null) return add_popisy("Nenalezen kořenový element <mets:mets>.", false, chyba_neupresneno);
+        if(metsMets == null) return add_popisy("Nenalezen kořenový element <mets:mets>.", false, MISTO_CHYBY_NEUPRESNENO);
         if(!ValuesGetter.hasChildWithName(metsMets, "mets:dmdSec")){
             return add_popisy("Kořenový element <mets:mets> nemá žádný dětský element <mets:dmdSec>.", false, getMistoChyby(metsMets));
         }
@@ -796,7 +795,7 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.12 Element <mets:mets> obsahuje alespoň jeden element <mets:amdSec>.",
     private boolean pravidlo12(){
-        if(metsMets == null) return add_popisy("Nenalezen kořenový element <mets:mets>.", false, chyba_neupresneno);
+        if(metsMets == null) return add_popisy("Nenalezen kořenový element <mets:mets>.", false, MISTO_CHYBY_NEUPRESNENO);
         if(!ValuesGetter.hasChildWithName(metsMets, "mets:amdSec")){
             return add_popisy("Kořenový element <mets:mets> nemá žádný dětský element <mets:amdSec>.", false, getMistoChyby(metsMets));
         }       
@@ -805,7 +804,7 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.13 Element <mets:mets> obsahuje právě jeden dětský element <mets:structMap>.",
     private boolean pravidlo13(){
-        if(metsMets == null) return add_popisy("Nenalezen kořenový element <mets:mets>.", false, chyba_neupresneno);
+        if(metsMets == null) return add_popisy("Nenalezen kořenový element <mets:mets>.", false, MISTO_CHYBY_NEUPRESNENO);
         if(!ValuesGetter.hasChildWithName(metsMets, "mets:structMap")){
             return add_popisy("Kořenový element <mets:mets> nemá žádný dětský element <mets:structMap>.", false, getMistoChyby(metsMets));
         }
@@ -817,7 +816,7 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.14 Element <mets:metsHdr> obsahuje atribut LASTMODDATE.",
     private boolean pravidlo14(){
-        if(metsHdr == null) return add_popisy("Nenalezen element <mets:metsHdr>.", false, chyba_neupresneno);
+        if(metsHdr == null) return add_popisy("Nenalezen element <mets:metsHdr>.", false, MISTO_CHYBY_NEUPRESNENO);
         if(!ValuesGetter.hasAttribut(metsHdr, "LASTMODDATE")){
             return add_popisy("Element <mets:metsHdr> nemá atribut LASTMODDATE.", false, getMistoChyby(metsHdr));
         }
@@ -826,7 +825,7 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.15 Element <mets:metsHdr> obsahuje atribut CREATEDATE.",
     private boolean pravidlo15(){
-        if(metsHdr == null) return add_popisy("Nenalezen element <mets:metsHdr>.", false, chyba_neupresneno);
+        if(metsHdr == null) return add_popisy("Nenalezen element <mets:metsHdr>.", false, MISTO_CHYBY_NEUPRESNENO);
         if(!ValuesGetter.hasAttribut(metsHdr, "CREATEDATE")){
             return add_popisy("Element <mets:metsHdr> nemá atribut CREATEDATE.", false, getMistoChyby(metsHdr));
         }
@@ -835,7 +834,7 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.16 Element <mets:metsHdr> obsahuje právě jeden element <mets:agent> s atributem TYPE s hodnotou ORGANIZATION.",
     private boolean pravidlo16(){
-        if(metsHdr == null) return add_popisy("Nenalezen element <mets:metsHdr>.", false, chyba_neupresneno);
+        if(metsHdr == null) return add_popisy("Nenalezen element <mets:metsHdr>.", false, MISTO_CHYBY_NEUPRESNENO);
         ArrayList<Node> nodeList = ValuesGetter.getChildList(metsHdr, "mets:agent");
         if(nodeList == null || nodeList.isEmpty()){
             return add_popisy("Nenalezen element <mets:agent>.", false, getMistoChyby(metsHdr));
@@ -855,7 +854,7 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.17 Element <mets:metsHdr> obsahuje alespoň jeden element <mets:agent> s atributem TYPE s hodnotou INDIVIDUAL.",
     private boolean pravidlo17(){
-        if(metsHdr == null) return add_popisy("Nenalezen element <mets:metsHdr>.", false, chyba_neupresneno);
+        if(metsHdr == null) return add_popisy("Nenalezen element <mets:metsHdr>.", false, MISTO_CHYBY_NEUPRESNENO);
         ArrayList<Node> nodeList = ValuesGetter.getChildList(metsHdr, "mets:agent");
         if(nodeList == null || nodeList.isEmpty()){
             return add_popisy("Nenalezen element <mets:agent>.", false, getMistoChyby(metsHdr));
@@ -873,7 +872,7 @@ public class K06_Obsahova
     //OBSAHOVÁ č.18 Každý element <mets:agent> obsahuje atribut ROLE s hodnotou CREATOR.",
     private boolean pravidlo18(){
         NodeList nodeList = ValuesGetter.getAllAnywhere("mets:agent", metsParser.getDocument());
-        if(nodeList == null) return add_popisy("Nenalezen žádný element <mets:agent>.", false, chyba_neupresneno);
+        if(nodeList == null) return add_popisy("Nenalezen žádný element <mets:agent>.", false, MISTO_CHYBY_NEUPRESNENO);
         int pocitadlo = 0;
         String ch = "";
         for(int i = 0; i < nodeList.getLength(); i++){
@@ -890,7 +889,7 @@ public class K06_Obsahova
     //OBSAHOVÁ č.19 Každý element <mets:agent> obsahuje atribut ID.",
     private boolean pravidlo19(){
         NodeList nodeList = ValuesGetter.getAllAnywhere("mets:agent", metsParser.getDocument());
-        if(nodeList == null) return add_popisy("Nenalezen žádný element <mets:agent>.", false, chyba_neupresneno);
+        if(nodeList == null) return add_popisy("Nenalezen žádný element <mets:agent>.", false, MISTO_CHYBY_NEUPRESNENO);
         int pocitadlo = 0;
         String ch = "";
         for(int i = 0; i < nodeList.getLength(); i++){
@@ -907,7 +906,7 @@ public class K06_Obsahova
     //OBSAHOVÁ č.20 Každý element <mets:agent> obsahuje právě jeden dětský element <mets:name> s neprázdnou hodnotou.",
     private boolean pravidlo20(){
         NodeList nodeList = ValuesGetter.getAllAnywhere("mets:agent", metsParser.getDocument());
-        if(nodeList == null) return add_popisy("Nenalezen žádný element <mets:agent>.", false, chyba_neupresneno);
+        if(nodeList == null) return add_popisy("Nenalezen žádný element <mets:agent>.", false, MISTO_CHYBY_NEUPRESNENO);
         int pocitadlo = 0;
         int pocitadlo2 = 0;
         String ch = "";
@@ -944,7 +943,7 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.22 Element <mets:dmdSec> obsahuje právě jeden dětský element <mets:mdWrap>.",
     private boolean pravidlo22(){
-        if(metsDmdSec == null) return add_popisy("Nenalezen element <mets:dmdSec>.", false, chyba_neupresneno);
+        if(metsDmdSec == null) return add_popisy("Nenalezen element <mets:dmdSec>.", false, MISTO_CHYBY_NEUPRESNENO);
         if(!ValuesGetter.hasChildWithName(metsDmdSec, "mets:mdWrap")){
             return add_popisy("Element <mets:dmdSec> neobsahuje žádný dětský element <mets:mdWrap>.", false, getMistoChyby(metsDmdSec));
         }
@@ -956,7 +955,7 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.23 Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MDTYPEVERSION s hodnotou 3.0.",
     private boolean pravidlo23(){
-        if(metsMdWrap == null) return add_popisy("Nenalezen element <mets:mdWrap>.", false, chyba_neupresneno);
+        if(metsMdWrap == null) return add_popisy("Nenalezen element <mets:mdWrap>.", false, MISTO_CHYBY_NEUPRESNENO);
         if(!ValuesGetter.hasAttribut(metsMdWrap, "MDTYPEVERSION")){
             return add_popisy("Element <mets:mdWrap> neobsahuje atribut MDTYPEVERSION.", false, getMistoChyby(metsMdWrap));
         }
@@ -972,7 +971,7 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.24 Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut OTHERMDTYPE s hodnotou NSESSS.",
     private boolean pravidlo24(){
-        if(metsMdWrap == null) return add_popisy("Nenalezen element <mets:mdWrap>.", false, chyba_neupresneno);
+        if(metsMdWrap == null) return add_popisy("Nenalezen element <mets:mdWrap>.", false, MISTO_CHYBY_NEUPRESNENO);
         if(!ValuesGetter.hasAttribut(metsMdWrap, "OTHERMDTYPE")){
             return add_popisy("Element <mets:mdWrap> neobsahuje atribut OTHERMDTYPE.", false, getMistoChyby(metsMdWrap));
         }
@@ -988,7 +987,7 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.25 Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MDTYPE s hodnotou OTHER.",
     private boolean pravidlo25(){
-        if(metsMdWrap == null) return add_popisy("Nenalezen element <mets:mdWrap>.", false, chyba_neupresneno);
+        if(metsMdWrap == null) return add_popisy("Nenalezen element <mets:mdWrap>.", false, MISTO_CHYBY_NEUPRESNENO);
         if(!ValuesGetter.hasAttribut(metsMdWrap, "MDTYPE")){
             return add_popisy("Element <mets:mdWrap> neobsahuje atribut MDTYPE.", false, getMistoChyby(metsMdWrap));
         }
@@ -1004,7 +1003,7 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.26 Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MIMETYPE s hodnotou text/xml.",
     private boolean pravidlo26(){
-        if(metsMdWrap == null) return add_popisy("Nenalezen element <mets:mdWrap>.", false, chyba_neupresneno);
+        if(metsMdWrap == null) return add_popisy("Nenalezen element <mets:mdWrap>.", false, MISTO_CHYBY_NEUPRESNENO);
         if(!ValuesGetter.hasAttribut(metsMdWrap, "MIMETYPE")){
             return add_popisy("Element <mets:mdWrap> neobsahuje atribut MIMETYPE.", false, getMistoChyby(metsMdWrap));
         }
@@ -1020,7 +1019,7 @@ public class K06_Obsahova
     
     //OBSAHOVÁ č.27 Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> právě jeden dětský element <mets:xmlData>.",
     private boolean pravidlo27(){
-        if(xmlData == null) return add_popisy("Element <mets:mdWrap> neobsahuje žádný dětský element <mets:xmlData>.", false, chyba_neupresneno);
+        if(xmlData == null) return add_popisy("Element <mets:mdWrap> neobsahuje žádný dětský element <mets:xmlData>.", false, MISTO_CHYBY_NEUPRESNENO);
         if(!ValuesGetter.hasOnlyOneChild_ElementNode(metsMdWrap, "mets:xmlData")){
             return add_popisy("Element <mets:mdWrap> obsahuje více dětských elementů <mets:xmlData>.", false, getMistoChyby(metsMdWrap));
         }
@@ -1037,7 +1036,7 @@ public class K06_Obsahova
         }
         else{
            if(xmlData == null){
-                return add_popisy("Nenalezen element <mets:xmlData>.", false, chyba_neupresneno);
+                return add_popisy("Nenalezen element <mets:xmlData>.", false, MISTO_CHYBY_NEUPRESNENO);
             }
             if(xmlData.getChildNodes().getLength() == 0){
                 return add_popisy("Element <mets:xmlData> neobsahuje žádné dětské elementy.", false, getMistoChyby(xmlData));
@@ -1152,7 +1151,7 @@ public class K06_Obsahova
     private boolean pravidlo30(){
         NodeList nodeList = ValuesGetter.getAllAnywhere("mets:amdSec", metsParser.getDocument());
         if(nodeList == null){
-            return add_popisy("Nenalezen žádný element <mets:amdSec>.", false, chyba_neupresneno);
+            return add_popisy("Nenalezen žádný element <mets:amdSec>.", false, MISTO_CHYBY_NEUPRESNENO);
         }
         for(int i = 0; i < nodeList.getLength(); i++){
             Node node = nodeList.item(i);
@@ -1167,7 +1166,7 @@ public class K06_Obsahova
     private boolean pravidlo31(){
         NodeList nodeList = ValuesGetter.getAllAnywhere("mets:amdSec", metsParser.getDocument());
         if(nodeList == null){
-            return add_popisy("Nenalezen žádný element <mets:amdSec>.", false, chyba_neupresneno);
+            return add_popisy("Nenalezen žádný element <mets:amdSec>.", false, MISTO_CHYBY_NEUPRESNENO);
         }
         for(int i = 0; i < nodeList.getLength(); i++){
             Node node = nodeList.item(i);
@@ -1204,7 +1203,7 @@ public class K06_Obsahova
     private boolean pravidlo33(){
         NodeList nodeList = ValuesGetter.getAllAnywhere("mets:digiprovMD", metsParser.getDocument());
         if(nodeList == null){
-            return add_popisy("Nenalezen žádný element <mets:digiprovMD>.", false, chyba_neupresneno);
+            return add_popisy("Nenalezen žádný element <mets:digiprovMD>.", false, MISTO_CHYBY_NEUPRESNENO);
         }
         for(int i = 0; i < nodeList.getLength(); i++){
             Node digiprovMD = nodeList.item(i);
@@ -1224,7 +1223,7 @@ public class K06_Obsahova
     private boolean pravidlo34(){
         NodeList nodeList = ValuesGetter.getAllAnywhere("mets:digiprovMD", metsParser.getDocument());
         if(nodeList == null){
-            return add_popisy("Nenalezen žádný element <mets:digiprovMD>.", false, chyba_neupresneno);
+            return add_popisy("Nenalezen žádný element <mets:digiprovMD>.", false, MISTO_CHYBY_NEUPRESNENO);
         }
         for(int i = 0; i < nodeList.getLength(); i++){
             Node digiprovMD = nodeList.item(i);
@@ -1247,7 +1246,7 @@ public class K06_Obsahova
     private boolean pravidlo35(){
         NodeList nodeList = ValuesGetter.getAllAnywhere("mets:digiprovMD", metsParser.getDocument());
         if(nodeList == null){
-            return add_popisy("Nenalezen žádný element <mets:digiprovMD>.", false, chyba_neupresneno);
+            return add_popisy("Nenalezen žádný element <mets:digiprovMD>.", false, MISTO_CHYBY_NEUPRESNENO);
         }
         for(int i = 0; i < nodeList.getLength(); i++){
             Node digiprovMD = nodeList.item(i);
@@ -1270,7 +1269,7 @@ public class K06_Obsahova
     private boolean pravidlo36(){
         NodeList nodeList = ValuesGetter.getAllAnywhere("mets:digiprovMD", metsParser.getDocument());
         if(nodeList == null){
-            return add_popisy("Nenalezen žádný element <mets:digiprovMD>.", false, chyba_neupresneno);
+            return add_popisy("Nenalezen žádný element <mets:digiprovMD>.", false, MISTO_CHYBY_NEUPRESNENO);
         }
         for(int i = 0; i < nodeList.getLength(); i++){
             Node digiprovMD = nodeList.item(i);
@@ -1293,7 +1292,7 @@ public class K06_Obsahova
     private boolean pravidlo37(){
         NodeList nodeList = ValuesGetter.getAllAnywhere("mets:digiprovMD", metsParser.getDocument());
         if(nodeList == null){
-            return add_popisy("Nenalezen žádný element <mets:digiprovMD>.", false, chyba_neupresneno);
+            return add_popisy("Nenalezen žádný element <mets:digiprovMD>.", false, MISTO_CHYBY_NEUPRESNENO);
         }
         for(int i = 0; i < nodeList.getLength(); i++){
             Node digiprovMD = nodeList.item(i);
@@ -1316,7 +1315,7 @@ public class K06_Obsahova
     private boolean pravidlo38(){
         NodeList nodeList = ValuesGetter.getAllAnywhere("mets:digiprovMD", metsParser.getDocument());
         if(nodeList == null){
-            return add_popisy("Nenalezen žádný element <mets:digiprovMD>.", false, chyba_neupresneno);
+            return add_popisy("Nenalezen žádný element <mets:digiprovMD>.", false, MISTO_CHYBY_NEUPRESNENO);
         }
         for(int i = 0; i < nodeList.getLength(); i++){
             Node digiprovMD = nodeList.item(i);
@@ -1339,7 +1338,7 @@ public class K06_Obsahova
     private boolean pravidlo39(){
         NodeList nodeList = ValuesGetter.getAllAnywhere("mets:digiprovMD", metsParser.getDocument());
         if(nodeList == null){
-            return add_popisy("Nenalezen žádný element <mets:digiprovMD>.", false, chyba_neupresneno);
+            return add_popisy("Nenalezen žádný element <mets:digiprovMD>.", false, MISTO_CHYBY_NEUPRESNENO);
         }
         for(int i = 0; i < nodeList.getLength(); i++){
             Node digiprovMD = nodeList.item(i);
@@ -1375,7 +1374,7 @@ public class K06_Obsahova
             boolean maHodnotuNe = analogovyDokument.getTextContent().toLowerCase().equals("ne");
             if(maHodnotuNe){
                 if(metsMets == null){
-                    return add_popisy("SIP nemá kořenový element <mets:mets>.", false, chyba_neupresneno);
+                    return add_popisy("SIP nemá kořenový element <mets:mets>.", false, MISTO_CHYBY_NEUPRESNENO);
                 }
                 if(ValuesGetter.getXChild(metsMets, "mets:fileSec") == null){
                     return add_popisy("Element <mets:mets> neobsahuje žádný element <mets:fileSec>.", false, getMistoChyby(metsMets));
@@ -1405,7 +1404,7 @@ public class K06_Obsahova
         // TEST mets:amdSec
         NodeList amdSec_nodelist = ValuesGetter.getAllAnywhere("mets:amdSec", metsParser.getDocument());
         if(amdSec_nodelist == null){
-            return add_popisy("Nenalezen element <mets:amdSec>.", false, chyba_neupresneno);
+            return add_popisy("Nenalezen element <mets:amdSec>.", false, MISTO_CHYBY_NEUPRESNENO);
         }
         StructMap_Obj_return_bol_AL_Obj_amdSec ret_amd = StructMap_Metods.get_amdSec_list(amdSec_nodelist);
         if (!ret_amd.getBol()) {
@@ -1436,7 +1435,7 @@ public class K06_Obsahova
         // TEST mets_div
         NodeList metsdiv_nodelist = ValuesGetter.getAllAnywhere("mets:div", metsParser.getDocument());
         if(metsdiv_nodelist == null){
-            return add_popisy("Nenalezen element <mets:div>.", false, chyba_neupresneno);
+            return add_popisy("Nenalezen element <mets:div>.", false, MISTO_CHYBY_NEUPRESNENO);
         }
         StructMap_Obj_return_bol_AL_Obj_metsdiv ret_metsdiv = StructMap_Metods.get_metsdiv_list(metsdiv_nodelist);
         if(!ret_metsdiv.getBol()){
@@ -1586,7 +1585,7 @@ public class K06_Obsahova
     private boolean pravidlo42(){
         NodeList dokuments = ValuesGetter.getAllAnywhere("nsesss:Dokument", metsParser.getDocument());
         if(dokuments == null){
-            return add_popisy("Nenalezen žádný element <nsesss:Dokument>.", false, chyba_neupresneno);
+            return add_popisy("Nenalezen žádný element <nsesss:Dokument>.", false, MISTO_CHYBY_NEUPRESNENO);
         }
         for(int i = 0; i < dokuments.getLength(); i++)
         {   
@@ -1631,7 +1630,7 @@ public class K06_Obsahova
                         return add_popisy("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(vecnaSkupina), false, getMistoChyby(vecnaSkupina));
                     }
                     String hodnota = plneUrceny_node.getTextContent();
-                    if(!sz_ma_oddelovac_vsobe(hodnota)){
+                    if(!spisZnakObsahujeOddelovac(hodnota)){
                         return add_popisy("Hodnota elementu <nsesss:PlneUrcenySpisovyZnak> v sobě neobsahuje oddělovač. " + getJmenoIdentifikator(vecnaSkupina), false, getMistoChyby(plneUrceny_node));
                     }
                 }
@@ -1657,7 +1656,7 @@ public class K06_Obsahova
                     return add_popisy("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(soucast), false, getMistoChyby(soucast));
                 }
                 String hodnota = plneUrceny_node.getTextContent();
-                if(!sz_ma_oddelovac_vsobe(hodnota)){
+                if(!spisZnakObsahujeOddelovac(hodnota)){
                     return add_popisy("Hodnota elementu <nsesss:PlneUrcenySpisovyZnak> v sobě neobsahuje oddělovač. " + getJmenoIdentifikator(soucast), false, getMistoChyby(plneUrceny_node));
                 } 
             }
@@ -1672,7 +1671,7 @@ public class K06_Obsahova
         NodeList nodeListKomponenty = ValuesGetter.getAllAnywhere("nsesss:Komponenta", metsParser.getDocument());
         if(nodeListMetsFile == null) return true;
         if(nodeListKomponenty == null || nodeListKomponenty.getLength() != nodeListMetsFile.getLength()){
-            return add_popisy("Nenalezen žádný element <nsesss:Komponenta>.", false, chyba_neupresneno);
+            return add_popisy("Nenalezen žádný element <nsesss:Komponenta>.", false, MISTO_CHYBY_NEUPRESNENO);
         }
         ArrayList<Obj_Node_String> files = new ArrayList<>(), komponents = new ArrayList<>();
         for(int i = 0; i < nodeListMetsFile.getLength(); i++){
@@ -2260,11 +2259,11 @@ public class K06_Obsahova
         } 
 
         if(pravidlo54_pocitadlo() != metsDiv.size()){
-            return add_popisy("Počet elementů <mets:div> neodpovídá počtu elementů v dmdSec.", false, chyba_neupresneno);
+            return add_popisy("Počet elementů <mets:div> neodpovídá počtu elementů v dmdSec.", false, MISTO_CHYBY_NEUPRESNENO);
         }
 
         if(!pravidlo54_pocitadlo_amdsec(metsDiv.size())){
-            return add_popisy("Počet elementů <mets:div> neodpovídá počtu elementů v amdSec.", false, chyba_neupresneno);
+            return add_popisy("Počet elementů <mets:div> neodpovídá počtu elementů v amdSec.", false, MISTO_CHYBY_NEUPRESNENO);
         }
         return true;
     }
@@ -2302,14 +2301,14 @@ public class K06_Obsahova
 
         NodeList nodeListFlocat = ValuesGetter.getAllAnywhere("mets:FLocat", metsParser.getDocument());
         if(nodeListFlocat == null){
-            return add_popisy("Nenalezen element <mets:FLocat>.", false, chyba_neupresneno);
+            return add_popisy("Nenalezen element <mets:FLocat>.", false, MISTO_CHYBY_NEUPRESNENO);
         }
         for(int i = 0; i < nodeListMetsFptr.getLength(); i++){
             Node fLocat = nodeListFlocat.item(i);
             Node metsFptr = nodeListMetsFptr.item(i);
             Node metsFile = ValuesGetter.getXParent(fLocat, "mets:file");
             if(metsFile == null){
-                return add_popisy("Nenalezen element <mets:file>.", false, chyba_neupresneno);
+                return add_popisy("Nenalezen element <mets:file>.", false, MISTO_CHYBY_NEUPRESNENO);
             }
             if(!ValuesGetter.hasAttribut(metsFile, "ID")){
                 return add_popisy("Element <mets:file> neobsahuje atribut ID.", false, getMistoChyby(metsFile));
@@ -2327,7 +2326,7 @@ public class K06_Obsahova
     private boolean pravidlo57(){
         //        NodeList identifikatory = ValuesGetter.getAllAnywhere("nsesss:Identifikator", metsParser.getDocument());
         if(identifikatory == null){
-            return add_popisy("Nenalezen žádný element <nsesss:Identifikator>.", false, chyba_neupresneno);
+            return add_popisy("Nenalezen žádný element <nsesss:Identifikator>.", false, MISTO_CHYBY_NEUPRESNENO);
         }
         for(int i = 0; i < identifikatory.size(); i++){
             Node identifikator = identifikatory.get(i);
@@ -2343,7 +2342,7 @@ public class K06_Obsahova
     private boolean pravidlo58(){
         //        NodeList identifikatory = ValuesGetter.getAllAnywhere("nsesss:Identifikator", metsParser.getDocument());
         if(identifikatory == null){
-            return add_popisy("Nenalezen žádný element <nsesss:Identifikator>.", false, chyba_neupresneno);
+            return add_popisy("Nenalezen žádný element <nsesss:Identifikator>.", false, MISTO_CHYBY_NEUPRESNENO);
         }
         for(int i = 0; i < identifikatory.size(); i++){
             Node identifikator = identifikatory.get(i);
@@ -2415,7 +2414,7 @@ public class K06_Obsahova
     //OBSAHOVÁ č.60 Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ne, obsahuje element <nsesss:Dokument> dětský element <nsesss:Komponenty>.",
     private boolean pravidlo60(){
         if(dokumenty == null){
-            return add_popisy("Nenalezen žádný element <nsesss:Dokument>.", false, chyba_neupresneno);
+            return add_popisy("Nenalezen žádný element <nsesss:Dokument>.", false, MISTO_CHYBY_NEUPRESNENO);
         }
         for(int i = 0; i < dokumenty.size(); i++)
         {
@@ -2437,7 +2436,7 @@ public class K06_Obsahova
     //OBSAHOVÁ č.61 Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano a současně element <nsesss:EvidencniUdaje> obsahuje v dětském elementu <nsesss:Puvod> element <nsesss:DorucenyDokument>, potom je v posledním uvedeném elementu uveden dětský element <nsesss:DoruceneMnozstvi> s neprázdnou hodnotou.",
     private boolean pravidlo61(){
         if(dokumenty == null){
-            return add_popisy("Nenalezen žádný element <nsesss:Dokument>.", false, chyba_neupresneno);
+            return add_popisy("Nenalezen žádný element <nsesss:Dokument>.", false, MISTO_CHYBY_NEUPRESNENO);
         }
         for(int i = 0; i < dokumenty.size(); i++)
         {      
@@ -2475,11 +2474,11 @@ public class K06_Obsahova
             try {
                 parserZUrl.NactiJazykyZUrl();
             } catch (IOException ex) {
-                return add_popisy("Chyba programu - nepodařilo se načíst tabulku s hodnotami pro element <nsesss:Jazyk>.", false, chyba_neupresneno);
+                return add_popisy("Chyba programu - nepodařilo se načíst tabulku s hodnotami pro element <nsesss:Jazyk>.", false, MISTO_CHYBY_NEUPRESNENO);
             }
             boolean jeObsazen = parserZUrl.jeObsazenJazyk(hodnotaJazyk);
             if(!jeObsazen)
-                return add_popisy("Nenalezena hodnota odpovídající ISO 639-2:1998. " + getJmenoIdentifikator(jazyk), false, chyba_neupresneno);
+                return add_popisy("Nenalezena hodnota odpovídající ISO 639-2:1998. " + getJmenoIdentifikator(jazyk), false, MISTO_CHYBY_NEUPRESNENO);
         }
         return true; 
     }
@@ -2833,7 +2832,7 @@ public class K06_Obsahova
         //        NodeList id = ValuesGetter.getAllAnywhere("nsesss:Identifikator", metsParser.getDocument());
         //        ArrayList<Node> id = ValuesGetter.getAllAnywhereArrayList("nsesss:Identifikator", metsParser.getDocument());
         if(identifikatory == null){
-            return add_popisy("Nenalezen žádný element <nsesss:Identifikator>.", false, chyba_neupresneno);
+            return add_popisy("Nenalezen žádný element <nsesss:Identifikator>.", false, MISTO_CHYBY_NEUPRESNENO);
         }
         int size = identifikatory.size();
         for(int i = 0; i < size; i++){ 
@@ -3078,7 +3077,7 @@ public class K06_Obsahova
             }
 
             Node entita = zakladniEntity.get(0);
-            return add_popisy("Nenalezen element <nsesss:SkartacniRizeni>. " + getJmenoIdentifikator(entita), false, chyba_neupresneno);
+            return add_popisy("Nenalezen element <nsesss:SkartacniRizeni>. " + getJmenoIdentifikator(entita), false, MISTO_CHYBY_NEUPRESNENO);
         }
         for(int i = 0; i < skartacniRizeni.getLength(); i++){ 
             Node skrizeni = skartacniRizeni.item(i);
@@ -3123,7 +3122,7 @@ public class K06_Obsahova
                 return add_popisy("Chybí základní entity.", false, null);
             }
 
-            return add_popisy("Nenalezen element <nsesss:SkartacniRizeni>. " + getJmenoIdentifikator(zakladniEntity.get(0)), false, chyba_neupresneno);
+            return add_popisy("Nenalezen element <nsesss:SkartacniRizeni>. " + getJmenoIdentifikator(zakladniEntity.get(0)), false, MISTO_CHYBY_NEUPRESNENO);
         }
         for(int i = 0; i < nodeList.getLength(); i++){
             Node skrizeni = nodeList.item(i);
@@ -3426,7 +3425,7 @@ public class K06_Obsahova
     //OBSAHOVÁ č.92 Pokud existuje jakýkoli element <nsesss:Identifikator> s atributem zdroj s hodnotou IČ nebo IČO, hodnota obsahuje číslo o osmi číslicích, jejichž vážený součet je dělitelný jedenácti beze zbytku.",
     private boolean pravidlo92(){
         //        NodeList identifikatory = ValuesGetter.getAllAnywhere("nsesss:Identifikator", metsParser.getDocument());
-        if(identifikatory == null) return add_popisy("Nenalezen element <nsesss:Identifikator>.", false, chyba_neupresneno);
+        if(identifikatory == null) return add_popisy("Nenalezen element <nsesss:Identifikator>.", false, MISTO_CHYBY_NEUPRESNENO);
         for(int i = 0; i < identifikatory.size(); i++){
             Node identif = identifikatory.get(i);
             if(!ValuesGetter.hasAttribut(identif, "zdroj")){
@@ -3462,7 +3461,7 @@ public class K06_Obsahova
     // <nsesss:EvidencniUdaje>, <nsesss:Trideni> element <nsesss:PlneUrcenySpisovyZnak> s hodnotou, 
     // jejíž poslední část je stejná jako hodnota elementu <nsesss:JednoduchySpisovyZnak>.",
     private boolean pravidlo94(){
-            if(plneurcenySpisovyZnak == null) return add_popisy("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>.", false, chyba_neupresneno);
+            if(plneurcenySpisovyZnak == null) return add_popisy("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>.", false, MISTO_CHYBY_NEUPRESNENO);
             for(int i = 0; i < plneurcenySpisovyZnak.size(); i++){
                 Node pusz_node = plneurcenySpisovyZnak.get(i);
                 Node jsz_node = ValuesGetter.getSourozencePrvnihoSeJmenem(pusz_node, "nsesss:JednoduchySpisovyZnak");
@@ -3486,61 +3485,6 @@ public class K06_Obsahova
             return true;
     }
     
-    //OBSAHOVÁ č.95 Každá entita věcná skupina (<nsesss:VecnaSkupina>) nebo součást (<nsesss:Soucast>), 
-    // která obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> element <nsesss:PlneUrcenySpisovyZnak> s 
-    //hodnotou obsahující oddělovač tvořený mezerou, pomlčkou, spojovníkem, lomítkem nebo tečkou, který není posledním znakem, 
-    // se nachází v rodičovské entitě věcná skupina (<nsesss:VecnaSkupina>) nebo typový spis (<nsesss:TypovySpis>), 
-    // přičemž hodnota jejího elementu <nsesss:PlneUrcenySpisovyZnak> v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> se rovná hodnotě elementu 
-    // <nsesss:PlneUrcenySpisovyZnak> výchozí entity před posledním oddělovačem.",
-    private boolean pravidlo95(){
-        ArrayList<Node> vecneSkupiny = ValuesGetter.getAllAnywhereArrayList("nsesss:VecnaSkupina", metsParser
-                .getDocument());
-        ArrayList<Node> soucasti = ValuesGetter.getAllAnywhereArrayList("nsesss:Soucast", metsParser.getDocument());
-        ArrayList<Node> typoveSpisy = ValuesGetter.getAllAnywhereArrayList("nsesss:TypovySpis", metsParser
-                .getDocument());
-        ArrayList<Node> list = new ArrayList<>();
-        if(vecneSkupiny == null) return add_popisy("Nenalezen element <nsesss:VecnaSkupina>.", false, chyba_neupresneno);
-        list.addAll(vecneSkupiny);
-        if(soucasti != null) list.addAll(soucasti);
-        if(typoveSpisy != null) list.addAll(typoveSpisy);
-        
-        int velikostListu = list.size();
-        for(int i = 0; i < velikostListu; i++){
-            Node entita = list.get(i);
-            Node pu_entita = ValuesGetter.getXChild(entita, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:PlneUrcenySpisovyZnak");
-            if(pu_entita == null) return add_popisy("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(entita), false, getMistoChyby(entita));
-            Node je_entita = ValuesGetter.getSourozencePrvnihoSeJmenem(pu_entita, "nsesss:JednoduchySpisovyZnak");
-            if(je_entita == null) return add_popisy("Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(entita), false, getMistoChyby(entita));
-            Node pu_rodic = ValuesGetter.getXChild(entita, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:MaterskaEntita", "nsesss:VecnaSkupina", "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:PlneUrcenySpisovyZnak");
-            if(pu_rodic == null) pu_rodic = ValuesGetter.getXChild(entita, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:MaterskaEntita", "nsesss:TypovySpis", "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:PlneUrcenySpisovyZnak");
-            if(pu_rodic == null) pu_rodic = ValuesGetter.getXChild(entita, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:MaterskaEntita", "nsesss:Soucast", "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:PlneUrcenySpisovyZnak");
-            if(pu_rodic == null) pu_rodic = ValuesGetter.getXChild(entita, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:SpisovyPlan");
-            if(pu_rodic != null){
-                if(pu_rodic.getNodeName().equals("nsesss:SpisovyPlan")){
-                    if(sz_ma_oddelovac_vsobe(pu_entita.getTextContent())){
-                        return add_popisy("Spisový znak nejvyšší věcné skupiny v sobě nesmí obsahovat oddělovač. " + getJmenoIdentifikator(entita), false, getMistoChyby(entita));
-                    }
-                }
-                else{
-                    String entita_jsz = je_entita.getTextContent();
-                    String entita_pus = pu_entita.getTextContent();
-                    String rodic_pus = pu_rodic.getTextContent();
-                    boolean zacina = entita_pus.startsWith(rodic_pus);
-                    if(!zacina){
-                        return add_popisy("Nesplněna podmínka pravidla. Jedn. spis. znak entity: " + entita_jsz + ". Plně urč. spis. znak entity: " + entita_pus + ". Plně urč. spis. znak rodičovské entity: " + rodic_pus + ". " + getJmenoIdentifikator(entita) + " " + getJmenoIdentifikator(pu_rodic), false, getMistoChyby(je_entita) + " " + getMistoChyby(pu_entita) + " " + getMistoChyby(pu_rodic));
-                    }
-                    boolean konci = entita_pus.endsWith(entita_jsz);
-                    if(!konci){
-                        return add_popisy("Nesplněna podmínka pravidla. Jedn. spis. znak entity: " + entita_jsz + ". Plně urč. spis. znak entity: " + entita_pus + ". Plně urč. spis. znak rodičovské entity: " + rodic_pus + ". "  + getJmenoIdentifikator(entita) + " " + getJmenoIdentifikator(pu_rodic), false, getMistoChyby(je_entita) + " " + getMistoChyby(pu_entita) + " " + getMistoChyby(pu_rodic));
-                    } 
-                }
-            }
-        }
-        
-        
-        
-        return true;
-    }
     
     
     private int pravidlo54_pocitadlo(){
@@ -3618,7 +3562,7 @@ public class K06_Obsahova
     }
     
     // na konci oddělovač nehlídá
-    private boolean sz_ma_oddelovac_vsobe(String spisovy_znak){
+    static public boolean spisZnakObsahujeOddelovac(String spisovy_znak) {
         for(int i = 0; i < spisovy_znak.length()-1; i++){
             char c = spisovy_znak.charAt(i);
             if(c == ' ' || c == '-' || c == '_' || c == '\\' || c == '/' || c == '.'){
