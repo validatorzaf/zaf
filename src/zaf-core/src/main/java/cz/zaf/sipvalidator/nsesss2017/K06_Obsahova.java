@@ -27,7 +27,6 @@ import org.apache.commons.lang3.Validate;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import cz.zaf.sipvalidator.helper.Helper;
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo90;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo91;
@@ -904,7 +903,7 @@ public class K06_Obsahova
         for(int i = 0; i < nodeList.getLength(); i++){
             Node node = nodeList.item(i);
             if(ValuesGetter.hasOnlyOneChild_ElementNode(node, "mets:name")){
-                if(!Helper.isStringNoEmpty(ValuesGetter.getXChild(node, "mets:name").getTextContent())){
+                if (StringUtils.isBlank(ValuesGetter.getXChild(node, "mets:name").getTextContent())) {
                     pocitadlo2++;
                     ch += getMistoChyby(node) + " ";
                 }
@@ -951,7 +950,7 @@ public class K06_Obsahova
             return add_popisy("Element <mets:mdWrap> neobsahuje atribut MDTYPEVERSION.", false, getMistoChyby(metsMdWrap));
         }
         String g = ValuesGetter.getValueOfAttribut(metsMdWrap, "MDTYPEVERSION");
-        if(!Helper.isStringNoEmpty(g)){
+        if (StringUtils.isBlank(g)) {
             return add_popisy("Atribut MDTYPEVERSION elementu <mets:mdWrap> má prázdnou hodnotu.", false, getMistoChyby(metsMdWrap));
         }
         if(!ValuesGetter.hasAttributValue(metsMdWrap, "MDTYPEVERSION", "3.0")){
@@ -967,7 +966,7 @@ public class K06_Obsahova
             return add_popisy("Element <mets:mdWrap> neobsahuje atribut OTHERMDTYPE.", false, getMistoChyby(metsMdWrap));
         }
         String g = ValuesGetter.getValueOfAttribut(metsMdWrap, "OTHERMDTYPE");
-        if(!Helper.isStringNoEmpty(g)){
+        if (StringUtils.isBlank(g)) {
             return add_popisy("Atribut OTHERMDTYPE elementu <mets:mdWrap> má prázdnou hodnotu.", false, getMistoChyby(metsMdWrap));
         }
         if(!ValuesGetter.hasAttributValue(metsMdWrap, "OTHERMDTYPE", "NSESSS")){
@@ -983,7 +982,7 @@ public class K06_Obsahova
             return add_popisy("Element <mets:mdWrap> neobsahuje atribut MDTYPE.", false, getMistoChyby(metsMdWrap));
         }
         String g = ValuesGetter.getValueOfAttribut(metsMdWrap, "MDTYPE");
-        if(!Helper.isStringNoEmpty(g)){
+        if (StringUtils.isBlank(g)) {
             return add_popisy("Atribut MDTYPE elementu <mets:mdWrap> má prázdnou hodnotu.", false, getMistoChyby(metsMdWrap));
         }
         if(!ValuesGetter.hasAttributValue(metsMdWrap, "MDTYPE", "OTHER")){
@@ -999,7 +998,7 @@ public class K06_Obsahova
             return add_popisy("Element <mets:mdWrap> neobsahuje atribut MIMETYPE.", false, getMistoChyby(metsMdWrap));
         }
         String g = ValuesGetter.getValueOfAttribut(metsMdWrap, "MIMETYPE");
-        if(!Helper.isStringNoEmpty(g)){
+        if (StringUtils.isBlank(g)) {
             return add_popisy("Atribut MIMETYPE elementu <mets:mdWrap> má prázdnou hodnotu.", false, getMistoChyby(metsMdWrap));
         }
         if(!ValuesGetter.hasAttributValue(metsMdWrap, "MIMETYPE", "text/xml")){
@@ -1593,7 +1592,7 @@ public class K06_Obsahova
                 }
                 else{
                     String s = mnozstvi.getTextContent();
-                    if(!Helper.isStringNoEmpty(s)){
+                    if (StringUtils.isBlank(s)) {
                         return add_popisy("Element <nsesss:VytvoreneMnozstvi> obsahuje prázdnou hodnotu. Dokumentu " + getIdentifikatory(dokument) + ".", false, getMistoChyby(mnozstvi));
                     }
                 }
@@ -2322,7 +2321,7 @@ public class K06_Obsahova
         for(int i = 0; i < identifikatory.size(); i++){
             Node identifikator = identifikatory.get(i);
             String str = identifikator.getTextContent();
-            if(!Helper.isStringNoEmpty(str)){
+            if (StringUtils.isBlank(str)) {
                 return add_popisy("Element <nsesss:Identifikator> obsahuje prázdnou hodnotu. " + getJmenoIdentifikator(identifikator), false, getMistoChyby(identifikator));
             }
         }
@@ -2341,7 +2340,7 @@ public class K06_Obsahova
                 return add_popisy("Element <nsesss:Identifikator> neobsahuje atribut zdroj.", false, getMistoChyby(identifikator));
             }
             String str = ValuesGetter.getValueOfAttribut(identifikator, "zdroj");
-            if(!Helper.isStringNoEmpty(str)){
+            if (StringUtils.isBlank(str)) {
                 return add_popisy("Atribut zdroj elementu <nsesss:Identifikator> má prázdnou hodnotu. " + getJmenoIdentifikator(identifikator), false, getMistoChyby(identifikator));
             }
         }
@@ -2443,7 +2442,7 @@ public class K06_Obsahova
                 }
                 if(ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Puvod", "nsesss:DorucenyDokument", "nsesss:DoruceneMnozstvi") != null){
                     String s = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Puvod", "nsesss:DorucenyDokument", "nsesss:DoruceneMnozstvi").getTextContent();
-                    if(!Helper.isStringNoEmpty(s)){
+                    if (StringUtils.isBlank(s)) {
                         return add_popisy("Element <nsesss:DoruceneMnozstvi> obsahuje prázdnou hodnotu. Dokumentu " + getIdentifikatory(dokument) + ".", false, getMistoChyby(dokument));
                     }
                 }
@@ -2495,7 +2494,7 @@ public class K06_Obsahova
 //                        }
                         return add_popisy("Nenalezen povinný element <nsesss:Oduvodneni>. " + getJmenoIdentifikator(n), false, getMistoChyby(n));
                     }
-                    if(!Helper.isStringNoEmpty(oduvodneni.getTextContent())){
+                    if (StringUtils.isBlank(oduvodneni.getTextContent())) {
 //                        Node rodic = n.getParentNode().getParentNode();
 //                        String g = "";
 //                        if(rodic != null) {
@@ -2523,7 +2522,7 @@ public class K06_Obsahova
 //                        }
                         return add_popisy("Nenalezen povinný element <nsesss:Oduvodneni>. " + getJmenoIdentifikator(n), false, getMistoChyby(n));
                     }
-                    if(!Helper.isStringNoEmpty(oduvodneni.getTextContent())){
+                    if (StringUtils.isBlank(oduvodneni.getTextContent())) {
 //                        Node rodic = n.getParentNode().getParentNode();
 //                        String g = "";
 //                        if(rodic != null) {
@@ -3026,7 +3025,7 @@ public class K06_Obsahova
                     if(mnozstvi == null){
                         return add_popisy("Nenalezen element <nsesss:Mnozstvi> základní entity. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(zakladnientita));
                     }
-                    if(!Helper.isStringNoEmpty(mnozstvi.getTextContent())){
+                    if (StringUtils.isBlank(mnozstvi.getTextContent())) {
                         return add_popisy("Element <nsesss:Mnozstvi> obsahuje prázdnou hodnotu. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(mnozstvi));
                     }
                 }
@@ -3234,7 +3233,7 @@ public class K06_Obsahova
                 if( obs_vyr == null){
                     return add_popisy("Nenalezen element <nsesss:ObsahVyrizeni>. " + getJmenoIdentifikator(n), false, getMistoChyby(n));
                 }
-                if(!Helper.isStringNoEmpty(obs_vyr.getTextContent())){
+                if (StringUtils.isBlank(obs_vyr.getTextContent())) {
                     return add_popisy("Element <nsesss:ObsahVyrizeni> obsahuje prázdnou hodnotu. " + getJmenoIdentifikator(n), false, getMistoChyby(obs_vyr));
                 }
             }   
@@ -3259,7 +3258,7 @@ public class K06_Obsahova
                     if(uklalaciJednotka == null){
                         return add_popisy("Nenalezen element <nsesss:UkladaciJednotka>. " + getJmenoIdentifikator(dokument), false, getMistoChyby(analog));
                     }
-                    if(!Helper.isStringNoEmpty(uklalaciJednotka.getTextContent())){
+                    if (StringUtils.isBlank(uklalaciJednotka.getTextContent())) {
                         return add_popisy("Element <nsesss:UkladaciJednotka> obsahuje prázdnou hodnotu. " + getJmenoIdentifikator(dokument), false, getMistoChyby(uklalaciJednotka));
                     }
                 }
@@ -3323,7 +3322,7 @@ public class K06_Obsahova
                         if(node == null){
                             return add_popisy("Nenalezen element <nsesss:OdeslaneMnozstvi>. " + getJmenoIdentifikator(dokument), false, getMistoChyby(dokument));
                         }
-                        if(!Helper.isStringNoEmpty(node.getTextContent())){
+                        if (StringUtils.isBlank(node.getTextContent())) {
                             return add_popisy("Element <nsesss:OdeslaneMnozstvi> obsahuje prázdnou hodnotu. " + getJmenoIdentifikator(dokument), false, getMistoChyby(node));
                         }
                     }
