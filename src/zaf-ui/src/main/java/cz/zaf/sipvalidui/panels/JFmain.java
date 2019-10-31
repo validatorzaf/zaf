@@ -35,7 +35,6 @@ import org.xml.sax.SAXException;
 import cz.zaf.sipvalidator.helper.HelperTime;
 import cz.zaf.sipvalidator.nsesss2017.SipValidator;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
-import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipLoader;
 import cz.zaf.sipvalidator.sip.XmlReportBuilder;
@@ -450,10 +449,26 @@ public class JFmain extends javax.swing.JFrame {
         nahraneSoubory.clear();
     }
 
+
+    public static String get_SIP_type_XXX(int index) {
+
+        if (index == 0) {
+            return "DOK";
+        }
+        if (index == 1) {
+            return "SPI";
+        }
+        if (index == 2) {
+            return "DÍL";
+        }
+
+        return " - ";
+    }
+
     static void resetRow(int i, SipInfo souborSIP) {
         //        if(!souborSIP.get_SIP_Parsed_Information().isEmpty()){
         tabulkaSIPsouboru.removeRow(i);
-        Object[] o = new Object[] { " " + (i + 1) + ".", SIP_MAIN_helper.get_SIP_type_XXX(souborSIP.getType()),
+        Object[] o = new Object[] { " " + (i + 1) + ".", get_SIP_type_XXX(souborSIP.getType()),
                 souborSIP.getSKznak() + souborSIP.getSKlhuta(), " " + souborSIP.getName(), getVelikostSipuProTabulku(
                                                                                                                      souborSIP
                                                                                                                              .getLenght()) };

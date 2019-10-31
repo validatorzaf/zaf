@@ -29,6 +29,11 @@ import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.Helper;
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo90;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo91;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo92;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo93;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo94;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo95;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo96;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo97;
@@ -187,10 +192,6 @@ public class K06_Obsahova
 
     private List<Node> identifikatory;
 
-    private List<Node> plneurcenySpisovyZnak;
-
-    private List<Node> nazvy;
-
     private List<Node> manipulace;
 
     private Node xmlData;
@@ -209,6 +210,11 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
 
+        pridejPravidlo(new Pravidlo90(this));
+        pridejPravidlo(new Pravidlo91(this));
+        pridejPravidlo(new Pravidlo92(this));
+        pridejPravidlo(new Pravidlo93(this));
+        pridejPravidlo(new Pravidlo94(this));
         pridejPravidlo(new Pravidlo95(this));
         pridejPravidlo(new Pravidlo96(this));
         pridejPravidlo(new Pravidlo97(this));
@@ -481,21 +487,6 @@ public class K06_Obsahova
                 break;
             case 89:
                 vysledek = pravidlo89();
-                break;
-            case 90:
-                vysledek = pravidlo90();
-                break;    
-            case 91:
-                vysledek = pravidlo91();
-                break;
-            case 92:
-                vysledek = pravidlo92();
-                break;
-            case 93:
-                vysledek = pravidlo93();
-                break;
-            case 94:
-                vysledek = pravidlo94();
                 break;
         }
         
@@ -3369,124 +3360,7 @@ public class K06_Obsahova
         }    
         return true;
     }
-    
-    //OBSAHOVÁ č.90 Pokud je základní entitou dokument (<nsesss:Spis>), potom obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> element <nsesss:RokSpousteciUdalosti> hodnotu, v níž je uvedený rok větší nebo roven hodnotě uvedené v elementu <nsesss:Datum> v hierarchii elementů <nsesss:EvidencniUdaje> a <nsesss:VyrizeniUzavreni>.",
-    private boolean pravidlo90(){
-        if (zakladniEntity == null) {
-            return add_popisy("Chybí základní entity.", false, null);
-        }
 
-        for(int i = 0; i < zakladniEntity.size(); i++){
-            Node spis = zakladniEntity.get(i);
-            if(spis.getNodeName().equals("nsesss:Spis")){
-                Node node = ValuesGetter.getXChild(spis, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani", "nsesss:DataceVyrazeni", "nsesss:RokSpousteciUdalosti");
-                Node node2 = ValuesGetter.getXChild(spis, "nsesss:EvidencniUdaje", "nsesss:VyrizeniUzavreni", "nsesss:Datum");
-                if(node == null) return add_popisy("Nenalezen element <nsesss:RokSpousteciUdalosti>. " + getJmenoIdentifikator(spis), false, getMistoChyby(spis));
-                if(node2 == null) return add_popisy("Nenalezen element <nsesss:Datum>. " + getJmenoIdentifikator(spis), false, getMistoChyby(spis));
-                String rok1 = node.getTextContent().substring(0, 4);
-                String rok2 = node2.getTextContent().substring(0, 4);
-                boolean b = (ValuesGetter.overSpravnostRetezceProInt(rok1) && ValuesGetter.overSpravnostRetezceProInt(rok1));
-                if(!b) return add_popisy("Hodnoty dat jsou zaznamenány v nepovoleném formátu. " + getJmenoIdentifikator(spis), false, getMistoChyby(node) + " " + getMistoChyby(node2));
-                int rokSpousteci = Integer.parseInt(rok1);
-                int rokDatum = Integer.parseInt(rok2);
-                if(!(rokSpousteci >= rokDatum)){
-                    return add_popisy("Nesplněna podmínka pravidla. Událost: " + rokSpousteci + ". Datum: " + rokDatum + ". " + getJmenoIdentifikator(spis), false, getMistoChyby(node) + " " + getMistoChyby(node2));
-                }
-            }
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.91 Pokud je základní entitou díl (<nsesss:Dil>), potom obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> element <nsesss:RokSpousteciUdalosti> hodnotu, v níž je uvedený rok větší nebo roven hodnotě uvedené v elementu <nsesss:Datum> v hierarchii elementů <nsesss:EvidencniUdaje> a <nsesss:Uzavreni>.",
-    private boolean pravidlo91(){
-        if (zakladniEntity == null) {
-            return add_popisy("Chybí základní entity.", false, null);
-        }
-
-        for(int i = 0; i < zakladniEntity.size(); i++){
-            Node dil = zakladniEntity.get(i);
-            if(dil.getNodeName().equals("nsesss:Dil")){
-                Node node = ValuesGetter.getXChild(dil, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani", "nsesss:DataceVyrazeni", "nsesss:RokSpousteciUdalosti");
-                Node node2 = ValuesGetter.getXChild(dil, "nsesss:EvidencniUdaje", "nsesss:Uzavreni", "nsesss:Datum");
-                if(node == null) return add_popisy("Nenalezen element <nsesss:RokSpousteciUdalosti>. " + getJmenoIdentifikator(dil), false, getMistoChyby(node));
-                if(node2 == null) return add_popisy("Nenalezen element <nsesss:Datum>. "  + getJmenoIdentifikator(dil), false, getMistoChyby(node2));
-                String rok1 = node.getTextContent().substring(0, 4);
-                String rok2 = node2.getTextContent().substring(0, 4);
-                boolean b = (ValuesGetter.overSpravnostRetezceProInt(rok1) && ValuesGetter.overSpravnostRetezceProInt(rok1));
-                if(!b) return add_popisy("Hodnoty dat jsou zaznamenány v nepovoleném formátu. "  + getJmenoIdentifikator(dil), false, getMistoChyby(node) + " " + getMistoChyby(node2));
-                int rokSpousteci = Integer.parseInt(rok1);
-                int rokDatum = Integer.parseInt(rok2);
-                if(!(rokSpousteci >= rokDatum)) return add_popisy("Nesplněna podmínka pravidla. Událost: " + rokSpousteci + ". Datum: " + rokDatum + ". "  + getJmenoIdentifikator(dil), false, getMistoChyby(node) + " " + getMistoChyby(node2));
-            }
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.92 Pokud existuje jakýkoli element <nsesss:Identifikator> s atributem zdroj s hodnotou IČ nebo IČO, hodnota obsahuje číslo o osmi číslicích, jejichž vážený součet je dělitelný jedenácti beze zbytku.",
-    private boolean pravidlo92(){
-        //        NodeList identifikatory = ValuesGetter.getAllAnywhere("nsesss:Identifikator", metsParser.getDocument());
-        if(identifikatory == null) return add_popisy("Nenalezen element <nsesss:Identifikator>.", false, MISTO_CHYBY_NEUPRESNENO);
-        for(int i = 0; i < identifikatory.size(); i++){
-            Node identif = identifikatory.get(i);
-            if(!ValuesGetter.hasAttribut(identif, "zdroj")){
-                return add_popisy("Elementu <nsesss:Identifikátor> chybí atribut zdroj. " + getJmenoIdentifikator(identif), false, getMistoChyby(identif));
-            }
-            String str = ValuesGetter.getValueOfAttribut(identif, "zdroj");
-            if(str.equals("IČ") || str.equals("IČO")){
-                String hodnota = identif.getTextContent();
-                if(!Helper.icoCounter(hodnota)){
-                    return add_popisy("IČO není ve správném formátu. " + getJmenoIdentifikator(identif), false, getMistoChyby(identif));
-                    
-                }
-            }
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.93 Jakýkoli element <nsesss:Nazev> obsahuje neprázdnou hodnotu.",
-    private boolean pravidlo93(){
-        if(nazvy != null){
-            for(int i = 0; i < nazvy.size(); i++){
-                Node nazev = nazvy.get(i);
-                String str = nazev.getTextContent();
-                if(!Helper.isStringNoEmpty(str)){
-                    return add_popisy("Element <nsesss:Nazev> obsahuje prázdnou hodnotu. " + getJmenoIdentifikator(nazev), false, getMistoChyby(nazev));
-                }
-            }
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.94 "Každá entita vyjma jakéhokoli spisového plánu (<nsesss:SpisovyPlan>) obsahuje v hierarchii dětských elementů 
-    // <nsesss:EvidencniUdaje>, <nsesss:Trideni> element <nsesss:PlneUrcenySpisovyZnak> s hodnotou, 
-    // jejíž poslední část je stejná jako hodnota elementu <nsesss:JednoduchySpisovyZnak>.",
-    private boolean pravidlo94(){
-            if(plneurcenySpisovyZnak == null) return add_popisy("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>.", false, MISTO_CHYBY_NEUPRESNENO);
-            for(int i = 0; i < plneurcenySpisovyZnak.size(); i++){
-                Node pusz_node = plneurcenySpisovyZnak.get(i);
-                Node jsz_node = ValuesGetter.getSourozencePrvnihoSeJmenem(pusz_node, "nsesss:JednoduchySpisovyZnak");
-                if(jsz_node == null){
-                    boolean b = ValuesGetter.isXParent(pusz_node, "nsesss:KrizovyOdkaz");
-                    if(!b){
-                        return add_popisy("Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(pusz_node), false, getMistoChyby(pusz_node));
-                    }
-                }
-                else{
-                    String jednoduchy = jsz_node.getTextContent();
-                    String plneUrceny = pusz_node.getTextContent();
-    //                boolean b = ValuesGetter.compareSpisoveZnaky(jednoduchy, plneUrceny);
-                    if(!jednoduchy.equals(plneUrceny)){
-                        if(!plneUrceny.endsWith(jednoduchy)){
-                            return add_popisy("Část plně určeného spis. znaku za oddělovačem neodpovídá jedn. spis. znaku. " + getJmenoIdentifikator(pusz_node), false, getMistoChyby(pusz_node) + " " + getMistoChyby(jsz_node));
-                        } 
-                    }
-                }
-            }
-            return true;
-    }
-    
-    
-    
     private int pravidlo54_pocitadlo(){
         int a = 0;
         ArrayList<Node> plany = ValuesGetter.getAllAnywhereArrayList("nsesss:SpisovyPlan", metsParser.getDocument());
@@ -3587,11 +3461,9 @@ public class K06_Obsahova
         this.xmlData = metsParser.getMetsXmlData();
         this.zakladniEntity = metsParser.getZakladniEntity();
         this.dokumenty = metsParser.getDokumenty();
-        this.nazvy = metsParser.getNazvy();
         this.manipulace = metsParser.getManipulace();
         this.urceneCasoveObdobi = metsParser.getUrceneCasoveObdobi();
         this.identifikatory = metsParser.getIdentifikatory();
-        this.plneurcenySpisovyZnak = metsParser.getPlneurcenySpisovyZnak();
 		
 		this.sipSoubor = ctx.getSip();
 
