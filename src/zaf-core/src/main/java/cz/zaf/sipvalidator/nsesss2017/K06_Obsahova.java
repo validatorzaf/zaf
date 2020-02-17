@@ -28,6 +28,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo89;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo90;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo91;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo92;
@@ -209,6 +210,7 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
 
+        pridejPravidlo(new Pravidlo89(this));
         pridejPravidlo(new Pravidlo90(this));
         pridejPravidlo(new Pravidlo91(this));
         pridejPravidlo(new Pravidlo92(this));
@@ -483,9 +485,6 @@ public class K06_Obsahova
                 break;
             case 88:
                 vysledek = pravidlo88();
-                break;
-            case 89:
-                vysledek = pravidlo89();
                 break;
         }
         
@@ -3332,34 +3331,6 @@ public class K06_Obsahova
         return true;
     }
     
-    //OBSAHOVÁ č.89 Pokud je základní entitou (<nsesss:Dokument>), potom obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> obsahuje element <nsesss:RokSpousteciUdalosti> hodnotu, v níž je uvedený rok větší nebo roven hodnotě uvedené v elementu <nsesss:Datum> v hierarchii elementů <nsesss:EvidencniUdaje> a <nsesss:Vyrizeni>.",
-    private boolean pravidlo89(){
-        if (zakladniEntity == null) {
-            return add_popisy("Chybí základní entity.", false, null);
-        }
-
-        for(int i = 0; i < zakladniEntity.size(); i++){
-            Node entita = zakladniEntity.get(i);
-            if(entita.getNodeName().equals("nsesss:Dokument")){
-                Node node = ValuesGetter.getXChild(entita, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani", "nsesss:DataceVyrazeni", "nsesss:RokSpousteciUdalosti");
-                if(node == null) return add_popisy("Nenalezen element <nsesss:RokSpousteciUdalosti>. " + getJmenoIdentifikator(entita), false, getMistoChyby(entita));
-                String s = node.getTextContent().substring(0, 4);
-                boolean b = ValuesGetter.overSpravnostRetezceProInt(s);
-                if(!b) return add_popisy("Hodnota elementu <nsesss:RokSpousteciUdalosti> uvedena v nepovoleném formátu. " + getJmenoIdentifikator(entita), false, getMistoChyby(node));
-                int rokUdalosti = Integer.parseInt(s);
-
-                Node datum = ValuesGetter.getXChild(entita, "nsesss:EvidencniUdaje", "nsesss:Vyrizeni", "nsesss:Datum");
-                if(datum == null) return add_popisy("Nenalezen element <nsesss:Datum>. " + getJmenoIdentifikator(entita), false, getMistoChyby(entita));
-                String d = datum.getTextContent().substring(0, 4);
-                boolean bo = ValuesGetter.overSpravnostRetezceProInt(d);
-                if(!bo) return add_popisy("Hodnota elementu <nsesss:Datum> uvedena v nepovoleném formátu. " + getJmenoIdentifikator(entita), false, getMistoChyby(datum));
-                int dat = Integer.parseInt(d);
-                if(!(rokUdalosti >= dat)) return add_popisy("Nesplněna podmínka pravidla. Událost: " + rokUdalosti + ". Datum: " + dat + ". " + getJmenoIdentifikator(entita), false, getMistoChyby(node) + " " + getMistoChyby(datum));
-            }
-        }    
-        return true;
-    }
-
     private int pravidlo54_pocitadlo(){
         int a = 0;
         ArrayList<Node> plany = ValuesGetter.getAllAnywhereArrayList("nsesss:SpisovyPlan", metsParser.getDocument());
