@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import cz.zaf.sipvalidator.nsesss2017.SipValidator;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipLoader;
-import cz.zaf.sipvalidator.sip.XmlReportBuilder;
+import cz.zaf.sipvalidator.sip.VyslednyProtokol;
 
 /**
  * Command line validator
@@ -20,6 +20,8 @@ public class CmdValidator {
     public static final int ERR_WRONG_PARAMS = 1;
     public static final int ERR_FAILED = 2;
     private CmdParams cmdParams;
+
+    VyslednyProtokol vyslednyProtokol = new VyslednyProtokol();
 
     public CmdValidator(final CmdParams cmdParams) {
         this.cmdParams = cmdParams;
@@ -62,28 +64,26 @@ public class CmdValidator {
         sipValidator.validate(sipLoader);
         
         writeResult(cmdParams.getOutput(), sipLoader.getSip());
-        /*
-        // print result
-        XmlReportBuilder xmlBuilder = new XmlReportBuilder(Collections.singletonList(sip),
-                null, sip.getName(), profilValidace, "",
-                null, null);
-                */
     }
 
     private void writeResult(String output, SipInfo sipInfo) throws Exception {
-        XmlReportBuilder xmlBuilder = new XmlReportBuilder(null, null, null, cmdParams.getProfilValidace().getNazev());
+        String kontrolaId = cmdParams.getIdKontroly();
+        if (!StringUtils.isEmpty(kontrolaId)) {
+            vyslednyProtokol.getKontrolaSIP().setKontrolaID(kontrolaId);
+        }
+        vyslednyProtokol.setProfilValidace(cmdParams.getProfilValidace());
 
-        xmlBuilder.addSipNode(sipInfo);
+        vyslednyProtokol.addSipInfo(sipInfo);
 
         if (StringUtils.isNoneBlank(cmdParams.getOutput())) {
             Path outputPath = Paths.get(cmdParams.getOutput());
             if (Files.isDirectory(outputPath)) {
                 // create file name
             } else {
-                xmlBuilder.save(outputPath);
+                vyslednyProtokol.save(outputPath);
             }
         } else {
-            xmlBuilder.save(null);
+            vyslednyProtokol.save(System.out);
         }
 
     }

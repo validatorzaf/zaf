@@ -16,7 +16,7 @@ import java.util.TimeZone;
  */
 public class HelperTime {
     
-    public static String get_utc(){
+    public static String getUtc() {
 //        Date currentTime = new Date();
         TimeZone timeZone = TimeZone.getTimeZone("UTC");
         Calendar calendar = Calendar.getInstance(timeZone);

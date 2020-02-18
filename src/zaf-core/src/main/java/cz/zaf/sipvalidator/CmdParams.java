@@ -22,6 +22,7 @@ public class CmdParams {
         output.println("        1 = pro provedení skartačního řízení (jen metadata bez přiložených komponent)");
         output.println("        2 = pro provedení skartačního řízení (s přiloženými komponentami)");
         output.println("        3 = pro předávání dokumentů a jejich metadat do archivu");
+        output.println(" -I|--id= Identifikátor prováděné kontroly");
         output.println(" -z|--hrozba= podrobnosti v případě nalezení hrozby (pro předání z antivirového programu)");
         output.println(" -o|--output Jméno souboru nebo adresáře pro uložení výsledků");
     }
@@ -56,6 +57,15 @@ public class CmdParams {
      * Pozice pri cteni vstupnich parametru
      */
     int pos = 0;
+
+    /**
+     * Identifikátor prováděné kontroly
+     */
+    private String idKontroly;
+
+    public String getIdKontroly() {
+        return idKontroly;
+    }
 
     String args[];
 
@@ -113,6 +123,14 @@ public class CmdParams {
                 if (!readDruh(arg.substring(7))) {
                     return false;
                 }
+            } else if (arg.equals("-I")) {
+                if (!readIdKontroly()) {
+                    return false;
+                }
+            } else if (arg.startsWith("--id=")) {
+                if (!readIdKontroly(arg.substring(5))) {
+                    return false;
+                }
             } else if (arg.equals("-z")) {
                 if (!readZ()) {
                     return false;
@@ -137,6 +155,25 @@ public class CmdParams {
             pos++;
         }
         return true;
+    }
+
+    private boolean readIdKontroly(String arg) {
+        if (arg.length() == 0) {
+            System.out.println("Missing id detail");
+            return false;
+        }
+        this.idKontroly = arg;
+        return true;
+    }
+
+    private boolean readIdKontroly() {
+        pos++;
+        if (pos == args.length) {
+            System.out.println("Missing id");
+            return false;
+        }
+        String arg = args[pos];
+        return readIdKontroly(arg);
     }
 
     private boolean readOutput(String arg) {

@@ -11,6 +11,10 @@
 	<artifactId>zaf-core</artifactId>
 	<name>ZAF Core</name>
 
+  <properties>
+    <xjcDirectory>${project.build.directory}/generated-sources/xjc</xjcDirectory>
+  </properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>commons-codec</groupId>
@@ -59,29 +63,51 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>jaxb2-generate-kontrolasip]</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemaDirectory>src/main/resources/schema</schemaDirectory>
+							<schemaIncludes>
+								<include>kontrolasip.xsd</include>
+							</schemaIncludes>
+							<generatePackage>cz.zaf.schema.kontrolasip</generatePackage>
+							<generateDirectory>${xjcDirectory}/kontrolasip</generateDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>3.1.0</version>
 				<configuration>
 					<includeEmptyDirs>true</includeEmptyDirs>
 				</configuration>
-				 <executions>
-        <execution>
-            <id>copy-test-resource</id>
-            <phase>package</phase>
-            <goals>
-                <goal>testResources</goal>
-            </goals>
-            <configuration>
-                <outputDirectory>${project.build.testOutputDirectory}/testdata</outputDirectory>
-                <resources>
-                    <resource>
-                        <directory>${project.basedir}/../testdata</directory>
-                    </resource>
-                </resources>
-            </configuration>
-        </execution>
-         </executions>			</plugin>
+				<executions>
+					<execution>
+						<id>copy-test-resource</id>
+						<phase>package</phase>
+						<goals>
+							<goal>testResources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.testOutputDirectory}/testdata</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${project.basedir}/../testdata</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -97,6 +123,7 @@
 				<filtering>true</filtering>
 				<includes>
 					<include>**/*.yaml</include>
+					<include>zaf-core.properties</include>
 				</includes>
 			</resource>
 			<resource>
@@ -104,6 +131,7 @@
 				<filtering>false</filtering>
 				<excludes>
 					<exclude>**/*.yaml</exclude>
+					<exclude>zaf-core.properties</exclude>
 				</excludes>
 			</resource>
 		</resources>
@@ -116,10 +144,9 @@
 			<!-- Add test folder with source files for packages -->
 			<!-- <testResource> <directory>${basedir}/target/test-resources</directory> 
 				<includes /> </testResource> -->
-			<!-- <testResource>
-				<directory>${project.basedir}/../testdata</directory>
-				<targetPath>${project.basedir}/target/test-classes/testdata</targetPath>
-			</testResource>-->
+			<!-- <testResource> <directory>${project.basedir}/../testdata</directory> 
+				<targetPath>${project.basedir}/target/test-classes/testdata</targetPath> 
+				</testResource> -->
 			<!-- <testResource> <directory>${project.basedir}/../rules-simple-dev/src</directory> 
 				<targetPath>${project.basedir}/target/test-classes/rules-simple-dev</targetPath> 
 				</testResource> -->
