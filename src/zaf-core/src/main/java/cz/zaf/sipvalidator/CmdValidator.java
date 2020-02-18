@@ -1,8 +1,12 @@
 package cz.zaf.sipvalidator;
 
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -55,30 +59,67 @@ public class CmdValidator {
     }
 
     private void validateSip() throws Exception {
+
+        SipInfo sipInfo = validateSip(cmdParams.getInputPath());
+
+        writeResult(cmdParams.getOutput(), Collections.singletonList(sipInfo));
+    }
+
+    private SipInfo validateSip(String sipPath) throws Exception {
         // nahrani sipu
-        SipLoader sipLoader = new SipLoader(cmdParams.getInputPath(),
+        SipLoader sipLoader = new SipLoader(sipPath,
                 cmdParams.getWorkDir());
 
         SipValidator sipValidator = new SipValidator(cmdParams.getProfilValidace());
         sipValidator.setHrozba(cmdParams.getHrozba());
         sipValidator.validate(sipLoader);
         
-        writeResult(cmdParams.getOutput(), sipLoader.getSip());
+        return sipLoader.getSip();
+
     }
 
-    private void writeResult(String output, SipInfo sipInfo) throws Exception {
+    private void validateDavka() throws Exception {
+        Path inputDir = Paths.get(cmdParams.getInputPath());
+        if (!Files.isDirectory(inputDir)) {
+            throw new IllegalArgumentException("Input path is not directory: " + cmdParams.getInputPath());
+        }
+        final List<SipInfo> sips = new ArrayList<>();
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(inputDir)) {
+            for (final Path path : stream) {
+                final String dirPath = path.toAbsolutePath().toString();
+                final SipInfo sipInfo = validateSip(dirPath);
+                sips.add(sipInfo);
+            }
+        }
+        writeResult(cmdParams.getOutput(), sips);
+    }
+
+    /**
+     * Zapsani vysledku do protokolu
+     * 
+     * @param output
+     *            Jmeno vystupniho souboru
+     * @param sips
+     *            Seznam SIPu
+     * @throws Exception
+     *             Chyba pri zapisu protokolu
+     */
+    private void writeResult(String output, List<SipInfo> sips) throws Exception {
         String kontrolaId = cmdParams.getIdKontroly();
         if (!StringUtils.isEmpty(kontrolaId)) {
             vyslednyProtokol.getKontrolaSIP().setKontrolaID(kontrolaId);
         }
         vyslednyProtokol.setProfilValidace(cmdParams.getProfilValidace());
 
-        vyslednyProtokol.addSipInfo(sipInfo);
+        for (SipInfo sipInfo : sips) {
+            vyslednyProtokol.addSipInfo(sipInfo);
+        }
 
         if (StringUtils.isNoneBlank(cmdParams.getOutput())) {
             Path outputPath = Paths.get(cmdParams.getOutput());
             if (Files.isDirectory(outputPath)) {
                 // create file name
+                throw new IllegalArgumentException("Output path is directory, file was expected: " + outputPath);
             } else {
                 vyslednyProtokol.save(outputPath);
             }
@@ -86,9 +127,6 @@ public class CmdValidator {
             vyslednyProtokol.save(System.out);
         }
 
-    }
-
-    private void validateDavka() {
     }
 
 }
