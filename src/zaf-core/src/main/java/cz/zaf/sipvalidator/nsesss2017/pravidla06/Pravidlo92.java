@@ -23,7 +23,7 @@ public class Pravidlo92 extends K06PravidloBase {
             return false;
         int posledniCislice;
         try {
-            int cis = Integer.parseInt(string);
+            Long.parseLong(string);
             posledniCislice = Character.getNumericValue(string.charAt(string.length() - 1));
 
         } catch (NumberFormatException e) {

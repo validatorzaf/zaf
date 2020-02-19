@@ -28,6 +28,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo88;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo89;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo90;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo91;
@@ -210,6 +211,7 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
 
+        pridejPravidlo(new Pravidlo88(this));
         pridejPravidlo(new Pravidlo89(this));
         pridejPravidlo(new Pravidlo90(this));
         pridejPravidlo(new Pravidlo91(this));
@@ -482,9 +484,6 @@ public class K06_Obsahova
                 break;
             case 87:
                 vysledek = pravidlo87();
-                break;
-            case 88:
-                vysledek = pravidlo88();
                 break;
         }
         
@@ -3302,35 +3301,7 @@ public class K06_Obsahova
         }
         return true;
     }
-    
-    //OBSAHOVÁ č.88 Pokud element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano a současně element <nsesss:Vyrizeni> obsahuje dětský element <nsesss:DatumOdeslani>, pak element <nsesss:Vyrizeni> obsahuje element <nsesss:OdeslaneMnozstvi> s neprázdnou hodnotou.",
-    private boolean pravidlo88(){
-        if (dokumenty == null) {
-            return add_popisy("Chybí dokumenty.", false, null);
-        }
 
-        for(int i = 0; i < dokumenty.size(); i++){
-            Node dokument = dokumenty.get(i);
-            Node analog = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Manipulace", "nsesss:AnalogovyDokument");
-            if(analog != null){
-                String hodnota = analog.getTextContent();
-                if(hodnota.equals("ano")){
-                    Node datumOdeslani = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Vyrizeni", "nsesss:DatumOdeslani");
-                    if(datumOdeslani != null){
-                        Node node = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Vyrizeni", "nsesss:OdeslaneMnozstvi");
-                        if(node == null){
-                            return add_popisy("Nenalezen element <nsesss:OdeslaneMnozstvi>. " + getJmenoIdentifikator(dokument), false, getMistoChyby(dokument));
-                        }
-                        if (StringUtils.isBlank(node.getTextContent())) {
-                            return add_popisy("Element <nsesss:OdeslaneMnozstvi> obsahuje prázdnou hodnotu. " + getJmenoIdentifikator(dokument), false, getMistoChyby(node));
-                        }
-                    }
-                }
-            }
-        }
-        return true;
-    }
-    
     private int pravidlo54_pocitadlo(){
         int a = 0;
         ArrayList<Node> plany = ValuesGetter.getAllAnywhereArrayList("nsesss:SpisovyPlan", metsParser.getDocument());
