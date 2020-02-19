@@ -2,6 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06;
 
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Node;
 
@@ -25,6 +26,9 @@ public class Pravidlo88 extends K06PravidloBase {
     @Override
     protected boolean kontrolaPravidla() {
         List<Node> dokumenty = predpokladDokumenty();
+        if (CollectionUtils.isEmpty(dokumenty)) {
+            return false;
+        }
 
         for (int i = 0; i < dokumenty.size(); i++) {
             Node dokument = dokumenty.get(i);
