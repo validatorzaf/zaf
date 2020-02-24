@@ -37,7 +37,6 @@ import cz.zaf.sipvalidator.nsesss2017.SipValidator;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipLoader;
-import cz.zaf.sipvalidator.sip.XmlReportBuilder;
 import cz.zaf.sipvalidui.analysis.Analys;
 import cz.zaf.sipvalidui.openFiles.SIP_Opener;
 
