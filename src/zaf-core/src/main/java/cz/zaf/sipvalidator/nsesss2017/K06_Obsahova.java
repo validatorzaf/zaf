@@ -28,6 +28,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo87;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo88;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo89;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo90;
@@ -211,6 +212,7 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
 
+        pridejPravidlo(new Pravidlo87(this));
         pridejPravidlo(new Pravidlo88(this));
         pridejPravidlo(new Pravidlo89(this));
         pridejPravidlo(new Pravidlo90(this));
@@ -481,9 +483,6 @@ public class K06_Obsahova
                 break;
             case 86:
                 vysledek = pravidlo86();
-                break;
-            case 87:
-                vysledek = pravidlo87();
                 break;
         }
         
@@ -3283,25 +3282,6 @@ public class K06_Obsahova
         return true;
     }
     
-    //OBSAHOVÁ č.87 Pokud existuje element <nsesss:Vyrizeni> a obsahuje dětský element <nsesss:DatumOdeslani>, pak současně obsahuje i element <nsesss:Prijemce>. Pravidlo se uplatňuje i obráceně - v případě uvedení elementu <nsesss:Prijemce> je uveden i element <nsesss:DatumOdeslani>.",
-    private boolean pravidlo87(){
-        NodeList vyrizeni = ValuesGetter.getAllAnywhere("nsesss:Vyrizeni", metsParser.getDocument());
-        if(vyrizeni == null) return true;
-        int size = vyrizeni.getLength();
-        for(int i = 0; i < size; i++){
-            Node n = vyrizeni.item(i);
-            Node datumOdeslani = ValuesGetter.getXChild(n, "nsesss:DatumOdeslani");
-            Node prijemce = ValuesGetter.getXChild(n, "nsesss:Prijemce");
-            if(datumOdeslani != null && prijemce == null){
-                return add_popisy("Nenalezen element <nsesss:Prijemce>. " + getJmenoIdentifikator(n), false, getMistoChyby(n));
-            }
-            if(prijemce != null &&  datumOdeslani == null){
-                return add_popisy("Nenalezen element <nsesss:DatumOdeslani>. " + getJmenoIdentifikator(n), false, getMistoChyby(n));
-            }  
-        }
-        return true;
-    }
-
     private int pravidlo54_pocitadlo(){
         int a = 0;
         ArrayList<Node> plany = ValuesGetter.getAllAnywhereArrayList("nsesss:SpisovyPlan", metsParser.getDocument());

@@ -106,14 +106,13 @@ public class ZpravyObsahoveKontroly {
     "Element <nsesss:SkartacniRizeni> je uveden pouze v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani> základní entity.",
     "V elementu <nsesss:SkartacniRizeni> obsahuje element <nsesss:Datum> hodnotu, v níž je uvedený rok větší nebo roven hodnotě uvedené v elementu <nsesss:RokSkartacniOperace> uvnitř rodičovského elementu <nsesss:DataceVyrazeni> stejné entity.",
     "V jakémkoli elementu <nsesss:SkartacniRizeni> obsahuje element <nsesss:Datum> hodnotu, která je menší nebo rovna aktuálnímu roku.",
-            //81. - 87.
+            //81. - 86.
     "Pokud je v jakémkoli elementu <nsesss:UrceneCasoveObdobi> uveden dětský element <nsesss:DatumDo>, potom je jeho hodnota větší než <nsesss:DatumOd>.",
     "Pokud je v jakémkoli elementu <nsesss:UrceneCasoveObdobi> uveden dětský element <nsesss:MesicDo>, potom je jeho hodnota větší než <nsesss:MesicOd>.",
     "Pokud je v jakémkoli elementu <nsesss:UrceneCasoveObdobi> uveden dětský element <nsesss:RokDo>, potom je jeho hodnota větší než <nsesss:RokOd>.",
     "Pokud existuje jakýkoli element <nsesss:Vyrizeni> a obsahuje element <nsesss:Zpusob> s hodnotou jiný způsob, potom je na stejné úrovni posledního uvedeného elementu uveden dětský element <nsesss:ObsahVyrizeni> s neprázdnou hodnotou.",
     "Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano, potom element <nsesss:Manipulace> obsahuje dětský element <nsesss:UkladaciJednotka> s neprázdnou hodnotou.",
     "Pokud je základní entitou dokument (<nsesss:Dokument>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> element <nsesss:MaterskeEntity>.",
-            "Pokud existuje element <nsesss:Vyrizeni> a obsahuje dětský element <nsesss:DatumOdeslani>, pak současně obsahuje i element <nsesss:Prijemce>. Pravidlo se uplatňuje i obráceně - v případě uvedení elementu <nsesss:Prijemce> je uveden i element <nsesss:DatumOdeslani>.",
     };
     
     public static String get_text_Obsahova(int index){
@@ -228,11 +227,10 @@ public class ZpravyObsahoveKontroly {
     "",
     "",
     "",
-            //84. - 87.
+            //84. - 86.
     "Příloha č. 2 NSESSS, ř. 1265.",
     "Příloha č. 2 NSESSS, ř. 1352.",
-    "Příloha č. 2 NSESSS, ř. 1397.",
-    "Příloha č. 2 NSESSS, ř. 1471 a 1481.",
+            "Příloha č. 2 NSESSS, ř. 1397.",
     };
     
     public static String get_zdroje_Obsahova(int index){
@@ -338,14 +336,13 @@ public class ZpravyObsahoveKontroly {
     "Chybí informace o skartačním řízení.",
     "Není v souladu datum skartačního řízení a roku skartační operace.",
     "Uvedeno je chybně datum skartačního řízení (uváděný rok ještě nenadešel).",
-            //81. - 88.
+            //81. - 86.
     "Není v souladu rozsah určeného časového období.",
     "Není v souladu rozsah určeného časového období.",
     "Není v souladu rozsah určeného časového období.",
     "Chybí obsah vyřízení jiným způsobem.",
     "Chybí ukládací jednotka dokumentu v analogově podobě.",
     "Chybí zatřídění dokumentu.",
-    "Chybí příjemce nebo datum odeslání dokumentu.",
 
     };
     
