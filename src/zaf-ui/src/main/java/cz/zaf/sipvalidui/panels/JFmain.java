@@ -17,6 +17,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.beans.PropertyChangeEvent;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -27,16 +29,15 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
 
-import org.xml.sax.SAXException;
+import org.apache.commons.lang3.StringUtils;
 
 import cz.zaf.sipvalidator.helper.HelperTime;
 import cz.zaf.sipvalidator.nsesss2017.SipValidator;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipLoader;
+import cz.zaf.sipvalidator.sip.VyslednyProtokol;
 import cz.zaf.sipvalidui.analysis.Analys;
 import cz.zaf.sipvalidui.openFiles.SIP_Opener;
 
@@ -591,24 +592,30 @@ public class JFmain extends javax.swing.JFrame {
             int end = Math.min(start + velikostDavky, nahraneSoubory.size());
 
             List<SipInfo> cola = nahraneSoubory.getSipy(start, end);//new ArrayList<>();
-            try {
-                String ads_i;
-                if (ind > 0) {
-                    ads_i = ads + "_" + ind;
-                } else {
-                    ads_i = ads;
-                }
-                XmlReportBuilder c = new XmlReportBuilder(cola, "", ads_i, profilValidace, id_kontroly_zadane,
-                        program_name, program_version);
 
-                if (ind == 0)
-                    cesta_xml_web = c.xml.getAbsolutePath();
-                else {
-                    cesta_xml_web += " - " + c.xml.getName();
+            cola.forEach(si -> {
+                VyslednyProtokol vp = new VyslednyProtokol();
+                vp.setProfilValidace(profilValidace);
+                if (StringUtils.isNoneEmpty(id_kontroly_zadane)) {
+
                 }
-            } catch (TransformerException | IOException | ParserConfigurationException | SAXException ex) {
-                Logger.getLogger(JFmain.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                vp.getKontrolaSIP().setKontrolaID(id_kontroly_zadane);
+
+                vp.addSipInfo(si);
+                Path src = si.getCesta();
+                Path outputPath;
+                if (Files.isDirectory(src)) {
+                    outputPath = src.getParent().resolve(src.getFileName() + ".xml");
+                } else {
+                    outputPath = src.resolveSibling(".xml");
+                }
+                try {
+                    vp.save(outputPath);
+                } catch (Exception ex) {
+                    Logger.getLogger(JFmain.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+
             ind++;
         }
     }
