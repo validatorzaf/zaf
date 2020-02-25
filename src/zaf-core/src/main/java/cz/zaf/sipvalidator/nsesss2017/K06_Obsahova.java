@@ -28,6 +28,12 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo81;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo82;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo83;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo84;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo85;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo86;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo87;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo88;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo89;
@@ -190,8 +196,6 @@ public class K06_Obsahova
     private List<Node> zakladniEntity;
     private List<Node> dokumenty;
 
-    private List<Node> urceneCasoveObdobi;
-
     private List<Node> identifikatory;
 
     private List<Node> manipulace;
@@ -212,6 +216,12 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
 
+        pridejPravidlo(new Pravidlo81(this));
+        pridejPravidlo(new Pravidlo82(this));
+        pridejPravidlo(new Pravidlo83(this));
+        pridejPravidlo(new Pravidlo84(this));
+        pridejPravidlo(new Pravidlo85(this));
+        pridejPravidlo(new Pravidlo86(this));
         pridejPravidlo(new Pravidlo87(this));
         pridejPravidlo(new Pravidlo88(this));
         pridejPravidlo(new Pravidlo89(this));
@@ -465,24 +475,6 @@ public class K06_Obsahova
                 break;    
             case 80:
                 vysledek = pravidlo80();
-                break;
-            case 81:
-                vysledek = pravidlo81();
-                break;
-            case 82:
-                vysledek = pravidlo82();
-                break;
-            case 83:
-                vysledek = pravidlo83();
-                break;
-            case 84:
-                vysledek = pravidlo84();
-                break;    
-            case 85:
-                vysledek = pravidlo85();
-                break;
-            case 86:
-                vysledek = pravidlo86();
                 break;
         }
         
@@ -3134,153 +3126,6 @@ public class K06_Obsahova
         return true;
     }
     
-    //OBSAHOVÁ č.81 Pokud je v jakémkoli elementu <nsesss:UrceneCasoveObdobi> uveden dětský element <nsesss:DatumDo>, potom je jeho hodnota větší než <nsesss:DatumOd>.
-    private boolean pravidlo81(){
-        if(urceneCasoveObdobi == null) return true;
-        int size = urceneCasoveObdobi.size();
-        for(int i = 0; i < size; i++){
-            Node n = urceneCasoveObdobi.get(i);
-            Node nodeDo = ValuesGetter.getXChild(n, "nsesss:DatumDo");
-            if(nodeDo != null){
-                Node nodeOd = ValuesGetter.getXChild(n, "nsesss:DatumOd");
-                if(nodeOd == null){
-                    return add_popisy("Nenalezen element <nsesss:DatumOd>. " + getJmenoIdentifikator(n), false, getMistoChyby(n));
-                }
-                try {
-                    Date dateOd = ValuesGetter.vytvorDate(nodeOd, "yyyy-MM-dd");
-                    Date dateDo = ValuesGetter.vytvorDate(nodeDo, "yyyy-MM-dd"); 
-                    if(!dateOd.before(dateDo)){
-                        return add_popisy("Nesplněna podmínka pravidla. OD: " + dateOd +". DO: " + dateDo + ". " + getJmenoIdentifikator(n), false, getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo));
-                    }
-                } catch (ParseException ex) {
-                    return add_popisy("Hodnoty dat jsou v nepovoleném formátu. " + getJmenoIdentifikator(n), false, getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo));
-                }
-            }     
-        } 
-        return true;
-    }
-    
-    //OBSAHOVÁ č.82 Pokud je v jakémkoli elementu <nsesss:UrceneCasoveObdobi> uveden dětský element <nsesss:MesicDo>, potom je jeho hodnota větší než <nsesss:MesicOd>.",
-    private boolean pravidlo82(){
-        if(urceneCasoveObdobi == null) return true;
-        for(int i = 0; i < urceneCasoveObdobi.size(); i++){
-            Node urcenecasoveobdobi = urceneCasoveObdobi.get(i);
-            Node nodeDo = ValuesGetter.getXChild(urcenecasoveobdobi, "nsesss:MesicDo");
-            if(nodeDo != null){
-                Node nodeOd = ValuesGetter.getXChild(urcenecasoveobdobi, "nsesss:MesicOd");
-                if(nodeOd == null){
-                    return add_popisy("Nenalezen element <nsesss:MesicOd>. " + getJmenoIdentifikator(urcenecasoveobdobi), false, getMistoChyby(urcenecasoveobdobi));
-                }
-                Date dateOd, dateDo;
-                try {
-                    dateOd = ValuesGetter.vytvorDate(nodeOd, "yyyy-MM-dd", "yyyy-MM");
-                    dateDo = ValuesGetter.vytvorDate(nodeDo, "yyyy-MM-dd", "yyyy-MM"); 
-                    
-                } catch (ParseException ex) {
-                    return add_popisy("Hodnoty dat jsou v nepovoleném formátu. " + getJmenoIdentifikator(urcenecasoveobdobi), false, getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo));
-                }
-                if(dateOd == null || dateDo == null){
-                    return add_popisy("Hodnoty dat v nepovoleném formátu. " + getJmenoIdentifikator(urcenecasoveobdobi), false, getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo));
-                }
-                if(!dateOd.before(dateDo)){
-                    return add_popisy("Nesplněna podmínka pravidla. OD: " + dateOd +". DO: " + dateDo + ". " + getJmenoIdentifikator(urcenecasoveobdobi), false, getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo));
-                }
-            }
-        } 
-        return true;
-    }
-    
-    //OBSAHOVÁ č.83 Pokud je v jakémkoli elementu <nsesss:UrceneCasoveObdobi> uveden dětský element <nsesss:RokDo>, potom je jeho hodnota větší než <nsesss:RokOd>.",
-    private boolean pravidlo83(){
-        if(urceneCasoveObdobi == null) return true;
-        for(int i = 0; i < urceneCasoveObdobi.size(); i++){
-            Node ucobdobi = urceneCasoveObdobi.get(i);
-            Node nodeDo = ValuesGetter.getXChild(ucobdobi, "nsesss:RokDo");
-            if(nodeDo != null){
-                Node nodeOd = ValuesGetter.getXChild(ucobdobi, "nsesss:RokOd");
-                if(nodeOd == null){
-                    return add_popisy("Nenalezen element <nsesss:RokOd>. " + getJmenoIdentifikator(ucobdobi), false, getMistoChyby(ucobdobi));
-                }
-                boolean b = (ValuesGetter.overSpravnostRetezceProInt(nodeDo.getTextContent()) && ValuesGetter.overSpravnostRetezceProInt(nodeDo.getTextContent()));
-                if(!b){
-                    return add_popisy("Hodnoty dat jsou v nepovoleném formátu. " + getJmenoIdentifikator(ucobdobi), false, getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo));
-                }
-                String d1 = nodeOd.getTextContent().substring(0, 4);
-                String d2 = nodeDo.getTextContent().substring(0, 4);
-                int intOd = Integer.parseInt(d1);
-                int intDo = Integer.parseInt(d2); 
-                if(!(intOd < intDo)){
-                    return add_popisy("Nesplněna podmínka pravidla. OD: " + intOd +". DO: " + intDo + ". " + getJmenoIdentifikator(ucobdobi), false, getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo));
-                }
-            }   
-        } 
-        return true;
-    }
-    
-    //OBSAHOVÁ č.84 Pokud existuje jakýkoli element <nsesss:Vyrizeni> a obsahuje element <nsesss:Zpusob> s hodnotou jiný způsob, potom je na stejné úrovni posledního uvedeného elementu uveden dětský element <nsesss:ObsahVyrizeni> s neprázdnou hodnotou.",
-    private boolean pravidlo84(){
-        NodeList vyrizenis = ValuesGetter.getAllAnywhere("nsesss:Vyrizeni", metsParser.getDocument());
-        if(vyrizenis == null) return true;
-        int size = vyrizenis.getLength();
-        for(int i = 0; i < size; i++){
-            Node n = vyrizenis.item(i);
-            boolean maZpusobSHodnotou = ValuesGetter.getObsahujeRodicElementSHodnotou(n, "nsesss:Zpusob", "jiný způsob");
-            if(maZpusobSHodnotou){
-                Node obs_vyr = ValuesGetter.getXChild(n, "nsesss:ObsahVyrizeni");
-                if( obs_vyr == null){
-                    return add_popisy("Nenalezen element <nsesss:ObsahVyrizeni>. " + getJmenoIdentifikator(n), false, getMistoChyby(n));
-                }
-                if (StringUtils.isBlank(obs_vyr.getTextContent())) {
-                    return add_popisy("Element <nsesss:ObsahVyrizeni> obsahuje prázdnou hodnotu. " + getJmenoIdentifikator(n), false, getMistoChyby(obs_vyr));
-                }
-            }   
-        }
-        
-        return true;
-    }
-    
-    //OBSAHOVÁ č.85 Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano, potom element <nsesss:Manipulace> obsahuje dětský element <nsesss:UkladaciJednotka> s neprázdnou hodnotou.",
-    private boolean pravidlo85(){
-        if (dokumenty == null) {
-            return add_popisy("Chybí dokumenty.", false, null);
-        }
-
-        for(int i = 0; i < dokumenty.size(); i++){
-            Node dokument = dokumenty.get(i);
-            Node analog = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Manipulace", "nsesss:AnalogovyDokument");
-            if(analog != null){
-                String hodnota = analog.getTextContent();
-                if(hodnota.equals("ano")){
-                    Node uklalaciJednotka = ValuesGetter.getSourozencePrvnihoSeJmenem(analog, "nsesss:UkladaciJednotka");
-                    if(uklalaciJednotka == null){
-                        return add_popisy("Nenalezen element <nsesss:UkladaciJednotka>. " + getJmenoIdentifikator(dokument), false, getMistoChyby(analog));
-                    }
-                    if (StringUtils.isBlank(uklalaciJednotka.getTextContent())) {
-                        return add_popisy("Element <nsesss:UkladaciJednotka> obsahuje prázdnou hodnotu. " + getJmenoIdentifikator(dokument), false, getMistoChyby(uklalaciJednotka));
-                    }
-                }
-            }
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.86 Pokud je základní entitou dokument (<nsesss:Dokument>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> element <nsesss:MaterskeEntity>.",
-    private boolean pravidlo86(){
-        if (zakladniEntity == null) {
-            return add_popisy("Chybí základní entity.", false, null);
-        }
-
-        for(int i = 0; i < zakladniEntity.size(); i++){
-            Node zakladnientita = zakladniEntity.get(i);
-            if(zakladnientita.getNodeName().equals("nsesss:Dokument")){
-                Node node = ValuesGetter.getXChild(zakladnientita, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:MaterskeEntity");
-                if(node == null){
-                    return add_popisy("Nenalezen element <nsesss:MaterskeEntity>. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(zakladnientita));
-                }
-            }
-        }
-        return true;
-    }
     
     private int pravidlo54_pocitadlo(){
         int a = 0;
@@ -3383,7 +3228,6 @@ public class K06_Obsahova
         this.zakladniEntity = metsParser.getZakladniEntity();
         this.dokumenty = metsParser.getDokumenty();
         this.manipulace = metsParser.getManipulace();
-        this.urceneCasoveObdobi = metsParser.getUrceneCasoveObdobi();
         this.identifikatory = metsParser.getIdentifikatory();
 		
 		this.sipSoubor = ctx.getSip();
