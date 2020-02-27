@@ -1,4 +1,4 @@
-package cz.zaf.sipvalidator.nsesss2017.pravidla06;
+package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79;
 
 import java.util.ArrayList;
 import java.util.List;

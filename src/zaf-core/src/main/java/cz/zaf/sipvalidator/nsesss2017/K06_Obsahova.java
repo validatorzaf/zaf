@@ -27,34 +27,35 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo71;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo72;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo73;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo74;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo75;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo76;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo77;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo78;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo79;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo80;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo81;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo82;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo83;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo84;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo85;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo86;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo87;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo88;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo89;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo90;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo91;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo92;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo93;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo94;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo95;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo96;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo97;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo98;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79.Pravidlo70;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79.Pravidlo71;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79.Pravidlo72;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79.Pravidlo73;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79.Pravidlo74;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79.Pravidlo75;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79.Pravidlo76;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79.Pravidlo77;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79.Pravidlo78;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79.Pravidlo79;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89.Pravidlo80;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89.Pravidlo81;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89.Pravidlo82;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89.Pravidlo83;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89.Pravidlo84;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89.Pravidlo85;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89.Pravidlo86;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89.Pravidlo87;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89.Pravidlo88;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89.Pravidlo89;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo90;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo91;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo92;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo93;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo94;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo95;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo96;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo97;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo98;
 import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Metods;
 import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_amdSec;
 import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_dmdSec;
@@ -225,6 +226,7 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
 
+        pridejPravidlo(new Pravidlo70(this));
         pridejPravidlo(new Pravidlo71(this));
         pridejPravidlo(new Pravidlo72(this));
         pridejPravidlo(new Pravidlo73(this));
@@ -461,9 +463,6 @@ public class K06_Obsahova
             break;
         case 69:
             vysledek = pravidlo69();
-            break;
-        case 70:
-            vysledek = pravidlo70();
             break;
         }
         
@@ -2794,30 +2793,7 @@ public class K06_Obsahova
         }    
         return true;
     }
-    
-    //OBSAHOVÁ č.70 Jakýkoli element <nsesss:Identifikator> není opakovatelný, pokud se nenachází v hierarchii elementů <nsesss:Komponenta>, <nsesss:EvidencniUdaje> a <nsesss:Identifikace>.",
-    private boolean pravidlo70(){
-        //        NodeList id = ValuesGetter.getAllAnywhere("nsesss:Identifikator", metsParser.getDocument());
-        //        ArrayList<Node> id = ValuesGetter.getAllAnywhereArrayList("nsesss:Identifikator", metsParser.getDocument());
-        if(identifikatory == null){
-            return add_popisy("Nenalezen žádný element <nsesss:Identifikator>.", false, MISTO_CHYBY_NEUPRESNENO);
-        }
-        int size = identifikatory.size();
-        for(int i = 0; i < size; i++){ 
-            Node identifikator = identifikatory.get(i);
-            Node rodic = identifikator.getParentNode();
-            if(ValuesGetter.getSpecificChildWithName(rodic, "nsesss:Identifikator").size() > 1){
-                Node komponenta = ValuesGetter.getXParent(identifikator, "nsesss:Identifikace", "nsesss:EvidencniUdaje", "nsesss:Komponenta");
-                if(komponenta == null){
-                    Node entita = ValuesGetter.getXParent(identifikator, "nsesss:Identifikace", "nsesss:EvidencniUdaje").getParentNode();
-                    
-                    return add_popisy("Element <nsesss:Identifikator> se opakuje přes nesplnění podmínky pravidla. " + getJmenoIdentifikator(entita), false, getMistoChyby(identifikator));
-                }
-            }
-        }
-        return true;
-    }
-    
+
     
     private int pravidlo54_pocitadlo(){
         int a = 0;

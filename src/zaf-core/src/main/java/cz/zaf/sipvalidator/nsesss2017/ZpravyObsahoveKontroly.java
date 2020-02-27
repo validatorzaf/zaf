@@ -84,7 +84,7 @@ public class ZpravyObsahoveKontroly {
     "Jakýkoli element <nsesss:Identifikator> obsahuje atribut zdroj s neprázdnou hodnotu.",
     "Žádná entita (od spisového plánu po dokument) nebo objekt <nsesss:Komponenta>, <nsesss:BezpecnostniKategorie>, <nsesss:SkartacniRezim> nebo <nsesss:TypDokumentu> neobsahuje stejné hodnoty elementu <nsesss:Identifikator> a jeho atributu zdroj a současně odlišné hodnoty v ostatních elementech, jako má jiná entita nebo objekt uvedeného typu, kromě atributu ID uvedené entity.",
     "Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ne, obsahuje element <nsesss:Dokument> dětský element <nsesss:Komponenty>.",
-    //61. - 70.
+            //61. - 69.
     "Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano a současně element <nsesss:EvidencniUdaje> obsahuje v dětském elementu <nsesss:Puvod> element <nsesss:DorucenyDokument>, potom je v posledním uvedeném elementu uveden dětský element <nsesss:DoruceneMnozstvi> s neprázdnou hodnotou.",
     "Pokud existuje jakýkoli element <nsesss:Jazyk>, každý obsahuje pouze hodnoty uvedené v číselníku ISO 639-2:1998 uvedeném na URL: http://www.loc.gov/standards/iso639-2/ISO-639-2_utf-8.txt.",
     "Pokud jakýkoli element <nsesss:Vyrizeni> nebo element <nsesss:VyrizeniUzavreni> obsahuje element <nsesss:Zpusob> s hodnotou jiný způsob, potom je na stejné úrovni posledního uvedeného elementu uveden dětský element <nsesss:Oduvodneni> s neprázdnou hodnotou.",
@@ -94,7 +94,6 @@ public class ZpravyObsahoveKontroly {
     "Pokud je základní entitou díl (<nsesss:Dil>) nebo spis (<nsesss:Spis>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:SkartacniRezim> obsahuje element <nsesss:SkartacniZnak> hodnotu, která je rovna nejvyššímu skartačnímu znaku dětské entity dokument (<nsesss:Dokument>), přičemž priorita skartačních znaků od nejvyšší po nejnižší je v pořadí A, V, S.",
     "Každá entita věcná skupina (<nsesss:VecnaSkupina>), která je rodičovskou entitou spisu (<nsesss:Spis>) nebo dokumentu (<nsesss:Dokument>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani> element <nsesss:SkartacniRezim>.",
     "Pokud je základní entitou dokument (<nsesss:Dokument>), potom její element <nsesss:EvidencniUdaje> obsahuje dětský element <nsesss:Vyrizeni>.",
-    "Jakýkoli element <nsesss:Identifikator> není opakovatelný, pokud se nenachází v hierarchii elementů <nsesss:Komponenta>, <nsesss:EvidencniUdaje> a <nsesss:Identifikace>.",
     };
     
     public static String get_text_Obsahova(int index){
@@ -178,7 +177,7 @@ public class ZpravyObsahoveKontroly {
     "Příloha č. 2 NSESSS, ř. 288.",
     "Příloha č. 2 NSESSS, ř. 123.",
     "Příloha č. 2 NSESSS, ř. 45.",
-    //61. - 70.
+            //61. - 69.
     "Příloha č. 2 NSESSS, ř. 365.",
     "Příloha č. 2 NSESSS, ř. 132.",
     "Příloha č. 2 NSESSS, ř. 1270.",
@@ -187,8 +186,7 @@ public class ZpravyObsahoveKontroly {
     "§ 20 odst. 1 vyhlášky č. 259/2012 Sb.",
     "§ 15 odst. 5 vyhlášky č. 259/2012 Sb.",
     "§ 15 odst. 2 vyhlášky č. 259/2012 Sb.; příloha č. 2 NSESSS, ř. 1250.",
-    "Příloha č. 2 NSESSS, ř. 421.",
-    "Příloha č. 2 NSESSS, ř. 497.",
+            "Příloha č. 2 NSESSS, ř. 421.",
     };
     
     public static String get_zdroje_Obsahova(int index){
@@ -253,15 +251,15 @@ public class ZpravyObsahoveKontroly {
     "Chybí množství vlastního dokumentu v analogové podobě.",
     //43. (94a.)
     "Chybně jsou uvedeny spisové znaky.",
-    //44. - 50.
+            //44. - 49.
     "Chybí provázání komponenty (počítačového souboru) s popisnou částí.",
     "Komponenta (počítačový soubor) má uvedený chybný datový formát.",
     "Chybí popis pro ověření celistvosti komponenty (počítačového souboru) nebo je chybně uveden.",
     "Celistvost komponenty (počítačového souboru) je narušena nebo chybí možnost jejího ověření.",
     "Chybí velikost komponenty (počítačového souboru) nebo je uvedena chybně.",
     "Chybí datum vytvoření komponenty (počítačového souboru).",
-    "Chybí připojení komponenty (počítačového souboru) do datového balíčku SIP nebo je provedeno chybně.",
-    //51. - 60.
+            //50. - 59.
+            "Chybí připojení komponenty (počítačového souboru) do datového balíčku SIP nebo je provedeno chybně.",
     "Uveden je chybně popis odkazu na komponentu (počítačový soubor).",
     "Uveden je chybně popis odkazu na komponentu (počítačový soubor).",
     "Uveden je chybně popis odkazu na komponentu (počítačový soubor).",
@@ -270,9 +268,9 @@ public class ZpravyObsahoveKontroly {
     "Není v souladu provázání komponent (počítačových souborů) mezi částí počítačových souborů a strukturální mapou.",
     "Není uveden identifikátor.",
     "Není uveden zdroj identifikátoru.",
-    "Uveden je vícekrát stejný spisový plán, věcná skupina, typový spis, součást, díl, spis, dokument, komponenta, bezpečnostní kategorie, skartační režim nebo typ dokumentu nebo je vícekrát použit stejný identifikátor.",
+            "Uveden je vícekrát stejný spisový plán, věcná skupina, typový spis, součást, díl, spis, dokument, komponenta, bezpečnostní kategorie, skartační režim nebo typ dokumentu nebo je vícekrát použit stejný identifikátor.",
+            //60. - 69.
     "Chybí popis komponenty (počítačového souboru) dokumentu v digitální podobě.",
-    //61. - 70.
     "Chybí doručené množství dokumentu v analogové podobě.",    
     "Uveden je chybně jazyk dokumentu.",
     "Chybí odůvodnění vyřízení jiným způsobem.",
@@ -282,7 +280,6 @@ public class ZpravyObsahoveKontroly {
     "Uveden je chybně skartační znak u dílu nebo spisu (stanovuje se podle nejvyššího skartačního znaku dokumentu).",
     "Chybí skartační režim věcné skupiny.",
     "Chybí vyřízení dokumentu.",
-    "Uveden je chybně identifikátor věcné skupiny, typového spisu, součásti, dílu, spisu nebo dokumentu.",
     };
     
     public static String get_popis_Obsahova(int index){

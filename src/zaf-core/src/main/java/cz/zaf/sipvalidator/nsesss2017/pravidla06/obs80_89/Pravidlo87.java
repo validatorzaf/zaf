@@ -1,4 +1,4 @@
-package cz.zaf.sipvalidator.nsesss2017.pravidla06;
+package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
