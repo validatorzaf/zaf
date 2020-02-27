@@ -95,17 +95,6 @@ public class ZpravyObsahoveKontroly {
     "Každá entita věcná skupina (<nsesss:VecnaSkupina>), která je rodičovskou entitou spisu (<nsesss:Spis>) nebo dokumentu (<nsesss:Dokument>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani> element <nsesss:SkartacniRezim>.",
     "Pokud je základní entitou dokument (<nsesss:Dokument>), potom její element <nsesss:EvidencniUdaje> obsahuje dětský element <nsesss:Vyrizeni>.",
     "Jakýkoli element <nsesss:Identifikator> není opakovatelný, pokud se nenachází v hierarchii elementů <nsesss:Komponenta>, <nsesss:EvidencniUdaje> a <nsesss:Identifikace>.",
-    //71. - 80.
-    "Pokud existuje jakýkoli element <nsesss:DatumOtevreni>, obsahuje stejnou nebo menší hodnotu, než je hodnota elementu <nsesss:DatumUzavreni>, pokud poslední uvedený element existuje uvnitř rodičovského elementu <nsesss:Manipulace>.",
-    "Pokud existuje jakýkoli element <nsesss:CasPouziti>, každý obsahuje atribut datum.",
-    "Pokud existuje jakýkoli element <nsesss:CasOvereni>, každý obsahuje atribut datum.",
-    "Pokud existuje jakýkoli element <nsesss:PosuzovanyOkamzik>, každý obsahuje atribut datum.",
-    "Pokud existuje jakýkoli element <nsesss:Platnost>, v každém obsahuje jeho dětský element <nsesss:PlatnostOd> stejnou nebo menší hodnotu, než je hodnota elementu <nsesss:PlatnostDo>.",
-    "Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano, potom rodičovské entity obsahují v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> se stejnou hodnotou.",
-    "Pokud základní entita obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano, potom obsahuje v hierarchii dětských elementů <nsesss:Vyrazovani> a <nsesss:SkartacniRizeni> element <nsesss:Mnozstvi> s neprázdnou hodnotou.",
-    "Element <nsesss:SkartacniRizeni> je uveden pouze v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani> základní entity.",
-    "V elementu <nsesss:SkartacniRizeni> obsahuje element <nsesss:Datum> hodnotu, v níž je uvedený rok větší nebo roven hodnotě uvedené v elementu <nsesss:RokSkartacniOperace> uvnitř rodičovského elementu <nsesss:DataceVyrazeni> stejné entity.",
-    "V jakémkoli elementu <nsesss:SkartacniRizeni> obsahuje element <nsesss:Datum> hodnotu, která je menší nebo rovna aktuálnímu roku.",
     };
     
     public static String get_text_Obsahova(int index){
@@ -200,22 +189,6 @@ public class ZpravyObsahoveKontroly {
     "§ 15 odst. 2 vyhlášky č. 259/2012 Sb.; příloha č. 2 NSESSS, ř. 1250.",
     "Příloha č. 2 NSESSS, ř. 421.",
     "Příloha č. 2 NSESSS, ř. 497.",
-    //71. nevyplněno
-    "",
-    //72. - 74.
-    "§ 4 odst. 7 písm. b) vyhlášky č. 259/2012 Sb.",
-    "§ 4 odst. 7 písm. d) vyhlášky č. 259/2012 Sb.",
-    "§ 4 odst. 7 písm. d) vyhlášky č. 259/2012 Sb.",
-    //75. nevypněno
-    "",
-    //76. - 78.
-    "Příloha č. 2 NSESSS, ř. 616.",
-    "Příloha č. 2 NSESSS, ř. 1006.",
-    "Příloha č. 2 NSESSS, ř. 1228.",
-    //79. nevyplněno
-    "",
-    //80.
-    "§ 20 odst. 1 vyhlášky č. 259/2012 Sb.",
     };
     
     public static String get_zdroje_Obsahova(int index){
@@ -310,17 +283,6 @@ public class ZpravyObsahoveKontroly {
     "Chybí skartační režim věcné skupiny.",
     "Chybí vyřízení dokumentu.",
     "Uveden je chybně identifikátor věcné skupiny, typového spisu, součásti, dílu, spisu nebo dokumentu.",
-    //71. - 80.
-    "Není v souladu datum otevření a datum uzavření spisového plánu, věcné skupiny, typového spisu, součásti, dílu nebo spisu.",
-    "Chybí strojový zápis času opatření komponenty (počítačového souboru) elektronickým podpisem, elektronickou značkou nebo časovým razítkem.",
-    "Chybí strojový zápis času ověření elektronického podpisu, elektronické značky nebo časového razítka.",
-    "Chybí strojový zápis času, k němuž je vztaženo posuzování platnosti elektronického podpisu, elektronické značky nebo časového razítka.",
-    "Není v souladu rozsah platnosti certifikátu elektronického podpisu, elektronické značky nebo časového razítka.",
-    "Uvedeno je chybně u věcné skupiny, typového spisu, součásti, dílu nebo spisu, že neobsahují dokumenty v analogové podobě.",
-    "Chybí množství dílu, spisu nebo dokumentu v analogové podobě.",
-    "Chybí informace o skartačním řízení.",
-    "Není v souladu datum skartačního řízení a roku skartační operace.",
-    "Uvedeno je chybně datum skartačního řízení (uváděný rok ještě nenadešel).",
     };
     
     public static String get_popis_Obsahova(int index){

@@ -14,7 +14,6 @@ import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +27,16 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo71;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo72;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo73;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo74;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo75;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo76;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo77;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo78;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo79;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo80;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo81;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo82;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.Pravidlo83;
@@ -216,6 +225,16 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
 
+        pridejPravidlo(new Pravidlo71(this));
+        pridejPravidlo(new Pravidlo72(this));
+        pridejPravidlo(new Pravidlo73(this));
+        pridejPravidlo(new Pravidlo74(this));
+        pridejPravidlo(new Pravidlo75(this));
+        pridejPravidlo(new Pravidlo76(this));
+        pridejPravidlo(new Pravidlo77(this));
+        pridejPravidlo(new Pravidlo78(this));
+        pridejPravidlo(new Pravidlo79(this));
+        pridejPravidlo(new Pravidlo80(this));
         pridejPravidlo(new Pravidlo81(this));
         pridejPravidlo(new Pravidlo82(this));
         pridejPravidlo(new Pravidlo83(this));
@@ -243,7 +262,7 @@ public class K06_Obsahova
 
     private void pridejPravidlo(String id, Runnable pravidlo) {
         Runnable p = kontroly.get(id);
-        Validate.isTrue(p == null);
+        Validate.isTrue(p == null, "Pravidlo jiz existuje: %s", id);
         kontroly.put(id, pravidlo);
     }
 
@@ -262,220 +281,190 @@ public class K06_Obsahova
     
     private boolean udelejPravidloObsahovaSpolecna2018(int cisloPravidla) throws IOException, ParseException{
         boolean vysledek = false;
-        switch(cisloPravidla){
-            case 10:
-                vysledek = pravidlo10();
-                break;
-            case 11:
-                vysledek = pravidlo11();
-                break;    
-            case 12:
-                vysledek = pravidlo12();
-                break;
-            case 13:
-                vysledek = pravidlo13();
-                break;
-            case 14:
-                vysledek = pravidlo14();
-                break;
-            case 15:
-                vysledek = pravidlo15();
-                break;    
-            case 16:
-                vysledek = pravidlo16();
-                break;
-            case 17:
-                vysledek = pravidlo17();
-                break;
-            case 18:
-                vysledek = pravidlo18();
-                break;
-            case 19:
-                vysledek = pravidlo19();
-                break;
-            case 20:
-                vysledek = pravidlo20();
-                break;    
-            case 21:
-                vysledek = pravidlo21();
-                break;
-            case 22:
-                vysledek = pravidlo22();
-                break;
-            case 23:
-                vysledek = pravidlo23();
-                break;
-            case 24:
-                vysledek = pravidlo24();
-                break;
-            case 25:
-                vysledek = pravidlo25();
-                break;
-            case 26:
-                vysledek = pravidlo26();
-                break;    
-            case 27:
-                vysledek = pravidlo27();
-                break;
-            case 28:
-                vysledek = pravidlo28();
-                break;
-            case 29:
-                vysledek = pravidlo29();
-                break;
-            case 30:
-                vysledek = pravidlo30();
-                break;
-            case 31:
-                vysledek = pravidlo31();
-                break;    
-            case 32:
-                vysledek = pravidlo32();
-                break;
-            case 33:
-                vysledek = pravidlo33();
-                break;
-            case 34:
-                vysledek = pravidlo34();
-                break;
-            case 35:
-                vysledek = pravidlo35();
-                break;
-            case 36:
-                vysledek = pravidlo36();
-                break;    
-            case 37:
-                vysledek = pravidlo37();
-                break;
-            case 38:
-                vysledek = pravidlo38();
-                break;
-            case 39:
-                vysledek = pravidlo39();
-                break;
-            case 40:
-                vysledek = pravidlo40();
-                break;
-            case 41:
-                vysledek = pravidlo41();
-                break;    
-            case 42:
-                vysledek = pravidlo42();
-                break;
-            case 43:
-                vysledek = pravidlo43();
-                break;    
-            case 44:
-                vysledek = pravidlo44();
-                break;
-            case 45:
-                vysledek = pravidlo45();
-                break;
-            case 46:
-                vysledek = pravidlo46();
-                break;
-            case 47:
-                vysledek = pravidlo47();
-                break;    
-            case 48:
-                vysledek = pravidlo48();
-                break;
-            case 49:
-                vysledek = pravidlo49();
-                break;
-            case 50:
-                vysledek = pravidlo50();
-                break;
-            case 51:
-                vysledek = pravidlo51();
-                break;
-            case 52:
-                vysledek = pravidlo52();
-                break;    
-            case 53:
-                vysledek = pravidlo53();
-                break;
-            case 54:
-                vysledek = pravidlo54();
-                break;
-            case 55:
-                vysledek = pravidlo55();
+        switch (cisloPravidla) {
+        case 10:
+            vysledek = pravidlo10();
             break;
-            case 56:
-                vysledek = pravidlo56();
-                break;
-            case 57:
-                vysledek = pravidlo57();
-                break;
-            case 58:
-                vysledek = pravidlo58();
-                break;    
-            case 59:
-                vysledek = pravidlo59();
-                break;
-            case 60:
-                vysledek = pravidlo60();
-                break;
-            case 61:
-                vysledek = pravidlo61();
-                break;
-            case 62:
-                vysledek = pravidlo62();
-                break;
-            case 63:
-                vysledek = pravidlo63();
-                break;    
-            case 64:
-                vysledek = pravidlo64();
-                break;
-            case 65:
-                vysledek = pravidlo65();
-                break;
-            case 66:
-                vysledek = pravidlo66();
-                break;
-            case 67:
-                vysledek = pravidlo67();
-                break;
-            case 68:
-                vysledek = pravidlo68();
-                break;    
-            case 69:
-                vysledek = pravidlo69();
-                break;
-            case 70:
-                vysledek = pravidlo70();
-                break;
-            case 71:
-                vysledek = pravidlo71();
-                break;
-            case 72:
-                vysledek = pravidlo72();
-                break;
-            case 73:
-                vysledek = pravidlo73();
-                break;    
-            case 74:
-                vysledek = pravidlo74();
-                break;
-            case 75:
-                vysledek = pravidlo75();
-                break;    
-            case 76:
-                vysledek = pravidlo76();
-                break;
-            case 77:
-                vysledek = pravidlo77();
-                break;
-            case 78:
-                vysledek = pravidlo78();
-                break;
-            case 79:
-                vysledek = pravidlo79();
-                break;    
-            case 80:
-                vysledek = pravidlo80();
-                break;
+        case 11:
+            vysledek = pravidlo11();
+            break;
+        case 12:
+            vysledek = pravidlo12();
+            break;
+        case 13:
+            vysledek = pravidlo13();
+            break;
+        case 14:
+            vysledek = pravidlo14();
+            break;
+        case 15:
+            vysledek = pravidlo15();
+            break;
+        case 16:
+            vysledek = pravidlo16();
+            break;
+        case 17:
+            vysledek = pravidlo17();
+            break;
+        case 18:
+            vysledek = pravidlo18();
+            break;
+        case 19:
+            vysledek = pravidlo19();
+            break;
+        case 20:
+            vysledek = pravidlo20();
+            break;
+        case 21:
+            vysledek = pravidlo21();
+            break;
+        case 22:
+            vysledek = pravidlo22();
+            break;
+        case 23:
+            vysledek = pravidlo23();
+            break;
+        case 24:
+            vysledek = pravidlo24();
+            break;
+        case 25:
+            vysledek = pravidlo25();
+            break;
+        case 26:
+            vysledek = pravidlo26();
+            break;
+        case 27:
+            vysledek = pravidlo27();
+            break;
+        case 28:
+            vysledek = pravidlo28();
+            break;
+        case 29:
+            vysledek = pravidlo29();
+            break;
+        case 30:
+            vysledek = pravidlo30();
+            break;
+        case 31:
+            vysledek = pravidlo31();
+            break;
+        case 32:
+            vysledek = pravidlo32();
+            break;
+        case 33:
+            vysledek = pravidlo33();
+            break;
+        case 34:
+            vysledek = pravidlo34();
+            break;
+        case 35:
+            vysledek = pravidlo35();
+            break;
+        case 36:
+            vysledek = pravidlo36();
+            break;
+        case 37:
+            vysledek = pravidlo37();
+            break;
+        case 38:
+            vysledek = pravidlo38();
+            break;
+        case 39:
+            vysledek = pravidlo39();
+            break;
+        case 40:
+            vysledek = pravidlo40();
+            break;
+        case 41:
+            vysledek = pravidlo41();
+            break;
+        case 42:
+            vysledek = pravidlo42();
+            break;
+        case 43:
+            vysledek = pravidlo43();
+            break;
+        case 44:
+            vysledek = pravidlo44();
+            break;
+        case 45:
+            vysledek = pravidlo45();
+            break;
+        case 46:
+            vysledek = pravidlo46();
+            break;
+        case 47:
+            vysledek = pravidlo47();
+            break;
+        case 48:
+            vysledek = pravidlo48();
+            break;
+        case 49:
+            vysledek = pravidlo49();
+            break;
+        case 50:
+            vysledek = pravidlo50();
+            break;
+        case 51:
+            vysledek = pravidlo51();
+            break;
+        case 52:
+            vysledek = pravidlo52();
+            break;
+        case 53:
+            vysledek = pravidlo53();
+            break;
+        case 54:
+            vysledek = pravidlo54();
+            break;
+        case 55:
+            vysledek = pravidlo55();
+            break;
+        case 56:
+            vysledek = pravidlo56();
+            break;
+        case 57:
+            vysledek = pravidlo57();
+            break;
+        case 58:
+            vysledek = pravidlo58();
+            break;
+        case 59:
+            vysledek = pravidlo59();
+            break;
+        case 60:
+            vysledek = pravidlo60();
+            break;
+        case 61:
+            vysledek = pravidlo61();
+            break;
+        case 62:
+            vysledek = pravidlo62();
+            break;
+        case 63:
+            vysledek = pravidlo63();
+            break;
+        case 64:
+            vysledek = pravidlo64();
+            break;
+        case 65:
+            vysledek = pravidlo65();
+            break;
+        case 66:
+            vysledek = pravidlo66();
+            break;
+        case 67:
+            vysledek = pravidlo67();
+            break;
+        case 68:
+            vysledek = pravidlo68();
+            break;
+        case 69:
+            vysledek = pravidlo69();
+            break;
+        case 70:
+            vysledek = pravidlo70();
+            break;
         }
         
         return vysledek;
@@ -2824,303 +2813,6 @@ public class K06_Obsahova
                     
                     return add_popisy("Element <nsesss:Identifikator> se opakuje přes nesplnění podmínky pravidla. " + getJmenoIdentifikator(entita), false, getMistoChyby(identifikator));
                 }
-            }
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.71 V každém elementu <nsesss:Manipulace> obsahuje dětský element <nsesss:DatumOtevreni> stejnou nebo menší hodnotu, než je hodnota elementu <nsesss:DatumUzavreni>, pokud poslední uvedený element existuje.",
-    // Pokud existuje jakýkoli element <nsesss:DatumOtevreni>, obsahuje stejnou nebo menší hodnotu, než je hodnota elementu <nsesss:DatumUzavreni>, pokud poslední uvedený element existuje uvnitř rodičovského elementu <nsesss:Manipulace>.
-    private boolean pravidlo71(){
-        if(manipulace == null) return true;
-        int size = manipulace.size();
-        for (int i = 0; i < size; i++) 
-        {
-            Node manip_node = manipulace.get(i);
-            Node nodeOtevreni = ValuesGetter.findChild(manip_node, "nsesss:DatumOtevreni");
-            Node nodeUzavreni = ValuesGetter.findChild(manip_node, "nsesss:DatumUzavreni");
-            if(nodeOtevreni != null && nodeUzavreni != null){
-                Date datumOtevreni;
-                Date datumZavreni;
-                try {
-                    datumOtevreni = ValuesGetter.vytvorDate(nodeOtevreni,"yyyy-MM-dd");  
-                } catch (ParseException ex) {
-                    return add_popisy("Element <nsesss:DatumOtevreni> neobsahuje údaj ve správném formátu. " + getJmenoIdentifikator(manip_node), false, getMistoChyby(nodeOtevreni));
-                }
-                try {
-                    datumZavreni = ValuesGetter.vytvorDate(nodeUzavreni,"yyyy-MM-dd");
-                } catch (ParseException ex) {
-                    return add_popisy("Element <nsesss:DatumUzavreni> neobsahuje údaj ve správném formátu. " + getJmenoIdentifikator(manip_node), false, getMistoChyby(nodeUzavreni));
-                }
-
-                boolean jeToChronologicky = datumZavreni.after(datumOtevreni);
-                boolean jeToStejny = datumZavreni.equals(datumOtevreni);
-                if(!jeToChronologicky && !jeToStejny){
-                    return add_popisy("Element <nsesss:DatumOtevreni> obsahuje větší hodnotu než element <nsesss:DatumUzavreni>. " + getJmenoIdentifikator(manip_node), false, getMistoChyby(nodeOtevreni) + " " + getMistoChyby(nodeUzavreni));
-                }
-                 
-            }
-        }
-        
-        return true;
-    }
-    
-    //OBSAHOVÁ č.72 Každý element <nsesss:CasPouziti> obsahuje atribut datum.",
-    private boolean pravidlo72(){
-        NodeList casy = ValuesGetter.getAllAnywhere("nsesss:CasPouziti", metsParser.getDocument());
-        if(casy == null) return true;
-        for(int i = 0; i < casy.getLength(); i++){
-            Node cas = casy.item(i);
-            boolean maDatum = ValuesGetter.hasAttribut(cas, "datum");
-            if(!maDatum){
-                return add_popisy("Element <nsesss:CasPouziti> neobsahuje atribut datum. " + getJmenoIdentifikator(cas), false, getMistoChyby(cas));
-            }
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.73 Každý element <nsesss:CasOvereni> obsahuje atribut datum.",
-    private boolean pravidlo73(){
-        NodeList casy = ValuesGetter.getAllAnywhere("nsesss:CasOvereni", metsParser.getDocument());
-        if(casy == null) return true;
-        for(int i = 0; i < casy.getLength(); i++){
-            Node cas = casy.item(i);
-            boolean maDatum = ValuesGetter.hasAttribut(cas, "datum");
-            if(!maDatum){
-                return add_popisy("Element <nsesss:CasOvereni> neobsahuje atribut datum. " + getJmenoIdentifikator(cas), false, getMistoChyby(cas));
-            }
-        }        
-        return true; 
-    }
-    
-    //OBSAHOVÁ č.74 Každý element <nsesss:PosuzovanyOkamzik> obsahuje atribut datum.",
-    private boolean pravidlo74(){
-        NodeList posuzovanyOkamzik = ValuesGetter.getAllAnywhere("nsesss:PosuzovanyOkamzik", metsParser.getDocument());
-        if(posuzovanyOkamzik == null) return true;
-        for(int i = 0; i < posuzovanyOkamzik.getLength(); i++){
-            Node cas = posuzovanyOkamzik.item(i);
-            boolean maDatum = ValuesGetter.hasAttribut(cas, "datum");
-            if(!maDatum){
-                return add_popisy("Element <nsesss:PosuzovanyOkamzik> neobsahuje atribut datum. " + getJmenoIdentifikator(cas), false, getMistoChyby(cas));
-            }
-        }        
-        return true;
-    }
-    
-    //OBSAHOVÁ č.75 Pokud existuje jakýkoli element <nsesss:Platnost>, v každém obsahuje jeho dětský element <nsesss:PlatnostOd> stejnou nebo menší hodnotu, než je hodnota elementu <nsesss:PlatnostDo>.",
-    private boolean pravidlo75(){
-        NodeList posuzovanyOkamzik = ValuesGetter.getAllAnywhere("nsesss:Platnost", metsParser.getDocument());
-        if(posuzovanyOkamzik == null) return true;
-        for(int i = 0; i < posuzovanyOkamzik.getLength(); i++)
-        {
-            Node platnost = posuzovanyOkamzik.item(i);
-            Node nodeOd = ValuesGetter.findChild(platnost, "nsesss:PlatnostOd");
-            if(nodeOd == null){
-                return add_popisy("Nenalezen element <nsesss:PlatnostOd>. " + getJmenoIdentifikator(platnost), false, getMistoChyby(platnost));
-            }
-            Node nodeDo = ValuesGetter.findChild(platnost, "nsesss:PlatnostDo");
-            if(nodeDo == null){
-                return add_popisy("Nenalezen element <nsesss:PlatnostDo>. " + getJmenoIdentifikator(platnost), false, getMistoChyby(platnost));
-            }
-            Date od, po;
-            try {
-                od = ValuesGetter.vytvorDate(nodeOd, "yyyy-MM-dd");
-            }catch (ParseException ex){
-                return add_popisy("Hodnota data je ve špatném formátu. " + getJmenoIdentifikator(platnost), false, getMistoChyby(nodeOd));}
-            try {
-                po = ValuesGetter.vytvorDate(nodeDo, "yyyy-MM-dd");
-            }catch (ParseException ex){
-                return add_popisy("Hodnota data je ve špatném formátu. " + getJmenoIdentifikator(platnost), false, getMistoChyby(nodeDo));}
-            
-            if(!(po.after(od) || po.equals(od))){
-                return add_popisy("Element <nsesss:PlatnostOd> obsahuje větší hodnotu než element <nsesss:PlatnostDo>. " + getJmenoIdentifikator(platnost), false, getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo));
-            }
-        }    
-        return true;
-    }
-    
-    //OBSAHOVÁ č.76 Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano, potom rodičovské entity obsahují v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> se stejnou hodnotou.",
-    private boolean pravidlo76(){
-        if (zakladniEntity == null) {
-            return add_popisy("Chybí základní entity.", false, null);
-        }
-
-        for(int i = 0; i < zakladniEntity.size(); i++){
-            Node zakladnientita = zakladniEntity.get(i);
-            if(zakladnientita.getNodeName().equals("nsesss:Dil") || zakladnientita.getNodeName().equals("nsesss:Spis")){
-                Node an_ze = ValuesGetter.getXChild(zakladnientita, "nsesss:EvidencniUdaje", "nsesss:Manipulace", "nsesss:AnalogovyDokument");
-                if(an_ze == null){
-                    return add_popisy("Element <" + zakladnientita.getNodeName() + "> neobsahuje dětský element <nsesss:AnalogovyDokument>. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(zakladnientita));
-                }
-                String analogovyzakladni = an_ze.getTextContent();
-                
-                if(dokumenty == null || dokumenty.isEmpty()){
-                    return add_popisy("Nenalezen žádný element <nsesss:Dokument>. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(zakladnientita));
-                }
-                for(int j = 0; j < dokumenty.size(); j++){
-                    Node dokument = dokumenty.get(j);
-                    Node node = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Manipulace", "nsesss:AnalogovyDokument");
-                    if(node == null){
-                        return add_popisy("Element <nsesss:Dokument> neobsahuje dětský element <nsesss:AnalogovyDokument>. " + getJmenoIdentifikator(dokument), false, getMistoChyby(dokument));
-                    }
-                    String hodnota = node.getTextContent();
-                    if(hodnota.equals("ano") && analogovyzakladni.equals("ne")){
-                        return add_popisy("Element <nsesss:Dokument> nemá stejnou hodnotu jako jeho základní entita. " + getJmenoIdentifikator(zakladnientita) + " " + getJmenoIdentifikator(dokument), false, getMistoChyby(zakladnientita) + " " + getMistoChyby(dokument));
-                    }
-                }      
-            }
-            if(zakladnientita.getNodeName().equals("nsesss:Dokument")){
-                Node and = ValuesGetter.getXChild(zakladnientita, "nsesss:EvidencniUdaje", "nsesss:Manipulace", "nsesss:AnalogovyDokument");
-                if(and == null){
-                    return add_popisy("Element <nsesss:Dokument> neobsahuje dětský element <nsesss:AnalogovyDokument>. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(zakladnientita));
-                }
-                String analogovyzakladni = and.getTextContent();
-                if(analogovyzakladni.equals("ano")){
-                    ArrayList<Node> vecneSkupiny = ValuesGetter.getAllInNode(zakladnientita, "nsesss:VecnaSkupina",
-                                                                             metsParser.getDocument());
-                    if(vecneSkupiny == null || vecneSkupiny.isEmpty()){
-                        return add_popisy("Nenalezen element <nsesss:VecnaSkupina>. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(zakladnientita));
-                    }
-                    for(int k = 0; k < vecneSkupiny.size(); k++){
-                        Node vs = vecneSkupiny.get(k);
-                        Node n = ValuesGetter.getXChild(vs, "nsesss:EvidencniUdaje", "nsesss:Manipulace", "nsesss:AnalogovyDokument");
-                        if(n == null){
-                            return add_popisy("Nenalezen element <nsesss:AnalogovyDokument>. " + getJmenoIdentifikator(vs), false, getMistoChyby(vs));
-                        }
-                        String ad = n.getTextContent();
-                        if(ad.equals("ne")){
-                            return add_popisy("Element <nsesss:Dokument> nemá stejnou hodnotu jako jeho věcná skupina. " + getJmenoIdentifikator(zakladnientita) + " " + getJmenoIdentifikator(vs), false, getMistoChyby(zakladnientita) + " " + getMistoChyby(n));
-                        }
-                    }
-                }
-            }
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.77 Pokud základní entita obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano, potom obsahuje v hierarchii dětských elementů <nsesss:Vyrazovani> a <nsesss:SkartacniRizeni> element <nsesss:Mnozstvi> s neprázdnou hodnotou.",
-    private boolean pravidlo77(){
-        if (zakladniEntity == null) {
-            return add_popisy("Chybí základní entity.", false, null);
-        }
-
-        for(int i = 0; i < zakladniEntity.size(); i++){
-            Node zakladnientita = zakladniEntity.get(i);
-            Node analogovy = ValuesGetter.getXChild(zakladnientita, "nsesss:EvidencniUdaje", "nsesss:Manipulace", "nsesss:AnalogovyDokument");
-            if(analogovy != null){
-                String analogovyZakladni = analogovy.getTextContent();
-                if(analogovyZakladni.equals("ano")){
-                    Node mnozstvi = ValuesGetter.getXChild(zakladnientita, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani", "nsesss:SkartacniRizeni", "nsesss:Mnozstvi");
-                    if(mnozstvi == null){
-                        return add_popisy("Nenalezen element <nsesss:Mnozstvi> základní entity. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(zakladnientita));
-                    }
-                    if (StringUtils.isBlank(mnozstvi.getTextContent())) {
-                        return add_popisy("Element <nsesss:Mnozstvi> obsahuje prázdnou hodnotu. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(mnozstvi));
-                    }
-                }
-            }
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.78 Element <nsesss:SkartacniRizeni> je uveden pouze v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani> základní entity.",
-    private boolean pravidlo78(){
-        if (zakladniEntity == null) {
-            return add_popisy("Chybí základní entity.", false, null);
-        }
-
-        for(int i = 0; i < zakladniEntity.size(); i++){
-            Node zakladnientita = zakladniEntity.get(i);
-            ArrayList<Node> skartacniRizeni = ValuesGetter.getAllInNode(zakladnientita, "nsesss:SkartacniRizeni",
-                                                                        metsParser.getDocument());
-            if(skartacniRizeni == null || skartacniRizeni.isEmpty()){
-                return add_popisy("Nenalezen element <nsesss:SkartacniRizeni>. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(zakladnientita));
-            }       
-            if(skartacniRizeni.size() != 1){
-                return add_popisy("Element <nsesss:SkartacniRizeni> je v základní entitě uveden vícekrát. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(zakladnientita));
-            }
-            Node node = ValuesGetter.getXChild(zakladnientita, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani", "nsesss:SkartacniRizeni");
-            if(node == null){
-                return add_popisy("Element <nsesss:SkartacniRizeni> není správně zatříděn. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(skartacniRizeni.get(0)));
-            }
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.79 V elementu <nsesss:SkartacniRizeni> obsahuje element <nsesss:Datum> hodnotu, v níž je uvedený rok větší nebo roven hodnotě uvedené v elementu <nsesss:RokSkartacniOperace> uvnitř rodičovského elementu <nsesss:DataceVyrazeni> stejné entity.",
-    private boolean pravidlo79(){
-        NodeList skartacniRizeni = ValuesGetter.getAllAnywhere("nsesss:SkartacniRizeni", metsParser.getDocument());
-        if(skartacniRizeni == null){
-            if (zakladniEntity == null) {
-                return add_popisy("Chybí základní entity.", false, null);
-            }
-
-            Node entita = zakladniEntity.get(0);
-            return add_popisy("Nenalezen element <nsesss:SkartacniRizeni>. " + getJmenoIdentifikator(entita), false, MISTO_CHYBY_NEUPRESNENO);
-        }
-        for(int i = 0; i < skartacniRizeni.getLength(); i++){ 
-            Node skrizeni = skartacniRizeni.item(i);
-            Node datum = ValuesGetter.getXChild(skrizeni, "nsesss:Datum");
-            if(datum == null){
-                return add_popisy("Nenalezen element <nsesss:Datum>. " + getJmenoIdentifikator(skrizeni), false, getMistoChyby(skrizeni));
-            }
-            String strDatum = datum.getTextContent().substring(0, 4);
-
-            Node dataceVyrazeni = ValuesGetter.getSourozencePrvnihoSeJmenem(skrizeni, "nsesss:DataceVyrazeni");
-            if(dataceVyrazeni == null){
-                return add_popisy("Nenalezen element <nsesss:DataceVyrazeni>. " + getJmenoIdentifikator(skrizeni), false, getMistoChyby(skrizeni));
-            }
-            Node rokSkOperace = ValuesGetter.getXChild(dataceVyrazeni, "nsesss:RokSkartacniOperace");
-            if(rokSkOperace == null){
-                return add_popisy("Nenalezen element <nsesss:RokSkartacniOperace>. " + getJmenoIdentifikator(skrizeni), false, getMistoChyby(dataceVyrazeni));
-            }
-            String rokOperace = rokSkOperace.getTextContent();
-
-            if(!ValuesGetter.overSpravnostRetezceProInt(strDatum)){
-                return add_popisy("Hodnota roku v elementu <nsesss:Datum> uvedena ve špatném formátu. " + getJmenoIdentifikator(skrizeni), false, getMistoChyby(datum));
-            }
-            if(!ValuesGetter.overSpravnostRetezceProInt(rokOperace)){
-                return add_popisy("Hodnota roku v elementu <nsesss:RokSkartacniOperace> uvedena ve špatném formátu. " + getJmenoIdentifikator(skrizeni), false, getMistoChyby(rokSkOperace));
-            }
-            
-            int a = Integer.parseInt(strDatum);
-            int b = Integer.parseInt(rokOperace);
-            if(!(a >= b)){
-                return add_popisy("Nesplněna podmínka pravidla." + " Datum: " + a + ". Rok skartační operace: " + b + ". " + getJmenoIdentifikator(skrizeni), false, getMistoChyby(datum) + " " + getMistoChyby(rokSkOperace));
-            }
-            
-        }
-        return true; 
-    }
-    
-    //OBSAHOVÁ č.80 V jakémkoli elementu <nsesss:SkartacniRizeni> obsahuje element <nsesss:Datum> hodnotu, která je menší nebo rovna aktuálnímu roku.
-    private boolean pravidlo80(){
-        NodeList nodeList = ValuesGetter.getAllAnywhere("nsesss:SkartacniRizeni", metsParser.getDocument());
-        if(nodeList == null){
-            if (zakladniEntity == null) {
-                return add_popisy("Chybí základní entity.", false, null);
-            }
-
-            return add_popisy("Nenalezen element <nsesss:SkartacniRizeni>. " + getJmenoIdentifikator(zakladniEntity.get(0)), false, MISTO_CHYBY_NEUPRESNENO);
-        }
-        for(int i = 0; i < nodeList.getLength(); i++){
-            Node skrizeni = nodeList.item(i);
-            Node datum = ValuesGetter.getXChild(skrizeni, "nsesss:Datum");
-            if(datum == null){
-                return add_popisy("Nenalezen element <nsesss:Datum>. " + getJmenoIdentifikator(skrizeni), false, getMistoChyby(skrizeni));
-            }
-            int year = Calendar.getInstance().get(Calendar.YEAR);
-        
-            String s = datum.getTextContent().substring(0, 4);
-            boolean b = (ValuesGetter.overSpravnostRetezceProInt(s));
-            if(b){
-                int date = Integer.parseInt(s);
-                if(!(date <= year)){
-                    return add_popisy("Hodnota elementu <nsesss:Datum> (" + date +") je vyšší než aktuální rok. " + getJmenoIdentifikator(skrizeni), false, getMistoChyby(datum));
-                }
-            }
-            else{
-                return add_popisy("Hodnota elementu <nsesss:Datum> je v nepovoleném formátu. " + getJmenoIdentifikator(skrizeni), false, getMistoChyby(datum));
             }
         }
         return true;
