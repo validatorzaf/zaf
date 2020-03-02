@@ -31,23 +31,23 @@ public class Pravidlo90 extends K06PravidloBase {
             if (spis.getNodeName().equals("nsesss:Spis")) {
                 Node node = ValuesGetter.getXChild(spis, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani",
                                                    "nsesss:DataceVyrazeni", "nsesss:RokSpousteciUdalosti");
-                Node node2 = ValuesGetter.getXChild(spis, "nsesss:EvidencniUdaje", "nsesss:VyrizeniUzavreni",
-                                                    "nsesss:Datum");
                 if (node == null)
                     return nastavChybu("Nenalezen element <nsesss:RokSpousteciUdalosti>. "
                             + getJmenoIdentifikator(spis),
                                        getMistoChyby(spis));
+
+                Node node2 = ValuesGetter.getXChild(spis, "nsesss:EvidencniUdaje", "nsesss:VyrizeniUzavreni",
+                                                    "nsesss:Datum");
                 if (node2 == null)
                     return nastavChybu("Nenalezen element <nsesss:Datum>. " + getJmenoIdentifikator(spis),
                                        getMistoChyby(spis));
                 String rok1 = node.getTextContent().substring(0, 4);
                 String rok2 = node2.getTextContent().substring(0, 4);
-                boolean b = (ValuesGetter.overSpravnostRetezceProInt(rok1) && ValuesGetter.overSpravnostRetezceProInt(
-                                                                                                                      rok1));
-                if (!b)
-                    return nastavChybu("Hodnoty dat jsou zaznamenány v nepovoleném formátu. " + getJmenoIdentifikator(
-                                                                                                                      spis),
+                boolean b = (ValuesGetter.overSpravnostRetezceProInt(rok1) && ValuesGetter.overSpravnostRetezceProInt(rok1));
+                if (!b) {
+                    return nastavChybu("Hodnoty dat jsou zaznamenány v nepovoleném formátu. " + getJmenoIdentifikator(spis),
                                        getMistoChyby(node) + " " + getMistoChyby(node2));
+                }
                 int rokSpousteci = Integer.parseInt(rok1);
                 int rokDatum = Integer.parseInt(rok2);
                 if (!(rokSpousteci >= rokDatum)) {

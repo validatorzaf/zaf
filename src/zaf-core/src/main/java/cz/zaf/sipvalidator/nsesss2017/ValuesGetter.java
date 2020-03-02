@@ -369,6 +369,7 @@ public class ValuesGetter {
         return isXParent(foundedParent, nextParent);
     }
     
+    // TODO: prepracovat na Int.parse s odchycenim vyjimky
     public static boolean overSpravnostRetezceProInt (String hodnotaString){
             
         String nezadouciZnaky = "+/*-,)ú§ů¨-.,éíáýžřčšě+;qwertzuioplkjhgfdsayxcvbnm";

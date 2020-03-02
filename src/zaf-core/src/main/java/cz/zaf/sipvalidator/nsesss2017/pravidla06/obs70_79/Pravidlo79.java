@@ -40,7 +40,6 @@ public class Pravidlo79 extends K06PravidloBase {
                 return nastavChybu("Nenalezen element <nsesss:Datum>. " + getJmenoIdentifikator(skrizeni),
                                   getMistoChyby(skrizeni));
             }
-            String strDatum = datum.getTextContent().substring(0, 4);
 
             Node dataceVyrazeni = ValuesGetter.getSourozencePrvnihoSeJmenem(skrizeni, "nsesss:DataceVyrazeni");
             if (dataceVyrazeni == null) {
@@ -54,6 +53,7 @@ public class Pravidlo79 extends K06PravidloBase {
             }
             String rokOperace = rokSkOperace.getTextContent();
 
+            String strDatum = datum.getTextContent().substring(0, 4);
             if (!ValuesGetter.overSpravnostRetezceProInt(strDatum)) {
                 return nastavChybu("Hodnota roku v elementu <nsesss:Datum> uvedena ve špatném formátu. "
                         + getJmenoIdentifikator(skrizeni), getMistoChyby(datum));
