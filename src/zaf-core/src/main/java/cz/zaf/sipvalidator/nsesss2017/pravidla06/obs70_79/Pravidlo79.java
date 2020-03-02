@@ -31,36 +31,38 @@ public class Pravidlo79 extends K06PravidloBase {
             }
 
             Node entita = zakladniEntity.get(0);
-            return nastavChybu("Nenalezen element <nsesss:SkartacniRizeni>. " + getJmenoIdentifikator(entita), null);
+            return nastavChybu("Nenalezen element <nsesss:SkartacniRizeni>. " + getJmenoIdentifikator(entita));
         }
         for (int i = 0; i < skartacniRizeni.getLength(); i++) {
             Node skrizeni = skartacniRizeni.item(i);
             Node datum = ValuesGetter.getXChild(skrizeni, "nsesss:Datum");
             if (datum == null) {
                 return nastavChybu("Nenalezen element <nsesss:Datum>. " + getJmenoIdentifikator(skrizeni),
-                                  getMistoChyby(skrizeni));
+                                   skrizeni);
             }
 
             Node dataceVyrazeni = ValuesGetter.getSourozencePrvnihoSeJmenem(skrizeni, "nsesss:DataceVyrazeni");
             if (dataceVyrazeni == null) {
                 return nastavChybu("Nenalezen element <nsesss:DataceVyrazeni>. " + getJmenoIdentifikator(skrizeni),
-                                   getMistoChyby(skrizeni));
+                                   skrizeni);
             }
             Node rokSkOperace = ValuesGetter.getXChild(dataceVyrazeni, "nsesss:RokSkartacniOperace");
             if (rokSkOperace == null) {
                 return nastavChybu("Nenalezen element <nsesss:RokSkartacniOperace>. " + getJmenoIdentifikator(skrizeni),
-                                   getMistoChyby(dataceVyrazeni));
+                                   dataceVyrazeni);
             }
             String rokOperace = rokSkOperace.getTextContent();
 
             String strDatum = datum.getTextContent().substring(0, 4);
             if (!ValuesGetter.overSpravnostRetezceProInt(strDatum)) {
                 return nastavChybu("Hodnota roku v elementu <nsesss:Datum> uvedena ve špatném formátu. "
-                        + getJmenoIdentifikator(skrizeni), getMistoChyby(datum));
+                        + getJmenoIdentifikator(skrizeni),
+                                   datum);
             }
             if (!ValuesGetter.overSpravnostRetezceProInt(rokOperace)) {
                 return nastavChybu("Hodnota roku v elementu <nsesss:RokSkartacniOperace> uvedena ve špatném formátu. "
-                        + getJmenoIdentifikator(skrizeni), getMistoChyby(rokSkOperace));
+                        + getJmenoIdentifikator(skrizeni),
+                                   rokSkOperace);
             }
 
             int a = Integer.parseInt(strDatum);

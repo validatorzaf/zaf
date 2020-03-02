@@ -13,7 +13,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +26,16 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo60;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo61;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo62;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo63;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo64;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo65;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo66;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo67;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo68;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo69;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79.Pravidlo70;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79.Pravidlo71;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79.Pravidlo72;
@@ -224,6 +233,16 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
 
+        pridejPravidlo(new Pravidlo60(this));
+        pridejPravidlo(new Pravidlo61(this));
+        pridejPravidlo(new Pravidlo62(this));
+        pridejPravidlo(new Pravidlo63(this));
+        pridejPravidlo(new Pravidlo64(this));
+        pridejPravidlo(new Pravidlo65(this));
+        pridejPravidlo(new Pravidlo66(this));
+        pridejPravidlo(new Pravidlo67(this));
+        pridejPravidlo(new Pravidlo68(this));
+        pridejPravidlo(new Pravidlo69(this));
         pridejPravidlo(new Pravidlo70(this));
         pridejPravidlo(new Pravidlo71(this));
         pridejPravidlo(new Pravidlo72(this));
@@ -432,36 +451,6 @@ public class K06_Obsahova
         case 59:
             vysledek = pravidlo59();
             break;
-        case 60:
-            vysledek = pravidlo60();
-            break;
-        case 61:
-            vysledek = pravidlo61();
-            break;
-        case 62:
-            vysledek = pravidlo62();
-            break;
-        case 63:
-            vysledek = pravidlo63();
-            break;
-        case 64:
-            vysledek = pravidlo64();
-            break;
-        case 65:
-            vysledek = pravidlo65();
-            break;
-        case 66:
-            vysledek = pravidlo66();
-            break;
-        case 67:
-            vysledek = pravidlo67();
-            break;
-        case 68:
-            vysledek = pravidlo68();
-            break;
-        case 69:
-            vysledek = pravidlo69();
-            break;
         }
         
         return vysledek;
@@ -498,7 +487,7 @@ public class K06_Obsahova
         return bol;
     }
     
-    private String getIdentifikatory(Node node){
+    public String getIdentifikatory(Node node) {
         String nodename = node.getNodeName();
         String hodnota = "nenalezeno", zdroj = "nenalezeno";
         Node identifikator;
@@ -2379,423 +2368,7 @@ public class K06_Obsahova
         k_list.remove(0);
         return k_list;
     }
-
-    //OBSAHOVÁ č.60 Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ne, obsahuje element <nsesss:Dokument> dětský element <nsesss:Komponenty>.",
-    private boolean pravidlo60(){
-        if(dokumenty == null){
-            return add_popisy("Nenalezen žádný element <nsesss:Dokument>.", false, MISTO_CHYBY_NEUPRESNENO);
-        }
-        for(int i = 0; i < dokumenty.size(); i++)
-        {
-            Node dokument = dokumenty.get(i);
-            Node ad = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Manipulace", "nsesss:AnalogovyDokument");
-            if(ad == null){
-                return add_popisy("Nenalezen element <nsesss:AnalogovyDokument>. Dokumentu " + getIdentifikatory(dokument) + ".", false, getMistoChyby(dokument));
-            }
-            String hodnotaAnalogovyDokument = ad.getTextContent();
-            if(hodnotaAnalogovyDokument.equals("ne")){
-                if(ValuesGetter.getXChild(dokument, "nsesss:Komponenty") == null){
-                    return add_popisy("Nenalezen povinný element <nsesss:Komponenty>. Dokumentu " + getIdentifikatory(dokument) + ".", false, getMistoChyby(dokument));
-                }
-            }
-        }    
-        return true;
-    }
     
-    //OBSAHOVÁ č.61 Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano a současně element <nsesss:EvidencniUdaje> obsahuje v dětském elementu <nsesss:Puvod> element <nsesss:DorucenyDokument>, potom je v posledním uvedeném elementu uveden dětský element <nsesss:DoruceneMnozstvi> s neprázdnou hodnotou.",
-    private boolean pravidlo61(){
-        if(dokumenty == null){
-            return add_popisy("Nenalezen žádný element <nsesss:Dokument>.", false, MISTO_CHYBY_NEUPRESNENO);
-        }
-        for(int i = 0; i < dokumenty.size(); i++)
-        {      
-            Node dokument = dokumenty.get(i);
-            Node ad = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Manipulace", "nsesss:AnalogovyDokument");
-            if(ad == null){
-                return add_popisy("Nenalezen element <nsesss:AnalogovyDokument>. Dokumentu " + getIdentifikatory(dokument) + ".", false, getMistoChyby(dokument));
-            }
-            String hodnotaAnalogovyDokument = ad.getTextContent();
-            if(hodnotaAnalogovyDokument.equals("ano") && ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Puvod", "nsesss:DorucenyDokument") != null){
-                if(ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Puvod", "nsesss:DorucenyDokument", "nsesss:DoruceneMnozstvi") == null){
-                    return add_popisy("Nenalezen povinný element <nsesss:DoruceneMnozstvi>. Dokumentu " + getIdentifikatory(dokument) + ".", false, getMistoChyby(dokument));
-                }
-                if(ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Puvod", "nsesss:DorucenyDokument", "nsesss:DoruceneMnozstvi") != null){
-                    String s = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Puvod", "nsesss:DorucenyDokument", "nsesss:DoruceneMnozstvi").getTextContent();
-                    if (StringUtils.isBlank(s)) {
-                        return add_popisy("Element <nsesss:DoruceneMnozstvi> obsahuje prázdnou hodnotu. Dokumentu " + getIdentifikatory(dokument) + ".", false, getMistoChyby(dokument));
-                    }
-                }
-            }
-        }    
-        return true;
-    }
-    
-    //OBSAHOVÁ č.62 Pokud existuje jakýkoli element <nsesss:Jazyk>, každý obsahuje pouze hodnoty uvedené v číselníku ISO 639-2:1998 uvedeném na URL: http://www.loc.gov/standards/iso639-2/ISO-639-2_utf-8.txt.
-    private boolean pravidlo62(){
-        NodeList jazyky = ValuesGetter.getAllAnywhere("nsesss:Jazyk", metsParser.getDocument());
-        if(jazyky == null) return true;
-        String hodnotaJazyk;
-        UrlJazykyParser parserZUrl = new UrlJazykyParser();
-        for(int i = 0; i < jazyky.getLength(); i++)
-        {
-            Node jazyk = jazyky.item(i);
-            hodnotaJazyk = jazyk.getTextContent(); 
-            try {
-                parserZUrl.NactiJazykyZUrl();
-            } catch (IOException ex) {
-                return add_popisy("Chyba programu - nepodařilo se načíst tabulku s hodnotami pro element <nsesss:Jazyk>.", false, MISTO_CHYBY_NEUPRESNENO);
-            }
-            boolean jeObsazen = parserZUrl.jeObsazenJazyk(hodnotaJazyk);
-            if(!jeObsazen)
-                return add_popisy("Nenalezena hodnota odpovídající ISO 639-2:1998. " + getJmenoIdentifikator(jazyk), false, MISTO_CHYBY_NEUPRESNENO);
-        }
-        return true; 
-    }
-    
-    //OBSAHOVÁ č.63 Pokud jakýkoli element <nsesss:Vyrizeni> nebo element <nsesss:VyrizeniUzavreni> obsahuje element <nsesss:Zpusob> s hodnotou jiný způsob, 
-    // potom je na stejné úrovni posledního uvedeného elementu uveden dětský element <nsesss:Oduvodneni> s neprázdnou hodnotou.",
-    private boolean pravidlo63(){
-        NodeList vyrizenis = ValuesGetter.getAllAnywhere("nsesss:Vyrizeni", metsParser.getDocument());
-        NodeList vyrizeniUzavrenis = ValuesGetter.getAllAnywhere("nsesss:VyrizeniUzavreni", metsParser.getDocument());
-        if(vyrizenis != null){
-            int size = vyrizenis.getLength();
-            for(int i = 0; i < size; i++){
-                Node n = vyrizenis.item(i);
-                boolean maZpusobSHodnotou = ValuesGetter.getObsahujeRodicElementSHodnotou(n, "nsesss:Zpusob", "jiný způsob");
-                if(maZpusobSHodnotou){
-                    Node oduvodneni = ValuesGetter.getXChild(n, "nsesss:Oduvodneni");
-                    if(oduvodneni == null){
-//                        Node rodic = n.getParentNode().getParentNode();
-//                        String g = "";
-//                        if(rodic != null) {
-//                            g = " " + getJmeno(rodic);
-//                            g+= " " + getIdentifikatory(rodic) + ".";
-//                        }
-                        return add_popisy("Nenalezen povinný element <nsesss:Oduvodneni>. " + getJmenoIdentifikator(n), false, getMistoChyby(n));
-                    }
-                    if (StringUtils.isBlank(oduvodneni.getTextContent())) {
-//                        Node rodic = n.getParentNode().getParentNode();
-//                        String g = "";
-//                        if(rodic != null) {
-//                            g = " " + getJmeno(rodic);
-//                            g+= " " + getIdentifikatory(rodic) + ".";
-//                        }
-                        return add_popisy("Element <nsesss:Oduvodneni> má prázdnou hodnotu. " + getJmenoIdentifikator(n), false, getMistoChyby(oduvodneni));
-                    }
-                }   
-            }
-        }
-        if(vyrizeniUzavrenis != null){
-            int size = vyrizeniUzavrenis.getLength();
-            for(int j = 0; j < size; j++){
-                Node n = vyrizeniUzavrenis.item(j);
-                boolean maZpusobSHodnotou = ValuesGetter.getObsahujeRodicElementSHodnotou(n, "nsesss:Zpusob", "jiný způsob");
-                if(maZpusobSHodnotou){
-                    Node oduvodneni = ValuesGetter.getXChild(n, "nsesss:Oduvodneni");
-                    if(oduvodneni == null){
-//                        Node rodic = n.getParentNode().getParentNode();
-//                        String g = "";
-//                        if(rodic != null) {
-//                            g = " " + getJmeno(rodic);
-//                            g+= " " + getIdentifikatory(rodic) + ".";
-//                        }
-                        return add_popisy("Nenalezen povinný element <nsesss:Oduvodneni>. " + getJmenoIdentifikator(n), false, getMistoChyby(n));
-                    }
-                    if (StringUtils.isBlank(oduvodneni.getTextContent())) {
-//                        Node rodic = n.getParentNode().getParentNode();
-//                        String g = "";
-//                        if(rodic != null) {
-//                            g = " " + getJmeno(rodic);
-//                            g+= " " + getIdentifikatory(rodic) + ".";
-//                        }
-                        return add_popisy("Element <nsesss:Oduvodneni> má prázdnou hodnotu. " +  getJmenoIdentifikator(n), false, getMistoChyby(oduvodneni));
-                    }
-                }
-            }
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.64 Pokud je základní entitou (<nsesss:Dokument>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> 
-    // obsahuje element <nsesss:RokSkartacniOperace> hodnotu, která je součtem hodnoty elementu <nsesss:RokSpousteciUdalosti>, 1 a hodnoty elementu <nsesss:SkartacniLhuta> uvedeného v rodičovském elementu <nsesss:SkartacniRezim>.",
-    private boolean pravidlo64(){
-        if (zakladniEntity == null) {
-            return add_popisy("Chybí základní entity.", false, null);
-        }
-        for(int i = 0; i < zakladniEntity.size(); i++){
-            Node zakladnientita = zakladniEntity.get(i);
-            if(zakladnientita.getNodeName().equals("nsesss:Dokument")){
-                Node skartacniRezim = ValuesGetter.getXChild(zakladnientita,"nsesss:EvidencniUdaje", "nsesss:Vyrazovani", "nsesss:SkartacniRezim");
-                if(skartacniRezim == null){
-                    return add_popisy("Nenalezen element <nsesss:SkartacniRezim>. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(zakladnientita));
-                }
-                Node skartacniLhuta_node = ValuesGetter.getXChild(skartacniRezim, "nsesss:SkartacniLhuta");
-                if(skartacniLhuta_node == null){
-                    return add_popisy("Nenalezen element <nsesss:SkartacniLhuta>. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(skartacniRezim));
-                }
-                String skartacniLhuta = skartacniLhuta_node.getTextContent();
-                Node rso = ValuesGetter.getXChild(zakladnientita, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani", "nsesss:DataceVyrazeni", "nsesss:RokSkartacniOperace");
-                Node rsu = ValuesGetter.getXChild(zakladnientita, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani", "nsesss:DataceVyrazeni", "nsesss:RokSpousteciUdalosti");
-                if(rso == null){
-                    return add_popisy("Nenalezen element <nsesss:RokSkartacniOperace>. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(zakladnientita));
-                }
-                if(rsu == null){
-                    return add_popisy("Nenalezen element <nsesss:RokSpousteciUdalosti>. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(zakladnientita));
-                }
-                String rokSkartacniOperace = rso.getTextContent();
-                String rokSpousteciUdalosti = rsu.getTextContent(); 
-                
-                try{
-                    String chytac;
-                    chytac = rokSkartacniOperace;
-                    int hodnotaOperace = Integer.parseInt(rokSkartacniOperace);
-                    chytac = skartacniLhuta;
-                    int hodnotaLhuta = Integer.parseInt(skartacniLhuta);
-                    chytac = rokSpousteciUdalosti;
-                    int hodnotaUdalosti = Integer.parseInt(rokSpousteciUdalosti);
-                    if(hodnotaOperace != hodnotaLhuta + hodnotaUdalosti + 1){
-                        return add_popisy("Rok skartační operace: " + hodnotaOperace + ", lhůta: " + hodnotaLhuta + ", událost: " + hodnotaUdalosti + ". " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(zakladnientita));
-                    }
-                }
-                catch(NumberFormatException e){
-//                    System.err.println("PRAVIDLO NSESSS Č.64. " + e);
-                    return add_popisy("Zápis roku je uveden ve špatném formátu. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(zakladnientita));
-                }
-                
-            }
-        }
-        return true; 
-    }
-    
-    //OBSAHOVÁ č.65 Pokud je základní entitou díl (<nsesss:Dil>) nebo spis (<nsesss:Spis>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> obsahuje element <nsesss:RokSkartacniOperace> hodnotu, 
-    // která je rovna vyšší hodnotě, přičemž jednou hodnotou je součet hodnoty elementu <nsesss:RokSpousteciUdalosti>, 1 a hodnoty elementu <nsesss:SkartacniLhuta> uvedeného v rodičovském elementu <nsesss:SkartacniRezim> a druhou hodnotou nejvyšší hodnota roku skartační operace jakékoli dětské entity dokument (nsesss:Dokument>).",
-    private boolean pravidlo65(){
-        if (zakladniEntity == null) {
-            return add_popisy("Chybí základní entity.", false, null);
-        }
-
-        for(int i = 0; i < zakladniEntity.size(); i++){
-            Node zakladniEntita = zakladniEntity.get(i);
-            String jmeno = zakladniEntita.getNodeName();
-            if(jmeno.equals("nsesss:Spis") || jmeno.equals("nsesss:Dil")){
-                Node node = ValuesGetter.getXChild(zakladniEntita, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani", "nsesss:DataceVyrazeni", "nsesss:RokSkartacniOperace");
-                if(node == null){
-                    return add_popisy("Nenalezen element <nsesss:RokSkartacniOperace>. " + getJmenoIdentifikator(zakladniEntita), false, getMistoChyby(zakladniEntita));
-                }
-                String str_rokSkartacniOperace_spis = node.getTextContent();
-                // HODNOTA 1
-                int hodnota_rokSkartacniOperace_spis; try{ hodnota_rokSkartacniOperace_spis = Integer.parseInt(str_rokSkartacniOperace_spis);} catch(NumberFormatException e){return add_popisy("Hodnota roku elementu <nsesss:RokSkartacniOperace> je uvedena ve špatném formátu: " + str_rokSkartacniOperace_spis + "." + getJmenoIdentifikator(zakladniEntita), false, getMistoChyby(node));}
-                
-                node = ValuesGetter.getXChild(zakladniEntita, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani", "nsesss:DataceVyrazeni", "nsesss:RokSpousteciUdalosti");
-                if(node == null){
-                    return add_popisy("Nenalezen element <nsesss:RokSpousteciUdalosti>." + getJmenoIdentifikator(zakladniEntita), false, getMistoChyby(zakladniEntita));
-                }
-                String str_rokSpousteciUdalosti_spis = node.getTextContent();
-                int rokSpousteciUdalosti_spis;
-                try{rokSpousteciUdalosti_spis = Integer.parseInt(str_rokSpousteciUdalosti_spis);} catch(NumberFormatException e){return add_popisy("Hodnota roku elementu <nsesss:RokSkartacniOperace> je uvedena ve špatném formátu: " + str_rokSpousteciUdalosti_spis + ". " + getJmenoIdentifikator(zakladniEntita), false, getMistoChyby(node));}
-
-                node = ValuesGetter.getXChild(zakladniEntita, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani", "nsesss:SkartacniRezim", "nsesss:SkartacniLhuta");
-                if(node == null){
-                    return add_popisy("Nenalezen element <nsesss:SkartacniLhuta>. " + getJmenoIdentifikator(zakladniEntita), false, getMistoChyby(zakladniEntita));
-                }
-                String str_skartacniLhuta_spis = node.getTextContent();
-                int skartacniLhuta_spis;
-                try{skartacniLhuta_spis = Integer.parseInt(str_skartacniLhuta_spis);} catch(NumberFormatException e){return add_popisy("Hodnota roku elementu <nsesss:SkartacniLhuta> je uvedena ve špatném formátu: " + str_skartacniLhuta_spis + ". " + getJmenoIdentifikator(zakladniEntita), false, getMistoChyby(node));}
-                
-                //HODNOTA 2
-                int hodnota_rokSpudalostiPlusJednaPlusSkartacniLhuta = rokSpousteciUdalosti_spis + 1 + skartacniLhuta_spis; 
-                
-                // dokumenty 
-                if(dokumenty == null || dokumenty.isEmpty()){
-                    return add_popisy("Nenalezen žádný element <nsesss:Dokument>. " + getJmenoIdentifikator(zakladniEntita), false, getMistoChyby(zakladniEntita));
-                }
-                Obj_Node_int dokument = new Obj_Node_int(null, 0);
-                for(int j = 0; j < dokumenty.size(); j++){
-                    Node dokumentze = dokumenty.get(j);
-                    int int_finalhodnota_dok;
-                    Node dok_lhuta = ValuesGetter.getXChild(dokumentze, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani", "nsesss:SkartacniRezim", "nsesss:SkartacniLhuta");
-                    if(dok_lhuta == null){
-                        return add_popisy("Nenalezen element <nsesss:SkartacniLhuta>. " + getJmenoIdentifikator(dokumentze), false, getMistoChyby(dokumentze));
-                    }
-                    String d_lhuta = dok_lhuta.getTextContent();
-
-                    Node datum_dok = ValuesGetter.getXChild(dokumentze, "nsesss:EvidencniUdaje", "nsesss:Puvod", "nsesss:VlastniDokument", "nsesss:DatumVytvoreni");
-                    if(datum_dok == null) datum_dok = ValuesGetter.getXChild(dokumentze, "nsesss:EvidencniUdaje", "nsesss:Puvod", "nsesss:DorucenyDokument", "nsesss:DatumDoruceni");
-                    if(datum_dok == null){
-                        return add_popisy("Nenalezen element <nsesss:RokSkartacniOperace>. "  + getJmenoIdentifikator(dokumentze), false, getMistoChyby(dokumentze));
-                    }
-                    String d_vytvDor = datum_dok.getTextContent().substring(0, 4);
-                    int int_dok_lhuta, int_dok_rok_vytvDor;
-                    try{
-                        int_dok_lhuta = Integer.parseInt(d_lhuta);
-                    }
-                    catch(NumberFormatException e){
-                        return add_popisy("Element <nsesss:SkartacniLhuta> obsahuje hodnotu roku ve špatném formátu. "  + getJmenoIdentifikator(dokumentze), false, getMistoChyby(dok_lhuta));
-                    }
-                    try{
-                        int_dok_rok_vytvDor = Integer.parseInt(d_vytvDor);
-                    }
-                    catch(NumberFormatException e){
-                        return add_popisy("Element <" + datum_dok.getNodeName() + "> obsahuje hodnotu roku ve špatném formátu."  + getJmenoIdentifikator(dokumentze), false, getMistoChyby(datum_dok));
-                    }
-
-                    int_finalhodnota_dok = int_dok_lhuta + 1 + int_dok_rok_vytvDor;
-                    
-                    if((int_finalhodnota_dok) > dokument.get_int()){
-                        dokument = new Obj_Node_int(dokumentze, (int_finalhodnota_dok));
-                    }
-                }
-                
-                //HODNOTA 3 
-                int hodnota_rokSkartacniOperace_dokument = dokument.get_int();
-                
-                //PODMÍNKA
-                int hodnota_maximalni = Math.max(hodnota_rokSpudalostiPlusJednaPlusSkartacniLhuta, hodnota_rokSkartacniOperace_dokument);
-                if(hodnota_rokSkartacniOperace_spis != hodnota_maximalni){
-                    if(hodnota_rokSpudalostiPlusJednaPlusSkartacniLhuta != hodnota_rokSkartacniOperace_dokument){
-                        return add_popisy("Rok uvedený v elementu <nsesss:RokSkartacniOperace>: " + hodnota_rokSkartacniOperace_spis + ", se nerovná nejvyšší hodnotě. Buď nejvyšší hodnotě z dětských elementů <nsesss:Dokument>: " + hodnota_rokSkartacniOperace_dokument + ", nebo součtu hodnot elementů <nsesss:RokSpousteciUdalosti> + 1 + <nsesss:SkartacniLhuta>: " + rokSpousteciUdalosti_spis + " + 1 + " + skartacniLhuta_spis + " = " + hodnota_rokSpudalostiPlusJednaPlusSkartacniLhuta + ". " + getJmenoIdentifikator(zakladniEntita) + " " + getJmenoIdentifikator(dokument.get_node()), false, getMistoChyby(zakladniEntita) + " " + getMistoChyby(dokument.get_node()));
-                    }
-                    else{
-                        return add_popisy("Součet hodnot elementů <nsesss:RokSpousteciUdalosti> + 1 + <nsesss:SkartacniLhuta>: " + rokSpousteciUdalosti_spis + " + 1 + " + skartacniLhuta_spis + " = " + hodnota_rokSpudalostiPlusJednaPlusSkartacniLhuta + ", je roven nejvyšší hodnotě elementu <nsesss:RokSkartacniOperace> elementu <nsesss:Dokument>: " + hodnota_rokSkartacniOperace_dokument + ". Nerovná se však hodnotě elementu <nsesss:RokSkartacniOperace> základní entity: " +  hodnota_rokSkartacniOperace_spis + ". " + getJmenoIdentifikator(zakladniEntita) + " " + getJmenoIdentifikator(dokument.get_node()), false, getMistoChyby(zakladniEntita) + " " + getMistoChyby(dokument.get_node()));
-                    }
-                } 
-            }
-        }    
-        
-        return true;
-    }
-    
-    //OBSAHOVÁ č.66 Pokud je základní entitou díl (<nsesss:Dil>), spis (<nsesss:Spis> nebo dokument (<nsesss:Dokument>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> obsahuje element <nsesss:RokSkartacniOperace> hodnotu, která je menší nebo rovna aktuálnímu roku.",
-    private boolean pravidlo66(){
-        if (zakladniEntity == null) {
-            return add_popisy("Chybí základní entity.", false, null);
-        }
-        
-        for(int i = 0; i < zakladniEntity.size(); i++){
-            Node ze = zakladniEntity.get(i);
-            Node node = ValuesGetter.getXChild(ze, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani", "nsesss:DataceVyrazeni", "nsesss:RokSkartacniOperace");
-            String str = node.getTextContent().substring(0, 4);
-            boolean je = ValuesGetter.overSpravnostRetezceProInt(str);
-            if(!je){
-                return add_popisy("Element <nsesss:RokSkartacniOperace> obsahuje hodnotu ve špatném formátu. " + getJmenoIdentifikator(ze), false, getMistoChyby(node));
-            }
-            int rokSkartacniOperace = Integer.parseInt(str);
-            int year = Calendar.getInstance().get(Calendar.YEAR);
-            if(rokSkartacniOperace > year){
-                return add_popisy("Hodnota roku elementu <nsesss:RokSkartacniOperace> je větší, než aktuální rok. Hodnota: " + rokSkartacniOperace + ". " + getJmenoIdentifikator(ze), false, getMistoChyby(node));
-            }
-        }
-        
-        return true;
-    }
-    
-    //OBSAHOVÁ č.67 Pokud je základní entitou díl (<nsesss:Dil>) nebo spis (<nsesss:Spis>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:SkartacniRezim> obsahuje element <nsesss:SkartacniZnak> hodnotu, která je rovna nejvyššímu skartačnímu znaku dětské entity dokument (<nsesss:Dokument>), přičemž priorita skartačních znaků od nejvyšší po nejnižší je v pořadí A, V, S.",
-    private boolean pravidlo67(){
-        if (zakladniEntity == null) {
-            return add_popisy("Chybí základní entity.", false, null);
-        }
-
-        for(int i = 0; i < zakladniEntity.size(); i++){
-            Node zakladnientita = zakladniEntity.get(i);
-            String zeName = zakladnientita.getNodeName();
-            if(zeName.equals("nsesss:Spis") || zeName.equals("nsesss:Dil")){
-                Node n = ValuesGetter.getXChild(zakladnientita, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani", "nsesss:SkartacniRezim", "nsesss:SkartacniZnak");
-                if(n == null){
-                    return add_popisy("Nenalezen dětský element <nsesss:SkartacniZnak> základní entity. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(zakladnientita));
-                }
-                String skZnakME = n.getTextContent();
-                ArrayList<Obj_Node_String> hodnotyDokumentu = new ArrayList<>();
-                if(dokumenty == null){
-                    return add_popisy("Nenalezen žádný dětský element <nsesss:Dokument>. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(zakladnientita));
-                }
-                for(int j = 0; j < dokumenty.size(); j++){
-                Node dokument = dokumenty.get(j);
-                Node nd = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani", "nsesss:SkartacniRezim", "nsesss:SkartacniZnak");
-                if(nd == null){
-                    return add_popisy("Nenalezen dětský element <nsesss:SkartacniZnak> elementu <nsesss:Dokument>. " + getJmenoIdentifikator(dokument), false, getMistoChyby(dokument));
-                }
-                String znak = nd.getTextContent();
-                hodnotyDokumentu.add(new Obj_Node_String(dokument, znak));
-                }
-                switch(skZnakME){
-                    case "A":
-                        if(Helper_Obj_Node.has_any_skartacni_znak(hodnotyDokumentu, "A") == null){
-                            return add_popisy("Spis se skartačním znakem A neobsahuje žádný dokument se skartačním znakem A. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(n));
-                        }
-                        break;
-                    case "V":
-                        Obj_Node_String obj_a = Helper_Obj_Node.has_any_skartacni_znak(hodnotyDokumentu, "A");
-                        if(obj_a != null){
-                            return add_popisy("Spis se skartačním znakem V obsahuje dokument se skartačním znakem A. " + getJmenoIdentifikator(zakladnientita) + " " + getJmenoIdentifikator(obj_a.get_node()), false, getMistoChyby(n) + " " + getMistoChyby(obj_a.get_node()));
-                        }
-                        Obj_Node_String obj_v = Helper_Obj_Node.has_any_skartacni_znak(hodnotyDokumentu, "V");
-                        if(obj_a == null && obj_v == null){
-                            return add_popisy("Spis se skartačním znakem V neobsahuje žádný dokument se skartačním znakem V. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(n));
-                        }
-                        break;
-                    case "S":
-                        ArrayList<Obj_Node_String> list = Helper_Obj_Node.all_with_skartacni_znak(hodnotyDokumentu, "A", "V");
-                        if(!list.isEmpty()){
-                            String ch = "";
-                            String iden = "";
-                            for(int k = 0; k < list.size(); k++){
-                                Node no = list.get(i).get_node();
-                                ch += getMistoChyby(no);
-                                iden += " " + getJmenoIdentifikator(no);
-                                if(k != list.size()-1) ch += " ";
-                            }
-                            return add_popisy("Spis se skartačním znakem S obsahuje dokument se skartačním znakem A nebo V. " + getJmenoIdentifikator(zakladnientita) + iden, false, getMistoChyby(n) + " " + ch);
-                        }
-                        
-                        
-                        break; 
-                }
-            }
-        }    
-        return true;
-    }
-    
-    //OBSAHOVÁ č.68 Každá entita věcná skupina (<nsesss:VecnaSkupina>), která je rodičovskou entitou spisu (<nsesss:Spis>) nebo dokumentu (<nsesss:Dokument>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani> element <nsesss:SkartacniRezim>.
-    private boolean pravidlo68(){
-        if (zakladniEntity == null) {
-            return add_popisy("Chybí základní entity.", false, null);
-        }
-
-        for(int i = 0; i < zakladniEntity.size(); i++){
-            Node zakladnientita = zakladniEntity.get(i);
-            if(zakladnientita.getNodeName().equals("nsesss:Dokument") || zakladnientita.getNodeName().equals("nsesss:Spis")){
-                Node vecnaskupina = ValuesGetter.getFirstInNode(zakladnientita, "nsesss:VecnaSkupina", metsParser
-                        .getDocument());
-                if(vecnaskupina == null){
-                    return add_popisy("Nenalezena rodičovská entita věcná skupina základní entity. " + getJmenoIdentifikator(zakladnientita), false, getMistoChyby(zakladnientita));
-                }
-                Node sr = ValuesGetter.getXChild(vecnaskupina, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani", "nsesss:SkartacniRezim");
-                if(sr == null){
-                    return add_popisy("Nenalezen element <nsesss:SkartacniRezim>. " + getJmenoIdentifikator(vecnaskupina), false, getMistoChyby(vecnaskupina));
-                }
-            }
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.69 Pokud je základní entitou dokument (<nsesss:Dokument>), potom její element <nsesss:EvidencniUdaje> obsahuje dětský element <nsesss:Vyrizeni>.",
-    private boolean pravidlo69(){
-        if (zakladniEntity == null) {
-            return add_popisy("Chybí základní entity.", false, null);
-        }
-
-        for(int i = 0; i < zakladniEntity.size(); i++){
-            Node ze = zakladniEntity.get(i);
-            if(ze.getNodeName().equals("nsesss:Dokument")){
-                Node node = ValuesGetter.getXChild(ze, "nsesss:EvidencniUdaje", "nsesss:Vyrizeni");
-                if(node == null){
-                    return add_popisy("Nenalezen element <nsesss:Vyrizeni>. " + getJmenoIdentifikator(ze), false, getMistoChyby(ze));
-                }
-            }
-        }    
-        return true;
-    }
-
     
     private int pravidlo54_pocitadlo(){
         int a = 0;

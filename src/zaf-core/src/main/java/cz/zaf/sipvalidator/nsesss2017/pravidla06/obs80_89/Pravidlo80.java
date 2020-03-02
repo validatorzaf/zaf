@@ -31,14 +31,14 @@ public class Pravidlo80 extends K06PravidloBase {
             }
 
             return nastavChybu("Nenalezen element <nsesss:SkartacniRizeni>. " + getJmenoIdentifikator(zakladniEntity
-                    .get(0)), null);
+                    .get(0)));
         }
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node skrizeni = nodeList.item(i);
             Node datum = ValuesGetter.getXChild(skrizeni, "nsesss:Datum");
             if (datum == null) {
                 return nastavChybu("Nenalezen element <nsesss:Datum>. " + getJmenoIdentifikator(skrizeni),
-                                  getMistoChyby(skrizeni));
+                                   skrizeni);
             }
             int year = Calendar.getInstance().get(Calendar.YEAR);
 
@@ -48,12 +48,13 @@ public class Pravidlo80 extends K06PravidloBase {
                 int date = Integer.parseInt(s);
                 if (!(date <= year)) {
                     return nastavChybu("Hodnota elementu <nsesss:Datum> (" + date + ") je vyšší než aktuální rok. "
-                            + getJmenoIdentifikator(skrizeni), getMistoChyby(datum));
+                            + getJmenoIdentifikator(skrizeni),
+                                       datum);
                 }
             } else {
                 return nastavChybu("Hodnota elementu <nsesss:Datum> je v nepovoleném formátu. " + getJmenoIdentifikator(
                                                                                                                        skrizeni),
-                                   getMistoChyby(datum));
+                                   datum);
             }
         }
         return true;
