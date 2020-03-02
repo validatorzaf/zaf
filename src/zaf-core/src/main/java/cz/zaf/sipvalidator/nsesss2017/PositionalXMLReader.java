@@ -29,7 +29,8 @@ import org.xml.sax.helpers.DefaultHandler;
  *
  */
 public class PositionalXMLReader {
-    final static String LINE_NUMBER_KEY_NAME = "lineNumber";
+    public final static String LINE_NUMBER_KEY_NAME = "lineNumber";
+    public final static String COLUMN_NUMBER = "columnNumber";
 
     public static Document readXML(final InputStream is) throws IOException, SAXException {
         final Document doc;
@@ -62,7 +63,8 @@ public class PositionalXMLReader {
                 for (int i = 0; i < attributes.getLength(); i++) {
                     el.setAttribute(attributes.getQName(i), attributes.getValue(i));
                 }
-                el.setUserData(LINE_NUMBER_KEY_NAME, String.valueOf(this.locator.getLineNumber()), null);
+                el.setUserData(LINE_NUMBER_KEY_NAME, this.locator.getLineNumber(), null);
+                el.setUserData(COLUMN_NUMBER, this.locator.getColumnNumber(), null);
                 elementStack.push(el);
             }
 

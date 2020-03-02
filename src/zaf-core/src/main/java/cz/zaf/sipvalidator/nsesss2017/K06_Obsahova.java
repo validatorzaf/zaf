@@ -208,8 +208,6 @@ public class K06_Obsahova
 
     private List<Node> identifikatory;
 
-    private List<Node> manipulace;
-
     private Node xmlData;
     
     /**
@@ -528,14 +526,18 @@ public class K06_Obsahova
         if (node == null) {
             return null;
         }
-        Object userData = node.getUserData("lineNumber");
-        if (userData == null) {
+        Object lineNumber = node.getUserData(PositionalXMLReader.LINE_NUMBER_KEY_NAME);
+        if (lineNumber == null) {
             return null;
         }
-        String point = userData.toString();
-        String name = node.getNodeName();
-        name = "<" + name + ">";
-        return "Řádek " + point + ", element " + name + ".";
+        Object colNumber = node.getUserData(PositionalXMLReader.COLUMN_NUMBER);
+        StringBuilder sb = new StringBuilder();
+        sb.append("Řádek ").append(lineNumber);
+        if (colNumber != null) {
+            sb.append(":").append(colNumber);
+        }
+        sb.append(", element <").append(node.getNodeName()).append(">.");
+        return sb.toString();
     }
     
     private String getJmeno(Node node){
@@ -1663,7 +1665,7 @@ public class K06_Obsahova
             ArrayList<Obj_Node_String>  f_list = Comparator.obj_Node_String_howmany_in_list(file, komponents);
             if(f_list.size() != 1){
                 vysledek = false;
-                String mch = file.get_node().getUserData("lineNumber").toString();
+                String mch = file.get_node().getUserData(PositionalXMLReader.LINE_NUMBER_KEY_NAME).toString();
                 if(f_list.isEmpty()){
                     ch += "Element <mets:file> na řádku: " + mch +". neodkazuje na žádnou komponentu. ";
                     misto_ch += getMistoChyby(file.get_node()) + " ";
@@ -1691,7 +1693,7 @@ public class K06_Obsahova
             if(k_list.size() != 1){
                 Node komp = komponenta.get_node();
                 vysledek = false;
-                String mch = komp.getUserData("lineNumber").toString();
+                String mch = komp.getUserData(PositionalXMLReader.LINE_NUMBER_KEY_NAME).toString();
                 if(k_list.isEmpty()){
                     ch += "Element <nsesss:Komponenta> na řádku: " + mch +". neodkazuje na žádný element <mets:file> " + getJmenoIdentifikator(komponenta.get_node());
                     misto_ch += getMistoChyby(komp);
@@ -2895,7 +2897,6 @@ public class K06_Obsahova
         this.xmlData = metsParser.getMetsXmlData();
         this.zakladniEntity = metsParser.getZakladniEntity();
         this.dokumenty = metsParser.getDokumenty();
-        this.manipulace = metsParser.getManipulace();
         this.identifikatory = metsParser.getIdentifikatory();
 		
 		this.sipSoubor = ctx.getSip();
