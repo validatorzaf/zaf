@@ -23,8 +23,10 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo98 extends K06PravidloBase {
 
+    static final public String OBS98 = "obs98";
+
     public Pravidlo98(K06_Obsahova kontrola) {
-        super(kontrola, K06_Obsahova.OBS98,
+        super(kontrola, Pravidlo98.OBS98,
                 "Pokud je základní entitou díl (<nsesss:Dil>) nebo spis (<nsesss:Spis>), obsahují v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> se stejnými hodnotami, jaké obsahují v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> jakékoli dětské entity dokument (<nsesss:Dokument>).",
                 "Chybně jsou uvedeny spisové znaky.",
                 "§ 14 odst. 4 vyhlášky č. 259/2012 Sb.");

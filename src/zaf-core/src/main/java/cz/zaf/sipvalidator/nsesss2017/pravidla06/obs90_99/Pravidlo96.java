@@ -20,8 +20,10 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 // (<nsesss:Soucast>).",
 public class Pravidlo96 extends K06PravidloBase {
 
+    static final public String OBS96 = "obs96";
+
     public Pravidlo96(K06_Obsahova kontrola) {
-        super(kontrola, K06_Obsahova.OBS96,
+        super(kontrola, Pravidlo96.OBS96,
                 "Každá základní entita a každá entita typový spis (<nsesss:TypovySpis>) obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> se stejnými hodnotami, jaké obsahují v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> rodičovské entity věcná skupina (<nsesss:VecnaSkupina>) nebo součást (<nsesss:Soucast>).",
                 "Chybně jsou uvedeny spisové znaky.",
                 "§ 14 odst. 4 vyhlášky č. 259/2012 Sb.");

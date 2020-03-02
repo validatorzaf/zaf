@@ -152,53 +152,9 @@ public class K06_Obsahova
     static final public String OBS58 = "obs58";
     static final public String OBS59 = "obs59";
 
-    static final public String OBS60 = "obs60";
-    static final public String OBS61 = "obs61";
     static final public String OBS61A = "obs61a";
-    static final public String OBS62 = "obs62";
-    static final public String OBS63 = "obs63";
-    static final public String OBS64 = "obs64";
-    static final public String OBS65 = "obs65";
-    static final public String OBS66 = "obs66";
-    static final public String OBS67 = "obs67";
-    static final public String OBS68 = "obs68";
-    static final public String OBS69 = "obs69";
-
-    static final public String OBS70 = "obs70";
-    static final public String OBS71 = "obs71";
-    static final public String OBS72 = "obs72";
-    static final public String OBS73 = "obs73";
-    static final public String OBS74 = "obs74";
-    static final public String OBS75 = "obs75";
-    static final public String OBS76 = "obs76";
-    static final public String OBS77 = "obs77";
-    static final public String OBS78 = "obs78";
-    static final public String OBS79 = "obs79";
-
-    static final public String OBS80 = "obs80";
-    static final public String OBS81 = "obs81";
-    static final public String OBS82 = "obs82";
-    static final public String OBS83 = "obs83";
-    static final public String OBS84 = "obs84";
-    static final public String OBS85 = "obs85";
-    static final public String OBS86 = "obs86";
-    static final public String OBS87 = "obs87";
-    static final public String OBS88 = "obs88";
-    static final public String OBS89 = "obs89";
-
-    static final public String OBS90 = "obs90";
-    static final public String OBS91 = "obs91";
-    static final public String OBS92 = "obs92";
-    static final public String OBS93 = "obs93";
     static final public String OBS93A = "obs93a";
-    static final public String OBS94 = "obs94";
     static final public String OBS94A = "obs94a";
-    static final public String OBS95 = "obs95";
-    static final public String OBS96 = "obs96";
-    static final public String OBS97 = "obs97";
-    static final public String OBS98 = "obs98";
-    // static final public String OBS99 = "obs99";
-
     static final public String MISTO_CHYBY_NEUPRESNENO = "Neupřesněno.";
     private String popisChyby = "Pravidlo nesplněno.";
     private String misto_chyby = "";

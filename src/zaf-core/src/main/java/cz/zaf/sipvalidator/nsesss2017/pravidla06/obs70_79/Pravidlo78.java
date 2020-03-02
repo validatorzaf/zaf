@@ -11,8 +11,10 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo78 extends K06PravidloBase {
 
+    static final public String OBS78 = "obs78";
+
     public Pravidlo78(K06_Obsahova kontrola) {
-        super(kontrola, K06_Obsahova.OBS78,
+        super(kontrola, Pravidlo78.OBS78,
                 "Element <nsesss:SkartacniRizeni> je uveden pouze v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani> základní entity.",
                 "Chybí informace o skartačním řízení.",
                 "Příloha č. 2 NSESSS, ř. 1228.");

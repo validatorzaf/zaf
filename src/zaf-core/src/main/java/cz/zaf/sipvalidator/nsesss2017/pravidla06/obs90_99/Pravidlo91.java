@@ -10,9 +10,11 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo91 extends K06PravidloBase {
 
+    static final public String OBS91 = "obs91";
+
     public Pravidlo91(K06_Obsahova kontrola) {
         super(kontrola,
-                K06_Obsahova.OBS91,
+                Pravidlo91.OBS91,
                 "Pokud je základní entitou díl (<nsesss:Dil>), potom obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> element <nsesss:RokSpousteciUdalosti> hodnotu, v níž je uvedený rok větší nebo roven hodnotě uvedené v elementu <nsesss:Datum> v hierarchii elementů <nsesss:EvidencniUdaje> a <nsesss:Uzavreni>.",
                 "Není v souladu rok spouštěcí události a datum uzavření u dílu.",
                 null);

@@ -10,9 +10,11 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo92 extends K06PravidloBase {
 
+    static final public String OBS92 = "obs92";
+
     public Pravidlo92(K06_Obsahova kontrola) {
         super(kontrola,
-                K06_Obsahova.OBS92,
+                Pravidlo92.OBS92,
                 "Pokud existuje jakýkoli element <nsesss:Identifikator> s atributem zdroj s hodnotou IČ nebo IČO, hodnota obsahuje číslo o osmi číslicích, přičemž vážený součet prvních sedmi číslic má po dělení jedenácti zbytek, který po odečtení od 11 a následném vydělení 10 má zbytek roven poslední číslici.",
                 "Chybně je uvedeno IČO subjektu.", null);
     }

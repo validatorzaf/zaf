@@ -10,9 +10,11 @@ import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 
 public class Pravidlo93 extends K06PravidloBase {
 
+    static final public String OBS93 = "obs93";
+
     public Pravidlo93(K06_Obsahova kontrola) {
         super(kontrola,
-                K06_Obsahova.OBS93,
+                Pravidlo93.OBS93,
                 "Jakýkoli element <nsesss:Nazev> obsahuje neprázdnou hodnotu.",
                 "Není uveden název.",
                 "Příloha č. 2 NSESSS, ř. 167.");

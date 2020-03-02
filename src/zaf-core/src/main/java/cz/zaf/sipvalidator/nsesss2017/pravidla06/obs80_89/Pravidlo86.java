@@ -10,8 +10,10 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo86 extends K06PravidloBase {
 
+    static final public String OBS86 = "obs86";
+
     public Pravidlo86(K06_Obsahova kontrola) {
-        super(kontrola, K06_Obsahova.OBS86,
+        super(kontrola, Pravidlo86.OBS86,
                 "Pokud je základní entitou dokument (<nsesss:Dokument>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> element <nsesss:MaterskeEntity>.",
                 "Chybí zatřídění dokumentu.",
                 "Příloha č. 2 NSESSS, ř. 1397.");

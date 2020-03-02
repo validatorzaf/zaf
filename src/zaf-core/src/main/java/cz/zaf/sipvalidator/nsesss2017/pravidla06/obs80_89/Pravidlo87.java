@@ -9,8 +9,10 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo87 extends K06PravidloBase {
 
+    static final public String OBS87 = "obs87";
+
     public Pravidlo87(K06_Obsahova kontrola) {
-        super(kontrola, K06_Obsahova.OBS87,
+        super(kontrola, Pravidlo87.OBS87,
                 "Pokud existuje element <nsesss:Vyrizeni> a obsahuje dětský element <nsesss:DatumOdeslani>, pak současně obsahuje i element <nsesss:Prijemce>. Pravidlo se uplatňuje i obráceně - v případě uvedení elementu <nsesss:Prijemce> je uveden i element <nsesss:DatumOdeslani>.",
                 "Chybí příjemce nebo datum odeslání dokumentu.",
                 "Příloha č. 2 NSESSS, ř. 1471 a 1481.");

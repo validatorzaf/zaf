@@ -11,8 +11,10 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo85 extends K06PravidloBase {
 
+    static final public String OBS85 = "obs85";
+
     public Pravidlo85(K06_Obsahova kontrola) {
-        super(kontrola, K06_Obsahova.OBS85,
+        super(kontrola, Pravidlo85.OBS85,
                 "Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano, potom element <nsesss:Manipulace> obsahuje dětský element <nsesss:UkladaciJednotka> s neprázdnou hodnotou.",
                 "Chybí ukládací jednotka dokumentu v analogově podobě.",
                 "Příloha č. 2 NSESSS, ř. 1352.");

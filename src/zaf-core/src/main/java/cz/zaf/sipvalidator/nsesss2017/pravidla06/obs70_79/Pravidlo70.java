@@ -10,8 +10,10 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo70 extends K06PravidloBase {
 
+    static final public String OBS70 = "obs70";
+
     public Pravidlo70(K06_Obsahova kontrola) {
-        super(kontrola, K06_Obsahova.OBS70,
+        super(kontrola, Pravidlo70.OBS70,
                 "Jakýkoli element <nsesss:Identifikator> není opakovatelný, pokud se nenachází v hierarchii elementů <nsesss:Komponenta>, <nsesss:EvidencniUdaje> a <nsesss:Identifikace>.",
                 "Uveden je chybně identifikátor věcné skupiny, typového spisu, součásti, dílu, spisu nebo dokumentu.",
                 "Příloha č. 2 NSESSS, ř. 497.");

@@ -9,8 +9,10 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo73 extends K06PravidloBase {
 
+    static final public String OBS73 = "obs73";
+
     public Pravidlo73(K06_Obsahova kontrola) {
-        super(kontrola, K06_Obsahova.OBS73,
+        super(kontrola, Pravidlo73.OBS73,
                 "Pokud existuje jakýkoli element <nsesss:CasOvereni>, každý obsahuje atribut datum.",
                 "Chybí strojový zápis času ověření elektronického podpisu, elektronické značky nebo časového razítka.",
                 "§ 4 odst. 7 písm. d) vyhlášky č. 259/2012 Sb.");

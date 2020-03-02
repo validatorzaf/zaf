@@ -9,8 +9,10 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo74 extends K06PravidloBase {
 
+    static final public String OBS74 = "obs74";
+
     public Pravidlo74(K06_Obsahova kontrola) {
-        super(kontrola, K06_Obsahova.OBS74,
+        super(kontrola, Pravidlo74.OBS74,
                 "Pokud existuje jakýkoli element <nsesss:PosuzovanyOkamzik>, každý obsahuje atribut datum.",
                 "Chybí strojový zápis času, k němuž je vztaženo posuzování platnosti elektronického podpisu, elektronické značky nebo časového razítka.",
                 "§ 4 odst. 7 písm. d) vyhlášky č. 259/2012 Sb.");

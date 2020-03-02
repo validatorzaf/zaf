@@ -12,8 +12,10 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo82 extends K06PravidloBase {
 
+    static final public String OBS82 = "obs82";
+
     public Pravidlo82(K06_Obsahova kontrola) {
-        super(kontrola, K06_Obsahova.OBS82,
+        super(kontrola, Pravidlo82.OBS82,
                 "Pokud je v jakémkoli elementu <nsesss:UrceneCasoveObdobi> uveden dětský element <nsesss:MesicDo>, potom je jeho hodnota větší než <nsesss:MesicOd>.",
                 "Není v souladu rozsah určeného časového období.",
                 null);

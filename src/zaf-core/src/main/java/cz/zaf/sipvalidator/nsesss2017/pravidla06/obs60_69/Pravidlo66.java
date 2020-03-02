@@ -11,8 +11,10 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo66 extends K06PravidloBase {
 
+    static final public String OBS66 = "obs66";
+
     public Pravidlo66(K06_Obsahova kontrola) {
-        super(kontrola, K06_Obsahova.OBS66,
+        super(kontrola, Pravidlo66.OBS66,
                 "Pokud je základní entitou díl (<nsesss:Dil>), spis (<nsesss:Spis> nebo dokument (<nsesss:Dokument>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> obsahuje element <nsesss:RokSkartacniOperace> hodnotu, která je menší nebo rovna aktuálnímu roku.",
                 "U dílu, spisu nebo dokumentu nelze provést skartační řízení, protože ještě nenadešel uváděný rok skartační operace.",
                 "§ 20 odst. 1 vyhlášky č. 259/2012 Sb.");

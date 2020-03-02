@@ -10,8 +10,10 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo60 extends K06PravidloBase {
 
+    static final public String OBS60 = "obs60";
+
     public Pravidlo60(K06_Obsahova kontrola) {
-        super(kontrola, K06_Obsahova.OBS60,
+        super(kontrola, Pravidlo60.OBS60,
                 "Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ne, obsahuje element <nsesss:Dokument> dětský element <nsesss:Komponenty>.",
                 "Chybí popis komponenty (počítačového souboru) dokumentu v digitální podobě.",
                 "Příloha č. 2 NSESSS, ř. 45.");

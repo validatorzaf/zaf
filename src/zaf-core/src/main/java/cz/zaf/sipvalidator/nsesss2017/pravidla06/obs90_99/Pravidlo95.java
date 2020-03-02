@@ -10,8 +10,10 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo95 extends K06PravidloBase {
 
+    static final public String OBS95 = "obs95";
+
     public Pravidlo95(K06_Obsahova kontrola) {
-        super(kontrola, K06_Obsahova.OBS95,
+        super(kontrola, Pravidlo95.OBS95,
                 "Každá entita věcná skupina (<nsesss:VecnaSkupina>) nebo součást (<nsesss:Soucast>), která se nachází v rodičovské entitě věcná skupina (<nsesss:VecnaSkupina>) nebo typový spis (<nsesss:TypovySpis>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> element <nsesss:PlneUrcenySpisovyZnak> s hodnotou obsahující hodnotu elementu <nsesss:PlneUrcenySpisovyZnak> rodičovské entity, oddělovač a hodnotu elementu <nsesss:JednoduchySpisovyZnak> výchozí entity.",
                 "Chybně jsou uvedeny spisové znaky.",
                 "Požadavek 3.1.30 NSESSS.");

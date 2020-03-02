@@ -15,9 +15,11 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 // se stejnými hodnotami.
 public class Pravidlo97 extends K06PravidloBase {
 
+    static final public String OBS97 = "obs97";
+
     public Pravidlo97(K06_Obsahova kontrola) {
         super(kontrola,
-                K06_Obsahova.OBS97,
+                Pravidlo97.OBS97,
                 "Pokud existuje více než jedna základní entita, všechny obsahují v hierarchii dětských elementů "
                         + "<nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> "
                         + "se stejnými hodnotami.",
