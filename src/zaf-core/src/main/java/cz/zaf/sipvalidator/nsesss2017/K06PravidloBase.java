@@ -120,4 +120,24 @@ public abstract class K06PravidloBase implements Runnable {
     protected String getJmenoIdentifikator(Node node) {
         return kontrola.getJmenoIdentifikator(node);
     }
+
+    /**
+     * Nacteni roku z obsahu elementu
+     * 
+     * @param node
+     *            Element pro nacteni roku
+     * @return Vraci rok z retezce
+     */
+    protected Integer vratRok(Node node) {
+        String content = node.getTextContent();
+        String strYear = content.substring(0, 4);
+        try {
+            return Integer.parseInt(strYear);
+        } catch (NumberFormatException nfe) {
+            nastavChybu("Hodnota roku v elementu <" + node.getNodeName() + "> uvedena ve špatném formátu. Hodnota: "
+                    + content,
+                        node);
+            return null;
+        }
+    }
 }

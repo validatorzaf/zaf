@@ -35,16 +35,14 @@ public class Pravidlo83 extends K06PravidloBase {
                     return nastavChybu("Nenalezen element <nsesss:RokOd>. " + getJmenoIdentifikator(ucobdobi),
                                       getMistoChyby(ucobdobi));
                 }
-                boolean b = (ValuesGetter.overSpravnostRetezceProInt(nodeDo.getTextContent()) && ValuesGetter
-                        .overSpravnostRetezceProInt(nodeDo.getTextContent()));
-                if (!b) {
-                    return nastavChybu("Hodnoty dat jsou v nepovoleném formátu. " + getJmenoIdentifikator(ucobdobi),
-                                       getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo));
+                Integer intOd = vratRok(nodeOd);
+                if (intOd == null) {
+                    return false;
                 }
-                String d1 = nodeOd.getTextContent().substring(0, 4);
-                String d2 = nodeDo.getTextContent().substring(0, 4);
-                int intOd = Integer.parseInt(d1);
-                int intDo = Integer.parseInt(d2);
+                Integer intDo = vratRok(nodeDo);
+                if (intDo == null) {
+                    return false;
+                }
                 if (!(intOd < intDo)) {
                     return nastavChybu("Nesplněna podmínka pravidla. OD: " + intOd + ". DO: " + intDo + ". "
                             + getJmenoIdentifikator(ucobdobi), getMistoChyby(nodeOd) + " " + getMistoChyby(

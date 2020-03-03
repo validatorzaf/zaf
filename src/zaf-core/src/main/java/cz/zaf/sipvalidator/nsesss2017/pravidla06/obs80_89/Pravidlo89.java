@@ -41,26 +41,20 @@ public class Pravidlo89 extends K06PravidloBase {
                                                                                                                    entita),
                                        getMistoChyby(entita));
                 }
-                String s = node.getTextContent().substring(0, 4);
-                boolean b = ValuesGetter.overSpravnostRetezceProInt(s);
-                if (!b) {
-                    return nastavChybu("Hodnota elementu <nsesss:RokSpousteciUdalosti> uvedena v nepovoleném formátu. "
-                            + getJmenoIdentifikator(entita), getMistoChyby(node));
+                Integer rokUdalosti = vratRok(node);
+                if (rokUdalosti == null) {
+                    return false;
                 }
-                int rokUdalosti = Integer.parseInt(s);
 
                 Node datum = ValuesGetter.getXChild(entita, "nsesss:EvidencniUdaje", "nsesss:Vyrizeni", "nsesss:Datum");
                 if (datum == null) {
                     return nastavChybu("Nenalezen element <nsesss:Datum>. " + getJmenoIdentifikator(entita),
                                        getMistoChyby(entita));
                 }
-                String d = datum.getTextContent().substring(0, 4);
-                boolean bo = ValuesGetter.overSpravnostRetezceProInt(d);
-                if (!bo) {
-                    return nastavChybu("Hodnota elementu <nsesss:Datum> uvedena v nepovoleném formátu. "
-                            + getJmenoIdentifikator(entita), getMistoChyby(datum));
+                Integer dat = vratRok(datum);
+                if (dat == null) {
+                    return false;
                 }
-                int dat = Integer.parseInt(d);
                 if (!(rokUdalosti >= dat)) {
                     return nastavChybu("Nesplněna podmínka pravidla. Událost: " + rokUdalosti + ". Datum: " + dat + ". "
                             + getJmenoIdentifikator(entita),

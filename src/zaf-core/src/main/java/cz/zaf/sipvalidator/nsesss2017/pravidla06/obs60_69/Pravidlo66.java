@@ -7,6 +7,7 @@ import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo66 extends K06PravidloBase {
@@ -31,14 +32,11 @@ public class Pravidlo66 extends K06PravidloBase {
         for (int i = 0; i < zakladniEntity.size(); i++) {
             Node ze = zakladniEntity.get(i);
             Node node = ValuesGetter.getXChild(ze, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani",
-                                               "nsesss:DataceVyrazeni", "nsesss:RokSkartacniOperace");
-            String str = node.getTextContent().substring(0, 4);
-            boolean je = ValuesGetter.overSpravnostRetezceProInt(str);
-            if (!je) {
-                return nastavChybu("Element <nsesss:RokSkartacniOperace> obsahuje hodnotu ve špatném formátu. "
-                        + getJmenoIdentifikator(ze), node);
+                                               "nsesss:DataceVyrazeni", NsessV3.ROK_SKARTACNI_OPERACE);
+            Integer rokSkartacniOperace = vratRok(node);
+            if (rokSkartacniOperace == null) {
+                return false;
             }
-            int rokSkartacniOperace = Integer.parseInt(str);
             int year = Calendar.getInstance().get(Calendar.YEAR);
             if (rokSkartacniOperace > year) {
                 return nastavChybu("Hodnota roku elementu <nsesss:RokSkartacniOperace> je větší, než aktuální rok. Hodnota: "

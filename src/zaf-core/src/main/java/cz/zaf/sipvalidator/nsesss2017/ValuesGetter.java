@@ -368,18 +368,7 @@ public class ValuesGetter {
         }
         return isXParent(foundedParent, nextParent);
     }
-    
-    // TODO: prepracovat na Int.parse s odchycenim vyjimky
-    public static boolean overSpravnostRetezceProInt (String hodnotaString){
             
-        String nezadouciZnaky = "+/*-,)ú§ů¨-.,éíáýžřčšě+;qwertzuioplkjhgfdsayxcvbnm";
-        for (char c : hodnotaString.toCharArray())
-        {
-        if (nezadouciZnaky.contains(String.valueOf(c))) return false;
-        }
-        return true;
-    }
-        
     public static Date vytvorDate(Node node, String... vzorDatumu) throws ParseException{
         
         if(node == null)

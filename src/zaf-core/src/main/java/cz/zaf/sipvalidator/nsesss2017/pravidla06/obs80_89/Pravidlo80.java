@@ -42,21 +42,14 @@ public class Pravidlo80 extends K06PravidloBase {
                 return nastavChybu("Nenalezen element <nsesss:Datum>. " + getJmenoIdentifikator(skrizeni),
                                    skrizeni);
             }
+            Integer date = vratRok(datum);
+            if (date == null) {
+                return false;
+            }
             int year = Calendar.getInstance().get(Calendar.YEAR);
-
-            String s = datum.getTextContent().substring(0, 4);
-            boolean b = (ValuesGetter.overSpravnostRetezceProInt(s));
-            if (b) {
-                int date = Integer.parseInt(s);
-                if (!(date <= year)) {
-                    return nastavChybu("Hodnota elementu <nsesss:Datum> (" + date + ") je vyšší než aktuální rok. "
-                            + getJmenoIdentifikator(skrizeni),
-                                       datum);
-                }
-            } else {
-                return nastavChybu("Hodnota elementu <nsesss:Datum> je v nepovoleném formátu. " + getJmenoIdentifikator(
-                                                                                                                       skrizeni),
-                                   datum);
+            if (!(date <= year)) {
+                return nastavChybu("Hodnota elementu <nsesss:Datum> (" + date + ") je vyšší než aktuální rok. "
+                        + getJmenoIdentifikator(skrizeni), datum);
             }
         }
         return true;

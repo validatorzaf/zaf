@@ -40,16 +40,15 @@ public class Pravidlo91 extends K06PravidloBase {
                 if (node2 == null)
                     return nastavChybu("Nenalezen element <nsesss:Datum>. " + getJmenoIdentifikator(dil),
                                       getMistoChyby(node2));
-                String rok1 = node.getTextContent().substring(0, 4);
-                String rok2 = node2.getTextContent().substring(0, 4);
-                boolean b = (ValuesGetter.overSpravnostRetezceProInt(rok1) && ValuesGetter.overSpravnostRetezceProInt(
-                                                                                                                      rok1));
-                if (!b)
-                    return nastavChybu("Hodnoty dat jsou zaznamenány v nepovoleném formátu. " + getJmenoIdentifikator(
-                                                                                                                     dil),
-                                       getMistoChyby(node) + " " + getMistoChyby(node2));
-                int rokSpousteci = Integer.parseInt(rok1);
-                int rokDatum = Integer.parseInt(rok2);
+
+                Integer rokSpousteci = vratRok(node);
+                if (rokSpousteci == null) {
+                    return false;
+                }
+                Integer rokDatum = vratRok(node2);
+                if (rokDatum == null) {
+                    return false;
+                }
                 if (!(rokSpousteci >= rokDatum))
                     return nastavChybu("Nesplněna podmínka pravidla. Událost: " + rokSpousteci + ". Datum: " + rokDatum
                             + ". " + getJmenoIdentifikator(dil),

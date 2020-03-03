@@ -43,19 +43,17 @@ public class Pravidlo90 extends K06PravidloBase {
                 if (node2 == null)
                     return nastavChybu("Nenalezen element <nsesss:Datum>. " + getJmenoIdentifikator(spis),
                                        getMistoChyby(spis));
-                String rok1 = node.getTextContent().substring(0, 4);
-                String rok2 = node2.getTextContent().substring(0, 4);
-                boolean b = (ValuesGetter.overSpravnostRetezceProInt(rok1) && ValuesGetter.overSpravnostRetezceProInt(rok1));
-                if (!b) {
-                    return nastavChybu("Hodnoty dat jsou zaznamenány v nepovoleném formátu. " + getJmenoIdentifikator(spis),
-                                       getMistoChyby(node) + " " + getMistoChyby(node2));
+                Integer rokSpousteci = vratRok(node);
+                if (rokSpousteci == null) {
+                    return false;
                 }
-                int rokSpousteci = Integer.parseInt(rok1);
-                int rokDatum = Integer.parseInt(rok2);
+                Integer rokDatum = vratRok(node2);
+                if (rokDatum == null) {
+                    return false;
+                }
                 if (!(rokSpousteci >= rokDatum)) {
                     return nastavChybu("Nesplněna podmínka pravidla. Událost: " + rokSpousteci + ". Datum: " + rokDatum
-                            + ". " + getJmenoIdentifikator(spis), getMistoChyby(node) + " " + getMistoChyby(
-                                                                                                                   node2));
+                            + ". " + getJmenoIdentifikator(spis), getMistoChyby(node) + " " + getMistoChyby(node2));
                 }
             }
         }
