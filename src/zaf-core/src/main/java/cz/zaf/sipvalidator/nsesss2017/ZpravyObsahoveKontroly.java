@@ -65,24 +65,13 @@ public class ZpravyObsahoveKontroly {
     "Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano a současně element <nsesss:EvidencniUdaje> obsahuje v dětském elementu <nsesss:Puvod> element <nsesss:VlastniDokument>, potom je v posledním uvedeném elementu uveden dětský element <nsesss:VytvoreneMnozstvi> s neprázdnou hodnotou.",
     //43. (94a.)
     "Každá entita věcná skupina (<nsesss:VecnaSkupina>) nebo součást (<nsesss:Soucast>), která se nachází v rodičovské entitě věcná skupina (<nsesss:VecnaSkupina>) nebo typový spis (<nsesss:TypovySpis>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> element <nsesss:PlneUrcenySpisovyZnak> s hodnotou obsahující oddělovač tvořený mezerou, pomlčkou, spojovníkem, lomítkem nebo tečkou, který není posledním znakem.",
-    //44. - 50.
+            //44. - 49.
     "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut DMDID s hodnotou uvedenou v atributu ID jakéhokoli elementu <nsesss:Komponenta>, přičemž právě jedna hodnota atributu DMDID odpovídá právě jedné hodnotě atributu ID.",
     "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut MIMETYPE s hodnotou identifikace souborového formátu příslušné komponenty.",
     "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut CHECKSUMTYPE hodnotu SHA-256 nebo SHA-512.",
     "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut CHECKSUM s hodnotou kontrolního součtu příslušné komponenty podle kryptografického algoritmu uvedeného v atributu CHECKSUMTYPE.",
     "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut SIZE s hodnotou velikosti příslušné komponenty v bytech.",
     "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut CREATED.",
-    "Pokud existuje jakýkoli element <mets:file>, každý obsahuje právě jeden dětský element <mets:FLocat>.",
-            //51. - 59.
-    "Pokud existuje jakýkoli element <mets:FLocat>, každý obsahuje atribut xlink:type s hodnotou simple.",
-    "Pokud existuje jakýkoli element <mets:FLocat>, každý obsahuje atribut xlink:href s hodnotou, která odpovídá relativní cestě odkazu jakékoli komponenty uložené ve složce komponenty, přičemž právě jedna hodnota atributu xlink:href odpovídá relativní cestě odkazu právě jedné komponenty.",
-    "Pokud existuje jakýkoli element <mets:FLocat>, každý obsahuje atribut LOCTYPE s hodnotou URL.",
-    "Pokud neexistuje žádný element <nsesss:KrizovyOdkaz> s atributem pevny s hodnotou ano, potom každý element <mets:div> obsahuje dětský element podle struktury entit/objektů (od spisového plánu po komponentu) v sekci dmdSec s atributem TYPE s hodnotou příslušné entity/objektu a s atributem DMDID s hodnotou příslušné entity/objektu v atributu ID a s atributem ADMID s hodnotou, která odpovídá hodnotě atributu ID příslušné entity/objektu v sekci amdSec (entita/objekt v hierarchii dětských elementů <mets:digiprovMD>, <mets:mdWrap>, <mets:xmlData>, <tp:TransakcniLogObjektu>, <tp:TransLogInfo>, <tp:Objekt>, <tp:Identifikator>, <tns:HodnotaID> a <tns:ZdrojID> odpovídá v hodnotách hodnotám elementu <nsesss:Identifikator> a jeho atributu zdroj příslušné entity/objektu v sekci dmdSec).",
-    "Pokud existuje jakýkoli element <mets:div> s atributem TYPE s hodnotou komponenta, každý obsahuje právě jeden element <mets:fptr>.",
-    "Pokud existuje jakýkoli element <mets:fptr>, každý obsahuje atribut FILEID s hodnotou, která odpovídá hodnotě atributu ID elementu <mets:file> příslušné komponenty. Příslušnost vyjadřuje stejná hodnota atributu DMDID rodičovského elementu <mets:div> a elementu <mets:file>.",
-    "Jakýkoli element <nsesss:Identifikator> obsahuje neprázdnou hodnotu.",
-    "Jakýkoli element <nsesss:Identifikator> obsahuje atribut zdroj s neprázdnou hodnotu.",
-    "Žádná entita (od spisového plánu po dokument) nebo objekt <nsesss:Komponenta>, <nsesss:BezpecnostniKategorie>, <nsesss:SkartacniRezim> nebo <nsesss:TypDokumentu> neobsahuje stejné hodnoty elementu <nsesss:Identifikator> a jeho atributu zdroj a současně odlišné hodnoty v ostatních elementech, jako má jiná entita nebo objekt uvedeného typu, kromě atributu ID uvedené entity.",
     };
     
     public static String get_text_Obsahova(int index){
@@ -147,24 +136,13 @@ public class ZpravyObsahoveKontroly {
     "Příloha č. 2 NSESSS, ř. 1208.",
     //43. (94a.)
     "Požadavek 3.1.30 NSESSS.",
-    //44. - 50.
+            //44. - 49.
     "Bod 2.15. přílohy č. 3 NSESSS.",
     "Bod 2.15. přílohy č. 3 NSESSS.",
     "Bod 2.15. přílohy č. 3 NSESSS.",
     "Bod 2.15. přílohy č. 3 NSESSS.",
     "Bod 2.15. přílohy č. 3 NSESSS.",
     "Bod 2.15. přílohy č. 3 NSESSS.",
-    "Bod 2.16. přílohy č. 3 NSESSS.",
-            //51. - 59.
-    "Bod 2.16. přílohy č. 3 NSESSS.",
-    "Bod 2.16. přílohy č. 3 NSESSS.",
-    "Bod 2.16. přílohy č. 3 NSESSS.",
-    "Bod 2.17 a 2.18. přílohy č. 3 NSESSS; Informační list NA, roč. 2018, čá. 2, příloha k č. 20/2018 (20.3).",
-    "Bod 2.19. přílohy č. 3 NSESSS.",
-    "Bod 2.19. přílohy č. 3 NSESSS.",
-    "Příloha č. 2 NSESSS, ř. 123.",
-    "Příloha č. 2 NSESSS, ř. 288.",
-    "Příloha č. 2 NSESSS, ř. 123.",
     };
     
     public static String get_zdroje_Obsahova(int index){
@@ -236,17 +214,6 @@ public class ZpravyObsahoveKontroly {
     "Celistvost komponenty (počítačového souboru) je narušena nebo chybí možnost jejího ověření.",
     "Chybí velikost komponenty (počítačového souboru) nebo je uvedena chybně.",
     "Chybí datum vytvoření komponenty (počítačového souboru).",
-            //50. - 59.
-            "Chybí připojení komponenty (počítačového souboru) do datového balíčku SIP nebo je provedeno chybně.",
-    "Uveden je chybně popis odkazu na komponentu (počítačový soubor).",
-    "Uveden je chybně popis odkazu na komponentu (počítačový soubor).",
-    "Uveden je chybně popis odkazu na komponentu (počítačový soubor).",
-    "Chybí spisový plán, věcná skupina, typový spis, součást, díl, spis, dokument nebo komponenta ve strukturální mapě a jejich provázání na transakční protokol.",
-    "Chybí povinná část (strukturální mapa) struktury datového balíčku SIP.",
-    "Není v souladu provázání komponent (počítačových souborů) mezi částí počítačových souborů a strukturální mapou.",
-    "Není uveden identifikátor.",
-    "Není uveden zdroj identifikátoru.",
-            "Uveden je vícekrát stejný spisový plán, věcná skupina, typový spis, součást, díl, spis, dokument, komponenta, bezpečnostní kategorie, skartační režim nebo typ dokumentu nebo je vícekrát použit stejný identifikátor.",
     };
     
     public static String get_popis_Obsahova(int index){

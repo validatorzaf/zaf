@@ -2,6 +2,16 @@ package cz.zaf.sipvalidator.nsesss2017;
 
 import org.junit.jupiter.api.Test;
 
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo50;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo51;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo52;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo53;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo54;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo55;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo56;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo57;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo58;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo59;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo60;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo61;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo62;
@@ -1156,7 +1166,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("50-chyba1", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS50 });
+                       new String[] { Pravidlo50.OBS50 });
     }
 
     @Test
@@ -1164,7 +1174,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("50-chyba2", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS50 });
+                       new String[] { Pravidlo50.OBS50 });
     }
 
     @Test
@@ -1172,14 +1182,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("50-chyba3", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS50 });
+                       new String[] { Pravidlo50.OBS50 });
     }
 
     @Test
     void testK06_50_OK01() {
         testPackageK06("50-OK1", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS50 },
+                       new String[] { Pravidlo50.OBS50 },
                        new String[] {});
     }
 
@@ -1187,7 +1197,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     void testK06_50_OK02() {
         testPackageK06("50-OK2", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS50 },
+                       new String[] { Pravidlo50.OBS50 },
                        new String[] {});
     }
 
@@ -1195,7 +1205,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     void testK06_50_OK03() {
         testPackageK06("50-OK3", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS50 },
+                       new String[] { Pravidlo50.OBS50 },
                        new String[] {});
     }
 
@@ -1204,14 +1214,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("51-chyba", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS51 });
+                       new String[] { Pravidlo51.OBS51 });
     }
 
     @Test
     void testK06_51_OK01() {
         testPackageK06("51-OK", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS51 },
+                       new String[] { Pravidlo51.OBS51 },
                        new String[] {});
     }
 
@@ -1220,7 +1230,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("52-chyba1", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS52 });
+                       new String[] { Pravidlo52.OBS52 });
     }
 
     @Test
@@ -1228,7 +1238,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("52-chyba2", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS52 });
+                       new String[] { Pravidlo52.OBS52 });
     }
 
     @Test
@@ -1236,7 +1246,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("52-chyba3", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS52 });
+                       new String[] { Pravidlo52.OBS52 });
     }
 
     @Test
@@ -1244,14 +1254,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("52-chyba4", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS52 });
+                       new String[] { Pravidlo52.OBS52 });
     }
 
     @Test
     void testK06_52_OK01() {
         testPackageK06("52-OK1", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS52 },
+                       new String[] { Pravidlo52.OBS52 },
                        new String[] {});
     }
 
@@ -1259,7 +1269,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     void testK06_52_OK02() {
         testPackageK06("52-OK2", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS52 },
+                       new String[] { Pravidlo52.OBS52 },
                        new String[] {});
     }
 
@@ -1268,14 +1278,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("53-chyba", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS53 });
+                       new String[] { Pravidlo53.OBS53 });
     }
 
     @Test
     void testK06_53_OK01() {
         testPackageK06("53-OK", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS53 },
+                       new String[] { Pravidlo53.OBS53 },
                        new String[] {});
     }
 
@@ -1284,7 +1294,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("54-chyba1", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS54 });
+                       new String[] { Pravidlo54.OBS54 });
     }
 
     @Test
@@ -1292,7 +1302,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("54-chyba2", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS54 });
+                       new String[] { Pravidlo54.OBS54 });
     }
 
     @Test
@@ -1300,7 +1310,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("54-chyba3", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS54 });
+                       new String[] { Pravidlo54.OBS54 });
     }
 
     @Test
@@ -1308,7 +1318,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("54-chyba4", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS54 });
+                       new String[] { Pravidlo54.OBS54 });
     }
 
     @Test
@@ -1316,7 +1326,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("54-chyba5", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS54 });
+                       new String[] { Pravidlo54.OBS54 });
     }
 
     @Test
@@ -1324,7 +1334,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("54-chyba6", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS54 });
+                       new String[] { Pravidlo54.OBS54 });
     }
 
     @Test
@@ -1332,7 +1342,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("54-chyba7", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS54 });
+                       new String[] { Pravidlo54.OBS54 });
     }
 
     @Test
@@ -1340,7 +1350,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("54-chyba8", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS54 });
+                       new String[] { Pravidlo54.OBS54 });
     }
 
     @Test
@@ -1348,14 +1358,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("54-chyba9", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS54 });
+                       new String[] { Pravidlo54.OBS54 });
     }
 
     @Test
     void testK06_54_OK01() {
         testPackageK06("54-OK1", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS54 },
+                       new String[] { Pravidlo54.OBS54 },
                        new String[] {});
     }
 
@@ -1363,7 +1373,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     void testK06_54_OK02() {
         testPackageK06("54-OK2", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS54 },
+                       new String[] { Pravidlo54.OBS54 },
                        new String[] {});
     }
 
@@ -1436,7 +1446,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("55-chyba1", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS55 });
+                       new String[] { Pravidlo55.OBS55 });
     }
 
     @Test
@@ -1444,14 +1454,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("55-chyba2", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS55 });
+                       new String[] { Pravidlo55.OBS55 });
     }
 
     @Test
     void testK06_55_OK01() {
         testPackageK06("55-OK", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS55 },
+                       new String[] { Pravidlo55.OBS55 },
                        new String[] {});
     }
 
@@ -1460,7 +1470,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("56-chyba1", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS56 });
+                       new String[] { Pravidlo56.OBS56 });
     }
 
     @Test
@@ -1468,14 +1478,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("56-chyba2", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS56 });
+                       new String[] { Pravidlo56.OBS56 });
     }
 
     @Test
     void testK06_56_OK01() {
         testPackageK06("56-OK", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS56 },
+                       new String[] { Pravidlo56.OBS56 },
                        new String[] {});
     }
 
@@ -1484,7 +1494,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("57-chyba1", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS57 });
+                       new String[] { Pravidlo57.OBS57 });
     }
 
     @Test
@@ -1492,7 +1502,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("57-chyba2", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS57 });
+                       new String[] { Pravidlo57.OBS57 });
     }
 
     @Test
@@ -1500,14 +1510,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("57-chyba3", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS57 });
+                       new String[] { Pravidlo57.OBS57 });
     }
 
     @Test
     void testK06_57_OK01() {
         testPackageK06("57-OK", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS57 },
+                       new String[] { Pravidlo57.OBS57 },
                        new String[] {});
     }
 
@@ -1516,7 +1526,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("58-chyba1", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS58 });
+                       new String[] { Pravidlo58.OBS58 });
     }
 
     @Test
@@ -1524,14 +1534,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("58-chyba2", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS58 });
+                       new String[] { Pravidlo58.OBS58 });
     }
 
     @Test
     void testK06_58_OK01() {
         testPackageK06("58-OK", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS58 },
+                       new String[] { Pravidlo58.OBS58 },
                        new String[] {});
     }
 
@@ -1540,7 +1550,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("59-chyba1", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS59 });
+                       new String[] { Pravidlo59.OBS59 });
     }
 
     @Test
@@ -1548,7 +1558,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("59-chyba2", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS59 });
+                       new String[] { Pravidlo59.OBS59 });
     }
 
     @Test
@@ -1556,7 +1566,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("59-chyba3", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS59 });
+                       new String[] { Pravidlo59.OBS59 });
     }
 
     @Test
@@ -1564,7 +1574,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("59-chyba4", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS59 });
+                       new String[] { Pravidlo59.OBS59 });
     }
 
     @Test
@@ -1572,7 +1582,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("59-chyba5", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS59 });
+                       new String[] { Pravidlo59.OBS59 });
     }
 
     @Test
@@ -1580,7 +1590,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("59-chyba6", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS59 });
+                       new String[] { Pravidlo59.OBS59 });
     }
 
     @Test
@@ -1588,7 +1598,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("59-chyba7", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS59 });
+                       new String[] { Pravidlo59.OBS59 });
     }
 
     @Test
@@ -1596,14 +1606,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("59-chyba8", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS59 });
+                       new String[] { Pravidlo59.OBS59 });
     }
 
     @Test
     void testK06_59_OK01() {
         testPackageK06("59-OK1", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS59 },
+                       new String[] { Pravidlo59.OBS59 },
                        new String[] {});
     }
 
@@ -1611,7 +1621,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     void testK06_59_OK02() {
         testPackageK06("59-OK2", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS59 },
+                       new String[] { Pravidlo59.OBS59 },
                        new String[] {});
     }
 
@@ -1619,7 +1629,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     void testK06_59_OK03() {
         testPackageK06("59-OK3", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS59 },
+                       new String[] { Pravidlo59.OBS59 },
                        new String[] {});
     }
 
@@ -1627,7 +1637,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     void testK06_59_OK04() {
         testPackageK06("59-OK4", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS59 },
+                       new String[] { Pravidlo59.OBS59 },
                        new String[] {});
     }
 
@@ -1635,7 +1645,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     void testK06_59_OK05() {
         testPackageK06("59-OK5", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS59 },
+                       new String[] { Pravidlo59.OBS59 },
                        new String[] {});
     }
 
@@ -1643,7 +1653,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     void testK06_59_OK06() {
         testPackageK06("59-OK6", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS59 },
+                       new String[] { Pravidlo59.OBS59 },
                        new String[] {});
     }
 

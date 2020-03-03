@@ -25,6 +25,8 @@ public abstract class K06PravidloBase implements Runnable {
 
     protected MetsParser metsParser;
 
+    protected KontrolaNsess2017Context context;
+
     public K06PravidloBase(final K06_Obsahova kontrola,
                            final String kodPravidla,
                            final String textPravidla,
@@ -51,6 +53,7 @@ public abstract class K06PravidloBase implements Runnable {
         detailChyby = null;
 
         this.metsParser = kontrola.getMetsParser();
+        this.context = this.kontrola.getContext();
 
         stav = kontrolaPravidla();
 
@@ -61,6 +64,8 @@ public abstract class K06PravidloBase implements Runnable {
                                 stav ? obecnyPopisChyby : null,
                                 mistoChyby,
                                 zdrojChyby);
+
+        this.context = null;
     }
 
     protected String getMistoChyby(Node node) {

@@ -39,6 +39,10 @@ abstract public class KontrolaBase
         log.info("Dokoncena kontrola: %s, doba trvani: %ims", this.getNazev(), finishTime - startTime);
     }
 
+    public KontrolaNsess2017Context getContext() {
+        return ctx;
+    }
+
     abstract TypUrovenKontroly getUrovenKontroly();
     abstract void provedKontrolu();
 

@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.IntStream;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -26,6 +25,16 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo50;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo51;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo52;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo53;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo54;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo55;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo56;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo57;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo58;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo59;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo60;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo61;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo62;
@@ -140,18 +149,7 @@ public class K06_Obsahova
     static final public String OBS48 = "obs48";
     static final public String OBS49 = "obs49";
 	
-    static final public String OBS50 = "obs50";
-    static final public String OBS51 = "obs51";
-    static final public String OBS52 = "obs52";
-    static final public String OBS53 = "obs53";
-    static final public String OBS54 = "obs54";
     static final public String OBS54A = "obs54a";
-    static final public String OBS55 = "obs55";
-    static final public String OBS56 = "obs56";
-    static final public String OBS57 = "obs57";
-    static final public String OBS58 = "obs58";
-    static final public String OBS59 = "obs59";
-
     static final public String OBS61A = "obs61a";
     static final public String OBS93A = "obs93a";
     static final public String OBS94A = "obs94a";
@@ -171,8 +169,6 @@ public class K06_Obsahova
     private List<Node> zakladniEntity;
     private List<Node> dokumenty;
 
-    private List<Node> identifikatory;
-
     private Node xmlData;
     
     /**
@@ -189,6 +185,16 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
 
+        pridejPravidlo(new Pravidlo50(this));
+        pridejPravidlo(new Pravidlo51(this));
+        pridejPravidlo(new Pravidlo52(this));
+        pridejPravidlo(new Pravidlo53(this));
+        pridejPravidlo(new Pravidlo54(this));
+        pridejPravidlo(new Pravidlo55(this));
+        pridejPravidlo(new Pravidlo56(this));
+        pridejPravidlo(new Pravidlo57(this));
+        pridejPravidlo(new Pravidlo58(this));
+        pridejPravidlo(new Pravidlo59(this));
         pridejPravidlo(new Pravidlo60(this));
         pridejPravidlo(new Pravidlo61(this));
         pridejPravidlo(new Pravidlo62(this));
@@ -376,36 +382,6 @@ public class K06_Obsahova
             break;
         case 49:
             vysledek = pravidlo49();
-            break;
-        case 50:
-            vysledek = pravidlo50();
-            break;
-        case 51:
-            vysledek = pravidlo51();
-            break;
-        case 52:
-            vysledek = pravidlo52();
-            break;
-        case 53:
-            vysledek = pravidlo53();
-            break;
-        case 54:
-            vysledek = pravidlo54();
-            break;
-        case 55:
-            vysledek = pravidlo55();
-            break;
-        case 56:
-            vysledek = pravidlo56();
-            break;
-        case 57:
-            vysledek = pravidlo57();
-            break;
-        case 58:
-            vysledek = pravidlo58();
-            break;
-        case 59:
-            vysledek = pravidlo59();
             break;
         }
         
@@ -1922,452 +1898,8 @@ public class K06_Obsahova
         }   
         return true;
     }
-    
-    //OBSAHOVÁ č.50 Pokud existuje jakýkoli element <mets:file>, každý obsahuje právě jeden dětský element <mets:FLocat>.",
-    private boolean pravidlo50(){
-        NodeList nodeListMetsFile = ValuesGetter.getAllAnywhere("mets:file", metsParser.getDocument());
-        if(nodeListMetsFile == null) return true;
-        for(int i = 0; i < nodeListMetsFile.getLength(); i++){
-            Node metsFile = nodeListMetsFile.item(i);
-            if(ValuesGetter.getXChild(metsFile, "mets:FLocat") == null){
-                return nastavChybu("Element <mets:file> nemá žádný dětský element <mets:FLocat>.", getMistoChyby(metsFile));
-            }
-            if(!ValuesGetter.hasOnlyOneChild_ElementNode(nodeListMetsFile.item(i), "mets:FLocat")){
-                return nastavChybu("Element <mets:file> má více dětských elementů <mets:FLocat>.", getMistoChyby(metsFile));
-            }
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.51 Pokud existuje jakýkoli element <mets:FLocat>, každý obsahuje atribut xlink:type s hodnotou simple.",
-    private boolean pravidlo51(){
-        NodeList nodeListMetsFile = ValuesGetter.getAllAnywhere("mets:FLocat", metsParser.getDocument());
-        if(nodeListMetsFile == null) return true;
-        int size = nodeListMetsFile.getLength();
-        for(int i = 0; i < size; i++){
-            Node n = nodeListMetsFile.item(i);
-            if(!ValuesGetter.hasAttribut(n, "xlink:type")){
-                return nastavChybu("Element <mets:FLocat> neobsahuje atribut xlink:type.", getMistoChyby(n));
-            }
-            if(!ValuesGetter.hasAttributValue(n, "xlink:type", "simple")){
-                return nastavChybu("Atribut xlink:type neobsahuje hodnotu simple.", getMistoChyby(n));
-            }
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.52 Pokud existuje jakýkoli element <mets:FLocat>, každý obsahuje atribut xlink:href s hodnotou, která odpovídá relativní cestě odkazu jakékoli komponenty uložené ve složce komponenty.",
-    private boolean pravidlo52(){
-        NodeList nodeListFlocat = ValuesGetter.getAllAnywhere("mets:FLocat", metsParser.getDocument());
-        ArrayList<String> seznam_z_xml = new ArrayList<>();
-        if(nodeListFlocat == null) return true;
-        for(int i = 0; i < nodeListFlocat.getLength(); i++){
-            Node node = nodeListFlocat.item(i);
-            if(!ValuesGetter.hasAttribut(node, "xlink:href")){
-                return nastavChybu("Element <mets:FLocat> neobsahuje atribut xlink:href.", getMistoChyby(node));
-            }
-            String href = ValuesGetter.getValueOfAttribut(node, "xlink:href");
-            if(!href.startsWith("komponenty")){
-                return nastavChybu("Špatně uvedená relativní cesta ke komponentě.", getMistoChyby(node));
-            }
-            href = HelperString.edit_path(href);
-            
-            String cestaKeKomponente = SIP_MAIN_helper.getCesta_komponenty(sipSoubor).replaceFirst("komponenty", "") + href;
-            File file = new File(cestaKeKomponente);
-            if(!file.exists()){
-                if(href.contains(File.separator)){
-                    int s = href.lastIndexOf(File.separator);
-                    String g = href.substring(s+1);
-                    href = g;
-                }
-                return nastavChybu("Komponenta " + href + " nenalezena.", getMistoChyby(node));
-            }
-            seznam_z_xml.add(file.getName());
-        }
-        File[] listKomponent = new File(SIP_MAIN_helper.getCesta_komponenty(sipSoubor)).listFiles();
-           for (File listKomponent1 : listKomponent) {
-               String name = listKomponent1.getName();
-               boolean jeVSeznamu = false;
-               for(int y = 0; y < seznam_z_xml.size(); y++){
-                   if(seznam_z_xml.get(y).equals(name)){
-                       jeVSeznamu = true;
-                   }
-               }  if(!jeVSeznamu){
-                   return nastavChybu("Komponenta " + name + " ve složce komponenty nemá na sebe žádný odkaz z elementu <mets:FLocat>.", "komponenty" + File.separator + name);
-               }
-           }
-        
-        
-        return true;
-    }
-    
-    //OBSAHOVÁ č.53 Pokud existuje jakýkoli element <mets:FLocat>, každý obsahuje atribut LOCTYPE s hodnotou URL.",
-    private boolean pravidlo53(){
-        NodeList nodeListFlocat = ValuesGetter.getAllAnywhere("mets:FLocat", metsParser.getDocument());
-        if(nodeListFlocat == null) return true;
-        for(int i = 0; i < nodeListFlocat.getLength(); i++){
-            Node node = nodeListFlocat.item(i);
-            if(!ValuesGetter.hasAttribut(node, "LOCTYPE")){
-                return nastavChybu("Element <mets:FLocat> neobsahuje atribut LOCTYPE.", getMistoChyby(node));
-            }
-            if(!ValuesGetter.hasAttributValue(node, "LOCTYPE", "URL")){
-                return nastavChybu("Atribut LOCTYPE nemá hodnotu URL.", getMistoChyby(node));
-            }
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.54 Pokud neexistuje žádný element <nsesss:KrizovyOdkaz> s atributem pevny s hodnotou ano, 
-    // potom každý element <mets:div> obsahuje dětský element podle struktury entit/objektů (od spisového plánu po komponentu) 
-    // v sekci dmdSec s atributem TYPE s hodnotou příslušné entity/objektu a s atributem DMDID s hodnotou příslušné entity/objektu 
-    // v atributu ID a s atributem ADMID s hodnotou, která odpovídá hodnotě atributu ID příslušné entity/objektu v sekci amdSec (entita/objekt v hierarchii dětských elementů <mets:digiprovMD>, <mets:mdWrap>, <mets:xmlData>, <tp:TransakcniLogObjektu>, <tp:TransLogInfo>, <tp:Objekt>, <tp:Identifikator>, <tns:HodnotaID> a <tns:ZdrojID> 
-    // odpovídá v hodnotách hodnotám elementu <nsesss:Identifikator> a jeho atributu zdroj příslušné entity/objektu v sekci dmdSec).
-    boolean pravidlo54(){
-        ArrayList<Node> krizoveodkazy = get_krizove_odkazy_pevny_ano();
-        if(!krizoveodkazy.isEmpty()) return true;  
-        ArrayList<Node> metsDiv = ValuesGetter.getAllAnywhereArrayList("mets:div", metsParser.getDocument());
-        ArrayList<Node> metsAmd = ValuesGetter.getAllAnywhereArrayList("mets:amdSec", metsParser.getDocument());
-        ArrayList<Node> spisoveplany = ValuesGetter.getAllAnywhereArrayList("nsesss:SpisovyPlan", metsParser
-                .getDocument());
-        ArrayList<Node> vecneskupiny = ValuesGetter.getAllAnywhereArrayList("nsesss:VecnaSkupina", metsParser
-                .getDocument());
-        ArrayList<Node> soucasti = ValuesGetter.getAllAnywhereArrayList("nsesss:Soucast", metsParser.getDocument());
-        ArrayList<Node> typovespisy = ValuesGetter.getAllAnywhereArrayList("nsesss:TypovySpis", metsParser
-                .getDocument());
-        ArrayList<Node> spisy = ValuesGetter.getAllAnywhereArrayList("nsesss:Spis", metsParser.getDocument());
-        ArrayList<Node> dily = ValuesGetter.getAllAnywhereArrayList("nsesss:Dil", metsParser.getDocument());
-        //        ArrayList<Node> dokumenty = ValuesGetter.getAllAnywhereArrayList("nsesss:Dokument", metsParser.getDocument());
-        ArrayList<Node> komponenty = ValuesGetter.getAllAnywhereArrayList("nsesss:Komponenta", metsParser
-                .getDocument());
-        int size_div = metsDiv.size();
-        for(int i = 0; i < size_div; i++){  
-            Node n_div = metsDiv.get(i);
-            if(ValuesGetter.hasAttribut(n_div, "DMDID")){
-                if(ValuesGetter.hasAttribut(n_div, "ADMID")){
-                    if(ValuesGetter.hasAttribut(n_div, "TYPE")){
-                        String dmdid = ValuesGetter.getValueOfAttribut(n_div, "DMDID");
-                        String admid = ValuesGetter.getValueOfAttribut(n_div, "ADMID");
-                        String type = ValuesGetter.getValueOfAttribut(n_div, "TYPE");
-                        String nodetype = ValuesGetter.get_type_to_nsesss(type);
-                        Node node_dmd = null;
-                        //hledám odkaz na element v dmdSec
-                        if(type.equals("spisový plán")){
-                            node_dmd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(spisoveplany, "ID", dmdid);
-                        }
-                        if(type.equals("věcná skupina")){
-                            node_dmd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(vecneskupiny, "ID", dmdid);
-                        }
-                        if(type.equals("součást")){
-                            node_dmd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(soucasti, "ID", dmdid);
-                        }
-                        if(type.equals("typový spis")){
-                            node_dmd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(typovespisy, "ID", dmdid);
-                        }
-                        if(type.equals("spis")){
-                            node_dmd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(spisy, "ID", dmdid);
-                        }
-                        if(type.equals("díl")){
-                            node_dmd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(dily, "ID", dmdid);
-                        }
-                        if(type.equals("dokument")){
-                            node_dmd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(dokumenty, "ID", dmdid);
-                        }
-                        if(type.equals("komponenta")){
-                            node_dmd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(komponenty, "ID", dmdid);
-                        }
-//                        Node node_dmd = ValuesGetter.getNodeWithID(dmdid, nodetype, parsedDOM_SipSoubor);
-                        if(node_dmd != null){
-                            // porovnat div s dmd
-                            Node identifikator;
-                            if(node_dmd.getNodeName().equals("nsesss:SpisovyPlan")){
-                                identifikator = ValuesGetter.getXChild(node_dmd, "nsesss:Identifikator"); 
-                            }
-                            else{
-                                identifikator = ValuesGetter.getXChild(node_dmd, "nsesss:EvidencniUdaje", "nsesss:Identifikace", "nsesss:Identifikator");
-                            }
-                            if(identifikator != null){
-                                if(ValuesGetter.hasAttribut(identifikator, "zdroj")){
-                                    Node node_amd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(metsAmd, "ID", admid);
-                                    if(node_amd != null){
-                                        Node hodnotaId = ValuesGetter.getXChild(node_amd, "mets:digiprovMD", "mets:mdWrap", "mets:xmlData", "tp:TransakcniLogObjektu", "tp:TransLogInfo", "tp:Objekt", "tp:Identifikator", "tns:HodnotaID");
-                                        Node zdrojID = ValuesGetter.getXChild(node_amd, "mets:digiprovMD", "mets:mdWrap", "mets:xmlData", "tp:TransakcniLogObjektu", "tp:TransLogInfo", "tp:Objekt", "tp:Identifikator", "tns:ZdrojID");
-                                        if(hodnotaId != null){
-                                            if(zdrojID != null){
-                                                String hodnota_identifikator = identifikator.getTextContent();
-                                                String hodnota_zdroj = ValuesGetter.getValueOfAttribut(identifikator, "zdroj");
-                                                String amd_identifikator = hodnotaId.getTextContent();
-                                                String amd_zdroj = zdrojID.getTextContent();
-                                                
-                                                if(!ValuesGetter.get_type_to_nsesss(type).equals(node_dmd.getNodeName())){
-                                                    return nastavChybu("Element mets:div s type " + type + ", odkazuje na element jiného typu.", getMistoChyby(n_div) + " " + getMistoChyby(node_dmd));
-                                                }
-                                                if(!hodnota_identifikator.equals(amd_identifikator)){
-                                                    return nastavChybu("Neshodují se hodnoty identifikátorů. " + getJmenoIdentifikator(identifikator), getMistoChyby(identifikator) + " " + getMistoChyby(hodnotaId));
-                                                }
-                                                if(!hodnota_zdroj.equals(amd_zdroj)){
-                                                    return nastavChybu("Neshodují se hodnoty zdrojů. " + getJmenoIdentifikator(identifikator), getMistoChyby(identifikator) + " " + getMistoChyby(zdrojID));
-                                                }
-                                                // zkontrolovat rodče
-                                                Node rodic_div = n_div.getParentNode();
-                                                if(type.equals("spisový plán")){
-                                                    if(!rodic_div.getNodeName().equals("mets:structMap")){
-                                                        return nastavChybu("Element mets:div nemá správný rodičovský element.", getMistoChyby(n_div));
-                                                    }
-                                                }
-                                                else{
-                                                    if(!rodic_div.getNodeName().equals("mets:div")){
-                                                        return nastavChybu("Element mets:div nemá správný rodičovský element.", getMistoChyby(n_div));
-                                                    }
-                                                    if(ValuesGetter.hasAttribut(rodic_div, "DMDID")){
-                                                        if(ValuesGetter.hasAttribut(rodic_div, "TYPE")){
-                                                            String ro_dmdid = ValuesGetter.getValueOfAttribut(rodic_div, "DMDID");
-                                                            String ro_type = ValuesGetter.getValueOfAttribut(rodic_div, "TYPE");
-                                                            String ro_node_type = ValuesGetter.get_type_to_nsesss(ro_type);
-//                                                            Node node_dmd_ro = ValuesGetter.getNodeWithID(ro_dmdid, ro_node_type, parsedDOM_SipSoubor);
-                                                            Node node_dmd_ro = null;
-                                                            if(ro_type.equals("spisový plán")){
-                                                                node_dmd_ro = ValuesGetter.getNodeByValueOfAtributFromSpecificList(spisoveplany, "ID", ro_dmdid);
-                                                            }
-                                                            if(ro_type.equals("věcná skupina")){
-                                                                node_dmd_ro = ValuesGetter.getNodeByValueOfAtributFromSpecificList(vecneskupiny, "ID", ro_dmdid);
-                                                            }
-                                                            if(ro_type.equals("součást")){
-                                                                node_dmd_ro = ValuesGetter.getNodeByValueOfAtributFromSpecificList(soucasti, "ID", ro_dmdid);
-                                                            }
-                                                            if(ro_type.equals("typový spis")){
-                                                                node_dmd_ro = ValuesGetter.getNodeByValueOfAtributFromSpecificList(typovespisy, "ID", ro_dmdid);
-                                                            }
-                                                            if(ro_type.equals("spis")){
-                                                                node_dmd_ro = ValuesGetter.getNodeByValueOfAtributFromSpecificList(spisy, "ID", ro_dmdid);
-                                                            }
-                                                            if(ro_type.equals("díl")){
-                                                                node_dmd_ro = ValuesGetter.getNodeByValueOfAtributFromSpecificList(dily, "ID", ro_dmdid);
-                                                            }
-                                                            if(ro_type.equals("dokument")){
-                                                                node_dmd_ro = ValuesGetter.getNodeByValueOfAtributFromSpecificList(dokumenty, "ID", ro_dmdid);
-                                                            }
-                                                            if(ro_type.equals("komponenta")){
-                                                                node_dmd_ro = ValuesGetter.getNodeByValueOfAtributFromSpecificList(komponenty, "ID", ro_dmdid);
-                                                            }
-                                                            if(node_dmd_ro != null){
-                                                                if(!ValuesGetter.parentCheck(nodetype, ro_node_type)){
-                                                                    return nastavChybu("Element mets:div je špatně zatříděn. Neodpovídající rodičovský element.", getMistoChyby(n_div) + " " + getMistoChyby(rodic_div));
-                                                                }
-                                                            } else return nastavChybu("Nenalezen element v sekci mets:dmdSec s příslušným ID.", getMistoChyby(rodic_div));
-                                                        } else return nastavChybu("Element <mets:div> nemá atribut TYPE.", getMistoChyby(rodic_div));     
-                                                    } else return nastavChybu("Element <mets:div> nemá atribut DMDID.", getMistoChyby(rodic_div));
-                                                }
-                                            } else return nastavChybu("Nenalezen element tns:ZdrojID v sekci mets:amdSec.", getMistoChyby(node_amd));
-                                        } else return nastavChybu("Nenalezen element tns:HodnotaID v sekci mets:amdSec.", getMistoChyby(node_amd));
-                                    } else return nastavChybu("Nenalezen element v sekci mets:amdSec s příslušným ID.", getMistoChyby(n_div));
-                                } else return nastavChybu("Nenalezen atribut zdroj elementu nsesss:Identifikator.", getMistoChyby(node_dmd));
-                            } else return nastavChybu("Nenalezen element nsesss:Identifikator.", getMistoChyby(node_dmd));
-                        } else return nastavChybu("Nenalezen element v sekci mets:dmdSec s příslušným ID.", getMistoChyby(n_div));
-                    } else return nastavChybu("Element <mets:div> nemá atribut TYPE.", getMistoChyby(n_div));
-                } else return nastavChybu("Element <mets:div> nemá atribut ADMID.", getMistoChyby(n_div));      
-            } else return nastavChybu("Element <mets:div> nemá atribut DMDID.", getMistoChyby(n_div));           
-        } 
 
-        if(pravidlo54_pocitadlo() != metsDiv.size()){
-            return nastavChybu("Počet elementů <mets:div> neodpovídá počtu elementů v dmdSec.", MISTO_CHYBY_NEUPRESNENO);
-        }
-
-        if(!pravidlo54_pocitadlo_amdsec(metsDiv.size())){
-            return nastavChybu("Počet elementů <mets:div> neodpovídá počtu elementů v amdSec.", MISTO_CHYBY_NEUPRESNENO);
-        }
-        return true;
-    }
-        
-    //OBSAHOVÁ č.55 Pokud existuje jakýkoli element <mets:div> s atributem TYPE s hodnotou komponenta, každý obsahuje právě jeden element <mets:fptr>.
-    private boolean pravidlo55(){
-        NodeList nodeListDiv = ValuesGetter.getAllAnywhere("mets:div", metsParser.getDocument());
-        if(nodeListDiv == null) return true;
-        for(int i = 0; i < nodeListDiv.getLength(); i++){
-            Node div = nodeListDiv.item(i);
-            boolean obsahuje = ValuesGetter.hasAttributValue(div, "TYPE", "komponenta");
-            if(obsahuje){
-                ArrayList<Node> list = ValuesGetter.getSpecificChildWithName(div, "mets:fptr");
-                if(list.isEmpty()){
-                   return nastavChybu("Element <mets:div> neobsahuje element <mets:fptr>.", getMistoChyby(div)); 
-                }
-                if(list.size() > 1){
-                    return nastavChybu("Elementu <mets:div> obsahuje více elementů <mets:fptr>.", getMistoChyby(div));
-                }
-            } 
-        } 
-        return true;
-    }
-    
-    //OBSAHOVÁ č.56 Pokud existuje jakýkoli element <mets:fptr>, každý obsahuje atribut FILEID s hodnotou, která odpovídá hodnotě atributu ID elementu <mets:file> příslušné komponenty. Příslušnost vyjadřuje stejná hodnota atributu DMDID rodičovského elementu <mets:div> a elementu <mets:file>.",
-    private boolean pravidlo56(){
-        NodeList nodeListMetsFptr = ValuesGetter.getAllAnywhere("mets:fptr", metsParser.getDocument());
-        if(nodeListMetsFptr == null) return true;
-        for(int i = 0; i < nodeListMetsFptr.getLength(); i++){  
-            Node metsFptr = nodeListMetsFptr.item(i);
-            if(!ValuesGetter.hasAttribut(metsFptr, "FILEID")){
-                return nastavChybu("Element <mets:fptr> neobsahuje atribut FILEID.", getMistoChyby(metsFptr));
-            }
-        }
-
-        NodeList nodeListFlocat = ValuesGetter.getAllAnywhere("mets:FLocat", metsParser.getDocument());
-        if(nodeListFlocat == null){
-            return nastavChybu("Nenalezen element <mets:FLocat>.", MISTO_CHYBY_NEUPRESNENO);
-        }
-        for(int i = 0; i < nodeListMetsFptr.getLength(); i++){
-            Node fLocat = nodeListFlocat.item(i);
-            Node metsFptr = nodeListMetsFptr.item(i);
-            Node metsFile = ValuesGetter.getXParent(fLocat, "mets:file");
-            if(metsFile == null){
-                return nastavChybu("Nenalezen element <mets:file>.", MISTO_CHYBY_NEUPRESNENO);
-            }
-            if(!ValuesGetter.hasAttribut(metsFile, "ID")){
-                return nastavChybu("Element <mets:file> neobsahuje atribut ID.", getMistoChyby(metsFile));
-            }
-            String fptrFileId = ValuesGetter.getValueOfAttribut(metsFptr, "FILEID");
-            String idFile = ValuesGetter.getValueOfAttribut(ValuesGetter.getXParent(fLocat, "mets:file"), "ID");
-            if(!fptrFileId.equals(idFile)){
-                return nastavChybu("Hodnoty atributů si neodpovídají. FILEID: " + fptrFileId + " ID: " + idFile + ".", getMistoChyby(metsFptr) + " " + getMistoChyby(metsFile));
-            }
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.57 Jakýkoli element <nsesss:Identifikator> obsahuje neprázdnou hodnotu.",
-    private boolean pravidlo57(){
-        //        NodeList identifikatory = ValuesGetter.getAllAnywhere("nsesss:Identifikator", metsParser.getDocument());
-        if(identifikatory == null){
-            return nastavChybu("Nenalezen žádný element <nsesss:Identifikator>.", MISTO_CHYBY_NEUPRESNENO);
-        }
-        for(int i = 0; i < identifikatory.size(); i++){
-            Node identifikator = identifikatory.get(i);
-            String str = identifikator.getTextContent();
-            if (StringUtils.isBlank(str)) {
-                return nastavChybu("Element <nsesss:Identifikator> obsahuje prázdnou hodnotu. " + getJmenoIdentifikator(identifikator), getMistoChyby(identifikator));
-            }
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.58 Jakýkoli element <nsesss:Identifikator> obsahuje atribut zdroj s neprázdnou hodnotu.",
-    private boolean pravidlo58(){
-        //        NodeList identifikatory = ValuesGetter.getAllAnywhere("nsesss:Identifikator", metsParser.getDocument());
-        if(identifikatory == null){
-            return nastavChybu("Nenalezen žádný element <nsesss:Identifikator>.", MISTO_CHYBY_NEUPRESNENO);
-        }
-        for(int i = 0; i < identifikatory.size(); i++){
-            Node identifikator = identifikatory.get(i);
-            if(!ValuesGetter.hasAttribut(identifikator, "zdroj")){
-                return nastavChybu("Element <nsesss:Identifikator> neobsahuje atribut zdroj.", getMistoChyby(identifikator));
-            }
-            String str = ValuesGetter.getValueOfAttribut(identifikator, "zdroj");
-            if (StringUtils.isBlank(str)) {
-                return nastavChybu("Atribut zdroj elementu <nsesss:Identifikator> má prázdnou hodnotu. " + getJmenoIdentifikator(identifikator), getMistoChyby(identifikator));
-            }
-        }
-        return true;
-    }
-
-    //OBSAHOVÁ č.59 Žádná entita (od spisového plánu po dokument) nebo objekt <nsesss:Komponenta>, <nsesss:BezpecnostniKategorie>, <nsesss:SkartacniRezim> nebo <nsesss:TypDokumentu> neobsahuje stejné hodnoty elementu <nsesss:Identifikator> a jeho atributu zdroj a současně odlišné hodnoty v ostatních elementech, jako má jiná entita nebo objekt uvedeného typu, kromě atributu ID uvedené entity.
-    private boolean pravidlo59(){
-        NodeList nlist = metsParser.getDocument().getElementsByTagName("nsesss:Identifikator");
-        int[] set = IntStream.range(0, nlist.getLength()).toArray();
-        ArrayList<Integer> k_list = new ArrayList<>();
-        for (int i : set) k_list.add(i);
-
-        while(!k_list.isEmpty()){
-            k_list = p59_specialMetod(nlist, k_list);
-            if(k_list == null) return nastavChybu(popisChyby, misto_chyby);
-        }
-        
-        return true;
-    }
-    
-    private ArrayList<Integer> p59_specialMetod(NodeList nlist, ArrayList<Integer> k_list){
-        if(k_list.isEmpty()) return k_list;
-        if(k_list.size() == 1){
-            k_list.clear();
-            return k_list;
-        }  
-        String hodnotaIdentifikatoru = nlist.item(k_list.get(0)).getTextContent();
-        String hodnotaAtrZdroj = ValuesGetter.getValueOfAttribut(nlist.item(k_list.get(0)), "zdroj"); 
-        
-        for(int j = 1; j < k_list.size(); j++){
-            Node node = nlist.item(k_list.get(j));
-            String j_hodnotaIdentifikatoru = node.getTextContent();
-            String j_hodnotaAtrZdroj = ValuesGetter.getValueOfAttribut(node, "zdroj");
-            if(hodnotaIdentifikatoru.equals(j_hodnotaIdentifikatoru) && hodnotaAtrZdroj.equals(j_hodnotaAtrZdroj)){
-                //zkontroluj zda jsou stejné
-                Node prvni = ValuesGetter.getEntityWithIdentifikator(nlist.item(k_list.get(0)));
-                Node dalsi = ValuesGetter.getEntityWithIdentifikator(nlist.item(k_list.get(j)));
-                // přepsat
-                if(ValuesGetter.checkEntity_IdentifikatorCompare(prvni)){
-                    if(ValuesGetter.checkEntity_IdentifikatorCompare(dalsi)){
-                    String hlaska = CompareNodes.compare(prvni, dalsi);
-                        if(!hlaska.equals("OK")){
-                            Node entita1 = ValuesGetter.getEntityWithIdentifikator(nlist.item(k_list.get(0)));
-                            Node entita2 = ValuesGetter.getEntityWithIdentifikator(nlist.item(k_list.get(j)));
-                            
-                            popisChyby = "Entity/objekty mají stejné hodnoty v elementu identifikátor a atributu zdroj, ale různý obsah. " + hlaska + " " + getJmenoIdentifikator(entita1) + " " + getJmenoIdentifikator(entita2);
-                            misto_chyby = getMistoChyby(entita1) + " " + getMistoChyby(entita2);
-                            return null;
-                        }
-                    }
-                }
-                //přidej ke kontrolovaným
-                k_list.remove(j);
-            }
-        }
-        k_list.remove(0);
-        return k_list;
-    }
-    
-    
-    private int pravidlo54_pocitadlo(){
-        int a = 0;
-        ArrayList<Node> plany = ValuesGetter.getAllAnywhereArrayList("nsesss:SpisovyPlan", metsParser.getDocument());
-        if(plany != null) a = pravidlo56upresneniPocitadla(plany);
-        ArrayList<Node> skupiny = ValuesGetter.getAllAnywhereArrayList("nsesss:VecnaSkupina", metsParser.getDocument());
-        if(skupiny != null) a += pravidlo56upresneniPocitadla(skupiny);
-        ArrayList<Node> soucasti = ValuesGetter.getAllAnywhereArrayList("nsesss:Soucast", metsParser.getDocument());
-        if(soucasti != null) a += pravidlo56upresneniPocitadla(soucasti);
-        ArrayList<Node> typoveSpisy = ValuesGetter.getAllAnywhereArrayList("nsesss:TypovySpis", metsParser
-                .getDocument());
-        if(typoveSpisy != null) a += pravidlo56upresneniPocitadla(typoveSpisy);
-        ArrayList<Node> spisy = ValuesGetter.getAllAnywhereArrayList("nsesss:Spis", metsParser.getDocument());
-        if(spisy != null) a += pravidlo56upresneniPocitadla(spisy);
-        ArrayList<Node> dily = ValuesGetter.getAllAnywhereArrayList("nsesss:Dil", metsParser.getDocument());
-        if(dily != null) a += pravidlo56upresneniPocitadla(dily);
-        ArrayList<Node> dokumenty = ValuesGetter.getAllAnywhereArrayList("nsesss:Dokument", metsParser.getDocument());
-        if(dokumenty != null) a += pravidlo56upresneniPocitadla(dokumenty);
-        ArrayList<Node> komponenty = ValuesGetter.getAllAnywhereArrayList("nsesss:Komponenta", metsParser
-                .getDocument());
-        if(komponenty != null) a += pravidlo56upresneniPocitadla(komponenty);
-        
-        return a;
-    }
-    
-    private boolean pravidlo54_pocitadlo_amdsec(int pocet_div){
-        NodeList list = ValuesGetter.getAllAnywhere("mets:amdSec", metsParser.getDocument());
-        if(list == null) return false;
-        int pocetAmd = list.getLength();
-        boolean vysledek = pocetAmd == pocet_div;
-        return vysledek;
-    }
-
-    private int pravidlo56upresneniPocitadla(ArrayList<Node> list){
-        ArrayList<String> idcka = new ArrayList<>();
-        for(int i = 0; i < list.size(); i++){
-            Node n = list.get(i);
-            String idn = ValuesGetter.getValueOfAttribut(n, "ID");
-            if(!idcka.contains(idn)){
-                idcka.add(idn);
-            }
-        }
-
-        return idcka.size();
-    }
-    
-    private ArrayList<Node> get_krizove_odkazy_pevny_ano(){
+    public ArrayList<Node> get_krizove_odkazy_pevny_ano() {
         ArrayList<Node> list = new ArrayList<>();
         NodeList krizoveOdkazy = ValuesGetter.getAllAnywhere("nsesss:KrizovyOdkaz", metsParser.getDocument());
         if(krizoveOdkazy != null){
@@ -2422,7 +1954,6 @@ public class K06_Obsahova
         this.xmlData = metsParser.getMetsXmlData();
         this.zakladniEntity = metsParser.getZakladniEntity();
         this.dokumenty = metsParser.getDokumenty();
-        this.identifikatory = metsParser.getIdentifikatory();
 		
 		this.sipSoubor = ctx.getSip();
 
