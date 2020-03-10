@@ -9,6 +9,7 @@ import static cz.zaf.sipvalidator.nsesss2017.SeznamPravidelSpolecna2018.seznam_p
 import static cz.zaf.sipvalidui.panels.JPanel_Kontrola_analyza.jTextArea_kontrola;
 
 import java.awt.event.ActionEvent;
+import java.nio.file.Path;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JCheckBox;
@@ -92,21 +93,33 @@ public class EventListenerJFmainTableSeSipSoubory implements ListSelectionListen
     }
     
     private void vypis(SipInfo sf){
-        String vypis = "";
-        if(sf.isKontrolyProvedeny()){
-            vypis = vypisKontrolaSkodlivehoKodu(sf)+ // vypis škodlivý kód
-            vypisKontrolaDatoveStruktury(sf) + // vypis datovou
-            vypisKodovani(sf) + // znaková sada     
-            vypisSpravnosti(sf) +
-            vypisKOntrolaJmennychProstoru(sf) + // jmennych prostoru
-            vypisValidaceXML(sf) +  // proti schématu 
-            vypisKontrolaObsahova(sf); // obsahova
+        StringBuilder sb = new StringBuilder();
+        sb.append("* CESTA K METS XML: " );
+        Path cestaMets = sf.getCestaMets();
+        if (cestaMets != null) {
+            sb.append(cestaMets);
         }
-        jTextAreaPredKontrola.setText(
-                                      "* CESTA K METS XML: " + sf.getCestaMets().toString() + "\n" + "\n" +
-            "* CESTA K XML PRO WEB: " +  JFmain.cesta_xml_web +    
-            vypis
-        );
+        sb.append("\n" + "\n" + "* CESTA K XML PRO WEB: ");
+        sb.append(JFmain.cesta_xml_web);
+
+        if (sf.isKontrolyProvedeny()) {
+            // vypis škodlivý kód
+            sb.append(vypisKontrolaSkodlivehoKodu(sf));
+
+            // vypis datovou
+            sb.append(vypisKontrolaDatoveStruktury(sf));
+            // znaková sada
+            sb.append(vypisKodovani(sf));
+            sb.append(vypisSpravnosti(sf));
+            // jmennych prostoru
+            sb.append(vypisKOntrolaJmennychProstoru(sf));
+            // proti schématu
+            sb.append(vypisValidaceXML(sf));
+            // obsahova
+            sb.append(vypisKontrolaObsahova(sf));
+        }
+
+        jTextAreaPredKontrola.setText(sb.toString());
         
     }
     

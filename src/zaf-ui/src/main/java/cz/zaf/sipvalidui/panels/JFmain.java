@@ -603,16 +603,18 @@ public class JFmain extends javax.swing.JFrame {
 
                 vp.addSipInfo(si);
                 Path src = si.getCesta();
-                Path outputPath;
-                if (Files.isDirectory(src)) {
-                    outputPath = src.getParent().resolve(src.getFileName() + ".xml");
-                } else {
-                    outputPath = src.resolveSibling(".xml");
-                }
-                try {
-                    vp.save(outputPath);
-                } catch (Exception ex) {
-                    Logger.getLogger(JFmain.class.getName()).log(Level.SEVERE, null, ex);
+                if (src != null) {
+                    Path outputPath;
+                    if (Files.isDirectory(src)) {
+                        outputPath = src.getParent().resolve(src.getFileName() + ".xml");
+                    } else {
+                        outputPath = src.resolveSibling(".xml");
+                    }
+                    try {
+                        vp.save(outputPath);
+                    } catch (Exception ex) {
+                        Logger.getLogger(JFmain.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             });
 
