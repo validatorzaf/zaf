@@ -14,6 +14,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Comparator;
 
+import javax.xml.bind.JAXBException;
+
+import org.apache.commons.io.output.NullOutputStream;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 
@@ -25,6 +28,7 @@ import cz.zaf.sipvalidator.sip.SipLoader;
 import cz.zaf.sipvalidator.sip.StavKontroly;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.VysledekKontroly;
+import cz.zaf.sipvalidator.sip.VyslednyProtokol;
 
 /**
  * Zakladni impl. testu
@@ -107,6 +111,15 @@ public abstract class SipValidatorTestBase {
                 assertEquals(pravidlo.getStav(), false, () -> "SIP: " + path + ", Pravidlo: " + kodPravidla
                         + ", ocekavana Chyba, ale bylo OK");
             }
+        }
+
+        VyslednyProtokol protokol = new VyslednyProtokol();
+        protokol.addSipInfo(sipInfo);
+        protokol.setProfilValidace(profilValidace);
+        try {
+            protokol.save(NullOutputStream.NULL_OUTPUT_STREAM);
+        } catch (JAXBException e) {
+            fail(e);
         }
     }
 

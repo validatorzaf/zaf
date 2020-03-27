@@ -1,5 +1,7 @@
 package cz.zaf.sipvalidator.sip;
 
+import org.apache.commons.lang3.Validate;
+
 /**
  * Vysledek kontroly jednoho pravidla
  * 
@@ -57,6 +59,9 @@ public class PravidloKontroly {
                             final String popisChybyObecny,
                             final String misto_chyby,
                             final String zdroj) {
+        Validate.notEmpty(id);
+        Validate.notEmpty(textPravidla);
+
         this.id = id;
         this.stav = stav;
         this.textPravidla = textPravidla;

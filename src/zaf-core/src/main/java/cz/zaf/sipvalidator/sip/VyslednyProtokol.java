@@ -22,6 +22,7 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.Validate;
 import org.xml.sax.SAXException;
 
 import cz.zaf.schema.kontrolasip.KontrolaSIP;
@@ -186,6 +187,9 @@ public class VyslednyProtokol {
     }
 
     public void save(OutputStream os) throws JAXBException {
+        // checks
+        Validate.notNull(kontrolaSIP.getPouzitiKontroly(), "Profil validace musi byt nastaven pred ulozenim");
+
         JAXBContext jaxbContext = JAXBContext.newInstance(KontrolaSIP.class);
         Marshaller marshaller = jaxbContext.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
