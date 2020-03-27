@@ -33,6 +33,8 @@ public class K05_ProtiSchematu
 
     static final public String VAL1 = "val1";
 
+    static final public String VAL1_TEXT = "Soubor je validní proti schématům mets.xsd (v1.11), xlink.xsd (v2), nsesss.xsd (v3), nsesss-TrP.xsd, ess_ns.xsd a dmBaseTypes.xsd (v2.1).";
+
     public K05_ProtiSchematu() {
     }
 
@@ -83,7 +85,7 @@ public class K05_ProtiSchematu
 
         if (addPravidlo) {
             PravidloKontroly p = new PravidloKontroly(VAL1, stav,
-                    "Soubor je validní proti schématům mets.xsd (v1.11), xlink.xsd (v2), nsesss.xsd (v3), nsesss-TrP.xsd, ess_ns.xsd a dmBaseTypes.xsd (v2.1).", // text
+                    VAL1_TEXT,
                     detailChyby,
                     obecnyPopisChyby,
                     null,

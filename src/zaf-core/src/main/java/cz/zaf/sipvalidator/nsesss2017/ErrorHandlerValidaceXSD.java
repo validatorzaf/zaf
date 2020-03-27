@@ -96,7 +96,11 @@ public class ErrorHandlerValidaceXSD implements  ErrorHandler{
             textChyby += " " +celaChybovaHlaska;
         }
 
-        PravidloKontroly p = new PravidloKontroly(K05_ProtiSchematu.VAL1, false, null, textChyby, null, mistoChyby,
+        PravidloKontroly p = new PravidloKontroly(K05_ProtiSchematu.VAL1, false,
+                K05_ProtiSchematu.VAL1_TEXT,
+                textChyby,
+                null,
+                mistoChyby,
                 null);
         k.add(p);
     }
