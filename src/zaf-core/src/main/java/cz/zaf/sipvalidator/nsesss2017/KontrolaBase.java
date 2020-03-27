@@ -36,7 +36,7 @@ abstract public class KontrolaBase
 
         long finishTime = System.currentTimeMillis();
 
-        log.info("Dokoncena kontrola: %s, doba trvani: %ims", this.getNazev(), finishTime - startTime);
+        log.info("Dokoncena kontrola: {}, doba trvani: {}ms", this.getNazev(), finishTime - startTime);
     }
 
     public KontrolaNsess2017Context getContext() {
