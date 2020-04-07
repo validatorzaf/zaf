@@ -49,36 +49,6 @@
                 </excludes>
             </resource>
         </resources>
-        <testResources>
-            <!-- Copy default test resources -->
-            <testResource>
-                <directory>src/test/resources</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>**/*.yaml</include>
-                </includes>
-            </testResource>
-            <testResource>
-                <directory>src/test/resources</directory>
-                <filtering>false</filtering>
-                <excludes>
-                    <exclude>**/*.yaml</exclude>
-                </excludes>
-            </testResource>
-            <!-- Add test folder with source files for packages -->
-            <testResource>
-                <directory>${basedir}/target/test-resources</directory>
-                <includes />
-            </testResource>
-            <testResource>
-                <directory>${project.basedir}/../package-cz-base/src</directory>
-                <targetPath>${project.basedir}/target/test-classes/package-cz-base</targetPath>
-            </testResource>
-            <testResource>
-                <directory>${project.basedir}/../rules-simple-dev/src</directory>
-                <targetPath>${project.basedir}/target/test-classes/rules-simple-dev</targetPath>
-            </testResource>
-        </testResources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -88,6 +58,21 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+			<plugin>
+			    <groupId>org.springframework.boot</groupId>
+			    <artifactId>spring-boot-maven-plugin</artifactId>
+			    <executions>
+			        <execution>
+			            <goals>
+			                <goal>repackage</goal>
+			            </goals>
+			            <configuration>
+<!--			                <classifier>spring-boot</classifier>-->
+			                <mainClass>cz.zaf.sipvalidui.panels.JFmain</mainClass>
+			            </configuration>
+			        </execution>
+			    </executions>
+			</plugin>
         </plugins>
     </build>
 
