@@ -3,6 +3,9 @@ package cz.zaf.sipvalidator.nsesss2017;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipLoader;
@@ -13,6 +16,8 @@ import cz.zaf.sipvalidator.sip.UrovenKontroly;
  *
  */
 public class SipValidator {
+
+    static private Logger log = LoggerFactory.getLogger(SipValidator.class);
 
     private SipLoader sipLoader;
     private ProfilValidace profilValidace;
@@ -80,15 +85,23 @@ public class SipValidator {
 
         SipInfo sip = sipLoader.getSip();
 
+        UrovenKontroly<KontrolaNsess2017Context> aktivniKontrola = null;
         try {
             // provedeni kontrol
             ctx = new KontrolaNsess2017Context(metsParser, sip);
             for (UrovenKontroly<KontrolaNsess2017Context> kontrola : kontroly) {
+                aktivniKontrola = kontrola;
                 kontrola.provedKontrolu(ctx);
             }
+            aktivniKontrola = null;
         } catch (Exception e) {
-            //TODO: odstranit..
-            e.printStackTrace();
+            StringBuilder sb = new StringBuilder();
+            sb.append("Ucatched exception");
+            if (aktivniKontrola != null) {
+                sb.append(", aktivniKontrola: ").append(aktivniKontrola.getNazev());
+            }
+            log.error(sb.toString() + ", detail: " + e.toString());
+            throw new IllegalStateException(sb.toString(), e);
         }
     }
 }
