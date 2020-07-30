@@ -1705,18 +1705,24 @@ public class K06_Obsahova
                     // application/vnd.software602.filler.form-xml-zip
                     if(file_content_type.equals("application/pkcs7-signature")){
                         if(!mimeType.equals("application/vnd.software602.filler.form-xml-zip")){
-                            InputStreamReader input = new InputStreamReader(new FileInputStream(file));
-                            BufferedReader reader = new BufferedReader(input);
-                            boolean jedatovka = false;
-                            while (!jedatovka && reader.readLine() != null) {
-                                String line = reader.readLine();
-                                if(line.contains("</q:dmHash><q:dmQTimestamp>")){
-                                    jedatovka = true;
-                                    input.close();
-                                    reader.close();
-                                }
-                            } 
-                            if(!jedatovka) return nastavChybu("Komponenta je soubor typu: " + file_content_type + ", ale její deklarovaný MIMETYPE je: " + mimeType + ". Nejedná se o soubor datové schránky", "Soubor: " + file.getName() + ".");
+							try (InputStreamReader input = new InputStreamReader(new FileInputStream(file));) {
+								BufferedReader reader = new BufferedReader(input);
+								boolean jedatovka = false;
+								while (!jedatovka && reader.readLine() != null) {
+									String line = reader.readLine();
+									if (line.contains("</q:dmHash><q:dmQTimestamp>")) {
+										jedatovka = true;
+										input.close();
+										reader.close();
+									}
+								}
+								if (!jedatovka)
+									return nastavChybu(
+											"Komponenta je soubor typu: " + file_content_type
+													+ ", ale její deklarovaný MIMETYPE je: " + mimeType
+													+ ". Nejedná se o soubor datové schránky",
+											"Soubor: " + file.getName() + ".");
+							}                            
                         }
                     }
                     if(file_content_type.equals("application/x-zip-compressed") && !mimeType.equals("application/zip")){
@@ -1792,14 +1798,16 @@ public class K06_Obsahova
                 if(atributChecksumType.equals("SHA-512") || atributChecksumType.equals("SHA-256")){
                     if(atributChecksumType.equals("SHA-512"))
                     {
-                        InputStream is = new FileInputStream(komponenta);                
-                        spoctenyCheckSum = DigestUtils.sha512Hex(is);              
+                        try(InputStream is = new FileInputStream(komponenta);) {                
+                        	spoctenyCheckSum = DigestUtils.sha512Hex(is);
+                        }
                     }
 
                     if(atributChecksumType.equals("SHA-256"))
                     {
-                        InputStream is = new FileInputStream(komponenta);                
-                        spoctenyCheckSum = DigestUtils.sha256Hex(is);              
+                        try (InputStream is = new FileInputStream(komponenta);) {                
+                        	spoctenyCheckSum = DigestUtils.sha256Hex(is);
+                        }
                     }                    
                 }
                 else{
