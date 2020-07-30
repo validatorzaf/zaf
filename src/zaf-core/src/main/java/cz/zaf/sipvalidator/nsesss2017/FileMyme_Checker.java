@@ -7,6 +7,7 @@ package cz.zaf.sipvalidator.nsesss2017;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URLConnection;
 import java.nio.file.Files;
 import org.apache.tika.Tika;
 
@@ -31,7 +32,14 @@ public class FileMyme_Checker {
             System.out.println("chyba");
         }
         try {
-            mimeTypes  = file.toURL().openConnection().getContentType();
+        	URLConnection urlConnection = file.toURL().openConnection();
+        	try {
+        		mimeTypes  = urlConnection.getContentType();
+        	} finally {
+        		if (urlConnection!=null) { 
+        			urlConnection.getInputStream().close();
+        		}
+        	}
         } catch (IOException ex) {
             System.out.println("chyba");
         }
