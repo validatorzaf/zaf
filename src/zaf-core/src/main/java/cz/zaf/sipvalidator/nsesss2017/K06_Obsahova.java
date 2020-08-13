@@ -74,6 +74,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo95;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo96;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo97;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo98;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo99;
 import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Metods;
 import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_amdSec;
 import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_dmdSec;
@@ -234,6 +235,7 @@ public class K06_Obsahova
         pridejPravidlo(new Pravidlo96(this));
         pridejPravidlo(new Pravidlo97(this));
         pridejPravidlo(new Pravidlo98(this));
+        pridejPravidlo(new Pravidlo99(this));
     } 
     
     private void pridejPravidlo(K06PravidloBase pravidlo) {

@@ -160,4 +160,20 @@
 
     </profiles>
 
+	<distributionManagement>
+<!--
+		<repository>
+			<id>LightCompReleaseRepository</id>
+			<url>https://vlas1.lightcomp.cz:8079/releases/repository/nacr-release</url>
+		</repository>
+-->
+    <snapshotRepository>
+	<id>frnkRepo</id>
+	<url>http://10.2.0.2:8080/artifactory/libs-snapshot-local</url>
+    </snapshotRepository>
+
+	</distributionManagement>
+
+
+
 </project>

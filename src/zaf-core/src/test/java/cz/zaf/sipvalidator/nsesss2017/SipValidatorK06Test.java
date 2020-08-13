@@ -51,6 +51,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo95;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo96;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo97;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo98;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo99;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilyValidace;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
@@ -2684,5 +2685,20 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
                        ProfilyValidace.PREJIMKA,
                        new String[] { Pravidlo98.OBS98 },
                        new String[] {});
+    }
+    
+    @Test
+	void testK06_99_OK01() {
+    	testPackageK06("99-OK1", null, 
+    				ProfilyValidace.PREJIMKA,
+    				new String[] { Pravidlo99.OBS99 },
+    				new String[] {});
+	}
+    	
+    @Test
+    void testK06_99_01() {
+        	testPackageK06("99-chyba1", StavKontroly.CHYBA, ProfilyValidace.PREJIMKA,
+        			new String[] {},
+                    new String[] { Pravidlo99.OBS99 });
     }
 }
