@@ -1835,6 +1835,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
                        new String[] {});
     }
 
+    @Test
     void testK06_66_01() {
         testPackageK06("66-chyba", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,

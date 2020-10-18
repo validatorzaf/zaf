@@ -161,12 +161,12 @@
                 <nsesss:Nazev>Dokumenty na vědomí a dokumenty bez č.j.</nsesss:Nazev>
                 <nsesss:Oduvodneni>Vyplývá ze spisového plánu organizace</nsesss:Oduvodneni>
                 <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
-                <nsesss:SkartacniLhuta>2</nsesss:SkartacniLhuta>
+                <nsesss:SkartacniLhuta>12</nsesss:SkartacniLhuta>
                 <nsesss:SpousteciUdalost>datum uzavření</nsesss:SpousteciUdalost>
               </nsesss:SkartacniRezim>
               <nsesss:DataceVyrazeni>
                 <nsesss:RokSpousteciUdalosti>2017</nsesss:RokSpousteciUdalosti>
-                <nsesss:RokSkartacniOperace>2020</nsesss:RokSkartacniOperace>
+                <nsesss:RokSkartacniOperace>3030</nsesss:RokSkartacniOperace>
               </nsesss:DataceVyrazeni>
               <nsesss:SkartacniRizeni>
                 <nsesss:Datum datum="2030-03-20T00:00:00.000+01:00">2019-03-20</nsesss:Datum>
