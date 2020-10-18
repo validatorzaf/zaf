@@ -96,7 +96,7 @@ public class SipValidator {
             aktivniKontrola = null;
         } catch (Exception e) {
             StringBuilder sb = new StringBuilder();
-            sb.append("Ucatched exception");
+            sb.append("Uncatched exception");
             if (aktivniKontrola != null) {
                 sb.append(", aktivniKontrola: ").append(aktivniKontrola.getNazev());
             }
