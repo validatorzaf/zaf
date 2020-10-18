@@ -2,9 +2,11 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59;
 
 import java.util.ArrayList;
 
+import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
@@ -47,201 +49,202 @@ public class Pravidlo54 extends K06PravidloBase {
         int size_div = metsDiv.size();
         for (int i = 0; i < size_div; i++) {
             Node n_div = metsDiv.get(i);
-            if (ValuesGetter.hasAttribut(n_div, "DMDID")) {
-                if (ValuesGetter.hasAttribut(n_div, "ADMID")) {
-                    if (ValuesGetter.hasAttribut(n_div, "TYPE")) {
-                        String dmdid = ValuesGetter.getValueOfAttribut(n_div, "DMDID");
-                        String admid = ValuesGetter.getValueOfAttribut(n_div, "ADMID");
-                        String type = ValuesGetter.getValueOfAttribut(n_div, "TYPE");
-                        String nodetype = ValuesGetter.get_type_to_nsesss(type);
-                        Node node_dmd = null;
-                        //hledám odkaz na element v dmdSec
-                        if (type.equals("spisový plán")) {
-                            node_dmd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(spisoveplany, "ID", dmdid);
-                        }
-                        if (type.equals("věcná skupina")) {
-                            node_dmd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(vecneskupiny, "ID", dmdid);
-                        }
-                        if (type.equals("součást")) {
-                            node_dmd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(soucasti, "ID", dmdid);
-                        }
-                        if (type.equals("typový spis")) {
-                            node_dmd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(typovespisy, "ID", dmdid);
-                        }
-                        if (type.equals("spis")) {
-                            node_dmd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(spisy, "ID", dmdid);
-                        }
-                        if (type.equals("díl")) {
-                            node_dmd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(dily, "ID", dmdid);
-                        }
-                        if (type.equals("dokument")) {
-                            node_dmd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(metsParser.getDokumenty(),
-                                                                                            "ID", dmdid);
-                        }
-                        if (type.equals("komponenta")) {
-                            node_dmd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(komponenty, "ID", dmdid);
-                        }
-                        //                        Node node_dmd = ValuesGetter.getNodeWithID(dmdid, nodetype, parsedDOM_SipSoubor);
-                        if (node_dmd != null) {
-                            // porovnat div s dmd
-                            Node identifikator;
-                            if (node_dmd.getNodeName().equals("nsesss:SpisovyPlan")) {
-                                identifikator = ValuesGetter.getXChild(node_dmd, "nsesss:Identifikator");
-                            } else {
-                                identifikator = ValuesGetter.getXChild(node_dmd, "nsesss:EvidencniUdaje",
-                                                                       "nsesss:Identifikace", "nsesss:Identifikator");
-                            }
-                            if (identifikator != null) {
-                                if (ValuesGetter.hasAttribut(identifikator, "zdroj")) {
-                                    Node node_amd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(metsAmd, "ID",
-                                                                                                         admid);
-                                    if (node_amd != null) {
-                                        Node hodnotaId = ValuesGetter.getXChild(node_amd, "mets:digiprovMD",
-                                                                                "mets:mdWrap", "mets:xmlData",
-                                                                                "tp:TransakcniLogObjektu",
-                                                                                "tp:TransLogInfo", "tp:Objekt",
-                                                                                "tp:Identifikator", "tns:HodnotaID");
-                                        Node zdrojID = ValuesGetter.getXChild(node_amd, "mets:digiprovMD",
-                                                                              "mets:mdWrap", "mets:xmlData",
-                                                                              "tp:TransakcniLogObjektu",
-                                                                              "tp:TransLogInfo", "tp:Objekt",
-                                                                              "tp:Identifikator", "tns:ZdrojID");
-                                        if (hodnotaId != null) {
-                                            if (zdrojID != null) {
-                                                String hodnota_identifikator = identifikator.getTextContent();
-                                                String hodnota_zdroj = ValuesGetter.getValueOfAttribut(identifikator,
-                                                                                                       "zdroj");
-                                                String amd_identifikator = hodnotaId.getTextContent();
-                                                String amd_zdroj = zdrojID.getTextContent();
+            String dmdid = ValuesGetter.getValueOfAttribut(n_div, JmenaElementu.DMDID);
+            if (StringUtils.isEmpty(dmdid)) {
+                return nastavChybu("Element <mets:div> nemá atribut DMDID.", getMistoChyby(n_div));
+            }
+            String admid = ValuesGetter.getValueOfAttribut(n_div, "ADMID");
+            if (StringUtils.isEmpty(admid)) {
+                return nastavChybu("Element <mets:div> nemá atribut ADMID.", getMistoChyby(n_div));
+            }
+            String type = ValuesGetter.getValueOfAttribut(n_div, "TYPE");
+            if(StringUtils.isEmpty(type)) {
+                return nastavChybu("Element <mets:div> nemá atribut TYPE.", getMistoChyby(n_div));                
+            }
+            String nodetype = ValuesGetter.get_type_to_nsesss(type);
 
-                                                if (!ValuesGetter.get_type_to_nsesss(type).equals(node_dmd
-                                                        .getNodeName())) {
-                                                    return nastavChybu("Element mets:div s type " + type
-                                                            + ", odkazuje na element jiného typu.", getMistoChyby(n_div)
-                                                                    + " " + getMistoChyby(node_dmd));
-                                                }
-                                                if (!hodnota_identifikator.equals(amd_identifikator)) {
-                                                    return nastavChybu("Neshodují se hodnoty identifikátorů. "
-                                                            + getJmenoIdentifikator(identifikator), getMistoChyby(
-                                                                                                                  identifikator)
-                                                                    + " " + getMistoChyby(hodnotaId));
-                                                }
-                                                if (!hodnota_zdroj.equals(amd_zdroj)) {
-                                                    return nastavChybu("Neshodují se hodnoty zdrojů. "
-                                                            + getJmenoIdentifikator(identifikator), getMistoChyby(
-                                                                                                                  identifikator)
-                                                                    + " " + getMistoChyby(zdrojID));
-                                                }
-                                                // zkontrolovat rodče
-                                                Node rodic_div = n_div.getParentNode();
-                                                if (type.equals("spisový plán")) {
-                                                    if (!rodic_div.getNodeName().equals("mets:structMap")) {
-                                                        return nastavChybu("Element mets:div nemá správný rodičovský element.",
-                                                                           getMistoChyby(n_div));
-                                                    }
-                                                } else {
-                                                    if (!rodic_div.getNodeName().equals("mets:div")) {
-                                                        return nastavChybu("Element mets:div nemá správný rodičovský element.",
-                                                                           getMistoChyby(n_div));
-                                                    }
-                                                    if (ValuesGetter.hasAttribut(rodic_div, "DMDID")) {
-                                                        if (ValuesGetter.hasAttribut(rodic_div, "TYPE")) {
-                                                            String ro_dmdid = ValuesGetter.getValueOfAttribut(rodic_div,
-                                                                                                              "DMDID");
-                                                            String ro_type = ValuesGetter.getValueOfAttribut(rodic_div,
-                                                                                                             "TYPE");
-                                                            String ro_node_type = ValuesGetter.get_type_to_nsesss(
-                                                                                                                  ro_type);
-                                                            //                                                            Node node_dmd_ro = ValuesGetter.getNodeWithID(ro_dmdid, ro_node_type, parsedDOM_SipSoubor);
-                                                            Node node_dmd_ro = null;
-                                                            if (ro_type.equals("spisový plán")) {
-                                                                node_dmd_ro = ValuesGetter
-                                                                        .getNodeByValueOfAtributFromSpecificList(spisoveplany,
-                                                                                                                 "ID",
-                                                                                                                 ro_dmdid);
-                                                            }
-                                                            if (ro_type.equals("věcná skupina")) {
-                                                                node_dmd_ro = ValuesGetter
-                                                                        .getNodeByValueOfAtributFromSpecificList(vecneskupiny,
-                                                                                                                 "ID",
-                                                                                                                 ro_dmdid);
-                                                            }
-                                                            if (ro_type.equals("součást")) {
-                                                                node_dmd_ro = ValuesGetter
-                                                                        .getNodeByValueOfAtributFromSpecificList(soucasti,
-                                                                                                                 "ID",
-                                                                                                                 ro_dmdid);
-                                                            }
-                                                            if (ro_type.equals("typový spis")) {
-                                                                node_dmd_ro = ValuesGetter
-                                                                        .getNodeByValueOfAtributFromSpecificList(typovespisy,
-                                                                                                                 "ID",
-                                                                                                                 ro_dmdid);
-                                                            }
-                                                            if (ro_type.equals("spis")) {
-                                                                node_dmd_ro = ValuesGetter
-                                                                        .getNodeByValueOfAtributFromSpecificList(spisy,
-                                                                                                                 "ID",
-                                                                                                                 ro_dmdid);
-                                                            }
-                                                            if (ro_type.equals("díl")) {
-                                                                node_dmd_ro = ValuesGetter
-                                                                        .getNodeByValueOfAtributFromSpecificList(dily,
-                                                                                                                 "ID",
-                                                                                                                 ro_dmdid);
-                                                            }
-                                                            if (ro_type.equals("dokument")) {
-                                                                node_dmd_ro = ValuesGetter
-                                                                        .getNodeByValueOfAtributFromSpecificList(metsParser
-                                                                                .getDokumenty(),
-                                                                                                                 "ID",
-                                                                                                                 ro_dmdid);
-                                                            }
-                                                            if (ro_type.equals("komponenta")) {
-                                                                node_dmd_ro = ValuesGetter
-                                                                        .getNodeByValueOfAtributFromSpecificList(komponenty,
-                                                                                                                 "ID",
-                                                                                                                 ro_dmdid);
-                                                            }
-                                                            if (node_dmd_ro != null) {
-                                                                if (!ValuesGetter.parentCheck(nodetype, ro_node_type)) {
-                                                                    return nastavChybu("Element mets:div je špatně zatříděn. Neodpovídající rodičovský element.",
-                                                                                       getMistoChyby(n_div) + " "
-                                                                                               + getMistoChyby(rodic_div));
-                                                                }
-                                                            } else
-                                                                return nastavChybu("Nenalezen element v sekci mets:dmdSec s příslušným ID.",
-                                                                                   getMistoChyby(rodic_div));
-                                                        } else
-                                                            return nastavChybu("Element <mets:div> nemá atribut TYPE.",
-                                                                               getMistoChyby(rodic_div));
-                                                    } else
-                                                        return nastavChybu("Element <mets:div> nemá atribut DMDID.",
-                                                                           getMistoChyby(rodic_div));
+            Node node_dmd = null;
+            //hledám odkaz na element v dmdSec
+            if (type.equals("spisový plán")) {
+                node_dmd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(spisoveplany, "ID", dmdid);
+            }
+            if (type.equals("věcná skupina")) {
+                node_dmd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(vecneskupiny, "ID", dmdid);
+            }
+            if (type.equals("součást")) {
+                node_dmd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(soucasti, "ID", dmdid);
+            }
+            if (type.equals("typový spis")) {
+                node_dmd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(typovespisy, "ID", dmdid);
+            }
+            if (type.equals("spis")) {
+                node_dmd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(spisy, "ID", dmdid);
+            }
+            if (type.equals("díl")) {
+                node_dmd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(dily, "ID", dmdid);
+            }
+            if (type.equals("dokument")) {
+                node_dmd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(metsParser.getDokumenty(),
+                                                                                "ID", dmdid);
+            }
+            if (type.equals("komponenta")) {
+                node_dmd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(komponenty, "ID", dmdid);
+            }
+            if (node_dmd == null) {
+                return nastavChybu("Nenalezen element v sekci mets:dmdSec s příslušným ID.",
+                                   getMistoChyby(n_div));
+            }
+
+            // porovnat div s dmd
+            Node identifikator;
+            if (node_dmd.getNodeName().equals("nsesss:SpisovyPlan")) {
+                identifikator = ValuesGetter.getXChild(node_dmd, "nsesss:Identifikator");
+            } else {
+                identifikator = ValuesGetter.getXChild(node_dmd, "nsesss:EvidencniUdaje",
+                                                       "nsesss:Identifikace", "nsesss:Identifikator");
+            }
+            if (identifikator != null) {
+                if (ValuesGetter.hasAttribut(identifikator, "zdroj")) {
+                    Node node_amd = ValuesGetter.getNodeByValueOfAtributFromSpecificList(metsAmd, "ID",
+                                                                                         admid);
+                    if (node_amd != null) {
+                        Node hodnotaId = ValuesGetter.getXChild(node_amd, "mets:digiprovMD",
+                                                                "mets:mdWrap", "mets:xmlData",
+                                                                "tp:TransakcniLogObjektu",
+                                                                "tp:TransLogInfo", "tp:Objekt",
+                                                                "tp:Identifikator", "tns:HodnotaID");
+                        Node zdrojID = ValuesGetter.getXChild(node_amd, "mets:digiprovMD",
+                                                              "mets:mdWrap", "mets:xmlData",
+                                                              "tp:TransakcniLogObjektu",
+                                                              "tp:TransLogInfo", "tp:Objekt",
+                                                              "tp:Identifikator", "tns:ZdrojID");
+                        if (hodnotaId != null) {
+                            if (zdrojID != null) {
+                                String hodnota_identifikator = identifikator.getTextContent();
+                                String hodnota_zdroj = ValuesGetter.getValueOfAttribut(identifikator,
+                                                                                       "zdroj");
+                                String amd_identifikator = hodnotaId.getTextContent();
+                                String amd_zdroj = zdrojID.getTextContent();
+
+                                if (!ValuesGetter.get_type_to_nsesss(type).equals(node_dmd
+                                        .getNodeName())) {
+                                    return nastavChybu("Element mets:div s type " + type
+                                            + ", odkazuje na element jiného typu.", getMistoChyby(n_div)
+                                                    + " " + getMistoChyby(node_dmd));
+                                }
+                                if (!hodnota_identifikator.equals(amd_identifikator)) {
+                                    return nastavChybu("Neshodují se hodnoty identifikátorů. "
+                                            + getJmenoIdentifikator(identifikator), getMistoChyby(
+                                                                                                  identifikator)
+                                                    + " " + getMistoChyby(hodnotaId));
+                                }
+                                if (!hodnota_zdroj.equals(amd_zdroj)) {
+                                    return nastavChybu("Neshodují se hodnoty zdrojů. "
+                                            + getJmenoIdentifikator(identifikator), getMistoChyby(
+                                                                                                  identifikator)
+                                                    + " " + getMistoChyby(zdrojID));
+                                }
+                                // zkontrolovat rodče
+                                Node rodic_div = n_div.getParentNode();
+                                if (type.equals("spisový plán")) {
+                                    if (!rodic_div.getNodeName().equals("mets:structMap")) {
+                                        return nastavChybu("Element mets:div nemá správný rodičovský element.",
+                                                           getMistoChyby(n_div));
+                                    }
+                                } else {
+                                    if (!rodic_div.getNodeName().equals("mets:div")) {
+                                        return nastavChybu("Element mets:div nemá správný rodičovský element.",
+                                                           getMistoChyby(n_div));
+                                    }
+                                    if (ValuesGetter.hasAttribut(rodic_div, "DMDID")) {
+                                        if (ValuesGetter.hasAttribut(rodic_div, "TYPE")) {
+                                            String ro_dmdid = ValuesGetter.getValueOfAttribut(rodic_div,
+                                                                                              "DMDID");
+                                            String ro_type = ValuesGetter.getValueOfAttribut(rodic_div,
+                                                                                             "TYPE");
+                                            String ro_node_type = ValuesGetter.get_type_to_nsesss(
+                                                                                                  ro_type);
+                                            //                                                            Node node_dmd_ro = ValuesGetter.getNodeWithID(ro_dmdid, ro_node_type, parsedDOM_SipSoubor);
+                                            Node node_dmd_ro = null;
+                                            if (ro_type.equals("spisový plán")) {
+                                                node_dmd_ro = ValuesGetter
+                                                        .getNodeByValueOfAtributFromSpecificList(spisoveplany,
+                                                                                                 "ID",
+                                                                                                 ro_dmdid);
+                                            }
+                                            if (ro_type.equals("věcná skupina")) {
+                                                node_dmd_ro = ValuesGetter
+                                                        .getNodeByValueOfAtributFromSpecificList(vecneskupiny,
+                                                                                                 "ID",
+                                                                                                 ro_dmdid);
+                                            }
+                                            if (ro_type.equals("součást")) {
+                                                node_dmd_ro = ValuesGetter
+                                                        .getNodeByValueOfAtributFromSpecificList(soucasti,
+                                                                                                 "ID",
+                                                                                                 ro_dmdid);
+                                            }
+                                            if (ro_type.equals("typový spis")) {
+                                                node_dmd_ro = ValuesGetter
+                                                        .getNodeByValueOfAtributFromSpecificList(typovespisy,
+                                                                                                 "ID",
+                                                                                                 ro_dmdid);
+                                            }
+                                            if (ro_type.equals("spis")) {
+                                                node_dmd_ro = ValuesGetter
+                                                        .getNodeByValueOfAtributFromSpecificList(spisy,
+                                                                                                 "ID",
+                                                                                                 ro_dmdid);
+                                            }
+                                            if (ro_type.equals("díl")) {
+                                                node_dmd_ro = ValuesGetter
+                                                        .getNodeByValueOfAtributFromSpecificList(dily,
+                                                                                                 "ID",
+                                                                                                 ro_dmdid);
+                                            }
+                                            if (ro_type.equals("dokument")) {
+                                                node_dmd_ro = ValuesGetter
+                                                        .getNodeByValueOfAtributFromSpecificList(metsParser
+                                                                .getDokumenty(),
+                                                                                                 "ID",
+                                                                                                 ro_dmdid);
+                                            }
+                                            if (ro_type.equals("komponenta")) {
+                                                node_dmd_ro = ValuesGetter
+                                                        .getNodeByValueOfAtributFromSpecificList(komponenty,
+                                                                                                 "ID",
+                                                                                                 ro_dmdid);
+                                            }
+                                            if (node_dmd_ro != null) {
+                                                if (!ValuesGetter.parentCheck(nodetype, ro_node_type)) {
+                                                    return nastavChybu("Element mets:div je špatně zatříděn. Neodpovídající rodičovský element.",
+                                                                       getMistoChyby(n_div) + " "
+                                                                               + getMistoChyby(rodic_div));
                                                 }
                                             } else
-                                                return nastavChybu("Nenalezen element tns:ZdrojID v sekci mets:amdSec.",
-                                                                   getMistoChyby(node_amd));
+                                                return nastavChybu("Nenalezen element v sekci mets:dmdSec s příslušným ID.",
+                                                                   getMistoChyby(rodic_div));
                                         } else
-                                            return nastavChybu("Nenalezen element tns:HodnotaID v sekci mets:amdSec.",
-                                                               getMistoChyby(node_amd));
+                                            return nastavChybu("Element <mets:div> nemá atribut TYPE.",
+                                                               getMistoChyby(rodic_div));
                                     } else
-                                        return nastavChybu("Nenalezen element v sekci mets:amdSec s příslušným ID.",
-                                                           getMistoChyby(n_div));
-                                } else
-                                    return nastavChybu("Nenalezen atribut zdroj elementu nsesss:Identifikator.",
-                                                       getMistoChyby(node_dmd));
+                                        return nastavChybu("Element <mets:div> nemá atribut DMDID.",
+                                                           getMistoChyby(rodic_div));
+                                }
                             } else
-                                return nastavChybu("Nenalezen element nsesss:Identifikator.", getMistoChyby(node_dmd));
+                                return nastavChybu("Nenalezen element tns:ZdrojID v sekci mets:amdSec.",
+                                                   getMistoChyby(node_amd));
                         } else
-                            return nastavChybu("Nenalezen element v sekci mets:dmdSec s příslušným ID.", getMistoChyby(
-                                                                                                                       n_div));
+                            return nastavChybu("Nenalezen element tns:HodnotaID v sekci mets:amdSec.",
+                                               getMistoChyby(node_amd));
                     } else
-                        return nastavChybu("Element <mets:div> nemá atribut TYPE.", getMistoChyby(n_div));
+                        return nastavChybu("Nenalezen element v sekci mets:amdSec s příslušným ID.",
+                                           getMistoChyby(n_div));
                 } else
-                    return nastavChybu("Element <mets:div> nemá atribut ADMID.", getMistoChyby(n_div));
+                    return nastavChybu("Nenalezen atribut zdroj elementu nsesss:Identifikator.",
+                                       getMistoChyby(node_dmd));
             } else
-                return nastavChybu("Element <mets:div> nemá atribut DMDID.", getMistoChyby(n_div));
+                return nastavChybu("Nenalezen element nsesss:Identifikator.", getMistoChyby(node_dmd));
         }
 
         if (pravidlo54_pocitadlo() != metsDiv.size()) {

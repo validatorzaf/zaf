@@ -218,17 +218,11 @@ public class ValuesGetter {
     }
     
     public static String getValueOfAttribut(Node node, String attributName) {
-        if(node == null) return null;
-        NamedNodeMap map = node.getAttributes();
-        if (map == null) return null;
-        Node atribut = map.getNamedItem(attributName);
-        if (atribut != null) {
-            String value = atribut.getNodeValue();
-            return value;
+        Node valueNode = getAttribut(node, attributName);
+        if (valueNode == null) {
+            return null;
         }
-        
-        return null;
-
+        return valueNode.getNodeValue();
     }
     
     public static boolean hasAttribut(Node node, String attributName) {
@@ -250,7 +244,9 @@ public class ValuesGetter {
     }
     
     public static Node getAttribut(Node node, String attributName) {
-        if (node == null) return null;
+        if (node == null) {
+            return null;
+        }
 
         NamedNodeMap atributy = node.getAttributes();
         if (atributy == null) {
@@ -263,17 +259,11 @@ public class ValuesGetter {
     }
 
     public static boolean hasAttributValue(Node node, String attributName, String value) {
-        Node atribut = getAttribut(node, attributName);
-
-        if (atribut == null) {
+        String hodnota = getValueOfAttribut(node, attributName);
+        if (hodnota == null) {
             return false;
         }
-
-        String hodnota = atribut.getNodeValue();
-        if(hodnota == null) return false;
-        boolean vysledek = value.equals(hodnota);
-
-        return vysledek;
+        return value.equals(hodnota);
     }
     
     public static boolean hasChildWithName(Node node, String childName) {
