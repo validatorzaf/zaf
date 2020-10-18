@@ -204,7 +204,7 @@
             </nsesss:Manipulace>
           </nsesss:EvidencniUdaje>
           <nsesss:Komponenty>
-            <nsesss:Komponenta ID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" poradi="1" druh="průvodní dopis" verze="1" forma_uchovani="originál">
+            <nsesss:Komponenta ID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" poradi="1" druh="průvodní dopis" verze="1" forma_uchovani="originál ve výstupním datovém formátu">
               <nsesss:EvidencniUdaje>
                 <nsesss:Identifikace>
                   <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.E">MP120B04D1FC</nsesss:Identifikator>
