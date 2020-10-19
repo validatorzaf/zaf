@@ -102,7 +102,7 @@ public class K04_JmennychProstoruXML
         }
 
         PravidloKontroly p = new PravidloKontroly(NS2, stav,
-                list_text_jmProstory[0],
+                list_text_jmProstory[1],
                 detailChyby,
                 obecnyPopisChyby, null,
                 "Bod 2.1. přílohy č. 3 NSESSS." // zdroj
