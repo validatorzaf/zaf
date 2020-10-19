@@ -15,7 +15,7 @@ public class Pravidlo72 extends K06PravidloBase {
         super(kontrola, Pravidlo72.OBS72,
                 "Pokud existuje jakýkoli element <nsesss:CasPouziti>, každý obsahuje atribut datum.",
                 "Chybí strojový zápis času opatření komponenty (počítačového souboru) elektronickým podpisem, elektronickou značkou nebo časovým razítkem.",
-                "§ 4 odst. 7 písm. d) vyhlášky č. 259/2012 Sb.");
+                "§ 4 odst. 7 písm. b) vyhlášky č. 259/2012 Sb.");
     }
 
     //OBSAHOVÁ č.72 Každý element <nsesss:CasPouziti> obsahuje atribut datum.",
