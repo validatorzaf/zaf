@@ -43,7 +43,7 @@ public class HelperString {
     }
     
     // upraví / a \ v cestě vždy na path separator.
-    public static String edit_path(String path){
+    public static String replaceSeparators(String path){
         String s = path;
         if(path.contains("\\")){
             s = path.replace("\\", File.separator);

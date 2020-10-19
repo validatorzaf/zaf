@@ -104,7 +104,7 @@ public class Pravidlo99  extends K06PravidloBase {
         if (!href.startsWith("komponenty")) {
             return true;
         }
-        href = HelperString.edit_path(href);
+        href = HelperString.replaceSeparators(href);
         String cestaKeKomponente = SIP_MAIN_helper.getCesta_komponenty(context.getSip())
                 .replaceFirst("komponenty", "") + href;
 

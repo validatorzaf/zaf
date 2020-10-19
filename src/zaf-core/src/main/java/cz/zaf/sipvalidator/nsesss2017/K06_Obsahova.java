@@ -25,6 +25,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.MimetypeDetector.MimeTypeResult;
+import cz.zaf.sipvalidator.nsesss2017.MimetypeDetector.MimeTypeResult.DetectionStatus;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo50;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo51;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo52;
@@ -1649,40 +1651,40 @@ public class K06_Obsahova
         if(nodeListMetsFile == null) return true;
         for (int i = 0; i < nodeListMetsFile.getLength(); i++){
             Node metsFile = nodeListMetsFile.item(i);
-            if(!ValuesGetter.hasAttribut(metsFile, "MIMETYPE")){
+
+            String mimeType = ValuesGetter.getValueOfAttribut(metsFile, JmenaElementu.METS_MIMETYPE); // application/pdf, text/plain
+            if (!HelperString.hasContent(mimeType)) {
                 return nastavChybu("Element <mets:file> nemá atribut MIMETYPE.", getMistoChyby(metsFile));
             }
-            String mimeType = ValuesGetter.getValueOfAttribut(metsFile, "MIMETYPE"); // application/pdf, text/plain
             Node flocat = ValuesGetter.getXChild(metsFile, "mets:FLocat");
             if(flocat == null){
                 return nastavChybu("Element <mets:file> nemá dětský element <mets:FLocat>.", getMistoChyby(metsFile));
             }
-            if(!ValuesGetter.hasAttribut(flocat, "xlink:href")){
-                return nastavChybu("Element <mets:FLocat> nemá atribut xlink:href.", getMistoChyby(flocat));
-            }
             
             String xlinkHref = ValuesGetter.getValueOfAttribut(flocat, "xlink:href"); // komponenty/jmenosouboru
-            xlinkHref = HelperString.edit_path(xlinkHref);
+            if (!HelperString.hasContent(xlinkHref)) {
+                return nastavChybu("Element <mets:FLocat> nemá atribut xlink:href.", getMistoChyby(flocat));
+            }
+            xlinkHref = HelperString.replaceSeparators(xlinkHref);
             //kvůli komponenty/
             int sep = xlinkHref.lastIndexOf(File.separator);
-            if(sep == -1) return nastavChybu("Element <mets:FLocat> má ve svém atributu xlink:href špatně uvedenou cestu ke komponentě: " + xlinkHref + ".", getMistoChyby(flocat));
+            if (sep == -1) {
+                return nastavChybu("Element <mets:FLocat> má ve svém atributu xlink:href špatně uvedenou cestu ke komponentě: "
+                        + xlinkHref + ".", getMistoChyby(flocat));
+            }
             String ko_over = xlinkHref.substring(0, sep);
             if(!ko_over.equals("komponenty")){
                 return nastavChybu("Element <mets:FLocat> má ve svém atributu xlink:href špatně uvedenou cestu ke komponentě: " + xlinkHref + ".", getMistoChyby(flocat));
             }
-//            String final_path;
-//            if(xlinkHref.contains("komponenty")){
-//                final_path = xlinkHref.replaceFirst("komponenty", "");
-//            }
-//            else{
-//               final_path = xlinkHref; 
-//            }
-            
-//            String cestaKeKomponente = sipSoubor.get_Package_Information().path_to_directory_komponenty.concat(File.separator + final_path);
             
             String cestaKeKomponente = SIP_MAIN_helper.getCesta_komponenty(sipSoubor);
             File file = new File(cestaKeKomponente);
-            file = new File(file.getParentFile().getAbsolutePath() + File.separator + xlinkHref);
+            File parentFile = file.getParentFile();
+            if (parentFile == null) {
+                throw new RuntimeException("Chyba při získání cesty k rodiči, cesta: " + cestaKeKomponente);
+            }
+
+            file = new File(parentFile.getAbsolutePath() + File.separator + xlinkHref);
             if(!file.exists()){
                 file = get_komponenta(file.getName());
                 if(file == null || !file.exists()){
@@ -1695,48 +1697,66 @@ public class K06_Obsahova
                         String g = xlinkHref.substring(s+1);
                         xlinkHref = g;
                     }
-                    return nastavChybu("Nenalezena příslušná komponenta ve složce komponenty.", "Chybí soubor: " + xlinkHref + ".");
+                    return nastavChybu("Nenalezena příslušná komponenta ve složce komponenty.",
+                                       "Chybí soubor: " + xlinkHref + ".");
                 }
             }  
-            boolean jeSpravnyMime = FileMyme_Checker.getCompareType(file, mimeType);
-            if(!jeSpravnyMime){
-                String file_content_type = FileMyme_Checker.mimetype;
+            MimeTypeResult detectedType = MimetypeDetector.getMimeType(file);
+            if (detectedType.getDetectionStatus() == DetectionStatus.FAILED) {
+                return nastavChybu("U komponenty s deklarovaným typem: " + mimeType + " došlo k selhání detekce typu: "
+                        + detectedType.getException(), "Soubor: " + file.getName() + ".");
+            }
+            String detectedMimeType = detectedType.getTikaMimetype();
+            if (StringUtils.isBlank(detectedMimeType)) {
+                return nastavChybu("U komponenty s deklarovaným typem: " + mimeType
+                        + " se nepodařilo typ správně detekovat.", "Soubor: " + file.getName() + ".");
+            }
+            if (!detectedType.isMimetype(mimeType)) {
                 // vyjimky sem
-                if(file_content_type.equals("application/x-zip-compressed") || file_content_type.equals("application/x-dbf") || file_content_type.equals("application/pkcs7-signature")){
+                if (detectedMimeType.equals("application/x-zip-compressed") ||
+                        detectedMimeType.equals("application/x-dbf") ||
+                        detectedMimeType.equals("application/pkcs7-signature")) {
                     // datová schránka
                     // application/vnd.software602.filler.form-xml-zip
-                    if(file_content_type.equals("application/pkcs7-signature")){
-                        if(!mimeType.equals("application/vnd.software602.filler.form-xml-zip")){
-							try (InputStreamReader input = new InputStreamReader(new FileInputStream(file));) {
-								BufferedReader reader = new BufferedReader(input);
-								boolean jedatovka = false;
-								while (!jedatovka && reader.readLine() != null) {
-									String line = reader.readLine();
-									if (line.contains("</q:dmHash><q:dmQTimestamp>")) {
-										jedatovka = true;
-										input.close();
-										reader.close();
-									}
-								}
-								if (!jedatovka)
-									return nastavChybu(
-											"Komponenta je soubor typu: " + file_content_type
-													+ ", ale její deklarovaný MIMETYPE je: " + mimeType
-													+ ". Nejedná se o soubor datové schránky",
-											"Soubor: " + file.getName() + ".");
-							}                            
+                    if (detectedMimeType.equals("application/pkcs7-signature")) {
+                        if (!mimeType.equals("application/vnd.software602.filler.form-xml-zip")) {
+                            try (InputStreamReader input = new InputStreamReader(new FileInputStream(file));) {
+                                BufferedReader reader = new BufferedReader(input);
+                                boolean jedatovka = false;
+                                while (!jedatovka && reader.readLine() != null) {
+                                    String line = reader.readLine();
+                                    if (line.contains("</q:dmHash><q:dmQTimestamp>")) {
+                                        jedatovka = true;
+                                        input.close();
+                                        reader.close();
+                                    }
+                                }
+                                if (!jedatovka)
+                                    return nastavChybu(
+                                                       "Komponenta je soubor typu: " + detectedMimeType
+                                                               + ", ale její deklarovaný MIMETYPE je: " + mimeType
+                                                               + ". Nejedná se o soubor datové schránky",
+                                                       "Soubor: " + file.getName() + ".");
+                            }
                         }
                     }
-                    if(file_content_type.equals("application/x-zip-compressed") && !mimeType.equals("application/zip")){
-                        return nastavChybu("Komponenta je soubor typu: " + file_content_type + ", ale její deklarovaný MIMETYPE je: " + mimeType + ".", "Soubor: " + file.getName() + ".");
+                    if (detectedMimeType.equals("application/x-zip-compressed") && !mimeType.equals(
+                                                                                                    "application/zip")) {
+                        return nastavChybu("Komponenta je soubor typu: " + detectedMimeType
+                                + ", ale její deklarovaný MIMETYPE je: " + mimeType + ".",
+                                           "Soubor: " + file.getName() + ".");
                     }
-                    
-                    if(file_content_type.equals("application/x-dbf") && !mimeType.equals("application/vnd.software602.filler.form-xml-zip")){
-                        return nastavChybu("Komponenta je soubor typu: " + file_content_type + ", ale její deklarovaný MIMETYPE je: " + mimeType + ".", "Soubor: " + file.getName() + ".");
+
+                    if (detectedMimeType.equals("application/x-dbf") &&
+                            !mimeType.equals("application/vnd.software602.filler.form-xml-zip")) {
+                        return nastavChybu("Komponenta je soubor typu: " + detectedMimeType
+                                + ", ale její deklarovaný MIMETYPE je: " + mimeType + ".", "Soubor: " + file.getName()
+                                        + ".");
                     }
-                }    
-                else{
-                    return nastavChybu("Komponenta je soubor typu: " + file_content_type + ", ale její deklarovaný MIMETYPE je: " + mimeType + ".", "Soubor: " + file.getName() + ".");
+                } else {
+                    return nastavChybu("Komponenta je soubor typu: " + detectedMimeType
+                            + ", ale její deklarovaný MIMETYPE je: " + mimeType + ".", "Soubor: " + file.getName()
+                                    + ".");
                 }
             }
         }
@@ -1779,7 +1799,7 @@ public class K06_Obsahova
                 return nastavChybu("Element <mets:FLocat> nemá atribut xlink:href.", getMistoChyby(flocat));
             }
             String xlinkHref = ValuesGetter.getValueOfAttribut(flocat, "xlink:href"); // komponenty/jmenosouboru
-            xlinkHref = HelperString.edit_path(xlinkHref);
+            xlinkHref = HelperString.replaceSeparators(xlinkHref);
             String cestaKeKomponente = SIP_MAIN_helper.getCesta_komponenty(sipSoubor);
             File komponenta = new File(cestaKeKomponente);
             komponenta = new File(komponenta.getParentFile().getAbsolutePath() + File.separator + xlinkHref);
@@ -1874,7 +1894,7 @@ public class K06_Obsahova
                 return nastavChybu("Element <mets:FLocat> neobsahuje atribut xlink:href.", getMistoChyby(flocat));
             }
             String xlinkHref = ValuesGetter.getValueOfAttribut(flocat, "xlink:href"); // komponenty/jmenosouboru
-            xlinkHref = HelperString.edit_path(xlinkHref);
+            xlinkHref = HelperString.replaceSeparators(xlinkHref);
             String cestaKeKomponente = SIP_MAIN_helper.getCesta_komponenty(sipSoubor);
             File file = new File(cestaKeKomponente);
             file = new File(file.getParentFile().getAbsolutePath() + File.separator + xlinkHref);

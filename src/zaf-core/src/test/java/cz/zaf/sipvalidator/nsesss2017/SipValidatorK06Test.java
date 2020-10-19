@@ -1676,6 +1676,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
                        new String[] {});
     }
 
+    @Test
     void testK06_61_01() {
         testPackageK06("61-chyba", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
@@ -1691,6 +1692,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
                        new String[] {});
     }
 
+    @Test
     void testK06_61a_01() {
         testPackageK06("61a-chyba", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,

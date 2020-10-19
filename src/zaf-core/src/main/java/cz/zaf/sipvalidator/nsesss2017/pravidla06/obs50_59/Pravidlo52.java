@@ -40,7 +40,7 @@ public class Pravidlo52 extends K06PravidloBase {
             if (!href.startsWith("komponenty")) {
                 return nastavChybu("Špatně uvedená relativní cesta ke komponentě.", node);
             }
-            href = HelperString.edit_path(href);
+            href = HelperString.replaceSeparators(href);
 
             String cestaKeKomponente = SIP_MAIN_helper.getCesta_komponenty(context.getSip()).replaceFirst("komponenty",
                                                                                                           "")
