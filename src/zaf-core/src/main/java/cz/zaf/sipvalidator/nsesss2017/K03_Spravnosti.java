@@ -27,7 +27,7 @@ import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 public class K03_Spravnosti
         extends KontrolaBase {
 
-    static final public String NAME = "kontrola správnosti xml";
+    static final public String NAME = "kontrola správnosti XML";
 
     static final public String WF1 = "wf1";
 
