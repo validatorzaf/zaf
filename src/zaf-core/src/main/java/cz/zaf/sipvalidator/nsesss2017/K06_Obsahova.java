@@ -506,7 +506,7 @@ public class K06_Obsahova
             detailChyby = "Nenalezen atribut OBJID kořenového elementu <mets:mets>.";
             mistoChyby = getMistoChyby(metsMets);
         } else
-        if (StringUtils.isBlank(ValuesGetter.getValueOfAttribut(metsMets, "OBJID"))) {
+        if (!HelperString.hasContent(ValuesGetter.getValueOfAttribut(metsMets, "OBJID"))) {
             detailChyby = "Atribut OBJID kořenového elementu <mets:mets> není vyplněn.";
             mistoChyby = getMistoChyby(metsMets);
         } else {
@@ -805,7 +805,7 @@ public class K06_Obsahova
         for(int i = 0; i < nodeList.getLength(); i++){
             Node node = nodeList.item(i);
             if(ValuesGetter.hasOnlyOneChild_ElementNode(node, "mets:name")){
-                if (StringUtils.isBlank(ValuesGetter.getXChild(node, "mets:name").getTextContent())) {
+                if (!HelperString.hasContent(ValuesGetter.getXChild(node, "mets:name").getTextContent())) {
                     pocitadlo2++;
                     ch += getMistoChyby(node) + " ";
                 }
