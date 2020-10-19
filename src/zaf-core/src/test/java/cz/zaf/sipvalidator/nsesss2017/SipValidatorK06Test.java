@@ -1,5 +1,6 @@
 package cz.zaf.sipvalidator.nsesss2017;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo50;
@@ -1705,6 +1706,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
                        new String[] {});
     }
 
+    @Test
     void testK06_62_01() {
         testPackageK06("62-chyba", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
@@ -1743,6 +1745,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
                        new String[] {});
     }
 
+    @Test
     void testK06_64_01() {
         testPackageK06("64-chyba1", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
@@ -1750,6 +1753,8 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
                        new String[] { Pravidlo64.OBS64 });
     }
 
+    @Test
+    @Disabled
     void testK06_64_02() {
         testPackageK06("64-chyba2", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
@@ -1781,6 +1786,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
                        new String[] {});
     }
 
+    @Test
     void testK06_65_01() {
         testPackageK06("65-chyba1", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
@@ -1788,6 +1794,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
                        new String[] { Pravidlo65.OBS65 });
     }
 
+    @Test
     void testK06_65_02() {
         testPackageK06("65-chyba2", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
@@ -1851,6 +1858,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
                        new String[] {});
     }
 
+    @Test
     void testK06_67_01() {
         testPackageK06("67-chyba", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
@@ -1866,6 +1874,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
                        new String[] {});
     }
 
+    @Test
     void testK06_68_01() {
         testPackageK06("68-chyba1", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
@@ -1873,6 +1882,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
                        new String[] { Pravidlo68.OBS68 });
     }
 
+    @Test
     void testK06_68_02() {
         testPackageK06("68-chyba2", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
