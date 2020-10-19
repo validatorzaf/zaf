@@ -38,8 +38,10 @@ class SipValidatorK01Test
     @Test
     void testK01_03() {
         testPackageK01("data1-chyba2.zip", LoadType.LT_ZIP, StavKontroly.CHYBA,
-                       new String[] { K01_DatoveStruktury.DATA1 },
-                       new String[] { K01_DatoveStruktury.DATA2 });
+                       new String[] {},
+                       new String[] {
+                               K01_DatoveStruktury.DATA1,
+                               K01_DatoveStruktury.DATA2 });
     }
 
     @Test
@@ -52,8 +54,9 @@ class SipValidatorK01Test
     @Test
     void testK01_05() {
         testPackageK01("data1-chyba4.zip", LoadType.LT_ZIP, StavKontroly.CHYBA,
-                       new String[] { K01_DatoveStruktury.DATA1 },
-                       new String[] { K01_DatoveStruktury.DATA2, K01_DatoveStruktury.DATA3 });
+                       null,
+                       new String[] { K01_DatoveStruktury.DATA1,
+                               K01_DatoveStruktury.DATA2, K01_DatoveStruktury.DATA3 });
     }
 
     @Test

@@ -87,12 +87,19 @@ public class SipInfo{
     private String sip_skznak = " - ", sip_sklhuta = " - ", sip_kodovani;    
     private String xsi_schemaLocation;
     
+    public enum LoadStatus {
+        OK,
+        ERR_UNZIP_FAILED,
+        ERR_ZIP_INCORRECT_STRUCTURE,
+        ERR_UNKNOWN
+    }
+
     /**
      * Priznak, zda byl datovy balicek nacten
      * 
      * false - deklarovany datovy format nebyl nacten
      */
-    private boolean loadGood = true;
+    final private LoadStatus loadStatus;
     
     /**
      * 
@@ -100,7 +107,8 @@ public class SipInfo{
      * @param sipPath Cesta k rozbalenemu SIPu nebo primy odkaz na metsXML
      */
     public SipInfo(final String name, final String nameZipFile, final LoadType loadType, 
-    		long lenght, final Path sipPath) {
+                   long lenght, final Path sipPath, final LoadStatus loadStatus) {
+        this.loadStatus = loadStatus;
         this.name = name;
         this.nameZipFile = nameZipFile;
         this.loadType = loadType;
@@ -113,15 +121,11 @@ public class SipInfo{
         seznam_kontrol.clear();
     }
     
-    public boolean getLoadGood(){
-        return loadGood;
+    public LoadStatus getLoadStatus() {
+        return loadStatus;
     }
-    
-    public void setLoadGood(boolean bol){
-        loadGood = bol;
-    }
-    
-    public LoadType getLoadType(){
+
+    public LoadType getLoadType() {
         return loadType;
     }
     

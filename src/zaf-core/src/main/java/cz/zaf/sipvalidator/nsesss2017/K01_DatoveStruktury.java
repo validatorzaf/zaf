@@ -79,11 +79,20 @@ public class K01_DatoveStruktury
             vypisChyby = "SIP balíček byl nahrán jako složka.";
             break;
         case LT_ZIP:
-            if (!file.getLoadGood()) {
-                vypisChyby = "Datový balíček SIP není soubor v datovém formátu ZIP (jeho MIME Content-type není application/zip).";
-            } else {
+            switch (file.getLoadStatus()) {
+            case ERR_ZIP_INCORRECT_STRUCTURE:
+                stav = true;
+                vypisChyby = "SIP balíček rozbalen, chybná struktura v ZIP souboru.";
+                break;
+            case OK:
                 stav = true;
                 vypisChyby = "SIP balíček nahrán ze souboru typu zip.";
+                break;
+            case ERR_UNKNOWN:
+            case ERR_UNZIP_FAILED:
+            default:
+                vypisChyby = "Datový balíček SIP není soubor v datovém formátu ZIP (jeho MIME Content-type není application/zip).";
+                break;
             }
             break;
         case LT_UNKNOWN:

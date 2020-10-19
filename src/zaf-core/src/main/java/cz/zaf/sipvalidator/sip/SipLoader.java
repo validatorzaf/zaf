@@ -13,6 +13,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.Validate;
 
 import cz.zaf.sipvalidator.helper.HelperTime;
+import cz.zaf.sipvalidator.sip.SipInfo.LoadStatus;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
@@ -21,6 +22,8 @@ import net.lingala.zip4j.model.FileHeader;
 public class SipLoader
 	implements AutoCloseable
 {
+    SipInfo.LoadStatus loadStatus = null;
+
 	LoadType loadType = LoadType.LT_UNKNOWN;
 	SipInfo sip;
 	Path sipPath;
@@ -82,16 +85,20 @@ public class SipLoader
 
 	private void loadSip(String inputPath) {		
 		detectLoadType(inputPath);
+
         // osetreni unzip
         if (loadType == LoadType.LT_ZIP) {
             unzipSip();
+        } else {
+            loadStatus = LoadStatus.OK;
         }
         long l = getSipLenght(sipPath);
-        sip = new SipInfo(sipName, sipZipFileName, loadType, l, sipPath);
-		//sipName, sipZilFileName, loadType, lenght, cesta)
+        sip = new SipInfo(sipName, sipZipFileName, loadType, l, sipPath, loadStatus);
 	}
 
     private void unzipSip() {
+        Validate.isTrue(loadStatus == null, "unzipSip can be called only once");
+
         Path workdirPath;
         if (workDir == null) {
             // throw new RuntimeException("Need to unzip file but workdir was not specified");
@@ -121,13 +128,18 @@ public class SipLoader
         this.pathForUnzip = pathForUnzip;
 
         Path newSipPath = unzipSip(sipZipPath, pathForUnzip);
-        if (newSipPath != null) {
-            // SIP byl rozbalen
-            sipPath = newSipPath;
-            // aktualizace jmena (bez .zip)
-            sipName = sipPath.getName(sipPath.getNameCount() - 1).toString();
+        if (newSipPath == null) {
+            // SIP nebyl rozbalen -> chyba
+            return;
         }
         
+        // SIP byl rozbalen
+        sipPath = newSipPath;
+        // aktualizace jmena (bez .zip)
+        sipName = sipPath.getName(sipPath.getNameCount() - 1).toString();
+
+        loadStatus = LoadStatus.OK;
+
     }
 
     /**
@@ -137,11 +149,14 @@ public class SipLoader
      * @param path_for_unzip
      * @return
      */
-    private static Path unzipSip(Path zipPath, Path pathForUnzip) {
+    private Path unzipSip(Path zipPath, Path pathForUnzip) {
+        Validate.isTrue(loadStatus == null, "unzipSip can be called only once");
+
         ZipFile zipFile = new ZipFile(zipPath.toFile());
         zipFile.setCharset(Charset.forName("IBM852")); // extrakce českých znaků
         boolean isvalidZipFile = zipFile.isValidZipFile();
         if (!isvalidZipFile) {
+            loadStatus = LoadStatus.ERR_UNZIP_FAILED;
             // invalid ZIP file
             return null;
         }
@@ -151,6 +166,7 @@ public class SipLoader
 
         boolean spravnaStrukturaZipu = obsahujePraveAdresar(zipFile, ocekavanejmeno);
         if (!spravnaStrukturaZipu) {
+            loadStatus = LoadStatus.ERR_ZIP_INCORRECT_STRUCTURE;
             return null;
         }
         try {
@@ -163,6 +179,7 @@ public class SipLoader
             }*/
             return rozbaleny;
         } catch (ZipException ex) {
+            loadStatus = LoadStatus.ERR_UNZIP_FAILED;
             return null;
         }
     }
