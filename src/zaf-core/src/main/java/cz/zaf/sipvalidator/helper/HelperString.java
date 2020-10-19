@@ -9,10 +9,33 @@ import java.io.File;
 
 /**
  *
- * @author m000xz006159
  */
 public class HelperString {
     
+    /**
+     * Kontrola, zda retezec obsahuje realna data
+     * 
+     * Kontrola, zda retezec nejsou jen whitespace
+     * 
+     * @param str
+     * @return
+     */
+    public static boolean hasContent(String str) {
+        if (str == null) {
+            return false;
+        }
+        for (int pos = 0; pos < str.length(); pos++) {
+            char ch = str.charAt(pos);
+            if (Character.isAlphabetic(ch)) {
+                return true;
+            }
+            if (Character.isDigit(ch)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static String replace_format_tags(String string){
         string = string.replaceAll("\n", "");
         string = string.replaceAll("\t", ""); 

@@ -1490,7 +1490,7 @@ public class K06_Obsahova
                 }
                 else{
                     String s = mnozstvi.getTextContent();
-                    if (StringUtils.isBlank(s)) {
+                    if (!HelperString.hasContent(s)) {
                         return nastavChybu("Element <nsesss:VytvoreneMnozstvi> obsahuje prázdnou hodnotu. Dokumentu " + getIdentifikatory(dokument) + ".", getMistoChyby(mnozstvi));
                     }
                 }

@@ -2,9 +2,9 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69;
 
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
@@ -51,7 +51,7 @@ public class Pravidlo61 extends K06PravidloBase {
                     String s = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Puvod",
                                                       "nsesss:DorucenyDokument", "nsesss:DoruceneMnozstvi")
                             .getTextContent();
-                    if (StringUtils.isBlank(s)) {
+                    if (!HelperString.hasContent(s)) {
                         return nastavChybu("Element <nsesss:DoruceneMnozstvi> obsahuje prázdnou hodnotu. Dokumentu "
                                 + kontrola.getIdentifikatory(dokument) + ".", dokument);
                     }

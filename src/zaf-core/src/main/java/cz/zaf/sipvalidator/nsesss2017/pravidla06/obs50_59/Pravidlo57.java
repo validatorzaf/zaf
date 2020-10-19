@@ -1,8 +1,8 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59;
 
-import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 
@@ -26,7 +26,7 @@ public class Pravidlo57 extends K06PravidloBase {
         for (int i = 0; i < metsParser.identifikatory.size(); i++) {
             Node identifikator = metsParser.identifikatory.get(i);
             String str = identifikator.getTextContent();
-            if (StringUtils.isBlank(str)) {
+            if (!HelperString.hasContent(str)) {
                 return nastavChybu("Element <nsesss:Identifikator> obsahuje prázdnou hodnotu. " + getJmenoIdentifikator(
                                                                                                                         identifikator),
                                    identifikator);

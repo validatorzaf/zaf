@@ -1,9 +1,9 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69;
 
-import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
@@ -43,7 +43,7 @@ public class Pravidlo63 extends K06PravidloBase {
                         return nastavChybu("Nenalezen povinný element <nsesss:Oduvodneni>. " + getJmenoIdentifikator(n),
                                            n);
                     }
-                    if (StringUtils.isBlank(oduvodneni.getTextContent())) {
+                    if (!HelperString.hasContent(oduvodneni.getTextContent())) {
                         //                        Node rodic = n.getParentNode().getParentNode();
                         //                        String g = "";
                         //                        if(rodic != null) {
@@ -75,7 +75,7 @@ public class Pravidlo63 extends K06PravidloBase {
                         return nastavChybu("Nenalezen povinný element <nsesss:Oduvodneni>. " + getJmenoIdentifikator(n),
                                            n);
                     }
-                    if (StringUtils.isBlank(oduvodneni.getTextContent())) {
+                    if (!HelperString.hasContent(oduvodneni.getTextContent())) {
                         //                        Node rodic = n.getParentNode().getParentNode();
                         //                        String g = "";
                         //                        if(rodic != null) {

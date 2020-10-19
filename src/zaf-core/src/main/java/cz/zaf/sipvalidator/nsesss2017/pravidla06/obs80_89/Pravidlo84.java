@@ -1,9 +1,9 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89;
 
-import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
@@ -38,7 +38,7 @@ public class Pravidlo84 extends K06PravidloBase {
                     return nastavChybu("Nenalezen element <nsesss:ObsahVyrizeni>. " + getJmenoIdentifikator(n),
                                       getMistoChyby(n));
                 }
-                if (StringUtils.isBlank(obs_vyr.getTextContent())) {
+                if (!HelperString.hasContent(obs_vyr.getTextContent())) {
                     return nastavChybu("Element <nsesss:ObsahVyrizeni> obsahuje prázdnou hodnotu. "
                             + getJmenoIdentifikator(n),
                                        getMistoChyby(obs_vyr));

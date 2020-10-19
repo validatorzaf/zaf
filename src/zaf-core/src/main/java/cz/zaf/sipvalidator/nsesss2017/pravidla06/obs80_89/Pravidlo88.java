@@ -3,9 +3,9 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
@@ -48,7 +48,7 @@ public class Pravidlo88 extends K06PravidloBase {
                             return nastavChybu("Nenalezen element <nsesss:OdeslaneMnozstvi>. "
                                     + getJmenoIdentifikator(dokument), getMistoChyby(dokument));
                         }
-                        if (StringUtils.isBlank(node.getTextContent())) {
+                        if (!HelperString.hasContent(node.getTextContent())) {
                             return nastavChybu("Element <nsesss:OdeslaneMnozstvi> obsahuje prázdnou hodnotu. "
                                     + getJmenoIdentifikator(dokument), getMistoChyby(node));
                         }

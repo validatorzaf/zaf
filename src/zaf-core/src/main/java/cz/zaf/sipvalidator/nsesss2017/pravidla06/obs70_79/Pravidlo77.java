@@ -2,9 +2,9 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79;
 
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
@@ -43,7 +43,7 @@ public class Pravidlo77 extends K06PravidloBase {
                         return nastavChybu("Nenalezen element <nsesss:Mnozstvi> základní entity. "
                                 + getJmenoIdentifikator(zakladnientita), getMistoChyby(zakladnientita));
                     }
-                    if (StringUtils.isBlank(mnozstvi.getTextContent())) {
+                    if (!HelperString.hasContent(mnozstvi.getTextContent())) {
                         return nastavChybu("Element <nsesss:Mnozstvi> obsahuje prázdnou hodnotu. "
                                 + getJmenoIdentifikator(zakladnientita), getMistoChyby(mnozstvi));
                     }
