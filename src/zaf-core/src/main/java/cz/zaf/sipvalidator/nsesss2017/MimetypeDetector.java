@@ -7,8 +7,6 @@ package cz.zaf.sipvalidator.nsesss2017;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URLConnection;
-import java.nio.file.Files;
 
 import org.apache.tika.Tika;
 
@@ -45,6 +43,17 @@ public class MimetypeDetector {
             this.tikaMimetype = tika;
             this.systemMimetype = fileUt;
             this.mimeTypeConnection = mimeTypeConnection;
+        }
+
+        public MimeTypeResult(String tika, String fileUt) {
+            detectionStatus = DetectionStatus.OK;
+            this.tikaMimetype = tika;
+            this.systemMimetype = fileUt;
+        }
+
+        public MimeTypeResult(String tika) {
+            detectionStatus = DetectionStatus.OK;
+            this.tikaMimetype = tika;
         }
 
         public DetectionStatus getDetectionStatus() {
@@ -100,8 +109,11 @@ public class MimetypeDetector {
         
         try {
             String tika = tikaInstance.detect(file.toPath());
+            /*
             String fileUt = Files.probeContentType(file.toPath());
+            */
 
+            /*
             String mimeTypes = null;
             URLConnection urlConnection = file.toURL().openConnection();
             try {
@@ -111,7 +123,8 @@ public class MimetypeDetector {
                     urlConnection.getInputStream().close();
                 }
             }
-            return new MimeTypeResult(tika, fileUt, mimeTypes);
+            */
+            return new MimeTypeResult(tika);
         } catch (IOException ex) {
             return new MimeTypeResult(ex);
         }

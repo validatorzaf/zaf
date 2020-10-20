@@ -2,15 +2,13 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
-import org.verapdf.core.EncryptedPdfException;
-import org.verapdf.core.ModelParsingException;
-import org.verapdf.core.ValidationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.verapdf.pdfa.Foundries;
 import org.verapdf.pdfa.PDFAParser;
 import org.verapdf.pdfa.PDFAValidator;
@@ -28,21 +26,23 @@ import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 
 // Obsahova 99
 // pdf dokument musi vyhovovat standardu Pdf/A
-public class Pravidlo99  extends K06PravidloBase {
-	
-	static final public String OBS99 = "obs99";
-	
-	static {
-		VeraGreenfieldFoundryProvider.initialise();
-	}
+public class Pravidlo99 extends K06PravidloBase {
 
-	public Pravidlo99(K06_Obsahova kontrola) {
-		super(kontrola, Pravidlo99.OBS99, "Pokud je soubor ve formátu pdf musí vyhovovat standardu Pdf/A",
-				"Chybný formát souboru", "§ 23 odst. 2 vyhlášky č. 259/2012 Sb.");
-	}
+    static Logger log = LoggerFactory.getLogger(Pravidlo99.class);
 
-	@Override
-	protected boolean kontrolaPravidla() {
+    static final public String OBS99 = "obs99";
+
+    static {
+        VeraGreenfieldFoundryProvider.initialise();
+    }
+
+    public Pravidlo99(K06_Obsahova kontrola) {
+        super(kontrola, Pravidlo99.OBS99, "Pokud je soubor ve formátu pdf musí vyhovovat standardu Pdf/A",
+                "Chybný formát souboru", "§ 23 odst. 2 vyhlášky č. 259/2012 Sb.");
+    }
+
+    @Override
+    protected boolean kontrolaPravidla() {
 
         // získání všech komponent ve výstupním datovém formátu
         NodeList komponenty = ValuesGetter.getAllAnywhere("nsesss:Komponenta", metsParser.getDocument());
@@ -64,12 +64,12 @@ public class Pravidlo99  extends K06PravidloBase {
             }
         }
 
-		NodeList nodeListFileGrp = ValuesGetter.getAllAnywhere("mets:fileGrp", metsParser.getDocument());
-		if (nodeListFileGrp==null) {
-			return true;
-		}
-		for(int fg=0;fg<nodeListFileGrp.getLength();fg++) {
-			Node fileGrpNode = nodeListFileGrp.item(fg);
+        NodeList nodeListFileGrp = ValuesGetter.getAllAnywhere("mets:fileGrp", metsParser.getDocument());
+        if (nodeListFileGrp == null) {
+            return true;
+        }
+        for (int fg = 0; fg < nodeListFileGrp.getLength(); fg++) {
+            Node fileGrpNode = nodeListFileGrp.item(fg);
             ArrayList<Node> fileNodes = ValuesGetter.getChildList(fileGrpNode, "mets:file");
             for (Node fileNode : fileNodes) {
                 // overeni ID, zda ma byt soubor kontrolovan
@@ -88,11 +88,11 @@ public class Pravidlo99  extends K06PravidloBase {
                     }
                 }
             }
-		}
+        }
 
         return true;
 
-	}
+    }
 
     private boolean checkPdfA(Node flocatNode) {
         if (!ValuesGetter.hasAttribut(flocatNode, "xlink:href")) {
@@ -110,19 +110,22 @@ public class Pravidlo99  extends K06PravidloBase {
 
         File file = new File(cestaKeKomponente);
         if (file.exists()) {
-            try (PDFAParser parser = Foundries.defaultInstance().createParser(
-                                                                              new FileInputStream(
-                                                                                      file))) {
-                PDFAValidator validator = Foundries.defaultInstance().createValidator(parser
-                        .getFlavour(), false);
-                ValidationResult result = validator.validate(parser);
-                if (!result.isCompliant()) {
-                    return nastavChybu("Komponenta neni ve formátu Pdf/A " + flocatNode,
-                                       getMistoChyby(flocatNode));
+            try {
+                try (PDFAParser parser = Foundries.defaultInstance().createParser(
+                                                                                  new FileInputStream(
+                                                                                          file))) {
+                    PDFAValidator validator = Foundries.defaultInstance().createValidator(parser
+                            .getFlavour(), false);
+                    ValidationResult result = validator.validate(parser);
+                    if (!result.isCompliant()) {
+                        return nastavChybu("Komponenta neni ve formátu Pdf/A " + flocatNode,
+                                           getMistoChyby(flocatNode));
+                    }
                 }
-            } catch (ModelParsingException | EncryptedPdfException | IOException
-                    | ValidationException e) {
-                return false;
+            } catch (Throwable e) {
+                log.error("Failed to validate PDF, exception: {}", e);
+                return nastavChybu("Formátu Pdf/A se nepodařilo ověřit u komponenty " + flocatNode,
+                                   getMistoChyby(flocatNode));
             }
         }
         return true;

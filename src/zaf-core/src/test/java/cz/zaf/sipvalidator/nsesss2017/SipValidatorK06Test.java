@@ -1058,6 +1058,15 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     }
 
     @Test
+    @Disabled
+    void testK06_45_OK11() {
+        testPackageK06("45-OK11", null,
+                       ProfilyValidace.PREJIMKA,
+                       new String[] { K06_Obsahova.OBS45 },
+                       new String[] {});
+    }
+
+    @Test
     void testK06_46_01() {
         testPackageK06("46-chyba1", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,

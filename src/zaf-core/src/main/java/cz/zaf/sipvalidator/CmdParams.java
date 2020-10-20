@@ -24,7 +24,7 @@ public class CmdParams {
         output.println("        3 = pro předávání dokumentů a jejich metadat do archivu");
         output.println(" -I|--id= Identifikátor prováděné kontroly");
         output.println(" -z|--hrozba= podrobnosti v případě nalezení hrozby (pro předání z antivirového programu)");
-        output.println(" -o|--output Jméno souboru nebo adresáře pro uložení výsledků");
+        output.println(" -o|--output= Jméno souboru nebo adresáře pro uložení výsledků");
     }
 
     String inputPath = System.getProperty("user.dir");
