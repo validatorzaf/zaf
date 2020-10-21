@@ -204,7 +204,8 @@
 				<executions>
 					<execution>
 						<id>copy-test-resource</id>
-						<phase>package</phase>
+						<!--<phase>package</phase>-->
+                        <phase>generate-sources</phase>
 						<goals>
 							<goal>testResources</goal>
 						</goals>
