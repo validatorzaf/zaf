@@ -1058,7 +1058,6 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     }
 
     @Test
-    @Disabled
     void testK06_45_OK11() {
         testPackageK06("45-OK11", null,
                        ProfilyValidace.PREJIMKA,

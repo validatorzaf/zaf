@@ -9,11 +9,6 @@ import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.verapdf.pdfa.Foundries;
-import org.verapdf.pdfa.PDFAParser;
-import org.verapdf.pdfa.PDFAValidator;
-import org.verapdf.pdfa.VeraGreenfieldFoundryProvider;
-import org.verapdf.pdfa.results.ValidationResult;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -22,6 +17,7 @@ import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
+import cz.zaf.sipvalidator.pdfa.VeraValidatorProxy;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 
 // Obsahova 99
@@ -32,9 +28,7 @@ public class Pravidlo99 extends K06PravidloBase {
 
     static final public String OBS99 = "obs99";
 
-    static {
-        VeraGreenfieldFoundryProvider.initialise();
-    }
+    VeraValidatorProxy veraValidatorProxy;
 
     public Pravidlo99(K06_Obsahova kontrola) {
         super(kontrola, Pravidlo99.OBS99, "Pokud je soubor ve formátu pdf musí vyhovovat standardu Pdf/A",
@@ -110,17 +104,14 @@ public class Pravidlo99 extends K06PravidloBase {
 
         File file = new File(cestaKeKomponente);
         if (file.exists()) {
-            try {
-                try (PDFAParser parser = Foundries.defaultInstance().createParser(
-                                                                                  new FileInputStream(
-                                                                                          file))) {
-                    PDFAValidator validator = Foundries.defaultInstance().createValidator(parser
-                            .getFlavour(), false);
-                    ValidationResult result = validator.validate(parser);
-                    if (!result.isCompliant()) {
-                        return nastavChybu("Komponenta neni ve formátu Pdf/A " + flocatNode,
-                                           getMistoChyby(flocatNode));
-                    }
+            try (FileInputStream fis = new FileInputStream(file)) {
+                if (veraValidatorProxy == null) {
+                    veraValidatorProxy = VeraValidatorProxy.init();
+                }
+                boolean isCompliant = veraValidatorProxy.validate(fis);
+                if (!isCompliant) {
+                    return nastavChybu("Komponenta neni ve formátu Pdf/A " + flocatNode,
+                                       getMistoChyby(flocatNode));
                 }
             } catch (Throwable e) {
                 log.error("Failed to validate PDF, exception: {}", e);
