@@ -11,6 +11,8 @@ import java.util.Comparator;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import cz.zaf.sipvalidator.helper.HelperTime;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadStatus;
@@ -22,6 +24,8 @@ import net.lingala.zip4j.model.FileHeader;
 public class SipLoader
 	implements AutoCloseable
 {
+    private static Logger log = LoggerFactory.getLogger(SipLoader.class);
+
     SipInfo.LoadStatus loadStatus = null;
 
 	LoadType loadType = LoadType.LT_UNKNOWN;
@@ -149,8 +153,10 @@ public class SipLoader
      * @param path_for_unzip
      * @return
      */
-    private Path unzipSip(Path zipPath, Path pathForUnzip) {
+    private Path unzipSip(final Path zipPath, Path pathForUnzip) {
         Validate.isTrue(loadStatus == null, "unzipSip can be called only once");
+
+        log.trace("Unzipping file: {}, workDir: {}", zipPath, pathForUnzip);
 
         ZipFile zipFile = new ZipFile(zipPath.toFile());
         zipFile.setCharset(Charset.forName("IBM852")); // extrakce českých znaků
@@ -158,6 +164,7 @@ public class SipLoader
         if (!isvalidZipFile) {
             loadStatus = LoadStatus.ERR_UNZIP_FAILED;
             // invalid ZIP file
+            log.info("File is not valid ZIP, fileName: {}", zipPath);
             return null;
         }
         // ocekavane jmeno je bez koncovky .ZIP
@@ -170,13 +177,8 @@ public class SipLoader
             return null;
         }
         try {
-            zipFile.setRunInThread(false);
             zipFile.extractAll(pathForUnzip.toString());
             Path rozbaleny = pathForUnzip.resolve(ocekavanejmeno);
-            //?? smysl
-            /*while(zipFile.getProgressMonitor().getPercentDone() == 100){
-                return rozbaleny;
-            }*/
             return rozbaleny;
         } catch (ZipException ex) {
             loadStatus = LoadStatus.ERR_UNZIP_FAILED;
@@ -191,16 +193,19 @@ public class SipLoader
      * @return
      */
     private static boolean obsahujePraveAdresar(ZipFile zipFile, String ocekavanejmeno) {
+        log.trace("Checking zip content, expected main directory: {}", ocekavanejmeno);
         try {
             ArrayList<FileHeader> list = (ArrayList<FileHeader>) zipFile.getFileHeaders();
             for (int i = 0; i < list.size(); i++) {
                 FileHeader fh = list.get(i);
                 String s = fh.getFileName();
                 if (!(s.contains(ocekavanejmeno + File.separator) || s.contains(ocekavanejmeno + "/"))) {
+                    log.info("Found unexpected content in zip: {}", s);
                     return false;
                 }
             }
         } catch (ZipException ex) {
+            log.error("Exception in ZIP library", ex);
             return false;
         }
 
