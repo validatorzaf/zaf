@@ -27,7 +27,7 @@ cache:
 Build project:
   stage: build
   script:
-    - export JAVA_HOME=/etc/alternatives/jre_11
+    - export JAVA_HOME=/etc/alternatives/jre_1.8.0
     - cd src
     - mvn $MAVEN_CLI_OPTS package
     - cd ..

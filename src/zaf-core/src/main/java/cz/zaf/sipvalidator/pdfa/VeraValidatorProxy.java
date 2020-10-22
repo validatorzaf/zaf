@@ -45,11 +45,12 @@ public class VeraValidatorProxy {
 
     static String jars[] = {
             "/verapdf/rhino.jar",
-            /*"/verapdf/javax-activation-api.jar",
+            "/verapdf/javax-activation.jar",
+            "/verapdf/javax-activation-api.jar",
             "/verapdf/stax-utils.jar",
             "/verapdf/jaxb-api.jar",
             "/verapdf/jaxb-impl.jar",
-            "/verapdf/jaxb-core.jar",*/
+            "/verapdf/jaxb-core.jar",
             "/verapdf/validation-model.jar",
             "/verapdf/core.jar",
             "/verapdf/feature-reporting.jar",
@@ -96,6 +97,10 @@ public class VeraValidatorProxy {
 
     public boolean validate(FileInputStream fis) throws Exception {
 
+        ClassLoader currentThreadClassLoader = Thread.currentThread().getContextClassLoader();
+        Thread.currentThread().setContextClassLoader(veraClsLoader);
+
+        try {
         Method defaultInstanceMethod = clsFoundries.getMethod("defaultInstance");
         Object objVeraPdfFoundry = defaultInstanceMethod.invoke(null);
 
@@ -123,6 +128,9 @@ public class VeraValidatorProxy {
             Boolean b = (Boolean) value;
             return b.booleanValue();
         }
+    } finally {
+        Thread.currentThread().setContextClassLoader(currentThreadClassLoader);
+    }
 
         //Method createValidatorMethod = clsVeraPDFFoundry.getMethod("createValidator");
 

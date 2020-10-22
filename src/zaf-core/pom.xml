@@ -209,6 +209,13 @@
 							<destFileName>verapdf-xmp-core.jar</destFileName>
 						</artifactItem>
 						<artifactItem>
+							<groupId>org.mozilla</groupId>
+							<artifactId>rhino</artifactId>
+							<version>1.7.11</version>
+							<type>jar</type>
+							<destFileName>rhino.jar</destFileName>
+						</artifactItem>						
+						<artifactItem>
 							<groupId>javax.xml.bind</groupId>
 							<artifactId>jaxb-api</artifactId>
 							<version>2.4.0-b180830.0359</version>
@@ -218,23 +225,10 @@
 						<artifactItem>
 							<groupId>com.sun.xml.bind</groupId>
 							<artifactId>jaxb-impl</artifactId>
-							<version>2.3.2</version>
+							<version>2.3.2</version>			
+							<!--  <version>2.4.0-b180830.0438</version>-->
 							<type>jar</type>
 							<destFileName>jaxb-impl.jar</destFileName>
-						</artifactItem>
-						<artifactItem>
-							<groupId>org.mozilla</groupId>
-							<artifactId>rhino</artifactId>
-							<version>1.7.11</version>
-							<type>jar</type>
-							<destFileName>rhino.jar</destFileName>
-						</artifactItem>
-						<artifactItem>
-							<groupId>com.sun.xml.bind</groupId>
-							<artifactId>jaxb-core</artifactId>
-							<version>2.3.0.1</version>
-							<type>jar</type>
-							<destFileName>rhino.jar</destFileName>
 						</artifactItem>
 						<artifactItem>
 							<groupId>com.sun.xml.bind</groupId>
@@ -249,6 +243,13 @@
 							<version>20070216</version>
 							<type>jar</type>
 							<destFileName>stax-utils.jar</destFileName>
+						</artifactItem>
+						<artifactItem>
+							<groupId>com.sun.activation</groupId>
+							<artifactId>javax.activation</artifactId>
+							<version>1.2.0</version>
+							<type>jar</type>
+							<destFileName>javax-activation.jar</destFileName>
 						</artifactItem>
 						<artifactItem>
 							<groupId>javax.activation</groupId>
