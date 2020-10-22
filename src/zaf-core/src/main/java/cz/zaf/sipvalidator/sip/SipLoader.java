@@ -199,7 +199,7 @@ public class SipLoader
             for (int i = 0; i < list.size(); i++) {
                 FileHeader fh = list.get(i);
                 String s = fh.getFileName();
-                if (!(s.contains(ocekavanejmeno + File.separator) || s.contains(ocekavanejmeno + "/"))) {
+                if (!(s.contains(ocekavanejmeno + "\\") || s.contains(ocekavanejmeno + "/"))) {
                     log.info("Found unexpected content in zip: {}", s);
                     return false;
                 }
