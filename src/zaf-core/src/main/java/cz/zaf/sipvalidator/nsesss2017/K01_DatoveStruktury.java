@@ -132,7 +132,7 @@ public class K01_DatoveStruktury
             }
             else{
                 vypisChyby = "Nahraný soubor typu zip neobsahoval očekávaný SIP balíček, očekávaná hodnota: "
-                        + bezKoncovky;
+                        + bezKoncovky + ", zjištěná hodnota:" + file.getName();
             }
         }
         else{
