@@ -19,6 +19,8 @@ import javax.xml.bind.JAXBException;
 import org.apache.commons.io.output.NullOutputStream;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.sip.PravidloKontroly;
@@ -35,6 +37,9 @@ import cz.zaf.sipvalidator.sip.VyslednyProtokol;
  *
  */
 public abstract class SipValidatorTestBase {
+
+    Logger log = LoggerFactory.getLogger(SipValidatorTestBase.class);
+
     static Path workDirPath;
 
     /**
@@ -79,6 +84,8 @@ public abstract class SipValidatorTestBase {
                      ProfilValidace profilValidace,
                      TypUrovenKontroly typUrovneKontroly,
                      StavKontroly stavKontroly, String[] pravidlaOk, String[] pravidlaChybna) {
+        log.debug("Loading SIP: {}, loadType: {}, urovenKontroly: {}", path, expLoadType, typUrovneKontroly);
+
         SipLoader sipLoader = loadSip(path, expLoadType);
         SipValidator sipValidator = new SipValidator(profilValidace);
         sipValidator.validate(sipLoader);
@@ -87,8 +94,22 @@ public abstract class SipValidatorTestBase {
         VysledekKontroly vysledek = sipInfo.getUrovenKontroly(typUrovneKontroly);
 
         if (stavKontroly != null) {
-            assertEquals(vysledek.getStavKontroly(), stavKontroly, () -> "SIP: " + path + ", Očekávaný stav: "
+            if (!vysledek.getStavKontroly().equals(stavKontroly)) {
+                // detail selhanych kontrol
+                if (vysledek.getStavKontroly() == StavKontroly.CHYBA) {
+                    // doslo k neocekavanemu selhani -> vypis selhanych
+                    for (String pravidloOk : pravidlaOk) {
+                        PravidloKontroly prav = vysledek.getPravidlo(pravidloOk);
+                        if (!prav.getStav()) {
+                            log.error("Chybujici pravidlo: {}, vypisChyby: {}, mistoChyby: {}", pravidloOk,
+                                      prav.getVypis_chyby(), prav.getMisto_chyby(), prav.getMisto_chyby());
+                        }
+                    }
+                }
+
+                fail(() -> "SIP: " + path + ", Očekávaný stav: "
                     + stavKontroly + ", výsledný stav: " + vysledek.getStavKontroly());
+            }
         }
 
         // overeni pravidel OK
