@@ -171,8 +171,6 @@
 							<artifactId>validation-model</artifactId>
 							<version>1.16.1</version>
 							<type>jar</type>
-							<overWrite>false</overWrite>
-							<outputDirectory>${project.build.directory}/verapdf</outputDirectory>
 							<destFileName>validation-model.jar</destFileName>
 						</artifactItem>
 						<artifactItem>
@@ -180,21 +178,87 @@
 							<artifactId>core</artifactId>
 							<version>1.16.1</version>
 							<type>jar</type>
-							<overWrite>false</overWrite>
-							<outputDirectory>${project.build.directory}/verapdf</outputDirectory>
 							<destFileName>core.jar</destFileName>
+						</artifactItem>
+						<artifactItem>
+							<groupId>org.verapdf</groupId>
+							<artifactId>feature-reporting</artifactId>
+							<version>1.16.1</version>
+							<type>jar</type>
+							<destFileName>feature-reporting.jar</destFileName>
+						</artifactItem>
+						<artifactItem>
+							<groupId>org.verapdf</groupId>
+							<artifactId>parser</artifactId>
+							<version>1.16.1</version>
+							<type>jar</type>
+							<destFileName>parser.jar</destFileName>
+						</artifactItem>
+						<artifactItem>
+							<groupId>org.verapdf</groupId>
+							<artifactId>metadata-fixer</artifactId>
+							<version>1.16.1</version>
+							<type>jar</type>
+							<destFileName>metadata-fixer.jar</destFileName>
 						</artifactItem>
 						<artifactItem>
 							<groupId>org.verapdf</groupId>
 							<artifactId>verapdf-xmp-core</artifactId>
 							<version>1.16.1</version>
 							<type>jar</type>
-							<overWrite>false</overWrite>
-							<outputDirectory>${project.build.directory}/verapdf</outputDirectory>
 							<destFileName>verapdf-xmp-core.jar</destFileName>
 						</artifactItem>
+						<artifactItem>
+							<groupId>javax.xml.bind</groupId>
+							<artifactId>jaxb-api</artifactId>
+							<version>2.4.0-b180830.0359</version>
+							<type>jar</type>
+							<destFileName>jaxb-api.jar</destFileName>
+						</artifactItem>
+						<artifactItem>
+							<groupId>com.sun.xml.bind</groupId>
+							<artifactId>jaxb-impl</artifactId>
+							<version>2.3.2</version>
+							<type>jar</type>
+							<destFileName>jaxb-impl.jar</destFileName>
+						</artifactItem>
+						<artifactItem>
+							<groupId>org.mozilla</groupId>
+							<artifactId>rhino</artifactId>
+							<version>1.7.11</version>
+							<type>jar</type>
+							<destFileName>rhino.jar</destFileName>
+						</artifactItem>
+						<artifactItem>
+							<groupId>com.sun.xml.bind</groupId>
+							<artifactId>jaxb-core</artifactId>
+							<version>2.3.0.1</version>
+							<type>jar</type>
+							<destFileName>rhino.jar</destFileName>
+						</artifactItem>
+						<artifactItem>
+							<groupId>com.sun.xml.bind</groupId>
+							<artifactId>jaxb-core</artifactId>
+							<version>2.3.0.1</version>
+							<type>jar</type>
+							<destFileName>jaxb-core.jar</destFileName>
+						</artifactItem>
+						<artifactItem>
+							<groupId>net.java.dev.stax-utils</groupId>
+							<artifactId>stax-utils</artifactId>
+							<version>20070216</version>
+							<type>jar</type>
+							<destFileName>stax-utils.jar</destFileName>
+						</artifactItem>
+						<artifactItem>
+							<groupId>javax.activation</groupId>
+							<artifactId>javax.activation-api</artifactId>
+							<version>1.2.0</version>
+							<type>jar</type>
+							<destFileName>javax-activation-api.jar</destFileName>
+						</artifactItem>
 					</artifactItems>
-					<outputDirectory>${project.build.directory}/deps</outputDirectory>
+					<outputDirectory>${project.build.directory}/verapdf</outputDirectory>
 					<overWriteReleases>false</overWriteReleases>
 					<overWriteSnapshots>true</overWriteSnapshots>
 				</configuration>

@@ -44,8 +44,17 @@ public class VeraValidatorProxy {
     }
 
     static String jars[] = {
+            "/verapdf/rhino.jar",
+            /*"/verapdf/javax-activation-api.jar",
+            "/verapdf/stax-utils.jar",
+            "/verapdf/jaxb-api.jar",
+            "/verapdf/jaxb-impl.jar",
+            "/verapdf/jaxb-core.jar",*/
             "/verapdf/validation-model.jar",
             "/verapdf/core.jar",
+            "/verapdf/feature-reporting.jar",
+            "/verapdf/parser.jar",
+            "/verapdf/metadata-fixer.jar",
             "/verapdf/verapdf-xmp-core.jar"
     };
 
