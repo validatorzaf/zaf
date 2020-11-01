@@ -1,145 +1,143 @@
 package cz.zaf.sipvalidator.pdfa;
 
-import java.io.Closeable;
-import java.io.FileInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.xeustechnologies.jcl.JarClassLoader;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
 
 public class VeraValidatorProxy {
 
-    static Logger log = LoggerFactory.getLogger(VeraValidatorProxy.class);
+    final static Logger log = LoggerFactory.getLogger(VeraValidatorProxy.class);
 
-    private ClassLoader veraClsLoader;
+    static VeraValidatorProxy instance = null;
 
-    private Class<?> clsFoundries;
+    private Path veraAppPath;
 
-    private Class<?> clsVeraPDFAFlavour;
+    private String javaBin;
 
-    private Class<?> clsVeraPDFFoundry;
+    final private ExecutorService executor = Executors.newSingleThreadExecutor();
 
-    private Class<?> clsPDFAParser;
+    final SAXParserFactory factory = SAXParserFactory.newInstance();
 
-    private Class<?> clsPDFAValidator;
-
-    private Class<?> clsValidationResult;
-
-    public VeraValidatorProxy(final ClassLoader clsLoader) throws ClassNotFoundException {
-        this.veraClsLoader = clsLoader;
-
-        // Init classes
-        this.clsFoundries = veraClsLoader.loadClass("org.verapdf.pdfa.Foundries");
-        this.clsVeraPDFAFlavour = veraClsLoader.loadClass("org.verapdf.pdfa.flavours.PDFAFlavour");
-        this.clsVeraPDFFoundry = veraClsLoader.loadClass("org.verapdf.pdfa.VeraPDFFoundry");
-        this.clsPDFAParser = veraClsLoader.loadClass("org.verapdf.pdfa.PDFAParser");
-        this.clsPDFAValidator = veraClsLoader.loadClass("org.verapdf.pdfa.PDFAValidator");
-        this.clsValidationResult = veraClsLoader.loadClass("org.verapdf.pdfa.results.ValidationResult");
+    private VeraValidatorProxy(final Path veraAppPath,
+                               final String javaBin) {
+        this.veraAppPath = veraAppPath;
+        this.javaBin = javaBin;
 
     }
 
-    static String jars[] = {
-            "/verapdf/rhino.jar",
-            "/verapdf/javax-activation.jar",
-            "/verapdf/javax-activation-api.jar",
-            "/verapdf/stax-utils.jar",
-            "/verapdf/jaxb-api.jar",
-            "/verapdf/jaxb-impl.jar",
-            "/verapdf/jaxb-core.jar",
-            "/verapdf/validation-model.jar",
-            "/verapdf/core.jar",
-            "/verapdf/feature-reporting.jar",
-            "/verapdf/parser.jar",
-            "/verapdf/metadata-fixer.jar",
-            "/verapdf/verapdf-xmp-core.jar"
-    };
+    static public VeraValidatorProxy init() throws IOException {
+        if (instance != null) {
+            return instance;
+        }
 
-    static public VeraValidatorProxy init() throws MalformedURLException,
-            ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException,
-            IllegalArgumentException, InvocationTargetException {
-        /*URL veraAppUrl = VeraValidatorProxy.class.getResource("/verapdf/greenfield-apps.jar");
-        if (veraAppUrl == null) {
+        InputStream veraAppStream = VeraValidatorProxy.class.getResourceAsStream("/verapdf/greenfield-apps.jar");
+        if (veraAppStream == null) {
             log.error("Failed to load verapdf from resources");
             throw new RuntimeException("Failed to load verapdf from resources");
-        }*/
-
-        JarClassLoader clsLoader = new JarClassLoader();
-        // load jars
-        for (String jar : jars) {
-            loadJar(clsLoader, jar);
         }
 
-        /*
-        URLClassLoader clsLoader = URLClassLoader.newInstance(new URL[] {
-                veraAppUrl
-        });
-        */
-        Class<?> cls = clsLoader.loadClass("org.verapdf.pdfa.VeraGreenfieldFoundryProvider");
-        Method initMethod = cls.getMethod("initialise");
-        initMethod.invoke(null);
+        // extract to temp directory
+        File greenFieldAppJar = File.createTempFile("zaf-greenfield-apps", ".jar");
+        greenFieldAppJar.deleteOnExit();
 
-        return new VeraValidatorProxy(clsLoader);
+        Path veraAppPath = greenFieldAppJar.toPath();
+
+        Files.copy(veraAppStream, veraAppPath, StandardCopyOption.REPLACE_EXISTING);
+
+        String javaHome = System.getProperty("java.home");
+        String javaBin = javaHome + File.separator + "bin" + File.separator + "java";
+
+        return new VeraValidatorProxy(veraAppPath, javaBin);
     }
 
-    private static void loadJar(JarClassLoader clsLoader, String jarPath) {
-        URL jarUrl = VeraValidatorProxy.class.getResource(jarPath);
-        if (jarUrl == null) {
-            log.error("Failed to load " + jarPath + " from resources");
-            throw new RuntimeException("Failed to load " + jarPath + " from resources");
-        }
-        clsLoader.add(jarUrl);
-    }
 
-    public boolean validate(FileInputStream fis) throws Exception {
+    public ValidationResult validate(Path pdfPath) {
+        
+        
+        ProcessBuilder pb = new ProcessBuilder(javaBin, "-classpath",
+                this.veraAppPath.toAbsolutePath().toString(),
+                "org.verapdf.apps.GreenfieldCliWrapper",
+                "--format", "xml",
+                pdfPath.toAbsolutePath().toString());
 
-        ClassLoader currentThreadClassLoader = Thread.currentThread().getContextClassLoader();
-        Thread.currentThread().setContextClassLoader(veraClsLoader);
+        pb.redirectErrorStream(true);
 
+        ValidationResult vr = new ValidationResult();
         try {
-        Method defaultInstanceMethod = clsFoundries.getMethod("defaultInstance");
-        Object objVeraPdfFoundry = defaultInstanceMethod.invoke(null);
+            final Process p = pb.start();
 
-        Method createParserMethod = clsVeraPDFFoundry.getMethod("createParser", InputStream.class);
-        Method createValidatorMethod = clsVeraPDFFoundry.getMethod("createValidator", clsVeraPDFAFlavour,
-                                                                   boolean.class);
-        Method getFlavourMethod = clsPDFAParser.getMethod("getFlavour");
-        Method validateMethod = clsPDFAValidator.getMethod("validate", clsPDFAParser);
-        Method isCompliantMethod = clsValidationResult.getMethod("isCompliant");
+            executor.execute(() -> {
+                try {
+                    String errorMsg = readOutput(p.getInputStream());
+                    if (errorMsg == null) {
+                        vr.setCompliant(true);
+                    } else {
+                        vr.setError(errorMsg);
+                    }
+                } catch (Exception e) {
+                    log.error("Failed to read validation result.", e);
+                    vr.setError("Výjimka při čtení výsledku ověření: " + e);
+                }
+            });
 
-        try (Closeable objParser = (Closeable) createParserMethod.invoke(objVeraPdfFoundry, fis);) {
-
-            // PDFAFlavour flavour = parser.getFlavour()
-            Object flavour = getFlavourMethod.invoke(objParser);
-
-            // PDFAValidator validator = veraPdfFoundry.createValidator(flavour, false);
-            Object validator = createValidatorMethod.invoke(objVeraPdfFoundry, flavour, false);
-
-            // ValidationResult result = validator.validate(parser);
-            Object result = validateMethod.invoke(validator, objParser);
-
-            // return result.isCompliant();
-            Object value = isCompliantMethod.invoke(result);
-
-            Boolean b = (Boolean) value;
-            return b.booleanValue();
+            if (!p.waitFor(5, TimeUnit.MINUTES)) {
+                p.destroy();
+                return vr;
+            }
+        } catch (IOException | InterruptedException e) {
+            log.error("Failed to run validator.", e);
+            vr.setError("Výjimka při ověření: " + e.toString());
         }
-    } finally {
-        Thread.currentThread().setContextClassLoader(currentThreadClassLoader);
+        return vr;
     }
 
-        //Method createValidatorMethod = clsVeraPDFFoundry.getMethod("createValidator");
+    private String readOutput(InputStream inputStream) throws IOException, ParserConfigurationException, SAXException {
+        SAXParser parser = factory.newSAXParser();
+        AtomicBoolean isCompliant = new AtomicBoolean();
+        final StringBuilder sb = new StringBuilder();
 
-        /*
-        try (PDFAParser parser = veraPdfFoundry.createParser(fis)) {
-            PDFAValidator validator = veraPdfFoundry.createValidator(parser.getFlavour(), false);
-            return validator.validate(parser);
-        }
-        */
+        parser.parse(inputStream, new DefaultHandler() {
+            @Override
+            public void startElement(String uri, String localName, String qName, Attributes attributes)
+                    throws SAXException {
+                if (qName.equals("validationResult")) {
+                    String isCompliantValue = attributes.getValue("isCompliant");
+                    if (isCompliantValue != null) {
+                        if (isCompliantValue.equals("true")) {
+                            isCompliant.set(true);
+                        } else {
+                            sb.append("Neodpovídá standardu: ");
+                            String flavourValue = attributes.getValue("flavour");
+                            if (flavourValue != null) {
+                                sb.append(flavourValue);
+                            } else {
+                                sb.append("neznámý");
+                            }
+                        }
+                    }
+                }
+                super.startElement(uri, localName, qName, attributes);
+            }
+        });
+
+        return isCompliant.get() ? null : sb.length() > 0 ? sb.toString() : "Nerozpoznaná chyba";
     }
 
 }

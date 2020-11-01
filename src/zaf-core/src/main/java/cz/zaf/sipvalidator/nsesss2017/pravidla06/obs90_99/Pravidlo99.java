@@ -1,7 +1,6 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,6 +16,7 @@ import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
+import cz.zaf.sipvalidator.pdfa.ValidationResult;
 import cz.zaf.sipvalidator.pdfa.VeraValidatorProxy;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 
@@ -104,13 +104,14 @@ public class Pravidlo99 extends K06PravidloBase {
 
         File file = new File(cestaKeKomponente);
         if (file.exists()) {
-            try (FileInputStream fis = new FileInputStream(file)) {
+            try {
                 if (veraValidatorProxy == null) {
                     veraValidatorProxy = VeraValidatorProxy.init();
                 }
-                boolean isCompliant = veraValidatorProxy.validate(fis);
-                if (!isCompliant) {
-                    return nastavChybu("Komponenta neni ve formátu Pdf/A " + flocatNode,
+                ValidationResult vr = veraValidatorProxy.validate(file.toPath());
+                if (!vr.isCompliant()) {
+                    return nastavChybu("Komponenta neni ve formátu Pdf/A " + flocatNode +
+                            ", detail: " + vr.getErrorMessage(),
                                        getMistoChyby(flocatNode));
                 }
             } catch (Throwable e) {

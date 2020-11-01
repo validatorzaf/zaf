@@ -52,22 +52,6 @@
 			<version>2.0.21</version>
 		</dependency>
 		<dependency>
-			<groupId>org.verapdf</groupId>
-			<artifactId>validation-model</artifactId>
-			<version>1.16.1</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.verapdf</groupId>
-					<artifactId>verapdf-xmp-core</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.xeustechnologies</groupId>
-			<artifactId>jcl-core</artifactId>
-			<version>2.8</version>
-		</dependency>
-		<dependency>
 			<groupId>org.apache.tika</groupId>
 			<artifactId>tika-parsers</artifactId>
 		</dependency>
@@ -167,96 +151,11 @@
 				<configuration>
 					<artifactItems>
 						<artifactItem>
-							<groupId>org.verapdf</groupId>
-							<artifactId>validation-model</artifactId>
-							<version>1.16.1</version>
+ <groupId>org.verapdf.apps</groupId>
+  <artifactId>greenfield-apps</artifactId>
+  <version>1.16.1</version>
 							<type>jar</type>
-							<destFileName>validation-model.jar</destFileName>
-						</artifactItem>
-						<artifactItem>
-							<groupId>org.verapdf</groupId>
-							<artifactId>core</artifactId>
-							<version>1.16.1</version>
-							<type>jar</type>
-							<destFileName>core.jar</destFileName>
-						</artifactItem>
-						<artifactItem>
-							<groupId>org.verapdf</groupId>
-							<artifactId>feature-reporting</artifactId>
-							<version>1.16.1</version>
-							<type>jar</type>
-							<destFileName>feature-reporting.jar</destFileName>
-						</artifactItem>
-						<artifactItem>
-							<groupId>org.verapdf</groupId>
-							<artifactId>parser</artifactId>
-							<version>1.16.1</version>
-							<type>jar</type>
-							<destFileName>parser.jar</destFileName>
-						</artifactItem>
-						<artifactItem>
-							<groupId>org.verapdf</groupId>
-							<artifactId>metadata-fixer</artifactId>
-							<version>1.16.1</version>
-							<type>jar</type>
-							<destFileName>metadata-fixer.jar</destFileName>
-						</artifactItem>
-						<artifactItem>
-							<groupId>org.verapdf</groupId>
-							<artifactId>verapdf-xmp-core</artifactId>
-							<version>1.16.1</version>
-							<type>jar</type>
-							<destFileName>verapdf-xmp-core.jar</destFileName>
-						</artifactItem>
-						<artifactItem>
-							<groupId>org.mozilla</groupId>
-							<artifactId>rhino</artifactId>
-							<version>1.7.11</version>
-							<type>jar</type>
-							<destFileName>rhino.jar</destFileName>
-						</artifactItem>						
-						<artifactItem>
-							<groupId>javax.xml.bind</groupId>
-							<artifactId>jaxb-api</artifactId>
-							<version>2.4.0-b180830.0359</version>
-							<type>jar</type>
-							<destFileName>jaxb-api.jar</destFileName>
-						</artifactItem>
-						<artifactItem>
-							<groupId>com.sun.xml.bind</groupId>
-							<artifactId>jaxb-impl</artifactId>
-							<version>2.3.2</version>			
-							<!--  <version>2.4.0-b180830.0438</version>-->
-							<type>jar</type>
-							<destFileName>jaxb-impl.jar</destFileName>
-						</artifactItem>
-						<artifactItem>
-							<groupId>com.sun.xml.bind</groupId>
-							<artifactId>jaxb-core</artifactId>
-							<version>2.3.0.1</version>
-							<type>jar</type>
-							<destFileName>jaxb-core.jar</destFileName>
-						</artifactItem>
-						<artifactItem>
-							<groupId>net.java.dev.stax-utils</groupId>
-							<artifactId>stax-utils</artifactId>
-							<version>20070216</version>
-							<type>jar</type>
-							<destFileName>stax-utils.jar</destFileName>
-						</artifactItem>
-						<artifactItem>
-							<groupId>com.sun.activation</groupId>
-							<artifactId>javax.activation</artifactId>
-							<version>1.2.0</version>
-							<type>jar</type>
-							<destFileName>javax-activation.jar</destFileName>
-						</artifactItem>
-						<artifactItem>
-							<groupId>javax.activation</groupId>
-							<artifactId>javax.activation-api</artifactId>
-							<version>1.2.0</version>
-							<type>jar</type>
-							<destFileName>javax-activation-api.jar</destFileName>
+							<destFileName>greenfield-apps.jar</destFileName>
 						</artifactItem>
 					</artifactItems>
 					<outputDirectory>${project.build.directory}/verapdf</outputDirectory>

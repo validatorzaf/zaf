@@ -13,6 +13,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Comparator;
+import java.util.logging.Handler;
+import java.util.logging.Level;
 
 import javax.xml.bind.JAXBException;
 
@@ -21,6 +23,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.bridge.SLF4JBridgeHandler;
 
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.sip.PravidloKontroly;
@@ -41,6 +44,21 @@ public abstract class SipValidatorTestBase {
     Logger log = LoggerFactory.getLogger(SipValidatorTestBase.class);
 
     static Path workDirPath;
+
+    static {
+        // Optionally remove existing handlers attached to j.u.l root logger
+        SLF4JBridgeHandler.removeHandlersForRootLogger();  // (since SLF4J 1.6.5)
+
+        // add SLF4JBridgeHandler to j.u.l's root logger, should be done once during
+        // the initialization phase of your application
+        SLF4JBridgeHandler.install();
+
+        java.util.logging.Logger root = java.util.logging.Logger.getLogger("");
+        root.setLevel(Level.ALL);
+        for (Handler handler : root.getHandlers()) {
+            handler.setLevel(Level.ALL);
+        }
+    }
 
     /**
      * 
