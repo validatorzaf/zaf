@@ -2,7 +2,10 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
@@ -44,11 +47,41 @@ public class Pravidlo99 extends K06PravidloBase {
             return true;
         }
 
-        Set<String> checkFiles = new HashSet<>();
+        Map<Node, Map<Integer, Node>> kandidati = new HashMap<>();
         for (int ki = 0; ki < komponenty.getLength(); ki++) {
             Node komponenta = komponenty.item(ki);
             String formaUchovani = ValuesGetter.getValueOfAttribut(komponenta, JmenaElementu.FORMA_UCHOVANI);
-            if (JmenaElementu.FORMA_UCHOVANI_ORIGINAL_VE_VYST_DAT_FORMATU.equals(formaUchovani)) {
+
+            // posuzujeme jen original a original ve vystupnim formatu
+            if (!JmenaElementu.FORMA_UCHOVANI_ORIGINAL_VE_VYST_DAT_FORMATU.equals(formaUchovani) &&
+                    !JmenaElementu.FORMA_UCHOVANI_ORIGINAL.equals(formaUchovani))
+                continue;
+
+            // nalezeni/pridani mapy k rodici
+            Node parent = komponenta.getParentNode();
+            Map<Integer, Node> mapaPoradi = kandidati.get(parent);
+            if (mapaPoradi == null) {
+                mapaPoradi = new HashMap<>();
+                kandidati.put(parent, mapaPoradi);
+            }
+
+            String poradiKomponentyStr = ValuesGetter.getValueOfAttribut(komponenta, JmenaElementu.PORADI);
+            Integer poradiKomponeta = Integer.valueOf(poradiKomponentyStr);
+            Node kandidat = mapaPoradi.get(poradiKomponeta);
+
+            if (kandidat == null) {
+                mapaPoradi.put(poradiKomponeta, komponenta);
+            } else {
+                // stavajici verze
+                if (isVyssiVerze(kandidat, komponenta)) {
+                    mapaPoradi.put(poradiKomponeta, komponenta);
+                }
+            }
+        }
+        // priprava mapy souboru
+        Set<String> checkFiles = new HashSet<>();
+        for (Map<Integer, Node> komponentyDlePoradi : kandidati.values()) {
+            for (Node komponenta : komponentyDlePoradi.values()) {
                 String id = ValuesGetter.getValueOfAttribut(komponenta, JmenaElementu.ID);
                 if (StringUtils.isEmpty(id)) {
                     return nastavChybu("Komponenta neni ve formátu Pdf/A (chybí atribut ID) " + komponenta,
@@ -86,6 +119,26 @@ public class Pravidlo99 extends K06PravidloBase {
 
         return true;
 
+    }
+
+    private boolean isVyssiVerze(Node puvodniKomp, Node novaKomp) {
+        String formaUchovaniOrig = ValuesGetter.getValueOfAttribut(puvodniKomp, JmenaElementu.FORMA_UCHOVANI);
+        String formaUchovaniNovy = ValuesGetter.getValueOfAttribut(novaKomp, JmenaElementu.FORMA_UCHOVANI);
+        if (Objects.equals(formaUchovaniOrig, formaUchovaniNovy)) {
+            // shodny typ -> nutne porovnat verze
+            Integer verzeOrig = ValuesGetter.getAttribute(puvodniKomp, JmenaElementu.VERZE);
+            Integer verzeNovy = ValuesGetter.getAttribute(novaKomp, JmenaElementu.VERZE);
+            return (verzeNovy > verzeOrig);
+        }
+        if(JmenaElementu.FORMA_UCHOVANI_ORIGINAL_VE_VYST_DAT_FORMATU.equals(formaUchovaniOrig)) {
+            // orig je ve vystupnim formatu -> nova nemuze byt lepsi
+            return false;
+        }
+        if(JmenaElementu.FORMA_UCHOVANI_ORIGINAL_VE_VYST_DAT_FORMATU.equals(novaKomp)) {
+            return true;
+        }
+        // Toto by nemelo nastat
+        return false;
     }
 
     private boolean checkPdfA(Node flocatNode) {

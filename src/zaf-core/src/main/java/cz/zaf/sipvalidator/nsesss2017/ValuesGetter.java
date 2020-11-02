@@ -225,6 +225,15 @@ public class ValuesGetter {
         return valueNode.getNodeValue();
     }
     
+    public static Integer getAttribute(Node node, String attrName) {
+        Node valueNode = getAttribut(node, attrName);
+        if (valueNode == null) {
+            return null;
+        }
+        String str = valueNode.getNodeValue();
+        return Integer.valueOf(str);
+    }
+
     public static boolean hasAttribut(Node node, String attributName) {
         if(node == null) return false;
         Node attribut = getAttribut(node, attributName);
