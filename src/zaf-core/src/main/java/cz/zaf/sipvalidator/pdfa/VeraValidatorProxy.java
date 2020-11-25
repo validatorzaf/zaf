@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -83,6 +84,7 @@ public class VeraValidatorProxy {
         try {
             final Process p = pb.start();
 
+            final CountDownLatch cdt = new CountDownLatch(1);
             executor.execute(() -> {
                 try {
                     String errorMsg = readOutput(p.getInputStream());
@@ -94,12 +96,18 @@ public class VeraValidatorProxy {
                 } catch (Exception e) {
                     log.error("Failed to read validation result.", e);
                     vr.setError("Výjimka při čtení výsledku ověření: " + e);
+                } finally {
+                    cdt.countDown();
                 }
             });
 
             if (!p.waitFor(5, TimeUnit.MINUTES)) {
                 p.destroy();
                 return vr;
+            }
+            // wait to read results
+            if (!cdt.await(5, TimeUnit.MINUTES)) {
+                log.error("Failed to read results, timeout");
             }
         } catch (IOException | InterruptedException e) {
             log.error("Failed to run validator.", e);
