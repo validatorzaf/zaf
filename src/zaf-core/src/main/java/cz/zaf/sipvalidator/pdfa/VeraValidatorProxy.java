@@ -43,11 +43,22 @@ public class VeraValidatorProxy {
 
     }
 
-    static public VeraValidatorProxy init() throws IOException {
+    synchronized static public void destroy() {
+        if (instance != null) {
+            log.debug("Terminating VeraValidatorProxy");
+            try {
+                instance.executor.shutdownNow();
+            } finally {
+                instance = null;
+            }
+        }
+    }
+
+    synchronized static public VeraValidatorProxy init() throws IOException {
         if (instance != null) {
             return instance;
         }
-
+        log.debug("Starting VeraValidatorProxy");
         InputStream veraAppStream = VeraValidatorProxy.class.getResourceAsStream("/verapdf/greenfield-apps.jar");
         if (veraAppStream == null) {
             log.error("Failed to load verapdf from resources");
@@ -65,7 +76,8 @@ public class VeraValidatorProxy {
         String javaHome = System.getProperty("java.home");
         String javaBin = javaHome + File.separator + "bin" + File.separator + "java";
 
-        return new VeraValidatorProxy(veraAppPath, javaBin);
+        instance = new VeraValidatorProxy(veraAppPath, javaBin);
+        return instance;
     }
 
 

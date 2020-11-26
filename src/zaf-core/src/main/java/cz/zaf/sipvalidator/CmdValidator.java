@@ -11,6 +11,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import cz.zaf.sipvalidator.nsesss2017.SipValidator;
+import cz.zaf.sipvalidator.pdfa.VeraValidatorProxy;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipLoader;
 import cz.zaf.sipvalidator.sip.VyslednyProtokol;
@@ -47,6 +48,9 @@ public class CmdValidator {
             System.err.println("Failed to run: " + e.toString());
             System.exit(ERR_FAILED);
             return;
+        } finally {
+            // cleanup Vera
+            VeraValidatorProxy.destroy();
         }
     }
 
