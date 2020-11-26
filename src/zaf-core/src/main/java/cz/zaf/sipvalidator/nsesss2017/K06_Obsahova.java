@@ -2004,6 +2004,11 @@ public class K06_Obsahova
     private void provedKontrolu(int j) {
         String idPravidla = getIDpravidla(j);
 
+        // skip excluded checks
+        if (ctx.isExcluded(idPravidla)) {
+            return;
+        }
+
         // novy zpusob volani kontrol
         Runnable metodaKontroly = kontroly.get(idPravidla);
         if (metodaKontroly != null) {

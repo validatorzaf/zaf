@@ -18,9 +18,6 @@ import cz.zaf.sipvalidator.sip.UrovenKontroly;
 public class SipValidator {
 
     static private Logger log = LoggerFactory.getLogger(SipValidator.class);
-
-    private SipLoader sipLoader;
-    private ProfilValidace profilValidace;
     
     private MetsParser metsParser;
 
@@ -29,9 +26,15 @@ public class SipValidator {
     final List<UrovenKontroly<KontrolaNsess2017Context>> kontroly;
     private KontrolaNsess2017Context ctx;
 
-    public SipValidator(final ProfilValidace profilValidace) {
-        this.profilValidace = profilValidace;
+    /**
+     * Seznam kontrol k vynechani
+     */
+    private List<String> excludeChecks;
+
+    public SipValidator(final ProfilValidace profilValidace,
+                        final List<String> excludeChecks) {
         this.kontroly = pripravKontroly(profilValidace.getObsahoveKontroly());
+        this.excludeChecks = excludeChecks;
     }
 
     /**
@@ -78,7 +81,6 @@ public class SipValidator {
     }
 
     public void validate(SipLoader sipLoader) {
-        this.sipLoader = sipLoader;
         
         metsParser = new MetsParser();
         metsParser.parse(sipLoader);
@@ -88,7 +90,7 @@ public class SipValidator {
         UrovenKontroly<KontrolaNsess2017Context> aktivniKontrola = null;
         try {
             // provedeni kontrol
-            ctx = new KontrolaNsess2017Context(metsParser, sip);
+            ctx = new KontrolaNsess2017Context(metsParser, sip, excludeChecks);
             for (UrovenKontroly<KontrolaNsess2017Context> kontrola : kontroly) {
                 aktivniKontrola = kontrola;
                 kontrola.provedKontrolu(ctx);

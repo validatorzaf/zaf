@@ -1,6 +1,8 @@
 package cz.zaf.sipvalidator;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilyValidace;
@@ -22,6 +24,7 @@ public class CmdParams {
         output.println("        1 = pro provedení skartačního řízení (jen metadata bez přiložených komponent)");
         output.println("        2 = pro provedení skartačního řízení (s přiloženými komponentami)");
         output.println("        3 = pro předávání dokumentů a jejich metadat do archivu");
+        output.println(" -e|--exclude= Seznam kontrol oddělených čárkou, které se nemají provádět");
         output.println(" -I|--id= Identifikátor prováděné kontroly");
         output.println(" -z|--hrozba= podrobnosti v případě nalezení hrozby (pro předání z antivirového programu)");
         output.println(" -o|--output= Jméno souboru nebo adresáře pro uložení výsledků");
@@ -63,6 +66,11 @@ public class CmdParams {
      */
     private String idKontroly;
 
+    /**
+     * Seznam kontrol, ktere se nemaji provadet
+     */
+    final private List<String> excludeChecks = new ArrayList<>();
+
     public String getIdKontroly() {
         return idKontroly;
     }
@@ -83,6 +91,10 @@ public class CmdParams {
 
     public ProfilValidace getProfilValidace() {
         return profilValidace;
+    }
+
+    public List<String> getExcludeChecks() {
+        return excludeChecks;
     }
 
     public String getHrozba() {
@@ -147,9 +159,15 @@ public class CmdParams {
                 if (!readOutput(arg.substring(9))) {
                     return false;
                 }
+            } else if (arg.equals("-e")) {
+                if (!readE()) {
+                    return false;
+                }
+            } else if (arg.startsWith("--exclude=")) {
+                if (!readExclude(arg.substring(10))) {
+                    return false;
+                }
             } else {
-                //System.out.println("Uregcognized parameter (" + pos + "): " + arg);
-                //return false;
                 inputPath = arg;
             }
             pos++;
@@ -193,6 +211,31 @@ public class CmdParams {
         }
         String arg = args[pos];
         return readOutput(arg);
+    }
+
+    private boolean readExclude(String arg) {
+        if (arg.length() == 0) {
+            System.out.println("Missing excluded rules");
+            return false;
+        }
+        String[] excluded = arg.split(",");
+        for (String e : excluded) {
+            e = e.trim();
+            if (e.length() > 0) {
+                excludeChecks.add(e);
+            }
+        }
+        return true;
+    }
+
+    private boolean readE() {
+        pos++;
+        if (pos == args.length) {
+            System.out.println("Missing excluded rules");
+            return false;
+        }
+        String arg = args[pos];
+        return readExclude(arg);
     }
 
     private boolean readZ() {

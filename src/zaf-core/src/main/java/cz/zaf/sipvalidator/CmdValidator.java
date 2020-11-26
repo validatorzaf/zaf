@@ -74,7 +74,7 @@ public class CmdValidator {
         SipLoader sipLoader = new SipLoader(sipPath,
                 cmdParams.getWorkDir());
 
-        SipValidator sipValidator = new SipValidator(cmdParams.getProfilValidace());
+        SipValidator sipValidator = new SipValidator(cmdParams.getProfilValidace(), cmdParams.getExcludeChecks());
         sipValidator.setHrozba(cmdParams.getHrozba());
         sipValidator.validate(sipLoader);
         

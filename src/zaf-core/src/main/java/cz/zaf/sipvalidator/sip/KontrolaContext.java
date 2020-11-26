@@ -1,6 +1,9 @@
 package cz.zaf.sipvalidator.sip;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Kontext provadene kontroly
@@ -13,14 +16,24 @@ public class KontrolaContext {
 	 */
 	final protected SipInfo sip;
 	
-	public KontrolaContext(final SipInfo sip) {
+    /**
+     * Seznam ignorovanych kontrol
+     */
+    final Set<String> excludeChecks = new HashSet<>();
+
+    public KontrolaContext(final SipInfo sip, final List<String> excludeCheckList) {
 		this.sip = sip;
+        this.excludeChecks.addAll(excludeCheckList);
 	}
 
 	public void pridejKontrolu(VysledekKontroly k) {
 
 		sip.pridejKontrolu(k);		
 		
+    }
+
+    public boolean isExcluded(String checkId) {
+        return excludeChecks.contains(checkId);
     }
 
 	/**

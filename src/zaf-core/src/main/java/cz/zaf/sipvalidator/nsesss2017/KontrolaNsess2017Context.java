@@ -1,6 +1,7 @@
 package cz.zaf.sipvalidator.nsesss2017;
 
 import java.io.File;
+import java.util.List;
 
 import org.w3c.dom.Document;
 
@@ -11,8 +12,8 @@ public class KontrolaNsess2017Context extends KontrolaContext {
 
     final MetsParser metsParser;
 
-    public KontrolaNsess2017Context(MetsParser mp, SipInfo sip) {
-        super(sip);
+    public KontrolaNsess2017Context(MetsParser mp, SipInfo sip, List<String> excludeChecks) {
+        super(sip, excludeChecks);
         this.metsParser = mp;
     }
 

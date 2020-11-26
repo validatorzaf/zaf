@@ -12,6 +12,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.logging.Handler;
 import java.util.logging.Level;
@@ -105,7 +106,7 @@ public abstract class SipValidatorTestBase {
         log.debug("Loading SIP: {}, loadType: {}, urovenKontroly: {}", path, expLoadType, typUrovneKontroly);
 
         SipLoader sipLoader = loadSip(path, expLoadType);
-        SipValidator sipValidator = new SipValidator(profilValidace);
+        SipValidator sipValidator = new SipValidator(profilValidace, Collections.emptyList());
         sipValidator.validate(sipLoader);
         SipInfo sipInfo = sipLoader.getSip();
 

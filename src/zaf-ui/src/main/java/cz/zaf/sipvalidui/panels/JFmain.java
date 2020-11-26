@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -516,7 +517,7 @@ public class JFmain extends javax.swing.JFrame {
                 SipInfo svf = sl.getSip();
                 svf.reset_data_Kontroly();
                 
-                SipValidator spv = new SipValidator(profilValidace);
+                SipValidator spv = new SipValidator(profilValidace, Collections.emptyList());
                 spv.validate(sl);
 
                 resetRow(i, svf); // přepsání hodnoty v tabulce sipsouborů
