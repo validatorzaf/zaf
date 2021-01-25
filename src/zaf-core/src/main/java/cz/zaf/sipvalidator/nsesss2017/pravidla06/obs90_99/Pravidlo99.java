@@ -134,7 +134,7 @@ public class Pravidlo99 extends K06PravidloBase {
             // orig je ve vystupnim formatu -> nova nemuze byt lepsi
             return false;
         }
-        if(JmenaElementu.FORMA_UCHOVANI_ORIGINAL_VE_VYST_DAT_FORMATU.equals(novaKomp)) {
+        if(JmenaElementu.FORMA_UCHOVANI_ORIGINAL_VE_VYST_DAT_FORMATU.equals(formaUchovaniNovy)) {
             return true;
         }
         // Toto by nemelo nastat
