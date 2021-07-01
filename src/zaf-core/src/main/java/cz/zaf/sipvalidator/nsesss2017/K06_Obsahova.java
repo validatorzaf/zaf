@@ -77,6 +77,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89.Pravidlo89;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo90;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo91;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo92;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo93a;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo93;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo94;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo94a;
@@ -131,9 +132,6 @@ public class K06_Obsahova
 
     static final public String OBS30 = "obs30";
     static final public String OBS31 = "obs31";
-    //static final public String OBS32 = "obs32";
-	
-    static final public String OBS93A = "obs93a";
 
     static final public String MISTO_CHYBY_NEUPRESNENO = "Neupřesněno.";
     private String popisChyby = "Pravidlo nesplněno.";
@@ -166,7 +164,8 @@ public class K06_Obsahova
         pridejPravidlo(OBS3, () -> pravidlo3());
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
-
+        
+        pridejPravidlo(new Pravidlo93a(this));
         pridejPravidlo(new Pravidlo33(this));
         pridejPravidlo(new Pravidlo34(this));
         pridejPravidlo(new Pravidlo35(this));
@@ -249,7 +248,7 @@ public class K06_Obsahova
 
     private String getIDpravidla(int j){
         if (j == 32)
-            return OBS93A;
+            return Pravidlo93a.OBS93A;
         if (j == 41)
             return Pravidlo54a.OBS54A;
         if (j == 42)
@@ -328,9 +327,6 @@ public class K06_Obsahova
             break;
         case 31:
             vysledek = pravidlo31();
-            break;
-        case 32:
-            vysledek = pravidlo32();
             break;
         }
         
@@ -1015,29 +1011,7 @@ public class K06_Obsahova
         }
         return true;
     }
-    
-    //32. OBSAHOVÁ 93a. Každá entia věcná skupina (<nsesss:VecnaSkupina>), jejíž rodičovská entita je spisový plán (<nsesss:SpisovyPlan>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> se stejnými hodnotami.
-    private boolean pravidlo32(){
-        NodeList vs_list = ValuesGetter.getAllAnywhere("nsesss:VecnaSkupina", metsParser.getDocument());
-        if(vs_list==null) {
-            return nastavChybu("Věcná skupina neexistuje", getMistoChyby(metsParser.getDocument()));
-        }
-        for(int i = 0; i < vs_list.getLength(); i++){
-            Node vs = vs_list.item(i);
-            Node spl = ValuesGetter.getXChild(vs, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:SpisovyPlan");
-            if(spl != null){
-                Node jsz = ValuesGetter.getXChild(vs, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:JednoduchySpisovyZnak");
-                Node pusz = ValuesGetter.getXChild(vs, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:PlneUrcenySpisovyZnak");     
-                if(jsz == null) return nastavChybu("Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(vs), getMistoChyby(vs));
-                if(pusz == null) return nastavChybu("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(vs), getMistoChyby(vs));
-                if(!jsz.getTextContent().equals(pusz.getTextContent())){
-                    return nastavChybu("Elementy neobsahují stejné hodnoty. " + getJmenoIdentifikator(vs), getMistoChyby(jsz) + " " + getMistoChyby(pusz));
-                }
-            }
-        }
-        return true;
-    }
-            
+                
     public ArrayList<Node> get_krizove_odkazy_pevny_ano() {
         ArrayList<Node> list = new ArrayList<>();
         NodeList krizoveOdkazy = ValuesGetter.getAllAnywhere("nsesss:KrizovyOdkaz", metsParser.getDocument());

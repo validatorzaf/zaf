@@ -63,6 +63,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo90;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo91;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo92;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo93;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo93a;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo94;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo95;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo96;
@@ -2497,7 +2498,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("93a-chyba1", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS93A });
+                       new String[] { Pravidlo93a.OBS93A });
     }
 
     @Test
@@ -2505,14 +2506,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("93a-chyba2", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS93A });
+                       new String[] { Pravidlo93a.OBS93A });
     }
 
     @Test
     void testK06_93a_OK01() {
         testPackageK06("93a-OK1", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS93A },
+                       new String[] { Pravidlo93a.OBS93A },
                        new String[] {});
     }
 
@@ -2520,7 +2521,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     void testK06_93a_OK02() {
         testPackageK06("93a-OK2", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS93A },
+                       new String[] { Pravidlo93a.OBS93A },
                        new String[] {});
     }
 
