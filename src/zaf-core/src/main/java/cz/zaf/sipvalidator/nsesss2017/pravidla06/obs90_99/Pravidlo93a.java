@@ -18,9 +18,9 @@ public class Pravidlo93a  extends K06PravidloBase {
     public Pravidlo93a(K06_Obsahova kontrola) {
         super(kontrola,
                 OBS93A,
-                "Pokud existuje jakýkoli element <nsesss:Identifikator> s atributem zdroj s hodnotou IČ nebo IČO, hodnota obsahuje číslo o osmi číslicích, přičemž vážený součet prvních sedmi číslic má po dělení jedenácti zbytek, který po odečtení od 11 a následném vydělení 10 má zbytek roven poslední číslici.",
-                "Chybně je uvedeno IČO subjektu.", 
-                null);
+                "Každá entita věcná skupina (<nsesss:VecnaSkupina>), jejíž rodičovská entita je spisový plán (<nsesss:SpisovyPlan>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> se stejnými hodnotami.",
+                "Chybně jsou uvedeny spisové znaky.", 
+                "Požadavek 3.1.30 NSESSS.");
     }
 
 	@Override
