@@ -65,12 +65,10 @@ public class ZpravyObsahoveKontroly {
     "Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano a současně element <nsesss:EvidencniUdaje> obsahuje v dětském elementu <nsesss:Puvod> element <nsesss:VlastniDokument>, potom je v posledním uvedeném elementu uveden dětský element <nsesss:VytvoreneMnozstvi> s neprázdnou hodnotou.",
     //43. (94a.)
     "Každá entita věcná skupina (<nsesss:VecnaSkupina>) nebo součást (<nsesss:Soucast>), která se nachází v rodičovské entitě věcná skupina (<nsesss:VecnaSkupina>) nebo typový spis (<nsesss:TypovySpis>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> element <nsesss:PlneUrcenySpisovyZnak> s hodnotou obsahující oddělovač tvořený mezerou, pomlčkou, spojovníkem, lomítkem nebo tečkou, který není posledním znakem.",
-            //44. - 49.
+            //44. - 46.
     "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut DMDID s hodnotou uvedenou v atributu ID jakéhokoli elementu <nsesss:Komponenta>, přičemž právě jedna hodnota atributu DMDID odpovídá právě jedné hodnotě atributu ID.",
     "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut MIMETYPE s hodnotou identifikace souborového formátu příslušné komponenty.",
-    "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut CHECKSUMTYPE hodnotu SHA-256 nebo SHA-512.",
-    "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut CHECKSUM s hodnotou kontrolního součtu příslušné komponenty podle kryptografického algoritmu uvedeného v atributu CHECKSUMTYPE.",
-    "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut SIZE s hodnotou velikosti příslušné komponenty v bytech.",
+    "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut CHECKSUMTYPE hodnotu SHA-256 nebo SHA-512.",    
     
     };
     
@@ -136,9 +134,7 @@ public class ZpravyObsahoveKontroly {
     "Příloha č. 2 NSESSS, ř. 1208.",
     //43. (94a.)
     "Požadavek 3.1.30 NSESSS.",
-            //44. - 49.
-    "Bod 2.15. přílohy č. 3 NSESSS.",
-    "Bod 2.15. přílohy č. 3 NSESSS.",
+            //44. - 46.
     "Bod 2.15. přílohy č. 3 NSESSS.",
     "Bod 2.15. přílohy č. 3 NSESSS.",
     "Bod 2.15. přílohy č. 3 NSESSS.",    
@@ -206,11 +202,11 @@ public class ZpravyObsahoveKontroly {
     "Chybí množství vlastního dokumentu v analogové podobě.",
     //43. (94a.)
     "Chybně jsou uvedeny spisové znaky.",
-            //44. - 49.
+            //44. - 46.
     "Chybí provázání komponenty (počítačového souboru) s popisnou částí.",
     "Komponenta (počítačový soubor) má uvedený chybný datový formát.",
     "Chybí popis pro ověření celistvosti komponenty (počítačového souboru) nebo je chybně uveden.",
-    "Celistvost komponenty (počítačového souboru) je narušena nebo chybí možnost jejího ověření.",    
+    
     };
     
     public static String get_popis_Obsahova(int index){

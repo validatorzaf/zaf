@@ -27,6 +27,8 @@ import org.w3c.dom.NodeList;
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.MimetypeDetector.MimeTypeResult;
 import cz.zaf.sipvalidator.nsesss2017.MimetypeDetector.MimeTypeResult.DetectionStatus;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo47;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo48;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo49;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo50;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo51;
@@ -149,8 +151,6 @@ public class K06_Obsahova
     static final public String OBS44 = "obs44";
     static final public String OBS45 = "obs45";
     static final public String OBS46 = "obs46";
-    static final public String OBS47 = "obs47";
-    static final public String OBS48 = "obs48";
 	
     static final public String OBS54A = "obs54a";
     static final public String OBS61A = "obs61a";
@@ -188,6 +188,8 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
 
+        pridejPravidlo(new Pravidlo47(this));
+        pridejPravidlo(new Pravidlo48(this));
         pridejPravidlo(new Pravidlo49(this));
         pridejPravidlo(new Pravidlo50(this));
         pridejPravidlo(new Pravidlo51(this));
@@ -378,12 +380,6 @@ public class K06_Obsahova
             break;
         case 46:
             vysledek = pravidlo46();
-            break;
-        case 47:
-            vysledek = pravidlo47();
-            break;
-        case 48:
-            vysledek = pravidlo48();
             break;
         }
         
@@ -1778,141 +1774,7 @@ public class K06_Obsahova
         }
         return true;
     }
-    
-    //OBSAHOVÁ č.47 Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut CHECKSUM s hodnotou kontrolního součtu příslušné komponenty podle kryptografického algoritmu uvedeného v atributu CHECKSUMTYPE.",
-    private boolean pravidlo47(){
-        NodeList nodeListMetsFile = ValuesGetter.getAllAnywhere("mets:file", metsParser.getDocument());
-        if(nodeListMetsFile == null) return true;
-        for (int i = 0; i < nodeListMetsFile.getLength(); i++){
-            Node metsFile = nodeListMetsFile.item(i);
-            if(!ValuesGetter.hasAttribut(metsFile, "CHECKSUMTYPE")){
-                return nastavChybu("Element <mets:file> nemá atribut CHECKSUMTYPE.", getMistoChyby(metsFile));
-            }
-            String atributChecksumType = ValuesGetter.getValueOfAttribut(metsFile, "CHECKSUMTYPE");
-            Node flocat = ValuesGetter.getXChild(metsFile, "mets:FLocat");
-            if(flocat == null){
-                return nastavChybu("Nenalezen dětský element <mets:FLocat> elementu <mets:file>.", getMistoChyby(metsFile));
-            }
-            if(!ValuesGetter.hasAttribut(flocat, "xlink:href")){
-                return nastavChybu("Element <mets:FLocat> nemá atribut xlink:href.", getMistoChyby(flocat));
-            }
-            String xlinkHref = ValuesGetter.getValueOfAttribut(flocat, "xlink:href"); // komponenty/jmenosouboru
-            xlinkHref = HelperString.replaceSeparators(xlinkHref);
-            String cestaKeKomponente = SIP_MAIN_helper.getCesta_komponenty(sipSoubor);
-            File komponenta = new File(cestaKeKomponente);
-            komponenta = new File(komponenta.getParentFile().getAbsolutePath() + File.separator + xlinkHref);
-            if(!komponenta.exists()){
-//                komponenta = get_komponenta(komponenta.getName());
-//            }
-//            if(komponenta != null){
-//                cestaKeKomponente = komponenta.getAbsolutePath();
-                    if(xlinkHref.contains(File.separator)){
-                        int s = xlinkHref.lastIndexOf(File.separator);
-                        String g = xlinkHref.substring(s+1);
-                        xlinkHref = g;
-                    }
-                    return nastavChybu("Nenalezena příslušná komponenta ve složce komponenty.", "Chybí soubor: " + xlinkHref + ".");
-            }
-            String spoctenyCheckSum = "";
-            try{
-                if(atributChecksumType.equals("SHA-512") || atributChecksumType.equals("SHA-256")){
-                    if(atributChecksumType.equals("SHA-512"))
-                    {
-                        try(InputStream is = new FileInputStream(komponenta);) {                
-                        	spoctenyCheckSum = DigestUtils.sha512Hex(is);
-                        }
-                    }
-
-                    if(atributChecksumType.equals("SHA-256"))
-                    {
-                        try (InputStream is = new FileInputStream(komponenta);) {                
-                        	spoctenyCheckSum = DigestUtils.sha256Hex(is);
-                        }
-                    }                    
-                }
-                else{
-                    if(xlinkHref.contains(File.separator)){
-                        int s = xlinkHref.lastIndexOf(File.separator);
-                        String g = xlinkHref.substring(s+1);
-                        xlinkHref = g;
-                    }
-                    return nastavChybu("Nepovolený algoritmus v atributu CHECKSUMTYPE.", getMistoChyby(metsFile) + " Komponenta: " + xlinkHref + ".");
-                }
-
-            } 
-            catch (IOException ex){
-//                    sipSoubor.get_SIP_Validation().add_rule_obsahova(47, false, seznam_pravidla[47], ex.getLocalizedMessage(), "chyba v kódování SIP souboru");
-                if(xlinkHref.contains(File.separator)){
-                    int s = xlinkHref.lastIndexOf(File.separator);
-                    String g = xlinkHref.substring(s+1);
-                    xlinkHref = g;
-                }
-                return nastavChybu("Nepodařilo se spočítat checksum souboru: " + xlinkHref + ".", "Nenalezen soubor " + xlinkHref + ".");
-            }
             
-            if(!ValuesGetter.hasAttribut(nodeListMetsFile.item(i), "CHECKSUM")){
-                return nastavChybu("Element <mets:file> nemá atribut CHECKSUM.", getMistoChyby(metsFile));
-            }
-            
-            String checkSum = ValuesGetter.getValueOfAttribut(nodeListMetsFile.item(i), "CHECKSUM");
-            checkSum = checkSum.toLowerCase();        
-            spoctenyCheckSum = spoctenyCheckSum.toLowerCase();
-
-            if(!spoctenyCheckSum.equals(checkSum)){
-                if(xlinkHref.contains(File.separator)){
-                    int s = xlinkHref.lastIndexOf(File.separator);
-                    String g = xlinkHref.substring(s+1);
-                    xlinkHref = g;
-                }
-                return nastavChybu("CHECKSUM neodpovídá CHECKSUMTYPE.", getMistoChyby(nodeListMetsFile.item(i)) + " Soubor: " + xlinkHref + ".");
-            }         
-        }
-        
-        return true;
-    }
-    
-    //OBSAHOVÁ č.48 Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut SIZE s hodnotou velikosti příslušné komponenty v bytech.",
-    private boolean pravidlo48(){
-
-        NodeList nodeListMetsFile = ValuesGetter.getAllAnywhere("mets:file", metsParser.getDocument());
-        if(nodeListMetsFile == null) return true;
-        for (int i = 0; i < nodeListMetsFile.getLength(); i++)
-        {
-            Node metsFile = nodeListMetsFile.item(i);
-            if(!ValuesGetter.hasAttribut(metsFile, "SIZE")){
-                return nastavChybu("Element <mets:file> neobsahuje atribut SIZE.", getMistoChyby(metsFile));
-            }
-            String hodnotaVelikosti = ValuesGetter.getValueOfAttribut(metsFile, "SIZE");
-            popisChyby = "nenalezen atribut xlink:href elementu <mets:FLocat>";
-            Node flocat = ValuesGetter.getXChild(metsFile, "mets:FLocat");
-            if(flocat == null){
-                return nastavChybu("Nenalezen dětský element <mets:FLocat> elementu <mets:file>.", getMistoChyby(metsFile));
-            }
-            if(!ValuesGetter.hasAttribut(flocat, "xlink:href")){
-                return nastavChybu("Element <mets:FLocat> neobsahuje atribut xlink:href.", getMistoChyby(flocat));
-            }
-            String xlinkHref = ValuesGetter.getValueOfAttribut(flocat, "xlink:href"); // komponenty/jmenosouboru
-            xlinkHref = HelperString.replaceSeparators(xlinkHref);
-            String cestaKeKomponente = SIP_MAIN_helper.getCesta_komponenty(sipSoubor);
-            File file = new File(cestaKeKomponente);
-            file = new File(file.getParentFile().getAbsolutePath() + File.separator + xlinkHref);
-            if(!file.exists()){
-//                file = get_komponenta(file.getName());
-//                if(file == null){
-//                    if(!final_path.contains(".")){
-//                        return add_popisy("Nenalezena příslušná komponenta v složce komponenty.", seznam_popis[48], false, get_misto_chyby(flocat) + " V atributu xlink:href uveden chybný odkaz: " + name + ".");
-//                    }   
-                    return nastavChybu("Nenalezena příslušná komponenta v složce komponenty.", getMistoChyby(flocat) + " Soubor: " + xlinkHref + ".");
-//                }
-            }
-            String velikost = String.valueOf(file.length());
-            if(!velikost.equals(hodnotaVelikosti)){
-                return nastavChybu("Velikost komponenty není totožná s metadaty.", getMistoChyby(metsFile) + " Komponenta: " + file.getName() + ".");
-            }
-        }
-        return true;
-    }
-    
     public ArrayList<Node> get_krizove_odkazy_pevny_ano() {
         ArrayList<Node> list = new ArrayList<>();
         NodeList krizoveOdkazy = ValuesGetter.getAllAnywhere("nsesss:KrizovyOdkaz", metsParser.getDocument());
