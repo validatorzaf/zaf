@@ -18,6 +18,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo36;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo37;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo38;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo39;
@@ -131,7 +132,6 @@ public class K06_Obsahova
     static final public String OBS33 = "obs33";
     static final public String OBS34 = "obs34";
     static final public String OBS35 = "obs35";
-    static final public String OBS36 = "obs36";
 	
     static final public String OBS93A = "obs93a";
 
@@ -167,6 +167,7 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
 
+        pridejPravidlo(new Pravidlo36(this));
         pridejPravidlo(new Pravidlo37(this));
         pridejPravidlo(new Pravidlo38(this));
         pridejPravidlo(new Pravidlo39(this));
@@ -336,9 +337,6 @@ public class K06_Obsahova
             break;
         case 35:
             vysledek = pravidlo35();
-            break;
-        case 36:
-            vysledek = pravidlo36();
             break;
         }
         
@@ -1111,30 +1109,7 @@ public class K06_Obsahova
         }
         return true;
     }
-    
-    //OBSAHOVÁ č.36 Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MDTYPE s hodnotou OTHER.",
-    private boolean pravidlo36(){
-        NodeList nodeList = ValuesGetter.getAllAnywhere("mets:digiprovMD", metsParser.getDocument());
-        if(nodeList == null){
-            return nastavChybu("Nenalezen žádný element <mets:digiprovMD>.", MISTO_CHYBY_NEUPRESNENO);
-        }
-        for(int i = 0; i < nodeList.getLength(); i++){
-            Node digiprovMD = nodeList.item(i);
-            Node mdWrap = ValuesGetter.getXChild(digiprovMD, "mets:mdWrap");
-            if(mdWrap == null){
-                return nastavChybu("Element <mets:digiprovMD> neobsahuje dětský element <mets:mdWrap>.", getMistoChyby(digiprovMD));
-            }
-            if(!ValuesGetter.hasAttribut(mdWrap, "MDTYPE")){
-                return nastavChybu("Element <mets:mdWrap> neobsahuje atribut MDTYPE.", getMistoChyby(mdWrap));
-            }
-            String g = ValuesGetter.getValueOfAttribut(mdWrap, "MDTYPE");
-            if(!g.equals("OTHER")){
-                return nastavChybu("Atribut MDTYPE neobsahuje hodnotu OTHER.", getMistoChyby(mdWrap));
-            }
-        }
-        return true;
-    }
-
+        
     public ArrayList<Node> get_krizove_odkazy_pevny_ano() {
         ArrayList<Node> list = new ArrayList<>();
         NodeList krizoveOdkazy = ValuesGetter.getAllAnywhere("nsesss:KrizovyOdkaz", metsParser.getDocument());
