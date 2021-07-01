@@ -18,6 +18,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo34;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo35;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo36;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo37;
@@ -131,7 +132,6 @@ public class K06_Obsahova
     static final public String OBS31 = "obs31";
     //static final public String OBS32 = "obs32";
     static final public String OBS33 = "obs33";
-    static final public String OBS34 = "obs34";
 	
     static final public String OBS93A = "obs93a";
 
@@ -167,6 +167,7 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
 
+        pridejPravidlo(new Pravidlo34(this));
         pridejPravidlo(new Pravidlo35(this));
         pridejPravidlo(new Pravidlo36(this));
         pridejPravidlo(new Pravidlo37(this));
@@ -332,9 +333,6 @@ public class K06_Obsahova
             break;
         case 33:
             vysledek = pravidlo33();
-            break;
-        case 34:
-            vysledek = pravidlo34();
             break;
         }
         
@@ -1056,30 +1054,6 @@ public class K06_Obsahova
             }
             if(list.size() > 1){
                 return nastavChybu("Element <mets:digiprovMD> obsahuje více dětských elementů <mets:mdWrap>.", getMistoChyby(digiprovMD));
-            }
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.34 Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MDTYPEVERSION s 
-    // hodnotou 1.0.",
-    private boolean pravidlo34(){
-        NodeList nodeList = ValuesGetter.getAllAnywhere("mets:digiprovMD", metsParser.getDocument());
-        if(nodeList == null){
-            return nastavChybu("Nenalezen žádný element <mets:digiprovMD>.", MISTO_CHYBY_NEUPRESNENO);
-        }
-        for(int i = 0; i < nodeList.getLength(); i++){
-            Node digiprovMD = nodeList.item(i);
-            Node mdWrap = ValuesGetter.getXChild(digiprovMD, "mets:mdWrap");
-            if(mdWrap == null){
-                return nastavChybu("Element <mets:digiprovMD> neobsahuje dětský element <mets:mdWrap>.", getMistoChyby(digiprovMD));
-            }
-            if(!ValuesGetter.hasAttribut(mdWrap, "MDTYPEVERSION")){
-                return nastavChybu("Element <mets:mdWrap> neobsahuje atribut MDTYPEVERSION.", getMistoChyby(mdWrap));
-            }
-            String g = ValuesGetter.getValueOfAttribut(mdWrap, "MDTYPEVERSION");
-            if(!g.equals("1.0")){
-                return nastavChybu("Atribut MDTYPEVERSION neobsahuje hodnotu 1.0.", getMistoChyby(mdWrap));
             }
         }
         return true;

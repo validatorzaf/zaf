@@ -50,9 +50,8 @@ public class ZpravyObsahoveKontroly {
     "Každý element <mets:amdSec> obsahuje právě jeden dětský element <mets:digiprovMD>.",
     //32. 93a
     "Každá entita věcná skupina (<nsesss:VecnaSkupina>), jejíž rodičovská entita je spisový plán (<nsesss:SpisovyPlan>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> se stejnými hodnotami.",
-    //33. - 34.
-    "Každý element <mets:digiprovMD> obsahuje právě jeden dětský element <mets:mdWrap>.",
-    "Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MDTYPEVERSION s hodnotou 1.0.",
+    //33.
+    "Každý element <mets:digiprovMD> obsahuje právě jeden dětský element <mets:mdWrap>.",    
     };
     
     public static String get_text_Obsahova(int index){
@@ -102,9 +101,8 @@ public class ZpravyObsahoveKontroly {
     "Bod 2.10. přílohy č. 3 NSESSS.",
     //32. 93a
     "Požadavek 3.1.30 NSESSS.",
-    //33. - 34.
-    "Bod 2.11. přílohy č. 3 NSESSS.",
-    "Bod 2.11. přílohy č. 3 NSESSS.",
+    //33.
+    "Bod 2.11. přílohy č. 3 NSESSS.",    
     };
     
     public static String get_zdroje_Obsahova(int index){
@@ -154,9 +152,8 @@ public class ZpravyObsahoveKontroly {
     "Chybí povinná část (transakční protokol) struktury datového balíčku SIP.",
     //32. 93a
     "Chybně jsou uvedeny spisové znaky.",
-    //33. - 34.
-    "Chybí povinná část (transakční protokol) struktury datového balíčku SIP.",
-    "Uveden je chybně popis schématu XML.",
+    //33.
+    "Chybí povinná část (transakční protokol) struktury datového balíčku SIP."    
     };
     
     public static String get_popis_Obsahova(int index){
