@@ -36,6 +36,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo58;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo59;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo60;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo61;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo61a;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo62;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo63;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo64;
@@ -141,7 +142,6 @@ public class K06_Obsahova
     static final public String OBS40 = "obs40";
 	
     static final public String OBS54A = "obs54a";
-    static final public String OBS61A = "obs61a";
     static final public String OBS93A = "obs93a";
 
     static final public String MISTO_CHYBY_NEUPRESNENO = "Neupřesněno.";
@@ -176,6 +176,7 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
 
+        pridejPravidlo(new Pravidlo61a(this));
         pridejPravidlo(new Pravidlo94a(this));
         pridejPravidlo(new Pravidlo44(this));
         pridejPravidlo(new Pravidlo45(this));
@@ -252,7 +253,7 @@ public class K06_Obsahova
         if (j == 41)
             return OBS54A;
         if (j == 42)
-            return OBS61A;
+            return Pravidlo61a.OBS61A;
         if (j == 43)
             return Pravidlo94a.OBS94A;
 
@@ -357,9 +358,6 @@ public class K06_Obsahova
             break;
         case 41:
             vysledek = pravidlo41();
-            break;
-        case 42:
-            vysledek = pravidlo42();
             break;
         }
         
@@ -1443,38 +1441,7 @@ public class K06_Obsahova
         
         return true;
     }
-    
-    // OBSAHOVÁ č.61a Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano a 
-    // současně element <nsesss:EvidencniUdaje> obsahuje v dětském elementu <nsesss:Puvod> element <nsesss:VlastniDokument>, potom je v posledním uvedeném elementu uveden dětský element <nsesss:VytvoreneMnozstvi> s neprázdnou hodnotou.
-    private boolean pravidlo42(){
-        NodeList dokuments = ValuesGetter.getAllAnywhere("nsesss:Dokument", metsParser.getDocument());
-        if(dokuments == null){
-            return nastavChybu("Nenalezen žádný element <nsesss:Dokument>.", MISTO_CHYBY_NEUPRESNENO);
-        }
-        for(int i = 0; i < dokuments.getLength(); i++)
-        {   
-            Node dokument = dokuments.item(i);
-            Node ad = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Manipulace", "nsesss:AnalogovyDokument");
-            if(ad == null){
-                return nastavChybu("Nenalezen element <nsesss:AnalogovyDokument>. Dokumentu " + getIdentifikatory(dokument) + ".", getMistoChyby(dokument));
-            }
-            String hodnotaAnalogovyDokument = ad.getTextContent();
-            if(hodnotaAnalogovyDokument.equals("ano") && ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Puvod", "nsesss:VlastniDokument") != null){
-                Node mnozstvi = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Puvod", "nsesss:VlastniDokument", "nsesss:VytvoreneMnozstvi");
-                if(mnozstvi == null){
-                    return nastavChybu("Nenalezen povinný element <nsesss:VytvoreneMnozstvi>. Dokumentu " + getIdentifikatory(dokument) + ".", getMistoChyby(dokument));
-                }
-                else{
-                    String s = mnozstvi.getTextContent();
-                    if (!HelperString.hasContent(s)) {
-                        return nastavChybu("Element <nsesss:VytvoreneMnozstvi> obsahuje prázdnou hodnotu. Dokumentu " + getIdentifikatory(dokument) + ".", getMistoChyby(mnozstvi));
-                    }
-                }
-            }
-        }    
-        return true;
-    }
-                            
+                                
     public ArrayList<Node> get_krizove_odkazy_pevny_ano() {
         ArrayList<Node> list = new ArrayList<>();
         NodeList krizoveOdkazy = ValuesGetter.getAllAnywhere("nsesss:KrizovyOdkaz", metsParser.getDocument());

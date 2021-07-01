@@ -21,6 +21,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo58;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo59;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo60;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo61;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo61a;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo62;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo63;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo64;
@@ -1711,14 +1712,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("61a-chyba", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS61A });
+                       new String[] { Pravidlo61a.OBS61A });
     }
 
     @Test
     void testK06_61a_OK01() {
         testPackageK06("61a-OK", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS61A },
+                       new String[] { Pravidlo61a.OBS61A },
                        new String[] {});
     }
 
