@@ -25,7 +25,7 @@ public class Pravidlo27 extends K06PravidloBase {
         if(xmlData == null) {
         	return nastavChybu("Element <mets:mdWrap> neobsahuje žádný dětský element <mets:xmlData>.");
         }
-        Node metsMdWrap = metsParser.getMetsRootNode();
+        Node metsMdWrap = metsParser.getMetsMdWrap();
         if(!ValuesGetter.hasOnlyOneChild_ElementNode(metsMdWrap, "mets:xmlData")){
             return nastavChybu("Element <mets:mdWrap> obsahuje více dětských elementů <mets:xmlData>.", metsMdWrap);
         }
