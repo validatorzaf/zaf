@@ -37,15 +37,12 @@ public class ZpravyObsahoveKontroly {
     "Každý element <mets:agent> obsahuje právě jeden dětský element <mets:name> s neprázdnou hodnotou.",
     //21. volný index
     "volný index",
-    //22. - 29.
+    //22. - 26.
     "Element <mets:dmdSec> obsahuje právě jeden dětský element <mets:mdWrap>.",
     "Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MDTYPEVERSION s hodnotou 3.0.",
     "Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut OTHERMDTYPE s hodnotou NSESSS.",
     "Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MDTYPE s hodnotou OTHER.",
     "Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MIMETYPE s hodnotou text/xml.",
-    "Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> právě jeden dětský element <mets:xmlData>.",
-    "Pokud neexistuje žádný element <nsesss:KrizovyOdkaz> s atributem pevny s hodnotou ano, potom element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap>, <mets:xmlData> právě jeden dětský element <nsesss:Dil>, <nsesss:Dokument> nebo <nsesss:Spis>.",
-    "Pokud existuje jakýkoli element <nsesss:KrizovyOdkaz> a obsahuje atribut pevny s hodnotou ano, potom pro každý jeho výskyt obsahuje element <mets:dmdSec> v hierarchii dětských elementů <mets:mdWrap>, <mets:xmlData> dětský element <nsesss:Dil> nebo <nsesss:Dokument> nebo <nsesss:Spis> se stejnou hodnotou v dětském elementu <nsesss:Identifikator> a v jeho atributu zdroj.",    
     };
     
     public static String get_text_Obsahova(int index){
@@ -82,15 +79,12 @@ public class ZpravyObsahoveKontroly {
     "Bod 2.4. přílohy č. 3 NSESSS.",
     //21. volný index
     "volný index",
-    //22. - 29.
+    //22. - 26.
     "Bod 2.7. přílohy č. 3 NSESSS.",
     "Bod 2.7. přílohy č. 3 NSESSS.",
     "Bod 2.7. přílohy č. 3 NSESSS.",
     "Bod 2.7. přílohy č. 3 NSESSS.",
     "Bod 2.7. přílohy č. 3 NSESSS.",
-    "Bod 2.7. přílohy č. 3 NSESSS.",
-    "Bod 2.7. přílohy č. 3 NSESSS; příloha č. 2 NSESSS, ř. 20.",
-    "Bod 2.7. přílohy č. 3 NSESSS; příloha č. 2 NSESSS, ř. 20.",    
     };
     
     public static String get_zdroje_Obsahova(int index){
@@ -127,15 +121,12 @@ public class ZpravyObsahoveKontroly {
     "Chybí informace o původci.",
     //21. volný index
     "volný index",
-    //22. - 29.
+    //22. - 26.
     "Chybí povinná (popisná) část struktury datového balíčku SIP.",
     "Uveden je chybně popis schématu XML.", // Uveden je chybně popis původce.
     "Uveden je chybně popis schématu XML.",
     "Uveden je chybně popis schématu XML.",
     "Uveden je chybně popis schématu XML.",
-    "Chybí povinná (popisná) část struktury datového balíčku SIP.",
-    "Datový balíček SIP neobsahuje díl, spis ani dokument.",
-    "Chybí popis dílu, spisu nebo dokumentu, který je v datovém balíčku SIP připojen pevným křížovým odkazem.",    
     };
     
     public static String get_popis_Obsahova(int index){

@@ -3,6 +3,9 @@ package cz.zaf.sipvalidator.nsesss2017;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29.Pravidlo27;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29.Pravidlo28;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29.Pravidlo29;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo30;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo31;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo33;
@@ -545,14 +548,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("27-chyba", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS27 });
+                       new String[] { Pravidlo27.OBS27 });
     }
 
     @Test
     void testK06_27_OK01() {
         testPackageK06("27-OK", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS27 },
+                       new String[] { Pravidlo27.OBS27 },
                        new String[] {});
     }
 
@@ -561,7 +564,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("28-chyba1", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS28 });
+                       new String[] { Pravidlo28.OBS28 });
     }
 
     @Test
@@ -569,14 +572,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("28-chyba2", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS28 });
+                       new String[] { Pravidlo28.OBS28 });
     }
 
     @Test
     void testK06_28_OK01() {
         testPackageK06("28-OK1", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS28 },
+                       new String[] { Pravidlo28.OBS28 },
                        new String[] {});
     }
 
@@ -584,7 +587,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     void testK06_28_OK02() {
         testPackageK06("28-OK2", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS28 },
+                       new String[] { Pravidlo28.OBS28 },
                        new String[] {});
     }
 
@@ -592,7 +595,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     void testK06_28_OK03() {
         testPackageK06("28-OK3", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS28 },
+                       new String[] { Pravidlo28.OBS28 },
                        new String[] {});
     }
 
@@ -600,7 +603,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     void testK06_28_OK04() {
         testPackageK06("28-OK4", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS28 },
+                       new String[] { Pravidlo28.OBS28 },
                        new String[] {});
     }
 
@@ -608,7 +611,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     void testK06_28_OK05() {
         testPackageK06("28-OK5", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS28 },
+                       new String[] { Pravidlo28.OBS28 },
                        new String[] {});
     }
 
@@ -616,7 +619,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     void testK06_28_OK06() {
         testPackageK06("28-OK6", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS28 },
+                       new String[] { Pravidlo28.OBS28 },
                        new String[] {});
     }
 
@@ -625,7 +628,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("29-chyba1", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS29 });
+                       new String[] { Pravidlo29.OBS29 });
     }
 
     @Test
@@ -633,7 +636,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("29-chyba2", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS29 });
+                       new String[] { Pravidlo29.OBS29 });
     }
 
     @Test
@@ -641,14 +644,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("29-chyba3", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS29 });
+                       new String[] { Pravidlo29.OBS29 });
     }
 
     @Test
     void testK06_29_OK01() {
         testPackageK06("29-OK1", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS29 },
+                       new String[] { Pravidlo29.OBS29 },
                        new String[] {});
     }
 
@@ -656,7 +659,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     void testK06_29_OK02() {
         testPackageK06("29-OK2", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS29 },
+                       new String[] { Pravidlo29.OBS29 },
                        new String[] {});
     }
 

@@ -18,6 +18,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29.Pravidlo27;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29.Pravidlo28;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29.Pravidlo29;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo30;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo31;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo33;
@@ -128,9 +131,6 @@ public class K06_Obsahova
     static final public String OBS24 = "obs24";
     static final public String OBS25 = "obs25";
     static final public String OBS26 = "obs26";
-    static final public String OBS27 = "obs27";
-    static final public String OBS28 = "obs28";
-    static final public String OBS29 = "obs29";
 
     static final public String MISTO_CHYBY_NEUPRESNENO = "Neupřesněno.";
     private String popisChyby = "Pravidlo nesplněno.";
@@ -164,6 +164,9 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
         
+        pridejPravidlo(new Pravidlo27(this));
+        pridejPravidlo(new Pravidlo28(this));
+        pridejPravidlo(new Pravidlo29(this));
         pridejPravidlo(new Pravidlo30(this));
         pridejPravidlo(new Pravidlo31(this));
         pridejPravidlo(new Pravidlo93a(this));
@@ -313,15 +316,6 @@ public class K06_Obsahova
             break;
         case 26:
             vysledek = pravidlo26();
-            break;
-        case 27:
-            vysledek = pravidlo27();
-            break;
-        case 28:
-            vysledek = pravidlo28();
-            break;
-        case 29:
-            vysledek = pravidlo29();
             break;
         }
         
@@ -846,137 +840,7 @@ public class K06_Obsahova
         }
         return true;
     }
-    
-    //OBSAHOVÁ č.27 Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> právě jeden dětský element <mets:xmlData>.",
-    private boolean pravidlo27(){
-        if(xmlData == null) return nastavChybu("Element <mets:mdWrap> neobsahuje žádný dětský element <mets:xmlData>.", MISTO_CHYBY_NEUPRESNENO);
-        if(!ValuesGetter.hasOnlyOneChild_ElementNode(metsMdWrap, "mets:xmlData")){
-            return nastavChybu("Element <mets:mdWrap> obsahuje více dětských elementů <mets:xmlData>.", getMistoChyby(metsMdWrap));
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.28 Pokud neexistuje žádný element <nsesss:KrizovyOdkaz> s atributem pevny s hodnotou ano, 
-    // potom element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap>, <mets:xmlData> právě jeden dětský element 
-    // <nsesss:Dil>, <nsesss:Dokument> nebo <nsesss:Spis>.
-    private boolean pravidlo28(){
-        ArrayList<Node> krizove_odkazy_pevny_ano = get_krizove_odkazy_pevny_ano();
-        if(!krizove_odkazy_pevny_ano.isEmpty()){
-            return true;
-        }
-        else{
-           if(xmlData == null){
-                return nastavChybu("Nenalezen element <mets:xmlData>.", MISTO_CHYBY_NEUPRESNENO);
-            }
-            if(xmlData.getChildNodes().getLength() == 0){
-                return nastavChybu("Element <mets:xmlData> neobsahuje žádné dětské elementy.", getMistoChyby(xmlData));
-            }
-            ArrayList<Node> list = ValuesGetter.get_Node_Children(xmlData);
-            if(!ValuesGetter.maRodicPouzeTytoPotomky(xmlData, "nsesss:Dil", "nsesss:Dokument", "nsesss:Spis")){
-                String ch = "";
-                for(int i = 0; i < list.size(); i++){
-                    Node node = list.get(i);
-                    String name = node.getNodeName();
-                    if(!name.equals("nsesss:Dokument") || !name.equals("nsesss:Spis") || !name.equals("nsesss:Dil")){
-                        ch += getMistoChyby(list.get(i)) + " "; 
-                    }
-                }
-                return nastavChybu("Element <mets:xmlData> obsahuje nepovolené dětské elementy.", ch);
-            }
-            if(list.size() > 1){
-                String ch = "";
-                String pop = "";
-                for(int i = 1; i < list.size(); i++){
-                    Node node = list.get(i);
-                    ch += getMistoChyby(node) + " "; 
-                    pop += " " + getJmenoIdentifikator(node);
-                }
-                return nastavChybu("Element <mets:xmlData> obsahuje více dětských elementů." + pop, ch);
-            } 
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.29 Pokud existuje element <nsesss:KrizovyOdkaz> a obsahuje atribut pevny s hodnotou ano, potom pro každý jeho výskyt
-    // obsahuje element <mets:dmdSec> v hierarchii dětských elementů <mets:mdWrap>, <mets:xmlData> dětský element <nsesss:Dil> nebo 
-    // <nsesss:Dokument> nebo <nsesss:Spis> se stejnou hodnotou v dětském elementu <nsesss:Identifikator> a v jeho atributu zdroj.",
-    private boolean pravidlo29(){
-        ArrayList<Node> krizove_odkazy_pevny_ano = get_krizove_odkazy_pevny_ano();
-        if(krizove_odkazy_pevny_ano == null || krizove_odkazy_pevny_ano.isEmpty()) return true;
-        
-        ArrayList<Node> list = ValuesGetter.get_Node_Children(xmlData);
-        if(!ValuesGetter.maRodicPouzeTytoPotomky(xmlData, "nsesss:Dil", "nsesss:Dokument", "nsesss:Spis")){
-                String ch = "";
-                for(int i = 0; i < list.size(); i++){
-                    Node node = list.get(i);
-                    String name = node.getNodeName();
-                    if(!name.equals("nsesss:Dokument") || !name.equals("nsesss:Spis") || !name.equals("nsesss:Dil")){
-                        ch += getMistoChyby(node) + " "; 
-                    }
-                }
-                return nastavChybu("Element <mets:xmlData> obsahuje nepovolené dětské elementy.", ch);
-        }
-        
-        for(int i = 0; i < krizove_odkazy_pevny_ano.size(); i++){
-            Node krizovyOdkaz = krizove_odkazy_pevny_ano.get(i);
-            Node materska_zakl_entita_eu = ValuesGetter.getXParent(krizovyOdkaz, "nsesss:Souvislosti", "nsesss:EvidencniUdaje");
-            
-            if(materska_zakl_entita_eu == null){
-                return nastavChybu("Element <nsesss:KrizovyOdkaz> je špatně zatříděn. Nenalezeny elementy <nsesss:Souvislosti> a <nsesss:EvidencniUdaje>.", getMistoChyby(krizovyOdkaz));
-            }
-            Node za_ent = materska_zakl_entita_eu.getParentNode();
-            Node identifikator_me = ValuesGetter.getXChild(materska_zakl_entita_eu, "nsesss:Identifikace", "nsesss:Identifikator");
-            if(identifikator_me == null){
-                return nastavChybu("Základní entitě náležící k elementu <nsesss:KrizovyOdkaz> chybí element <nsesss:Identifikator>.", getMistoChyby(za_ent));
-            }
-            if(!ValuesGetter.hasAttribut(identifikator_me, "zdroj")){
-                return nastavChybu("Základní entitě náležící k elementu <nsesss:KrizovyOdkaz> chybí atribut zdroj u elementu <nsesss:Identifikator>.", getMistoChyby(identifikator_me));
-            }
-            String zdroj_me = ValuesGetter.getValueOfAttribut(identifikator_me, "zdroj");
-            String ident_me = identifikator_me.getTextContent();
-            Node identifikator_ko = ValuesGetter.getXChild(krizovyOdkaz, "nsesss:Identifikator");
-            if(identifikator_ko == null){
-                return nastavChybu("Element <nsesss:KrizovyOdkaz> nemá dětský element <nsesss:Identifikator>.", getMistoChyby(krizovyOdkaz));
-            }
-            if(!ValuesGetter.hasAttribut(identifikator_ko, "zdroj")){
-                return nastavChybu("Dětský element <nsesss:Identifikator> elementu <nsesss:KrizovyOdkaz> nemá atribut zdroj.", getMistoChyby(identifikator_ko));
-            }
-            String zdroj_ko = ValuesGetter.getValueOfAttribut(identifikator_ko, "zdroj");
-            String ident_ko = identifikator_ko.getTextContent();
-            
-            if(zdroj_me.equals(zdroj_ko) && ident_me.equals(ident_ko)){
-                return nastavChybu("Element <nsesss:KrizovyOdkaz> odkazuje na vlastní základní entitu.", getMistoChyby(krizovyOdkaz));
-            }
-            
-            int pocitadlo = 0;
-            String ch = "";
-                for(int k = 0; k < zakladniEntity.size(); k++){
-                    Node zentita = zakladniEntity.get(k);
-                    Node id_ze = ValuesGetter.getXChild(zentita, "nsesss:EvidencniUdaje", "nsesss:Identifikace", "nsesss:Identifikator");
-                    if(id_ze == null){
-                        return nastavChybu("Nenalezen element <nsesss:Identifikator> základní entity.", getMistoChyby(zentita));
-                    }
-                    if(!ValuesGetter.hasAttribut(id_ze, "zdroj")){
-                        return nastavChybu("Nenalezen atribut zdroj elementu <nsesss:Identifikator>.", getMistoChyby(id_ze));
-                    }
-                    String hodnotaZdrojMatEnt = ValuesGetter.getValueOfAttribut(id_ze, "zdroj");
-                    String hodnotaIdentMatEnt = id_ze.getTextContent();
-                    if(zdroj_ko.equals(hodnotaZdrojMatEnt) &&  ident_ko.equals(hodnotaIdentMatEnt)){
-                        pocitadlo++;
-                        ch += getMistoChyby(zentita) + " ";
-                    }
-                }
-                if(pocitadlo == 0){
-                    return nastavChybu("Nenalezena žádná základní entita, na kterou odkazuje element <nsesss:KrizovyOdkaz> s id: " + ident_ko + " a zdrojem: " + zdroj_ko + ".", getMistoChyby(krizovyOdkaz));
-                }
-                if(pocitadlo > 1){
-                    return nastavChybu("Element <nsesss:KrizovyOdkaz> s id: " + ident_ko + " a zdrojem: " + zdroj_ko + " odkazuje na více základních entit.", ch + getMistoChyby(krizovyOdkaz));
-                }
-        }
-        
-        return true;
-    }    
-                    
+                                
     public ArrayList<Node> get_krizove_odkazy_pevny_ano() {
         ArrayList<Node> list = new ArrayList<>();
         NodeList krizoveOdkazy = ValuesGetter.getAllAnywhere("nsesss:KrizovyOdkaz", metsParser.getDocument());
