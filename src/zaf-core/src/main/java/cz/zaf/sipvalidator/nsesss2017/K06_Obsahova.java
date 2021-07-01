@@ -27,6 +27,9 @@ import org.w3c.dom.NodeList;
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.MimetypeDetector.MimeTypeResult;
 import cz.zaf.sipvalidator.nsesss2017.MimetypeDetector.MimeTypeResult.DetectionStatus;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo44;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo45;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo46;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo47;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo48;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo49;
@@ -148,9 +151,6 @@ public class K06_Obsahova
     //static final public String OBS41 = "obs41";
     //static final public String OBS42 = "obs42";
     //static final public String OBS43 = "obs43";
-    static final public String OBS44 = "obs44";
-    static final public String OBS45 = "obs45";
-    static final public String OBS46 = "obs46";
 	
     static final public String OBS54A = "obs54a";
     static final public String OBS61A = "obs61a";
@@ -188,6 +188,9 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
 
+        pridejPravidlo(new Pravidlo44(this));
+        pridejPravidlo(new Pravidlo45(this));
+        pridejPravidlo(new Pravidlo46(this));
         pridejPravidlo(new Pravidlo47(this));
         pridejPravidlo(new Pravidlo48(this));
         pridejPravidlo(new Pravidlo49(this));
@@ -371,15 +374,6 @@ public class K06_Obsahova
             break;
         case 43:
             vysledek = pravidlo43();
-            break;
-        case 44:
-            vysledek = pravidlo44();
-            break;
-        case 45:
-            vysledek = pravidlo45();
-            break;
-        case 46:
-            vysledek = pravidlo46();
             break;
         }
         
@@ -1548,233 +1542,7 @@ public class K06_Obsahova
         
         return true;
     }
-    
-    //OBSAHOVÁ č.44 Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut DMDID s hodnotou uvedenou v atributu ID jakéhokoli elementu <nsesss:Komponenta>.",
-    private boolean pravidlo44(){
-        NodeList nodeListMetsFile = ValuesGetter.getAllAnywhere("mets:file", metsParser.getDocument());
-        NodeList nodeListKomponenty = ValuesGetter.getAllAnywhere("nsesss:Komponenta", metsParser.getDocument());
-        if(nodeListMetsFile == null) return true;
-        if(nodeListKomponenty == null || nodeListKomponenty.getLength() != nodeListMetsFile.getLength()){
-            return nastavChybu("Nenalezen žádný element <nsesss:Komponenta>.", MISTO_CHYBY_NEUPRESNENO);
-        }
-        ArrayList<Obj_Node_String> files = new ArrayList<>(), komponents = new ArrayList<>();
-        for(int i = 0; i < nodeListMetsFile.getLength(); i++){
-            Node metsFile = nodeListMetsFile.item(i);
-            Node komponenta = nodeListKomponenty.item(i);
-            if(!ValuesGetter.hasAttribut(metsFile, "DMDID")){
-                return nastavChybu("Element <mets:file> nemá atribut DMDID.", getMistoChyby(metsFile));
-            }
-            String dmdid = ValuesGetter.getValueOfAttribut(metsFile, "DMDID");
-            files.add(new Obj_Node_String(metsFile, dmdid));
-            if(!ValuesGetter.hasAttribut(komponenta, "ID")){
-                return nastavChybu("Element <nsesss:Komponenta> nemá atribut ID. " + getJmenoIdentifikator(komponenta), getMistoChyby(komponenta));
-            }
-            String id = ValuesGetter.getValueOfAttribut(komponenta, "ID");
-            komponents.add(new Obj_Node_String(komponenta, id));
-        }
-        String ch = "";
-        String misto_ch = "";
-        boolean vysledek = true;
-        for(int f = 0; f < files.size(); f++){
-            Obj_Node_String file = files.get(f);
-            ArrayList<Obj_Node_String>  f_list = Comparator.obj_Node_String_howmany_in_list(file, komponents);
-            if(f_list.size() != 1){
-                vysledek = false;
-                String mch = file.get_node().getUserData(PositionalXMLReader.LINE_NUMBER_KEY_NAME).toString();
-                if(f_list.isEmpty()){
-                    ch += "Element <mets:file> na řádku: " + mch +". neodkazuje na žádnou komponentu. ";
-                    misto_ch += getMistoChyby(file.get_node()) + " ";
-                }
-                else{
-                    String komp = "";
-                    for(int i = 0; i < f_list.size(); i++){
-                        Obj_Node_String file2 = f_list.get(i);
-                        if(i != f_list.size()-1){
-                            komp += getMistoChyby(file2.get_node()) + " ";
-
-                        }
-                        else{
-                            komp += getMistoChyby(file2.get_node()) + " ";
-                        }
-                    }
-                    ch += "Element <mets:file> na řádku: " + mch +". odkazuje na více komponent: " + komp;
-                    misto_ch += komp + " ";
-                }
-            }  
-        }
-        for(int k = 0; k < komponents.size(); k++){
-            Obj_Node_String komponenta = komponents.get(k);
-            ArrayList<Obj_Node_String>  k_list = Comparator.obj_Node_String_howmany_in_list(komponenta, files);
-            if(k_list.size() != 1){
-                Node komp = komponenta.get_node();
-                vysledek = false;
-                String mch = komp.getUserData(PositionalXMLReader.LINE_NUMBER_KEY_NAME).toString();
-                if(k_list.isEmpty()){
-                    ch += "Element <nsesss:Komponenta> na řádku: " + mch +". neodkazuje na žádný element <mets:file> " + getJmenoIdentifikator(komponenta.get_node());
-                    misto_ch += getMistoChyby(komp);
-                }
-                else{
-                    String fil = "";
-                    for(int i = 0; i < k_list.size(); i++){
-                        Obj_Node_String komponenta2 = k_list.get(i);
-                        Node kom = komponenta2.get_node();
-                        if(i != k_list.size()-1){
-                            fil += getMistoChyby(kom) + " ";
-
-                        }
-                        else{
-                            fil += getMistoChyby(kom) + " ";
-                        }
-                    }
-                    ch += "Element <nsesss:Komponenta> na řádku: " + mch +". odkazuje na více elementů <mets:file>: " + fil + " " + getJmenoIdentifikator(komp);
-                    misto_ch += fil + " ";
-                }
-            }  
-        }
-        if(!vysledek){
-            return nastavChybu(ch, misto_ch);
-        }
-        
-        
-        return vysledek;
-    }
-    
-    //OBSAHOVÁ č.45 Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut MIMETYPE s hodnotou identifikace souborového formátu příslušné komponenty číselníku IANA na URL: http://www.iana.org/assignments/media-types/media-types.xhtml.",
-    private boolean pravidlo45() throws IOException{
-        NodeList nodeListMetsFile = ValuesGetter.getAllAnywhere("mets:file", metsParser.getDocument());
-        if(nodeListMetsFile == null) return true;
-        for (int i = 0; i < nodeListMetsFile.getLength(); i++){
-            Node metsFile = nodeListMetsFile.item(i);
-
-            String mimeType = ValuesGetter.getValueOfAttribut(metsFile, JmenaElementu.METS_MIMETYPE); // application/pdf, text/plain
-            if (!HelperString.hasContent(mimeType)) {
-                return nastavChybu("Element <mets:file> nemá atribut MIMETYPE.", getMistoChyby(metsFile));
-            }
-            Node flocat = ValuesGetter.getXChild(metsFile, "mets:FLocat");
-            if(flocat == null){
-                return nastavChybu("Element <mets:file> nemá dětský element <mets:FLocat>.", getMistoChyby(metsFile));
-            }
-            
-            String xlinkHref = ValuesGetter.getValueOfAttribut(flocat, "xlink:href"); // komponenty/jmenosouboru
-            if (!HelperString.hasContent(xlinkHref)) {
-                return nastavChybu("Element <mets:FLocat> nemá atribut xlink:href.", getMistoChyby(flocat));
-            }
-            xlinkHref = HelperString.replaceSeparators(xlinkHref);
-            //kvůli komponenty/
-            int sep = xlinkHref.lastIndexOf(File.separator);
-            if (sep == -1) {
-                return nastavChybu("Element <mets:FLocat> má ve svém atributu xlink:href špatně uvedenou cestu ke komponentě: "
-                        + xlinkHref + ".", getMistoChyby(flocat));
-            }
-            String ko_over = xlinkHref.substring(0, sep);
-            if(!ko_over.equals("komponenty")){
-                return nastavChybu("Element <mets:FLocat> má ve svém atributu xlink:href špatně uvedenou cestu ke komponentě: " + xlinkHref + ".", getMistoChyby(flocat));
-            }
-            
-            String cestaKeKomponente = SIP_MAIN_helper.getCesta_komponenty(sipSoubor);
-            File file = new File(cestaKeKomponente);
-            File parentFile = file.getParentFile();
-            if (parentFile == null) {
-                throw new RuntimeException("Chyba při získání cesty k rodiči, cesta: " + cestaKeKomponente);
-            }
-
-            file = new File(parentFile.getAbsolutePath() + File.separator + xlinkHref);
-            if(!file.exists()){
-                file = get_komponenta(file.getName());
-                if(file == null || !file.exists()){
-//                if(file == null){
-//                    if(!final_path.contains(".")){
-//                        return add_popisy("Nenalezena příslušná komponenta ve složce komponenty.", "SIP soubor byl špatně vygenerován, chybí komponenty.", false, get_misto_chyby(flocat) + " " + "V atributu xlink:href uveden chybný odkaz: " + name + ".");
-//                    }
-                    if(xlinkHref.contains(File.separator)){
-                        int s = xlinkHref.lastIndexOf(File.separator);
-                        String g = xlinkHref.substring(s+1);
-                        xlinkHref = g;
-                    }
-                    return nastavChybu("Nenalezena příslušná komponenta ve složce komponenty.",
-                                       "Chybí soubor: " + xlinkHref + ".");
-                }
-            }  
-            MimeTypeResult detectedType = MimetypeDetector.getMimeType(file);
-            if (detectedType.getDetectionStatus() == DetectionStatus.FAILED) {
-                return nastavChybu("U komponenty s deklarovaným typem: " + mimeType + " došlo k selhání detekce typu: "
-                        + detectedType.getException(), "Soubor: " + file.getName() + ".");
-            }
-            String detectedMimeType = detectedType.getTikaMimetype();
-            if (StringUtils.isBlank(detectedMimeType)) {
-                return nastavChybu("U komponenty s deklarovaným typem: " + mimeType
-                        + " se nepodařilo typ správně detekovat.", "Soubor: " + file.getName() + ".");
-            }
-            if (!detectedType.isMimetype(mimeType)) {
-                // vyjimky sem
-                if (detectedMimeType.equals("application/x-zip-compressed") ||
-                        detectedMimeType.equals("application/x-dbf") ||
-                        detectedMimeType.equals("application/pkcs7-signature")) {
-                    // datová schránka
-                    // application/vnd.software602.filler.form-xml-zip
-                    if (detectedMimeType.equals("application/pkcs7-signature")) {
-                        if (!mimeType.equals("application/vnd.software602.filler.form-xml-zip")) {
-                            try (InputStreamReader input = new InputStreamReader(new FileInputStream(file));) {
-                                BufferedReader reader = new BufferedReader(input);
-                                boolean jedatovka = false;
-                                while (!jedatovka && reader.readLine() != null) {
-                                    String line = reader.readLine();
-                                    if (line.contains("</q:dmHash><q:dmQTimestamp>")) {
-                                        jedatovka = true;
-                                        input.close();
-                                        reader.close();
-                                    }
-                                }
-                                if (!jedatovka)
-                                    return nastavChybu(
-                                                       "Komponenta je soubor typu: " + detectedMimeType
-                                                               + ", ale její deklarovaný MIMETYPE je: " + mimeType
-                                                               + ". Nejedná se o soubor datové schránky",
-                                                       "Soubor: " + file.getName() + ".");
-                            }
-                        }
-                    }
-                    if (detectedMimeType.equals("application/x-zip-compressed") && !mimeType.equals(
-                                                                                                    "application/zip")) {
-                        return nastavChybu("Komponenta je soubor typu: " + detectedMimeType
-                                + ", ale její deklarovaný MIMETYPE je: " + mimeType + ".",
-                                           "Soubor: " + file.getName() + ".");
-                    }
-
-                    if (detectedMimeType.equals("application/x-dbf") &&
-                            !mimeType.equals("application/vnd.software602.filler.form-xml-zip")) {
-                        return nastavChybu("Komponenta je soubor typu: " + detectedMimeType
-                                + ", ale její deklarovaný MIMETYPE je: " + mimeType + ".", "Soubor: " + file.getName()
-                                        + ".");
-                    }
-                } else {
-                    return nastavChybu("Komponenta je soubor typu: " + detectedMimeType
-                            + ", ale její deklarovaný MIMETYPE je: " + mimeType + ".", "Soubor: " + file.getName()
-                                    + ".");
-                }
-            }
-        }
-
-        return true;
-    }
-    
-    //OBSAHOVÁ č.46 Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut CHECKSUMTYPE hodnotu SHA-256 nebo SHA-512.",
-    private boolean pravidlo46(){
-        NodeList nodeListMetsFile = ValuesGetter.getAllAnywhere("mets:file", metsParser.getDocument());
-        if(nodeListMetsFile== null) return true;
-        for (int i = 0; i < nodeListMetsFile.getLength(); i++){
-            Node metsFile = nodeListMetsFile.item(i);
-            if(!ValuesGetter.hasAttribut(metsFile, "CHECKSUMTYPE")){
-                return nastavChybu("Element <mets:file> nemá atribut CHECKSUMTYPE.", getMistoChyby(metsFile));
-            }
-            String hodnota = ValuesGetter.getValueOfAttribut(metsFile, "CHECKSUMTYPE");
-            if(!hodnota.equals("SHA-256") && !hodnota.equals("SHA-512")){
-                return nastavChybu("Atribut CHECKSUMTYPE obsahuje nepovolenou hodnotu: " + hodnota + ".", getMistoChyby(metsFile));
-            }
-        }
-        return true;
-    }
-            
+                        
     public ArrayList<Node> get_krizove_odkazy_pevny_ano() {
         ArrayList<Node> list = new ArrayList<>();
         NodeList krizoveOdkazy = ValuesGetter.getAllAnywhere("nsesss:KrizovyOdkaz", metsParser.getDocument());
@@ -1787,21 +1555,6 @@ public class K06_Obsahova
             }
         }
         return list;
-    }
-    
-    private File get_komponenta(String jmeno_souboru){
-        File komponenty = new File(SIP_MAIN_helper.getCesta_komponenty(sipSoubor));
-        if(komponenty.exists()){
-            File[] seznam = komponenty.listFiles();
-            for(File komponenta : seznam){
-                String name = komponenta.getName();
-                String nameWithOutExt = FilenameUtils.removeExtension(komponenta.getName());
-                if(jmeno_souboru.equals(name) || jmeno_souboru.equals(nameWithOutExt)){
-                    return komponenta;
-                }
-            }
-        }      
-        return null;
     }
     
     // na konci oddělovač nehlídá

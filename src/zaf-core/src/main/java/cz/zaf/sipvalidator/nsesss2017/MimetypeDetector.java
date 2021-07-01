@@ -20,7 +20,7 @@ public class MimetypeDetector {
     
     static public class MimeTypeResult {
 
-        enum DetectionStatus {
+        public enum DetectionStatus {
             OK,
             FAILED
         }
