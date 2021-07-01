@@ -3,6 +3,7 @@ package cz.zaf.sipvalidator.nsesss2017;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo35;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo36;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo37;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo38;
@@ -763,7 +764,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("35-chyba1", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS35 });
+                       new String[] { Pravidlo35.OBS35 });
     }
 
     @Test
@@ -771,7 +772,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("35-chyba2", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS35 });
+                       new String[] { Pravidlo35.OBS35 });
     }
 
     @Test
@@ -779,14 +780,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("35-chyba3", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS35 });
+                       new String[] { Pravidlo35.OBS35 });
     }
 
     @Test
     void testK06_35_OK01() {
         testPackageK06("35-OK", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS35 },
+                       new String[] { Pravidlo35.OBS35 },
                        new String[] {});
     }
 
