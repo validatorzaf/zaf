@@ -27,6 +27,7 @@ import org.w3c.dom.NodeList;
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.MimetypeDetector.MimeTypeResult;
 import cz.zaf.sipvalidator.nsesss2017.MimetypeDetector.MimeTypeResult.DetectionStatus;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo49;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo50;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo51;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo52;
@@ -150,7 +151,6 @@ public class K06_Obsahova
     static final public String OBS46 = "obs46";
     static final public String OBS47 = "obs47";
     static final public String OBS48 = "obs48";
-    static final public String OBS49 = "obs49";
 	
     static final public String OBS54A = "obs54a";
     static final public String OBS61A = "obs61a";
@@ -188,6 +188,7 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
 
+        pridejPravidlo(new Pravidlo49(this));
         pridejPravidlo(new Pravidlo50(this));
         pridejPravidlo(new Pravidlo51(this));
         pridejPravidlo(new Pravidlo52(this));
@@ -383,9 +384,6 @@ public class K06_Obsahova
             break;
         case 48:
             vysledek = pravidlo48();
-            break;
-        case 49:
-            vysledek = pravidlo49();
             break;
         }
         
@@ -1915,20 +1913,6 @@ public class K06_Obsahova
         return true;
     }
     
-    //OBSAHOVÁ č.49 Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut CREATED.",
-    private boolean pravidlo49(){
-        NodeList nodeListMetsFile = ValuesGetter.getAllAnywhere("mets:file", metsParser.getDocument());
-        if(nodeListMetsFile == null) return true;
-        for (int i = 0; i < nodeListMetsFile.getLength(); i++)
-        {
-            Node metsFile = nodeListMetsFile.item(i);
-            if (!ValuesGetter.hasAttribut(metsFile, "CREATED")){
-                return nastavChybu("Elenemt <mets:file> neobsahuje atribut CREATED.", getMistoChyby(nodeListMetsFile.item(i)));
-            }
-        }   
-        return true;
-    }
-
     public ArrayList<Node> get_krizove_odkazy_pevny_ano() {
         ArrayList<Node> list = new ArrayList<>();
         NodeList krizoveOdkazy = ValuesGetter.getAllAnywhere("nsesss:KrizovyOdkaz", metsParser.getDocument());

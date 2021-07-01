@@ -71,7 +71,7 @@ public class ZpravyObsahoveKontroly {
     "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut CHECKSUMTYPE hodnotu SHA-256 nebo SHA-512.",
     "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut CHECKSUM s hodnotou kontrolního součtu příslušné komponenty podle kryptografického algoritmu uvedeného v atributu CHECKSUMTYPE.",
     "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut SIZE s hodnotou velikosti příslušné komponenty v bytech.",
-    "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut CREATED.",
+    
     };
     
     public static String get_text_Obsahova(int index){
@@ -141,8 +141,7 @@ public class ZpravyObsahoveKontroly {
     "Bod 2.15. přílohy č. 3 NSESSS.",
     "Bod 2.15. přílohy č. 3 NSESSS.",
     "Bod 2.15. přílohy č. 3 NSESSS.",
-    "Bod 2.15. přílohy č. 3 NSESSS.",
-    "Bod 2.15. přílohy č. 3 NSESSS.",
+    "Bod 2.15. přílohy č. 3 NSESSS.",    
     };
     
     public static String get_zdroje_Obsahova(int index){
@@ -211,9 +210,7 @@ public class ZpravyObsahoveKontroly {
     "Chybí provázání komponenty (počítačového souboru) s popisnou částí.",
     "Komponenta (počítačový soubor) má uvedený chybný datový formát.",
     "Chybí popis pro ověření celistvosti komponenty (počítačového souboru) nebo je chybně uveden.",
-    "Celistvost komponenty (počítačového souboru) je narušena nebo chybí možnost jejího ověření.",
-    "Chybí velikost komponenty (počítačového souboru) nebo je uvedena chybně.",
-    "Chybí datum vytvoření komponenty (počítačového souboru).",
+    "Celistvost komponenty (počítačového souboru) je narušena nebo chybí možnost jejího ověření.",    
     };
     
     public static String get_popis_Obsahova(int index){
