@@ -5,28 +5,19 @@
  */
 package cz.zaf.sipvalidator.nsesss2017;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
-import cz.zaf.sipvalidator.nsesss2017.MimetypeDetector.MimeTypeResult;
-import cz.zaf.sipvalidator.nsesss2017.MimetypeDetector.MimeTypeResult.DetectionStatus;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo44;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo45;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo46;
@@ -78,6 +69,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo91;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo92;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo93;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo94;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo94a;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo95;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo96;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo97;
@@ -92,7 +84,6 @@ import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_return_bol_AL_Obj_
 import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_return_bol_AL_Obj_metsdiv;
 import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_return_bol_AL_node;
 import cz.zaf.sipvalidator.sip.PravidloKontroly;
-import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 
@@ -148,14 +139,11 @@ public class K06_Obsahova
     static final public String OBS39 = "obs39";
 
     static final public String OBS40 = "obs40";
-    //static final public String OBS41 = "obs41";
-    //static final public String OBS42 = "obs42";
-    //static final public String OBS43 = "obs43";
 	
     static final public String OBS54A = "obs54a";
     static final public String OBS61A = "obs61a";
     static final public String OBS93A = "obs93a";
-    static final public String OBS94A = "obs94a";
+
     static final public String MISTO_CHYBY_NEUPRESNENO = "Neupřesněno.";
     private String popisChyby = "Pravidlo nesplněno.";
     private String misto_chyby = "";
@@ -188,6 +176,7 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
 
+        pridejPravidlo(new Pravidlo94a(this));
         pridejPravidlo(new Pravidlo44(this));
         pridejPravidlo(new Pravidlo45(this));
         pridejPravidlo(new Pravidlo46(this));
@@ -238,7 +227,7 @@ public class K06_Obsahova
         pridejPravidlo(new Pravidlo91(this));
         pridejPravidlo(new Pravidlo92(this));
         pridejPravidlo(new Pravidlo93(this));
-        pridejPravidlo(new Pravidlo94(this));
+        pridejPravidlo(new Pravidlo94(this));        
         pridejPravidlo(new Pravidlo95(this));
         pridejPravidlo(new Pravidlo96(this));
         pridejPravidlo(new Pravidlo97(this));
@@ -265,7 +254,7 @@ public class K06_Obsahova
         if (j == 42)
             return OBS61A;
         if (j == 43)
-            return OBS94A;
+            return Pravidlo94a.OBS94A;
 
         return "obs" + Integer.toString(j);
     }
@@ -371,9 +360,6 @@ public class K06_Obsahova
             break;
         case 42:
             vysledek = pravidlo42();
-            break;
-        case 43:
-            vysledek = pravidlo43();
             break;
         }
         
@@ -1488,61 +1474,7 @@ public class K06_Obsahova
         }    
         return true;
     }
-    
-    //OBSAHOVÁ č.94a. Každá entita věcná skupina (<nsesss:VecnaSkupina>) nebo součást (<nsesss:Soucast>), 
-    // která se nachází v rodičovské entitě věcná skupina (<nsesss:VecnaSkupina>) nebo typový spis (<nsesss:TypovySpis>), 
-    // obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> element <nsesss:PlneUrcenySpisovyZnak> s 
-    // hodnotou obsahující oddělovač tvořený mezerou, pomlčkou, spojovníkem, lomítkem nebo tečkou, který není posledním znakem.
-    private boolean pravidlo43(){
-        NodeList vecneSkupiny = ValuesGetter.getAllAnywhere("nsesss:VecnaSkupina", metsParser.getDocument());
-//        NodeList typoveSpisy = ValuesGetter.getAllAnywhere("nsesss:TypovySpis", parsedDOM_SipSoubor);
-        NodeList soucasti = ValuesGetter.getAllAnywhere("nsesss:Soucast", metsParser.getDocument());
-        
-        if(vecneSkupiny != null){
-            for(int i = 0; i < vecneSkupiny.getLength(); i++){
-                Node vecnaSkupina = vecneSkupiny.item(i);
-                boolean dite = ValuesGetter.getXChild(vecnaSkupina, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:MaterskaEntita", "nsesss:VecnaSkupina") != null;
-                if(dite){
-                    Node plneUrceny_node = ValuesGetter.getXChild(vecnaSkupina, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:PlneUrcenySpisovyZnak");
-                    if(plneUrceny_node == null){
-                        return nastavChybu("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(vecnaSkupina), getMistoChyby(vecnaSkupina));
-                    }
-                    String hodnota = plneUrceny_node.getTextContent();
-                    if(!spisZnakObsahujeOddelovac(hodnota)){
-                        return nastavChybu("Hodnota elementu <nsesss:PlneUrcenySpisovyZnak> v sobě neobsahuje oddělovač. " + getJmenoIdentifikator(vecnaSkupina), getMistoChyby(plneUrceny_node));
-                    }
-                }
-            }
-        }
-//        if(typoveSpisy!= null){
-//            for(int i = 0; i < typoveSpisy.getLength(); i++){
-//                Node plneUrceny_node = ValuesGetter.getXChild(typoveSpisy.item(i), "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:PlneUrcenySpisovyZnak");
-//                if(plneUrceny_node == null){
-//                    return add_popisy("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>.", false, get_misto_chyby(typoveSpisy.item(i)));
-//                }
-//                String hodnota = plneUrceny_node.getTextContent();
-//                if(!sz_ma_oddelovac_vsobe(hodnota)){
-//                    return add_popisy("Hodnota elementu <nsesss:PlneUrcenySpisovyZnak> v sobě neobsahuje oddělovač.", false, get_misto_chyby(plneUrceny_node));
-//                } 
-//            }
-//        }
-        if(soucasti != null){
-            for(int i = 0; i < soucasti.getLength(); i++){
-                Node soucast = soucasti.item(i);     
-                Node plneUrceny_node = ValuesGetter.getXChild(soucast, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:PlneUrcenySpisovyZnak");
-                if(plneUrceny_node == null){
-                    return nastavChybu("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(soucast), getMistoChyby(soucast));
-                }
-                String hodnota = plneUrceny_node.getTextContent();
-                if(!spisZnakObsahujeOddelovac(hodnota)){
-                    return nastavChybu("Hodnota elementu <nsesss:PlneUrcenySpisovyZnak> v sobě neobsahuje oddělovač. " + getJmenoIdentifikator(soucast), getMistoChyby(plneUrceny_node));
-                } 
-            }
-        }
-        
-        return true;
-    }
-                        
+                            
     public ArrayList<Node> get_krizove_odkazy_pevny_ano() {
         ArrayList<Node> list = new ArrayList<>();
         NodeList krizoveOdkazy = ValuesGetter.getAllAnywhere("nsesss:KrizovyOdkaz", metsParser.getDocument());
