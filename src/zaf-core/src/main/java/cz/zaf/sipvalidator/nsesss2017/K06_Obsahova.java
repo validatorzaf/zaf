@@ -18,6 +18,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo40;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo44;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo45;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo46;
@@ -77,14 +78,6 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo96;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo97;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo98;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo99;
-import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Metods;
-import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_amdSec;
-import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_dmdSec;
-import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_metsdiv;
-import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_return_bol_AL_Obj_amdSec;
-import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_return_bol_AL_Obj_dmdSec;
-import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_return_bol_AL_Obj_metsdiv;
-import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_return_bol_AL_node;
 import cz.zaf.sipvalidator.sip.PravidloKontroly;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
@@ -139,8 +132,6 @@ public class K06_Obsahova
     static final public String OBS37 = "obs37";
     static final public String OBS38 = "obs38";
     static final public String OBS39 = "obs39";
-
-    static final public String OBS40 = "obs40";
 	
     static final public String OBS93A = "obs93a";
 
@@ -176,6 +167,7 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
 
+        pridejPravidlo(new Pravidlo40(this));
         pridejPravidlo(new Pravidlo54a(this));
         pridejPravidlo(new Pravidlo61a(this));
         pridejPravidlo(new Pravidlo94a(this));
@@ -353,9 +345,6 @@ public class K06_Obsahova
             break;
         case 39:
             vysledek = pravidlo39();
-            break;
-        case 40:
-            vysledek = pravidlo40();
             break;
         }
         
@@ -1225,34 +1214,6 @@ public class K06_Obsahova
 
         return true;
     }
-    
-    //OBSAHOVÁ č.40 Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ne, obsahuje element <mets:mets> právě jeden dětský element <mets:fileSec>.",
-    private boolean pravidlo40(){
-        if(dokumenty == null) return true;
-        for(int i =0; i < dokumenty.size(); i++){
-            Node dokument = dokumenty.get(i);
-            Node analogovyDokument = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Manipulace", "nsesss:AnalogovyDokument");
-            if(analogovyDokument == null){
-                return nastavChybu("Element <nsesss:Dokument> " + getIdentifikatory(dokument) +" neobsahuje element <nsesss:AnalogovyDokument>.", getMistoChyby(dokument));
-            }
-            boolean maHodnotuNe = analogovyDokument.getTextContent().toLowerCase().equals("ne");
-            if(maHodnotuNe){
-                if(metsMets == null){
-                    return nastavChybu("SIP nemá kořenový element <mets:mets>.", MISTO_CHYBY_NEUPRESNENO);
-                }
-                if(ValuesGetter.getXChild(metsMets, "mets:fileSec") == null){
-                    return nastavChybu("Element <mets:mets> neobsahuje žádný element <mets:fileSec>.", getMistoChyby(metsMets));
-                }
-                if(!ValuesGetter.hasOnlyOneChild_ElementNode(metsMets, "mets:fileSec")){
-                    return nastavChybu("Element <mets:mets> neobsahuje právě jeden dětský element <mets:fileSec>.", getMistoChyby(metsMets));
-                }
-                else{
-                    return true;
-                }
-            }
-        }
-        return true;
-    }
                                     
     public ArrayList<Node> get_krizove_odkazy_pevny_ano() {
         ArrayList<Node> list = new ArrayList<>();
@@ -1374,4 +1335,15 @@ public class K06_Obsahova
     public MetsParser getMetsParser() {
         return metsParser;
     }
+
+    /**
+     * Return root mets element
+     * 
+     * @return
+     */
+    public Node getMetsMets() {
+    	return metsMets;
+    }
+    
 }
+

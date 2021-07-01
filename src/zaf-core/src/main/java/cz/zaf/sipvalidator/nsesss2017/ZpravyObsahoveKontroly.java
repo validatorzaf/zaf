@@ -50,15 +50,14 @@ public class ZpravyObsahoveKontroly {
     "Každý element <mets:amdSec> obsahuje právě jeden dětský element <mets:digiprovMD>.",
     //32. 93a
     "Každá entita věcná skupina (<nsesss:VecnaSkupina>), jejíž rodičovská entita je spisový plán (<nsesss:SpisovyPlan>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> se stejnými hodnotami.",
-    //33. - 40.
+    //33. - 39.
     "Každý element <mets:digiprovMD> obsahuje právě jeden dětský element <mets:mdWrap>.",
     "Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MDTYPEVERSION s hodnotou 1.0.",
     "Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut OTHERMDTYPE s hodnotou TP.",
     "Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MDTYPE s hodnotou OTHER.",
     "Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MIMETYPE s hodnotou text/xml.",
     "Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap> právě jeden dětský element <mets:xmlData>.",
-    "Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap>, <mets:xmlData> právě jeden dětský element <tp:TransakcniLogObjektu>.",
-    "Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ne, obsahuje element <mets:mets> právě jeden dětský element <mets:fileSec>.",
+    "Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap>, <mets:xmlData> právě jeden dětský element <tp:TransakcniLogObjektu>.",    
     
     };
     
@@ -109,15 +108,14 @@ public class ZpravyObsahoveKontroly {
     "Bod 2.10. přílohy č. 3 NSESSS.",
     //32. 93a
     "Požadavek 3.1.30 NSESSS.",
-    //33. - 40.
+    //33. - 39.
     "Bod 2.11. přílohy č. 3 NSESSS.",
     "Bod 2.11. přílohy č. 3 NSESSS.",
     "Bod 2.11. přílohy č. 3 NSESSS.",
     "Bod 2.11. přílohy č. 3 NSESSS.",
     "Bod 2.11. přílohy č. 3 NSESSS.",
     "Bod 2.12. přílohy č. 3 NSESSS.",
-    "Bod 2.12. přílohy č. 3 NSESSS.",
-    "Bod 2.13. přílohy č. 3 NSESSS.",    
+    "Bod 2.12. přílohy č. 3 NSESSS.",       
     };
     
     public static String get_zdroje_Obsahova(int index){
@@ -167,16 +165,14 @@ public class ZpravyObsahoveKontroly {
     "Chybí povinná část (transakční protokol) struktury datového balíčku SIP.",
     //32. 93a
     "Chybně jsou uvedeny spisové znaky.",
-    //33. - 40.
+    //33. - 39.
     "Chybí povinná část (transakční protokol) struktury datového balíčku SIP.",
     "Uveden je chybně popis schématu XML.",
     "Uveden je chybně popis schématu XML.",
     "Uveden je chybně popis schématu XML.",
     "Uveden je chybně popis schématu XML.",
     "Chybí povinná část (transakční protokol) struktury datového balíčku SIP.",
-    "Datový balíček SIP neobsahuje transakční protokol.",
-    "Chybí připojení komponent (počítačových souborů).",
-        
+    "Datový balíček SIP neobsahuje transakční protokol.",            
     };
     
     public static String get_popis_Obsahova(int index){
