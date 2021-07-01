@@ -18,6 +18,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo39;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo40;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo44;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo45;
@@ -131,7 +132,6 @@ public class K06_Obsahova
     static final public String OBS36 = "obs36";
     static final public String OBS37 = "obs37";
     static final public String OBS38 = "obs38";
-    static final public String OBS39 = "obs39";
 	
     static final public String OBS93A = "obs93a";
 
@@ -167,6 +167,7 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
 
+        pridejPravidlo(new Pravidlo39(this));
         pridejPravidlo(new Pravidlo40(this));
         pridejPravidlo(new Pravidlo54a(this));
         pridejPravidlo(new Pravidlo61a(this));
@@ -342,9 +343,6 @@ public class K06_Obsahova
             break;
         case 38:
             vysledek = pravidlo38();
-            break;
-        case 39:
-            vysledek = pravidlo39();
             break;
         }
         
@@ -1186,35 +1184,7 @@ public class K06_Obsahova
 
         return true;
     }
-    
-    //OBSAHOVÁ č.39 Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap>, <mets:xmlData> právě jeden dětský element <tp:TransakcniLogObjektu>.",
-    private boolean pravidlo39(){
-        NodeList nodeList = ValuesGetter.getAllAnywhere("mets:digiprovMD", metsParser.getDocument());
-        if(nodeList == null){
-            return nastavChybu("Nenalezen žádný element <mets:digiprovMD>.", MISTO_CHYBY_NEUPRESNENO);
-        }
-        for(int i = 0; i < nodeList.getLength(); i++){
-            Node digiprovMD = nodeList.item(i);
-            Node mdWr = ValuesGetter.getXChild(digiprovMD, "mets:mdWrap");
-            if(mdWr == null){
-                return nastavChybu("Element <mets:digiprovMD> neobsahuje dětský element <mets:mdWrap>.", getMistoChyby(digiprovMD));
-            }
-            Node xDt = ValuesGetter.getXChild(mdWr, "mets:xmlData");
-            if(xDt == null){
-                return nastavChybu("Element <mets:mdWrap> neobsahuje žádný dětský element <mets:xmlData>.", getMistoChyby(mdWr));
-            }
-            Node tlo = ValuesGetter.getXChild(xDt, "tp:TransakcniLogObjektu");
-            if(tlo == null){
-                return nastavChybu("Element <mets:xmlData> neobsahuje žádný dětský element <tp:TransakcniLogObjektu>.", getMistoChyby(xDt));
-            }
-            if(!ValuesGetter.hasOnlyOneChild_ElementNode(xDt , "tp:TransakcniLogObjektu")){
-                return nastavChybu("Element <mets:xmlData> neobsahuje právě jeden dětský element <tp:TransakcniLogObjektu>.", getMistoChyby(xDt));
-            }
-        }
-
-        return true;
-    }
-                                    
+                                            
     public ArrayList<Node> get_krizove_odkazy_pevny_ano() {
         ArrayList<Node> list = new ArrayList<>();
         NodeList krizoveOdkazy = ValuesGetter.getAllAnywhere("nsesss:KrizovyOdkaz", metsParser.getDocument());
