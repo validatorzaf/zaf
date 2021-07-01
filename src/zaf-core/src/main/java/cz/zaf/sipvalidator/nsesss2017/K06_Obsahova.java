@@ -18,6 +18,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo30;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo31;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo33;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo34;
@@ -131,8 +132,6 @@ public class K06_Obsahova
     static final public String OBS28 = "obs28";
     static final public String OBS29 = "obs29";
 
-    static final public String OBS30 = "obs30";
-
     static final public String MISTO_CHYBY_NEUPRESNENO = "Neupřesněno.";
     private String popisChyby = "Pravidlo nesplněno.";
     private String misto_chyby = "";
@@ -165,6 +164,7 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
         
+        pridejPravidlo(new Pravidlo30(this));
         pridejPravidlo(new Pravidlo31(this));
         pridejPravidlo(new Pravidlo93a(this));
         pridejPravidlo(new Pravidlo33(this));
@@ -322,9 +322,6 @@ public class K06_Obsahova
             break;
         case 29:
             vysledek = pravidlo29();
-            break;
-        case 30:
-            vysledek = pravidlo30();
             break;
         }
         
@@ -978,23 +975,7 @@ public class K06_Obsahova
         }
         
         return true;
-    }
-    
-    //OBSAHOVÁ č.30 Každý element <mets:amdSec> obsahuje atribut ID.",
-    private boolean pravidlo30(){
-        NodeList nodeList = ValuesGetter.getAllAnywhere("mets:amdSec", metsParser.getDocument());
-        if(nodeList == null){
-            return nastavChybu("Nenalezen žádný element <mets:amdSec>.", MISTO_CHYBY_NEUPRESNENO);
-        }
-        for(int i = 0; i < nodeList.getLength(); i++){
-            Node node = nodeList.item(i);
-            if(!ValuesGetter.hasAttribut(node, "ID")){
-                return nastavChybu("Element <mets:amdSec> nemá atribut ID.", getMistoChyby(node));
-            }
-        }
-        return true;
-    }
-    
+    }    
                     
     public ArrayList<Node> get_krizove_odkazy_pevny_ano() {
         ArrayList<Node> list = new ArrayList<>();

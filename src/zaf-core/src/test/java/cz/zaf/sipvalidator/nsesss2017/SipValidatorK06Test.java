@@ -3,6 +3,7 @@ package cz.zaf.sipvalidator.nsesss2017;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo30;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo31;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo33;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo34;
@@ -664,7 +665,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("30-chyba1", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS30 });
+                       new String[] { Pravidlo30.OBS30 });
     }
 
     @Test
@@ -672,14 +673,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("30-chyba2", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS30 });
+                       new String[] { Pravidlo30.OBS30 });
     }
 
     @Test
     void testK06_30_OK01() {
         testPackageK06("30-OK", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS30 },
+                       new String[] { Pravidlo30.OBS30 },
                        new String[] {});
     }
 
