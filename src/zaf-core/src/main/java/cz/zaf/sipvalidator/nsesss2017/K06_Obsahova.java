@@ -18,6 +18,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo33;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo34;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo35;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo36;
@@ -131,7 +132,6 @@ public class K06_Obsahova
     static final public String OBS30 = "obs30";
     static final public String OBS31 = "obs31";
     //static final public String OBS32 = "obs32";
-    static final public String OBS33 = "obs33";
 	
     static final public String OBS93A = "obs93a";
 
@@ -167,6 +167,7 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
 
+        pridejPravidlo(new Pravidlo33(this));
         pridejPravidlo(new Pravidlo34(this));
         pridejPravidlo(new Pravidlo35(this));
         pridejPravidlo(new Pravidlo36(this));
@@ -330,9 +331,6 @@ public class K06_Obsahova
             break;
         case 32:
             vysledek = pravidlo32();
-            break;
-        case 33:
-            vysledek = pravidlo33();
             break;
         }
         
@@ -1039,26 +1037,7 @@ public class K06_Obsahova
         }
         return true;
     }
-    
-    //OBSAHOVÁ č.33 Každý element <mets:digiprovMD> obsahuje právě jeden dětský element <mets:mdWrap>.",
-    private boolean pravidlo33(){
-        NodeList nodeList = ValuesGetter.getAllAnywhere("mets:digiprovMD", metsParser.getDocument());
-        if(nodeList == null){
-            return nastavChybu("Nenalezen žádný element <mets:digiprovMD>.", MISTO_CHYBY_NEUPRESNENO);
-        }
-        for(int i = 0; i < nodeList.getLength(); i++){
-            Node digiprovMD = nodeList.item(i);
-            ArrayList<Node> list = ValuesGetter.getSpecificChildWithName(digiprovMD, "mets:mdWrap");
-            if(list.isEmpty()){
-                return nastavChybu("Element <mets:digiprovMD> neobsahuje dětský element <mets:mdWrap>.", getMistoChyby(digiprovMD));
-            }
-            if(list.size() > 1){
-                return nastavChybu("Element <mets:digiprovMD> obsahuje více dětských elementů <mets:mdWrap>.", getMistoChyby(digiprovMD));
-            }
-        }
-        return true;
-    }
-    
+            
     public ArrayList<Node> get_krizove_odkazy_pevny_ano() {
         ArrayList<Node> list = new ArrayList<>();
         NodeList krizoveOdkazy = ValuesGetter.getAllAnywhere("nsesss:KrizovyOdkaz", metsParser.getDocument());

@@ -12,7 +12,7 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
  * atribut MDTYPEVERSION s hodnotou 1.0. 
  *
  */
-public class Pravidlo34  extends K06PravidloBase {
+public class Pravidlo34 extends K06PravidloBase {
 	
 	static final public String OBS34 = "obs34";
 
