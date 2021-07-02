@@ -27,8 +27,7 @@ public class Pravidlo94 extends K06PravidloBase {
     protected boolean kontrolaPravidla() {
         List<Node> plneurcenySpisovyZnak = metsParser.getPlneurcenySpisovyZnak();
         if (plneurcenySpisovyZnak == null)
-            return nastavChybu("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>.",
-                               K06_Obsahova.MISTO_CHYBY_NEUPRESNENO);
+            return nastavChybu("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>.");
         for (int i = 0; i < plneurcenySpisovyZnak.size(); i++) {
             Node pusz_node = plneurcenySpisovyZnak.get(i);
             Node jsz_node = ValuesGetter.getSourozencePrvnihoSeJmenem(pusz_node, "nsesss:JednoduchySpisovyZnak");

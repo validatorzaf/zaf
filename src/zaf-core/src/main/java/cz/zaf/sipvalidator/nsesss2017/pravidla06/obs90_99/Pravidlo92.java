@@ -53,7 +53,7 @@ public class Pravidlo92 extends K06PravidloBase {
     protected boolean kontrolaPravidla() {
         List<Node> identifikatory = metsParser.getIdentifikatory();
         if (identifikatory == null)
-            return nastavChybu("Nenalezen element <nsesss:Identifikator>.", K06_Obsahova.MISTO_CHYBY_NEUPRESNENO);
+            return nastavChybu("Nenalezen element <nsesss:Identifikator>.");
         for (int i = 0; i < identifikatory.size(); i++) {
             Node identif = identifikatory.get(i);
             if (!ValuesGetter.hasAttribut(identif, "zdroj")) {

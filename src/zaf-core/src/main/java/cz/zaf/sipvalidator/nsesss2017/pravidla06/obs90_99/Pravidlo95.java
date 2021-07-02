@@ -36,7 +36,7 @@ public class Pravidlo95 extends K06PravidloBase {
                 .getDocument());
         ArrayList<Node> list = new ArrayList<>();
         if (vecneSkupiny == null)
-            return nastavChybu("Nenalezen element <nsesss:VecnaSkupina>.", K06_Obsahova.MISTO_CHYBY_NEUPRESNENO);
+            return nastavChybu("Nenalezen element <nsesss:VecnaSkupina>.");
         list.addAll(vecneSkupiny);
         if (soucasti != null)
             list.addAll(soucasti);

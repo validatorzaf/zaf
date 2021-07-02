@@ -5,19 +5,15 @@
  */
 package cz.zaf.sipvalidator.nsesss2017;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09.Pravidlo1;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09.Pravidlo2;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09.Pravidlo3;
@@ -127,13 +123,10 @@ public class K06_Obsahova
 	
     static final public String NAME = "kontrola obsahu";
 
-    static final public String MISTO_CHYBY_NEUPRESNENO = "Neupřesněno.";
 	SipInfo sipSoubor;
 	private int[] seznamPravidel;
 
     private MetsParser metsParser;
-
-    private Node metsMets;
 
     private List<Node> zakladniEntity;
     private List<Node> dokumenty;
@@ -399,7 +392,6 @@ public class K06_Obsahova
         // Nastaveni promenych pro kontroly
         // bude nutne casem prepracovat
         this.metsParser = ctx.getMetsParser();
-        this.metsMets = metsParser.getMetsRootNode();
         this.zakladniEntity = metsParser.getZakladniEntity();
         this.dokumenty = metsParser.getDokumenty();
 		
@@ -453,15 +445,6 @@ public class K06_Obsahova
 
     public MetsParser getMetsParser() {
         return metsParser;
-    }
-
-    /**
-     * Return root mets element
-     * 
-     * @return
-     */
-    public Node getMetsMets() {
-    	return metsMets;
     }
     
 }

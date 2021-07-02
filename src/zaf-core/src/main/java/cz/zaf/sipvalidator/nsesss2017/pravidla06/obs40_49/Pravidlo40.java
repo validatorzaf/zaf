@@ -37,7 +37,7 @@ public class Pravidlo40  extends K06PravidloBase {
             }
             boolean maHodnotuNe = analogovyDokument.getTextContent().toLowerCase().equals("ne");
             if(maHodnotuNe){
-            	Node metsMets = kontrola.getMetsMets();
+            	Node metsMets = metsParser.getMetsRootNode();
                 if(ValuesGetter.getXChild(metsMets, "mets:fileSec") == null){
                     return nastavChybu("Element <mets:mets> neobsahuje žádný element <mets:fileSec>.", getMistoChyby(metsMets));
                 }
