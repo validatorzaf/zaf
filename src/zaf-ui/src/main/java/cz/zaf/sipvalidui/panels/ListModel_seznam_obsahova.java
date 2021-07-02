@@ -9,10 +9,10 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
-import cz.zaf.sipvalidator.sip.VysledekPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.VysledekKontroly;
+import cz.zaf.sipvalidator.sip.VysledekPravidla;
 
 
 /**
@@ -23,13 +23,10 @@ public class ListModel_seznam_obsahova{
     JList jList_obsahova_vse;
     JList jList_obsahova_chyby;
     DefaultListModel modelListObsahova, modelListChybObsahova;
-    
-    int[] seznamIndexuPravidel;
 
     public ListModel_seznam_obsahova(SipInfo sip, ProfilValidace profilValidace) {
         modelListObsahova = new DefaultListModel();
         modelListChybObsahova = new DefaultListModel();
-        this.seznamIndexuPravidel = profilValidace.getObsahoveKontroly();
         if (sip.isKontrolyProvedeny()) {
             get_model_chyby(sip);
             get_model_all(sip); 

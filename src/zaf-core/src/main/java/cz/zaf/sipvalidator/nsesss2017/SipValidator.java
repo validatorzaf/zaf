@@ -65,7 +65,7 @@ public class SipValidator {
         K05_ProtiSchematu vxml = new K05_ProtiSchematu();
         kontroly.add(vxml);
 
-        K06_Obsahova oks = new K06_Obsahova(profilValidace.getObsahoveKontroly());
+        K06_Obsahova oks = new K06_Obsahova(profilValidace.createObsahovaPravidla());
         kontroly.add(oks);
         
         return kontroly;

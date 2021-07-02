@@ -11,7 +11,7 @@ import java.awt.Toolkit;
 
 import javax.swing.UIManager;
 
-import cz.zaf.sipvalidator.nsesss2017.profily.ProfilyValidace;
+import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 
 /**
  *
@@ -139,7 +139,7 @@ public class JF_Kontrola_nastaveni extends javax.swing.JFrame {
         zamkni();
         mainFrame.setVelikostDavky(get_davka());
         jLabel_progresbar.setText("ZAČÍNÁM ZPRACOVÁVAT");
-        mainFrame.do_contoll(ProfilyValidace.SKARTACE_METADATA, jTextField_idkontroly.getText());
+        mainFrame.do_contoll(ZakladniProfilValidace.SKARTACE_METADATA, jTextField_idkontroly.getText());
     }//GEN-LAST:event_jButton_SPrazdnyActionPerformed
 
     private void jButton_PrejimkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_PrejimkaActionPerformed
@@ -147,7 +147,7 @@ public class JF_Kontrola_nastaveni extends javax.swing.JFrame {
         zamkni();
         mainFrame.setVelikostDavky(get_davka());
         jLabel_progresbar.setText("ZAČÍNÁM ZPRACOVÁVAT");
-        mainFrame.do_contoll(ProfilyValidace.PREJIMKA, jTextField_idkontroly.getText());
+        mainFrame.do_contoll(ZakladniProfilValidace.PREJIMKA, jTextField_idkontroly.getText());
     }//GEN-LAST:event_jButton_PrejimkaActionPerformed
 
     private void jButton_SPlnyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SPlnyActionPerformed
@@ -155,7 +155,7 @@ public class JF_Kontrola_nastaveni extends javax.swing.JFrame {
         zamkni();
         mainFrame.setVelikostDavky(get_davka());
         jLabel_progresbar.setText("ZAČÍNÁM ZPRACOVÁVAT");
-        mainFrame.do_contoll(ProfilyValidace.SKARTACE_UPLNY, jTextField_idkontroly.getText());
+        mainFrame.do_contoll(ZakladniProfilValidace.SKARTACE_UPLNY, jTextField_idkontroly.getText());
     }//GEN-LAST:event_jButton_SPlnyActionPerformed
     private void zamkni(){
         jButton_Prejimka.setEnabled(false);

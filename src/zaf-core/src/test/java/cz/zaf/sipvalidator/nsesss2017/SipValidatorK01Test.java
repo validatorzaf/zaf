@@ -2,7 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017;
 
 import org.junit.jupiter.api.Test;
 
-import cz.zaf.sipvalidator.nsesss2017.profily.ProfilyValidace;
+import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 import cz.zaf.sipvalidator.sip.StavKontroly;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
@@ -12,18 +12,17 @@ class SipValidatorK01Test
 
     static public final String PATH_DATA_K01 = "testdata/01 KONTROLA DATA";
 
-
     void testPackageK01(String path, LoadType expLoadType,
                         StavKontroly stavKontroly, String[] pravidlaOk, String[] pravidlaChybna) {
         testPackage(PATH_DATA_K01 + "/" + path, expLoadType,
-                    ProfilyValidace.SKARTACE_METADATA,
+                    ZakladniProfilValidace.SKARTACE_METADATA,
                     TypUrovenKontroly.DATOVE_STRUKTURY,
                     stavKontroly, pravidlaOk, pravidlaChybna);
     }
 
     @Test
     void testK01_01() {
-        testPackageK01("data1-OK", LoadType.LT_DIR, StavKontroly.CHYBA, 
+        testPackageK01("data1-OK", LoadType.LT_DIR, StavKontroly.CHYBA,
                        new String[] { K01_DatoveStruktury.DATA1, K01_DatoveStruktury.DATA2 },
                        new String[] { K01_DatoveStruktury.DATA3 });
     }

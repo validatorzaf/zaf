@@ -2,7 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017;
 
 import org.junit.jupiter.api.Test;
 
-import cz.zaf.sipvalidator.nsesss2017.profily.ProfilyValidace;
+import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 import cz.zaf.sipvalidator.sip.StavKontroly;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
@@ -14,7 +14,7 @@ public class SipValidatorK02Test extends SipValidatorTestBase {
     void testPackageK02(String path,
                         StavKontroly stavKontroly, String[] pravidlaOk, String[] pravidlaChybna) {
         testPackage(PATH_DATA_K02 + "/" + path, LoadType.LT_DIR,
-                    ProfilyValidace.SKARTACE_METADATA,
+                    ZakladniProfilValidace.SKARTACE_METADATA,
                     TypUrovenKontroly.ZNAKOVE_SADY,
                     stavKontroly, pravidlaOk, pravidlaChybna);
     }
@@ -95,7 +95,7 @@ public class SipValidatorK02Test extends SipValidatorTestBase {
                        new String[] {},
                        new String[] { K02_ZnakoveSady.KOD1 });
     }
-    
+
     @Test
     void testK02_12() {
         testPackageK02("kod1-chyba12", StavKontroly.CHYBA,

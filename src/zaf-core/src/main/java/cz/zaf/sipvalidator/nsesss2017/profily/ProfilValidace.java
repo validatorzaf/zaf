@@ -1,5 +1,7 @@
 package cz.zaf.sipvalidator.nsesss2017.profily;
 
+import cz.zaf.sipvalidator.nsesss2017.ObsahovePravidlo;
+
 /**
  * Rozhraní pro validační profily
  *
@@ -12,11 +14,14 @@ public interface ProfilValidace {
      * @return
      */
     public String getNazev();
-
+    
     /**
-     * Seznam obsahových kontrol
+     * Vrátí seznam připravených obsahových kontrol
      * 
+     * Obsahová pravidla mohou být používána 
+     * jen v rámci jednoho vlákna. Mají svůj vnitřní stav
+     * při běhu kontroly.
      * @return
      */
-    public int[] getObsahoveKontroly();
+    public ObsahovePravidlo[] createObsahovaPravidla();
 }

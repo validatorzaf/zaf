@@ -121,6 +121,7 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
         return false;
     }
 
+    @Override
     public String getKodPravidla() {
         return kodPravidla;
     }

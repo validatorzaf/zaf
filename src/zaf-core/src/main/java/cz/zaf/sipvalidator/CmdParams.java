@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
-import cz.zaf.sipvalidator.nsesss2017.profily.ProfilyValidace;
+import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 
 /**
  * Trida pro nacteni vstupnich parametru
@@ -44,7 +44,7 @@ public class CmdParams {
     /**
      * Aktivni profil validace
      */
-    ProfilValidace profilValidace = ProfilyValidace.SKARTACE_METADATA;
+    ProfilValidace profilValidace = ZakladniProfilValidace.SKARTACE_METADATA;
 
     /**
      * Popis hrozby
@@ -272,13 +272,13 @@ public class CmdParams {
             int druh = Integer.parseInt(arg);
             switch (druh) {
             case 1:
-                profilValidace = ProfilyValidace.SKARTACE_METADATA;
+                profilValidace = ZakladniProfilValidace.SKARTACE_METADATA;
                 break;
             case 2:
-                profilValidace = ProfilyValidace.SKARTACE_UPLNY;
+                profilValidace = ZakladniProfilValidace.SKARTACE_UPLNY;
                 break;
             case 3:
-                profilValidace = ProfilyValidace.PREJIMKA;
+                profilValidace = ZakladniProfilValidace.PREJIMKA;
                 break;
             default:
                 System.out.println("Chybný druh validace: " + arg);

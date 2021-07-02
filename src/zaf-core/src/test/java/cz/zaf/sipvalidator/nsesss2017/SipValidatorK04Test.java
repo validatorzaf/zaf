@@ -2,7 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017;
 
 import org.junit.jupiter.api.Test;
 
-import cz.zaf.sipvalidator.nsesss2017.profily.ProfilyValidace;
+import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 import cz.zaf.sipvalidator.sip.StavKontroly;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
@@ -14,7 +14,7 @@ public class SipValidatorK04Test extends SipValidatorTestBase {
     void testPackageK04(String path,
                         StavKontroly stavKontroly, String[] pravidlaOk, String[] pravidlaChybna) {
         testPackage(PATH_DATA_K04 + "/" + path, LoadType.LT_DIR,
-                    ProfilyValidace.SKARTACE_METADATA,
+                    ZakladniProfilValidace.SKARTACE_METADATA,
                     TypUrovenKontroly.JMENNE_PROSTORY_XML,
                     stavKontroly, pravidlaOk, pravidlaChybna);
     }
