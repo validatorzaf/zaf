@@ -55,7 +55,11 @@ public abstract class K06PravidloBase implements Runnable {
         this.metsParser = kontrola.getMetsParser();
         this.context = this.kontrola.getContext();
 
-        stav = kontrolaPravidla();
+        try {
+        	stav = kontrolaPravidla();
+        } catch(Exception e) {
+        	detailChyby = e.getLocalizedMessage();
+        }
 
         kontrola.pridejPravidlo(kodPravidla,
                                 stav,

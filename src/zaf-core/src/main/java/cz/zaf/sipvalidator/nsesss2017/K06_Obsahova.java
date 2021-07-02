@@ -18,6 +18,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo10;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo11;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo12;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo13;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo14;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo15;
@@ -126,10 +129,6 @@ public class K06_Obsahova
     static final public String OBS4 = "obs4";
     static final public String OBS9 = "obs9";
 
-    static final public String OBS10 = "obs10";
-    static final public String OBS11 = "obs11";
-    static final public String OBS12 = "obs12";
-
     static final public String OBS21 = "obs21";
 
     static final public String MISTO_CHYBY_NEUPRESNENO = "Neupřesněno.";
@@ -159,6 +158,9 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
     
+        pridejPravidlo(new Pravidlo10(this));
+        pridejPravidlo(new Pravidlo11(this));
+        pridejPravidlo(new Pravidlo12(this));
         pridejPravidlo(new Pravidlo13(this));
         pridejPravidlo(new Pravidlo14(this));
         pridejPravidlo(new Pravidlo15(this));
@@ -270,23 +272,6 @@ public class K06_Obsahova
             return Pravidlo94a.OBS94A;
 
         return "obs" + Integer.toString(j);
-    }
-    
-    private boolean udelejPravidloObsahovaSpolecna2018(int cisloPravidla) throws IOException, ParseException{
-        boolean vysledek = false;
-        switch (cisloPravidla) {
-        case 10:
-            vysledek = pravidlo10();
-            break;
-        case 11:
-            vysledek = pravidlo11();
-            break;
-        case 12:
-            vysledek = pravidlo12();
-            break;
-        }
-        
-        return vysledek;
     }
     
     private boolean nastavChybu(String chyba, String misto_chyby){
@@ -559,40 +544,7 @@ public class K06_Obsahova
                        mistoChyby,
                        "Bod 2.1. přílohy č. 3 NSESSS.");
     }
-    
-    //OBSAHOVÁ č.10 Element <mets:mets> obsahuje právě jeden dětský element <mets:metsHdr>.",
-    private boolean pravidlo10(){
-        if(metsMets == null) return nastavChybu("Nenalezen kořenový element <mets:mets>.", MISTO_CHYBY_NEUPRESNENO);
-        if(!ValuesGetter.hasChildWithName(metsMets, "mets:metsHdr")){
-            return nastavChybu("Kořenový element <mets:mets> nemá žádný dětský element <mets:metsHdr>.", getMistoChyby(metsMets));
-        }
-        if(!ValuesGetter.hasOnlyOneChild_ElementNode(metsMets, "mets:metsHdr")){
-            return nastavChybu("Kořenový element <mets:mets> má více než jeden dětský element <mets:metsHdr>.", getMistoChyby(metsMets));
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.11 Element <mets:mets> obsahuje právě jeden dětský element <mets:dmdSec>.",
-    private boolean pravidlo11(){
-        if(metsMets == null) return nastavChybu("Nenalezen kořenový element <mets:mets>.", MISTO_CHYBY_NEUPRESNENO);
-        if(!ValuesGetter.hasChildWithName(metsMets, "mets:dmdSec")){
-            return nastavChybu("Kořenový element <mets:mets> nemá žádný dětský element <mets:dmdSec>.", getMistoChyby(metsMets));
-        }
-        if(!ValuesGetter.hasOnlyOneChild_ElementNode(metsMets, "mets:dmdSec")){
-            return nastavChybu("Kořenový element <mets:mets> má více než jeden dětský element <mets:dmdSec>.", getMistoChyby(metsMets));
-        }        
-        return true;
-    }
-    
-    //OBSAHOVÁ č.12 Element <mets:mets> obsahuje alespoň jeden element <mets:amdSec>.",
-    private boolean pravidlo12(){
-        if(metsMets == null) return nastavChybu("Nenalezen kořenový element <mets:mets>.", MISTO_CHYBY_NEUPRESNENO);
-        if(!ValuesGetter.hasChildWithName(metsMets, "mets:amdSec")){
-            return nastavChybu("Kořenový element <mets:mets> nemá žádný dětský element <mets:amdSec>.", getMistoChyby(metsMets));
-        }       
-        return true;
-    }    
-            
+               
     public ArrayList<Node> get_krizove_odkazy_pevny_ano() {
         ArrayList<Node> list = new ArrayList<>();
         NodeList krizoveOdkazy = ValuesGetter.getAllAnywhere("nsesss:KrizovyOdkaz", metsParser.getDocument());
@@ -656,36 +608,8 @@ public class K06_Obsahova
 
         // novy zpusob volani kontrol
         Runnable metodaKontroly = kontroly.get(idPravidla);
-        if (metodaKontroly != null) {
-            metodaKontroly.run();
-            return;
-        }
-
-        popisChyby = null;
-        misto_chyby = null;
-
-        // zavolani pravidla
-        boolean jePravidloSplneno = false;
-        try {
-            jePravidloSplneno = udelejPravidloObsahovaSpolecna2018(j);
-        } catch (IOException e) {
-            popisChyby = "IOException: " + e.getLocalizedMessage();
-        } catch (ParseException e) {
-            popisChyby = "ParseException: " + e.getLocalizedMessage();
-        }
-
-        String popisObecnyChyby = null;
-        if (!jePravidloSplneno) {
-            popisObecnyChyby = ZpravyObsahoveKontroly.get_popis_Obsahova(j);
-        }
-        PravidloKontroly p = new PravidloKontroly(idPravidla,
-                jePravidloSplneno,
-                ZpravyObsahoveKontroly.get_text_Obsahova(j),
-                popisChyby,
-                popisObecnyChyby,
-                misto_chyby,
-                ZpravyObsahoveKontroly.get_zdroje_Obsahova(j));
-        vysledekKontroly.add(p);
+        Validate.notNull(metodaKontroly, "Pravidlo nenalezeno, id=%s", idPravidla);
+        metodaKontroly.run();
     }
 
     @Override
