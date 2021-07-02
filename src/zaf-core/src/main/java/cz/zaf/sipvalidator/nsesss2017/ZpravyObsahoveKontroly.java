@@ -37,12 +37,6 @@ public class ZpravyObsahoveKontroly {
     "Každý element <mets:agent> obsahuje právě jeden dětský element <mets:name> s neprázdnou hodnotou.",
     //21. volný index
     "volný index",
-    //22. - 26.
-    "Element <mets:dmdSec> obsahuje právě jeden dětský element <mets:mdWrap>.",
-    "Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MDTYPEVERSION s hodnotou 3.0.",
-    "Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut OTHERMDTYPE s hodnotou NSESSS.",
-    "Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MDTYPE s hodnotou OTHER.",
-    "Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MIMETYPE s hodnotou text/xml.",
     };
     
     public static String get_text_Obsahova(int index){
@@ -79,12 +73,6 @@ public class ZpravyObsahoveKontroly {
     "Bod 2.4. přílohy č. 3 NSESSS.",
     //21. volný index
     "volný index",
-    //22. - 26.
-    "Bod 2.7. přílohy č. 3 NSESSS.",
-    "Bod 2.7. přílohy č. 3 NSESSS.",
-    "Bod 2.7. přílohy č. 3 NSESSS.",
-    "Bod 2.7. přílohy č. 3 NSESSS.",
-    "Bod 2.7. přílohy č. 3 NSESSS.",
     };
     
     public static String get_zdroje_Obsahova(int index){
@@ -121,12 +109,7 @@ public class ZpravyObsahoveKontroly {
     "Chybí informace o původci.",
     //21. volný index
     "volný index",
-    //22. - 26.
-    "Chybí povinná (popisná) část struktury datového balíčku SIP.",
-    "Uveden je chybně popis schématu XML.", // Uveden je chybně popis původce.
-    "Uveden je chybně popis schématu XML.",
-    "Uveden je chybně popis schématu XML.",
-    "Uveden je chybně popis schématu XML.",
+    
     };
     
     public static String get_popis_Obsahova(int index){

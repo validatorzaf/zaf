@@ -18,6 +18,11 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29.Pravidlo22;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29.Pravidlo23;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29.Pravidlo24;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29.Pravidlo25;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29.Pravidlo26;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29.Pravidlo27;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29.Pravidlo28;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29.Pravidlo29;
@@ -164,6 +169,11 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
         
+        pridejPravidlo(new Pravidlo22(this));
+        pridejPravidlo(new Pravidlo23(this));
+        pridejPravidlo(new Pravidlo24(this));
+        pridejPravidlo(new Pravidlo25(this));
+        pridejPravidlo(new Pravidlo26(this));
         pridejPravidlo(new Pravidlo27(this));
         pridejPravidlo(new Pravidlo28(this));
         pridejPravidlo(new Pravidlo29(this));
@@ -301,21 +311,6 @@ public class K06_Obsahova
             break;
         case 21:
             vysledek = pravidlo21();
-            break;
-        case 22:
-            vysledek = pravidlo22();
-            break;
-        case 23:
-            vysledek = pravidlo23();
-            break;
-        case 24:
-            vysledek = pravidlo24();
-            break;
-        case 25:
-            vysledek = pravidlo25();
-            break;
-        case 26:
-            vysledek = pravidlo26();
             break;
         }
         
@@ -765,82 +760,7 @@ public class K06_Obsahova
         return true;
     }
     
-    //OBSAHOVÁ č.22 Element <mets:dmdSec> obsahuje právě jeden dětský element <mets:mdWrap>.",
-    private boolean pravidlo22(){
-        if(metsDmdSec == null) return nastavChybu("Nenalezen element <mets:dmdSec>.", MISTO_CHYBY_NEUPRESNENO);
-        if(!ValuesGetter.hasChildWithName(metsDmdSec, "mets:mdWrap")){
-            return nastavChybu("Element <mets:dmdSec> neobsahuje žádný dětský element <mets:mdWrap>.", getMistoChyby(metsDmdSec));
-        }
-        if(!ValuesGetter.hasOnlyOneChild_ElementNode(metsDmdSec, "mets:mdWrap")){
-            return nastavChybu("Element <mets:dmdSec> obsahuje více než jeden dětský element <mets:mdWrap>.", getMistoChyby(metsDmdSec));
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.23 Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MDTYPEVERSION s hodnotou 3.0.",
-    private boolean pravidlo23(){
-        if(metsMdWrap == null) return nastavChybu("Nenalezen element <mets:mdWrap>.", MISTO_CHYBY_NEUPRESNENO);
-        if(!ValuesGetter.hasAttribut(metsMdWrap, "MDTYPEVERSION")){
-            return nastavChybu("Element <mets:mdWrap> neobsahuje atribut MDTYPEVERSION.", getMistoChyby(metsMdWrap));
-        }
-        String g = ValuesGetter.getValueOfAttribut(metsMdWrap, "MDTYPEVERSION");
-        if (StringUtils.isBlank(g)) {
-            return nastavChybu("Atribut MDTYPEVERSION elementu <mets:mdWrap> má prázdnou hodnotu.", getMistoChyby(metsMdWrap));
-        }
-        if(!ValuesGetter.hasAttributValue(metsMdWrap, "MDTYPEVERSION", "3.0")){
-            return nastavChybu("Atribut MDTYPEVERSION elementu <mets:mdWrap> neobsahuje hodnotu 3.0.", getMistoChyby(metsMdWrap));
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.24 Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut OTHERMDTYPE s hodnotou NSESSS.",
-    private boolean pravidlo24(){
-        if(metsMdWrap == null) return nastavChybu("Nenalezen element <mets:mdWrap>.", MISTO_CHYBY_NEUPRESNENO);
-        if(!ValuesGetter.hasAttribut(metsMdWrap, "OTHERMDTYPE")){
-            return nastavChybu("Element <mets:mdWrap> neobsahuje atribut OTHERMDTYPE.", getMistoChyby(metsMdWrap));
-        }
-        String g = ValuesGetter.getValueOfAttribut(metsMdWrap, "OTHERMDTYPE");
-        if (StringUtils.isBlank(g)) {
-            return nastavChybu("Atribut OTHERMDTYPE elementu <mets:mdWrap> má prázdnou hodnotu.", getMistoChyby(metsMdWrap));
-        }
-        if(!ValuesGetter.hasAttributValue(metsMdWrap, "OTHERMDTYPE", "NSESSS")){
-            return nastavChybu("Atribut OTHERMDTYPE elementu <mets:mdWrap> neobsahuje hodnotu NSESSS.", getMistoChyby(metsMdWrap));
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.25 Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MDTYPE s hodnotou OTHER.",
-    private boolean pravidlo25(){
-        if(metsMdWrap == null) return nastavChybu("Nenalezen element <mets:mdWrap>.", MISTO_CHYBY_NEUPRESNENO);
-        if(!ValuesGetter.hasAttribut(metsMdWrap, "MDTYPE")){
-            return nastavChybu("Element <mets:mdWrap> neobsahuje atribut MDTYPE.", getMistoChyby(metsMdWrap));
-        }
-        String g = ValuesGetter.getValueOfAttribut(metsMdWrap, "MDTYPE");
-        if (StringUtils.isBlank(g)) {
-            return nastavChybu("Atribut MDTYPE elementu <mets:mdWrap> má prázdnou hodnotu.", getMistoChyby(metsMdWrap));
-        }
-        if(!ValuesGetter.hasAttributValue(metsMdWrap, "MDTYPE", "OTHER")){
-            return nastavChybu("Atribut MDTYPE elementu <mets:mdWrap> neobsahuje hodnotu OTHER.", getMistoChyby(metsMdWrap));
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.26 Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MIMETYPE s hodnotou text/xml.",
-    private boolean pravidlo26(){
-        if(metsMdWrap == null) return nastavChybu("Nenalezen element <mets:mdWrap>.", MISTO_CHYBY_NEUPRESNENO);
-        if(!ValuesGetter.hasAttribut(metsMdWrap, "MIMETYPE")){
-            return nastavChybu("Element <mets:mdWrap> neobsahuje atribut MIMETYPE.", getMistoChyby(metsMdWrap));
-        }
-        String g = ValuesGetter.getValueOfAttribut(metsMdWrap, "MIMETYPE");
-        if (StringUtils.isBlank(g)) {
-            return nastavChybu("Atribut MIMETYPE elementu <mets:mdWrap> má prázdnou hodnotu.", getMistoChyby(metsMdWrap));
-        }
-        if(!ValuesGetter.hasAttributValue(metsMdWrap, "MIMETYPE", "text/xml")){
-            return nastavChybu("Atribut MIMETYPE elementu <mets:mdWrap> neobsahuje hodnotu text/xml.", getMistoChyby(metsMdWrap));
-        }
-        return true;
-    }
-                                
+                    
     public ArrayList<Node> get_krizove_odkazy_pevny_ano() {
         ArrayList<Node> list = new ArrayList<>();
         NodeList krizoveOdkazy = ValuesGetter.getAllAnywhere("nsesss:KrizovyOdkaz", metsParser.getDocument());
