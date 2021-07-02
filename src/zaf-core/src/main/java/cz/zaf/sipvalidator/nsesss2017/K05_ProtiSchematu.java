@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.xml.XMLConstants;
 import javax.xml.transform.Source;
@@ -19,9 +21,9 @@ import javax.xml.validation.Validator;
 
 import org.xml.sax.SAXException;
 
-import cz.zaf.sipvalidator.sip.VysledekPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
+import cz.zaf.sipvalidator.sip.VysledekPravidla;
 
 /**
  * Kontrola oproti schematu
@@ -34,17 +36,31 @@ public class K05_ProtiSchematu
     static final public String VAL1 = "val1";
 
     static final public String VAL1_TEXT = "Soubor je validní proti schématům mets.xsd (v1.11), xlink.xsd (v2), nsesss.xsd (v3), nsesss-TrP.xsd, ess_ns.xsd a dmBaseTypes.xsd (v2.1).";
+    
+    static Map<String, Schema> schemaCache = new HashMap<>();
 
     public K05_ProtiSchematu() {
     }
 
-    private void validaceVResource(ErrorHandlerValidaceXSD handler, String resource, SipInfo file) throws SAXException,
+    private void validaceVResource(ErrorHandlerValidaceXSD handler, String resource, SipInfo file) 
+            throws SAXException, IOException 
+    {
+        Schema schema = schemaCache.get(resource);
+        if(schema==null) {
+            //URL schemaFile = new File("d:\\5.xsd").toURI().toURL(); //cesta natvrdo 
+            URL schemaFile = K05_ProtiSchematu.class.getResource(resource); // tady musí být šablona (např sip.xsd)
+            SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            schema = schemaFactory.newSchema(schemaFile);
+            
+            schemaCache.put(resource, schema);
+        }
+        
+        validaceVResource(handler, schema, file);
+    }
+    
+    private void validaceVResource(ErrorHandlerValidaceXSD handler, Schema schema, SipInfo file) throws SAXException,
             IOException {
-        URL schemaFile = K05_ProtiSchematu.class.getResource(resource); // tady musí být šablona (např sip.xsd)
-        SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        Schema schema = schemaFactory.newSchema(schemaFile);
         Validator nasValidator = schema.newValidator();
-        //URL schemaFile = new File("d:\\5.xsd").toURI().toURL(); //cesta natvrdo 
         try (InputStream is = Files.newInputStream(file.getCestaMets())) {
             Source xmlFile = new StreamSource(is);
 
