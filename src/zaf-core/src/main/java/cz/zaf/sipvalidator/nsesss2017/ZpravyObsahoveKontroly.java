@@ -23,18 +23,6 @@ public class ZpravyObsahoveKontroly {
             "",
             "",
             "",
-    //10. - 20.
-    "Element <mets:mets> obsahuje dětský element <mets:metsHdr>.",
-    "Element <mets:mets> obsahuje právě jeden dětský element <mets:dmdSec>.",
-    "Element <mets:mets> obsahuje alespoň jeden element <mets:amdSec>.",
-    "Element <mets:mets> obsahuje právě jeden dětský element <mets:structMap>.",
-    "Element <mets:metsHdr> obsahuje atribut LASTMODDATE.",
-    "Element <mets:metsHdr> obsahuje atribut CREATEDATE.",
-    "Element <mets:metsHdr> obsahuje právě jeden element <mets:agent> s atributem TYPE s hodnotou ORGANIZATION.",
-    "Element <mets:metsHdr> obsahuje alespoň jeden element <mets:agent> s atributem TYPE s hodnotou INDIVIDUAL.",
-    "Každý element <mets:agent> obsahuje atribut ROLE s hodnotou CREATOR.",
-    "Každý element <mets:agent> obsahuje atribut ID.",
-    "Každý element <mets:agent> obsahuje právě jeden dětský element <mets:name> s neprázdnou hodnotou.",
     };
     
     public static String get_text_Obsahova(int index){
@@ -57,18 +45,6 @@ public class ZpravyObsahoveKontroly {
             "",
             "",
             "",
-    //10. - 20.
-    "Bod 2.2. přílohy č. 3 NSESSS.",
-    "Bod 2.6. přílohy č. 3 NSESSS.",
-    "Bod 2.9. přílohy č. 3 NSESSS.",
-    "Bod 2.2.17. přílohy č. 3 NSESSS.",
-    "Bod 2.2. přílohy č. 3 NSESSS.",
-    "Bod 2.2. přílohy č. 3 NSESSS.",
-    "Bod 2.3. přílohy č. 3 NSESSS.",
-    "Bod 2.3. přílohy č. 3 NSESSS.",
-    "Bod 2.3. přílohy č. 3 NSESSS.",
-    "Bod 2.3. přílohy č. 3 NSESSS.",
-    "Bod 2.4. přílohy č. 3 NSESSS.",
     };
     
     public static String get_zdroje_Obsahova(int index){
@@ -91,18 +67,6 @@ public class ZpravyObsahoveKontroly {
             "",
             "",
             "",
-    //10. - 20.
-    "Chybí povinná část (záhlaví) struktury datového balíčku SIP.",
-    "Chybí povinná (popisná) část struktury datového balíčku SIP.",
-    "Chybí povinná část (transakční protokol) struktury datového balíčku SIP.",
-    "Chybí povinná část (strukturální mapa) struktury datového balíčku SIP.",
-    "Chybí datum poslední úpravy datového balíčku SIP.",
-    "Chybí datum vytvoření datového balíčku SIP.",
-    "Uveden je chybně popis původce.",
-    "Uveden je chybně popis původce.",
-    "Uveden je chybně popis původce.",
-    "Uveden je chybně popis původce.",
-    "Chybí informace o původci.",    
     };
     
     public static String get_popis_Obsahova(int index){

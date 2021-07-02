@@ -18,6 +18,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo17;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo18;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo19;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29.Pravidlo20;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29.Pravidlo22;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29.Pravidlo23;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29.Pravidlo24;
@@ -125,11 +129,7 @@ public class K06_Obsahova
     static final public String OBS14 = "obs14";
     static final public String OBS15 = "obs15";
     static final public String OBS16 = "obs16";
-    static final public String OBS17 = "obs17";
-    static final public String OBS18 = "obs18";
-    static final public String OBS19 = "obs19";
 
-    static final public String OBS20 = "obs20";
     static final public String OBS21 = "obs21";
 
     static final public String MISTO_CHYBY_NEUPRESNENO = "Neupřesněno.";
@@ -160,6 +160,10 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
     
+        pridejPravidlo(new Pravidlo17(this));
+        pridejPravidlo(new Pravidlo18(this));
+        pridejPravidlo(new Pravidlo19(this));
+        pridejPravidlo(new Pravidlo20(this));
         pridejPravidlo(OBS21, null);
         pridejPravidlo(new Pravidlo22(this));
         pridejPravidlo(new Pravidlo23(this));
@@ -288,18 +292,6 @@ public class K06_Obsahova
             break;
         case 16:
             vysledek = pravidlo16();
-            break;
-        case 17:
-            vysledek = pravidlo17();
-            break;
-        case 18:
-            vysledek = pravidlo18();
-            break;
-        case 19:
-            vysledek = pravidlo19();
-            break;
-        case 20:
-            vysledek = pravidlo20();
             break;
         }
         
@@ -659,91 +651,7 @@ public class K06_Obsahova
         }
         return true;
     }
-    
-    //OBSAHOVÁ č.17 Element <mets:metsHdr> obsahuje alespoň jeden element <mets:agent> s atributem TYPE s hodnotou INDIVIDUAL.",
-    private boolean pravidlo17(){
-        if(metsHdr == null) return nastavChybu("Nenalezen element <mets:metsHdr>.", MISTO_CHYBY_NEUPRESNENO);
-        ArrayList<Node> nodeList = ValuesGetter.getChildList(metsHdr, "mets:agent");
-        if(nodeList == null || nodeList.isEmpty()){
-            return nastavChybu("Nenalezen element <mets:agent>.", getMistoChyby(metsHdr));
-        }
-        int pocitadlo = 0;
-        for(int i = 0; i < nodeList.size(); i++){
-            if(ValuesGetter.hasAttributValue(nodeList.get(i), "TYPE", "INDIVIDUAL")) pocitadlo++;
-        }
-        if(pocitadlo == 0){
-            return nastavChybu("Element <mets:metsHdr> neobsahuje žádný element <mets:agent> s atributem TYPE s hodnotou INDIVIDUAL.", getMistoChyby(metsHdr));
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.18 Každý element <mets:agent> obsahuje atribut ROLE s hodnotou CREATOR.",
-    private boolean pravidlo18(){
-        NodeList nodeList = ValuesGetter.getAllAnywhere("mets:agent", metsParser.getDocument());
-        if(nodeList == null) return nastavChybu("Nenalezen žádný element <mets:agent>.", MISTO_CHYBY_NEUPRESNENO);
-        int pocitadlo = 0;
-        String ch = "";
-        for(int i = 0; i < nodeList.getLength(); i++){
-            Node node = nodeList.item(i);
-           if(!ValuesGetter.hasAttributValue(node, "ROLE", "CREATOR")){
-               pocitadlo++;
-               ch += getMistoChyby(node) + " ";
-           }
-        }
-        if(pocitadlo != 0) return nastavChybu("Element <mets:agent> neobsahuje atribut ROLE s hodnotou CREATOR.", ch);
-        return true;
-    }
-    
-    //OBSAHOVÁ č.19 Každý element <mets:agent> obsahuje atribut ID.",
-    private boolean pravidlo19(){
-        NodeList nodeList = ValuesGetter.getAllAnywhere("mets:agent", metsParser.getDocument());
-        if(nodeList == null) return nastavChybu("Nenalezen žádný element <mets:agent>.", MISTO_CHYBY_NEUPRESNENO);
-        int pocitadlo = 0;
-        String ch = "";
-        for(int i = 0; i < nodeList.getLength(); i++){
-            Node node = nodeList.item(i);
-           if(!ValuesGetter.hasAttribut(node, "ID")){
-               pocitadlo++;
-               ch += getMistoChyby(node) + " ";
-           }
-        }
-        if(pocitadlo != 0) return nastavChybu("Element <mets:agent> neobsahuje atribut ID.", ch);
-        return true;
-    }
-    
-    //OBSAHOVÁ č.20 Každý element <mets:agent> obsahuje právě jeden dětský element <mets:name> s neprázdnou hodnotou.",
-    private boolean pravidlo20(){
-        NodeList nodeList = ValuesGetter.getAllAnywhere("mets:agent", metsParser.getDocument());
-        if(nodeList == null) return nastavChybu("Nenalezen žádný element <mets:agent>.", MISTO_CHYBY_NEUPRESNENO);
-        int pocitadlo = 0;
-        int pocitadlo2 = 0;
-        String ch = "";
-        for(int i = 0; i < nodeList.getLength(); i++){
-            Node node = nodeList.item(i);
-            if(ValuesGetter.hasOnlyOneChild_ElementNode(node, "mets:name")){
-                if (!HelperString.hasContent(ValuesGetter.getXChild(node, "mets:name").getTextContent())) {
-                    pocitadlo2++;
-                    ch += getMistoChyby(node) + " ";
-                }
-            } 
-            else{
-               pocitadlo ++; 
-               ch += getMistoChyby(node) + " ";
-            } 
-        }
-        if(pocitadlo != 0){
-            String h = "";
-            if(pocitadlo2 != 0){
-                h = "Ďetský element <mets:name> má prázdnou hodnotu.";
-            }
-            return nastavChybu("Element <mets:agent> neobsahuje právě jeden dětský element <mets:name>." + h, ch);
-        }
-        if(pocitadlo2 != 0){
-            return nastavChybu("Element <mets:agent> má nevyplněnou hodnotu u dětského elementu <mets:name>.", ch);
-        }
-        return true;
-    }
-                    
+        
     public ArrayList<Node> get_krizove_odkazy_pevny_ano() {
         ArrayList<Node> list = new ArrayList<>();
         NodeList krizoveOdkazy = ValuesGetter.getAllAnywhere("nsesss:KrizovyOdkaz", metsParser.getDocument());
