@@ -18,6 +18,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo13;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo14;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo15;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo16;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo17;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo18;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo19;
@@ -125,10 +129,6 @@ public class K06_Obsahova
     static final public String OBS10 = "obs10";
     static final public String OBS11 = "obs11";
     static final public String OBS12 = "obs12";
-    static final public String OBS13 = "obs13";
-    static final public String OBS14 = "obs14";
-    static final public String OBS15 = "obs15";
-    static final public String OBS16 = "obs16";
 
     static final public String OBS21 = "obs21";
 
@@ -141,7 +141,6 @@ public class K06_Obsahova
     private MetsParser metsParser;
 
     private Node metsMets;
-    private Node metsHdr;
 
     private List<Node> zakladniEntity;
     private List<Node> dokumenty;
@@ -160,6 +159,10 @@ public class K06_Obsahova
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
     
+        pridejPravidlo(new Pravidlo13(this));
+        pridejPravidlo(new Pravidlo14(this));
+        pridejPravidlo(new Pravidlo15(this));
+        pridejPravidlo(new Pravidlo16(this));
         pridejPravidlo(new Pravidlo17(this));
         pridejPravidlo(new Pravidlo18(this));
         pridejPravidlo(new Pravidlo19(this));
@@ -280,18 +283,6 @@ public class K06_Obsahova
             break;
         case 12:
             vysledek = pravidlo12();
-            break;
-        case 13:
-            vysledek = pravidlo13();
-            break;
-        case 14:
-            vysledek = pravidlo14();
-            break;
-        case 15:
-            vysledek = pravidlo15();
-            break;
-        case 16:
-            vysledek = pravidlo16();
             break;
         }
         
@@ -600,58 +591,8 @@ public class K06_Obsahova
             return nastavChybu("Kořenový element <mets:mets> nemá žádný dětský element <mets:amdSec>.", getMistoChyby(metsMets));
         }       
         return true;
-    }
-    
-    //OBSAHOVÁ č.13 Element <mets:mets> obsahuje právě jeden dětský element <mets:structMap>.",
-    private boolean pravidlo13(){
-        if(metsMets == null) return nastavChybu("Nenalezen kořenový element <mets:mets>.", MISTO_CHYBY_NEUPRESNENO);
-        if(!ValuesGetter.hasChildWithName(metsMets, "mets:structMap")){
-            return nastavChybu("Kořenový element <mets:mets> nemá žádný dětský element <mets:structMap>.", getMistoChyby(metsMets));
-        }
-        if(!ValuesGetter.hasOnlyOneChild_ElementNode(metsMets, "mets:structMap")){
-            return nastavChybu("Kořenový element <mets:mets> má více než jeden dětský element <mets:structMap>.", getMistoChyby(metsMets));
-        }        
-        return true;
-    }
-    
-    //OBSAHOVÁ č.14 Element <mets:metsHdr> obsahuje atribut LASTMODDATE.",
-    private boolean pravidlo14(){
-        if(metsHdr == null) return nastavChybu("Nenalezen element <mets:metsHdr>.", MISTO_CHYBY_NEUPRESNENO);
-        if(!ValuesGetter.hasAttribut(metsHdr, "LASTMODDATE")){
-            return nastavChybu("Element <mets:metsHdr> nemá atribut LASTMODDATE.", getMistoChyby(metsHdr));
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.15 Element <mets:metsHdr> obsahuje atribut CREATEDATE.",
-    private boolean pravidlo15(){
-        if(metsHdr == null) return nastavChybu("Nenalezen element <mets:metsHdr>.", MISTO_CHYBY_NEUPRESNENO);
-        if(!ValuesGetter.hasAttribut(metsHdr, "CREATEDATE")){
-            return nastavChybu("Element <mets:metsHdr> nemá atribut CREATEDATE.", getMistoChyby(metsHdr));
-        }
-        return true;
-    }
-    
-    //OBSAHOVÁ č.16 Element <mets:metsHdr> obsahuje právě jeden element <mets:agent> s atributem TYPE s hodnotou ORGANIZATION.",
-    private boolean pravidlo16(){
-        if(metsHdr == null) return nastavChybu("Nenalezen element <mets:metsHdr>.", MISTO_CHYBY_NEUPRESNENO);
-        ArrayList<Node> nodeList = ValuesGetter.getChildList(metsHdr, "mets:agent");
-        if(nodeList == null || nodeList.isEmpty()){
-            return nastavChybu("Nenalezen element <mets:agent>.", getMistoChyby(metsHdr));
-        }
-        int pocitadlo = 0;
-        for(int i = 0; i < nodeList.size(); i++){
-            if(ValuesGetter.hasAttributValue(nodeList.get(i), "TYPE", "ORGANIZATION")) pocitadlo++;
-        }
-        if(pocitadlo == 0){
-            return nastavChybu("Element <mets:metsHdr> neobsahuje žádný element <mets:agent> s atributem TYPE s hodnotou ORGANIZATION.", getMistoChyby(metsHdr));
-        }
-        if(pocitadlo > 1){
-            return nastavChybu("Element <mets:metsHdr> obsahuje více elementů <mets:agent> s atributem TYPE s hodnotou ORGANIZATION.", getMistoChyby(metsHdr));
-        }
-        return true;
-    }
-        
+    }    
+            
     public ArrayList<Node> get_krizove_odkazy_pevny_ano() {
         ArrayList<Node> list = new ArrayList<>();
         NodeList krizoveOdkazy = ValuesGetter.getAllAnywhere("nsesss:KrizovyOdkaz", metsParser.getDocument());
@@ -686,7 +627,6 @@ public class K06_Obsahova
         // bude nutne casem prepracovat
         this.metsParser = ctx.getMetsParser();
         this.metsMets = metsParser.getMetsRootNode();
-        this.metsHdr = metsParser.getMetsHdr();
         this.zakladniEntity = metsParser.getZakladniEntity();
         this.dokumenty = metsParser.getDokumenty();
 		
