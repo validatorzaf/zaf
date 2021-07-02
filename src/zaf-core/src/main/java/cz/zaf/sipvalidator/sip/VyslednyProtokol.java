@@ -117,7 +117,7 @@ public class VyslednyProtokol {
         typ.setStav(convert(vysl.getStavKontroly()));
 
         // prevod pravidel
-        for (PravidloKontroly pravidlo : vysl.getPravidla()) {
+        for (VysledekPravidla pravidlo : vysl.getPravidla()) {
             TPravidlo pravNode = convert(pravidlo);
             typ.getPravidlo().add(pravNode);
         }
@@ -131,7 +131,7 @@ public class VyslednyProtokol {
      *            vysledek pravidla
      * @return Prevedene pravidlo
      */
-    private static TPravidlo convert(PravidloKontroly pravidlo) {
+    private static TPravidlo convert(VysledekPravidla pravidlo) {
         TPravidlo pravNode = objectFactory.createTPravidlo();
         pravNode.setId(pravidlo.getId());
         pravNode.setText(pravidlo.getTextPravidla());

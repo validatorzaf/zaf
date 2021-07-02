@@ -9,7 +9,7 @@ package cz.zaf.sipvalidator.nsesss2017;
 import java.io.File;
 import java.nio.file.Path;
 
-import cz.zaf.sipvalidator.sip.PravidloKontroly;
+import cz.zaf.sipvalidator.sip.VysledekPravidla;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
@@ -109,7 +109,7 @@ public class K01_DatoveStruktury
         if (!stav) {
             popisChybyObecny = obecnaChyba[index];
         }
-        PravidloKontroly p = new PravidloKontroly(idPravidel[index], stav,
+        VysledekPravidla p = new VysledekPravidla(idPravidel[index], stav,
                 textPravidla[index],
                 vypisChyby, popisChybyObecny,
                 null,

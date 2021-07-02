@@ -8,7 +8,7 @@ package cz.zaf.sipvalidui.analysis;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import cz.zaf.sipvalidator.sip.PravidloKontroly;
+import cz.zaf.sipvalidator.sip.VysledekPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.StavKontroly;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
@@ -95,7 +95,7 @@ public final class Analys_main {
         VysledekKontroly kontrola = nahraneSoubory.get(index).getSip().getUrovenKontroly(TypUrovenKontroly.OBSAHOVA);
 
         for(int i = 0; i < kontrola.size(); i++){
-            PravidloKontroly pravidlo = kontrola.get(i);
+            VysledekPravidla pravidlo = kontrola.get(i);
             // zjisteni zda jiz existuje
             Optional<Analys_rule> found = analys_obsahova.stream().filter(ao -> ao.id.equals(pravidlo.getId()))
                     .findFirst();

@@ -108,7 +108,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo96;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo97;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo98;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo99;
-import cz.zaf.sipvalidator.sip.PravidloKontroly;
+import cz.zaf.sipvalidator.sip.VysledekPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 
@@ -347,7 +347,7 @@ public class K06_Obsahova
                                 String obecnyPopisChyby,
                                 String mistoChyby,
                                 String zdroj) {
-        PravidloKontroly p = new PravidloKontroly(idPravidla,
+        VysledekPravidla p = new VysledekPravidla(idPravidla,
                 jeOk,
                 textPravidla,
                 detailChyby,

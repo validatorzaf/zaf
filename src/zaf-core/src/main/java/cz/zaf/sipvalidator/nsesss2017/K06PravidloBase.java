@@ -9,7 +9,7 @@ import org.w3c.dom.Node;
  * Zakladni implementace spustitelneho pravidla
  * 
  * Kazde takove pravidlo vytvari prave jeden
- * zaznam ve vystypu
+ * zaznam ve vystupu
  *
  */
 public abstract class K06PravidloBase implements Runnable {

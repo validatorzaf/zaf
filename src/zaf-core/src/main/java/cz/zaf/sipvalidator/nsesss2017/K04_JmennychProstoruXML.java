@@ -8,7 +8,7 @@ package cz.zaf.sipvalidator.nsesss2017;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import cz.zaf.sipvalidator.sip.PravidloKontroly;
+import cz.zaf.sipvalidator.sip.VysledekPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 
@@ -56,7 +56,7 @@ public class K04_JmennychProstoruXML
         if (!stav) {
             obecnyPopisChyby = "Chybí kořenový element datového balíčku SIP.";
         }
-        PravidloKontroly p = new PravidloKontroly(NS1, stav,
+        VysledekPravidla p = new VysledekPravidla(NS1, stav,
                 list_text_jmProstory[0],
                 detailChyby,
                 obecnyPopisChyby, null,
@@ -101,7 +101,7 @@ public class K04_JmennychProstoruXML
             obecnyPopisChyby = "Popsáno je chybně umístění příslušných schémat XML.";
         }
 
-        PravidloKontroly p = new PravidloKontroly(NS2, stav,
+        VysledekPravidla p = new VysledekPravidla(NS2, stav,
                 list_text_jmProstory[1],
                 detailChyby,
                 obecnyPopisChyby, null,

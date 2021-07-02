@@ -6,7 +6,7 @@ import org.apache.commons.lang3.Validate;
  * Vysledek kontroly jednoho pravidla
  * 
  */
-public class PravidloKontroly {
+public class VysledekPravidla {
 	/**
 	 * Stav kontroly
 	 * true - probehla ok
@@ -51,7 +51,7 @@ public class PravidloKontroly {
      */
     final String zdroj;
 
-    public PravidloKontroly(
+    public VysledekPravidla(
                             final String id,
                             final boolean stav,
                             final String textPravidla,

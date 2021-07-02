@@ -21,7 +21,7 @@ import org.apache.commons.io.input.BOMInputStream; // lib commons-io-2.4
 import com.ibm.icu.text.CharsetDetector; // lib ucu4j-56.jar
 import com.ibm.icu.text.CharsetMatch; // lib ucu4j-56.jar
 
-import cz.zaf.sipvalidator.sip.PravidloKontroly;
+import cz.zaf.sipvalidator.sip.VysledekPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 
@@ -161,7 +161,7 @@ public class K02_ZnakoveSady
             obecnyPopisChyby = "Znaková sada datového balíčku SIP není Unicode/UCS v kódování UTF-8 bez BOM (Byte order mark).";
         }
 
-        PravidloKontroly p = new PravidloKontroly(KOD1, jeKodovaniVPoradku,
+        VysledekPravidla p = new VysledekPravidla(KOD1, jeKodovaniVPoradku,
                 "Znakovou sadou souboru je Unicode/UCS v kódování UTF-8 bez BOM (Byte order mark).", // text
                 chybaKodovani,
                 obecnyPopisChyby, null,

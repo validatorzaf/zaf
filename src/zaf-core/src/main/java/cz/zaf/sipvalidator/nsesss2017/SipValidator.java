@@ -33,18 +33,18 @@ public class SipValidator {
 
     public SipValidator(final ProfilValidace profilValidace,
                         final List<String> excludeChecks) {
-        this.kontroly = pripravKontroly(profilValidace.getObsahoveKontroly());
+        this.kontroly = pripravKontroly(profilValidace);
         this.excludeChecks = excludeChecks;
     }
 
     /**
      * Pripravi seznam kontrol
-     * @param seznamObsKontrol 
+     * @param profilValidace.getObsahoveKontroly() 
      * @param skodlivyKodError 
      * @param skodlivyKodOk 
      * @return
      */
-    private List<UrovenKontroly<KontrolaNsess2017Context>> pripravKontroly(int[] seznamObsKontrol) {
+    private List<UrovenKontroly<KontrolaNsess2017Context>> pripravKontroly(ProfilValidace profilValidace) {
         ArrayList<UrovenKontroly<KontrolaNsess2017Context>> kontroly = new ArrayList<>(7);
 
         ksk = new K00_SkodlivehoKodu();
@@ -65,7 +65,7 @@ public class SipValidator {
         K05_ProtiSchematu vxml = new K05_ProtiSchematu();
         kontroly.add(vxml);
 
-        K06_Obsahova oks = new K06_Obsahova(seznamObsKontrol);
+        K06_Obsahova oks = new K06_Obsahova(profilValidace.getObsahoveKontroly());
         kontroly.add(oks);
         
         return kontroly;

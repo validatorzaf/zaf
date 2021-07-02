@@ -9,7 +9,7 @@ import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-import cz.zaf.sipvalidator.sip.PravidloKontroly;
+import cz.zaf.sipvalidator.sip.VysledekPravidla;
 import cz.zaf.sipvalidator.sip.VysledekKontroly;
 
 /**
@@ -96,7 +96,7 @@ public class ErrorHandlerValidaceXSD implements  ErrorHandler{
             textChyby += " " +celaChybovaHlaska;
         }
 
-        PravidloKontroly p = new PravidloKontroly(K05_ProtiSchematu.VAL1, false,
+        VysledekPravidla p = new VysledekPravidla(K05_ProtiSchematu.VAL1, false,
                 K05_ProtiSchematu.VAL1_TEXT,
                 textChyby,
                 null,

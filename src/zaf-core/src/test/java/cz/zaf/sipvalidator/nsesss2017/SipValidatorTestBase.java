@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
-import cz.zaf.sipvalidator.sip.PravidloKontroly;
+import cz.zaf.sipvalidator.sip.VysledekPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 import cz.zaf.sipvalidator.sip.SipLoader;
@@ -118,7 +118,7 @@ public abstract class SipValidatorTestBase {
                 if (vysledek.getStavKontroly() == StavKontroly.CHYBA) {
                     // doslo k neocekavanemu selhani -> vypis selhanych
                     for (String pravidloOk : pravidlaOk) {
-                        PravidloKontroly prav = vysledek.getPravidlo(pravidloOk);
+                        VysledekPravidla prav = vysledek.getPravidlo(pravidloOk);
                         if (!prav.getStav()) {
                             log.error("Chybujici pravidlo: {}, vypisChyby: {}, mistoChyby: {}", pravidloOk,
                                       prav.getVypis_chyby(), prav.getMisto_chyby(), prav.getMisto_chyby());
@@ -135,7 +135,7 @@ public abstract class SipValidatorTestBase {
         if (pravidlaOk != null) {
             for (int i = 0; i < pravidlaOk.length; i++) {
                 String kodPravidla = pravidlaOk[i];
-                PravidloKontroly pravidlo = vysledek.getPravidlo(kodPravidla);
+                VysledekPravidla pravidlo = vysledek.getPravidlo(kodPravidla);
                 assertNotNull(pravidlo, () -> "SIP: " + path + ", Chybí pravidlo: " + kodPravidla);
                 assertEquals(pravidlo.getStav(), true, () -> "SIP: " + path + ", Pravidlo: " + kodPravidla
                         + ", ocekavano OK, ale selhalo");
@@ -146,7 +146,7 @@ public abstract class SipValidatorTestBase {
         if (pravidlaChybna != null) {
             for (int i = 0; i < pravidlaChybna.length; i++) {
                 String kodPravidla = pravidlaChybna[i];
-                PravidloKontroly pravidlo = vysledek.getPravidlo(kodPravidla);
+                VysledekPravidla pravidlo = vysledek.getPravidlo(kodPravidla);
                 assertNotNull(pravidlo, () -> "SIP: " + path + ", Chybí pravidlo: " + kodPravidla);
                 assertEquals(pravidlo.getStav(), false, () -> "SIP: " + path + ", Pravidlo: " + kodPravidla
                         + ", ocekavana Chyba, ale bylo OK");

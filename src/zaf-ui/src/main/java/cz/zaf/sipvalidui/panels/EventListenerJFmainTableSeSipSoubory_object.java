@@ -5,16 +5,16 @@
  */
 package cz.zaf.sipvalidui.panels;
 
-import cz.zaf.sipvalidator.sip.PravidloKontroly;
+import cz.zaf.sipvalidator.sip.VysledekPravidla;
 
 /**
  *
  * @author m000xz006159
  */
 public class EventListenerJFmainTableSeSipSoubory_object {
-    final PravidloKontroly pravidlo;
+    final VysledekPravidla pravidlo;
 
-    public EventListenerJFmainTableSeSipSoubory_object(final PravidloKontroly pravidlo) {
+    public EventListenerJFmainTableSeSipSoubory_object(final VysledekPravidla pravidlo) {
         this.pravidlo = pravidlo;
     }
 
@@ -32,7 +32,7 @@ public class EventListenerJFmainTableSeSipSoubory_object {
         return sb.toString();
     }
 
-    public PravidloKontroly getPravidlo() {
+    public VysledekPravidla getPravidlo() {
         return pravidlo;
     }
 }

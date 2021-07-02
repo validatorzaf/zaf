@@ -9,7 +9,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
-import cz.zaf.sipvalidator.sip.PravidloKontroly;
+import cz.zaf.sipvalidator.sip.VysledekPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.VysledekKontroly;
@@ -38,7 +38,7 @@ public class ListModel_seznam_obsahova{
     
     private void  get_model_chyby(SipInfo sip){
     	VysledekKontroly kontrola = sip.getUrovenKontroly(TypUrovenKontroly.OBSAHOVA);
-        for (PravidloKontroly pravidlo : kontrola.getPravidla()) {
+        for (VysledekPravidla pravidlo : kontrola.getPravidla()) {
             if (!pravidlo.getStav()) {
                 modelListChybObsahova.addElement(new EventListenerJFmainTableSeSipSoubory_object(pravidlo));
             }
@@ -47,7 +47,7 @@ public class ListModel_seznam_obsahova{
     
     private void get_model_all(SipInfo sip) {
         VysledekKontroly kontrola = sip.getUrovenKontroly(TypUrovenKontroly.OBSAHOVA);
-        for (PravidloKontroly pravidlo : kontrola.getPravidla()) {
+        for (VysledekPravidla pravidlo : kontrola.getPravidla()) {
             modelListObsahova.addElement(new EventListenerJFmainTableSeSipSoubory_object(pravidlo));
         }
     }

@@ -8,7 +8,7 @@ package cz.zaf.sipvalidator.nsesss2017;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
-import cz.zaf.sipvalidator.sip.PravidloKontroly;
+import cz.zaf.sipvalidator.sip.VysledekPravidla;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 
 
@@ -65,7 +65,7 @@ public class K00_SkodlivehoKodu
 		}
 
         String zdroj = "§ 21 odst. 6 vyhlášky č. 259/2012 Sb.";
-        PravidloKontroly p = new PravidloKontroly(VIR1, kontrolaOk,
+        VysledekPravidla p = new VysledekPravidla(VIR1, kontrolaOk,
                 textPravidla,
                 descr, null, null,
                 zdroj);

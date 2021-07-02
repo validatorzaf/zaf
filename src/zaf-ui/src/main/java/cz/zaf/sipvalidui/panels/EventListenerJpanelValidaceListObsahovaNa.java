@@ -13,7 +13,7 @@ import javax.swing.event.ListSelectionListener;
 
 import org.apache.commons.lang3.StringUtils;
 
-import cz.zaf.sipvalidator.sip.PravidloKontroly;
+import cz.zaf.sipvalidator.sip.VysledekPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 
 /**
@@ -57,7 +57,7 @@ public class EventListenerJpanelValidaceListObsahovaNa implements ListSelectionL
     }
 
     private String nastavTextPopisuPravidla(EventListenerJFmainTableSeSipSoubory_object selectedPravidlo){
-        PravidloKontroly pravidlo = selectedPravidlo.getPravidlo();
+        VysledekPravidla pravidlo = selectedPravidlo.getPravidlo();
         StringBuilder sb = new StringBuilder();
 
         sb.append("Znění pravidla: ").append(pravidlo.getTextPravidla()).append("\n\n")

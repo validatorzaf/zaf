@@ -19,7 +19,7 @@ import javax.xml.validation.Validator;
 
 import org.xml.sax.SAXException;
 
-import cz.zaf.sipvalidator.sip.PravidloKontroly;
+import cz.zaf.sipvalidator.sip.VysledekPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 
@@ -84,7 +84,7 @@ public class K05_ProtiSchematu
         }
 
         if (addPravidlo) {
-            PravidloKontroly p = new PravidloKontroly(VAL1, stav,
+            VysledekPravidla p = new VysledekPravidla(VAL1, stav,
                     VAL1_TEXT,
                     detailChyby,
                     obecnyPopisChyby,
