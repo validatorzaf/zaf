@@ -130,12 +130,7 @@ public class K06_Obsahova
     static final public String OBS19 = "obs19";
 
     static final public String OBS20 = "obs20";
-    //static final public String OBS21 = "obs21";
-    static final public String OBS22 = "obs22";
-    static final public String OBS23 = "obs23";
-    static final public String OBS24 = "obs24";
-    static final public String OBS25 = "obs25";
-    static final public String OBS26 = "obs26";
+    static final public String OBS21 = "obs21";
 
     static final public String MISTO_CHYBY_NEUPRESNENO = "Neupřesněno.";
     private String popisChyby = "Pravidlo nesplněno.";
@@ -147,13 +142,9 @@ public class K06_Obsahova
 
     private Node metsMets;
     private Node metsHdr;
-    private Node metsMdWrap;
-    private Node metsDmdSec;
 
     private List<Node> zakladniEntity;
     private List<Node> dokumenty;
-
-    private Node xmlData;
     
     /**
      * Mapa kontrol
@@ -168,7 +159,8 @@ public class K06_Obsahova
         pridejPravidlo(OBS3, () -> pravidlo3());
         pridejPravidlo(OBS4, () -> pravidlo4());
         pridejPravidlo(OBS9, () -> pravidlo9());
-        
+    
+        pridejPravidlo(OBS21, null);
         pridejPravidlo(new Pravidlo22(this));
         pridejPravidlo(new Pravidlo23(this));
         pridejPravidlo(new Pravidlo24(this));
@@ -308,9 +300,6 @@ public class K06_Obsahova
             break;
         case 20:
             vysledek = pravidlo20();
-            break;
-        case 21:
-            vysledek = pravidlo21();
             break;
         }
         
@@ -754,12 +743,6 @@ public class K06_Obsahova
         }
         return true;
     }
-    
-    //21 volný index
-    private boolean pravidlo21(){
-        return true;
-    }
-    
                     
     public ArrayList<Node> get_krizove_odkazy_pevny_ano() {
         ArrayList<Node> list = new ArrayList<>();
@@ -796,9 +779,6 @@ public class K06_Obsahova
         this.metsParser = ctx.getMetsParser();
         this.metsMets = metsParser.getMetsRootNode();
         this.metsHdr = metsParser.getMetsHdr();
-        this.metsMdWrap = metsParser.getMetsMdWrap();
-        this.metsDmdSec = metsParser.getMetsDmdSec();
-        this.xmlData = metsParser.getMetsXmlData();
         this.zakladniEntity = metsParser.getZakladniEntity();
         this.dokumenty = metsParser.getDokumenty();
 		

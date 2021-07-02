@@ -35,8 +35,6 @@ public class ZpravyObsahoveKontroly {
     "Každý element <mets:agent> obsahuje atribut ROLE s hodnotou CREATOR.",
     "Každý element <mets:agent> obsahuje atribut ID.",
     "Každý element <mets:agent> obsahuje právě jeden dětský element <mets:name> s neprázdnou hodnotou.",
-    //21. volný index
-    "volný index",
     };
     
     public static String get_text_Obsahova(int index){
@@ -71,8 +69,6 @@ public class ZpravyObsahoveKontroly {
     "Bod 2.3. přílohy č. 3 NSESSS.",
     "Bod 2.3. přílohy č. 3 NSESSS.",
     "Bod 2.4. přílohy č. 3 NSESSS.",
-    //21. volný index
-    "volný index",
     };
     
     public static String get_zdroje_Obsahova(int index){
@@ -106,10 +102,7 @@ public class ZpravyObsahoveKontroly {
     "Uveden je chybně popis původce.",
     "Uveden je chybně popis původce.",
     "Uveden je chybně popis původce.",
-    "Chybí informace o původci.",
-    //21. volný index
-    "volný index",
-    
+    "Chybí informace o původci.",    
     };
     
     public static String get_popis_Obsahova(int index){
