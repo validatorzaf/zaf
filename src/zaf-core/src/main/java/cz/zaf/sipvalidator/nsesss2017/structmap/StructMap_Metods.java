@@ -21,54 +21,6 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
  */
 public class StructMap_Metods {
     
-    public static StructMap_Obj_return_bol_AL_Obj_amdSec get_amdSec_list(NodeList node_list){
-        ArrayList<StructMap_Obj_amdSec> list = new ArrayList<>();
-        ArrayList<StructMap_Obj_amdSec> error_list = new ArrayList<>();
-        boolean bol = true;
-        
-        if(node_list == null) return null;
-        
-        for(int i = 0; i < node_list.getLength(); i++){
-            Node node = node_list.item(i);
-            boolean catcher = true;
-            String id = "Nenalezeno";
-            if(ValuesGetter.hasAttribut(node, "ID")){
-                id = ValuesGetter.getValueOfAttribut(node, "ID");
-            } else catcher = false;
-
-            // <mets:digiprovMD>, <mets:mdWrap>, <mets:xmlData>, <tp:TransakcniLogObjektu>, <tp:TransLogInfo>, <tp:Objekt>, <tp:Identifikator>, <tns:HodnotaID> a <tns:ZdrojID>
-            Node node_identifikator = ValuesGetter.getXChild(node, "mets:digiprovMD", "mets:mdWrap", "mets:xmlData", "tp:TransakcniLogObjektu", "tp:TransLogInfo", "tp:Objekt", "tp:Identifikator", "tns:HodnotaID");
-            String identifikator = "Nenalezeno";
-            if(node_identifikator != null){
-                identifikator = node_identifikator.getTextContent();
-            } else catcher = false;
-            
-            Node node_zdroj = ValuesGetter.getXChild(node, "mets:digiprovMD", "mets:mdWrap", "mets:xmlData", "tp:TransakcniLogObjektu", "tp:TransLogInfo", "tp:Objekt", "tp:Identifikator", "tns:ZdrojID");
-            String zdroj = "Nenalezeno";
-            if(node_zdroj != null){
-                zdroj = node_zdroj.getTextContent();
-            } else catcher = false;
-            
-            // jestliže nastala nějaká chyba
-            if(!catcher){
-                bol = false;
-                error_list.add(new StructMap_Obj_amdSec(id, identifikator, zdroj, node));
-            }
-            else{
-                StructMap_Obj_amdSec amdSec = new StructMap_Obj_amdSec(id, identifikator, zdroj, node);
-                list.add(amdSec);
-            }
-        }
-        
-        // nekončí u první chyby nahraje všechny chybné amdseC
-        if(!bol){
-            return new StructMap_Obj_return_bol_AL_Obj_amdSec(bol, error_list);
-        }
-        else{
-            return new StructMap_Obj_return_bol_AL_Obj_amdSec(bol, list);
-        }
-
-    }
     
     public static StructMap_Obj_return_bol_AL_node test_amdSec_uniqueness(List<StructMap_Obj_amdSec> list) {
         for(int i = 0; i < list.size(); i++){

@@ -1,7 +1,11 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+import org.jsoup.helper.Validate;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -11,7 +15,6 @@ import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Metods;
 import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_amdSec;
 import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_dmdSec;
 import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_metsdiv;
-import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_return_bol_AL_Obj_amdSec;
 import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_return_bol_AL_Obj_dmdSec;
 import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_return_bol_AL_Obj_metsdiv;
 import cz.zaf.sipvalidator.nsesss2017.structmap.StructMap_Obj_return_bol_AL_node;
@@ -35,39 +38,30 @@ public class Pravidlo54a  extends K06PravidloBase {
     			"Bod 2.17 a 2.18. přílohy č. 3 NSESSS; Informační list NA, roč. 2018, čá. 2, příloha k č. 20/2018 (20.3)."
     			);
     }
+    
+    List<StructMap_Obj_amdSec> amdSecList;
 
 	@Override
 	protected boolean kontrolaPravidla() {
-        List<Node> krizoveodkazy = metsParser.getKrizoveOdkazyPevnyAno();
-        if(krizoveodkazy.isEmpty()) {
+        List<Node> pevneKrizoveOdkazy = metsParser.getKrizoveOdkazyPevnyAno();
+        if(pevneKrizoveOdkazy.isEmpty()) {
             return true;
         }
         // TEST mets:amdSec
-        NodeList amdSec_nodelist = ValuesGetter.getAllAnywhere("mets:amdSec", metsParser.getDocument());
-        if(amdSec_nodelist == null){
-            return nastavChybu("Nenalezen element <mets:amdSec>.");
+        if(!readAmdSecList()) {
+            return false;
         }
-        StructMap_Obj_return_bol_AL_Obj_amdSec ret_amd = StructMap_Metods.get_amdSec_list(amdSec_nodelist);
-        if (!ret_amd.getBol()) {
-            String mistoCh = "";
-            for (int i = 0; i < ret_amd.getList().size(); i++) {
-                mistoCh += getMistoChyby(ret_amd.getList().get(i).getNode()) + " ";
-            }
-            String hlaska = "Nalezena chyba u elementu <mets:amdSec>.";
-            if (ret_amd.getList().size() > 1)
-                hlaska = "Nalezeny chyby u elementů <mets:amdSec>.";
-            return nastavChybu(hlaska, mistoCh);
-        }
-        List<StructMap_Obj_amdSec> amdSec_list = ret_amd.getList();
-            //jedinečnost
-        StructMap_Obj_return_bol_AL_node jedinecnost_amdSec = StructMap_Metods.test_amdSec_uniqueness(amdSec_list);
+        Validate.notNull(amdSecList);
+
+        //jedinečnost
+        StructMap_Obj_return_bol_AL_node jedinecnost_amdSec = StructMap_Metods.test_amdSec_uniqueness(amdSecList);
         if (!jedinecnost_amdSec.getBol()) {
             String mistoCh = "";
             for (int i = 0; i < jedinecnost_amdSec.getList().size(); i++) {
                 mistoCh += getMistoChyby(jedinecnost_amdSec.getList().get(i)) + " ";
             }
             String hlaska = "Nalezena chyba duplicity u elementu <mets:amdSec>.";
-            if (ret_amd.getList().size() > 1)
+            if (amdSecList.size() > 1)
                 hlaska = "Nalezeny chyby duplicity u elementů <mets:amdSec>.";
             return nastavChybu(hlaska, mistoCh);
         }
@@ -85,7 +79,7 @@ public class Pravidlo54a  extends K06PravidloBase {
                 mistoCh += getMistoChyby(ret_metsdiv.getList().get(i).getMetsDiv()) + " ";
             }
             String hlaska = "Nalezena chyba u elementu <mets:div>.";
-            if (ret_amd.getList().size() > 1)
+            if (amdSecList.size() > 1)
                 hlaska = "Nalezeny chyby u elementů <mets:div>.";
             return nastavChybu(hlaska, mistoCh);
         }
@@ -98,7 +92,7 @@ public class Pravidlo54a  extends K06PravidloBase {
                 mistoCh += getMistoChyby(jedinecnost_metsdiv.getList().get(i)) + " ";  
             }
             String hlaska = "Nalezena chyba duplicity u elementu <mets:div>.";
-            if (ret_metsdiv.getList().size() > 1)
+            if (amdSecList.size() > 1)
                 hlaska = "Nalezeny chyby duplicity u elementů <mets:div>.";
             return nastavChybu(hlaska, mistoCh);
         }
@@ -112,7 +106,7 @@ public class Pravidlo54a  extends K06PravidloBase {
                 mistoCh += getMistoChyby(ret_dmdsec.getList().get(i).getNode()) + " ";
             }
             String hlaska = "Nalezena chyba u elementu <mets:div>.";
-            if (ret_dmdsec.getList().size() > 1)
+            if (amdSecList.size() > 1)
                 hlaska = "Nalezeny chyby u elementů <mets:div>.";
             return nastavChybu(hlaska, mistoCh);
         }
@@ -120,7 +114,7 @@ public class Pravidlo54a  extends K06PravidloBase {
         // KONEC TESTU dmdSec
         
         // TEST amdSec to metsdiv
-        StructMap_Obj_return_bol_AL_node test_amd_to_div = StructMap_Metods.compare_amdSec_with_metsDiv(amdSec_list, metsdiv_list);
+        StructMap_Obj_return_bol_AL_node test_amd_to_div = StructMap_Metods.compare_amdSec_with_metsDiv(amdSecList, metsdiv_list);
         if(!test_amd_to_div.getBol()){
             if (test_amd_to_div.getList().size() == 1) {
                 return nastavChybu("Element <mets:amdSec> neodkazuje na žádný element <mets:div>.", getMistoChyby(test_amd_to_div.getList().get(0)));
@@ -134,7 +128,7 @@ public class Pravidlo54a  extends K06PravidloBase {
             }
         }
         // TEST metsdiv to amd 
-        StructMap_Obj_return_bol_AL_node test_div_toamd = StructMap_Metods.compare_metsDiv_with_amdSec(amdSec_list, metsdiv_list);
+        StructMap_Obj_return_bol_AL_node test_div_toamd = StructMap_Metods.compare_metsDiv_with_amdSec(amdSecList, metsdiv_list);
         if(!test_div_toamd.getBol()){
             if (test_div_toamd.getList().size() == 1) {
                 return nastavChybu("Element <mets:div> neodkazuje na žádný element <mets:amdSec>.", getMistoChyby(test_div_toamd.getList().get(0)));
@@ -150,7 +144,7 @@ public class Pravidlo54a  extends K06PravidloBase {
         // KONEC TESTU amdSec + metsdiv
         
         //TEST AMD TO DMDSEC
-        StructMap_Obj_return_bol_AL_node test_amd_to_dmd = StructMap_Metods.compare_amdSec_dmdSec(amdSec_list, metsdmdSec_list);
+        StructMap_Obj_return_bol_AL_node test_amd_to_dmd = StructMap_Metods.compare_amdSec_dmdSec(amdSecList, metsdmdSec_list);
         if(!test_amd_to_dmd.getBol()){
             if (test_amd_to_dmd.getList().size() == 1) {
                 String name = test_amd_to_dmd.getList().get(0).getNodeName();
@@ -216,5 +210,57 @@ public class Pravidlo54a  extends K06PravidloBase {
         
         return true;
 	}
+
+
+    private boolean readAmdSecList() {
+        NodeList amdSecNodes = metsParser.getElementsByTagName("mets:amdSec");
+        if(amdSecNodes.getLength() == 0){
+            return nastavChybu("Nenalezen element <mets:amdSec>.");
+        }        
+        amdSecList = new ArrayList<>(amdSecNodes.getLength());
+        
+        List<Node> errorList = new ArrayList<>(0);
+
+        for(int i = 0; i < amdSecNodes.getLength(); i++){
+            Node node = amdSecNodes.item(i);
+            
+            String id = ValuesGetter.getValueOfAttribut(node, "ID");
+            if(StringUtils.isEmpty(id)) {
+                errorList.add(node);
+                continue;
+            }
+
+            // <mets:digiprovMD>, <mets:mdWrap>, <mets:xmlData>, <tp:TransakcniLogObjektu>, <tp:TransLogInfo>, <tp:Objekt>, <tp:Identifikator>, <tns:HodnotaID> a <tns:ZdrojID>
+            Node node_identifikator = ValuesGetter.getXChild(node, "mets:digiprovMD", "mets:mdWrap", "mets:xmlData", "tp:TransakcniLogObjektu", "tp:TransLogInfo", "tp:Objekt", "tp:Identifikator", "tns:HodnotaID");
+            if(node_identifikator==null) {
+                errorList.add(node);
+                continue;                
+            }
+            String identifikator = node_identifikator.getTextContent();
+            
+            Node node_zdroj = ValuesGetter.getXChild(node, "mets:digiprovMD", "mets:mdWrap", "mets:xmlData", "tp:TransakcniLogObjektu", "tp:TransLogInfo", "tp:Objekt", "tp:Identifikator", "tns:ZdrojID");
+            if(node_zdroj==null) {
+                errorList.add(node);
+                continue;                                
+            }
+            String zdroj = node_zdroj.getTextContent();
+            
+            // jestliže nastala nějaká chyba
+            StructMap_Obj_amdSec amdSec = new StructMap_Obj_amdSec(id, identifikator, zdroj, node);
+            amdSecList.add(amdSec);
+        }
+        
+        if(errorList.size()>0) {
+            // report error
+            if(errorList.size()==1) {
+                return nastavChybu("Nalezena chyba u elementu <mets:amdSec>.", errorList.get(0));
+            } else {
+                String mistoCh = errorList.stream().map(n -> getMistoChyby(n) ).collect(Collectors.joining(" "));
+                return nastavChybu("Nalezeny chyby u elementů <mets:amdSec>.", mistoCh);
+            }
+        }
+        
+        return true;
+    }
 
 }

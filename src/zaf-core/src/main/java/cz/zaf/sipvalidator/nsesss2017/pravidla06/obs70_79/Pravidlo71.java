@@ -31,8 +31,8 @@ public class Pravidlo71 extends K06PravidloBase {
         int size = manipulace.size();
         for (int i = 0; i < size; i++) {
             Node manip_node = manipulace.get(i);
-            Node nodeOtevreni = ValuesGetter.findChild(manip_node, "nsesss:DatumOtevreni");
-            Node nodeUzavreni = ValuesGetter.findChild(manip_node, "nsesss:DatumUzavreni");
+            Node nodeOtevreni = ValuesGetter.findFirstChild(manip_node, "nsesss:DatumOtevreni");
+            Node nodeUzavreni = ValuesGetter.findFirstChild(manip_node, "nsesss:DatumUzavreni");
             if (nodeOtevreni != null && nodeUzavreni != null) {
                 Date datumOtevreni;
                 Date datumZavreni;

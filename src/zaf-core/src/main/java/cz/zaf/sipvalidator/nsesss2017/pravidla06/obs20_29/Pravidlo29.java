@@ -24,9 +24,10 @@ public class Pravidlo29 extends K06PravidloBase {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-		List<Node> krizove_odkazy_pevny_ano = metsParser.getKrizoveOdkazyPevnyAno();
-		if (krizove_odkazy_pevny_ano == null || krizove_odkazy_pevny_ano.isEmpty())
+		List<Node> pevneKrizoveOdkazy = metsParser.getKrizoveOdkazyPevnyAno();
+		if (pevneKrizoveOdkazy.isEmpty()) {
 			return true;
+		}
 
 		Node xmlData = this.metsParser.getMetsXmlData();
 
@@ -43,8 +44,8 @@ public class Pravidlo29 extends K06PravidloBase {
 			return nastavChybu("Element <mets:xmlData> obsahuje nepovolené dětské elementy.", ch);
 		}
 
-		for (int i = 0; i < krizove_odkazy_pevny_ano.size(); i++) {
-			Node krizovyOdkaz = krizove_odkazy_pevny_ano.get(i);
+		for (int i = 0; i < pevneKrizoveOdkazy.size(); i++) {
+			Node krizovyOdkaz = pevneKrizoveOdkazy.get(i);
 			Node materska_zakl_entita_eu = ValuesGetter.getXParent(krizovyOdkaz, "nsesss:Souvislosti",
 					"nsesss:EvidencniUdaje");
 

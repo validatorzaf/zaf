@@ -28,12 +28,12 @@ public class Pravidlo75 extends K06PravidloBase {
             return true;
         for (int i = 0; i < posuzovanyOkamzik.getLength(); i++) {
             Node platnost = posuzovanyOkamzik.item(i);
-            Node nodeOd = ValuesGetter.findChild(platnost, "nsesss:PlatnostOd");
+            Node nodeOd = ValuesGetter.findFirstChild(platnost, "nsesss:PlatnostOd");
             if (nodeOd == null) {
                 return nastavChybu("Nenalezen element <nsesss:PlatnostOd>. " + getJmenoIdentifikator(platnost),
                                   getMistoChyby(platnost));
             }
-            Node nodeDo = ValuesGetter.findChild(platnost, "nsesss:PlatnostDo");
+            Node nodeDo = ValuesGetter.findFirstChild(platnost, "nsesss:PlatnostDo");
             if (nodeDo == null) {
                 return nastavChybu("Nenalezen element <nsesss:PlatnostDo>. " + getJmenoIdentifikator(platnost),
                                   getMistoChyby(platnost));

@@ -29,8 +29,8 @@ public class Pravidlo54 extends K06PravidloBase {
 
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> krizoveodkazy = kontrola.getMetsParser().getKrizoveOdkazyPevnyAno();
-        if (!krizoveodkazy.isEmpty()) {
+        List<Node> pevneKrizoveOdkazy = kontrola.getMetsParser().getKrizoveOdkazyPevnyAno();
+        if (!pevneKrizoveOdkazy.isEmpty()) {
             return true;
         }
         ArrayList<Node> metsDiv = ValuesGetter.getAllAnywhereList("mets:div", metsParser.getDocument());

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.Validate;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -141,19 +142,26 @@ public class ValuesGetter {
         return false;
     }
 
-    public static Node getXChild (Node parent, String... children){
-      if (parent == null) return null;
-      Node xChild = findChild(parent, children[0]);
-      
-      int s = children.length; if (s == 1) return xChild;
-      
-      for(int i = 1; i < s; i++){
-        Node nextChild = findChild(xChild, children[i]);
-        xChild = nextChild; 
-       
-      }  
- 
-      return xChild;
+    /**
+     * Find first child in given path
+     * 
+     * @param parent
+     * @param children
+     * @return
+     */
+    public static Node getXChild(Node parent, String... children){
+      if (parent == null) {
+          return null;
+      }
+      int pos = 0;
+      Node nextParent = parent;
+      for(; pos<(children.length-1); pos++) {
+          nextParent = findFirstChild(nextParent, children[pos]);
+          if(nextParent==null) {
+              return null;
+          }
+      }      
+      return findFirstChild(nextParent, children[pos]);
     }
 
     public static ArrayList<Node> get_Node_Children(Node node){
@@ -169,18 +177,15 @@ public class ValuesGetter {
         return seznam;
     }
     
-    public static Node findChild(Node parent, String childName) {
-        if (parent == null) {
-            return null;
-        }
+    public static Node findFirstChild(Node parent, String childName) {
+        Validate.notNull(parent);
+
         NodeList childNodes = parent.getChildNodes();
         if (childNodes == null) {
             return null;
         }
 
         int childCount = childNodes.getLength();
-        
-
         for (int i = 0; i < childCount; i++) {
             Node nodeOnIndex = childNodes.item(i);
             String nodeName = nodeOnIndex.getNodeName();

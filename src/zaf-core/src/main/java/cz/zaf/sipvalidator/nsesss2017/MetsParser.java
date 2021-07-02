@@ -11,7 +11,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -42,6 +44,11 @@ public class MetsParser {
      * Chyba vzniklá při parsování
      */
     public String parserError;
+    
+    /**
+     * Mapa dotazu na uzly
+     */
+    Map<String, List<Node> > nodeQueryCache = new HashMap<>();
 
     public MetsParser() {
     }
@@ -206,17 +213,26 @@ public class MetsParser {
         return plneurcenySpisovyZnak;
     }
 
-    public List<Node> getKrizoveOdkazyPevnyAno() {        
-        NodeList krizoveOdkazy = ValuesGetter.getAllAnywhere("nsesss:KrizovyOdkaz", getDocument());
-        if(krizoveOdkazy==null) {
-            return Collections.emptyList();
-        }
-        List<Node> list = new ArrayList<>();
-        for(int i = 0; i < krizoveOdkazy.getLength(); i++){
-           if(ValuesGetter.hasAttributValue(krizoveOdkazy.item(i), "pevny", "ano")){
-               list.add(krizoveOdkazy.item(i));
+    public List<Node> getKrizoveOdkazyPevnyAno() {
+        List<Node> list = nodeQueryCache.get("nsesss:KrizovyOdkaz[pevny=ano]");
+        if(list==null) {
+            NodeList krizoveOdkazy = document.getElementsByTagName("nsesss:KrizovyOdkaz");
+            if(krizoveOdkazy.getLength()==0) {
+                list = Collections.emptyList();
+            } else {
+                list = new ArrayList<>();
+                for(int i = 0; i < krizoveOdkazy.getLength(); i++){
+                   if(ValuesGetter.hasAttributValue(krizoveOdkazy.item(i), "pevny", "ano")){
+                       list.add(krizoveOdkazy.item(i));
+                    }
+                }                
             }
+            nodeQueryCache.put("nsesss:KrizovyOdkaz[pevny=ano]", list);
         }
         return list;
+    }
+
+    public NodeList getElementsByTagName(String name) {
+        return document.getElementsByTagName(name);
     }
 }

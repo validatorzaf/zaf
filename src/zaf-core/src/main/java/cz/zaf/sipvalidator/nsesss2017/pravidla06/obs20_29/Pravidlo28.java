@@ -25,8 +25,8 @@ public class Pravidlo28 extends K06PravidloBase {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-        List<Node> krizove_odkazy_pevny_ano = metsParser.getKrizoveOdkazyPevnyAno();
-        if(!krizove_odkazy_pevny_ano.isEmpty()){
+        List<Node> pevneKrizoveOdkazy = metsParser.getKrizoveOdkazyPevnyAno();
+        if(!pevneKrizoveOdkazy.isEmpty()){
             return true;
         }
         else{
