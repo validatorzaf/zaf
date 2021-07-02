@@ -129,8 +129,6 @@ public class K06_Obsahova
     static final public String OBS4 = "obs4";
     static final public String OBS9 = "obs9";
 
-    static final public String OBS21 = "obs21";
-
     static final public String MISTO_CHYBY_NEUPRESNENO = "Neupřesněno.";
     private String popisChyby = "Pravidlo nesplněno.";
     private String misto_chyby = "";
@@ -169,7 +167,6 @@ public class K06_Obsahova
         pridejPravidlo(new Pravidlo18(this));
         pridejPravidlo(new Pravidlo19(this));
         pridejPravidlo(new Pravidlo20(this));
-        pridejPravidlo(OBS21, null);
         pridejPravidlo(new Pravidlo22(this));
         pridejPravidlo(new Pravidlo23(this));
         pridejPravidlo(new Pravidlo24(this));
