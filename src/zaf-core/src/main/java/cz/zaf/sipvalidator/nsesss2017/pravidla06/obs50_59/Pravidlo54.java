@@ -1,6 +1,7 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Node;
@@ -10,6 +11,11 @@ import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
+//OBSAHOVÁ č.54 Pokud neexistuje žádný element <nsesss:KrizovyOdkaz> s atributem pevny s hodnotou ano, 
+// potom každý element <mets:div> obsahuje dětský element podle struktury entit/objektů (od spisového plánu po komponentu) 
+// v sekci dmdSec s atributem TYPE s hodnotou příslušné entity/objektu a s atributem DMDID s hodnotou příslušné entity/objektu 
+// v atributu ID a s atributem ADMID s hodnotou, která odpovídá hodnotě atributu ID příslušné entity/objektu v sekci amdSec (entita/objekt v hierarchii dětských elementů <mets:digiprovMD>, <mets:mdWrap>, <mets:xmlData>, <tp:TransakcniLogObjektu>, <tp:TransLogInfo>, <tp:Objekt>, <tp:Identifikator>, <tns:HodnotaID> a <tns:ZdrojID> 
+// odpovídá v hodnotách hodnotám elementu <nsesss:Identifikator> a jeho atributu zdroj příslušné entity/objektu v sekci dmdSec).
 public class Pravidlo54 extends K06PravidloBase {
 
     static final public String OBS54 = "obs54";
@@ -21,29 +27,25 @@ public class Pravidlo54 extends K06PravidloBase {
                 "Bod 2.17 a 2.18. přílohy č. 3 NSESSS; Informační list NA, roč. 2018, čá. 2, příloha k č. 20/2018 (20.3).");
     }
 
-    //OBSAHOVÁ č.54 Pokud neexistuje žádný element <nsesss:KrizovyOdkaz> s atributem pevny s hodnotou ano, 
-    // potom každý element <mets:div> obsahuje dětský element podle struktury entit/objektů (od spisového plánu po komponentu) 
-    // v sekci dmdSec s atributem TYPE s hodnotou příslušné entity/objektu a s atributem DMDID s hodnotou příslušné entity/objektu 
-    // v atributu ID a s atributem ADMID s hodnotou, která odpovídá hodnotě atributu ID příslušné entity/objektu v sekci amdSec (entita/objekt v hierarchii dětských elementů <mets:digiprovMD>, <mets:mdWrap>, <mets:xmlData>, <tp:TransakcniLogObjektu>, <tp:TransLogInfo>, <tp:Objekt>, <tp:Identifikator>, <tns:HodnotaID> a <tns:ZdrojID> 
-    // odpovídá v hodnotách hodnotám elementu <nsesss:Identifikator> a jeho atributu zdroj příslušné entity/objektu v sekci dmdSec).
     @Override
     protected boolean kontrolaPravidla() {
-        ArrayList<Node> krizoveodkazy = kontrola.get_krizove_odkazy_pevny_ano();
-        if (!krizoveodkazy.isEmpty())
+        List<Node> krizoveodkazy = kontrola.getMetsParser().getKrizoveOdkazyPevnyAno();
+        if (!krizoveodkazy.isEmpty()) {
             return true;
-        ArrayList<Node> metsDiv = ValuesGetter.getAllAnywhereArrayList("mets:div", metsParser.getDocument());
-        ArrayList<Node> metsAmd = ValuesGetter.getAllAnywhereArrayList("mets:amdSec", metsParser.getDocument());
-        ArrayList<Node> spisoveplany = ValuesGetter.getAllAnywhereArrayList("nsesss:SpisovyPlan", metsParser
+        }
+        ArrayList<Node> metsDiv = ValuesGetter.getAllAnywhereList("mets:div", metsParser.getDocument());
+        ArrayList<Node> metsAmd = ValuesGetter.getAllAnywhereList("mets:amdSec", metsParser.getDocument());
+        ArrayList<Node> spisoveplany = ValuesGetter.getAllAnywhereList("nsesss:SpisovyPlan", metsParser
                 .getDocument());
-        ArrayList<Node> vecneskupiny = ValuesGetter.getAllAnywhereArrayList("nsesss:VecnaSkupina", metsParser
+        ArrayList<Node> vecneskupiny = ValuesGetter.getAllAnywhereList("nsesss:VecnaSkupina", metsParser
                 .getDocument());
-        ArrayList<Node> soucasti = ValuesGetter.getAllAnywhereArrayList("nsesss:Soucast", metsParser.getDocument());
-        ArrayList<Node> typovespisy = ValuesGetter.getAllAnywhereArrayList("nsesss:TypovySpis", metsParser
+        ArrayList<Node> soucasti = ValuesGetter.getAllAnywhereList("nsesss:Soucast", metsParser.getDocument());
+        ArrayList<Node> typovespisy = ValuesGetter.getAllAnywhereList("nsesss:TypovySpis", metsParser
                 .getDocument());
-        ArrayList<Node> spisy = ValuesGetter.getAllAnywhereArrayList("nsesss:Spis", metsParser.getDocument());
-        ArrayList<Node> dily = ValuesGetter.getAllAnywhereArrayList("nsesss:Dil", metsParser.getDocument());
+        ArrayList<Node> spisy = ValuesGetter.getAllAnywhereList("nsesss:Spis", metsParser.getDocument());
+        ArrayList<Node> dily = ValuesGetter.getAllAnywhereList("nsesss:Dil", metsParser.getDocument());
         //        ArrayList<Node> dokumenty = ValuesGetter.getAllAnywhereArrayList("nsesss:Dokument", metsParser.getDocument());
-        ArrayList<Node> komponenty = ValuesGetter.getAllAnywhereArrayList("nsesss:Komponenta", metsParser
+        ArrayList<Node> komponenty = ValuesGetter.getAllAnywhereList("nsesss:Komponenta", metsParser
                 .getDocument());
         int size_div = metsDiv.size();
         for (int i = 0; i < size_div; i++) {
@@ -258,29 +260,29 @@ public class Pravidlo54 extends K06PravidloBase {
 
     private int pravidlo54_pocitadlo() {
         int a = 0;
-        ArrayList<Node> plany = ValuesGetter.getAllAnywhereArrayList("nsesss:SpisovyPlan", metsParser.getDocument());
+        ArrayList<Node> plany = ValuesGetter.getAllAnywhereList("nsesss:SpisovyPlan", metsParser.getDocument());
         if (plany != null)
             a = pravidlo56upresneniPocitadla(plany);
-        ArrayList<Node> skupiny = ValuesGetter.getAllAnywhereArrayList("nsesss:VecnaSkupina", metsParser.getDocument());
+        ArrayList<Node> skupiny = ValuesGetter.getAllAnywhereList("nsesss:VecnaSkupina", metsParser.getDocument());
         if (skupiny != null)
             a += pravidlo56upresneniPocitadla(skupiny);
-        ArrayList<Node> soucasti = ValuesGetter.getAllAnywhereArrayList("nsesss:Soucast", metsParser.getDocument());
+        ArrayList<Node> soucasti = ValuesGetter.getAllAnywhereList("nsesss:Soucast", metsParser.getDocument());
         if (soucasti != null)
             a += pravidlo56upresneniPocitadla(soucasti);
-        ArrayList<Node> typoveSpisy = ValuesGetter.getAllAnywhereArrayList("nsesss:TypovySpis", metsParser
+        ArrayList<Node> typoveSpisy = ValuesGetter.getAllAnywhereList("nsesss:TypovySpis", metsParser
                 .getDocument());
         if (typoveSpisy != null)
             a += pravidlo56upresneniPocitadla(typoveSpisy);
-        ArrayList<Node> spisy = ValuesGetter.getAllAnywhereArrayList("nsesss:Spis", metsParser.getDocument());
+        ArrayList<Node> spisy = ValuesGetter.getAllAnywhereList("nsesss:Spis", metsParser.getDocument());
         if (spisy != null)
             a += pravidlo56upresneniPocitadla(spisy);
-        ArrayList<Node> dily = ValuesGetter.getAllAnywhereArrayList("nsesss:Dil", metsParser.getDocument());
+        ArrayList<Node> dily = ValuesGetter.getAllAnywhereList("nsesss:Dil", metsParser.getDocument());
         if (dily != null)
             a += pravidlo56upresneniPocitadla(dily);
-        ArrayList<Node> dokumenty = ValuesGetter.getAllAnywhereArrayList("nsesss:Dokument", metsParser.getDocument());
+        ArrayList<Node> dokumenty = ValuesGetter.getAllAnywhereList("nsesss:Dokument", metsParser.getDocument());
         if (dokumenty != null)
             a += pravidlo56upresneniPocitadla(dokumenty);
-        ArrayList<Node> komponenty = ValuesGetter.getAllAnywhereArrayList("nsesss:Komponenta", metsParser
+        ArrayList<Node> komponenty = ValuesGetter.getAllAnywhereList("nsesss:Komponenta", metsParser
                 .getDocument());
         if (komponenty != null)
             a += pravidlo56upresneniPocitadla(komponenty);

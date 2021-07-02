@@ -5,13 +5,11 @@
  */
 package cz.zaf.sipvalidator.nsesss2017;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
@@ -31,7 +29,7 @@ public class K06_Obsahova
 	SipInfo sipSoubor;
 	private ObsahovePravidlo[] seznamPravidel;
 
-    private MetsParser metsParser;
+    MetsParser metsParser;
 
     private List<Node> zakladniEntity;
     private List<Node> dokumenty;
@@ -145,20 +143,6 @@ public class K06_Obsahova
     }
     
                     
-    public ArrayList<Node> get_krizove_odkazy_pevny_ano() {
-        ArrayList<Node> list = new ArrayList<>();
-        NodeList krizoveOdkazy = ValuesGetter.getAllAnywhere("nsesss:KrizovyOdkaz", metsParser.getDocument());
-        if(krizoveOdkazy != null){
-            list = new ArrayList<>();
-            for(int i = 0; i < krizoveOdkazy.getLength(); i++){
-                if(ValuesGetter.hasAttributValue(krizoveOdkazy.item(i), "pevny", "ano")){
-                    list.add(krizoveOdkazy.item(i));
-                }
-            }
-        }
-        return list;
-    }
-    
     // na konci oddělovač nehlídá
     static public boolean spisZnakObsahujeOddelovac(String spisovy_znak) {
         for(int i = 0; i < spisovy_znak.length()-1; i++){

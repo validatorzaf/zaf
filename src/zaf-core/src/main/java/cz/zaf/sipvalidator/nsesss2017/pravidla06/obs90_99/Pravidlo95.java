@@ -28,10 +28,10 @@ public class Pravidlo95 extends K06PravidloBase {
     // <nsesss:PlneUrcenySpisovyZnak> výchozí entity před posledním oddělovačem.",
     @Override
     protected boolean kontrolaPravidla() {
-        ArrayList<Node> vecneSkupiny = ValuesGetter.getAllAnywhereArrayList("nsesss:VecnaSkupina", metsParser
+        ArrayList<Node> vecneSkupiny = ValuesGetter.getAllAnywhereList("nsesss:VecnaSkupina", metsParser
                 .getDocument());
-        ArrayList<Node> soucasti = ValuesGetter.getAllAnywhereArrayList("nsesss:Soucast", metsParser.getDocument());
-        ArrayList<Node> typoveSpisy = ValuesGetter.getAllAnywhereArrayList("nsesss:TypovySpis", metsParser
+        ArrayList<Node> soucasti = ValuesGetter.getAllAnywhereList("nsesss:Soucast", metsParser.getDocument());
+        ArrayList<Node> typoveSpisy = ValuesGetter.getAllAnywhereList("nsesss:TypovySpis", metsParser
                 .getDocument());
         ArrayList<Node> list = new ArrayList<>();
         if (vecneSkupiny == null)

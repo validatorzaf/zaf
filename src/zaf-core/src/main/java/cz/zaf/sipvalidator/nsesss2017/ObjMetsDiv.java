@@ -149,7 +149,7 @@ public class ObjMetsDiv {
 
     private void overAmdSec(){
         ArrayList<Node> vybrane = ValuesGetter.getArrayListOfNodesByValueOfAtributFromSpecificArrayList(ValuesGetter
-                .getAllAnywhereArrayList("mets:amdSec", document), "ID", admid);
+                .getAllAnywhereList("mets:amdSec", document), "ID", admid);
         if(vybrane != null){
             if(vybrane.size() == 1){
                 Node hodnotaId = ValuesGetter.getXChild(vybrane.get(0), "mets:digiprovMD", "mets:mdWrap", "mets:xmlData", "tp:TransakcniLogObjektu", "tp:TransLogInfo", "tp:Objekt", "tp:Identifikator", "tns:HodnotaID");
@@ -160,14 +160,14 @@ public class ObjMetsDiv {
                     ArrayList<Node> list;
                     switch(type){
                         case "spisový plán":
-                        list = ValuesGetter.getAllAnywhereArrayList("nsesss:SpisovyPlan", document);
+                        list = ValuesGetter.getAllAnywhereList("nsesss:SpisovyPlan", document);
                         list = ValuesGetter.getArrayListOfNodesByValueOfAtributFromSpecificArrayList(list, "ID", dmdid);
                         if(list.size() == 1){
                             overIdentifikator(list, zdrID, hodId);
                         }
                         break;
                     case "věcná skupina":
-                        list = ValuesGetter.getAllAnywhereArrayList("nsesss:VecnaSkupina", document);
+                        list = ValuesGetter.getAllAnywhereList("nsesss:VecnaSkupina", document);
                         list = ValuesGetter.getArrayListOfNodesByValueOfAtributFromSpecificArrayList(list, "ID", dmdid);
                         if(list.size() == 1){
                             overIdentifikator(list, zdrID, hodId);
@@ -175,7 +175,7 @@ public class ObjMetsDiv {
                         break;
 
                     case "typový spis":
-                        list = ValuesGetter.getAllAnywhereArrayList("nsesss:TypovySpis", document);
+                        list = ValuesGetter.getAllAnywhereList("nsesss:TypovySpis", document);
                         list = ValuesGetter.getArrayListOfNodesByValueOfAtributFromSpecificArrayList(list, "ID", dmdid);
                         if(list.size() == 1){
                             overIdentifikator(list.get(0), zdrID, hodId);
@@ -183,7 +183,7 @@ public class ObjMetsDiv {
                         break;
 
                     case "součást":
-                        list = ValuesGetter.getAllAnywhereArrayList("nsesss:Soucast", document);
+                        list = ValuesGetter.getAllAnywhereList("nsesss:Soucast", document);
                         list = ValuesGetter.getArrayListOfNodesByValueOfAtributFromSpecificArrayList(list, "ID", dmdid);
                         if(list.size() == 1){
                             overIdentifikator(list.get(0), zdrID, hodId);
@@ -191,7 +191,7 @@ public class ObjMetsDiv {
                         break;  
 
                     case "spis":
-                        list = ValuesGetter.getAllAnywhereArrayList("nsesss:Spis", document);
+                        list = ValuesGetter.getAllAnywhereList("nsesss:Spis", document);
                         list = ValuesGetter.getArrayListOfNodesByValueOfAtributFromSpecificArrayList(list, "ID", dmdid);
                         if(list.size() == 1){
                             overIdentifikator(list.get(0), zdrID, hodId);
@@ -199,7 +199,7 @@ public class ObjMetsDiv {
                         break;  
 
                     case "díl":
-                        list = ValuesGetter.getAllAnywhereArrayList("nsesss:Dil", document);
+                        list = ValuesGetter.getAllAnywhereList("nsesss:Dil", document);
                         list = ValuesGetter.getArrayListOfNodesByValueOfAtributFromSpecificArrayList(list, "ID", dmdid);
                         if(list.size() == 1){
                             overIdentifikator(list.get(0), zdrID, hodId);
@@ -207,7 +207,7 @@ public class ObjMetsDiv {
                         break; 
 
                     case "dokument":
-                        list = ValuesGetter.getAllAnywhereArrayList("nsesss:Dokument", document);
+                        list = ValuesGetter.getAllAnywhereList("nsesss:Dokument", document);
                         list = ValuesGetter.getArrayListOfNodesByValueOfAtributFromSpecificArrayList(list, "ID", dmdid);
                         if(list.size() == 1){
                             overIdentifikator(list.get(0), zdrID, hodId);
@@ -215,7 +215,7 @@ public class ObjMetsDiv {
                         break; 
 
                     case "komponenta":
-                        list = ValuesGetter.getAllAnywhereArrayList("nsesss:Komponenta", document);
+                        list = ValuesGetter.getAllAnywhereList("nsesss:Komponenta", document);
                         list = ValuesGetter.getArrayListOfNodesByValueOfAtributFromSpecificArrayList(list, "ID", dmdid);
                         if(list.size() == 1){
                             overIdentifikator(list.get(0), zdrID, hodId);

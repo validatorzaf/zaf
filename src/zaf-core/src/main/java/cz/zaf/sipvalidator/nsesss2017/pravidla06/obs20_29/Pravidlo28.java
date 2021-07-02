@@ -1,6 +1,7 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.w3c.dom.Node;
 
@@ -24,7 +25,7 @@ public class Pravidlo28 extends K06PravidloBase {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-        ArrayList<Node> krizove_odkazy_pevny_ano = kontrola.get_krizove_odkazy_pevny_ano();
+        List<Node> krizove_odkazy_pevny_ano = metsParser.getKrizoveOdkazyPevnyAno();
         if(!krizove_odkazy_pevny_ano.isEmpty()){
             return true;
         }

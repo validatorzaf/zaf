@@ -198,9 +198,11 @@ public class ValuesGetter {
         return nodeList;
     }
     
-    public static ArrayList<Node> getAllAnywhereArrayList(String nazev, Document dom){
+    public static ArrayList<Node> getAllAnywhereList(String nazev, Document dom){
         NodeList nodeList = dom.getElementsByTagName(nazev); 
-        if(nodeList.getLength() == 0) return null;
+        if(nodeList.getLength() == 0) {
+            return null;
+        }
         int size = nodeList.getLength();
         ArrayList<Node>  list = new ArrayList<>(size);
         for(int i = 0; i < size; i++){

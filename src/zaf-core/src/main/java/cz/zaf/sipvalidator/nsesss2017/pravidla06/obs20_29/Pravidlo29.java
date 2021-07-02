@@ -24,7 +24,7 @@ public class Pravidlo29 extends K06PravidloBase {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-		ArrayList<Node> krizove_odkazy_pevny_ano = kontrola.get_krizove_odkazy_pevny_ano();
+		List<Node> krizove_odkazy_pevny_ano = metsParser.getKrizoveOdkazyPevnyAno();
 		if (krizove_odkazy_pevny_ano == null || krizove_odkazy_pevny_ano.isEmpty())
 			return true;
 

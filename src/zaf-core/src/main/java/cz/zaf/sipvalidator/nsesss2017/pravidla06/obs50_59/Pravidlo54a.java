@@ -1,6 +1,5 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.w3c.dom.Node;
@@ -39,8 +38,10 @@ public class Pravidlo54a  extends K06PravidloBase {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-        ArrayList<Node> krizoveodkazy = kontrola.get_krizove_odkazy_pevny_ano();
-        if(krizoveodkazy.isEmpty()) return true;
+        List<Node> krizoveodkazy = metsParser.getKrizoveOdkazyPevnyAno();
+        if(krizoveodkazy.isEmpty()) {
+            return true;
+        }
         // TEST mets:amdSec
         NodeList amdSec_nodelist = ValuesGetter.getAllAnywhere("mets:amdSec", metsParser.getDocument());
         if(amdSec_nodelist == null){

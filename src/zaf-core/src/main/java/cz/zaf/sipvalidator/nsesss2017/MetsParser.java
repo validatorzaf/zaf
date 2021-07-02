@@ -10,10 +10,12 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import cz.zaf.sipvalidator.sip.SipInfo;
@@ -88,12 +90,12 @@ public class MetsParser {
         zakladniEntity = ValuesGetter.getChildList(xmlData, "nsesss:Dokument", "nsesss:Spis", "nsesss:Dil");
 
         //velké seznamy u velkých souborů
-        identifikatory = ValuesGetter.getAllAnywhereArrayList("nsesss:Identifikator", document);
-        nazvy = ValuesGetter.getAllAnywhereArrayList("nsesss:Nazev", document);
-        dokumenty = ValuesGetter.getAllAnywhereArrayList("nsesss:Dokument", document);
-        manipulace = ValuesGetter.getAllAnywhereArrayList("nsesss:Manipulace", document);
-        urceneCasoveObdobi = ValuesGetter.getAllAnywhereArrayList("nsesss:UrceneCasoveObdobi", document);
-        plneurcenySpisovyZnak = ValuesGetter.getAllAnywhereArrayList("nsesss:PlneUrcenySpisovyZnak", document);
+        identifikatory = ValuesGetter.getAllAnywhereList("nsesss:Identifikator", document);
+        nazvy = ValuesGetter.getAllAnywhereList("nsesss:Nazev", document);
+        dokumenty = ValuesGetter.getAllAnywhereList("nsesss:Dokument", document);
+        manipulace = ValuesGetter.getAllAnywhereList("nsesss:Manipulace", document);
+        urceneCasoveObdobi = ValuesGetter.getAllAnywhereList("nsesss:UrceneCasoveObdobi", document);
+        plneurcenySpisovyZnak = ValuesGetter.getAllAnywhereList("nsesss:PlneUrcenySpisovyZnak", document);
 
         if (zakladniEntity != null && zakladniEntity.isEmpty())
             zakladniEntity = null; // kvůli pravidlům
@@ -202,5 +204,19 @@ public class MetsParser {
 
     public List<Node> getPlneurcenySpisovyZnak() {
         return plneurcenySpisovyZnak;
+    }
+
+    public List<Node> getKrizoveOdkazyPevnyAno() {        
+        NodeList krizoveOdkazy = ValuesGetter.getAllAnywhere("nsesss:KrizovyOdkaz", getDocument());
+        if(krizoveOdkazy==null) {
+            return Collections.emptyList();
+        }
+        List<Node> list = new ArrayList<>();
+        for(int i = 0; i < krizoveOdkazy.getLength(); i++){
+           if(ValuesGetter.hasAttributValue(krizoveOdkazy.item(i), "pevny", "ano")){
+               list.add(krizoveOdkazy.item(i));
+            }
+        }
+        return list;
     }
 }
