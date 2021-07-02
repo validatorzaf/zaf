@@ -4,7 +4,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.37 Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MIMETYPE s hodnotou text/xml.",
@@ -12,8 +11,8 @@ public class Pravidlo37 extends K06PravidloBase {
 	
 	static final public String OBS37 = "obs37";
 
-	public Pravidlo37(K06_Obsahova kontrola) {
-		super(kontrola, OBS37,
+	public Pravidlo37() {
+		super(OBS37,
 				"Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MIMETYPE s hodnotou text/xml.",
 				"Uveden je chybně popis schématu XML.",
 				"Bod 2.11. přílohy č. 3 NSESSS.");

@@ -4,7 +4,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 /** 
@@ -15,9 +14,8 @@ public class Pravidlo93a  extends K06PravidloBase {
 
     static final public String OBS93A = "obs93a";
 
-    public Pravidlo93a(K06_Obsahova kontrola) {
-        super(kontrola,
-                OBS93A,
+    public Pravidlo93a() {
+        super(OBS93A,
                 "Každá entita věcná skupina (<nsesss:VecnaSkupina>), jejíž rodičovská entita je spisový plán (<nsesss:SpisovyPlan>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> se stejnými hodnotami.",
                 "Chybně jsou uvedeny spisové znaky.", 
                 "Požadavek 3.1.30 NSESSS.");

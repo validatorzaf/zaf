@@ -4,7 +4,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 /** 
@@ -17,8 +16,8 @@ public class Pravidlo38 extends K06PravidloBase {
 	
 	static final public String OBS38 = "obs38";
 
-	public Pravidlo38(K06_Obsahova kontrola) {
-		super(kontrola, OBS38,
+	public Pravidlo38() {
+		super(OBS38,
 				"Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap> právě jeden dětský element <mets:xmlData>.",
 				"Chybí povinná část (transakční protokol) struktury datového balíčku SIP.",
 				"Bod 2.12. přílohy č. 3 NSESSS."

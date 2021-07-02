@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.17 Element <mets:metsHdr> obsahuje alespoň jeden element <mets:agent> s atributem TYPE s hodnotou INDIVIDUAL.",
@@ -13,8 +12,8 @@ public class Pravidlo17 extends K06PravidloBase {
 
 	static final public String OBS17 = "obs17";
 
-	public Pravidlo17(K06_Obsahova kontrola) {
-		super(kontrola, OBS17,
+	public Pravidlo17() {
+		super(OBS17,
 				"Element <mets:metsHdr> obsahuje alespoň jeden element <mets:agent> s atributem TYPE s hodnotou INDIVIDUAL.",
 				"Uveden je chybně popis původce.",
 				"Bod 2.3. přílohy č. 3 NSESSS."

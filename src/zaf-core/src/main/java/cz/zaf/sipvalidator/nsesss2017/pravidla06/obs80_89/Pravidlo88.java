@@ -7,15 +7,14 @@ import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo88 extends K06PravidloBase {
 
     static final public String OBS88 = "obs88";
 
-    public Pravidlo88(K06_Obsahova kontrola) {
-        super(kontrola, Pravidlo88.OBS88,
+    public Pravidlo88() {
+        super(OBS88,
                 "Pokud element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano a současně element <nsesss:Vyrizeni> obsahuje dětský element <nsesss:DatumOdeslani>, pak element <nsesss:Vyrizeni> obsahuje element <nsesss:OdeslaneMnozstvi> s neprázdnou hodnotou.",
                 "Chybí množství odeslaného dokumentu v analogové podobě.",
                 "Příloha č. 2 NSESSS, ř. 1476.");

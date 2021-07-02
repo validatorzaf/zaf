@@ -11,7 +11,6 @@ import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 
@@ -20,8 +19,8 @@ public class Pravidlo47 extends K06PravidloBase {
 	
 	static final public String OBS47 = "obs47";
 
-	public Pravidlo47(K06_Obsahova kontrola) {
-		super(kontrola, OBS47, 
+	public Pravidlo47() {
+		super(OBS47, 
 				"Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut CHECKSUM s hodnotou kontrolního součtu příslušné komponenty podle kryptografického algoritmu uvedeného v atributu CHECKSUMTYPE.", 
 				"Celistvost komponenty (počítačového souboru) je narušena nebo chybí možnost jejího ověření.", 
 				"Bod 2.15. přílohy č. 3 NSESSS.");

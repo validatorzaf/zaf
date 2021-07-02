@@ -13,7 +13,6 @@ import org.w3c.dom.NodeList;
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.MimetypeDetector;
 import cz.zaf.sipvalidator.nsesss2017.MimetypeDetector.MimeTypeResult;
 import cz.zaf.sipvalidator.nsesss2017.MimetypeDetector.MimeTypeResult.DetectionStatus;
@@ -25,8 +24,8 @@ public class Pravidlo45 extends K06PravidloBase {
 	
 	static final public String OBS45 = "obs45";
 
-	public Pravidlo45(K06_Obsahova kontrola) {
-		super(kontrola, OBS45,
+	public Pravidlo45() {
+		super(OBS45,
 				"Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut MIMETYPE s hodnotou identifikace souborového formátu příslušné komponenty.",
 				"Komponenta (počítačový soubor) má uvedený chybný datový formát.",
 				"Bod 2.15. přílohy č. 3 NSESSS."

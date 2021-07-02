@@ -4,7 +4,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.3 Element <mets:mets> obsahuje atribut LABEL s hodnotou Datový balíček pro předávání dokumentů a jejich metadat do archivu.",
@@ -12,10 +11,11 @@ public class Pravidlo3 extends K06PravidloBase {
 
 	static final public String OBS3 = "obs3";
 
-	public Pravidlo3(K06_Obsahova kontrola) {
-		super(kontrola, OBS3,
+	public Pravidlo3() {
+		super(OBS3,
 				"Element <mets:mets> obsahuje atribut LABEL s hodnotou Datový balíček pro předávání dokumentů a jejich metadat do archivu.",
-				"Uveden je chybně popis datového balíčku SIP.", "Bod 2.1. přílohy č. 3 NSESSS.");
+				"Uveden je chybně popis datového balíčku SIP.",
+				"Bod 2.1. přílohy č. 3 NSESSS.");
 	}
 
 	@Override

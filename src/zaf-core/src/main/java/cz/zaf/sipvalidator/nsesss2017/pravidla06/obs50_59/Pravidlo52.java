@@ -8,7 +8,6 @@ import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 
@@ -16,8 +15,8 @@ public class Pravidlo52 extends K06PravidloBase {
 
     static final public String OBS52 = "obs52";
 
-    public Pravidlo52(K06_Obsahova kontrola) {
-        super(kontrola, Pravidlo52.OBS52,
+    public Pravidlo52() {
+        super(OBS52,
                 "Pokud existuje jakýkoli element <mets:FLocat>, každý obsahuje atribut xlink:href s hodnotou, která odpovídá relativní cestě odkazu jakékoli komponenty uložené ve složce komponenty, přičemž právě jedna hodnota atributu xlink:href odpovídá relativní cestě odkazu právě jedné komponenty.",
                 "Uveden je chybně popis odkazu na komponentu (počítačový soubor).",
                 "Bod 2.16. přílohy č. 3 NSESSS.");

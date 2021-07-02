@@ -4,7 +4,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 /**
@@ -16,8 +15,8 @@ public class Pravidlo35 extends K06PravidloBase {
 	
 	static final public String OBS35 = "obs35";
 
-	public Pravidlo35(K06_Obsahova kontrola) {
-		super(kontrola, OBS35,
+	public Pravidlo35() {
+		super(OBS35,
 				"Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut OTHERMDTYPE s hodnotou TP.",
 				"Uveden je chybně popis schématu XML.",
 				"Bod 2.11. přílohy č. 3 NSESSS."

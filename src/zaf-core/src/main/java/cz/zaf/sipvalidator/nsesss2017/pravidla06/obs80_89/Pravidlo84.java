@@ -5,15 +5,14 @@ import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo84 extends K06PravidloBase {
 
     static final public String OBS84 = "obs84";
 
-    public Pravidlo84(K06_Obsahova kontrola) {
-        super(kontrola, Pravidlo84.OBS84,
+    public Pravidlo84() {
+        super(OBS84,
                 "Pokud existuje jakýkoli element <nsesss:Vyrizeni> a obsahuje element <nsesss:Zpusob> s hodnotou jiný způsob, potom je na stejné úrovni posledního uvedeného elementu uveden dětský element <nsesss:ObsahVyrizeni> s neprázdnou hodnotou.",
                 "Chybí obsah vyřízení jiným způsobem.",
                 "Příloha č. 2 NSESSS, ř. 1265.");

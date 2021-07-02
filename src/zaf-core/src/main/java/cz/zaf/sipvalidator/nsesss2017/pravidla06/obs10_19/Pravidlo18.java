@@ -4,7 +4,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.18 Každý element <mets:agent> obsahuje atribut ROLE s hodnotou CREATOR.",
@@ -12,9 +11,10 @@ public class Pravidlo18 extends K06PravidloBase {
 
 	static final public String OBS18 = "obs18";
 
-	public Pravidlo18(K06_Obsahova kontrola) {
-		super(kontrola, OBS18, "Každý element <mets:agent> obsahuje atribut ROLE s hodnotou CREATOR.",
-				"Uveden je chybně popis původce.", "Bod 2.3. přílohy č. 3 NSESSS.");
+	public Pravidlo18() {
+		super(OBS18, "Každý element <mets:agent> obsahuje atribut ROLE s hodnotou CREATOR.",
+				"Uveden je chybně popis původce.", 
+				"Bod 2.3. přílohy č. 3 NSESSS.");
 	}
 
 	@Override

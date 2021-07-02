@@ -7,15 +7,14 @@ import java.util.List;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo82 extends K06PravidloBase {
 
     static final public String OBS82 = "obs82";
 
-    public Pravidlo82(K06_Obsahova kontrola) {
-        super(kontrola, Pravidlo82.OBS82,
+    public Pravidlo82() {
+        super(OBS82,
                 "Pokud je v jakémkoli elementu <nsesss:UrceneCasoveObdobi> uveden dětský element <nsesss:MesicDo>, potom je jeho hodnota větší než <nsesss:MesicOd>.",
                 "Není v souladu rozsah určeného časového období.",
                 null);

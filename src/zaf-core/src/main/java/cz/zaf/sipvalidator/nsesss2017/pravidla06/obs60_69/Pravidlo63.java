@@ -5,15 +5,14 @@ import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo63 extends K06PravidloBase {
 
     static final public String OBS63 = "obs63";
 
-    public Pravidlo63(K06_Obsahova kontrola) {
-        super(kontrola, Pravidlo63.OBS63,
+    public Pravidlo63() {
+        super(OBS63,
                 "Pokud jakýkoli element <nsesss:Vyrizeni> nebo element <nsesss:VyrizeniUzavreni> obsahuje element <nsesss:Zpusob> s hodnotou jiný způsob, potom je na stejné úrovni posledního uvedeného elementu uveden dětský element <nsesss:Oduvodneni> s neprázdnou hodnotou.",
                 "Chybí odůvodnění vyřízení jiným způsobem.",
                 "Příloha č. 2 NSESSS, ř. 1270.");

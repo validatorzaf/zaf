@@ -4,15 +4,14 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo51 extends K06PravidloBase {
 
     static final public String OBS51 = "obs51";
 
-    public Pravidlo51(K06_Obsahova kontrola) {
-        super(kontrola, Pravidlo51.OBS51,
+    public Pravidlo51() {
+        super(OBS51,
                 "Pokud existuje jakýkoli element <mets:FLocat>, každý obsahuje atribut xlink:type s hodnotou simple.",
                 "Uveden je chybně popis odkazu na komponentu (počítačový soubor).",
                 "Bod 2.16. přílohy č. 3 NSESSS.");

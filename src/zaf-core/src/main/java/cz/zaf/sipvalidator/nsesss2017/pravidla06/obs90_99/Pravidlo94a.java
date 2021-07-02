@@ -15,8 +15,8 @@ public class Pravidlo94a extends K06PravidloBase {
 
     static final public String OBS94A = "obs94a";
 
-    public Pravidlo94a(K06_Obsahova kontrola) {
-    	super(kontrola, OBS94A,
+    public Pravidlo94a() {
+    	super(OBS94A,
     		    "Každá entita věcná skupina (<nsesss:VecnaSkupina>) nebo součást (<nsesss:Soucast>), která se nachází v rodičovské entitě věcná skupina (<nsesss:VecnaSkupina>) nebo typový spis (<nsesss:TypovySpis>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> element <nsesss:PlneUrcenySpisovyZnak> s hodnotou obsahující oddělovač tvořený mezerou, pomlčkou, spojovníkem, lomítkem nebo tečkou, který není posledním znakem.",
     			"Chybně jsou uvedeny spisové znaky.",
     			"Požadavek 3.1.30 NSESSS.");

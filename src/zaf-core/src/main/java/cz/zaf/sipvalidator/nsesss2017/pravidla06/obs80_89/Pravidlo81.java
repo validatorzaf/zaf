@@ -7,15 +7,14 @@ import java.util.List;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo81 extends K06PravidloBase {
 
     static final public String OBS81 = "obs81";
 
-    public Pravidlo81(K06_Obsahova kontrola) {
-        super(kontrola, Pravidlo81.OBS81,
+    public Pravidlo81() {
+        super(OBS81,
                 "Pokud je v jakémkoli elementu <nsesss:UrceneCasoveObdobi> uveden dětský element <nsesss:DatumDo>, potom je jeho hodnota větší než <nsesss:DatumOd>.",
                 "Není v souladu rozsah určeného časového období.",
                 null);

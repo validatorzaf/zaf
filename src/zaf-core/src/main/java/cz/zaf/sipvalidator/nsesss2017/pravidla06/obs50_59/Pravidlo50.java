@@ -4,15 +4,14 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo50 extends K06PravidloBase {
 
     static final public String OBS50 = "obs50";
 
-    public Pravidlo50(K06_Obsahova kontrola) {
-        super(kontrola, Pravidlo50.OBS50,
+    public Pravidlo50() {
+        super(OBS50,
                 "Pokud existuje jakýkoli element <mets:file>, každý obsahuje právě jeden dětský element <mets:FLocat>.",
                 "Chybí připojení komponenty (počítačového souboru) do datového balíčku SIP nebo je provedeno chybně.",
                 "Bod 2.16. přílohy č. 3 NSESSS.");

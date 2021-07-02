@@ -7,7 +7,6 @@ import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 
@@ -16,9 +15,9 @@ public class Pravidlo48 extends K06PravidloBase {
 	
 	static final public String OBS48 = "obs48";
 
-	public Pravidlo48(K06_Obsahova kontrola) {
+	public Pravidlo48() {
 		
-		super(kontrola, OBS48, 
+		super(OBS48, 
 			    "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut SIZE s hodnotou velikosti příslušné komponenty v bytech.",
 			    "Chybí velikost komponenty (počítačového souboru) nebo je uvedena chybně.",			    
 				"Bod 2.15. přílohy č. 3 NSESSS.");

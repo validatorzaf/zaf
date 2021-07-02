@@ -8,15 +8,14 @@ import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.nsesss2017.CompareNodes;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo59 extends K06PravidloBase {
 
     static final public String OBS59 = "obs59";
 
-    public Pravidlo59(K06_Obsahova kontrola) {
-        super(kontrola, Pravidlo59.OBS59,
+    public Pravidlo59() {
+        super(OBS59,
                 "Žádná entita (od spisového plánu po dokument) nebo objekt <nsesss:Komponenta>, <nsesss:BezpecnostniKategorie>, <nsesss:SkartacniRezim> nebo <nsesss:TypDokumentu> neobsahuje stejné hodnoty elementu <nsesss:Identifikator> a jeho atributu zdroj a současně odlišné hodnoty v ostatních elementech, jako má jiná entita nebo objekt uvedeného typu, kromě atributu ID uvedené entity.",
                 "Uveden je vícekrát stejný spisový plán, věcná skupina, typový spis, součást, díl, spis, dokument, komponenta, bezpečnostní kategorie, skartační režim nebo typ dokumentu nebo je vícekrát použit stejný identifikátor.",
                 "Příloha č. 2 NSESSS, ř. 123.");

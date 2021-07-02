@@ -3,7 +3,6 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.22 Element <mets:dmdSec> obsahuje právě jeden dětský element <mets:mdWrap>.",
@@ -11,8 +10,8 @@ public class Pravidlo22 extends K06PravidloBase {
 
 	static final public String OBS22 = "obs22";
 
-	public Pravidlo22(K06_Obsahova kontrola) {
-		super(kontrola, OBS22,
+	public Pravidlo22() {
+		super(OBS22,
 				"Element <mets:dmdSec> obsahuje právě jeden dětský element <mets:mdWrap>.",
 				"Chybí povinná (popisná) část struktury datového balíčku SIP.",
 				"Bod 2.7. přílohy č. 3 NSESSS."

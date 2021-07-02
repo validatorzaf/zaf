@@ -6,15 +6,14 @@ import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo77 extends K06PravidloBase {
 
     static final public String OBS77 = "obs77";
 
-    public Pravidlo77(K06_Obsahova kontrola) {
-        super(kontrola, Pravidlo77.OBS77,
+    public Pravidlo77() {
+        super(OBS77,
                 "Pokud základní entita obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano, potom obsahuje v hierarchii dětských elementů <nsesss:Vyrazovani> a <nsesss:SkartacniRizeni> element <nsesss:Mnozstvi> s neprázdnou hodnotou.",
                 "Chybí množství dílu, spisu nebo dokumentu v analogové podobě.",
                 "Příloha č. 2 NSESSS, ř. 1006.");

@@ -5,15 +5,14 @@ import java.util.List;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo69 extends K06PravidloBase {
 
     static final public String OBS69 = "obs69";
 
-    public Pravidlo69(K06_Obsahova kontrola) {
-        super(kontrola, Pravidlo69.OBS69,
+    public Pravidlo69() {
+        super(OBS69,
                 "Pokud je základní entitou dokument (<nsesss:Dokument>), potom její element <nsesss:EvidencniUdaje> obsahuje dětský element <nsesss:Vyrizeni>.",
                 "Chybí vyřízení dokumentu.",
                 "Příloha č. 2 NSESSS, ř. 421.");

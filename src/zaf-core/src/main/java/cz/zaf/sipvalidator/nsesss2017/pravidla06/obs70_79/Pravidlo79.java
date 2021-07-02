@@ -6,7 +6,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -14,8 +13,8 @@ public class Pravidlo79 extends K06PravidloBase {
 
     static final public String OBS79 = "obs79";
 
-    public Pravidlo79(K06_Obsahova kontrola) {
-        super(kontrola, Pravidlo79.OBS79,
+    public Pravidlo79() {
+        super(OBS79,
                 "V elementu <nsesss:SkartacniRizeni> obsahuje element <nsesss:Datum> hodnotu, v níž je uvedený rok větší nebo roven hodnotě uvedené v elementu <nsesss:RokSkartacniOperace> uvnitř rodičovského elementu <nsesss:DataceVyrazeni> stejné entity.",
                 "Není v souladu datum skartačního řízení a roku skartační operace.",
                 null);

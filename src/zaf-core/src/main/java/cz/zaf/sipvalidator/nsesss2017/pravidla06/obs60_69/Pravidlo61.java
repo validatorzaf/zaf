@@ -6,15 +6,14 @@ import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo61 extends K06PravidloBase {
 
     static final public String OBS61 = "obs61";
 
-    public Pravidlo61(K06_Obsahova kontrola) {
-        super(kontrola, Pravidlo61.OBS61,
+    public Pravidlo61() {
+        super(OBS61,
                 "Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano a současně element <nsesss:EvidencniUdaje> obsahuje v dětském elementu <nsesss:Puvod> element <nsesss:DorucenyDokument>, potom je v posledním uvedeném elementu uveden dětský element <nsesss:DoruceneMnozstvi> s neprázdnou hodnotou.",
                 "Chybí doručené množství dokumentu v analogové podobě.",
                 "Příloha č. 2 NSESSS, ř. 365.");

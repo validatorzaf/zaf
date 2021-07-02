@@ -17,7 +17,6 @@ import org.w3c.dom.NodeList;
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.pdfa.ValidationResult;
 import cz.zaf.sipvalidator.pdfa.VeraValidatorProxy;
@@ -29,13 +28,14 @@ public class Pravidlo99 extends K06PravidloBase {
 
     static Logger log = LoggerFactory.getLogger(Pravidlo99.class);
 
-    static final public String OBS99 = "obs99";
+    public static final String OBS99 = "obs99";
 
     VeraValidatorProxy veraValidatorProxy;
 
-    public Pravidlo99(K06_Obsahova kontrola) {
-        super(kontrola, Pravidlo99.OBS99, "Pokud je soubor ve formátu pdf musí vyhovovat standardu Pdf/A",
-                "Chybný formát souboru", "§ 23 odst. 2 vyhlášky č. 259/2012 Sb.");
+    public Pravidlo99() {
+        super(OBS99, "Pokud je soubor ve formátu pdf musí vyhovovat standardu Pdf/A",
+                "Chybný formát souboru", 
+                "§ 23 odst. 2 vyhlášky č. 259/2012 Sb.");
     }
 
     @Override

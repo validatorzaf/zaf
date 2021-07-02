@@ -7,7 +7,6 @@ import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.nsesss2017.Comparator;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.Obj_Node_String;
 import cz.zaf.sipvalidator.nsesss2017.PositionalXMLReader;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
@@ -17,8 +16,8 @@ public class Pravidlo44 extends K06PravidloBase {
 	
 	static final public String OBS44 = "obs44";
 
-	public Pravidlo44(K06_Obsahova kontrola) {
-		super(kontrola, OBS44,
+	public Pravidlo44() {
+		super(OBS44,
 				"Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut DMDID s hodnotou uvedenou v atributu ID jakéhokoli elementu <nsesss:Komponenta>, přičemž právě jedna hodnota atributu DMDID odpovídá právě jedné hodnotě atributu ID.",
 				"Chybí provázání komponenty (počítačového souboru) s popisnou částí.",
 				"Bod 2.15. přílohy č. 3 NSESSS.");

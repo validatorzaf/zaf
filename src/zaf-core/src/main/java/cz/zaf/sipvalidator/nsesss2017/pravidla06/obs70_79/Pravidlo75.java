@@ -7,15 +7,14 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo75 extends K06PravidloBase {
 
     static final public String OBS75 = "obs75";
 
-    public Pravidlo75(K06_Obsahova kontrola) {
-        super(kontrola, Pravidlo75.OBS75,
+    public Pravidlo75() {
+        super(OBS75,
                 "Pokud existuje jakýkoli element <nsesss:Platnost>, v každém obsahuje jeho dětský element <nsesss:PlatnostOd> stejnou nebo menší hodnotu, než je hodnota elementu <nsesss:PlatnostDo>.",
                 "Není v souladu rozsah platnosti certifikátu elektronického podpisu, elektronické značky nebo časového razítka.",
                 null);

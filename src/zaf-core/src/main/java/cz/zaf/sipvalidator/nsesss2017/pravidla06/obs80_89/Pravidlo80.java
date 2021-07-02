@@ -7,15 +7,14 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo80 extends K06PravidloBase {
 
     static final public String OBS80 = "obs80";
 
-    public Pravidlo80(K06_Obsahova kontrola) {
-        super(kontrola, Pravidlo80.OBS80,
+    public Pravidlo80() {
+        super(Pravidlo80.OBS80,
                 "V jakémkoli elementu <nsesss:SkartacniRizeni> obsahuje element <nsesss:Datum> hodnotu, která je menší nebo rovna aktuálnímu roku.",
                 "Uvedeno je chybně datum skartačního řízení (uváděný rok ještě nenadešel).",
                 "§ 20 odst. 1 vyhlášky č. 259/2012 Sb.");

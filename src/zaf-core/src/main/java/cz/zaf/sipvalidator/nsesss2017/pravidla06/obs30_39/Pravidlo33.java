@@ -6,7 +6,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.33 Každý element <mets:digiprovMD> obsahuje právě jeden dětský element <mets:mdWrap>.",
@@ -14,8 +13,8 @@ public class Pravidlo33 extends K06PravidloBase {
 	
 	static final public String OBS33 = "obs33";
 
-	public Pravidlo33(K06_Obsahova kontrola) {
-		super(kontrola, OBS33,
+	public Pravidlo33() {
+		super(OBS33,
 				"Každý element <mets:digiprovMD> obsahuje právě jeden dětský element <mets:mdWrap>.",
 				"Chybí povinná část (transakční protokol) struktury datového balíčku SIP.",
 				"Bod 2.11. přílohy č. 3 NSESSS."

@@ -4,15 +4,14 @@ import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo58 extends K06PravidloBase {
 
     static final public String OBS58 = "obs58";
 
-    public Pravidlo58(K06_Obsahova kontrola) {
-        super(kontrola, Pravidlo58.OBS58,
+    public Pravidlo58() {
+        super(OBS58,
                 "Jakýkoli element <nsesss:Identifikator> obsahuje atribut zdroj s neprázdnou hodnotu.",
                 "Není uveden zdroj identifikátoru.",
                 "Příloha č. 2 NSESSS, ř. 288.");

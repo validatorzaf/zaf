@@ -5,7 +5,6 @@ import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 // OBSAHOVÁ č.61a Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano a 
@@ -14,8 +13,8 @@ public class Pravidlo61a extends K06PravidloBase {
 	
 	static final public String OBS61A = "obs61a";
 
-	public Pravidlo61a(K06_Obsahova kontrola) {
-		super(kontrola, OBS61A, 
+	public Pravidlo61a() {
+		super(OBS61A, 
 			    "Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano a současně element <nsesss:EvidencniUdaje> obsahuje v dětském elementu <nsesss:Puvod> element <nsesss:VlastniDokument>, potom je v posledním uvedeném elementu uveden dětský element <nsesss:VytvoreneMnozstvi> s neprázdnou hodnotou.",
 			    "Chybí množství vlastního dokumentu v analogové podobě.", 
 			    "Příloha č. 2 NSESSS, ř. 1208.");

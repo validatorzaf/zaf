@@ -4,7 +4,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.39 Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap>, <mets:xmlData> právě jeden dětský element <tp:TransakcniLogObjektu>.",
@@ -12,8 +11,8 @@ public class Pravidlo39 extends K06PravidloBase {
 	
 	static final public String OBS39 = "obs39";
 
-	public Pravidlo39(K06_Obsahova kontrola) {
-		super(kontrola, OBS39,
+	public Pravidlo39() {
+		super(OBS39,
 			    "Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap>, <mets:xmlData> právě jeden dětský element <tp:TransakcniLogObjektu>.",
 				"Datový balíček SIP neobsahuje transakční protokol.",
 				"Bod 2.12. přílohy č. 3 NSESSS.");

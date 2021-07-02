@@ -6,7 +6,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.40 Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ne, obsahuje element <mets:mets> právě jeden dětský element <mets:fileSec>.",
@@ -14,8 +13,8 @@ public class Pravidlo40  extends K06PravidloBase {
 	
 	static final public String OBS40 = "obs40";
 
-	public Pravidlo40(K06_Obsahova kontrola) {
-		super(kontrola, OBS40,
+	public Pravidlo40() {
+		super(OBS40,
 				"Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ne, obsahuje element <mets:mets> právě jeden dětský element <mets:fileSec>.",
 				"Chybí připojení komponent (počítačových souborů).",
 				"Bod 2.13. přílohy č. 3 NSESSS.");

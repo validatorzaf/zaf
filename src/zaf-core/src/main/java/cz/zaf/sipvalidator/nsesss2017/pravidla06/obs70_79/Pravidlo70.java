@@ -5,15 +5,14 @@ import java.util.List;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo70 extends K06PravidloBase {
 
     static final public String OBS70 = "obs70";
 
-    public Pravidlo70(K06_Obsahova kontrola) {
-        super(kontrola, Pravidlo70.OBS70,
+    public Pravidlo70() {
+        super(OBS70,
                 "Jakýkoli element <nsesss:Identifikator> není opakovatelný, pokud se nenachází v hierarchii elementů <nsesss:Komponenta>, <nsesss:EvidencniUdaje> a <nsesss:Identifikace>.",
                 "Uveden je chybně identifikátor věcné skupiny, typového spisu, součásti, dílu, spisu nebo dokumentu.",
                 "Příloha č. 2 NSESSS, ř. 497.");

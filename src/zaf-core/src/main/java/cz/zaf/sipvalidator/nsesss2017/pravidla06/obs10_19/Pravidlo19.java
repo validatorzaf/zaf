@@ -4,7 +4,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.19 Každý element <mets:agent> obsahuje atribut ID.",
@@ -12,8 +11,8 @@ public class Pravidlo19 extends K06PravidloBase {
 
 	static final public String OBS19 = "obs19";
 
-	public Pravidlo19(K06_Obsahova kontrola) {
-		super(kontrola, OBS19,
+	public Pravidlo19() {
+		super(OBS19,
 				"Každý element <mets:agent> obsahuje atribut ID.",
 				"Uveden je chybně popis původce.",
 				"Bod 2.3. přílohy č. 3 NSESSS."

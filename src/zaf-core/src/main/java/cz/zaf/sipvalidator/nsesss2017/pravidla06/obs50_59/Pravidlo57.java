@@ -4,14 +4,13 @@ import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 
 public class Pravidlo57 extends K06PravidloBase {
 
     static final public String OBS57 = "obs57";
 
-    public Pravidlo57(K06_Obsahova kontrola) {
-        super(kontrola, Pravidlo57.OBS57,
+    public Pravidlo57() {
+        super(OBS57,
                 "Jakýkoli element <nsesss:Identifikator> obsahuje neprázdnou hodnotu.",
                 "Není uveden identifikátor.",
                 "Příloha č. 2 NSESSS, ř. 123.");

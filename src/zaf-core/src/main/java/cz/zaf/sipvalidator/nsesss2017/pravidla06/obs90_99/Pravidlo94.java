@@ -5,16 +5,14 @@ import java.util.List;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo94 extends K06PravidloBase {
 
     static final public String OBS94 = "obs94";
 
-    public Pravidlo94(K06_Obsahova kontrola) {
-        super(kontrola,
-                Pravidlo94.OBS94,
+    public Pravidlo94() {
+        super(OBS94,
                 "Každá entita vyjma jakéhokoli spisového plánu (<nsesss:SpisovyPlan>) obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> element <nsesss:PlneUrcenySpisovyZnak> s hodnotou, jejíž poslední část je stejná jako hodnota elementu <nsesss:JednoduchySpisovyZnak>.",
                 "Chybně jsou uvedeny spisové znaky.",
                 "Požadavek 3.1.30 NSESSS.");

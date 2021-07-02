@@ -12,7 +12,7 @@ import org.w3c.dom.Node;
  * zaznam ve vystupu
  *
  */
-public abstract class K06PravidloBase implements Runnable {
+public abstract class K06PravidloBase implements ObsahovePravidlo {
 
     protected K06_Obsahova kontrola;
 
@@ -27,16 +27,13 @@ public abstract class K06PravidloBase implements Runnable {
 
     protected KontrolaNsess2017Context context;
 
-    public K06PravidloBase(final K06_Obsahova kontrola,
-                           final String kodPravidla,
+    public K06PravidloBase(final String kodPravidla,
                            final String textPravidla,
                            final String obecnyPopisChyby,
-                           final String zdrojChyby) {
-        Validate.notNull(kontrola);
+                           final String zdrojChyby) {        
         Validate.notNull(kodPravidla);
         Validate.notNull(textPravidla);
-
-        this.kontrola = kontrola;
+        
         this.kodPravidla = kodPravidla;
         this.textPravidla = textPravidla;
         this.obecnyPopisChyby = obecnyPopisChyby;
@@ -46,7 +43,8 @@ public abstract class K06PravidloBase implements Runnable {
     protected abstract boolean kontrolaPravidla();
 
     @Override
-    public void run() {
+    public void kontrolaPravidla(final K06_Obsahova kontrola) {
+    	this.kontrola = kontrola;
         // reset promennych pred spustenim
         boolean stav = false;
         mistoChyby = null;
@@ -70,6 +68,7 @@ public abstract class K06PravidloBase implements Runnable {
                                 zdrojChyby);
 
         this.context = null;
+        this.kontrola = null;
     }
 
     protected String getMistoChyby(Node node) {

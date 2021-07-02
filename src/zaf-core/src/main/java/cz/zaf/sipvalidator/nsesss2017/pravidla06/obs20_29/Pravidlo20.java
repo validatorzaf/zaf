@@ -5,7 +5,6 @@ import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.20 Každý element <mets:agent> obsahuje právě jeden dětský element <mets:name> s neprázdnou hodnotou.",
@@ -13,8 +12,8 @@ public class Pravidlo20 extends K06PravidloBase {
 
 	static final public String OBS20 = "obs20";
 
-	public Pravidlo20(K06_Obsahova kontrola) {
-		super(kontrola, OBS20,
+	public Pravidlo20() {
+		super(OBS20,
 				"Každý element <mets:agent> obsahuje právě jeden dětský element <mets:name> s neprázdnou hodnotou.",
 				"Chybí informace o původci.",
 				"Bod 2.4. přílohy č. 3 NSESSS."

@@ -4,15 +4,14 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo56 extends K06PravidloBase {
 
     static final public String OBS56 = "obs56";
 
-    public Pravidlo56(K06_Obsahova kontrola) {
-        super(kontrola, Pravidlo56.OBS56,
+    public Pravidlo56() {
+        super(OBS56,
                 "Pokud existuje jakýkoli element <mets:fptr>, každý obsahuje atribut FILEID s hodnotou, která odpovídá hodnotě atributu ID elementu <mets:file> příslušné komponenty. Příslušnost vyjadřuje stejná hodnota atributu DMDID rodičovského elementu <mets:div> a elementu <mets:file>.",
                 "Není v souladu provázání komponent (počítačových souborů) mezi částí počítačových souborů a strukturální mapou.",
                 "Bod 2.19. přílohy č. 3 NSESSS.");

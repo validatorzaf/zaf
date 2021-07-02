@@ -4,15 +4,14 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo72 extends K06PravidloBase {
 
     static final public String OBS72 = "obs72";
 
-    public Pravidlo72(K06_Obsahova kontrola) {
-        super(kontrola, Pravidlo72.OBS72,
+    public Pravidlo72() {
+        super(Pravidlo72.OBS72,
                 "Pokud existuje jakýkoli element <nsesss:CasPouziti>, každý obsahuje atribut datum.",
                 "Chybí strojový zápis času opatření komponenty (počítačového souboru) elektronickým podpisem, elektronickou značkou nebo časovým razítkem.",
                 "§ 4 odst. 7 písm. b) vyhlášky č. 259/2012 Sb.");

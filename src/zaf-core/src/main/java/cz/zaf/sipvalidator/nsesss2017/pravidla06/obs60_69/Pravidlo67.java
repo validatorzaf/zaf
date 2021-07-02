@@ -7,7 +7,6 @@ import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.Helper_Obj_Node;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.Obj_Node_String;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -15,8 +14,8 @@ public class Pravidlo67 extends K06PravidloBase {
 
     static final public String OBS67 = "obs67";
 
-    public Pravidlo67(K06_Obsahova kontrola) {
-        super(kontrola, Pravidlo67.OBS67,
+    public Pravidlo67() {
+        super(OBS67,
                 "Pokud je základní entitou díl (<nsesss:Dil>) nebo spis (<nsesss:Spis>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:SkartacniRezim> obsahuje element <nsesss:SkartacniZnak> hodnotu, která je rovna nejvyššímu skartačnímu znaku dětské entity dokument (<nsesss:Dokument>), přičemž priorita skartačních znaků od nejvyšší po nejnižší je v pořadí A, V, S.",
                 "Uveden je chybně skartační znak u dílu nebo spisu (stanovuje se podle nejvyššího skartačního znaku dokumentu).",
                 "§ 15 odst. 5 vyhlášky č. 259/2012 Sb.");

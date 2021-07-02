@@ -99,8 +99,8 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89.Pravidlo89;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo90;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo91;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo92;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo93a;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo93;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo93a;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo94;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo94a;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo95;
@@ -108,9 +108,9 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo96;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo97;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo98;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo99;
-import cz.zaf.sipvalidator.sip.VysledekPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
+import cz.zaf.sipvalidator.sip.VysledekPravidla;
 
 
 /**
@@ -134,105 +134,105 @@ public class K06_Obsahova
     /**
      * Mapa kontrol
      */
-    Map<String, Runnable> kontroly = new HashMap<>();
+    Map<String, ObsahovePravidlo> kontroly = new HashMap<>();
        
     public K06_Obsahova(int[] seznamPravidel) {
     	this.seznamPravidel = seznamPravidel;
     
-        pridejPravidlo(new Pravidlo1(this));
-        pridejPravidlo(new Pravidlo2(this));
-        pridejPravidlo(new Pravidlo3(this));
-        pridejPravidlo(new Pravidlo4(this));
-        pridejPravidlo(new Pravidlo9(this));
-        pridejPravidlo(new Pravidlo10(this));
-        pridejPravidlo(new Pravidlo11(this));
-        pridejPravidlo(new Pravidlo12(this));
-        pridejPravidlo(new Pravidlo13(this));
-        pridejPravidlo(new Pravidlo14(this));
-        pridejPravidlo(new Pravidlo15(this));
-        pridejPravidlo(new Pravidlo16(this));
-        pridejPravidlo(new Pravidlo17(this));
-        pridejPravidlo(new Pravidlo18(this));
-        pridejPravidlo(new Pravidlo19(this));
-        pridejPravidlo(new Pravidlo20(this));
-        pridejPravidlo(new Pravidlo22(this));
-        pridejPravidlo(new Pravidlo23(this));
-        pridejPravidlo(new Pravidlo24(this));
-        pridejPravidlo(new Pravidlo25(this));
-        pridejPravidlo(new Pravidlo26(this));
-        pridejPravidlo(new Pravidlo27(this));
-        pridejPravidlo(new Pravidlo28(this));
-        pridejPravidlo(new Pravidlo29(this));
-        pridejPravidlo(new Pravidlo30(this));
-        pridejPravidlo(new Pravidlo31(this));
-        pridejPravidlo(new Pravidlo93a(this));
-        pridejPravidlo(new Pravidlo33(this));
-        pridejPravidlo(new Pravidlo34(this));
-        pridejPravidlo(new Pravidlo35(this));
-        pridejPravidlo(new Pravidlo36(this));
-        pridejPravidlo(new Pravidlo37(this));
-        pridejPravidlo(new Pravidlo38(this));
-        pridejPravidlo(new Pravidlo39(this));
-        pridejPravidlo(new Pravidlo40(this));
-        pridejPravidlo(new Pravidlo54a(this));
-        pridejPravidlo(new Pravidlo61a(this));
-        pridejPravidlo(new Pravidlo94a(this));
-        pridejPravidlo(new Pravidlo44(this));
-        pridejPravidlo(new Pravidlo45(this));
-        pridejPravidlo(new Pravidlo46(this));
-        pridejPravidlo(new Pravidlo47(this));
-        pridejPravidlo(new Pravidlo48(this));
-        pridejPravidlo(new Pravidlo49(this));
-        pridejPravidlo(new Pravidlo50(this));
-        pridejPravidlo(new Pravidlo51(this));
-        pridejPravidlo(new Pravidlo52(this));
-        pridejPravidlo(new Pravidlo53(this));
-        pridejPravidlo(new Pravidlo54(this));
-        pridejPravidlo(new Pravidlo55(this));
-        pridejPravidlo(new Pravidlo56(this));
-        pridejPravidlo(new Pravidlo57(this));
-        pridejPravidlo(new Pravidlo58(this));
-        pridejPravidlo(new Pravidlo59(this));
-        pridejPravidlo(new Pravidlo60(this));
-        pridejPravidlo(new Pravidlo61(this));
-        pridejPravidlo(new Pravidlo62(this));
-        pridejPravidlo(new Pravidlo63(this));
-        pridejPravidlo(new Pravidlo64(this));
-        pridejPravidlo(new Pravidlo65(this));
-        pridejPravidlo(new Pravidlo66(this));
-        pridejPravidlo(new Pravidlo67(this));
-        pridejPravidlo(new Pravidlo68(this));
-        pridejPravidlo(new Pravidlo69(this));
-        pridejPravidlo(new Pravidlo70(this));
-        pridejPravidlo(new Pravidlo71(this));
-        pridejPravidlo(new Pravidlo72(this));
-        pridejPravidlo(new Pravidlo73(this));
-        pridejPravidlo(new Pravidlo74(this));
-        pridejPravidlo(new Pravidlo75(this));
-        pridejPravidlo(new Pravidlo76(this));
-        pridejPravidlo(new Pravidlo77(this));
-        pridejPravidlo(new Pravidlo78(this));
-        pridejPravidlo(new Pravidlo79(this));
-        pridejPravidlo(new Pravidlo80(this));
-        pridejPravidlo(new Pravidlo81(this));
-        pridejPravidlo(new Pravidlo82(this));
-        pridejPravidlo(new Pravidlo83(this));
-        pridejPravidlo(new Pravidlo84(this));
-        pridejPravidlo(new Pravidlo85(this));
-        pridejPravidlo(new Pravidlo86(this));
-        pridejPravidlo(new Pravidlo87(this));
-        pridejPravidlo(new Pravidlo88(this));
-        pridejPravidlo(new Pravidlo89(this));
-        pridejPravidlo(new Pravidlo90(this));
-        pridejPravidlo(new Pravidlo91(this));
-        pridejPravidlo(new Pravidlo92(this));
-        pridejPravidlo(new Pravidlo93(this));
-        pridejPravidlo(new Pravidlo94(this));        
-        pridejPravidlo(new Pravidlo95(this));
-        pridejPravidlo(new Pravidlo96(this));
-        pridejPravidlo(new Pravidlo97(this));
-        pridejPravidlo(new Pravidlo98(this));
-        pridejPravidlo(new Pravidlo99(this));
+        pridejPravidlo(new Pravidlo1());
+        pridejPravidlo(new Pravidlo2());
+        pridejPravidlo(new Pravidlo3());
+        pridejPravidlo(new Pravidlo4());
+        pridejPravidlo(new Pravidlo9());
+        pridejPravidlo(new Pravidlo10());
+        pridejPravidlo(new Pravidlo11());
+        pridejPravidlo(new Pravidlo12());
+        pridejPravidlo(new Pravidlo13());
+        pridejPravidlo(new Pravidlo14());
+        pridejPravidlo(new Pravidlo15());
+        pridejPravidlo(new Pravidlo16());
+        pridejPravidlo(new Pravidlo17());
+        pridejPravidlo(new Pravidlo18());
+        pridejPravidlo(new Pravidlo19());
+        pridejPravidlo(new Pravidlo20());
+        pridejPravidlo(new Pravidlo22());
+        pridejPravidlo(new Pravidlo23());
+        pridejPravidlo(new Pravidlo24());
+        pridejPravidlo(new Pravidlo25());
+        pridejPravidlo(new Pravidlo26());
+        pridejPravidlo(new Pravidlo27());
+        pridejPravidlo(new Pravidlo28());
+        pridejPravidlo(new Pravidlo29());
+        pridejPravidlo(new Pravidlo30());
+        pridejPravidlo(new Pravidlo31());
+        pridejPravidlo(new Pravidlo93a());
+        pridejPravidlo(new Pravidlo33());
+        pridejPravidlo(new Pravidlo34());
+        pridejPravidlo(new Pravidlo35());
+        pridejPravidlo(new Pravidlo36());
+        pridejPravidlo(new Pravidlo37());
+        pridejPravidlo(new Pravidlo38());
+        pridejPravidlo(new Pravidlo39());
+        pridejPravidlo(new Pravidlo40());
+        pridejPravidlo(new Pravidlo54a());
+        pridejPravidlo(new Pravidlo61a());
+        pridejPravidlo(new Pravidlo94a());
+        pridejPravidlo(new Pravidlo44());
+        pridejPravidlo(new Pravidlo45());
+        pridejPravidlo(new Pravidlo46());
+        pridejPravidlo(new Pravidlo47());
+        pridejPravidlo(new Pravidlo48());
+        pridejPravidlo(new Pravidlo49());
+        pridejPravidlo(new Pravidlo50());
+        pridejPravidlo(new Pravidlo51());
+        pridejPravidlo(new Pravidlo52());
+        pridejPravidlo(new Pravidlo53());
+        pridejPravidlo(new Pravidlo54());
+        pridejPravidlo(new Pravidlo55());
+        pridejPravidlo(new Pravidlo56());
+        pridejPravidlo(new Pravidlo57());
+        pridejPravidlo(new Pravidlo58());
+        pridejPravidlo(new Pravidlo59());
+        pridejPravidlo(new Pravidlo60());
+        pridejPravidlo(new Pravidlo61());
+        pridejPravidlo(new Pravidlo62());
+        pridejPravidlo(new Pravidlo63());
+        pridejPravidlo(new Pravidlo64());
+        pridejPravidlo(new Pravidlo65());
+        pridejPravidlo(new Pravidlo66());
+        pridejPravidlo(new Pravidlo67());
+        pridejPravidlo(new Pravidlo68());
+        pridejPravidlo(new Pravidlo69());
+        pridejPravidlo(new Pravidlo70());
+        pridejPravidlo(new Pravidlo71());
+        pridejPravidlo(new Pravidlo72());
+        pridejPravidlo(new Pravidlo73());
+        pridejPravidlo(new Pravidlo74());
+        pridejPravidlo(new Pravidlo75());
+        pridejPravidlo(new Pravidlo76());
+        pridejPravidlo(new Pravidlo77());
+        pridejPravidlo(new Pravidlo78());
+        pridejPravidlo(new Pravidlo79());
+        pridejPravidlo(new Pravidlo80());
+        pridejPravidlo(new Pravidlo81());
+        pridejPravidlo(new Pravidlo82());
+        pridejPravidlo(new Pravidlo83());
+        pridejPravidlo(new Pravidlo84());
+        pridejPravidlo(new Pravidlo85());
+        pridejPravidlo(new Pravidlo86());
+        pridejPravidlo(new Pravidlo87());
+        pridejPravidlo(new Pravidlo88());
+        pridejPravidlo(new Pravidlo89());
+        pridejPravidlo(new Pravidlo90());
+        pridejPravidlo(new Pravidlo91());
+        pridejPravidlo(new Pravidlo92());
+        pridejPravidlo(new Pravidlo93());
+        pridejPravidlo(new Pravidlo94());        
+        pridejPravidlo(new Pravidlo95());
+        pridejPravidlo(new Pravidlo96());
+        pridejPravidlo(new Pravidlo97());
+        pridejPravidlo(new Pravidlo98());
+        pridejPravidlo(new Pravidlo99());
     } 
     
     private void pridejPravidlo(K06PravidloBase pravidlo) {
@@ -240,8 +240,8 @@ public class K06_Obsahova
         pridejPravidlo(id, pravidlo);
     }
 
-    private void pridejPravidlo(String id, Runnable pravidlo) {
-        Runnable p = kontroly.get(id);
+    private void pridejPravidlo(String id, ObsahovePravidlo pravidlo) {
+    	ObsahovePravidlo p = kontroly.get(id);
         Validate.isTrue(p == null, "Pravidlo jiz existuje: %s", id);
         kontroly.put(id, pravidlo);
     }
@@ -420,9 +420,9 @@ public class K06_Obsahova
         }
 
         // novy zpusob volani kontrol
-        Runnable metodaKontroly = kontroly.get(idPravidla);
+        ObsahovePravidlo metodaKontroly = kontroly.get(idPravidla);
         Validate.notNull(metodaKontroly, "Pravidlo nenalezeno, id=%s", idPravidla);
-        metodaKontroly.run();
+        metodaKontroly.kontrolaPravidla(this);
     }
 
     @Override

@@ -4,7 +4,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.30 Každý element <mets:amdSec> obsahuje atribut ID.",
@@ -12,8 +11,8 @@ public class Pravidlo30 extends K06PravidloBase {
 	
 	static final public String OBS30 = "obs30";
 
-	public Pravidlo30(K06_Obsahova kontrola) {
-		super(kontrola, OBS30,
+	public Pravidlo30() {
+		super(OBS30,
 				"Každý element <mets:amdSec> obsahuje atribut ID.",
 				"Chybí povinná část (transakční protokol) struktury datového balíčku SIP.",
 				"Bod 2.9. přílohy č. 3 NSESSS."
