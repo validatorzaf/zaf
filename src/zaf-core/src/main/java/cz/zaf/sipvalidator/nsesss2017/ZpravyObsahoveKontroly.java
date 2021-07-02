@@ -17,12 +17,6 @@ public class ZpravyObsahoveKontroly {
             "",
             "",
             "",
-    // 5.-9. volné indexy
-            "",
-            "",
-            "",
-            "",
-            "",
     };
     
     public static String get_text_Obsahova(int index){
@@ -39,12 +33,6 @@ public class ZpravyObsahoveKontroly {
             "",
             "",
             "",
-    // 5.-9. volné indexy
-            "",
-            "",
-            "",
-            "",
-            "",
     };
     
     public static String get_zdroje_Obsahova(int index){
@@ -57,12 +45,6 @@ public class ZpravyObsahoveKontroly {
     static String[] list_popis_obsahova = {
     "0 volný index",
     //1. - 4.
-            "",
-            "",
-            "",
-            "",
-    // 5.-9. volné indexy
-            "",
             "",
             "",
             "",

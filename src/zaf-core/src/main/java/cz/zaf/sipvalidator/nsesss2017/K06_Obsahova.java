@@ -18,6 +18,11 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09.Pravidlo1;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09.Pravidlo2;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09.Pravidlo3;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09.Pravidlo4;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09.Pravidlo9;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo10;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo11;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo12;
@@ -122,16 +127,7 @@ public class K06_Obsahova
 	
     static final public String NAME = "kontrola obsahu";
 
-    // Identifikatory kontrol
-    static final public String OBS1 = "obs1";
-    static final public String OBS2 = "obs2";
-    static final public String OBS3 = "obs3";
-    static final public String OBS4 = "obs4";
-    static final public String OBS9 = "obs9";
-
     static final public String MISTO_CHYBY_NEUPRESNENO = "Neupřesněno.";
-    private String popisChyby = "Pravidlo nesplněno.";
-    private String misto_chyby = "";
 	SipInfo sipSoubor;
 	private int[] seznamPravidel;
 
@@ -149,13 +145,12 @@ public class K06_Obsahova
        
     public K06_Obsahova(int[] seznamPravidel) {
     	this.seznamPravidel = seznamPravidel;
-
-        pridejPravidlo(OBS1, () -> pravidlo1());
-        pridejPravidlo(OBS2, () -> pravidlo2());
-        pridejPravidlo(OBS3, () -> pravidlo3());
-        pridejPravidlo(OBS4, () -> pravidlo4());
-        pridejPravidlo(OBS9, () -> pravidlo9());
     
+        pridejPravidlo(new Pravidlo1(this));
+        pridejPravidlo(new Pravidlo2(this));
+        pridejPravidlo(new Pravidlo3(this));
+        pridejPravidlo(new Pravidlo4(this));
+        pridejPravidlo(new Pravidlo9(this));
         pridejPravidlo(new Pravidlo10(this));
         pridejPravidlo(new Pravidlo11(this));
         pridejPravidlo(new Pravidlo12(this));
@@ -270,13 +265,7 @@ public class K06_Obsahova
 
         return "obs" + Integer.toString(j);
     }
-    
-    private boolean nastavChybu(String chyba, String misto_chyby){
-        popisChyby = chyba;
-        this.misto_chyby = misto_chyby;
-        return false;
-    }
-    
+        
     public String getJmenoIdentifikator(Node node) {
         if(node != null){
             Node entity = getEntity(node);
@@ -375,173 +364,8 @@ public class K06_Obsahova
         vysledekKontroly.add(p);
 
     }
-
-    //OBSAHOVÁ č.1 Element <mets:mets> obsahuje atribut OBJID s neprázdnou hodnotou.",
-    private void pravidlo1() {
-        boolean stav = false;
-        String mistoChyby = null;
-        String detailChyby = null;
-        String obecnyPopisChyby = null;
-
-        if(!ValuesGetter.hasAttribut(metsMets, "OBJID")){
-            detailChyby = "Nenalezen atribut OBJID kořenového elementu <mets:mets>.";
-            mistoChyby = getMistoChyby(metsMets);
-        } else
-        if (!HelperString.hasContent(ValuesGetter.getValueOfAttribut(metsMets, "OBJID"))) {
-            detailChyby = "Atribut OBJID kořenového elementu <mets:mets> není vyplněn.";
-            mistoChyby = getMistoChyby(metsMets);
-        } else {
-            stav = true;
-        }
-        if (!stav) {
-            obecnyPopisChyby = "Chybí identifikátor datového balíčku SIP.";
-        }
-
-        pridejPravidlo(OBS1,
-                       stav,
-                       "Element <mets:mets> obsahuje atribut OBJID s neprázdnou hodnotou.",
-                       detailChyby,
-                       obecnyPopisChyby,
-                       mistoChyby,
-                       "Bod 2.1. přílohy č. 3 NSESSS.");
-    }
     
-    //OBSAHOVÁ č.2 Element <mets:mets> obsahuje atribut LABEL s hodnotou Datový balíček pro provedení skartačního řízení nebo Datový balíček pro předávání dokumentů a jejich metadat do archivu.
-    private void pravidlo2() {
-        boolean stav = false;
-        String mistoChyby = null;
-        String detailChyby = null;
-        String obecnyPopisChyby = null;
-
-        if(!ValuesGetter.hasAttribut(metsMets, "LABEL")){
-            detailChyby = "Nenalezen atribut LABEL kořenového elementu <mets:mets>.";
-        } else {
-            String hodLab = ValuesGetter.getValueOfAttribut(metsMets, "LABEL");
-            if (StringUtils.isBlank(hodLab)) {
-                detailChyby = "Atribut LABEL kořenového elementu <mets:mets> nemá správnou hodnotu. Jeho hodnota je prázdná.";
-            } else if (hodLab.equals("Datový balíček pro provedení skartačního řízení") ||
-                    hodLab.equals("Datový balíček pro předávání dokumentů a jejich metadat do archivu")) {
-                stav = true;
-            } else {
-                detailChyby = "Atribut LABEL kořenového elementu <mets:mets> nemá správnou hodnotu. Jeho hodnota je: "
-                        + hodLab + ".";
-            }
-        }
-        if (!stav) {
-            mistoChyby = getMistoChyby(metsMets);
-            obecnyPopisChyby = "Uveden je chybně popis datového balíčku SIP.";
-        }
-
-        pridejPravidlo(OBS2,
-                       stav,
-                       "Element <mets:mets> obsahuje atribut LABEL s hodnotou Datový balíček pro provedení skartačního řízení nebo Datový balíček pro předávání dokumentů a jejich metadat do archivu.",
-                       detailChyby,
-                       obecnyPopisChyby,
-                       mistoChyby,
-                       "Bod 2.1. přílohy č. 3 NSESSS.");
-    }
-    
-    //OBSAHOVÁ č.3 Element <mets:mets> obsahuje atribut LABEL s hodnotou Datový balíček pro předávání dokumentů a jejich metadat do archivu.",
-    private void pravidlo3() {
-        boolean stav = false;
-        String mistoChyby = null;
-        String detailChyby = null;
-        String obecnyPopisChyby = null;
-
-        if(!ValuesGetter.hasAttribut(metsMets, "LABEL")){
-            detailChyby = "Nenalezen atribut LABEL kořenového elementu <mets:mets>.";
-        } else {
-            String hodLab = ValuesGetter.getValueOfAttribut(metsMets, "LABEL");
-            if (StringUtils.isBlank(hodLab)) {
-                detailChyby = "Atribut LABEL kořenového elementu <mets:mets> nemá správnou hodnotu. Jeho hodnota je prázdná.";
-            } else if (!hodLab.equals("Datový balíček pro předávání dokumentů a jejich metadat do archivu")) {
-                detailChyby = "Atribut LABEL kořenového elementu <mets:mets> nemá správnou hodnotu. Jeho hodnota je: "
-                        + hodLab + ".";
-            } else {
-                stav = true;
-            }
-        }
-        if (!stav) {
-            mistoChyby = getMistoChyby(metsMets);
-            obecnyPopisChyby = "Uveden je chybně popis datového balíčku SIP.";
-        }
-
-        pridejPravidlo(OBS3,
-                       stav,
-                       "Element <mets:mets> obsahuje atribut LABEL s hodnotou Datový balíček pro předávání dokumentů a jejich metadat do archivu.",
-                       detailChyby,
-                       obecnyPopisChyby,
-                       mistoChyby,
-                       "Bod 2.1. přílohy č. 3 NSESSS.");
-    }
-    
-    //OBSAHOVÁ č.4 Element <mets:mets> obsahuje atribut xmlns:xsi s hodnotou http://www.w3.org/2001/XMLSchema-instance.",
-    private void pravidlo4() {
-        boolean stav = false;
-        String mistoChyby = null;
-        String detailChyby = null;
-        String obecnyPopisChyby = null;
-
-        if (!ValuesGetter.hasAttribut(metsMets, "xmlns:xsi")) {
-            detailChyby = "Nenalezen atribut xmlns:xsi kořenového elementu <mets:mets>.";
-        } else {
-            String hod = ValuesGetter.getValueOfAttribut(metsMets, "xmlns:xsi");
-            if (StringUtils.isBlank(hod)) {
-                detailChyby = "Atribut xmlns:xsi kořenového elementu <mets:mets> má prázdnou hodnotu.";
-            } else if (!hod.equals("http://www.w3.org/2001/XMLSchema-instance")) {
-                detailChyby = "Atribut xmlns:xsi kořenového elementu <mets:mets> nemá správnou hodnotu. Jeho hodnota je: "
-                        + hod + ".";
-            } else {
-                stav = true;
-            }
-        }
-
-        if (!stav) {
-            mistoChyby = getMistoChyby(metsMets);
-            obecnyPopisChyby = "Uvedena je chybně adresa jmenného prostoru schématu XML.";
-        }
-
-        pridejPravidlo(OBS4,
-                       stav,
-                       "Element <mets:mets> obsahuje atribut xmlns:xsi s hodnotou http://www.w3.org/2001/XMLSchema-instance.",
-                       detailChyby,
-                       obecnyPopisChyby,
-                       mistoChyby,
-                       "Bod 2.1. přílohy č. 3 NSESSS.");
-    }
-    
-    //OBSAHOVÁ č.9 Element <mets:mets> obsahuje atribut xmlns:xlink s hodnotou http://www.w3.org/1999/xlink.
-    private void pravidlo9() {
-        boolean stav = false;
-        String mistoChyby = null;
-        String detailChyby = null;
-        String obecnyPopisChyby = null;
-
-        if(!ValuesGetter.hasAttribut(metsMets, "xmlns:xlink")){
-            detailChyby = "Nenalezen atribut xmlns:xlink kořenového elementu <mets:mets>.";
-        } else {
-            String hodnota = ValuesGetter.getValueOfAttribut(metsMets, "xmlns:xlink");
-            if (!hodnota.equals("http://www.w3.org/1999/xlink")) {
-                detailChyby = "Atribut xmlns:xlink kořenového elementu <mets:mets> neobsahuje hodnotu http://www.w3.org/1999/xlink.";
-            } else {
-                stav = true;
-            }
-        }
-
-        if (!stav) {
-            mistoChyby = getMistoChyby(metsMets);
-            obecnyPopisChyby = "Uvedena je chybně adresa jmenného prostoru schématu XML.";
-        }
-
-        pridejPravidlo(OBS9,
-                       stav,
-                       "Element <mets:mets> obsahuje atribut xmlns:xlink s hodnotou http://www.w3.org/1999/xlink.",
-                       detailChyby,
-                       obecnyPopisChyby,
-                       mistoChyby,
-                       "Bod 2.1. přílohy č. 3 NSESSS.");
-    }
-               
+                    
     public ArrayList<Node> get_krizove_odkazy_pevny_ano() {
         ArrayList<Node> list = new ArrayList<>();
         NodeList krizoveOdkazy = ValuesGetter.getAllAnywhere("nsesss:KrizovyOdkaz", metsParser.getDocument());

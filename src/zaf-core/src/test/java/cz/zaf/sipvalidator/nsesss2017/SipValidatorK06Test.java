@@ -3,6 +3,11 @@ package cz.zaf.sipvalidator.nsesss2017;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09.Pravidlo1;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09.Pravidlo2;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09.Pravidlo3;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09.Pravidlo4;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09.Pravidlo9;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo10;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo11;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo12;
@@ -116,14 +121,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("01-chyba", StavKontroly.CHYBA,
                        ProfilyValidace.SKARTACE_METADATA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS1 });
+                       new String[] { Pravidlo1.OBS1 });
     }
 
     @Test
     void testK06_OK01() {
         testPackageK06("01-OK", StavKontroly.OK,
                        ProfilyValidace.SKARTACE_METADATA,
-                       new String[] { K06_Obsahova.OBS1 },
+                       new String[] { Pravidlo1.OBS1 },
                        new String[] {});
     }
 
@@ -132,7 +137,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("02-chyba1", StavKontroly.CHYBA,
                        ProfilyValidace.SKARTACE_METADATA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS2 });
+                       new String[] { Pravidlo2.OBS2 });
     }
 
     @Test
@@ -140,7 +145,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("02-chyba2", StavKontroly.CHYBA,
                        ProfilyValidace.SKARTACE_METADATA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS2 });
+                       new String[] { Pravidlo2.OBS2 });
     }
 
     @Test
@@ -148,14 +153,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("02-chyba3", StavKontroly.CHYBA,
                        ProfilyValidace.SKARTACE_METADATA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS2 });
+                       new String[] { Pravidlo2.OBS2 });
     }
 
     @Test
     void testK06_02_OK01() {
         testPackageK06("02-OK1", StavKontroly.OK,
                        ProfilyValidace.SKARTACE_METADATA,
-                       new String[] { K06_Obsahova.OBS2 },
+                       new String[] { Pravidlo2.OBS2 },
                        new String[] {});
     }
 
@@ -163,7 +168,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     void testK06_02_OK02() {
         testPackageK06("02-OK2", null,
                        ProfilyValidace.SKARTACE_METADATA,
-                       new String[] { K06_Obsahova.OBS2 },
+                       new String[] { Pravidlo2.OBS2 },
                        new String[] {});
     }
 
@@ -172,7 +177,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("03-chyba1", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS3 });
+                       new String[] { Pravidlo3.OBS3 });
     }
 
     @Test
@@ -180,7 +185,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("03-chyba2", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS3 });
+                       new String[] { Pravidlo3.OBS3 });
     }
 
     @Test
@@ -188,14 +193,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("03-chyba3", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS3 });
+                       new String[] { Pravidlo3.OBS3 });
     }
 
     @Test
     void testK06_03_OK01() {
         testPackageK06("03-OK", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS3 },
+                       new String[] { Pravidlo3.OBS3 },
                        new String[] {});
     }
 
@@ -204,14 +209,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("04-chyba", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS4 });
+                       new String[] { Pravidlo4.OBS4 });
     }
 
     @Test
     void testK06_04_OK01() {
         testPackageK06("04-OK", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS4 },
+                       new String[] { Pravidlo4.OBS4 },
                        new String[] {});
     }
 
@@ -220,7 +225,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("09-chyba1", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS9 });
+                       new String[] { Pravidlo9.OBS9 });
     }
 
     @Test
@@ -228,14 +233,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("09-chyba2", StavKontroly.CHYBA,
                        ProfilyValidace.PREJIMKA,
                        new String[] {},
-                       new String[] { K06_Obsahova.OBS9 });
+                       new String[] { Pravidlo9.OBS9 });
     }
 
     @Test
     void testK06_09_OK01() {
         testPackageK06("09-OK", null,
                        ProfilyValidace.PREJIMKA,
-                       new String[] { K06_Obsahova.OBS9 },
+                       new String[] { Pravidlo9.OBS9 },
                        new String[] {});
     }
 
