@@ -1,6 +1,7 @@
 package cz.zaf.sipvalidator.nsesss2017;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang.Validate;
 import org.w3c.dom.Node;
@@ -99,6 +100,11 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
         }
         return dokumenty;
     }
+    
+    protected boolean nastavChybu(String detailChyby, List<Node> errorList) {
+        String mistoCh = errorList.stream().map(n -> getMistoChyby(n) ).collect(Collectors.joining(" "));
+        return nastavChybu(detailChyby, mistoCh);
+    }    
 
     protected boolean nastavChybu(final String detailChyby, final Node mistoChyby) {
         return nastavChybu(detailChyby, getMistoChyby(mistoChyby));
