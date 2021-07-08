@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
-import org.jsoup.helper.Validate;
+import org.apache.commons.lang3.Validate;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -44,183 +44,213 @@ public class Pravidlo54a  extends K06PravidloBase {
 
     static public class MetsDivInfo {
         Node metsdiv;
-        String dmdid, admid, type;
-        MetsDivInfo rodic;
-        boolean parent_right;
+        private MetsDivInfo parent;
 
-        public MetsDivInfo(Node metsdiv, String dmdid, String admid, String type, boolean getRodice) {
+        public MetsDivInfo(Node metsdiv) {
             this.metsdiv = metsdiv;
-            this.dmdid = dmdid;
-            this.admid = admid;
-            this.type = type;
-            if(getRodice){
-                rodic = set_parent(); // set also parent_right
-            }    
+        }
+        
+        String getDmdId() {
+            return ValuesGetter.getValueOfAttribut(metsdiv, "DMDID");
+        }
+        
+        String getAdmId() {
+            return ValuesGetter.getValueOfAttribut(metsdiv, "ADMID");
         }
 
-        private MetsDivInfo set_parent(){
-            Node parent = metsdiv.getParentNode();
-            if(parent == null){
-                parent_right = false;
-                return new MetsDivInfo(parent, "ERR", "ERR", "ERR", false);
-            }
-            if(type.toLowerCase().equals("spisový plán")){
-                if(parent.getNodeName().equals("mets:structMap")){
-                    parent_right = true;
-                    return new MetsDivInfo(parent, "MAP", "MAP", "MAP", false);
-                }  
-                else{
-                    parent_right = false;
-                    return new MetsDivInfo(parent, "ERR", "ERR", "ERR", false); 
-                }
-            }
-            else{
-                String admid2 = "ERR", dmdid2 = "ERR", type2 = "ERR";
-                if(parent.getNodeName().equals("mets:div")){
-                    parent_right = true;
-                    if(ValuesGetter.hasAttribut(parent, "ADMID")) admid2 = ValuesGetter.getValueOfAttribut(parent, "ADMID");
-                    if(ValuesGetter.hasAttribut(parent, "DMDID")) dmdid2 = ValuesGetter.getValueOfAttribut(parent, "DMDID");
-                    if(ValuesGetter.hasAttribut(parent, "TYPE")) type2 = ValuesGetter.getValueOfAttribut(parent, "TYPE");
-                    return new MetsDivInfo(parent, dmdid2, admid2, type2, false);
-                } 
-                else{
-                    parent_right = false;
-                    return new MetsDivInfo(parent, "ERR", "ERR", "ERR", false);  
-                }
-            }
+        String getType() {
+            return ValuesGetter.getValueOfAttribut(metsdiv, "TYPE");
+        }
+        
+        Node getParentNode() {
+            return metsdiv.getParentNode();
         }
 
         public Node getMetsDiv() {
             return metsdiv;
         }
+
+        public void setParent(final MetsDivInfo parent) {
+            this.parent = parent;            
+        }
+        public MetsDivInfo getParent() {
+            return parent;
+        }
     }
     
     static public class DmdSecInfo {
-        String id, identifikator, zdroj, type;
+        private String id, identifikator, zdroj;
+        //, type;
         Node node;
-        DmdSecInfo rodic_zatrideni;
-        String rodic_type = "";
         
+        Node parentEntity;
 
-        public DmdSecInfo(String type, String id, String identifikator, String zdroj, Node node, boolean getRodice) {
-            this.type = type;
+        private DmdSecInfo(final String id, final Node node) {
+            // this.type = type;
             this.id = id;
-            this.identifikator = identifikator;
-            this.zdroj = zdroj;
-            this.node = node;
-            if(getRodice){
-                get_rodice();
+            this.node = node;            
+        }
+        
+        static DmdSecInfo valueOf(Node node) {
+            String id = ValuesGetter.getValueOfAttribut(node, "ID");
+            if (StringUtils.isEmpty(id)) {
+                return null;
+            }
+            DmdSecInfo dmdSecInfo = new DmdSecInfo(id, node);
+            switch (node.getNodeName()) {
+            case "nsesss:SpisovyPlan":
+                if (!dmdSecInfo.readZdrojInfo()) {
+                    return null;
+                }
+                break;
+            case "nsesss:VecnaSkupina":
+                if (!dmdSecInfo.readEvidUdajeIdentifikator()) {
+                    return null;
+                }
+                if (!dmdSecInfo.initParentVecnaSkupina()) {
+                    return null;
+                }
+                break;
+            case "nsesss:Dokument":
+                if (!dmdSecInfo.readEvidUdajeIdentifikator()) {
+                    return null;
+                }
+                if (!dmdSecInfo.initParentDokument()) {
+                    return null;
+                }
+                break;
+            case "nsesss:Spis":
+                if (!dmdSecInfo.readEvidUdajeIdentifikator()) {
+                    return null;
+                }
+                dmdSecInfo.parentEntity = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni",
+                                                                 "nsesss:MaterskaEntita", "nsesss:VecnaSkupina");
+                break;
+            case "nsesss:Komponenta":
+                if (!dmdSecInfo.readEvidUdajeIdentifikator()) {
+                    return null;
+                }
+                dmdSecInfo.parentEntity = node.getParentNode().getParentNode();
+                break;
+            case "nsesss:Soucast":
+                if (!dmdSecInfo.readEvidUdajeIdentifikator()) {
+                    return null;
+                }
+                dmdSecInfo.parentEntity = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni",
+                                                                 "nsesss:MaterskaEntita", "nsesss:TypovySpis");
+                break;
+            case "nsesss:TypovySpis":
+                if (!dmdSecInfo.readEvidUdajeIdentifikator()) {
+                    return null;
+                }
+                dmdSecInfo.parentEntity = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni",
+                                                                 "nsesss:MaterskaEntita", "nsesss:VecnaSkupina");
+                break;
+            case "nsesss:Dil":
+                if (!dmdSecInfo.readEvidUdajeIdentifikator()) {
+                    return null;
+                }
+                dmdSecInfo.parentEntity = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni",
+                                                                 "nsesss:MaterskaEntita", "nsesss:Soucast");
+                break;
+            default:
+                return null;
+            }
+            return dmdSecInfo;
+        }
+
+        private boolean readZdrojInfo() {
+            Node identNode = ValuesGetter.findFirstChild(node, "nsesss:Identifikator");            
+            if(identNode==null) {
+                return false;
+            }
+            zdroj = ValuesGetter.getValueOfAttribut(identNode, "zdroj");
+            if(StringUtils.isEmpty(zdroj)) {
+                return false;
+            }
+            identifikator = identNode.getTextContent(); 
+            if(StringUtils.isEmpty(identifikator)) {
+                return false;
+            }
+            return true;
+        }
+        
+        private boolean readEvidUdajeIdentifikator() {
+            Node identNode = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Identifikace", "nsesss:Identifikator");
+            if(identNode==null) {
+                return false;
+            }
+            zdroj = ValuesGetter.getValueOfAttribut(identNode, "zdroj");
+            if(StringUtils.isEmpty(zdroj)) {
+                return false;
+            }
+            identifikator = identNode.getTextContent(); 
+            if(StringUtils.isEmpty(identifikator)) {
+                return false;
             }
             
+            return true;
         }
-        
-        private void get_rodice(){
-            Node rodic = null;
-            
-            switch(type){
-                case "věcná skupina":
-                   rodic = parent_vecna_skupina();
-                break;
-                case "součást":
-                   rodic = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:MaterskaEntita", "nsesss:TypovySpis");
-                   rodic_type = "součást";
-                break;
-                case "typový spis":
-                   rodic = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:MaterskaEntita", "nsesss:VecnaSkupina");
-                   rodic_type = "věcná skupina";
-                break;
-                case "spis":
-                   rodic = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:MaterskaEntita", "nsesss:VecnaSkupina");
-                   rodic_type = "věcná skupina";
-                break;
-                case "díl":
-                   rodic = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:MaterskaEntita", "nsesss:Soucast");
-                   rodic_type = "součást";
-                break;
-                case "dokument":
-                   rodic = parent_dokument();
-                break;
-                case "komponenta":
-                   rodic = node.getParentNode().getParentNode();
-                   rodic_type = "dokument";
-                break;
-            }
-            String[] values = get_nodeValues(rodic);
-            rodic_zatrideni = new DmdSecInfo(rodic_type, values[0], values[1], values[2], rodic, false);
-
-        }
-        
-        private String[] get_nodeValues(Node node){
-            if(node == null){
-                String[] values = {"ERR", "ERR", "ERR"};
-                return values;
-            }
-            String id2 = "ERR", identifikator2 = "ERR", zdroj2 = "ERR";
-            if(node.getNodeName().equals("nsesss:SpisovyPlan")){
-                Node n = ValuesGetter.getXChild(node, "nsesss:Identifikator");
-                if(ValuesGetter.hasAttribut(node, "ID")){
-                        id2 = ValuesGetter.getValueOfAttribut(node, "ID");
-                    }
-                if(n != null){
-                    if(ValuesGetter.hasAttribut(n, "zdroj")){
-                        zdroj2 = ValuesGetter.getValueOfAttribut(n, "zdroj");
-                    }
-                    identifikator2 = n.getTextContent(); 
+                                
+        private boolean initParentVecnaSkupina() {
+            parentEntity = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:MaterskaEntita", "nsesss:VecnaSkupina");
+            // rodic_type = "věcná skupina";
+            if(parentEntity == null){
+                parentEntity = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:MaterskeEntity", "nsesss:VecnaSkupina");
+                if(parentEntity == null){
+                    parentEntity = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:SpisovyPlan");
+                    //rodic_type = "spisový plán";
+                    if(parentEntity==null) {
+                        return false;
+                    }                    
                 }
             }
-            else{
-                Node n = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Identifikace", "nsesss:Identifikator");
-                if(ValuesGetter.hasAttribut(node, "ID")){
-                        id2 = ValuesGetter.getValueOfAttribut(node, "ID");
-                    }
-                if(n != null){
-                    if(ValuesGetter.hasAttribut(n, "zdroj")){
-                        zdroj2 = ValuesGetter.getValueOfAttribut(n, "zdroj");
-                    }
-                    identifikator2 = n.getTextContent(); 
-                }
-            }
-
-            String[] values = {id2, identifikator2, zdroj2};
-            return values;
+            return true;
         }
-        
-        private Node parent_dokument(){
-            Node p;
+
+        private boolean initParentDokument() {
             if(node.getParentNode().getNodeName().equals("mets:xmlData")){
-                p = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:MaterskaEntita", "nsesss:VecnaSkupina");
-                rodic_type = "věcná skupina";
-                if(p == null){
-                    p = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:MaterskeEntity", "nsesss:VecnaSkupina");
+                parentEntity = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:MaterskaEntita", "nsesss:VecnaSkupina");
+                // rodic_type = "věcná skupina";
+                if(parentEntity == null){
+                    parentEntity = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:MaterskeEntity", "nsesss:VecnaSkupina");
+                    if(parentEntity==null) {
+                        return false;
+                    }
                 }
-            }
-            else{
-                p = node.getParentNode().getParentNode();
-                if(p.getNodeName().equals("nsesss:Spis")){
+            } else {
+                parentEntity = node.getParentNode().getParentNode();
+                if(parentEntity==null) {
+                    return false;
+                }
+                /*
+                if(parentEntity.getNodeName().equals("nsesss:Spis")){
+                 
                     rodic_type = "spis";
-                }
-                else{
+                } else {
                     rodic_type = "díl";
-                }
-            }
-            return p;
+                }*/
+            }            
+            return true;
         }
         
-        private Node parent_vecna_skupina(){
-            Node p = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:MaterskaEntita", "nsesss:VecnaSkupina");
-            rodic_type = "věcná skupina";
-            if(p == null){
-                p = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:MaterskeEntity", "nsesss:VecnaSkupina");
-                if(p == null){
-                    p = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:SpisovyPlan");
-                    rodic_type = "spisový plán";
-                }
-            }
-            return p;
-        }
-
         public Node getNode() {
             return node;
+        }
+
+        public String getId() {
+            return id;
+        }
+        
+        public Node getParentEntity() {
+            return parentEntity;
+        }
+
+        public String getParentEntityId() {
+            if(parentEntity==null) {
+                return null;                
+            }
+            return ValuesGetter.getValueOfAttribut(parentEntity, "ID");
         }
     }
     
@@ -280,13 +310,13 @@ public class Pravidlo54a  extends K06PravidloBase {
         // KONEC TESTU amdSec + metsdiv
         
         //TEST AMD TO DMDSEC
-        if(!compare_amdSec_dmdSec()) {
+        if(!compareAmdSecWithDmdSec()) {
             return false;
         }
         //KONEC TESTU AMD TO DMDSEC
                 
         //TEST STRUKTURY PODLE METS DIV
-        if(!compare_metsDiv_with_dmdSec_structure()) {
+        if(!compareMetsDivWithDmdSec()) {
             return false;
         }
         //KONEC TESTU STRUKTURY
@@ -311,17 +341,17 @@ public class Pravidlo54a  extends K06PravidloBase {
     }
         
     // na prvním místě v seznamu je amdSec a na dalších ty metsy který se dublovaly
-    public boolean compare_amdSec_dmdSec() {
+    public boolean compareAmdSecWithDmdSec() {
         ArrayList<Node> errorList = new ArrayList<>(0);
         ArrayList<Node> missingAmdSec = new ArrayList<>(0);
         
         for(MetsDivInfo metsDivInfo: metsDivList) {
-            AmdSecInfo amdInfo = this.amdSecMap.get(metsDivInfo.admid);
+            AmdSecInfo amdInfo = this.amdSecMap.get(metsDivInfo.getAdmId());
             if(amdInfo==null) {
                 missingAmdSec.add(metsDivInfo.metsdiv);
                 continue;
             }
-            DmdSecInfo dmdInfo = this.dmdSecMap.get(metsDivInfo.dmdid);
+            DmdSecInfo dmdInfo = this.dmdSecMap.get(metsDivInfo.getDmdId());
             if(amdInfo==null||dmdInfo==null) {
                 errorList.add(metsDivInfo.metsdiv);
                 continue;
@@ -329,12 +359,12 @@ public class Pravidlo54a  extends K06PravidloBase {
             if(!Objects.equals(amdInfo.identifikator, dmdInfo.identifikator)) {
                 errorList.add(amdInfo.node);
                 errorList.add(dmdInfo.node);
-                continue;                
+                continue;
             }
             if(!Objects.equals(amdInfo.zdroj, dmdInfo.zdroj)) {
                 errorList.add(amdInfo.node);
                 errorList.add(dmdInfo.node);
-                continue;                
+                continue;
             }            
         }
         
@@ -354,26 +384,39 @@ public class Pravidlo54a  extends K06PravidloBase {
      * Pri kontrola je porovnano ID rodicu
      * @return
      */
-    public boolean compare_metsDiv_with_dmdSec_structure() 
+    public boolean compareMetsDivWithDmdSec() 
     {
         ArrayList<Node> errorList = new ArrayList<>(0);
         
         for(MetsDivInfo div: metsDivList) {
-            // ?? proc to tady je
-            if(!div.parent_right){
-                // ? asi ma kazdy div rodice?
-                errorList.add(div.metsdiv);                
+            DmdSecInfo dmd = dmdSecMap.get(div.getDmdId());
+            Validate.notNull(dmd);
+            
+            MetsDivInfo divParent = div.getParent();
+            Node dmdParent = dmd.getParentEntity();
+            
+            if(divParent==null&&dmdParent==null){
+                continue;
+            }
+            if(divParent==null) {
+                errorList.add(dmd.getNode());
+                errorList.add(div.getMetsDiv());
+                errorList.add(dmdParent);                
                 break;
             }
-            
-            DmdSecInfo dmd = dmdSecMap.get(div.dmdid);
+            if(dmdParent==null) {
+                errorList.add(dmd.getNode());
+                errorList.add(div.getMetsDiv());
+                errorList.add(divParent.getMetsDiv());
+                break;
+            }
 
             // zkontroluj rodice
-            if (!dmd.rodic_zatrideni.id.equals(div.rodic.dmdid)) {
-                errorList.add(dmd.node);
-                errorList.add(dmd.rodic_zatrideni.node);
-                errorList.add(div.metsdiv);
-                errorList.add(div.rodic.metsdiv);
+            if (!Objects.equals(dmd.getParentEntityId(), divParent.getDmdId())) {
+                errorList.add(dmd.getNode());
+                errorList.add(div.getMetsDiv());
+                errorList.add(divParent.getMetsDiv());
+                errorList.add(dmdParent);
                 break;
             }
 
@@ -390,122 +433,21 @@ public class Pravidlo54a  extends K06PravidloBase {
         
         return true;
     } 
-
-    private DmdSecInfo readIdentifikator(String type, String id, Node node) {
-        Node identNode = ValuesGetter.findFirstChild(node, "nsesss:Identifikator");            
-        if(identNode==null) {
-            return null;
-        }
-        String zdroj = ValuesGetter.getValueOfAttribut(identNode, "zdroj");
-        if(StringUtils.isEmpty(zdroj)) {
-            return null;
-        }
-        String identifikator = identNode.getTextContent(); 
-        if(StringUtils.isEmpty(identifikator)) {
-            return null;
-        }
-        
-        return new DmdSecInfo(type, id, identifikator, zdroj, identNode, true);
-    }
     
-    // Lze pouzit na uzly: nsesss:SpisovyPlan, nsesss:Skartacnirezim, nsesss:TypDokumentu
-    private void readDmdSecInfosFromIdentifikator(String type, NodeList nodeList, 
-                                 List<Node> errors) {
-        for(int i = 0; i < nodeList.getLength(); i++) {
-            Node node = nodeList.item(i);
-            String id = ValuesGetter.getValueOfAttribut(node, "ID");
-            if(StringUtils.isEmpty(id)) {
-                errors.add(node);
-                continue;
-            }
-            DmdSecInfo dmdSecInfo = readIdentifikator(type, id, node);
-            if(dmdSecInfo==null) {
-                errors.add(node);
-                continue;
-            }
-            dmdSecList.add(dmdSecInfo);
-            if(dmdSecMap.put(id, dmdSecInfo)!=null) {
-                errors.add(node);
-                continue;
-            }
-        }
-    }
-    
-    private DmdSecInfo readEvidUdajeIdentifikator(String type, String id, Node node) {
-        Node identNode = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Identifikace", "nsesss:Identifikator");
-        if(identNode==null) {
-            return null;
-        }
-        String zdroj = ValuesGetter.getValueOfAttribut(identNode, "zdroj");
-        if(StringUtils.isEmpty(zdroj)) {
-            return null;
-        }
-        String identifikator = identNode.getTextContent(); 
-        if(StringUtils.isEmpty(identifikator)) {
-            return null;
-        }
-        
-        return new DmdSecInfo(type, id, identifikator, zdroj, identNode, true);
-    }
-
-    private void readDmdSecInfosFromEvidUdaje(String type, NodeList nodeList, 
-                                              List<Node> errors) {
-        for(int i = 0; i < nodeList.getLength(); i++) {
-            Node node = nodeList.item(i);
-            String id = ValuesGetter.getValueOfAttribut(node, "ID");
-            if(StringUtils.isEmpty(id)) {
-                errors.add(node);
-                continue;
-            }
-            DmdSecInfo dmdSecInfo = readEvidUdajeIdentifikator(type, id, node);
-            if(dmdSecInfo==null) {
-                errors.add(node);
-                continue;
-            }
-            dmdSecList.add(dmdSecInfo);
-            
-            if(dmdSecMap.put(id, dmdSecInfo)!=null) {
-                errors.add(node);
-                continue;
-            }
-        }
-    }
-
     private boolean readDmdSecList() {
         this.dmdSecList = new ArrayList<>();
         this.dmdSecMap = new HashMap<>();
         List<Node> errors = new ArrayList<>(0);
-
-        NodeList skartacniRezimNodeList = metsParser.getElementsByTagName("nsesss:SkartacniRezim");
-        readDmdSecInfosFromIdentifikator("skartační režim", skartacniRezimNodeList, errors);
         
-        NodeList typDokumentuNodeList = metsParser.getElementsByTagName("nsesss:TypDokumentu");
-        readDmdSecInfosFromIdentifikator("typ dokumentu", typDokumentuNodeList, errors);
-
-        NodeList planyNodelist = metsParser.getElementsByTagName("nsesss:SpisovyPlan");
-        readDmdSecInfosFromIdentifikator("spisový plán", planyNodelist, errors);
+        readDmdsecsByTagName("nsesss:SpisovyPlan", errors);
+        readDmdsecsByTagName("nsesss:VecnaSkupina", errors);
+        readDmdsecsByTagName("nsesss:Dokument", errors);
+        readDmdsecsByTagName("nsesss:Spis", errors);
+        readDmdsecsByTagName("nsesss:Komponenta", errors);
+        readDmdsecsByTagName("nsesss:Soucast", errors);
+        readDmdsecsByTagName("nsesss:TypovySpis", errors);
+        readDmdsecsByTagName("nsesss:Dil", errors);
         
-        NodeList skupinyNodelist = metsParser.getElementsByTagName("nsesss:VecnaSkupina");
-        readDmdSecInfosFromEvidUdaje("věcná skupina", skupinyNodelist, errors);
-        
-        NodeList soucastiNodeList = metsParser.getElementsByTagName("nsesss:Soucast");
-        readDmdSecInfosFromEvidUdaje("součást", soucastiNodeList, errors);
-
-        NodeList typoveSpisyNodelist = metsParser.getElementsByTagName("nsesss:TypovySpis");
-        readDmdSecInfosFromEvidUdaje("typový spis", typoveSpisyNodelist, errors);
-        
-        NodeList spisyNodelist = metsParser.getElementsByTagName("nsesss:Spis");
-        readDmdSecInfosFromEvidUdaje("spis", spisyNodelist, errors);
-
-        NodeList dilyNodelist = metsParser.getElementsByTagName("nsesss:Dil");
-        readDmdSecInfosFromEvidUdaje("díl", dilyNodelist, errors);
-
-        NodeList dokumentyNodelist = metsParser.getElementsByTagName("nsesss:Dokument");
-        readDmdSecInfosFromEvidUdaje("dokument", dokumentyNodelist, errors);
-
-        NodeList komponentyNodelist = metsParser.getElementsByTagName("nsesss:Komponenta");
-        readDmdSecInfosFromEvidUdaje("komponenta", komponentyNodelist, errors);
-       
         if(!errors.isEmpty()){
             String hlaska = errors.size()==1?"Nalezena chyba u elementu <mets:div>."
                     :"Nalezeny chyby u elementů <mets:div>.";
@@ -516,6 +458,23 @@ public class Pravidlo54a  extends K06PravidloBase {
     }
 
 
+    private void readDmdsecsByTagName(String tagName, List<Node> errors) {
+        NodeList nodelist = metsParser.getElementsByTagName(tagName);
+        for(int i = 0; i < nodelist.getLength(); i++) {
+            Node node = nodelist.item(i);
+            
+            DmdSecInfo dmdSecInfo = DmdSecInfo.valueOf(node);
+            if(dmdSecInfo==null) {
+                errors.add(node);
+            }
+            dmdSecList.add(dmdSecInfo);
+            if(dmdSecMap.put(dmdSecInfo.getId(), dmdSecInfo)!=null) {
+                errors.add(node);
+                continue;
+            }
+        }        
+    }
+
     private boolean readMetsDivList() {
         NodeList nodeList = metsParser.getDocument().getElementsByTagName("mets:div");
         if(nodeList.getLength() == 0){
@@ -525,31 +484,34 @@ public class Pravidlo54a  extends K06PravidloBase {
         this.metsDivList = new ArrayList<>(nodeList.getLength());
         this.metsDivAmdMap = new HashMap<>();
         this.metsDivDmdMap = new HashMap<>();
+        // pomocna mapa pro vytvoreni vazeb na rodice
+        Map<Node, MetsDivInfo> metsdivNodes = new HashMap<>();
         
         ArrayList<Node> errorList = new ArrayList<>(0);
         ArrayList<Node> duplicatedIdList = new ArrayList<>(0);
         
         for(int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
+            MetsDivInfo metsdiv = new MetsDivInfo(node);
 
-            String dmdid = ValuesGetter.getValueOfAttribut(node, "DMDID");
+            String dmdid = metsdiv.getDmdId();
             if(StringUtils.isEmpty(dmdid)) {
                 errorList.add(node);
                 continue;
             }
-            String admid = ValuesGetter.getValueOfAttribut(node, "ADMID");
+            String admid = metsdiv.getAdmId();
             if(StringUtils.isEmpty(admid)) {
                 errorList.add(node);
                 continue;
             }
-            String type = ValuesGetter.getValueOfAttribut(node, "TYPE"); 
+            String type = metsdiv.getType(); 
             if(StringUtils.isEmpty(type)) {
                 errorList.add(node);
                 continue;
             }
-
-            MetsDivInfo metsdiv = new MetsDivInfo(node, dmdid, admid, type, true);
+            
             metsDivList.add(metsdiv);
+            metsdivNodes.put(node, metsdiv);
             
             // priprava mapy
             if(metsDivAmdMap.containsKey(admid)) {
@@ -563,7 +525,7 @@ public class Pravidlo54a  extends K06PravidloBase {
             metsDivAmdMap.put(admid, metsdiv);
             metsDivDmdMap.put(dmdid, metsdiv);
         }
-                
+
         if(!errorList.isEmpty()){
             String hlaska = (errorList.size() == 1)? "Nalezena chyba u elementu <mets:div>."
                     :"Nalezeny chyby u elementů <mets:div>.";            
@@ -572,7 +534,16 @@ public class Pravidlo54a  extends K06PravidloBase {
 
         if(!duplicatedIdList.isEmpty()) {
             return nastavChybu("Nalezeny chyby duplicity u elementů <mets:div>.", duplicatedIdList);
-        }        
+        }
+        
+        // vytvoreni vazeb na rodice
+        for(MetsDivInfo metsdiv: metsDivList) {
+            Node node = metsdiv.getParentNode();
+            MetsDivInfo parent = metsdivNodes.get(node);
+            if(parent!=null) {
+                metsdiv.setParent(parent);
+            }
+        }
         
         return true;
     }
