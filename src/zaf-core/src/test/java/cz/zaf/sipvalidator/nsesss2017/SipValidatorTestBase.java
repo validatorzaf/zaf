@@ -27,13 +27,13 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
-import cz.zaf.sipvalidator.sip.VysledekPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 import cz.zaf.sipvalidator.sip.SipLoader;
 import cz.zaf.sipvalidator.sip.StavKontroly;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.VysledekKontroly;
+import cz.zaf.sipvalidator.sip.VysledekPravidla;
 import cz.zaf.sipvalidator.sip.VyslednyProtokol;
 
 /**
@@ -137,8 +137,9 @@ public abstract class SipValidatorTestBase {
                 String kodPravidla = pravidlaOk[i];
                 VysledekPravidla pravidlo = vysledek.getPravidlo(kodPravidla);
                 assertNotNull(pravidlo, () -> "SIP: " + path + ", Chybí pravidlo: " + kodPravidla);
-                assertEquals(pravidlo.getStav(), true, () -> "SIP: " + path + ", Pravidlo: " + kodPravidla
-                        + ", ocekavano OK, ale selhalo");
+                assertEquals(true, pravidlo.getStav(), () -> "SIP: " + path + ", Pravidlo: " + kodPravidla
+                        + ", ocekavano OK, ale selhalo, misto chyby: " + pravidlo.getMisto_chyby()
+                        + ", popis chyby: " + pravidlo.getVypis_chyby());
             }
         }
 
@@ -148,7 +149,7 @@ public abstract class SipValidatorTestBase {
                 String kodPravidla = pravidlaChybna[i];
                 VysledekPravidla pravidlo = vysledek.getPravidlo(kodPravidla);
                 assertNotNull(pravidlo, () -> "SIP: " + path + ", Chybí pravidlo: " + kodPravidla);
-                assertEquals(pravidlo.getStav(), false, () -> "SIP: " + path + ", Pravidlo: " + kodPravidla
+                assertEquals(false, pravidlo.getStav(), () -> "SIP: " + path + ", Pravidlo: " + kodPravidla
                         + ", ocekavana Chyba, ale bylo OK");
             }
         }

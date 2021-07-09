@@ -558,7 +558,13 @@ public class ValuesGetter {
         return values;
     }
     
-    public static String prevod_type_to_nodeName(String type){
+    /**
+     * Prevod nazvu urovne na nazev elementu dle NSESSS
+     * 
+     * @param type
+     * @return
+     */
+    public static String prevodTypeToNodeName(String type){
         switch(type.toLowerCase()){
             case "spisový plán": return "nsesss:SpisovyPlan";
             case "věcná skupina": return "nsesss:VecnaSkupina";
@@ -568,10 +574,8 @@ public class ValuesGetter {
             case "díl": return "nsesss:Dil";
             case "dokument": return "nsesss:Dokument";
             case "komponenta": return "nsesss:Komponenta";
-            
-   
         }
-        return "";
+        return null;
     }
 
 }
