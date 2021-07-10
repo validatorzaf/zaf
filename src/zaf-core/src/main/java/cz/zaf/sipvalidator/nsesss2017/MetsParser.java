@@ -15,12 +15,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import cz.zaf.sipvalidator.sip.SipInfo;
+import cz.zaf.sipvalidator.sip.SipInfo.SipType;
 import cz.zaf.sipvalidator.sip.SipLoader;
 
 /**
@@ -37,8 +39,20 @@ public class MetsParser {
     public Document document;
 
     public Node metsMets, metsDmdSec, metsMdWrap, xmlData, metsHdr;
-    public ArrayList<Node> zakladniEntity, identifikatory, nazvy, dokumenty, manipulace, urceneCasoveObdobi,
+    public ArrayList<Node> identifikatory, nazvy, dokumenty, manipulace, urceneCasoveObdobi,
             plneurcenySpisovyZnak;
+    
+    /**
+     * Seznam zakladnich entit pod elementem xmldata.
+     */
+    public List<Node> zakladniEntity;
+    
+    /**
+     * Seznam chybnych zakladnich entit
+     * 
+     * Obsahuje seznam uzlu s nerozponanou zakladni entitou
+     */
+    private List<Node> zakladniEntityChybne;
 
     /**
      * Chyba vzniklá při parsování
@@ -48,7 +62,7 @@ public class MetsParser {
     /**
      * Mapa dotazu na uzly
      */
-    Map<String, List<Node> > nodeQueryCache = new HashMap<>();
+    Map<String, List<Node> > nodeQueryCache = new HashMap<>();    
 
     public MetsParser() {
     }
@@ -89,12 +103,56 @@ public class MetsParser {
                 // nastaveni id SIP
                 sipInfo.setMetsObjId(ValuesGetter.getValueOfAttribut(metsMets, "OBJID"));
             }
+            metsHdr = ValuesGetter.findFirstChild(metsMets, "mets:metsHdr");
+            
+            metsDmdSec = ValuesGetter.findFirstChild(metsMets, "mets:dmdSec");
+            if(metsDmdSec!=null) {
+                metsMdWrap = ValuesGetter.findFirstChild(metsDmdSec, "mets:mdWrap");
+                if(metsMdWrap!=null) {
+                    xmlData = ValuesGetter.findFirstChild(metsMdWrap, "mets:xmlData");
+                    if(xmlData!=null) {
+                        readNsesssData(sipInfo);                        
+                    }
+                }
+            }        
         }
-        // konec
-        metsDmdSec = ValuesGetter.getXChild(metsMets, "mets:dmdSec");
-        metsMdWrap = ValuesGetter.getXChild(metsMets, "mets:dmdSec", "mets:mdWrap");
-        xmlData = ValuesGetter.getXChild(metsMets, "mets:dmdSec", "mets:mdWrap", "mets:xmlData");
-        zakladniEntity = ValuesGetter.getChildList(xmlData, "nsesss:Dokument", "nsesss:Spis", "nsesss:Dil");
+        // konec        
+    }
+
+    private void readNsesssData(SipInfo sipInfo) {
+        zakladniEntity = new ArrayList<>();
+        zakladniEntityChybne = new ArrayList<>();
+        NodeList zakladniEntityNodes = xmlData.getChildNodes();
+        SipType sipType = null;
+        for(int i = 0; i<zakladniEntityNodes.getLength(); i++) {
+            Node node = zakladniEntityNodes.item(i);
+            if(node.getNodeType()!=Node.ELEMENT_NODE) {
+                continue;
+            }
+            switch(node.getNodeName()) {
+            case "nsesss:Dokument":
+                zakladniEntity.add(node);
+                if(sipType==null) {
+                    sipType = SipType.DOKUMENT;
+                }
+                break;
+            case "nsesss:Spis":
+                zakladniEntity.add(node);
+                if(sipType==null) {
+                    sipType = SipType.SPIS;
+                }
+                break;
+            case "nsesss:Dil":
+                zakladniEntity.add(node);
+                if(sipType==SipType.DIL) {
+                    sipType = SipType.DIL;
+                }
+                break;
+            default:
+                zakladniEntityChybne.add(node);
+            }
+        }
+        sipInfo.setType(sipType);
 
         //velké seznamy u velkých souborů
         identifikatory = ValuesGetter.getAllAnywhereList("nsesss:Identifikator", document);
@@ -118,39 +176,24 @@ public class MetsParser {
             urceneCasoveObdobi = null;
         if (plneurcenySpisovyZnak != null && plneurcenySpisovyZnak.isEmpty())
             plneurcenySpisovyZnak = null;
-
-        metsHdr = ValuesGetter.getXChild(metsMets, "mets:metsHdr");
-
+        
         zakladniSipInfo(sipInfo);
     }
 
     public void zakladniSipInfo(SipInfo sip) {
-        if (zakladniEntity == null) {
+        if (CollectionUtils.isEmpty(zakladniEntity)) {
             // chybi zakladni entita...
             return;
         }
         // info se nastavi dle prvni zakladni entity
         Node zaklEntita = zakladniEntity.get(0);
-        // 0 dok, 1 spi 2 dil
-        String nodeName = zaklEntita.getNodeName();
-        switch (nodeName) {
-        case "nsesss:Dokument":
-            sip.setType(0);
-            break;
-        case "nsesss:Spis":
-            sip.setType(1);
-            break;
-        case "nsesss:Dil":
-            sip.setType(2);
-            break;
-        }
-        Node skZnakMaterskeEntity = ValuesGetter.getXChild(zakladniEntity.get(0),
+        Node skZnakMaterskeEntity = ValuesGetter.getXChild(zaklEntita,
                                                            "nsesss:EvidencniUdaje",
                                                            "nsesss:Vyrazovani", "nsesss:SkartacniRezim",
                                                            "nsesss:SkartacniZnak");
         if (skZnakMaterskeEntity != null)
             sip.setSKznak(skZnakMaterskeEntity.getTextContent());
-        Node skLhutaMaterskeEntity = ValuesGetter.getXChild(zakladniEntity.get(0), "nsesss:EvidencniUdaje",
+        Node skLhutaMaterskeEntity = ValuesGetter.getXChild(zaklEntita, "nsesss:EvidencniUdaje",
                                                             "nsesss:Vyrazovani", "nsesss:SkartacniRezim",
                                                             "nsesss:SkartacniLhuta");
         if (skLhutaMaterskeEntity != null)
@@ -188,6 +231,10 @@ public class MetsParser {
 
     public List<Node> getZakladniEntity() {
         return zakladniEntity;
+    }
+
+    public List<Node> getZakladniEntityChybne() {
+        return zakladniEntityChybne;
     }
 
     public List<Node> getDokumenty() {

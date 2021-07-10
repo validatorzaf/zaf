@@ -43,6 +43,8 @@ public class VyslednyProtokol {
 
     final static ObjectFactory objectFactory = new ObjectFactory();
     KontrolaSIP kontrolaSIP = objectFactory.createKontrolaSIP();
+    
+    static JAXBContext jaxbContext;
 
     static Schema schema;
     {
@@ -51,6 +53,12 @@ public class VyslednyProtokol {
             schema = sf.newSchema(new StreamSource(is));
         } catch (IOException | SAXException e) {
             throw new RuntimeException("Failed to load internal XSD", e);
+        }
+        
+        try {
+            jaxbContext = JAXBContext.newInstance(KontrolaSIP.class);
+        } catch (JAXBException e) {
+            throw new RuntimeException("Failed to create JAXBInstance", e);
         }
     }
 
@@ -189,8 +197,7 @@ public class VyslednyProtokol {
     public void save(OutputStream os) throws JAXBException {
         // checks
         Validate.notNull(kontrolaSIP.getPouzitiKontroly(), "Profil validace musi byt nastaven pred ulozenim");
-
-        JAXBContext jaxbContext = JAXBContext.newInstance(KontrolaSIP.class);
+        
         Marshaller marshaller = jaxbContext.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         marshaller.setSchema(schema);

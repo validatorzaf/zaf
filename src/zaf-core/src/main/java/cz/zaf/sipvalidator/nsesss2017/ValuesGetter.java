@@ -164,7 +164,7 @@ public class ValuesGetter {
       return findFirstChild(nextParent, children[pos]);
     }
 
-    public static ArrayList<Node> get_Node_Children(Node node){
+    public static List<Node> getChildNodes(Node node){
         NodeList list  = node.getChildNodes();
         ArrayList<Node> seznam = new ArrayList<>();
         if(list == null) return seznam;

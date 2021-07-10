@@ -37,6 +37,12 @@ public class SipInfo{
 		}
 	}
 	
+	public static enum SipType {
+	    DOKUMENT,
+	    SPIS,
+	    DIL
+	};
+	
 	final public static String METS_XML = "mets.xml"; 
     final public static String KOMPONENTY = "komponenty";
 
@@ -73,8 +79,10 @@ public class SipInfo{
      */
     final private Path sipPath;
     
-    // sip_type 0 dok, 1 spi, 2 dil
-    private int sip_type = -1;
+    /**
+     * Typ SIPu
+     */
+    private SipType sipType;
 
     /**
      * Typ zdroje SIPu
@@ -147,8 +155,12 @@ public class SipInfo{
     	metsObjId = objid;
     }
     
-    public void setType(int typ){
-        sip_type = typ;
+    public void setType(SipType type){
+        sipType = type;
+    }
+
+    public SipType getType(){
+        return sipType;
     }
     
     public String getMetsObjId(){
@@ -161,10 +173,6 @@ public class SipInfo{
 
     public String getNameZip(){
         return nameZipFile;
-    }
-
-    public int getType(){
-        return sip_type;
     }
 
     public long getLenght(){

@@ -37,6 +37,7 @@ import cz.zaf.sipvalidator.helper.HelperTime;
 import cz.zaf.sipvalidator.nsesss2017.SipValidator;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo;
+import cz.zaf.sipvalidator.sip.SipInfo.SipType;
 import cz.zaf.sipvalidator.sip.SipLoader;
 import cz.zaf.sipvalidator.sip.VyslednyProtokol;
 import cz.zaf.sipvalidui.analysis.Analys;
@@ -451,15 +452,15 @@ public class JFmain extends javax.swing.JFrame {
     }
 
 
-    public static String get_SIP_type_XXX(int index) {
+    public static String getSipTypeShortcut(SipType sipType) {
 
-        if (index == 0) {
+        if (sipType == SipType.DOKUMENT) {
             return "DOK";
         }
-        if (index == 1) {
+        if (sipType == SipType.SPIS) {
             return "SPI";
         }
-        if (index == 2) {
+        if (sipType == SipType.DIL) {
             return "DÍL";
         }
 
@@ -469,7 +470,7 @@ public class JFmain extends javax.swing.JFrame {
     static void resetRow(int i, SipInfo souborSIP) {
         //        if(!souborSIP.get_SIP_Parsed_Information().isEmpty()){
         tabulkaSIPsouboru.removeRow(i);
-        Object[] o = new Object[] { " " + (i + 1) + ".", get_SIP_type_XXX(souborSIP.getType()),
+        Object[] o = new Object[] { " " + (i + 1) + ".", getSipTypeShortcut(souborSIP.getType()),
                 souborSIP.getSKznak() + souborSIP.getSKlhuta(), " " + souborSIP.getName(), getVelikostSipuProTabulku(
                                                                                                                      souborSIP
                                                                                                                              .getLenght()) };
