@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -25,7 +26,7 @@ public class Pravidlo69 extends K06PravidloBase {
         
         for (Node ze : zakladniEntity) {
             if (ze.getNodeName().equals("nsesss:Dokument")) {
-                Node node = ValuesGetter.getXChild(ze, "nsesss:EvidencniUdaje", "nsesss:Vyrizeni");
+                Node node = ValuesGetter.getXChild(ze, "nsesss:EvidencniUdaje", JmenaElementu.VYRIZENI);
                 if (node == null) {
                     return nastavChybu("Nenalezen element <nsesss:Vyrizeni>. " + getJmenoIdentifikator(ze),
                                        ze);

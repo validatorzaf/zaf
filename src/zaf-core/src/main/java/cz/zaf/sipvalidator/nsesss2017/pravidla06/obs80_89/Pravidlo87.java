@@ -1,8 +1,10 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89;
 
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import java.util.List;
 
+import org.w3c.dom.Node;
+
+import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -23,22 +25,17 @@ public class Pravidlo87 extends K06PravidloBase {
     // je uveden i element <nsesss:DatumOdeslani>.",
     @Override
     protected boolean kontrolaPravidla() {
-        NodeList vyrizeni = ValuesGetter.getAllAnywhere("nsesss:Vyrizeni", metsParser.getDocument());
-        if (vyrizeni == null) {
-            return true;
-        }
-        int size = vyrizeni.getLength();
-        for (int i = 0; i < size; i++) {
-            Node n = vyrizeni.item(i);
+        List<Node> vyrizeni = metsParser.getNodes(JmenaElementu.VYRIZENI);        
+        for (Node n: vyrizeni) {
             Node datumOdeslani = ValuesGetter.getXChild(n, "nsesss:DatumOdeslani");
             Node prijemce = ValuesGetter.getXChild(n, "nsesss:Prijemce");
             if (datumOdeslani != null && prijemce == null) {
                 return nastavChybu("Nenalezen element <nsesss:Prijemce>. " + getJmenoIdentifikator(n),
-                                  getMistoChyby(n));
+                                  n);
             }
             if (prijemce != null && datumOdeslani == null) {
                 return nastavChybu("Nenalezen element <nsesss:DatumOdeslani>. " + getJmenoIdentifikator(n),
-                                  getMistoChyby(n));
+                                  n);
             }
         }
         return true;

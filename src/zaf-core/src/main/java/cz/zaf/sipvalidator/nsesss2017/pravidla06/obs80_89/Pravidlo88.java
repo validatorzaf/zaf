@@ -6,6 +6,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -38,10 +39,10 @@ public class Pravidlo88 extends K06PravidloBase {
             if (analog != null) {
                 String hodnota = analog.getTextContent();
                 if (hodnota.equals("ano")) {
-                    Node datumOdeslani = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Vyrizeni",
+                    Node datumOdeslani = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", JmenaElementu.VYRIZENI,
                                                                 "nsesss:DatumOdeslani");
                     if (datumOdeslani != null) {
-                        Node node = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Vyrizeni",
+                        Node node = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", JmenaElementu.VYRIZENI,
                                                            "nsesss:OdeslaneMnozstvi");
                         if (node == null) {
                             return nastavChybu("Nenalezen element <nsesss:OdeslaneMnozstvi>. "

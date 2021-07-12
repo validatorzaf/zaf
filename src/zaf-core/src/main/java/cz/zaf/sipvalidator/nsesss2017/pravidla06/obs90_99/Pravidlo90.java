@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -34,13 +35,13 @@ public class Pravidlo90 extends K06PravidloBase {
                 if (node == null)
                     return nastavChybu("Nenalezen element <nsesss:RokSpousteciUdalosti>. "
                             + getJmenoIdentifikator(spis),
-                                       getMistoChyby(spis));
+                                       spis);
 
-                Node node2 = ValuesGetter.getXChild(spis, "nsesss:EvidencniUdaje", "nsesss:VyrizeniUzavreni",
+                Node node2 = ValuesGetter.getXChild(spis, "nsesss:EvidencniUdaje", JmenaElementu.VYRIZENI_UZAVRENI,
                                                     "nsesss:Datum");
                 if (node2 == null)
                     return nastavChybu("Nenalezen element <nsesss:Datum>. " + getJmenoIdentifikator(spis),
-                                       getMistoChyby(spis));
+                                       spis);
                 Integer rokSpousteci = vratRok(node);
                 if (rokSpousteci == null) {
                     return false;
