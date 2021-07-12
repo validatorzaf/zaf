@@ -23,6 +23,7 @@ import org.xml.sax.SAXException;
 
 import cz.zaf.common.xml.DFDocumentWalker;
 import cz.zaf.common.xml.NodeAggregator;
+import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipInfo.SipType;
 import cz.zaf.sipvalidator.sip.SipLoader;
@@ -173,6 +174,7 @@ public class MetsParser {
         dw.addAggregator(new NamedNodeAggregator(JmenaElementu.POSUZOVANY_OKAMZIK, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(JmenaElementu.PLATNOST, nodeQueryCache));        
         dw.addAggregator(new NamedNodeAggregator(JmenaElementu.NAZEV, nodeQueryCache));
+        dw.addAggregator(new NamedNodeAggregator(MetsElements.AGENT, nodeQueryCache));
         // pevne krizove odkazy
         dw.addAggregator(new NodeAggregator() {
             List<Node> nodes = new ArrayList<>();

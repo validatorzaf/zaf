@@ -1,8 +1,11 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99;
 
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.w3c.dom.Node;
+
+import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -23,21 +26,20 @@ public class Pravidlo93a  extends K06PravidloBase {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-        NodeList vs_list = ValuesGetter.getAllAnywhere("nsesss:VecnaSkupina", metsParser.getDocument());
-        if(vs_list==null) {
-            return nastavChybu("Věcná skupina neexistuje", getMistoChyby(metsParser.getDocument()));
+        List<Node> vsList = metsParser.getNodes(JmenaElementu.VECNA_SKUPINA);
+        if(CollectionUtils.isEmpty(vsList)) {
+            return nastavChybu("Věcná skupina neexistuje", metsParser.getDocument());
         }
-        for(int i = 0; i < vs_list.getLength(); i++){
-            Node vs = vs_list.item(i);
+        for(Node vs: vsList) {
             Node spl = ValuesGetter.getXChild(vs, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:SpisovyPlan");
             if(spl != null){
                 Node jsz = ValuesGetter.getXChild(vs, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:JednoduchySpisovyZnak");
                 if(jsz == null) {
-                	return nastavChybu("Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(vs), getMistoChyby(vs));
+                	return nastavChybu("Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(vs), vs);
                 }
                 Node pusz = ValuesGetter.getXChild(vs, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:PlneUrcenySpisovyZnak");                     
                 if(pusz == null) {
-                	return nastavChybu("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(vs), getMistoChyby(vs));
+                	return nastavChybu("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(vs), vs);
                 }
                 if(!jsz.getTextContent().equals(pusz.getTextContent())){
                     return nastavChybu("Elementy neobsahují stejné hodnoty. " + getJmenoIdentifikator(vs), getMistoChyby(jsz) + " " + getMistoChyby(pusz));

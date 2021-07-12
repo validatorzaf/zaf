@@ -1,8 +1,12 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19;
 
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.w3c.dom.Node;
+
+import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -21,20 +25,20 @@ public class Pravidlo19 extends K06PravidloBase {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-        NodeList nodeList = ValuesGetter.getAllAnywhere("mets:agent", metsParser.getDocument());
-        if(nodeList == null) {
-        	return nastavChybu("Nenalezen žádný element <mets:agent>.");
+        List<Node> nodes = metsParser.getNodes(MetsElements.AGENT);
+        if(CollectionUtils.isEmpty(nodes)){
+            return nastavChybu("Nenalezen element <mets:agent>.");
         }
-        int pocitadlo = 0;
-        String ch = "";
-        for(int i = 0; i < nodeList.getLength(); i++){
-            Node node = nodeList.item(i);
+        List<Node> errorList = new ArrayList<>(0);
+
+        for(Node node: nodes){
            if(!ValuesGetter.hasAttribut(node, "ID")){
-               pocitadlo++;
-               ch += getMistoChyby(node) + " ";
+               errorList.add(node);
            }
         }
-        if(pocitadlo != 0) return nastavChybu("Element <mets:agent> neobsahuje atribut ID.", ch);
+        if(errorList.size()>0) {
+            return nastavChybu("Element <mets:agent> neobsahuje atribut ID.", errorList);
+        }
         return true;
 	}
 

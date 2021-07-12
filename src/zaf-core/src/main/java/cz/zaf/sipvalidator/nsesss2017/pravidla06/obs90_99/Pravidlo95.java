@@ -1,9 +1,12 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99;
 
-import java.util.ArrayList;
+import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.IterableUtils;
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
@@ -28,32 +31,24 @@ public class Pravidlo95 extends K06PravidloBase {
     // <nsesss:PlneUrcenySpisovyZnak> výchozí entity před posledním oddělovačem.",
     @Override
     protected boolean kontrolaPravidla() {
-        ArrayList<Node> vecneSkupiny = ValuesGetter.getAllAnywhereList("nsesss:VecnaSkupina", metsParser
-                .getDocument());
-        ArrayList<Node> soucasti = ValuesGetter.getAllAnywhereList("nsesss:Soucast", metsParser.getDocument());
-        ArrayList<Node> typoveSpisy = ValuesGetter.getAllAnywhereList("nsesss:TypovySpis", metsParser
-                .getDocument());
-        ArrayList<Node> list = new ArrayList<>();
-        if (vecneSkupiny == null)
+        List<Node> vecneSkupiny = metsParser.getNodes(JmenaElementu.VECNA_SKUPINA);
+        if (CollectionUtils.isEmpty(vecneSkupiny) ) {
             return nastavChybu("Nenalezen element <nsesss:VecnaSkupina>.");
-        list.addAll(vecneSkupiny);
-        if (soucasti != null)
-            list.addAll(soucasti);
-        if (typoveSpisy != null)
-            list.addAll(typoveSpisy);
+        }
+        List<Node> soucasti = metsParser.getNodes(JmenaElementu.SOUCAST);
+        List<Node> typoveSpisy = metsParser.getNodes(JmenaElementu.TYPOVY_SPIS);
 
-        int velikostListu = list.size();
-        for (int i = 0; i < velikostListu; i++) {
-            Node entita = list.get(i);
+        Iterable<Node> multiCol = IterableUtils.chainedIterable(vecneSkupiny, soucasti, typoveSpisy);
+        for(Node entita: multiCol) {
             Node pu_entita = ValuesGetter.getXChild(entita, "nsesss:EvidencniUdaje", "nsesss:Trideni",
                                                     "nsesss:PlneUrcenySpisovyZnak");
             if (pu_entita == null)
                 return nastavChybu("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(entita),
-                                   getMistoChyby(entita));
+                                   entita);
             Node je_entita = ValuesGetter.getSourozencePrvnihoSeJmenem(pu_entita, "nsesss:JednoduchySpisovyZnak");
             if (je_entita == null)
                 return nastavChybu("Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(entita),
-                                   getMistoChyby(entita));
+                                   entita);
             Node pu_rodic = ValuesGetter.getXChild(entita, "nsesss:EvidencniUdaje", "nsesss:Trideni",
                                                    "nsesss:MaterskaEntita", "nsesss:VecnaSkupina",
                                                    "nsesss:EvidencniUdaje", "nsesss:Trideni",
@@ -73,7 +68,7 @@ public class Pravidlo95 extends K06PravidloBase {
                 if (pu_rodic.getNodeName().equals("nsesss:SpisovyPlan")) {
                     if (K06_Obsahova.spisZnakObsahujeOddelovac(pu_entita.getTextContent())) {
                         return nastavChybu("Spisový znak nejvyšší věcné skupiny v sobě nesmí obsahovat oddělovač. "
-                                + getJmenoIdentifikator(entita), getMistoChyby(entita));
+                                + getJmenoIdentifikator(entita), entita);
                     }
                 } else {
                     String entita_jsz = je_entita.getTextContent();

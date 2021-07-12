@@ -1,9 +1,11 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19;
 
-import java.util.ArrayList;
+import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -22,20 +24,22 @@ public class Pravidlo17 extends K06PravidloBase {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-		Node metsHdr = metsParser.getMetsHdr();
+        Node metsHdr = metsParser.getMetsHdr();
         if(metsHdr == null) {
-        	return nastavChybu("Nenalezen element <mets:metsHdr>.");
+            return nastavChybu("Nenalezen element <mets:metsHdr>.");
         }
-        ArrayList<Node> nodeList = ValuesGetter.getChildList(metsHdr, "mets:agent");
-        if(nodeList == null || nodeList.isEmpty()){
-            return nastavChybu("Nenalezen element <mets:agent>.", getMistoChyby(metsHdr));
+        List<Node> nodes = metsParser.getNodes(MetsElements.AGENT);
+        if(CollectionUtils.isEmpty(nodes)){
+            return nastavChybu("Nenalezen element <mets:agent>.", metsHdr);
         }
         int pocitadlo = 0;
-        for(int i = 0; i < nodeList.size(); i++){
-            if(ValuesGetter.hasAttributValue(nodeList.get(i), "TYPE", "INDIVIDUAL")) pocitadlo++;
+        for(Node node: nodes){
+            if(ValuesGetter.hasAttributValue(node, "TYPE", "INDIVIDUAL")) {
+                pocitadlo++;
+            }
         }
         if(pocitadlo == 0){
-            return nastavChybu("Element <mets:metsHdr> neobsahuje žádný element <mets:agent> s atributem TYPE s hodnotou INDIVIDUAL.", getMistoChyby(metsHdr));
+            return nastavChybu("Element <mets:metsHdr> neobsahuje žádný element <mets:agent> s atributem TYPE s hodnotou INDIVIDUAL.", metsHdr);
         }
         return true;
 	}
