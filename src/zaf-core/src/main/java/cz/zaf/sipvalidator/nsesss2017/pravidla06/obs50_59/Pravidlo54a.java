@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
@@ -550,19 +552,17 @@ public class Pravidlo54a  extends K06PravidloBase {
      * @return
      */
     private boolean readAmdSecList() {
-        NodeList amdSecNodes = metsParser.getElementsByTagName("mets:amdSec");
-        if(amdSecNodes.getLength() == 0){
+        List<Node> amdSecNodes = metsParser.getNodes(MetsElements.AMD_SEC);
+        if(CollectionUtils.isEmpty(amdSecNodes)){
             return nastavChybu("Nenalezen element <mets:amdSec>.");
         }        
-        amdSecList = new ArrayList<>(amdSecNodes.getLength());
+        amdSecList = new ArrayList<>(amdSecNodes.size());
         amdSecMap = new HashMap<>();
         Map<PairZdrojIdent, Node> amdIdents = new HashMap<>();
         List<Node> errorList = new ArrayList<>(0);
         List<Node> duplicated = new ArrayList<>();
 
-        for(int i = 0; i < amdSecNodes.getLength(); i++){
-            Node node = amdSecNodes.item(i);
-            
+        for(Node node: amdSecNodes) {            
             String id = ValuesGetter.getValueOfAttribut(node, "ID");
             if(StringUtils.isEmpty(id)) {
                 errorList.add(node);

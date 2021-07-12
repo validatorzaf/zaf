@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
+import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
@@ -34,7 +34,7 @@ public class Pravidlo54 extends K06PravidloBase {
             return true;
         }
         ArrayList<Node> metsDiv = ValuesGetter.getAllAnywhereList("mets:div", metsParser.getDocument());
-        ArrayList<Node> metsAmd = ValuesGetter.getAllAnywhereList("mets:amdSec", metsParser.getDocument());
+        List<Node> metsAmd = metsParser.getNodes(MetsElements.AMD_SEC);
         ArrayList<Node> spisoveplany = ValuesGetter.getAllAnywhereList("nsesss:SpisovyPlan", metsParser
                 .getDocument());
         ArrayList<Node> vecneskupiny = ValuesGetter.getAllAnywhereList("nsesss:VecnaSkupina", metsParser
@@ -291,10 +291,10 @@ public class Pravidlo54 extends K06PravidloBase {
     }
 
     private boolean pravidlo54_pocitadlo_amdsec(int pocet_div) {
-        NodeList list = ValuesGetter.getAllAnywhere("mets:amdSec", metsParser.getDocument());
+        List<Node> list = metsParser.getNodes(MetsElements.AMD_SEC);
         if (list == null)
             return false;
-        int pocetAmd = list.getLength();
+        int pocetAmd = list.size();
         boolean vysledek = pocetAmd == pocet_div;
         return vysledek;
     }

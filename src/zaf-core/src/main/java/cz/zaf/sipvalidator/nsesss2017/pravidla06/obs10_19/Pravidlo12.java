@@ -2,6 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19;
 
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -24,7 +25,7 @@ public class Pravidlo12 extends K06PravidloBase {
         if(metsMets == null) {
         	return nastavChybu("Nenalezen kořenový element <mets:mets>.");
         }
-        if(!ValuesGetter.hasChildWithName(metsMets, "mets:amdSec")){
+        if(!ValuesGetter.hasChildWithName(metsMets, MetsElements.AMD_SEC)){
             return nastavChybu("Kořenový element <mets:mets> nemá žádný dětský element <mets:amdSec>.", metsMets);
         }       
         return true;
