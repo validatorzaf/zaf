@@ -1,11 +1,11 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -18,7 +18,6 @@ public class Pravidlo76 extends K06PravidloBase {
                 "Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano, potom rodičovské entity obsahují v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> se stejnou hodnotou.",
                 "Uvedeno je chybně u věcné skupiny, typového spisu, součásti, dílu nebo spisu, že neobsahují dokumenty v analogové podobě.",
                 "Příloha č. 2 NSESSS, ř. 616.");
-        // TODO Auto-generated constructor stub
     }
 
     //OBSAHOVÁ č.76 Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů 
@@ -77,21 +76,21 @@ public class Pravidlo76 extends K06PravidloBase {
                 }
                 String analogovyzakladni = and.getTextContent();
                 if (analogovyzakladni.equals("ano")) {
-                    ArrayList<Node> vecneSkupiny = ValuesGetter.getAllInNode(zakladnientita, "nsesss:VecnaSkupina",
-                                                                             metsParser.getDocument());
-                    if (vecneSkupiny == null || vecneSkupiny.isEmpty()) {
-                        return nastavChybu("Nenalezen element <nsesss:VecnaSkupina>. " + getJmenoIdentifikator(
-                                                                                                              zakladnientita),
-                                           getMistoChyby(zakladnientita));
+                    // nalezeni alespon jedne rodicovske vecne skupiny
+                    List<Node> vsechnyVecneSkupiny = metsParser.getNodes(JmenaElementu.VECNA_SKUPINA);
+                    List<Node> vecneSkupiny = ValuesGetter.getAllChildNodes(zakladnientita, vsechnyVecneSkupiny); 
+                    if (CollectionUtils.isEmpty(vecneSkupiny)) {
+                        return nastavChybu("Nenalezen element <nsesss:VecnaSkupina>. "
+                                           + getJmenoIdentifikator(zakladnientita),
+                                           zakladnientita);
                     }
-                    for (int k = 0; k < vecneSkupiny.size(); k++) {
-                        Node vs = vecneSkupiny.get(k);
+                    for (Node vs: vecneSkupiny) {
                         Node n = ValuesGetter.getXChild(vs, "nsesss:EvidencniUdaje", "nsesss:Manipulace",
                                                         "nsesss:AnalogovyDokument");
                         if (n == null) {
-                            return nastavChybu("Nenalezen element <nsesss:AnalogovyDokument>. " + getJmenoIdentifikator(
-                                                                                                                       vs),
-                                               getMistoChyby(vs));
+                            return nastavChybu("Nenalezen element <nsesss:AnalogovyDokument>. " 
+                                                + getJmenoIdentifikator(vs),
+                                               vs);
                         }
                         String ad = n.getTextContent();
                         if (ad.equals("ne")) {

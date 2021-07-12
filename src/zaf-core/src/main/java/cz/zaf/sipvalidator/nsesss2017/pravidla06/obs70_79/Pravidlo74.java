@@ -1,8 +1,10 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79;
 
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import java.util.List;
 
+import org.w3c.dom.Node;
+
+import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -21,15 +23,12 @@ public class Pravidlo74 extends K06PravidloBase {
     //OBSAHOVÁ č.74 Každý element <nsesss:PosuzovanyOkamzik> obsahuje atribut datum.",
     @Override
     protected boolean kontrolaPravidla() {
-        NodeList posuzovanyOkamzik = ValuesGetter.getAllAnywhere("nsesss:PosuzovanyOkamzik", metsParser.getDocument());
-        if (posuzovanyOkamzik == null)
-            return true;
-        for (int i = 0; i < posuzovanyOkamzik.getLength(); i++) {
-            Node cas = posuzovanyOkamzik.item(i);
+        List<Node> nodes = metsParser.getNodes(JmenaElementu.POSUZOVANY_OKAMZIK);
+        for (Node cas : nodes) {
             boolean maDatum = ValuesGetter.hasAttribut(cas, "datum");
             if (!maDatum) {
                 return nastavChybu("Element <nsesss:PosuzovanyOkamzik> neobsahuje atribut datum. "
-                        + getJmenoIdentifikator(cas), getMistoChyby(cas));
+                        + getJmenoIdentifikator(cas), cas);
             }
         }
         return true;

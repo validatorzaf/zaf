@@ -22,12 +22,8 @@ public class Pravidlo69 extends K06PravidloBase {
     @Override
     protected boolean kontrolaPravidla() {
         List<Node> zakladniEntity = predpokladZakladniEntity();
-        if (zakladniEntity == null) {
-            return false;
-        }
-
-        for (int i = 0; i < zakladniEntity.size(); i++) {
-            Node ze = zakladniEntity.get(i);
+        
+        for (Node ze : zakladniEntity) {
             if (ze.getNodeName().equals("nsesss:Dokument")) {
                 Node node = ValuesGetter.getXChild(ze, "nsesss:EvidencniUdaje", "nsesss:Vyrizeni");
                 if (node == null) {

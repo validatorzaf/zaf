@@ -2,10 +2,11 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
+import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -22,34 +23,31 @@ public class Pravidlo75 extends K06PravidloBase {
 
     //OBSAHOVÁ č.75 Pokud existuje jakýkoli element <nsesss:Platnost>, v každém obsahuje jeho dětský element <nsesss:PlatnostOd> stejnou nebo menší hodnotu, než je hodnota elementu <nsesss:PlatnostDo>.",
     @Override
-    protected boolean kontrolaPravidla() {
-        NodeList posuzovanyOkamzik = ValuesGetter.getAllAnywhere("nsesss:Platnost", metsParser.getDocument());
-        if (posuzovanyOkamzik == null)
-            return true;
-        for (int i = 0; i < posuzovanyOkamzik.getLength(); i++) {
-            Node platnost = posuzovanyOkamzik.item(i);
+    protected boolean kontrolaPravidla() {        
+        List<Node> posuzovanyOkamzik = metsParser.getNodes(JmenaElementu.PLATNOST);
+        for (Node platnost: posuzovanyOkamzik) {
             Node nodeOd = ValuesGetter.findFirstChild(platnost, "nsesss:PlatnostOd");
             if (nodeOd == null) {
                 return nastavChybu("Nenalezen element <nsesss:PlatnostOd>. " + getJmenoIdentifikator(platnost),
-                                  getMistoChyby(platnost));
+                                  platnost);
             }
             Node nodeDo = ValuesGetter.findFirstChild(platnost, "nsesss:PlatnostDo");
             if (nodeDo == null) {
                 return nastavChybu("Nenalezen element <nsesss:PlatnostDo>. " + getJmenoIdentifikator(platnost),
-                                  getMistoChyby(platnost));
+                                  platnost);
             }
             Date od, po;
             try {
                 od = ValuesGetter.vytvorDate(nodeOd, "yyyy-MM-dd");
             } catch (ParseException ex) {
                 return nastavChybu("Hodnota data je ve špatném formátu. " + getJmenoIdentifikator(platnost),
-                                  getMistoChyby(nodeOd));
+                                  nodeOd);
             }
             try {
                 po = ValuesGetter.vytvorDate(nodeDo, "yyyy-MM-dd");
             } catch (ParseException ex) {
                 return nastavChybu("Hodnota data je ve špatném formátu. " + getJmenoIdentifikator(platnost),
-                                  getMistoChyby(nodeDo));
+                                  nodeDo);
             }
 
             if (!(po.after(od) || po.equals(od))) {

@@ -439,6 +439,17 @@ public class ValuesGetter {
         return list;
     }
     
+    public static List<Node> getAllChildNodes(Node parent, List<Node> nodes) {
+        List<Node> childNodes = new ArrayList<>();
+        for(Node node: nodes) {
+            if(isXParent(parent, node)) {
+                childNodes.add(node);
+            }
+        }
+        return childNodes;
+    }
+
+    // TODO: refactor and remove
     public static ArrayList<Node> getAllInNode(Node node, String elementName, Document dom){
         ArrayList<Node> list = new ArrayList<>();
         NodeList vsechny = getAllAnywhere(elementName, dom);

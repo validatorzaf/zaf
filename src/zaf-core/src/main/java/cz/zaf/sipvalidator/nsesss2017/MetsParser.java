@@ -168,6 +168,10 @@ public class MetsParser {
         dw.addAggregator(new NamedNodeAggregator(JmenaElementu.DOKUMENT, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(JmenaElementu.KOMPONENTA, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(JmenaElementu.SOUCAST, nodeQueryCache));
+        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.CAS_OVERENI, nodeQueryCache));
+        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.CAS_POUZITI, nodeQueryCache));
+        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.POSUZOVANY_OKAMZIK, nodeQueryCache));
+        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.PLATNOST, nodeQueryCache));        
         dw.addAggregator(new NamedNodeAggregator(JmenaElementu.NAZEV, nodeQueryCache));
         // pevne krizove odkazy
         dw.addAggregator(new NodeAggregator() {

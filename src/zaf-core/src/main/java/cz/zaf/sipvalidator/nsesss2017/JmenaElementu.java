@@ -13,6 +13,10 @@ public final class JmenaElementu {
     public final static String KOMPONENTA = "nsesss:Komponenta";
     public final static String SOUCAST = "nsesss:Soucast";
     public final static String KRIZOVY_ODKAZ = "nsesss:KrizovyOdkaz";
+    public final static String CAS_OVERENI = "nsesss:CasOvereni";
+    public final static String CAS_POUZITI = "nsesss:CasPouziti";
+    public final static String POSUZOVANY_OKAMZIK = "nsesss:PosuzovanyOkamzik";
+    public final static String PLATNOST = "nsesss:Platnost";
 
     public final static String FORMA_UCHOVANI = "forma_uchovani";
     public final static String FORMA_UCHOVANI_ORIGINAL = "originál";

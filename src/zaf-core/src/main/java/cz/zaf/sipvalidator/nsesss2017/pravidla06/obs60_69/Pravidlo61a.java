@@ -1,7 +1,8 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69;
 
+import java.util.List;
+
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
@@ -21,28 +22,27 @@ public class Pravidlo61a extends K06PravidloBase {
 	}
 
 	@Override
-	protected boolean kontrolaPravidla() {
-        NodeList dokuments = ValuesGetter.getAllAnywhere("nsesss:Dokument", metsParser.getDocument());
+	protected boolean kontrolaPravidla() {	    
+        List<Node> dokuments = metsParser.getDokumenty();
         if(dokuments == null){
             return nastavChybu("Nenalezen žádný element <nsesss:Dokument>.");
         }
-        for(int i = 0; i < dokuments.getLength(); i++)
+        for(Node dokument: dokuments)
         {   
-            Node dokument = dokuments.item(i);
             Node ad = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Manipulace", "nsesss:AnalogovyDokument");
             if(ad == null){
-                return nastavChybu("Nenalezen element <nsesss:AnalogovyDokument>. Dokumentu " + kontrola.getIdentifikatory(dokument) + ".", getMistoChyby(dokument));
+                return nastavChybu("Nenalezen element <nsesss:AnalogovyDokument>. Dokumentu " + kontrola.getIdentifikatory(dokument) + ".", dokument);
             }
             String hodnotaAnalogovyDokument = ad.getTextContent();
             if(hodnotaAnalogovyDokument.equals("ano") && ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Puvod", "nsesss:VlastniDokument") != null){
                 Node mnozstvi = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Puvod", "nsesss:VlastniDokument", "nsesss:VytvoreneMnozstvi");
                 if(mnozstvi == null){
-                    return nastavChybu("Nenalezen povinný element <nsesss:VytvoreneMnozstvi>. Dokumentu " + kontrola.getIdentifikatory(dokument) + ".", getMistoChyby(dokument));
+                    return nastavChybu("Nenalezen povinný element <nsesss:VytvoreneMnozstvi>. Dokumentu " + kontrola.getIdentifikatory(dokument) + ".", dokument);
                 }
                 else{
                     String s = mnozstvi.getTextContent();
                     if (!HelperString.hasContent(s)) {
-                        return nastavChybu("Element <nsesss:VytvoreneMnozstvi> obsahuje prázdnou hodnotu. Dokumentu " + kontrola.getIdentifikatory(dokument) + ".", getMistoChyby(mnozstvi));
+                        return nastavChybu("Element <nsesss:VytvoreneMnozstvi> obsahuje prázdnou hodnotu. Dokumentu " + kontrola.getIdentifikatory(dokument) + ".", mnozstvi);
                     }
                 }
             }
