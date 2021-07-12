@@ -1,5 +1,8 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59;
 
+import java.util.List;
+
+import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
@@ -20,12 +23,11 @@ public class Pravidlo58 extends K06PravidloBase {
     //OBSAHOVÁ č.58 Jakýkoli element <nsesss:Identifikator> obsahuje atribut zdroj s neprázdnou hodnotu.",
     @Override
     protected boolean kontrolaPravidla() {
-        //        NodeList identifikatory = ValuesGetter.getAllAnywhere("nsesss:Identifikator", metsParser.getDocument());
-        if (metsParser.identifikatory == null) {
+        List<Node> identifikatory = metsParser.getIdentifikatory();
+        if (CollectionUtils.isEmpty(identifikatory)) {
             return nastavChybu("Nenalezen žádný element <nsesss:Identifikator>.");
         }
-        for (int i = 0; i < metsParser.identifikatory.size(); i++) {
-            Node identifikator = metsParser.identifikatory.get(i);
+        for (Node identifikator: identifikatory) {
             if (!ValuesGetter.hasAttribut(identifikator, "zdroj")) {
                 return nastavChybu("Element <nsesss:Identifikator> neobsahuje atribut zdroj.", identifikator);
             }

@@ -117,11 +117,24 @@ public abstract class SipValidatorTestBase {
                 // detail selhanych kontrol
                 if (vysledek.getStavKontroly() == StavKontroly.CHYBA) {
                     // doslo k neocekavanemu selhani -> vypis selhanych
+                    boolean errorLogged = false;
                     for (String pravidloOk : pravidlaOk) {
                         VysledekPravidla prav = vysledek.getPravidlo(pravidloOk);
                         if (!prav.getStav()) {
                             log.error("Chybujici pravidlo: {}, vypisChyby: {}, mistoChyby: {}", pravidloOk,
                                       prav.getVypis_chyby(), prav.getMisto_chyby(), prav.getMisto_chyby());
+                            errorLogged = true;
+                        }
+                    }
+                    if(!errorLogged) {
+                        // vypis vsech chybujicich kontrol
+                        for(VysledekPravidla prav: vysledek.getPravidla()) {
+                            if (!prav.getStav()) {
+                                log.error("Chybujici pravidlo: {}, vypisChyby: {}, mistoChyby: {}", 
+                                          prav.getId(),
+                                          prav.getVypis_chyby(), prav.getMisto_chyby(), prav.getMisto_chyby());
+                            }
+                            
                         }
                     }
                 }

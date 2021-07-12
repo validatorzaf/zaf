@@ -32,7 +32,6 @@ public class K06_Obsahova
     MetsParser metsParser;
 
     private List<Node> zakladniEntity;
-    private List<Node> dokumenty;
     
     /**
      * Mapa kontrol
@@ -163,7 +162,6 @@ public class K06_Obsahova
         // bude nutne casem prepracovat
         this.metsParser = ctx.getMetsParser();
         this.zakladniEntity = metsParser.getZakladniEntity();
-        this.dokumenty = metsParser.getDokumenty();
 		
 		this.sipSoubor = ctx.getSip();
 
@@ -193,10 +191,6 @@ public class K06_Obsahova
 
     public List<Node> getZakladniEnity() {
         return zakladniEntity;
-    }
-
-    public List<Node> getDokumenty() {
-        return dokumenty;
     }
 
     public MetsParser getMetsParser() {

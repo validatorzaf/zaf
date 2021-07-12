@@ -102,7 +102,7 @@ public class SipValidator {
             if (aktivniKontrola != null) {
                 sb.append(", aktivniKontrola: ").append(aktivniKontrola.getNazev());
             }
-            log.error(sb.toString() + ", detail: " + e.toString());
+            log.error(sb.toString() + ", detail: " + e.toString(), e);
             throw new IllegalStateException(sb.toString(), e);
         }
     }

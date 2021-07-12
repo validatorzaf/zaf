@@ -3,6 +3,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
@@ -45,11 +46,11 @@ public class Pravidlo76 extends K06PravidloBase {
                 }
                 String analogovyzakladni = an_ze.getTextContent();
 
-                List<Node> dokumenty = this.kontrola.getDokumenty();
-                if (dokumenty == null || dokumenty.isEmpty()) {
+                List<Node> dokumenty = metsParser.getDokumenty();
+                if (CollectionUtils.isEmpty(dokumenty)) {
                     return nastavChybu("Nenalezen žádný element <nsesss:Dokument>. " + getJmenoIdentifikator(
                                                                                                             zakladnientita),
-                                       getMistoChyby(zakladnientita));
+                                       zakladnientita);
                 }
                 for (int j = 0; j < dokumenty.size(); j++) {
                     Node dokument = dokumenty.get(j);

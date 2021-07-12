@@ -3,6 +3,7 @@ package cz.zaf.sipvalidator.nsesss2017;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.Validate;
 import org.w3c.dom.Node;
 
@@ -93,8 +94,8 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
     }
 
     protected List<Node> predpokladDokumenty() {
-        List<Node> dokumenty = kontrola.getDokumenty();
-        if (dokumenty == null || dokumenty.size() == 0) {
+        List<Node> dokumenty = metsParser.getDokumenty();
+        if (CollectionUtils.isEmpty(dokumenty)) {
             nastavChybu("Chybí dokumenty. Předpokladem kontroly je existence alespoň jednoho dokumentu.");
             return null;
         }

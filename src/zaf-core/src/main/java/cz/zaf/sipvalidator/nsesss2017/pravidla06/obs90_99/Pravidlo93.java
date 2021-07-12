@@ -23,15 +23,12 @@ public class Pravidlo93 extends K06PravidloBase {
     protected boolean kontrolaPravidla() {
         List<Node> nazvy = metsParser.getNazvy();
 
-        if (nazvy != null) {
-            for (int i = 0; i < nazvy.size(); i++) {
-                Node nazev = nazvy.get(i);
-                String str = nazev.getTextContent();
-                if (!HelperString.hasContent(str)) {
-                    return nastavChybu("Element <nsesss:Nazev> obsahuje prázdnou hodnotu. " + getJmenoIdentifikator(
-                                                                                                                   nazev),
-                                       getMistoChyby(nazev));
-                }
+        for (Node nazev: nazvy) {
+            String str = nazev.getTextContent();
+            if (!HelperString.hasContent(str)) {
+                return nastavChybu("Element <nsesss:Nazev> obsahuje prázdnou hodnotu. " + getJmenoIdentifikator(
+                                                                                                                nazev),
+                                   nazev);
             }
         }
         return true;

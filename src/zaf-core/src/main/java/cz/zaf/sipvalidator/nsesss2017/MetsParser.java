@@ -10,17 +10,19 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.Validate;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import cz.zaf.common.xml.DFDocumentWalker;
+import cz.zaf.common.xml.NodeAggregator;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipInfo.SipType;
 import cz.zaf.sipvalidator.sip.SipLoader;
@@ -32,20 +34,21 @@ import cz.zaf.sipvalidator.sip.SipLoader;
  * prehled
  */
 public class MetsParser {
+    public static final String PEVNY_KRIZOVY_ODKAZ = "nsesss:KrizovyOdkaz[pevny=ano]";
 
     /**
      * Parsed document
      */
-    public Document document;
+    protected Document document;
 
-    public Node metsMets, metsDmdSec, metsMdWrap, xmlData, metsHdr;
-    public ArrayList<Node> identifikatory, nazvy, dokumenty, manipulace, urceneCasoveObdobi,
+    protected Node metsMets, metsDmdSec, metsMdWrap, xmlData, metsHdr;
+    public ArrayList<Node> manipulace, urceneCasoveObdobi,
             plneurcenySpisovyZnak;
     
     /**
      * Seznam zakladnich entit pod elementem xmldata.
      */
-    public List<Node> zakladniEntity;
+    protected List<Node> zakladniEntity;
     
     /**
      * Seznam chybnych zakladnich entit
@@ -62,7 +65,7 @@ public class MetsParser {
     /**
      * Mapa dotazu na uzly
      */
-    Map<String, List<Node> > nodeQueryCache = new HashMap<>();    
+    Map<String, List<Node> > nodeQueryCache = new HashMap<>();
 
     public MetsParser() {
     }
@@ -154,22 +157,46 @@ public class MetsParser {
         }
         sipInfo.setType(sipType);
 
-        //velké seznamy u velkých souborů
-        identifikatory = ValuesGetter.getAllAnywhereList("nsesss:Identifikator", document);
-        nazvy = ValuesGetter.getAllAnywhereList("nsesss:Nazev", document);
-        dokumenty = ValuesGetter.getAllAnywhereList("nsesss:Dokument", document);
+        // priprava seznamů uzlu
+        DFDocumentWalker dw = new DFDocumentWalker();
+        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.IDENTIFIKATOR, nodeQueryCache));
+        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.SPISOVY_PLAN, nodeQueryCache));
+        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.VECNA_SKUPINA, nodeQueryCache));
+        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.TYPOVY_SPIS, nodeQueryCache));
+        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.DIL, nodeQueryCache));
+        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.SPIS, nodeQueryCache));
+        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.DOKUMENT, nodeQueryCache));
+        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.KOMPONENTA, nodeQueryCache));
+        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.SOUCAST, nodeQueryCache));
+        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.NAZEV, nodeQueryCache));
+        // pevne krizove odkazy
+        dw.addAggregator(new NodeAggregator() {
+            List<Node> nodes = new ArrayList<>();
+
+            @Override
+            public void visitNode(Node node) {
+                if (JmenaElementu.KRIZOVY_ODKAZ.equals(node.getNodeName())) {
+                    if (ValuesGetter.hasAttributValue(node, "pevny", "ano")) {
+                        nodes.add(node);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFinished() {
+                nodeQueryCache.put(PEVNY_KRIZOVY_ODKAZ, nodes);                
+            }
+            
+        });
+        dw.walk(document);
+                
         manipulace = ValuesGetter.getAllAnywhereList("nsesss:Manipulace", document);
         urceneCasoveObdobi = ValuesGetter.getAllAnywhereList("nsesss:UrceneCasoveObdobi", document);
         plneurcenySpisovyZnak = ValuesGetter.getAllAnywhereList("nsesss:PlneUrcenySpisovyZnak", document);
 
         if (zakladniEntity != null && zakladniEntity.isEmpty())
             zakladniEntity = null; // kvůli pravidlům
-        if (identifikatory != null && identifikatory.isEmpty())
-            identifikatory = null;
-        if (nazvy != null && nazvy.isEmpty())
-            nazvy = null;
-        if (dokumenty != null && dokumenty.isEmpty())
-            dokumenty = null;
         if (manipulace != null && manipulace.isEmpty())
             manipulace = null;
         if (urceneCasoveObdobi != null && urceneCasoveObdobi.isEmpty())
@@ -236,20 +263,27 @@ public class MetsParser {
     public List<Node> getZakladniEntityChybne() {
         return zakladniEntityChybne;
     }
+    
+    public List<Node> getNodes(String nodeName) {
+        List<Node> nodes = this.nodeQueryCache.get(nodeName);
+        Validate.notNull(nodes, "Nodes not in the cache, nodeName: %s", nodeName);
+        return nodes;
+        
+    }
 
     public List<Node> getDokumenty() {
-        return dokumenty;
+        return getNodes(JmenaElementu.DOKUMENT);
     }
 
     public List<Node> getNazvy() {
-        return nazvy;
+        return getNodes(JmenaElementu.NAZEV);
     }
 
     public List<Node> getManipulace() {
         return manipulace;
     }
     public List<Node> getIdentifikatory() {
-        return identifikatory;
+        return getNodes(JmenaElementu.IDENTIFIKATOR);
     }
 
     public List<Node> getUrceneCasoveObdobi() {
@@ -261,22 +295,7 @@ public class MetsParser {
     }
 
     public List<Node> getKrizoveOdkazyPevnyAno() {
-        List<Node> list = nodeQueryCache.get("nsesss:KrizovyOdkaz[pevny=ano]");
-        if(list==null) {
-            NodeList krizoveOdkazy = document.getElementsByTagName("nsesss:KrizovyOdkaz");
-            if(krizoveOdkazy.getLength()==0) {
-                list = Collections.emptyList();
-            } else {
-                list = new ArrayList<>();
-                for(int i = 0; i < krizoveOdkazy.getLength(); i++){
-                   if(ValuesGetter.hasAttributValue(krizoveOdkazy.item(i), "pevny", "ano")){
-                       list.add(krizoveOdkazy.item(i));
-                    }
-                }                
-            }
-            nodeQueryCache.put("nsesss:KrizovyOdkaz[pevny=ano]", list);
-        }
-        return list;
+        return getNodes(PEVNY_KRIZOVY_ODKAZ);
     }
 
     public NodeList getElementsByTagName(String name) {

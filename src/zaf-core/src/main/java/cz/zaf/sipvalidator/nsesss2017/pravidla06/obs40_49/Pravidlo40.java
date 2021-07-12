@@ -22,26 +22,25 @@ public class Pravidlo40  extends K06PravidloBase {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-		List<Node> dokumenty = kontrola.getDokumenty();
+		List<Node> dokumenty = metsParser.getDokumenty();
 		
         if(CollectionUtils.isEmpty(dokumenty) ) {
         	return true;
         }
         
-        for(int i =0; i < dokumenty.size(); i++){
-            Node dokument = dokumenty.get(i);
+        for(Node dokument: dokumenty){
             Node analogovyDokument = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Manipulace", "nsesss:AnalogovyDokument");
             if(analogovyDokument == null){
-                return nastavChybu("Element <nsesss:Dokument> " + kontrola.getIdentifikatory(dokument) +" neobsahuje element <nsesss:AnalogovyDokument>.", getMistoChyby(dokument));
+                return nastavChybu("Element <nsesss:Dokument> " + kontrola.getIdentifikatory(dokument) +" neobsahuje element <nsesss:AnalogovyDokument>.", dokument);
             }
             boolean maHodnotuNe = analogovyDokument.getTextContent().toLowerCase().equals("ne");
             if(maHodnotuNe){
             	Node metsMets = metsParser.getMetsRootNode();
                 if(ValuesGetter.getXChild(metsMets, "mets:fileSec") == null){
-                    return nastavChybu("Element <mets:mets> neobsahuje žádný element <mets:fileSec>.", getMistoChyby(metsMets));
+                    return nastavChybu("Element <mets:mets> neobsahuje žádný element <mets:fileSec>.", metsMets);
                 }
                 if(!ValuesGetter.hasOnlyOneChild_ElementNode(metsMets, "mets:fileSec")){
-                    return nastavChybu("Element <mets:mets> neobsahuje právě jeden dětský element <mets:fileSec>.", getMistoChyby(metsMets));
+                    return nastavChybu("Element <mets:mets> neobsahuje právě jeden dětský element <mets:fileSec>.", metsMets);
                 }
                 else{
                     return true;

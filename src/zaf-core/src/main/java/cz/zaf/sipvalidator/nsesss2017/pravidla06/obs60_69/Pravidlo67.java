@@ -28,7 +28,7 @@ public class Pravidlo67 extends K06PravidloBase {
         if (zakladniEntity == null) {
             return false;
         }
-        List<Node> dokumenty = kontrola.getDokumenty();
+        List<Node> dokumenty = metsParser.getDokumenty();
 
         for (int i = 0; i < zakladniEntity.size(); i++) {
             Node zakladnientita = zakladniEntity.get(i);

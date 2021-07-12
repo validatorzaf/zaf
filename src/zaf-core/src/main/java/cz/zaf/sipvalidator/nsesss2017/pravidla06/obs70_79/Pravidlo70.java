@@ -2,6 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79;
 
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
@@ -24,7 +25,7 @@ public class Pravidlo70 extends K06PravidloBase {
         //        NodeList id = ValuesGetter.getAllAnywhere("nsesss:Identifikator", metsParser.getDocument());
         //        ArrayList<Node> id = ValuesGetter.getAllAnywhereArrayList("nsesss:Identifikator", metsParser.getDocument());
         List<Node> identifikatory = metsParser.getIdentifikatory();
-        if (identifikatory == null) {
+        if (CollectionUtils.isEmpty(identifikatory)) {
             return nastavChybu("Nenalezen žádný element <nsesss:Identifikator>.");
         }
         int size = identifikatory.size();

@@ -11,6 +11,7 @@ import org.apache.commons.lang3.Validate;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.structmap.PairZdrojIdent;
@@ -431,14 +432,14 @@ public class Pravidlo54a  extends K06PravidloBase {
         this.dmdSecPziMap = new HashMap<>();
         List<Node> errors = new ArrayList<>(0);
         
-        readDmdsecsByTagName("nsesss:SpisovyPlan", errors);
-        readDmdsecsByTagName("nsesss:VecnaSkupina", errors);
-        readDmdsecsByTagName("nsesss:Dokument", errors);
-        readDmdsecsByTagName("nsesss:Spis", errors);
-        readDmdsecsByTagName("nsesss:Komponenta", errors);
-        readDmdsecsByTagName("nsesss:Soucast", errors);
-        readDmdsecsByTagName("nsesss:TypovySpis", errors);
-        readDmdsecsByTagName("nsesss:Dil", errors);
+        readDmdsecs(metsParser.getNodes(JmenaElementu.SPISOVY_PLAN), errors);
+        readDmdsecs(metsParser.getNodes(JmenaElementu.VECNA_SKUPINA), errors);
+        readDmdsecs(metsParser.getDokumenty(), errors);
+        readDmdsecs(metsParser.getNodes(JmenaElementu.SPIS), errors);
+        readDmdsecs(metsParser.getNodes(JmenaElementu.KOMPONENTA), errors);
+        readDmdsecs(metsParser.getNodes(JmenaElementu.SOUCAST), errors);
+        readDmdsecs(metsParser.getNodes(JmenaElementu.TYPOVY_SPIS), errors);
+        readDmdsecs(metsParser.getNodes(JmenaElementu.DIL), errors);
         
         if(!errors.isEmpty()){
             String hlaska = errors.size()==1?"Nalezena chyba u elementu <mets:div>."
@@ -449,24 +450,25 @@ public class Pravidlo54a  extends K06PravidloBase {
         return true;
     }
 
-
-    private void readDmdsecsByTagName(String tagName, List<Node> errors) {
-        NodeList nodelist = metsParser.getElementsByTagName(tagName);
-        for(int i = 0; i < nodelist.getLength(); i++) {
-            Node node = nodelist.item(i);
-            
-            DmdSecInfo dmdSecInfo = DmdSecInfo.valueOf(node);
-            if(dmdSecInfo==null) {
-                errors.add(node);
-            }
-            dmdSecList.add(dmdSecInfo);
-            if(dmdSecMap.put(dmdSecInfo.getId(), dmdSecInfo)!=null) {
-                errors.add(node);
-                continue;
-            }
-            List<DmdSecInfo> lst = dmdSecPziMap.computeIfAbsent(dmdSecInfo.pzi, pzi -> new ArrayList<>());
-            lst.add(dmdSecInfo);
+    private void readDmdsecs(List<Node> nodes, List<Node> errors) {
+        for(Node node: nodes) {
+            readDmdsec(node, errors);
         }        
+    }
+    
+    private void readDmdsec(Node node, List<Node> errors) {
+        DmdSecInfo dmdSecInfo = DmdSecInfo.valueOf(node);
+        if(dmdSecInfo==null) {
+            errors.add(node);
+            return;
+        }
+        dmdSecList.add(dmdSecInfo);
+        if(dmdSecMap.put(dmdSecInfo.getId(), dmdSecInfo)!=null) {
+            errors.add(node);
+            return;
+        }
+        List<DmdSecInfo> lst = dmdSecPziMap.computeIfAbsent(dmdSecInfo.pzi, pzi -> new ArrayList<>());
+        lst.add(dmdSecInfo);        
     }
 
     private boolean readMetsDivList() {
