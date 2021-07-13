@@ -188,30 +188,7 @@ public class ValuesGetter {
         if(nodeList.getLength() == 0) return null;
         return nodeList;
     }
-    
-    // TOOD: refactor all methods using this method
-    @Deprecated
-    public static ArrayList<Node> getAllAnywhereList(String nazev, Document dom){
-        NodeList nodeList = dom.getElementsByTagName(nazev); 
-        if(nodeList.getLength() == 0) {
-            return null;
-        }
-        int size = nodeList.getLength();
-        ArrayList<Node>  list = new ArrayList<>(size);
-        for(int i = 0; i < size; i++){
-            Node node = nodeList.item(i);
-            list.add(node);
-        }
-        return list;
-    }
-    
-    public static Node getFirstAnywhere(String nazev, Document dom){
-        NodeList nodeList = dom.getElementsByTagName(nazev);
-        if(nodeList.getLength() == 0) return null;
-        
-        return nodeList.item(0);
-    }
-    
+            
     public static String getValueOfAttribut(Node node, String attributName) {
         Node valueNode = getAttribut(node, attributName);
         if (valueNode == null) {
@@ -510,42 +487,7 @@ public class ValuesGetter {
         boolean bol = !orez.matches("[A-Za-z0-9]+");
         return bol;
     }
-    
-    public static String[] get_node_identifikator_zdroj(Node node){
-        if(node == null){
-            String[] values = {"ERR", "ERR", "ERR"};
-            return values;
-        }
-        String id2 = "ERR", identifikator2 = "ERR", zdroj2 = "ERR";
-        if(node.getNodeName().equals("nsesss:SpisovyPlan")){
-            Node n = ValuesGetter.getXChild(node, "nsesss:Identifikator");
-            if(ValuesGetter.hasAttribut(node, "ID")){
-                    id2 = ValuesGetter.getValueOfAttribut(node, "ID");
-                }
-            if(n != null){
-                if(ValuesGetter.hasAttribut(n, "zdroj")){
-                    zdroj2 = ValuesGetter.getValueOfAttribut(n, "zdroj");
-                }
-                identifikator2 = n.getTextContent(); 
-            }
-        }
-        else{
-            Node n = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Identifikace", "nsesss:Identifikator");
-            if(ValuesGetter.hasAttribut(node, "ID")){
-                    id2 = ValuesGetter.getValueOfAttribut(node, "ID");
-                }
-            if(n != null){
-                if(ValuesGetter.hasAttribut(n, "zdroj")){
-                    zdroj2 = ValuesGetter.getValueOfAttribut(n, "zdroj");
-                }
-                identifikator2 = n.getTextContent(); 
-            }
-        }
-
-        String[] values = {id2, identifikator2, zdroj2};
-        return values;
-    }
-    
+        
     /**
      * Prevod nazvu urovne na nazev elementu dle NSESSS
      * 

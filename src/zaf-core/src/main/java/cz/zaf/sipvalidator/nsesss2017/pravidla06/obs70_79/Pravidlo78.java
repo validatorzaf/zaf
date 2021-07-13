@@ -1,10 +1,13 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -26,28 +29,27 @@ public class Pravidlo78 extends K06PravidloBase {
         if (zakladniEntity == null) {
             return false;
         }
+        List<Node> skartacniRizeni = metsParser.getNodes(JmenaElementu.SKARTACNI_RIZENI);
+        Set<Node> skartacniRizeniSet = new HashSet<>(skartacniRizeni);
 
-        for (int i = 0; i < zakladniEntity.size(); i++) {
-            Node zakladnientita = zakladniEntity.get(i);
-            ArrayList<Node> skartacniRizeni = ValuesGetter.getAllInNode(zakladnientita, "nsesss:SkartacniRizeni",
-                                                                        metsParser.getDocument());
-            if (skartacniRizeni == null || skartacniRizeni.isEmpty()) {
-                return nastavChybu("Nenalezen element <nsesss:SkartacniRizeni>. " + getJmenoIdentifikator(
-                                                                                                         zakladnientita),
-                                   getMistoChyby(zakladnientita));
-            }
-            if (skartacniRizeni.size() != 1) {
-                return nastavChybu("Element <nsesss:SkartacniRizeni> je v základní entitě uveden vícekrát. "
-                        + getJmenoIdentifikator(zakladnientita), getMistoChyby(zakladnientita));
-            }
-            Node node = ValuesGetter.getXChild(zakladnientita, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani",
-                                               "nsesss:SkartacniRizeni");
+        for (Node zakladnientita: zakladniEntity) {
+            Node node = ValuesGetter.getXChild(zakladnientita, JmenaElementu.EVIDENCNI_UDAJE, 
+                                               "nsesss:Vyrazovani", JmenaElementu.SKARTACNI_RIZENI);
             if (node == null) {
-                return nastavChybu("Element <nsesss:SkartacniRizeni> není správně zatříděn. " + getJmenoIdentifikator(
-                                                                                                                     zakladnientita),
-                                   getMistoChyby(skartacniRizeni.get(0)));
+                return nastavChybu("Element <nsesss:SkartacniRizeni> není správně zatříděn. " + getJmenoIdentifikator(zakladnientita),
+                                   zakladnientita);
+            }
+            if(!skartacniRizeniSet.remove(node)) {
+                return nastavChybu("Element <nsesss:SkartacniRizeni> není správně zatříděn. " + getJmenoIdentifikator(zakladnientita),
+                                   zakladnientita);                
             }
         }
+
+        if (!skartacniRizeniSet.isEmpty()) {
+            return nastavChybu("Nalezen chybně použitý element <nsesss:SkartacniRizeni>.",
+                               new ArrayList<>(skartacniRizeniSet));
+        }
+        
         return true;
     }
 

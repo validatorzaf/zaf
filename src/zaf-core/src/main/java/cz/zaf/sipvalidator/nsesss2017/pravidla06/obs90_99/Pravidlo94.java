@@ -2,8 +2,10 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99;
 
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -23,18 +25,17 @@ public class Pravidlo94 extends K06PravidloBase {
     // jejíž poslední část je stejná jako hodnota elementu <nsesss:JednoduchySpisovyZnak>.",
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> plneurcenySpisovyZnak = metsParser.getPlneurcenySpisovyZnak();
-        if (plneurcenySpisovyZnak == null)
+        List<Node> plneurcenySpisovyZnak = metsParser.getNodes(JmenaElementu.PLNE_URCENY_SPISOVY_ZNAK);
+        if (CollectionUtils.isEmpty(plneurcenySpisovyZnak)) {
             return nastavChybu("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>.");
-        for (int i = 0; i < plneurcenySpisovyZnak.size(); i++) {
-            Node pusz_node = plneurcenySpisovyZnak.get(i);
+        }
+        for (Node pusz_node: plneurcenySpisovyZnak) {
             Node jsz_node = ValuesGetter.getSourozencePrvnihoSeJmenem(pusz_node, "nsesss:JednoduchySpisovyZnak");
             if (jsz_node == null) {
                 boolean b = ValuesGetter.isXParent(pusz_node, "nsesss:KrizovyOdkaz");
                 if (!b) {
-                    return nastavChybu("Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(
-                                                                                                                   pusz_node),
-                                       getMistoChyby(pusz_node));
+                    return nastavChybu("Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(pusz_node),
+                                       pusz_node);
                 }
             } else {
                 String jednoduchy = jsz_node.getTextContent();

@@ -43,7 +43,6 @@ public class MetsParser {
     protected Document document;
 
     protected Node metsMets, metsDmdSec, metsMdWrap, xmlData, metsHdr;
-    public ArrayList<Node> plneurcenySpisovyZnak;
     
     /**
      * Seznam zakladnich entit pod elementem xmldata.
@@ -179,6 +178,7 @@ public class MetsParser {
         dw.addAggregator(new NamedNodeAggregator(JmenaElementu.JAZYK, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(JmenaElementu.MANIPULACE, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(JmenaElementu.URCENE_CASOVE_OBDOBI, nodeQueryCache));
+        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.PLNE_URCENY_SPISOVY_ZNAK, nodeQueryCache));
         
         dw.addAggregator(new NamedNodeAggregator(MetsElements.AGENT, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(MetsElements.AMD_SEC, nodeQueryCache));
@@ -210,12 +210,8 @@ public class MetsParser {
         });
         dw.walk(document);
                 
-        plneurcenySpisovyZnak = ValuesGetter.getAllAnywhereList("nsesss:PlneUrcenySpisovyZnak", document);
-
         if (zakladniEntity != null && zakladniEntity.isEmpty())
             zakladniEntity = null; // kvůli pravidlům
-        if (plneurcenySpisovyZnak != null && plneurcenySpisovyZnak.isEmpty())
-            plneurcenySpisovyZnak = null;
         
         zakladniSipInfo(sipInfo);
     }
@@ -294,10 +290,6 @@ public class MetsParser {
 
     public List<Node> getIdentifikatory() {
         return getNodes(JmenaElementu.IDENTIFIKATOR);
-    }
-
-    public List<Node> getPlneurcenySpisovyZnak() {
-        return plneurcenySpisovyZnak;
     }
 
     public List<Node> getKrizoveOdkazyPevnyAno() {
