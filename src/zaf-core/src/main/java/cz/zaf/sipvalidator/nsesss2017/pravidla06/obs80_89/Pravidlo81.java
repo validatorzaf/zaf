@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -24,18 +25,14 @@ public class Pravidlo81 extends K06PravidloBase {
     // potom je jeho hodnota větší než <nsesss:DatumOd>.
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> urceneCasoveObdobi = metsParser.getUrceneCasoveObdobi();
-        if (urceneCasoveObdobi == null)
-            return true;
-        int size = urceneCasoveObdobi.size();
-        for (int i = 0; i < size; i++) {
-            Node n = urceneCasoveObdobi.get(i);
+        List<Node> urceneCasoveObdobi = metsParser.getNodes(JmenaElementu.URCENE_CASOVE_OBDOBI);
+        for (Node n: urceneCasoveObdobi) {
             Node nodeDo = ValuesGetter.getXChild(n, "nsesss:DatumDo");
             if (nodeDo != null) {
                 Node nodeOd = ValuesGetter.getXChild(n, "nsesss:DatumOd");
                 if (nodeOd == null) {
                     return nastavChybu("Nenalezen element <nsesss:DatumOd>. " + getJmenoIdentifikator(n),
-                                      getMistoChyby(n));
+                                      n);
                 }
                 try {
                     Date dateOd = ValuesGetter.vytvorDate(nodeOd, "yyyy-MM-dd");

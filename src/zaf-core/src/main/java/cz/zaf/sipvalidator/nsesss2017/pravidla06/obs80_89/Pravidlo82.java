@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -23,19 +24,15 @@ public class Pravidlo82 extends K06PravidloBase {
     //OBSAHOVÁ č.82 Pokud je v jakémkoli elementu <nsesss:UrceneCasoveObdobi> uveden dětský element <nsesss:MesicDo>, potom je jeho hodnota větší než <nsesss:MesicOd>.",
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> urceneCasoveObdobi = metsParser.getUrceneCasoveObdobi();
-        if (urceneCasoveObdobi == null) {
-            return true;
-        }
-        for (int i = 0; i < urceneCasoveObdobi.size(); i++) {
-            Node urcenecasoveobdobi = urceneCasoveObdobi.get(i);
+        List<Node> urceneCasoveObdobi = metsParser.getNodes(JmenaElementu.URCENE_CASOVE_OBDOBI);
+        for (Node urcenecasoveobdobi: urceneCasoveObdobi) {
             Node nodeDo = ValuesGetter.getXChild(urcenecasoveobdobi, "nsesss:MesicDo");
             if (nodeDo != null) {
                 Node nodeOd = ValuesGetter.getXChild(urcenecasoveobdobi, "nsesss:MesicOd");
                 if (nodeOd == null) {
                     return nastavChybu("Nenalezen element <nsesss:MesicOd>. " + getJmenoIdentifikator(
                                                                                                      urcenecasoveobdobi),
-                                       getMistoChyby(urcenecasoveobdobi));
+                                       urcenecasoveobdobi);
                 }
                 Date dateOd, dateDo;
                 try {

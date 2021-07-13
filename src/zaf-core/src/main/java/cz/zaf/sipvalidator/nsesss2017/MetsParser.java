@@ -43,8 +43,7 @@ public class MetsParser {
     protected Document document;
 
     protected Node metsMets, metsDmdSec, metsMdWrap, xmlData, metsHdr;
-    public ArrayList<Node> urceneCasoveObdobi,
-            plneurcenySpisovyZnak;
+    public ArrayList<Node> plneurcenySpisovyZnak;
     
     /**
      * Seznam zakladnich entit pod elementem xmldata.
@@ -179,6 +178,7 @@ public class MetsParser {
         dw.addAggregator(new NamedNodeAggregator(JmenaElementu.SKARTACNI_RIZENI, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(JmenaElementu.JAZYK, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(JmenaElementu.MANIPULACE, nodeQueryCache));
+        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.URCENE_CASOVE_OBDOBI, nodeQueryCache));
         
         dw.addAggregator(new NamedNodeAggregator(MetsElements.AGENT, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(MetsElements.AMD_SEC, nodeQueryCache));
@@ -210,13 +210,10 @@ public class MetsParser {
         });
         dw.walk(document);
                 
-        urceneCasoveObdobi = ValuesGetter.getAllAnywhereList("nsesss:UrceneCasoveObdobi", document);
         plneurcenySpisovyZnak = ValuesGetter.getAllAnywhereList("nsesss:PlneUrcenySpisovyZnak", document);
 
         if (zakladniEntity != null && zakladniEntity.isEmpty())
             zakladniEntity = null; // kvůli pravidlům
-        if (urceneCasoveObdobi != null && urceneCasoveObdobi.isEmpty())
-            urceneCasoveObdobi = null;
         if (plneurcenySpisovyZnak != null && plneurcenySpisovyZnak.isEmpty())
             plneurcenySpisovyZnak = null;
         
@@ -297,10 +294,6 @@ public class MetsParser {
 
     public List<Node> getIdentifikatory() {
         return getNodes(JmenaElementu.IDENTIFIKATOR);
-    }
-
-    public List<Node> getUrceneCasoveObdobi() {
-        return urceneCasoveObdobi;
     }
 
     public List<Node> getPlneurcenySpisovyZnak() {

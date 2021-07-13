@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -22,17 +23,14 @@ public class Pravidlo83 extends K06PravidloBase {
     // <nsesss:RokDo>, potom je jeho hodnota větší než <nsesss:RokOd>."
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> urceneCasoveObdobi = metsParser.getUrceneCasoveObdobi();
-        if (urceneCasoveObdobi == null)
-            return true;
-        for (int i = 0; i < urceneCasoveObdobi.size(); i++) {
-            Node ucobdobi = urceneCasoveObdobi.get(i);
+        List<Node> urceneCasoveObdobi = metsParser.getNodes(JmenaElementu.URCENE_CASOVE_OBDOBI);
+        for (Node ucobdobi: urceneCasoveObdobi) {
             Node nodeDo = ValuesGetter.getXChild(ucobdobi, "nsesss:RokDo");
             if (nodeDo != null) {
                 Node nodeOd = ValuesGetter.getXChild(ucobdobi, "nsesss:RokOd");
                 if (nodeOd == null) {
                     return nastavChybu("Nenalezen element <nsesss:RokOd>. " + getJmenoIdentifikator(ucobdobi),
-                                      getMistoChyby(ucobdobi));
+                                      ucobdobi);
                 }
                 Integer intOd = vratRok(nodeOd);
                 if (intOd == null) {
@@ -44,8 +42,8 @@ public class Pravidlo83 extends K06PravidloBase {
                 }
                 if (!(intOd < intDo)) {
                     return nastavChybu("Nesplněna podmínka pravidla. OD: " + intOd + ". DO: " + intDo + ". "
-                            + getJmenoIdentifikator(ucobdobi), getMistoChyby(nodeOd) + " " + getMistoChyby(
-                                                                                                                  nodeDo));
+                            + getJmenoIdentifikator(ucobdobi), 
+                            getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo));
                 }
             }
         }
