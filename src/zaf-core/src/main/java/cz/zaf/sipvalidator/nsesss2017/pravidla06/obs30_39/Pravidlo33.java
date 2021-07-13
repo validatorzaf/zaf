@@ -1,10 +1,11 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
+import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -23,18 +24,17 @@ public class Pravidlo33 extends K06PravidloBase {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-        NodeList nodeList = ValuesGetter.getAllAnywhere("mets:digiprovMD", metsParser.getDocument());
-        if(nodeList == null){
+	    List<Node> nodeList = metsParser.getNodes(MetsElements.DIGIPROV_MD);
+        if(nodeList.size() == 0){
             return nastavChybu("Nenalezen žádný element <mets:digiprovMD>.");
         }
-        for(int i = 0; i < nodeList.getLength(); i++){
-            Node digiprovMD = nodeList.item(i);
+        for(Node digiprovMD: nodeList) {
             ArrayList<Node> list = ValuesGetter.getSpecificChildWithName(digiprovMD, "mets:mdWrap");
             if(list.isEmpty()){
-                return nastavChybu("Element <mets:digiprovMD> neobsahuje dětský element <mets:mdWrap>.", getMistoChyby(digiprovMD));
+                return nastavChybu("Element <mets:digiprovMD> neobsahuje dětský element <mets:mdWrap>.", digiprovMD);
             }
             if(list.size() > 1){
-                return nastavChybu("Element <mets:digiprovMD> obsahuje více dětských elementů <mets:mdWrap>.", getMistoChyby(digiprovMD));
+                return nastavChybu("Element <mets:digiprovMD> obsahuje více dětských elementů <mets:mdWrap>.", digiprovMD);
             }
         }
         return true;

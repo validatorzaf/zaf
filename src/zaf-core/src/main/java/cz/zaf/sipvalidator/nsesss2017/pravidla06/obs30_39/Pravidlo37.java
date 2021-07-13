@@ -1,8 +1,11 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39;
 
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+import org.w3c.dom.Node;
+
+import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -20,21 +23,20 @@ public class Pravidlo37 extends K06PravidloBase {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-        NodeList nodeList = ValuesGetter.getAllAnywhere("mets:digiprovMD", metsParser.getDocument());
-        if(nodeList == null){
+        List<Node> nodeList = metsParser.getNodes(MetsElements.DIGIPROV_MD);
+        if(nodeList.size() == 0){
             return nastavChybu("Nenalezen žádný element <mets:digiprovMD>.");
         }
-        for(int i = 0; i < nodeList.getLength(); i++){
-            Node digiprovMD = nodeList.item(i);
+        for(Node digiprovMD: nodeList) {
             Node mdWrap = ValuesGetter.getXChild(digiprovMD, "mets:mdWrap");
             if(mdWrap == null){
                 return nastavChybu("Element <mets:digiprovMD> neobsahuje dětský element <mets:mdWrap>.", getMistoChyby(digiprovMD));
             }
-            if(!ValuesGetter.hasAttribut(mdWrap, "MIMETYPE")){
+            String g = ValuesGetter.getValueOfAttribut(mdWrap, "MIMETYPE");
+            if(StringUtils.isEmpty(g)) {
                 return nastavChybu("Element <mets:mdWrap> neobsahuje atribut MIMETYPE.", getMistoChyby(mdWrap));
             }
-            String g = ValuesGetter.getValueOfAttribut(mdWrap, "MIMETYPE");
-            if(!g.equals("text/xml")){
+            if(!g.equals("text/xml")) {
                 return nastavChybu("Atribut MIMETYPE neobsahuje hodnotu text/xml.", getMistoChyby(mdWrap));
             }
         }

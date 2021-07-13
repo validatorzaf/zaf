@@ -39,23 +39,7 @@ public class ValuesGetter {
         Node entita = ValuesGetter.getXParent(parent, "nsesss:EvidencniUdaje").getParentNode();
         return entita;      
     }
-    
-    public static Node getNodeWithID(String id, String nodeName, Document dom){
-        NodeList nodeList = ValuesGetter.getAllAnywhere(nodeName, dom);
-        ArrayList<Node> founded = new ArrayList<>();
-        for(int i = 0; i < nodeList.getLength(); i++){
-            Node node = nodeList.item(i);
-            if(hasAttribut(node, "ID")){
-                boolean b = hasAttributValue(node, "ID", id);
-                if(b) founded.add(node);
-            }
-            
-        }
-        if(!founded.isEmpty()) return founded.get(0);
         
-        return null;
-    }
-    
     public static Node getEntityWithIdentifikator(Node identifikator){
         if(identifikator.getParentNode().getNodeName().equals("nsesss:Identifikace")){
             if(identifikator.getParentNode().getParentNode().getNodeName().equals("nsesss:EvidencniUdaje")){

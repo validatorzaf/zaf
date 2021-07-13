@@ -1,8 +1,11 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39;
 
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+import org.w3c.dom.Node;
+
+import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -25,22 +28,22 @@ public class Pravidlo34 extends K06PravidloBase {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-        NodeList nodeList = ValuesGetter.getAllAnywhere("mets:digiprovMD", metsParser.getDocument());
-        if(nodeList == null){
+        List<Node> nodeList = metsParser.getNodes(MetsElements.DIGIPROV_MD);
+        if(nodeList.size() == 0){
             return nastavChybu("Nenalezen žádný element <mets:digiprovMD>.");
         }
-        for(int i = 0; i < nodeList.getLength(); i++){
-            Node digiprovMD = nodeList.item(i);
+        for(Node digiprovMD: nodeList) {
             Node mdWrap = ValuesGetter.getXChild(digiprovMD, "mets:mdWrap");
             if(mdWrap == null){
-                return nastavChybu("Element <mets:digiprovMD> neobsahuje dětský element <mets:mdWrap>.", getMistoChyby(digiprovMD));
-            }
-            if(!ValuesGetter.hasAttribut(mdWrap, "MDTYPEVERSION")){
-                return nastavChybu("Element <mets:mdWrap> neobsahuje atribut MDTYPEVERSION.", getMistoChyby(mdWrap));
+                return nastavChybu("Element <mets:digiprovMD> neobsahuje dětský element <mets:mdWrap>.", digiprovMD);
             }
             String g = ValuesGetter.getValueOfAttribut(mdWrap, "MDTYPEVERSION");
+            if(StringUtils.isEmpty(g)){
+                return nastavChybu("Element <mets:mdWrap> neobsahuje atribut MDTYPEVERSION.", mdWrap);
+            }
+            
             if(!g.equals("1.0")){
-                return nastavChybu("Atribut MDTYPEVERSION neobsahuje hodnotu 1.0.", getMistoChyby(mdWrap));
+                return nastavChybu("Atribut MDTYPEVERSION neobsahuje hodnotu 1.0.", mdWrap);
             }
         }
         return true;
