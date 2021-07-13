@@ -1,8 +1,10 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99;
 
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import java.util.List;
 
+import org.w3c.dom.Node;
+
+import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
@@ -51,24 +53,20 @@ public class Pravidlo94a extends K06PravidloBase {
 
 	private boolean kontrolaSoucasti() {
 		
-		NodeList soucasti = ValuesGetter.getAllAnywhere("nsesss:Soucast", metsParser.getDocument());
-		if (soucasti == null) {
-			return true;
-		}
-		
-		for (int i = 0; i < soucasti.getLength(); i++) {
-			Node soucast = soucasti.item(i);
+		List<Node> soucasti = metsParser.getNodes(JmenaElementu.SOUCAST);
+		for (Node soucast: soucasti) {
 			Node plneUrceny_node = ValuesGetter.getXChild(soucast, "nsesss:EvidencniUdaje", "nsesss:Trideni",
 					"nsesss:PlneUrcenySpisovyZnak");
 			if (plneUrceny_node == null) {
 				return nastavChybu(
 						"Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(soucast),
-						getMistoChyby(soucast));
+						soucast);
 			}
 			String hodnota = plneUrceny_node.getTextContent();
 			if (!K06_Obsahova.spisZnakObsahujeOddelovac(hodnota)) {
 				return nastavChybu("Hodnota elementu <nsesss:PlneUrcenySpisovyZnak> v sobě neobsahuje oddělovač. "
-						+ getJmenoIdentifikator(soucast), getMistoChyby(plneUrceny_node));
+						+ getJmenoIdentifikator(soucast), 
+						plneUrceny_node);
 			}
 		}
 
@@ -76,15 +74,8 @@ public class Pravidlo94a extends K06PravidloBase {
 	}
 
 	private boolean kontrolaVecneSkupiny() {
-		NodeList vecneSkupiny = ValuesGetter.getAllAnywhere("nsesss:VecnaSkupina", metsParser.getDocument());
-
-		if (vecneSkupiny == null) {
-			return true;
-		}
-
-		
-		for (int i = 0; i < vecneSkupiny.getLength(); i++) {
-			Node vecnaSkupina = vecneSkupiny.item(i);
+		List<Node> vecneSkupiny = metsParser.getNodes(JmenaElementu.VECNA_SKUPINA);
+		for (Node vecnaSkupina: vecneSkupiny) {
 			boolean dite = ValuesGetter.getXChild(vecnaSkupina, "nsesss:EvidencniUdaje", "nsesss:Trideni",
 					"nsesss:MaterskaEntita", "nsesss:VecnaSkupina") != null;
 			if (dite) {
@@ -93,12 +84,12 @@ public class Pravidlo94a extends K06PravidloBase {
 				if (plneUrceny_node == null) {
 					return nastavChybu(
 							"Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(vecnaSkupina),
-							getMistoChyby(vecnaSkupina));
+							vecnaSkupina);
 				}
 				String hodnota = plneUrceny_node.getTextContent();
 				if (!K06_Obsahova.spisZnakObsahujeOddelovac(hodnota)) {
 					return nastavChybu("Hodnota elementu <nsesss:PlneUrcenySpisovyZnak> v sobě neobsahuje oddělovač. "
-							+ getJmenoIdentifikator(vecnaSkupina), getMistoChyby(plneUrceny_node));
+							+ getJmenoIdentifikator(vecnaSkupina), plneUrceny_node);
 				}
 			}
 		}
