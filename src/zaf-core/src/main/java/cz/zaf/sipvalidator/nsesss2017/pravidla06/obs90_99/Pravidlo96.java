@@ -1,6 +1,5 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -148,8 +147,8 @@ public class Pravidlo96 extends K06PravidloBase {
                                        + getMistoChyby(n_zakl_pusz) + " " + getMistoChyby(n_soucast_jsz) + " "
                                        + getMistoChyby(n_soucast_pusz));
 
-        ArrayList<Node> vecneSkupiny = ValuesGetter.getAllInNode(dil, "nsesss:VecnaSkupina",
-                                                                 metsParser.getDocument());
+        List<Node> vsechnyVecneSkupiny = metsParser.getNodes(JmenaElementu.VECNA_SKUPINA);
+        List<Node> vecneSkupiny = ValuesGetter.getAllChildNodes(dil, vsechnyVecneSkupiny);
         if (vecneSkupiny == null || vecneSkupiny.isEmpty())
             return nastavChybu("Nenalezen element <nsesss:VecnaSkupina> základní entity. "
                     + getJmenoIdentifikator(dil), getMistoChyby(dil));

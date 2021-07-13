@@ -15,7 +15,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.Validate;
-import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -24,22 +23,7 @@ import cz.zaf.sipvalidator.helper.Helper;
 
 
 public class ValuesGetter {
-    
-    public static Node getEntityFromIdentifikator(Node identifikator){
-        Node parent = identifikator.getParentNode();
-        String name = parent.getNodeName();
-        if(name.equals("nsesss:BezpecnostniKategorie")){
-            Node node = ValuesGetter.getXParent(parent, "nsesss:Pristupnost", "nsesss:EvidencniUdaje").getParentNode();
-            return node;
-        }
-        if(name.equals("nsesss:SpisovyPlan") || name.equals("nsesss:SkartacniRezim")){
-            return parent;
-        }
-        
-        Node entita = ValuesGetter.getXParent(parent, "nsesss:EvidencniUdaje").getParentNode();
-        return entita;      
-    }
-        
+            
     public static Node getEntityWithIdentifikator(Node identifikator){
         if(identifikator.getParentNode().getNodeName().equals("nsesss:Identifikace")){
             if(identifikator.getParentNode().getParentNode().getNodeName().equals("nsesss:EvidencniUdaje")){
@@ -180,15 +164,7 @@ public class ValuesGetter {
 
         return null;
     }
-    
-    // TOOD: refactor all methods using this method
-    @Deprecated
-    public static NodeList getAllAnywhere(String nazev, Document dom){
-        NodeList nodeList = dom.getElementsByTagName(nazev); 
-        if(nodeList.getLength() == 0) return null;
-        return nodeList;
-    }
-            
+                
     public static String getValueOfAttribut(Node node, String attributName) {
         Node valueNode = getAttribut(node, attributName);
         if (valueNode == null) {
@@ -365,31 +341,7 @@ public class ValuesGetter {
         Node sourozenec = getXChild(rodic, nazevSourozence);
         return sourozenec;
     }  
-    
-    public static boolean maRodicPouzeTytoPotomky(Node rodic, String... childNames){
-        NodeList nodeList = rodic.getChildNodes();
-        ArrayList<String> nodeNames = new ArrayList<>();
-        for(int i = 0; i < nodeList.getLength(); i++){
-            Node node = nodeList.item(i);
-            String name = node.getNodeName();
-            if(node.getNodeType() == ELEMENT_NODE){
-                nodeNames.add(name);
-            }
-        }
-        int pocitadlo = 0;
-        for(String s : childNames){
-            for(int j = 0; j < nodeNames.size(); j++){
-                if(nodeNames.get(j).equals(s)){
-                    pocitadlo ++;
-                }
-            }
-        }
-        boolean b = pocitadlo == nodeNames.size();
         
-        
-        return b;
-    }
-    
     public static ArrayList<Node> getChildList(Node parent, String... childNames){
         ArrayList<Node> list = new ArrayList<>();
         if(parent == null) return list;
@@ -413,19 +365,6 @@ public class ValuesGetter {
         }
         return childNodes;
     }
-
-    // TODO: refactor and remove
-    public static ArrayList<Node> getAllInNode(Node node, String elementName, Document dom){
-        ArrayList<Node> list = new ArrayList<>();
-        NodeList vsechny = getAllAnywhere(elementName, dom);
-        if(vsechny == null) return null;
-        for(int i = 0; i < vsechny.getLength(); i++){
-            Node n = vsechny.item(i);
-            if(isXParent(node, n)) list.add(n);
-        }
-        if(list.isEmpty()) return null;
-        return list;    
-    }
         
     public static boolean getObsahujeRodicElementSHodnotou(Node rodic, String elementName, String elementValue){
         Node node = getXChild(rodic, elementName);
@@ -447,47 +386,7 @@ public class ValuesGetter {
         }
         return null;
     }
-    
-    public static Node getNodeByValueOfAtributFromSpecificList_andRemove(List<Node> nodeList, String atributName,
-                                                                         String atributValue) {
-        for(int i = 0; i < nodeList.size(); i++){
-            Node n = nodeList.get(i);
-            boolean find = hasAttributValue(n, atributName, atributValue);
-            if(find){
-                nodeList.remove(i);
-                return n;
-            } 
-        }
-        return null;
-    }
-    
-    public static ArrayList<Node> getArrayListOfNodesByValueOfAtributFromSpecificArrayList(List<Node> nodeList,
-                                                                                           String atributName,
-                                                                                           String atributValue) {
-        if(nodeList == null) return null;
-        ArrayList<Node> list = new ArrayList<>();
-        for(int i = 0; i < nodeList.size(); i++){
-            Node n = nodeList.get(i);
-            boolean find = hasAttributValue(n, atributName, atributValue);
-            if(find){
-                list.add(n);
-            } 
-        }
-        return list;
-    }   
-
-    public static boolean compareSpisoveZnaky(String jednoduchy, String plneUrceny){
-        if(jednoduchy.equals(plneUrceny)) return true;
-
-        int lastIn = plneUrceny.lastIndexOf(jednoduchy);
-        if(lastIn == -1) return false;
-        String orez = plneUrceny.substring(0, lastIn);
-        if(orez.equals("")) return false;
-        orez = orez.substring(orez.length()-1);
-        boolean bol = !orez.matches("[A-Za-z0-9]+");
-        return bol;
-    }
-        
+                
     /**
      * Prevod nazvu urovne na nazev elementu dle NSESSS
      * 
