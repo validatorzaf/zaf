@@ -1,8 +1,10 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59;
 
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import java.util.List;
 
+import org.w3c.dom.Node;
+
+import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -20,11 +22,8 @@ public class Pravidlo53 extends K06PravidloBase {
     //OBSAHOVÁ č.53 Pokud existuje jakýkoli element <mets:FLocat>, každý obsahuje atribut LOCTYPE s hodnotou URL.",
     @Override
     protected boolean kontrolaPravidla() {
-        NodeList nodeListFlocat = ValuesGetter.getAllAnywhere("mets:FLocat", metsParser.getDocument());
-        if (nodeListFlocat == null)
-            return true;
-        for (int i = 0; i < nodeListFlocat.getLength(); i++) {
-            Node node = nodeListFlocat.item(i);
+        List<Node> nodeListFlocat = metsParser.getNodes(MetsElements.FLOCAT);
+        for (Node node: nodeListFlocat) {
             if (!ValuesGetter.hasAttribut(node, "LOCTYPE")) {
                 return nastavChybu("Element <mets:FLocat> neobsahuje atribut LOCTYPE.", node);
             }

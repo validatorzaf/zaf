@@ -2,11 +2,12 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
@@ -26,12 +27,13 @@ public class Pravidlo52 extends K06PravidloBase {
     @Override
     protected boolean kontrolaPravidla() {
 
-        NodeList nodeListFlocat = ValuesGetter.getAllAnywhere("mets:FLocat", metsParser.getDocument());
-        ArrayList<String> seznam_z_xml = new ArrayList<>();
-        if (nodeListFlocat == null)
+        List<Node> nodeListFlocat = metsParser.getNodes(MetsElements.FLOCAT);        
+        if (nodeListFlocat.size() == 0) {
             return true;
-        for (int i = 0; i < nodeListFlocat.getLength(); i++) {
-            Node node = nodeListFlocat.item(i);
+        }
+
+        ArrayList<String> seznam_z_xml = new ArrayList<>();
+        for (Node node: nodeListFlocat) {
             if (!ValuesGetter.hasAttribut(node, "xlink:href")) {
                 return nastavChybu("Element <mets:FLocat> neobsahuje atribut xlink:href.", node);
             }

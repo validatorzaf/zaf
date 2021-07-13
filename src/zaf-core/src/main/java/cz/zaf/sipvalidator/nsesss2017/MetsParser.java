@@ -182,7 +182,9 @@ public class MetsParser {
         dw.addAggregator(new NamedNodeAggregator(MetsElements.AMD_SEC, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(MetsElements.DIV, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(MetsElements.FILE, nodeQueryCache));
-        dw.addAggregator(new NamedNodeAggregator(MetsElements.FILE_GRP, nodeQueryCache));        
+        dw.addAggregator(new NamedNodeAggregator(MetsElements.FILE_GRP, nodeQueryCache));
+        dw.addAggregator(new NamedNodeAggregator(MetsElements.FLOCAT, nodeQueryCache));
+        dw.addAggregator(new NamedNodeAggregator(MetsElements.FPTR, nodeQueryCache));
         // pevne krizove odkazy
         dw.addAggregator(new NodeAggregator() {
             List<Node> nodes = new ArrayList<>();
