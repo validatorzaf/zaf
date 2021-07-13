@@ -4,17 +4,19 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
@@ -42,14 +44,13 @@ public class Pravidlo99 extends K06PravidloBase {
     protected boolean kontrolaPravidla() {
 
         // získání všech komponent ve výstupním datovém formátu
-        NodeList komponenty = ValuesGetter.getAllAnywhere("nsesss:Komponenta", metsParser.getDocument());
-        if (komponenty == null || komponenty.getLength() == 0) {
+        List<Node> komponenty = metsParser.getNodes(JmenaElementu.KOMPONENTA);
+        if (CollectionUtils.isEmpty(komponenty)) {
             return true;
         }
 
         Map<Node, Map<Integer, Node>> kandidati = new HashMap<>();
-        for (int ki = 0; ki < komponenty.getLength(); ki++) {
-            Node komponenta = komponenty.item(ki);
+        for (Node komponenta: komponenty) {
             String formaUchovani = ValuesGetter.getValueOfAttribut(komponenta, JmenaElementu.FORMA_UCHOVANI);
 
             // posuzujeme jen original a original ve vystupnim formatu
@@ -85,18 +86,17 @@ public class Pravidlo99 extends K06PravidloBase {
                 String id = ValuesGetter.getValueOfAttribut(komponenta, JmenaElementu.ID);
                 if (StringUtils.isEmpty(id)) {
                     return nastavChybu("Komponenta neni ve formátu Pdf/A (chybí atribut ID) " + komponenta,
-                                       getMistoChyby(komponenta));
+                                       komponenta);
                 }
                 checkFiles.add(id);
             }
         }
 
-        NodeList nodeListFileGrp = ValuesGetter.getAllAnywhere("mets:fileGrp", metsParser.getDocument());
-        if (nodeListFileGrp == null) {
+        List<Node> nodeListFileGrp = metsParser.getNodes(MetsElements.FILE_GRP);
+        if (CollectionUtils.isEmpty(nodeListFileGrp)) {
             return true;
         }
-        for (int fg = 0; fg < nodeListFileGrp.getLength(); fg++) {
-            Node fileGrpNode = nodeListFileGrp.item(fg);
+        for (Node fileGrpNode: nodeListFileGrp) {
             ArrayList<Node> fileNodes = ValuesGetter.getChildList(fileGrpNode, "mets:file");
             for (Node fileNode : fileNodes) {
                 // overeni ID, zda ma byt soubor kontrolovan
