@@ -1,11 +1,12 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49;
 
 import java.io.File;
+import java.util.List;
 
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
@@ -25,11 +26,8 @@ public class Pravidlo48 extends K06PravidloBase {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-        NodeList nodeListMetsFile = ValuesGetter.getAllAnywhere("mets:file", metsParser.getDocument());
-        if(nodeListMetsFile == null) return true;
-        for (int i = 0; i < nodeListMetsFile.getLength(); i++)
-        {
-            Node metsFile = nodeListMetsFile.item(i);
+	    List<Node> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);
+	    for (Node metsFile: nodeListMetsFile) {
             if(!kontrolaSouboru(metsFile)) {
             	return false;
             }
@@ -39,15 +37,15 @@ public class Pravidlo48 extends K06PravidloBase {
 
 	private boolean kontrolaSouboru(Node metsFile) {
         if(!ValuesGetter.hasAttribut(metsFile, "SIZE")){
-            return nastavChybu("Element <mets:file> neobsahuje atribut SIZE.", getMistoChyby(metsFile));
+            return nastavChybu("Element <mets:file> neobsahuje atribut SIZE.", metsFile);
         }
         String hodnotaVelikosti = ValuesGetter.getValueOfAttribut(metsFile, "SIZE");            
         Node flocat = ValuesGetter.getXChild(metsFile, "mets:FLocat");
         if(flocat == null){
-            return nastavChybu("Nenalezen dětský element <mets:FLocat> elementu <mets:file>.", getMistoChyby(metsFile));
+            return nastavChybu("Nenalezen dětský element <mets:FLocat> elementu <mets:file>.", metsFile);
         }
         if(!ValuesGetter.hasAttribut(flocat, "xlink:href")){
-            return nastavChybu("Element <mets:FLocat> neobsahuje atribut xlink:href.", getMistoChyby(flocat));
+            return nastavChybu("Element <mets:FLocat> neobsahuje atribut xlink:href.", flocat);
         }
         String xlinkHref = ValuesGetter.getValueOfAttribut(flocat, "xlink:href"); // komponenty/jmenosouboru
         xlinkHref = HelperString.replaceSeparators(xlinkHref);

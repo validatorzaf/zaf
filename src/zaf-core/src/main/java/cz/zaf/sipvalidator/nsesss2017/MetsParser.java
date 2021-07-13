@@ -181,6 +181,7 @@ public class MetsParser {
         dw.addAggregator(new NamedNodeAggregator(MetsElements.AGENT, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(MetsElements.AMD_SEC, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(MetsElements.DIV, nodeQueryCache));
+        dw.addAggregator(new NamedNodeAggregator(MetsElements.FILE, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(MetsElements.FILE_GRP, nodeQueryCache));        
         // pevne krizove odkazy
         dw.addAggregator(new NodeAggregator() {

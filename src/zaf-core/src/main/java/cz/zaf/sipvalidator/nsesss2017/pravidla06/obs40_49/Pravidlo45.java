@@ -4,13 +4,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.helper.HelperString;
+import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.MimetypeDetector;
@@ -34,30 +35,28 @@ public class Pravidlo45 extends K06PravidloBase {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-        NodeList nodeListMetsFile = ValuesGetter.getAllAnywhere("mets:file", metsParser.getDocument());
-        if(nodeListMetsFile == null) return true;
-        for (int i = 0; i < nodeListMetsFile.getLength(); i++){
-            Node metsFile = nodeListMetsFile.item(i);
+        List<Node> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);
+        for (Node metsFile: nodeListMetsFile) {
 
             String mimeType = ValuesGetter.getValueOfAttribut(metsFile, JmenaElementu.METS_MIMETYPE); // application/pdf, text/plain
             if (!HelperString.hasContent(mimeType)) {
-                return nastavChybu("Element <mets:file> nemá atribut MIMETYPE.", getMistoChyby(metsFile));
+                return nastavChybu("Element <mets:file> nemá atribut MIMETYPE.", metsFile);
             }
             Node flocat = ValuesGetter.getXChild(metsFile, "mets:FLocat");
             if(flocat == null){
-                return nastavChybu("Element <mets:file> nemá dětský element <mets:FLocat>.", getMistoChyby(metsFile));
+                return nastavChybu("Element <mets:file> nemá dětský element <mets:FLocat>.", metsFile);
             }
             
             String xlinkHref = ValuesGetter.getValueOfAttribut(flocat, "xlink:href"); // komponenty/jmenosouboru
             if (!HelperString.hasContent(xlinkHref)) {
-                return nastavChybu("Element <mets:FLocat> nemá atribut xlink:href.", getMistoChyby(flocat));
+                return nastavChybu("Element <mets:FLocat> nemá atribut xlink:href.", flocat);
             }
             xlinkHref = HelperString.replaceSeparators(xlinkHref);
             //kvůli komponenty/
             int sep = xlinkHref.lastIndexOf(File.separator);
             if (sep == -1) {
                 return nastavChybu("Element <mets:FLocat> má ve svém atributu xlink:href špatně uvedenou cestu ke komponentě: "
-                        + xlinkHref + ".", getMistoChyby(flocat));
+                        + xlinkHref + ".", flocat);
             }
             String ko_over = xlinkHref.substring(0, sep);
             if(!ko_over.equals("komponenty")){

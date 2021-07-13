@@ -1,8 +1,10 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49;
 
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import java.util.List;
 
+import org.w3c.dom.Node;
+
+import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -20,13 +22,10 @@ public class Pravidlo49 extends K06PravidloBase {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-        NodeList nodeListMetsFile = ValuesGetter.getAllAnywhere("mets:file", metsParser.getDocument());
-        if(nodeListMetsFile == null) return true;
-        for (int i = 0; i < nodeListMetsFile.getLength(); i++)
-        {
-            Node metsFile = nodeListMetsFile.item(i);
+	    List<Node> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);
+        for (Node metsFile: nodeListMetsFile) {            
             if (!ValuesGetter.hasAttribut(metsFile, "CREATED")) {
-                return nastavChybu("Elenemt <mets:file> neobsahuje atribut CREATED.", getMistoChyby(nodeListMetsFile.item(i)));
+                return nastavChybu("Elenemt <mets:file> neobsahuje atribut CREATED.", metsFile);
             }
         }   
         return true;

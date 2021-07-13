@@ -197,12 +197,16 @@ public class ValuesGetter {
         return null;
     }
     
+    // TOOD: refactor all methods using this method
+    @Deprecated
     public static NodeList getAllAnywhere(String nazev, Document dom){
         NodeList nodeList = dom.getElementsByTagName(nazev); 
         if(nodeList.getLength() == 0) return null;
         return nodeList;
     }
     
+    // TOOD: refactor all methods using this method
+    @Deprecated
     public static ArrayList<Node> getAllAnywhereList(String nazev, Document dom){
         NodeList nodeList = dom.getElementsByTagName(nazev); 
         if(nodeList.getLength() == 0) {
