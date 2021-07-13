@@ -449,18 +449,7 @@ public class ValuesGetter {
         if(list.isEmpty()) return null;
         return list;    
     }
-    
-    public static Node getFirstInNode(Node node, String elementName, Document dom){
-        NodeList vsechny = getAllAnywhere(elementName, dom);
-        if(vsechny == null) return null;
-        for(int i = 0; i < vsechny.getLength(); i++){
-            Node n = vsechny.item(i);
-            if(isXParent(node, n)) return n;
-        }
         
-        return null;
-    }
-    
     public static boolean getObsahujeRodicElementSHodnotou(Node rodic, String elementName, String elementValue){
         Node node = getXChild(rodic, elementName);
         if(node != null){

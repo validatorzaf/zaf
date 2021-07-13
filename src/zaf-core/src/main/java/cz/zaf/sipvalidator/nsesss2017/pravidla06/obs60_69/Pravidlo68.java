@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -26,23 +27,29 @@ public class Pravidlo68 extends K06PravidloBase {
             return false;
         }
 
-        for (int i = 0; i < zakladniEntity.size(); i++) {
-            Node zakladnientita = zakladniEntity.get(i);
-            if (zakladnientita.getNodeName().equals("nsesss:Dokument") || zakladnientita.getNodeName().equals(
-                                                                                                              "nsesss:Spis")) {
-                Node vecnaskupina = ValuesGetter.getFirstInNode(zakladnientita, "nsesss:VecnaSkupina", metsParser
-                        .getDocument());
-                if (vecnaskupina == null) {
-                    return nastavChybu("Nenalezena rodičovská entita věcná skupina základní entity. "
+        for (Node zakladnientita: zakladniEntity) {
+            Node vecnaskupina;
+            if (zakladnientita.getNodeName().equals("nsesss:Dokument") ) {
+                vecnaskupina = ValuesGetter.getXChild(zakladnientita, JmenaElementu.EVIDENCNI_UDAJE,
+                                                      "nsesss:Trideni", "nsesss:MaterskeEntity",
+                                                      JmenaElementu.VECNA_SKUPINA);
+            } else 
+            if (zakladnientita.getNodeName().equals("nsesss:Spis")) {
+                vecnaskupina = ValuesGetter.getXChild(zakladnientita, JmenaElementu.EVIDENCNI_UDAJE,
+                                                      "nsesss:Trideni", "nsesss:MaterskaEntita",
+                                                      JmenaElementu.VECNA_SKUPINA);
+            } else {
+                return true;
+            }
+            if (vecnaskupina == null) {
+                return nastavChybu("Nenalezena rodičovská entita věcná skupina základní entity. "
                             + getJmenoIdentifikator(zakladnientita), zakladnientita);
-                }
-                Node sr = ValuesGetter.getXChild(vecnaskupina, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani",
-                                                 "nsesss:SkartacniRezim");
-                if (sr == null) {
-                    return nastavChybu("Nenalezen element <nsesss:SkartacniRezim>. " + getJmenoIdentifikator(
-                                                                                                            vecnaskupina),
+            }
+            Node sr = ValuesGetter.getXChild(vecnaskupina, JmenaElementu.EVIDENCNI_UDAJE, "nsesss:Vyrazovani",
+                                             "nsesss:SkartacniRezim");
+            if (sr == null) {
+                return nastavChybu("Nenalezen element <nsesss:SkartacniRezim>. " + getJmenoIdentifikator(vecnaskupina),
                                        vecnaskupina);
-                }
             }
         }
         return true;

@@ -43,7 +43,7 @@ public class MetsParser {
     protected Document document;
 
     protected Node metsMets, metsDmdSec, metsMdWrap, xmlData, metsHdr;
-    public ArrayList<Node> manipulace, urceneCasoveObdobi,
+    public ArrayList<Node> urceneCasoveObdobi,
             plneurcenySpisovyZnak;
     
     /**
@@ -178,6 +178,8 @@ public class MetsParser {
         dw.addAggregator(new NamedNodeAggregator(JmenaElementu.VYRIZENI_UZAVRENI, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(JmenaElementu.SKARTACNI_RIZENI, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(JmenaElementu.JAZYK, nodeQueryCache));
+        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.MANIPULACE, nodeQueryCache));
+        
         dw.addAggregator(new NamedNodeAggregator(MetsElements.AGENT, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(MetsElements.AMD_SEC, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(MetsElements.DIGIPROV_MD, nodeQueryCache));
@@ -185,7 +187,7 @@ public class MetsParser {
         dw.addAggregator(new NamedNodeAggregator(MetsElements.FILE, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(MetsElements.FILE_GRP, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(MetsElements.FLOCAT, nodeQueryCache));
-        dw.addAggregator(new NamedNodeAggregator(MetsElements.FPTR, nodeQueryCache));
+        dw.addAggregator(new NamedNodeAggregator(MetsElements.FPTR, nodeQueryCache));        
         // pevne krizove odkazy
         dw.addAggregator(new NodeAggregator() {
             List<Node> nodes = new ArrayList<>();
@@ -208,14 +210,11 @@ public class MetsParser {
         });
         dw.walk(document);
                 
-        manipulace = ValuesGetter.getAllAnywhereList("nsesss:Manipulace", document);
         urceneCasoveObdobi = ValuesGetter.getAllAnywhereList("nsesss:UrceneCasoveObdobi", document);
         plneurcenySpisovyZnak = ValuesGetter.getAllAnywhereList("nsesss:PlneUrcenySpisovyZnak", document);
 
         if (zakladniEntity != null && zakladniEntity.isEmpty())
             zakladniEntity = null; // kvůli pravidlům
-        if (manipulace != null && manipulace.isEmpty())
-            manipulace = null;
         if (urceneCasoveObdobi != null && urceneCasoveObdobi.isEmpty())
             urceneCasoveObdobi = null;
         if (plneurcenySpisovyZnak != null && plneurcenySpisovyZnak.isEmpty())
@@ -296,9 +295,6 @@ public class MetsParser {
         return getNodes(JmenaElementu.NAZEV);
     }
 
-    public List<Node> getManipulace() {
-        return manipulace;
-    }
     public List<Node> getIdentifikatory() {
         return getNodes(JmenaElementu.IDENTIFIKATOR);
     }

@@ -92,46 +92,46 @@ public class Pravidlo96 extends K06PravidloBase {
         return true;
     }
 
-    private boolean kontrolaDilu(Node zakladnientita,
+    private boolean kontrolaDilu(Node dil,
                                  Node n_zakl_jsz, Node n_zakl_pusz) {
         String jednoduchySpZnZaklEnt = n_zakl_jsz.getTextContent();
         String plneUrcenySpZnZaklEnt = n_zakl_pusz.getTextContent();
 
-        Node n_soucast = ValuesGetter.getFirstInNode(zakladnientita, "nsesss:Soucast",
-                                                     metsParser.getDocument());
-        if (n_soucast == null)
-            return nastavChybu("Nenalezen element <nsesss:Soucast>. " + getJmenoIdentifikator(zakladnientita),
-                               getMistoChyby(zakladnientita));
-        Node n_soucast_jsz = ValuesGetter.getXChild(n_soucast, "nsesss:EvidencniUdaje", "nsesss:Trideni",
-                                                    "nsesss:JednoduchySpisovyZnak");
+        Node n_soucast =  ValuesGetter.getXChild(dil, JmenaElementu.EVIDENCNI_UDAJE, "nsesss:Trideni", 
+                                                 "nsesss:MaterskaEntita", JmenaElementu.SOUCAST);
+        if (n_soucast == null) {
+            return nastavChybu("Nenalezen element <nsesss:Soucast>. " + getJmenoIdentifikator(dil), dil);
+        }
+        Node trideniSoucasti = ValuesGetter.getXChild(n_soucast, JmenaElementu.EVIDENCNI_UDAJE, 
+                                                      "nsesss:Trideni");
+        if(trideniSoucasti==null) {
+            return nastavChybu("Nenalezen element <nsesss:Trideni>. " + getJmenoIdentifikator(n_soucast),
+                               n_soucast);
+        }
+        Node n_soucast_jsz = ValuesGetter.getXChild(trideniSoucasti, "nsesss:JednoduchySpisovyZnak");
         if (n_soucast_jsz == null)
-            return nastavChybu("Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(
-                                                                                                            zakladnientita),
-                               getMistoChyby(n_soucast));
-        Node n_soucast_pusz = ValuesGetter.getXChild(n_soucast, "nsesss:EvidencniUdaje", "nsesss:Trideni",
-                                                     "nsesss:PlneUrcenySpisovyZnak");
+            return nastavChybu("Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(dil),
+                               n_soucast);
+        Node n_soucast_pusz = ValuesGetter.getXChild(trideniSoucasti, "nsesss:PlneUrcenySpisovyZnak");
         if (n_soucast_pusz == null)
-            return nastavChybu("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(
-                                                                                                            zakladnientita),
-                               getMistoChyby(n_soucast));
+            return nastavChybu("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(dil),
+                               n_soucast);
 
-        Node n_typ = ValuesGetter.getFirstInNode(zakladnientita, "nsesss:TypovySpis", metsParser.getDocument());
-        if (n_typ == null)
-            return nastavChybu("Nenalezen element <nsesss:TypovySpis>. " + getJmenoIdentifikator(
-                                                                                                 zakladnientita),
-                               getMistoChyby(zakladnientita));
+        Node n_typ = ValuesGetter.getXChild(trideniSoucasti, "nsesss:MaterskaEntita", "nsesss:TypovySpis"); 
+        if (n_typ == null) {
+            return nastavChybu("Nenalezen element <nsesss:TypovySpis>. " + getJmenoIdentifikator(dil),
+                               dil);
+        }
         Node n_typ_jsz = ValuesGetter.getXChild(n_typ, "nsesss:EvidencniUdaje", "nsesss:Trideni",
                                                 "nsesss:JednoduchySpisovyZnak");
         if (n_typ_jsz == null)
-            return nastavChybu("Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(
-                                                                                                            zakladnientita),
-                               getMistoChyby(n_typ));
+            return nastavChybu("Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(dil),
+                               n_typ);
         Node n_typ_pusz = ValuesGetter.getXChild(n_typ, "nsesss:EvidencniUdaje", "nsesss:Trideni",
                                                  "nsesss:PlneUrcenySpisovyZnak");
         if (n_typ_pusz == null)
-            return nastavChybu("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(
-                                                                                                            zakladnientita),
-                               getMistoChyby(n_typ));
+            return nastavChybu("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(dil),
+                               n_typ);
 
         String jednoduchy, plneUrceny;
         jednoduchy = n_soucast_jsz.getTextContent();
@@ -142,17 +142,17 @@ public class Pravidlo96 extends K06PravidloBase {
 
         boolean b = jednoduchySpZnZaklEnt.equals(jednoduchy) && plneUrcenySpZnZaklEnt.equals(plneUrceny);
         if (!b)
-            return nastavChybu("Nesplněna podmínka pravidla. " + getJmenoIdentifikator(zakladnientita) + " "
+            return nastavChybu("Nesplněna podmínka pravidla. " + getJmenoIdentifikator(dil) + " "
                     + getJmenoIdentifikator(n_soucast_jsz),
                                getMistoChyby(n_zakl_jsz) + " "
                                        + getMistoChyby(n_zakl_pusz) + " " + getMistoChyby(n_soucast_jsz) + " "
                                        + getMistoChyby(n_soucast_pusz));
 
-        ArrayList<Node> vecneSkupiny = ValuesGetter.getAllInNode(zakladnientita, "nsesss:VecnaSkupina",
+        ArrayList<Node> vecneSkupiny = ValuesGetter.getAllInNode(dil, "nsesss:VecnaSkupina",
                                                                  metsParser.getDocument());
         if (vecneSkupiny == null || vecneSkupiny.isEmpty())
             return nastavChybu("Nenalezen element <nsesss:VecnaSkupina> základní entity. "
-                    + getJmenoIdentifikator(zakladnientita), getMistoChyby(zakladnientita));
+                    + getJmenoIdentifikator(dil), getMistoChyby(dil));
         //ss
         Node n_j = ValuesGetter.getXChild(vecneSkupiny.get(vecneSkupiny.size() - 1), "nsesss:EvidencniUdaje",
                                           "nsesss:Trideni", "nsesss:JednoduchySpisovyZnak");
@@ -160,17 +160,17 @@ public class Pravidlo96 extends K06PravidloBase {
                                           "nsesss:Trideni", "nsesss:PlneUrcenySpisovyZnak");
         if (n_j == null)
             return nastavChybu("Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(
-                                                                                                           zakladnientita),
+                                                                                                           dil),
                                getMistoChyby(vecneSkupiny.get(vecneSkupiny.size() - 1)));
         if (n_p == null)
             return nastavChybu("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(
-                                                                                                           zakladnientita),
+                                                                                                           dil),
                                getMistoChyby(vecneSkupiny.get(vecneSkupiny.size() - 1)));
         String jednoduchy_vs = n_j.getTextContent();
         String plneUrceny_vs = n_p.getTextContent();
         boolean b1 = jednoduchy_vs.equals(typ_j) && plneUrceny_vs.equals(tyt_p);
         if (!b1)
-            return nastavChybu("Nesplněna podmínka pravidla. " + getJmenoIdentifikator(zakladnientita),
+            return nastavChybu("Nesplněna podmínka pravidla. " + getJmenoIdentifikator(dil),
                               getMistoChyby(n_zakl_jsz) + " " + getMistoChyby(n_zakl_pusz) + " "
                                       + getMistoChyby(n_typ_jsz) + " " + getMistoChyby(n_typ_pusz));
         return true;

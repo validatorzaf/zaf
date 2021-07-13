@@ -6,11 +6,10 @@
 package cz.zaf.sipvalidator.nsesss2017;
 
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
-import cz.zaf.sipvalidator.sip.VysledekPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
+import cz.zaf.sipvalidator.sip.VysledekPravidla;
 
 /**
  * Kontrola jmennych prostoru
@@ -43,13 +42,8 @@ public class K04_JmennychProstoruXML
         if (metsMets == null || !metsMets.getNodeName().equals("mets:mets")) {
             detailChyby = "Datový balíček SIP neobsahuje kořenový element <mets:mets>.";
         } else {
-            NodeList list = ValuesGetter.getAllAnywhere("mets:mets", ctx.getMainDocument());
-            if (list.getLength() > 1) {
-                detailChyby = "Datový balíček sip obsahuje více elementů <mets:mets";
-            } else {
-                stav = true;
-                detailChyby = "Datový balíček SIP obsahuje právě jeden kořenový element <mets:mets>.";
-            }
+            stav = true;
+            detailChyby = "Datový balíček SIP obsahuje právě jeden kořenový element <mets:mets>.";
         }
 
         String obecnyPopisChyby = null;
