@@ -2,9 +2,10 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79;
 
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
+import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
@@ -25,19 +26,11 @@ public class Pravidlo79 extends K06PravidloBase {
     // uvnitř rodičovského elementu <nsesss:DataceVyrazeni> stejné entity.",
     @Override
     protected boolean kontrolaPravidla() {
-        NodeList skartacniRizeni = ValuesGetter.getAllAnywhere("nsesss:SkartacniRizeni", metsParser.getDocument());
-        if (skartacniRizeni == null) {
-            List<Node> zakladniEntity = predpokladZakladniEntity();
-            if (zakladniEntity == null) {
-                return false;
-            }
-
-            Node entita = zakladniEntity.get(0);
-            return nastavChybu("Nenalezen element <nsesss:SkartacniRizeni>. " + getJmenoIdentifikator(entita));
+        List<Node> skartacniRizeni = metsParser.getNodes(JmenaElementu.SKARTACNI_RIZENI);
+        if (CollectionUtils.isEmpty(skartacniRizeni)) {
+            return nastavChybu("Nenalezen element <nsesss:SkartacniRizeni>.");
         }
-        for (int i = 0; i < skartacniRizeni.getLength(); i++) {
-            Node skrizeni = skartacniRizeni.item(i);
-
+        for (Node skrizeni: skartacniRizeni) {
             Node dataceVyrazeni = ValuesGetter.getSourozencePrvnihoSeJmenem(skrizeni, "nsesss:DataceVyrazeni");
             if (dataceVyrazeni == null) {
                 return nastavChybu("Nenalezen element <nsesss:DataceVyrazeni>. " + getJmenoIdentifikator(skrizeni),

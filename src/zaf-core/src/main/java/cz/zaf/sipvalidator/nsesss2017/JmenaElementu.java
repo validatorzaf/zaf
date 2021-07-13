@@ -19,6 +19,7 @@ public final class JmenaElementu {
     public final static String PLATNOST = "nsesss:Platnost";
     public final static String VYRIZENI = "nsesss:Vyrizeni";
     public final static String VYRIZENI_UZAVRENI = "nsesss:VyrizeniUzavreni";
+    public final static String SKARTACNI_RIZENI = "nsesss:SkartacniRizeni";
 
     public final static String FORMA_UCHOVANI = "forma_uchovani";
     public final static String FORMA_UCHOVANI_ORIGINAL = "originál";

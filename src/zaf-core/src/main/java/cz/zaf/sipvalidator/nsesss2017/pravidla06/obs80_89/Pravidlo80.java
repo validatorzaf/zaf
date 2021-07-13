@@ -3,9 +3,10 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89;
 import java.util.Calendar;
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
+import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -24,18 +25,11 @@ public class Pravidlo80 extends K06PravidloBase {
     // která je menší nebo rovna aktuálnímu roku.
     @Override
     protected boolean kontrolaPravidla() {
-        NodeList nodeList = ValuesGetter.getAllAnywhere("nsesss:SkartacniRizeni", metsParser.getDocument());
-        if (nodeList == null) {
-            List<Node> zakladniEntity = predpokladZakladniEntity();
-            if (zakladniEntity == null) {
-                return false;
-            }
-
-            return nastavChybu("Nenalezen element <nsesss:SkartacniRizeni>. " + getJmenoIdentifikator(zakladniEntity
-                    .get(0)));
+        List<Node> skartacniRizeni = metsParser.getNodes(JmenaElementu.SKARTACNI_RIZENI);
+        if (CollectionUtils.isEmpty(skartacniRizeni)) {
+            return nastavChybu("Nenalezen element <nsesss:SkartacniRizeni>.");
         }
-        for (int i = 0; i < nodeList.getLength(); i++) {
-            Node skrizeni = nodeList.item(i);
+        for (Node skrizeni: skartacniRizeni) {
             Node datum = ValuesGetter.getXChild(skrizeni, "nsesss:Datum");
             if (datum == null) {
                 return nastavChybu("Nenalezen element <nsesss:Datum>. " + getJmenoIdentifikator(skrizeni),
