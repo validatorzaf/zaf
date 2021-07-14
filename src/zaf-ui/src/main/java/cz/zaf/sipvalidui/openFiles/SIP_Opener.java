@@ -11,7 +11,7 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import cz.zaf.sipvalidator.helper.HelperTime;
+import cz.zaf.sipvalidator.helper.Helper;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 import cz.zaf.sipvalidator.sip.SipLoader;
 import cz.zaf.sipvalidui.panels.JFmain;
@@ -39,7 +39,7 @@ public class SIP_Opener {
                 main_frame.setEnabled(false);
                 SIP_Opener_ProgressWorker worker = new SIP_Opener_ProgressWorker(frame.jProgressBar1, frame.jLabel1); 
                 
-                sip_opener_actualdatestring = HelperTime.getActualDateString();
+                sip_opener_actualdatestring = Helper.getActualDateString();
                 sip_opener_pocet = vybrane_soubory.length;
                 for(int i = 0; i < vybrane_soubory.length; i++){
                     sip_opener_index = i;

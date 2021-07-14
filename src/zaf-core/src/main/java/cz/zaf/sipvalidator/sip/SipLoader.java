@@ -14,7 +14,7 @@ import org.apache.commons.lang.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import cz.zaf.sipvalidator.helper.HelperTime;
+import cz.zaf.sipvalidator.helper.Helper;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadStatus;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 import net.lingala.zip4j.ZipFile;
@@ -111,7 +111,7 @@ public class SipLoader
             workdirPath = Paths.get(workDir);
         }
         // get actual time and create temp directory
-        String ads = HelperTime.getActualDateString();
+        String ads = Helper.getActualDateString();
         Path pathForUnzip = workdirPath.resolve(ads);
         int counter=0;
         for(counter=0; counter<1000; counter++ ) {

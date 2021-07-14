@@ -5,6 +5,10 @@
  */
 package cz.zaf.sipvalidator.helper;
 
+import java.util.Date;
+
+import com.ibm.icu.text.SimpleDateFormat;
+
 /**
  *
  * @author m000xz006159
@@ -16,6 +20,13 @@ public class Helper {
             if(hodnota.equals(hodnotaPole)) return true;
         }
         return false;
+    }
+
+    public static String getActualDateString(){
+        Date date = new Date();
+        com.ibm.icu.text.SimpleDateFormat dt1 = new com.ibm.icu.text.SimpleDateFormat("yyyyMMdd_HHmmss");       
+        String format = dt1.format(date); 
+        return format;
     }
 
 }

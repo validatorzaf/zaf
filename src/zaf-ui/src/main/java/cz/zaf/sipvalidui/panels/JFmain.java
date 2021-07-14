@@ -33,7 +33,7 @@ import javax.swing.table.DefaultTableModel;
 
 import org.apache.commons.lang3.StringUtils;
 
-import cz.zaf.sipvalidator.helper.HelperTime;
+import cz.zaf.sipvalidator.helper.Helper;
 import cz.zaf.sipvalidator.nsesss2017.SipValidator;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo;
@@ -535,7 +535,7 @@ public class JFmain extends javax.swing.JFrame {
 
             String ads = id_kontroly_zadane;
             if (id_kontroly_zadane == null || id_kontroly_zadane.isEmpty()) {
-                ads = HelperTime.getActualDateString();
+                ads = Helper.getActualDateString();
             }
             ulozXml(ads, profilValidace, id_kontroly_zadane);
             listSelection.clearSelection();

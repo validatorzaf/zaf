@@ -12,8 +12,8 @@ import org.w3c.dom.Node;
 import cz.zaf.sipvalidator.nsesss2017.CompareNodes;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.PairZdrojIdent;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
-import cz.zaf.sipvalidator.nsesss2017.structmap.PairZdrojIdent;
 
 public class Pravidlo59 extends K06PravidloBase {
 

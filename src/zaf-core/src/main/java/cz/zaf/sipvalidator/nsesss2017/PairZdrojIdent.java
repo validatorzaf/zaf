@@ -1,4 +1,4 @@
-package cz.zaf.sipvalidator.nsesss2017.structmap;
+package cz.zaf.sipvalidator.nsesss2017;
 
 import java.util.Objects;
 
