@@ -10,7 +10,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
@@ -474,12 +473,12 @@ public class Pravidlo54a  extends K06PravidloBase {
     }
 
     private boolean readMetsDivList() {
-        NodeList nodeList = metsParser.getDocument().getElementsByTagName("mets:div");
-        if(nodeList.getLength() == 0){
+        List<Node> nodeList = metsParser.getNodes(MetsElements.DIV);
+        if(nodeList.size() == 0){
             return nastavChybu("Nenalezen element <mets:div>.");
         }
         
-        this.metsDivList = new ArrayList<>(nodeList.getLength());
+        this.metsDivList = new ArrayList<>(nodeList.size());
         this.metsDivAmdMap = new HashMap<>();
         this.metsDivDmdMap = new HashMap<>();
         // pomocna mapa pro vytvoreni vazeb na rodice
@@ -488,8 +487,7 @@ public class Pravidlo54a  extends K06PravidloBase {
         ArrayList<Node> errorList = new ArrayList<>(0);
         ArrayList<Node> duplicatedIdList = new ArrayList<>(0);
         
-        for(int i = 0; i < nodeList.getLength(); i++) {
-            Node node = nodeList.item(i);
+        for(Node node: nodeList) {
             MetsDivInfo metsdiv = new MetsDivInfo(node);
 
             String dmdid = metsdiv.getDmdId();
