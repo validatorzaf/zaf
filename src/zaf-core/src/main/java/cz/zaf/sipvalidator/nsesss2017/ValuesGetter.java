@@ -23,21 +23,7 @@ import cz.zaf.sipvalidator.helper.Helper;
 
 
 public class ValuesGetter {
-            
-    public static Node getEntityWithIdentifikator(Node identifikator){
-        if(identifikator.getParentNode().getNodeName().equals("nsesss:Identifikace")){
-            if(identifikator.getParentNode().getParentNode().getNodeName().equals("nsesss:EvidencniUdaje")){
-                return identifikator.getParentNode().getParentNode().getParentNode();
-            }
-            else{
-                return identifikator.getParentNode().getParentNode();
-            }
-        }
-        else{
-            return identifikator.getParentNode();
-        }
-    }
-    
+                
     public static String get_type_to_nsesss(String type){
         switch(type){
             case "spisový plán":
@@ -82,34 +68,6 @@ public class ValuesGetter {
         return false;
     }
     
-    public static boolean checkEntity_IdentifikatorCompare(Node node){
-        switch(node.getNodeName()){
-            case "nsesss:SpisovyPlan":
-                return true;
-            case "nsesss:VecnaSkupina":
-                return true;
-            case "nsesss:TypovySpis":
-                return true;
-            case "nsesss:Soucast":
-                return true;
-            case "nsesss:Spis":
-                return true;
-            case "nsesss:Dil":
-                return true;
-            case "nsesss:Dokument":
-                return true;
-            case "nsesss:Komponenta":
-                return true;  
-            case "nsesss:BezpecnostniKategorie":
-                return true;    
-            case "nsesss:SkartacniRezim":
-                return true;
-            case "nsesss:TypDokumentu":
-                return true;             
-        }
-        return false;
-    }
-
     /**
      * Find first child in given path
      * 
