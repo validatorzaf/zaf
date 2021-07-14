@@ -5,10 +5,16 @@
  */
 package cz.zaf.sipvalidator.nsesss2017;
 
+import static org.w3c.dom.Node.ELEMENT_NODE;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
 import org.w3c.dom.Attr;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
-import static org.w3c.dom.Node.ELEMENT_NODE;
 import org.w3c.dom.NodeList;
 
 /**
@@ -19,82 +25,82 @@ public class CompareNodes {
     private static int index; //kvůli vyhledávání elementů 
     
     public static String compare(Node node, Node node_compared){
-
-        if(node == null || node_compared == null){
-            if(node != null){
-                return "Element " + node.getNodeName() + " - nebyl nalezen u druhé entity/objektu.";
-            }
-            if(node_compared != null){
-                return "Element " + node_compared.getNodeName() + " - nebyl nalezen u první entity/objektu.";
-            }
-            return "Uzly nenalezeny.";
-        }
         //JEDNÁ SE O TEN SAMÝ UZEL
-        if(node.isSameNode(node_compared)) return "OK";
-        //RYCHLÉ SROVNÁNÍ - KDYŽ BUDOU V POŘÁDKU
-        if(node.isEqualNode(node_compared)) return "OK";
+        if(node.isSameNode(node_compared)) {
+            return "OK";
+        }
         
         //KDYŽ RYCHLÉ POROVNÁNÍ NEPROJDE MUSÍM PO ŘÁDCÍCH - ABYCH MOHL VYPSAT KONKRÉTNÍ CHYBU
-            //NODE NAME
+        //NODE NAME
         String prvni_nodeName = node.getNodeName();
         String druhy_nodeName = node_compared.getNodeName();
-        if (!prvni_nodeName.equals(druhy_nodeName)) return "Jména uzlů se neshodují: " + prvni_nodeName + " - " + druhy_nodeName + ".";
-            //NODE TYPE
+        if (!prvni_nodeName.equals(druhy_nodeName)) {
+            return "Jména uzlů se neshodují: " + prvni_nodeName + " - " + druhy_nodeName + ".";
+        }
+        //NODE TYPE
         short prvni_nodeType = node.getNodeType();
         short druhy_nodeType = node_compared.getNodeType();
-        if(prvni_nodeType != druhy_nodeType) return "Různé typy uzlů. " + node.getNodeName() + " - " + node.getNodeType() + ". " + node_compared.getNodeName() + " - " + node_compared.getNodeType() + ".";
-            //TEXT CONTENT
-        if(!hasChildren_ElementNode(node) && !hasChildren_ElementNode(node_compared)){
+        if(prvni_nodeType != druhy_nodeType) {
+            return "Různé typy uzlů. " + node.getNodeName() + " - " + node.getNodeType() + ". " + node_compared.getNodeName() + " - " + node_compared.getNodeType() + ".";
+        }
+        //TEXT CONTENT
+        if(!hasChildNodes(node) && !hasChildNodes(node_compared)){
             String prvni_nodeText = node.getTextContent().trim();
             String druhy_nodeText = node_compared.getTextContent().trim();
             if(prvni_nodeText == null ? druhy_nodeText == null : !prvni_nodeText.equals(druhy_nodeText)){
                 return "Hodnoty uzlů se neshodují: " + node.getNodeName() + ": " + prvni_nodeText + " - " + node_compared.getNodeName() + ": " + druhy_nodeText + ".";
             }
-        }    
-            //ATRIBUTY
-        String atributy_vysledek = check_attributes(node, node_compared);
-        if(!atributy_vysledek.equals("OK")) return atributy_vysledek;
-            //CHILDREN
+        }
+        //ATRIBUTY
+        String atributy_vysledek = compareAttributes(node, node_compared);
+        if(!atributy_vysledek.equals("OK")) {
+            return atributy_vysledek;
+        }
+        //CHILDREN
         String children_vysledek = check_children(node, node_compared);
-        if(!children_vysledek.equals("OK")) return children_vysledek;
+        if(!children_vysledek.equals("OK")) {
+            return children_vysledek;
+        }
         
         return "OK";
     }
     
-    private static String check_attributes(Node vzor, Node porovnavany){
-        NamedNodeMap expectedAttrs = vzor.getAttributes();
-        NamedNodeMap actualAttrs = porovnavany.getAttributes();
-        if (check_attributes_countNonNamespaceAttribures(expectedAttrs) != check_attributes_countNonNamespaceAttribures(actualAttrs)) return "Rozdílný počet atributů: " + vzor.getNodeName() + " " + porovnavany.getNodeName();
-        if(expectedAttrs != null){
-            for (int i = 0; i < expectedAttrs.getLength(); i++) {
-                Attr expectedAttr = (Attr) expectedAttrs.item(i);
-                if (expectedAttr.getName().startsWith("xmlns") || expectedAttr.getName().equals("ID")){
-                  continue;
-                }
-                Attr actualAttr;
-                if (expectedAttr.getNamespaceURI() == null) {
-                    actualAttr = (Attr) actualAttrs.getNamedItem(expectedAttr.getName());
-                } else {
-                    actualAttr = (Attr) actualAttrs.getNamedItemNS(expectedAttr.getNamespaceURI(),
-                    expectedAttr.getLocalName());
-                }
-                if(actualAttr == null) return "Nenalezen atribut " + expectedAttr + " elementu " + porovnavany.getNodeName(); 
-                if(!actualAttr.getValue().equals(expectedAttr.getValue())) return "Atributy elementu " + porovnavany.getNodeName() + " se neshodují: " + expectedAttr.getValue() + " " + actualAttr.getValue();
-            }
+    private static Map<String, String> prepareAttributeMap(Node node) {
+        NamedNodeMap attrs = node.getAttributes();
+        if(attrs==null||attrs.getLength()==0) {
+            return Collections.emptyMap();
         }
-        return "OK";
+        Map<String, String> result = new HashMap<>();
+        for (int i = 0; i < attrs.getLength(); i++) {
+            Attr attr = (Attr) attrs.item(i);
+            String attrName = attr.getName();
+            // TODO: zde by mela byt lepsi kontrola
+            if (attrName.startsWith("xmlns") || attrName.equals("ID")) {
+                continue;
+            }
+            result.put(attrName, attr.getValue());
+        }
+        return result;
     }
     
-    private static int check_attributes_countNonNamespaceAttribures(NamedNodeMap attrs) {
-        int n = 0;
-        if(attrs == null) return 0;
-        for (int i = 0; i < attrs.getLength(); i++) {
-          Attr attr = (Attr) attrs.item(i);
-          if (!attr.getName().startsWith("xmlns")) {
-            n++;
-          }
+    private static String compareAttributes(Node left, Node right){
+        Map<String, String> leftAttrsMap = prepareAttributeMap(left);
+        Map<String, String> rightAttrsMap = prepareAttributeMap(right);
+        if(leftAttrsMap.size()!=rightAttrsMap.size()) {
+            return "Rozdílný počet atributů: " + left.getNodeName() + " " + right.getNodeName();
         }
-        return n;
+        for(String leftKey: leftAttrsMap.keySet()) {
+            String leftValue = leftAttrsMap.get(leftKey);
+            String rightValue = rightAttrsMap.get(leftKey);
+            if(Objects.equals(leftValue, rightValue)) {
+                continue;
+            }
+            if(leftValue==null||rightValue==null) {
+                return "Nenalezen atribut " + leftKey;
+            }
+            return "Atributy elementu " + left.getNodeName() + " se neshodují: " + leftValue + " " + rightValue;            
+        }
+        return "OK";
     }
     
     // musím vynechat komentáře != ELEMENT_NODE
@@ -151,7 +157,7 @@ public class CompareNodes {
         return null;
     }
     
-    private static boolean hasChildren_ElementNode(Node node){
+    private static boolean hasChildNodes(Node node){
         if(node == null) return false;
         if(node.hasChildNodes()){
             NodeList list = node.getChildNodes();
