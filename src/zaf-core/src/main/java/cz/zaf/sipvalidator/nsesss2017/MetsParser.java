@@ -112,74 +112,21 @@ public class MetsParser {
                 metsMdWrap = ValuesGetter.findFirstChild(metsDmdSec, "mets:mdWrap");
                 if(metsMdWrap!=null) {
                     xmlData = ValuesGetter.findFirstChild(metsMdWrap, "mets:xmlData");
-                    if(xmlData!=null) {
-                        readNsesssData(sipInfo);                        
-                    }
                 }
             }        
         }
+
+        readNsesssData(sipInfo);                        
         // konec        
     }
 
     private void readNsesssData(SipInfo sipInfo) {
         zakladniEntity = new ArrayList<>();
         zakladniEntityChybne = new ArrayList<>();
-        NodeList zakladniEntityNodes = xmlData.getChildNodes();
-        SipType sipType = null;
-        for(int i = 0; i<zakladniEntityNodes.getLength(); i++) {
-            Node node = zakladniEntityNodes.item(i);
-            if(node.getNodeType()!=Node.ELEMENT_NODE) {
-                continue;
-            }
-            switch(node.getNodeName()) {
-            case "nsesss:Dokument":
-                zakladniEntity.add(node);
-                if(sipType==null) {
-                    sipType = SipType.DOKUMENT;
-                }
-                break;
-            case "nsesss:Spis":
-                zakladniEntity.add(node);
-                if(sipType==null) {
-                    sipType = SipType.SPIS;
-                }
-                break;
-            case "nsesss:Dil":
-                zakladniEntity.add(node);
-                if(sipType==SipType.DIL) {
-                    sipType = SipType.DIL;
-                }
-                break;
-            default:
-                zakladniEntityChybne.add(node);
-            }
-        }
-        sipInfo.setType(sipType);
 
         // priprava seznamů uzlu
         DFDocumentWalker dw = new DFDocumentWalker();
-        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.IDENTIFIKATOR, nodeQueryCache));
-        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.SPISOVY_PLAN, nodeQueryCache));
-        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.VECNA_SKUPINA, nodeQueryCache));
-        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.TYPOVY_SPIS, nodeQueryCache));
-        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.DIL, nodeQueryCache));
-        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.SPIS, nodeQueryCache));
-        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.DOKUMENT, nodeQueryCache));
-        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.KOMPONENTA, nodeQueryCache));
-        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.SOUCAST, nodeQueryCache));
-        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.CAS_OVERENI, nodeQueryCache));
-        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.CAS_POUZITI, nodeQueryCache));
-        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.POSUZOVANY_OKAMZIK, nodeQueryCache));
-        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.PLATNOST, nodeQueryCache));        
-        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.NAZEV, nodeQueryCache));
-        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.VYRIZENI, nodeQueryCache));
-        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.VYRIZENI_UZAVRENI, nodeQueryCache));
-        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.SKARTACNI_RIZENI, nodeQueryCache));
-        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.JAZYK, nodeQueryCache));
-        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.MANIPULACE, nodeQueryCache));
-        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.URCENE_CASOVE_OBDOBI, nodeQueryCache));
-        dw.addAggregator(new NamedNodeAggregator(JmenaElementu.PLNE_URCENY_SPISOVY_ZNAK, nodeQueryCache));
-        
+
         dw.addAggregator(new NamedNodeAggregator(MetsElements.AGENT, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(MetsElements.AMD_SEC, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(MetsElements.DIGIPROV_MD, nodeQueryCache));
@@ -188,26 +135,83 @@ public class MetsParser {
         dw.addAggregator(new NamedNodeAggregator(MetsElements.FILE_GRP, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(MetsElements.FLOCAT, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(MetsElements.FPTR, nodeQueryCache));        
-        // pevne krizove odkazy
-        dw.addAggregator(new NodeAggregator() {
-            List<Node> nodes = new ArrayList<>();
-
-            @Override
-            public void visitNode(Node node) {
-                if (JmenaElementu.KRIZOVY_ODKAZ.equals(node.getNodeName())) {
-                    if (ValuesGetter.hasAttributValue(node, "pevny", "ano")) {
-                        nodes.add(node);
+        
+        if(xmlData!=null) {
+            NodeList zakladniEntityNodes = xmlData.getChildNodes();
+            SipType sipType = null;
+            for (int i = 0; i < zakladniEntityNodes.getLength(); i++) {
+                Node node = zakladniEntityNodes.item(i);
+                if (node.getNodeType() != Node.ELEMENT_NODE) {
+                    continue;
+                }
+                switch (node.getNodeName()) {
+                case "nsesss:Dokument":
+                    zakladniEntity.add(node);
+                    if (sipType == null) {
+                        sipType = SipType.DOKUMENT;
                     }
+                    break;
+                case "nsesss:Spis":
+                    zakladniEntity.add(node);
+                    if (sipType == null) {
+                        sipType = SipType.SPIS;
+                    }
+                    break;
+                case "nsesss:Dil":
+                    zakladniEntity.add(node);
+                    if (sipType == SipType.DIL) {
+                        sipType = SipType.DIL;
+                    }
+                    break;
+                default:
+                    zakladniEntityChybne.add(node);
+                }
+            }
+            sipInfo.setType(sipType);
+
+            dw.addAggregator(new NamedNodeAggregator(JmenaElementu.IDENTIFIKATOR, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(JmenaElementu.SPISOVY_PLAN, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(JmenaElementu.VECNA_SKUPINA, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(JmenaElementu.TYPOVY_SPIS, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(JmenaElementu.DIL, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(JmenaElementu.SPIS, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(JmenaElementu.DOKUMENT, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(JmenaElementu.KOMPONENTA, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(JmenaElementu.SOUCAST, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(JmenaElementu.CAS_OVERENI, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(JmenaElementu.CAS_POUZITI, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(JmenaElementu.POSUZOVANY_OKAMZIK, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(JmenaElementu.PLATNOST, nodeQueryCache));        
+            dw.addAggregator(new NamedNodeAggregator(JmenaElementu.NAZEV, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(JmenaElementu.VYRIZENI, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(JmenaElementu.VYRIZENI_UZAVRENI, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(JmenaElementu.SKARTACNI_RIZENI, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(JmenaElementu.JAZYK, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(JmenaElementu.MANIPULACE, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(JmenaElementu.URCENE_CASOVE_OBDOBI, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(JmenaElementu.PLNE_URCENY_SPISOVY_ZNAK, nodeQueryCache));
+            // pevne krizove odkazy
+            dw.addAggregator(new NodeAggregator() {
+                List<Node> nodes = new ArrayList<>();
+
+                @Override
+                public void visitNode(Node node) {
+                    if (JmenaElementu.KRIZOVY_ODKAZ.equals(node.getNodeName())) {
+                        if (ValuesGetter.hasAttributValue(node, "pevny", "ano")) {
+                            nodes.add(node);
+                        }
+                    }
+
                 }
 
-            }
+                @Override
+                public void onFinished() {
+                    nodeQueryCache.put(PEVNY_KRIZOVY_ODKAZ, nodes);                
+                }
+                
+            });
+        }
 
-            @Override
-            public void onFinished() {
-                nodeQueryCache.put(PEVNY_KRIZOVY_ODKAZ, nodes);                
-            }
-            
-        });
         dw.walk(document);
                 
         if (zakladniEntity != null && zakladniEntity.isEmpty())
