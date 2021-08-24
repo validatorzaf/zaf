@@ -24,6 +24,8 @@ public final class JmenaElementu {
     public final static String MANIPULACE = "nsesss:Manipulace";
     public final static String URCENE_CASOVE_OBDOBI = "nsesss:UrceneCasoveObdobi";
     public final static String PLNE_URCENY_SPISOVY_ZNAK = "nsesss:PlneUrcenySpisovyZnak";
+    public final static String ODKAZ_PUVODNI_KOMPONENTA = "nsesss:OdkazPuvodniKomponenta";
+    public final static String TRIDENI = "nsesss:Trideni";
 
     public final static String FORMA_UCHOVANI = "forma_uchovani";
     public final static String FORMA_UCHOVANI_ORIGINAL = "originál";

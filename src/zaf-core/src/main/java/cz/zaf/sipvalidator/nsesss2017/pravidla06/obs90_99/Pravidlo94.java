@@ -29,24 +29,25 @@ public class Pravidlo94 extends K06PravidloBase {
         if (CollectionUtils.isEmpty(plneurcenySpisovyZnak)) {
             return nastavChybu("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>.");
         }
-        for (Node pusz_node: plneurcenySpisovyZnak) {
-            Node jsz_node = ValuesGetter.getSourozencePrvnihoSeJmenem(pusz_node, "nsesss:JednoduchySpisovyZnak");
-            if (jsz_node == null) {
-                boolean b = ValuesGetter.isXParent(pusz_node, "nsesss:KrizovyOdkaz");
-                if (!b) {
-                    return nastavChybu("Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(pusz_node),
-                                       pusz_node);
-                }
-            } else {
-                String jednoduchy = jsz_node.getTextContent();
-                String plneUrceny = pusz_node.getTextContent();
-                //                boolean b = ValuesGetter.compareSpisoveZnaky(jednoduchy, plneUrceny);
-                if (!jednoduchy.equals(plneUrceny)) {
-                    if (!plneUrceny.endsWith(jednoduchy)) {
-                        return nastavChybu("Část plně určeného spis. znaku za oddělovačem neodpovídá jedn. spis. znaku. "
-                                + getJmenoIdentifikator(pusz_node), getMistoChyby(pusz_node) + " "
-                                        + getMistoChyby(jsz_node));
-                    }
+        for (Node puzNode: plneurcenySpisovyZnak) {
+            // kontrola jen pokud je rodic nsesss:Trideni
+            Node trideni = ValuesGetter.getParent(puzNode, JmenaElementu.TRIDENI);
+            if(trideni==null) {
+                continue;
+            }
+
+            Node jzNode = ValuesGetter.getSourozencePrvnihoSeJmenem(puzNode, "nsesss:JednoduchySpisovyZnak");
+            if (jzNode == null) {
+                return nastavChybu("Nenalezen element <nsesss:JednoduchySpisovyZnak>. " 
+                        + getJmenoIdentifikator(puzNode), puzNode);
+            }
+            String jednoduchy = jzNode.getTextContent();
+            String plneUrceny = puzNode.getTextContent();
+            if (!jednoduchy.equals(plneUrceny)) {
+                if (!plneUrceny.endsWith(jednoduchy)) {
+                    return nastavChybu("Část plně určeného spis. znaku za oddělovačem neodpovídá jedn. spis. znaku. "
+                            + getJmenoIdentifikator(puzNode), getMistoChyby(puzNode) + " "
+                                    + getMistoChyby(jzNode));
                 }
             }
         }

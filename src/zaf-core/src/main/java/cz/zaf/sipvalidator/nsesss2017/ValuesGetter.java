@@ -225,12 +225,24 @@ public class ValuesGetter {
         return list;
     }
 
+    /**
+     * Return parent with given name
+     * @param node
+     * @param parentName
+     * @return Return null if parent does not exists or has different name.
+     */
     public static Node getParent(Node node, String parentName){
-        if (node == null) return null;
+        if (node == null) {
+            return null;
+        }
         Node parent = node.getParentNode();
-        if (parent == null) return null;
-        String p_name = parent.getNodeName();
-        if(p_name.equals(parentName)) return parent; 
+        if (parent == null) {
+            return null;
+        }
+        String pName = parent.getNodeName();
+        if(pName.equals(parentName)) {
+            return parent; 
+        }
         return null;
     }
     
@@ -246,7 +258,9 @@ public class ValuesGetter {
     }
     
     public static boolean isXParent(Node node, String... parentNames){
-        if (node == null) return false;
+        if (node == null) {
+            return false;
+        }
         Node xParent = getParent(node, parentNames[0]);
         if(xParent == null) return false;
         String p_name = xParent.getNodeName();
