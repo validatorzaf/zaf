@@ -271,6 +271,9 @@ public class CmdParams {
         try {
             int druh = Integer.parseInt(arg);
             switch (druh) {
+            case 0:
+                profilValidace = ZakladniProfilValidace.DEVEL;
+                break;                
             case 1:
                 profilValidace = ZakladniProfilValidace.SKARTACE_METADATA;
                 break;

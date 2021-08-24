@@ -34,6 +34,7 @@ import cz.zaf.schema.kontrolasip.TTyp;
 import cz.zaf.schema.kontrolasip.TVysledekKontroly;
 import cz.zaf.schema.kontrolasip.TVysledekPravidla;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
+import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 
 /**
  * Vysledny protokol o provedene kontrole
@@ -182,7 +183,11 @@ public class VyslednyProtokol {
     }
 
     public void setProfilValidace(ProfilValidace profilValidace) {
-        String nazev = profilValidace.getNazev();
+        if(profilValidace==ZakladniProfilValidace.DEVEL) {
+            kontrolaSIP.setPouzitiKontroly(TPouzitiKontroly.PŘEJÍMKA);
+            return;
+        }
+        String nazev = profilValidace.getNazev();        
         TPouzitiKontroly pouzitiKontroly = TPouzitiKontroly.fromValue(nazev);
         kontrolaSIP.setPouzitiKontroly(pouzitiKontroly);
 
