@@ -123,7 +123,8 @@ public class CmdValidator {
             Path outputPath = Paths.get(cmdParams.getOutput());
             if (Files.isDirectory(outputPath)) {
                 // create file name
-                throw new IllegalArgumentException("Output path is directory, file was expected: " + outputPath);
+                outputPath = outputPath.resolve("protokol.xml");
+                vyslednyProtokol.save(outputPath);;
             } else {
                 vyslednyProtokol.save(outputPath);
             }
