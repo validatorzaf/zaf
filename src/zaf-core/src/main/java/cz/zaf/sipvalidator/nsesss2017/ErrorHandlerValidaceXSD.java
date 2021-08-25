@@ -105,7 +105,7 @@ public class ErrorHandlerValidaceXSD implements  ErrorHandler{
                 textChyby,
                 null,
                 mistoChyby,
-                null);
+                K05_ProtiSchematu.VAL1_ZDROJ);
         k.add(p);
     }
 

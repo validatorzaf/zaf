@@ -34,8 +34,8 @@ public class K05_ProtiSchematu
     static final public String NAME = "kontrola proti schématu XSD";
 
     static final public String VAL1 = "val1";
-
     static final public String VAL1_TEXT = "Soubor je validní proti schématům mets.xsd (v1.11), xlink.xsd (v2), nsesss.xsd (v3), nsesss-TrP.xsd, ess_ns.xsd a dmBaseTypes.xsd (v2.1).";
+    static final public String VAL1_ZDROJ = "Požadavek 11.2.5 NSESSS, bod 2.1. přílohy č. 3 NSESSS.";
     
     static Map<String, Schema> schemaCache = new HashMap<>();
 
@@ -105,7 +105,7 @@ public class K05_ProtiSchematu
                     detailChyby,
                     obecnyPopisChyby,
                     null,
-                    "Požadavek 11.2.5 NSESSS, bod 2.1. přílohy č. 3 NSESSS." // zdroj
+                    VAL1_ZDROJ
             );
             vysledekKontroly.add(p);
         }
