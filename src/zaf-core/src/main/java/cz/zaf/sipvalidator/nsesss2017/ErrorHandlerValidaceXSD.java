@@ -103,7 +103,7 @@ public class ErrorHandlerValidaceXSD implements  ErrorHandler{
         VysledekPravidla p = new VysledekPravidla(K05_ProtiSchematu.VAL1, false,
                 K05_ProtiSchematu.VAL1_TEXT,
                 textChyby,
-                null,
+                K05_ProtiSchematu.VAL1_POPIS_CHYBY,
                 mistoChyby,
                 K05_ProtiSchematu.VAL1_ZDROJ);
         k.add(p);

@@ -8,8 +8,8 @@ package cz.zaf.sipvalidator.nsesss2017;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
-import cz.zaf.sipvalidator.sip.VysledekPravidla;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
+import cz.zaf.sipvalidator.sip.VysledekPravidla;
 
 
 /**
@@ -51,12 +51,13 @@ public class K00_SkodlivehoKodu
 	@Override
     public void provedKontrolu() {
 		String descr;
-        String textPravidla;
+        String textPravidla = "Datový balíček SIP neobsahuje hrozbu.";
+        String popisChybyObecny;
 		if (kontrolaOk) {
 			descr = "Datový balíček SIP neobsahuje hrozbu.";
-            textPravidla = "Datový balíček SIP neobsahuje hrozbu.";
+			popisChybyObecny = null;
 		} else {
-            textPravidla = "Datový balíček SIP obsahuje hrozbu.";
+		    popisChybyObecny = "Datový balíček SIP obsahuje hrozbu.";
 			if (errorDescr == null) {
 				descr = "Chybové hlášení nebylo předáno.";
 			} else {
@@ -67,7 +68,7 @@ public class K00_SkodlivehoKodu
         String zdroj = "§ 21 odst. 6 vyhlášky č. 259/2012 Sb.";
         VysledekPravidla p = new VysledekPravidla(VIR1, kontrolaOk,
                 textPravidla,
-                descr, null, null,
+                descr, popisChybyObecny, null,
                 zdroj);
         vysledekKontroly.add(p);
 	}
