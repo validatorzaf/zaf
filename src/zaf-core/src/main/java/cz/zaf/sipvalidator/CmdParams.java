@@ -18,7 +18,7 @@ public class CmdParams {
         output.println("CmdValidator [přepínače] [<path>]");
         output.println("");
         output.println("Přepínače:");
-        output.println(" -b|--batch Dávkový režim, vstupem je adresář obsahující SIPy");
+        output.println(" -b|--batch= Dávkový režim, vstupem je adresář obsahující SIPy");
         output.println(" -w|--workdir= Umístění pracovního adresáře, zde budou SIPy rozbaleny");
         output.println(" -d|--druh= Druh kontroly (1 - výchozí):");
         output.println("        1 = pro provedení skartačního řízení (jen metadata bez přiložených komponent)");
@@ -117,7 +117,7 @@ public class CmdParams {
 
         while (pos < args.length) {
             String arg = args[pos];
-            if (arg.equals("-b") || arg.equals("--batch")) {
+            if (arg.equals("-b") || arg.equals("--batch=")) {
                 davkovyRezim = true;
             } else if (arg.equals("-w")) {
                 if (!readW()) {
