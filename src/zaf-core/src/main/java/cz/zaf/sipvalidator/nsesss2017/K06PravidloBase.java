@@ -65,7 +65,7 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
                                 stav,
                                 textPravidla,
                                 detailChyby,
-                                stav ? obecnyPopisChyby : null,
+                                !stav ? obecnyPopisChyby : null,
                                 mistoChyby,
                                 zdrojChyby);
 
