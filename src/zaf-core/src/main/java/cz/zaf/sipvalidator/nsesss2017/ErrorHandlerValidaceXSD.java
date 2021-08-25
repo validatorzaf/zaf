@@ -9,8 +9,8 @@ import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-import cz.zaf.sipvalidator.sip.VysledekPravidla;
 import cz.zaf.sipvalidator.sip.VysledekKontroly;
+import cz.zaf.sipvalidator.sip.VysledekPravidla;
 
 /**
  *
@@ -40,6 +40,10 @@ public class ErrorHandlerValidaceXSD implements  ErrorHandler{
     }
     
     private void setUpError(SAXParseException e, int priorita){
+        // Vypisuje se jen prvni chyba
+        if(nalezenaChyba) {
+            return;
+        }
         nalezenaChyba = true;
         String textPriorita = "";
         switch(priorita){
