@@ -40,15 +40,11 @@ public class Pravidlo56 extends K06PravidloBase {
             // TODO: Check if multiple fptr do not have same FILEID
         }
 
-        List<Node> nodeListFlocat = metsParser.getNodes(MetsElements.FLOCAT);
-        if (nodeListFlocat.size() == 0) {
-            return nastavChybu("Nenalezen element <mets:FLocat>.");
+        List<Node> nodeListFile = metsParser.getNodes(MetsElements.FILE);
+        if (nodeListFile.size() == 0) {
+            return nastavChybu("Nenalezen element <mets:file>.");
         }
-        for(Node fLocat: nodeListFlocat) {
-            Node metsFile = ValuesGetter.getXParent(fLocat, "mets:file");
-            if (metsFile == null) {
-                return nastavChybu("Nenalezen rodičovský element <mets:file>.");
-            }
+        for(Node metsFile: nodeListFile) {
             String idFile = ValuesGetter.getValueOfAttribut(metsFile, "ID");
             if(StringUtils.isEmpty(idFile)) {
                 return nastavChybu("Element <mets:file> neobsahuje atribut ID.", metsFile);
