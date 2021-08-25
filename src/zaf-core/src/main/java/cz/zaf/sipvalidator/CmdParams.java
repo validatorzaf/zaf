@@ -25,7 +25,7 @@ public class CmdParams {
         output.println("        2 = pro provedení skartačního řízení (s přiloženými komponentami)");
         output.println("        3 = pro předávání dokumentů a jejich metadat do archivu");
         output.println(" -e|--exclude= Seznam kontrol oddělených čárkou, které se nemají provádět");
-        output.println(" -I|--id= Identifikátor prováděné kontroly");
+        output.println(" -i|--id= Identifikátor prováděné kontroly");
         output.println(" -z|--hrozba= podrobnosti v případě nalezení hrozby (pro předání z antivirového programu)");
         output.println(" -o|--output= Jméno souboru nebo adresáře pro uložení výsledků");
     }
@@ -135,7 +135,7 @@ public class CmdParams {
                 if (!readDruh(arg.substring(7))) {
                     return false;
                 }
-            } else if (arg.equals("-I")) {
+            } else if (arg.equals("-i")) {
                 if (!readIdKontroly()) {
                     return false;
                 }
