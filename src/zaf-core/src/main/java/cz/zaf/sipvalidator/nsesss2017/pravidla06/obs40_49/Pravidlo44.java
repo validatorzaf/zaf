@@ -8,8 +8,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.44 Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut DMDID s hodnotou uvedenou v atributu ID jakéhokoli elementu <nsesss:Komponenta>.",
@@ -28,7 +28,7 @@ public class Pravidlo44 extends K06PravidloBase {
 	protected boolean kontrolaPravidla() {
 	    // cteni mets:file
         List<Node> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);        
-        List<Node> nodeListKomponenty = metsParser.getNodes(JmenaElementu.KOMPONENTA);
+        List<Node> nodeListKomponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
         if(nodeListKomponenty.size() != nodeListMetsFile.size()){
             return nastavChybu("Nenalezen shodný počet <nsesss:Komponenta> a <mets:file>.");
         }

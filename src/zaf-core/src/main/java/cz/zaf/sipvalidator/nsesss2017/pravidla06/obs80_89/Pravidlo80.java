@@ -6,8 +6,8 @@ import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo80 extends K06PravidloBase {
@@ -25,7 +25,7 @@ public class Pravidlo80 extends K06PravidloBase {
     // která je menší nebo rovna aktuálnímu roku.
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> skartacniRizeni = metsParser.getNodes(JmenaElementu.SKARTACNI_RIZENI);
+        List<Node> skartacniRizeni = metsParser.getNodes(NsessV3.SKARTACNI_RIZENI);
         if (CollectionUtils.isEmpty(skartacniRizeni)) {
             return nastavChybu("Nenalezen element <nsesss:SkartacniRizeni>.");
         }

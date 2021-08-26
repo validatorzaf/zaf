@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo73 extends K06PravidloBase {
@@ -22,7 +22,7 @@ public class Pravidlo73 extends K06PravidloBase {
     //OBSAHOVÁ č.73 Každý element <nsesss:CasOvereni> obsahuje atribut datum.",
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> nodes = metsParser.getNodes(JmenaElementu.CAS_OVERENI);
+        List<Node> nodes = metsParser.getNodes(NsessV3.CAS_OVERENI);
         for (Node cas : nodes) {
             boolean maDatum = ValuesGetter.hasAttribut(cas, "datum");
             if (!maDatum) {

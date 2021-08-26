@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 // OBSAHOVÁ č.98
@@ -44,8 +44,8 @@ public class Pravidlo98 extends K06PravidloBase {
 
         for (int i = 0; i < zakladniEntity.size(); i++) {
             Node zakladnientita = zakladniEntity.get(i);
-            if (zakladnientita.getNodeName().equals(JmenaElementu.DIL) ||
-                    zakladnientita.getNodeName().equals(JmenaElementu.SPIS)) {
+            if (zakladnientita.getNodeName().equals(NsessV3.DIL) ||
+                    zakladnientita.getNodeName().equals(NsessV3.SPIS)) {
                 if (!kontrolaEntity(zakladnientita, dokumenty)) {
                     return false;
                 }
@@ -55,7 +55,7 @@ public class Pravidlo98 extends K06PravidloBase {
     }
 
     private boolean kontrolaEntity(Node zakladnientita, List<Node> dokumenty) {
-        Node n_zakl_jsz = ValuesGetter.getXChild(zakladnientita, JmenaElementu.EVIDENCNI_UDAJE, "nsesss:Trideni",
+        Node n_zakl_jsz = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                                  "nsesss:JednoduchySpisovyZnak");
         if (n_zakl_jsz == null) {
             detailChyby = "Nenalezen element <nsesss:JednoduchySpisovyZnak> základní entity. "

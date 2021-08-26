@@ -19,6 +19,7 @@ import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.pdfa.ValidationResult;
 import cz.zaf.sipvalidator.pdfa.VeraValidatorProxy;
@@ -44,7 +45,7 @@ public class Pravidlo99 extends K06PravidloBase {
     protected boolean kontrolaPravidla() {
 
         // získání všech komponent ve výstupním datovém formátu
-        List<Node> komponenty = metsParser.getNodes(JmenaElementu.KOMPONENTA);
+        List<Node> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
         if (CollectionUtils.isEmpty(komponenty)) {
             return true;
         }

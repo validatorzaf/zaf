@@ -5,8 +5,8 @@ import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 // OBSAHOVÁ č.96 Každá základní entita a každá entita typový spis
@@ -59,7 +59,7 @@ public class Pravidlo96 extends K06PravidloBase {
                 String plneUrcenySpZnZaklEnt = n_zakl_pusz.getTextContent();
 
                 String jednoduchy, plneUrceny;
-                List<Node> vsechnyVecneSkupiny = metsParser.getNodes(JmenaElementu.VECNA_SKUPINA);
+                List<Node> vsechnyVecneSkupiny = metsParser.getNodes(NsessV3.VECNA_SKUPINA);
                 List<Node> vecneSkupiny = ValuesGetter.getAllChildNodes(zakladnientita, vsechnyVecneSkupiny);
                 if (CollectionUtils.isEmpty(vecneSkupiny)) {
                     return nastavChybu("Nenalezen element <nsesss:VecnaSkupina> základní entity.",
@@ -96,12 +96,12 @@ public class Pravidlo96 extends K06PravidloBase {
         String jednoduchySpZnZaklEnt = n_zakl_jsz.getTextContent();
         String plneUrcenySpZnZaklEnt = n_zakl_pusz.getTextContent();
 
-        Node n_soucast =  ValuesGetter.getXChild(dil, JmenaElementu.EVIDENCNI_UDAJE, "nsesss:Trideni", 
-                                                 "nsesss:MaterskaEntita", JmenaElementu.SOUCAST);
+        Node n_soucast =  ValuesGetter.getXChild(dil, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni", 
+                                                 "nsesss:MaterskaEntita", NsessV3.SOUCAST);
         if (n_soucast == null) {
             return nastavChybu("Nenalezen element <nsesss:Soucast>. " + getJmenoIdentifikator(dil), dil);
         }
-        Node trideniSoucasti = ValuesGetter.getXChild(n_soucast, JmenaElementu.EVIDENCNI_UDAJE, 
+        Node trideniSoucasti = ValuesGetter.getXChild(n_soucast, NsessV3.EVIDENCNI_UDAJE, 
                                                       "nsesss:Trideni");
         if(trideniSoucasti==null) {
             return nastavChybu("Nenalezen element <nsesss:Trideni>. " + getJmenoIdentifikator(n_soucast),
@@ -147,7 +147,7 @@ public class Pravidlo96 extends K06PravidloBase {
                                        + getMistoChyby(n_zakl_pusz) + " " + getMistoChyby(n_soucast_jsz) + " "
                                        + getMistoChyby(n_soucast_pusz));
 
-        List<Node> vsechnyVecneSkupiny = metsParser.getNodes(JmenaElementu.VECNA_SKUPINA);
+        List<Node> vsechnyVecneSkupiny = metsParser.getNodes(NsessV3.VECNA_SKUPINA);
         List<Node> vecneSkupiny = ValuesGetter.getAllChildNodes(dil, vsechnyVecneSkupiny);
         if (vecneSkupiny == null || vecneSkupiny.isEmpty())
             return nastavChybu("Nenalezen element <nsesss:VecnaSkupina> základní entity. "

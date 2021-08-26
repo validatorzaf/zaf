@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo87 extends K06PravidloBase {
@@ -25,7 +25,7 @@ public class Pravidlo87 extends K06PravidloBase {
     // je uveden i element <nsesss:DatumOdeslani>.",
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> vyrizeni = metsParser.getNodes(JmenaElementu.VYRIZENI);        
+        List<Node> vyrizeni = metsParser.getNodes(NsessV3.VYRIZENI);        
         for (Node n: vyrizeni) {
             Node datumOdeslani = ValuesGetter.getXChild(n, "nsesss:DatumOdeslani");
             Node prijemce = ValuesGetter.getXChild(n, "nsesss:Prijemce");

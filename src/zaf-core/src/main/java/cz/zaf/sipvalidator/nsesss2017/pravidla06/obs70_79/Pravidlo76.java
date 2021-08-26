@@ -5,8 +5,8 @@ import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo76 extends K06PravidloBase {
@@ -77,7 +77,7 @@ public class Pravidlo76 extends K06PravidloBase {
                 String analogovyzakladni = and.getTextContent();
                 if (analogovyzakladni.equals("ano")) {
                     // nalezeni alespon jedne rodicovske vecne skupiny
-                    List<Node> vsechnyVecneSkupiny = metsParser.getNodes(JmenaElementu.VECNA_SKUPINA);
+                    List<Node> vsechnyVecneSkupiny = metsParser.getNodes(NsessV3.VECNA_SKUPINA);
                     List<Node> vecneSkupiny = ValuesGetter.getAllChildNodes(zakladnientita, vsechnyVecneSkupiny); 
                     if (CollectionUtils.isEmpty(vecneSkupiny)) {
                         return nastavChybu("Nenalezen element <nsesss:VecnaSkupina>. "

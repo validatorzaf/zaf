@@ -7,8 +7,8 @@ import java.util.Set;
 
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo78 extends K06PravidloBase {
@@ -29,12 +29,12 @@ public class Pravidlo78 extends K06PravidloBase {
         if (zakladniEntity == null) {
             return false;
         }
-        List<Node> skartacniRizeni = metsParser.getNodes(JmenaElementu.SKARTACNI_RIZENI);
+        List<Node> skartacniRizeni = metsParser.getNodes(NsessV3.SKARTACNI_RIZENI);
         Set<Node> skartacniRizeniSet = new HashSet<>(skartacniRizeni);
 
         for (Node zakladnientita: zakladniEntity) {
-            Node node = ValuesGetter.getXChild(zakladnientita, JmenaElementu.EVIDENCNI_UDAJE, 
-                                               "nsesss:Vyrazovani", JmenaElementu.SKARTACNI_RIZENI);
+            Node node = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, 
+                                               "nsesss:Vyrazovani", NsessV3.SKARTACNI_RIZENI);
             if (node == null) {
                 return nastavChybu("Element <nsesss:SkartacniRizeni> není správně zatříděn. " + getJmenoIdentifikator(zakladnientita),
                                    zakladnientita);

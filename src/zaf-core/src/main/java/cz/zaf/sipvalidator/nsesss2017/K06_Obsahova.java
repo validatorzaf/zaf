@@ -71,8 +71,8 @@ public class K06_Obsahova
         String nodename = node.getNodeName();
         String hodnota = "nenalezeno", zdroj = "nenalezeno";
         Node identifikator;
-        if(nodename.equals(JmenaElementu.SPISOVY_PLAN)){
-            identifikator = ValuesGetter.getXChild(node, JmenaElementu.IDENTIFIKATOR);
+        if(nodename.equals(NsessV3.SPISOVY_PLAN)){
+            identifikator = ValuesGetter.getXChild(node, NsessV3.IDENTIFIKATOR);
             if(identifikator!= null){
                 hodnota = identifikator.getTextContent();
                 boolean ma = ValuesGetter.hasAttribut(identifikator, "zdroj");
@@ -80,8 +80,8 @@ public class K06_Obsahova
                 return "(Ident. hodnota: "+ hodnota + ", zdroj: " + zdroj + ")";
             }
         }
-        identifikator = ValuesGetter.getXChild(node,JmenaElementu.EVIDENCNI_UDAJE, 
-                                               "nsesss:Identifikace", JmenaElementu.IDENTIFIKATOR);
+        identifikator = ValuesGetter.getXChild(node,NsessV3.EVIDENCNI_UDAJE, 
+                                               "nsesss:Identifikace", NsessV3.IDENTIFIKATOR);
         if(identifikator!= null){
             hodnota = identifikator.getTextContent();
             boolean ma = ValuesGetter.hasAttribut(identifikator, "zdroj");

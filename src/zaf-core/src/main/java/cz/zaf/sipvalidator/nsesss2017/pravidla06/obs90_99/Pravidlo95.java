@@ -6,9 +6,9 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.IterableUtils;
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo95 extends K06PravidloBase {
@@ -31,12 +31,12 @@ public class Pravidlo95 extends K06PravidloBase {
     // <nsesss:PlneUrcenySpisovyZnak> výchozí entity před posledním oddělovačem.",
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> vecneSkupiny = metsParser.getNodes(JmenaElementu.VECNA_SKUPINA);
+        List<Node> vecneSkupiny = metsParser.getNodes(NsessV3.VECNA_SKUPINA);
         if (CollectionUtils.isEmpty(vecneSkupiny) ) {
             return nastavChybu("Nenalezen element <nsesss:VecnaSkupina>.");
         }
-        List<Node> soucasti = metsParser.getNodes(JmenaElementu.SOUCAST);
-        List<Node> typoveSpisy = metsParser.getNodes(JmenaElementu.TYPOVY_SPIS);
+        List<Node> soucasti = metsParser.getNodes(NsessV3.SOUCAST);
+        List<Node> typoveSpisy = metsParser.getNodes(NsessV3.TYPOVY_SPIS);
 
         Iterable<Node> multiCol = IterableUtils.chainedIterable(vecneSkupiny, soucasti, typoveSpisy);
         for(Node entita: multiCol) {

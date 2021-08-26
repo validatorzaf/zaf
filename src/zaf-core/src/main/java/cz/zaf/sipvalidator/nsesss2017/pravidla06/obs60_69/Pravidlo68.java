@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo68 extends K06PravidloBase {
@@ -30,14 +30,14 @@ public class Pravidlo68 extends K06PravidloBase {
         for (Node zakladnientita: zakladniEntity) {
             Node vecnaskupina;
             if (zakladnientita.getNodeName().equals("nsesss:Dokument") ) {
-                vecnaskupina = ValuesGetter.getXChild(zakladnientita, JmenaElementu.EVIDENCNI_UDAJE,
+                vecnaskupina = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE,
                                                       "nsesss:Trideni", "nsesss:MaterskeEntity",
-                                                      JmenaElementu.VECNA_SKUPINA);
+                                                      NsessV3.VECNA_SKUPINA);
             } else 
             if (zakladnientita.getNodeName().equals("nsesss:Spis")) {
-                vecnaskupina = ValuesGetter.getXChild(zakladnientita, JmenaElementu.EVIDENCNI_UDAJE,
+                vecnaskupina = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE,
                                                       "nsesss:Trideni", "nsesss:MaterskaEntita",
-                                                      JmenaElementu.VECNA_SKUPINA);
+                                                      NsessV3.VECNA_SKUPINA);
             } else {
                 return true;
             }
@@ -45,7 +45,7 @@ public class Pravidlo68 extends K06PravidloBase {
                 return nastavChybu("Nenalezena rodičovská entita věcná skupina základní entity. "
                             + getJmenoIdentifikator(zakladnientita), zakladnientita);
             }
-            Node sr = ValuesGetter.getXChild(vecnaskupina, JmenaElementu.EVIDENCNI_UDAJE, "nsesss:Vyrazovani",
+            Node sr = ValuesGetter.getXChild(vecnaskupina, NsessV3.EVIDENCNI_UDAJE, "nsesss:Vyrazovani",
                                              "nsesss:SkartacniRezim");
             if (sr == null) {
                 return nastavChybu("Nenalezen element <nsesss:SkartacniRezim>. " + getJmenoIdentifikator(vecnaskupina),

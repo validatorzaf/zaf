@@ -5,8 +5,8 @@ import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo94 extends K06PravidloBase {
@@ -25,13 +25,13 @@ public class Pravidlo94 extends K06PravidloBase {
     // jejíž poslední část je stejná jako hodnota elementu <nsesss:JednoduchySpisovyZnak>.",
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> plneurcenySpisovyZnak = metsParser.getNodes(JmenaElementu.PLNE_URCENY_SPISOVY_ZNAK);
+        List<Node> plneurcenySpisovyZnak = metsParser.getNodes(NsessV3.PLNE_URCENY_SPISOVY_ZNAK);
         if (CollectionUtils.isEmpty(plneurcenySpisovyZnak)) {
             return nastavChybu("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>.");
         }
         for (Node puzNode: plneurcenySpisovyZnak) {
             // kontrola jen pokud je rodic nsesss:Trideni
-            Node trideni = ValuesGetter.getParent(puzNode, JmenaElementu.TRIDENI);
+            Node trideni = ValuesGetter.getParent(puzNode, NsessV3.TRIDENI);
             if(trideni==null) {
                 continue;
             }

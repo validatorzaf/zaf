@@ -12,8 +12,8 @@ import org.apache.commons.lang3.Validate;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.PairZdrojIdent;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -433,14 +433,14 @@ public class Pravidlo54a  extends K06PravidloBase {
         this.dmdSecPziMap = new HashMap<>();
         List<Node> errors = new ArrayList<>(0);
         
-        readDmdsecs(metsParser.getNodes(JmenaElementu.SPISOVY_PLAN), errors);
-        readDmdsecs(metsParser.getNodes(JmenaElementu.VECNA_SKUPINA), errors);
+        readDmdsecs(metsParser.getNodes(NsessV3.SPISOVY_PLAN), errors);
+        readDmdsecs(metsParser.getNodes(NsessV3.VECNA_SKUPINA), errors);
         readDmdsecs(metsParser.getDokumenty(), errors);
-        readDmdsecs(metsParser.getNodes(JmenaElementu.SPIS), errors);
-        readDmdsecs(metsParser.getNodes(JmenaElementu.KOMPONENTA), errors);
-        readDmdsecs(metsParser.getNodes(JmenaElementu.SOUCAST), errors);
-        readDmdsecs(metsParser.getNodes(JmenaElementu.TYPOVY_SPIS), errors);
-        readDmdsecs(metsParser.getNodes(JmenaElementu.DIL), errors);
+        readDmdsecs(metsParser.getNodes(NsessV3.SPIS), errors);
+        readDmdsecs(metsParser.getNodes(NsessV3.KOMPONENTA), errors);
+        readDmdsecs(metsParser.getNodes(NsessV3.SOUCAST), errors);
+        readDmdsecs(metsParser.getNodes(NsessV3.TYPOVY_SPIS), errors);
+        readDmdsecs(metsParser.getNodes(NsessV3.DIL), errors);
         
         if(!errors.isEmpty()){
             String hlaska = errors.size()==1?"Nalezena chyba u elementu <mets:div>."

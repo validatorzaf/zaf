@@ -9,8 +9,8 @@ import java.util.Set;
 
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 // OBSAHOVÁ č.67 Pokud je základní entitou díl (<nsesss:Dil>) nebo 
@@ -40,10 +40,10 @@ public class Pravidlo67 extends K06PravidloBase {
         List<Node> spisyDily = new ArrayList<>();
         for (Node zakladnientita: zakladniEntity) {
             String zeName = zakladnientita.getNodeName();
-            if (JmenaElementu.SPIS.equals(zeName) || JmenaElementu.DIL.equals(zeName)) {
+            if (NsessV3.SPIS.equals(zeName) || NsessV3.DIL.equals(zeName)) {
                 spisyDily.add(zakladnientita);
             } else 
-            if (JmenaElementu.DOKUMENT.equals(zeName)) {
+            if (NsessV3.DOKUMENT.equals(zeName)) {
                 zakladniDokumenty.add(zakladnientita);
             }            
         }
@@ -76,7 +76,7 @@ public class Pravidlo67 extends K06PravidloBase {
             }
             Set<String> skZnakyDokumentu = skZnaky.computeIfAbsent(rodicNode, n -> new HashSet<>() );
             
-            Node nd = ValuesGetter.getXChild(dokument, JmenaElementu.EVIDENCNI_UDAJE, "nsesss:Vyrazovani",
+            Node nd = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, "nsesss:Vyrazovani",
                                              "nsesss:SkartacniRezim", "nsesss:SkartacniZnak");
             if (nd == null) {
                 return nastavChybu("Nenalezen dětský element <nsesss:SkartacniZnak> elementu <nsesss:Dokument>. "
@@ -101,7 +101,7 @@ public class Pravidlo67 extends K06PravidloBase {
     }
 
     private boolean kontrola(Node zakladnientita, Set<String> skZnakyDokumentu) {
-        Node n = ValuesGetter.getXChild(zakladnientita, JmenaElementu.EVIDENCNI_UDAJE, 
+        Node n = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, 
                                         "nsesss:Vyrazovani",
                                         "nsesss:SkartacniRezim", "nsesss:SkartacniZnak");
         if (n == null) {

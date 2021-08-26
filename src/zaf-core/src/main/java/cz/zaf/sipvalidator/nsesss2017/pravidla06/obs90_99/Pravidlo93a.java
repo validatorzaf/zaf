@@ -5,8 +5,8 @@ import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 /** 
@@ -26,7 +26,7 @@ public class Pravidlo93a  extends K06PravidloBase {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-        List<Node> vsList = metsParser.getNodes(JmenaElementu.VECNA_SKUPINA);
+        List<Node> vsList = metsParser.getNodes(NsessV3.VECNA_SKUPINA);
         if(CollectionUtils.isEmpty(vsList)) {
             return nastavChybu("Věcná skupina neexistuje", metsParser.getDocument());
         }

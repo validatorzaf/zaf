@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo74 extends K06PravidloBase {
@@ -23,7 +23,7 @@ public class Pravidlo74 extends K06PravidloBase {
     //OBSAHOVÁ č.74 Každý element <nsesss:PosuzovanyOkamzik> obsahuje atribut datum.",
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> nodes = metsParser.getNodes(JmenaElementu.POSUZOVANY_OKAMZIK);
+        List<Node> nodes = metsParser.getNodes(NsessV3.POSUZOVANY_OKAMZIK);
         for (Node cas : nodes) {
             boolean maDatum = ValuesGetter.hasAttribut(cas, "datum");
             if (!maDatum) {

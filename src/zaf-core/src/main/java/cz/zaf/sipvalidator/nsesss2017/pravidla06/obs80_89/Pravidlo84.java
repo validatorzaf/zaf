@@ -5,8 +5,8 @@ import java.util.List;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
-import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo84 extends K06PravidloBase {
@@ -25,7 +25,7 @@ public class Pravidlo84 extends K06PravidloBase {
     // element <nsesss:ObsahVyrizeni> s neprázdnou hodnotou.",
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> vyrizenis = metsParser.getNodes(JmenaElementu.VYRIZENI);
+        List<Node> vyrizenis = metsParser.getNodes(NsessV3.VYRIZENI);
         for (Node n : vyrizenis) {
             boolean maZpusobSHodnotou = ValuesGetter.getObsahujeRodicElementSHodnotou(n, "nsesss:Zpusob",
                                                                                       "jiný způsob");

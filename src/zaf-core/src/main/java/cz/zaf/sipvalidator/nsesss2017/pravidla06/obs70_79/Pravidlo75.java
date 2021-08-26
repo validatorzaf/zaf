@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo75 extends K06PravidloBase {
@@ -24,7 +24,7 @@ public class Pravidlo75 extends K06PravidloBase {
     //OBSAHOVÁ č.75 Pokud existuje jakýkoli element <nsesss:Platnost>, v každém obsahuje jeho dětský element <nsesss:PlatnostOd> stejnou nebo menší hodnotu, než je hodnota elementu <nsesss:PlatnostDo>.",
     @Override
     protected boolean kontrolaPravidla() {        
-        List<Node> posuzovanyOkamzik = metsParser.getNodes(JmenaElementu.PLATNOST);
+        List<Node> posuzovanyOkamzik = metsParser.getNodes(NsessV3.PLATNOST);
         for (Node platnost: posuzovanyOkamzik) {
             Node nodeOd = ValuesGetter.findFirstChild(platnost, "nsesss:PlatnostOd");
             if (nodeOd == null) {

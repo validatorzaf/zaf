@@ -10,6 +10,7 @@ import org.w3c.dom.Node;
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.54 Pokud neexistuje žádný element <nsesss:KrizovyOdkaz> s atributem pevny s hodnotou ano, 
@@ -42,21 +43,21 @@ public class Pravidlo54 extends K06PravidloBase {
         
         Map<String, Node> nsesssIdMap = new HashMap<>();        
         
-        List<Node> spisoveplany = metsParser.getNodes(JmenaElementu.SPISOVY_PLAN);
+        List<Node> spisoveplany = metsParser.getNodes(NsessV3.SPISOVY_PLAN);
         addToIdMap(spisoveplany, nsesssIdMap);
-        List<Node> vecneskupiny = metsParser.getNodes(JmenaElementu.VECNA_SKUPINA);
+        List<Node> vecneskupiny = metsParser.getNodes(NsessV3.VECNA_SKUPINA);
         addToIdMap(vecneskupiny, nsesssIdMap);
-        List<Node> soucasti = metsParser.getNodes(JmenaElementu.SOUCAST);
+        List<Node> soucasti = metsParser.getNodes(NsessV3.SOUCAST);
         addToIdMap(soucasti, nsesssIdMap);
-        List<Node> typovespisy = metsParser.getNodes(JmenaElementu.TYPOVY_SPIS);
+        List<Node> typovespisy = metsParser.getNodes(NsessV3.TYPOVY_SPIS);
         addToIdMap(typovespisy, nsesssIdMap);
-        List<Node> spisy = metsParser.getNodes(JmenaElementu.SPIS);
+        List<Node> spisy = metsParser.getNodes(NsessV3.SPIS);
         addToIdMap(spisy, nsesssIdMap);
-        List<Node> dily = metsParser.getNodes(JmenaElementu.DIL);
+        List<Node> dily = metsParser.getNodes(NsessV3.DIL);
         addToIdMap(dily, nsesssIdMap);
-        List<Node> dokumenty = metsParser.getNodes(JmenaElementu.DOKUMENT);
+        List<Node> dokumenty = metsParser.getNodes(NsessV3.DOKUMENT);
         addToIdMap(dokumenty, nsesssIdMap);
-        List<Node> komponenty = metsParser.getNodes(JmenaElementu.KOMPONENTA);
+        List<Node> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
         addToIdMap(komponenty, nsesssIdMap);
         
         int nsesssSize = spisoveplany.size() + vecneskupiny.size() + soucasti.size()

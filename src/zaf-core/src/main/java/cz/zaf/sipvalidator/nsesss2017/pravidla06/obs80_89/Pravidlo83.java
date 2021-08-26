@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo83 extends K06PravidloBase {
@@ -23,7 +23,7 @@ public class Pravidlo83 extends K06PravidloBase {
     // <nsesss:RokDo>, potom je jeho hodnota větší než <nsesss:RokOd>."
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> urceneCasoveObdobi = metsParser.getNodes(JmenaElementu.URCENE_CASOVE_OBDOBI);
+        List<Node> urceneCasoveObdobi = metsParser.getNodes(NsessV3.URCENE_CASOVE_OBDOBI);
         for (Node ucobdobi: urceneCasoveObdobi) {
             Node nodeDo = ValuesGetter.getXChild(ucobdobi, "nsesss:RokDo");
             if (nodeDo != null) {

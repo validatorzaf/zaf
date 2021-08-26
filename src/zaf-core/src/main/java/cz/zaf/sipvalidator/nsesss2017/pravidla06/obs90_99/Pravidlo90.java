@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo90 extends K06PravidloBase {
@@ -37,7 +37,7 @@ public class Pravidlo90 extends K06PravidloBase {
                             + getJmenoIdentifikator(spis),
                                        spis);
 
-                Node node2 = ValuesGetter.getXChild(spis, "nsesss:EvidencniUdaje", JmenaElementu.VYRIZENI_UZAVRENI,
+                Node node2 = ValuesGetter.getXChild(spis, "nsesss:EvidencniUdaje", NsessV3.VYRIZENI_UZAVRENI,
                                                     "nsesss:Datum");
                 if (node2 == null)
                     return nastavChybu("Nenalezen element <nsesss:Datum>. " + getJmenoIdentifikator(spis),
