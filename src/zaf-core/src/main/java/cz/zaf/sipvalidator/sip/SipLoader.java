@@ -1,20 +1,18 @@
 package cz.zaf.sipvalidator.sip;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import cz.zaf.sipvalidator.helper.Helper;
+import cz.zaf.common.FileOps;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadStatus;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 import net.lingala.zip4j.ZipFile;
@@ -57,7 +55,7 @@ public class SipLoader
      * 
      * SIPLoader by mel po sobe adresar vymazat
      */
-    private Path pathForUnzip;
+    private Path pathForDelete;
 
     public SipLoader(final String inputPath, final String workDir) {
         this.workDir = workDir;
@@ -105,39 +103,24 @@ public class SipLoader
 
         Path workdirPath;
         if (workDir == null) {
-            // throw new RuntimeException("Need to unzip file but workdir was not specified");
             workdirPath = Paths.get("rozbaleno");
         } else {
             workdirPath = Paths.get(workDir);
         }
-        // get actual time and create temp directory
-        String ads = Helper.getActualDateString();
-        Path pathForUnzip = workdirPath.resolve(ads);
-        int counter=0;
-        for(counter=0; counter<1000; counter++ ) {
-            if(!Files.exists(pathForUnzip)) {
-                break;
-            }
-            pathForUnzip = workdirPath.resolve(ads+counter);
-        }        
-        if(counter==1000) {
-            throw new RuntimeException("Failed to prepare working dir: "+workdirPath.normalize().toString());
-        }
-        
         try {
-            Files.createDirectories(pathForUnzip);
+            Files.createDirectories(workdirPath);
         } catch (IOException e) {
-            throw new RuntimeException("Failed to prepare working dir: " + pathForUnzip.normalize().toString());
+            throw new RuntimeException("Failed to prepare working dir: " + workdirPath.normalize().toString());
         }
-        this.pathForUnzip = pathForUnzip;
 
-        Path newSipPath = unzipSip(sipZipPath, pathForUnzip);
+        Path newSipPath = unzipSip(sipZipPath, workdirPath);
         if (newSipPath == null) {
             // SIP nebyl rozbalen -> chyba
             return;
         }
         
         // SIP byl rozbalen
+        this.pathForDelete = newSipPath;
         sipPath = newSipPath;
         // aktualizace jmena (bez .zip)
         sipName = sipPath.getName(sipPath.getNameCount() - 1).toString();
@@ -174,6 +157,16 @@ public class SipLoader
         boolean spravnaStrukturaZipu = obsahujePraveAdresar(zipFile, ocekavanejmeno);
         if (!spravnaStrukturaZipu) {
             loadStatus = LoadStatus.ERR_ZIP_INCORRECT_STRUCTURE;
+            return null;
+        }
+        // drop any existing item on disk
+        try {
+            Path pathForDelete = pathForUnzip.resolve(ocekavanejmeno);
+            FileOps.recursiveDelete(pathForDelete);
+        } catch (IOException e) {
+            loadStatus = LoadStatus.ERR_UNZIP_FAILED;
+            // invalid ZIP file
+            log.error("Failed to delete existing item", e);
             return null;
         }
         try {
@@ -234,14 +227,10 @@ public class SipLoader
 
 	@Override
 	public void close() throws Exception {
-        if (pathForUnzip != null) {
-            Files.walk(pathForUnzip)
-                    .sorted(Comparator.reverseOrder())
-                    .map(Path::toFile)
-                    //.peek(System.out::println)
-                    .forEach(File::delete);
-        }
-        pathForUnzip = null;
+        if (pathForDelete != null) {
+            FileOps.recursiveDelete(pathForDelete);
+            pathForDelete = null;
+        }        
 	}
 
 	public SipInfo getSip() {

@@ -21,21 +21,21 @@ class SipValidatorK01Test
     }
 
     @Test
-    void testK01_01() {
+    void testK01_01_OK01() {
         testPackageK01("data1-OK", LoadType.LT_DIR, StavKontroly.CHYBA,
                        new String[] { K01_DatoveStruktury.DATA1, K01_DatoveStruktury.DATA2 },
                        new String[] { K01_DatoveStruktury.DATA3 });
     }
 
     @Test
-    void testK01_02() {
+    void testK01_01_01() {
         testPackageK01("data1-chyba1.xml", LoadType.LT_XML, StavKontroly.CHYBA,
                        null,
                        new String[] { K01_DatoveStruktury.DATA1 });
     }
 
     @Test
-    void testK01_03() {
+    void testK01_01_02() {
         testPackageK01("data1-chyba2.zip", LoadType.LT_ZIP, StavKontroly.CHYBA,
                        new String[] {},
                        new String[] {
@@ -44,14 +44,14 @@ class SipValidatorK01Test
     }
 
     @Test
-    void testK01_04() {
+    void testK01_01_03() {
         testPackageK01("data1-chyba3.pdf", LoadType.LT_UNKNOWN, StavKontroly.CHYBA,
                        new String[] { K01_DatoveStruktury.DATA2 },
                        new String[] { K01_DatoveStruktury.DATA1, K01_DatoveStruktury.DATA3 });
     }
 
     @Test
-    void testK01_05() {
+    void testK01_01_04() {
         testPackageK01("data1-chyba4.zip", LoadType.LT_ZIP, StavKontroly.CHYBA,
                        null,
                        new String[] { K01_DatoveStruktury.DATA1,
@@ -59,35 +59,35 @@ class SipValidatorK01Test
     }
 
     @Test
-    void testK01_06() {
+    void testK01_02_01() {
         testPackageK01("data2-chyba1.zip", LoadType.LT_ZIP, StavKontroly.CHYBA,
                        new String[] { K01_DatoveStruktury.DATA1 },
                        new String[] { K01_DatoveStruktury.DATA2, K01_DatoveStruktury.DATA3 });
     }
 
     @Test
-    void testK01_07() {
+    void testK01_02_02() {
         testPackageK01("data2-chyba2.zip", LoadType.LT_ZIP, StavKontroly.CHYBA,
                        new String[] { K01_DatoveStruktury.DATA1 },
                        new String[] { K01_DatoveStruktury.DATA2, K01_DatoveStruktury.DATA3 });
     }
 
     @Test
-    void testK01_08() {
+    void testK01_02_03() {
         testPackageK01("data2-chyba3.zip", LoadType.LT_ZIP, StavKontroly.CHYBA,
                        new String[] { K01_DatoveStruktury.DATA1 },
                        new String[] { K01_DatoveStruktury.DATA2, K01_DatoveStruktury.DATA3 });
     }
 
     @Test
-    void testK01_09() {
+    void testK01_02_OK01() {
         testPackageK01("data2-OK1.zip", LoadType.LT_ZIP, StavKontroly.CHYBA,
                        new String[] { K01_DatoveStruktury.DATA1, K01_DatoveStruktury.DATA2 },
                        new String[] { K01_DatoveStruktury.DATA3 });
     }
 
     @Test
-    void testK01_10() {
+    void testK01_03_OK01() {
         testPackageK01("2019-05-13-MUJESS00046030-00040003.zip", LoadType.LT_ZIP, StavKontroly.OK,
                        new String[] { K01_DatoveStruktury.DATA1, K01_DatoveStruktury.DATA2, K01_DatoveStruktury.DATA3 },
                        new String[] {});
