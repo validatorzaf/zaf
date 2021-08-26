@@ -32,6 +32,10 @@ public class Pravidlo66 extends K06PravidloBase {
             Node ze = zakladniEntity.get(i);
             Node node = ValuesGetter.getXChild(ze, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani",
                                                "nsesss:DataceVyrazeni", NsessV3.ROK_SKARTACNI_OPERACE);
+            if(node==null) {
+                return nastavChybu("Nenalezen podřízený element <" + NsessV3.ROK_SKARTACNI_OPERACE + ">",
+                            ze);
+            }
             Integer rokSkartacniOperace = vratRok(node);
             if (rokSkartacniOperace == null) {
                 return false;

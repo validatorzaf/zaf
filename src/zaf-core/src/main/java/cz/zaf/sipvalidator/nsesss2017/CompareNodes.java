@@ -34,7 +34,7 @@ public class CompareNodes {
         //NODE NAME
         String prvni_nodeName = node.getNodeName();
         String druhy_nodeName = node_compared.getNodeName();
-        if (!prvni_nodeName.equals(druhy_nodeName)) {
+        if (!Objects.equals(prvni_nodeName, druhy_nodeName)) {
             return "Jména uzlů se neshodují: " + prvni_nodeName + " - " + druhy_nodeName + ".";
         }
         //NODE TYPE
@@ -47,7 +47,7 @@ public class CompareNodes {
         if(!hasChildNodes(node) && !hasChildNodes(node_compared)){
             String prvni_nodeText = node.getTextContent().trim();
             String druhy_nodeText = node_compared.getTextContent().trim();
-            if(prvni_nodeText == null ? druhy_nodeText == null : !prvni_nodeText.equals(druhy_nodeText)){
+            if(!Objects.equals(prvni_nodeText, druhy_nodeText)) {
                 return "Hodnoty uzlů se neshodují: " + node.getNodeName() + ": " + prvni_nodeText + " - " + node_compared.getNodeName() + ": " + druhy_nodeText + ".";
             }
         }
@@ -116,9 +116,16 @@ public class CompareNodes {
                 i = index+1;
                 Node druhy = getFirst_ElementNode(porovnavany_deti, j);
                 j = index+1;
-                if(prvni == null && druhy == null) return "OK";
+                if(prvni == null && druhy == null) {
+                    return "OK";
+                }
+                if(prvni == null || druhy == null) {
+                    return "Chybí element: "+ ((prvni!=null)?prvni.getNodeName():druhy.getNodeName());
+                }
                 String compare = compare(prvni, druhy);
-                if(!compare.equals("OK")) return compare;
+                if(!compare.equals("OK")) {
+                    return compare;
+                }
             }
         }
         else{
@@ -128,9 +135,16 @@ public class CompareNodes {
                 i = index+1;
                 Node prvni = getFirst_ElementNode(vzor_Deti, j);
                 j = index+1;
-                if(prvni == null && druhy == null) return "OK";
+                if(prvni == null && druhy == null) {
+                    return "OK";
+                }
+                if(prvni == null || druhy == null) {
+                    return "Chybí element: "+ ((prvni!=null)?prvni.getNodeName():druhy.getNodeName());
+                }
                 String compare = compare(prvni, druhy);
-                if(!compare.equals("OK")) return compare;
+                if(!compare.equals("OK")) {
+                    return compare;
+                }
             }
         }
         

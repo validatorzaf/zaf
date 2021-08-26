@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.Validate;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -279,7 +278,9 @@ public class MetsParser {
     
     public List<Node> getNodes(String nodeName) {
         List<Node> nodes = this.nodeQueryCache.get(nodeName);
-        Validate.notNull(nodes, "Nodes not in the cache, nodeName: %s", nodeName);
+        if(nodes==null) {
+            throw new RuntimeException("Element pro vyhodnocení pravidla není načten z důvodu jiné chyby, název elementu: "+nodeName);
+        }
         return nodes;
         
     }
