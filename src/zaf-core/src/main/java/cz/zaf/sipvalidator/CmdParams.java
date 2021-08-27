@@ -26,7 +26,7 @@ public class CmdParams {
         output.println("        3 = pro předávání dokumentů a jejich metadat do archivu");
         output.println(" -e|--exclude= Seznam kontrol oddělených čárkou, které se nemají provádět");
         output.println(" -i|--id= Identifikátor prováděné kontroly");
-        output.println(" -z|--hrozba= podrobnosti v případě nalezení hrozby (pro předání z antivirového programu)");
+        output.println(" -z|--hrozba= Podrobnosti v případě nalezení hrozby (pro předání z antivirového programu)");
         output.println(" -o|--output= Jméno souboru nebo adresáře pro uložení výsledků");
     }
 
@@ -117,7 +117,7 @@ public class CmdParams {
 
         while (pos < args.length) {
             String arg = args[pos];
-            if (arg.equals("-b") || arg.equals("--batch=")) {
+            if (arg.equals("-b") || arg.equals("--batch")) {
                 davkovyRezim = true;
             } else if (arg.equals("-w")) {
                 if (!readW()) {
