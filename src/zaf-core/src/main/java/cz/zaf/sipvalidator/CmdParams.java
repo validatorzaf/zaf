@@ -17,8 +17,10 @@ public class CmdParams {
         PrintStream output = System.out;
         output.println("CmdValidator [přepínače] [<path>]");
         output.println("");
+        output.println("path - cesta k SIPu, v případě dávkového režimu ke složce se SIPy");
+        output.println("");
         output.println("Přepínače:");
-        output.println(" -b|--batch= Dávkový režim, vstupem je adresář obsahující SIPy");
+        output.println(" -b|--batch Dávkový režim, cesta je adresář obsahující SIPy");
         output.println(" -w|--workdir= Umístění pracovního adresáře, zde budou SIPy rozbaleny");
         output.println(" -d|--druh= Druh kontroly (1 - výchozí):");
         output.println("        1 = pro provedení skartačního řízení (jen metadata bez přiložených komponent)");
