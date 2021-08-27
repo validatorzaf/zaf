@@ -26,24 +26,24 @@ XXXXXX
 
 ## Použití
 
-Validátor ZAF lze volat prostřednictvím příkazového řádku:
-java -jar CmdValidator [přepínače] [<path>]
+Validátor ZAF lze volat prostřednictvím příkazového řádku:  
+java -jar CmdValidator [přepínače] [&lt;path&gt;]
 
 path - cesta k SIPu, v případě dávkového režimu ke složce se SIPy
 
 ### Přepínače:
 
--b|--batch Dávkový režim, vstupem je adresář obsahující SIPy
--w|--workdir= Umístění pracovního adresáře, zde budou SIPy rozbaleny
+-b|--batch Dávkový režim, vstupem je adresář obsahující SIPy  
+-w|--workdir= Umístění pracovního adresáře, zde budou SIPy rozbaleny  
 -d|--druh= Druh kontroly (1 - výchozí):
 
-> 1 = pro provedení skartačního řízení (jen metadata bez přiložených komponent)
-> 2 = pro provedení skartačního řízení (s přiloženými komponentami)
+> 1 = pro provedení skartačního řízení (jen metadata bez přiložených komponent)  
+> 2 = pro provedení skartačního řízení (s přiloženými komponentami)  
 > 3 = pro předávání dokumentů a jejich metadat do archivu
 
--e|--exclude= Seznam kontrol oddělených čárkou, které se nemají provádět
--i|--id= Identifikátor prováděné kontroly
--z|--hrozba= Podrobnosti v případě nalezení hrozby (pro předání z antivirového programu)
+-e|--exclude= Seznam kontrol oddělených čárkou, které se nemají provádět  
+-i|--id= Identifikátor prováděné kontroly  
+-z|--hrozba= Podrobnosti v případě nalezení hrozby (pro předání z antivirového programu)  
 -o|--output= Jméno souboru nebo adresáře pro uložení výsledků
 
 ## Podpora
@@ -58,15 +58,15 @@ Kontakt: [XXXX@XXXX](XXXX@XXXX)
 
 ## Autoři
 
-Stanislav Bečvář
-Hlavní město Praha
-Magistrát hlavního města Prahy
+Stanislav Bečvář  
+Hlavní město Praha  
+Magistrát hlavního města Prahy  
 Odbor „Archiv hlavního města Prahy“
 
-Petr Pytelka
+Petr Pytelka  
 LightComp v.o.s.
 
-Karel Žáček
+Karel Žáček  
 LightComp v.o.s.
 
 ## Licenční podmínky
