@@ -4,17 +4,13 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
 
 import cz.zaf.sipvalidator.nsesss2017.SipValidator;
 import cz.zaf.sipvalidator.pdfa.VeraValidatorProxy;
+import cz.zaf.sipvalidator.sip.ProtokolWriter;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipLoader;
-import cz.zaf.sipvalidator.sip.VyslednyProtokol;
+import cz.zaf.sipvalidator.sip.XmlProtokolWriter;
 
 /**
  * Command line validator
@@ -25,8 +21,6 @@ public class CmdValidator {
     public static final int ERR_WRONG_PARAMS = 1;
     public static final int ERR_FAILED = 2;
     private CmdParams cmdParams;
-
-    VyslednyProtokol vyslednyProtokol = new VyslednyProtokol();
 
     public CmdValidator(final CmdParams cmdParams) {
         this.cmdParams = cmdParams;
@@ -55,18 +49,22 @@ public class CmdValidator {
     }
 
     private void validate() throws Exception {
-        if (cmdParams.isDavkovyRezim()) {
-            validateDavka();
-        } else {
-            validateSip();
+        try(XmlProtokolWriter protokolWriter = new XmlProtokolWriter(cmdParams.getOutput(), 
+                                                                     cmdParams.getIdKontroly(), 
+                                                                     cmdParams.getProfilValidace());) {
+            if (cmdParams.isDavkovyRezim()) {
+                validateDavka(protokolWriter);
+            } else {
+                validateSip(protokolWriter);
+            }
         }
     }
 
-    private void validateSip() throws Exception {
+    private void validateSip(ProtokolWriter protokolWriter) throws Exception {
 
         SipInfo sipInfo = validateSip(cmdParams.getInputPath());
-
-        writeResult(cmdParams.getOutput(), Collections.singletonList(sipInfo));
+        
+        protokolWriter.writeVysledek(sipInfo);
     }
 
     private SipInfo validateSip(String sipPath) throws Exception {
@@ -83,56 +81,18 @@ public class CmdValidator {
 
     }
 
-    private void validateDavka() throws Exception {
+    private void validateDavka(ProtokolWriter protokolWriter) throws Exception {
         Path inputDir = Paths.get(cmdParams.getInputPath());
         if (!Files.isDirectory(inputDir)) {
             throw new IllegalArgumentException("Input path is not directory: " + cmdParams.getInputPath());
         }
-        final List<SipInfo> sips = new ArrayList<>();
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(inputDir)) {
             for (final Path path : stream) {
                 final String dirPath = path.toAbsolutePath().toString();
                 final SipInfo sipInfo = validateSip(dirPath);
-                sips.add(sipInfo);
+                
+                protokolWriter.writeVysledek(sipInfo);
             }
         }
-        writeResult(cmdParams.getOutput(), sips);
     }
-
-    /**
-     * Zapsani vysledku do protokolu
-     * 
-     * @param output
-     *            Jmeno vystupniho souboru
-     * @param sips
-     *            Seznam SIPu
-     * @throws Exception
-     *             Chyba pri zapisu protokolu
-     */
-    private void writeResult(String output, List<SipInfo> sips) throws Exception {
-        String kontrolaId = cmdParams.getIdKontroly();
-        if (!StringUtils.isEmpty(kontrolaId)) {
-            vyslednyProtokol.getKontrolaSIP().setKontrolaID(kontrolaId);
-        }
-        vyslednyProtokol.setProfilValidace(cmdParams.getProfilValidace());
-
-        for (SipInfo sipInfo : sips) {
-            vyslednyProtokol.addSipInfo(sipInfo);
-        }
-
-        if (StringUtils.isNoneBlank(cmdParams.getOutput())) {
-            Path outputPath = Paths.get(cmdParams.getOutput());
-            if (Files.isDirectory(outputPath)) {
-                // create file name
-                outputPath = outputPath.resolve("protokol.xml");
-                vyslednyProtokol.save(outputPath);;
-            } else {
-                vyslednyProtokol.save(outputPath);
-            }
-        } else {
-            vyslednyProtokol.save(System.out);
-        }
-
-    }
-
 }

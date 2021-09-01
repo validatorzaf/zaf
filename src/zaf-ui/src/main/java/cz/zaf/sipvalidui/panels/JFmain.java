@@ -31,15 +31,13 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-import org.apache.commons.lang3.StringUtils;
-
 import cz.zaf.sipvalidator.helper.Helper;
 import cz.zaf.sipvalidator.nsesss2017.SipValidator;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipInfo.SipType;
 import cz.zaf.sipvalidator.sip.SipLoader;
-import cz.zaf.sipvalidator.sip.VyslednyProtokol;
+import cz.zaf.sipvalidator.sip.XmlProtokolWriter;
 import cz.zaf.sipvalidui.analysis.Analys;
 import cz.zaf.sipvalidui.openFiles.SIP_Opener;
 
@@ -593,17 +591,9 @@ public class JFmain extends javax.swing.JFrame {
         for (int start = 0; start < nahraneSoubory.size(); start += velikostDavky) {
             int end = Math.min(start + velikostDavky, nahraneSoubory.size());
 
-            List<SipInfo> cola = nahraneSoubory.getSipy(start, end);//new ArrayList<>();
+            List<SipInfo> cola = nahraneSoubory.getSipy(start, end);
 
             cola.forEach(si -> {
-                VyslednyProtokol vp = new VyslednyProtokol();
-                vp.setProfilValidace(profilValidace);
-                if (StringUtils.isNoneEmpty(id_kontroly_zadane)) {
-
-                }
-                vp.getKontrolaSIP().setKontrolaID(id_kontroly_zadane);
-
-                vp.addSipInfo(si);
                 Path src = si.getCesta();
                 if (src != null) {
                     Path outputPath;
@@ -612,8 +602,10 @@ public class JFmain extends javax.swing.JFrame {
                     } else {
                         outputPath = src.resolveSibling(".xml");
                     }
-                    try {
-                        vp.save(outputPath);
+                    try(XmlProtokolWriter pw = new XmlProtokolWriter(outputPath.toAbsolutePath().toString(), 
+                                                                     id_kontroly_zadane, profilValidace);)
+                    {
+                        pw.writeVysledek(si);
                     } catch (Exception ex) {
                         Logger.getLogger(JFmain.class.getName()).log(Level.SEVERE, null, ex);
                     }
