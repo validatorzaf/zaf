@@ -19,50 +19,51 @@ import org.w3c.dom.NodeList;
 
 /**
  *
- * @author Orkscream
  */
 public class CompareNodes {
-    private static int index; //kvůli vyhledávání elementů 
     
-    public static String compare(Node node, Node node_compared){
+    /**
+     * Compare two nodes and its subnodes
+     * @param leftNode
+     * @param rightNode
+     * @return Return null if nodes are same. 
+     *         Return description of difference if nodes are different.
+     */
+    public static String compare(Node leftNode, Node rightNode){
         //JEDNÁ SE O TEN SAMÝ UZEL
-        if(node.isSameNode(node_compared)) {
-            return "OK";
+        if(leftNode.isSameNode(rightNode)) {
+            return null;
         }
         
         //KDYŽ RYCHLÉ POROVNÁNÍ NEPROJDE MUSÍM PO ŘÁDCÍCH - ABYCH MOHL VYPSAT KONKRÉTNÍ CHYBU
         //NODE NAME
-        String prvni_nodeName = node.getNodeName();
-        String druhy_nodeName = node_compared.getNodeName();
-        if (!Objects.equals(prvni_nodeName, druhy_nodeName)) {
-            return "Jména uzlů se neshodují: " + prvni_nodeName + " - " + druhy_nodeName + ".";
+        String leftName = leftNode.getNodeName();
+        String rightName = rightNode.getNodeName();
+        if (!Objects.equals(leftName, rightName)) {
+            return "Jména uzlů se neshodují: " + leftName + " - " + rightName + ".";
         }
         //NODE TYPE
-        short prvni_nodeType = node.getNodeType();
-        short druhy_nodeType = node_compared.getNodeType();
-        if(prvni_nodeType != druhy_nodeType) {
-            return "Různé typy uzlů. " + node.getNodeName() + " - " + node.getNodeType() + ". " + node_compared.getNodeName() + " - " + node_compared.getNodeType() + ".";
+        short leftType = leftNode.getNodeType();
+        short rightType = rightNode.getNodeType();
+        if(leftType != rightType) {
+            return "Různé typy uzlů. " + leftName + " (" + leftType + ") a " + rightName + " (" + rightType + ").";
         }
         //TEXT CONTENT
-        if(!hasChildNodes(node) && !hasChildNodes(node_compared)){
-            String prvni_nodeText = node.getTextContent().trim();
-            String druhy_nodeText = node_compared.getTextContent().trim();
-            if(!Objects.equals(prvni_nodeText, druhy_nodeText)) {
-                return "Hodnoty uzlů se neshodují: " + node.getNodeName() + ": " + prvni_nodeText + " - " + node_compared.getNodeName() + ": " + druhy_nodeText + ".";
+        if(!hasChildNodes(leftNode) && !hasChildNodes(rightNode)){
+            String leftText = leftNode.getTextContent().trim();
+            String rightText = rightNode.getTextContent().trim();
+            if(!Objects.equals(leftText, rightText)) {
+                return "Hodnoty uzlů se neshodují: " + leftName + ": " + leftText + " - " + rightName + ": " + rightText + ".";
             }
         }
         //ATRIBUTY
-        String atributy_vysledek = compareAttributes(node, node_compared);
-        if(!atributy_vysledek.equals("OK")) {
-            return atributy_vysledek;
-        }
-        //CHILDREN
-        String children_vysledek = check_children(node, node_compared);
-        if(!children_vysledek.equals("OK")) {
-            return children_vysledek;
+        String result = compareAttributes(leftNode, rightNode);
+        if(result==null) {
+            //CHILDREN
+            result = checkChildren(leftNode, rightNode);
         }
         
-        return "OK";
+        return result;
     }
     
     private static Map<String, String> prepareAttributeMap(Node node) {
@@ -100,83 +101,66 @@ public class CompareNodes {
             }
             return "Atributy elementu " + left.getNodeName() + " se neshodují: " + leftValue + " " + rightValue;            
         }
-        return "OK";
-    }
-    
-    // musím vynechat komentáře != ELEMENT_NODE
-    private static String check_children(Node vzor, Node porovnavany){
-        NodeList vzor_Deti = vzor.getChildNodes();
-        NodeList porovnavany_deti = porovnavany.getChildNodes();
-        int t= vzor_Deti.getLength();
-        int g = porovnavany_deti.getLength();
-        if(vzor_Deti.getLength() >= porovnavany_deti.getLength()){
-            int j = 0;
-            for(int i = 0; i < vzor_Deti.getLength(); i++){
-                Node prvni = getFirst_ElementNode(vzor_Deti, i);
-                i = index+1;
-                Node druhy = getFirst_ElementNode(porovnavany_deti, j);
-                j = index+1;
-                if(prvni == null && druhy == null) {
-                    return "OK";
-                }
-                if(prvni == null || druhy == null) {
-                    return "Chybí element: "+ ((prvni!=null)?prvni.getNodeName():druhy.getNodeName());
-                }
-                String compare = compare(prvni, druhy);
-                if(!compare.equals("OK")) {
-                    return compare;
-                }
-            }
-        }
-        else{
-            int j = 0;
-            for(int i = 0; i < porovnavany_deti.getLength(); i++){
-                Node druhy = getFirst_ElementNode(porovnavany_deti, i);
-                i = index+1;
-                Node prvni = getFirst_ElementNode(vzor_Deti, j);
-                j = index+1;
-                if(prvni == null && druhy == null) {
-                    return "OK";
-                }
-                if(prvni == null || druhy == null) {
-                    return "Chybí element: "+ ((prvni!=null)?prvni.getNodeName():druhy.getNodeName());
-                }
-                String compare = compare(prvni, druhy);
-                if(!compare.equals("OK")) {
-                    return compare;
-                }
-            }
-        }
-        
-        return "OK";
-    }
-    
-    
-//metody do value gettru    
-    private static Node getFirst_ElementNode(NodeList nodeList, int startIndex){
-        if(nodeList == null) return null;
-        if(startIndex >= nodeList.getLength()) return null;
-        for(int i = startIndex; i < nodeList.getLength(); i++){
-            Node n = nodeList.item(i);
-            if(n.getNodeType() == ELEMENT_NODE){
-                String g = n.getNodeName();
-                index = i;
-                return n;
-            }
-            else{
-                int f = 0;
-            }
-        }
-        
         return null;
     }
     
+    private static class ElementIterator {
+        final NodeList nodes;
+        int position = 0;
+        
+        ElementIterator(final NodeList nodes) {
+            this.nodes = nodes;
+        }
+        
+        Node next() {
+            while(position<nodes.getLength()) {
+                Node node = nodes.item(position);
+                position++;
+                if(node.getNodeType() == ELEMENT_NODE) {
+                    return node;
+                }
+            }
+            return null;
+        }
+    };
+    
+    // musím vynechat komentáře != ELEMENT_NODE
+    private static String checkChildren(Node leftNode, Node rightNode){
+        NodeList leftNodes = leftNode.getChildNodes();
+        NodeList rightNodes = rightNode.getChildNodes();
+        
+        ElementIterator leftIter = new ElementIterator(leftNodes);
+        ElementIterator rightIter = new ElementIterator(rightNodes);
+        
+        Node l = leftIter.next(),
+                r = rightIter.next();
+        
+        while (l != null && r != null) {
+            String result = compare(l, r);
+            if(result!=null) {
+                return result;
+            }
+            
+            l = leftIter.next();
+            r = rightIter.next();
+        }
+
+        if(l != null || r != null) {
+            return "Chybí element: "+ ((l!=null)?l.getNodeName():r.getNodeName());
+        }
+        return null;
+    }
+        
     private static boolean hasChildNodes(Node node){
-        if(node == null) return false;
+        if(node == null) {
+            return false;
+        }
         if(node.hasChildNodes()){
             NodeList list = node.getChildNodes();
             for(int i = 0; i < list.getLength(); i++){
-                if(list.item(i).getNodeType() == ELEMENT_NODE) return true;
+                if(list.item(i).getNodeType() == ELEMENT_NODE) {
+                    return true;
+                }
             }
         }
         return false;

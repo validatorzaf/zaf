@@ -29,84 +29,86 @@ public class Pravidlo59 extends K06PravidloBase {
     //OBSAHOVÁ č.59 Žádná entita (od spisového plánu po dokument) nebo objekt <nsesss:Komponenta>, <nsesss:BezpecnostniKategorie>, <nsesss:SkartacniRezim> nebo <nsesss:TypDokumentu> neobsahuje stejné hodnoty elementu <nsesss:Identifikator> a jeho atributu zdroj a současně odlišné hodnoty v ostatních elementech, jako má jiná entita nebo objekt uvedeného typu, kromě atributu ID uvedené entity.
     @Override
     protected boolean kontrolaPravidla() {
-        Map<PairZdrojIdent, List<Node> > identMap = new HashMap<>();        
+        Map<PairZdrojIdent, List<Node>> identMap = new HashMap<>();
         List<Node> identList = metsParser.getNodes(NsessV3.IDENTIFIKATOR);
-        for(Node ident: identList) {
+        for (Node ident : identList) {
             // get parent entity
             Node parentNode = getEntityWithIdentifikator(ident);
             // Kontrola typu rodice
-            if(!shouldBeChecked(parentNode)) {
+            if (!shouldBeChecked(parentNode)) {
                 continue;
             }
-            
+
             String hodnotaIdentifikatoru = ident.getTextContent();
             String hodnotaAtrZdroj = ValuesGetter.getValueOfAttribut(ident, "zdroj");
-            
+
             PairZdrojIdent pair = new PairZdrojIdent(hodnotaAtrZdroj, hodnotaIdentifikatoru);
-            
+
             List<Node> nodeList = identMap.computeIfAbsent(pair, (p) -> new ArrayList<>());
             nodeList.add(parentNode);
         }
-        
+
         // Porovnani uzlu se shodnymi ident
-        for(Entry<PairZdrojIdent, List<Node>> entry: identMap.entrySet()) {
+        for (Entry<PairZdrojIdent, List<Node>> entry : identMap.entrySet()) {
             List<Node> nodeList = entry.getValue();
 
             Iterator<Node> it = nodeList.iterator();
             Node firstNode = it.next();
-            while(it.hasNext()) {
+            while (it.hasNext()) {
                 Node node = it.next();
                 String hlaska = CompareNodes.compare(firstNode, node);
-                if (!hlaska.equals("OK")) {
+                if (hlaska!=null) {
                     return nastavChybu("Entity/objekty mají stejné hodnoty v elementu identifikátor a atributu zdroj, ale různý obsah. "
                             + hlaska + " " + getJmenoIdentifikator(firstNode) +
                             " " + getJmenoIdentifikator(node),
-                                getMistoChyby(firstNode) + " " + getMistoChyby(node));
+                                       getMistoChyby(firstNode) + " " + getMistoChyby(node));
                 }
             }
         }
         return true;
     }
-    
-    public static boolean shouldBeChecked(Node node){
-        switch(node.getNodeName()){
-            case "nsesss:SpisovyPlan":
-                return true;
-            case "nsesss:VecnaSkupina":
-                return true;
-            case "nsesss:TypovySpis":
-                return true;
-            case "nsesss:Soucast":
-                return true;
-            case "nsesss:Spis":
-                return true;
-            case "nsesss:Dil":
-                return true;
-            case "nsesss:Dokument":
-                return true;
-            case "nsesss:Komponenta":
-                return true;  
-            case "nsesss:BezpecnostniKategorie":
-                return true;    
-            case "nsesss:SkartacniRezim":
-                return true;
-            case "nsesss:TypDokumentu":
-                return true;             
+
+    public static boolean shouldBeChecked(Node node) {
+        switch (node.getNodeName()) {
+        case NsessV3.SPISOVY_PLAN:
+            return true;
+        case NsessV3.VECNA_SKUPINA:
+            return true;
+        case NsessV3.TYPOVY_SPIS:
+            return true;
+        case NsessV3.SOUCAST:
+            return true;
+        case NsessV3.SPIS:
+            return true;
+        case NsessV3.DIL:
+            return true;
+        case NsessV3.DOKUMENT:
+            return true;
+        case NsessV3.KOMPONENTA:
+            return true;
+        case "nsesss:BezpecnostniKategorie":
+            return true;
+        case "nsesss:SkartacniRezim":
+            return true;
+        case "nsesss:TypDokumentu":
+            return true;
         }
         return false;
     }
 
-    public static Node getEntityWithIdentifikator(Node identifikator){
-        if(identifikator.getParentNode().getNodeName().equals("nsesss:Identifikace")){
-            if(identifikator.getParentNode().getParentNode().getNodeName().equals("nsesss:EvidencniUdaje")){
-                return identifikator.getParentNode().getParentNode().getParentNode();
+    public static Node getEntityWithIdentifikator(Node identifikator) {
+        Node parentNode = identifikator.getParentNode();
+        String parentName = parentNode.getNodeName();
+        if (parentName.equals("nsesss:Identifikace")) {
+            parentNode = parentNode.getParentNode();
+            parentName = parentNode.getNodeName();
+            if (parentName.equals(NsessV3.EVIDENCNI_UDAJE)) {
+                return parentNode.getParentNode();
+            } else {
+                return parentNode;
             }
-            else{
-                return identifikator.getParentNode().getParentNode();
-            }
-        }
-        else{
-            return identifikator.getParentNode();
+        } else {
+            return parentNode;
         }
     }
 }

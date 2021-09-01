@@ -38,4 +38,12 @@ public class PairZdrojIdent {
     public int hashCode() {
         return Objects.hash(zdroj, ident);
     }
+
+    public String getZdroj() {
+        return zdroj;
+    }
+
+    public String getIdent() {
+        return ident;
+    }
 }
