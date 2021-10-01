@@ -60,12 +60,12 @@
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
 				<version>1.7.30</version>
-			</dependency>			
+			</dependency>
 			<dependency>
 				<groupId>ch.qos.logback</groupId>
 				<artifactId>logback-classic</artifactId>
 				<version>1.2.3</version>
-			</dependency>			
+			</dependency>
 			<dependency>
 				<groupId>net.lingala.zip4j</groupId>
 				<artifactId>zip4j</artifactId>
@@ -105,6 +105,14 @@
 	</dependencyManagement>
 
 	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>3.0.0-M4</version>
+			</plugin>
+		</plugins>
+
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -173,8 +181,10 @@
 	</profiles>
 
 	<distributionManagement>
-		<!-- <repository> <id>LightCompReleaseRepository</id> <url>https://vlas1.lightcomp.cz:8079/releases/repository/nacr-release</url> 
-			</repository> -->
+		<repository>
+			<id>LightCompReleaseRepository</id>
+			<url>https://vlas1.lightcomp.cz:8079/releases/repository/lc-public-release</url>
+		</repository>
 		<snapshotRepository>
 			<id>frnkRepo</id>
 			<url>http://10.2.0.2:8080/artifactory/libs-snapshot-local</url>
