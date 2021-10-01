@@ -35,7 +35,7 @@
 	<modules>
 		<module>zaf-core</module>
 		<module>zaf-cmd</module>
-		<module>zaf-ui</module>
+		<!--<module>zaf-ui</module>-->
 	</modules>
 
 	<dependencyManagement>
@@ -180,10 +180,15 @@
 
 	</profiles>
 
+    <scm>
+        <connection>scm:git:ssh://gitlab.lightcomp.cz/zaf/zaf.git</connection>
+        <developerConnection>scm:git:ssh://gitlab.lightcomp.cz/zaf/zaf.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
 	<distributionManagement>
 		<repository>
 			<id>LightCompReleaseRepository</id>
-			<url>https://vlas1.lightcomp.cz:8079/releases/repository/lc-public-release</url>
+			<url>https://www.lightcomp.cz/releases/repository/lc-public-release</url>
 		</repository>
 		<snapshotRepository>
 			<id>frnkRepo</id>
