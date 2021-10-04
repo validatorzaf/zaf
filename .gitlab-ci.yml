@@ -39,7 +39,7 @@ Build project:
     - master
 
 master-release:
-  stage: release
+  stage: deploy
   when: manual
   script:
     ##
