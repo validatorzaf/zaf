@@ -950,6 +950,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     }
 
     @Test
+    void testK06_44_03() {
+        testPackageK06("44-chyba3", StavKontroly.CHYBA,
+                       ZakladniProfilValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { Pravidlo44.OBS44 });
+    }
+
+    @Test
     void testK06_44_OK01() {
         testPackageK06("44-OK", null,
                        ZakladniProfilValidace.PREJIMKA,
@@ -1466,6 +1474,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     @Test
     void testK06_54a_05() {
         testPackageK06("54a-chyba5", StavKontroly.CHYBA,
+                       ZakladniProfilValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { Pravidlo54a.OBS54A });
+    }
+
+    @Test
+    void testK06_54a_06() {
+        testPackageK06("54a-chyba6", StavKontroly.CHYBA,
                        ZakladniProfilValidace.PREJIMKA,
                        new String[] {},
                        new String[] { Pravidlo54a.OBS54A });

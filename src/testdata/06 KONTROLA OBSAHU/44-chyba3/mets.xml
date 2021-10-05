@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:nsesss="http://www.mvcr.cz/nsesss/v3" xmlns:tns="http://mvcr.cz/ess/v_1.0.0.0" xmlns:tp="http://nsess.public.cz/erms_trans/v_01_01" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" LABEL="Datový balíček pro provedení skartačního řízení" OBJID="GS_ea183e38-a932-4a68-bb16-4a7871ab56a7" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 http://www.mvcr.cz/nsesss/v3/nsesss-TrP.xsd">
+  <mets:metsHdr CREATEDATE="2015-06-29T23:33:05.0195493Z" LASTMODDATE="2015-06-29T23:33:05.0195493Z">
+    <mets:agent ID="id1" ROLE="CREATOR" TYPE="ORGANIZATION">
+      <mets:name>GDPR anonymizováno</mets:name>
+    </mets:agent>
+    <mets:agent ID="id2" ROLE="CREATOR" TYPE="INDIVIDUAL">
+      <mets:name>GDPR anonymizováno</mets:name>
+    </mets:agent>
+    <mets:agent ID="id4" ROLE="CREATOR" TYPE="INDIVIDUAL">
+      <mets:name>GDPR anonymizováno</mets:name>
+    </mets:agent>
+  </mets:metsHdr>
+  <mets:dmdSec ID="dmd001">
+    <mets:mdWrap LABEL="Schéma XML pro předávání dokumentů a jejich metadat do archivu" MDTYPE="OTHER" MDTYPEVERSION="3.0" MIMETYPE="text/xml" OTHERMDTYPE="NSESSS">
+      <mets:xmlData>
+        <nsesss:Dokument ID="MP12P00BTZ3Z">
+          <nsesss:EvidencniUdaje>
+            <nsesss:Identifikace>
+              <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.X">MP12P00BTZ3Z</nsesss:Identifikator>
+            </nsesss:Identifikace>
+            <nsesss:Popis>
+              <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+              <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+            </nsesss:Popis>
+            <nsesss:Pristupnost>
+              <nsesss:BezpecnostniKategorie>
+                <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.BK">10</nsesss:Identifikator>
+                <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                <nsesss:BezpecnostniStupen>Dokument ke zveřejnění</nsesss:BezpecnostniStupen>
+              </nsesss:BezpecnostniKategorie>
+            </nsesss:Pristupnost>
+            <nsesss:Neevidence>
+              <nsesss:Oduvodneni>Dokumentu nebylo přiděleno evidenční číslo</nsesss:Oduvodneni>
+            </nsesss:Neevidence>
+            <nsesss:Jazyky>
+              <nsesss:Jazyk>cze</nsesss:Jazyk>
+            </nsesss:Jazyky>
+            <nsesss:Puvod>
+              <nsesss:VlastniDokument>
+                <nsesss:DatumVytvoreni datum="2012-01-25T09:22:55.000+01:00">2012-01-25</nsesss:DatumVytvoreni>
+                <nsesss:VytvoreneMnozstvi>1-1/0/2-4</nsesss:VytvoreneMnozstvi>
+                <nsesss:Autor>
+                  <nsesss:Subjekt>
+                    <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.ISU">MP12SE00A013</nsesss:IdentifikatorOrganizace>
+                    <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                    <nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MP12.SZ">MP12SZ00CZU4</nsesss:IdentifikatorFyzickeOsoby>
+                    <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+                    <nsesss:OrganizacniUtvar>Odbor provozní</nsesss:OrganizacniUtvar>
+                    <nsesss:PracovniPozice>objednávky a faktury OPR</nsesss:PracovniPozice>
+                    <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                  </nsesss:Subjekt>
+                </nsesss:Autor>
+              </nsesss:VlastniDokument>
+            </nsesss:Puvod>
+            <nsesss:Trideni>
+              <nsesss:JednoduchySpisovyZnak>87</nsesss:JednoduchySpisovyZnak>
+              <nsesss:PlneUrcenySpisovyZnak>87</nsesss:PlneUrcenySpisovyZnak>
+              <nsesss:TypDokumentu>
+                <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.ITD">00000400000G</nsesss:Identifikator>
+                <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+              </nsesss:TypDokumentu>
+              <nsesss:MaterskeEntity>
+                <nsesss:VecnaSkupina ID="MP12P00BTZ3Z_Gordic.Ginis.V.S.2005-087.1">
+                  <nsesss:EvidencniUdaje>
+                    <nsesss:Identifikace>
+                      <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.SPZ">87</nsesss:Identifikator>
+                    </nsesss:Identifikace>
+                    <nsesss:Popis>
+                      <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                      <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                    </nsesss:Popis>
+                    <nsesss:Puvod>
+                      <nsesss:DatumVytvoreni datum="2008-03-20T00:00:00.000+01:00">2008-03-20</nsesss:DatumVytvoreni>
+                    </nsesss:Puvod>
+                    <nsesss:Trideni>
+                      <nsesss:JednoduchySpisovyZnak>87</nsesss:JednoduchySpisovyZnak>
+                      <nsesss:PlneUrcenySpisovyZnak>87</nsesss:PlneUrcenySpisovyZnak>
+                      <nsesss:SpisovyPlan ID="MP12P00BTZ3Z_Gordic.Ginis.V.S.2005">
+                        <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.SPL">2005</nsesss:Identifikator>
+                        <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                        <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                        <nsesss:Manipulace>
+                          <nsesss:DatumOtevreni datum="1980-01-01T00:00:00.000+01:00">1980-01-01</nsesss:DatumOtevreni>
+                          <nsesss:DatumUzavreni datum="2999-01-01T00:00:00.000+01:00">2999-01-01</nsesss:DatumUzavreni>
+                        </nsesss:Manipulace>
+                        <nsesss:Vydavatel>
+                          <nsesss:Subjekt>
+                            <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.SE">MP12SE00A013</nsesss:IdentifikatorOrganizace>
+                            <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                            <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                            <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
+                          </nsesss:Subjekt>
+                        </nsesss:Vydavatel>
+                      </nsesss:SpisovyPlan>
+                    </nsesss:Trideni>
+                    <nsesss:Vyrazovani>
+                      <nsesss:SkartacniRezim>
+                        <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.ISR">2005/087.1</nsesss:Identifikator>
+                        <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                        <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                        <nsesss:Oduvodneni>Vyplývá ze spisového plánu organizace</nsesss:Oduvodneni>
+                        <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+                        <nsesss:SkartacniLhuta>1</nsesss:SkartacniLhuta>
+                        <nsesss:SpousteciUdalost>datum uzavření</nsesss:SpousteciUdalost>
+                      </nsesss:SkartacniRezim>
+                    </nsesss:Vyrazovani>
+                    <nsesss:Manipulace>
+                      <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                      <nsesss:DatumOtevreni datum="2008-03-20T00:00:00.000+01:00">2008-03-20</nsesss:DatumOtevreni>
+                      <nsesss:DatumUzavreni datum="2999-01-01T00:00:00.000+01:00">2999-01-01</nsesss:DatumUzavreni>
+                    </nsesss:Manipulace>
+                  </nsesss:EvidencniUdaje>
+                </nsesss:VecnaSkupina>
+              </nsesss:MaterskeEntity>
+            </nsesss:Trideni>
+            <nsesss:Vyrizeni>
+              <nsesss:Datum datum="2012-10-10T00:00:00.000+01:00">2012-10-10</nsesss:Datum>
+              <nsesss:Zpusob>vzetí na vědomí</nsesss:Zpusob>
+              <nsesss:ObsahVyrizeni>, Vyřízeno vzetím na vědomí.</nsesss:ObsahVyrizeni>
+              <nsesss:Oduvodneni>Vyřízeno vzetím na vědomí</nsesss:Oduvodneni>
+              <nsesss:Zpracovatel>
+                <nsesss:Subjekt>
+                  <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.ISU">MP12SE00A013</nsesss:IdentifikatorOrganizace>
+                  <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                  <nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MP12.SZ">MP12SZ00CZU4</nsesss:IdentifikatorFyzickeOsoby>
+                  <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+                  <nsesss:OrganizacniUtvar>Odbor provozní</nsesss:OrganizacniUtvar>
+                  <nsesss:PracovniPozice>objednávky a faktury OPR</nsesss:PracovniPozice>
+                  <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                </nsesss:Subjekt>
+              </nsesss:Zpracovatel>
+              <nsesss:Schvalovani>
+                <nsesss:Schvaleni>
+                  <nsesss:DatumSchvaleni datum="2012-01-25T09:31:26.000+01:00">2012-01-25</nsesss:DatumSchvaleni>
+                  <nsesss:Schvalovatel>
+                    <nsesss:Subjekt>
+                      <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.ISU">MP12SE00A013</nsesss:IdentifikatorOrganizace>
+                      <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                      <nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MP12.SZ">MP12SZ00CZU4</nsesss:IdentifikatorFyzickeOsoby>
+                      <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+                      <nsesss:OrganizacniUtvar>Odbor provozní</nsesss:OrganizacniUtvar>
+                      <nsesss:PracovniPozice>objednávky a faktury OPR</nsesss:PracovniPozice>
+                      <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                    </nsesss:Subjekt>
+                  </nsesss:Schvalovatel>
+                </nsesss:Schvaleni>
+              </nsesss:Schvalovani>
+              <nsesss:DatumOdeslani datum="2012-01-25T09:51:20.000+01:00">2012-01-25</nsesss:DatumOdeslani>
+              <nsesss:OdeslaneMnozstvi>2 listy</nsesss:OdeslaneMnozstvi>
+              <nsesss:Prijemce>
+                <nsesss:Subjekt>
+                  <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.SE">MP12SE03079T</nsesss:IdentifikatorOrganizace>
+                  <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                  <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                  <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
+                </nsesss:Subjekt>
+              </nsesss:Prijemce>
+            </nsesss:Vyrizeni>
+            <nsesss:Vyrazovani>
+              <nsesss:SkartacniRezim>
+                <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.ISR">2005/087.1</nsesss:Identifikator>
+                <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                <nsesss:Oduvodneni>Vyplývá ze spisového plánu organizace</nsesss:Oduvodneni>
+                <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+                <nsesss:SkartacniLhuta>1</nsesss:SkartacniLhuta>
+                <nsesss:SpousteciUdalost>datum uzavření</nsesss:SpousteciUdalost>
+              </nsesss:SkartacniRezim>
+              <nsesss:DataceVyrazeni>
+                <nsesss:RokSpousteciUdalosti>2012</nsesss:RokSpousteciUdalosti>
+                <nsesss:RokSkartacniOperace>2014</nsesss:RokSkartacniOperace>
+              </nsesss:DataceVyrazeni>
+            </nsesss:Vyrazovani>
+            <nsesss:Manipulace>
+              <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+              <nsesss:SpravceSpisovny>
+                <nsesss:Subjekt>
+                  <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.SE">MP12SE00A013</nsesss:IdentifikatorOrganizace>
+                  <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                  <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                  <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
+                </nsesss:Subjekt>
+              </nsesss:SpravceSpisovny>
+              <nsesss:UkladaciJednotka>karton č. 5</nsesss:UkladaciJednotka>
+            </nsesss:Manipulace>
+          </nsesss:EvidencniUdaje>
+          <nsesss:Komponenty>
+            <nsesss:Komponenta ID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" druh="průvodní dopis" forma_uchovani="originál" poradi="1" verze="1">
+              <nsesss:EvidencniUdaje>
+                <nsesss:Identifikace>
+                  <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.E">MP120B04D1FC</nsesss:Identifikator>
+                </nsesss:Identifikace>
+                <nsesss:Popis>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                </nsesss:Popis>
+                <nsesss:Trideni>
+                  <nsesss:JednoduchySpisovyZnak>2005/087.1</nsesss:JednoduchySpisovyZnak>
+                  <nsesss:PlneUrcenySpisovyZnak>2005/087.1</nsesss:PlneUrcenySpisovyZnak>
+                </nsesss:Trideni>
+              </nsesss:EvidencniUdaje>
+            </nsesss:Komponenta>
+          </nsesss:Komponenty>
+        </nsesss:Dokument>
+      </mets:xmlData>
+    </mets:mdWrap>
+  </mets:dmdSec>
+  <mets:amdSec ID="amd001">
+    <mets:digiprovMD ID="id_bla1">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>123456</tns:HodnotaID>
+                <tns:ZdrojID>ERMS XY</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2018-03-05T08:00:00</tp:DatumVzniku>
+              <tp:DatumCasOd>2018-03-05T08:00:00</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-03-05T08:00:00</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>SpisovyPlan</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>2005</tns:HodnotaID>
+                  <tns:ZdrojID>Gordic.Ginis.MP12.SPL</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti/>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd002">
+    <mets:digiprovMD ID="id_bla2">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>123456</tns:HodnotaID>
+                <tns:ZdrojID>ERMS XY</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2018-03-05T08:00:00</tp:DatumVzniku>
+              <tp:DatumCasOd>2018-03-05T08:00:00</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-03-05T08:00:00</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>VecnaSkupina</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>87</tns:HodnotaID>
+                  <tns:ZdrojID>Gordic.Ginis.MP12.SPZ</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti/>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd003">
+    <mets:digiprovMD ID="id_bla3">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>123456</tns:HodnotaID>
+                <tns:ZdrojID>ERMS XY</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2018-03-05T08:00:00</tp:DatumVzniku>
+              <tp:DatumCasOd>2018-03-05T08:00:00</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-03-05T08:00:00</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Dokument</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>MP12P00BTZ3Z</tns:HodnotaID>
+                  <tns:ZdrojID>Gordic.Ginis.MP12.X</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti/>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd004">
+    <mets:digiprovMD ID="id_bla4">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>123456</tns:HodnotaID>
+                <tns:ZdrojID>ERMS XY</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2018-03-05T08:00:00</tp:DatumVzniku>
+              <tp:DatumCasOd>2018-03-05T08:00:00</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-03-05T08:00:00</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>MP120B04D1FC</tns:HodnotaID>
+                  <tns:ZdrojID>Gordic.Ginis.MP12.E</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti/>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:structMap>
+    <mets:div ADMID="amd001" DMDID="MP12P00BTZ3Z_Gordic.Ginis.V.S.2005" TYPE="spisový plán">
+      <mets:div ADMID="amd002" DMDID="MP12P00BTZ3Z_Gordic.Ginis.V.S.2005-087.1" TYPE="věcná skupina">
+        <mets:div ADMID="amd003" DMDID="MP12P00BTZ3Z" TYPE="dokument">
+          <mets:div ADMID="amd004" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" TYPE="komponenta"/>
+        </mets:div>
+      </mets:div>
+    </mets:div>
+  </mets:structMap>
+</mets:mets>
