@@ -10,7 +10,7 @@
 
 	<groupId>cz.zaf</groupId>
 	<artifactId>zaf</artifactId>
-	<version>0.1.7-SNAPSHOT</version>
+	<version>0.9.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>ZAF</name>
 
