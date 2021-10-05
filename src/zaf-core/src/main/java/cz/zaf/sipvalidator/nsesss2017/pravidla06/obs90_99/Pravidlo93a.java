@@ -9,8 +9,12 @@ import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
-/** 
- * OBSAHOVÁ 93a. Každá entia věcná skupina (<nsesss:VecnaSkupina>), jejíž rodičovská entita je spisový plán (<nsesss:SpisovyPlan>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> se stejnými hodnotami.
+/**
+ * OBSAHOVÁ 93a. Každá entita věcná skupina (<nsesss:VecnaSkupina>),
+ * jejíž rodičovská entita je spisový plán (<nsesss:SpisovyPlan>),
+ * obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>,
+ * <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a
+ * <nsesss:PlneUrcenySpisovyZnak> se stejnými hodnotami.
  * 
  */
 public class Pravidlo93a  extends K06PravidloBase {
