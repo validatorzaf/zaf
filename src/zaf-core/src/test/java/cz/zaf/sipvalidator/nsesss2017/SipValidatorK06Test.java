@@ -1537,7 +1537,15 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
 
     @Test
     void testK06_56_OK01() {
-        testPackageK06("56-OK", null,
+        testPackageK06("56-OK1", null,
+                       ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo56.OBS56 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_56_OK02() {
+        testPackageK06("56-OK2", null,
                        ZakladniProfilValidace.PREJIMKA,
                        new String[] { Pravidlo56.OBS56 },
                        new String[] {});
