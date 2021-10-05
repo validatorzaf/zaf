@@ -36,8 +36,12 @@ public class Pravidlo99 extends K06PravidloBase {
     VeraValidatorProxy veraValidatorProxy;
 
     public Pravidlo99() {
-        super(OBS99, "Pokud je soubor ve formátu pdf musí vyhovovat standardu Pdf/A",
-                "Chybný formát souboru", 
+        super(OBS99, "Pokud existuje jakýkoli element <nsesss:Komponenta>, který obsahuje atribut forma_uchovani " +
+                "s hodnotou originál ve výstupním datovém formátu, a současně jakýkoli element <mets:file>, " +
+                "který obsahuje atribut DMDID s hodnotou uvedenou v atributu ID příslušného elementu " +
+                "<nsesss:Komponenta> a současně atribut MIMETYPE s hodnotou application/pdf, potom souborový " +
+                "formát příslušné komponenty odpovídá normě PDF/A alespoň ve verzi 1b.",
+                "Komponenta (počítačový soubor) není ve výstupním datovém formátu (PDF/A).",
                 "§ 23 odst. 2 vyhlášky č. 259/2012 Sb.");
     }
 
@@ -54,9 +58,8 @@ public class Pravidlo99 extends K06PravidloBase {
         for (Node komponenta: komponenty) {
             String formaUchovani = ValuesGetter.getValueOfAttribut(komponenta, JmenaElementu.FORMA_UCHOVANI);
 
-            // posuzujeme jen original a original ve vystupnim formatu
-            if (!JmenaElementu.FORMA_UCHOVANI_ORIGINAL_VE_VYST_DAT_FORMATU.equals(formaUchovani) &&
-                    !JmenaElementu.FORMA_UCHOVANI_ORIGINAL.equals(formaUchovani))
+            // posuzujeme jen original ve vystupnim formatu
+            if (!JmenaElementu.FORMA_UCHOVANI_ORIGINAL_VE_VYST_DAT_FORMATU.equals(formaUchovani))
                 continue;
 
             // nalezeni/pridani mapy k rodici
