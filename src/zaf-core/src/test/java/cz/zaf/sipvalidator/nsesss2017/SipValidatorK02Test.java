@@ -97,13 +97,6 @@ public class SipValidatorK02Test extends SipValidatorTestBase {
     }
 
     @Test
-    void testK02_12() {
-        testPackageK02("kod1-chyba12", StavKontroly.CHYBA,
-                       new String[] {},
-                       new String[] { K02_ZnakoveSady.KOD1 });
-    }
-
-    @Test
     void testK02_OK_1() {
         testPackageK02("kod1-OK", StavKontroly.OK,
                        new String[] { K02_ZnakoveSady.KOD1 },

@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
-<mets:mets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:nsesss="http://www.mvcr.cz/nsesss/v3" xmlns:mets="http://www.loc.gov/METS/" xmlns:tns="http://mvcr.cz/ess/v_1.0.0.0" xmlns:tp="http://nsess.public.cz/erms_trans/v_01_01" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 http://www.mvcr.cz/nsesss/v3/nsesss-TrP.xsd" OBJID="GS_ea183e38-a932-4a68-bb16-4a7871ab56a7" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:nsesss="http://www.mvcr.cz/nsesss/v3" xmlns:tns="http://mvcr.cz/ess/v_1.0.0.0" xmlns:tp="http://nsess.public.cz/erms_trans/v_01_01" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu" OBJID="GS_ea183e38-a932-4a68-bb16-4a7871ab56a7" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 http://www.mvcr.cz/nsesss/v3/nsesss-TrP.xsd">
   <mets:metsHdr CREATEDATE="2015-06-29T23:33:05.0195493Z" LASTMODDATE="2015-06-29T23:33:05.0195493Z">
-    <mets:agent TYPE="ORGANIZATION" ROLE="CREATOR" ID="id1">
-      <mets:name>GORDIC</mets:name>
+    <mets:agent ID="id1" ROLE="CREATOR" TYPE="ORGANIZATION">
+      <mets:name>GDPR anonymizováno</mets:name>
     </mets:agent>
-    <mets:agent TYPE="INDIVIDUAL" ROLE="CREATOR" ID="id2">
-      <mets:name>Václav Svoboda</mets:name>
+    <mets:agent ID="id2" ROLE="CREATOR" TYPE="INDIVIDUAL">
+      <mets:name>GDPR anonymizováno</mets:name>
     </mets:agent>
   </mets:metsHdr>
   <mets:dmdSec ID="dmd001">
-    <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="NSESSS" MDTYPEVERSION="3.0" MIMETYPE="text/xml">
+    <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="3.0" MIMETYPE="text/xml" OTHERMDTYPE="NSESSS">
       <mets:xmlData>
         <nsesss:Dokument ID="id_dokument">
           <nsesss:EvidencniUdaje>
@@ -17,7 +17,7 @@
               <nsesss:Identifikator zdroj="ERMS">dokument</nsesss:Identifikator>
             </nsesss:Identifikace>
             <nsesss:Popis>
-              <nsesss:Nazev>Dokument</nsesss:Nazev>
+              <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
             </nsesss:Popis>
             <nsesss:Neevidence>
               <nsesss:Oduvodneni>Dokumentu nebylo přiděleno evidenční číslo</nsesss:Oduvodneni>
@@ -29,12 +29,12 @@
                 <nsesss:Autor>
                   <nsesss:Subjekt>
                     <nsesss:IdentifikatorOrganizace zdroj="ERMS">999</nsesss:IdentifikatorOrganizace>
-                    <nsesss:NazevOrganizace>Archiv hlavního města Prahy</nsesss:NazevOrganizace>
+                    <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
                     <nsesss:IdentifikatorFyzickeOsoby zdroj="ERMS">111</nsesss:IdentifikatorFyzickeOsoby>
-                    <nsesss:NazevFyzickeOsoby>Václav Vojtíšek</nsesss:NazevFyzickeOsoby>
+                    <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
                     <nsesss:OrganizacniUtvar>ředitelna</nsesss:OrganizacniUtvar>
                     <nsesss:PracovniPozice>ředitel</nsesss:PracovniPozice>
-                    <nsesss:SidloOrganizace>Praha</nsesss:SidloOrganizace>
+                    <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
                   </nsesss:Subjekt>
                 </nsesss:Autor>
               </nsesss:VlastniDokument>
@@ -49,7 +49,7 @@
                       <nsesss:Identifikator zdroj="ERMS">vecnaskupina1</nsesss:Identifikator>
                     </nsesss:Identifikace>
                     <nsesss:Popis>
-                      <nsesss:Nazev>Věcná skupina</nsesss:Nazev>
+                      <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
                     </nsesss:Popis>
                     <nsesss:Puvod>
                       <nsesss:DatumVytvoreni datum="2012-01-25T09:22:55.000+01:00">2012-01-25</nsesss:DatumVytvoreni>
@@ -64,7 +64,7 @@
                               <nsesss:Identifikator zdroj="ERMS">vecnaskupina2</nsesss:Identifikator>
                             </nsesss:Identifikace>
                             <nsesss:Popis>
-                              <nsesss:Nazev>Věcná skupina</nsesss:Nazev>
+                              <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
                             </nsesss:Popis>
                             <nsesss:Puvod>
                               <nsesss:DatumVytvoreni datum="2012-01-25T09:22:55.000+01:00">2012-01-25</nsesss:DatumVytvoreni>
@@ -74,15 +74,15 @@
                               <nsesss:PlneUrcenySpisovyZnak>A2</nsesss:PlneUrcenySpisovyZnak>
                               <nsesss:SpisovyPlan ID="id_spisovyplan">
                                 <nsesss:Identifikator zdroj="ERMS">spisovyplan</nsesss:Identifikator>
-                                <nsesss:Nazev>Spisový plán</nsesss:Nazev>
+                                <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
                                 <nsesss:Manipulace>
                                   <nsesss:DatumOtevreni datum="1980-01-01T00:00:00.000+01:00">1980-01-01</nsesss:DatumOtevreni>
                                 </nsesss:Manipulace>
                                 <nsesss:Vydavatel>
                                   <nsesss:Subjekt>
                                     <nsesss:IdentifikatorOrganizace zdroj="ERMS">999</nsesss:IdentifikatorOrganizace>
-                                    <nsesss:NazevOrganizace>Archiv hlavního města Prahy</nsesss:NazevOrganizace>
-                                    <nsesss:SidloOrganizace>Praha</nsesss:SidloOrganizace>
+                                    <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                                    <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
                                   </nsesss:Subjekt>
                                 </nsesss:Vydavatel>
                               </nsesss:SpisovyPlan>
@@ -100,7 +100,7 @@
                     <nsesss:Vyrazovani>
                       <nsesss:SkartacniRezim>
                         <nsesss:Identifikator zdroj="ERMS">20</nsesss:Identifikator>
-                        <nsesss:Nazev>stoupa</nsesss:Nazev>
+                        <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
                         <nsesss:Oduvodneni>stanoveno</nsesss:Oduvodneni>
                         <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
                         <nsesss:SkartacniLhuta>1</nsesss:SkartacniLhuta>
@@ -123,12 +123,12 @@
               <nsesss:Zpracovatel>
                 <nsesss:Subjekt>
                   <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.ISU">MP12SE00A013</nsesss:IdentifikatorOrganizace>
-                  <nsesss:NazevOrganizace>Úřad městské části Praha 12</nsesss:NazevOrganizace>
+                  <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
                   <nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MP12.SZ">MP12SZ00CZU4</nsesss:IdentifikatorFyzickeOsoby>
-                  <nsesss:NazevFyzickeOsoby>Krejčíková Pavlína</nsesss:NazevFyzickeOsoby>
+                  <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
                   <nsesss:OrganizacniUtvar>Odbor provozní</nsesss:OrganizacniUtvar>
                   <nsesss:PracovniPozice>objednávky a faktury OPR</nsesss:PracovniPozice>
-                  <nsesss:SidloOrganizace>Úřad městské části Praha 12,  Písková 25/830,  14300 Praha 412, podatelna@p12.mepnet.cz</nsesss:SidloOrganizace>
+                  <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
                 </nsesss:Subjekt>
               </nsesss:Zpracovatel>
               <nsesss:Schvalovani>
@@ -137,12 +137,12 @@
                   <nsesss:Schvalovatel>
                     <nsesss:Subjekt>
                       <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.ISU">MP12SE00A013</nsesss:IdentifikatorOrganizace>
-                      <nsesss:NazevOrganizace>Úřad městské části Praha 12</nsesss:NazevOrganizace>
+                      <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
                       <nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MP12.SZ">MP12SZ00CZU4</nsesss:IdentifikatorFyzickeOsoby>
-                      <nsesss:NazevFyzickeOsoby>Krejčíková Pavlína</nsesss:NazevFyzickeOsoby>
+                      <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
                       <nsesss:OrganizacniUtvar>Odbor provozní</nsesss:OrganizacniUtvar>
                       <nsesss:PracovniPozice>objednávky a faktury OPR</nsesss:PracovniPozice>
-                      <nsesss:SidloOrganizace>Úřad městské části Praha 12,  Písková 25/830,  14300 Praha 412, podatelna@p12.mepnet.cz</nsesss:SidloOrganizace>
+                      <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
                     </nsesss:Subjekt>
                   </nsesss:Schvalovatel>
                 </nsesss:Schvaleni>
@@ -152,16 +152,16 @@
               <nsesss:Prijemce>
                 <nsesss:Subjekt>
                   <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.SE">MP12SE03079T</nsesss:IdentifikatorOrganizace>
-                  <nsesss:NazevOrganizace>Město Desná</nsesss:NazevOrganizace>
-                  <nsesss:SidloOrganizace>Město Desná,  Krkonošská 318/,  46861 Desná, mesto-desna@telecom.cz</nsesss:SidloOrganizace>
-                  <nsesss:ElektronickyKontakt>e-mail:mesto-desna@telecom.cz;tel:483 383 167;DS:8pva7vt</nsesss:ElektronickyKontakt>
+                  <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                  <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                  <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
                 </nsesss:Subjekt>
               </nsesss:Prijemce>
             </nsesss:Vyrizeni>
             <nsesss:Vyrazovani>
               <nsesss:SkartacniRezim>
                 <nsesss:Identifikator zdroj="ERMS">20</nsesss:Identifikator>
-                <nsesss:Nazev>stoupa</nsesss:Nazev>
+                <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
                 <nsesss:Oduvodneni>stanoveno</nsesss:Oduvodneni>
                 <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
                 <nsesss:SkartacniLhuta>1</nsesss:SkartacniLhuta>
@@ -183,7 +183,7 @@
   </mets:dmdSec>
   <mets:amdSec ID="amd001">
     <mets:digiprovMD ID="id_bla1">
-      <mets:mdWrap MDTYPEVERSION="1.0" OTHERMDTYPE="TP" MDTYPE="OTHER" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -212,7 +212,7 @@
   </mets:amdSec>
   <mets:amdSec ID="amd002">
     <mets:digiprovMD ID="id_bla2">
-      <mets:mdWrap MDTYPEVERSION="1.0" OTHERMDTYPE="TP" MDTYPE="OTHER" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -241,7 +241,7 @@
   </mets:amdSec>
   <mets:amdSec ID="amd003">
     <mets:digiprovMD ID="id_bla3">
-      <mets:mdWrap MDTYPEVERSION="1.0" OTHERMDTYPE="TP" MDTYPE="OTHER" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -270,7 +270,7 @@
   </mets:amdSec>
   <mets:amdSec ID="amd004">
     <mets:digiprovMD ID="id_bla4">
-      <mets:mdWrap MDTYPEVERSION="1.0" OTHERMDTYPE="TP" MDTYPE="OTHER" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -298,10 +298,10 @@
     </mets:digiprovMD>
   </mets:amdSec>
   <mets:structMap>
-    <mets:div DMDID="id_spisovyplan" ADMID="amd001" TYPE="spisový plán">
-      <mets:div DMDID="id_vecnaskupina1" ADMID="amd002" TYPE="věcná skupina">
-        <mets:div DMDID="id_vecnaskupina2" ADMID="amd003" TYPE="věcná skupina">
-          <mets:div DMDID="id_dokument" ADMID="amd004" TYPE="dokument">
+    <mets:div ADMID="amd001" DMDID="id_spisovyplan" TYPE="spisový plán">
+      <mets:div ADMID="amd002" DMDID="id_vecnaskupina1" TYPE="věcná skupina">
+        <mets:div ADMID="amd003" DMDID="id_vecnaskupina2" TYPE="věcná skupina">
+          <mets:div ADMID="amd004" DMDID="id_dokument" TYPE="dokument">
 					</mets:div>
         </mets:div>
       </mets:div>

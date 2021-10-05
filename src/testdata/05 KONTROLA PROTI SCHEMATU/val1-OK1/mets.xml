@@ -1,26 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:nsesss="http://www.mvcr.cz/nsesss/v3"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           OBJID="9bc016df-1e74-49ec-9fff-a1318dcddf3e"
-           LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu – Submission Information Package (SIP)"
-           xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 http://www.mvcr.cz/nsesss/v3/nsesss-TrP.xsd">
-   <mets:metsHdr CREATEDATE="2018-02-21T10:28:10.510+01:00"
-                 LASTMODDATE="2018-02-21T10:28:10.510+01:00">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:nsesss="http://www.mvcr.cz/nsesss/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu – Submission Information Package (SIP)" OBJID="9bc016df-1e74-49ec-9fff-a1318dcddf3e" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 http://www.mvcr.cz/nsesss/v3/nsesss-TrP.xsd">
+   <mets:metsHdr CREATEDATE="2018-02-21T10:28:10.510+01:00" LASTMODDATE="2018-02-21T10:28:10.510+01:00">
       <mets:agent ID="agent_001" ROLE="CREATOR" TYPE="ORGANIZATION">
-         <mets:name>Městská část Praha 3</mets:name>
+         <mets:name>GDPR anonymizováno</mets:name>
          <mets:note>prod</mets:note>
       </mets:agent>
       <mets:agent ID="agent_002" ROLE="CREATOR" TYPE="INDIVIDUAL">
-         <mets:name>super organizace</mets:name>
+         <mets:name>GDPR anonymizováno</mets:name>
          <mets:note>superAdmin</mets:note>
       </mets:agent>
    </mets:metsHdr>
    <mets:dmdSec ID="DM_0001">
-      <mets:mdWrap LABEL="Schéma XML pro předávání dokumentů a jejich metadat do archivu"
-                   MDTYPE="OTHER"
-                   OTHERMDTYPE="NSESSS"
-                   MDTYPEVERSION="2.0"
-                   MIMETYPE="text/xml">
+      <mets:mdWrap LABEL="Schéma XML pro předávání dokumentů a jejich metadat do archivu" MDTYPE="OTHER" MDTYPEVERSION="2.0" MIMETYPE="text/xml" OTHERMDTYPE="NSESSS">
          <mets:xmlData>
             <nsesss:Dokument ID="RECORD_p3_11_002555">
                <nsesss:EvidencniUdaje>
@@ -28,8 +19,8 @@
                      <nsesss:Identifikator zdroj="ERMS">p3_11_002555</nsesss:Identifikator>
                   </nsesss:Identifikace>
                   <nsesss:Popis>
-                     <nsesss:Nazev>H-MARS 75, Povolení provozu  3ks VHP + jackpot-TSUNAMI PLAY s.r.o.</nsesss:Nazev>
-                     <nsesss:Komentar>AGENDIO - Rozhodnutí</nsesss:Komentar>
+                     <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                     <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                   </nsesss:Popis>
                   <nsesss:Evidence>
                      <nsesss:EvidencniCislo>UMCP3 001193/2011</nsesss:EvidencniCislo>
@@ -45,12 +36,12 @@
                         <nsesss:Autor>
                            <nsesss:Subjekt>
                               <nsesss:IdentifikatorOrganizace zdroj="IČ">063517</nsesss:IdentifikatorOrganizace>
-                              <nsesss:NazevOrganizace>Městská část Praha 3, Úřad městské části</nsesss:NazevOrganizace>
+                              <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
                               <nsesss:IdentifikatorFyzickeOsoby zdroj="ERMS">2630</nsesss:IdentifikatorFyzickeOsoby>
-                              <nsesss:NazevFyzickeOsoby>Hana Machatová</nsesss:NazevFyzickeOsoby>
+                              <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
                               <nsesss:OrganizacniUtvar>oddělení správní</nsesss:OrganizacniUtvar>
                               <nsesss:PracovniPozice>referent oddělení správního</nsesss:PracovniPozice>
-                              <nsesss:SidloOrganizace>Havlíčkovo nám. 9/700, 130 85 Praha 3</nsesss:SidloOrganizace>
+                              <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
                            </nsesss:Subjekt>
                         </nsesss:Autor>
                      </nsesss:VlastniDokument>
@@ -60,7 +51,7 @@
                      <nsesss:PlneUrcenySpisovyZnak>178</nsesss:PlneUrcenySpisovyZnak>
                      <nsesss:TypDokumentu>
                         <nsesss:Identifikator zdroj="ERMS">VP</nsesss:Identifikator>
-                        <nsesss:Nazev>Vlastní písemnost</nsesss:Nazev>
+                        <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
                      </nsesss:TypDokumentu>
                      <nsesss:MaterskeEntity>
                         <nsesss:VecnaSkupina ID="ID-cfc8a4d7-0a59-4cf7-ad1a-8e2d331b4b7b">
@@ -69,8 +60,8 @@
                                  <nsesss:Identifikator zdroj="ERMS">150</nsesss:Identifikator>
                               </nsesss:Identifikace>
                               <nsesss:Popis>
-                                 <nsesss:Nazev>Daně, dávky, poplatky všeobecně</nsesss:Nazev>
-                                 <nsesss:Komentar/>
+                                 <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                                 <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                               </nsesss:Popis>
                               <nsesss:Puvod>
                                  <nsesss:DatumVytvoreni>2012-02-14+01:00</nsesss:DatumVytvoreni>
@@ -80,7 +71,7 @@
                                  <nsesss:PlneUrcenySpisovyZnak>178</nsesss:PlneUrcenySpisovyZnak>
                                  <nsesss:SpisovyPlan ID="ID-0e96613a-26a9-4035-adb0-4aaf9cffaefb">
                                     <nsesss:Identifikator zdroj="ERMS">3</nsesss:Identifikator>
-                                    <nsesss:Nazev>Položka klasifikace</nsesss:Nazev>
+                                    <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
                                     <nsesss:Manipulace>
                                        <nsesss:DatumOtevreni>1900-01-01+01:00</nsesss:DatumOtevreni>
                                        <nsesss:DatumUzavreni>2013-12-19+01:00</nsesss:DatumUzavreni>
@@ -88,8 +79,8 @@
                                     <nsesss:Vydavatel>
                                        <nsesss:Subjekt>
                                           <nsesss:IdentifikatorOrganizace zdroj="ERMS">prod</nsesss:IdentifikatorOrganizace>
-                                          <nsesss:NazevOrganizace>Městská část Praha 3</nsesss:NazevOrganizace>
-                                          <nsesss:SidloOrganizace>-</nsesss:SidloOrganizace>
+                                          <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                                          <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
                                        </nsesss:Subjekt>
                                     </nsesss:Vydavatel>
                                  </nsesss:SpisovyPlan>
@@ -97,7 +88,7 @@
                               <nsesss:Vyrazovani>
                                  <nsesss:SkartacniRezim>
                                     <nsesss:Identifikator zdroj="ERMS">23</nsesss:Identifikator>
-                                    <nsesss:Nazev>V5 Dokumenty určené k výběru</nsesss:Nazev>
+                                    <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
                                     <nsesss:Oduvodneni>Instrukce MVČR ze dne 25. 5. 1992 čj. VSC/1-793/92</nsesss:Oduvodneni>
                                     <nsesss:SkartacniZnak>V</nsesss:SkartacniZnak>
                                     <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
@@ -116,8 +107,8 @@
                   <nsesss:Vyrazovani>
                      <nsesss:SkartacniRezim>
                         <nsesss:Identifikator zdroj="ERMS">V5</nsesss:Identifikator>
-                        <nsesss:Nazev>Dokumenty určené k výběru</nsesss:Nazev>
-                        <nsesss:Komentar/>
+                        <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                        <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                         <nsesss:Oduvodneni>Instrukce MVČR ze dne 25. 5. 1992 čj. VSC/1-793/92</nsesss:Oduvodneni>
                         <nsesss:SkartacniZnak>V</nsesss:SkartacniZnak>
                         <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
@@ -133,14 +124,14 @@
                   </nsesss:Manipulace>
                </nsesss:EvidencniUdaje>
                <nsesss:Komponenty>
-                  <nsesss:Komponenta ID="FILE_24879184" poradi="1" druh="průvodní dopis" verze="1" forma_uchovani="koncept">
+                  <nsesss:Komponenta ID="FILE_24879184" druh="průvodní dopis" forma_uchovani="koncept" poradi="1" verze="1">
                      <nsesss:EvidencniUdaje>
                         <nsesss:Identifikace>
                            <nsesss:Identifikator zdroj="ERMS">24879184</nsesss:Identifikator>
                         </nsesss:Identifikace>
                         <nsesss:Popis>
-                           <nsesss:Nazev>H_MARS_75_Povoleni_provozu_3ks_VHP_jackpot</nsesss:Nazev>
-                           <nsesss:Komentar/>
+                           <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                           <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                         </nsesss:Popis>
                         <nsesss:Trideni>
                            <nsesss:JednoduchySpisovyZnak>178</nsesss:JednoduchySpisovyZnak>
@@ -166,14 +157,14 @@
                         </nsesss:Prevod>
                      </nsesss:EvidencniUdaje>
                   </nsesss:Komponenta>
-                  <nsesss:Komponenta ID="FILE_34126613" poradi="2" druh="průvodní dopis" verze="1" forma_uchovani="koncept">
+                  <nsesss:Komponenta ID="FILE_34126613" druh="průvodní dopis" forma_uchovani="koncept" poradi="2" verze="1">
                      <nsesss:EvidencniUdaje>
                         <nsesss:Identifikace>
                            <nsesss:Identifikator zdroj="ERMS">34126613</nsesss:Identifikator>
                         </nsesss:Identifikace>
                         <nsesss:Popis>
-                           <nsesss:Nazev>aa_vhp_povoleni_provozu_ph3_jackpot_hanam_20110106_1357560440.rtf.pdf</nsesss:Nazev>
-                           <nsesss:Komentar/>
+                           <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                           <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                         </nsesss:Popis>
                         <nsesss:Trideni>
                            <nsesss:JednoduchySpisovyZnak>178</nsesss:JednoduchySpisovyZnak>
@@ -190,14 +181,14 @@
                         </nsesss:Prevod>
                      </nsesss:EvidencniUdaje>
                   </nsesss:Komponenta>
-                  <nsesss:Komponenta ID="FILE_34126615" poradi="3" druh="průvodní dopis" verze="1" forma_uchovani="koncept">
+                  <nsesss:Komponenta ID="FILE_34126615" druh="průvodní dopis" forma_uchovani="koncept" poradi="3" verze="1">
                      <nsesss:EvidencniUdaje>
                         <nsesss:Identifikace>
                            <nsesss:Identifikator zdroj="ERMS">34126615</nsesss:Identifikator>
                         </nsesss:Identifikace>
                         <nsesss:Popis>
-                           <nsesss:Nazev>protocol_24879184.xml</nsesss:Nazev>
-                           <nsesss:Komentar/>
+                           <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                           <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                         </nsesss:Popis>
                         <nsesss:Trideni>
                            <nsesss:JednoduchySpisovyZnak>178</nsesss:JednoduchySpisovyZnak>
@@ -221,29 +212,14 @@
    </mets:dmdSec>
    <mets:fileSec>
       <mets:fileGrp ID="GRP_0001" USE="Original">
-         <mets:file ID="DOCUMENT_34126613"
-                    OWNERID="9bc016df-1e74-49ec-9fff-a1318dcddf3e/34126613_aa_vhp_povoleni_provozu_ph3_jackpot_hanam_20110106_1357560440.rtf.pdf"
-                    MIMETYPE="application/pdf"
-                    SIZE="94160"
-                    CREATED="2018-02-21T10:28:10.672+01:00"
-                    CHECKSUM="e323dd5e09023cf42563d5adb62718da960b7c07"
-                    CHECKSUMTYPE="SHA-1"/>
-         <mets:file ID="DOCUMENT_34126615"
-                    OWNERID="9bc016df-1e74-49ec-9fff-a1318dcddf3e/34126615_protocol_24879184.xml"
-                    MIMETYPE="text/xml"
-                    SIZE="1294"
-                    CREATED="2018-02-21T10:28:10.672+01:00"
-                    CHECKSUM="4104558c9ed209c2f89e15e23fcd2979f1dbf5c1"
-                    CHECKSUMTYPE="SHA-1"/>
+         <mets:file CHECKSUM="e323dd5e09023cf42563d5adb62718da960b7c07" CHECKSUMTYPE="SHA-1" CREATED="2018-02-21T10:28:10.672+01:00" ID="DOCUMENT_34126613" MIMETYPE="application/pdf" OWNERID="9bc016df-1e74-49ec-9fff-a1318dcddf3e/34126613_aa_vhp_povoleni_provozu_ph3_jackpot_hanam_20110106_1357560440.rtf.pdf" SIZE="94160"/>
+         <mets:file CHECKSUM="4104558c9ed209c2f89e15e23fcd2979f1dbf5c1" CHECKSUMTYPE="SHA-1" CREATED="2018-02-21T10:28:10.672+01:00" ID="DOCUMENT_34126615" MIMETYPE="text/xml" OWNERID="9bc016df-1e74-49ec-9fff-a1318dcddf3e/34126615_protocol_24879184.xml" SIZE="1294"/>
       </mets:fileGrp>
    </mets:fileSec>
    <mets:structMap TYPE="LOGICAL">
       <mets:div DMDID="ID-0e96613a-26a9-4035-adb0-4aaf9cffaefb" TYPE="spisový plán">
          <mets:div DMDID="ID-cfc8a4d7-0a59-4cf7-ad1a-8e2d331b4b7b" TYPE="věcná skupina">
-            <mets:div ORDER="1"
-                      LABEL="H-MARS 75, Povolení provozu  3ks VHP + jackpot-TSUNAMI PLAY s.r.o."
-                      DMDID="RECORD_p3_11_002555"
-                      TYPE="dokument">
+            <mets:div DMDID="RECORD_p3_11_002555" LABEL="H-MARS 75, Povolení provozu  3ks VHP + jackpot-TSUNAMI PLAY s.r.o." ORDER="1" TYPE="dokument">
                <mets:fptr FILEID="DOCUMENT_34126613"/>
                <mets:fptr FILEID="DOCUMENT_34126615"/>
             </mets:div>

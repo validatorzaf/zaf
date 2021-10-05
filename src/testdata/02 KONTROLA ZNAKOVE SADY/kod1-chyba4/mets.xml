@@ -8,13 +8,13 @@
 			<mets:name>GORDIC</mets:name>
 		</mets:agent>
 		<mets:agent TYPE="INDIVIDUAL" ROLE="CREATOR" ID="id2">
-			<mets:name>Václav Svoboda</mets:name>
+			<mets:name>aaa</mets:name>
 		</mets:agent>
 		<mets:agent TYPE="ORGANIZATION" ROLE="ARCHIVIST" ID="id3">
 			<mets:name>Archiv hlavního mìsta Prahy</mets:name>
 		</mets:agent>
 		<mets:agent TYPE="INDIVIDUAL" ROLE="ARCHIVIST" ID="id4">
-			<mets:name>Karel Novák</mets:name>
+			<mets:name>bbb</mets:name>
 		</mets:agent>
 	</mets:metsHdr>
 	<mets:dmdSec ID="dmd001">
@@ -26,8 +26,8 @@
 							<nsesss:Identifikator zdroj="Gordic.Ginis.MP12.X">MP12P00BTZ3Z</nsesss:Identifikator>
 						</nsesss:Identifikace>
 						<nsesss:Popis>
-							<nsesss:Nazev>Odvod poplatkù mìstu Desná</nsesss:Nazev>
-							<nsesss:Komentar>Odvod poplatkù mìstu Desná\nPoplatek za ubytovací kapacity a rekreaèní poplatek</nsesss:Komentar>
+							<nsesss:Nazev>Odvod poplatkù</nsesss:Nazev>
+							<nsesss:Komentar>Odvod poplatkù\nPoplatek za ubytovací kapacity a rekreaèní poplatek</nsesss:Komentar>
 						</nsesss:Popis>
 						<nsesss:Pristupnost>
 							<nsesss:BezpecnostniKategorie>
@@ -50,8 +50,8 @@
 									<nsesss:Subjekt>
 										<nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.ISU">MP12SE00A013</nsesss:IdentifikatorOrganizace>
 										<nsesss:NazevOrganizace>Úøad mìstské èásti Praha 12</nsesss:NazevOrganizace>
-										<nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MP12.SZ">MP12SZ00CZU4</nsesss:IdentifikatorFyzickeOsoby>
-										<nsesss:NazevFyzickeOsoby>Krejèíková Pavlína</nsesss:NazevFyzickeOsoby>
+										<nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MP12.SZ">aaa</nsesss:IdentifikatorFyzickeOsoby>
+										<nsesss:NazevFyzickeOsoby>aaa</nsesss:NazevFyzickeOsoby>
 										<nsesss:OrganizacniUtvar>Odbor provozní</nsesss:OrganizacniUtvar>
 										<nsesss:PracovniPozice>objednávky a faktury OPR</nsesss:PracovniPozice>
 										<nsesss:SidloOrganizace>Úøad mìstské èásti Praha 12,  Písková 25/830,  14300 Praha 412, podatelna@p12.mepnet.cz</nsesss:SidloOrganizace>
@@ -137,8 +137,8 @@
 								<nsesss:Subjekt>
 									<nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.ISU">MP12SE00A013</nsesss:IdentifikatorOrganizace>
 									<nsesss:NazevOrganizace>Úøad mìstské èásti Praha 12</nsesss:NazevOrganizace>
-									<nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MP12.SZ">MP12SZ00CZU4</nsesss:IdentifikatorFyzickeOsoby>
-									<nsesss:NazevFyzickeOsoby>Krejèíková Pavlína</nsesss:NazevFyzickeOsoby>
+									<nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MP12.SZ">aaa</nsesss:IdentifikatorFyzickeOsoby>
+									<nsesss:NazevFyzickeOsoby>aaa</nsesss:NazevFyzickeOsoby>
 									<nsesss:OrganizacniUtvar>Odbor provozní</nsesss:OrganizacniUtvar>
 									<nsesss:PracovniPozice>objednávky a faktury OPR</nsesss:PracovniPozice>
 									<nsesss:SidloOrganizace>Úøad mìstské èásti Praha 12,  Písková 25/830,  14300 Praha 412, podatelna@p12.mepnet.cz</nsesss:SidloOrganizace>
@@ -151,8 +151,8 @@
 										<nsesss:Subjekt>
 											<nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.ISU">MP12SE00A013</nsesss:IdentifikatorOrganizace>
 											<nsesss:NazevOrganizace>Úøad mìstské èásti Praha 12</nsesss:NazevOrganizace>
-											<nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MP12.SZ">MP12SZ00CZU4</nsesss:IdentifikatorFyzickeOsoby>
-											<nsesss:NazevFyzickeOsoby>Krejèíková Pavlína</nsesss:NazevFyzickeOsoby>
+											<nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MP12.SZ">aaa</nsesss:IdentifikatorFyzickeOsoby>
+											<nsesss:NazevFyzickeOsoby>aaa</nsesss:NazevFyzickeOsoby>
 											<nsesss:OrganizacniUtvar>Odbor provozní</nsesss:OrganizacniUtvar>
 											<nsesss:PracovniPozice>objednávky a faktury OPR</nsesss:PracovniPozice>
 											<nsesss:SidloOrganizace>Úøad mìstské èásti Praha 12,  Písková 25/830,  14300 Praha 412, podatelna@p12.mepnet.cz</nsesss:SidloOrganizace>
@@ -164,9 +164,9 @@
 							<nsesss:Prijemce>
 								<nsesss:Subjekt>
 									<nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.SE">MP12SE03079T</nsesss:IdentifikatorOrganizace>
-									<nsesss:NazevOrganizace>Mìsto Desná</nsesss:NazevOrganizace>
-									<nsesss:SidloOrganizace>Mìsto Desná,  Krkono¹ská 318/,  46861 Desná, mesto-desna@telecom.cz</nsesss:SidloOrganizace>
-									<nsesss:ElektronickyKontakt>e-mail:mesto-desna@telecom.cz;tel:483 383 167;DS:8pva7vt</nsesss:ElektronickyKontakt>
+									<nsesss:NazevOrganizace>Mìsto</nsesss:NazevOrganizace>
+									<nsesss:SidloOrganizace>Mìsto,  Krkono¹ská</nsesss:SidloOrganizace>
+									<nsesss:ElektronickyKontakt>e-mail</nsesss:ElektronickyKontakt>
 								</nsesss:Subjekt>
 							</nsesss:Prijemce>
 						</nsesss:Vyrizeni>
@@ -206,8 +206,8 @@
 									<nsesss:Identifikator zdroj="Gordic.Ginis.MP12.E">MP120B04D1FC</nsesss:Identifikator>
 								</nsesss:Identifikace>
 								<nsesss:Popis>
-									<nsesss:Nazev>dopis MìÚ Desná - poplatky</nsesss:Nazev>
-									<nsesss:Komentar>dopis MìÚ Desná - poplatky.doc</nsesss:Komentar>
+									<nsesss:Nazev>dopis MìÚ - poplatky</nsesss:Nazev>
+									<nsesss:Komentar>dopis MìÚ - poplatky.doc</nsesss:Komentar>
 								</nsesss:Popis>
 								<nsesss:Trideni>
 									<nsesss:JednoduchySpisovyZnak>2005/087.1</nsesss:JednoduchySpisovyZnak>

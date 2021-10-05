@@ -1,17 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
-<mets:mets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:nsesss="http://www.mvcr.cz/nsesss/v3" ID="GS_f4db866d-9bf2-4c06-90db-148904abb695" OBJID="GS_f4db866d-9bf2-4c06-90db-148904abb695" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu – Submission Information Package (SIP)" TYPE="dokument" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 http://www.mvcr.cz/nsesss/v3/nsesss-TrP.xsd" xmlns:mets="http://www.loc.gov/METS/">
-  <mets:metsHdr ID="G_5ff6e1ce-e6a6-4177-a38a-91c17640147b" CREATEDATE="2017-11-06T08:06:24.117918Z" LASTMODDATE="2017-11-06T08:06:24.117918Z" RECORDSTATUS="Mets-1.9_Nsesss-2.0_Generator-2017.02.09">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:nsesss="http://www.mvcr.cz/nsesss/v3" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="GS_f4db866d-9bf2-4c06-90db-148904abb695" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu – Submission Information Package (SIP)" OBJID="GS_f4db866d-9bf2-4c06-90db-148904abb695" TYPE="dokument" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 http://www.mvcr.cz/nsesss/v3/nsesss-TrP.xsd">
+  <mets:metsHdr CREATEDATE="2017-11-06T08:06:24.117918Z" ID="G_5ff6e1ce-e6a6-4177-a38a-91c17640147b" LASTMODDATE="2017-11-06T08:06:24.117918Z" RECORDSTATUS="Mets-1.9_Nsesss-2.0_Generator-2017.02.09">
     <mets:agent ID="MHMPSE009Q14" ROLE="CREATOR" TYPE="ORGANIZATION">
-      <mets:name>Hlavní město PRAHA,  Mariánské nám. 2,  11000 PRAHA 1</mets:name>
+      <mets:name>GDPR anonymizováno</mets:name>
       <mets:note>GINIS</mets:note>
     </mets:agent>
     <mets:agent ID="MHMPSR00DBV4" ROLE="CREATOR" TYPE="INDIVIDUAL">
-      <mets:name>Neradová Martina Mgr.</mets:name>
+      <mets:name>GDPR anonymizováno</mets:name>
       <mets:note>GINIS</mets:note>
     </mets:agent>
   </mets:metsHdr>
   <mets:dmdSec ID="dmd001">
-    <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="NSESSS" MDTYPEVERSION="2.0" MIMETYPE="text/xml" LABEL="Schéma XML pro předávání dokumentů a jejich metadat do archivu">
+    <mets:mdWrap LABEL="Schéma XML pro předávání dokumentů a jejich metadat do archivu" MDTYPE="OTHER" MDTYPEVERSION="2.0" MIMETYPE="text/xml" OTHERMDTYPE="NSESSS">
       <mets:xmlData>
         <nsesss:Dokument ID="MHMPXP08SCK2">
           <nsesss:EvidencniUdaje>
@@ -19,13 +19,13 @@
               <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.X">MHMPXP08SCK2</nsesss:Identifikator>
             </nsesss:Identifikace>
             <nsesss:Popis>
-              <nsesss:Nazev>V-59903/2014-101</nsesss:Nazev>
-              <nsesss:Komentar>V-59903/2014-101</nsesss:Komentar>
+              <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+              <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
             </nsesss:Popis>
             <nsesss:Pristupnost>
               <nsesss:BezpecnostniKategorie>
                 <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.BK">10</nsesss:Identifikator>
-                <nsesss:Nazev>Běžný dokument</nsesss:Nazev>
+                <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
                 <nsesss:BezpecnostniStupen>Běžný dokument</nsesss:BezpecnostniStupen>
               </nsesss:BezpecnostniKategorie>
             </nsesss:Pristupnost>
@@ -46,9 +46,9 @@
                 <nsesss:Autor>
                   <nsesss:Subjekt>
                     <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MHMP.SE">MHMPSE2YC664</nsesss:IdentifikatorOrganizace>
-                    <nsesss:NazevOrganizace>Katastrální pracoviště Praha (Katastrální úřad pro hlavní město Prahu)</nsesss:NazevOrganizace>
-                    <nsesss:SidloOrganizace>Katastrální pracoviště Praha (Katastrální úřad pro hlavní město Prahu),  Pod Sídlištěm 9/1800,  18214 Praha 8</nsesss:SidloOrganizace>
-                    <nsesss:ElektronickyKontakt>e-mail:;tel:;DS:6cwid5c</nsesss:ElektronickyKontakt>
+                    <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                    <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                    <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
                   </nsesss:Subjekt>
                 </nsesss:Autor>
                 <nsesss:DatumDoruceni datum="2014-09-18T08:51:48.000+01:00">2014-09-18</nsesss:DatumDoruceni>
@@ -57,9 +57,9 @@
                 <nsesss:Odesilatel>
                   <nsesss:Subjekt>
                     <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MHMP.SE">MHMPSE2YC664</nsesss:IdentifikatorOrganizace>
-                    <nsesss:NazevOrganizace>Katastrální pracoviště Praha (Katastrální úřad pro hlavní město Prahu)</nsesss:NazevOrganizace>
-                    <nsesss:SidloOrganizace>Katastrální pracoviště Praha (Katastrální úřad pro hlavní město Prahu),  Pod Sídlištěm 9/1800,  18214 Praha 8</nsesss:SidloOrganizace>
-                    <nsesss:ElektronickyKontakt>e-mail:;tel:;DS:6cwid5c</nsesss:ElektronickyKontakt>
+                    <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                    <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                    <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
                   </nsesss:Subjekt>
                 </nsesss:Odesilatel>
               </nsesss:DorucenyDokument>
@@ -69,8 +69,8 @@
               <nsesss:PlneUrcenySpisovyZnak>2015-90-MHMP 1325595/2014</nsesss:PlneUrcenySpisovyZnak>
               <nsesss:TypDokumentu>
                 <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.ITD">0000040000EI</nsesss:Identifikator>
-                <nsesss:Nazev>Běžný dokument</nsesss:Nazev>
-                <nsesss:Komentar>Běžný dokument</nsesss:Komentar>
+                <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
               </nsesss:TypDokumentu>
               <nsesss:MaterskeEntity>
                 <nsesss:VecnaSkupina ID="MHMPXP08SCK2_Gordic.Ginis.V.S.2015-90">
@@ -79,9 +79,8 @@
                       <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.SPZ">2015-90</nsesss:Identifikator>
                     </nsesss:Identifikace>
                     <nsesss:Popis>
-                      <nsesss:Nazev>Dokumenty, které nejsou podnětem k úř. jednání, nepřísluší k vyřízení MHMP či jsou zaslány na vědomí</nsesss:Nazev>
-                      <nsesss:Komentar>
-                      </nsesss:Komentar>
+                      <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                      <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                     </nsesss:Popis>
                     <nsesss:Puvod>
                       <nsesss:DatumVytvoreni datum="2015-01-12T00:00:00.000+01:00">2015-01-12</nsesss:DatumVytvoreni>
@@ -91,8 +90,8 @@
                       <nsesss:PlneUrcenySpisovyZnak>2015-90</nsesss:PlneUrcenySpisovyZnak>
                       <nsesss:SpisovyPlan ID="MHMPXP08SCK2_Gordic.Ginis.V.S.2015">
                         <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.SPL">2015</nsesss:Identifikator>
-                        <nsesss:Nazev>2015</nsesss:Nazev>
-                        <nsesss:Komentar>-</nsesss:Komentar>
+                        <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                        <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                         <nsesss:Manipulace>
                           <nsesss:DatumOtevreni datum="2015-01-01T00:00:00.000+01:00">2015-01-01</nsesss:DatumOtevreni>
                           <nsesss:DatumUzavreni datum="2016-05-31T00:00:00.000+01:00">2016-05-31</nsesss:DatumUzavreni>
@@ -100,9 +99,9 @@
                         <nsesss:Vydavatel>
                           <nsesss:Subjekt>
                             <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MHMP.SE">MHMPSE009Q14</nsesss:IdentifikatorOrganizace>
-                            <nsesss:NazevOrganizace>Hlavní město PRAHA</nsesss:NazevOrganizace>
-                            <nsesss:SidloOrganizace>Hlavní město PRAHA,  Mariánské nám. 2,  11000 PRAHA 1</nsesss:SidloOrganizace>
-                            <nsesss:ElektronickyKontakt>e-mail:;tel:236001111;DS:48ia97h</nsesss:ElektronickyKontakt>
+                            <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                            <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                            <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
                           </nsesss:Subjekt>
                         </nsesss:Vydavatel>
                       </nsesss:SpisovyPlan>
@@ -110,9 +109,8 @@
                     <nsesss:Vyrazovani>
                       <nsesss:SkartacniRezim>
                         <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.ISR">2015/90</nsesss:Identifikator>
-                        <nsesss:Nazev>Dokumenty, které nejsou podnětem k úř. jednání, nepřísluší k vyřízení MHMP či jsou zaslány na vědomí</nsesss:Nazev>
-                        <nsesss:Komentar>
-                        </nsesss:Komentar>
+                        <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                        <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                         <nsesss:Oduvodneni>Vyplývá ze spisového plánu organizace</nsesss:Oduvodneni>
                         <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
                         <nsesss:SkartacniLhuta>1</nsesss:SkartacniLhuta>
@@ -137,21 +135,20 @@
               <nsesss:Zpracovatel>
                 <nsesss:Subjekt>
                   <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MHMP.ISU">MHMPSE009Q14</nsesss:IdentifikatorOrganizace>
-                  <nsesss:NazevOrganizace>Hlavní město PRAHA</nsesss:NazevOrganizace>
+                  <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
                   <nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MHMP.SZ">MHMPSZ01DRUK</nsesss:IdentifikatorFyzickeOsoby>
-                  <nsesss:NazevFyzickeOsoby>Toušová Lenka</nsesss:NazevFyzickeOsoby>
+                  <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
                   <nsesss:OrganizacniUtvar>odd. podatelny a výpravny</nsesss:OrganizacniUtvar>
                   <nsesss:PracovniPozice>Ref. podatelny a výpravny</nsesss:PracovniPozice>
-                  <nsesss:SidloOrganizace>Hlavní město PRAHA,  Mariánské nám. 2,  11000 PRAHA 1</nsesss:SidloOrganizace>
+                  <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
                 </nsesss:Subjekt>
               </nsesss:Zpracovatel>
             </nsesss:Vyrizeni>
             <nsesss:Vyrazovani>
               <nsesss:SkartacniRezim>
                 <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.ISR">2015/90</nsesss:Identifikator>
-                <nsesss:Nazev>Dokumenty, které nejsou podnětem k úř. jednání, nepřísluší k vyřízení MHMP či jsou zaslány na vědomí</nsesss:Nazev>
-                <nsesss:Komentar>
-                </nsesss:Komentar>
+                <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                 <nsesss:Oduvodneni>Vyplývá ze spisového plánu organizace</nsesss:Oduvodneni>
                 <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
                 <nsesss:SkartacniLhuta>1</nsesss:SkartacniLhuta>
@@ -167,23 +164,23 @@
               <nsesss:SpravceSpisovny>
                 <nsesss:Subjekt>
                   <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MHMP.SE">MHMPSE009Q14</nsesss:IdentifikatorOrganizace>
-                  <nsesss:NazevOrganizace>Hlavní město PRAHA</nsesss:NazevOrganizace>
-                  <nsesss:SidloOrganizace>Hlavní město PRAHA,  Mariánské nám. 2,  11000 PRAHA 1</nsesss:SidloOrganizace>
-                  <nsesss:ElektronickyKontakt>e-mail:;tel:236001111;DS:48ia97h</nsesss:ElektronickyKontakt>
+                  <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                  <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                  <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
                 </nsesss:Subjekt>
               </nsesss:SpravceSpisovny>
               <nsesss:UkladaciJednotka>C.s.   2941/2015</nsesss:UkladaciJednotka>
             </nsesss:Manipulace>
           </nsesss:EvidencniUdaje>
           <nsesss:Komponenty>
-            <nsesss:Komponenta ID="MHMPXP08SCK2_MHMP0C37CE7D_MHMP0B3EA6QC" poradi="1" druh="průvodní dopis" verze="1" forma_uchovani="koncept">
+            <nsesss:Komponenta ID="MHMPXP08SCK2_MHMP0C37CE7D_MHMP0B3EA6QC" druh="průvodní dopis" forma_uchovani="koncept" poradi="1" verze="1">
               <nsesss:EvidencniUdaje>
                 <nsesss:Identifikace>
                   <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.E">MHMP0B3EA6QC</nsesss:Identifikator>
                 </nsesss:Identifikace>
                 <nsesss:Popis>
-                  <nsesss:Nazev>E-mail</nsesss:Nazev>
-                  <nsesss:Komentar>ds_225354094.zfo</nsesss:Komentar>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                   <nsesss:KlicovaSlova>
                     <nsesss:KlicoveSlovo>Original</nsesss:KlicoveSlovo>
                   </nsesss:KlicovaSlova>
@@ -192,17 +189,17 @@
                   <nsesss:JednoduchySpisovyZnak>2015/90</nsesss:JednoduchySpisovyZnak>
                   <nsesss:PlneUrcenySpisovyZnak>2015/90/MHMP 1325595/2014</nsesss:PlneUrcenySpisovyZnak>
                 </nsesss:Trideni>
-                <nsesss:Manipulace />
+                <nsesss:Manipulace/>
               </nsesss:EvidencniUdaje>
             </nsesss:Komponenta>
-            <nsesss:Komponenta ID="MHMPXP08SCK2_MHMP0C37CE93_MHMP0B3EA6S2" poradi="2" druh="průvodní dopis" verze="1" forma_uchovani="koncept">
+            <nsesss:Komponenta ID="MHMPXP08SCK2_MHMP0C37CE93_MHMP0B3EA6S2" druh="průvodní dopis" forma_uchovani="koncept" poradi="2" verze="1">
               <nsesss:EvidencniUdaje>
                 <nsesss:Identifikace>
                   <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.E">MHMP0B3EA6S2</nsesss:Identifikator>
                 </nsesss:Identifikace>
                 <nsesss:Popis>
-                  <nsesss:Nazev>29055997010_101_V599032014_obecna1.pdf</nsesss:Nazev>
-                  <nsesss:Komentar>29055997010_101_V599032014_obecna1.pdf</nsesss:Komentar>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                   <nsesss:KlicovaSlova>
                     <nsesss:KlicoveSlovo>Attachment</nsesss:KlicoveSlovo>
                   </nsesss:KlicovaSlova>
@@ -218,24 +215,24 @@
                       <nsesss:Vydavatel>
                         <nsesss:Subjekt>
                           <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MHMP.O">GORDAWK0A0L9</nsesss:IdentifikatorOrganizace>
-                          <nsesss:NazevOrganizace>Česká pošta, s.p. [IČ 47114983]</nsesss:NazevOrganizace>
+                          <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
                           <nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MHMP.F">GORDAWK0A0L9</nsesss:IdentifikatorFyzickeOsoby>
-                          <nsesss:NazevFyzickeOsoby>PostSignum Qualified CA 2</nsesss:NazevFyzickeOsoby>
+                          <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
                           <nsesss:OrganizacniUtvar>
                           </nsesss:OrganizacniUtvar>
-                          <nsesss:SidloOrganizace>, , ,CZ</nsesss:SidloOrganizace>
-                          <nsesss:ElektronickyKontakt>e-mail: , tel:</nsesss:ElektronickyKontakt>
+                          <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                          <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
                         </nsesss:Subjekt>
                       </nsesss:Vydavatel>
                       <nsesss:Držitel>
                         <nsesss:Subjekt>
                           <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MHMP.O">MHMPAWC0XR9T</nsesss:IdentifikatorOrganizace>
-                          <nsesss:NazevOrganizace>Katastrální úřad pro hlavní město Prahu [IČ 71185224]</nsesss:NazevOrganizace>
+                          <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
                           <nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MHMP.F">MHMPAWC0XR9T</nsesss:IdentifikatorFyzickeOsoby>
-                          <nsesss:NazevFyzickeOsoby>Petr Kolář</nsesss:NazevFyzickeOsoby>
+                          <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
                           <nsesss:OrganizacniUtvar>1016916</nsesss:OrganizacniUtvar>
-                          <nsesss:SidloOrganizace>, , ,CZ</nsesss:SidloOrganizace>
-                          <nsesss:ElektronickyKontakt>e-mail: petr.kolar@cuzk.cz, tel:</nsesss:ElektronickyKontakt>
+                          <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                          <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
                         </nsesss:Subjekt>
                       </nsesss:Držitel>
                       <nsesss:Platnost>
@@ -256,12 +253,12 @@
                       <nsesss:Overovatel>
                         <nsesss:Subjekt>
                           <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MHMP.ISU">MHMPSE009Q14</nsesss:IdentifikatorOrganizace>
-                          <nsesss:NazevOrganizace>Hlavní město PRAHA</nsesss:NazevOrganizace>
+                          <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
                           <nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MHMP.SZ">MHMPSZ01DRUK</nsesss:IdentifikatorFyzickeOsoby>
-                          <nsesss:NazevFyzickeOsoby>Toušová Lenka</nsesss:NazevFyzickeOsoby>
+                          <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
                           <nsesss:OrganizacniUtvar>odd. podatelny a výpravny</nsesss:OrganizacniUtvar>
                           <nsesss:PracovniPozice>Ref. podatelny a výpravny</nsesss:PracovniPozice>
-                          <nsesss:SidloOrganizace>Hlavní město PRAHA,  Mariánské nám. 2,  11000 PRAHA 1</nsesss:SidloOrganizace>
+                          <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
                         </nsesss:Subjekt>
                       </nsesss:Overovatel>
                     </nsesss:OvereniCertifikatu>
@@ -271,26 +268,26 @@
                     <nsesss:Overovatel>
                       <nsesss:Subjekt>
                         <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MHMP.ISU">MHMPSE009Q14</nsesss:IdentifikatorOrganizace>
-                        <nsesss:NazevOrganizace>Hlavní město PRAHA</nsesss:NazevOrganizace>
+                        <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
                         <nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MHMP.SZ">MHMPSZ01DRUK</nsesss:IdentifikatorFyzickeOsoby>
-                        <nsesss:NazevFyzickeOsoby>Toušová Lenka</nsesss:NazevFyzickeOsoby>
+                        <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
                         <nsesss:OrganizacniUtvar>odd. podatelny a výpravny</nsesss:OrganizacniUtvar>
                         <nsesss:PracovniPozice>Ref. podatelny a výpravny</nsesss:PracovniPozice>
-                        <nsesss:SidloOrganizace>Hlavní město PRAHA,  Mariánské nám. 2,  11000 PRAHA 1</nsesss:SidloOrganizace>
+                        <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
                       </nsesss:Subjekt>
                     </nsesss:Overovatel>
                   </nsesss:OvereniBezpecnostnihoPrvku>
                 </nsesss:Manipulace>
               </nsesss:EvidencniUdaje>
             </nsesss:Komponenta>
-            <nsesss:Komponenta ID="MHMPXP08SCK2_MHMP0C3791VN_MHMP0B3E6TWH" poradi="3" druh="průvodní dopis" verze="1" forma_uchovani="koncept">
+            <nsesss:Komponenta ID="MHMPXP08SCK2_MHMP0C3791VN_MHMP0B3E6TWH" druh="průvodní dopis" forma_uchovani="koncept" poradi="3" verze="1">
               <nsesss:EvidencniUdaje>
                 <nsesss:Identifikace>
                   <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.E">MHMP0B3E6TWH</nsesss:Identifikator>
                 </nsesss:Identifikace>
                 <nsesss:Popis>
-                  <nsesss:Nazev>V-59903/2014-101</nsesss:Nazev>
-                  <nsesss:Komentar>ds_225354094.zfo</nsesss:Komentar>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                   <nsesss:KlicovaSlova>
                     <nsesss:KlicoveSlovo>EReceive</nsesss:KlicoveSlovo>
                   </nsesss:KlicovaSlova>
@@ -308,16 +305,16 @@
   </mets:dmdSec>
   <mets:fileSec>
     <mets:fileGrp USE="Original">
-      <mets:file ID="MHMP0B3EA6QC" MIMETYPE="application/octet-stream" SIZE="139214" CREATED="2014-09-18T14:51:43" CHECKSUM="0E63C666A69FDBA63E8CC36F8BEA1510" CHECKSUMTYPE="MD5" OWNERID="MHMPXP08SCK2" DMDID="MHMPXP08SCK2_MHMP0C37CE7D_MHMP0B3EA6QC" USE="Original">
-        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="MHMP0B3EA6QC" />
+      <mets:file CHECKSUM="0E63C666A69FDBA63E8CC36F8BEA1510" CHECKSUMTYPE="MD5" CREATED="2014-09-18T14:51:43" DMDID="MHMPXP08SCK2_MHMP0C37CE7D_MHMP0B3EA6QC" ID="MHMP0B3EA6QC" MIMETYPE="application/octet-stream" OWNERID="MHMPXP08SCK2" SIZE="139214" USE="Original">
+        <mets:FLocat LOCTYPE="URL" xlink:href="MHMP0B3EA6QC" xlink:type="simple"/>
       </mets:file>
-      <mets:file ID="MHMP0B3EA6S2_1" MIMETYPE="application/pdf" SIZE="93052" CREATED="2014-09-18T14:51:47" CHECKSUM="830BB3CDF98EF607F19F31E8EA8A7514" CHECKSUMTYPE="MD5" OWNERID="MHMPXP08SCK2" DMDID="MHMPXP08SCK2_MHMP0C37CE93_MHMP0B3EA6S2" USE="Original">
-        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="MHMP0B3EA6S2" />
+      <mets:file CHECKSUM="830BB3CDF98EF607F19F31E8EA8A7514" CHECKSUMTYPE="MD5" CREATED="2014-09-18T14:51:47" DMDID="MHMPXP08SCK2_MHMP0C37CE93_MHMP0B3EA6S2" ID="MHMP0B3EA6S2_1" MIMETYPE="application/pdf" OWNERID="MHMPXP08SCK2" SIZE="93052" USE="Original">
+        <mets:FLocat LOCTYPE="URL" xlink:href="MHMP0B3EA6S2" xlink:type="simple"/>
       </mets:file>
     </mets:fileGrp>
     <mets:fileGrp USE="Input">
-      <mets:file ID="MHMP0B3E6TWH" MIMETYPE="application/octet-stream" SIZE="139214" CREATED="2014-09-18T09:20:30" CHECKSUM="0E63C666A69FDBA63E8CC36F8BEA1510" CHECKSUMTYPE="MD5" OWNERID="MHMPXP08SCK2" DMDID="MHMPXP08SCK2_MHMP0C3791VN_MHMP0B3E6TWH" USE="Original">
-        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="MHMP0B3E6TWH" />
+      <mets:file CHECKSUM="0E63C666A69FDBA63E8CC36F8BEA1510" CHECKSUMTYPE="MD5" CREATED="2014-09-18T09:20:30" DMDID="MHMPXP08SCK2_MHMP0C3791VN_MHMP0B3E6TWH" ID="MHMP0B3E6TWH" MIMETYPE="application/octet-stream" OWNERID="MHMPXP08SCK2" SIZE="139214" USE="Original">
+        <mets:FLocat LOCTYPE="URL" xlink:href="MHMP0B3E6TWH" xlink:type="simple"/>
       </mets:file>
     </mets:fileGrp>
   </mets:fileSec>
@@ -325,14 +322,14 @@
     <mets:div DMDID="MHMPXP08SCK2_Gordic.Ginis.V.S.2015" TYPE="spisový plán">
       <mets:div DMDID="MHMPXP08SCK2_Gordic.Ginis.V.S.2015-90" TYPE="věcná skupina">
         <mets:div DMDID="MHMPXP08SCK2" TYPE="dokument">
-          <mets:div LABEL="ds_225354094.zfo" DMDID="MHMPXP08SCK2_MHMP0C37CE7D_MHMP0B3EA6QC" TYPE="komponenta">
-            <mets:fptr FILEID="MHMP0B3EA6QC" />
+          <mets:div DMDID="MHMPXP08SCK2_MHMP0C37CE7D_MHMP0B3EA6QC" LABEL="ds_225354094.zfo" TYPE="komponenta">
+            <mets:fptr FILEID="MHMP0B3EA6QC"/>
           </mets:div>
-          <mets:div LABEL="29055997010_101_V599032014_obecna1.pdf" DMDID="MHMPXP08SCK2_MHMP0C37CE93_MHMP0B3EA6S2" TYPE="komponenta">
-            <mets:fptr FILEID="MHMP0B3EA6S2_1" />
+          <mets:div DMDID="MHMPXP08SCK2_MHMP0C37CE93_MHMP0B3EA6S2" LABEL="29055997010_101_V599032014_obecna1.pdf" TYPE="komponenta">
+            <mets:fptr FILEID="MHMP0B3EA6S2_1"/>
           </mets:div>
-          <mets:div LABEL="ds_225354094.zfo" DMDID="MHMPXP08SCK2_MHMP0C3791VN_MHMP0B3E6TWH" TYPE="komponenta">
-            <mets:fptr FILEID="MHMP0B3E6TWH" />
+          <mets:div DMDID="MHMPXP08SCK2_MHMP0C3791VN_MHMP0B3E6TWH" LABEL="ds_225354094.zfo" TYPE="komponenta">
+            <mets:fptr FILEID="MHMP0B3E6TWH"/>
           </mets:div>
         </mets:div>
       </mets:div>

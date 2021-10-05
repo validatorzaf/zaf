@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
-<mets:mets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://mvcr.cz/ess/v_1.0.0.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:nsesss="http://www.mvcr.cz/nsesss/v3" xmlns:tp="http://nsess.public.cz/erms_trans/v_01_01" PROFILE="mets.xsd" ID="METS_MUJESS00040003" OBJID="METS_MUJESS00040003" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 http://www.mvcr.cz/nsesss/v3/nsesss-TrP.xsd" xmlns:mets="http://www.loc.gov/METS/">
-  <mets:metsHdr LASTMODDATE="2019-05-13T08:41:06.1210384+02:00" CREATEDATE="2019-05-13T08:41:06.1210384+02:00">
-    <mets:agent TYPE="ORGANIZATION" ID="IC15049248" ROLE="CREATOR">
-      <mets:name>Městský úřad Jeseník</mets:name>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:nsesss="http://www.mvcr.cz/nsesss/v3" xmlns:tns="http://mvcr.cz/ess/v_1.0.0.0" xmlns:tp="http://nsess.public.cz/erms_trans/v_01_01" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="METS_MUJESS00040003" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu" OBJID="METS_MUJESS00040003" PROFILE="mets.xsd" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 http://www.mvcr.cz/nsesss/v3/nsesss-TrP.xsd">
+  <mets:metsHdr CREATEDATE="2019-05-13T08:41:06.1210384+02:00" LASTMODDATE="2019-05-13T08:41:06.1210384+02:00">
+    <mets:agent ID="IC15049248" ROLE="CREATOR" TYPE="ORGANIZATION">
+      <mets:name>GDPR anonymizováno</mets:name>
     </mets:agent>
-    <mets:agent TYPE="INDIVIDUAL" ID="FM119" ROLE="CREATOR">
-      <mets:name>Otáhalová Lenka</mets:name>
+    <mets:agent ID="FM119" ROLE="CREATOR" TYPE="INDIVIDUAL">
+      <mets:name>GDPR anonymizováno</mets:name>
       <mets:note>Poštovní oddelení - podatelna + referent</mets:note>
     </mets:agent>
-    <mets:metsDocumentID />
+    <mets:metsDocumentID/>
   </mets:metsHdr>
   <mets:dmdSec ID="DM_MUJESS00040003">
-    <mets:mdRef LOCTYPE="ARK" xlink:type="simple" MDTYPE="MARC" />
-    <mets:mdWrap LABEL="Schéma XML pro předávání dokumentů a jejich metadat do archivu" MDTYPE="OTHER" OTHERMDTYPE="NSESSS" MIMETYPE="text/xml" MDTYPEVERSION="3.0">
+    <mets:mdRef LOCTYPE="ARK" MDTYPE="MARC" xlink:type="simple"/>
+    <mets:mdWrap LABEL="Schéma XML pro předávání dokumentů a jejich metadat do archivu" MDTYPE="OTHER" MDTYPEVERSION="3.0" MIMETYPE="text/xml" OTHERMDTYPE="NSESSS">
       <mets:xmlData>
         <nsesss:Spis ID="MUJESS00040003">
           <nsesss:EvidencniUdaje>
@@ -20,8 +20,8 @@
               <nsesss:Identifikator zdroj="MUJESS">00040003</nsesss:Identifikator>
             </nsesss:Identifikace>
             <nsesss:Popis>
-              <nsesss:Nazev>žádost o informace</nsesss:Nazev>
-              <nsesss:Komentar>zuizuiz</nsesss:Komentar>
+              <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+              <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
             </nsesss:Popis>
             <nsesss:Evidence>
               <nsesss:EvidencniCislo>MJ/00065/2012</nsesss:EvidencniCislo>
@@ -43,7 +43,7 @@
                       <nsesss:Identifikator zdroj="MUJESS.SPZ">0-53.1</nsesss:Identifikator>
                     </nsesss:Identifikace>
                     <nsesss:Popis>
-                      <nsesss:Nazev>Systemizace úřadu</nsesss:Nazev>
+                      <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
                     </nsesss:Popis>
                     <nsesss:Puvod>
                       <nsesss:DatumVytvoreni datum="2006-07-28T09:14:46.313">2006-07-28</nsesss:DatumVytvoreni>
@@ -53,8 +53,8 @@
                       <nsesss:PlneUrcenySpisovyZnak>0-53.1</nsesss:PlneUrcenySpisovyZnak>
                       <nsesss:SpisovyPlan ID="MUJESS00040003.MUJESS.0">
                         <nsesss:Identifikator zdroj="MUJESS.SPL">0</nsesss:Identifikator>
-                        <nsesss:Nazev>předdefinovaný</nsesss:Nazev>
-                        <nsesss:Komentar>Přednastavený při instalaci.</nsesss:Komentar>
+                        <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                        <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                         <nsesss:Manipulace>
                           <nsesss:DatumOtevreni datum="2006-07-28T09:09:37.133">2006-07-28</nsesss:DatumOtevreni>
                           <nsesss:DatumUzavreni datum="2099-12-31T00:00:00">2099-12-31</nsesss:DatumUzavreni>
@@ -62,9 +62,9 @@
                         <nsesss:Vydavatel>
                           <nsesss:Subjekt>
                             <nsesss:IdentifikatorOrganizace zdroj="MUJESS.SS">MUJESS</nsesss:IdentifikatorOrganizace>
-                            <nsesss:NazevOrganizace>Městský úřad Jeseník</nsesss:NazevOrganizace>
-                            <nsesss:SidloOrganizace>Městský úřad Jeseník, Masarykovo nám. 1/167, 79001 Jeseník</nsesss:SidloOrganizace>
-                            <nsesss:ElektronickyKontakt />
+                            <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                            <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                            <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
                           </nsesss:Subjekt>
                         </nsesss:Vydavatel>
                       </nsesss:SpisovyPlan>
@@ -72,7 +72,7 @@
                     <nsesss:Vyrazovani>
                       <nsesss:SkartacniRezim>
                         <nsesss:Identifikator zdroj="MUJESS.SR">MUJESS-53.1</nsesss:Identifikator>
-                        <nsesss:Nazev>Systemizace úřadu</nsesss:Nazev>
+                        <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
                         <nsesss:Oduvodneni>Dle spisového řádu organizace</nsesss:Oduvodneni>
                         <nsesss:SkartacniZnak>A</nsesss:SkartacniZnak>
                         <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
@@ -95,19 +95,19 @@
               <nsesss:Zpracovatel>
                 <nsesss:Subjekt>
                   <nsesss:IdentifikatorOrganizace zdroj="IČ">15049248</nsesss:IdentifikatorOrganizace>
-                  <nsesss:NazevOrganizace>Městský úřad Jeseník</nsesss:NazevOrganizace>
+                  <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
                   <nsesss:IdentifikatorFyzickeOsoby zdroj="MUJESS">119</nsesss:IdentifikatorFyzickeOsoby>
-                  <nsesss:NazevFyzickeOsoby>Otáhalová Lenka</nsesss:NazevFyzickeOsoby>
+                  <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
                   <nsesss:OrganizacniUtvar>ÚT-VS-Pod - podatelna - poštovní oddělení</nsesss:OrganizacniUtvar>
                   <nsesss:PracovniPozice>Poštovní oddelení - podatelna + referent</nsesss:PracovniPozice>
-                  <nsesss:SidloOrganizace>Městský úřad Jeseník, Masarykovo nám. 1/167, 79001 Jeseník</nsesss:SidloOrganizace>
+                  <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
                 </nsesss:Subjekt>
               </nsesss:Zpracovatel>
             </nsesss:VyrizeniUzavreni>
             <nsesss:Vyrazovani>
               <nsesss:SkartacniRezim>
                 <nsesss:Identifikator zdroj="MUJESS">0/53.1</nsesss:Identifikator>
-                <nsesss:Nazev>Dokumenty určené k archivaci</nsesss:Nazev>
+                <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
                 <nsesss:Oduvodneni>Instrukce MVČR ze dne 25. 5. 1992 čj. VSC/1-793/92</nsesss:Oduvodneni>
                 <nsesss:SkartacniZnak>A</nsesss:SkartacniZnak>
                 <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
@@ -119,18 +119,18 @@
               </nsesss:DataceVyrazeni>
               <nsesss:SkartacniRizeni>
                 <nsesss:Datum datum="2019-05-13T08:41:06.12">2019-05-13</nsesss:Datum>
-                <nsesss:Mnozstvi />
+                <nsesss:Mnozstvi/>
                 <nsesss:SkartacniOperace>trvalé uložení</nsesss:SkartacniOperace>
                 <nsesss:Oduvodneni>-</nsesss:Oduvodneni>
                 <nsesss:Posuzovatel>
                   <nsesss:Subjekt>
                     <nsesss:IdentifikatorOrganizace zdroj="-">-</nsesss:IdentifikatorOrganizace>
-                    <nsesss:NazevOrganizace>-</nsesss:NazevOrganizace>
+                    <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
                     <nsesss:IdentifikatorFyzickeOsoby zdroj="-">-</nsesss:IdentifikatorFyzickeOsoby>
-                    <nsesss:NazevFyzickeOsoby>-</nsesss:NazevFyzickeOsoby>
+                    <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
                     <nsesss:OrganizacniUtvar>-</nsesss:OrganizacniUtvar>
                     <nsesss:PracovniPozice>-</nsesss:PracovniPozice>
-                    <nsesss:SidloOrganizace>-</nsesss:SidloOrganizace>
+                    <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
                   </nsesss:Subjekt>
                 </nsesss:Posuzovatel>
               </nsesss:SkartacniRizeni>
@@ -148,8 +148,8 @@
                   <nsesss:Identifikator zdroj="MUJESS">00039950</nsesss:Identifikator>
                 </nsesss:Identifikace>
                 <nsesss:Popis>
-                  <nsesss:Nazev>žádost o informace</nsesss:Nazev>
-                  <nsesss:Komentar>zuizuiz</nsesss:Komentar>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                 </nsesss:Popis>
                 <nsesss:Evidence>
                   <nsesss:EvidencniCislo>MJ/00065/2012</nsesss:EvidencniCislo>
@@ -167,8 +167,8 @@
                     <nsesss:Autor>
                       <nsesss:Subjekt>
                         <nsesss:IdentifikatorOrganizace zdroj="MUJESS">00039949</nsesss:IdentifikatorOrganizace>
-                        <nsesss:NazevOrganizace>AUTO - NYKLOS spol. s r. o.</nsesss:NazevOrganizace>
-                        <nsesss:SidloOrganizace>nespecifikováno</nsesss:SidloOrganizace>
+                        <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                        <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
                       </nsesss:Subjekt>
                     </nsesss:Autor>
                     <nsesss:DatumDoruceni datum="2012-07-10T00:00:00">2012-07-10</nsesss:DatumDoruceni>
@@ -176,8 +176,8 @@
                     <nsesss:Odesilatel>
                       <nsesss:Subjekt>
                         <nsesss:IdentifikatorOrganizace zdroj="MUJESS">00039949</nsesss:IdentifikatorOrganizace>
-                        <nsesss:NazevOrganizace>AUTO - NYKLOS spol. s r. o.</nsesss:NazevOrganizace>
-                        <nsesss:SidloOrganizace>nespecifikováno</nsesss:SidloOrganizace>
+                        <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                        <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
                       </nsesss:Subjekt>
                     </nsesss:Odesilatel>
                   </nsesss:DorucenyDokument>
@@ -187,8 +187,8 @@
                   <nsesss:PlneUrcenySpisovyZnak>0-53.1</nsesss:PlneUrcenySpisovyZnak>
                   <nsesss:TypDokumentu>
                     <nsesss:Identifikator zdroj="MUJESS">0</nsesss:Identifikator>
-                    <nsesss:Nazev>0</nsesss:Nazev>
-                    <nsesss:Komentar />
+                    <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                    <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                   </nsesss:TypDokumentu>
                 </nsesss:Trideni>
                 <nsesss:Vyrizeni>
@@ -199,19 +199,19 @@
                   <nsesss:Zpracovatel>
                     <nsesss:Subjekt>
                       <nsesss:IdentifikatorOrganizace zdroj="IČ">15049248</nsesss:IdentifikatorOrganizace>
-                      <nsesss:NazevOrganizace>Městský úřad Jeseník</nsesss:NazevOrganizace>
+                      <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
                       <nsesss:IdentifikatorFyzickeOsoby zdroj="MUJESS">119</nsesss:IdentifikatorFyzickeOsoby>
-                      <nsesss:NazevFyzickeOsoby>Otáhalová Lenka</nsesss:NazevFyzickeOsoby>
+                      <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
                       <nsesss:OrganizacniUtvar>ÚT-VS-Pod - podatelna - poštovní oddělení</nsesss:OrganizacniUtvar>
                       <nsesss:PracovniPozice>Poštovní oddelení - podatelna + referent</nsesss:PracovniPozice>
-                      <nsesss:SidloOrganizace>Městský úřad Jeseník, Masarykovo nám. 1/167, 79001 Jeseník</nsesss:SidloOrganizace>
+                      <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
                     </nsesss:Subjekt>
                   </nsesss:Zpracovatel>
                 </nsesss:Vyrizeni>
                 <nsesss:Vyrazovani>
                   <nsesss:SkartacniRezim>
                     <nsesss:Identifikator zdroj="MUJESS">39950/53.1</nsesss:Identifikator>
-                    <nsesss:Nazev>Dokumenty určené k archivaci</nsesss:Nazev>
+                    <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
                     <nsesss:Oduvodneni>Instrukce MVČR ze dne 25. 5. 1992 čj. VSC/1-793/92</nsesss:Oduvodneni>
                     <nsesss:SkartacniZnak>A</nsesss:SkartacniZnak>
                     <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
@@ -234,8 +234,8 @@
                   <nsesss:Identifikator zdroj="MUJESS">00040002</nsesss:Identifikator>
                 </nsesss:Identifikace>
                 <nsesss:Popis>
-                  <nsesss:Nazev>žádost o informace</nsesss:Nazev>
-                  <nsesss:Komentar />
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                 </nsesss:Popis>
                 <nsesss:Evidence>
                   <nsesss:EvidencniCislo>MJ/00065/2012</nsesss:EvidencniCislo>
@@ -253,12 +253,12 @@
                     <nsesss:Autor>
                       <nsesss:Subjekt>
                         <nsesss:IdentifikatorOrganizace zdroj="IČ">15049248</nsesss:IdentifikatorOrganizace>
-                        <nsesss:NazevOrganizace>Městský úřad Jeseník</nsesss:NazevOrganizace>
+                        <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
                         <nsesss:IdentifikatorFyzickeOsoby zdroj="MUJESS">119</nsesss:IdentifikatorFyzickeOsoby>
-                        <nsesss:NazevFyzickeOsoby>Otáhalová Lenka</nsesss:NazevFyzickeOsoby>
+                        <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
                         <nsesss:OrganizacniUtvar>ÚT-VS-Pod - podatelna - poštovní oddělení</nsesss:OrganizacniUtvar>
                         <nsesss:PracovniPozice>Poštovní oddelení - podatelna + referent</nsesss:PracovniPozice>
-                        <nsesss:SidloOrganizace>Městský úřad Jeseník, Masarykovo nám. 1/167, 79001 Jeseník</nsesss:SidloOrganizace>
+                        <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
                       </nsesss:Subjekt>
                     </nsesss:Autor>
                   </nsesss:VlastniDokument>
@@ -268,8 +268,8 @@
                   <nsesss:PlneUrcenySpisovyZnak>0-53.1</nsesss:PlneUrcenySpisovyZnak>
                   <nsesss:TypDokumentu>
                     <nsesss:Identifikator zdroj="MUJESS">0</nsesss:Identifikator>
-                    <nsesss:Nazev>0</nsesss:Nazev>
-                    <nsesss:Komentar />
+                    <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                    <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                   </nsesss:TypDokumentu>
                 </nsesss:Trideni>
                 <nsesss:Vyrizeni>
@@ -280,19 +280,19 @@
                   <nsesss:Zpracovatel>
                     <nsesss:Subjekt>
                       <nsesss:IdentifikatorOrganizace zdroj="IČ">15049248</nsesss:IdentifikatorOrganizace>
-                      <nsesss:NazevOrganizace>Městský úřad Jeseník</nsesss:NazevOrganizace>
+                      <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
                       <nsesss:IdentifikatorFyzickeOsoby zdroj="MUJESS">119</nsesss:IdentifikatorFyzickeOsoby>
-                      <nsesss:NazevFyzickeOsoby>Otáhalová Lenka</nsesss:NazevFyzickeOsoby>
+                      <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
                       <nsesss:OrganizacniUtvar>ÚT-VS-Pod - podatelna - poštovní oddělení</nsesss:OrganizacniUtvar>
                       <nsesss:PracovniPozice>Poštovní oddelení - podatelna + referent</nsesss:PracovniPozice>
-                      <nsesss:SidloOrganizace>Městský úřad Jeseník, Masarykovo nám. 1/167, 79001 Jeseník</nsesss:SidloOrganizace>
+                      <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
                     </nsesss:Subjekt>
                   </nsesss:Zpracovatel>
                 </nsesss:Vyrizeni>
                 <nsesss:Vyrazovani>
                   <nsesss:SkartacniRezim>
                     <nsesss:Identifikator zdroj="MUJESS">40002/53.1</nsesss:Identifikator>
-                    <nsesss:Nazev>Dokumenty určené k archivaci</nsesss:Nazev>
+                    <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
                     <nsesss:Oduvodneni>Instrukce MVČR ze dne 25. 5. 1992 čj. VSC/1-793/92</nsesss:Oduvodneni>
                     <nsesss:SkartacniZnak>A</nsesss:SkartacniZnak>
                     <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
@@ -309,19 +309,19 @@
                 </nsesss:Manipulace>
               </nsesss:EvidencniUdaje>
               <nsesss:Komponenty>
-                <nsesss:Komponenta verze="2" forma_uchovani="originál" ID="Komp_MUJESS00046028" poradi="1" druh="hlavní dokument">
+                <nsesss:Komponenta ID="Komp_MUJESS00046028" druh="hlavní dokument" forma_uchovani="originál" poradi="1" verze="2">
                   <nsesss:EvidencniUdaje>
                     <nsesss:Identifikace>
                       <nsesss:Identifikator zdroj="MUJESS">00046028</nsesss:Identifikator>
                     </nsesss:Identifikace>
                     <nsesss:Popis>
-                      <nsesss:Nazev>Zkouška.pdf</nsesss:Nazev>
+                      <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
                     </nsesss:Popis>
                     <nsesss:Trideni>
                       <nsesss:JednoduchySpisovyZnak>53.1</nsesss:JednoduchySpisovyZnak>
                       <nsesss:PlneUrcenySpisovyZnak>0-53.1</nsesss:PlneUrcenySpisovyZnak>
                     </nsesss:Trideni>
-                    <nsesss:Prevod />
+                    <nsesss:Prevod/>
                   </nsesss:EvidencniUdaje>
                 </nsesss:Komponenta>
               </nsesss:Komponenty>
@@ -333,8 +333,8 @@
   </mets:dmdSec>
   <mets:amdSec ID="S_MUJESSTP10308220.MUJESS00040003">
     <mets:digiprovMD ID="AMD_S_MUJESSTP10308220.MUJESS00040003">
-      <mets:mdRef LOCTYPE="ARK" xlink:type="simple" MDTYPE="MARC" />
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MIMETYPE="text/xml" MDTYPEVERSION="1.0">
+      <mets:mdRef LOCTYPE="ARK" MDTYPE="MARC" xlink:type="simple"/>
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <TransakcniLogObjektu xmlns="http://nsess.public.cz/erms_trans/v_01_01">
             <TransLogInfo>
@@ -476,8 +476,8 @@
   </mets:amdSec>
   <mets:amdSec ID="D_MUJESSTP10308220.MUJESS00039950">
     <mets:digiprovMD ID="AMD_D_MUJESSTP10308220.MUJESS00039950">
-      <mets:mdRef LOCTYPE="ARK" xlink:type="simple" MDTYPE="MARC" />
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MIMETYPE="text/xml" MDTYPEVERSION="1.0">
+      <mets:mdRef LOCTYPE="ARK" MDTYPE="MARC" xlink:type="simple"/>
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <TransakcniLogObjektu xmlns="http://nsess.public.cz/erms_trans/v_01_01">
             <TransLogInfo>
@@ -500,7 +500,7 @@
                 </Identifikator>
               </Objekt>
             </TransLogInfo>
-            <Udalosti />
+            <Udalosti/>
           </TransakcniLogObjektu>
         </mets:xmlData>
       </mets:mdWrap>
@@ -508,8 +508,8 @@
   </mets:amdSec>
   <mets:amdSec ID="D_MUJESSTP10308220.MUJESS00040002">
     <mets:digiprovMD ID="AMD_D_MUJESSTP10308220.MUJESS00040002">
-      <mets:mdRef LOCTYPE="ARK" xlink:type="simple" MDTYPE="MARC" />
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MIMETYPE="text/xml" MDTYPEVERSION="1.0">
+      <mets:mdRef LOCTYPE="ARK" MDTYPE="MARC" xlink:type="simple"/>
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <TransakcniLogObjektu xmlns="http://nsess.public.cz/erms_trans/v_01_01">
             <TransLogInfo>
@@ -532,7 +532,7 @@
                 </Identifikator>
               </Objekt>
             </TransLogInfo>
-            <Udalosti />
+            <Udalosti/>
           </TransakcniLogObjektu>
         </mets:xmlData>
       </mets:mdWrap>
@@ -540,8 +540,8 @@
   </mets:amdSec>
   <mets:amdSec ID="Komp_MUJESSTP10308220.MUJESS00046028">
     <mets:digiprovMD ID="ADM_Komp_MUJESSTP10308220.MUJESS00046028">
-      <mets:mdRef LOCTYPE="ARK" xlink:type="simple" MDTYPE="MARC" />
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MIMETYPE="text/xml" MDTYPEVERSION="1.0">
+      <mets:mdRef LOCTYPE="ARK" MDTYPE="MARC" xlink:type="simple"/>
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <TransakcniLogObjektu xmlns="http://nsess.public.cz/erms_trans/v_01_01">
             <TransLogInfo>
@@ -564,7 +564,7 @@
                 </Identifikator>
               </Objekt>
             </TransLogInfo>
-            <Udalosti />
+            <Udalosti/>
           </TransakcniLogObjektu>
         </mets:xmlData>
       </mets:mdWrap>
@@ -572,8 +572,8 @@
   </mets:amdSec>
   <mets:amdSec ID="VS_MUJESSTP10308220">
     <mets:digiprovMD ID="ADM_VS_MUJESSTP10308220">
-      <mets:mdRef LOCTYPE="ARK" xlink:type="simple" MDTYPE="MARC" />
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MIMETYPE="text/xml" MDTYPEVERSION="1.0">
+      <mets:mdRef LOCTYPE="ARK" MDTYPE="MARC" xlink:type="simple"/>
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <TransakcniLogObjektu xmlns="http://nsess.public.cz/erms_trans/v_01_01">
             <TransLogInfo>
@@ -596,7 +596,7 @@
                 </Identifikator>
               </Objekt>
             </TransLogInfo>
-            <Udalosti />
+            <Udalosti/>
           </TransakcniLogObjektu>
         </mets:xmlData>
       </mets:mdWrap>
@@ -604,8 +604,8 @@
   </mets:amdSec>
   <mets:amdSec ID="SP_MUJESSTP10308220">
     <mets:digiprovMD ID="ADM_SP_MUJESSTP10308220">
-      <mets:mdRef LOCTYPE="ARK" xlink:type="simple" MDTYPE="MARC" />
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MIMETYPE="text/xml" MDTYPEVERSION="1.0">
+      <mets:mdRef LOCTYPE="ARK" MDTYPE="MARC" xlink:type="simple"/>
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <TransakcniLogObjektu xmlns="http://nsess.public.cz/erms_trans/v_01_01">
             <TransLogInfo>
@@ -628,27 +628,27 @@
                 </Identifikator>
               </Objekt>
             </TransLogInfo>
-            <Udalosti />
+            <Udalosti/>
           </TransakcniLogObjektu>
         </mets:xmlData>
       </mets:mdWrap>
     </mets:digiprovMD>
   </mets:amdSec>
   <mets:fileSec>
-    <mets:fileGrp USE="Original" ID="fileGrp_1">
-      <mets:file ADMID="Komp_MUJESSTP10308220.MUJESS00046028" DMDID="Komp_MUJESS00046028" MIMETYPE="application/pdf" SIZE="185858" ID="MUJESS00046028" CHECKSUMTYPE="SHA-512" CREATED="2019-05-13T08:29:12.78" CHECKSUM="D6529609EE374E8F71FF10E7638D04EAB1004041227C9665A2D872503BDC4C4B04B2F28FA43842E6304A3F6DA5B8965DC1496315FE46B33C00871BF91928636B">
-        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="komponenty\00046028_Zkouška.pdf" />
+    <mets:fileGrp ID="fileGrp_1" USE="Original">
+      <mets:file ADMID="Komp_MUJESSTP10308220.MUJESS00046028" CHECKSUM="D6529609EE374E8F71FF10E7638D04EAB1004041227C9665A2D872503BDC4C4B04B2F28FA43842E6304A3F6DA5B8965DC1496315FE46B33C00871BF91928636B" CHECKSUMTYPE="SHA-512" CREATED="2019-05-13T08:29:12.78" DMDID="Komp_MUJESS00046028" ID="MUJESS00046028" MIMETYPE="application/pdf" SIZE="185858">
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\00046028_Zkouška.pdf" xlink:type="simple"/>
       </mets:file>
     </mets:fileGrp>
   </mets:fileSec>
   <mets:structMap TYPE="LOGICAL">
-    <mets:div TYPE="spisový plán" ADMID="SP_MUJESSTP10308220" CONTENTIDS="" DMDID="MUJESS00040003.MUJESS.0">
-      <mets:div TYPE="věcná skupina" ADMID="VS_MUJESSTP10308220" CONTENTIDS="" DMDID="MUJESS00040003.MUJESS.0-53.1">
-        <mets:div TYPE="spis" ADMID="S_MUJESSTP10308220.MUJESS00040003" CONTENTIDS="" DMDID="MUJESS00040003" LABEL="spis ESS-NDA">
-          <mets:div TYPE="dokument" ADMID="D_MUJESSTP10308220.MUJESS00039950" CONTENTIDS="" DMDID="MUJESS00039950" ORDER="1" LABEL="žádost o informace" />
-          <mets:div TYPE="dokument" ADMID="D_MUJESSTP10308220.MUJESS00040002" CONTENTIDS="" DMDID="MUJESS00040002" ORDER="2" LABEL="žádost o informace">
-            <mets:div TYPE="komponenta" ADMID="Komp_MUJESSTP10308220.MUJESS00046028" CONTENTIDS="" DMDID="Komp_MUJESS00046028" ORDER="1" LABEL="Zkouška.pdf">
-              <mets:fptr CONTENTIDS="" FILEID="MUJESS00046028" />
+    <mets:div ADMID="SP_MUJESSTP10308220" CONTENTIDS="" DMDID="MUJESS00040003.MUJESS.0" TYPE="spisový plán">
+      <mets:div ADMID="VS_MUJESSTP10308220" CONTENTIDS="" DMDID="MUJESS00040003.MUJESS.0-53.1" TYPE="věcná skupina">
+        <mets:div ADMID="S_MUJESSTP10308220.MUJESS00040003" CONTENTIDS="" DMDID="MUJESS00040003" LABEL="spis ESS-NDA" TYPE="spis">
+          <mets:div ADMID="D_MUJESSTP10308220.MUJESS00039950" CONTENTIDS="" DMDID="MUJESS00039950" LABEL="žádost o informace" ORDER="1" TYPE="dokument"/>
+          <mets:div ADMID="D_MUJESSTP10308220.MUJESS00040002" CONTENTIDS="" DMDID="MUJESS00040002" LABEL="žádost o informace" ORDER="2" TYPE="dokument">
+            <mets:div ADMID="Komp_MUJESSTP10308220.MUJESS00046028" CONTENTIDS="" DMDID="Komp_MUJESS00046028" LABEL="Zkouška.pdf" ORDER="1" TYPE="komponenta">
+              <mets:fptr CONTENTIDS="" FILEID="MUJESS00046028"/>
             </mets:div>
           </mets:div>
         </mets:div>

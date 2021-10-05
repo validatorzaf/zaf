@@ -1,17 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<mets:mets xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mets="http://www.loc.gov/METS/" xmlns:ns3="info:lc/xmlns/premis-v2" xmlns:nsesss="http://www.mvcr.cz/nsesss/v3" xmlns:ns5="http://desa.i.cz/nsext/v3" xmlns:tp="http://nsess.public.cz/erms_trans/v_01_01" xmlns:tns="http://mvcr.cz/ess/v_1.0.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OBJID="8f71128b-c157-4ef9-a2b4-863f940d8859" LABEL="Datový balíček pro provedení skartačního řízení" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 TransakcniProtokolNavrh_verze1.7.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:ns3="info:lc/xmlns/premis-v2" xmlns:ns5="http://desa.i.cz/nsext/v3" xmlns:nsesss="http://www.mvcr.cz/nsesss/v3" xmlns:tns="http://mvcr.cz/ess/v_1.0.0.0" xmlns:tp="http://nsess.public.cz/erms_trans/v_01_01" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" LABEL="Datový balíček pro provedení skartačního řízení" OBJID="8f71128b-c157-4ef9-a2b4-863f940d8859" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 TransakcniProtokolNavrh_verze1.7.xsd">
   <mets:metsHdr CREATEDATE="2018-09-10T07:50:35.652+02:00" LASTMODDATE="2018-09-10T07:50:35.652+02:00">
     <mets:agent ID="agent_001" ROLE="CREATOR" TYPE="ORGANIZATION">
-      <mets:name>Městská část Praha 3</mets:name>
+      <mets:name>GDPR anonymizováno</mets:name>
       <mets:note>prod</mets:note>
     </mets:agent>
     <mets:agent ID="agent_002" ROLE="CREATOR" TYPE="INDIVIDUAL">
-      <mets:name>SPS Administrátor</mets:name>
+      <mets:name>GDPR anonymizováno</mets:name>
       <mets:note>spsadmin</mets:note>
     </mets:agent>
   </mets:metsHdr>
   <mets:dmdSec ID="DM_0001">
-    <mets:mdWrap LABEL="Schéma XML pro předávání dokumentů a jejich metadat do archivu" MDTYPE="OTHER" OTHERMDTYPE="NSESSS" MDTYPEVERSION="3.0" MIMETYPE="text/xml">
+    <mets:mdWrap LABEL="Schéma XML pro předávání dokumentů a jejich metadat do archivu" MDTYPE="OTHER" MDTYPEVERSION="3.0" MIMETYPE="text/xml" OTHERMDTYPE="NSESSS">
       <mets:xmlData>
         <nsesss:Dokument ID="RECORD_p3_10_138225_8f71128b-c157-4ef9-a2b4-863f940d8859">
           <nsesss:EvidencniUdaje>
@@ -19,7 +19,7 @@
               <nsesss:Identifikator zdroj="ERMS">p3_10_138225</nsesss:Identifikator>
             </nsesss:Identifikace>
             <nsesss:Popis>
-              <nsesss:Nazev>[20#0562394#6092] Usnesení o zrušení EP</nsesss:Nazev>
+              <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
             </nsesss:Popis>
             <nsesss:Evidence>
               <nsesss:EvidencniCislo>UMCP3 073799/2010</nsesss:EvidencniCislo>
@@ -36,12 +36,12 @@
                 <nsesss:Autor>
                   <nsesss:Subjekt>
                     <nsesss:IdentifikatorOrganizace zdroj="IČ">063517</nsesss:IdentifikatorOrganizace>
-                    <nsesss:NazevOrganizace>Městská část Praha 3, Úřad městské části</nsesss:NazevOrganizace>
+                    <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
                     <nsesss:IdentifikatorFyzickeOsoby zdroj="ERMS">9120531</nsesss:IdentifikatorFyzickeOsoby>
-                    <nsesss:NazevFyzickeOsoby>Helena Štěpánková</nsesss:NazevFyzickeOsoby>
+                    <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
                     <nsesss:OrganizacniUtvar>oddělení správy dokumentů</nsesss:OrganizacniUtvar>
                     <nsesss:PracovniPozice>referent oddělení správy dokumentů</nsesss:PracovniPozice>
-                    <nsesss:SidloOrganizace>Havlíčkovo nám. 9/700, 130 85 Praha 3</nsesss:SidloOrganizace>
+                    <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
                   </nsesss:Subjekt>
                 </nsesss:Autor>
               </nsesss:VlastniDokument>
@@ -51,7 +51,7 @@
               <nsesss:PlneUrcenySpisovyZnak>82.</nsesss:PlneUrcenySpisovyZnak>
               <nsesss:TypDokumentu>
                 <nsesss:Identifikator zdroj="ERMS">DP</nsesss:Identifikator>
-                <nsesss:Nazev>Doručená písemnost</nsesss:Nazev>
+                <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
               </nsesss:TypDokumentu>
               <nsesss:MaterskeEntity>
                 <nsesss:VecnaSkupina ID="ID-52e280c7-20d1-4ad0-998a-dbcb2969d4ff">
@@ -60,7 +60,7 @@
                       <nsesss:Identifikator zdroj="ERMS">778</nsesss:Identifikator>
                     </nsesss:Identifikace>
                     <nsesss:Popis>
-                      <nsesss:Nazev>Cizí</nsesss:Nazev>
+                      <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
                     </nsesss:Popis>
                     <nsesss:Puvod>
                       <nsesss:DatumVytvoreni>2001-01-01+01:00</nsesss:DatumVytvoreni>
@@ -70,7 +70,7 @@
                       <nsesss:PlneUrcenySpisovyZnak>82.</nsesss:PlneUrcenySpisovyZnak>
                       <nsesss:SpisovyPlan ID="ID-3a8b14da-3989-4369-a1c9-ff71098bca68">
                         <nsesss:Identifikator zdroj="ERMS">30</nsesss:Identifikator>
-                        <nsesss:Nazev>Položka klasifikace</nsesss:Nazev>
+                        <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
                         <nsesss:Manipulace>
                           <nsesss:DatumOtevreni>1900-01-01+01:00</nsesss:DatumOtevreni>
                           <nsesss:DatumUzavreni>2013-12-19+01:00</nsesss:DatumUzavreni>
@@ -78,8 +78,8 @@
                         <nsesss:Vydavatel>
                           <nsesss:Subjekt>
                             <nsesss:IdentifikatorOrganizace zdroj="ERMS">prod</nsesss:IdentifikatorOrganizace>
-                            <nsesss:NazevOrganizace>Městská část Praha 3</nsesss:NazevOrganizace>
-                            <nsesss:SidloOrganizace>Havlíčkovo nám. 9, Praha 3</nsesss:SidloOrganizace>
+                            <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                            <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
                           </nsesss:Subjekt>
                         </nsesss:Vydavatel>
                       </nsesss:SpisovyPlan>
@@ -87,7 +87,7 @@
                     <nsesss:Vyrazovani>
                       <nsesss:SkartacniRezim>
                         <nsesss:Identifikator zdroj="ERMS">25</nsesss:Identifikator>
-                        <nsesss:Nazev>S5 Dokumenty určené ke skartaci</nsesss:Nazev>
+                        <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
                         <nsesss:Oduvodneni>Instrukce MVČR ze dne 25. 5. 1992 čj. VSC/1-793/92</nsesss:Oduvodneni>
                         <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
                         <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
@@ -111,12 +111,12 @@
               <nsesss:Zpracovatel>
                 <nsesss:Subjekt>
                   <nsesss:IdentifikatorOrganizace zdroj="IČ">063517</nsesss:IdentifikatorOrganizace>
-                  <nsesss:NazevOrganizace>Městská část Praha 3, Úřad městské části</nsesss:NazevOrganizace>
+                  <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
                   <nsesss:IdentifikatorFyzickeOsoby zdroj="ERMS">26769681</nsesss:IdentifikatorFyzickeOsoby>
-                  <nsesss:NazevFyzickeOsoby>Markéta Kratochvílová</nsesss:NazevFyzickeOsoby>
+                  <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
                   <nsesss:OrganizacniUtvar>oddělení správy dokumentů</nsesss:OrganizacniUtvar>
                   <nsesss:PracovniPozice>referent oddělení správy dokumentů</nsesss:PracovniPozice>
-                  <nsesss:SidloOrganizace>Havlíčkovo nám. 9/700, 130 85 Praha 3</nsesss:SidloOrganizace>
+                  <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
                 </nsesss:Subjekt>
               </nsesss:Zpracovatel>
               <nsesss:DatumOdeslani>2010-11-18</nsesss:DatumOdeslani>
@@ -124,17 +124,17 @@
               <nsesss:Prijemce>
                 <nsesss:Subjekt>
                   <nsesss:IdentifikatorOrganizace zdroj="ERMS">37457582</nsesss:IdentifikatorOrganizace>
-                  <nsesss:NazevOrganizace>Úřad práce hl.m.Prahy</nsesss:NazevOrganizace>
-                  <nsesss:SidloOrganizace>Úřad práce hl.m.Prahy, Domažlická 11/1139, 130 00 Praha 3</nsesss:SidloOrganizace>
-                  <nsesss:ElektronickyKontakt>DS:5v2ad2u</nsesss:ElektronickyKontakt>
+                  <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                  <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                  <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
                 </nsesss:Subjekt>
               </nsesss:Prijemce>
             </nsesss:Vyrizeni>
             <nsesss:Vyrazovani>
               <nsesss:SkartacniRezim>
                 <nsesss:Identifikator zdroj="ERMS">S5</nsesss:Identifikator>
-                <nsesss:Nazev>Dokumenty určené ke skartaci</nsesss:Nazev>
-                <nsesss:Komentar/>
+                <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                 <nsesss:Oduvodneni>Instrukce MVČR ze dne 25. 5. 1992 čj. VSC/1-793/92</nsesss:Oduvodneni>
                 <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
                 <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
@@ -151,14 +151,14 @@
             </nsesss:Manipulace>
           </nsesss:EvidencniUdaje>
           <nsesss:Komponenty>
-            <nsesss:Komponenta ID="FILE_24164856_8f71128b-c157-4ef9-a2b4-863f940d8859" poradi="1" druh="dokument" verze="1" forma_uchovani="koncept">
+            <nsesss:Komponenta ID="FILE_24164856_8f71128b-c157-4ef9-a2b4-863f940d8859" druh="dokument" forma_uchovani="koncept" poradi="1" verze="1">
               <nsesss:EvidencniUdaje>
                 <nsesss:Identifikace>
                   <nsesss:Identifikator zdroj="ERMS">26576f5b-7b22-4868-8e92-8c7291e724a6</nsesss:Identifikator>
                 </nsesss:Identifikace>
                 <nsesss:Popis>
-                  <nsesss:Nazev>p3_10_138225_24164856_Usneseni_o_zruseni_exekucnich_prikazu.pdf</nsesss:Nazev>
-                  <nsesss:Komentar/>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                 </nsesss:Popis>
                 <nsesss:Trideni>
                   <nsesss:JednoduchySpisovyZnak>82.2</nsesss:JednoduchySpisovyZnak>
@@ -166,14 +166,14 @@
                 </nsesss:Trideni>
               </nsesss:EvidencniUdaje>
             </nsesss:Komponenta>
-            <nsesss:Komponenta ID="FILE_24169147_8f71128b-c157-4ef9-a2b4-863f940d8859" poradi="1" druh="dokument" verze="1" forma_uchovani="koncept">
+            <nsesss:Komponenta ID="FILE_24169147_8f71128b-c157-4ef9-a2b4-863f940d8859" druh="dokument" forma_uchovani="koncept" poradi="1" verze="1">
               <nsesss:EvidencniUdaje>
                 <nsesss:Identifikace>
                   <nsesss:Identifikator zdroj="ERMS">28828bee-02e8-4a5c-84ac-f6e86909b753</nsesss:Identifikator>
                 </nsesss:Identifikace>
                 <nsesss:Popis>
-                  <nsesss:Nazev>p3_10_138225_24169147_dorucenka_30046174.zfo</nsesss:Nazev>
-                  <nsesss:Komentar/>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                 </nsesss:Popis>
                 <nsesss:Trideni>
                   <nsesss:JednoduchySpisovyZnak>82.2</nsesss:JednoduchySpisovyZnak>
@@ -181,14 +181,14 @@
                 </nsesss:Trideni>
               </nsesss:EvidencniUdaje>
             </nsesss:Komponenta>
-            <nsesss:Komponenta ID="FILE_92189688_8f71128b-c157-4ef9-a2b4-863f940d8859" poradi="1" druh="dokument" verze="1" forma_uchovani="koncept">
+            <nsesss:Komponenta ID="FILE_92189688_8f71128b-c157-4ef9-a2b4-863f940d8859" druh="dokument" forma_uchovani="koncept" poradi="1" verze="1">
               <nsesss:EvidencniUdaje>
                 <nsesss:Identifikace>
                   <nsesss:Identifikator zdroj="ERMS">e1721927-e59e-4fa3-a5f5-b7a0a014f725</nsesss:Identifikator>
                 </nsesss:Identifikace>
                 <nsesss:Popis>
-                  <nsesss:Nazev>p3_10_138225_92189688_original_dz_30046174.zfo</nsesss:Nazev>
-                  <nsesss:Komentar/>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                 </nsesss:Popis>
                 <nsesss:Trideni>
                   <nsesss:JednoduchySpisovyZnak>82.2</nsesss:JednoduchySpisovyZnak>
@@ -196,14 +196,14 @@
                 </nsesss:Trideni>
               </nsesss:EvidencniUdaje>
             </nsesss:Komponenta>
-            <nsesss:Komponenta ID="FILE_92189690_8f71128b-c157-4ef9-a2b4-863f940d8859" poradi="1" druh="dokument" verze="1" forma_uchovani="koncept">
+            <nsesss:Komponenta ID="FILE_92189690_8f71128b-c157-4ef9-a2b4-863f940d8859" druh="dokument" forma_uchovani="koncept" poradi="1" verze="1">
               <nsesss:EvidencniUdaje>
                 <nsesss:Identifikace>
                   <nsesss:Identifikator zdroj="ERMS">be06d890-3a89-4ef5-99c6-724b2130b338</nsesss:Identifikator>
                 </nsesss:Identifikace>
                 <nsesss:Popis>
-                  <nsesss:Nazev>p3_10_138225_92189690_protokol_dz_30046174.pdf</nsesss:Nazev>
-                  <nsesss:Komentar/>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                 </nsesss:Popis>
                 <nsesss:Trideni>
                   <nsesss:JednoduchySpisovyZnak>82.2</nsesss:JednoduchySpisovyZnak>
@@ -218,7 +218,7 @@
   </mets:dmdSec>
   <mets:amdSec ID="AMD_FILE_24164856_8f71128b-c157-4ef9-a2b4-863f940d8859">
     <mets:digiprovMD ID="ID-bca52056-3190-4984-a594-71cf8cca4ac1">
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -249,7 +249,7 @@
   </mets:amdSec>
   <mets:amdSec ID="AMD_FILE_24169147_8f71128b-c157-4ef9-a2b4-863f940d8859">
     <mets:digiprovMD ID="ID-a0faa9b7-af6f-493d-98b1-124ff37042b1">
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -280,7 +280,7 @@
   </mets:amdSec>
   <mets:amdSec ID="AMD_FILE_92189688_8f71128b-c157-4ef9-a2b4-863f940d8859">
     <mets:digiprovMD ID="ID-67d6a5d6-2534-4e73-8853-f1a8fb472a3d">
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -311,7 +311,7 @@
   </mets:amdSec>
   <mets:amdSec ID="AMD_FILE_92189690_8f71128b-c157-4ef9-a2b4-863f940d8859">
     <mets:digiprovMD ID="ID-61dc8636-df2c-42a9-964c-dfc594d69231">
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -342,7 +342,7 @@
   </mets:amdSec>
   <mets:amdSec ID="LOG_0001">
     <mets:digiprovMD ID="ID-c6544f6b-6e9e-47fe-be77-addf849a5c8e">
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -369,7 +369,7 @@
               <tp:Udalost>
                 <tp:Poradi>1</tp:Poradi>
                 <tp:DatumVzniku>2010-11-18T00:00:00.000+01:00</tp:DatumVzniku>
-                <tp:provedlKdo>super organizace</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiId>Otevreni</tp:TypUdalostiId>
                 </tp:TypUdalosti>
@@ -377,7 +377,7 @@
               <tp:Udalost>
                 <tp:Poradi>2</tp:Poradi>
                 <tp:DatumVzniku>2013-12-19T00:00:00.000+01:00</tp:DatumVzniku>
-                <tp:provedlKdo>super organizace</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiId>Uzavreni</tp:TypUdalostiId>
                 </tp:TypUdalosti>
@@ -390,7 +390,7 @@
   </mets:amdSec>
   <mets:amdSec ID="LOG_0002">
     <mets:digiprovMD ID="ID-9be67376-7abd-4303-9426-5d4b7e1b38b2">
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -417,7 +417,7 @@
               <tp:Udalost>
                 <tp:Poradi>3</tp:Poradi>
                 <tp:DatumVzniku>1900-01-01T00:00:00.000+01:00</tp:DatumVzniku>
-                <tp:provedlKdo>super organizace</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiId>Otevreni</tp:TypUdalostiId>
                 </tp:TypUdalosti>
@@ -425,7 +425,7 @@
               <tp:Udalost>
                 <tp:Poradi>4</tp:Poradi>
                 <tp:DatumVzniku>2013-12-19T00:00:00.000+01:00</tp:DatumVzniku>
-                <tp:provedlKdo>super organizace</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiId>Uzavreni</tp:TypUdalostiId>
                 </tp:TypUdalosti>
@@ -438,7 +438,7 @@
   </mets:amdSec>
   <mets:amdSec ID="LOG_0003">
     <mets:digiprovMD ID="ID-c8bf11ab-35df-42b4-ac39-fb50f3279e14">
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -465,7 +465,7 @@
               <tp:Udalost>
                 <tp:Poradi>23576411</tp:Poradi>
                 <tp:DatumVzniku>2018-08-14T16:12:17.577Z</tp:DatumVzniku>
-                <tp:provedlKdo>Suchánková Jana - suchankova.jana</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
                 </tp:TypUdalosti>
@@ -483,12 +483,12 @@
                     <tp:HodnotaParametru>8f71128b-c157-4ef9-a2b4-863f940d8859</tp:HodnotaParametru>
                   </tp:ParametrUdalosti>
                 </tp:ParametryUdalosti>
-                <tp:PopisUdalosti>Balíček obsahuje XML soubor metadat METS.</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>23576412</tp:Poradi>
                 <tp:DatumVzniku>2018-08-14T16:12:17.673Z</tp:DatumVzniku>
-                <tp:provedlKdo>Suchánková Jana - suchankova.jana</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
                 </tp:TypUdalosti>
@@ -506,12 +506,12 @@
                     <tp:HodnotaParametru>8f71128b-c157-4ef9-a2b4-863f940d8859</tp:HodnotaParametru>
                   </tp:ParametrUdalosti>
                 </tp:ParametryUdalosti>
-                <tp:PopisUdalosti>Formát XML metadat vstupního balíčku je validní.</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>23576413</tp:Poradi>
                 <tp:DatumVzniku>2018-08-14T16:12:17.687Z</tp:DatumVzniku>
-                <tp:provedlKdo>Suchánková Jana - suchankova.jana</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
                 </tp:TypUdalosti>
@@ -529,12 +529,12 @@
                     <tp:HodnotaParametru>8f71128b-c157-4ef9-a2b4-863f940d8859</tp:HodnotaParametru>
                   </tp:ParametrUdalosti>
                 </tp:ParametryUdalosti>
-                <tp:PopisUdalosti>Struktura vstupního balíčku je v pořádku</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>23576414</tp:Poradi>
                 <tp:DatumVzniku>2018-08-14T16:12:18.407Z</tp:DatumVzniku>
-                <tp:provedlKdo>Suchánková Jana - suchankova.jana</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
                 </tp:TypUdalosti>
@@ -552,12 +552,12 @@
                     <tp:HodnotaParametru>8f71128b-c157-4ef9-a2b4-863f940d8859</tp:HodnotaParametru>
                   </tp:ParametrUdalosti>
                 </tp:ParametryUdalosti>
-                <tp:PopisUdalosti>Byl založen nový balíček AIP. K tomuto dokumentu neexistuje žádná předchozí verze.</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>23576415</tp:Poradi>
                 <tp:DatumVzniku>2018-08-14T16:12:18.470Z</tp:DatumVzniku>
-                <tp:provedlKdo>Suchánková Jana - suchankova.jana</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
                 </tp:TypUdalosti>
@@ -575,12 +575,12 @@
                     <tp:HodnotaParametru>8f71128b-c157-4ef9-a2b4-863f940d8859</tp:HodnotaParametru>
                   </tp:ParametrUdalosti>
                 </tp:ParametryUdalosti>
-                <tp:PopisUdalosti>Generování technických metadat o komponentách balíčku</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>23576416</tp:Poradi>
                 <tp:DatumVzniku>2018-08-14T16:12:18.560Z</tp:DatumVzniku>
-                <tp:provedlKdo>Suchánková Jana - suchankova.jana</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
                 </tp:TypUdalosti>
@@ -598,12 +598,12 @@
                     <tp:HodnotaParametru>8f71128b-c157-4ef9-a2b4-863f940d8859</tp:HodnotaParametru>
                   </tp:ParametrUdalosti>
                 </tp:ParametryUdalosti>
-                <tp:PopisUdalosti>Validace umístění fyzické kopie proběhla v pořádku.</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>23576417</tp:Poradi>
                 <tp:DatumVzniku>2018-08-14T16:12:18.720Z</tp:DatumVzniku>
-                <tp:provedlKdo>Suchánková Jana - suchankova.jana</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
                 </tp:TypUdalosti>
@@ -621,12 +621,12 @@
                     <tp:HodnotaParametru>8f71128b-c157-4ef9-a2b4-863f940d8859</tp:HodnotaParametru>
                   </tp:ParametrUdalosti>
                 </tp:ParametryUdalosti>
-                <tp:PopisUdalosti>Metadata byla uložena do databáze modulu DM.</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>23576418</tp:Poradi>
                 <tp:DatumVzniku>2018-08-14T16:12:18.997Z</tp:DatumVzniku>
-                <tp:provedlKdo>-</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiText>Ověření integrity</tp:TypUdalostiText>
                 </tp:TypUdalosti>
@@ -644,12 +644,12 @@
                     <tp:HodnotaParametru>8f71128b-c157-4ef9-a2b4-863f940d8859</tp:HodnotaParametru>
                   </tp:ParametrUdalosti>
                 </tp:ParametryUdalosti>
-                <tp:PopisUdalosti>Byl úspěšně ověřen kontrolní součet u kopie balíčku umístěné v úložišti DiskA.</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>23592436</tp:Poradi>
                 <tp:DatumVzniku>2018-08-15T07:59:53.840Z</tp:DatumVzniku>
-                <tp:provedlKdo>-</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiId>VlozeniDoSkartacnihoNavrhu</tp:TypUdalostiId>
                 </tp:TypUdalosti>
@@ -663,7 +663,7 @@
                     <tp:HodnotaParametru>8f71128b-c157-4ef9-a2b4-863f940d8859</tp:HodnotaParametru>
                   </tp:ParametrUdalosti>
                 </tp:ParametryUdalosti>
-                <tp:PopisUdalosti>Balíček byl zařazen do skartačního návrhu Postoupeno podatelna 2011-2016.</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
             </tp:Udalosti>
           </tp:TransakcniLogObjektu>
@@ -672,13 +672,13 @@
     </mets:digiprovMD>
   </mets:amdSec>
   <mets:structMap TYPE="LOGICAL">
-    <mets:div DMDID="ID-3a8b14da-3989-4369-a1c9-ff71098bca68" ADMID="LOG_0002" TYPE="spisový plán">
-      <mets:div DMDID="ID-52e280c7-20d1-4ad0-998a-dbcb2969d4ff" ADMID="LOG_0001" TYPE="věcná skupina">
-        <mets:div ORDER="1" LABEL="[20#0562394#6092] Usnesení o zrušení EP" DMDID="RECORD_p3_10_138225_8f71128b-c157-4ef9-a2b4-863f940d8859" ADMID="LOG_0003" TYPE="dokument">
-          <mets:div DMDID="FILE_24164856_8f71128b-c157-4ef9-a2b4-863f940d8859" ADMID="AMD_FILE_24164856_8f71128b-c157-4ef9-a2b4-863f940d8859" TYPE="komponenta"/>
-          <mets:div DMDID="FILE_24169147_8f71128b-c157-4ef9-a2b4-863f940d8859" ADMID="AMD_FILE_24169147_8f71128b-c157-4ef9-a2b4-863f940d8859" TYPE="komponenta"/>
-          <mets:div DMDID="FILE_92189688_8f71128b-c157-4ef9-a2b4-863f940d8859" ADMID="AMD_FILE_92189688_8f71128b-c157-4ef9-a2b4-863f940d8859" TYPE="komponenta"/>
-          <mets:div DMDID="FILE_92189690_8f71128b-c157-4ef9-a2b4-863f940d8859" ADMID="AMD_FILE_92189690_8f71128b-c157-4ef9-a2b4-863f940d8859" TYPE="komponenta"/>
+    <mets:div ADMID="LOG_0002" DMDID="ID-3a8b14da-3989-4369-a1c9-ff71098bca68" TYPE="spisový plán">
+      <mets:div ADMID="LOG_0001" DMDID="ID-52e280c7-20d1-4ad0-998a-dbcb2969d4ff" TYPE="věcná skupina">
+        <mets:div ADMID="LOG_0003" DMDID="RECORD_p3_10_138225_8f71128b-c157-4ef9-a2b4-863f940d8859" LABEL="[20#0562394#6092] Usnesení o zrušení EP" ORDER="1" TYPE="dokument">
+          <mets:div ADMID="AMD_FILE_24164856_8f71128b-c157-4ef9-a2b4-863f940d8859" DMDID="FILE_24164856_8f71128b-c157-4ef9-a2b4-863f940d8859" TYPE="komponenta"/>
+          <mets:div ADMID="AMD_FILE_24169147_8f71128b-c157-4ef9-a2b4-863f940d8859" DMDID="FILE_24169147_8f71128b-c157-4ef9-a2b4-863f940d8859" TYPE="komponenta"/>
+          <mets:div ADMID="AMD_FILE_92189688_8f71128b-c157-4ef9-a2b4-863f940d8859" DMDID="FILE_92189688_8f71128b-c157-4ef9-a2b4-863f940d8859" TYPE="komponenta"/>
+          <mets:div ADMID="AMD_FILE_92189690_8f71128b-c157-4ef9-a2b4-863f940d8859" DMDID="FILE_92189690_8f71128b-c157-4ef9-a2b4-863f940d8859" TYPE="komponenta"/>
         </mets:div>
       </mets:div>
     </mets:div>

@@ -1,4 +1,294 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<!-- utfbom-utf -->
-<spaček>
-</spaček>
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- utfbom -->
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:nsesss="http://www.mvcr.cz/nsesss/v3" xmlns:tns="http://mvcr.cz/ess/v_1.0.0.0" xmlns:tp="http://nsess.public.cz/erms_trans/v_01_01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" OBJID="NA_01" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 http://www.mvcr.cz/nsesss/v3/nsesss-TrP.xsd">
+  <mets:metsHdr CREATEDATE="2019-09-10T10:09:38" LASTMODDATE="2019-09-10T10:09:38">
+    <mets:agent ID="IDa1" ROLE="CREATOR" TYPE="ORGANIZATION">
+      <mets:name>Univerzita Karlova</mets:name>
+    </mets:agent>
+    <mets:agent ID="UKRUKaaa" ROLE="CREATOR" TYPE="INDIVIDUAL">
+      <mets:name>aaa</mets:name>
+    </mets:agent>
+  </mets:metsHdr>
+  <mets:dmdSec ID="dmd_001">
+    <mets:mdWrap MIMETYPE="text/xml" MDTYPE="OTHER" OTHERMDTYPE="NSESSS" MDTYPEVERSION="3.0" LABEL="Schéma XML pro předávání dokumentů a jejich metadat do archivu">
+      <mets:xmlData>
+        <nsesss:Dokument xmlns="nsesss" ID="ESS_100aaa">
+          <nsesss:EvidencniUdaje>
+            <nsesss:Identifikace>
+              <nsesss:Identifikator zdroj="eSSL">UKRUK100aaa</nsesss:Identifikator>
+            </nsesss:Identifikace>
+            <nsesss:Popis>
+              <nsesss:Nazev>test digitálního dokumentu</nsesss:Nazev>
+            </nsesss:Popis>
+            <nsesss:Evidence>
+              <nsesss:EvidencniCislo>UKRUK/999/2019</nsesss:EvidencniCislo>
+              <nsesss:PoradoveCislo>999</nsesss:PoradoveCislo>
+              <nsesss:UrceneCasoveObdobi>
+                <nsesss:Rok>2019</nsesss:Rok>
+              </nsesss:UrceneCasoveObdobi>
+              <nsesss:NazevEvidenceDokumentu>Elektronická spisová služba</nsesss:NazevEvidenceDokumentu>
+            </nsesss:Evidence>
+            <nsesss:Puvod>
+              <nsesss:VlastniDokument>
+                <nsesss:DatumVytvoreni>2019-09-06</nsesss:DatumVytvoreni>
+                <nsesss:Autor>
+                  <nsesss:Subjekt>
+                    <nsesss:IdentifikatorOrganizace zdroj="IČ">00216208</nsesss:IdentifikatorOrganizace>
+                    <nsesss:NazevOrganizace>Univerzita Karlova</nsesss:NazevOrganizace>
+                    <nsesss:IdentifikatorFyzickeOsoby zdroj="evidence zaměstanců">aaa</nsesss:IdentifikatorFyzickeOsoby>
+                    <nsesss:NazevFyzickeOsoby>aaa</nsesss:NazevFyzickeOsoby>
+                    <nsesss:OrganizacniUtvar>410:Rektorát, Oddělení pro informační systém UK</nsesss:OrganizacniUtvar>
+                    <nsesss:PracovniPozice>referent</nsesss:PracovniPozice>
+                    <nsesss:SidloOrganizace>Praha 1</nsesss:SidloOrganizace>
+                  </nsesss:Subjekt>
+                </nsesss:Autor>
+              </nsesss:VlastniDokument>
+            </nsesss:Puvod>
+            <nsesss:Trideni>
+              <nsesss:JednoduchySpisovyZnak >2</nsesss:JednoduchySpisovyZnak >
+              <nsesss:PlneUrcenySpisovyZnak>A/VIII/2</nsesss:PlneUrcenySpisovyZnak>
+              <nsesss:TypDokumentu>
+                <nsesss:Identifikator zdroj="eSSL">999</nsesss:Identifikator>
+                <nsesss:Nazev>Dopis (mimo UK)</nsesss:Nazev>
+                <nsesss:Komentar></nsesss:Komentar>
+              </nsesss:TypDokumentu>
+              <nsesss:MaterskeEntity>
+                <nsesss:VecnaSkupina ID="ESSVS_10">
+                  <nsesss:EvidencniUdaje>
+                    <nsesss:Identifikace>
+                      <nsesss:Identifikator zdroj="eSSL">UKRUKVS12513</nsesss:Identifikator>
+                    </nsesss:Identifikace>
+                    <nsesss:Popis>
+                      <nsesss:Nazev>Hodnocení a kontrola</nsesss:Nazev>
+                    </nsesss:Popis>
+                    <nsesss:Puvod>
+                      <nsesss:DatumVytvoreni>1970-01-01</nsesss:DatumVytvoreni>
+                    </nsesss:Puvod>
+                    <nsesss:Trideni>
+                      <nsesss:JednoduchySpisovyZnak >VIII</nsesss:JednoduchySpisovyZnak >
+                      <nsesss:PlneUrcenySpisovyZnak>A/VIII</nsesss:PlneUrcenySpisovyZnak>
+                      <nsesss:SpisovyPlan ID="ESSSP_10">
+                        <nsesss:Identifikator zdroj="eSSL">UKRUKSPISPLAN10</nsesss:Identifikator>
+                        <nsesss:Nazev>Spisový plán 2019</nsesss:Nazev>
+                        <nsesss:Manipulace>
+                          <nsesss:DatumOtevreni>2019-02-01</nsesss:DatumOtevreni>
+                        </nsesss:Manipulace>
+                        <nsesss:Vydavatel>
+                          <nsesss:Subjekt>
+                            <nsesss:IdentifikatorOrganizace zdroj="IČ">00216208</nsesss:IdentifikatorOrganizace>
+                            <nsesss:NazevOrganizace>Univerzita Karlova</nsesss:NazevOrganizace>
+                            <nsesss:IdentifikatorFyzickeOsoby zdroj="evidence zaměstanců"/>
+                            <nsesss:NazevFyzickeOsoby/>
+                            <nsesss:OrganizacniUtvar>:,</nsesss:OrganizacniUtvar>
+                            <nsesss:PracovniPozice>referent</nsesss:PracovniPozice>
+                            <nsesss:SidloOrganizace>Praha 1</nsesss:SidloOrganizace>
+                          </nsesss:Subjekt>
+                        </nsesss:Vydavatel>
+                      </nsesss:SpisovyPlan>
+                    </nsesss:Trideni>
+                    <nsesss:Vyrazovani>
+                      <nsesss:SkartacniRezim>
+                        <nsesss:Identifikator zdroj="eSSL">SR12513</nsesss:Identifikator>
+                        <nsesss:Nazev>Hodnocení a kontrola</nsesss:Nazev>
+                        <nsesss:Oduvodneni>podle platného typového skartačního rejstříku</nsesss:Oduvodneni>
+                        <nsesss:SkartacniZnak>A</nsesss:SkartacniZnak>
+                        <nsesss:SkartacniLhuta>10</nsesss:SkartacniLhuta>
+                        <nsesss:SpousteciUdalost>uzavření spisu</nsesss:SpousteciUdalost>
+                      </nsesss:SkartacniRezim>
+                    </nsesss:Vyrazovani>
+                    <nsesss:Manipulace>
+                      <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                      <nsesss:DatumOtevreni>2016-01-01</nsesss:DatumOtevreni>
+                    </nsesss:Manipulace>
+                  </nsesss:EvidencniUdaje>
+                </nsesss:VecnaSkupina>
+              </nsesss:MaterskeEntity>
+            </nsesss:Trideni>
+            <nsesss:Vyrizeni>
+              <nsesss:Datum xmlns="" datum="2019-09-06T10:07:45">2019-09-06</nsesss:Datum>
+              <nsesss:Zpusob>jiný způsob</nsesss:Zpusob>
+              <nsesss:ObsahVyrizeni>neuvedeno</nsesss:ObsahVyrizeni>
+              <nsesss:Oduvodneni>neuvedeno</nsesss:Oduvodneni>
+              <nsesss:Zpracovatel>
+                <nsesss:Subjekt>
+                  <nsesss:IdentifikatorOrganizace zdroj="IČ">00216208</nsesss:IdentifikatorOrganizace>
+                  <nsesss:NazevOrganizace>Univerzita Karlova</nsesss:NazevOrganizace>
+                  <nsesss:IdentifikatorFyzickeOsoby zdroj="evidence zaměstanců">aaa</nsesss:IdentifikatorFyzickeOsoby>
+                  <nsesss:NazevFyzickeOsoby>aaa</nsesss:NazevFyzickeOsoby>
+                  <nsesss:OrganizacniUtvar>410:Rektorát, Oddělení pro informační systém UK</nsesss:OrganizacniUtvar>
+                  <nsesss:PracovniPozice>referent</nsesss:PracovniPozice>
+                  <nsesss:SidloOrganizace>Praha 1</nsesss:SidloOrganizace>
+                </nsesss:Subjekt>
+              </nsesss:Zpracovatel>
+              <nsesss:DatumOdeslani>2019-09-06</nsesss:DatumOdeslani>
+              <nsesss:Prijemce>
+                <nsesss:Subjekt>
+                  <nsesss:IdentifikatorFyzickeOsoby zdroj="eSSL"/>
+                  <nsesss:NazevFyzickeOsoby>aaa</nsesss:NazevFyzickeOsoby>
+                  <nsesss:PostovniAdresa>aaa, 50012 HRADEC KRÁLOVÉ</nsesss:PostovniAdresa>
+                  <nsesss:ElektronickyKontakt/>
+                </nsesss:Subjekt>
+              </nsesss:Prijemce>
+            </nsesss:Vyrizeni>
+            <nsesss:Vyrazovani>
+              <nsesss:SkartacniRezim>
+                <nsesss:Identifikator zdroj="eSSL">ESSSR100aaa</nsesss:Identifikator>
+                <nsesss:Nazev>A/VIII/2 Evaluace, hodnocení UK, fakult a jednotlivých pracovišť (podklady, dílčí řešení</nsesss:Nazev>
+                <nsesss:Oduvodneni>podle platného typového skartačního rejstříku</nsesss:Oduvodneni>
+                <nsesss:SkartacniZnak>A</nsesss:SkartacniZnak>
+                <nsesss:SkartacniLhuta>10</nsesss:SkartacniLhuta>
+                <nsesss:SpousteciUdalost>uzavření spisu</nsesss:SpousteciUdalost>
+              </nsesss:SkartacniRezim>
+              <nsesss:DataceVyrazeni>
+                <nsesss:RokSpousteciUdalosti>2008</nsesss:RokSpousteciUdalosti>
+                <nsesss:RokSkartacniOperace>2019</nsesss:RokSkartacniOperace>
+              </nsesss:DataceVyrazeni>
+              <nsesss:SkartacniRizeni>
+                <nsesss:Datum>2019-09-06</nsesss:Datum>
+                <nsesss:SkartacniOperace>trvalé uložení</nsesss:SkartacniOperace>
+                <nsesss:Posuzovatel>
+                  <nsesss:Subjekt>
+                    <nsesss:IdentifikatorOrganizace zdroj="IČ">00216208</nsesss:IdentifikatorOrganizace>
+                    <nsesss:NazevOrganizace>Univerzita Karlova</nsesss:NazevOrganizace>
+                    <nsesss:IdentifikatorFyzickeOsoby zdroj="evidence zaměstanců">aaa</nsesss:IdentifikatorFyzickeOsoby>
+                    <nsesss:NazevFyzickeOsoby>aaa</nsesss:NazevFyzickeOsoby>
+                    <nsesss:OrganizacniUtvar>410:Rektorát, Oddělení pro informační systém UK</nsesss:OrganizacniUtvar>
+                    <nsesss:PracovniPozice>referent</nsesss:PracovniPozice>
+                    <nsesss:SidloOrganizace>Praha 1</nsesss:SidloOrganizace>
+                  </nsesss:Subjekt>
+                </nsesss:Posuzovatel>
+              </nsesss:SkartacniRizeni>
+            </nsesss:Vyrazovani>
+            <nsesss:Manipulace>
+              <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+            </nsesss:Manipulace>
+          </nsesss:EvidencniUdaje>
+        </nsesss:Dokument>
+      </mets:xmlData>
+    </mets:mdWrap>
+  </mets:dmdSec>
+  <mets:amdSec ID="hESSSP_10">
+    <mets:digiprovMD ID="digiProv5d775a4306168">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" OTHERMDTYPE="TP" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>TH100aaa</tns:HodnotaID>
+                <tns:ZdrojID>eSSL</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2019-09-10T10:09:39</tp:DatumVzniku>
+              <tp:DatumCasOd>2016-10-12T16:05:56.785263</tp:DatumCasOd>
+              <tp:DatumCasDo>2019-09-06T10:30:09.690529</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>SpisovyPlan</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>TS100aaa</tns:HodnotaID>
+                  <tns:ZdrojID>eSSL</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti/>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="hESSVS_10">
+    <mets:digiprovMD ID="digiProv5d775a4335382">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" OTHERMDTYPE="TP" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>TH100aaa</tns:HodnotaID>
+                <tns:ZdrojID>eSSL</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2019-09-10T10:09:39</tp:DatumVzniku>
+              <tp:DatumCasOd>2016-10-12T16:05:56.785263</tp:DatumCasOd>
+              <tp:DatumCasDo>2019-09-06T10:30:09.690529</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>VecnaSkupina</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>TV100aaa</tns:HodnotaID>
+                  <tns:ZdrojID>eSSL</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti/>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="hESS_SP100aaa">
+    <mets:digiprovMD ID="digiProv5d775a4335c6b">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" OTHERMDTYPE="TP" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>TH100aaa</tns:HodnotaID>
+                <tns:ZdrojID>eSSL</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2019-09-10T10:09:39</tp:DatumVzniku>
+              <tp:DatumCasOd>2019-09-06T10:05:59.003678</tp:DatumCasOd>
+              <tp:DatumCasDo>2019-09-06T10:30:09.690529</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Spis</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>TS100aaa</tns:HodnotaID>
+                  <tns:ZdrojID>eSSL</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti/>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="h100aaa">
+    <mets:digiprovMD ID="digiProv5d775a433644c">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" OTHERMDTYPE="TP" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>TH100aaa</tns:HodnotaID>
+                <tns:ZdrojID>eSSL</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2019-09-10T10:09:39</tp:DatumVzniku>
+              <tp:DatumCasOd>2019-09-06T10:05:59.003678</tp:DatumCasOd>
+              <tp:DatumCasDo>2019-09-06T10:30:09.690529</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Dokument</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>TD100aaa</tns:HodnotaID>
+                  <tns:ZdrojID>eSSL</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti/>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:structMap>
+    <mets:div TYPE="spisový plán" DMDID="ESSSP_10" ADMID="hESSSP_10">
+      <mets:div TYPE="věcná skupina" DMDID="ESSVS_10" ADMID="hESSVS_10">
+        <mets:div TYPE="dokument" DMDID="ESS_100aaa" ADMID="h100aaa">
+        </mets:div>
+      </mets:div>
+    </mets:div>
+  </mets:structMap>
+</mets:mets>

@@ -1,17 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
-<mets:mets xmlns:tns="http://mvcr.cz/ess/v_1.0.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:nsesss="http://www.mvcr.cz/nsesss/v3" xmlns:tp="http://nsess.public.cz/erms_trans/v_01_01" xmlns:mets="http://www.loc.gov/METS/" ID="GS_007b5fd0-581a-42a0-a1f2-272ed2ca5d4f" OBJID="GS_007b5fd0-581a-42a0-a1f2-272ed2ca5d4f" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu" TYPE="dokument" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 TransakcniProtokolNavrh_verze1.7.xsd">
-  <mets:metsHdr ID="G_3385c81c-12cb-49bc-ae75-69336fced4c2" CREATEDATE="2018-07-27T07:54:23.3419647Z" LASTMODDATE="2018-07-27T07:54:23.3419647Z" RECORDSTATUS="Mets-1.9_Nsesss-3.0_Generator-2018.05.24">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:nsesss="http://www.mvcr.cz/nsesss/v3" xmlns:tns="http://mvcr.cz/ess/v_1.0.0.0" xmlns:tp="http://nsess.public.cz/erms_trans/v_01_01" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="GS_007b5fd0-581a-42a0-a1f2-272ed2ca5d4f" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu" OBJID="GS_007b5fd0-581a-42a0-a1f2-272ed2ca5d4f" TYPE="dokument" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 TransakcniProtokolNavrh_verze1.7.xsd">
+  <mets:metsHdr CREATEDATE="2018-07-27T07:54:23.3419647Z" ID="G_3385c81c-12cb-49bc-ae75-69336fced4c2" LASTMODDATE="2018-07-27T07:54:23.3419647Z" RECORDSTATUS="Mets-1.9_Nsesss-3.0_Generator-2018.05.24">
     <mets:agent ID="S00BSE00A01S" ROLE="CREATOR" TYPE="ORGANIZATION">
-      <mets:name>Statutární město Pardubice,  Pernštýnské náměstí 1,  53021 Pardubice I, posta@mmp.cz</mets:name>
+      <mets:name>GDPR anonymizováno</mets:name>
       <mets:note>GINIS</mets:note>
     </mets:agent>
     <mets:agent ID="S00BSR00ALNC" ROLE="CREATOR" TYPE="INDIVIDUAL">
-      <mets:name>Ducháčová Olga</mets:name>
+      <mets:name>GDPR anonymizováno</mets:name>
       <mets:note>GINIS</mets:note>
     </mets:agent>
   </mets:metsHdr>
   <mets:dmdSec ID="dmd001">
-    <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="NSESSS" MDTYPEVERSION="3.0" MIMETYPE="text/xml" LABEL="Schéma XML pro předávání dokumentů a jejich metadat do archivu">
+    <mets:mdWrap LABEL="Schéma XML pro předávání dokumentů a jejich metadat do archivu" MDTYPE="OTHER" MDTYPEVERSION="3.0" MIMETYPE="text/xml" OTHERMDTYPE="NSESSS">
       <mets:xmlData>
         <nsesss:Dokument ID="S00BX00IA50X">
           <nsesss:EvidencniUdaje>
@@ -19,18 +19,18 @@
               <nsesss:Identifikator zdroj="Gordic.Ginis.S00B.X">S00BX00IA50X</nsesss:Identifikator>
             </nsesss:Identifikace>
             <nsesss:Popis>
-              <nsesss:Nazev>Č.j. 2012/09167 Zemanová</nsesss:Nazev>
-              <nsesss:Komentar>Č.j. 2012/09167 Zemanová</nsesss:Komentar>
+              <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+              <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
             </nsesss:Popis>
             <nsesss:Pristupnost>
               <nsesss:BezpecnostniKategorie>
                 <nsesss:Identifikator zdroj="Gordic.Ginis.S00B.BK">10</nsesss:Identifikator>
-                <nsesss:Nazev>Běžný dokument</nsesss:Nazev>
+                <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
                 <nsesss:BezpecnostniStupen>Běžný dokument</nsesss:BezpecnostniStupen>
               </nsesss:BezpecnostniKategorie>
             </nsesss:Pristupnost>
             <nsesss:Poznamky>
-              <nsesss:Poznamka>přestupkové</nsesss:Poznamka>
+              <nsesss:Poznamka>GDPR anonymizováno</nsesss:Poznamka>
             </nsesss:Poznamky>
             <nsesss:Neevidence>
               <nsesss:Oduvodneni>Dokumentu nebylo přiděleno evidenční číslo</nsesss:Oduvodneni>
@@ -45,12 +45,12 @@
                 <nsesss:Autor>
                   <nsesss:Subjekt>
                     <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.S00B.ISU">S00BSE00A01S</nsesss:IdentifikatorOrganizace>
-                    <nsesss:NazevOrganizace>Statutární město Pardubice</nsesss:NazevOrganizace>
+                    <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
                     <nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.S00B.SZ">S00BSZ00ACM4</nsesss:IdentifikatorFyzickeOsoby>
-                    <nsesss:NazevFyzickeOsoby>Trylčová Iveta</nsesss:NazevFyzickeOsoby>
+                    <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
                     <nsesss:OrganizacniUtvar>Magistrát Pardubice</nsesss:OrganizacniUtvar>
                     <nsesss:PracovniPozice>Uzel - MP</nsesss:PracovniPozice>
-                    <nsesss:SidloOrganizace>Statutární město Pardubice,  Pernštýnské náměstí 1,  53021 Pardubice I, posta@mmp.cz</nsesss:SidloOrganizace>
+                    <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
                   </nsesss:Subjekt>
                 </nsesss:Autor>
               </nsesss:VlastniDokument>
@@ -60,9 +60,8 @@
               <nsesss:PlneUrcenySpisovyZnak>334.</nsesss:PlneUrcenySpisovyZnak>
               <nsesss:TypDokumentu>
                 <nsesss:Identifikator zdroj="Gordic.Ginis.S00B.ITD">S00B0400A06X</nsesss:Identifikator>
-                <nsesss:Nazev>Oznámení</nsesss:Nazev>
-                <nsesss:Komentar>
-                </nsesss:Komentar>
+                <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
               </nsesss:TypDokumentu>
               <nsesss:MaterskeEntity>
                 <nsesss:VecnaSkupina ID="S00B0200AP9X">
@@ -71,8 +70,8 @@
                       <nsesss:Identifikator zdroj="Gordic.Ginis.S00B.SPZ">S00B0200AP9X</nsesss:Identifikator>
                     </nsesss:Identifikace>
                     <nsesss:Popis>
-                      <nsesss:Nazev>Přestupky a správní delikty</nsesss:Nazev>
-                      <nsesss:Komentar>Přestupky a správní delikty</nsesss:Komentar>
+                      <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                      <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                     </nsesss:Popis>
                     <nsesss:Puvod>
                       <nsesss:DatumVytvoreni datum="2008-05-02T08:54:31.000+01:00">2008-05-02</nsesss:DatumVytvoreni>
@@ -82,8 +81,8 @@
                       <nsesss:PlneUrcenySpisovyZnak>334.</nsesss:PlneUrcenySpisovyZnak>
                       <nsesss:SpisovyPlan ID="S00BX00IA50X_Gordic.Ginis.V.S.2008">
                         <nsesss:Identifikator zdroj="Gordic.Ginis.S00B.SPL">2008</nsesss:Identifikator>
-                        <nsesss:Nazev>2008</nsesss:Nazev>
-                        <nsesss:Komentar>- MmP spisový plán platný do 1.3.3012</nsesss:Komentar>
+                        <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                        <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                         <nsesss:Manipulace>
                           <nsesss:DatumOtevreni datum="2008-05-02T00:00:00.000+01:00">2008-05-02</nsesss:DatumOtevreni>
                           <nsesss:DatumUzavreni datum="2012-02-29T00:00:00.000+01:00">2012-02-29</nsesss:DatumUzavreni>
@@ -91,9 +90,9 @@
                         <nsesss:Vydavatel>
                           <nsesss:Subjekt>
                             <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.S00B.SE">S00BSE00A01S</nsesss:IdentifikatorOrganizace>
-                            <nsesss:NazevOrganizace>Statutární město Pardubice</nsesss:NazevOrganizace>
-                            <nsesss:SidloOrganizace>Statutární město Pardubice,  Pernštýnské náměstí 1,  53021 Pardubice I, posta@mmp.cz</nsesss:SidloOrganizace>
-                            <nsesss:ElektronickyKontakt>e-mail:posta@mmp.cz;tel:466859111;DS:ukzbx4z</nsesss:ElektronickyKontakt>
+                            <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                            <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                            <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
                           </nsesss:Subjekt>
                         </nsesss:Vydavatel>
                       </nsesss:SpisovyPlan>
@@ -101,9 +100,8 @@
                     <nsesss:Vyrazovani>
                       <nsesss:SkartacniRezim>
                         <nsesss:Identifikator zdroj="Gordic.Ginis.S00B.ISR">S00BAW90A0PP</nsesss:Identifikator>
-                        <nsesss:Nazev>V 5</nsesss:Nazev>
-                        <nsesss:Komentar>
-                        </nsesss:Komentar>
+                        <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                        <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                         <nsesss:Oduvodneni>Vyplývá ze spisového plánu organizace</nsesss:Oduvodneni>
                         <nsesss:SkartacniZnak>V</nsesss:SkartacniZnak>
                         <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
@@ -126,12 +124,12 @@
               <nsesss:Zpracovatel>
                 <nsesss:Subjekt>
                   <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.S00B.ISU">S00BSE00A01S</nsesss:IdentifikatorOrganizace>
-                  <nsesss:NazevOrganizace>Statutární město Pardubice</nsesss:NazevOrganizace>
+                  <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
                   <nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.S00B.SZ">S00BSZ00ACM4</nsesss:IdentifikatorFyzickeOsoby>
-                  <nsesss:NazevFyzickeOsoby>Trylčová Iveta</nsesss:NazevFyzickeOsoby>
+                  <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
                   <nsesss:OrganizacniUtvar>Magistrát Pardubice</nsesss:OrganizacniUtvar>
                   <nsesss:PracovniPozice>Uzel - MP</nsesss:PracovniPozice>
-                  <nsesss:SidloOrganizace>Statutární město Pardubice,  Pernštýnské náměstí 1,  53021 Pardubice I, posta@mmp.cz</nsesss:SidloOrganizace>
+                  <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
                 </nsesss:Subjekt>
               </nsesss:Zpracovatel>
               <nsesss:DatumOdeslani datum="2012-04-03T11:50:01.000+01:00">2012-04-03</nsesss:DatumOdeslani>
@@ -139,18 +137,17 @@
               <nsesss:Prijemce>
                 <nsesss:Subjekt>
                   <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.S00B.SE">S00BSE082XEO</nsesss:IdentifikatorOrganizace>
-                  <nsesss:NazevOrganizace>Město Chrudim</nsesss:NazevOrganizace>
-                  <nsesss:SidloOrganizace>Město Chrudim,  Resselovo náměstí 77/,  53716 Chrudim</nsesss:SidloOrganizace>
-                  <nsesss:ElektronickyKontakt>e-mail:;tel:;DS:3y8b2pi</nsesss:ElektronickyKontakt>
+                  <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                  <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                  <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
                 </nsesss:Subjekt>
               </nsesss:Prijemce>
             </nsesss:Vyrizeni>
             <nsesss:Vyrazovani>
               <nsesss:SkartacniRezim>
                 <nsesss:Identifikator zdroj="Gordic.Ginis.S00B.ISR">S00BAW90A0PP</nsesss:Identifikator>
-                <nsesss:Nazev>V 5</nsesss:Nazev>
-                <nsesss:Komentar>
-                </nsesss:Komentar>
+                <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                 <nsesss:Oduvodneni>Vyplývá ze spisového plánu organizace</nsesss:Oduvodneni>
                 <nsesss:SkartacniZnak>V</nsesss:SkartacniZnak>
                 <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
@@ -167,12 +164,12 @@
                 <nsesss:Posuzovatel>
                   <nsesss:Subjekt>
                     <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.S00B.ISU">S00BSE00A01S</nsesss:IdentifikatorOrganizace>
-                    <nsesss:NazevOrganizace>Statutární město Pardubice</nsesss:NazevOrganizace>
+                    <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
                     <nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.S00B.SZ">S00BSZ00FONU</nsesss:IdentifikatorFyzickeOsoby>
-                    <nsesss:NazevFyzickeOsoby>Ducháčová Olga</nsesss:NazevFyzickeOsoby>
+                    <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
                     <nsesss:OrganizacniUtvar>Magistrát města Pardubic</nsesss:OrganizacniUtvar>
                     <nsesss:PracovniPozice>Referent - MP - SPI</nsesss:PracovniPozice>
-                    <nsesss:SidloOrganizace>Statutární město Pardubice,  Pernštýnské náměstí 1,  53021 Pardubice I, posta@mmp.cz</nsesss:SidloOrganizace>
+                    <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
                   </nsesss:Subjekt>
                 </nsesss:Posuzovatel>
               </nsesss:SkartacniRizeni>
@@ -182,9 +179,9 @@
               <nsesss:SpravceSpisovny>
                 <nsesss:Subjekt>
                   <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.S00B.SE">S00BSE00A01S</nsesss:IdentifikatorOrganizace>
-                  <nsesss:NazevOrganizace>Statutární město Pardubice</nsesss:NazevOrganizace>
-                  <nsesss:SidloOrganizace>Statutární město Pardubice,  Pernštýnské náměstí 1,  53021 Pardubice I, posta@mmp.cz</nsesss:SidloOrganizace>
-                  <nsesss:ElektronickyKontakt>e-mail:posta@mmp.cz;tel:466859111;DS:ukzbx4z</nsesss:ElektronickyKontakt>
+                  <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                  <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                  <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
                 </nsesss:Subjekt>
               </nsesss:SpravceSpisovny>
               <nsesss:UkladaciJednotka>SPIMP     23/2018</nsesss:UkladaciJednotka>
@@ -197,8 +194,8 @@
                   <nsesss:Identifikator zdroj="Gordic.Ginis.S00B.E">S001</nsesss:Identifikator>
                 </nsesss:Identifikace>
                 <nsesss:Popis>
-                  <nsesss:Nazev>Pr_2012_09167_S00BX00IA50X</nsesss:Nazev>
-                  <nsesss:Komentar>Pr_2012_09167_S00BX00IA50X.pdf</nsesss:Komentar>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                   <nsesss:KlicovaSlova>
                     <nsesss:KlicoveSlovo>Original</nsesss:KlicoveSlovo>
                   </nsesss:KlicovaSlova>
@@ -215,8 +212,8 @@
                   <nsesss:Identifikator zdroj="Gordic.Ginis.S00B.E">S002</nsesss:Identifikator>
                 </nsesss:Identifikace>
                 <nsesss:Popis>
-                  <nsesss:Nazev>Pr_2012_09167_S00BX00IA50X</nsesss:Nazev>
-                  <nsesss:Komentar>Pr_2012_09167_S00BX00IA50X.pdf</nsesss:Komentar>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                   <nsesss:KlicovaSlova>
                     <nsesss:KlicoveSlovo>Original</nsesss:KlicoveSlovo>
                   </nsesss:KlicovaSlova>
@@ -233,8 +230,8 @@
                   <nsesss:Identifikator zdroj="Gordic.Ginis.S00B.E">S003</nsesss:Identifikator>
                 </nsesss:Identifikace>
                 <nsesss:Popis>
-                  <nsesss:Nazev>Pr_2012_09167_S00BX00IA50X</nsesss:Nazev>
-                  <nsesss:Komentar>Pr_2012_09167_S00BX00IA50X.pdf</nsesss:Komentar>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                   <nsesss:KlicovaSlova>
                     <nsesss:KlicoveSlovo>Original</nsesss:KlicoveSlovo>
                   </nsesss:KlicovaSlova>
@@ -251,8 +248,8 @@
                   <nsesss:Identifikator zdroj="Gordic.Ginis.S00B.E">S004</nsesss:Identifikator>
                 </nsesss:Identifikace>
                 <nsesss:Popis>
-                  <nsesss:Nazev>Pr_2012_09167_S00BX00IA50X</nsesss:Nazev>
-                  <nsesss:Komentar>Pr_2012_09167_S00BX00IA50X.pdf</nsesss:Komentar>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                   <nsesss:KlicovaSlova>
                     <nsesss:KlicoveSlovo>Original</nsesss:KlicoveSlovo>
                   </nsesss:KlicovaSlova>
@@ -269,8 +266,8 @@
                   <nsesss:Identifikator zdroj="Gordic.Ginis.S00B.E">S005</nsesss:Identifikator>
                 </nsesss:Identifikace>
                 <nsesss:Popis>
-                  <nsesss:Nazev>Pr_2012_09167_S00BX00IA50X</nsesss:Nazev>
-                  <nsesss:Komentar>Pr_2012_09167_S00BX00IA50X.pdf</nsesss:Komentar>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                   <nsesss:KlicovaSlova>
                     <nsesss:KlicoveSlovo>Original</nsesss:KlicoveSlovo>
                   </nsesss:KlicovaSlova>
@@ -287,8 +284,8 @@
                   <nsesss:Identifikator zdroj="Gordic.Ginis.S00B.E">S006</nsesss:Identifikator>
                 </nsesss:Identifikace>
                 <nsesss:Popis>
-                  <nsesss:Nazev>Pr_2012_09167_S00BX00IA50X</nsesss:Nazev>
-                  <nsesss:Komentar>Pr_2012_09167_S00BX00IA50X.pdf</nsesss:Komentar>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                   <nsesss:KlicovaSlova>
                     <nsesss:KlicoveSlovo>Original</nsesss:KlicoveSlovo>
                   </nsesss:KlicovaSlova>
@@ -305,8 +302,8 @@
                   <nsesss:Identifikator zdroj="Gordic.Ginis.S00B.E">S007</nsesss:Identifikator>
                 </nsesss:Identifikace>
                 <nsesss:Popis>
-                  <nsesss:Nazev>Pr_2012_09167_S00BX00IA50X</nsesss:Nazev>
-                  <nsesss:Komentar>Pr_2012_09167_S00BX00IA50X.pdf</nsesss:Komentar>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                   <nsesss:KlicovaSlova>
                     <nsesss:KlicoveSlovo>Original</nsesss:KlicoveSlovo>
                   </nsesss:KlicovaSlova>
@@ -323,8 +320,8 @@
                   <nsesss:Identifikator zdroj="Gordic.Ginis.S00B.E">S008</nsesss:Identifikator>
                 </nsesss:Identifikace>
                 <nsesss:Popis>
-                  <nsesss:Nazev>Pr_2012_09167_S00BX00IA50X</nsesss:Nazev>
-                  <nsesss:Komentar>Pr_2012_09167_S00BX00IA50X.pdf</nsesss:Komentar>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                   <nsesss:KlicovaSlova>
                     <nsesss:KlicoveSlovo>Original</nsesss:KlicoveSlovo>
                   </nsesss:KlicovaSlova>
@@ -341,8 +338,8 @@
                   <nsesss:Identifikator zdroj="Gordic.Ginis.S00B.E">S009</nsesss:Identifikator>
                 </nsesss:Identifikace>
                 <nsesss:Popis>
-                  <nsesss:Nazev>Pr_2012_09167_S00BX00IA50X</nsesss:Nazev>
-                  <nsesss:Komentar>Pr_2012_09167_S00BX00IA50X.pdf</nsesss:Komentar>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                   <nsesss:KlicovaSlova>
                     <nsesss:KlicoveSlovo>Original</nsesss:KlicoveSlovo>
                   </nsesss:KlicovaSlova>
@@ -359,8 +356,8 @@
                   <nsesss:Identifikator zdroj="Gordic.Ginis.S00B.E">S010</nsesss:Identifikator>
                 </nsesss:Identifikace>
                 <nsesss:Popis>
-                  <nsesss:Nazev>Pr_2012_09167_S00BX00IA50X</nsesss:Nazev>
-                  <nsesss:Komentar>Pr_2012_09167_S00BX00IA50X.pdf</nsesss:Komentar>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                   <nsesss:KlicovaSlova>
                     <nsesss:KlicoveSlovo>Original</nsesss:KlicoveSlovo>
                   </nsesss:KlicovaSlova>
@@ -377,8 +374,8 @@
                   <nsesss:Identifikator zdroj="Gordic.Ginis.S00B.E">S011</nsesss:Identifikator>
                 </nsesss:Identifikace>
                 <nsesss:Popis>
-                  <nsesss:Nazev>Pr_2012_09167_S00BX00IA50X</nsesss:Nazev>
-                  <nsesss:Komentar>Pr_2012_09167_S00BX00IA50X.pdf</nsesss:Komentar>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                   <nsesss:KlicovaSlova>
                     <nsesss:KlicoveSlovo>Original</nsesss:KlicoveSlovo>
                   </nsesss:KlicovaSlova>
@@ -395,8 +392,8 @@
                   <nsesss:Identifikator zdroj="Gordic.Ginis.S00B.E">S012</nsesss:Identifikator>
                 </nsesss:Identifikace>
                 <nsesss:Popis>
-                  <nsesss:Nazev>Pr_2012_09167_S00BX00IA50X</nsesss:Nazev>
-                  <nsesss:Komentar>Pr_2012_09167_S00BX00IA50X.pdf</nsesss:Komentar>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                   <nsesss:KlicovaSlova>
                     <nsesss:KlicoveSlovo>Original</nsesss:KlicoveSlovo>
                   </nsesss:KlicovaSlova>
@@ -413,8 +410,8 @@
                   <nsesss:Identifikator zdroj="Gordic.Ginis.S00B.E">S013</nsesss:Identifikator>
                 </nsesss:Identifikace>
                 <nsesss:Popis>
-                  <nsesss:Nazev>Pr_2012_09167_S00BX00IA50X</nsesss:Nazev>
-                  <nsesss:Komentar>Pr_2012_09167_S00BX00IA50X.pdf</nsesss:Komentar>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                   <nsesss:KlicovaSlova>
                     <nsesss:KlicoveSlovo>Original</nsesss:KlicoveSlovo>
                   </nsesss:KlicovaSlova>
@@ -431,8 +428,8 @@
                   <nsesss:Identifikator zdroj="Gordic.Ginis.S00B.E">S014</nsesss:Identifikator>
                 </nsesss:Identifikace>
                 <nsesss:Popis>
-                  <nsesss:Nazev>Pr_2012_09167_S00BX00IA50X</nsesss:Nazev>
-                  <nsesss:Komentar>Pr_2012_09167_S00BX00IA50X.pdf</nsesss:Komentar>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                   <nsesss:KlicovaSlova>
                     <nsesss:KlicoveSlovo>Original</nsesss:KlicoveSlovo>
                   </nsesss:KlicovaSlova>
@@ -450,7 +447,7 @@
   </mets:dmdSec>
   <mets:amdSec ID="amd_spl_S00BX00IA50X_Gordic.Ginis.V.S.2008">
     <mets:digiprovMD ID="dp_amd_spl_S00BX00IA50X_Gordic.Ginis.V.S.2008">
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -479,7 +476,7 @@
   </mets:amdSec>
   <mets:amdSec ID="amd_vs_S00B0200AP9X">
     <mets:digiprovMD ID="dp_amd_vs_S00B0200AP9X">
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -508,7 +505,7 @@
   </mets:amdSec>
   <mets:amdSec ID="amd_dok_S00BX00IA50X">
     <mets:digiprovMD ID="dp_amd_dok_S00BX00IA50X">
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -535,191 +532,191 @@
               <tp:Udalost>
                 <tp:Poradi>16725365</tp:Poradi>
                 <tp:DatumVzniku>2012-04-03T11:49:19</tp:DatumVzniku>
-                <tp:provedlKdo>Trylčová Iveta, Uzel - MP</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiText>Zalozeni</tp:TypUdalostiText>
                 </tp:TypUdalosti>
-                <tp:PopisUdalosti>Registrace vlastního dokumentu do SSL.</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>16725368</tp:Poradi>
                 <tp:DatumVzniku>2012-04-03T11:49:32</tp:DatumVzniku>
-                <tp:provedlKdo>Trylčová Iveta, Uzel - MP</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiText>PripojeniHlavniKomponenty</tp:TypUdalostiText>
                 </tp:TypUdalosti>
-                <tp:PopisUdalosti>Vložení el. obrazu/přílohy k dokladu/dokumentu</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>46368221</tp:Poradi>
                 <tp:DatumVzniku>2018-03-14T09:01:13</tp:DatumVzniku>
-                <tp:provedlKdo>Ducháčová Olga, Referent - MP - SPI</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiText>Uprava</tp:TypUdalostiText>
                 </tp:TypUdalosti>
-                <tp:PopisUdalosti>Změna spisového znaku dokumentu.</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>46368423</tp:Poradi>
                 <tp:DatumVzniku>2018-03-14T09:02:21</tp:DatumVzniku>
-                <tp:provedlKdo>Ducháčová Olga, Referent - MP - SPI</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiText>ZmenaFormy</tp:TypUdalostiText>
                 </tp:TypUdalosti>
-                <tp:PopisUdalosti>Nastavení příznaků analogové nebo digitální podoby dokumentu/spisu.</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>46368628</tp:Poradi>
                 <tp:DatumVzniku>2018-03-14T09:02:53</tp:DatumVzniku>
-                <tp:provedlKdo>Ducháčová Olga, Referent - MP - SPI</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiText>NastaveniPriznakuPlatnaArchivniKomponenty</tp:TypUdalostiText>
                 </tp:TypUdalosti>
-                <tp:PopisUdalosti>Nastavení příznaků platné a archivní na poslední verzi el. obrazu.</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>46369013</tp:Poradi>
                 <tp:DatumVzniku>2018-03-14T09:03:33</tp:DatumVzniku>
-                <tp:provedlKdo>Ducháčová Olga, Referent - MP - SPI</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiText>Predani</tp:TypUdalostiText>
                 </tp:TypUdalosti>
-                <tp:PopisUdalosti>Přímé přebrání funkcí &gt; Ducháčová Olga, Referent - MP - SPI &lt; na uzlu &gt; Městská policie &lt;</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>46369014</tp:Poradi>
                 <tp:DatumVzniku>2018-03-14T09:03:33</tp:DatumVzniku>
-                <tp:provedlKdo>Ducháčová Olga, Referent - MP - SPI</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
                 </tp:TypUdalosti>
-                <tp:PopisUdalosti>Entita byla vložena do balíku. [PID:S00BAWZ0ETAZ]</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>46436881</tp:Poradi>
                 <tp:DatumVzniku>2018-03-15T08:53:26</tp:DatumVzniku>
-                <tp:provedlKdo>Ducháčová Olga, Referent - MP - SPI</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiText>PrevzetiNaSpisovnu</tp:TypUdalostiText>
                 </tp:TypUdalosti>
-                <tp:PopisUdalosti>Vloženo do spisovny</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>46535358</tp:Poradi>
                 <tp:DatumVzniku>2018-03-20T09:37:55</tp:DatumVzniku>
-                <tp:provedlKdo>Ducháčová Olga, Referent - MP - SPI</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
                 </tp:TypUdalosti>
-                <tp:PopisUdalosti>Entita byla připravena pro skartační řízení.</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>46572925</tp:Poradi>
                 <tp:DatumVzniku>2018-03-20T12:21:08</tp:DatumVzniku>
-                <tp:provedlKdo>Ducháčová Olga, Referent - MP - SPI</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiText>GenerovaniSIP</tp:TypUdalostiText>
                 </tp:TypUdalosti>
-                <tp:PopisUdalosti>Vygenerována data pro SIP balíček.</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>49692914</tp:Poradi>
                 <tp:DatumVzniku>2018-06-12T10:30:25</tp:DatumVzniku>
-                <tp:provedlKdo>Ducháčová Olga, Referent - MP - SPI</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiText>GenerovaniSIP</tp:TypUdalostiText>
                 </tp:TypUdalosti>
-                <tp:PopisUdalosti>Vygenerování SIP</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>49812185</tp:Poradi>
                 <tp:DatumVzniku>2018-06-14T10:34:44</tp:DatumVzniku>
-                <tp:provedlKdo>Ducháčová Olga, Referent - MP - SPI</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiText>GenerovaniSIP</tp:TypUdalostiText>
                 </tp:TypUdalosti>
-                <tp:PopisUdalosti>Vygenerování SIP</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>50082077</tp:Poradi>
                 <tp:DatumVzniku>2018-06-20T09:53:52</tp:DatumVzniku>
-                <tp:provedlKdo>Ducháčová Olga, Referent - MP - SPI</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiText>GenerovaniSIP</tp:TypUdalostiText>
                 </tp:TypUdalosti>
-                <tp:PopisUdalosti>Vygenerování SIP</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>50110482</tp:Poradi>
                 <tp:DatumVzniku>2018-06-20T14:33:20</tp:DatumVzniku>
-                <tp:provedlKdo>Ducháčová Olga, Referent - MP - SPI</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
                 </tp:TypUdalosti>
-                <tp:PopisUdalosti>Entita byla připravena pro skartační řízení.</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>50135974</tp:Poradi>
                 <tp:DatumVzniku>2018-06-21T06:50:48</tp:DatumVzniku>
-                <tp:provedlKdo>Ducháčová Olga, Referent - MP - SPI</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
                 </tp:TypUdalosti>
-                <tp:PopisUdalosti>Entita byla připravena pro skartační řízení.</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>50242839</tp:Poradi>
                 <tp:DatumVzniku>2018-06-25T10:23:27</tp:DatumVzniku>
-                <tp:provedlKdo>Ducháčová Olga, Referent - MP - SPI</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
                 </tp:TypUdalosti>
-                <tp:PopisUdalosti>Entita byla připravena pro skartační řízení.</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>50257865</tp:Poradi>
                 <tp:DatumVzniku>2018-06-25T11:54:49</tp:DatumVzniku>
-                <tp:provedlKdo>Ducháčová Olga, Referent - MP - SPI</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiText>GenerovaniSIP</tp:TypUdalostiText>
                 </tp:TypUdalosti>
-                <tp:PopisUdalosti>Vygenerování SIP</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>50910381</tp:Poradi>
                 <tp:DatumVzniku>2018-07-19T14:21:38</tp:DatumVzniku>
-                <tp:provedlKdo>Ducháčová Olga, Referent - MP - SPI</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
                 </tp:TypUdalosti>
-                <tp:PopisUdalosti>Entita byla připravena pro skartační řízení.</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>50917393</tp:Poradi>
                 <tp:DatumVzniku>2018-07-19T15:27:50</tp:DatumVzniku>
-                <tp:provedlKdo>Ducháčová Olga, Referent - MP - SPI</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiText>GenerovaniSIP</tp:TypUdalostiText>
                 </tp:TypUdalosti>
-                <tp:PopisUdalosti>Vygenerování SIP</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>51034709</tp:Poradi>
                 <tp:DatumVzniku>2018-07-24T06:59:45</tp:DatumVzniku>
-                <tp:provedlKdo>Ducháčová Olga, Referent - MP - SPI</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
                 </tp:TypUdalosti>
-                <tp:PopisUdalosti>Entita byla připravena pro skartační řízení.</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
               <tp:Udalost>
                 <tp:Poradi>51081274</tp:Poradi>
                 <tp:DatumVzniku>2018-07-25T09:53:27</tp:DatumVzniku>
-                <tp:provedlKdo>Ducháčová Olga, Referent - MP - SPI</tp:provedlKdo>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiText>GenerovaniSIP</tp:TypUdalostiText>
                 </tp:TypUdalosti>
-                <tp:PopisUdalosti>Vygenerování SIP</tp:PopisUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
               </tp:Udalost>
             </tp:Udalosti>
           </tp:TransakcniLogObjektu>
@@ -729,7 +726,7 @@
   </mets:amdSec>
   <mets:amdSec ID="amd_kom_s001">
     <mets:digiprovMD ID="dp_amd_kom_s001">
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -758,7 +755,7 @@
   </mets:amdSec>
   <mets:amdSec ID="amd_kom_s002">
     <mets:digiprovMD ID="dp_amd_kom_s002">
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -787,7 +784,7 @@
   </mets:amdSec>
   <mets:amdSec ID="amd_kom_s003">
     <mets:digiprovMD ID="dp_amd_kom_s003">
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -816,7 +813,7 @@
   </mets:amdSec>
   <mets:amdSec ID="amd_kom_s004">
     <mets:digiprovMD ID="dp_amd_kom_s004">
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -845,7 +842,7 @@
   </mets:amdSec>
   <mets:amdSec ID="amd_kom_s005">
     <mets:digiprovMD ID="dp_amd_kom_s005">
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -874,7 +871,7 @@
   </mets:amdSec>
   <mets:amdSec ID="amd_kom_s006">
     <mets:digiprovMD ID="dp_amd_kom_s006">
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -903,7 +900,7 @@
   </mets:amdSec>
   <mets:amdSec ID="amd_kom_s007">
     <mets:digiprovMD ID="dp_amd_kom_s007">
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -932,7 +929,7 @@
   </mets:amdSec>
   <mets:amdSec ID="amd_kom_s008">
     <mets:digiprovMD ID="dp_amd_kom_s008">
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -961,7 +958,7 @@
   </mets:amdSec>
   <mets:amdSec ID="amd_kom_s009">
     <mets:digiprovMD ID="dp_amd_kom_s009">
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -990,7 +987,7 @@
   </mets:amdSec>
   <mets:amdSec ID="amd_kom_s010">
     <mets:digiprovMD ID="dp_amd_kom_s010">
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -1019,7 +1016,7 @@
   </mets:amdSec>
   <mets:amdSec ID="amd_kom_s011">
     <mets:digiprovMD ID="dp_amd_kom_s011">
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -1048,7 +1045,7 @@
   </mets:amdSec>
   <mets:amdSec ID="amd_kom_s012">
     <mets:digiprovMD ID="dp_amd_kom_s012">
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -1077,7 +1074,7 @@
   </mets:amdSec>
   <mets:amdSec ID="amd_kom_s013">
     <mets:digiprovMD ID="dp_amd_kom_s013">
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -1106,7 +1103,7 @@
   </mets:amdSec>
   <mets:amdSec ID="amd_kom_s014">
     <mets:digiprovMD ID="dp_amd_kom_s014">
-      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0" MIMETYPE="text/xml">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
             <tp:TransLogInfo>
@@ -1135,94 +1132,94 @@
   </mets:amdSec>
   <mets:fileSec>
     <mets:fileGrp USE="Original">
-      <mets:file ID="S10B0B0AGK33" MIMETYPE="application/vnd.ms-excel" SIZE="23552" CREATED="2018-06-11T10:32:38" CHECKSUM="b1d675d4aef76544db2e8d032255d44ccf4e5bca4004afb54eb4be5bc6055a83" CHECKSUMTYPE="SHA-256" OWNERID="S00BX00IA50X" DMDID="S001" USE="Original">
-        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="komponenty\03.xls"/>
+      <mets:file CHECKSUM="b1d675d4aef76544db2e8d032255d44ccf4e5bca4004afb54eb4be5bc6055a83" CHECKSUMTYPE="SHA-256" CREATED="2018-06-11T10:32:38" DMDID="S001" ID="S10B0B0AGK33" MIMETYPE="application/vnd.ms-excel" OWNERID="S00BX00IA50X" SIZE="23552" USE="Original">
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\03.xls" xlink:type="simple"/>
       </mets:file>
-      <mets:file ID="S20B0B0AGK33" MIMETYPE="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" SIZE="8826" CREATED="2018-06-11T10:32:38" CHECKSUM="56ee03af8e8ff5c0843a6306cb19e7c5d9ae52b9f15d4e5c0ea9199bfb4e50f2" CHECKSUMTYPE="SHA-256" OWNERID="S00BX00IA50X" DMDID="S002" USE="Original">
-        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="komponenty\04.xlsx"/>
+      <mets:file CHECKSUM="56ee03af8e8ff5c0843a6306cb19e7c5d9ae52b9f15d4e5c0ea9199bfb4e50f2" CHECKSUMTYPE="SHA-256" CREATED="2018-06-11T10:32:38" DMDID="S002" ID="S20B0B0AGK33" MIMETYPE="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" OWNERID="S00BX00IA50X" SIZE="8826" USE="Original">
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\04.xlsx" xlink:type="simple"/>
       </mets:file>
-      <mets:file ID="S30B0B0AGK33" MIMETYPE="application/vnd.openxmlformats-officedocument.wordprocessingml.document" SIZE="12811" CREATED="2018-06-11T10:32:38" CHECKSUM="599e243231c9613e5ac702793eec32bd4f0e911122a347cfd7474d54853789f3" CHECKSUMTYPE="SHA-256" OWNERID="S00BX00IA50X" DMDID="S003" USE="Original">
-        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="komponenty\05.docx"/>
+      <mets:file CHECKSUM="599e243231c9613e5ac702793eec32bd4f0e911122a347cfd7474d54853789f3" CHECKSUMTYPE="SHA-256" CREATED="2018-06-11T10:32:38" DMDID="S003" ID="S30B0B0AGK33" MIMETYPE="application/vnd.openxmlformats-officedocument.wordprocessingml.document" OWNERID="S00BX00IA50X" SIZE="12811" USE="Original">
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\05.docx" xlink:type="simple"/>
       </mets:file>
-      <mets:file ID="S40B0B0AGK33" MIMETYPE="application/msword" SIZE="22016" CREATED="2018-06-11T10:32:38" CHECKSUM="ec89fe54df25be6103ab4cbec16fd5400c377628b5df08eb0742a13c1bd8849d" CHECKSUMTYPE="SHA-256" OWNERID="S00BX00IA50X" DMDID="S004" USE="Original">
-        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="komponenty\06.doc"/>
+      <mets:file CHECKSUM="ec89fe54df25be6103ab4cbec16fd5400c377628b5df08eb0742a13c1bd8849d" CHECKSUMTYPE="SHA-256" CREATED="2018-06-11T10:32:38" DMDID="S004" ID="S40B0B0AGK33" MIMETYPE="application/msword" OWNERID="S00BX00IA50X" SIZE="22016" USE="Original">
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\06.doc" xlink:type="simple"/>
       </mets:file>
-      <mets:file ID="S50B0B0AGK33" MIMETYPE="text/rtf" SIZE="31350" CREATED="2018-06-11T10:32:38" CHECKSUM="0525bc97e5450a393105e3efdce0e47fd7fc906d93d1e7feb6240276c5a6c5db" CHECKSUMTYPE="SHA-256" OWNERID="S00BX00IA50X" DMDID="S005" USE="Original">
-        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="komponenty\07.rtf"/>
+      <mets:file CHECKSUM="0525bc97e5450a393105e3efdce0e47fd7fc906d93d1e7feb6240276c5a6c5db" CHECKSUMTYPE="SHA-256" CREATED="2018-06-11T10:32:38" DMDID="S005" ID="S50B0B0AGK33" MIMETYPE="text/rtf" OWNERID="S00BX00IA50X" SIZE="31350" USE="Original">
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\07.rtf" xlink:type="simple"/>
       </mets:file>
-      <mets:file ID="S60B0B0AGK33" MIMETYPE="application/vnd.oasis.opendocument.text" SIZE="8803" CREATED="2018-06-11T10:32:38" CHECKSUM="3f3122dcede0ddaba077d29a18a9ea256ee055e6e9884168e2e4296002132dbb" CHECKSUMTYPE="SHA-256" OWNERID="S00BX00IA50X" DMDID="S006" USE="Original">
-        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="komponenty\08.odt"/>
+      <mets:file CHECKSUM="3f3122dcede0ddaba077d29a18a9ea256ee055e6e9884168e2e4296002132dbb" CHECKSUMTYPE="SHA-256" CREATED="2018-06-11T10:32:38" DMDID="S006" ID="S60B0B0AGK33" MIMETYPE="application/vnd.oasis.opendocument.text" OWNERID="S00BX00IA50X" SIZE="8803" USE="Original">
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\08.odt" xlink:type="simple"/>
       </mets:file>
-      <mets:file ID="S70B0B0AGK33" MIMETYPE="application/vnd.oasis.opendocument.spreadsheet" SIZE="8040" CREATED="2018-06-11T10:32:38" CHECKSUM="15a85a21a850fa5d1309381edcdbc65989dcd48826f487e5e0414127ecfb6add" CHECKSUMTYPE="SHA-256" OWNERID="S00BX00IA50X" DMDID="S007" USE="Original">
-        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="komponenty\09.ods"/>
+      <mets:file CHECKSUM="15a85a21a850fa5d1309381edcdbc65989dcd48826f487e5e0414127ecfb6add" CHECKSUMTYPE="SHA-256" CREATED="2018-06-11T10:32:38" DMDID="S007" ID="S70B0B0AGK33" MIMETYPE="application/vnd.oasis.opendocument.spreadsheet" OWNERID="S00BX00IA50X" SIZE="8040" USE="Original">
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\09.ods" xlink:type="simple"/>
       </mets:file>
-      <mets:file ID="S80B0B0AGK33" MIMETYPE="text/xml" SIZE="8217" CREATED="2018-06-11T10:32:38" CHECKSUM="4df0c6fe18f102a2da3d79d1b35bcd3cca20687853ba7d46a8fb00981433d3e8" CHECKSUMTYPE="SHA-256" OWNERID="S00BX00IA50X" DMDID="S008" USE="Original">
-        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="komponenty\10.xml"/>
+      <mets:file CHECKSUM="4df0c6fe18f102a2da3d79d1b35bcd3cca20687853ba7d46a8fb00981433d3e8" CHECKSUMTYPE="SHA-256" CREATED="2018-06-11T10:32:38" DMDID="S008" ID="S80B0B0AGK33" MIMETYPE="text/xml" OWNERID="S00BX00IA50X" SIZE="8217" USE="Original">
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\10.xml" xlink:type="simple"/>
       </mets:file>
-      <mets:file ID="S90B0B0AGK33" MIMETYPE="text/html" SIZE="2798" CREATED="2018-06-11T10:32:38" CHECKSUM="afdbb18a6628267a4c4eccdf92ace8c5df40a03dab829ff846de00fc0322ae6b" CHECKSUMTYPE="SHA-256" OWNERID="S00BX00IA50X" DMDID="S009" USE="Original">
-        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="komponenty\11.html"/>
+      <mets:file CHECKSUM="afdbb18a6628267a4c4eccdf92ace8c5df40a03dab829ff846de00fc0322ae6b" CHECKSUMTYPE="SHA-256" CREATED="2018-06-11T10:32:38" DMDID="S009" ID="S90B0B0AGK33" MIMETYPE="text/html" OWNERID="S00BX00IA50X" SIZE="2798" USE="Original">
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\11.html" xlink:type="simple"/>
       </mets:file>
-      <mets:file ID="S19B0B0AGK33" MIMETYPE="application/vnd.ms-powerpoint" SIZE="1454592" CREATED="2018-06-11T10:32:38" CHECKSUM="38356a9d78757f269fa5ad58525c2e11cca12beea6062d901887f0274a9301d9" CHECKSUMTYPE="SHA-256" OWNERID="S00BX00IA50X" DMDID="S010" USE="Original">
-        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="komponenty\12.ppt"/>
+      <mets:file CHECKSUM="38356a9d78757f269fa5ad58525c2e11cca12beea6062d901887f0274a9301d9" CHECKSUMTYPE="SHA-256" CREATED="2018-06-11T10:32:38" DMDID="S010" ID="S19B0B0AGK33" MIMETYPE="application/vnd.ms-powerpoint" OWNERID="S00BX00IA50X" SIZE="1454592" USE="Original">
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\12.ppt" xlink:type="simple"/>
       </mets:file>
-      <mets:file ID="S11B0B0AGK34" MIMETYPE="audio/mpeg" SIZE="102357" CREATED="2018-06-11T10:32:38" CHECKSUM="c9c72e322a654cbd942a390551a2e654716273514506c5e88401f4eb55f624cc" CHECKSUMTYPE="SHA-256" OWNERID="S00BX00IA50X" DMDID="S011" USE="Original">
-        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="komponenty\13.mp3"/>
+      <mets:file CHECKSUM="c9c72e322a654cbd942a390551a2e654716273514506c5e88401f4eb55f624cc" CHECKSUMTYPE="SHA-256" CREATED="2018-06-11T10:32:38" DMDID="S011" ID="S11B0B0AGK34" MIMETYPE="audio/mpeg" OWNERID="S00BX00IA50X" SIZE="102357" USE="Original">
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\13.mp3" xlink:type="simple"/>
       </mets:file>
-      <mets:file ID="S13B0B0AGK35" MIMETYPE="video/quicktime" SIZE="6450441" CREATED="2018-06-11T10:32:38" CHECKSUM="7434f839d5696130441733bcb3c6b9e05abcad8df42acd74b499cdf093b15819" CHECKSUMTYPE="SHA-256" OWNERID="S00BX00IA50X" DMDID="S012" USE="Original">
-        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="komponenty\15.mov"/>
+      <mets:file CHECKSUM="7434f839d5696130441733bcb3c6b9e05abcad8df42acd74b499cdf093b15819" CHECKSUMTYPE="SHA-256" CREATED="2018-06-11T10:32:38" DMDID="S012" ID="S13B0B0AGK35" MIMETYPE="video/quicktime" OWNERID="S00BX00IA50X" SIZE="6450441" USE="Original">
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\15.mov" xlink:type="simple"/>
       </mets:file>
-      <mets:file ID="S14B0B0AGK35" MIMETYPE="video/x-msvideo" SIZE="31744" CREATED="2018-06-11T10:32:38" CHECKSUM="cbf17cb1eeb434aa5f9153f5d81f32534fbb2f1be9bb72f10b303a4afe93fe29" CHECKSUMTYPE="SHA-256" OWNERID="S00BX00IA50X" DMDID="S013" USE="Original">
-        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="komponenty\16.avi"/>
+      <mets:file CHECKSUM="cbf17cb1eeb434aa5f9153f5d81f32534fbb2f1be9bb72f10b303a4afe93fe29" CHECKSUMTYPE="SHA-256" CREATED="2018-06-11T10:32:38" DMDID="S013" ID="S14B0B0AGK35" MIMETYPE="video/x-msvideo" OWNERID="S00BX00IA50X" SIZE="31744" USE="Original">
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\16.avi" xlink:type="simple"/>
       </mets:file>
-      <mets:file ID="S15B0B0AGK35" MIMETYPE="application/pdf" SIZE="3101383" CREATED="2018-06-11T10:32:38" CHECKSUM="a46557b2cc1fa98cd2c933d3d4088d5953383e5db21bd51d084f71857e674ed1" CHECKSUMTYPE="SHA-256" OWNERID="S00BX00IA50X" DMDID="S014" USE="Original">
-        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="komponenty\18"/>
+      <mets:file CHECKSUM="a46557b2cc1fa98cd2c933d3d4088d5953383e5db21bd51d084f71857e674ed1" CHECKSUMTYPE="SHA-256" CREATED="2018-06-11T10:32:38" DMDID="S014" ID="S15B0B0AGK35" MIMETYPE="application/pdf" OWNERID="S00BX00IA50X" SIZE="3101383" USE="Original">
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\18" xlink:type="simple"/>
       </mets:file>
     </mets:fileGrp>
   </mets:fileSec>
   <mets:structMap>
-    <mets:div DMDID="S00BX00IA50X_Gordic.Ginis.V.S.2008" ADMID="amd_spl_S00BX00IA50X_Gordic.Ginis.V.S.2008" TYPE="spisový plán">
-      <mets:div DMDID="S00B0200AP9X" ADMID="amd_vs_S00B0200AP9X" TYPE="věcná skupina">
-        <mets:div DMDID="S00BX00IA50X" ADMID="amd_dok_S00BX00IA50X" TYPE="dokument">
-          <mets:div LABEL="Pr_2012_09167_S00BX00IA50X.pdf" DMDID="S001" ADMID="amd_kom_s001" TYPE="komponenta">
+    <mets:div ADMID="amd_spl_S00BX00IA50X_Gordic.Ginis.V.S.2008" DMDID="S00BX00IA50X_Gordic.Ginis.V.S.2008" TYPE="spisový plán">
+      <mets:div ADMID="amd_vs_S00B0200AP9X" DMDID="S00B0200AP9X" TYPE="věcná skupina">
+        <mets:div ADMID="amd_dok_S00BX00IA50X" DMDID="S00BX00IA50X" TYPE="dokument">
+          <mets:div ADMID="amd_kom_s001" DMDID="S001" LABEL="Pr_2012_09167_S00BX00IA50X.pdf" TYPE="komponenta">
             <mets:fptr FILEID="S10B0B0AGK33"/>
           </mets:div>
-          <mets:div LABEL="Pr_2012_09167_S00BX00IA50X.pdf" DMDID="S002" ADMID="amd_kom_s002" TYPE="komponenta">
+          <mets:div ADMID="amd_kom_s002" DMDID="S002" LABEL="Pr_2012_09167_S00BX00IA50X.pdf" TYPE="komponenta">
             <mets:fptr FILEID="S20B0B0AGK33"/>
           </mets:div>
-          <mets:div LABEL="Pr_2012_09167_S00BX00IA50X.pdf" DMDID="S003" ADMID="amd_kom_s003" TYPE="komponenta">
+          <mets:div ADMID="amd_kom_s003" DMDID="S003" LABEL="Pr_2012_09167_S00BX00IA50X.pdf" TYPE="komponenta">
             <mets:fptr FILEID="S30B0B0AGK33"/>
           </mets:div>
-          <mets:div LABEL="Pr_2012_09167_S00BX00IA50X.pdf" DMDID="S004" ADMID="amd_kom_s004" TYPE="komponenta">
+          <mets:div ADMID="amd_kom_s004" DMDID="S004" LABEL="Pr_2012_09167_S00BX00IA50X.pdf" TYPE="komponenta">
             <mets:fptr FILEID="S40B0B0AGK33"/>
           </mets:div>
-          <mets:div LABEL="Pr_2012_09167_S00BX00IA50X.pdf" DMDID="S005" ADMID="amd_kom_s005" TYPE="komponenta">
+          <mets:div ADMID="amd_kom_s005" DMDID="S005" LABEL="Pr_2012_09167_S00BX00IA50X.pdf" TYPE="komponenta">
             <mets:fptr FILEID="S50B0B0AGK33"/>
           </mets:div>
-          <mets:div LABEL="Pr_2012_09167_S00BX00IA50X.pdf" DMDID="S006" ADMID="amd_kom_s006" TYPE="komponenta">
+          <mets:div ADMID="amd_kom_s006" DMDID="S006" LABEL="Pr_2012_09167_S00BX00IA50X.pdf" TYPE="komponenta">
             <mets:fptr FILEID="S60B0B0AGK33"/>
           </mets:div>
-          <mets:div LABEL="Pr_2012_09167_S00BX00IA50X.pdf" DMDID="S007" ADMID="amd_kom_s007" TYPE="komponenta">
+          <mets:div ADMID="amd_kom_s007" DMDID="S007" LABEL="Pr_2012_09167_S00BX00IA50X.pdf" TYPE="komponenta">
             <mets:fptr FILEID="S70B0B0AGK33"/>
           </mets:div>
-          <mets:div LABEL="Pr_2012_09167_S00BX00IA50X.pdf" DMDID="S008" ADMID="amd_kom_s008" TYPE="komponenta">
+          <mets:div ADMID="amd_kom_s008" DMDID="S008" LABEL="Pr_2012_09167_S00BX00IA50X.pdf" TYPE="komponenta">
             <mets:fptr FILEID="S80B0B0AGK33"/>
           </mets:div>
-          <mets:div LABEL="Pr_2012_09167_S00BX00IA50X.pdf" DMDID="S009" ADMID="amd_kom_s009" TYPE="komponenta">
+          <mets:div ADMID="amd_kom_s009" DMDID="S009" LABEL="Pr_2012_09167_S00BX00IA50X.pdf" TYPE="komponenta">
             <mets:fptr FILEID="S90B0B0AGK33"/>
           </mets:div>
-          <mets:div LABEL="Pr_2012_09167_S00BX00IA50X.pdf" DMDID="S010" ADMID="amd_kom_s010" TYPE="komponenta">
+          <mets:div ADMID="amd_kom_s010" DMDID="S010" LABEL="Pr_2012_09167_S00BX00IA50X.pdf" TYPE="komponenta">
             <mets:fptr FILEID="S19B0B0AGK33"/>
           </mets:div>
-          <mets:div LABEL="Pr_2012_09167_S00BX00IA50X.pdf" DMDID="S011" ADMID="amd_kom_s011" TYPE="komponenta">
+          <mets:div ADMID="amd_kom_s011" DMDID="S011" LABEL="Pr_2012_09167_S00BX00IA50X.pdf" TYPE="komponenta">
             <mets:fptr FILEID="S11B0B0AGK34"/>
           </mets:div>
-          <mets:div LABEL="Pr_2012_09167_S00BX00IA50X.pdf" DMDID="S012" ADMID="amd_kom_s012" TYPE="komponenta">
+          <mets:div ADMID="amd_kom_s012" DMDID="S012" LABEL="Pr_2012_09167_S00BX00IA50X.pdf" TYPE="komponenta">
             <mets:fptr FILEID="S13B0B0AGK35"/>
           </mets:div>
-          <mets:div LABEL="Pr_2012_09167_S00BX00IA50X.pdf" DMDID="S013" ADMID="amd_kom_s013" TYPE="komponenta">
+          <mets:div ADMID="amd_kom_s013" DMDID="S013" LABEL="Pr_2012_09167_S00BX00IA50X.pdf" TYPE="komponenta">
             <mets:fptr FILEID="S14B0B0AGK35"/>
           </mets:div>
-          <mets:div LABEL="Pr_2012_09167_S00BX00IA50X.pdf" DMDID="S014" ADMID="amd_kom_s014" TYPE="komponenta">
+          <mets:div ADMID="amd_kom_s014" DMDID="S014" LABEL="Pr_2012_09167_S00BX00IA50X.pdf" TYPE="komponenta">
             <mets:fptr FILEID="S15B0B0AGK35"/>
           </mets:div>
         </mets:div>
