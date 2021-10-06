@@ -87,13 +87,6 @@ class SipValidatorK01Test
     }
 
     @Test
-    void testK01_03_OK01() {
-        testPackageK01("2019-05-13-MUJESS00046030-00040003.zip", LoadType.LT_ZIP, StavKontroly.OK,
-                       new String[] { K01_DatoveStruktury.DATA1, K01_DatoveStruktury.DATA2, K01_DatoveStruktury.DATA3 },
-                       new String[] {});
-    }
-
-    @Test
     void testK01_11() {
         testPackageK01("data3-chyba1", LoadType.LT_DIR, StavKontroly.CHYBA,
                        new String[] { K01_DatoveStruktury.DATA1, K01_DatoveStruktury.DATA2 },
