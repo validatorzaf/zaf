@@ -125,7 +125,7 @@
 						<configuration>
 							<schemaDirectory>src/main/resources/schema</schemaDirectory>
 							<schemaIncludes>
-								<include>kontrolasip.xsd</include>
+								<include>kontrolasip_v1_1.xsd</include>
 							</schemaIncludes>
 							<generatePackage>cz.zaf.schema.kontrolasip</generatePackage>
 							<generateDirectory>${project.build.directory}/generated-sources/kontrolasip</generateDirectory>

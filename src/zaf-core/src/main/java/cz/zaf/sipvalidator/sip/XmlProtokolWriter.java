@@ -48,7 +48,7 @@ public class XmlProtokolWriter implements ProtokolWriter,
     AutoCloseable {
     
     public static String XML_PREFIX = "kontrolasip";
-    public static String SCHEMA_URL = "http://digitalniarchiv.ahmp.cz/schema/kontrolasip/v2";
+    public static String SCHEMA_URL = "http://digitalniarchiv.ahmp.cz/schema/kontrolasip/v1_1";
     
     private static Logger logger = LoggerFactory.getLogger(XmlProtokolWriter.class);
     
@@ -67,7 +67,8 @@ public class XmlProtokolWriter implements ProtokolWriter,
     
     {
         SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        try (InputStream is = XmlProtokolWriter.class.getClassLoader().getResourceAsStream("schema/kontrolasip.xsd")) {
+        try (InputStream is = XmlProtokolWriter.class.getClassLoader()
+                .getResourceAsStream("schema/kontrolasip_v1_1.xsd")) {
             schema = sf.newSchema(new StreamSource(is));
         } catch (IOException | SAXException e) {
             throw new RuntimeException("Failed to load internal XSD", e);
@@ -114,7 +115,7 @@ public class XmlProtokolWriter implements ProtokolWriter,
         indentingStreamWriter.writeAttribute("xmlns", null,
                                              "xsi", "http://www.w3.org/2001/XMLSchema-instance");
         indentingStreamWriter.writeAttribute("http://www.w3.org/2001/XMLSchema-instance", "schemaLocation", 
-                                             "http://digitalniarchiv.ahmp.cz/schema/kontrolasip/v2 http://digitalniarchiv.ahmp.cz/schema/kontrolasip/v2/kontrolasip.xsd");
+                                             "http://digitalniarchiv.ahmp.cz/schema/kontrolasip/v1_1 http://digitalniarchiv.ahmp.cz/schema/kontrolasip/v1_1/kontrolasip.xsd");
 
         // write attributes to root element
         indentingStreamWriter.writeAttribute("kontrolaID", kontrolaId==null?UUID.randomUUID().toString():kontrolaId);

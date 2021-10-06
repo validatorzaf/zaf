@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:kontrolasip="http://digitalniarchiv.ahmp.cz/schema/kontrolasip/v2" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://digitalniarchiv.ahmp.cz/schema/kontrolasip/v2" elementFormDefault="qualified" attributeFormDefault="unqualified" id="kontrolaSIP" version="2">
+<xs:schema xmlns:dc="http://purl.org/dc/elements/1.1/" 
+           xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+           xmlns:kontrolasip="http://digitalniarchiv.ahmp.cz/schema/kontrolasip/v1_1" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           targetNamespace="http://digitalniarchiv.ahmp.cz/schema/kontrolasip/v1_1" 
+           elementFormDefault="qualified" attributeFormDefault="unqualified" id="kontrolaSIP" version="1.1">
 
 	<xs:annotation>
 		<xs:documentation xml:lang="cs">Schéma XML pro zaznamenání výsledku kontroly datového balíčku SIP</xs:documentation>
