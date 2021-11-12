@@ -6,6 +6,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09.Pravidlo2;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09.Pravidlo3;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09.Pravidlo4;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09.Pravidlo9;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs100_109.Pravidlo100;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo10;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo11;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo12;
@@ -195,7 +196,8 @@ public enum ZakladniProfilValidace
 					new Pravidlo96(), 
 					new Pravidlo97(), 
 					new Pravidlo98(), 
-					new Pravidlo99()
+                    new Pravidlo99(),
+                    new Pravidlo100(),
 			};
 			return prav;
 		}		
@@ -297,6 +299,7 @@ public enum ZakladniProfilValidace
 					new Pravidlo97(), 
 					new Pravidlo98(),
 					// new Pravidlo99()
+                    new Pravidlo100(),
 			};
 			return prav;
 		}		
@@ -397,7 +400,8 @@ public enum ZakladniProfilValidace
 					new Pravidlo96(), 
 					new Pravidlo97(), 
 					new Pravidlo98(), 
-					new Pravidlo99()
+                    new Pravidlo99(),
+                    new Pravidlo100(),
 			};
 			return prav;
 		}		
@@ -498,7 +502,8 @@ public enum ZakladniProfilValidace
 					new Pravidlo96(), 
 					new Pravidlo97(), 
 					new Pravidlo98(), 
-					new Pravidlo99()
+                    new Pravidlo99(),
+                    new Pravidlo100(),
 			};
 			return prav;
 		}		
