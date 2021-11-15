@@ -2840,20 +2840,21 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     }
 
     @Test
+    void testK06_100_OK3() {
+        testPackageK06("100-OK3", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo100.OBS100 },
+                       new String[] {});
+    }
+    @Test
+    void testK06_100_OK4() {
+        testPackageK06("100-OK4", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo100.OBS100 },
+                       new String[] {});
+    }
+
+    @Test
     void testK06_100_01() {
         testPackageK06("100-chyba1", StavKontroly.CHYBA, ZakladniProfilValidace.PREJIMKA,
-                       new String[] {},
-                       new String[] { Pravidlo100.OBS100 });
-    }
-    @Test
-    void testK06_100_02() {
-        testPackageK06("100-chyba2", StavKontroly.CHYBA, ZakladniProfilValidace.PREJIMKA,
-                       new String[] {},
-                       new String[] { Pravidlo100.OBS100 });
-    }
-    @Test
-    void testK06_100_03() {
-        testPackageK06("100-chyba3", StavKontroly.CHYBA, ZakladniProfilValidace.PREJIMKA,
                        new String[] {},
                        new String[] { Pravidlo100.OBS100 });
     }
