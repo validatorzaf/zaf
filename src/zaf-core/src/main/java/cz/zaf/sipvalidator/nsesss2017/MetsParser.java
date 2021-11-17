@@ -227,12 +227,12 @@ public class MetsParser {
         // info se nastavi dle prvni zakladni entity
         Node zaklEntita = zakladniEntity.get(0);
         Node skZnakMaterskeEntity = ValuesGetter.getXChild(zaklEntita,
-                                                           "nsesss:EvidencniUdaje",
+                                                           NsessV3.EVIDENCNI_UDAJE,
                                                            "nsesss:Vyrazovani", "nsesss:SkartacniRezim",
                                                            "nsesss:SkartacniZnak");
         if (skZnakMaterskeEntity != null)
             sip.setSKznak(skZnakMaterskeEntity.getTextContent());
-        Node skLhutaMaterskeEntity = ValuesGetter.getXChild(zaklEntita, "nsesss:EvidencniUdaje",
+        Node skLhutaMaterskeEntity = ValuesGetter.getXChild(zaklEntita, NsessV3.EVIDENCNI_UDAJE,
                                                             "nsesss:Vyrazovani", "nsesss:SkartacniRezim",
                                                             "nsesss:SkartacniLhuta");
         if (skLhutaMaterskeEntity != null)

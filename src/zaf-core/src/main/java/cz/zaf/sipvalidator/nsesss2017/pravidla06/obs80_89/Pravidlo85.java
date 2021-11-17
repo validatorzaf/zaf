@@ -6,6 +6,7 @@ import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo85 extends K06PravidloBase {
@@ -31,7 +32,7 @@ public class Pravidlo85 extends K06PravidloBase {
 
         for (int i = 0; i < dokumenty.size(); i++) {
             Node dokument = dokumenty.get(i);
-            Node analog = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Manipulace",
+            Node analog = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, "nsesss:Manipulace",
                                                  "nsesss:AnalogovyDokument");
             if (analog != null) {
                 String hodnota = analog.getTextContent();

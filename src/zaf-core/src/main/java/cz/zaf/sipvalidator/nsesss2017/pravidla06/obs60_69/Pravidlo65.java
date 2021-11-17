@@ -5,6 +5,7 @@ import java.util.List;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.Obj_Node_int;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -33,7 +34,7 @@ public class Pravidlo65 extends K06PravidloBase {
             Node zakladniEntita = zakladniEntity.get(i);
             String jmeno = zakladniEntita.getNodeName();
             if (jmeno.equals("nsesss:Spis") || jmeno.equals("nsesss:Dil")) {
-                Node node = ValuesGetter.getXChild(zakladniEntita, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani",
+                Node node = ValuesGetter.getXChild(zakladniEntita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Vyrazovani",
                                                    "nsesss:DataceVyrazeni", "nsesss:RokSkartacniOperace");
                 if (node == null) {
                     return nastavChybu("Nenalezen element <nsesss:RokSkartacniOperace>. " + getJmenoIdentifikator(
@@ -51,7 +52,7 @@ public class Pravidlo65 extends K06PravidloBase {
                                        node);
                 }
 
-                node = ValuesGetter.getXChild(zakladniEntita, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani",
+                node = ValuesGetter.getXChild(zakladniEntita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Vyrazovani",
                                               "nsesss:DataceVyrazeni", "nsesss:RokSpousteciUdalosti");
                 if (node == null) {
                     return nastavChybu("Nenalezen element <nsesss:RokSpousteciUdalosti>." + getJmenoIdentifikator(
@@ -68,7 +69,7 @@ public class Pravidlo65 extends K06PravidloBase {
                                        node);
                 }
 
-                node = ValuesGetter.getXChild(zakladniEntita, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani",
+                node = ValuesGetter.getXChild(zakladniEntita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Vyrazovani",
                                               "nsesss:SkartacniRezim", "nsesss:SkartacniLhuta");
                 if (node == null) {
                     return nastavChybu("Nenalezen element <nsesss:SkartacniLhuta>. " + getJmenoIdentifikator(
@@ -99,7 +100,7 @@ public class Pravidlo65 extends K06PravidloBase {
                 for (int j = 0; j < dokumenty.size(); j++) {
                     Node dokumentze = dokumenty.get(j);
                     int int_finalhodnota_dok;
-                    Node dok_lhuta = ValuesGetter.getXChild(dokumentze, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani",
+                    Node dok_lhuta = ValuesGetter.getXChild(dokumentze, NsessV3.EVIDENCNI_UDAJE, "nsesss:Vyrazovani",
                                                             "nsesss:SkartacniRezim", "nsesss:SkartacniLhuta");
                     if (dok_lhuta == null) {
                         return nastavChybu("Nenalezen element <nsesss:SkartacniLhuta>. " + getJmenoIdentifikator(
@@ -108,10 +109,10 @@ public class Pravidlo65 extends K06PravidloBase {
                     }
                     String d_lhuta = dok_lhuta.getTextContent();
 
-                    Node datum_dok = ValuesGetter.getXChild(dokumentze, "nsesss:EvidencniUdaje", "nsesss:Puvod",
+                    Node datum_dok = ValuesGetter.getXChild(dokumentze, NsessV3.EVIDENCNI_UDAJE, "nsesss:Puvod",
                                                             "nsesss:VlastniDokument", "nsesss:DatumVytvoreni");
                     if (datum_dok == null)
-                        datum_dok = ValuesGetter.getXChild(dokumentze, "nsesss:EvidencniUdaje", "nsesss:Puvod",
+                        datum_dok = ValuesGetter.getXChild(dokumentze, NsessV3.EVIDENCNI_UDAJE, "nsesss:Puvod",
                                                            "nsesss:DorucenyDokument", "nsesss:DatumDoruceni");
                     if (datum_dok == null) {
                         return nastavChybu("Nenalezen element <nsesss:RokSkartacniOperace>. " + getJmenoIdentifikator(

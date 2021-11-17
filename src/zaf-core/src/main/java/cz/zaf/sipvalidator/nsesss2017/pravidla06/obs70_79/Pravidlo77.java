@@ -6,6 +6,7 @@ import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo77 extends K06PravidloBase {
@@ -31,12 +32,12 @@ public class Pravidlo77 extends K06PravidloBase {
 
         for (int i = 0; i < zakladniEntity.size(); i++) {
             Node zakladnientita = zakladniEntity.get(i);
-            Node analogovy = ValuesGetter.getXChild(zakladnientita, "nsesss:EvidencniUdaje", "nsesss:Manipulace",
+            Node analogovy = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Manipulace",
                                                     "nsesss:AnalogovyDokument");
             if (analogovy != null) {
                 String analogovyZakladni = analogovy.getTextContent();
                 if (analogovyZakladni.equals("ano")) {
-                    Node mnozstvi = ValuesGetter.getXChild(zakladnientita, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani",
+                    Node mnozstvi = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Vyrazovani",
                                                            "nsesss:SkartacniRizeni", "nsesss:Mnozstvi");
                     if (mnozstvi == null) {
                         return nastavChybu("Nenalezen element <nsesss:Mnozstvi> základní entity. "

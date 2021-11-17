@@ -5,6 +5,7 @@ import java.util.List;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 // OBSAHOVÁ č.97
@@ -33,9 +34,9 @@ public class Pravidlo97 extends K06PravidloBase {
         }
 
         Node ze0 = zakladniEntity.get(0);
-        Node n0_j = ValuesGetter.getXChild(ze0, "nsesss:EvidencniUdaje", "nsesss:Trideni",
+        Node n0_j = ValuesGetter.getXChild(ze0, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                            "nsesss:JednoduchySpisovyZnak");
-        Node n0_p = ValuesGetter.getXChild(ze0, "nsesss:EvidencniUdaje", "nsesss:Trideni",
+        Node n0_p = ValuesGetter.getXChild(ze0, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                            "nsesss:PlneUrcenySpisovyZnak");
         if (n0_j == null)
             return nastavChybu("Nenalezen element <nsesss:JednoduchySpisovyZnak> základní entity. "
@@ -48,9 +49,9 @@ public class Pravidlo97 extends K06PravidloBase {
 
         for (int i = 1; i < zakladniEntity.size(); i++) {
             Node zakladnientita = zakladniEntity.get(i);
-            Node n_j = ValuesGetter.getXChild(zakladnientita, "nsesss:EvidencniUdaje", "nsesss:Trideni",
+            Node n_j = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                               "nsesss:JednoduchySpisovyZnak");
-            Node n_p = ValuesGetter.getXChild(zakladnientita, "nsesss:EvidencniUdaje", "nsesss:Trideni",
+            Node n_p = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                               "nsesss:PlneUrcenySpisovyZnak");
             if (n_j == null)
                 return nastavChybu("Nenalezen element <nsesss:JednoduchySpisovyZnak> základní entity. "

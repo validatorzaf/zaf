@@ -63,7 +63,7 @@ public class Pravidlo98 extends K06PravidloBase {
             mistoChyby = getMistoChyby(zakladnientita);
             return false;
         }
-        Node n_zakl_pusz = ValuesGetter.getXChild(zakladnientita, "nsesss:EvidencniUdaje", "nsesss:Trideni",
+        Node n_zakl_pusz = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                                   "nsesss:PlneUrcenySpisovyZnak");
         if (n_zakl_pusz == null) {
             detailChyby = "Nenalezen element <nsesss:PlneUrcenySpisovyZnak> základní entity. "
@@ -78,7 +78,7 @@ public class Pravidlo98 extends K06PravidloBase {
 
         for (int j = 0; j < dokumenty.size(); j++) {
             Node dokument = dokumenty.get(j);
-            Node n_j = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Trideni",
+            Node n_j = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                               "nsesss:JednoduchySpisovyZnak");
             if (n_j == null) {
                 return nastavChybu("Nenalezen element <nsesss:JednoduchySpisovyZnak>. "
@@ -86,7 +86,7 @@ public class Pravidlo98 extends K06PravidloBase {
                                    getMistoChyby(dokument));
             }
             jednoduchy = n_j.getTextContent();
-            Node n_p = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Trideni",
+            Node n_p = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                               "nsesss:PlneUrcenySpisovyZnak");
             if (n_p == null)
                 return nastavChybu("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. "

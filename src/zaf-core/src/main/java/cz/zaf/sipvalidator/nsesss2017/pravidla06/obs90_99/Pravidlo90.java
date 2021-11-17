@@ -30,14 +30,14 @@ public class Pravidlo90 extends K06PravidloBase {
         for (int i = 0; i < zakladniEntity.size(); i++) {
             Node spis = zakladniEntity.get(i);
             if (spis.getNodeName().equals("nsesss:Spis")) {
-                Node node = ValuesGetter.getXChild(spis, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani",
+                Node node = ValuesGetter.getXChild(spis, NsessV3.EVIDENCNI_UDAJE, "nsesss:Vyrazovani",
                                                    "nsesss:DataceVyrazeni", "nsesss:RokSpousteciUdalosti");
                 if (node == null)
                     return nastavChybu("Nenalezen element <nsesss:RokSpousteciUdalosti>. "
                             + getJmenoIdentifikator(spis),
                                        spis);
 
-                Node node2 = ValuesGetter.getXChild(spis, "nsesss:EvidencniUdaje", NsessV3.VYRIZENI_UZAVRENI,
+                Node node2 = ValuesGetter.getXChild(spis, NsessV3.EVIDENCNI_UDAJE, NsessV3.VYRIZENI_UZAVRENI,
                                                     "nsesss:Datum");
                 if (node2 == null)
                     return nastavChybu("Nenalezen element <nsesss:Datum>. " + getJmenoIdentifikator(spis),

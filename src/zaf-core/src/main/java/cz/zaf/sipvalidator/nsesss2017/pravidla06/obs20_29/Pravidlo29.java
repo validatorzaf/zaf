@@ -6,6 +6,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.29 Pokud existuje element <nsesss:KrizovyOdkaz> a obsahuje atribut pevny s hodnotou ano, potom pro každý jeho výskyt
@@ -41,7 +42,7 @@ public class Pravidlo29 extends K06PravidloBase {
 		for (int i = 0; i < pevneKrizoveOdkazy.size(); i++) {
 			Node krizovyOdkaz = pevneKrizoveOdkazy.get(i);
 			Node materska_zakl_entita_eu = ValuesGetter.getXParent(krizovyOdkaz, "nsesss:Souvislosti",
-					"nsesss:EvidencniUdaje");
+                                                                   NsessV3.EVIDENCNI_UDAJE);
 
 			if (materska_zakl_entita_eu == null) {
 				return nastavChybu(
@@ -85,8 +86,9 @@ public class Pravidlo29 extends K06PravidloBase {
 			String ch = "";
 
 			for(Node zaklEntita: zaklEntity) {
-				Node id_ze = ValuesGetter.getXChild(zaklEntita, "nsesss:EvidencniUdaje", "nsesss:Identifikace",
-						"nsesss:Identifikator");
+                Node id_ze = ValuesGetter.getXChild(zaklEntita, NsessV3.EVIDENCNI_UDAJE,
+                                                    "nsesss:Identifikace",
+                                                    "nsesss:Identifikator");
 				if (id_ze == null) {
 					return nastavChybu("Nenalezen element <nsesss:Identifikator> základní entity.",
 					                   zaklEntita);

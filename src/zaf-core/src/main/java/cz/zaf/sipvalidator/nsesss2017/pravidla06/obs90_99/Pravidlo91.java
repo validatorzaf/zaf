@@ -5,6 +5,7 @@ import java.util.List;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo91 extends K06PravidloBase {
@@ -29,9 +30,9 @@ public class Pravidlo91 extends K06PravidloBase {
         for (int i = 0; i < zakladniEntity.size(); i++) {
             Node dil = zakladniEntity.get(i);
             if (dil.getNodeName().equals("nsesss:Dil")) {
-                Node node = ValuesGetter.getXChild(dil, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani",
+                Node node = ValuesGetter.getXChild(dil, NsessV3.EVIDENCNI_UDAJE, "nsesss:Vyrazovani",
                                                    "nsesss:DataceVyrazeni", "nsesss:RokSpousteciUdalosti");
-                Node node2 = ValuesGetter.getXChild(dil, "nsesss:EvidencniUdaje", "nsesss:Uzavreni", "nsesss:Datum");
+                Node node2 = ValuesGetter.getXChild(dil, NsessV3.EVIDENCNI_UDAJE, "nsesss:Uzavreni", "nsesss:Datum");
                 if (node == null)
                     return nastavChybu("Nenalezen element <nsesss:RokSpousteciUdalosti>. " + getJmenoIdentifikator(dil),
                                        getMistoChyby(node));

@@ -35,13 +35,15 @@ public class Pravidlo93a  extends K06PravidloBase {
             return nastavChybu("Věcná skupina neexistuje", metsParser.getDocument());
         }
         for(Node vs: vsList) {
-            Node spl = ValuesGetter.getXChild(vs, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:SpisovyPlan");
+            Node spl = ValuesGetter.getXChild(vs, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni", "nsesss:SpisovyPlan");
             if(spl != null){
-                Node jsz = ValuesGetter.getXChild(vs, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:JednoduchySpisovyZnak");
+                Node jsz = ValuesGetter.getXChild(vs, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
+                                                  "nsesss:JednoduchySpisovyZnak");
                 if(jsz == null) {
                 	return nastavChybu("Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(vs), vs);
                 }
-                Node pusz = ValuesGetter.getXChild(vs, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:PlneUrcenySpisovyZnak");                     
+                Node pusz = ValuesGetter.getXChild(vs, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
+                                                   "nsesss:PlneUrcenySpisovyZnak");
                 if(pusz == null) {
                 	return nastavChybu("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(vs), vs);
                 }

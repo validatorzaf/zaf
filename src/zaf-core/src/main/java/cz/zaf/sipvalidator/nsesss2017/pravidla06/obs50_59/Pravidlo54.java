@@ -97,7 +97,7 @@ public class Pravidlo54 extends K06PravidloBase {
             if (node_dmd.getNodeName().equals("nsesss:SpisovyPlan")) {
                 identifikator = ValuesGetter.getXChild(node_dmd, "nsesss:Identifikator");
             } else {
-                identifikator = ValuesGetter.getXChild(node_dmd, "nsesss:EvidencniUdaje",
+                identifikator = ValuesGetter.getXChild(node_dmd, NsessV3.EVIDENCNI_UDAJE,
                                                        "nsesss:Identifikace", "nsesss:Identifikator");
             }
             if (identifikator == null) {

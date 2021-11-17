@@ -40,7 +40,7 @@ public class Pravidlo95 extends K06PravidloBase {
 
         Iterable<Node> multiCol = IterableUtils.chainedIterable(vecneSkupiny, soucasti, typoveSpisy);
         for(Node entita: multiCol) {
-            Node pu_entita = ValuesGetter.getXChild(entita, "nsesss:EvidencniUdaje", "nsesss:Trideni",
+            Node pu_entita = ValuesGetter.getXChild(entita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                                     "nsesss:PlneUrcenySpisovyZnak");
             if (pu_entita == null)
                 return nastavChybu("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(entita),
@@ -49,20 +49,21 @@ public class Pravidlo95 extends K06PravidloBase {
             if (je_entita == null)
                 return nastavChybu("Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(entita),
                                    entita);
-            Node pu_rodic = ValuesGetter.getXChild(entita, "nsesss:EvidencniUdaje", "nsesss:Trideni",
+            Node pu_rodic = ValuesGetter.getXChild(entita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                                    "nsesss:MaterskaEntita", "nsesss:VecnaSkupina",
-                                                   "nsesss:EvidencniUdaje", "nsesss:Trideni",
+                                                   NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                                    "nsesss:PlneUrcenySpisovyZnak");
             if (pu_rodic == null)
-                pu_rodic = ValuesGetter.getXChild(entita, "nsesss:EvidencniUdaje", "nsesss:Trideni",
-                                                  "nsesss:MaterskaEntita", "nsesss:TypovySpis", "nsesss:EvidencniUdaje",
+                pu_rodic = ValuesGetter.getXChild(entita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
+                                                  "nsesss:MaterskaEntita", "nsesss:TypovySpis",
+                                                  NsessV3.EVIDENCNI_UDAJE,
                                                   "nsesss:Trideni", "nsesss:PlneUrcenySpisovyZnak");
             if (pu_rodic == null)
-                pu_rodic = ValuesGetter.getXChild(entita, "nsesss:EvidencniUdaje", "nsesss:Trideni",
-                                                  "nsesss:MaterskaEntita", "nsesss:Soucast", "nsesss:EvidencniUdaje",
+                pu_rodic = ValuesGetter.getXChild(entita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
+                                                  "nsesss:MaterskaEntita", "nsesss:Soucast", NsessV3.EVIDENCNI_UDAJE,
                                                   "nsesss:Trideni", "nsesss:PlneUrcenySpisovyZnak");
             if (pu_rodic == null)
-                pu_rodic = ValuesGetter.getXChild(entita, "nsesss:EvidencniUdaje", "nsesss:Trideni",
+                pu_rodic = ValuesGetter.getXChild(entita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                                   "nsesss:SpisovyPlan");
             if (pu_rodic != null) {
                 if (pu_rodic.getNodeName().equals("nsesss:SpisovyPlan")) {

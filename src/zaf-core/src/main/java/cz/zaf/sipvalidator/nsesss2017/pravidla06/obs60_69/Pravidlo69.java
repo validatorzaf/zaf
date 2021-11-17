@@ -29,7 +29,7 @@ public class Pravidlo69 extends K06PravidloBase {
         
         for (Node ze : zakladniEntity) {
             if (ze.getNodeName().equals("nsesss:Dokument")) {
-                Node node = ValuesGetter.getXChild(ze, "nsesss:EvidencniUdaje", NsessV3.VYRIZENI);
+                Node node = ValuesGetter.getXChild(ze, NsessV3.EVIDENCNI_UDAJE, NsessV3.VYRIZENI);
                 if (node == null) {
                     return nastavChybu("Nenalezen element <nsesss:Vyrizeni>. " + getJmenoIdentifikator(ze),
                                        ze);

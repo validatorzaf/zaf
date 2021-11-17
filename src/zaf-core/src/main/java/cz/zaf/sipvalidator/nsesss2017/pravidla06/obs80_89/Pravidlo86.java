@@ -5,6 +5,7 @@ import java.util.List;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo86 extends K06PravidloBase {
@@ -32,7 +33,7 @@ public class Pravidlo86 extends K06PravidloBase {
         for (int i = 0; i < zakladniEntity.size(); i++) {
             Node zakladnientita = zakladniEntity.get(i);
             if (zakladnientita.getNodeName().equals("nsesss:Dokument")) {
-                Node node = ValuesGetter.getXChild(zakladnientita, "nsesss:EvidencniUdaje", "nsesss:Trideni",
+                Node node = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                                    "nsesss:MaterskeEntity");
                 if (node == null) {
                     return nastavChybu("Nenalezen element <nsesss:MaterskeEntity>. " + getJmenoIdentifikator(

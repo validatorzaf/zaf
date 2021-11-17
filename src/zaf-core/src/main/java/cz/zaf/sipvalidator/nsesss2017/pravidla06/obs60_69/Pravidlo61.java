@@ -6,6 +6,7 @@ import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo61 extends K06PravidloBase {
@@ -28,7 +29,7 @@ public class Pravidlo61 extends K06PravidloBase {
         }
         for (int i = 0; i < dokumenty.size(); i++) {
             Node dokument = dokumenty.get(i);
-            Node ad = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Manipulace",
+            Node ad = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, "nsesss:Manipulace",
                                              "nsesss:AnalogovyDokument");
             if (ad == null) {
                 return nastavChybu("Nenalezen element <nsesss:AnalogovyDokument>. Dokumentu " + kontrola
@@ -37,17 +38,17 @@ public class Pravidlo61 extends K06PravidloBase {
                         + ".", dokument);
             }
             String hodnotaAnalogovyDokument = ad.getTextContent();
-            if (hodnotaAnalogovyDokument.equals("ano") && ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje",
+            if (hodnotaAnalogovyDokument.equals("ano") && ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE,
                                                                                  "nsesss:Puvod",
                                                                                  "nsesss:DorucenyDokument") != null) {
-                if (ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Puvod", "nsesss:DorucenyDokument",
+                if (ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, "nsesss:Puvod", "nsesss:DorucenyDokument",
                                            "nsesss:DoruceneMnozstvi") == null) {
                     return nastavChybu("Nenalezen povinný element <nsesss:DoruceneMnozstvi>. Dokumentu "
                             + kontrola.getIdentifikatory(dokument) + ".", dokument);
                 }
-                if (ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Puvod", "nsesss:DorucenyDokument",
+                if (ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, "nsesss:Puvod", "nsesss:DorucenyDokument",
                                            "nsesss:DoruceneMnozstvi") != null) {
-                    String s = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Puvod",
+                    String s = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, "nsesss:Puvod",
                                                       "nsesss:DorucenyDokument", "nsesss:DoruceneMnozstvi")
                             .getTextContent();
                     if (!HelperString.hasContent(s)) {

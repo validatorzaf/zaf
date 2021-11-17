@@ -33,7 +33,7 @@ public class Pravidlo89 extends K06PravidloBase {
         for (int i = 0; i < zakladniEntity.size(); i++) {
             Node entita = zakladniEntity.get(i);
             if (entita.getNodeName().equals("nsesss:Dokument")) {
-                Node node = ValuesGetter.getXChild(entita, "nsesss:EvidencniUdaje", "nsesss:Vyrazovani",
+                Node node = ValuesGetter.getXChild(entita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Vyrazovani",
                                                    "nsesss:DataceVyrazeni", "nsesss:RokSpousteciUdalosti");
                 if (node == null) {
                     return nastavChybu("Nenalezen element <nsesss:RokSpousteciUdalosti>. " + getJmenoIdentifikator(
@@ -45,7 +45,7 @@ public class Pravidlo89 extends K06PravidloBase {
                     return false;
                 }
 
-                Node datum = ValuesGetter.getXChild(entita, "nsesss:EvidencniUdaje", NsessV3.VYRIZENI, "nsesss:Datum");
+                Node datum = ValuesGetter.getXChild(entita, NsessV3.EVIDENCNI_UDAJE, NsessV3.VYRIZENI, "nsesss:Datum");
                 if (datum == null) {
                     return nastavChybu("Nenalezen element <nsesss:Datum>. " + getJmenoIdentifikator(entita),
                                        getMistoChyby(entita));

@@ -34,15 +34,19 @@ public class Pravidlo88 extends K06PravidloBase {
 
         for (int i = 0; i < dokumenty.size(); i++) {
             Node dokument = dokumenty.get(i);
-            Node analog = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Manipulace",
-                                                 "nsesss:AnalogovyDokument");
+
+            Node evidUdaje = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE);
+            if (evidUdaje == null) {
+                continue;
+            }
+            Node analog = ValuesGetter.getXChild(evidUdaje, "nsesss:Manipulace", "nsesss:AnalogovyDokument");
             if (analog != null) {
                 String hodnota = analog.getTextContent();
                 if (hodnota.equals("ano")) {
-                    Node datumOdeslani = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", NsessV3.VYRIZENI,
+                    Node datumOdeslani = ValuesGetter.getXChild(evidUdaje, NsessV3.VYRIZENI,
                                                                 "nsesss:DatumOdeslani");
                     if (datumOdeslani != null) {
-                        Node node = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", NsessV3.VYRIZENI,
+                        Node node = ValuesGetter.getXChild(evidUdaje, NsessV3.VYRIZENI,
                                                            "nsesss:OdeslaneMnozstvi");
                         if (node == null) {
                             return nastavChybu("Nenalezen element <nsesss:OdeslaneMnozstvi>. "

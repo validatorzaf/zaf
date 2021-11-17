@@ -5,6 +5,7 @@ import java.util.List;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo60 extends K06PravidloBase {
@@ -27,7 +28,7 @@ public class Pravidlo60 extends K06PravidloBase {
         }
         for (int i = 0; i < dokumenty.size(); i++) {
             Node dokument = dokumenty.get(i);
-            Node ad = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Manipulace",
+            Node ad = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, "nsesss:Manipulace",
                                              "nsesss:AnalogovyDokument");
             if (ad == null) {
                 return nastavChybu("Nenalezen element <nsesss:AnalogovyDokument>. Dokumentu "

@@ -19,8 +19,8 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 //
 // Obsahova 101
 //
-// Pokud existuje jakýkoli element nsesss:Komponenty, všechny dětské elementy
-// nsesss:Komponenta se stejnou hodnotou atributu poradi obsahují stejnou
+// Pokud existuje jakýkoli element <nsesss:Komponenty>, všechny dětské elementy
+// <nsesss:Komponenta> se stejnou hodnotou atributu poradi obsahují stejnou
 // hodnotu atributu druh.
 //
 public class Pravidlo101 extends K06PravidloBase {
@@ -30,10 +30,10 @@ public class Pravidlo101 extends K06PravidloBase {
     public static final String OBS101 = "obs101";
 
     public Pravidlo101() {
-        super(OBS101, "Pokud existuje jakýkoli element nsesss:Komponenty, " +
-                "všechny dětské elementy nsesss:Komponenta se stejnou hodnotou atributu poradi obsahují stejnou hodnotu atributu druh.",
-                "Komponenta má chybné pořadí.",
-                "");
+        super(OBS101,
+                "Pokud existuje jakýkoli element <nsesss:Komponenty>, všechny dětské elementy <nsesss:Komponenta> se stejnou hodnotou atributu poradi obsahují stejnou hodnotu atributu druh.",
+                "Uveden je chybně druh komponent (počítačových souborů).",
+                "Informační list NA, čá. 6/2020, č. 3/2020.");
     }
 
     @Override

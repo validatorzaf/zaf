@@ -127,7 +127,7 @@ public class Pravidlo54a  extends K06PravidloBase {
                 if (!dmdSecInfo.readEvidUdajeIdentifikator()) {
                     return null;
                 }
-                dmdSecInfo.parentEntity = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni",
+                dmdSecInfo.parentEntity = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                                                  "nsesss:MaterskaEntita", "nsesss:VecnaSkupina");
                 break;
             case "nsesss:Komponenta":
@@ -140,21 +140,21 @@ public class Pravidlo54a  extends K06PravidloBase {
                 if (!dmdSecInfo.readEvidUdajeIdentifikator()) {
                     return null;
                 }
-                dmdSecInfo.parentEntity = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni",
+                dmdSecInfo.parentEntity = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                                                  "nsesss:MaterskaEntita", "nsesss:TypovySpis");
                 break;
             case "nsesss:TypovySpis":
                 if (!dmdSecInfo.readEvidUdajeIdentifikator()) {
                     return null;
                 }
-                dmdSecInfo.parentEntity = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni",
+                dmdSecInfo.parentEntity = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                                                  "nsesss:MaterskaEntita", "nsesss:VecnaSkupina");
                 break;
             case "nsesss:Dil":
                 if (!dmdSecInfo.readEvidUdajeIdentifikator()) {
                     return null;
                 }
-                dmdSecInfo.parentEntity = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni",
+                dmdSecInfo.parentEntity = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                                                  "nsesss:MaterskaEntita", "nsesss:Soucast");
                 break;
             default:
@@ -185,17 +185,21 @@ public class Pravidlo54a  extends K06PravidloBase {
         }
         
         private boolean readEvidUdajeIdentifikator() {
-            Node identNode = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Identifikace", "nsesss:Identifikator");
+            Node identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE, "nsesss:Identifikace",
+                                                    "nsesss:Identifikator");
             return readIdent(identNode);
         }
                                 
         private boolean initParentVecnaSkupina() {
-            parentEntity = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:MaterskaEntita", "nsesss:VecnaSkupina");
+            parentEntity = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
+                                                  "nsesss:MaterskaEntita", "nsesss:VecnaSkupina");
             // rodic_type = "věcná skupina";
             if(parentEntity == null){
-                parentEntity = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:MaterskeEntity", "nsesss:VecnaSkupina");
+                parentEntity = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
+                                                      "nsesss:MaterskeEntity", "nsesss:VecnaSkupina");
                 if(parentEntity == null){
-                    parentEntity = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:SpisovyPlan");
+                    parentEntity = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
+                                                          "nsesss:SpisovyPlan");
                     //rodic_type = "spisový plán";
                     if(parentEntity==null) {
                         return false;
@@ -207,10 +211,12 @@ public class Pravidlo54a  extends K06PravidloBase {
 
         private boolean initParentDokument() {
             if(node.getParentNode().getNodeName().equals("mets:xmlData")){
-                parentEntity = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:MaterskaEntita", "nsesss:VecnaSkupina");
+                parentEntity = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
+                                                      "nsesss:MaterskaEntita", "nsesss:VecnaSkupina");
                 // rodic_type = "věcná skupina";
                 if(parentEntity == null){
-                    parentEntity = ValuesGetter.getXChild(node, "nsesss:EvidencniUdaje", "nsesss:Trideni", "nsesss:MaterskeEntity", "nsesss:VecnaSkupina");
+                    parentEntity = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
+                                                          "nsesss:MaterskeEntity", "nsesss:VecnaSkupina");
                     if(parentEntity==null) {
                         return false;
                     }

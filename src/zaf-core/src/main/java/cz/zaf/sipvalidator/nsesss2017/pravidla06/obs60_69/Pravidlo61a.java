@@ -6,6 +6,7 @@ import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 // OBSAHOVÁ č.61a Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano a 
@@ -29,13 +30,17 @@ public class Pravidlo61a extends K06PravidloBase {
         }
         for(Node dokument: dokuments)
         {   
-            Node ad = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Manipulace", "nsesss:AnalogovyDokument");
+            Node ad = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, "nsesss:Manipulace",
+                                             "nsesss:AnalogovyDokument");
             if(ad == null){
                 return nastavChybu("Nenalezen element <nsesss:AnalogovyDokument>. Dokumentu " + kontrola.getIdentifikatory(dokument) + ".", dokument);
             }
             String hodnotaAnalogovyDokument = ad.getTextContent();
-            if(hodnotaAnalogovyDokument.equals("ano") && ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Puvod", "nsesss:VlastniDokument") != null){
-                Node mnozstvi = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Puvod", "nsesss:VlastniDokument", "nsesss:VytvoreneMnozstvi");
+            if (hodnotaAnalogovyDokument.equals("ano") && ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE,
+                                                                                 "nsesss:Puvod",
+                                                                                 "nsesss:VlastniDokument") != null) {
+                Node mnozstvi = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, "nsesss:Puvod",
+                                                       "nsesss:VlastniDokument", "nsesss:VytvoreneMnozstvi");
                 if(mnozstvi == null){
                     return nastavChybu("Nenalezen povinný element <nsesss:VytvoreneMnozstvi>. Dokumentu " + kontrola.getIdentifikatory(dokument) + ".", dokument);
                 }

@@ -14,12 +14,15 @@ import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
+//
 // Obsahova 100
-// Pokud existuje jakýkoli element nsesss:Komponenty, všechny dětské elementy
-// nsesss:Komponenta obsahují
-// v atributu poradi hodnotu, která společně tvoří vzestupnou a souvislou řadu
-// přirozených čísel počínaje 1,
-// přičemž čísla se mohou opakovat a úvodní nuly se ignorují.
+//
+// Pokud existuje jakýkoli element <nsesss:Komponenty>, všechny dětské elementy
+// <nsesss:Komponenta>
+// obsahují v atributu poradi hodnotu, která společně tvoří vzestupnou a
+// souvislou řadu přirozených
+// čísel počínaje 1, přičemž čísla se mohou opakovat a úvodní nuly se ignorují.
+//
 public class Pravidlo100 extends K06PravidloBase {
 
     static Logger log = LoggerFactory.getLogger(Pravidlo100.class);
@@ -27,12 +30,10 @@ public class Pravidlo100 extends K06PravidloBase {
     public static final String OBS100 = "obs100";
 
     public Pravidlo100() {
-        super(OBS100, "Pokud existuje jakýkoli element nsesss:Komponenty, " +
-                "všechny dětské elementy nsesss:Komponenta obsahují v atributu poradi hodnotu, " +
-                "která společně tvoří vzestupnou a souvislou řadu přirozených čísel počínaje 1, " +
-                "přičemž čísla se mohou opakovat a úvodní nuly se ignorují.",
-                "Komponenta má chybné pořadí.",
-                "");
+        super(OBS100,
+                "Pokud existuje jakýkoli element <nsesss:Komponenty>, všechny dětské elementy <nsesss:Komponenta> obsahují v atributu poradi hodnotu, která společně tvoří vzestupnou a souvislou řadu přirozených čísel počínaje 1, přičemž čísla se mohou opakovat a úvodní nuly se ignorují.",
+                "Uvedeno je chybně pořadí komponent (počítačových souborů).",
+                "Informační list NA, čá. 6/2020, č. 3/2020.");
     }
 
     @Override

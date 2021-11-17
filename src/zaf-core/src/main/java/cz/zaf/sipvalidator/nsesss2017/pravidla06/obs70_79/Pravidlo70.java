@@ -6,6 +6,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 public class Pravidlo70 extends K06PravidloBase {
@@ -33,10 +34,10 @@ public class Pravidlo70 extends K06PravidloBase {
             Node identifikator = identifikatory.get(i);
             Node rodic = identifikator.getParentNode();
             if (ValuesGetter.getSpecificChildWithName(rodic, "nsesss:Identifikator").size() > 1) {
-                Node komponenta = ValuesGetter.getXParent(identifikator, "nsesss:Identifikace", "nsesss:EvidencniUdaje",
+                Node komponenta = ValuesGetter.getXParent(identifikator, "nsesss:Identifikace", NsessV3.EVIDENCNI_UDAJE,
                                                           "nsesss:Komponenta");
                 if (komponenta == null) {
-                    Node entita = ValuesGetter.getXParent(identifikator, "nsesss:Identifikace", "nsesss:EvidencniUdaje")
+                    Node entita = ValuesGetter.getXParent(identifikator, "nsesss:Identifikace", NsessV3.EVIDENCNI_UDAJE)
                             .getParentNode();
 
                     return nastavChybu("Element <nsesss:Identifikator> se opakuje přes nesplnění podmínky pravidla. "

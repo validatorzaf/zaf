@@ -35,7 +35,7 @@ public class Pravidlo76 extends K06PravidloBase {
             Node zakladnientita = zakladniEntity.get(i);
             if (zakladnientita.getNodeName().equals("nsesss:Dil") || zakladnientita.getNodeName().equals(
                                                                                                          "nsesss:Spis")) {
-                Node an_ze = ValuesGetter.getXChild(zakladnientita, "nsesss:EvidencniUdaje", "nsesss:Manipulace",
+                Node an_ze = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Manipulace",
                                                     "nsesss:AnalogovyDokument");
                 if (an_ze == null) {
                     return nastavChybu("Element <" + zakladnientita.getNodeName()
@@ -53,7 +53,7 @@ public class Pravidlo76 extends K06PravidloBase {
                 }
                 for (int j = 0; j < dokumenty.size(); j++) {
                     Node dokument = dokumenty.get(j);
-                    Node node = ValuesGetter.getXChild(dokument, "nsesss:EvidencniUdaje", "nsesss:Manipulace",
+                    Node node = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, "nsesss:Manipulace",
                                                        "nsesss:AnalogovyDokument");
                     if (node == null) {
                         return nastavChybu("Element <nsesss:Dokument> neobsahuje dětský element <nsesss:AnalogovyDokument>. "
@@ -68,7 +68,7 @@ public class Pravidlo76 extends K06PravidloBase {
                 }
             }
             if (zakladnientita.getNodeName().equals("nsesss:Dokument")) {
-                Node and = ValuesGetter.getXChild(zakladnientita, "nsesss:EvidencniUdaje", "nsesss:Manipulace",
+                Node and = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Manipulace",
                                                   "nsesss:AnalogovyDokument");
                 if (and == null) {
                     return nastavChybu("Element <nsesss:Dokument> neobsahuje dětský element <nsesss:AnalogovyDokument>. "
@@ -85,7 +85,7 @@ public class Pravidlo76 extends K06PravidloBase {
                                            zakladnientita);
                     }
                     for (Node vs: vecneSkupiny) {
-                        Node n = ValuesGetter.getXChild(vs, "nsesss:EvidencniUdaje", "nsesss:Manipulace",
+                        Node n = ValuesGetter.getXChild(vs, NsessV3.EVIDENCNI_UDAJE, "nsesss:Manipulace",
                                                         "nsesss:AnalogovyDokument");
                         if (n == null) {
                             return nastavChybu("Nenalezen element <nsesss:AnalogovyDokument>. " 
