@@ -216,6 +216,21 @@
                 </nsesss:Trideni>
               </nsesss:EvidencniUdaje>
             </nsesss:Komponenta>
+            <nsesss:Komponenta ID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FD" druh="průvodní dopis" forma_uchovani="originál ve výstupním datovém formátu" poradi="1" verze="2">
+              <nsesss:EvidencniUdaje>
+                <nsesss:Identifikace>
+                  <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.E">MP120B04D1FD</nsesss:Identifikator>
+                </nsesss:Identifikace>
+                <nsesss:Popis>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                </nsesss:Popis>
+                <nsesss:Trideni>
+                  <nsesss:JednoduchySpisovyZnak>2005/087.1</nsesss:JednoduchySpisovyZnak>
+                  <nsesss:PlneUrcenySpisovyZnak>2005/087.1</nsesss:PlneUrcenySpisovyZnak>
+                </nsesss:Trideni>
+              </nsesss:EvidencniUdaje>
+            </nsesss:Komponenta>
           </nsesss:Komponenty>
         </nsesss:Dokument>
       </mets:xmlData>
@@ -337,10 +352,42 @@
       </mets:mdWrap>
     </mets:digiprovMD>
   </mets:amdSec>
+  <mets:amdSec ID="amd005">
+    <mets:digiprovMD ID="id_bla5">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>123456</tns:HodnotaID>
+                <tns:ZdrojID>ERMS XY</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2018-03-05T08:00:00</tp:DatumVzniku>
+              <tp:DatumCasOd>2018-03-05T08:00:00</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-03-05T08:00:00</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>MP120B04D1FD</tns:HodnotaID>
+                  <tns:ZdrojID>Gordic.Ginis.MP12.E</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti/>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
   <mets:fileSec>
-    <mets:fileGrp USE="Original">
-      <mets:file CHECKSUM="b9a6111074193733ed2a2e873d17b43f4191d92be59e0918d1b9c230bbccc86d" CHECKSUMTYPE="SHA-256" CREATED="2015-11-09T17:02:33" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" ID="MP120B04D1FC" MIMETYPE="application/pdf" OWNERID="MP120B04D1FC" SIZE="489060">
-        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\soubor1.pdf" xlink:type="simple"/>
+    <mets:fileGrp>
+      <mets:file CHECKSUM="9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08" CHECKSUMTYPE="SHA-256" CREATED="2015-11-09T17:02:33" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" ID="MP120B04D1FC" MIMETYPE="text/plain" OWNERID="MP120B04D1FC" SIZE="4">
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\soubor.txt" xlink:type="simple"/>
+      </mets:file>
+      <mets:file CHECKSUM="b9a6111074193733ed2a2e873d17b43f4191d92be59e0918d1b9c230bbccc86d" CHECKSUMTYPE="SHA-256" CREATED="2015-11-09T17:02:33" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FD" ID="MP120B04D1FD" MIMETYPE="application/pdf" OWNERID="MP120B04D1FD" SIZE="489060">
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\soubor.pdf" xlink:type="simple"/>
       </mets:file>
     </mets:fileGrp>
   </mets:fileSec>
@@ -350,6 +397,9 @@
         <mets:div ADMID="amd003" DMDID="MP12P00BTZ3Z" TYPE="dokument">
           <mets:div ADMID="amd004" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" TYPE="komponenta">
             <mets:fptr FILEID="MP120B04D1FC"/>
+          </mets:div>
+          <mets:div ADMID="amd005" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FD" TYPE="komponenta">
+            <mets:fptr FILEID="MP120B04D1FD"/>
           </mets:div>
         </mets:div>
       </mets:div>
