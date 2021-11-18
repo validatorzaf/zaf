@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -65,6 +64,21 @@ public class Pravidlo99 extends K06PravidloBase {
 
     @Override
     protected boolean kontrolaPravidla() {
+        
+        Set<Node> digitDoks = new HashSet<>();
+
+        List<Node> dokumentNodes = metsParser.getDokumenty();
+        for(Node dokumentNode: dokumentNodes) {
+            Node analogDokNode = ValuesGetter.getXChild(dokumentNode, NsessV3.EVIDENCNI_UDAJE,
+                                                        "nsesss:Manipulace",
+                                                        "nsesss:AnalogovyDokument");
+            if (analogDokNode != null) {
+                String value = analogDokNode.getTextContent();
+                if ("ne".equals(value)) {
+                    digitDoks.add(dokumentNode);
+                }
+            }
+        }
 
         // získání všech komponent ve výstupním datovém formátu
         List<Node> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
@@ -74,18 +88,25 @@ public class Pravidlo99 extends K06PravidloBase {
 
         Map<Node, Map<Integer, Node>> kandidati = new HashMap<>();
         for (Node komponenta: komponenty) {
+            // Kontrola, zda je soucast digit dokumentu?
+            Node komponentyNode = komponenta.getParentNode();
+            Node dokumentNode = komponentyNode.getParentNode();
+            if (!digitDoks.contains(dokumentNode)) {
+                continue;
+            }
+
             String formaUchovani = ValuesGetter.getValueOfAttribut(komponenta, JmenaElementu.FORMA_UCHOVANI);
 
-            // posuzujeme jen original ve vystupnim formatu
-            if (!JmenaElementu.FORMA_UCHOVANI_ORIGINAL_VE_VYST_DAT_FORMATU.equals(formaUchovani))
+            // posuzujeme jen original ve vystupnim formatu nebo original
+            if (!JmenaElementu.FORMA_UCHOVANI_ORIGINAL_VE_VYST_DAT_FORMATU.equals(formaUchovani) &&
+                    !JmenaElementu.FORMA_UCHOVANI_ORIGINAL.equals(formaUchovani))
                 continue;
 
-            // nalezeni/pridani mapy k rodici
-            Node parent = komponenta.getParentNode();
-            Map<Integer, Node> mapaPoradi = kandidati.get(parent);
+            // nalezeni/pridani mapy k rodici            
+            Map<Integer, Node> mapaPoradi = kandidati.get(dokumentNode);
             if (mapaPoradi == null) {
                 mapaPoradi = new HashMap<>();
-                kandidati.put(parent, mapaPoradi);
+                kandidati.put(dokumentNode, mapaPoradi);
             }
 
             String poradiKomponentyStr = ValuesGetter.getValueOfAttribut(komponenta, JmenaElementu.PORADI);
@@ -144,23 +165,10 @@ public class Pravidlo99 extends K06PravidloBase {
     }
 
     private boolean isVyssiVerze(Node puvodniKomp, Node novaKomp) {
-        String formaUchovaniOrig = ValuesGetter.getValueOfAttribut(puvodniKomp, JmenaElementu.FORMA_UCHOVANI);
-        String formaUchovaniNovy = ValuesGetter.getValueOfAttribut(novaKomp, JmenaElementu.FORMA_UCHOVANI);
-        if (Objects.equals(formaUchovaniOrig, formaUchovaniNovy)) {
-            // shodny typ -> nutne porovnat verze
-            Integer verzeOrig = ValuesGetter.getAttribute(puvodniKomp, JmenaElementu.VERZE);
-            Integer verzeNovy = ValuesGetter.getAttribute(novaKomp, JmenaElementu.VERZE);
-            return (verzeNovy > verzeOrig);
-        }
-        if(JmenaElementu.FORMA_UCHOVANI_ORIGINAL_VE_VYST_DAT_FORMATU.equals(formaUchovaniOrig)) {
-            // orig je ve vystupnim formatu -> nova nemuze byt lepsi
-            return false;
-        }
-        if(JmenaElementu.FORMA_UCHOVANI_ORIGINAL_VE_VYST_DAT_FORMATU.equals(formaUchovaniNovy)) {
-            return true;
-        }
-        // Toto by nemelo nastat
-        return false;
+        // nutne porovnat verze
+        Integer verzeOrig = ValuesGetter.getAttribute(puvodniKomp, JmenaElementu.VERZE);
+        Integer verzeNovy = ValuesGetter.getAttribute(novaKomp, JmenaElementu.VERZE);
+        return (verzeNovy > verzeOrig);
     }
 
     private boolean checkPdfA(Node flocatNode) {
