@@ -33,6 +33,7 @@ public class NsessV3 {
     public final static String PLNE_URCENY_SPISOVY_ZNAK = "nsesss:PlneUrcenySpisovyZnak";
     public final static String ODKAZ_PUVODNI_KOMPONENTA = "nsesss:OdkazPuvodniKomponenta";
     public final static String TRIDENI = "nsesss:Trideni";
+    public final static String VYRAZOVANI = "nsesss:Vyrazovani";
 
     private NsessV3() {
     }

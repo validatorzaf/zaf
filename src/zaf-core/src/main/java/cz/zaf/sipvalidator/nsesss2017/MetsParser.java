@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -215,28 +214,6 @@ public class MetsParser {
                 
         if (zakladniEntity != null && zakladniEntity.isEmpty())
             zakladniEntity = null; // kvůli pravidlům
-        
-        zakladniSipInfo(sipInfo);
-    }
-
-    public void zakladniSipInfo(SipInfo sip) {
-        if (CollectionUtils.isEmpty(zakladniEntity)) {
-            // chybi zakladni entita...
-            return;
-        }
-        // info se nastavi dle prvni zakladni entity
-        Node zaklEntita = zakladniEntity.get(0);
-        Node skZnakMaterskeEntity = ValuesGetter.getXChild(zaklEntita,
-                                                           NsessV3.EVIDENCNI_UDAJE,
-                                                           "nsesss:Vyrazovani", "nsesss:SkartacniRezim",
-                                                           "nsesss:SkartacniZnak");
-        if (skZnakMaterskeEntity != null)
-            sip.setSKznak(skZnakMaterskeEntity.getTextContent());
-        Node skLhutaMaterskeEntity = ValuesGetter.getXChild(zaklEntita, NsessV3.EVIDENCNI_UDAJE,
-                                                            "nsesss:Vyrazovani", "nsesss:SkartacniRezim",
-                                                            "nsesss:SkartacniLhuta");
-        if (skLhutaMaterskeEntity != null)
-            sip.setSKLhuta(skLhutaMaterskeEntity.getTextContent());
     }
 
     public Document getDocument() {

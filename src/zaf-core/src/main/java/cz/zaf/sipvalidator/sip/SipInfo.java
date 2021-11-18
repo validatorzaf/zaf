@@ -92,7 +92,7 @@ public class SipInfo{
     
     final protected ArrayList<VysledekKontroly> seznam_kontrol = new ArrayList<>();
     
-    private String sip_skznak = " - ", sip_sklhuta = " - ", sip_kodovani;    
+    private String sip_kodovani;
     private String xsi_schemaLocation;
     
     public enum LoadStatus {
@@ -183,22 +183,6 @@ public class SipInfo{
         return seznam_kontrol;
     }
 
-    public void setSKznak(String znak){
-        sip_skznak = znak;
-    }
-    
-    public void setSKLhuta(String lhuta){
-        sip_sklhuta = lhuta;
-    }
-    
-    public String getSKznak(){
-        return sip_skznak;
-    }
-    
-    public String getSKlhuta(){
-        return sip_sklhuta;
-    }
-    
     public String getKodovani(){
         return sip_kodovani;
     }
