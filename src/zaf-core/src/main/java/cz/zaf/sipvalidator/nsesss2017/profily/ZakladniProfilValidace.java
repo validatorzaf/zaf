@@ -37,6 +37,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo37;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo38;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo39;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo40;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo43a;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo44;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo45;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo46;
@@ -138,7 +139,8 @@ public enum ZakladniProfilValidace
 					new Pravidlo37(),
 					new Pravidlo38(),
 					new Pravidlo39(), 
-					new Pravidlo40(), 
+                    new Pravidlo40(),
+                    new Pravidlo43a(),
 					new Pravidlo44(), 
 					new Pravidlo45(), 
 					new Pravidlo46(), 
@@ -344,7 +346,8 @@ public enum ZakladniProfilValidace
 					new Pravidlo37(),
 					new Pravidlo38(),
 					new Pravidlo39(), 
-					new Pravidlo40(), 
+                    new Pravidlo40(),
+                    new Pravidlo43a(),
 					new Pravidlo44(), 
 					new Pravidlo45(), 
 					new Pravidlo46(), 
@@ -447,7 +450,8 @@ public enum ZakladniProfilValidace
 					new Pravidlo37(),
 					new Pravidlo38(),
 					new Pravidlo39(), 
-					new Pravidlo40(), 
+                    new Pravidlo40(),
+                    new Pravidlo43a(),
 					new Pravidlo44(), 
 					new Pravidlo45(), 
 					new Pravidlo46(), 

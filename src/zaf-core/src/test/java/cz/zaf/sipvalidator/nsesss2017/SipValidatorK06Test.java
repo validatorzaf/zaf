@@ -39,6 +39,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo37;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo38;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo39;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo40;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo43a;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo44;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo45;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo46;
@@ -941,6 +942,22 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
                        ZakladniProfilValidace.PREJIMKA,
                        new String[] {},
                        new String[] { Pravidlo44.OBS44 });
+    }
+
+    @Test
+    void testK06_43a_01() {
+        testPackageK06("43a-chyba", StavKontroly.CHYBA,
+                       ZakladniProfilValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { Pravidlo43a.OBS43A });
+    }
+
+    @Test
+    void testK06_43a_OK01() {
+        testPackageK06("43a-OK", null,
+                       ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo43a.OBS43A },
+                       new String[] {});
     }
 
     @Test

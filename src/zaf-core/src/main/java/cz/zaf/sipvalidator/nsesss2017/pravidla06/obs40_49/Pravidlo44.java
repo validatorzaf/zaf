@@ -12,7 +12,12 @@ import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
-//OBSAHOVÁ č.44 Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut DMDID s hodnotou uvedenou v atributu ID jakéhokoli elementu <nsesss:Komponenta>.",
+//
+// OBSAHOVÁ č.44
+//
+// Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut DMDID s
+// hodnotou uvedenou v atributu ID jakéhokoli elementu <nsesss:Komponenta>.",
+//
 public class Pravidlo44 extends K06PravidloBase {
 	
 	static final public String OBS44 = "obs44";
