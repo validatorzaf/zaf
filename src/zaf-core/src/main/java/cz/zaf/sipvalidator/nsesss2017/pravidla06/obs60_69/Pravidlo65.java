@@ -9,19 +9,31 @@ import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.Obj_Node_int;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
+//
+// OBSAHOVÁ č.65
+//
+// Pokud je základní entitou díl (<nsesss:Dil>) nebo spis (<nsesss:Spis>), potom
+// v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>,
+// <nsesss:DataceVyrazeni> obsahuje element <nsesss:RokSkartacniOperace>
+// hodnotu, která je rovna nebo větší vyšší hodnotě, přičemž jednou hodnotou je
+// součet hodnoty elementu <nsesss:RokSpousteciUdalosti>, 1 a hodnoty elementu
+// <nsesss:SkartacniLhuta> uvedeného v rodičovském elementu
+// <nsesss:SkartacniRezim> a druhou hodnotou nejvyšší hodnota součtu hodnoty
+// elementu <nsesss:DatumDoruceni> nebo <nsesss:DatumVytvoreni> (v závislosti na
+// tom, zda jde o doručený nebo vlastní dokument), 1 a hodnoty elementu
+// <nsesss:SkartacniLhuta> jakékoli dětské entity dokument (nsesss:Dokument>).
+//
 public class Pravidlo65 extends K06PravidloBase {
 
     static final public String OBS65 = "obs65";
 
     public Pravidlo65() {
         super(OBS65,
-                "Pokud je základní entitou díl (<nsesss:Dil>) nebo spis (<nsesss:Spis>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> obsahuje element <nsesss:RokSkartacniOperace> hodnotu, která je rovna vyšší hodnotě, přičemž jednou hodnotou je součet hodnoty elementu <nsesss:RokSpousteciUdalosti>, 1 a hodnoty elementu <nsesss:SkartacniLhuta> uvedeného v rodičovském elementu <nsesss:SkartacniRezim> a druhou hodnotou nejvyšší hodnota součtu hodnoty elementu <nsesss:DatumDoruceni> nebo <nsesss:DatumVytvoreni> (v závislosti na tom, zda jde o doručený nebo vlastní dokument), 1 a hodnoty elementu <nsesss:SkartacniLhuta> jakékoli dětské entity dokument (nsesss:Dokument>).",
+                "Pokud je základní entitou díl (<nsesss:Dil>) nebo spis (<nsesss:Spis>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> obsahuje element <nsesss:RokSkartacniOperace> hodnotu, která je rovna nebo větší vyšší hodnotě, přičemž jednou hodnotou je součet hodnoty elementu <nsesss:RokSpousteciUdalosti>, 1 a hodnoty elementu <nsesss:SkartacniLhuta> uvedeného v rodičovském elementu <nsesss:SkartacniRezim> a druhou hodnotou nejvyšší hodnota součtu hodnoty elementu <nsesss:DatumDoruceni> nebo <nsesss:DatumVytvoreni> (v závislosti na tom, zda jde o doručený nebo vlastní dokument), 1 a hodnoty elementu <nsesss:SkartacniLhuta> jakékoli dětské entity dokument (nsesss:Dokument>).",
                 "Uveden je chybně rok skartační operace u dílu nebo spisu (počítá se jak podle roku spouštěcí události + 1 + skartační lhůta, tak podle roku skartační operace u dokumentů - záleží na tom, co je vyšší).",
                 "§ 15 odst. 5 vyhlášky č. 259/2012 Sb.");
     }
 
-    //OBSAHOVÁ č.65 Pokud je základní entitou díl (<nsesss:Dil>) nebo spis (<nsesss:Spis>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> obsahuje element <nsesss:RokSkartacniOperace> hodnotu, 
-    // která je rovna vyšší hodnotě, přičemž jednou hodnotou je součet hodnoty elementu <nsesss:RokSpousteciUdalosti>, 1 a hodnoty elementu <nsesss:SkartacniLhuta> uvedeného v rodičovském elementu <nsesss:SkartacniRezim> a druhou hodnotou nejvyšší hodnota roku skartační operace jakékoli dětské entity dokument (nsesss:Dokument>).",
     @Override
     protected boolean kontrolaPravidla() {
         List<Node> zakladniEntity = predpokladZakladniEntity();
@@ -33,7 +45,7 @@ public class Pravidlo65 extends K06PravidloBase {
         for (int i = 0; i < zakladniEntity.size(); i++) {
             Node zakladniEntita = zakladniEntity.get(i);
             String jmeno = zakladniEntita.getNodeName();
-            if (jmeno.equals("nsesss:Spis") || jmeno.equals("nsesss:Dil")) {
+            if (jmeno.equals(NsessV3.SPIS) || jmeno.equals(NsessV3.DIL)) {
                 Node node = ValuesGetter.getXChild(zakladniEntita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Vyrazovani",
                                                    "nsesss:DataceVyrazeni", "nsesss:RokSkartacniOperace");
                 if (node == null) {
@@ -148,8 +160,8 @@ public class Pravidlo65 extends K06PravidloBase {
                 //PODMÍNKA
                 int hodnota_maximalni = Math.max(hodnota_rokSpudalostiPlusJednaPlusSkartacniLhuta,
                                                  hodnota_rokSkartacniOperace_dokument);
-                if (hodnota_rokSkartacniOperace_spis != hodnota_maximalni) {
-                    if (hodnota_rokSpudalostiPlusJednaPlusSkartacniLhuta != hodnota_rokSkartacniOperace_dokument) {
+                if (hodnota_rokSkartacniOperace_spis < hodnota_maximalni) {
+                    if (hodnota_rokSpudalostiPlusJednaPlusSkartacniLhuta > hodnota_rokSkartacniOperace_dokument) {
                         return nastavChybu("Rok uvedený v elementu <nsesss:RokSkartacniOperace>: "
                                 + hodnota_rokSkartacniOperace_spis
                                 + ", se nerovná nejvyšší hodnotě. Buď nejvyšší hodnotě z dětských elementů <nsesss:Dokument>: "
