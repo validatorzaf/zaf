@@ -13,6 +13,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs100_109.Pravidlo101;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs100_109.Pravidlo102;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs100_109.Pravidlo103;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs100_109.Pravidlo104;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs100_109.Pravidlo105;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo10;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo11;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo12;
@@ -3004,5 +3005,54 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("104-chyba1", StavKontroly.CHYBA, ZakladniProfilValidace.PREJIMKA,
                        new String[] {},
                        new String[] { Pravidlo104.OBS104 });
+    }
+
+    @Test
+    void testK06_105_OK01() {
+        testPackageK06("105-OK1", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo105.OBS105 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_105_OK02() {
+        testPackageK06("105-OK2", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo105.OBS105 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_105_01() {
+        testPackageK06("105-chyba1", StavKontroly.CHYBA, ZakladniProfilValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { Pravidlo105.OBS105 });
+    }
+
+    @Test
+    void testK06_105_02() {
+        testPackageK06("105-chyba2", StavKontroly.CHYBA, ZakladniProfilValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { Pravidlo105.OBS105 });
+    }
+
+    @Test
+    void testK06_105_03() {
+        testPackageK06("105-chyba3", StavKontroly.CHYBA, ZakladniProfilValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { Pravidlo105.OBS105 });
+    }
+
+    @Test
+    void testK06_105_04() {
+        testPackageK06("105-chyba4", StavKontroly.CHYBA, ZakladniProfilValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { Pravidlo105.OBS105 });
+    }
+
+    @Test
+    void testK06_105_05() {
+        testPackageK06("105-chyba5", StavKontroly.CHYBA, ZakladniProfilValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { Pravidlo105.OBS105 });
     }
 }
