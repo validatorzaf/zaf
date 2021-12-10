@@ -12,6 +12,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs100_109.Pravidlo100;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs100_109.Pravidlo101;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs100_109.Pravidlo102;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs100_109.Pravidlo103;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs100_109.Pravidlo104;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo10;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo11;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo12;
@@ -2968,5 +2969,40 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("103-chyba2", StavKontroly.CHYBA, ZakladniProfilValidace.PREJIMKA,
                        new String[] {},
                        new String[] { Pravidlo103.OBS103 });
+    }
+
+    @Test
+    void testK06_104_OK01() {
+        testPackageK06("104-OK1", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo104.OBS104 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_104_OK02() {
+        testPackageK06("104-OK2", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo104.OBS104 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_104_OK03() {
+        testPackageK06("104-OK3", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo104.OBS104 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_104_OK04() {
+        testPackageK06("104-OK4", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo104.OBS104 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_104_01() {
+        testPackageK06("104-chyba1", StavKontroly.CHYBA, ZakladniProfilValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { Pravidlo104.OBS104 });
     }
 }
