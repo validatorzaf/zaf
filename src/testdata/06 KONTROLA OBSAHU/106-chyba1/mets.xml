@@ -201,7 +201,7 @@
             </nsesss:Manipulace>
           </nsesss:EvidencniUdaje>
           <nsesss:Komponenty>
-            <nsesss:Komponenta ID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" druh="průvodní dopis" forma_uchovani="originál" poradi="1" verze="1">
+            <nsesss:Komponenta ID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" druh="průvodní dopis" forma_uchovani="originál" poradi="1" verze="3">
               <nsesss:EvidencniUdaje>
                 <nsesss:Identifikace>
                   <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.E">MP120B04D1FC</nsesss:Identifikator>
@@ -216,7 +216,7 @@
                 </nsesss:Trideni>
               </nsesss:EvidencniUdaje>
             </nsesss:Komponenta>
-            <nsesss:Komponenta ID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FD" druh="průvodní dopis" forma_uchovani="originál ve výstupním datovém formátu" poradi="2" verze="1">
+            <nsesss:Komponenta ID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FD" druh="průvodní dopis" forma_uchovani="originál ve výstupním datovém formátu" poradi="1" verze="1">
               <nsesss:EvidencniUdaje>
                 <nsesss:Identifikace>
                   <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.E">MP120B04D1FD</nsesss:Identifikator>
@@ -231,7 +231,7 @@
                 </nsesss:Trideni>
               </nsesss:EvidencniUdaje>
             </nsesss:Komponenta>
-            <nsesss:Komponenta ID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FE" druh="průvodní dopis" forma_uchovani="originál ve výstupním datovém formátu" poradi="2" verze="2">
+            <nsesss:Komponenta ID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FE" druh="průvodní dopis" forma_uchovani="originál ve výstupním datovém formátu" poradi="1" verze="2">
               <nsesss:EvidencniUdaje>
                 <nsesss:Identifikace>
                   <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.E">MP120B04D1FE</nsesss:Identifikator>

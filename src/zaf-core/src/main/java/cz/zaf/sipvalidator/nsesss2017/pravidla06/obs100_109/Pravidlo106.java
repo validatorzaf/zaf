@@ -75,31 +75,32 @@ public class Pravidlo106 extends K06PravidloBase {
 
     private boolean kontrola(Node dokNode, Integer pozice, List<Node> komps) {
 
-        Node kompVeVystFormatu = null;
+        Integer nejvyssiVerzeVystFormatu = null;
         Integer nejvyssiVerze = null;
+        Node kompVeVystFormatu = null;
 
         for (Node komp : komps) {
-            String formUchovani = ValuesGetter.getValueOfAttribut(komp, JmenaElementu.FORMA_UCHOVANI);
             Integer verze = ValuesGetter.getAttribute(komp, JmenaElementu.VERZE);
             if (nejvyssiVerze == null || verze > nejvyssiVerze) {
                 nejvyssiVerze = verze;
-                if (kompVeVystFormatu != null) {
-                    return nastavChybu("Existuje vyšší verze nežli je komponenta ve výstupním formátu, pozice: "
-                            + pozice
-                            + ", kolidující verze: " + verze, komp);
-                }
-                if (JmenaElementu.FORMA_UCHOVANI_ORIGINAL_VE_VYST_DAT_FORMATU.equals(formUchovani)) {
+            }
+            String formUchovani = ValuesGetter.getValueOfAttribut(komp, JmenaElementu.FORMA_UCHOVANI);
+            if (JmenaElementu.FORMA_UCHOVANI_ORIGINAL_VE_VYST_DAT_FORMATU.equals(formUchovani)) {
+                if (nejvyssiVerzeVystFormatu == null || verze > nejvyssiVerzeVystFormatu) {
+                    nejvyssiVerzeVystFormatu = verze;
                     kompVeVystFormatu = komp;
-                }
-            } else {
-                // nejedna se o nejvyssi verze -> nesmi byt vystupni format
-                if (JmenaElementu.FORMA_UCHOVANI_ORIGINAL_VE_VYST_DAT_FORMATU.equals(formUchovani)) {
-                    return nastavChybu("Existuje vyšší verze nežli je komponenta ve výstupním formátu, pozice: "
-                            + pozice
-                            + ", kolidující verze: " + verze, komp);
                 }
             }
         }
+
+        if (nejvyssiVerzeVystFormatu != null) {
+            if (nejvyssiVerze > nejvyssiVerzeVystFormatu) {
+                return nastavChybu("Existuje komponenta s vyšší verzí v nevýstupním formátu než je komponenta ve výstupním formátu, pozice: "
+                        + pozice
+                        + ", kolidující verze: " + nejvyssiVerzeVystFormatu, kompVeVystFormatu);
+            }
+        }
+
         return true;
     }
 
