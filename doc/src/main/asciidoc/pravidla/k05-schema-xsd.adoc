@@ -1,0 +1,12 @@
+= Kontrola proti schématu
+
+Kontrola proti schématu XSD.
+
+== val1
+
+[horizontal]
+
+Pravidlo:: Soubor je validní proti schématům mets.xsd (v1.11), xlink.xsd (v2), nsesss.xsd (v3), nsesss-TrP.xsd, ess_ns.xsd a dmBaseTypes.xsd (v2.1).
+Kód:: val1
+Zdroj:: Požadavek 11.2.5 NSESSS, bod 2.1. přílohy č. 3 NSESSS.
+Popis chyby:: Datový balíček SIP není validní proti schématům http://www.loc.gov/standards/mets/mets.xsd, http://www.loc.gov/standards/mets/xlink.xsd, http://www.mvcr.cz/nsesss/v3/nsesss.xsd, http://www.mvcr.cz/nsesss/v3/nsesss-TrP.xsd, http://www.mvcr.cz/nsesss/v3/ess_ns.xsd a http://www.mvcr.cz/nsesss/v3/dmBaseTypes.xsd.

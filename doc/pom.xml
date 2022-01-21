@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.simpligility.maven</groupId>
+		<artifactId>progressive-organization-pom</artifactId>
+		<version>7.0.0</version>
+	</parent>
+
+	<groupId>cz.zaf</groupId>
+	<artifactId>zaf-doc</artifactId>
+	<version>0.9.3-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>ZAF Documentation</name>
+    <description>ZAF reference documentation</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<gpg.skip>true</gpg.skip>
+		<maven.javadoc.skip>true</maven.javadoc.skip>
+		<enforcer.skip>true</enforcer.skip>
+
+        <asciidoctor.base-output-dir>${project.build.directory}/asciidoctor/</asciidoctor.base-output-dir>
+        <!--<asciidoctor.theme-dir>${project.build.directory}/hibernate-asciidoctor-theme</asciidoctor.theme-dir>-->
+        <asciidoctor.aggregated-resources-dir>${project.build.directory}/aggregated-resources</asciidoctor.aggregated-resources-dir>
+        <!--<asciidoctor.examples-source-dir>${basedir}/src/test/java</asciidoctor.examples-source-dir>
+        <asciidoctor.examples-resources-dir>${basedir}/src/test/resources</asciidoctor.examples-resources-dir>-->
+
+        <html.meta.description>ZAF - Reference Documentation</html.meta.description>
+        <html.meta.keywords>zaf, NSESSS</html.meta.keywords>
+        <html.meta.project-key>zaf</html.meta.project-key>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>2.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-collections4</artifactId>
+				<version>4.1</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>2.5</version>
+			</dependency>
+			<!-- org.slf4j -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.7.30</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>1.2.3</version>
+			</dependency>
+			<dependency>
+				<groupId>net.lingala.zip4j</groupId>
+				<artifactId>zip4j</artifactId>
+				<version>2.2.3</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>1.13</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tika</groupId>
+				<artifactId>tika-core</artifactId>
+				<version>1.24.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tika</groupId>
+				<artifactId>tika-parsers</artifactId>
+				<version>1.24.1</version>
+			</dependency>
+			<dependency>
+				<groupId>com.ibm.icu</groupId>
+				<artifactId>icu4j</artifactId>
+				<version>65.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-engine</artifactId>
+				<version>5.5.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.1.0</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+            <plugin>
+                <groupId>org.asciidoctor</groupId>
+                <artifactId>asciidoctor-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>zaf-output-html</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html5</backend>
+                            <sourceDocumentName>pravidla/index.adoc</sourceDocumentName>
+                            <outputDirectory>${asciidoctor.base-output-dir}/pravidla/html_single</outputDirectory>
+                            <attributes>
+                                <imagesdir>images</imagesdir>
+                                <stylesdir>css</stylesdir>
+                                <iconfont-remote>false</iconfont-remote>
+                                <iconfont-name>font-awesome/css/font-awesome.min</iconfont-name>
+                                <source-highlighter>coderay</source-highlighter>
+                            </attributes>
+
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <relativeBaseDir>true</relativeBaseDir>
+                </configuration>
+           </plugin>
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+				</plugin>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>2.2.6.RELEASE</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	<profiles>
+		<!-- Use this profile to build release version of the application -->
+		<profile>
+			<id>release</id>
+		</profile>
+		<!-- Use this profile to skip tests during build -->
+		<profile>
+			<id>skiptest</id>
+			<properties>
+				<maven.test.skip>true</maven.test.skip>
+			</properties>
+		</profile>
+	</profiles>
+
+    <scm>
+        <connection>scm:git:ssh://gitlab.lightcomp.cz/zaf/zaf.git</connection>
+        <developerConnection>scm:git:ssh://git@gitlab.lightcomp.cz/zaf/zaf.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+	<distributionManagement>
+		<repository>
+			<id>LightCompReleaseRepository</id>
+			<url>https://www.lightcomp.cz/releases/repository/lc-public-release</url>
+		</repository>
+		<snapshotRepository>
+			<id>frnkRepo</id>
+			<url>http://10.2.0.2:8080/artifactory/libs-snapshot-local</url>
+		</snapshotRepository>
+
+	</distributionManagement>
+
+
+
+</project>

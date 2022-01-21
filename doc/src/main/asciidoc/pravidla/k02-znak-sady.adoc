@@ -1,0 +1,12 @@
+= Kontrola znakové sady
+
+Kontroluje kódování SIP souboru.
+
+== kod1
+
+[horizontal]
+
+Pravidlo:: Znakovou sadou souboru je Unicode/UCS v kódování UTF-8 bez BOM (Byte order mark).
+Kód:: kod1
+Zdroj:: Požadavek 11.2.7 NSESSS.
+Popis chyby:: Znaková sada datového balíčku SIP není Unicode/UCS v kódování UTF-8 bez BOM (Byte order mark).

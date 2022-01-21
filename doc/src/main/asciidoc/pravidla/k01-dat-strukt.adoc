@@ -1,0 +1,28 @@
+﻿= Kontrola datové struktury
+
+== dat1
+
+[horizontal]
+
+Pravidlo:: Datový balíček SIP je soubor v datovém formátu ZIP (jeho MIME Content-type je detekován jako application/zip) nebo složka.
+Kód:: dat1
+Zdroj:: Požadavek 11.2.9 a 11.2.1 NSESSS.
+Popis chyby:: Datový balíček SIP je chybně strukturován.
+
+== dat2
+
+[horizontal]
+
+Pravidlo:: Pokud je datový balíček SIP komprimován do souboru v datovém formátu ZIP, po rozbalení obsahuje právě jednu složku. Ta má stejný název jako je název souboru v datovém formátu ZIP.
+Kód:: dat2
+Zdroj:: Požadavek 11.2.9 NSESSS.
+Popis chyby:: Uvedeno je chybně označení datového balíčku SIP.
+
+== dat3
+
+[horizontal]
+
+Pravidlo:: Pokud je datový balíček SIP komprimován do souboru v datovém formátu ZIP, po rozbalení obsahuje právě jednu složku. Ta má stejný název jako je název souboru v datovém formátu ZIP.
+Kód:: dat3
+Zdroj:: Požadavek 11.2.2, 11.2.3 a 11.2.8 NSESSS.
+Popis chyby:: Uvedena jsou chybně metadata a komponenty (počítačové soubory) v datovém balíčku SIP.

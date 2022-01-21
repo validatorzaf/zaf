@@ -1,0 +1,10 @@
+= Kontrola škodlivého kódu
+
+== vir1
+
+[horizontal]
+
+Pravidlo:: Datový balíček SIP neobsahuje hrozbu.
+Kód:: vir1
+Zdroj:: § 21 odst. 6 vyhlášky č. 259/2012 Sb.
+Popis chyby:: Datový balíček SIP obsahuje hrozbu.

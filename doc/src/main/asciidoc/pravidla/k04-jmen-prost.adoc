@@ -1,0 +1,19 @@
+= Kontrola jmenných prostorů
+
+== ns1
+
+[horizontal]
+
+Pravidlo:: Soubor obsahuje právě jeden kořenový element <mets:mets>.
+Kód:: ns1
+Zdroj:: Bod 2.1. přílohy č. 3 NSESSS.
+Popis chyby:: Chybí kořenový element datového balíčku SIP.
+
+== ns2
+
+[horizontal]
+
+Pravidlo:: Element <mets:mets> obsahuje atribut xsi:schemaLocation s hodnotou http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 TransakcniProtokolNavrh_verze1.7.xsd nebo s hodnotou http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 http://www.mvcr.cz/nsesss/v3/nsesss-TrP.xsd.
+Kód:: ns2
+Zdroj:: Bod 2.1. přílohy č. 3 NSESSS.
+Popis chyby:: Popsáno je chybně umístění příslušných schémat XML.

@@ -133,6 +133,21 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
         return kodPravidla;
     }
 
+    @Override
+    public String getTtextPravidla() {
+        return textPravidla;
+    }
+
+    @Override
+    public String getObecnyPopisChyby() {
+        return obecnyPopisChyby;
+    }
+
+    @Override
+    public String getZdroj() {
+        return zdrojChyby;
+    }
+
     protected String getJmenoIdentifikator(Node node) {
         return kontrola.getJmenoIdentifikator(node);
     }

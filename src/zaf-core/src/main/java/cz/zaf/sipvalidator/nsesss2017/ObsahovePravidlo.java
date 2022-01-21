@@ -21,4 +21,10 @@ public interface ObsahovePravidlo {
 	 * @return
 	 */
 	String getKodPravidla();
+
+    String getTtextPravidla();
+
+    String getObecnyPopisChyby();
+
+    String getZdroj();
 }

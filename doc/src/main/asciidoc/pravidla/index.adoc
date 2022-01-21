@@ -1,0 +1,18 @@
+﻿= ZAF {zafVersion}: Přehled pravidel
+:doctype: book
+:toc: left
+:toclevels: 0
+
+include::k00-skod-kod.adoc[]
+
+include::k01-dat-strukt.adoc[]
+
+include::k02-znak-sady.adoc[]
+
+include::k03-spravnost-xml.adoc[]
+
+include::k04-jmen-prost.adoc[]
+
+include::k05-schema-xsd.adoc[]
+
+include::k06-obsahova.adoc[]

@@ -1,0 +1,10 @@
+= Kontrola správnosti XML
+
+== wf1
+
+[horizontal]
+
+Pravidlo:: Soubor je well-formed.
+Kód:: wf1
+Zdroj:: Požadavek 11.2.2 NSESSS.
+Popis chyby:: Datový balíček SIP nedodržuje syntaxi jazyka XML.
