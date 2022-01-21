@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
 	<parent>
-		<groupId>com.simpligility.maven</groupId>
-		<artifactId>progressive-organization-pom</artifactId>
-		<version>7.0.0</version>
+		<artifactId>zaf</artifactId>
+		<groupId>cz.zaf</groupId>
+		<version>0.9.3-SNAPSHOT</version>
 	</parent>
-
-	<groupId>cz.zaf</groupId>
 	<artifactId>zaf-doc</artifactId>
-	<version>0.9.3-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>ZAF Documentation</name>
     <description>ZAF reference documentation</description>
@@ -127,6 +123,9 @@
                 </executions>
                 <configuration>
                     <relativeBaseDir>true</relativeBaseDir>
+                    <attributes>
+                      <zafVersion>${project.version}</zafVersion>
+                    </attributes>
                 </configuration>
            </plugin>
 		</plugins>
