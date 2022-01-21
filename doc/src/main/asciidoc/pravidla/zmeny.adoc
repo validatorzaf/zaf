@@ -1,0 +1,4 @@
+﻿= Změny v pravidlech
+
+== v1, 1.1.2022
+* Přidána pravidla 100-107

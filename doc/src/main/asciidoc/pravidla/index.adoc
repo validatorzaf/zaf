@@ -3,6 +3,8 @@
 :toc: left
 :toclevels: 0
 
+include::zmeny.adoc[]
+
 include::k00-skod-kod.adoc[]
 
 include::k01-dat-strukt.adoc[]
