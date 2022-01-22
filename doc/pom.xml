@@ -66,31 +66,6 @@
 				<artifactId>commons-codec</artifactId>
 				<version>1.13</version>
 			</dependency>
-			<dependency>
-				<groupId>org.apache.tika</groupId>
-				<artifactId>tika-core</artifactId>
-				<version>1.24.1</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.tika</groupId>
-				<artifactId>tika-parsers</artifactId>
-				<version>1.24.1</version>
-			</dependency>
-			<dependency>
-				<groupId>com.ibm.icu</groupId>
-				<artifactId>icu4j</artifactId>
-				<version>65.1</version>
-			</dependency>
-			<dependency>
-				<groupId>org.junit.jupiter</groupId>
-				<artifactId>junit-jupiter-engine</artifactId>
-				<version>5.5.2</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>3.1.0</version>
-			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -108,8 +83,8 @@
                         </goals>
                         <configuration>
                             <backend>html5</backend>
-                            <sourceDocumentName>pravidla/index.adoc</sourceDocumentName>
-                            <outputDirectory>${asciidoctor.base-output-dir}/pravidla/html_single</outputDirectory>
+                            <sourceDocumentName>index.adoc</sourceDocumentName>
+                            <outputDirectory>${asciidoctor.base-output-dir}/html_single</outputDirectory>
                             <attributes>
                                 <imagesdir>images</imagesdir>
                                 <stylesdir>css</stylesdir>

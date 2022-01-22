@@ -1,0 +1,43 @@
+[[pouziti]]
+= Použití
+
+Validátor ZAF lze volat jako samostatnou aplikaci <<CmdValidator>> nebo
+přímo integrovat do jiné Java aplikace ve formě samostatné knihovny.
+
+[[CmdValidator]]
+== CmdValidator
+
+Validátor ZAF lze volat prostřednictvím příkazového řádku:
+
+`java -jar CmdValidator [přepínače] <path>`
+
+*path*::
+  cesta k SIPu, v případě dávkového režimu ke složce se SIPy
+
+
+=== Přepínače
+
+*-b|--batch*::
+  Dávkový režim, vstupem je adresář obsahující SIPy
+
+*-w|--workdir=*::
+  Umístění pracovního adresáře, zde budou SIPy rozbaleny
+  
+*-d|--druh=*::
+  Druh kontroly (1 - výchozí):
+
+ * 1 = pro provedení skartačního řízení (jen metadata bez přiložených komponent)
+ * 2 = pro provedení skartačního řízení (s přiloženými komponentami)
+ * 3 = pro předávání dokumentů a jejich metadat do archivu
+
+*-e|--exclude=*::
+  Seznam kontrol oddělených čárkou, které se nemají provádět
+  
+*-i|--id=*::
+  Identifikátor prováděné kontroly
+  
+*-z|--hrozba=*::
+  Podrobnosti v případě nalezení hrozby (pro předání z antivirového programu)
+  
+*-o|--output=*::
+  Jméno souboru nebo adresáře pro uložení výsledků

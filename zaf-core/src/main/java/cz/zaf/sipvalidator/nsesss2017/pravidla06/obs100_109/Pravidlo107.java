@@ -62,17 +62,16 @@ public class Pravidlo107 extends K06PravidloBase {
     public Pravidlo107() {
         super(OBS107,
                 "Pokud existuje jakýkoli element <nsesss:Komponenta>, který obsahuje atribut forma_uchovani s hodnotou originál ve výstupním datovém formátu a současně atribut verze s hodnotou nejvyššího čísla verze, potom jakýkoli element <mets:file>, který obsahuje atribut DMDID s hodnotou uvedenou v atributu ID jakéhokoli elementu <nsesss:Komponenta> příslušné komponenty, obsahuje atribut MIMETYPE s jednou z uvedených hodnot:\r\n"
-                        + "\r\n"
-                        + "application/pdf\r\n"
-                        + "image/png\r\n"
-                        + "image/tiff\r\n"
-                        + "image/jpeg\r\n"
-                        + "video/mpeg\r\n"
-                        + "image/gif\r\n"
-                        + "audio/mpeg\r\n"
-                        + "audio/x-wav\r\n"
-                        + "application/xml\r\n"
-                        + "application/xml-dtd",
+                        + "- application/pdf\r\n"
+                        + "- image/png\r\n"
+                        + "- image/tiff\r\n"
+                        + "- image/jpeg\r\n"
+                        + "- video/mpeg\r\n"
+                        + "- image/gif\r\n"
+                        + "- audio/mpeg\r\n"
+                        + "- audio/x-wav\r\n"
+                        + "- application/xml\r\n"
+                        + "- application/xml-dtd",
                 "Komponenta (počítačový soubory) není ve výstupním datovém formátu.",
                 "§ 23 odst. 2 vyhlášky č. 259/2012 Sb.; Informační list NA, čá. 6/2020, č. 3/2020.");
     }

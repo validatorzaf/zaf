@@ -1,0 +1,15 @@
+﻿= ZAF {zafVersion}: Dokumentace
+:doctype: book
+:toc: left
+:toc-title: Obsah
+:toclevels: 2
+
+:leveloffset: +1
+
+include::uvod.adoc[]
+
+include::pouziti.adoc[]
+
+include::pravidla.adoc[]
+
+:leveloffset: -1

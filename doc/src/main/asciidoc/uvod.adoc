@@ -1,0 +1,34 @@
+﻿[[intro]]
+= Úvod
+
+Validátor ZAF je knihovna pro kontrolu datových balíčků SIP podle 
+https://www.mvcr.cz/clanek/narodni-standard-pro-elektronicke-systemy-spisove-sluzby.aspx[národního standardu pro elektronické systémy spisové služby z r. 2017] na základě sestavených
+xref:pravidla[pravidel].
+Aplikace provádí načtení balíčků SIP (příp. rozbalení ze souborů ZIP),
+kontrolu a uložení výsledků kontroly do souboru XML vytvořeného podle http://digitalniarchiv.ahmp.cz/schema/kontrolasip/vX/kontrolasip.xsd[schématu XSD].
+Kontrola škodlivého kódu probíhá externě a aplikace pouze načítá výsledky této
+kontroly podle použitých přepínačů. Pokud je v rámci jednoho z typů kontrol
+nalezena chyba, další typy kontrol se neprovádí.
+
+
+:leveloffset: +1
+
+include::zmeny.adoc[]
+
+:leveloffset: -1
+
+== Licenční podmínky
+
+https://www.apache.org/licenses/LICENSE-2.0[Apache License Version 2.0]
+
+Součástí software jsou programové knihovny a aplikace šířené pod permisivní nebo slabě copyleftovou
+licencí. V těchto částech softwaru platí příslušné podmínky a vyloučení odpovědnosti původního
+autora viz licenční ustanovení jednotlivých částí softwaru.
+
+== Autoři
+
+Stanislav Bečvář, Hlavní město Praha, Magistrát hlavního města Prahy, Odbor „Archiv hlavního města Prahy“
+
+Petr Pytelka, LightComp v.o.s.
+
+Karel Žáček, LightComp v.o.s.

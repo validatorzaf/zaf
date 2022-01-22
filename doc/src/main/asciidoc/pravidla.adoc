@@ -1,9 +1,7 @@
-﻿= ZAF {zafVersion}: Přehled pravidel
-:doctype: book
-:toc: left
-:toclevels: 0
+﻿[[pravidla]]
+= Pravidla
 
-include::zmeny.adoc[]
+:leveloffset: +1
 
 include::k00-skod-kod.adoc[]
 
@@ -18,3 +16,5 @@ include::k04-jmen-prost.adoc[]
 include::k05-schema-xsd.adoc[]
 
 include::k06-obsahova.adoc[]
+
+:leveloffset: -1

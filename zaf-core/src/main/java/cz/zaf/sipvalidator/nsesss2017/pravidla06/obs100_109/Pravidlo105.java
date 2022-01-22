@@ -58,13 +58,11 @@ public class Pravidlo105 extends K06PravidloBase {
     public Pravidlo105() {
         super(OBS105,
                 "Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ne a zároveň obsahuje element <nsesss:Komponenty>, mezi všemi dětskými elementy <nsesss:Komponenta>, v rámci kterých existuje takový element, který obsahuje atribut forma_uchovani s hodnotou originál a pro který jakýkoli element <mets:file>, který obsahuje atribut DMDID s hodnotou uvedenou v atributu ID elementu <nsesss:Komponenta> příslušné komponenty a dále atribut MIMETYPE s jednou z uvedených hodnot:\r\n"
-                        + "\r\n"
-                        + "application/msword\r\n"
-                        + "application/vnd.openxmlformats-officedocument.wordprocessingml.document\r\n"
-                        + "application/rtf\r\n"
-                        + "application/vnd.oasis.opendocument.text\r\n"
-                        + "application/vnd.apple.pages\r\n"
-                        + "\r\n"
+                        + "- application/msword\r\n"
+                        + "- application/vnd.openxmlformats-officedocument.wordprocessingml.document\r\n"
+                        + "- application/rtf\r\n"
+                        + "- application/vnd.oasis.opendocument.text\r\n"
+                        + "- application/vnd.apple.pages\r\n"
                         + "existuje element <nsesss:Komponenta>, který obsahuje atribut forma_uchovani originál ve výstupním datovém formátu.",
                 "Uveden je chybně originál ve výstupním datovém formátu komponent (počítačových souborů).",
                 "§ 23 odst. 2 vyhlášky č. 259/2012 Sb.; Informační list NA, čá. 6/2020, č. 3/2020.");

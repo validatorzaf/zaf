@@ -2,6 +2,7 @@
 
 Obsahová kontrola
 
+[[obs1]]
 == obs1
 
 [horizontal]
@@ -12,6 +13,7 @@ Zdroj:: Bod 2.1. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí identifikátor datového balíčku SIP.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs2]]
 == obs2
 
 [horizontal]
@@ -22,6 +24,7 @@ Zdroj:: Bod 2.1. přílohy č. 3 NSESSS.
 Popis chyby:: Uveden je chybně popis datového balíčku SIP.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami)
 
+[[obs3]]
 == obs3
 
 [horizontal]
@@ -32,6 +35,7 @@ Zdroj:: Bod 2.1. přílohy č. 3 NSESSS.
 Popis chyby:: Uveden je chybně popis datového balíčku SIP.
 Aktivní:: přejímka
 
+[[obs4]]
 == obs4
 
 [horizontal]
@@ -42,6 +46,7 @@ Zdroj:: Bod 2.1. přílohy č. 3 NSESSS.
 Popis chyby:: Uvedena je chybně adresa jmenného prostoru schématu XML.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs9]]
 == obs9
 
 [horizontal]
@@ -52,6 +57,7 @@ Zdroj:: Bod 2.1. přílohy č. 3 NSESSS.
 Popis chyby:: Uvedena je chybně adresa jmenného prostoru schématu XML.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs10]]
 == obs10
 
 [horizontal]
@@ -62,6 +68,7 @@ Zdroj:: Bod 2.2. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí povinná část (záhlaví) struktury datového balíčku SIP.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs11]]
 == obs11
 
 [horizontal]
@@ -72,6 +79,7 @@ Zdroj:: Bod 2.6. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí povinná (popisná) část struktury datového balíčku SIP.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs12]]
 == obs12
 
 [horizontal]
@@ -82,6 +90,7 @@ Zdroj:: Bod 2.9. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí povinná část (transakční protokol) struktury datového balíčku SIP.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs13]]
 == obs13
 
 [horizontal]
@@ -92,6 +101,7 @@ Zdroj:: Bod 2.2.17. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí povinná část (strukturální mapa) struktury datového balíčku SIP.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs14]]
 == obs14
 
 [horizontal]
@@ -102,6 +112,7 @@ Zdroj:: Bod 2.2. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí datum poslední úpravy datového balíčku SIP.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs15]]
 == obs15
 
 [horizontal]
@@ -112,6 +123,7 @@ Zdroj:: Bod 2.2. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí datum vytvoření datového balíčku SIP.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs16]]
 == obs16
 
 [horizontal]
@@ -122,6 +134,7 @@ Zdroj:: Bod 2.3. přílohy č. 3 NSESSS.
 Popis chyby:: Uveden je chybně popis původce.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs17]]
 == obs17
 
 [horizontal]
@@ -132,6 +145,7 @@ Zdroj:: Bod 2.3. přílohy č. 3 NSESSS.
 Popis chyby:: Uveden je chybně popis původce.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs18]]
 == obs18
 
 [horizontal]
@@ -142,6 +156,7 @@ Zdroj:: Bod 2.3. přílohy č. 3 NSESSS.
 Popis chyby:: Uveden je chybně popis původce.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs19]]
 == obs19
 
 [horizontal]
@@ -152,6 +167,7 @@ Zdroj:: Bod 2.3. přílohy č. 3 NSESSS.
 Popis chyby:: Uveden je chybně popis původce.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs20]]
 == obs20
 
 [horizontal]
@@ -162,6 +178,7 @@ Zdroj:: Bod 2.4. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí informace o původci.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs22]]
 == obs22
 
 [horizontal]
@@ -172,6 +189,7 @@ Zdroj:: Bod 2.7. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí povinná (popisná) část struktury datového balíčku SIP.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs23]]
 == obs23
 
 [horizontal]
@@ -182,6 +200,7 @@ Zdroj:: Bod 2.7. přílohy č. 3 NSESSS.
 Popis chyby:: Uveden je chybně popis schématu XML.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs24]]
 == obs24
 
 [horizontal]
@@ -192,6 +211,7 @@ Zdroj:: Bod 2.7. přílohy č. 3 NSESSS.
 Popis chyby:: Uveden je chybně popis schématu XML.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs25]]
 == obs25
 
 [horizontal]
@@ -202,6 +222,7 @@ Zdroj:: Bod 2.7. přílohy č. 3 NSESSS.
 Popis chyby:: Uveden je chybně popis schématu XML.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs26]]
 == obs26
 
 [horizontal]
@@ -212,6 +233,7 @@ Zdroj:: Bod 2.7. přílohy č. 3 NSESSS.
 Popis chyby:: Uveden je chybně popis schématu XML.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs27]]
 == obs27
 
 [horizontal]
@@ -222,6 +244,7 @@ Zdroj:: Bod 2.7. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí povinná (popisná) část struktury datového balíčku SIP.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs28]]
 == obs28
 
 [horizontal]
@@ -232,6 +255,7 @@ Zdroj:: Bod 2.7. přílohy č. 3 NSESSS; příloha č. 2 NSESSS, ř. 20.
 Popis chyby:: Datový balíček SIP neobsahuje díl, spis ani dokument.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs29]]
 == obs29
 
 [horizontal]
@@ -242,6 +266,7 @@ Zdroj:: Bod 2.7. přílohy č. 3 NSESSS; příloha č. 2 NSESSS, ř. 20.
 Popis chyby:: Chybí popis dílu, spisu nebo dokumentu, který je v datovém balíčku SIP připojen pevným křížovým odkazem.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs30]]
 == obs30
 
 [horizontal]
@@ -252,6 +277,7 @@ Zdroj:: Bod 2.9. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí povinná část (transakční protokol) struktury datového balíčku SIP.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs31]]
 == obs31
 
 [horizontal]
@@ -262,6 +288,7 @@ Zdroj:: Bod 2.10. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí povinná část (transakční protokol) struktury datového balíčku SIP.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs33]]
 == obs33
 
 [horizontal]
@@ -272,6 +299,7 @@ Zdroj:: Bod 2.11. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí povinná část (transakční protokol) struktury datového balíčku SIP.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs34]]
 == obs34
 
 [horizontal]
@@ -282,6 +310,7 @@ Zdroj:: Bod 2.11. přílohy č. 3 NSESSS.
 Popis chyby:: Uveden je chybně popis schématu XML.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs35]]
 == obs35
 
 [horizontal]
@@ -292,6 +321,7 @@ Zdroj:: Bod 2.11. přílohy č. 3 NSESSS.
 Popis chyby:: Uveden je chybně popis schématu XML.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs36]]
 == obs36
 
 [horizontal]
@@ -302,6 +332,7 @@ Zdroj:: Bod 2.11. přílohy č. 3 NSESSS.
 Popis chyby:: Uveden je chybně popis schématu XML.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs37]]
 == obs37
 
 [horizontal]
@@ -312,6 +343,7 @@ Zdroj:: Bod 2.11. přílohy č. 3 NSESSS.
 Popis chyby:: Uveden je chybně popis schématu XML.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs38]]
 == obs38
 
 [horizontal]
@@ -322,6 +354,7 @@ Zdroj:: Bod 2.12. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí povinná část (transakční protokol) struktury datového balíčku SIP.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs39]]
 == obs39
 
 [horizontal]
@@ -332,6 +365,7 @@ Zdroj:: Bod 2.12. přílohy č. 3 NSESSS.
 Popis chyby:: Datový balíček SIP neobsahuje transakční protokol.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs40]]
 == obs40
 
 [horizontal]
@@ -342,6 +376,7 @@ Zdroj:: Bod 2.13. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí připojení komponent (počítačových souborů).
 Aktivní:: skartační řízení (s komponentami), přejímka
 
+[[obs43a]]
 == obs43a
 
 [horizontal]
@@ -352,6 +387,7 @@ Zdroj:: Bod 2.14. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí připojení komponent (počítačových souborů) nebo je špatně strukturováno.
 Aktivní:: skartační řízení (s komponentami), přejímka
 
+[[obs44]]
 == obs44
 
 [horizontal]
@@ -362,6 +398,7 @@ Zdroj:: Bod 2.15. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí provázání komponenty (počítačového souboru) s popisnou částí.
 Aktivní:: skartační řízení (s komponentami), přejímka
 
+[[obs45]]
 == obs45
 
 [horizontal]
@@ -372,6 +409,7 @@ Zdroj:: Bod 2.15. přílohy č. 3 NSESSS.
 Popis chyby:: Komponenta (počítačový soubor) má uvedený chybný datový formát.
 Aktivní:: skartační řízení (s komponentami), přejímka
 
+[[obs46]]
 == obs46
 
 [horizontal]
@@ -382,6 +420,7 @@ Zdroj:: Bod 2.15. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí popis pro ověření celistvosti komponenty (počítačového souboru) nebo je chybně uveden.
 Aktivní:: skartační řízení (s komponentami), přejímka
 
+[[obs47]]
 == obs47
 
 [horizontal]
@@ -392,6 +431,7 @@ Zdroj:: Bod 2.15. přílohy č. 3 NSESSS.
 Popis chyby:: Celistvost komponenty (počítačového souboru) je narušena nebo chybí možnost jejího ověření.
 Aktivní:: skartační řízení (s komponentami), přejímka
 
+[[obs48]]
 == obs48
 
 [horizontal]
@@ -402,6 +442,7 @@ Zdroj:: Bod 2.15. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí velikost komponenty (počítačového souboru) nebo je uvedena chybně.
 Aktivní:: skartační řízení (s komponentami), přejímka
 
+[[obs49]]
 == obs49
 
 [horizontal]
@@ -412,6 +453,7 @@ Zdroj:: Bod 2.15. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí datum vytvoření komponenty (počítačového souboru).
 Aktivní:: skartační řízení (s komponentami), přejímka
 
+[[obs50]]
 == obs50
 
 [horizontal]
@@ -422,6 +464,7 @@ Zdroj:: Bod 2.16. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí připojení komponenty (počítačového souboru) do datového balíčku SIP nebo je provedeno chybně.
 Aktivní:: skartační řízení (s komponentami), přejímka
 
+[[obs51]]
 == obs51
 
 [horizontal]
@@ -432,6 +475,7 @@ Zdroj:: Bod 2.16. přílohy č. 3 NSESSS.
 Popis chyby:: Uveden je chybně popis odkazu na komponentu (počítačový soubor).
 Aktivní:: skartační řízení (s komponentami), přejímka
 
+[[obs52]]
 == obs52
 
 [horizontal]
@@ -442,6 +486,7 @@ Zdroj:: Bod 2.16. přílohy č. 3 NSESSS.
 Popis chyby:: Uveden je chybně popis odkazu na komponentu (počítačový soubor).
 Aktivní:: skartační řízení (s komponentami), přejímka
 
+[[obs53]]
 == obs53
 
 [horizontal]
@@ -452,6 +497,7 @@ Zdroj:: Bod 2.16. přílohy č. 3 NSESSS.
 Popis chyby:: Uveden je chybně popis odkazu na komponentu (počítačový soubor).
 Aktivní:: skartační řízení (s komponentami), přejímka
 
+[[obs54]]
 == obs54
 
 [horizontal]
@@ -462,6 +508,7 @@ Zdroj:: Bod 2.17 a 2.18. přílohy č. 3 NSESSS; Informační list NA, roč. 201
 Popis chyby:: Chybí spisový plán, věcná skupina, typový spis, součást, díl, spis, dokument nebo komponenta ve strukturální mapě a jejich provázání na transakční protokol.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs54a]]
 == obs54a
 
 [horizontal]
@@ -472,6 +519,7 @@ Zdroj:: Bod 2.17 a 2.18. přílohy č. 3 NSESSS; Informační list NA, roč. 201
 Popis chyby:: Chybí spisový plán, věcná skupina, typový spis, součást, díl, spis, dokument nebo komponenta ve strukturální mapě a jejich provázání na transakční protokol nebo je struktura uvedena chybně s ohledem na existenci pevného křížového odkazu.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs55]]
 == obs55
 
 [horizontal]
@@ -482,6 +530,7 @@ Zdroj:: Bod 2.19. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí povinná část (strukturální mapa) struktury datového balíčku SIP.
 Aktivní:: skartační řízení (s komponentami), přejímka
 
+[[obs56]]
 == obs56
 
 [horizontal]
@@ -492,6 +541,7 @@ Zdroj:: Bod 2.19. přílohy č. 3 NSESSS.
 Popis chyby:: Není v souladu provázání komponent (počítačových souborů) mezi částí počítačových souborů a strukturální mapou.
 Aktivní:: skartační řízení (s komponentami), přejímka
 
+[[obs57]]
 == obs57
 
 [horizontal]
@@ -502,6 +552,7 @@ Zdroj:: Příloha č. 2 NSESSS, ř. 123.
 Popis chyby:: Není uveden identifikátor.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs58]]
 == obs58
 
 [horizontal]
@@ -512,6 +563,7 @@ Zdroj:: Příloha č. 2 NSESSS, ř. 288.
 Popis chyby:: Není uveden zdroj identifikátoru.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs59]]
 == obs59
 
 [horizontal]
@@ -522,6 +574,7 @@ Zdroj:: Příloha č. 2 NSESSS, ř. 123.
 Popis chyby:: Uveden je vícekrát stejný spisový plán, věcná skupina, typový spis, součást, díl, spis, dokument, komponenta, bezpečnostní kategorie, skartační režim nebo typ dokumentu nebo je vícekrát použit stejný identifikátor.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs60]]
 == obs60
 
 [horizontal]
@@ -532,6 +585,7 @@ Zdroj:: Příloha č. 2 NSESSS, ř. 45.
 Popis chyby:: Chybí popis komponenty (počítačového souboru) dokumentu v digitální podobě.
 Aktivní:: skartační řízení (s komponentami), přejímka
 
+[[obs61]]
 == obs61
 
 [horizontal]
@@ -542,6 +596,7 @@ Zdroj:: Příloha č. 2 NSESSS, ř. 365.
 Popis chyby:: Chybí doručené množství dokumentu v analogové podobě.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs61a]]
 == obs61a
 
 [horizontal]
@@ -552,6 +607,7 @@ Zdroj:: Příloha č. 2 NSESSS, ř. 1208.
 Popis chyby:: Chybí množství vlastního dokumentu v analogové podobě.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs62]]
 == obs62
 
 [horizontal]
@@ -562,6 +618,7 @@ Zdroj:: Příloha č. 2 NSESSS, ř. 132.
 Popis chyby:: Uveden je chybně jazyk dokumentu.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs63]]
 == obs63
 
 [horizontal]
@@ -572,6 +629,7 @@ Zdroj:: Příloha č. 2 NSESSS, ř. 1270.
 Popis chyby:: Chybí odůvodnění vyřízení jiným způsobem.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs64]]
 == obs64
 
 [horizontal]
@@ -582,6 +640,7 @@ Zdroj:: § 15 odst. 4 vyhlášky č. 259/2012 Sb.
 Popis chyby:: Uveden je chybně rok skartační operace u dokumentu (počítá se jako rok spouštěcí události + 1 + skartační lhůta).
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs65]]
 == obs65
 
 [horizontal]
@@ -592,6 +651,7 @@ Zdroj:: § 15 odst. 5 vyhlášky č. 259/2012 Sb.
 Popis chyby:: Uveden je chybně rok skartační operace u dílu nebo spisu (počítá se jak podle roku spouštěcí události + 1 + skartační lhůta, tak podle roku skartační operace u dokumentů - záleží na tom, co je vyšší).
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs66]]
 == obs66
 
 [horizontal]
@@ -602,6 +662,7 @@ Zdroj:: § 20 odst. 1 vyhlášky č. 259/2012 Sb.
 Popis chyby:: U dílu, spisu nebo dokumentu nelze provést skartační řízení, protože ještě nenadešel uváděný rok skartační operace.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs67]]
 == obs67
 
 [horizontal]
@@ -612,6 +673,7 @@ Zdroj:: § 15 odst. 5 vyhlášky č. 259/2012 Sb.
 Popis chyby:: Uveden je chybně skartační znak u dílu nebo spisu (stanovuje se podle nejvyššího skartačního znaku dokumentu).
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs68]]
 == obs68
 
 [horizontal]
@@ -622,6 +684,7 @@ Zdroj:: § 15 odst. 2 vyhlášky č. 259/2012 Sb.; příloha č. 2 NSESSS, ř. 1
 Popis chyby:: Chybí skartační režim věcné skupiny.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs69]]
 == obs69
 
 [horizontal]
@@ -632,6 +695,7 @@ Zdroj:: Příloha č. 2 NSESSS, ř. 421.
 Popis chyby:: Chybí vyřízení dokumentu.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs70]]
 == obs70
 
 [horizontal]
@@ -642,6 +706,7 @@ Zdroj:: Příloha č. 2 NSESSS, ř. 497.
 Popis chyby:: Uveden je chybně identifikátor věcné skupiny, typového spisu, součásti, dílu, spisu nebo dokumentu.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs71]]
 == obs71
 
 [horizontal]
@@ -652,6 +717,7 @@ Zdroj:: null
 Popis chyby:: Není v souladu datum otevření a datum uzavření spisového plánu, věcné skupiny, typového spisu, součásti, dílu nebo spisu.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs72]]
 == obs72
 
 [horizontal]
@@ -662,6 +728,7 @@ Zdroj:: § 4 odst. 7 písm. b) vyhlášky č. 259/2012 Sb.
 Popis chyby:: Chybí strojový zápis času opatření komponenty (počítačového souboru) elektronickým podpisem, elektronickou značkou nebo časovým razítkem.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs73]]
 == obs73
 
 [horizontal]
@@ -672,6 +739,7 @@ Zdroj:: § 4 odst. 7 písm. d) vyhlášky č. 259/2012 Sb.
 Popis chyby:: Chybí strojový zápis času ověření elektronického podpisu, elektronické značky nebo časového razítka.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs74]]
 == obs74
 
 [horizontal]
@@ -682,6 +750,7 @@ Zdroj:: § 4 odst. 7 písm. d) vyhlášky č. 259/2012 Sb.
 Popis chyby:: Chybí strojový zápis času, k němuž je vztaženo posuzování platnosti elektronického podpisu, elektronické značky nebo časového razítka.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs75]]
 == obs75
 
 [horizontal]
@@ -692,6 +761,7 @@ Zdroj:: null
 Popis chyby:: Není v souladu rozsah platnosti certifikátu elektronického podpisu, elektronické značky nebo časového razítka.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs76]]
 == obs76
 
 [horizontal]
@@ -702,6 +772,7 @@ Zdroj:: Příloha č. 2 NSESSS, ř. 616.
 Popis chyby:: Uvedeno je chybně u věcné skupiny, typového spisu, součásti, dílu nebo spisu, že neobsahují dokumenty v analogové podobě.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs77]]
 == obs77
 
 [horizontal]
@@ -712,6 +783,7 @@ Zdroj:: Příloha č. 2 NSESSS, ř. 1006.
 Popis chyby:: Chybí množství dílu, spisu nebo dokumentu v analogové podobě.
 Aktivní:: přejímka
 
+[[obs78]]
 == obs78
 
 [horizontal]
@@ -722,6 +794,7 @@ Zdroj:: Příloha č. 2 NSESSS, ř. 1228.
 Popis chyby:: Chybí informace o skartačním řízení.
 Aktivní:: přejímka
 
+[[obs79]]
 == obs79
 
 [horizontal]
@@ -732,6 +805,7 @@ Zdroj:: null
 Popis chyby:: Není v souladu datum skartačního řízení a roku skartační operace.
 Aktivní:: přejímka
 
+[[obs80]]
 == obs80
 
 [horizontal]
@@ -742,6 +816,7 @@ Zdroj:: § 20 odst. 1 vyhlášky č. 259/2012 Sb.
 Popis chyby:: Uvedeno je chybně datum skartačního řízení (uváděný rok ještě nenadešel).
 Aktivní:: přejímka
 
+[[obs81]]
 == obs81
 
 [horizontal]
@@ -752,6 +827,7 @@ Zdroj:: null
 Popis chyby:: Není v souladu rozsah určeného časového období.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs82]]
 == obs82
 
 [horizontal]
@@ -762,6 +838,7 @@ Zdroj:: null
 Popis chyby:: Není v souladu rozsah určeného časového období.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs83]]
 == obs83
 
 [horizontal]
@@ -772,6 +849,7 @@ Zdroj:: null
 Popis chyby:: Není v souladu rozsah určeného časového období.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs84]]
 == obs84
 
 [horizontal]
@@ -782,6 +860,7 @@ Zdroj:: Příloha č. 2 NSESSS, ř. 1265.
 Popis chyby:: Chybí obsah vyřízení jiným způsobem.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs85]]
 == obs85
 
 [horizontal]
@@ -792,6 +871,7 @@ Zdroj:: Příloha č. 2 NSESSS, ř. 1352.
 Popis chyby:: Chybí ukládací jednotka dokumentu v analogově podobě.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs86]]
 == obs86
 
 [horizontal]
@@ -802,6 +882,7 @@ Zdroj:: Příloha č. 2 NSESSS, ř. 1397.
 Popis chyby:: Chybí zatřídění dokumentu.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs87]]
 == obs87
 
 [horizontal]
@@ -812,6 +893,7 @@ Zdroj:: Příloha č. 2 NSESSS, ř. 1471 a 1481.
 Popis chyby:: Chybí příjemce nebo datum odeslání dokumentu.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs88]]
 == obs88
 
 [horizontal]
@@ -822,6 +904,7 @@ Zdroj:: Příloha č. 2 NSESSS, ř. 1476.
 Popis chyby:: Chybí množství odeslaného dokumentu v analogové podobě.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs89]]
 == obs89
 
 [horizontal]
@@ -832,6 +915,7 @@ Zdroj:: null
 Popis chyby:: Není v souladu rok spouštěcí události a datum vyřízení u dokumentu.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs90]]
 == obs90
 
 [horizontal]
@@ -842,6 +926,7 @@ Zdroj:: null
 Popis chyby:: Není v souladu rok spouštěcí události a datum vyřízení nebo datum uzavření u spisu.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs91]]
 == obs91
 
 [horizontal]
@@ -852,6 +937,7 @@ Zdroj:: null
 Popis chyby:: Není v souladu rok spouštěcí události a datum uzavření u dílu.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs92]]
 == obs92
 
 [horizontal]
@@ -862,6 +948,7 @@ Zdroj:: null
 Popis chyby:: Chybně je uvedeno IČO subjektu.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs93]]
 == obs93
 
 [horizontal]
@@ -872,6 +959,7 @@ Zdroj:: Příloha č. 2 NSESSS, ř. 167.
 Popis chyby:: Není uveden název.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs93a]]
 == obs93a
 
 [horizontal]
@@ -882,6 +970,7 @@ Zdroj:: Požadavek 3.1.30 NSESSS.
 Popis chyby:: Chybně jsou uvedeny spisové znaky.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs94]]
 == obs94
 
 [horizontal]
@@ -892,6 +981,7 @@ Zdroj:: Požadavek 3.1.30 NSESSS.
 Popis chyby:: Chybně jsou uvedeny spisové znaky.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs95]]
 == obs95
 
 [horizontal]
@@ -902,6 +992,7 @@ Zdroj:: Požadavek 3.1.30 NSESSS.
 Popis chyby:: Chybně jsou uvedeny spisové znaky.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs96]]
 == obs96
 
 [horizontal]
@@ -912,6 +1003,7 @@ Zdroj:: § 14 odst. 4 vyhlášky č. 259/2012 Sb.
 Popis chyby:: Chybně jsou uvedeny spisové znaky.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs97]]
 == obs97
 
 [horizontal]
@@ -922,6 +1014,7 @@ Zdroj:: Požadavek 3.1.34 NSESSS.
 Popis chyby:: Chybně jsou uvedeny spisové znaky.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs98]]
 == obs98
 
 [horizontal]
@@ -932,6 +1025,7 @@ Zdroj:: § 14 odst. 4 vyhlášky č. 259/2012 Sb.
 Popis chyby:: Chybně jsou uvedeny spisové znaky.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs99]]
 == obs99
 
 [horizontal]
@@ -942,6 +1036,7 @@ Zdroj:: § 23 odst. 2 vyhlášky č. 259/2012 Sb.; Informační list NA, čá. 6
 Popis chyby:: Komponenta (počítačový soubor) v datovém formátu PDF není ve výstupním datovém formátu.
 Aktivní:: skartační řízení (s komponentami), přejímka
 
+[[obs100]]
 == obs100
 
 [horizontal]
@@ -952,6 +1047,7 @@ Zdroj:: Informační list NA, čá. 6/2020, č. 3/2020.
 Popis chyby:: Uvedeno je chybně pořadí komponent (počítačových souborů).
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs101]]
 == obs101
 
 [horizontal]
@@ -962,6 +1058,7 @@ Zdroj:: Informační list NA, čá. 6/2020, č. 3/2020.
 Popis chyby:: Uveden je chybně druh komponent (počítačových souborů).
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs102]]
 == obs102
 
 [horizontal]
@@ -972,6 +1069,7 @@ Zdroj:: Informační list NA, čá. 6/2020, č. 3/2020.
 Popis chyby:: Uvedena je chybně verze komponent (počítačových souborů).
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs103]]
 == obs103
 
 [horizontal]
@@ -982,6 +1080,7 @@ Zdroj:: Informační list NA, čá. 6/2020, č. 3/2020.
 Popis chyby:: Uveden je chybně originál komponent (počítačových souborů).
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs104]]
 == obs104
 
 [horizontal]
@@ -992,6 +1091,7 @@ Zdroj:: Uvedena je chybně verze originálu komponent (počítačových souborů
 Popis chyby:: Uvedena je chybně verze komponent (počítačových souborů).
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs105]]
 == obs105
 
 [horizontal]
@@ -1002,12 +1102,15 @@ Pravidlo:: Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii děts
 * application/rtf
 * application/vnd.oasis.opendocument.text
 * application/vnd.apple.pages
-* existuje element <nsesss:Komponenta>, který obsahuje atribut forma_uchovani originál ve výstupním datovém formátu.
+
++
+existuje element <nsesss:Komponenta>, který obsahuje atribut forma_uchovani originál ve výstupním datovém formátu.
 Kód:: obs105
 Zdroj:: § 23 odst. 2 vyhlášky č. 259/2012 Sb.; Informační list NA, čá. 6/2020, č. 3/2020.
 Popis chyby:: Uveden je chybně originál ve výstupním datovém formátu komponent (počítačových souborů).
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs106]]
 == obs106
 
 [horizontal]
@@ -1018,6 +1121,7 @@ Zdroj:: Informační list NA, čá. 6/2020, č. 3/2020.
 Popis chyby:: Uvedena je chybně verze originálu ve výstupním datovém formátu komponent (počítačových souborů).
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs107]]
 == obs107
 
 [horizontal]

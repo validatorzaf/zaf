@@ -80,9 +80,9 @@ public class GenerateDoc {
 
         String textPravidla = pravidlo.getTtextPravidla();
         textPravidla = textPravidla.replace("\r", "");
-        textPravidla = textPravidla.replace("\n", "\n* ");
-        textPravidla = textPravidla.replace("* \n", "");
+        textPravidla = textPravidla.replace("\n- ", "\n* ");
 
+        out.println("[[" + kod + "]]");
         out.println("== " + kod);
         out.println();
         out.println("[horizontal]");

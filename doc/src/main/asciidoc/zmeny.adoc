@@ -1,0 +1,7 @@
+﻿[[zmeny]]
+= Změny v pravidlech
+
+== v1, 1.1.2022
+
+* Přidána pravidla <<obs100>>, <<obs101>>, <<obs102>>, <<obs103>>, <<obs104>>, <<obs105>>, <<obs106>>, <<obs107>>
+
