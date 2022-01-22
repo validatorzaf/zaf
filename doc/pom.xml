@@ -6,7 +6,7 @@
 		<groupId>cz.zaf</groupId>
 		<version>0.9.4-SNAPSHOT</version>
 	</parent>
-	<artifactId>zaf-doc</artifactId>
+	<artifactId>zaf-documentation</artifactId>
 	<packaging>pom</packaging>
 	<name>ZAF Documentation</name>
     <description>ZAF reference documentation</description>
@@ -103,6 +103,33 @@
                     </attributes>
                 </configuration>
            </plugin>
+           <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptors>
+                        <descriptor>${basedir}/src/main/assembly/dist.xml</descriptor>
+                    </descriptors>
+                    <finalName>zaf-documentation</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-dist</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>false</skip>
+                </configuration>
+            </plugin>
 		</plugins>
 
 		<pluginManagement>
@@ -140,24 +167,4 @@
 			</properties>
 		</profile>
 	</profiles>
-
-    <scm>
-        <connection>scm:git:ssh://gitlab.lightcomp.cz/zaf/zaf.git</connection>
-        <developerConnection>scm:git:ssh://git@gitlab.lightcomp.cz/zaf/zaf.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
-	<distributionManagement>
-		<repository>
-			<id>LightCompReleaseRepository</id>
-			<url>https://www.lightcomp.cz/releases/repository/lc-public-release</url>
-		</repository>
-		<snapshotRepository>
-			<id>frnkRepo</id>
-			<url>http://10.2.0.2:8080/artifactory/libs-snapshot-local</url>
-		</snapshotRepository>
-
-	</distributionManagement>
-
-
-
 </project>
