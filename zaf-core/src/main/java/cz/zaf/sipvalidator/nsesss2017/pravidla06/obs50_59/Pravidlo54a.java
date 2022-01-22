@@ -372,7 +372,8 @@ public class Pravidlo54a  extends K06PravidloBase {
      * Kontrola shodnosti rodicu
      * 
      * Pri kontrola je porovnano ID rodicu
-     * @return
+     * 
+     * @return true pokud je Ok, false při chybě
      */
     public boolean compareMetsDivWithDmdSec() 
     {
@@ -553,7 +554,8 @@ public class Pravidlo54a  extends K06PravidloBase {
 
     /**
      * Precteni struktury <mets:amdSec>
-     * @return
+     * 
+     * @return true pokud je ok, false při chybě
      */
     private boolean readAmdSecList() {
         List<Node> amdSecNodes = metsParser.getNodes(MetsElements.AMD_SEC);

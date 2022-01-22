@@ -9,9 +9,10 @@ import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
-/** 
- * OBSAHOVÁ č.34 Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap> 
- * atribut MDTYPEVERSION s hodnotou 1.0. 
+/**
+ * OBSAHOVÁ č.34 Každý element &lt;mets:digiprovMD&gt; obsahuje v hierarchii
+ * dětských elementů &lt;mets:mdWrap&gt;
+ * atribut MDTYPEVERSION s hodnotou 1.0.
  *
  */
 public class Pravidlo34 extends K06PravidloBase {

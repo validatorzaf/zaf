@@ -88,7 +88,6 @@ public class SipInfo{
      * Typ zdroje SIPu
      */
     final private LoadType loadType;
-    private long lenght = 0;
     
     final protected ArrayList<VysledekKontroly> seznam_kontrol = new ArrayList<>();
     
@@ -110,19 +109,27 @@ public class SipInfo{
     final private LoadStatus loadStatus;
     
     /**
+     * Konstruktor
      * 
+     * @param name
+     *            Jméno SIPu
+     * @param nameZipFile
+     *            Jméno zdrojového ZIP souboru, uvádí se jen pokud je zdrojem ZIP
+     *            soubor
      * @param loadType
-     * @param sipPath Cesta k rozbalenemu SIPu nebo primy odkaz na metsXML
+     *            Podoba zdroje SIPu
+     * @param sipPath
+     *            Cesta k rozbalenemu SIPu nebo primy odkaz na metsXML
+     * @param loadStatus
+     *            Informace o stavu nahrání SIPu
      */
     public SipInfo(final String name, final String nameZipFile, final LoadType loadType, 
-                   long lenght, final Path sipPath, final LoadStatus loadStatus) {
-        this.loadStatus = loadStatus;
+                   final Path sipPath, final LoadStatus loadStatus) {
         this.name = name;
         this.nameZipFile = nameZipFile;
         this.loadType = loadType;
         this.sipPath = sipPath;
-
-        this.lenght = lenght;
+        this.loadStatus = loadStatus;
     }
 
 	public void reset_data_Kontroly(){
@@ -174,10 +181,6 @@ public class SipInfo{
     public String getNameZip(){
         return nameZipFile;
     }
-
-    public long getLenght(){
-        return lenght;
-    }
     
     ArrayList<VysledekKontroly> getSeznamKontrol(){
         return seznam_kontrol;
@@ -201,8 +204,10 @@ public class SipInfo{
 
     /**
      * Vrati uroven kontroly daneho typu
+     * 
      * @param typUrovneKontroly
-     * @return
+     *            typ požadované úrovně kontroly
+     * @return Výsledek kontroly, případně null pokud kontrola nebyla provedena
      */
 	public VysledekKontroly getUrovenKontroly(TypUrovenKontroly typUrovneKontroly) {
 		for(VysledekKontroly kontrola: seznam_kontrol) {

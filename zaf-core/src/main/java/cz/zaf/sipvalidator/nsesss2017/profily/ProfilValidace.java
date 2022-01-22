@@ -11,17 +11,18 @@ public interface ProfilValidace {
     /**
      * Název validačního profilu
      * 
-     * @return
+     * @return Jméno profilu
      */
     public String getNazev();
     
     /**
      * Vrátí seznam připravených obsahových kontrol
      * 
-     * Obsahová pravidla mohou být používána 
+     * Obsahová pravidla mohou být používána
      * jen v rámci jednoho vlákna. Mají svůj vnitřní stav
      * při běhu kontroly.
-     * @return
+     * 
+     * @return Pole pravidel
      */
     public ObsahovePravidlo[] createObsahovaPravidla();
 }

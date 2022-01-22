@@ -24,9 +24,10 @@ public enum TypUrovenKontroly {
 	}
 	
 	/**
-	 * Vrati uroven kontroly
-	 * @return
-	 */
+     * Vrati uroven kontroly
+     * 
+     * @return Číslo úrovně kontroly
+     */
 	public int getLevel() {
 		return level;
 	}

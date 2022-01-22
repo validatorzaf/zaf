@@ -12,8 +12,10 @@ public interface ProtokolWriter {
     /**
      * Append result of SIP validation
      * 
-     * @param sipInfo SIP info
-     * @throws JAXBException 
+     * @param sipInfo
+     *            SIP info
+     * @throws JAXBException
+     *             Výjimka v případě chyby serializace XML
      */
     void writeVysledek(SipInfo sipInfo) throws JAXBException;
 }

@@ -39,10 +39,10 @@ public class SipValidator {
 
     /**
      * Pripravi seznam kontrol
-     * @param profilValidace.getObsahoveKontroly() 
-     * @param skodlivyKodError 
-     * @param skodlivyKodOk 
-     * @return
+     * 
+     * @param profilValidace
+     *            validační profil
+     * @return Seznam připravených úrovní kontroly
      */
     private List<UrovenKontroly<KontrolaNsess2017Context>> pripravKontroly(ProfilValidace profilValidace) {
         ArrayList<UrovenKontroly<KontrolaNsess2017Context>> kontroly = new ArrayList<>(7);
@@ -75,6 +75,7 @@ public class SipValidator {
      * Nastaveni hrozby pro kontrolu skodliveho kodu
      * 
      * @param hrozba
+     *            textový popis hrozby, null pokud nebyla nalezena
      */
     public void setHrozba(String hrozba) {
         ksk.setHrozba(hrozba);

@@ -8,9 +8,10 @@ import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
-/** 
- * OBSAHOVÁ č.38 Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů 
- * <mets:mdWrap> právě jeden dětský element <mets:xmlData>."
+/**
+ * OBSAHOVÁ č.38 Každý element &lt;mets:digiprovMD&gt; obsahuje v hierarchii
+ * dětských elementů
+ * &lt;mets:mdWrap&gt; právě jeden dětský element &lt;mets:xmlData&gt;.
  * 
  *
  */

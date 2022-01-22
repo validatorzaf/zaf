@@ -72,8 +72,10 @@ public class ValuesGetter {
      * Find first child in given path
      * 
      * @param parent
+     *            výchozí uzel (rodič)
      * @param children
-     * @return
+     *            jména dětských uzlů, alespoň jeden
+     * @return první nalezený dětský uzel
      */
     public static Node getXChild(Node parent, String... children){
       if (parent == null) {
@@ -227,8 +229,11 @@ public class ValuesGetter {
 
     /**
      * Return parent with given name
+     * 
      * @param node
+     *            uzel
      * @param parentName
+     *            jméno rodičovského uzlu
      * @return Return null if parent does not exists or has different name.
      */
     public static Node getParent(Node node, String parentName){
@@ -363,7 +368,8 @@ public class ValuesGetter {
      * Prevod nazvu urovne na nazev elementu dle NSESSS
      * 
      * @param type
-     * @return
+     *            název úrovně
+     * @return jméno elementu včetně namespace
      */
     public static String prevodTypeToNodeName(String type){
         switch(type.toLowerCase()){

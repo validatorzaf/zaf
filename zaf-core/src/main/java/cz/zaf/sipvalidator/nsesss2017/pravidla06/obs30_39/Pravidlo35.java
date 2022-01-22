@@ -10,8 +10,9 @@ import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 /**
- * OBSAHOVÁ č.35 Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap> 
- * atribut OTHERMDTYPE s hodnotou TP.",
+ * OBSAHOVÁ č.35 Každý element &lt;mets:digiprovMD&gt; obsahuje v hierarchii
+ * dětských elementů
+ * &lt;mets:mdWrap&gt; atribut OTHERMDTYPE s hodnotou TP.
  *
  */
 public class Pravidlo35 extends K06PravidloBase {

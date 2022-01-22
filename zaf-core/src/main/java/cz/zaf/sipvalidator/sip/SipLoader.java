@@ -94,8 +94,7 @@ public class SipLoader
         } else {
             loadStatus = LoadStatus.OK;
         }
-        long l = getSipLenght(sipPath);
-        sip = new SipInfo(sipName, sipZipFileName, loadType, l, sipPath, loadStatus);
+        sip = new SipInfo(sipName, sipZipFileName, loadType, sipPath, loadStatus);
 	}
 
     private void unzipSip() {

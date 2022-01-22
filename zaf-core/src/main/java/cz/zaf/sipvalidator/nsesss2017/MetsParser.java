@@ -223,7 +223,7 @@ public class MetsParser {
     /**
      * Vraci korenovy element metsu
      * 
-     * @return
+     * @return kořenový uzel
      */
     public Node getMetsRootNode() {
         return metsMets;
