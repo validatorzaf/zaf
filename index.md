@@ -1,9 +1,3 @@
----
-title: ZAF
-description: Validátor ZAF
-logo: logo.png
----
-
 ## Validátor ZAF
 
 Validátor ZAF je knihovna pro kontrolu datových balíčků SIP podle 
