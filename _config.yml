@@ -1,1 +1,5 @@
 theme: jekyll-theme-minimal
+site:
+  title: "Title Test"
+  description: "Desc test"
+  logo: logo.png
