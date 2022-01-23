@@ -1,5 +1,5 @@
 # Validátor ZAF
-[Domovská stránka](https://validatorzaf.github.io/zaf)
+[Domovská stránka a dokumentace](https://validatorzaf.github.io/zaf)
 
 ## Popis
 
@@ -13,57 +13,6 @@ XSD.
 Kontrola škodlivého kódu probíhá externě a aplikace pouze načítá výsledky této
 kontroly podle použitých přepínačů. Pokud je v rámci jednoho z typů kontrol
 nalezena chyba, další typy kontrol se neprovádí.
-
-## Instalace
-
-### Požadavky
-
-* OS Microsoft Windows, GNU/Linux, OS X nebo Oracle Solaris
-* Java 1.8 a vyšší
-
-## Použití
-
-Validátor ZAF lze volat prostřednictvím příkazového řádku:
-java -jar CmdValidator [přepínače] [&lt;path&gt;]
-
-path - cesta k SIPu, v případě dávkového režimu ke složce se SIPy
-
-### Přepínače:
-
--b|--batch Dávkový režim, vstupem je adresář obsahující SIPy
--w|--workdir= Umístění pracovního adresáře, zde budou SIPy rozbaleny
--d|--druh= Druh kontroly (1 - výchozí):
-
-> 1 = pro provedení skartačního řízení (jen metadata bez přiložených komponent)
-> 2 = pro provedení skartačního řízení (s přiloženými komponentami)
-> 3 = pro předávání dokumentů a jejich metadat do archivu
-
--e|--exclude= Seznam kontrol oddělených čárkou, které se nemají provádět
--i|--id= Identifikátor prováděné kontroly
--z|--hrozba= Podrobnosti v případě nalezení hrozby (pro předání z antivirového programu)
--o|--output= Jméno souboru nebo adresáře pro uložení výsledků
-
-## Podpora
-
-Aplikace zaznamenává a vypisuje čas spuštění a čas dokončení úlohy do konzole.
-
-Pokud aplikace předčasně padá s upozorněním "Java heap space", je nutné zvýšit množství alokované
-paměti pro Javu. Provádí se přidáním parametrů -Xms a -Xmx s číslem udávajícím velikost paměti
-a s jednotkou.
-
-
-## Autoři
-
-Stanislav Bečvář
-Hlavní město Praha
-Magistrát hlavního města Prahy
-Odbor „Archiv hlavního města Prahy“
-
-Petr Pytelka
-LightComp v.o.s.
-
-Karel Žáček
-LightComp v.o.s.
 
 ## Licenční podmínky
 
