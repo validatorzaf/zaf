@@ -17,4 +17,5 @@ Dokumentace k validátoru je součástí jednotlivých sestavení. Aktuální do
 
 ### Aktuální verze
 
-Výdána verze 0.9.3, dostupná zde: https://github.com/validatorzaf/zaf/releases
+Výdána verze 0.9.3, dostupná na (GitHub Releases)[https://github.com/validatorzaf/zaf/releases] a 
+v repozitáři pro Maven (https://www.lightcomp.cz/releases/repository/lc-public-release/)[https://www.lightcomp.cz/releases/repository/lc-public-release/].
