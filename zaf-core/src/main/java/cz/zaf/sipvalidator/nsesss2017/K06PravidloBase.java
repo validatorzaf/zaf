@@ -82,7 +82,7 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
      * 
      * Dojde k selhani pokud neexistuji.
      * 
-     * @return
+     * @return Seznam základních entit, null při neexistenci
      */
     protected List<Node> predpokladZakladniEntity() {
         List<Node> zaklEntity = kontrola.getZakladniEnity();
@@ -119,7 +119,9 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
      * Nastaveni chyby a mista jejiho vyskytu
      * 
      * @param detailChyby
+     *            detailní popis chyby
      * @param mistoChyby
+     *            určení místa chyby
      * @return Vraci vzdy false, lze vyuzit pro jednoradkovy zapis
      */
     protected boolean nastavChybu(final String detailChyby, final String mistoChyby) {

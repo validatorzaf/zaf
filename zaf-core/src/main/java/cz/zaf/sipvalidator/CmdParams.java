@@ -8,7 +8,8 @@ import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 
 /**
- * Trida pro nacteni vstupnich parametru
+ * Třída pro načtení vstupních parametrů
+ * 
  *
  */
 public class CmdParams {
@@ -111,7 +112,8 @@ public class CmdParams {
      * Nacte vstupni parametry
      * 
      * @param args
-     * @return
+     *            pole argumentů
+     * @return true při úspěšném načtení, false při chybě
      */
     public boolean read(String args[]) {
         this.pos = 0;

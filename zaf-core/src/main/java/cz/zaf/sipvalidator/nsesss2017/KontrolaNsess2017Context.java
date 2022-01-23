@@ -28,7 +28,7 @@ public class KontrolaNsess2017Context extends KontrolaContext {
     /**
      * Kontrola existence mets.xml
      * 
-     * @return
+     * @return true pokud existuje mets.xml
      */
     public boolean maMetsXml() {
         File m = sip.getCestaMets().toFile();

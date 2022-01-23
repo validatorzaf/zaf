@@ -24,9 +24,12 @@ public class CompareNodes {
     
     /**
      * Compare two nodes and its subnodes
+     * 
      * @param leftNode
+     *            první uzel pro porovnání
      * @param rightNode
-     * @return Return null if nodes are same. 
+     *            druhý uzel pro porovnání
+     * @return Return null if nodes are same.
      *         Return description of difference if nodes are different.
      */
     public static String compare(Node leftNode, Node rightNode){

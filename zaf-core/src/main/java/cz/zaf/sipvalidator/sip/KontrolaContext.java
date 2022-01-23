@@ -37,10 +37,10 @@ public class KontrolaContext {
     }
 
 	/**
-	 * Kontrola, zda doslo k selhani
-	 * 
-	 * @return
-	 */
+     * Kontrola, zda doslo k selhani
+     * 
+     * @return true při selhání, false pokud kontrola neproběhla nebo je ok
+     */
 	public boolean isFailed() {
 		ArrayList<VysledekKontroly> kontroly = sip.getSeznamKontrol();
 		if(kontroly==null||kontroly.size()==0) {

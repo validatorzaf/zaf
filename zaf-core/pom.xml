@@ -263,6 +263,7 @@
         			    <configuration>
                             <skip>false</skip>
                             <excludePackageNames>cz.zaf.schema.*</excludePackageNames>
+                            <sourcepath>${project.basedir}/src/main/java:${project.build.directory}/generated-sources/kontrolasip</sourcepath>
         			    </configuration>
         			</plugin>			
   				</plugins>

@@ -8,7 +8,7 @@ package cz.zaf.sipvalidator.helper;
 import java.io.File;
 
 /**
- *
+ * Pomocné funkce pro práci s řetězci
  */
 public class HelperString {
     
@@ -18,7 +18,9 @@ public class HelperString {
      * Kontrola, zda retezec nejsou jen whitespace
      * 
      * @param str
-     * @return
+     *            vstupní řetězec
+     * @return true pokud obsahuje písmeno nebo číslici, false při nenalezení
+     *         písmena ani číslice
      */
     public static boolean hasContent(String str) {
         if (str == null) {

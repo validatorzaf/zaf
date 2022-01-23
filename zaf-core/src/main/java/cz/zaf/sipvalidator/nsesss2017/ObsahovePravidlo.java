@@ -17,9 +17,10 @@ public interface ObsahovePravidlo {
 	void kontrolaPravidla(final K06_Obsahova kontrola);
 
 	/**
-	 * Vrati kod pravidla
-	 * @return
-	 */
+     * Vrati kod pravidla
+     * 
+     * @return kod pravidla
+     */
 	String getKodPravidla();
 
     String getTtextPravidla();
