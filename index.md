@@ -14,3 +14,7 @@ nalezena chyba, další typy kontrol se neprovádí.
 ### Dokumentace
 
 Dokumentace k validátoru je součástí jednotlivých sestavení. Aktuální dokumentace je dostupná [zde](doc)
+
+### Aktuální verze
+
+Výdána verze 0.9.3, dostupná zde: https://github.com/validatorzaf/zaf/releases
