@@ -1,5 +1,7 @@
 ---
-title: Validátor ZAF
+title: ZAF
+description: Validátor ZAF
+logo: logo.png
 ---
 
 ## Validátor ZAF
