@@ -14,8 +14,8 @@ Kontrola škodlivého kódu probíhá externě a aplikace pouze načítá výsle
 kontroly podle použitých přepínačů. Pokud je v rámci jednoho z typů kontrol
 nalezena chyba, další typy kontrol se neprovádí.
 
-Vývoj a další rozvoj Validátoru ZAF probíhá ve spolupráci Hlavního města Prahy, Magistrátu hlavního města Prahy, 
-odboru Archiv hlavního města Prahy; Univerzity Karlovy, Ústavu dějin a archivu Univerzity Karlovy a Lightcomp, v.o.s.
+Vývoj a další rozvoj Validátoru ZAF probíhá ve spolupráci [Hlavního města Prahy, Magistrátu hlavního města Prahy, 
+odboru Archiv hlavního města Prahy](http://www.ahmp.cz/); [Univerzity Karlovy, Ústavu dějin a archivu Univerzity Karlovy](https://udauk.cuni.cz/ARCH-1.html) a [Lightcomp, v.o.s.](https://lightcomp.cz/)
 
 Validátor ZAF je vyvíjen se snahou o zjištění shody a případných chyb validovaných balíčků SIP s NSESSS.
 Použití Validátoru ZAF neprokazuje splnění požadavků na balíčky SIP ze strany archivů rozhodujících 
