@@ -2,11 +2,11 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19;
 
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.10 Element <mets:mets> obsahuje právě jeden dětský element <mets:metsHdr>.",
-public class Pravidlo10 extends K06PravidloBase {
+public class Pravidlo10 extends K06PravidloBaseOld {
 
 	static final public String OBS10 = "obs10";
 

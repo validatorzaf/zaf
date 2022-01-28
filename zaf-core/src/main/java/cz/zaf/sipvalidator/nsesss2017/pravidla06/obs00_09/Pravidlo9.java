@@ -2,11 +2,11 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09;
 
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.9 Element <mets:mets> obsahuje atribut xmlns:xlink s hodnotou http://www.w3.org/1999/xlink.
-public class Pravidlo9 extends K06PravidloBase {
+public class Pravidlo9 extends K06PravidloBaseOld {
 
 	static final public String OBS9 = "obs9";
 

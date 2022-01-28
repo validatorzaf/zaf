@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 /**
@@ -15,7 +15,7 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
  * &lt;mets:mdWrap&gt; atribut OTHERMDTYPE s hodnotou TP.
  *
  */
-public class Pravidlo35 extends K06PravidloBase {
+public class Pravidlo35 extends K06PravidloBaseOld {
 	
 	static final public String OBS35 = "obs35";
 

@@ -1,7 +1,6 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -17,7 +16,7 @@ import org.w3c.dom.Node;
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.pdfa.ValidationResult;
@@ -47,7 +46,7 @@ import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 // atribut MIMETYPE s hodnotou application/pdf, potom souborový formát příslušné
 // komponenty odpovídá normě PDF/A alespoň ve verzi 1b.
 //
-public class Pravidlo99 extends K06PravidloBase {
+public class Pravidlo99 extends K06PravidloBaseOld {
 
     static Logger log = LoggerFactory.getLogger(Pravidlo99.class);
 
@@ -140,7 +139,7 @@ public class Pravidlo99 extends K06PravidloBase {
             return true;
         }
         for (Node fileGrpNode: nodeListFileGrp) {
-            ArrayList<Node> fileNodes = ValuesGetter.getChildList(fileGrpNode, "mets:file");
+            List<Node> fileNodes = ValuesGetter.getChildList(fileGrpNode, "mets:file");
             for (Node fileNode : fileNodes) {
                 // overeni ID, zda ma byt soubor kontrolovan
                 String dmdid = ValuesGetter.getValueOfAttribut(fileNode, JmenaElementu.DMDID);
@@ -150,7 +149,7 @@ public class Pravidlo99 extends K06PravidloBase {
 
                 String mimeType = ValuesGetter.getValueOfAttribut(fileNode, "MIMETYPE");
                 if ("application/pdf".equalsIgnoreCase(mimeType)) {
-                    ArrayList<Node> flocatNodes = ValuesGetter.getChildList(fileNode, "mets:FLocat");
+                    List<Node> flocatNodes = ValuesGetter.getChildList(fileNode, "mets:FLocat");
                     for (Node flocatNode : flocatNodes) {
                         if (!checkPdfA(flocatNode)) {
                             return false;

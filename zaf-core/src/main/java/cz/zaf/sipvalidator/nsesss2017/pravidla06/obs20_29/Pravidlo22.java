@@ -2,11 +2,11 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29;
 
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.22 Element <mets:dmdSec> obsahuje právě jeden dětský element <mets:mdWrap>.",
-public class Pravidlo22 extends K06PravidloBase {
+public class Pravidlo22 extends K06PravidloBaseOld {
 
 	static final public String OBS22 = "obs22";
 

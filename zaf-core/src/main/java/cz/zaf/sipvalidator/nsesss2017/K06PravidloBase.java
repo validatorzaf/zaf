@@ -7,6 +7,10 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.Validate;
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.exceptions.ZafException;
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
+import cz.zaf.sipvalidator.exceptions.codes.ErrorCode;
+
 /**
  * Zakladni implementace spustitelneho pravidla
  * 
@@ -20,10 +24,13 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
 
     final protected String kodPravidla;
     final protected String textPravidla;
-    protected String mistoChyby;
-    protected String detailChyby;
     final protected String obecnyPopisChyby;
     final protected String zdrojChyby;
+
+    /**
+     * Volitelný seznam entit, kde byla identifikována chyba
+     */
+    protected List<EntityId> chybneEntity;
 
     protected MetsParser metsParser;
 
@@ -32,37 +39,50 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
     public K06PravidloBase(final String kodPravidla,
                            final String textPravidla,
                            final String obecnyPopisChyby,
-                           final String zdrojChyby) {        
+                           final String zdrojChyby) {
         Validate.notNull(kodPravidla);
         Validate.notNull(textPravidla);
-        
+
         this.kodPravidla = kodPravidla;
         this.textPravidla = textPravidla;
         this.obecnyPopisChyby = obecnyPopisChyby;
         this.zdrojChyby = zdrojChyby;
     }
 
-    protected abstract boolean kontrolaPravidla();
+    /**
+     * Hlavni metoda pro spusteni kontroly pravidla
+     */
+    protected abstract void kontrola();
 
     @Override
     public void kontrolaPravidla(final K06_Obsahova kontrola) {
-    	this.kontrola = kontrola;
+        this.kontrola = kontrola;
         // reset promennych pred spustenim
         boolean stav = false;
-        mistoChyby = null;
-        detailChyby = null;
+        String mistoChyby = null;
+        String detailChyby = null;
 
         this.metsParser = kontrola.getMetsParser();
         this.context = this.kontrola.getContext();
 
+        ErrorCode errorCode = null;
+
         try {
-        	stav = kontrolaPravidla();
-        } catch(Exception e) {
-        	detailChyby = e.getLocalizedMessage();
+            kontrola();
+        } catch (ZafException e) {
+            errorCode = e.getErrorCode();
+            detailChyby = e.getMessage();
+            mistoChyby = e.getMistoChyby();
+
+            // TODO: ID chybnych entit lze pridat do vystupu 
+            // List<EntityId> entityIds = e.getEntityIds();
+        } catch (Exception e) {
+            errorCode = BaseCode.UNKNOWN_ERROR;
+            detailChyby = e.getLocalizedMessage();
         }
 
         kontrola.pridejPravidlo(kodPravidla,
-                                stav,
+                                errorCode,
                                 textPravidla,
                                 detailChyby,
                                 !stav ? obecnyPopisChyby : null,
@@ -101,11 +121,11 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
         }
         return dokumenty;
     }
-    
+
     protected boolean nastavChybu(String detailChyby, List<Node> errorList) {
-        String mistoCh = errorList.stream().map(n -> getMistoChyby(n) ).collect(Collectors.joining(" "));
+        String mistoCh = errorList.stream().map(n -> getMistoChyby(n)).collect(Collectors.joining(" "));
         return nastavChybu(detailChyby, mistoCh);
-    }    
+    }
 
     protected boolean nastavChybu(final String detailChyby, final Node mistoChyby) {
         return nastavChybu(detailChyby, getMistoChyby(mistoChyby));
@@ -125,9 +145,23 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
      * @return Vraci vzdy false, lze vyuzit pro jednoradkovy zapis
      */
     protected boolean nastavChybu(final String detailChyby, final String mistoChyby) {
-        this.detailChyby = detailChyby;
-        this.mistoChyby = mistoChyby;
+        nastavChybu(BaseCode.ERROR, detailChyby, mistoChyby);
         return false;
+    }
+
+    protected void nastavChybu(ErrorCode errorCode, final String detailChyby, final Node mistoChyby) {
+        nastavChybu(errorCode, detailChyby, getMistoChyby(mistoChyby));
+    }
+
+    protected void nastavChybu(ErrorCode errorCode, final String detailChyby, final String mistoChyby) {
+        throw new ZafException(errorCode, detailChyby, mistoChyby);
+    }
+
+    protected void nastavChybu(ErrorCode errorCode, String detailChyby, final Node mistoChyby,
+                               final EntityId entityId) {
+        throw new ZafException(errorCode, detailChyby, getMistoChyby(mistoChyby))
+                .addEntity(entityId);
+
     }
 
     @Override

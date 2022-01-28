@@ -13,15 +13,18 @@ import org.w3c.dom.Node;
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.MimetypeDetector;
 import cz.zaf.sipvalidator.nsesss2017.MimetypeDetector.MimeTypeResult;
 import cz.zaf.sipvalidator.nsesss2017.MimetypeDetector.MimeTypeResult.DetectionStatus;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 
-//OBSAHOVÁ č.45 Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut MIMETYPE s hodnotou identifikace souborového formátu příslušné komponenty číselníku IANA na URL: http://www.iana.org/assignments/media-types/media-types.xhtml.",
-public class Pravidlo45 extends K06PravidloBase {
+// OBSAHOVÁ č.45 Pokud existuje jakýkoli element <mets:file>,
+// každý obsahuje atribut MIMETYPE s hodnotou identifikace souborového
+// formátu příslušné komponenty číselníku IANA na URL:
+// http://www.iana.org/assignments/media-types/media-types.xhtml.
+public class Pravidlo45 extends K06PravidloBaseOld {
 	
 	static final public String OBS45 = "obs45";
 

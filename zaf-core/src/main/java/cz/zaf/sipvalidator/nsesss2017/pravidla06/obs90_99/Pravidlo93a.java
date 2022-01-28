@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -17,7 +17,7 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
  * &lt;nsesss:PlneUrcenySpisovyZnak&gt; se stejnými hodnotami.
  * 
  */
-public class Pravidlo93a  extends K06PravidloBase {
+public class Pravidlo93a  extends K06PravidloBaseOld {
 
     static final public String OBS93A = "obs93a";
 

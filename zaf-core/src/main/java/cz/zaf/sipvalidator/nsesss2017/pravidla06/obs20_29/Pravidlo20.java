@@ -7,11 +7,11 @@ import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.20 Každý element <mets:agent> obsahuje právě jeden dětský element <mets:name> s neprázdnou hodnotou.",
-public class Pravidlo20 extends K06PravidloBase {
+public class Pravidlo20 extends K06PravidloBaseOld {
 
 	static final public String OBS20 = "obs20";
 

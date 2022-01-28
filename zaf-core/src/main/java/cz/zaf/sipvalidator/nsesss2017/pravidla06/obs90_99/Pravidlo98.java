@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -20,7 +20,7 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 // dětské entity dokument
 // (<nsesss:Dokument>).",
 
-public class Pravidlo98 extends K06PravidloBase {
+public class Pravidlo98 extends K06PravidloBaseOld {
 
     public static final String OBS98 = "obs98";
 
@@ -58,18 +58,16 @@ public class Pravidlo98 extends K06PravidloBase {
         Node n_zakl_jsz = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                                  "nsesss:JednoduchySpisovyZnak");
         if (n_zakl_jsz == null) {
-            detailChyby = "Nenalezen element <nsesss:JednoduchySpisovyZnak> základní entity. "
+            String detailChyby = "Nenalezen element <nsesss:JednoduchySpisovyZnak> základní entity. "
                     + kontrola.getJmenoIdentifikator(zakladnientita);
-            mistoChyby = getMistoChyby(zakladnientita);
-            return false;
+            return nastavChybu(detailChyby, getMistoChyby(zakladnientita));
         }
         Node n_zakl_pusz = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                                   "nsesss:PlneUrcenySpisovyZnak");
         if (n_zakl_pusz == null) {
-            detailChyby = "Nenalezen element <nsesss:PlneUrcenySpisovyZnak> základní entity. "
+            String detailChyby = "Nenalezen element <nsesss:PlneUrcenySpisovyZnak> základní entity. "
                     + kontrola.getJmenoIdentifikator(zakladnientita);
-            mistoChyby = getMistoChyby(zakladnientita);
-            return false;
+            return nastavChybu(detailChyby, getMistoChyby(zakladnientita));
         }
         String jednoduchySpZnZaklEnt = n_zakl_jsz.getTextContent();
         String plneUrcenySpZnZaklEnt = n_zakl_pusz.getTextContent();

@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -23,7 +23,7 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 // <nsesss:Komponenta> se stejnou hodnotou atributu poradi obsahují stejnou
 // hodnotu atributu druh.
 //
-public class Pravidlo101 extends K06PravidloBase {
+public class Pravidlo101 extends K06PravidloBaseOld {
 
     static Logger log = LoggerFactory.getLogger(Pravidlo101.class);
 

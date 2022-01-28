@@ -9,8 +9,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Nullable;
+
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.exceptions.codes.ErrorCode;
+import cz.zaf.sipvalidator.nsesss2017.EntityId.DruhEntity;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.VysledekPravidla;
@@ -67,6 +71,46 @@ public class K06_Obsahova
         return bol;
     }
     
+    public EntityId getEntityId(Node node) {
+        String nodename = node.getNodeName();
+        Node identNode;
+        DruhEntity druhEntity;
+        switch (nodename) {
+        case NsessV3.SPISOVY_PLAN:
+            identNode = ValuesGetter.getXChild(node, NsessV3.IDENTIFIKATOR);
+            druhEntity = DruhEntity.SPISOVY_PLAN;
+            break;
+        case NsessV3.DOKUMENT:
+            identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
+                                               "nsesss:Identifikace", NsessV3.IDENTIFIKATOR);
+            druhEntity = DruhEntity.DOKUMENT;
+            break;
+        case NsessV3.SPIS:
+            identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
+                                               "nsesss:Identifikace", NsessV3.IDENTIFIKATOR);
+            druhEntity = DruhEntity.SPIS;
+            break;
+        case NsessV3.DIL:
+            identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
+                                               "nsesss:Identifikace", NsessV3.IDENTIFIKATOR);
+            druhEntity = DruhEntity.DIL;
+            break;
+        default:
+            return null;
+        }
+        String hodnota, zdroj;
+        if (identNode == null) {
+            hodnota = "nenalezeno";
+            zdroj = "nenalezeno";
+        } else {
+            hodnota = identNode.getTextContent();
+            zdroj = ValuesGetter.getValueOfAttribut(identNode, "zdroj");
+        }
+
+        return new EntityId(druhEntity, hodnota, zdroj);
+
+    }
+
     public String getIdentifikatory(Node node) {
         String nodename = node.getNodeName();
         String hodnota = "nenalezeno", zdroj = "nenalezeno";
@@ -124,15 +168,26 @@ public class K06_Obsahova
         return "";
     }
     
+    /**
+     * 
+     * @param idPravidla
+     * @param errorCode
+     *            null pokud je pravidlo OK, jinak kod chyby
+     * @param textPravidla
+     * @param detailChyby
+     * @param obecnyPopisChyby
+     * @param mistoChyby
+     * @param zdroj
+     */
     void pridejPravidlo(String idPravidla,
-                                boolean jeOk,
-                                String textPravidla,
-                                String detailChyby,
-                                String obecnyPopisChyby,
-                                String mistoChyby,
-                                String zdroj) {
+                        @Nullable ErrorCode errorCode,
+                        String textPravidla,
+                        String detailChyby,
+                        String obecnyPopisChyby,
+                        String mistoChyby,
+                        String zdroj) {
         VysledekPravidla p = new VysledekPravidla(idPravidla,
-                jeOk,
+                errorCode == null,
                 textPravidla,
                 detailChyby,
                 obecnyPopisChyby,

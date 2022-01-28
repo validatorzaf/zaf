@@ -190,18 +190,23 @@ public class ValuesGetter {
     }
     
     public static boolean hasOnlyOneChild_ElementNode(Node node, String childName) {
-        if(node == null) return false;
+        if (node == null) {
+            return false;
+        }
         NodeList list = node.getChildNodes();
-        if(list == null) return false;
+        if (list == null) {
+            return false;
+        }
         int size = list.getLength();
-        if(size == 0) return false;
         int count = 0;
         for(int i = 0; i < size; i++){
             Node n = list.item(i);
             if(n.getNodeType() == ELEMENT_NODE){
                 if(n.getNodeName().equals(childName)){
                     count++;
-                    if(count > 1) return false;
+                    if (count > 1) {
+                        return false;
+                    }
                 }
             } 
         }
@@ -319,7 +324,7 @@ public class ValuesGetter {
         return sourozenec;
     }  
         
-    public static ArrayList<Node> getChildList(Node parent, String... childNames){
+    public static List<Node> getChildList(Node parent, String... childNames) {
         ArrayList<Node> list = new ArrayList<>();
         if(parent == null) return list;
         NodeList nodeList = parent.getChildNodes();

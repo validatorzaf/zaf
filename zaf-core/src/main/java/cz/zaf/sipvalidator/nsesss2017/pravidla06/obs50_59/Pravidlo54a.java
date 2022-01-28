@@ -12,7 +12,7 @@ import org.apache.commons.lang3.Validate;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.PairZdrojIdent;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
@@ -25,7 +25,7 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 // odpovídá v hodnotách hodnotám elementu <nsesss:Identifikator> a jeho atributu zdroj příslušné entity/objektu v sekci dmdSec), 
 // přičemž v případě multiplicitního výskytu stejné entity typu součást, typový spis, věcná skupina nebo objektu spisový plán v sekci dmdSec je uvedená entita/objekt uvedena 
 // v sekci structMap právě jednou (atribut DMDID obsahuje ID libovolného výskytu příslušné entity/objektu).
-public class Pravidlo54a  extends K06PravidloBase {
+public class Pravidlo54a  extends K06PravidloBaseOld {
 
     static final public String OBS54A = "obs54a";
        

@@ -3,11 +3,11 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.1 Element <mets:mets> obsahuje atribut OBJID s neprázdnou hodnotou.",
-public class Pravidlo1 extends K06PravidloBase {
+public class Pravidlo1 extends K06PravidloBaseOld {
 
 	static final public String OBS1 = "obs1";
 

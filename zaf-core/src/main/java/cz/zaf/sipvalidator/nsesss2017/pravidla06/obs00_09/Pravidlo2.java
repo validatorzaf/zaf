@@ -3,11 +3,11 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09;
 import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.2 Element <mets:mets> obsahuje atribut LABEL s hodnotou Datový balíček pro provedení skartačního řízení nebo Datový balíček pro předávání dokumentů a jejich metadat do archivu.
-public class Pravidlo2 extends K06PravidloBase {
+public class Pravidlo2 extends K06PravidloBaseOld {
 
 	static final public String OBS2 = "obs2";
 

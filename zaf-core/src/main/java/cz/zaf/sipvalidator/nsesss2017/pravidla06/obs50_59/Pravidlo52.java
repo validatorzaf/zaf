@@ -8,11 +8,11 @@ import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 
-public class Pravidlo52 extends K06PravidloBase {
+public class Pravidlo52 extends K06PravidloBaseOld {
 
     static final public String OBS52 = "obs52";
 

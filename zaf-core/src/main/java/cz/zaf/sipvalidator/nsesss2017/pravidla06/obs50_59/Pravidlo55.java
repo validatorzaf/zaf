@@ -6,10 +6,10 @@ import java.util.List;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
-public class Pravidlo55 extends K06PravidloBase {
+public class Pravidlo55 extends K06PravidloBaseOld {
 
     static final public String OBS55 = "obs55";
 

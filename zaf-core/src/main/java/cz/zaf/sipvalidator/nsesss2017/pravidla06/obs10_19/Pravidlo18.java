@@ -7,11 +7,11 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.18 Každý element <mets:agent> obsahuje atribut ROLE s hodnotou CREATOR.",
-public class Pravidlo18 extends K06PravidloBase {
+public class Pravidlo18 extends K06PravidloBaseOld {
 
 	static final public String OBS18 = "obs18";
 

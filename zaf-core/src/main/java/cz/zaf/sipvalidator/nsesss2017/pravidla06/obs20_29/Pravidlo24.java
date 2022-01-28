@@ -3,11 +3,11 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29;
 import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.24 Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut OTHERMDTYPE s hodnotou NSESSS.",
-public class Pravidlo24 extends K06PravidloBase {
+public class Pravidlo24 extends K06PravidloBaseOld {
 
 	static final public String OBS24 = "obs24";
 

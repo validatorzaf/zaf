@@ -6,11 +6,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.37 Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MIMETYPE s hodnotou text/xml.",
-public class Pravidlo37 extends K06PravidloBase {
+public class Pravidlo37 extends K06PravidloBaseOld {
 	
 	static final public String OBS37 = "obs37";
 
