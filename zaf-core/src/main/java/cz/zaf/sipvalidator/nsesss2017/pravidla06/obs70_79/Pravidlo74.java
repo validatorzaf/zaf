@@ -16,7 +16,7 @@ public class Pravidlo74 extends K06PravidloBaseOld {
         super(OBS74,
                 "Pokud existuje jakýkoli element <nsesss:PosuzovanyOkamzik>, každý obsahuje atribut datum.",
                 "Chybí strojový zápis času, k němuž je vztaženo posuzování platnosti elektronického podpisu, elektronické značky nebo časového razítka.",
-                "§ 4 odst. 7 písm. d) vyhlášky č. 259/2012 Sb.");
+                "§ 4 odst. 7 písm. f) vyhlášky č. 259/2012 Sb.");
         // TODO Auto-generated constructor stub
     }
 

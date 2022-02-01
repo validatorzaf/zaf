@@ -16,7 +16,7 @@ public class Pravidlo73 extends K06PravidloBaseOld {
         super(OBS73,
                 "Pokud existuje jakýkoli element <nsesss:CasOvereni>, každý obsahuje atribut datum.",
                 "Chybí strojový zápis času ověření elektronického podpisu, elektronické značky nebo časového razítka.",
-                "§ 4 odst. 7 písm. d) vyhlášky č. 259/2012 Sb.");
+                "§ 4 odst. 7 písm. g) vyhlášky č. 259/2012 Sb.");
     }
 
     //OBSAHOVÁ č.73 Každý element <nsesss:CasOvereni> obsahuje atribut datum.",

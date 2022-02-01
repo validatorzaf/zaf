@@ -735,7 +735,7 @@ Aktivní:: skartační řízení (jen metadata), skartační řízení (s kompon
 
 Pravidlo:: Pokud existuje jakýkoli element <nsesss:CasOvereni>, každý obsahuje atribut datum.
 Kód:: obs73
-Zdroj:: § 4 odst. 7 písm. d) vyhlášky č. 259/2012 Sb.
+Zdroj:: § 4 odst. 7 písm. g) vyhlášky č. 259/2012 Sb.
 Popis chyby:: Chybí strojový zápis času ověření elektronického podpisu, elektronické značky nebo časového razítka.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
@@ -746,7 +746,7 @@ Aktivní:: skartační řízení (jen metadata), skartační řízení (s kompon
 
 Pravidlo:: Pokud existuje jakýkoli element <nsesss:PosuzovanyOkamzik>, každý obsahuje atribut datum.
 Kód:: obs74
-Zdroj:: § 4 odst. 7 písm. d) vyhlášky č. 259/2012 Sb.
+Zdroj:: § 4 odst. 7 písm. f) vyhlášky č. 259/2012 Sb.
 Popis chyby:: Chybí strojový zápis času, k němuž je vztaženo posuzování platnosti elektronického podpisu, elektronické značky nebo časového razítka.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
