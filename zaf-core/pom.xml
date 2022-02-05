@@ -125,7 +125,7 @@
 						<configuration>
 							<schemaDirectory>src/main/resources/schema</schemaDirectory>
 							<schemaIncludes>
-								<include>validaceSIP.xsd</include>
+								<include>validace.xsd</include>
 							</schemaIncludes>
 							<generatePackage>cz.zaf.schema.validacesip</generatePackage>
 							<generateDirectory>${project.build.directory}/generated-sources/validacexsd</generateDirectory>
