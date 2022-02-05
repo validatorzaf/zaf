@@ -2,12 +2,13 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09;
 
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.helper.HelperString;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.1 Element <mets:mets> obsahuje atribut OBJID s neprázdnou hodnotou.",
-public class Pravidlo1 extends K06PravidloBaseOld {
+public class Pravidlo1 extends K06PravidloBase {
 
 	static final public String OBS1 = "obs1";
 
@@ -19,16 +20,16 @@ public class Pravidlo1 extends K06PravidloBaseOld {
 	}
 
 	@Override
-	protected boolean kontrolaPravidla() {
+    protected void kontrola() {
 		Node metsMets = metsParser.getMetsRootNode();
 
-		if (!ValuesGetter.hasAttribut(metsMets, "OBJID")) {
-			return nastavChybu("Nenalezen atribut OBJID kořenového elementu <mets:mets>.", metsMets);
+        String objId = ValuesGetter.getValueOfAttribut(metsMets, "OBJID");
+        if (objId == null) {
+            nastavChybu(BaseCode.CHYBI_ATRIBUT, "Nenalezen atribut OBJID kořenového elementu <mets:mets>.", metsMets);
 		}
-		if (!HelperString.hasContent(ValuesGetter.getValueOfAttribut(metsMets, "OBJID"))) {
-			return nastavChybu("Atribut OBJID kořenového elementu <mets:mets> není vyplněn.", metsMets);
+        if (!HelperString.hasContent(objId)) {
+            nastavChybu(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
+                               "Atribut OBJID kořenového elementu <mets:mets> není vyplněn.", metsMets);
 		}
-		return true;
 	}
-
 }
