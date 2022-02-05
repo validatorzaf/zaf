@@ -3,6 +3,7 @@ package cz.zaf.sipvalidator.nsesss2017;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cz.zaf.sipvalidator.sip.StavKontroly;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.UrovenKontroly;
 import cz.zaf.sipvalidator.sip.VysledekKontroly;
@@ -29,9 +30,12 @@ abstract public class KontrolaBase
         if (failed) {
             return;
         }
+        
+        log.debug("Zahajena kontrola: {}", this.getNazev());
 
         long startTime = System.currentTimeMillis();
-
+        // vychozi stav je ok
+        vysledekKontroly.setStav(StavKontroly.OK);
         provedKontrolu();
 
         long finishTime = System.currentTimeMillis();

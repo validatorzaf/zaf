@@ -21,20 +21,20 @@ import org.apache.commons.io.input.BOMInputStream; // lib commons-io-2.4
 import com.ibm.icu.text.CharsetDetector; // lib ucu4j-56.jar
 import com.ibm.icu.text.CharsetMatch; // lib ucu4j-56.jar
 
-import cz.zaf.sipvalidator.sip.VysledekPravidla;
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
+import cz.zaf.sipvalidator.sip.VysledekPravidla;
 
 /**
  * Kontroluje kódování SIP souboru.
  * Potřebuje dvě knihovny a to: ucu4j-56.jar
  * lib commons-io-2.4
  * 
- * @author m000xz006159
  */
 public class K02_ZnakoveSady
         extends KontrolaBase {
-    static final public String NAME = "kontrola znakové sady";
+    static final public String NAME = "znakové sady";
 
     static final public String KOD1 = "kod1";
 
@@ -156,17 +156,17 @@ public class K02_ZnakoveSady
 
         sip.setKodovani(kodovaniSipSouboru);
 
-        String obecnyPopisChyby = null;
         if (!jeKodovaniVPoradku) {
-            obecnyPopisChyby = "Znaková sada datového balíčku SIP není Unicode/UCS v kódování UTF-8 bez BOM (Byte order mark).";
+            String obecnyPopisChyby = "Znaková sada datového balíčku SIP není Unicode/UCS v kódování UTF-8 bez BOM (Byte order mark).";
+            VysledekPravidla p = new VysledekPravidla(KOD1,
+                    "Znakovou sadou souboru je Unicode/UCS v kódování UTF-8 bez BOM (Byte order mark).", // text
+                    chybaKodovani,
+                    obecnyPopisChyby, null,
+                    "Požadavek 11.2.7 NSESSS.",
+                    BaseCode.ERROR);
+            vysledekKontroly.add(p);
         }
 
-        VysledekPravidla p = new VysledekPravidla(KOD1, jeKodovaniVPoradku,
-                "Znakovou sadou souboru je Unicode/UCS v kódování UTF-8 bez BOM (Byte order mark).", // text
-                chybaKodovani,
-                obecnyPopisChyby, null,
-                "Požadavek 11.2.7 NSESSS.");
-        vysledekKontroly.add(p);
     }
 
     @Override

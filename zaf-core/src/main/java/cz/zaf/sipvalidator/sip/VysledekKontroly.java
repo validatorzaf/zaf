@@ -8,6 +8,7 @@ package cz.zaf.sipvalidator.sip;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.Validate;
 
 /**
@@ -23,7 +24,7 @@ public class VysledekKontroly {
 	
 	final TypUrovenKontroly urovenKontroly;
 	
-	ArrayList<VysledekPravidla> pravidla = new ArrayList<>(); 
+    List<VysledekPravidla> chyby = new ArrayList<>();
 	
     String kontrolaNazev;
     
@@ -57,30 +58,24 @@ public class VysledekKontroly {
     }
 
 	public void add(VysledekPravidla p) {
-		pravidla.add(p);
-		// nastaveni stavu dle vysledku pravidla
-		if(!p.getStav()) {
+        chyby.add(p);
+        // nastaveni stavu
+        if (stavKontroly != StavKontroly.CHYBA) {
 			// doslo k selhani -> error
 			stavKontroly = StavKontroly.CHYBA;
-		} else {
-			// overime predchozi stav
-			if(stavKontroly==StavKontroly.NESPUSTENA) {
-				// nebyla spustena, nastavime na ok
-				stavKontroly = StavKontroly.OK;
-			}
 		}
 	}
 
 	public int size() {
-		return pravidla.size();
+        return chyby.size();
 	}
 
 	public VysledekPravidla get(int i) {
-		return pravidla.get(i);
+        return chyby.get(i);
 	}
 
 	public boolean isEmpty() {
-		return pravidla.isEmpty();
+        return chyby.isEmpty();
 	}
 
 	public TypUrovenKontroly getTypUrovneKontroly() {
@@ -89,7 +84,7 @@ public class VysledekKontroly {
 
 	public boolean isFailed() {		
 		// pokud je stav false -> je selhana
-		return stavKontroly==StavKontroly.CHYBA;
+        return CollectionUtils.isNotEmpty(chyby);
 	}
 
 	public boolean isProvedena() {
@@ -101,11 +96,11 @@ public class VysledekKontroly {
 	}
 
     public List<VysledekPravidla> getPravidla() {
-        return pravidla;
+        return chyby;
     }
 
     public VysledekPravidla getPravidlo(String kodPravidla) {
-        for (VysledekPravidla pravidlo : pravidla) {
+        for (VysledekPravidla pravidlo : chyby) {
             if (pravidlo.getId().equals(kodPravidla)) {
                 return pravidlo;
             }

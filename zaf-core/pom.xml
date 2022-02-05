@@ -104,8 +104,8 @@
 						</goals>
 						<configuration>
 							<sources>
-								<source>${xjcDirectory}/kontrolasip</source>
-								<source>${project.build.directory}/generated-sources/kontrolasip</source>
+								<source>${xjcDirectory}/validacexsd</source>
+								<source>${project.build.directory}/generated-sources/validacexsd</source>
 							</sources>
 						</configuration>
 					</execution>
@@ -117,7 +117,7 @@
 				<version>0.14.0</version>
 				<executions>
 					<execution>
-						<id>jaxb2-generate-kontrolasip</id>
+						<id>jaxb2-generate-validacexsd</id>
 						<phase>generate-sources</phase>
 						<goals>
 							<goal>generate</goal>
@@ -125,10 +125,10 @@
 						<configuration>
 							<schemaDirectory>src/main/resources/schema</schemaDirectory>
 							<schemaIncludes>
-								<include>kontrolasip_v1_1.xsd</include>
+								<include>validaceSIP.xsd</include>
 							</schemaIncludes>
-							<generatePackage>cz.zaf.schema.kontrolasip</generatePackage>
-							<generateDirectory>${project.build.directory}/generated-sources/kontrolasip</generateDirectory>
+							<generatePackage>cz.zaf.schema.validacesip</generatePackage>
+							<generateDirectory>${project.build.directory}/generated-sources/validacexsd</generateDirectory>
 						</configuration>
 					</execution>
 				</executions>
@@ -263,7 +263,7 @@
         			    <configuration>
                             <skip>false</skip>
                             <excludePackageNames>cz.zaf.schema.*</excludePackageNames>
-                            <sourcepath>${project.basedir}/src/main/java:${project.build.directory}/generated-sources/kontrolasip</sourcepath>
+                            <sourcepath>${project.basedir}/src/main/java:${project.build.directory}/generated-sources/validacexsd</sourcepath>
         			    </configuration>
         			</plugin>			
   				</plugins>

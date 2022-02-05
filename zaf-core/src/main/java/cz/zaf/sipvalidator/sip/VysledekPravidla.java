@@ -2,18 +2,13 @@ package cz.zaf.sipvalidator.sip;
 
 import org.apache.commons.lang3.Validate;
 
+import cz.zaf.sipvalidator.exceptions.codes.ErrorCode;
+
 /**
  * Vysledek kontroly jednoho pravidla
  * 
  */
 public class VysledekPravidla {
-	/**
-	 * Stav kontroly
-	 * true - probehla ok
-	 * false - doslo k chybe
-	 */
-    final boolean stav;
-
     /**
      * Identifikator kontroly
      * Pouziva se v report XML pro jeji oznaceni
@@ -32,7 +27,7 @@ public class VysledekPravidla {
      * Jedná se o popis konkrétní chyb,
      * může obsahovat kontextovou informaci apod.
      */
-    final String vypis_chyby;
+    final String vypisChyby;
 
     /**
      * Obecný popis chyby
@@ -44,47 +39,48 @@ public class VysledekPravidla {
     /**
      * Identifikace místa vzniku chyby
      */
-    final String misto_chyby;
+    final String mistoChyby;
 
     /**
      * Legislativni zdroj pro pravidlo
      */
     final String zdroj;
 
+    /**
+     * Kod chyby
+     */
+    final private ErrorCode errorCode;
+
     public VysledekPravidla(
                             final String id,
-                            final boolean stav,
                             final String textPravidla,
-                            final String vypis_chyby,
+                            final String vypisChyby,
                             final String popisChybyObecny,
-                            final String misto_chyby,
-                            final String zdroj) {
+                            final String mistoChyby,
+                            final String zdroj,
+                            final ErrorCode errorCode) {
         Validate.notEmpty(id);
         Validate.notEmpty(textPravidla);
 
         this.id = id;
-        this.stav = stav;
         this.textPravidla = textPravidla;
-        this.vypis_chyby = vypis_chyby;
+        this.vypisChyby = vypisChyby;
         this.popisChybyObecny = popisChybyObecny;
-        this.misto_chyby = misto_chyby;
+        this.mistoChyby = mistoChyby;
         this.zdroj = zdroj;
+        this.errorCode = errorCode;
     }
-    
-    public boolean getStav(){
-        return stav;
-    }
-    
+
     public String getId(){
         return id;
     }
 
     public String getVypis_chyby(){
-        return vypis_chyby;
+        return vypisChyby;
     }
     
     public String getMisto_chyby(){
-        return misto_chyby;
+        return mistoChyby;
     }
     
     public String getTextPravidla() {
@@ -97,5 +93,9 @@ public class VysledekPravidla {
 
     public String getPopisChybyObecny() {
         return popisChybyObecny;
+    }
+
+    public ErrorCode getKodChyby() {
+        return errorCode;
     }
 }

@@ -58,7 +58,6 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
     public void kontrolaPravidla(final K06_Obsahova kontrola) {
         this.kontrola = kontrola;
         // reset promennych pred spustenim
-        boolean stav = false;
         String mistoChyby = null;
         String detailChyby = null;
 
@@ -69,6 +68,8 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
 
         try {
             kontrola();
+            // vse ok
+            return;
         } catch (ZafException e) {
             errorCode = e.getErrorCode();
             detailChyby = e.getMessage();
@@ -81,13 +82,13 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
             detailChyby = e.getLocalizedMessage();
         }
 
-        kontrola.pridejPravidlo(kodPravidla,
-                                errorCode,
-                                textPravidla,
-                                detailChyby,
-                                !stav ? obecnyPopisChyby : null,
-                                mistoChyby,
-                                zdrojChyby);
+        kontrola.pridejChybu(kodPravidla,
+                             errorCode,
+                             textPravidla,
+                             detailChyby,
+                             obecnyPopisChyby,
+                             mistoChyby,
+                             zdrojChyby);
 
         this.context = null;
         this.kontrola = null;

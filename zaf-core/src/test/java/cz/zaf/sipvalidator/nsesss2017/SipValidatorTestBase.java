@@ -1,7 +1,6 @@
 package cz.zaf.sipvalidator.nsesss2017;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
@@ -116,7 +115,7 @@ public abstract class SipValidatorTestBase {
                     boolean errorLogged = false;
                     for (String pravidloOk : pravidlaOk) {
                         VysledekPravidla prav = vysledek.getPravidlo(pravidloOk);
-                        if (!prav.getStav()) {
+                        if (prav != null) {
                             log.error("Chybujici pravidlo: {}, vypisChyby: {}, mistoChyby: {}", pravidloOk,
                                       prav.getVypis_chyby(), prav.getMisto_chyby(), prav.getMisto_chyby());
                             errorLogged = true;
@@ -125,11 +124,9 @@ public abstract class SipValidatorTestBase {
                     if(!errorLogged) {
                         // vypis vsech chybujicich kontrol
                         for(VysledekPravidla prav: vysledek.getPravidla()) {
-                            if (!prav.getStav()) {
-                                log.error("Chybujici pravidlo: {}, vypisChyby: {}, mistoChyby: {}", 
-                                          prav.getId(),
-                                          prav.getVypis_chyby(), prav.getMisto_chyby(), prav.getMisto_chyby());
-                            }
+                            log.error("Chybujici pravidlo: {}, vypisChyby: {}, mistoChyby: {}",
+                                      prav.getId(),
+                                      prav.getVypis_chyby(), prav.getMisto_chyby(), prav.getMisto_chyby());
                             
                         }
                     }
@@ -145,10 +142,11 @@ public abstract class SipValidatorTestBase {
             for (int i = 0; i < pravidlaOk.length; i++) {
                 String kodPravidla = pravidlaOk[i];
                 VysledekPravidla pravidlo = vysledek.getPravidlo(kodPravidla);
-                assertNotNull(pravidlo, () -> "SIP: " + path + ", Chybí pravidlo: " + kodPravidla);
-                assertEquals(true, pravidlo.getStav(), () -> "SIP: " + path + ", Pravidlo: " + kodPravidla
+                if (pravidlo != null) {
+                    fail(() -> "SIP: " + path + ", Pravidlo: " + kodPravidla
                         + ", ocekavano OK, ale selhalo, misto chyby: " + pravidlo.getMisto_chyby()
                         + ", popis chyby: " + pravidlo.getVypis_chyby());
+                }
             }
         }
 
@@ -157,9 +155,10 @@ public abstract class SipValidatorTestBase {
             for (int i = 0; i < pravidlaChybna.length; i++) {
                 String kodPravidla = pravidlaChybna[i];
                 VysledekPravidla pravidlo = vysledek.getPravidlo(kodPravidla);
-                assertNotNull(pravidlo, () -> "SIP: " + path + ", Chybí pravidlo: " + kodPravidla);
-                assertEquals(false, pravidlo.getStav(), () -> "SIP: " + path + ", Pravidlo: " + kodPravidla
-                        + ", ocekavana Chyba, ale bylo OK");
+                if (pravidlo == null) {
+                    fail(() -> "SIP: " + path + ", Pravidlo: " + kodPravidla
+                            + ", ocekavana Chyba, ale bylo OK");
+                }
             }
         }
     }

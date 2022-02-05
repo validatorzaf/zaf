@@ -26,6 +26,7 @@ import javax.xml.stream.XMLStreamWriter;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -35,20 +36,18 @@ import org.xml.sax.SAXException;
 import com.ctc.wstx.api.WstxInputProperties;
 import com.sun.xml.txw2.output.IndentingXMLStreamWriter;
 
-import cz.zaf.schema.kontrolasip.ObjectFactory;
-import cz.zaf.schema.kontrolasip.TPouzitiKontroly;
-import cz.zaf.schema.kontrolasip.TPravidlo;
-import cz.zaf.schema.kontrolasip.TSip;
-import cz.zaf.schema.kontrolasip.TTyp;
-import cz.zaf.schema.kontrolasip.TVysledekKontroly;
-import cz.zaf.schema.kontrolasip.TVysledekPravidla;
+import cz.zaf.schema.validacesip.ObjectFactory;
+import cz.zaf.schema.validacesip.TKontrola;
+import cz.zaf.schema.validacesip.TPravidlo;
+import cz.zaf.schema.validacesip.TSip;
+import cz.zaf.schema.validacesip.TVysledekKontroly;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 
 public class XmlProtokolWriter implements ProtokolWriter,
     AutoCloseable {
     
     public static String XML_PREFIX = "kontrolasip";
-    public static String SCHEMA_URL = "http://digitalniarchiv.ahmp.cz/schema/kontrolasip/v1_1";
+    public static String SCHEMA_URL = "http://www.ahmp.cz/schema/validacesip/v1";
     
     private static Logger logger = LoggerFactory.getLogger(XmlProtokolWriter.class);
     
@@ -56,6 +55,7 @@ public class XmlProtokolWriter implements ProtokolWriter,
 
     private OutputStream outputStream;
     boolean closeOutputStream = false;
+    private Path outputPath;
     Marshaller marshaller;
 
     private XMLStreamWriter xmlStreamWriter;
@@ -68,7 +68,7 @@ public class XmlProtokolWriter implements ProtokolWriter,
     {
         SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         try (InputStream is = XmlProtokolWriter.class.getClassLoader()
-                .getResourceAsStream("schema/kontrolasip_v1_1.xsd")) {
+                .getResourceAsStream("schema/validaceSIP.xsd")) {
             schema = sf.newSchema(new StreamSource(is));
         } catch (IOException | SAXException e) {
             throw new RuntimeException("Failed to load internal XSD", e);
@@ -82,20 +82,22 @@ public class XmlProtokolWriter implements ProtokolWriter,
         }
     }
 
-    public XmlProtokolWriter(String outputPath, String kontrolaId, 
-                             ProfilValidace profilValidace) throws IOException, JAXBException, XMLStreamException, DatatypeConfigurationException {
+    public XmlProtokolWriter(final String outputPath,
+                             final String kontrolaId,
+                             final ProfilValidace profilValidace) throws IOException, JAXBException, XMLStreamException,
+            DatatypeConfigurationException {
         if (StringUtils.isNoneBlank(outputPath)) {
-            Path path = Paths.get(outputPath);
-            if (Files.isDirectory(path)) {
+            this.outputPath = Paths.get(outputPath);
+            if (Files.isDirectory(this.outputPath)) {
                 // create file name
-                path = path.resolve("protokol.xml");
+                this.outputPath = this.outputPath.resolve("protokol.xml");
             }
-            outputStream = Files.newOutputStream(path);
+            outputStream = Files.newOutputStream(this.outputPath);
             closeOutputStream = true;
         } else {
             outputStream = System.out;
         }
-        
+
         marshaller = jaxbContext.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -108,30 +110,32 @@ public class XmlProtokolWriter implements ProtokolWriter,
         indentingStreamWriter.setIndentStep("    ");
         
         indentingStreamWriter.writeStartDocument();
-        indentingStreamWriter.writeStartElement("kontrolaSIP");
+        indentingStreamWriter.writeStartElement("validaceSIP");
         indentingStreamWriter.setDefaultNamespace(SCHEMA_URL);
         indentingStreamWriter.setPrefix("xsi", "http://www.w3.org/2001/XMLSchema-instance");
          indentingStreamWriter.writeAttribute("xmlns", SCHEMA_URL);
         indentingStreamWriter.writeAttribute("xmlns", null,
                                              "xsi", "http://www.w3.org/2001/XMLSchema-instance");
         indentingStreamWriter.writeAttribute("http://www.w3.org/2001/XMLSchema-instance", "schemaLocation", 
-                                             "http://digitalniarchiv.ahmp.cz/schema/kontrolasip/v1_1 http://digitalniarchiv.ahmp.cz/schema/kontrolasip/v1_1/kontrolasip.xsd");
+                                             "http://www.ahmp.cz/schema/validacesip/v1 http://www.ahmp.cz/schema/validacesip/v1/validace.xsd");
 
         // write attributes to root element
-        indentingStreamWriter.writeAttribute("kontrolaID", kontrolaId==null?UUID.randomUUID().toString():kontrolaId);
+        indentingStreamWriter.writeAttribute("validaceID",
+                                             kontrolaId == null ? UUID.randomUUID().toString() : kontrolaId);
         
         pripravAppInfo();
         pripravCas();
         
         String pouzitiKontroly = profilValidace.getNazev();
+        /*
         if(!pouzitiKontroly.equals(TPouzitiKontroly.SKARTAČNÍ_ŘÍZENÍ_JEN_METADATA)&&
                 !pouzitiKontroly.equals(TPouzitiKontroly.SKARTAČNÍ_ŘÍZENÍ_S_KOMPONENTAMI)&&
                 !pouzitiKontroly.equals(TPouzitiKontroly.PŘEJÍMKA)
                 ) {
             pouzitiKontroly = TPouzitiKontroly.SKARTAČNÍ_ŘÍZENÍ_JEN_METADATA.value();
-        }
+        }*/
     
-        indentingStreamWriter.writeAttribute("pouzitiKontroly", pouzitiKontroly);
+        indentingStreamWriter.writeAttribute("druhValidace", pouzitiKontroly);
     }
     
     private void pripravCas() throws DatatypeConfigurationException, XMLStreamException {
@@ -139,7 +143,7 @@ public class XmlProtokolWriter implements ProtokolWriter,
         String dateTimeString = now.toString();
         XMLGregorianCalendar datumKontroly = DatatypeFactory.newInstance().newXMLGregorianCalendar(dateTimeString);
         
-        indentingStreamWriter.writeAttribute("datumKontroly", datumKontroly.toXMLFormat());
+        indentingStreamWriter.writeAttribute("datumValidace", datumKontroly.toXMLFormat());
     }
 
     private void pripravAppInfo() throws IOException, XMLStreamException {
@@ -153,6 +157,7 @@ public class XmlProtokolWriter implements ProtokolWriter,
 
         indentingStreamWriter.writeAttribute("nazevAplikace", artifactId);
         indentingStreamWriter.writeAttribute("verzeAplikace", verzeApp);
+        indentingStreamWriter.writeAttribute("verzePravidel", "1");
     }
     
 
@@ -169,7 +174,7 @@ public class XmlProtokolWriter implements ProtokolWriter,
     private static void writeSipInfo(TSip sipNode, SipInfo sipInfo) {
         String metsObjId = sipInfo.getMetsObjId();
         if (StringUtils.isNotEmpty(metsObjId)) {
-            sipNode.setSipID(metsObjId);
+            sipNode.setOBJID(metsObjId);
         }
 
         String g = sipInfo.getNameZip();
@@ -186,27 +191,27 @@ public class XmlProtokolWriter implements ProtokolWriter,
         
         List<VysledekKontroly> kontroly = sipInfo.getSeznamKontrol();
         for (VysledekKontroly vysl : kontroly) {
-            TTyp typKontrolyNode = convert(vysl);
-            sip.getTyp().add(typKontrolyNode);
+            TKontrola kontrolaXml = convert(vysl);
+            sip.getKontrola().add(kontrolaXml);
         }        
         return sip;
     }
     
-    private static TTyp convert(VysledekKontroly vysl) {
-        TTyp typ = objectFactory.createTTyp();
-        typ.setNazev(vysl.getKontrola_nazev());
-        typ.setStav(convert(vysl.getStavKontroly()));
+    private static TKontrola convert(VysledekKontroly vysl) {
+        TKontrola kontrolaXml = objectFactory.createTKontrola();
+        kontrolaXml.setNazev(vysl.getKontrola_nazev());
+        kontrolaXml.setStav(convert(vysl.getStavKontroly()));
 
         // prevod pravidel
         for (VysledekPravidla pravidlo : vysl.getPravidla()) {
             TPravidlo pravNode = convert(pravidlo);
-            typ.getPravidlo().add(pravNode);
+            kontrolaXml.getPravidlo().add(pravNode);
         }
-        return typ;
+        return kontrolaXml;
     }
     
     /**
-     * Konverze jednotliveho pravidla
+     * Konverze jednotliveho chybujiciho pravidla
      * 
      * @param pravidlo
      *            vysledek pravidla
@@ -214,17 +219,13 @@ public class XmlProtokolWriter implements ProtokolWriter,
      */
     private static TPravidlo convert(VysledekPravidla pravidlo) {
         TPravidlo pravNode = objectFactory.createTPravidlo();
-        pravNode.setId(pravidlo.getId());
-        pravNode.setText(pravidlo.getTextPravidla());
+        pravNode.setKod(pravidlo.getId());
+        pravNode.setZneni(pravidlo.getTextPravidla());
         pravNode.setZdroj(pravidlo.getZdroj());
-        if (!pravidlo.getStav()) {
-            pravNode.setStav(TVysledekPravidla.CHYBA);
-            pravNode.setPopisChyby(pravidlo.getPopisChybyObecny());
-            pravNode.setVypisChyby(pravidlo.getVypis_chyby());
-            pravNode.setMistoChyby(pravidlo.getMisto_chyby());
-        } else {
-            pravNode.setStav(TVysledekPravidla.OK);
-        }
+        pravNode.setPopisChyby(pravidlo.getPopisChybyObecny());
+        pravNode.setVypisChyby(pravidlo.getVypis_chyby());
+        pravNode.setMistoChyby(pravidlo.getMisto_chyby());
+        pravNode.setKodChyby(pravidlo.getKodChyby().getErrorCode());
         return pravNode;
     }
 
@@ -248,6 +249,14 @@ public class XmlProtokolWriter implements ProtokolWriter,
         
         if(closeOutputStream) {
             outputStream.close();
+        }
+
+        // verify output
+        if (this.outputPath != null) {
+            try (InputStream in = Files.newInputStream(outputPath)) {
+                Validator validator = schema.newValidator();
+                validator.validate(new StreamSource(in));
+            }
         }
     }
 

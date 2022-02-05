@@ -21,44 +21,44 @@ import javax.xml.validation.Validator;
 
 import org.xml.sax.SAXException;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.VysledekPravidla;
 
 /**
- * Kontrola oproti schematu
+ * Kontrola souladu se schématem XSD
  * 
  */
 public class K05_ProtiSchematu
         extends KontrolaBase {
-    static final public String NAME = "kontrola proti schématu XSD";
+    static final public String NAME = "souladu se schématem XSD";
 
     static final public String VAL1 = "val1";
     static final public String VAL1_TEXT = "Soubor je validní proti schématům mets.xsd (v1.11), xlink.xsd (v2), nsesss.xsd (v3), nsesss-TrP.xsd, ess_ns.xsd a dmBaseTypes.xsd (v2.1).";
     static final public String VAL1_ZDROJ = "Požadavek 11.2.5 NSESSS, bod 2.1. přílohy č. 3 NSESSS.";
     static final public String VAL1_POPIS_CHYBY = "Datový balíček SIP není validní proti schématům http://www.loc.gov/standards/mets/mets.xsd, http://www.loc.gov/standards/mets/xlink.xsd, http://www.mvcr.cz/nsesss/v3/nsesss.xsd, http://www.mvcr.cz/nsesss/v3/nsesss-TrP.xsd, http://www.mvcr.cz/nsesss/v3/ess_ns.xsd a http://www.mvcr.cz/nsesss/v3/dmBaseTypes.xsd.";
-    
+
     static Map<String, Schema> schemaCache = new HashMap<>();
 
     public K05_ProtiSchematu() {
     }
 
-    private void validaceVResource(ErrorHandlerValidaceXSD handler, String resource, SipInfo file) 
-            throws SAXException, IOException 
-    {
+    private void validaceVResource(ErrorHandlerValidaceXSD handler, String resource, SipInfo file)
+            throws SAXException, IOException {
         Schema schema = schemaCache.get(resource);
-        if(schema==null) {
+        if (schema == null) {
             //URL schemaFile = new File("d:\\5.xsd").toURI().toURL(); //cesta natvrdo 
             URL schemaFile = K05_ProtiSchematu.class.getResource(resource); // tady musí být šablona (např sip.xsd)
             SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
             schema = schemaFactory.newSchema(schemaFile);
-            
+
             schemaCache.put(resource, schema);
         }
-        
+
         validaceVResource(handler, schema, file);
     }
-    
+
     private void validaceVResource(ErrorHandlerValidaceXSD handler, Schema schema, SipInfo file) throws SAXException,
             IOException {
         Validator nasValidator = schema.newValidator();
@@ -73,19 +73,17 @@ public class K05_ProtiSchematu
     @Override
     public void provedKontrolu() {
 
-        boolean stav = false;
-        String detailChyby = null;
-        boolean addPravidlo = true;
-
+        String detailChyby;
         SipInfo file = ctx.getSip();
         try {
             ErrorHandlerValidaceXSD handler = new ErrorHandlerValidaceXSD(vysledekKontroly);
             validaceVResource(handler, "/schema/sip2017.xsd", file);
             if (!handler.getNalezenaChyba()) {
-                stav = true;
+                // vse ok
+                return;
             } else {
                 // chyby ve validaci -> jiz jsou nahlaseny
-                addPravidlo = false;
+                return;
             }
         }
         // po jednom souboru
@@ -95,21 +93,16 @@ public class K05_ProtiSchematu
             detailChyby = "CHYBA! " + "SAX " + e.getLocalizedMessage();
         }
 
-        String obecnyPopisChyby = null;
-        if (!stav) {
-            obecnyPopisChyby = VAL1_POPIS_CHYBY;
-        }
+        String obecnyPopisChyby = VAL1_POPIS_CHYBY;
 
-        if (addPravidlo) {
-            VysledekPravidla p = new VysledekPravidla(VAL1, stav,
-                    VAL1_TEXT,
-                    detailChyby,
-                    obecnyPopisChyby,
-                    null,
-                    VAL1_ZDROJ
-            );
-            vysledekKontroly.add(p);
-        }
+        VysledekPravidla p = new VysledekPravidla(VAL1,
+                VAL1_TEXT,
+                detailChyby,
+                obecnyPopisChyby,
+                null,
+                VAL1_ZDROJ,
+                BaseCode.ERROR);
+        vysledekKontroly.add(p);
 
     }
 

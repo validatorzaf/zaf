@@ -9,14 +9,15 @@ import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
+import cz.zaf.sipvalidator.exceptions.codes.XmlCode;
 import cz.zaf.sipvalidator.sip.VysledekKontroly;
 import cz.zaf.sipvalidator.sip.VysledekPravidla;
 
 /**
- *
- * @author m000xz006159
+ * Error handler pro validaci schematu
+ * 
  */
-public class ErrorHandlerValidaceXSD implements  ErrorHandler{
+public class ErrorHandlerValidaceXSD implements ErrorHandler {
     VysledekKontroly k;
     public boolean nalezenaChyba = false;
 
@@ -100,12 +101,13 @@ public class ErrorHandlerValidaceXSD implements  ErrorHandler{
             textChyby += " " +celaChybovaHlaska;
         }
 
-        VysledekPravidla p = new VysledekPravidla(K05_ProtiSchematu.VAL1, false,
+        VysledekPravidla p = new VysledekPravidla(K05_ProtiSchematu.VAL1,
                 K05_ProtiSchematu.VAL1_TEXT,
                 textChyby,
                 K05_ProtiSchematu.VAL1_POPIS_CHYBY,
                 mistoChyby,
-                K05_ProtiSchematu.VAL1_ZDROJ);
+                K05_ProtiSchematu.VAL1_ZDROJ,
+                XmlCode.NEODPOVIDA_SCHEMATU);
         k.add(p);
     }
 

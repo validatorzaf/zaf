@@ -9,22 +9,23 @@ package cz.zaf.sipvalidator.nsesss2017;
 import java.io.File;
 import java.nio.file.Path;
 
-import cz.zaf.sipvalidator.sip.VysledekPravidla;
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
+import cz.zaf.sipvalidator.sip.VysledekPravidla;
 
 
 /**
- *
- * @author standa
+ * Kontrola datové struktury
+ * 
  */
 public class K01_DatoveStruktury
         extends KontrolaBase
 {
 	
-	static final public String NAME = "kontrola datové struktury"; 
+    static final public String NAME = "datové struktury";
     static final public String DATA1 = "data1";
     static final public String DATA2 = "data2";
     static final public String DATA3 = "data3";
@@ -105,15 +106,16 @@ public class K01_DatoveStruktury
     }
 
     private void pridejPravidlo(int index, boolean stav, String vypisChyby) {
-        String popisChybyObecny = null;
-        if (!stav) {
-            popisChybyObecny = obecnaChyba[index];
+        if (stav) {
+            return;
         }
-        VysledekPravidla p = new VysledekPravidla(idPravidel[index], stav,
+        String popisChybyObecny = obecnaChyba[index];
+        VysledekPravidla p = new VysledekPravidla(idPravidel[index],
                 textPravidla[index],
                 vypisChyby, popisChybyObecny,
                 null,
-                zdrojePravidla[index]);
+                zdrojePravidla[index],
+                BaseCode.ERROR);
         vysledekKontroly.add(p);
         
     }

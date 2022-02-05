@@ -16,18 +16,19 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-import cz.zaf.sipvalidator.sip.VysledekPravidla;
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
+import cz.zaf.sipvalidator.sip.VysledekPravidla;
 
 /**
- *
- * @author m000xz006159
+ * Kontrola správnosti XML
+ * 
  */
 public class K03_Spravnosti
         extends KontrolaBase {
 
-    static final public String NAME = "kontrola správnosti XML";
+    static final public String NAME = "správnosti XML";
 
     static final public String WF1 = "wf1";
 
@@ -60,8 +61,7 @@ public class K03_Spravnosti
                 + ". Nepovolené znaky v názvu souboru, nebo na cestě k souboru.";
         } catch (SAXParseException exception) {
             detailChyby = exception.getLocalizedMessage();
-        }
-        catch (SAXException e) {
+        } catch (SAXException e) {
             detailChyby = e.getLocalizedMessage();
         } catch (IOException e) {
             detailChyby = e.getLocalizedMessage();
@@ -69,19 +69,19 @@ public class K03_Spravnosti
             detailChyby = e.getLocalizedMessage();
         }
         
-        String popisChybyObecny = null;
         if(!stav) {
-            popisChybyObecny = "Datový balíček SIP nedodržuje syntaxi jazyka XML."; // popis chyby
+            // popis chyby
+            String popisChybyObecny = "Datový balíček SIP nedodržuje syntaxi jazyka XML.";
+            VysledekPravidla p = new VysledekPravidla(WF1,
+                    "Soubor je well-formed.",
+                    detailChyby,
+                    popisChybyObecny,
+                    null,
+                    "Požadavek 11.2.2 NSESSS.", // zdroj
+                    BaseCode.ERROR);
+            vysledekKontroly.add(p);
         }
 
-        VysledekPravidla p = new VysledekPravidla(WF1, stav,
-                "Soubor je well-formed.",
-                detailChyby,
-                popisChybyObecny,
-                null,
-                "Požadavek 11.2.2 NSESSS." // zdroj
-                );
-        vysledekKontroly.add(p);
     }
 
     @Override

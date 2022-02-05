@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Nullable;
-
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.exceptions.codes.ErrorCode;
@@ -172,31 +170,30 @@ public class K06_Obsahova
      * 
      * @param idPravidla
      * @param errorCode
-     *            null pokud je pravidlo OK, jinak kod chyby
+     *            kod chyby
      * @param textPravidla
      * @param detailChyby
      * @param obecnyPopisChyby
      * @param mistoChyby
      * @param zdroj
      */
-    void pridejPravidlo(String idPravidla,
-                        @Nullable ErrorCode errorCode,
-                        String textPravidla,
-                        String detailChyby,
-                        String obecnyPopisChyby,
-                        String mistoChyby,
-                        String zdroj) {
+    void pridejChybu(String idPravidla,
+                     ErrorCode errorCode,
+                     String textPravidla,
+                     String detailChyby,
+                     String obecnyPopisChyby,
+                     String mistoChyby,
+                     String zdroj) {
         VysledekPravidla p = new VysledekPravidla(idPravidla,
-                errorCode == null,
                 textPravidla,
                 detailChyby,
                 obecnyPopisChyby,
                 mistoChyby,
-                zdroj);
+                zdroj,
+                errorCode);
         vysledekKontroly.add(p);
 
     }
-    
                     
     // na konci oddělovač nehlídá
     static public boolean spisZnakObsahujeOddelovac(String spisovy_znak) {

@@ -7,6 +7,7 @@ package cz.zaf.sipvalidator.nsesss2017;
 
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.VysledekPravidla;
@@ -18,7 +19,7 @@ import cz.zaf.sipvalidator.sip.VysledekPravidla;
 public class K04_JmennychProstoruXML
         extends KontrolaBase {
 
-    static final public String NAME = "kontrola jmenných prostorů";
+    static final public String NAME = "jmenných prostorů";
 
     static final public String NS1 = "ns1";
     static final public String NS2 = "ns2";
@@ -46,17 +47,16 @@ public class K04_JmennychProstoruXML
             detailChyby = "Datový balíček SIP obsahuje právě jeden kořenový element <mets:mets>.";
         }
 
-        String obecnyPopisChyby = null;
         if (!stav) {
-            obecnyPopisChyby = "Chybí kořenový element datového balíčku SIP.";
+            String obecnyPopisChyby = "Chybí kořenový element datového balíčku SIP.";
+            VysledekPravidla p = new VysledekPravidla(NS1,
+                    list_text_jmProstory[0],
+                    detailChyby,
+                    obecnyPopisChyby, null,
+                    "Bod 2.1. přílohy č. 3 NSESSS.", // zdroj
+                    BaseCode.ERROR);
+            vysledekKontroly.add(p);
         }
-        VysledekPravidla p = new VysledekPravidla(NS1, stav,
-                list_text_jmProstory[0],
-                detailChyby,
-                obecnyPopisChyby, null,
-                "Bod 2.1. přílohy č. 3 NSESSS." // zdroj
-        );
-        vysledekKontroly.add(p);
     }
 
     // Element <mets:mets> obsahuje atribut xsi:schemaLocation s hodnotou http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 TransakcniProtokolNavrh_verze1.7.xsd
@@ -90,18 +90,17 @@ public class K04_JmennychProstoruXML
             }
         }
 
-        String obecnyPopisChyby = null;
         if (!stav) {
-            obecnyPopisChyby = "Popsáno je chybně umístění příslušných schémat XML.";
+            String obecnyPopisChyby = "Popsáno je chybně umístění příslušných schémat XML.";
+            VysledekPravidla p = new VysledekPravidla(NS2,
+                    list_text_jmProstory[1],
+                    detailChyby,
+                    obecnyPopisChyby, null,
+                    "Bod 2.1. přílohy č. 3 NSESSS.", // zdroj
+                    BaseCode.ERROR);
+            vysledekKontroly.add(p);
         }
 
-        VysledekPravidla p = new VysledekPravidla(NS2, stav,
-                list_text_jmProstory[1],
-                detailChyby,
-                obecnyPopisChyby, null,
-                "Bod 2.1. přílohy č. 3 NSESSS." // zdroj
-        );
-        vysledekKontroly.add(p);
     }
 
     @Override
