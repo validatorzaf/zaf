@@ -22,6 +22,8 @@ public class HelperString {
      * @return true pokud obsahuje písmeno nebo číslici, false při nenalezení
      *         písmena ani číslice
      */
+    // Lepe pouzivat StringUtils.isBlank
+    @Deprecated
     public static boolean hasContent(String str) {
         if (str == null) {
             return false;
