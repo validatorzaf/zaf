@@ -24,7 +24,7 @@ Validátor ZAF lze volat prostřednictvím příkazového řádku:
   Umístění pracovního adresáře, zde budou SIPy rozbaleny
   
 *-d|--druh=*::
-  Druh kontroly (1 - výchozí):
+  Druh validace (1 - výchozí):
 
  * 1 = pro provedení skartačního řízení (jen metadata bez přiložených komponent)
  * 2 = pro provedení skartačního řízení (s přiloženými komponentami)
