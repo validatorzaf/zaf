@@ -251,6 +251,9 @@ public class XmlProtokolWriter implements ProtokolWriter,
             outputStream.close();
         }
 
+        // TODO: Nutno dokoncit
+        //  - pridat reseni pro zapis vysledku na standardni vystup
+        // 
         // verify output
         if (this.outputPath != null) {
             try (InputStream in = Files.newInputStream(outputPath)) {
