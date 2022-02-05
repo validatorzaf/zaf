@@ -14,7 +14,7 @@ import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
-import cz.zaf.sipvalidator.sip.VysledekPravidla;
+import cz.zaf.sipvalidator.sip.ChybaPravidla;
 
 
 /**
@@ -110,7 +110,7 @@ public class K01_DatoveStruktury
             return;
         }
         String popisChybyObecny = obecnaChyba[index];
-        VysledekPravidla p = new VysledekPravidla(idPravidel[index],
+        ChybaPravidla p = new ChybaPravidla(idPravidel[index],
                 textPravidla[index],
                 vypisChyby, popisChybyObecny,
                 null,

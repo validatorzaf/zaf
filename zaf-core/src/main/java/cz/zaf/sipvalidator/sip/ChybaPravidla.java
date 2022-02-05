@@ -8,7 +8,7 @@ import cz.zaf.sipvalidator.exceptions.codes.ErrorCode;
  * Vysledek kontroly jednoho pravidla
  * 
  */
-public class VysledekPravidla {
+public class ChybaPravidla {
     /**
      * Identifikator kontroly
      * Pouziva se v report XML pro jeji oznaceni
@@ -51,7 +51,7 @@ public class VysledekPravidla {
      */
     final private ErrorCode errorCode;
 
-    public VysledekPravidla(
+    public ChybaPravidla(
                             final String id,
                             final String textPravidla,
                             final String vypisChyby,
@@ -75,11 +75,11 @@ public class VysledekPravidla {
         return id;
     }
 
-    public String getVypis_chyby(){
+    public String getVypisChyby(){
         return vypisChyby;
     }
     
-    public String getMisto_chyby(){
+    public String getMistoChyby(){
         return mistoChyby;
     }
     

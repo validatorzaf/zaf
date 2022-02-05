@@ -11,7 +11,7 @@ import org.xml.sax.SAXParseException;
 
 import cz.zaf.sipvalidator.exceptions.codes.XmlCode;
 import cz.zaf.sipvalidator.sip.VysledekKontroly;
-import cz.zaf.sipvalidator.sip.VysledekPravidla;
+import cz.zaf.sipvalidator.sip.ChybaPravidla;
 
 /**
  * Error handler pro validaci schematu
@@ -101,7 +101,7 @@ public class ErrorHandlerValidaceXSD implements ErrorHandler {
             textChyby += " " +celaChybovaHlaska;
         }
 
-        VysledekPravidla p = new VysledekPravidla(K05_ProtiSchematu.VAL1,
+        ChybaPravidla p = new ChybaPravidla(K05_ProtiSchematu.VAL1,
                 K05_ProtiSchematu.VAL1_TEXT,
                 textChyby,
                 K05_ProtiSchematu.VAL1_POPIS_CHYBY,

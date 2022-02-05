@@ -24,7 +24,7 @@ public class VysledekKontroly {
 	
 	final TypUrovenKontroly urovenKontroly;
 	
-    List<VysledekPravidla> chyby = new ArrayList<>();
+    List<ChybaPravidla> chyby = new ArrayList<>();
 	
     String kontrolaNazev;
     
@@ -57,7 +57,7 @@ public class VysledekKontroly {
         this.stavKontroly = stavKontroly;
     }
 
-	public void add(VysledekPravidla p) {
+	public void add(ChybaPravidla p) {
         chyby.add(p);
         // nastaveni stavu
         if (stavKontroly != StavKontroly.CHYBA) {
@@ -70,7 +70,7 @@ public class VysledekKontroly {
         return chyby.size();
 	}
 
-	public VysledekPravidla get(int i) {
+	public ChybaPravidla get(int i) {
         return chyby.get(i);
 	}
 
@@ -95,12 +95,12 @@ public class VysledekKontroly {
 		return stavKontroly==StavKontroly.OK;
 	}
 
-    public List<VysledekPravidla> getPravidla() {
+    public List<ChybaPravidla> getPravidla() {
         return chyby;
     }
 
-    public VysledekPravidla getPravidlo(String kodPravidla) {
-        for (VysledekPravidla pravidlo : chyby) {
+    public ChybaPravidla getPravidlo(String kodPravidla) {
+        for (ChybaPravidla pravidlo : chyby) {
             if (pravidlo.getId().equals(kodPravidla)) {
                 return pravidlo;
             }

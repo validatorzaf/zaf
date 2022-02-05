@@ -24,7 +24,7 @@ import com.ibm.icu.text.CharsetMatch; // lib ucu4j-56.jar
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
-import cz.zaf.sipvalidator.sip.VysledekPravidla;
+import cz.zaf.sipvalidator.sip.ChybaPravidla;
 
 /**
  * Kontroluje kódování SIP souboru.
@@ -158,7 +158,7 @@ public class K02_ZnakoveSady
 
         if (!jeKodovaniVPoradku) {
             String obecnyPopisChyby = "Znaková sada datového balíčku SIP není Unicode/UCS v kódování UTF-8 bez BOM (Byte order mark).";
-            VysledekPravidla p = new VysledekPravidla(KOD1,
+            ChybaPravidla p = new ChybaPravidla(KOD1,
                     "Znakovou sadou souboru je Unicode/UCS v kódování UTF-8 bez BOM (Byte order mark).", // text
                     chybaKodovani,
                     obecnyPopisChyby, null,

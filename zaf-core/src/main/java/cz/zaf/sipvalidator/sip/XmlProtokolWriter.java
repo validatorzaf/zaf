@@ -203,7 +203,7 @@ public class XmlProtokolWriter implements ProtokolWriter,
         kontrolaXml.setStav(convert(vysl.getStavKontroly()));
 
         // prevod pravidel
-        for (VysledekPravidla pravidlo : vysl.getPravidla()) {
+        for (ChybaPravidla pravidlo : vysl.getPravidla()) {
             TPravidlo pravNode = convert(pravidlo);
             kontrolaXml.getPravidlo().add(pravNode);
         }
@@ -217,14 +217,14 @@ public class XmlProtokolWriter implements ProtokolWriter,
      *            vysledek pravidla
      * @return Prevedene pravidlo
      */
-    private static TPravidlo convert(VysledekPravidla pravidlo) {
+    private static TPravidlo convert(ChybaPravidla pravidlo) {
         TPravidlo pravNode = objectFactory.createTPravidlo();
         pravNode.setKod(pravidlo.getId());
         pravNode.setZneni(pravidlo.getTextPravidla());
         pravNode.setZdroj(pravidlo.getZdroj());
         pravNode.setPopisChyby(pravidlo.getPopisChybyObecny());
-        pravNode.setVypisChyby(pravidlo.getVypis_chyby());
-        pravNode.setMistoChyby(pravidlo.getMisto_chyby());
+        pravNode.setVypisChyby(pravidlo.getVypisChyby());
+        pravNode.setMistoChyby(pravidlo.getMistoChyby());
         pravNode.setKodChyby(pravidlo.getKodChyby().getErrorCode());
         return pravNode;
     }

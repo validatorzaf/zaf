@@ -29,7 +29,7 @@ import cz.zaf.sipvalidator.sip.SipLoader;
 import cz.zaf.sipvalidator.sip.StavKontroly;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.VysledekKontroly;
-import cz.zaf.sipvalidator.sip.VysledekPravidla;
+import cz.zaf.sipvalidator.sip.ChybaPravidla;
 
 /**
  * Zakladni impl. testu
@@ -114,19 +114,19 @@ public abstract class SipValidatorTestBase {
                     // doslo k neocekavanemu selhani -> vypis selhanych
                     boolean errorLogged = false;
                     for (String pravidloOk : pravidlaOk) {
-                        VysledekPravidla prav = vysledek.getPravidlo(pravidloOk);
+                        ChybaPravidla prav = vysledek.getPravidlo(pravidloOk);
                         if (prav != null) {
                             log.error("Chybujici pravidlo: {}, vypisChyby: {}, mistoChyby: {}", pravidloOk,
-                                      prav.getVypis_chyby(), prav.getMisto_chyby(), prav.getMisto_chyby());
+                                      prav.getVypisChyby(), prav.getMistoChyby(), prav.getMistoChyby());
                             errorLogged = true;
                         }
                     }
                     if(!errorLogged) {
                         // vypis vsech chybujicich kontrol
-                        for(VysledekPravidla prav: vysledek.getPravidla()) {
+                        for(ChybaPravidla prav: vysledek.getPravidla()) {
                             log.error("Chybujici pravidlo: {}, vypisChyby: {}, mistoChyby: {}",
                                       prav.getId(),
-                                      prav.getVypis_chyby(), prav.getMisto_chyby(), prav.getMisto_chyby());
+                                      prav.getVypisChyby(), prav.getMistoChyby(), prav.getMistoChyby());
                             
                         }
                     }
@@ -141,11 +141,11 @@ public abstract class SipValidatorTestBase {
         if (pravidlaOk != null) {
             for (int i = 0; i < pravidlaOk.length; i++) {
                 String kodPravidla = pravidlaOk[i];
-                VysledekPravidla pravidlo = vysledek.getPravidlo(kodPravidla);
+                ChybaPravidla pravidlo = vysledek.getPravidlo(kodPravidla);
                 if (pravidlo != null) {
                     fail(() -> "SIP: " + path + ", Pravidlo: " + kodPravidla
-                        + ", ocekavano OK, ale selhalo, misto chyby: " + pravidlo.getMisto_chyby()
-                        + ", popis chyby: " + pravidlo.getVypis_chyby());
+                        + ", ocekavano OK, ale selhalo, misto chyby: " + pravidlo.getMistoChyby()
+                        + ", popis chyby: " + pravidlo.getVypisChyby());
                 }
             }
         }
@@ -154,7 +154,7 @@ public abstract class SipValidatorTestBase {
         if (pravidlaChybna != null) {
             for (int i = 0; i < pravidlaChybna.length; i++) {
                 String kodPravidla = pravidlaChybna[i];
-                VysledekPravidla pravidlo = vysledek.getPravidlo(kodPravidla);
+                ChybaPravidla pravidlo = vysledek.getPravidlo(kodPravidla);
                 if (pravidlo == null) {
                     fail(() -> "SIP: " + path + ", Pravidlo: " + kodPravidla
                             + ", ocekavana Chyba, ale bylo OK");

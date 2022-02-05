@@ -19,7 +19,7 @@ import org.xml.sax.SAXParseException;
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
-import cz.zaf.sipvalidator.sip.VysledekPravidla;
+import cz.zaf.sipvalidator.sip.ChybaPravidla;
 
 /**
  * Kontrola správnosti XML
@@ -72,7 +72,7 @@ public class K03_Spravnosti
         if(!stav) {
             // popis chyby
             String popisChybyObecny = "Datový balíček SIP nedodržuje syntaxi jazyka XML.";
-            VysledekPravidla p = new VysledekPravidla(WF1,
+            ChybaPravidla p = new ChybaPravidla(WF1,
                     "Soubor je well-formed.",
                     detailChyby,
                     popisChybyObecny,

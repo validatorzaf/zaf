@@ -10,7 +10,7 @@ import org.apache.commons.lang3.Validate;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
-import cz.zaf.sipvalidator.sip.VysledekPravidla;
+import cz.zaf.sipvalidator.sip.ChybaPravidla;
 
 
 /**
@@ -65,7 +65,7 @@ public class K00_SkodlivehoKodu
         String popisChybyObecny = "Datový balíček SIP obsahuje hrozbu.";
         String zdroj = "§ 21 odst. 6 vyhlášky č. 259/2012 Sb.";
 
-        VysledekPravidla p = new VysledekPravidla(VIR1,
+        ChybaPravidla p = new ChybaPravidla(VIR1,
                 textPravidla,
                 descr, popisChybyObecny, null,
                 zdroj,

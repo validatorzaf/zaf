@@ -24,7 +24,7 @@ import org.xml.sax.SAXException;
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
-import cz.zaf.sipvalidator.sip.VysledekPravidla;
+import cz.zaf.sipvalidator.sip.ChybaPravidla;
 
 /**
  * Kontrola souladu se schématem XSD
@@ -95,7 +95,7 @@ public class K05_ProtiSchematu
 
         String obecnyPopisChyby = VAL1_POPIS_CHYBY;
 
-        VysledekPravidla p = new VysledekPravidla(VAL1,
+        ChybaPravidla p = new ChybaPravidla(VAL1,
                 VAL1_TEXT,
                 detailChyby,
                 obecnyPopisChyby,

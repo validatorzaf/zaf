@@ -10,7 +10,7 @@ import org.w3c.dom.Node;
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
-import cz.zaf.sipvalidator.sip.VysledekPravidla;
+import cz.zaf.sipvalidator.sip.ChybaPravidla;
 
 /**
  * Kontrola jmennych prostoru
@@ -49,7 +49,7 @@ public class K04_JmennychProstoruXML
 
         if (!stav) {
             String obecnyPopisChyby = "Chybí kořenový element datového balíčku SIP.";
-            VysledekPravidla p = new VysledekPravidla(NS1,
+            ChybaPravidla p = new ChybaPravidla(NS1,
                     list_text_jmProstory[0],
                     detailChyby,
                     obecnyPopisChyby, null,
@@ -92,7 +92,7 @@ public class K04_JmennychProstoruXML
 
         if (!stav) {
             String obecnyPopisChyby = "Popsáno je chybně umístění příslušných schémat XML.";
-            VysledekPravidla p = new VysledekPravidla(NS2,
+            ChybaPravidla p = new ChybaPravidla(NS2,
                     list_text_jmProstory[1],
                     detailChyby,
                     obecnyPopisChyby, null,
