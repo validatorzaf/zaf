@@ -11,36 +11,36 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 // Datový balíček pro předávání dokumentů a jejich metadat do archivu.
 public class Pravidlo3 extends K06PravidloBase {
 
-	static final public String OBS3 = "obs3";
+    static final public String OBS3 = "obs3";
 
-	public Pravidlo3() {
-		super(OBS3,
-				"Element <mets:mets> obsahuje atribut LABEL s hodnotou Datový balíček pro předávání dokumentů a jejich metadat do archivu.",
-				"Uveden je chybně popis datového balíčku SIP.",
-				"Bod 2.1. přílohy č. 3 NSESSS.");
-	}
+    public Pravidlo3() {
+        super(OBS3,
+                "Element <mets:mets> obsahuje atribut LABEL s hodnotou Datový balíček pro předávání dokumentů a jejich metadat do archivu.",
+                "Uveden je chybně popis datového balíčku SIP.",
+                "Bod 2.1. přílohy č. 3 NSESSS.");
+    }
 
-	@Override
+    @Override
     protected void kontrola() {
-		Node metsMets = metsParser.getMetsRootNode();
+        Node metsMets = metsParser.getMetsRootNode();
 
-		if (!ValuesGetter.hasAttribut(metsMets, "LABEL")) {
+        String hodLab = ValuesGetter.getValueOfAttribut(metsMets, "LABEL");
+        if (hodLab == null) {
             nastavChybu(BaseCode.CHYBI_ATRIBUT, "Nenalezen atribut LABEL kořenového elementu <mets:mets>.",
                         metsMets);
-		}
+        }
 
-		String hodLab = ValuesGetter.getValueOfAttribut(metsMets, "LABEL");
-		if (StringUtils.isBlank(hodLab)) {
+        if (StringUtils.isBlank(hodLab)) {
             nastavChybu(BaseCode.CHYBI_ATRIBUT,
-					"Atribut LABEL kořenového elementu <mets:mets> nemá správnou hodnotu. Jeho hodnota je prázdná.",
-					metsMets);
-		}
-		if (!hodLab.equals("Datový balíček pro předávání dokumentů a jejich metadat do archivu")) {
+                        "Atribut LABEL kořenového elementu <mets:mets> nemá správnou hodnotu. Jeho hodnota je prázdná.",
+                        metsMets);
+        }
+        if (!hodLab.equals("Datový balíček pro předávání dokumentů a jejich metadat do archivu")) {
             nastavChybu(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
                         "Atribut LABEL kořenového elementu <mets:mets> nemá správnou hodnotu. Jeho hodnota je: "
                                 + hodLab + ".",
                         metsMets);
-		}
-	}
+        }
+    }
 
 }
