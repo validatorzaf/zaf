@@ -25,18 +25,18 @@ public class Pravidlo3 extends K06PravidloBase {
 		Node metsMets = metsParser.getMetsRootNode();
 
 		if (!ValuesGetter.hasAttribut(metsMets, "LABEL")) {
-            nastavChybu(BaseCode.MISSING_ATTRIBUTE, "Nenalezen atribut LABEL kořenového elementu <mets:mets>.",
+            nastavChybu(BaseCode.CHYBI_ATRIBUT, "Nenalezen atribut LABEL kořenového elementu <mets:mets>.",
                         metsMets);
 		}
 
 		String hodLab = ValuesGetter.getValueOfAttribut(metsMets, "LABEL");
 		if (StringUtils.isBlank(hodLab)) {
-            nastavChybu(BaseCode.MISSING_ATTRIBUTE,
+            nastavChybu(BaseCode.CHYBI_ATRIBUT,
 					"Atribut LABEL kořenového elementu <mets:mets> nemá správnou hodnotu. Jeho hodnota je prázdná.",
 					metsMets);
 		}
 		if (!hodLab.equals("Datový balíček pro předávání dokumentů a jejich metadat do archivu")) {
-            nastavChybu(BaseCode.INVALID_VALUE,
+            nastavChybu(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
                         "Atribut LABEL kořenového elementu <mets:mets> nemá správnou hodnotu. Jeho hodnota je: "
                                 + hodLab + ".",
                         metsMets);

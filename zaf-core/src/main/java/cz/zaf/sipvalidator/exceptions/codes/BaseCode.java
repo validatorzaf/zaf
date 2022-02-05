@@ -2,23 +2,23 @@ package cz.zaf.sipvalidator.exceptions.codes;
 
 public enum BaseCode implements ErrorCode {
 
-    UNKNOWN_ERROR("Jiná výjimka"),
+    NEZNAMA_CHYBA("Jiná výjimka"),
 
     /**
      * Standardní chybový kód.
      * 
      * Pooužije se pokud není k dispozici jiná specializace
      */
-    ERROR("Obecná chyba"),
+    CHYBA("Obecná chyba"),
 
     /**
      * TODO: Dopsat pravidla užití kódů
      */
-    MISSING_ELEMENT("Chybí element"),
+    CHYBI_ELEMENT("Chybí element"),
 
-    MISSING_ATTRIBUTE("Chybí atribut elementu v XML, který je povinný"),
+    CHYBI_ATRIBUT("Chybí atribut elementu v XML, který je povinný"),
 
-    INVALID_VALUE("Chybná hodnota atributu");
+    CHYBNA_HODNOTA_ATRIBUTU("Chybná hodnota atributu");
 
     final private String description;
 

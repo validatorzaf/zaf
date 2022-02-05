@@ -38,7 +38,7 @@ public class Pravidlo40 extends K06PravidloBase {
                                                             "nsesss:Manipulace", "nsesss:AnalogovyDokument");
             // TODO: Je toto nutne? mozna musi existovat jiz ze souladu se schematem
             if (analogovyDokument == null) {
-                nastavChybu(BaseCode.ERROR,
+                nastavChybu(BaseCode.CHYBA,
                             "Element <nsesss:Dokument> " + kontrola.getIdentifikatory(dokument)
                                     + " neobsahuje element <nsesss:AnalogovyDokument>.",
                             dokument,
@@ -49,12 +49,12 @@ public class Pravidlo40 extends K06PravidloBase {
             	Node metsMets = metsParser.getMetsRootNode();
                 List<Node> fileSecNodes = ValuesGetter.getChildList(metsMets, "mets:fileSec");
                 if (CollectionUtils.isEmpty(fileSecNodes)) {
-                    nastavChybu(BaseCode.MISSING_ELEMENT,
+                    nastavChybu(BaseCode.CHYBI_ELEMENT,
                                 "Element <mets:mets> neobsahuje žádný element <mets:fileSec>.",
                                 metsMets);
                 }
                 if (fileSecNodes.size() > 1) {
-                    nastavChybu(BaseCode.ERROR,
+                    nastavChybu(BaseCode.CHYBA,
                                 "Element <mets:mets> obsahuje více dětský element <mets:fileSec>.",
                                 metsMets);
                 } else {

@@ -78,7 +78,7 @@ public class K03_Spravnosti
                     popisChybyObecny,
                     null,
                     "Požadavek 11.2.2 NSESSS.", // zdroj
-                    BaseCode.ERROR);
+                    BaseCode.CHYBA);
             vysledekKontroly.add(p);
         }
 

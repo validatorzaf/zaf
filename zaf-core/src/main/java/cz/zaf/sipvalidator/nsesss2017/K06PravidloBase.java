@@ -78,7 +78,7 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
             // TODO: ID chybnych entit lze pridat do vystupu 
             // List<EntityId> entityIds = e.getEntityIds();
         } catch (Exception e) {
-            errorCode = BaseCode.UNKNOWN_ERROR;
+            errorCode = BaseCode.NEZNAMA_CHYBA;
             detailChyby = e.getLocalizedMessage();
         }
 
@@ -146,7 +146,7 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
      * @return Vraci vzdy false, lze vyuzit pro jednoradkovy zapis
      */
     protected boolean nastavChybu(final String detailChyby, final String mistoChyby) {
-        nastavChybu(BaseCode.ERROR, detailChyby, mistoChyby);
+        nastavChybu(BaseCode.CHYBA, detailChyby, mistoChyby);
         return false;
     }
 

@@ -115,7 +115,7 @@ public class K01_DatoveStruktury
                 vypisChyby, popisChybyObecny,
                 null,
                 zdrojePravidla[index],
-                BaseCode.ERROR);
+                BaseCode.CHYBA);
         vysledekKontroly.add(p);
         
     }

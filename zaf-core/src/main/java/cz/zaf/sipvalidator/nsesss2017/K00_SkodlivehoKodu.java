@@ -69,7 +69,7 @@ public class K00_SkodlivehoKodu
                 textPravidla,
                 descr, popisChybyObecny, null,
                 zdroj,
-                BaseCode.ERROR);
+                BaseCode.CHYBA);
         vysledekKontroly.add(p);
 	}
 

@@ -101,7 +101,7 @@ public class K05_ProtiSchematu
                 obecnyPopisChyby,
                 null,
                 VAL1_ZDROJ,
-                BaseCode.ERROR);
+                BaseCode.CHYBA);
         vysledekKontroly.add(p);
 
     }

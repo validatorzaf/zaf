@@ -163,7 +163,7 @@ public class K02_ZnakoveSady
                     chybaKodovani,
                     obecnyPopisChyby, null,
                     "Požadavek 11.2.7 NSESSS.",
-                    BaseCode.ERROR);
+                    BaseCode.CHYBA);
             vysledekKontroly.add(p);
         }
 
