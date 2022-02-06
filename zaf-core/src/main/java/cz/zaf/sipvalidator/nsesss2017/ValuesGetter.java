@@ -11,6 +11,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -214,12 +215,22 @@ public class ValuesGetter {
     
     }
 
-    public static ArrayList<Node> getSpecificChildWithName(Node node, String name) {
-        
-        ArrayList<Node> list = new ArrayList<>();
+    /**
+     * Vrati seznam uzlu s danym jmenem
+     * 
+     * @param node
+     *            Rodicovsky uzel
+     * @param name
+     *            Nazev uzlu
+     * @return Seznam uzlu, vraci vzdy seznam
+     */
+    public static List<Node> getChildNodes(Node node, String name) {
+
         if (node == null) {
-            return list;
+            return Collections.emptyList();
         }
+        List<Node> list = new ArrayList<>();
+
         NodeList childNodes = node.getChildNodes();
         int pocetDeti = childNodes.getLength();
         for (int i = 0; i < pocetDeti; i++) {

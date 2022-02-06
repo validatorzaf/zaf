@@ -33,7 +33,7 @@ public class Pravidlo70 extends K06PravidloBaseOld {
         for (int i = 0; i < size; i++) {
             Node identifikator = identifikatory.get(i);
             Node rodic = identifikator.getParentNode();
-            if (ValuesGetter.getSpecificChildWithName(rodic, "nsesss:Identifikator").size() > 1) {
+            if (ValuesGetter.getChildNodes(rodic, "nsesss:Identifikator").size() > 1) {
                 Node komponenta = ValuesGetter.getXParent(identifikator, "nsesss:Identifikace", NsessV3.EVIDENCNI_UDAJE,
                                                           "nsesss:Komponenta");
                 if (komponenta == null) {

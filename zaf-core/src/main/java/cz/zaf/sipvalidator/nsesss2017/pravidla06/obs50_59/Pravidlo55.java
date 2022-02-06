@@ -1,6 +1,5 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.w3c.dom.Node;
@@ -28,7 +27,7 @@ public class Pravidlo55 extends K06PravidloBaseOld {
         for (Node div: nodeListDiv) {
             boolean obsahuje = ValuesGetter.hasAttributValue(div, "TYPE", "komponenta");
             if (obsahuje) {
-                ArrayList<Node> list = ValuesGetter.getSpecificChildWithName(div, "mets:fptr");
+                List<Node> list = ValuesGetter.getChildNodes(div, "mets:fptr");
                 if (list.isEmpty()) {
                     return nastavChybu("Element <mets:div> neobsahuje element <mets:fptr>.", div);
                 }

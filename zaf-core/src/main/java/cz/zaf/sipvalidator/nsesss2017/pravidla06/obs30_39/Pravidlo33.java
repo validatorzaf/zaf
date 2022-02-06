@@ -1,6 +1,5 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.w3c.dom.Node;
@@ -29,7 +28,7 @@ public class Pravidlo33 extends K06PravidloBaseOld {
             return nastavChybu("Nenalezen žádný element <mets:digiprovMD>.");
         }
         for(Node digiprovMD: nodeList) {
-            ArrayList<Node> list = ValuesGetter.getSpecificChildWithName(digiprovMD, "mets:mdWrap");
+            List<Node> list = ValuesGetter.getChildNodes(digiprovMD, "mets:mdWrap");
             if(list.isEmpty()){
                 return nastavChybu("Element <mets:digiprovMD> neobsahuje dětský element <mets:mdWrap>.", digiprovMD);
             }
