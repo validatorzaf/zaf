@@ -142,12 +142,12 @@ Ty jsou také dostupné v repozitáři pro Maven a je možné je přímo použí
 
 === Maven (pom.xml)
 
-[source,xml]
+[source,xml,subs="attributes+"]
 ----
   <dependency>
     <groupId>cz.zaf</groupId>
     <artifactId>zaf-core</artifactId>
-    <version>{zafVersion}:</version>
+    <version>{zafVersion}</version>
   </dependency>
 ----
 
