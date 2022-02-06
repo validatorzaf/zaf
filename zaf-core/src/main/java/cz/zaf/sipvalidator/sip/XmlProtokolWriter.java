@@ -68,7 +68,7 @@ public class XmlProtokolWriter implements ProtokolWriter,
     {
         SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         try (InputStream is = XmlProtokolWriter.class.getClassLoader()
-                .getResourceAsStream("schema/validaceSIP.xsd")) {
+                .getResourceAsStream("schema/validace.xsd")) {
             schema = sf.newSchema(new StreamSource(is));
         } catch (IOException | SAXException e) {
             throw new RuntimeException("Failed to load internal XSD", e);
