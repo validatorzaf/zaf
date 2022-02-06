@@ -1,12 +1,17 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19;
 
+import java.util.List;
+
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.Validate;
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.10 Element <mets:mets> obsahuje právě jeden dětský element <mets:metsHdr>.",
-public class Pravidlo10 extends K06PravidloBaseOld {
+public class Pravidlo10 extends K06PravidloBase {
 
 	static final public String OBS10 = "obs10";
 
@@ -19,18 +24,15 @@ public class Pravidlo10 extends K06PravidloBaseOld {
 	}
 
 	@Override
-	protected boolean kontrolaPravidla() {
+    protected void kontrola() {
 		Node metsMets = metsParser.getMetsRootNode();
-        if(metsMets == null) {
-        	return nastavChybu("Nenalezen kořenový element <mets:mets>.");
+        List<Node> metsHdrs = ValuesGetter.getChildList(metsMets, "mets:metsHdr");
+        if (CollectionUtils.isEmpty(metsHdrs)) {
+            nastavChybu(BaseCode.CHYBI_ELEMENT,
+                        "Kořenový element <mets:mets> nemá žádný dětský element <mets:metsHdr>.", metsMets);
         }
-        if(!ValuesGetter.hasChildWithName(metsMets, "mets:metsHdr")){
-            return nastavChybu("Kořenový element <mets:mets> nemá žádný dětský element <mets:metsHdr>.", metsMets);
-        }
-        if(!ValuesGetter.hasOnlyOneChild_ElementNode(metsMets, "mets:metsHdr")){
-            return nastavChybu("Kořenový element <mets:mets> má více než jeden dětský element <mets:metsHdr>.", metsMets);
-        }
-        return true;
+        // Ze schematu musi byt maximalne jeden
+        Validate.isTrue(metsHdrs.size() == 1);
 	}
 
 }
