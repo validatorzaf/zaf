@@ -2,12 +2,14 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19;
 
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
-//OBSAHOVÁ č.12 Element <mets:mets> obsahuje alespoň jeden element <mets:amdSec>.",
-public class Pravidlo12 extends K06PravidloBaseOld {
+// OBSAHOVÁ č.12 Element <mets:mets> obsahuje alespoň jeden element
+// <mets:amdSec>.
+public class Pravidlo12 extends K06PravidloBase {
 
 	static final public String OBS12 = "obs12";
 
@@ -20,14 +22,12 @@ public class Pravidlo12 extends K06PravidloBaseOld {
 	}
 
 	@Override
-	protected boolean kontrolaPravidla() {
+    protected void kontrola() {
 		Node metsMets = metsParser.getMetsRootNode();
-        if(metsMets == null) {
-        	return nastavChybu("Nenalezen kořenový element <mets:mets>.");
-        }
+
         if(!ValuesGetter.hasChildWithName(metsMets, MetsElements.AMD_SEC)){
-            return nastavChybu("Kořenový element <mets:mets> nemá žádný dětský element <mets:amdSec>.", metsMets);
-        }       
-        return true;
+            nastavChybu(BaseCode.CHYBI_ELEMENT,
+                        "Kořenový element <mets:mets> nemá žádný dětský element <mets:amdSec>.", metsMets);
+        }
 	}
 }

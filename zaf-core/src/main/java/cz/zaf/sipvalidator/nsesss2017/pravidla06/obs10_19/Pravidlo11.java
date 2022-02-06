@@ -10,7 +10,8 @@ import cz.zaf.sipvalidator.exceptions.codes.XmlCode;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
-//OBSAHOVÁ č.11 Element <mets:mets> obsahuje právě jeden dětský element <mets:dmdSec>.",
+// OBSAHOVÁ č.11 Element <mets:mets> obsahuje právě jeden dětský element
+// <mets:dmdSec>.
 public class Pravidlo11 extends K06PravidloBase {
 
 	static final public String OBS11 = "obs11";
