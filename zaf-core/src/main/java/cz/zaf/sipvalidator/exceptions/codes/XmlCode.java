@@ -1,7 +1,9 @@
 package cz.zaf.sipvalidator.exceptions.codes;
 
 public enum XmlCode implements ErrorCode {
-    NEODPOVIDA_SCHEMATU("XML neodpovídá schématu");
+    NEODPOVIDA_SCHEMATU("XML neodpovídá schématu"),
+
+    NEOCEKAVANY_ELEMENT("V XML je uveden neočekávaný element");
 
     final private String description;
 
