@@ -14,8 +14,9 @@ import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -28,7 +29,7 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 // <nsesss:Komponenta>, který obsahuje atribut forma_uchovani s hodnotou
 // originál.
 //
-public class Pravidlo103 extends K06PravidloBaseOld {
+public class Pravidlo103 extends K06PravidloBase {
 
     static Logger log = LoggerFactory.getLogger(Pravidlo103.class);
 
@@ -42,7 +43,7 @@ public class Pravidlo103 extends K06PravidloBaseOld {
     }
 
     @Override
-    protected boolean kontrolaPravidla() {
+    protected void kontrola() {
         Set<Node> digitDoks = new HashSet<>();
 
         List<Element> dokumentNodes = metsParser.getDokumenty();
@@ -61,17 +62,17 @@ public class Pravidlo103 extends K06PravidloBaseOld {
         // Zjisteni seznamu komponent ciste digitalnich dokumentu
         List<Element> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
         if (CollectionUtils.isEmpty(komponenty)) {
-            return true;
+            return;
         }
 
         //
         // Mapa <Dokument, <Poradi, List<Komponenta> > >
         //
-        Map<Node, Map<Integer, List<Node>>> digitalniDokumenty = new HashMap<>();
+        Map<Element, Map<Integer, List<Node>>> digitalniDokumenty = new HashMap<>();
         for (Node komponenta : komponenty) {
             // Kontrola, zda je soucast digit dokumentu?
             Node komponentyNode = komponenta.getParentNode();
-            Node dokumentNode = komponentyNode.getParentNode();
+            Element dokumentNode = (Element) komponentyNode.getParentNode();
             if (!digitDoks.contains(dokumentNode)) {
                 continue;
             }
@@ -85,7 +86,7 @@ public class Pravidlo103 extends K06PravidloBaseOld {
         }
         
         // Kontrola dat
-        for (Entry<Node, Map<Integer, List<Node>>> digitDok : digitalniDokumenty.entrySet()) {
+        for (Entry<Element, Map<Integer, List<Node>>> digitDok : digitalniDokumenty.entrySet()) {
             for (Entry<Integer, List<Node>> komponentyNaPozici : digitDok.getValue().entrySet()) {
                 // Nalezeni originalu
                 Node original = null;
@@ -93,20 +94,22 @@ public class Pravidlo103 extends K06PravidloBaseOld {
                     String formaUchovani = ValuesGetter.getValueOfAttribut(komponenta, JmenaElementu.FORMA_UCHOVANI);
                     if (JmenaElementu.FORMA_UCHOVANI_ORIGINAL.equals(formaUchovani)) {
                         if (original != null) {
-                            return nastavChybu("Dokument má více komponent se shodným pořadím označených jako originál. poradi: "
-                                    + komponentyNaPozici.getKey(), digitDok.getKey());
+                            nastavChybu(BaseCode.CHYBA,
+                                        "Dokument má více komponent se shodným pořadím označených jako originál. poradi: "
+                                                + komponentyNaPozici.getKey(), digitDok.getKey(),
+                                        kontrola.getEntityId(digitDok.getKey()));
                         }
                         original = komponenta;
                     }
                 }
                 if (original == null) {
-                    return nastavChybu("Dokument neobsahuje komponentu označenou jako originál. poradi: "
-                            + komponentyNaPozici.getKey(), digitDok.getKey());
+                    nastavChybu(BaseCode.CHYBA,
+                                "Dokument neobsahuje komponentu označenou jako originál. poradi: "
+                            + komponentyNaPozici.getKey(), digitDok.getKey(),
+                            kontrola.getEntityId(digitDok.getKey()));
                 }
             }
         }
-
-        return true;
     }
 
 }
