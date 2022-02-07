@@ -13,7 +13,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -26,7 +26,7 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 // originál ve výstupním datovém formátu a současně atribut verze s hodnotou
 // nejvyššího čísla verze.
 //
-public class Pravidlo106 extends K06PravidloBaseOld {
+public class Pravidlo106 extends K06PravidloBase {
 
     static Logger log = LoggerFactory.getLogger(Pravidlo106.class);
 
@@ -40,41 +40,38 @@ public class Pravidlo106 extends K06PravidloBaseOld {
     }
 
     @Override
-    protected boolean kontrolaPravidla() {
+    protected void kontrola() {
         // Zjisteni seznamu komponent ciste digitalnich dokumentu
         List<Element> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
         if (CollectionUtils.isEmpty(komponenty)) {
-            return true;
+            return;
         }
-        Map<Node, Map<Integer, List<Node>>> doks = new HashMap<>();
+        Map<Element, Map<Integer, List<Element>>> doks = new HashMap<>();
         for (Element komponenta : komponenty) {
             // Kontrola, zda je soucast digit dokumentu?
-            Node komponentyNode = komponenta.getParentNode();
-            Node dokumentNode = komponentyNode.getParentNode();
+            Element komponentyNode = (Element) komponenta.getParentNode();
+            Element dokumentNode = (Element) komponentyNode.getParentNode();
 
             String poradiKomponentyStr = ValuesGetter.getValueOfAttribut(komponenta, JmenaElementu.PORADI);
             Integer poradiKomponeta = Integer.valueOf(poradiKomponentyStr);
 
-            Map<Integer, List<Node>> komponentyDlePoradi = doks.computeIfAbsent(dokumentNode,
+            Map<Integer, List<Element>> komponentyDlePoradi = doks.computeIfAbsent(dokumentNode,
                                                                                 dn -> new HashMap<>());
-            List<Node> kompList = komponentyDlePoradi.computeIfAbsent(poradiKomponeta, pk -> new ArrayList<>());
+            List<Element> kompList = komponentyDlePoradi.computeIfAbsent(poradiKomponeta, pk -> new ArrayList<>());
             kompList.add(komponenta);
         }
         // Kontrola dat
-        for (Entry<Node, Map<Integer, List<Node>>> digitDok : doks.entrySet()) {
-            Node digiDokNode = digitDok.getKey();
-            for (Entry<Integer, List<Node>> komponentyNaPozici : digitDok.getValue().entrySet()) {
+        for (Entry<Element, Map<Integer, List<Element>>> digitDok : doks.entrySet()) {
+            Element digiDokNode = digitDok.getKey();
+            for (Entry<Integer, List<Element>> komponentyNaPozici : digitDok.getValue().entrySet()) {
                 Integer pozice = komponentyNaPozici.getKey();
-                List<Node> komps = komponentyNaPozici.getValue();
-                if (!kontrola(digiDokNode, pozice, komps)) {
-                    return false;
-                }
+                List<Element> komps = komponentyNaPozici.getValue();
+                kontrola(digiDokNode, pozice, komps);
             }
         }
-        return true;
     }
 
-    private boolean kontrola(Node dokNode, Integer pozice, List<Node> komps) {
+    private boolean kontrola(Element dokNode, Integer pozice, List<Element> komps) {
 
         Integer nejvyssiVerzeVystFormatu = null;
         Integer nejvyssiVerze = null;
