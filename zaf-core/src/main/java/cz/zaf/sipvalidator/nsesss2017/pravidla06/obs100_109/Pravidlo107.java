@@ -14,9 +14,11 @@ import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.mets.MetsElements;
+import cz.zaf.sipvalidator.nsesss2017.EntityId;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -40,7 +42,7 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 // application/xml-dtd
 //
 //
-public class Pravidlo107 extends K06PravidloBaseOld {
+public class Pravidlo107 extends K06PravidloBase {
 
     static Logger log = LoggerFactory.getLogger(Pravidlo107.class);
 
@@ -78,39 +80,41 @@ public class Pravidlo107 extends K06PravidloBaseOld {
     }
 
     @Override
-    protected boolean kontrolaPravidla() {
+    protected void kontrola() {
         // TODO: Deduplicate code with rule 44
         List<Element> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);
         if (CollectionUtils.isEmpty(nodeListMetsFile)) {
-            return true;
+            return;
         }
-        Map<String, Node> filesIdMap = new HashMap<>();
+        Map<String, Element> filesIdMap = new HashMap<>();
         for (Element metsFile : nodeListMetsFile) {
-            String dmdid = ValuesGetter.getValueOfAttribut(metsFile, "DMDID");
+            String dmdid = metsFile.getAttribute("DMDID");
             if (StringUtils.isEmpty(dmdid)) {
-                return nastavChybu("Element <mets:file> nemá atribut DMDID.", metsFile);
+                nastavChybu(BaseCode.CHYBI_ATRIBUT, "Element <mets:file> nemá atribut DMDID.", metsFile);
             }
-            Node prevNode = filesIdMap.put(dmdid, metsFile);
+            Element prevNode = filesIdMap.put(dmdid, metsFile);
             if (prevNode != null) {
-                return nastavChybu("Více elementů <mets:file> má shodnou hodnotu DMDID.", metsFile);
+                nastavChybu(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
+                            "Více elementů <mets:file> má shodnou hodnotu DMDID.",
+                            metsFile);
             }
         }
 
         // Zjisteni seznamu komponent ciste digitalnich dokumentu
         List<Element> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
         if (CollectionUtils.isEmpty(komponenty)) {
-            return true;
+            return;
         }
 
         // Ulozeni nejvyssich verzi
         // Struktura obsahuje: Dokument, Pozice, Komponenta s nejvyssi verzi
-        Map<Node, Map<Integer, Node>> doks = new HashMap<>();
-        for (Node komponenta : komponenty) {
+        Map<Element, Map<Integer, Element>> doks = new HashMap<>();
+        for (Element komponenta : komponenty) {
             // Kontrola, zda je soucast digit dokumentu?
-            Node komponentyNode = komponenta.getParentNode();
-            Node dokumentNode = komponentyNode.getParentNode();
+            Element komponentyNode = (Element) komponenta.getParentNode();
+            Element dokumentNode = (Element) komponentyNode.getParentNode();
 
-            Map<Integer, Node> komponentaDlePoradi = doks.computeIfAbsent(dokumentNode,
+            Map<Integer, Element> komponentaDlePoradi = doks.computeIfAbsent(dokumentNode,
                                                                           dn -> new HashMap<>());
 
             String poradiKomponentyStr = ValuesGetter.getValueOfAttribut(komponenta, JmenaElementu.PORADI);
@@ -130,43 +134,39 @@ public class Pravidlo107 extends K06PravidloBaseOld {
             }
         }
         // Kontrola dat
-        for (Entry<Node, Map<Integer, Node>> digitDok : doks.entrySet()) {
-            Node digiDokNode = digitDok.getKey();
-            for (Entry<Integer, Node> komponentyNaPozici : digitDok.getValue().entrySet()) {
+        for (Entry<Element, Map<Integer, Element>> digitDok : doks.entrySet()) {
+            Element digiDokNode = digitDok.getKey();
+            for (Entry<Integer, Element> komponentyNaPozici : digitDok.getValue().entrySet()) {
                 Integer pozice = komponentyNaPozici.getKey();
-                Node komp = komponentyNaPozici.getValue();
-                if (!kontrola(digiDokNode, pozice, komp, filesIdMap)) {
-                    return false;
-                }
+                Element komp = komponentyNaPozici.getValue();
+                kontrola(digiDokNode, pozice, komp, filesIdMap);
             }
         }
-
-        return true;
     }
 
-    private boolean kontrola(Node digiDokNode, Integer pozice, Node komponenta, Map<String, Node> filesIdMap) {
+    private void kontrola(Element digiDokNode, Integer pozice, Element komponenta, Map<String, Element> filesIdMap) {
         // Overeni formy
         String formUchovani = ValuesGetter.getValueOfAttribut(komponenta, JmenaElementu.FORMA_UCHOVANI);
         if (!JmenaElementu.FORMA_UCHOVANI_ORIGINAL_VE_VYST_DAT_FORMATU.equals(formUchovani)) {
-            return true;
+            return;
         }
 
         // zjisteni ID
-        String id = ValuesGetter.getValueOfAttribut(komponenta, "ID");
-        if (id == null) {
-            return true;
+        String id = komponenta.getAttribute("ID");
+        if (StringUtils.isEmpty(id)) {
+            return;
         }
-        Node fileNode = filesIdMap.get(id);
+        Element fileNode = filesIdMap.get(id);
         if (fileNode == null) {
-            return true;
+            return;
         }
         String mimeType = ValuesGetter.getValueOfAttribut(fileNode, "MIMETYPE");
         if (!checkedMimeTypes.contains(mimeType)) {
-            return nastavChybu("Originál ve výstupním formátu pro nejvyšší verzi komponenty nemá přípustný mimetype. Zjištěn typ: "
-                    + mimeType, fileNode);
+            EntityId entityId = kontrola.getEntityId(digiDokNode);
+            nastavChybu(BaseCode.CHYBA,
+                        "Originál ve výstupním formátu pro nejvyšší verzi komponenty nemá přípustný mimetype. Zjištěn typ: "
+                                + mimeType, fileNode, entityId);
         }
-
-        return true;
     }
 
 }
