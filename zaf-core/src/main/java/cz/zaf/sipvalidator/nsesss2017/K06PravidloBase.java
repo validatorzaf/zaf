@@ -151,19 +151,28 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
         return false;
     }
 
+    protected ZafException pripravChybu(ErrorCode errorCode, String detailChyby) {
+        return new ZafException(errorCode, detailChyby);
+    }
+
+    protected void nastavChybu(ErrorCode errorCode, String detailChyby,
+                               List<? extends Node> errorList,
+                               final EntityId entityId) {
+        String mistoCh = errorList.stream().map(n -> getMistoChyby(n)).collect(Collectors.joining(" "));
+        throw pripravChybu(errorCode, detailChyby).setMistoChyby(mistoCh).addEntity(entityId);
+    }
+
     protected void nastavChybu(ErrorCode errorCode, final String detailChyby, final Node mistoChyby) {
         nastavChybu(errorCode, detailChyby, getMistoChyby(mistoChyby));
     }
 
     protected void nastavChybu(ErrorCode errorCode, final String detailChyby, final String mistoChyby) {
-        throw new ZafException(errorCode, detailChyby, mistoChyby);
+        throw pripravChybu(errorCode, detailChyby).setMistoChyby(mistoChyby);
     }
 
     protected void nastavChybu(ErrorCode errorCode, String detailChyby, final Node mistoChyby,
                                final EntityId entityId) {
-        throw new ZafException(errorCode, detailChyby, getMistoChyby(mistoChyby))
-                .addEntity(entityId);
-
+        throw pripravChybu(errorCode, detailChyby).setMistoChyby(getMistoChyby(mistoChyby));
     }
 
     @Override

@@ -15,9 +15,10 @@ import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -38,10 +39,10 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 // application/vnd.apple.pages
 //
 // existuje element <nsesss:Komponenta>, který obsahuje atribut forma_uchovani
-// originál ve výstupním datovém formátu."
+// originál ve výstupním datovém formátu.
 //
 //
-public class Pravidlo105 extends K06PravidloBaseOld {
+public class Pravidlo105 extends K06PravidloBase {
 
     static Logger log = LoggerFactory.getLogger(Pravidlo105.class);
 
@@ -70,12 +71,12 @@ public class Pravidlo105 extends K06PravidloBaseOld {
     }
 
     @Override
-    protected boolean kontrolaPravidla() {
-        Set<Node> digitDoks = new HashSet<>();
+    protected void kontrola() {
+        Set<Element> digitDoks = new HashSet<>();
 
         List<Element> dokumentNodes = metsParser.getDokumenty();
         for (Element dokumentNode : dokumentNodes) {
-            Node analogDokNode = ValuesGetter.getXChild(dokumentNode, NsessV3.EVIDENCNI_UDAJE,
+            Element analogDokNode = ValuesGetter.getXChild(dokumentNode, NsessV3.EVIDENCNI_UDAJE,
                                                         "nsesss:Manipulace",
                                                         "nsesss:AnalogovyDokument");
             if (analogDokNode != null) {
@@ -89,16 +90,16 @@ public class Pravidlo105 extends K06PravidloBaseOld {
         // Zjisteni seznamu komponent ciste digitalnich dokumentu
         List<Element> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
         if (CollectionUtils.isEmpty(komponenty)) {
-            return true;
+            return;
         }
         //
         // Mapa <Dokument, <Poradi, List<Komponenta> > >
         //
-        Map<Node, Map<Integer, List<Node>>> digitalniDokumenty = new HashMap<>();
+        Map<Element, Map<Integer, List<Node>>> digitalniDokumenty = new HashMap<>();
         for (Node komponenta : komponenty) {
             // Kontrola, zda je soucast digit dokumentu?
             Node komponentyNode = komponenta.getParentNode();
-            Node dokumentNode = komponentyNode.getParentNode();
+            Element dokumentNode = (Element) komponentyNode.getParentNode();
             if (!digitDoks.contains(dokumentNode)) {
                 continue;
             }
@@ -118,32 +119,29 @@ public class Pravidlo105 extends K06PravidloBaseOld {
         for (Node metsFile : nodeListMetsFile) {
             String dmdid = ValuesGetter.getValueOfAttribut(metsFile, "DMDID");
             if (StringUtils.isEmpty(dmdid)) {
-                return nastavChybu("Element <mets:file> nemá atribut DMDID.", metsFile);
+                nastavChybu("Element <mets:file> nemá atribut DMDID.", metsFile);
             }
             Node prevNode = filesIdMap.put(dmdid, metsFile);
             if (prevNode != null) {
-                return nastavChybu("Více elementů <mets:file> má shodnou hodnotu DMDID.", metsFile);
+                nastavChybu("Více elementů <mets:file> má shodnou hodnotu DMDID.", metsFile);
             }
         }
 
         // Kontrola dat
-        for (Entry<Node, Map<Integer, List<Node>>> digitDok : digitalniDokumenty.entrySet()) {
-            Node digiDokNode = digitDok.getKey();
+        for (Entry<Element, Map<Integer, List<Node>>> digitDok : digitalniDokumenty.entrySet()) {
+            Element digiDokNode = digitDok.getKey();
             for (Entry<Integer, List<Node>> komponentyNaPozici : digitDok.getValue().entrySet()) {
                 Integer pozice = komponentyNaPozici.getKey();
                 List<Node> komps = komponentyNaPozici.getValue();
-                if (!kontrola(digiDokNode, pozice, komps, filesIdMap)) {
-                    return false;
-                }
+                kontrola(digiDokNode, pozice, komps, filesIdMap);
             }
         }
-        return true;
     }
 
-    private boolean kontrola(Node digiDokNode, Integer pozice, List<Node> komps, 
+    private void kontrola(Element digiDokNode, Integer pozice, List<Node> komps,
                              Map<String, Node> filesIdMap) {
         if (komps.size() == 0) {
-            return true;
+            return;
         }
         // Kontrola existence ORIGINALU definovaneho typu
         boolean hasOriginalVeVystupnimFormatu = false;
@@ -173,11 +171,12 @@ public class Pravidlo105 extends K06PravidloBaseOld {
         }
         if (origList.size() > 0) {
             if (!hasOriginalVeVystupnimFormatu) {
-                return nastavChybu("Nenalezen originál ve výstupním formátu, existují originály, které ho vyžadují. Počet. "
-                        + origList.size(), origList);
+                nastavChybu(BaseCode.CHYBA,
+                            "Nenalezen originál ve výstupním formátu, existují originály, které ho vyžadují. Počet. "
+                                    + origList.size(), origList,
+                            kontrola.getEntityId(digiDokNode));
             }
         }
-        return true;
     }
 
 }

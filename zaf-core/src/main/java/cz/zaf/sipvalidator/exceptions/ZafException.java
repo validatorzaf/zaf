@@ -14,9 +14,14 @@ public class ZafException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
     final ErrorCode errorCode;
-    final String mistoChyby;
+    String mistoChyby;
 
     List<EntityId> entityIds = new ArrayList<>();
+
+    public ZafException(final ErrorCode errorCode, final String detailChyby) {
+        super(detailChyby);
+        this.errorCode = errorCode;
+    }
 
     public ZafException(final ErrorCode errorCode, final String detailChyby, final String mistoChyby) {
         super(detailChyby);
@@ -36,6 +41,11 @@ public class ZafException extends RuntimeException {
 
     public String getMistoChyby() {
         return mistoChyby;
+    }
+
+    public ZafException setMistoChyby(String mistoChyby) {
+        this.mistoChyby = mistoChyby;
+        return this;
     }
 
     public ZafException addEntity(EntityId entityId) {
