@@ -11,6 +11,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
@@ -79,12 +80,12 @@ public class Pravidlo107 extends K06PravidloBaseOld {
     @Override
     protected boolean kontrolaPravidla() {
         // TODO: Deduplicate code with rule 44
-        List<Node> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);
+        List<Element> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);
         if (CollectionUtils.isEmpty(nodeListMetsFile)) {
             return true;
         }
         Map<String, Node> filesIdMap = new HashMap<>();
-        for (Node metsFile : nodeListMetsFile) {
+        for (Element metsFile : nodeListMetsFile) {
             String dmdid = ValuesGetter.getValueOfAttribut(metsFile, "DMDID");
             if (StringUtils.isEmpty(dmdid)) {
                 return nastavChybu("Element <mets:file> nemá atribut DMDID.", metsFile);
@@ -96,7 +97,7 @@ public class Pravidlo107 extends K06PravidloBaseOld {
         }
 
         // Zjisteni seznamu komponent ciste digitalnich dokumentu
-        List<Node> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
+        List<Element> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
         if (CollectionUtils.isEmpty(komponenty)) {
             return true;
         }

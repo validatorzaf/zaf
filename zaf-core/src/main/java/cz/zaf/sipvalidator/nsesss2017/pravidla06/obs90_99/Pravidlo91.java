@@ -2,6 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99;
 
 import java.util.List;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
@@ -22,13 +23,13 @@ public class Pravidlo91 extends K06PravidloBaseOld {
     //OBSAHOVÁ č.91 Pokud je základní entitou díl (<nsesss:Dil>), potom obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> element <nsesss:RokSpousteciUdalosti> hodnotu, v níž je uvedený rok větší nebo roven hodnotě uvedené v elementu <nsesss:Datum> v hierarchii elementů <nsesss:EvidencniUdaje> a <nsesss:Uzavreni>.",
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> zakladniEntity = predpokladZakladniEntity();
+        List<Element> zakladniEntity = predpokladZakladniEntity();
         if (zakladniEntity == null) {
             return false;
         }
 
         for (int i = 0; i < zakladniEntity.size(); i++) {
-            Node dil = zakladniEntity.get(i);
+            Element dil = zakladniEntity.get(i);
             if (dil.getNodeName().equals("nsesss:Dil")) {
                 Node node = ValuesGetter.getXChild(dil, NsessV3.EVIDENCNI_UDAJE, "nsesss:Vyrazovani",
                                                    "nsesss:DataceVyrazeni", "nsesss:RokSpousteciUdalosti");

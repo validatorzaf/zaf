@@ -3,7 +3,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
@@ -25,20 +25,21 @@ public class Pravidlo70 extends K06PravidloBaseOld {
     protected boolean kontrolaPravidla() {
         //        NodeList id = ValuesGetter.getAllAnywhere("nsesss:Identifikator", metsParser.getDocument());
         //        ArrayList<Node> id = ValuesGetter.getAllAnywhereArrayList("nsesss:Identifikator", metsParser.getDocument());
-        List<Node> identifikatory = metsParser.getIdentifikatory();
+        List<Element> identifikatory = metsParser.getIdentifikatory();
         if (CollectionUtils.isEmpty(identifikatory)) {
             return nastavChybu("Nenalezen žádný element <nsesss:Identifikator>.");
         }
         int size = identifikatory.size();
         for (int i = 0; i < size; i++) {
-            Node identifikator = identifikatory.get(i);
-            Node rodic = identifikator.getParentNode();
+            Element identifikator = identifikatory.get(i);
+            Element rodic = (Element) identifikator.getParentNode();
             if (ValuesGetter.getChildNodes(rodic, "nsesss:Identifikator").size() > 1) {
-                Node komponenta = ValuesGetter.getXParent(identifikator, "nsesss:Identifikace", NsessV3.EVIDENCNI_UDAJE,
+                Element komponenta = ValuesGetter.getXParent(identifikator, "nsesss:Identifikace",
+                                                             NsessV3.EVIDENCNI_UDAJE,
                                                           "nsesss:Komponenta");
                 if (komponenta == null) {
-                    Node entita = ValuesGetter.getXParent(identifikator, "nsesss:Identifikace", NsessV3.EVIDENCNI_UDAJE)
-                            .getParentNode();
+                    Element entita = (Element) ValuesGetter.getXParent(identifikator, "nsesss:Identifikace",
+                                                             NsessV3.EVIDENCNI_UDAJE).getParentNode();
 
                     return nastavChybu("Element <nsesss:Identifikator> se opakuje přes nesplnění podmínky pravidla. "
                             + getJmenoIdentifikator(entita), identifikator);

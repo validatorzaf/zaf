@@ -1,6 +1,6 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19;
 
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
@@ -20,7 +20,7 @@ public class Pravidlo13 extends K06PravidloBaseOld {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-		Node metsMets = metsParser.getMetsRootNode();
+        Element metsMets = metsParser.getMetsRootNode();
         if(metsMets == null) {
         	return nastavChybu("Nenalezen kořenový element <mets:mets>.");
         }

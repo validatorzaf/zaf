@@ -2,7 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59;
 
 import java.util.List;
 
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
@@ -22,12 +22,12 @@ public class Pravidlo55 extends K06PravidloBaseOld {
     //OBSAHOVÁ č.55 Pokud existuje jakýkoli element <mets:div> s atributem TYPE s hodnotou komponenta, každý obsahuje právě jeden element <mets:fptr>.
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> nodeListDiv = metsParser.getNodes(MetsElements.DIV);
+        List<Element> nodeListDiv = metsParser.getNodes(MetsElements.DIV);
 
-        for (Node div: nodeListDiv) {
+        for (Element div : nodeListDiv) {
             boolean obsahuje = ValuesGetter.hasAttributValue(div, "TYPE", "komponenta");
             if (obsahuje) {
-                List<Node> list = ValuesGetter.getChildNodes(div, "mets:fptr");
+                List<Element> list = ValuesGetter.getChildNodes(div, "mets:fptr");
                 if (list.isEmpty()) {
                     return nastavChybu("Element <mets:div> neobsahuje element <mets:fptr>.", div);
                 }

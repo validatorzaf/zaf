@@ -9,6 +9,7 @@ import java.util.Objects;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
@@ -84,18 +85,18 @@ public class Pravidlo54a  extends K06PravidloBaseOld {
     static public class DmdSecInfo {
         private String id;
         //, type;
-        Node node;
+        Element node;
         
         Node parentEntity;
         PairZdrojIdent pzi;
 
-        private DmdSecInfo(final String id, final Node node) {
+        private DmdSecInfo(final String id, final Element node) {
             // this.type = type;
             this.id = id;
             this.node = node;            
         }
         
-        static DmdSecInfo valueOf(Node node) {
+        static DmdSecInfo valueOf(Element node) {
             String id = ValuesGetter.getValueOfAttribut(node, "ID");
             if (StringUtils.isEmpty(id)) {
                 return null;
@@ -279,7 +280,7 @@ public class Pravidlo54a  extends K06PravidloBaseOld {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-        List<Node> pevneKrizoveOdkazy = metsParser.getKrizoveOdkazyPevnyAno();
+        List<Element> pevneKrizoveOdkazy = metsParser.getKrizoveOdkazyPevnyAno();
         if(pevneKrizoveOdkazy.isEmpty()) {
             return true;
         }
@@ -458,13 +459,13 @@ public class Pravidlo54a  extends K06PravidloBaseOld {
         return true;
     }
 
-    private void readDmdsecs(List<Node> nodes, List<Node> errors) {
-        for(Node node: nodes) {
+    private void readDmdsecs(List<Element> nodes, List<Node> errors) {
+        for (Element node : nodes) {
             readDmdsec(node, errors);
         }        
     }
     
-    private void readDmdsec(Node node, List<Node> errors) {
+    private void readDmdsec(Element node, List<Node> errors) {
         DmdSecInfo dmdSecInfo = DmdSecInfo.valueOf(node);
         if(dmdSecInfo==null) {
             errors.add(node);
@@ -480,7 +481,7 @@ public class Pravidlo54a  extends K06PravidloBaseOld {
     }
 
     private boolean readMetsDivList() {
-        List<Node> nodeList = metsParser.getNodes(MetsElements.DIV);
+        List<Element> nodeList = metsParser.getNodes(MetsElements.DIV);
         if(nodeList.size() == 0){
             return nastavChybu("Nenalezen element <mets:div>.");
         }
@@ -494,7 +495,7 @@ public class Pravidlo54a  extends K06PravidloBaseOld {
         ArrayList<Node> errorList = new ArrayList<>(0);
         ArrayList<Node> duplicatedIdList = new ArrayList<>(0);
         
-        for(Node node: nodeList) {
+        for (Element node : nodeList) {
             MetsDivInfo metsdiv = new MetsDivInfo(node);
 
             String dmdid = metsdiv.getDmdId();
@@ -558,7 +559,7 @@ public class Pravidlo54a  extends K06PravidloBaseOld {
      * @return true pokud je ok, false při chybě
      */
     private boolean readAmdSecList() {
-        List<Node> amdSecNodes = metsParser.getNodes(MetsElements.AMD_SEC);
+        List<Element> amdSecNodes = metsParser.getNodes(MetsElements.AMD_SEC);
         if(CollectionUtils.isEmpty(amdSecNodes)){
             return nastavChybu("Nenalezen element <mets:amdSec>.");
         }        
@@ -568,7 +569,7 @@ public class Pravidlo54a  extends K06PravidloBaseOld {
         List<Node> errorList = new ArrayList<>(0);
         List<Node> duplicated = new ArrayList<>();
 
-        for(Node node: amdSecNodes) {            
+        for (Element node : amdSecNodes) {
             String id = ValuesGetter.getValueOfAttribut(node, "ID");
             if(StringUtils.isEmpty(id)) {
                 errorList.add(node);
@@ -576,7 +577,9 @@ public class Pravidlo54a  extends K06PravidloBaseOld {
             }
 
             // <mets:digiprovMD>, <mets:mdWrap>, <mets:xmlData>, <tp:TransakcniLogObjektu>, <tp:TransLogInfo>, <tp:Objekt>, <tp:Identifikator>, <tns:HodnotaID> a <tns:ZdrojID>
-            Node nodeIdentifikator = ValuesGetter.getXChild(node, "mets:digiprovMD", "mets:mdWrap", "mets:xmlData", "tp:TransakcniLogObjektu", "tp:TransLogInfo", "tp:Objekt", "tp:Identifikator");
+            Element nodeIdentifikator = ValuesGetter.getXChild(node, "mets:digiprovMD", "mets:mdWrap", "mets:xmlData",
+                                                               "tp:TransakcniLogObjektu", "tp:TransLogInfo",
+                                                               "tp:Objekt", "tp:Identifikator");
             if(nodeIdentifikator==null) {
                 continue;
             }

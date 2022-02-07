@@ -2,7 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99;
 
 import java.util.List;
 
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
@@ -28,15 +28,15 @@ public class Pravidlo97 extends K06PravidloBaseOld {
 
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> zakladniEntity = predpokladZakladniEntity();
+        List<Element> zakladniEntity = predpokladZakladniEntity();
         if (zakladniEntity == null) {
             return false;
         }
 
-        Node ze0 = zakladniEntity.get(0);
-        Node n0_j = ValuesGetter.getXChild(ze0, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
+        Element ze0 = zakladniEntity.get(0);
+        Element n0_j = ValuesGetter.getXChild(ze0, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                            "nsesss:JednoduchySpisovyZnak");
-        Node n0_p = ValuesGetter.getXChild(ze0, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
+        Element n0_p = ValuesGetter.getXChild(ze0, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                            "nsesss:PlneUrcenySpisovyZnak");
         if (n0_j == null)
             return nastavChybu("Nenalezen element <nsesss:JednoduchySpisovyZnak> základní entity. "
@@ -48,10 +48,10 @@ public class Pravidlo97 extends K06PravidloBaseOld {
         String plneUrceny = n0_p.getTextContent();
 
         for (int i = 1; i < zakladniEntity.size(); i++) {
-            Node zakladnientita = zakladniEntity.get(i);
-            Node n_j = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
+            Element zakladnientita = zakladniEntity.get(i);
+            Element n_j = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                               "nsesss:JednoduchySpisovyZnak");
-            Node n_p = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
+            Element n_p = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                               "nsesss:PlneUrcenySpisovyZnak");
             if (n_j == null)
                 return nastavChybu("Nenalezen element <nsesss:JednoduchySpisovyZnak> základní entity. "

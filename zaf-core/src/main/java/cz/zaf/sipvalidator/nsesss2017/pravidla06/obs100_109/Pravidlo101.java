@@ -10,6 +10,7 @@ import java.util.TreeMap;
 import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
@@ -39,7 +40,7 @@ public class Pravidlo101 extends K06PravidloBaseOld {
     @Override
     protected boolean kontrolaPravidla() {
         // získání všech komponent ve výstupním datovém formátu
-        List<Node> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
+        List<Element> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
         if (CollectionUtils.isEmpty(komponenty)) {
             return true;
         }

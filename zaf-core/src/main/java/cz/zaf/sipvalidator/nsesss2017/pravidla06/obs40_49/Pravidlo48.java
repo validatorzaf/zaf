@@ -3,6 +3,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49;
 import java.io.File;
 import java.util.List;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
@@ -26,8 +27,8 @@ public class Pravidlo48 extends K06PravidloBaseOld {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-	    List<Node> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);
-	    for (Node metsFile: nodeListMetsFile) {
+        List<Element> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);
+        for (Element metsFile : nodeListMetsFile) {
             if(!kontrolaSouboru(metsFile)) {
             	return false;
             }
@@ -35,7 +36,7 @@ public class Pravidlo48 extends K06PravidloBaseOld {
         return true;
 	}
 
-	private boolean kontrolaSouboru(Node metsFile) {
+    private boolean kontrolaSouboru(Element metsFile) {
         if(!ValuesGetter.hasAttribut(metsFile, "SIZE")){
             return nastavChybu("Element <mets:file> neobsahuje atribut SIZE.", metsFile);
         }

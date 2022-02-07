@@ -2,6 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89;
 
 import java.util.List;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
@@ -25,8 +26,8 @@ public class Pravidlo87 extends K06PravidloBaseOld {
     // je uveden i element <nsesss:DatumOdeslani>.",
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> vyrizeni = metsParser.getNodes(NsessV3.VYRIZENI);        
-        for (Node n: vyrizeni) {
+        List<Element> vyrizeni = metsParser.getNodes(NsessV3.VYRIZENI);
+        for (Element n : vyrizeni) {
             Node datumOdeslani = ValuesGetter.getXChild(n, "nsesss:DatumOdeslani");
             Node prijemce = ValuesGetter.getXChild(n, "nsesss:Prijemce");
             if (datumOdeslani != null && prijemce == null) {

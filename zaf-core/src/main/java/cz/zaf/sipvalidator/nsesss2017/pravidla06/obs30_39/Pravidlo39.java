@@ -2,7 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39;
 
 import java.util.List;
 
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
@@ -22,20 +22,20 @@ public class Pravidlo39 extends K06PravidloBaseOld {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-        List<Node> nodeList = metsParser.getNodes(MetsElements.DIGIPROV_MD);
+        List<Element> nodeList = metsParser.getNodes(MetsElements.DIGIPROV_MD);
         if(nodeList.size() == 0){
             return nastavChybu("Nenalezen žádný element <mets:digiprovMD>.");
         }
-        for(Node digiprovMD: nodeList) {
-            Node mdWr = ValuesGetter.getXChild(digiprovMD, "mets:mdWrap");
+        for (Element digiprovMD : nodeList) {
+            Element mdWr = ValuesGetter.getXChild(digiprovMD, "mets:mdWrap");
             if(mdWr == null){
                 return nastavChybu("Element <mets:digiprovMD> neobsahuje dětský element <mets:mdWrap>.", digiprovMD);
             }
-            Node xDt = ValuesGetter.getXChild(mdWr, "mets:xmlData");
+            Element xDt = ValuesGetter.getXChild(mdWr, "mets:xmlData");
             if(xDt == null){
                 return nastavChybu("Element <mets:mdWrap> neobsahuje žádný dětský element <mets:xmlData>.", mdWr);
             }
-            Node tlo = ValuesGetter.getXChild(xDt, "tp:TransakcniLogObjektu");
+            Element tlo = ValuesGetter.getXChild(xDt, "tp:TransakcniLogObjektu");
             if(tlo == null){
                 return nastavChybu("Element <mets:xmlData> neobsahuje žádný dětský element <tp:TransakcniLogObjektu>.", xDt);
             }

@@ -3,7 +3,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69;
 import java.io.IOException;
 import java.util.List;
 
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
@@ -24,8 +24,8 @@ public class Pravidlo62 extends K06PravidloBaseOld {
     //OBSAHOVÁ č.62 Pokud existuje jakýkoli element <nsesss:Jazyk>, každý obsahuje pouze hodnoty uvedené v číselníku ISO 639-2:1998 uvedeném na URL: http://www.loc.gov/standards/iso639-2/ISO-639-2_utf-8.txt.
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> jazyky = metsParser.getNodes(NsessV3.JAZYK);        
-        for (Node jazyk: jazyky) {
+        List<Element> jazyky = metsParser.getNodes(NsessV3.JAZYK);
+        for (Element jazyk : jazyky) {
             String hodnotaJazyk;            
             hodnotaJazyk = jazyk.getTextContent();
             try {

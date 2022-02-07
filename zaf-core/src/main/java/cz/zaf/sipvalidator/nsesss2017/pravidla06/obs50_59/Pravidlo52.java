@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
@@ -27,7 +28,7 @@ public class Pravidlo52 extends K06PravidloBaseOld {
     @Override
     protected boolean kontrolaPravidla() {
 
-        List<Node> nodeListFlocat = metsParser.getNodes(MetsElements.FLOCAT);        
+        List<Element> nodeListFlocat = metsParser.getNodes(MetsElements.FLOCAT);
         if (nodeListFlocat.size() == 0) {
             return true;
         }

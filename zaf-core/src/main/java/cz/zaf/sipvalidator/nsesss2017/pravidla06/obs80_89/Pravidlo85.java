@@ -2,6 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89;
 
 import java.util.List;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
@@ -25,14 +26,14 @@ public class Pravidlo85 extends K06PravidloBaseOld {
     // potom element <nsesss:Manipulace> obsahuje dětský element <nsesss:UkladaciJednotka> s neprázdnou hodnotou."
     @Override
     public boolean kontrolaPravidla() {
-        List<Node> dokumenty = predpokladDokumenty();
+        List<Element> dokumenty = predpokladDokumenty();
         if (dokumenty == null) {
             return false;
         }
 
         for (int i = 0; i < dokumenty.size(); i++) {
-            Node dokument = dokumenty.get(i);
-            Node analog = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, "nsesss:Manipulace",
+            Element dokument = dokumenty.get(i);
+            Element analog = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, "nsesss:Manipulace",
                                                  "nsesss:AnalogovyDokument");
             if (analog != null) {
                 String hodnota = analog.getTextContent();

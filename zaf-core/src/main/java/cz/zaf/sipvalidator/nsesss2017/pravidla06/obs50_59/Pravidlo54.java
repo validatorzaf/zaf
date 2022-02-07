@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
@@ -31,33 +32,33 @@ public class Pravidlo54 extends K06PravidloBaseOld {
 
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> pevneKrizoveOdkazy = kontrola.getMetsParser().getKrizoveOdkazyPevnyAno();
+        List<Element> pevneKrizoveOdkazy = kontrola.getMetsParser().getKrizoveOdkazyPevnyAno();
         if (!pevneKrizoveOdkazy.isEmpty()) {
             return true;
         }
-        List<Node> metsDiv = metsParser.getNodes(MetsElements.DIV);
+        List<Element> metsDiv = metsParser.getNodes(MetsElements.DIV);
         
-        Map<String, Node> amdIdMap = new HashMap<>();
-        List<Node> metsAmd = metsParser.getNodes(MetsElements.AMD_SEC);
+        Map<String, Element> amdIdMap = new HashMap<>();
+        List<Element> metsAmd = metsParser.getNodes(MetsElements.AMD_SEC);
         addToIdMap(metsAmd, amdIdMap);
         
-        Map<String, Node> nsesssIdMap = new HashMap<>();        
+        Map<String, Element> nsesssIdMap = new HashMap<>();
         
-        List<Node> spisoveplany = metsParser.getNodes(NsessV3.SPISOVY_PLAN);
+        List<Element> spisoveplany = metsParser.getNodes(NsessV3.SPISOVY_PLAN);
         addToIdMap(spisoveplany, nsesssIdMap);
-        List<Node> vecneskupiny = metsParser.getNodes(NsessV3.VECNA_SKUPINA);
+        List<Element> vecneskupiny = metsParser.getNodes(NsessV3.VECNA_SKUPINA);
         addToIdMap(vecneskupiny, nsesssIdMap);
-        List<Node> soucasti = metsParser.getNodes(NsessV3.SOUCAST);
+        List<Element> soucasti = metsParser.getNodes(NsessV3.SOUCAST);
         addToIdMap(soucasti, nsesssIdMap);
-        List<Node> typovespisy = metsParser.getNodes(NsessV3.TYPOVY_SPIS);
+        List<Element> typovespisy = metsParser.getNodes(NsessV3.TYPOVY_SPIS);
         addToIdMap(typovespisy, nsesssIdMap);
-        List<Node> spisy = metsParser.getNodes(NsessV3.SPIS);
+        List<Element> spisy = metsParser.getNodes(NsessV3.SPIS);
         addToIdMap(spisy, nsesssIdMap);
-        List<Node> dily = metsParser.getNodes(NsessV3.DIL);
+        List<Element> dily = metsParser.getNodes(NsessV3.DIL);
         addToIdMap(dily, nsesssIdMap);
-        List<Node> dokumenty = metsParser.getNodes(NsessV3.DOKUMENT);
+        List<Element> dokumenty = metsParser.getNodes(NsessV3.DOKUMENT);
         addToIdMap(dokumenty, nsesssIdMap);
-        List<Node> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
+        List<Element> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
         addToIdMap(komponenty, nsesssIdMap);
         
         int nsesssSize = spisoveplany.size() + vecneskupiny.size() + soucasti.size()
@@ -81,7 +82,7 @@ public class Pravidlo54 extends K06PravidloBaseOld {
             }            
 
             // hledám odkaz na element v dmdSec
-            Node node_dmd = nsesssIdMap.get(dmdid);            
+            Element node_dmd = nsesssIdMap.get(dmdid);
             if (node_dmd == null) {
                 return nastavChybu("Nenalezen platný odkazovaný element ze sekce mets:dmdSec.",
                                    n_div);
@@ -93,7 +94,7 @@ public class Pravidlo54 extends K06PravidloBaseOld {
             }
             
             // porovnat div s dmd
-            Node identifikator;
+            Element identifikator;
             if (node_dmd.getNodeName().equals("nsesss:SpisovyPlan")) {
                 identifikator = ValuesGetter.getXChild(node_dmd, "nsesss:Identifikator");
             } else {
@@ -110,12 +111,12 @@ public class Pravidlo54 extends K06PravidloBaseOld {
                                    node_dmd);
             }
 
-            Node node_amd = amdIdMap.get(admid);
+            Element node_amd = amdIdMap.get(admid);
             if (node_amd == null) {
                 return nastavChybu("Nenalezen element v sekci mets:amdSec s příslušným ID.",
                                    n_div);            
             }
-            Node hodnotaId = ValuesGetter.getXChild(node_amd, "mets:digiprovMD",
+            Element hodnotaId = ValuesGetter.getXChild(node_amd, "mets:digiprovMD",
                                                     "mets:mdWrap", "mets:xmlData",
                                                     "tp:TransakcniLogObjektu",
                                                     "tp:TransLogInfo", "tp:Objekt",
@@ -196,8 +197,8 @@ public class Pravidlo54 extends K06PravidloBaseOld {
         return true;
     }
 
-    private void addToIdMap(List<Node> nodes, Map<String, Node> nsesssIdMap) {
-        for(Node node: nodes) {
+    private void addToIdMap(List<Element> nodes, Map<String, Element> nsesssIdMap) {
+        for (Element node : nodes) {
             String idValue = ValuesGetter.getValueOfAttribut(node, "ID");
             if(StringUtils.isNotEmpty(idValue)) {
                 nsesssIdMap.put(idValue, node);
@@ -207,7 +208,7 @@ public class Pravidlo54 extends K06PravidloBaseOld {
     }
 
     private boolean pravidlo54_pocitadlo_amdsec(int pocet_div) {
-        List<Node> list = metsParser.getNodes(MetsElements.AMD_SEC);
+        List<Element> list = metsParser.getNodes(MetsElements.AMD_SEC);
         if (list == null)
             return false;
         int pocetAmd = list.size();

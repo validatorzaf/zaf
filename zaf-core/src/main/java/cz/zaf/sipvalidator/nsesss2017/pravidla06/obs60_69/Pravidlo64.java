@@ -2,6 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69;
 
 import java.util.List;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
@@ -31,26 +32,27 @@ public class Pravidlo64 extends K06PravidloBaseOld {
 
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> zakladniEntity = predpokladZakladniEntity();
+        List<Element> zakladniEntity = predpokladZakladniEntity();
         if (zakladniEntity == null) {
             return false;
         }
         for (int i = 0; i < zakladniEntity.size(); i++) {
-            Node zakladnientita = zakladniEntity.get(i);
+            Element zakladnientita = zakladniEntity.get(i);
             if (zakladnientita.getNodeName().equals("nsesss:Dokument")) {
-                Node vyrazovani = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, NsessV3.VYRAZOVANI);
+                Element vyrazovani = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE,
+                                                            NsessV3.VYRAZOVANI);
                 if (vyrazovani == null) {
                     return nastavChybu("Nenalezen element <nsesss:Vyrazovani>. "
                             + getJmenoIdentifikator(zakladnientita),
                                        zakladnientita);
                 }
-                Node skartacniRezim = ValuesGetter.getXChild(vyrazovani, "nsesss:SkartacniRezim");
+                Element skartacniRezim = ValuesGetter.getXChild(vyrazovani, "nsesss:SkartacniRezim");
                 if (skartacniRezim == null) {
                     return nastavChybu("Nenalezen element <nsesss:SkartacniRezim>. "
                             + getJmenoIdentifikator(zakladnientita),
                                        zakladnientita);
                 }
-                Node skartacniLhuta_node = ValuesGetter.getXChild(skartacniRezim, "nsesss:SkartacniLhuta");
+                Element skartacniLhuta_node = ValuesGetter.getXChild(skartacniRezim, "nsesss:SkartacniLhuta");
                 if (skartacniLhuta_node == null) {
                     return nastavChybu("Nenalezen element <nsesss:SkartacniLhuta>. "
                             + getJmenoIdentifikator(zakladnientita),

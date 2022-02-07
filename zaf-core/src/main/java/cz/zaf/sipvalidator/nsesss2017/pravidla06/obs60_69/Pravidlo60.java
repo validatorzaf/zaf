@@ -2,7 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69;
 
 import java.util.List;
 
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
@@ -22,13 +22,13 @@ public class Pravidlo60 extends K06PravidloBaseOld {
     //OBSAHOVÁ č.60 Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ne, obsahuje element <nsesss:Dokument> dětský element <nsesss:Komponenty>.",
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> dokumenty = predpokladDokumenty();
+        List<Element> dokumenty = predpokladDokumenty();
         if (dokumenty == null) {
             return false;
         }
         for (int i = 0; i < dokumenty.size(); i++) {
-            Node dokument = dokumenty.get(i);
-            Node ad = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, "nsesss:Manipulace",
+            Element dokument = dokumenty.get(i);
+            Element ad = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, "nsesss:Manipulace",
                                              "nsesss:AnalogovyDokument");
             if (ad == null) {
                 return nastavChybu("Nenalezen element <nsesss:AnalogovyDokument>. Dokumentu "

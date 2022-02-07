@@ -2,6 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69;
 
 import java.util.List;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
@@ -22,12 +23,12 @@ public class Pravidlo69 extends K06PravidloBaseOld {
     //OBSAHOVÁ č.69 Pokud je základní entitou dokument (<nsesss:Dokument>), potom její element <nsesss:EvidencniUdaje> obsahuje dětský element <nsesss:Vyrizeni>.",
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> zakladniEntity = predpokladZakladniEntity();
+        List<Element> zakladniEntity = predpokladZakladniEntity();
         if(zakladniEntity==null) {
             return false;
         }
         
-        for (Node ze : zakladniEntity) {
+        for (Element ze : zakladniEntity) {
             if (ze.getNodeName().equals("nsesss:Dokument")) {
                 Node node = ValuesGetter.getXChild(ze, NsessV3.EVIDENCNI_UDAJE, NsessV3.VYRIZENI);
                 if (node == null) {

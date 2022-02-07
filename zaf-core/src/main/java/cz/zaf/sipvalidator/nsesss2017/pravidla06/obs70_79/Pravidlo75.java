@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
@@ -24,8 +25,8 @@ public class Pravidlo75 extends K06PravidloBaseOld {
     //OBSAHOVÁ č.75 Pokud existuje jakýkoli element <nsesss:Platnost>, v každém obsahuje jeho dětský element <nsesss:PlatnostOd> stejnou nebo menší hodnotu, než je hodnota elementu <nsesss:PlatnostDo>.",
     @Override
     protected boolean kontrolaPravidla() {        
-        List<Node> posuzovanyOkamzik = metsParser.getNodes(NsessV3.PLATNOST);
-        for (Node platnost: posuzovanyOkamzik) {
+        List<Element> posuzovanyOkamzik = metsParser.getNodes(NsessV3.PLATNOST);
+        for (Element platnost : posuzovanyOkamzik) {
             Node nodeOd = ValuesGetter.findFirstChild(platnost, "nsesss:PlatnostOd");
             if (nodeOd == null) {
                 return nastavChybu("Nenalezen element <nsesss:PlatnostOd>. " + getJmenoIdentifikator(platnost),

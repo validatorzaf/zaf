@@ -3,6 +3,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69;
 import java.util.Calendar;
 import java.util.List;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
@@ -23,13 +24,13 @@ public class Pravidlo66 extends K06PravidloBaseOld {
     //OBSAHOVÁ č.66 Pokud je základní entitou díl (<nsesss:Dil>), spis (<nsesss:Spis> nebo dokument (<nsesss:Dokument>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> obsahuje element <nsesss:RokSkartacniOperace> hodnotu, která je menší nebo rovna aktuálnímu roku.",
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> zakladniEntity = predpokladZakladniEntity();
+        List<Element> zakladniEntity = predpokladZakladniEntity();
         if (zakladniEntity == null) {
             return false;
         }
 
         for (int i = 0; i < zakladniEntity.size(); i++) {
-            Node ze = zakladniEntity.get(i);
+            Element ze = zakladniEntity.get(i);
             Node node = ValuesGetter.getXChild(ze, NsessV3.EVIDENCNI_UDAJE, "nsesss:Vyrazovani",
                                                "nsesss:DataceVyrazeni", NsessV3.ROK_SKARTACNI_OPERACE);
             if(node==null) {

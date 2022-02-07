@@ -2,6 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69;
 
 import java.util.List;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
@@ -24,8 +25,8 @@ public class Pravidlo63 extends K06PravidloBaseOld {
     // potom je na stejné úrovni posledního uvedeného elementu uveden dětský element <nsesss:Oduvodneni> s neprázdnou hodnotou.",
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> vyrizenis = metsParser.getNodes(NsessV3.VYRIZENI);
-        for (Node n : vyrizenis) {
+        List<Element> vyrizenis = metsParser.getNodes(NsessV3.VYRIZENI);
+        for (Element n : vyrizenis) {
             boolean maZpusobSHodnotou = ValuesGetter.getObsahujeRodicElementSHodnotou(n, "nsesss:Zpusob",
                                                                                       "jiný způsob");
             if (maZpusobSHodnotou) {
@@ -41,8 +42,8 @@ public class Pravidlo63 extends K06PravidloBaseOld {
                 }
             }
         }
-        List<Node> vyrizeniUzavrenis = metsParser.getNodes(NsessV3.VYRIZENI_UZAVRENI);
-        for (Node n : vyrizeniUzavrenis) {
+        List<Element> vyrizeniUzavrenis = metsParser.getNodes(NsessV3.VYRIZENI_UZAVRENI);
+        for (Element n : vyrizeniUzavrenis) {
             boolean maZpusobSHodnotou = ValuesGetter.getObsahujeRodicElementSHodnotou(n, "nsesss:Zpusob",
                                                                                       "jiný způsob");
             if (maZpusobSHodnotou) {

@@ -2,7 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79;
 
 import java.util.List;
 
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
@@ -22,8 +22,8 @@ public class Pravidlo72 extends K06PravidloBaseOld {
     //OBSAHOVÁ č.72 Každý element <nsesss:CasPouziti> obsahuje atribut datum.",
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> casy = metsParser.getNodes(NsessV3.CAS_POUZITI);
-        for (Node cas : casy) {
+        List<Element> casy = metsParser.getNodes(NsessV3.CAS_POUZITI);
+        for (Element cas : casy) {
             boolean maDatum = ValuesGetter.hasAttribut(cas, "datum");
             if (!maDatum) {
                 return nastavChybu("Element <nsesss:CasPouziti> neobsahuje atribut datum. " 

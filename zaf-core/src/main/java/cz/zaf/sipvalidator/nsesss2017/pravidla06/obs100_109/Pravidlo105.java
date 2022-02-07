@@ -12,6 +12,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
@@ -72,8 +73,8 @@ public class Pravidlo105 extends K06PravidloBaseOld {
     protected boolean kontrolaPravidla() {
         Set<Node> digitDoks = new HashSet<>();
 
-        List<Node> dokumentNodes = metsParser.getDokumenty();
-        for (Node dokumentNode : dokumentNodes) {
+        List<Element> dokumentNodes = metsParser.getDokumenty();
+        for (Element dokumentNode : dokumentNodes) {
             Node analogDokNode = ValuesGetter.getXChild(dokumentNode, NsessV3.EVIDENCNI_UDAJE,
                                                         "nsesss:Manipulace",
                                                         "nsesss:AnalogovyDokument");
@@ -86,7 +87,7 @@ public class Pravidlo105 extends K06PravidloBaseOld {
         }
 
         // Zjisteni seznamu komponent ciste digitalnich dokumentu
-        List<Node> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
+        List<Element> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
         if (CollectionUtils.isEmpty(komponenty)) {
             return true;
         }
@@ -112,7 +113,7 @@ public class Pravidlo105 extends K06PravidloBaseOld {
         }
 
         // TODO: Deduplicate code with rule 44
-        List<Node> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);
+        List<Element> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);
         Map<String, Node> filesIdMap = new HashMap<>();
         for (Node metsFile : nodeListMetsFile) {
             String dmdid = ValuesGetter.getValueOfAttribut(metsFile, "DMDID");

@@ -2,6 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69;
 
 import java.util.List;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
@@ -36,14 +37,14 @@ public class Pravidlo65 extends K06PravidloBaseOld {
 
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> zakladniEntity = predpokladZakladniEntity();
+        List<Element> zakladniEntity = predpokladZakladniEntity();
         if (zakladniEntity == null) {
             return false;
         }
-        List<Node> dokumenty = metsParser.getDokumenty();
+        List<Element> dokumenty = metsParser.getDokumenty();
 
         for (int i = 0; i < zakladniEntity.size(); i++) {
-            Node zakladniEntita = zakladniEntity.get(i);
+            Element zakladniEntita = zakladniEntity.get(i);
             String jmeno = zakladniEntita.getNodeName();
             if (jmeno.equals(NsessV3.SPIS) || jmeno.equals(NsessV3.DIL)) {
                 Node node = ValuesGetter.getXChild(zakladniEntita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Vyrazovani",
@@ -110,7 +111,7 @@ public class Pravidlo65 extends K06PravidloBaseOld {
                 }
                 Obj_Node_int dokument = new Obj_Node_int(null, 0);
                 for (int j = 0; j < dokumenty.size(); j++) {
-                    Node dokumentze = dokumenty.get(j);
+                    Element dokumentze = dokumenty.get(j);
                     int int_finalhodnota_dok;
                     Node dok_lhuta = ValuesGetter.getXChild(dokumentze, NsessV3.EVIDENCNI_UDAJE, "nsesss:Vyrazovani",
                                                             "nsesss:SkartacniRezim", "nsesss:SkartacniLhuta");
@@ -121,7 +122,7 @@ public class Pravidlo65 extends K06PravidloBaseOld {
                     }
                     String d_lhuta = dok_lhuta.getTextContent();
 
-                    Node datum_dok = ValuesGetter.getXChild(dokumentze, NsessV3.EVIDENCNI_UDAJE, "nsesss:Puvod",
+                    Element datum_dok = ValuesGetter.getXChild(dokumentze, NsessV3.EVIDENCNI_UDAJE, "nsesss:Puvod",
                                                             "nsesss:VlastniDokument", "nsesss:DatumVytvoreni");
                     if (datum_dok == null)
                         datum_dok = ValuesGetter.getXChild(dokumentze, NsessV3.EVIDENCNI_UDAJE, "nsesss:Puvod",

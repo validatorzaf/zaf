@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
@@ -25,12 +25,12 @@ public class Pravidlo80 extends K06PravidloBaseOld {
     // která je menší nebo rovna aktuálnímu roku.
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> skartacniRizeni = metsParser.getNodes(NsessV3.SKARTACNI_RIZENI);
+        List<Element> skartacniRizeni = metsParser.getNodes(NsessV3.SKARTACNI_RIZENI);
         if (CollectionUtils.isEmpty(skartacniRizeni)) {
             return nastavChybu("Nenalezen element <nsesss:SkartacniRizeni>.");
         }
-        for (Node skrizeni: skartacniRizeni) {
-            Node datum = ValuesGetter.getXChild(skrizeni, "nsesss:Datum");
+        for (Element skrizeni : skartacniRizeni) {
+            Element datum = ValuesGetter.getXChild(skrizeni, "nsesss:Datum");
             if (datum == null) {
                 return nastavChybu("Nenalezen element <nsesss:Datum>. " + getJmenoIdentifikator(skrizeni),
                                    skrizeni);

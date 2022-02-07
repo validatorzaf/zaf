@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
@@ -38,8 +39,8 @@ public class Pravidlo45 extends K06PravidloBaseOld {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-        List<Node> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);
-        for (Node metsFile: nodeListMetsFile) {
+        List<Element> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);
+        for (Element metsFile : nodeListMetsFile) {
 
             String mimeType = ValuesGetter.getValueOfAttribut(metsFile, JmenaElementu.METS_MIMETYPE); // application/pdf, text/plain
             if (!HelperString.hasContent(mimeType)) {

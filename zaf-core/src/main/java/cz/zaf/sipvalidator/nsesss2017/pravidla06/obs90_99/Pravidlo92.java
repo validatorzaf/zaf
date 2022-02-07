@@ -3,7 +3,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
@@ -50,12 +50,12 @@ public class Pravidlo92 extends K06PravidloBaseOld {
     //OBSAHOVÁ č.92 Pokud existuje jakýkoli element <nsesss:Identifikator> s atributem zdroj s hodnotou IČ nebo IČO, hodnota obsahuje číslo o osmi číslicích, jejichž vážený součet je dělitelný jedenácti beze zbytku.",
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> identifikatory = metsParser.getIdentifikatory();
+        List<Element> identifikatory = metsParser.getIdentifikatory();
         if (CollectionUtils.isEmpty(identifikatory)) {
             return nastavChybu("Nenalezen element <nsesss:Identifikator>.");
         }
         for (int i = 0; i < identifikatory.size(); i++) {
-            Node identif = identifikatory.get(i);
+            Element identif = identifikatory.get(i);
             if (!ValuesGetter.hasAttribut(identif, "zdroj")) {
                 return nastavChybu("Elementu <nsesss:Identifikátor> chybí atribut zdroj. " + getJmenoIdentifikator(
                                                                                                                    identif),

@@ -3,7 +3,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
@@ -23,11 +23,11 @@ public class Pravidlo58 extends K06PravidloBaseOld {
     //OBSAHOVÁ č.58 Jakýkoli element <nsesss:Identifikator> obsahuje atribut zdroj s neprázdnou hodnotu.",
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> identifikatory = metsParser.getIdentifikatory();
+        List<Element> identifikatory = metsParser.getIdentifikatory();
         if (CollectionUtils.isEmpty(identifikatory)) {
             return nastavChybu("Nenalezen žádný element <nsesss:Identifikator>.");
         }
-        for (Node identifikator: identifikatory) {
+        for (Element identifikator : identifikatory) {
             if (!ValuesGetter.hasAttribut(identifikator, "zdroj")) {
                 return nastavChybu("Element <nsesss:Identifikator> neobsahuje atribut zdroj.", identifikator);
             }

@@ -3,7 +3,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.exceptions.codes.XmlCode;
@@ -26,8 +26,8 @@ public class Pravidlo11 extends K06PravidloBase {
 
 	@Override
     protected void kontrola() {
-		Node metsMets = metsParser.getMetsRootNode();
-        List<Node> dmdSecNodes = ValuesGetter.getChildNodes(metsMets, "mets:dmdSec");
+        Element metsMets = metsParser.getMetsRootNode();
+        List<Element> dmdSecNodes = ValuesGetter.getChildNodes(metsMets, "mets:dmdSec");
         if (CollectionUtils.isEmpty(dmdSecNodes)) {
             nastavChybu(BaseCode.CHYBI_ELEMENT,
                         "Kořenový element <mets:mets> nemá žádný dětský element <mets:dmdSec>.", metsMets);

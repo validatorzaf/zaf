@@ -2,6 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69;
 
 import java.util.List;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
@@ -22,13 +23,13 @@ public class Pravidlo68 extends K06PravidloBaseOld {
     //OBSAHOVÁ č.68 Každá entita věcná skupina (<nsesss:VecnaSkupina>), která je rodičovskou entitou spisu (<nsesss:Spis>) nebo dokumentu (<nsesss:Dokument>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani> element <nsesss:SkartacniRezim>.
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> zakladniEntity = predpokladZakladniEntity();
+        List<Element> zakladniEntity = predpokladZakladniEntity();
         if (zakladniEntity == null) {
             return false;
         }
 
-        for (Node zakladnientita: zakladniEntity) {
-            Node vecnaskupina;
+        for (Element zakladnientita : zakladniEntity) {
+            Element vecnaskupina;
             if (zakladnientita.getNodeName().equals("nsesss:Dokument") ) {
                 vecnaskupina = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE,
                                                       "nsesss:Trideni", "nsesss:MaterskeEntity",

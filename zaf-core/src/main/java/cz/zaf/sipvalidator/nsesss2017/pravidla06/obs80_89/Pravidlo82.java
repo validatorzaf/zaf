@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
@@ -24,8 +25,8 @@ public class Pravidlo82 extends K06PravidloBaseOld {
     //OBSAHOVÁ č.82 Pokud je v jakémkoli elementu <nsesss:UrceneCasoveObdobi> uveden dětský element <nsesss:MesicDo>, potom je jeho hodnota větší než <nsesss:MesicOd>.",
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> urceneCasoveObdobi = metsParser.getNodes(NsessV3.URCENE_CASOVE_OBDOBI);
-        for (Node urcenecasoveobdobi: urceneCasoveObdobi) {
+        List<Element> urceneCasoveObdobi = metsParser.getNodes(NsessV3.URCENE_CASOVE_OBDOBI);
+        for (Element urcenecasoveobdobi : urceneCasoveObdobi) {
             Node nodeDo = ValuesGetter.getXChild(urcenecasoveobdobi, "nsesss:MesicDo");
             if (nodeDo != null) {
                 Node nodeOd = ValuesGetter.getXChild(urcenecasoveobdobi, "nsesss:MesicOd");

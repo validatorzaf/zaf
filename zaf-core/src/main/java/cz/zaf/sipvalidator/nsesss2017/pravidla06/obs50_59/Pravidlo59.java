@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.CompareNodes;
@@ -29,11 +30,11 @@ public class Pravidlo59 extends K06PravidloBaseOld {
     //OBSAHOVÁ č.59 Žádná entita (od spisového plánu po dokument) nebo objekt <nsesss:Komponenta>, <nsesss:BezpecnostniKategorie>, <nsesss:SkartacniRezim> nebo <nsesss:TypDokumentu> neobsahuje stejné hodnoty elementu <nsesss:Identifikator> a jeho atributu zdroj a současně odlišné hodnoty v ostatních elementech, jako má jiná entita nebo objekt uvedeného typu, kromě atributu ID uvedené entity.
     @Override
     protected boolean kontrolaPravidla() {
-        Map<PairZdrojIdent, List<Node>> identMap = new HashMap<>();
-        List<Node> identList = metsParser.getNodes(NsessV3.IDENTIFIKATOR);
-        for (Node ident : identList) {
+        Map<PairZdrojIdent, List<Element>> identMap = new HashMap<>();
+        List<Element> identList = metsParser.getNodes(NsessV3.IDENTIFIKATOR);
+        for (Element ident : identList) {
             // get parent entity
-            Node parentNode = getEntityWithIdentifikator(ident);
+            Element parentNode = getEntityWithIdentifikator(ident);
             // Kontrola typu rodice
             if (!shouldBeChecked(parentNode)) {
                 continue;
@@ -44,18 +45,18 @@ public class Pravidlo59 extends K06PravidloBaseOld {
 
             PairZdrojIdent pair = new PairZdrojIdent(hodnotaAtrZdroj, hodnotaIdentifikatoru);
 
-            List<Node> nodeList = identMap.computeIfAbsent(pair, (p) -> new ArrayList<>());
+            List<Element> nodeList = identMap.computeIfAbsent(pair, (p) -> new ArrayList<>());
             nodeList.add(parentNode);
         }
 
         // Porovnani uzlu se shodnymi ident
-        for (Entry<PairZdrojIdent, List<Node>> entry : identMap.entrySet()) {
-            List<Node> nodeList = entry.getValue();
+        for (Entry<PairZdrojIdent, List<Element>> entry : identMap.entrySet()) {
+            List<Element> nodeList = entry.getValue();
 
-            Iterator<Node> it = nodeList.iterator();
-            Node firstNode = it.next();
+            Iterator<Element> it = nodeList.iterator();
+            Element firstNode = it.next();
             while (it.hasNext()) {
-                Node node = it.next();
+                Element node = it.next();
                 String hlaska = CompareNodes.compare(firstNode, node);
                 if (hlaska!=null) {
                     return nastavChybu("Entity/objekty mají stejné hodnoty v elementu identifikátor a atributu zdroj, ale různý obsah. "
@@ -96,14 +97,14 @@ public class Pravidlo59 extends K06PravidloBaseOld {
         return false;
     }
 
-    public static Node getEntityWithIdentifikator(Node identifikator) {
-        Node parentNode = identifikator.getParentNode();
+    public static Element getEntityWithIdentifikator(Element identifikator) {
+        Element parentNode = (Element) identifikator.getParentNode();
         String parentName = parentNode.getNodeName();
         if (parentName.equals("nsesss:Identifikace")) {
-            parentNode = parentNode.getParentNode();
+            parentNode = (Element) parentNode.getParentNode();
             parentName = parentNode.getNodeName();
             if (parentName.equals(NsessV3.EVIDENCNI_UDAJE)) {
-                return parentNode.getParentNode();
+                return (Element) parentNode.getParentNode();
             } else {
                 return parentNode;
             }

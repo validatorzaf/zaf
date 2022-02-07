@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -40,19 +41,19 @@ public class MetsParser {
      */
     protected Document document;
 
-    protected Node metsMets, metsDmdSec, metsMdWrap, xmlData, metsHdr;
+    protected Element metsMets, metsDmdSec, metsMdWrap, xmlData, metsHdr;
     
     /**
      * Seznam zakladnich entit pod elementem xmldata.
      */
-    protected List<Node> zakladniEntity;
+    protected List<Element> zakladniEntity;
     
     /**
      * Seznam chybnych zakladnich entit
      * 
      * Obsahuje seznam uzlu s nerozponanou zakladni entitou
      */
-    private List<Node> zakladniEntityChybne;
+    private List<Element> zakladniEntityChybne;
 
     /**
      * Chyba vzniklá při parsování
@@ -62,7 +63,7 @@ public class MetsParser {
     /**
      * Mapa dotazu na uzly
      */
-    Map<String, List<Node> > nodeQueryCache = new HashMap<>();
+    Map<String, List<Element>> nodeQueryCache = new HashMap<>();
 
     public MetsParser() {
     }
@@ -92,26 +93,31 @@ public class MetsParser {
 
     }
 
+    /**
+     * Nacteni zakladnich elementu z metsu
+     * 
+     * @param sipInfo
+     */
     private void readDocument(SipInfo sipInfo) {
-        metsMets = document.getDocumentElement();
-        if (!metsMets.getNodeName().equals("mets:mets")) {
-            // kontrola pojmenovani korene
-            metsMets = null;
+        Element rootElement = document.getDocumentElement();
+        if (rootElement == null || !"mets:mets".equals(rootElement.getNodeName())) {
+            return;
         }
-        if (metsMets != null) {
-            if (ValuesGetter.hasAttribut(metsMets, "OBJID")) {
-                // nastaveni id SIP
-                sipInfo.setMetsObjId(ValuesGetter.getValueOfAttribut(metsMets, "OBJID"));
+        metsMets = rootElement;
+
+        String objid = ValuesGetter.getValueOfAttribut(metsMets, "OBJID");
+        if (objid != null) {
+            // nastaveni id SIP
+            sipInfo.setMetsObjId(objid);
+        }
+        metsHdr = ValuesGetter.findFirstChild(metsMets, "mets:metsHdr");
+
+        metsDmdSec = ValuesGetter.findFirstChild(metsMets, "mets:dmdSec");
+        if (metsDmdSec != null) {
+            metsMdWrap = ValuesGetter.findFirstChild(metsDmdSec, "mets:mdWrap");
+            if (metsMdWrap != null) {
+                xmlData = ValuesGetter.findFirstChild(metsMdWrap, "mets:xmlData");
             }
-            metsHdr = ValuesGetter.findFirstChild(metsMets, "mets:metsHdr");
-            
-            metsDmdSec = ValuesGetter.findFirstChild(metsMets, "mets:dmdSec");
-            if(metsDmdSec!=null) {
-                metsMdWrap = ValuesGetter.findFirstChild(metsDmdSec, "mets:mdWrap");
-                if(metsMdWrap!=null) {
-                    xmlData = ValuesGetter.findFirstChild(metsMdWrap, "mets:xmlData");
-                }
-            }        
         }
 
         readNsesssData(sipInfo);                        
@@ -142,27 +148,28 @@ public class MetsParser {
                 if (node.getNodeType() != Node.ELEMENT_NODE) {
                     continue;
                 }
+                Element elem = (Element) node;
                 switch (node.getNodeName()) {
                 case "nsesss:Dokument":
-                    zakladniEntity.add(node);
+                    zakladniEntity.add(elem);
                     if (sipType == null) {
                         sipType = SipType.DOKUMENT;
                     }
                     break;
                 case "nsesss:Spis":
-                    zakladniEntity.add(node);
+                    zakladniEntity.add(elem);
                     if (sipType == null) {
                         sipType = SipType.SPIS;
                     }
                     break;
                 case "nsesss:Dil":
-                    zakladniEntity.add(node);
+                    zakladniEntity.add(elem);
                     if (sipType == SipType.DIL) {
                         sipType = SipType.DIL;
                     }
                     break;
                 default:
-                    zakladniEntityChybne.add(node);
+                    zakladniEntityChybne.add(elem);
                 }
             }
             sipInfo.setType(sipType);
@@ -190,13 +197,17 @@ public class MetsParser {
             dw.addAggregator(new NamedNodeAggregator(NsessV3.PLNE_URCENY_SPISOVY_ZNAK, nodeQueryCache));
             // pevne krizove odkazy
             dw.addAggregator(new NodeAggregator() {
-                List<Node> nodes = new ArrayList<>();
+                List<Element> nodes = new ArrayList<>();
 
                 @Override
                 public void visitNode(Node node) {
-                    if (NsessV3.KRIZOVY_ODKAZ.equals(node.getNodeName())) {
+                    if (node.getNodeType() != Node.ELEMENT_NODE) {
+                        return;
+                    }
+                    Element elem = (Element) node;
+                    if (NsessV3.KRIZOVY_ODKAZ.equals(elem.getNodeName())) {
                         if (ValuesGetter.hasAttributValue(node, "pevny", "ano")) {
-                            nodes.add(node);
+                            nodes.add(elem);
                         }
                     }
 
@@ -223,38 +234,40 @@ public class MetsParser {
     /**
      * Vraci korenovy element metsu
      * 
+     * Po kontrole schématu vrací platný uzel.
+     * 
      * @return kořenový uzel
      */
-    public Node getMetsRootNode() {
+    public Element getMetsRootNode() {
         return metsMets;
     }
 
-    public Node getMetsHdr() {
+    public Element getMetsHdr() {
         return metsHdr;
     }
 
-    public Node getMetsMdWrap() {
+    public Element getMetsMdWrap() {
         return metsMdWrap;
     }
 
-    public Node getMetsDmdSec() {
+    public Element getMetsDmdSec() {
         return metsDmdSec;
     }
 
-    public Node getMetsXmlData() {
+    public Element getMetsXmlData() {
         return xmlData;
     }
 
-    public List<Node> getZakladniEntity() {
+    public List<Element> getZakladniEntity() {
         return zakladniEntity;
     }
 
-    public List<Node> getZakladniEntityChybne() {
+    public List<Element> getZakladniEntityChybne() {
         return zakladniEntityChybne;
     }
     
-    public List<Node> getNodes(String nodeName) {
-        List<Node> nodes = this.nodeQueryCache.get(nodeName);
+    public List<Element> getNodes(String nodeName) {
+        List<Element> nodes = this.nodeQueryCache.get(nodeName);
         if(nodes==null) {
             throw new RuntimeException("Element pro vyhodnocení pravidla není načten z důvodu jiné chyby, název elementu: "+nodeName);
         }
@@ -262,19 +275,19 @@ public class MetsParser {
         
     }
 
-    public List<Node> getDokumenty() {
+    public List<Element> getDokumenty() {
         return getNodes(NsessV3.DOKUMENT);
     }
 
-    public List<Node> getNazvy() {
+    public List<Element> getNazvy() {
         return getNodes(NsessV3.NAZEV);
     }
 
-    public List<Node> getIdentifikatory() {
+    public List<Element> getIdentifikatory() {
         return getNodes(NsessV3.IDENTIFIKATOR);
     }
 
-    public List<Node> getKrizoveOdkazyPevnyAno() {
+    public List<Element> getKrizoveOdkazyPevnyAno() {
         return getNodes(PEVNY_KRIZOVY_ODKAZ);
     }
 

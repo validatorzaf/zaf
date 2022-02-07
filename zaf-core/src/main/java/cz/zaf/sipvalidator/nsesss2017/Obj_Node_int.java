@@ -5,22 +5,21 @@
  */
 package cz.zaf.sipvalidator.nsesss2017;
 
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 /**
  *
- * @author m000xz006159
  */
 public class Obj_Node_int {
-    private final Node node;
+    private final Element node;
     private final int integer;
     
-    public Obj_Node_int(Node node, int integer) {
+    public Obj_Node_int(Element node, int integer) {
         this.node = node;
         this.integer = integer;
     }
     
-    public Node get_node(){
+    public Element get_node() {
         return node;
     }
     

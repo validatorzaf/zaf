@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.IterableUtils;
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
@@ -31,25 +31,25 @@ public class Pravidlo95 extends K06PravidloBaseOld {
     // <nsesss:PlneUrcenySpisovyZnak> výchozí entity před posledním oddělovačem.",
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> vecneSkupiny = metsParser.getNodes(NsessV3.VECNA_SKUPINA);
+        List<Element> vecneSkupiny = metsParser.getNodes(NsessV3.VECNA_SKUPINA);
         if (CollectionUtils.isEmpty(vecneSkupiny) ) {
             return nastavChybu("Nenalezen element <nsesss:VecnaSkupina>.");
         }
-        List<Node> soucasti = metsParser.getNodes(NsessV3.SOUCAST);
-        List<Node> typoveSpisy = metsParser.getNodes(NsessV3.TYPOVY_SPIS);
+        List<Element> soucasti = metsParser.getNodes(NsessV3.SOUCAST);
+        List<Element> typoveSpisy = metsParser.getNodes(NsessV3.TYPOVY_SPIS);
 
-        Iterable<Node> multiCol = IterableUtils.chainedIterable(vecneSkupiny, soucasti, typoveSpisy);
-        for(Node entita: multiCol) {
-            Node pu_entita = ValuesGetter.getXChild(entita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
+        Iterable<Element> multiCol = IterableUtils.chainedIterable(vecneSkupiny, soucasti, typoveSpisy);
+        for (Element entita : multiCol) {
+            Element pu_entita = ValuesGetter.getXChild(entita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                                     "nsesss:PlneUrcenySpisovyZnak");
             if (pu_entita == null)
                 return nastavChybu("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(entita),
                                    entita);
-            Node je_entita = ValuesGetter.getSourozencePrvnihoSeJmenem(pu_entita, "nsesss:JednoduchySpisovyZnak");
+            Element je_entita = ValuesGetter.getSourozencePrvnihoSeJmenem(pu_entita, "nsesss:JednoduchySpisovyZnak");
             if (je_entita == null)
                 return nastavChybu("Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(entita),
                                    entita);
-            Node pu_rodic = ValuesGetter.getXChild(entita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
+            Element pu_rodic = ValuesGetter.getXChild(entita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                                    "nsesss:MaterskaEntita", "nsesss:VecnaSkupina",
                                                    NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                                    "nsesss:PlneUrcenySpisovyZnak");

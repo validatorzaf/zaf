@@ -3,6 +3,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
@@ -30,11 +31,11 @@ public class Pravidlo93a  extends K06PravidloBaseOld {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-        List<Node> vsList = metsParser.getNodes(NsessV3.VECNA_SKUPINA);
+        List<Element> vsList = metsParser.getNodes(NsessV3.VECNA_SKUPINA);
         if(CollectionUtils.isEmpty(vsList)) {
             return nastavChybu("Věcná skupina neexistuje", metsParser.getDocument());
         }
-        for(Node vs: vsList) {
+        for (Element vs : vsList) {
             Node spl = ValuesGetter.getXChild(vs, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni", "nsesss:SpisovyPlan");
             if(spl != null){
                 Node jsz = ValuesGetter.getXChild(vs, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",

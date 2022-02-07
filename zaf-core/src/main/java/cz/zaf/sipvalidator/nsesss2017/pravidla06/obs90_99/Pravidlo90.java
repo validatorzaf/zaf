@@ -2,6 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99;
 
 import java.util.List;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
@@ -22,13 +23,13 @@ public class Pravidlo90 extends K06PravidloBaseOld {
     //OBSAHOVÁ č.90 Pokud je základní entitou spis (<nsesss:Spis>), potom obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> element <nsesss:RokSpousteciUdalosti> hodnotu, v níž je uvedený rok větší nebo roven hodnotě uvedené v elementu <nsesss:Datum> v hierarchii elementů <nsesss:EvidencniUdaje> a <nsesss:VyrizeniUzavreni>.",
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> zakladniEntity = predpokladZakladniEntity();
+        List<Element> zakladniEntity = predpokladZakladniEntity();
         if (zakladniEntity == null) {
             return false;
         }
 
         for (int i = 0; i < zakladniEntity.size(); i++) {
-            Node spis = zakladniEntity.get(i);
+            Element spis = zakladniEntity.get(i);
             if (spis.getNodeName().equals("nsesss:Spis")) {
                 Node node = ValuesGetter.getXChild(spis, NsessV3.EVIDENCNI_UDAJE, "nsesss:Vyrazovani",
                                                    "nsesss:DataceVyrazeni", "nsesss:RokSpousteciUdalosti");

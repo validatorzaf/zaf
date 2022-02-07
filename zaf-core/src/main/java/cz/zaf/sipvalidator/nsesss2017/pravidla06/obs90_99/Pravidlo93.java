@@ -2,7 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99;
 
 import java.util.List;
 
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
@@ -21,9 +21,9 @@ public class Pravidlo93 extends K06PravidloBaseOld {
     //OBSAHOVÁ č.93 Jakýkoli element <nsesss:Nazev> obsahuje neprázdnou hodnotu.",
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> nazvy = metsParser.getNazvy();
+        List<Element> nazvy = metsParser.getNazvy();
 
-        for (Node nazev: nazvy) {
+        for (Element nazev : nazvy) {
             String str = nazev.getTextContent();
             if (!HelperString.hasContent(str)) {
                 return nastavChybu("Element <nsesss:Nazev> obsahuje prázdnou hodnotu. " + getJmenoIdentifikator(

@@ -9,6 +9,7 @@ import java.util.Map.Entry;
 import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
@@ -41,12 +42,12 @@ public class Pravidlo106 extends K06PravidloBaseOld {
     @Override
     protected boolean kontrolaPravidla() {
         // Zjisteni seznamu komponent ciste digitalnich dokumentu
-        List<Node> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
+        List<Element> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
         if (CollectionUtils.isEmpty(komponenty)) {
             return true;
         }
         Map<Node, Map<Integer, List<Node>>> doks = new HashMap<>();
-        for (Node komponenta : komponenty) {
+        for (Element komponenta : komponenty) {
             // Kontrola, zda je soucast digit dokumentu?
             Node komponentyNode = komponenta.getParentNode();
             Node dokumentNode = komponentyNode.getParentNode();

@@ -1,6 +1,6 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19;
 
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.mets.MetsElements;
@@ -23,7 +23,7 @@ public class Pravidlo12 extends K06PravidloBase {
 
 	@Override
     protected void kontrola() {
-		Node metsMets = metsParser.getMetsRootNode();
+        Element metsMets = metsParser.getMetsRootNode();
 
         if(!ValuesGetter.hasChildWithName(metsMets, MetsElements.AMD_SEC)){
             nastavChybu(BaseCode.CHYBI_ELEMENT,

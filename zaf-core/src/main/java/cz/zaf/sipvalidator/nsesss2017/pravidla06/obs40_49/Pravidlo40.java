@@ -3,6 +3,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
@@ -27,14 +28,14 @@ public class Pravidlo40 extends K06PravidloBase {
 
 	@Override
     protected void kontrola() {
-		List<Node> dokumenty = metsParser.getDokumenty();
+        List<Element> dokumenty = metsParser.getDokumenty();
 		
         if(CollectionUtils.isEmpty(dokumenty) ) {
             return;
         }
         
-        for(Node dokument: dokumenty){
-            Node analogovyDokument = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE,
+        for (Element dokument : dokumenty) {
+            Element analogovyDokument = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE,
                                                             "nsesss:Manipulace", "nsesss:AnalogovyDokument");
             // TODO: Je toto nutne? mozna musi existovat jiz ze souladu se schematem
             if (analogovyDokument == null) {

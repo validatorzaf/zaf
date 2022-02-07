@@ -2,7 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39;
 
 import java.util.List;
 
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
@@ -23,12 +23,12 @@ public class Pravidlo33 extends K06PravidloBaseOld {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-	    List<Node> nodeList = metsParser.getNodes(MetsElements.DIGIPROV_MD);
+        List<Element> nodeList = metsParser.getNodes(MetsElements.DIGIPROV_MD);
         if(nodeList.size() == 0){
             return nastavChybu("Nenalezen žádný element <mets:digiprovMD>.");
         }
-        for(Node digiprovMD: nodeList) {
-            List<Node> list = ValuesGetter.getChildNodes(digiprovMD, "mets:mdWrap");
+        for (Element digiprovMD : nodeList) {
+            List<Element> list = ValuesGetter.getChildNodes(digiprovMD, "mets:mdWrap");
             if(list.isEmpty()){
                 return nastavChybu("Element <mets:digiprovMD> neobsahuje dětský element <mets:mdWrap>.", digiprovMD);
             }

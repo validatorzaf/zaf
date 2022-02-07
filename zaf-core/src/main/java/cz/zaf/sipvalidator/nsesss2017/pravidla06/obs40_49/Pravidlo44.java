@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
@@ -32,8 +33,8 @@ public class Pravidlo44 extends K06PravidloBaseOld {
 	@Override
 	protected boolean kontrolaPravidla() {
 	    // cteni mets:file
-        List<Node> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);        
-        List<Node> nodeListKomponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
+        List<Element> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);
+        List<Element> nodeListKomponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
         if(nodeListKomponenty.size() != nodeListMetsFile.size()){
             return nastavChybu("Nenalezen shodný počet <nsesss:Komponenta> a <mets:file>.");
         }
@@ -55,7 +56,7 @@ public class Pravidlo44 extends K06PravidloBaseOld {
 
         // cteni nsesss:komponenta
         Map<String, Node> komponentyIdMap = new HashMap<>();
-        for(Node komponenta: nodeListKomponenty) {
+        for (Element komponenta : nodeListKomponenty) {
             String id = ValuesGetter.getValueOfAttribut(komponenta, "ID");
             if(StringUtils.isEmpty(id)){
                 return nastavChybu("Element <nsesss:Komponenta> nemá atribut ID. " + getJmenoIdentifikator(komponenta), komponenta);

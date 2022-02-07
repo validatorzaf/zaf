@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.util.List;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
@@ -29,8 +30,8 @@ public class Pravidlo47 extends K06PravidloBaseOld {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-	    List<Node> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);
-        for (Node metsFile: nodeListMetsFile) {
+        List<Element> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);
+        for (Element metsFile : nodeListMetsFile) {
             if(!kontrolaSouboru(metsFile)) {
             	return false;
             }
@@ -39,7 +40,7 @@ public class Pravidlo47 extends K06PravidloBaseOld {
         return true;
 	}
 
-	private boolean kontrolaSouboru(Node metsFile) {
+    private boolean kontrolaSouboru(Element metsFile) {
         if(!ValuesGetter.hasAttribut(metsFile, "CHECKSUMTYPE")){
             return nastavChybu("Element <mets:file> nemá atribut CHECKSUMTYPE.", metsFile);
         }

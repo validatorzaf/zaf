@@ -2,6 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69;
 
 import java.util.List;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
@@ -24,13 +25,13 @@ public class Pravidlo61a extends K06PravidloBaseOld {
 
 	@Override
 	protected boolean kontrolaPravidla() {	    
-        List<Node> dokuments = metsParser.getDokumenty();
+        List<Element> dokuments = metsParser.getDokumenty();
         if(dokuments == null){
             return nastavChybu("Nenalezen žádný element <nsesss:Dokument>.");
         }
-        for(Node dokument: dokuments)
+        for (Element dokument : dokuments)
         {   
-            Node ad = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, "nsesss:Manipulace",
+            Element ad = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, "nsesss:Manipulace",
                                              "nsesss:AnalogovyDokument");
             if(ad == null){
                 return nastavChybu("Nenalezen element <nsesss:AnalogovyDokument>. Dokumentu " + kontrola.getIdentifikatory(dokument) + ".", dokument);

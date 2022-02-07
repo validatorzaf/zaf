@@ -1,6 +1,6 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29;
 
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
@@ -20,7 +20,7 @@ public class Pravidlo22 extends K06PravidloBaseOld {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-		Node metsDmdSec = metsParser.getMetsDmdSec();
+        Element metsDmdSec = metsParser.getMetsDmdSec();
         if(metsDmdSec == null) {
         	return nastavChybu("Nenalezen element <mets:dmdSec>.");
         }

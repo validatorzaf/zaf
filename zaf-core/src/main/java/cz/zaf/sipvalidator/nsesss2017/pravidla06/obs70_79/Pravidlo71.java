@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
@@ -25,8 +26,8 @@ public class Pravidlo71 extends K06PravidloBaseOld {
     // Pokud existuje jakýkoli element <nsesss:DatumOtevreni>, obsahuje stejnou nebo menší hodnotu, než je hodnota elementu <nsesss:DatumUzavreni>, pokud poslední uvedený element existuje uvnitř rodičovského elementu <nsesss:Manipulace>.
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> manipulace = metsParser.getNodes(NsessV3.MANIPULACE);
-        for (Node manip_node: manipulace) {
+        List<Element> manipulace = metsParser.getNodes(NsessV3.MANIPULACE);
+        for (Element manip_node : manipulace) {
             Node nodeOtevreni = ValuesGetter.findFirstChild(manip_node, "nsesss:DatumOtevreni");
             Node nodeUzavreni = ValuesGetter.findFirstChild(manip_node, "nsesss:DatumUzavreni");
             if (nodeOtevreni != null && nodeUzavreni != null) {

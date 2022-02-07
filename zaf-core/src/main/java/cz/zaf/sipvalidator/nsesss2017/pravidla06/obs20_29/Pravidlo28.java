@@ -3,7 +3,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
 
@@ -25,18 +25,18 @@ public class Pravidlo28 extends K06PravidloBaseOld {
 
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> pevneKrizoveOdkazy = metsParser.getKrizoveOdkazyPevnyAno();
+        List<Element> pevneKrizoveOdkazy = metsParser.getKrizoveOdkazyPevnyAno();
         if (!pevneKrizoveOdkazy.isEmpty()) {
             return true;
         }
 
-        List<Node> zaklEntityChybne = metsParser.getZakladniEntityChybne();
+        List<Element> zaklEntityChybne = metsParser.getZakladniEntityChybne();
         if (CollectionUtils.isNotEmpty(zaklEntityChybne)) {
             return nastavChybu("Element <mets:xmlData> obsahuje nepovolené dětské elementy.", zaklEntityChybne);
         }
-        List<Node> zaklEntity = metsParser.getZakladniEntity();
+        List<Element> zaklEntity = metsParser.getZakladniEntity();
         if (CollectionUtils.isEmpty(zaklEntity)) {
-            Node xmlData = metsParser.getMetsXmlData();
+            Element xmlData = metsParser.getMetsXmlData();
             return nastavChybu("Element <mets:xmlData> neobsahuje žádné dětské elementy.", xmlData);
         }
         if (zaklEntity.size() > 1) {

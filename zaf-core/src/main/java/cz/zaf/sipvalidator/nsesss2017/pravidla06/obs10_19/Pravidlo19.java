@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
@@ -25,7 +26,7 @@ public class Pravidlo19 extends K06PravidloBaseOld {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-        List<Node> nodes = metsParser.getNodes(MetsElements.AGENT);
+        List<Element> nodes = metsParser.getNodes(MetsElements.AGENT);
         if(CollectionUtils.isEmpty(nodes)){
             return nastavChybu("Nenalezen element <mets:agent>.");
         }

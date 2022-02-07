@@ -2,6 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49;
 
 import java.util.List;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
@@ -28,8 +29,8 @@ public class Pravidlo43a extends K06PravidloBaseOld
 
     @Override
     protected boolean kontrolaPravidla() {
-        Node metsMets = metsParser.getMetsRootNode();
-        Node fileSec = ValuesGetter.getXChild(metsMets, "mets:fileSec");
+        Element metsMets = metsParser.getMetsRootNode();
+        Element fileSec = ValuesGetter.getXChild(metsMets, "mets:fileSec");
         if (fileSec == null) {
             return true;
         }

@@ -2,6 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79;
 
 import java.util.List;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
@@ -25,13 +26,13 @@ public class Pravidlo77 extends K06PravidloBaseOld {
     // dětských elementů <nsesss:Vyrazovani> a <nsesss:SkartacniRizeni> element <nsesss:Mnozstvi> s neprázdnou hodnotou.",
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> zakladniEntity = predpokladZakladniEntity();
+        List<Element> zakladniEntity = predpokladZakladniEntity();
         if (zakladniEntity == null) {
             return false;
         }
 
         for (int i = 0; i < zakladniEntity.size(); i++) {
-            Node zakladnientita = zakladniEntity.get(i);
+            Element zakladnientita = zakladniEntity.get(i);
             Node analogovy = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Manipulace",
                                                     "nsesss:AnalogovyDokument");
             if (analogovy != null) {

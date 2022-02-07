@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.Validate;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.exceptions.ZafException;
@@ -105,8 +106,8 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
      * 
      * @return Seznam základních entit, null při neexistenci
      */
-    protected List<Node> predpokladZakladniEntity() {
-        List<Node> zaklEntity = kontrola.getZakladniEnity();
+    protected List<Element> predpokladZakladniEntity() {
+        List<Element> zaklEntity = kontrola.getZakladniEnity();
         if (CollectionUtils.isEmpty(zaklEntity)) {
             nastavChybu("Chybí základní entita/entity. Předpokladem kontroly je existence alespoň jedné základní entity.");
             return null;
@@ -114,8 +115,8 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
         return zaklEntity;
     }
 
-    protected List<Node> predpokladDokumenty() {
-        List<Node> dokumenty = metsParser.getDokumenty();
+    protected List<Element> predpokladDokumenty() {
+        List<Element> dokumenty = metsParser.getDokumenty();
         if (CollectionUtils.isEmpty(dokumenty)) {
             nastavChybu("Chybí dokumenty. Předpokladem kontroly je existence alespoň jednoho dokumentu.");
             return null;
@@ -123,7 +124,7 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
         return dokumenty;
     }
 
-    protected boolean nastavChybu(String detailChyby, List<Node> errorList) {
+    protected boolean nastavChybu(String detailChyby, List<? extends Node> errorList) {
         String mistoCh = errorList.stream().map(n -> getMistoChyby(n)).collect(Collectors.joining(" "));
         return nastavChybu(detailChyby, mistoCh);
     }
@@ -185,7 +186,7 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
         return zdrojChyby;
     }
 
-    protected String getJmenoIdentifikator(Node node) {
+    protected String getJmenoIdentifikator(Element node) {
         return kontrola.getJmenoIdentifikator(node);
     }
 

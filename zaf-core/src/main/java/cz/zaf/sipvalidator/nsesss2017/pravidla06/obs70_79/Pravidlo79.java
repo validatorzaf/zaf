@@ -3,6 +3,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
@@ -25,12 +26,12 @@ public class Pravidlo79 extends K06PravidloBaseOld {
     // uvnitř rodičovského elementu <nsesss:DataceVyrazeni> stejné entity.",
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> skartacniRizeni = metsParser.getNodes(NsessV3.SKARTACNI_RIZENI);
+        List<Element> skartacniRizeni = metsParser.getNodes(NsessV3.SKARTACNI_RIZENI);
         if (CollectionUtils.isEmpty(skartacniRizeni)) {
             return nastavChybu("Nenalezen element <nsesss:SkartacniRizeni>.");
         }
-        for (Node skrizeni: skartacniRizeni) {
-            Node dataceVyrazeni = ValuesGetter.getSourozencePrvnihoSeJmenem(skrizeni, "nsesss:DataceVyrazeni");
+        for (Element skrizeni : skartacniRizeni) {
+            Element dataceVyrazeni = ValuesGetter.getSourozencePrvnihoSeJmenem(skrizeni, "nsesss:DataceVyrazeni");
             if (dataceVyrazeni == null) {
                 return nastavChybu("Nenalezen element <nsesss:DataceVyrazeni>. " + getJmenoIdentifikator(skrizeni),
                                    skrizeni);

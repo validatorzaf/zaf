@@ -3,7 +3,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.mets.MetsElements;
@@ -25,7 +25,7 @@ public class Pravidlo20 extends K06PravidloBaseOld {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-        List<Node> nodes = metsParser.getNodes(MetsElements.AGENT);
+        List<Element> nodes = metsParser.getNodes(MetsElements.AGENT);
         if(CollectionUtils.isEmpty(nodes)){
             return nastavChybu("Nenalezen element <mets:agent>.");
         }
@@ -33,7 +33,7 @@ public class Pravidlo20 extends K06PravidloBaseOld {
         int pocitadlo = 0;
         int pocitadlo2 = 0;
         String ch = "";
-        for(Node node: nodes){
+        for (Element node : nodes) {
             if(ValuesGetter.hasOnlyOneChild_ElementNode(node, "mets:name")){
                 if (!HelperString.hasContent(ValuesGetter.getXChild(node, "mets:name").getTextContent())) {
                     pocitadlo2++;

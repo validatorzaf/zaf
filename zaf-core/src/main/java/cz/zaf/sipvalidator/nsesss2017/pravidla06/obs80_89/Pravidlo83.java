@@ -2,6 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89;
 
 import java.util.List;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
@@ -23,8 +24,8 @@ public class Pravidlo83 extends K06PravidloBaseOld {
     // <nsesss:RokDo>, potom je jeho hodnota větší než <nsesss:RokOd>."
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> urceneCasoveObdobi = metsParser.getNodes(NsessV3.URCENE_CASOVE_OBDOBI);
-        for (Node ucobdobi: urceneCasoveObdobi) {
+        List<Element> urceneCasoveObdobi = metsParser.getNodes(NsessV3.URCENE_CASOVE_OBDOBI);
+        for (Element ucobdobi : urceneCasoveObdobi) {
             Node nodeDo = ValuesGetter.getXChild(ucobdobi, "nsesss:RokDo");
             if (nodeDo != null) {
                 Node nodeOd = ValuesGetter.getXChild(ucobdobi, "nsesss:RokOd");

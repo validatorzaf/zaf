@@ -11,6 +11,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
@@ -66,9 +67,9 @@ public class Pravidlo99 extends K06PravidloBaseOld {
         
         Set<Node> digitDoks = new HashSet<>();
 
-        List<Node> dokumentNodes = metsParser.getDokumenty();
-        for(Node dokumentNode: dokumentNodes) {
-            Node analogDokNode = ValuesGetter.getXChild(dokumentNode, NsessV3.EVIDENCNI_UDAJE,
+        List<Element> dokumentNodes = metsParser.getDokumenty();
+        for (Element dokumentNode : dokumentNodes) {
+            Element analogDokNode = ValuesGetter.getXChild(dokumentNode, NsessV3.EVIDENCNI_UDAJE,
                                                         "nsesss:Manipulace",
                                                         "nsesss:AnalogovyDokument");
             if (analogDokNode != null) {
@@ -80,13 +81,13 @@ public class Pravidlo99 extends K06PravidloBaseOld {
         }
 
         // získání všech komponent ve výstupním datovém formátu
-        List<Node> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
+        List<Element> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
         if (CollectionUtils.isEmpty(komponenty)) {
             return true;
         }
 
         Map<Node, Map<Integer, Node>> kandidati = new HashMap<>();
-        for (Node komponenta: komponenty) {
+        for (Element komponenta : komponenty) {
             // Kontrola, zda je soucast digit dokumentu?
             Node komponentyNode = komponenta.getParentNode();
             Node dokumentNode = komponentyNode.getParentNode();
@@ -134,11 +135,11 @@ public class Pravidlo99 extends K06PravidloBaseOld {
             }
         }
 
-        List<Node> nodeListFileGrp = metsParser.getNodes(MetsElements.FILE_GRP);
+        List<Element> nodeListFileGrp = metsParser.getNodes(MetsElements.FILE_GRP);
         if (CollectionUtils.isEmpty(nodeListFileGrp)) {
             return true;
         }
-        for (Node fileGrpNode: nodeListFileGrp) {
+        for (Element fileGrpNode : nodeListFileGrp) {
             List<Node> fileNodes = ValuesGetter.getChildList(fileGrpNode, "mets:file");
             for (Node fileNode : fileNodes) {
                 // overeni ID, zda ma byt soubor kontrolovan

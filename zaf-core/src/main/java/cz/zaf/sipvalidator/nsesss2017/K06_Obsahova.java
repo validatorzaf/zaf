@@ -9,13 +9,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.exceptions.codes.ErrorCode;
 import cz.zaf.sipvalidator.nsesss2017.EntityId.DruhEntity;
+import cz.zaf.sipvalidator.sip.ChybaPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
-import cz.zaf.sipvalidator.sip.ChybaPravidla;
 
 
 /**
@@ -33,7 +34,7 @@ public class K06_Obsahova
 
     MetsParser metsParser;
 
-    private List<Node> zakladniEntity;
+    private List<Element> zakladniEntity;
     
     /**
      * Mapa kontrol
@@ -44,24 +45,22 @@ public class K06_Obsahova
     	this.seznamPravidel = obsahovaPravidla;
     } 
             
-    public String getJmenoIdentifikator(Node node) {
+    public String getJmenoIdentifikator(Element node) {
         if(node != null){
-            Node entity = getEntity(node);
+            Element entity = getEntity(node);
             return getJmeno(entity) + " " + getIdentifikatory(entity) + ".";
         }
         return "";
     }
     
-    private Node getEntity(Node node){
+    private Element getEntity(Element node) {
         String nodeName = node.getNodeName();
-        Node entity;
         if(!isMainEnetity(nodeName)){
-            entity = getEntity(node.getParentNode());
+            return getEntity((Element) node.getParentNode());
         }
         else{
             return node;
         }
-        return entity;
     }
     
     private boolean isMainEnetity(String nodeName){
@@ -69,7 +68,7 @@ public class K06_Obsahova
         return bol;
     }
     
-    public EntityId getEntityId(Node node) {
+    public EntityId getEntityId(Element node) {
         String nodename = node.getNodeName();
         Node identNode;
         DruhEntity druhEntity;
@@ -109,7 +108,7 @@ public class K06_Obsahova
 
     }
 
-    public String getIdentifikatory(Node node) {
+    public String getIdentifikatory(Element node) {
         String nodename = node.getNodeName();
         String hodnota = "nenalezeno", zdroj = "nenalezeno";
         Node identifikator;
@@ -242,7 +241,7 @@ public class K06_Obsahova
         return TypUrovenKontroly.OBSAHOVA;
     }
 
-    public List<Node> getZakladniEnity() {
+    public List<Element> getZakladniEnity() {
         return zakladniEntity;
     }
 

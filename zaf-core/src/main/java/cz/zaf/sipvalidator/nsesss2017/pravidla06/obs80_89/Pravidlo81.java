@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
@@ -25,8 +26,8 @@ public class Pravidlo81 extends K06PravidloBaseOld {
     // potom je jeho hodnota větší než <nsesss:DatumOd>.
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> urceneCasoveObdobi = metsParser.getNodes(NsessV3.URCENE_CASOVE_OBDOBI);
-        for (Node n: urceneCasoveObdobi) {
+        List<Element> urceneCasoveObdobi = metsParser.getNodes(NsessV3.URCENE_CASOVE_OBDOBI);
+        for (Element n : urceneCasoveObdobi) {
             Node nodeDo = ValuesGetter.getXChild(n, "nsesss:DatumDo");
             if (nodeDo != null) {
                 Node nodeOd = ValuesGetter.getXChild(n, "nsesss:DatumOd");

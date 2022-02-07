@@ -2,6 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59;
 
 import java.util.List;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
@@ -22,8 +23,8 @@ public class Pravidlo50 extends K06PravidloBaseOld {
     //OBSAHOVÁ č.50 Pokud existuje jakýkoli element <mets:file>, každý obsahuje právě jeden dětský element <mets:FLocat>.",
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);
-        for (Node metsFile: nodeListMetsFile) {
+        List<Element> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);
+        for (Element metsFile : nodeListMetsFile) {
             List<Node> childNodes = ValuesGetter.getChildNodes(metsFile);
             if(childNodes.size()==0) {
                 return nastavChybu("Element <mets:file> nemá žádný dětský element <mets:FLocat>.", metsFile);

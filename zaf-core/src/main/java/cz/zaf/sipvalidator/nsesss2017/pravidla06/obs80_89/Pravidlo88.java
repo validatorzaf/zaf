@@ -3,6 +3,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
@@ -27,15 +28,15 @@ public class Pravidlo88 extends K06PravidloBaseOld {
     // <nsesss:OdeslaneMnozstvi> s neprázdnou hodnotou."
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> dokumenty = predpokladDokumenty();
+        List<Element> dokumenty = predpokladDokumenty();
         if (CollectionUtils.isEmpty(dokumenty)) {
             return false;
         }
 
         for (int i = 0; i < dokumenty.size(); i++) {
-            Node dokument = dokumenty.get(i);
+            Element dokument = dokumenty.get(i);
 
-            Node evidUdaje = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE);
+            Element evidUdaje = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE);
             if (evidUdaje == null) {
                 continue;
             }

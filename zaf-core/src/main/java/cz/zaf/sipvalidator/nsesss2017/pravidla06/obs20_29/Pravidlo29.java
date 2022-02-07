@@ -3,6 +3,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
@@ -25,23 +26,23 @@ public class Pravidlo29 extends K06PravidloBaseOld {
 
 	@Override
 	protected boolean kontrolaPravidla() {
-		List<Node> pevneKrizoveOdkazy = metsParser.getKrizoveOdkazyPevnyAno();
+        List<Element> pevneKrizoveOdkazy = metsParser.getKrizoveOdkazyPevnyAno();
 		if (pevneKrizoveOdkazy.isEmpty()) {
 			return true;
 		}
-		List<Node> zaklEntityChybne = metsParser.getZakladniEntityChybne();
+        List<Element> zaklEntityChybne = metsParser.getZakladniEntityChybne();
         if (CollectionUtils.isNotEmpty(zaklEntityChybne)) {
             return nastavChybu("Element <mets:xmlData> obsahuje nepovolené dětské elementy.", zaklEntityChybne);
         }
-        List<Node> zaklEntity = metsParser.getZakladniEntity();
+        List<Element> zaklEntity = metsParser.getZakladniEntity();
         if (CollectionUtils.isEmpty(zaklEntity)) {
             Node xmlData = metsParser.getMetsXmlData();
             return nastavChybu("Element <mets:xmlData> neobsahuje žádné dětské elementy.", xmlData);
         }
 
 		for (int i = 0; i < pevneKrizoveOdkazy.size(); i++) {
-			Node krizovyOdkaz = pevneKrizoveOdkazy.get(i);
-			Node materska_zakl_entita_eu = ValuesGetter.getXParent(krizovyOdkaz, "nsesss:Souvislosti",
+            Element krizovyOdkaz = pevneKrizoveOdkazy.get(i);
+            Element materska_zakl_entita_eu = ValuesGetter.getXParent(krizovyOdkaz, "nsesss:Souvislosti",
                                                                    NsessV3.EVIDENCNI_UDAJE);
 
 			if (materska_zakl_entita_eu == null) {
@@ -85,7 +86,7 @@ public class Pravidlo29 extends K06PravidloBaseOld {
 			int pocitadlo = 0;
 			String ch = "";
 
-			for(Node zaklEntita: zaklEntity) {
+            for (Element zaklEntita : zaklEntity) {
                 Node id_ze = ValuesGetter.getXChild(zaklEntita, NsessV3.EVIDENCNI_UDAJE,
                                                     "nsesss:Identifikace",
                                                     "nsesss:Identifikator");

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
@@ -31,14 +32,14 @@ public class Pravidlo67 extends K06PravidloBaseOld {
     
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> zakladniEntity = predpokladZakladniEntity();
+        List<Element> zakladniEntity = predpokladZakladniEntity();
         if (zakladniEntity == null) {
             return false;
         }
 
         Set<Node> zakladniDokumenty = new HashSet<>();
-        List<Node> spisyDily = new ArrayList<>();
-        for (Node zakladnientita: zakladniEntity) {
+        List<Element> spisyDily = new ArrayList<>();
+        for (Element zakladnientita : zakladniEntity) {
             String zeName = zakladnientita.getNodeName();
             if (NsessV3.SPIS.equals(zeName) || NsessV3.DIL.equals(zeName)) {
                 spisyDily.add(zakladnientita);
@@ -51,20 +52,20 @@ public class Pravidlo67 extends K06PravidloBaseOld {
             return true;
         }
         
-        List<Node> dokumenty = metsParser.getDokumenty();
+        List<Element> dokumenty = metsParser.getDokumenty();
         if (dokumenty == null || dokumenty.size() == 0) {
             return nastavChybu("Nenalezen žádný dětský element <nsesss:Dokument>.", spisyDily);
         }
         // priprava sk. znaku dle zakladnich entit
         Map<Node, Set<String> > skZnaky = new HashMap<>();
-        for(Node dokument: dokumenty) {
+        for (Element dokument : dokumenty) {
             // zakladni dokumenty se nezahrnuji
             if(zakladniDokumenty.contains(dokument)) {
                 continue;
             }
             
             // nalezeni rodicovske zakl. entity
-            Node dokumentyNode = ValuesGetter.getXParent(dokument, "nsesss:Dokumenty");
+            Element dokumentyNode = ValuesGetter.getXParent(dokument, "nsesss:Dokumenty");
             if(dokumentyNode==null) {
                 return nastavChybu("Nenalezen rodičovský element <nsesss:Dokumenty> elementu <nsesss:Dokument>. "
                         + getJmenoIdentifikator(dokument), dokument);
@@ -86,7 +87,7 @@ public class Pravidlo67 extends K06PravidloBaseOld {
             skZnakyDokumentu.add(znak);
         }
         
-        for(Node spisDil: spisyDily) {
+        for (Element spisDil : spisyDily) {
             Set<String> skZnakyDokumentu = skZnaky.get(spisDil);
             if(skZnakyDokumentu==null) {
                 return nastavChybu("Nenalezeny žádné <nsesss:SkartacniZnak> dětských elementu <nsesss:Dokument> základní entity."
@@ -100,7 +101,7 @@ public class Pravidlo67 extends K06PravidloBaseOld {
         return true;
     }
 
-    private boolean kontrola(Node zakladnientita, Set<String> skZnakyDokumentu) {
+    private boolean kontrola(Element zakladnientita, Set<String> skZnakyDokumentu) {
         Node n = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, 
                                         "nsesss:Vyrazovani",
                                         "nsesss:SkartacniRezim", "nsesss:SkartacniZnak");

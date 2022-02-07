@@ -2,6 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99;
 
 import java.util.List;
 
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
@@ -33,17 +34,17 @@ public class Pravidlo98 extends K06PravidloBaseOld {
 
     @Override
     protected boolean kontrolaPravidla() {
-        List<Node> zakladniEntity = predpokladZakladniEntity();
+        List<Element> zakladniEntity = predpokladZakladniEntity();
         if (zakladniEntity == null) {
             return false;
         }
-        List<Node> dokumenty = predpokladDokumenty();
+        List<Element> dokumenty = predpokladDokumenty();
         if (dokumenty == null) {
             return false;
         }
 
         for (int i = 0; i < zakladniEntity.size(); i++) {
-            Node zakladnientita = zakladniEntity.get(i);
+            Element zakladnientita = zakladniEntity.get(i);
             if (zakladnientita.getNodeName().equals(NsessV3.DIL) ||
                     zakladnientita.getNodeName().equals(NsessV3.SPIS)) {
                 if (!kontrolaEntity(zakladnientita, dokumenty)) {
@@ -54,15 +55,15 @@ public class Pravidlo98 extends K06PravidloBaseOld {
         return true;
     }
 
-    private boolean kontrolaEntity(Node zakladnientita, List<Node> dokumenty) {
-        Node n_zakl_jsz = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
+    private boolean kontrolaEntity(Element zakladnientita, List<Element> dokumenty) {
+        Element n_zakl_jsz = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                                  "nsesss:JednoduchySpisovyZnak");
         if (n_zakl_jsz == null) {
             String detailChyby = "Nenalezen element <nsesss:JednoduchySpisovyZnak> základní entity. "
                     + kontrola.getJmenoIdentifikator(zakladnientita);
             return nastavChybu(detailChyby, getMistoChyby(zakladnientita));
         }
-        Node n_zakl_pusz = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
+        Element n_zakl_pusz = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                                   "nsesss:PlneUrcenySpisovyZnak");
         if (n_zakl_pusz == null) {
             String detailChyby = "Nenalezen element <nsesss:PlneUrcenySpisovyZnak> základní entity. "
@@ -75,8 +76,8 @@ public class Pravidlo98 extends K06PravidloBaseOld {
         String jednoduchy, plneUrceny;
 
         for (int j = 0; j < dokumenty.size(); j++) {
-            Node dokument = dokumenty.get(j);
-            Node n_j = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
+            Element dokument = dokumenty.get(j);
+            Element n_j = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, "nsesss:Trideni",
                                               "nsesss:JednoduchySpisovyZnak");
             if (n_j == null) {
                 return nastavChybu("Nenalezen element <nsesss:JednoduchySpisovyZnak>. "

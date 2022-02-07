@@ -3,6 +3,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
@@ -29,11 +30,11 @@ public class Pravidlo36 extends K06PravidloBaseOld {
 	
 	@Override
 	protected boolean kontrolaPravidla() {
-        List<Node> nodeList = metsParser.getNodes(MetsElements.DIGIPROV_MD);
+        List<Element> nodeList = metsParser.getNodes(MetsElements.DIGIPROV_MD);
         if(nodeList.size() == 0){
             return nastavChybu("Nenalezen žádný element <mets:digiprovMD>.");
         }
-        for(Node digiprovMD: nodeList) {
+        for (Element digiprovMD : nodeList) {
             Node mdWrap = ValuesGetter.getXChild(digiprovMD, "mets:mdWrap");
             if(mdWrap == null){
                 return nastavChybu("Element <mets:digiprovMD> neobsahuje dětský element <mets:mdWrap>.", getMistoChyby(digiprovMD));
