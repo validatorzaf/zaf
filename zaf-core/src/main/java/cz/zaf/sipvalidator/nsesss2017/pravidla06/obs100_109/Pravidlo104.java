@@ -14,8 +14,9 @@ import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -30,7 +31,7 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 // obsahuje atribut forma_uchovani s hodnotou originál a současně atribut verze
 // s hodnotou nejvyššího čísla verze.
 //
-public class Pravidlo104 extends K06PravidloBaseOld {
+public class Pravidlo104 extends K06PravidloBase {
 
     static Logger log = LoggerFactory.getLogger(Pravidlo104.class);
 
@@ -44,7 +45,7 @@ public class Pravidlo104 extends K06PravidloBaseOld {
     }
 
     @Override
-    protected boolean kontrolaPravidla() {
+    protected void kontrola() {
         Set<Node> digitDoks = new HashSet<>();
 
         List<Element> dokumentNodes = metsParser.getDokumenty();
@@ -63,17 +64,17 @@ public class Pravidlo104 extends K06PravidloBaseOld {
         // Zjisteni seznamu komponent ciste digitalnich dokumentu
         List<Element> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
         if (CollectionUtils.isEmpty(komponenty)) {
-            return true;
+            return;
         }
 
         //
         // Mapa <Dokument, <Poradi, List<Komponenta> > >
         //
-        Map<Node, Map<Integer, List<Node>>> digitalniDokumenty = new HashMap<>();
-        for (Node komponenta : komponenty) {
+        Map<Element, Map<Integer, List<Node>>> digitalniDokumenty = new HashMap<>();
+        for (Element komponenta : komponenty) {
             // Kontrola, zda je soucast digit dokumentu?
             Node komponentyNode = komponenta.getParentNode();
-            Node dokumentNode = komponentyNode.getParentNode();
+            Element dokumentNode = (Element) komponentyNode.getParentNode();
             if (!digitDoks.contains(dokumentNode)) {
                 continue;
             }
@@ -87,23 +88,19 @@ public class Pravidlo104 extends K06PravidloBaseOld {
             kompList.add(komponenta);
         }
         // Kontrola dat
-        for (Entry<Node, Map<Integer, List<Node>>> digitDok : digitalniDokumenty.entrySet()) {
-            Node digiDokNode = digitDok.getKey();
+        for (Entry<Element, Map<Integer, List<Node>>> digitDok : digitalniDokumenty.entrySet()) {
+            Element digiDokNode = digitDok.getKey();
             for (Entry<Integer, List<Node>> komponentyNaPozici : digitDok.getValue().entrySet()) {
                 Integer pozice = komponentyNaPozici.getKey();
                 List<Node> komps = komponentyNaPozici.getValue();
-                if (!kontrola(digiDokNode, pozice, komps))
-                {
-                    return false;
-                }
+                kontrola(digiDokNode, pozice, komps);
             }
         }
-        return true;
     }
 
-    private boolean kontrola(Node digiDokNode, Integer pozice, List<Node> komps) {
+    private void kontrola(Element digiDokNode, Integer pozice, List<Node> komps) {
         if (komps.size() == 0) {
-            return true;
+            return;
         }
         Integer verzeOriginal = null;
         Integer nejvyssiVerze = null;
@@ -118,7 +115,7 @@ public class Pravidlo104 extends K06PravidloBaseOld {
             String formaUchovani = ValuesGetter.getValueOfAttribut(komp, JmenaElementu.FORMA_UCHOVANI);
             // pokud existuje komponenta ve vystupnim dat formatu, je vse ok 
             if (JmenaElementu.FORMA_UCHOVANI_ORIGINAL_VE_VYST_DAT_FORMATU.equals(formaUchovani)) {
-                return true;
+                return;
             }
             // zde nas zajimaji jen komponenty ve formatu ORIGINAL
             if (!JmenaElementu.FORMA_UCHOVANI_ORIGINAL.equals(formaUchovani)) {
@@ -126,8 +123,10 @@ public class Pravidlo104 extends K06PravidloBaseOld {
             }
 
             if (verzeOriginal != null) {
-                return nastavChybu("Existuje více komponent s formou uchování originál, pozice: " + pozice
-                        + ", kolidující verze: " + verze, komp);
+                nastavChybu(BaseCode.CHYBA,
+                            "Existuje více komponent s formou uchování originál, pozice: " + pozice
+                                    + ", kolidující verze: " + verze, komp,
+                            kontrola.getEntityId(digiDokNode));
             }
 
             verzeOriginal = verze;
@@ -135,17 +134,19 @@ public class Pravidlo104 extends K06PravidloBaseOld {
 
         // Kontrola, zda originál byl nalezen
         if (verzeOriginal == null) {
-            return nastavChybu("Nebyla nalezena komponenta s formou uchování originál, pozice: " + pozice,
-                               digiDokNode);
+            nastavChybu(BaseCode.CHYBA, "Nebyla nalezena komponenta s formou uchování originál, pozice: " + pozice,
+                        digiDokNode,
+                        kontrola.getEntityId(digiDokNode));
         }
 
         // Kontrola, zda je nejvyssi verze
         if (verzeOriginal < nejvyssiVerze) {
-            return nastavChybu("Komponenta s formou uchování originál nemá nejvyšší číslo verze, pozice: " + pozice
+            nastavChybu(BaseCode.CHYBA, "Komponenta s formou uchování originál nemá nejvyšší číslo verze, pozice: "
+                    + pozice
                     + ", nejvyšší číslo verze: " + nejvyssiVerze
                     + ", číslo verze originálu: " + verzeOriginal,
-                               digiDokNode);
+                        digiDokNode,
+                        kontrola.getEntityId(digiDokNode));
         }
-        return true;
     }
 }
