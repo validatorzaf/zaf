@@ -29,3 +29,12 @@ Výdána verze 0.9.4
 
 Jednotlivé verze jsou dostupné na [GitHub Releases](https://github.com/validatorzaf/zaf/releases) a 
 v repozitáři pro Maven [https://www.lightcomp.cz/releases/repository/lc-public-release/](https://www.lightcomp.cz/releases/repository/lc-public-release/).
+
+
+### Komunikace
+
+Zjištěné chyby lze hlásit pomocí nástroje [Issues na GitHubu](https://github.com/validatorzaf/zaf/issues).
+
+Pro jiné požadavky můžete zaslat email na adresu: mailto:petr.pytelka@lightcomp.cz
+
+
