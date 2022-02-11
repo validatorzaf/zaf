@@ -16,6 +16,8 @@ public enum BaseCode implements ErrorCode {
      */
     CHYBI_ELEMENT("Chybí element"),
 
+    NEPOVOLENY_ELEMENT("Výskyt nepovoleného elementu"),
+    
     CHYBI_ATRIBUT("Chybí atribut elementu v XML, který je povinný"),
 
     CHYBNA_HODNOTA_ATRIBUTU("Chybná hodnota atributu");
