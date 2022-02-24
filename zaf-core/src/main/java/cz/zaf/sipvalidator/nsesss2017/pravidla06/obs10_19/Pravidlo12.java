@@ -11,23 +11,23 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 // <mets:amdSec>.
 public class Pravidlo12 extends K06PravidloBase {
 
-	static final public String OBS12 = "obs12";
+    static final public String OBS12 = "obs12";
 
-	public Pravidlo12() {
-		super(OBS12,
-				"Element <mets:mets> obsahuje alespoň jeden element <mets:amdSec>.",
-				"Chybí povinná část (transakční protokol) struktury datového balíčku SIP.",
-				"Bod 2.9. přílohy č. 3 NSESSS."
-				);
-	}
+    public Pravidlo12() {
+        super(OBS12,
+                "Element <mets:mets> obsahuje alespoň jeden element <mets:amdSec>.",
+                "Chybí povinná část (transakční protokol) struktury datového balíčku SIP.",
+                "Bod 2.9. přílohy č. 3 NSESSS."
+        );
+    }
 
-	@Override
+    @Override
     protected void kontrola() {
         Element metsMets = metsParser.getMetsRootNode();
 
-        if(!ValuesGetter.hasChildWithName(metsMets, MetsElements.AMD_SEC)){
+        if (!ValuesGetter.hasChildWithName(metsMets, MetsElements.AMD_SEC)) {
             nastavChybu(BaseCode.CHYBI_ELEMENT,
-                        "Kořenový element <mets:mets> nemá žádný dětský element <mets:amdSec>.", metsMets);
+                    "Kořenový element <mets:mets> nemá žádný dětský element <mets:amdSec>.", metsMets);
         }
-	}
+    }
 }

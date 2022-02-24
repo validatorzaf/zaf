@@ -155,6 +155,16 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
         return new ZafException(errorCode, detailChyby);
     }
 
+    protected void nastavChybu(ErrorCode errorCode, String detailChyby){
+     throw pripravChybu(errorCode, detailChyby);
+    }
+    
+    protected void nastavChybu(ErrorCode errorCode, String detailChyby,
+                               List<? extends Node> errorList) {
+        String mistoCh = errorList.stream().map(n -> getMistoChyby(n)).collect(Collectors.joining(" "));
+        throw pripravChybu(errorCode, detailChyby).setMistoChyby(mistoCh);
+    }
+    
     protected void nastavChybu(ErrorCode errorCode, String detailChyby,
                                List<? extends Node> errorList,
                                final EntityId entityId) {

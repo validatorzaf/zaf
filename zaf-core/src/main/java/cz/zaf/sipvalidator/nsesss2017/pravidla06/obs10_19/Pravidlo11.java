@@ -14,28 +14,28 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 // <mets:dmdSec>.
 public class Pravidlo11 extends K06PravidloBase {
 
-	static final public String OBS11 = "obs11";
+    static final public String OBS11 = "obs11";
 
-	public Pravidlo11() {
-		super(OBS11,
-				"Element <mets:mets> obsahuje právě jeden dětský element <mets:dmdSec>.",
-				"Chybí povinná (popisná) část struktury datového balíčku SIP.",
-				"Bod 2.6. přílohy č. 3 NSESSS."
-				);
-	}
+    public Pravidlo11() {
+        super(OBS11,
+                "Element <mets:mets> obsahuje právě jeden dětský element <mets:dmdSec>.",
+                "Chybí povinná (popisná) část struktury datového balíčku SIP.",
+                "Bod 2.6. přílohy č. 3 NSESSS."
+        );
+    }
 
-	@Override
+    @Override
     protected void kontrola() {
         Element metsMets = metsParser.getMetsRootNode();
         List<Element> dmdSecNodes = ValuesGetter.getChildNodes(metsMets, "mets:dmdSec");
         if (CollectionUtils.isEmpty(dmdSecNodes)) {
             nastavChybu(BaseCode.CHYBI_ELEMENT,
-                        "Kořenový element <mets:mets> nemá žádný dětský element <mets:dmdSec>.", metsMets);
+                    "Kořenový element <mets:mets> nemá žádný dětský element <mets:dmdSec>.", metsMets);
         }
         if (dmdSecNodes.size() > 1) {
             nastavChybu(XmlCode.NEOCEKAVANY_ELEMENT,
-                        "Kořenový element <mets:mets> má více než jeden dětský element <mets:dmdSec>.", metsMets);
-        }        
-	}
+                    "Kořenový element <mets:mets> má více než jeden dětský element <mets:dmdSec>.", metsMets);
+        }
+    }
 
 }
