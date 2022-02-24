@@ -14,8 +14,14 @@ public enum BaseCode implements ErrorCode {
     /**
      * TODO: Dopsat pravidla užití kódů
      */
+    CHYBA_KRIZVEHO_ODKAZU("Křížový odkaz neplní správně svou funkci"),
+    
     CHYBI_ELEMENT("Chybí element"),
 
+    CHYBI_HODNOTA_ELEMENTU("Nevyplněná hodnota elementu"),
+    
+    CHYBI_HODNOTA_ATRIBUTU("Nevyplněná hodnota atributu"),
+    
     NEPOVOLENY_ELEMENT("Výskyt nepovoleného elementu"),
     
     CHYBI_ATRIBUT("Chybí atribut elementu v XML, který je povinný"),

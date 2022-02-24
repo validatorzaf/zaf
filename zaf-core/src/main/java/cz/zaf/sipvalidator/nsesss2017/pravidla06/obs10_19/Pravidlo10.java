@@ -14,26 +14,26 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 // <mets:metsHdr>.
 public class Pravidlo10 extends K06PravidloBase {
 
-	static final public String OBS10 = "obs10";
+    static final public String OBS10 = "obs10";
 
-	public Pravidlo10() {
-		super(OBS10,
-				"Element <mets:mets> obsahuje dětský element <mets:metsHdr>.",
-				"Chybí povinná část (záhlaví) struktury datového balíčku SIP.",
-				"Bod 2.2. přílohy č. 3 NSESSS."
-				);
-	}
+    public Pravidlo10() {
+        super(OBS10,
+                "Element <mets:mets> obsahuje dětský element <mets:metsHdr>.",
+                "Chybí povinná část (záhlaví) struktury datového balíčku SIP.",
+                "Bod 2.2. přílohy č. 3 NSESSS."
+        );
+    }
 
-	@Override
+    @Override
     protected void kontrola() {
-		Node metsMets = metsParser.getMetsRootNode();
+        Node metsMets = metsParser.getMetsRootNode();
         List<Node> metsHdrs = ValuesGetter.getChildList(metsMets, "mets:metsHdr");
         if (CollectionUtils.isEmpty(metsHdrs)) {
             nastavChybu(BaseCode.CHYBI_ELEMENT,
-                        "Kořenový element <mets:mets> nemá žádný dětský element <mets:metsHdr>.", metsMets);
+                    "Kořenový element <mets:mets> nemá žádný dětský element <mets:metsHdr>.", metsMets);
         }
         // Ze schematu musi byt maximalne jeden
         Validate.isTrue(metsHdrs.size() == 1);
-	}
+    }
 
 }

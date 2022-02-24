@@ -1,5 +1,6 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,40 +9,39 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //OBSAHOVÁ č.19 Každý element <mets:agent> obsahuje atribut ID.",
-public class Pravidlo19 extends K06PravidloBaseOld {
+public class Pravidlo19 extends K06PravidloBase {
 
-	static final public String OBS19 = "obs19";
+    static final public String OBS19 = "obs19";
 
-	public Pravidlo19() {
-		super(OBS19,
-				"Každý element <mets:agent> obsahuje atribut ID.",
-				"Uveden je chybně popis původce.",
-				"Bod 2.3. přílohy č. 3 NSESSS."
-				);
-	}
+    public Pravidlo19() {
+        super(OBS19,
+                "Každý element <mets:agent> obsahuje atribut ID.",
+                "Uveden je chybně popis původce.",
+                "Bod 2.3. přílohy č. 3 NSESSS."
+        );
+    }
 
-	@Override
-	protected boolean kontrolaPravidla() {
-        List<Element> nodes = metsParser.getNodes(MetsElements.AGENT);
-        if(CollectionUtils.isEmpty(nodes)){
-            return nastavChybu("Nenalezen element <mets:agent>.");
+    @Override
+    protected void kontrola() {
+        List<Element> listElMetsAgent = metsParser.getNodes(MetsElements.AGENT);
+        if (CollectionUtils.isEmpty(listElMetsAgent)) {
+            nastavChybu(BaseCode.CHYBI_ELEMENT,
+                    "Nenalezen element <mets:agent>.");
         }
+
         List<Node> errorList = new ArrayList<>(0);
+        listElMetsAgent.stream().filter((node) -> (!ValuesGetter.hasAttribut(node, "ID"))).forEachOrdered((node) -> {
+            errorList.add(node);
+        });
 
-        for(Node node: nodes){
-           if(!ValuesGetter.hasAttribut(node, "ID")){
-               errorList.add(node);
-           }
+        if (!errorList.isEmpty()) {
+            nastavChybu(BaseCode.CHYBI_ATRIBUT,
+                    "Element <mets:agent> neobsahuje atribut ID.", errorList);
         }
-        if(errorList.size()>0) {
-            return nastavChybu("Element <mets:agent> neobsahuje atribut ID.", errorList);
-        }
-        return true;
-	}
+    }
 
 }
-

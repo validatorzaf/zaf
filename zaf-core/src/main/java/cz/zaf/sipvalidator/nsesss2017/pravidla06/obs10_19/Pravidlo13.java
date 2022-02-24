@@ -10,28 +10,30 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 //OBSAHOVÁ č.13 Element <mets:mets> obsahuje právě jeden dětský element <mets:structMap>.",
 public class Pravidlo13 extends K06PravidloBase {
 
-	static final public String OBS13 = "obs13";
+    static final public String OBS13 = "obs13";
 
-	public Pravidlo13() {
-		super(OBS13,
-				"Element <mets:mets> obsahuje právě jeden dětský element <mets:structMap>.",
-				"Chybí povinná část (strukturální mapa) struktury datového balíčku SIP.",
-				"Bod 2.2.17. přílohy č. 3 NSESSS."
-				);
-	}
+    public Pravidlo13() {
+        super(OBS13,
+                "Element <mets:mets> obsahuje právě jeden dětský element <mets:structMap>.",
+                "Chybí povinná část (strukturální mapa) struktury datového balíčku SIP.",
+                "Bod 2.2.17. přílohy č. 3 NSESSS."
+        );
+    }
 
-	@Override
-	protected void kontrola() {
+    @Override
+    protected void kontrola() {
         Element metsMets = metsParser.getMetsRootNode();
-        
-        if(!ValuesGetter.hasChildWithName(metsMets, "mets:structMap")){
-            nastavChybu(BaseCode.CHYBI_ELEMENT, "Kořenový element <mets:mets> nemá žádný dětský element <mets:structMap>.", metsMets);
-            return;
-        }
-        if(!ValuesGetter.hasOnlyOneChild_ElementNode(metsMets, "mets:structMap")){
-            nastavChybu(BaseCode.NEPOVOLENY_ELEMENT, "Kořenový element <mets:mets> má více než jeden dětský element <mets:structMap>.", metsMets);
-        }        
 
-	}
+        if (!ValuesGetter.hasChildWithName(metsMets, "mets:structMap")) {
+            nastavChybu(BaseCode.CHYBI_ELEMENT,
+                    "Kořenový element <mets:mets> nemá žádný dětský element <mets:structMap>.", metsMets);
+
+        }
+        if (!ValuesGetter.hasOnlyOneChild_ElementNode(metsMets, "mets:structMap")) {
+            nastavChybu(BaseCode.NEPOVOLENY_ELEMENT,
+                    "Kořenový element <mets:mets> má více než jeden dětský element <mets:structMap>.", metsMets);
+        }
+
+    }
 
 }
