@@ -138,7 +138,7 @@ public class SipLoader
     private Path unzipSip(final Path zipPath, Path pathForUnzip) {
         Validate.isTrue(loadStatus == null, "unzipSip can be called only once");
 
-        log.trace("Unzipping file: {}, workDir: {}", zipPath, pathForUnzip);
+        log.debug("Unzipping file: {}, workDir: {}", zipPath, pathForUnzip);
 
         ZipFile zipFile = new ZipFile(zipPath.toFile());
         zipFile.setCharset(Charset.forName("IBM852")); // extrakce českých znaků
@@ -185,7 +185,7 @@ public class SipLoader
      * @return
      */
     private static boolean obsahujePraveAdresar(ZipFile zipFile, String ocekavanejmeno) {
-        log.trace("Checking zip content, expected main directory: {}", ocekavanejmeno);
+        log.debug("Checking zip content, expected main directory: {}", ocekavanejmeno);
         try {
             ArrayList<FileHeader> list = (ArrayList<FileHeader>) zipFile.getFileHeaders();
             for (int i = 0; i < list.size(); i++) {
