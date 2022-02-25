@@ -81,7 +81,8 @@ public class MetsParser {
             return;
         }
         try (InputStream is = Files.newInputStream(cestaMets)) {
-            document = PositionalXMLReader.readXML(is);
+            PositionalXMLReader xmlReader = new PositionalXMLReader();
+            document = xmlReader.readXML(is);
 
             // vlastni nacteni dat
             readDocument(sipLoader.getSip());
