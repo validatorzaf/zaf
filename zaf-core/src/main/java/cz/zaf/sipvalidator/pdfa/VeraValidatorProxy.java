@@ -20,6 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
 public class VeraValidatorProxy {
@@ -106,7 +107,7 @@ public class VeraValidatorProxy {
                         vr.setError(errorMsg);
                     }
                 } catch (Exception e) {
-                    log.error("Failed to read validation result.", e);
+                    log.debug("Failed to read validation result.", e);
                     vr.setError("Výjimka při čtení výsledku ověření: " + e);
                 } finally {
                     cdt.countDown();
@@ -122,7 +123,7 @@ public class VeraValidatorProxy {
                 log.error("Failed to read results, timeout");
             }
         } catch (IOException | InterruptedException e) {
-            log.error("Failed to run validator.", e);
+            log.debug("Failed to run validator.", e);
             vr.setError("Výjimka při ověření: " + e.toString());
         }
         return vr;
@@ -133,7 +134,7 @@ public class VeraValidatorProxy {
         AtomicBoolean isCompliant = new AtomicBoolean();
         final StringBuilder sb = new StringBuilder();
 
-        parser.parse(inputStream, new DefaultHandler() {
+        DefaultHandler dh = new DefaultHandler() {
             @Override
             public void startElement(String uri, String localName, String qName, Attributes attributes)
                     throws SAXException {
@@ -155,7 +156,14 @@ public class VeraValidatorProxy {
                 }
                 super.startElement(uri, localName, qName, attributes);
             }
-        });
+
+            @Override
+            public void fatalError(SAXParseException e) throws SAXException {
+                throw new SAXException("Failed to pare", e);
+            }
+        };
+
+        parser.parse(inputStream, dh);
 
         return isCompliant.get() ? null : sb.length() > 0 ? sb.toString() : "Nerozpoznaná chyba";
     }

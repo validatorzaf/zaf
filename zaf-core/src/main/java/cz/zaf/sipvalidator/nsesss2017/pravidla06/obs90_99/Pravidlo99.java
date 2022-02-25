@@ -198,7 +198,7 @@ public class Pravidlo99 extends K06PravidloBaseOld {
                                        getMistoChyby(flocatNode));
                 }
             } catch (Throwable e) {
-                log.error("Failed to validate PDF, exception: {}", e);
+                log.debug("Failed to validate PDF.", e);
                 return nastavChybu("Formátu Pdf/A se nepodařilo ověřit u komponenty " + flocatNode,
                                    getMistoChyby(flocatNode));
             }
