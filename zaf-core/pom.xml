@@ -156,7 +156,7 @@
 						<artifactItem>
  <groupId>org.verapdf.apps</groupId>
   <artifactId>greenfield-apps</artifactId>
-  <version>1.16.1</version>
+  <version>1.20.1</version>
 							<type>jar</type>
 							<destFileName>greenfield-apps.jar</destFileName>
 						</artifactItem>
