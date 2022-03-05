@@ -68,7 +68,7 @@ public class XmlProtokolWriter implements ProtokolWriter,
     {
         SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         try (InputStream is = XmlProtokolWriter.class.getClassLoader()
-                .getResourceAsStream("schema/validace.xsd")) {
+                .getResourceAsStream("schema/validaceSIP.xsd")) {
             schema = sf.newSchema(new StreamSource(is));
         } catch (IOException | SAXException e) {
             throw new RuntimeException("Failed to load internal XSD", e);
@@ -117,7 +117,7 @@ public class XmlProtokolWriter implements ProtokolWriter,
         indentingStreamWriter.writeAttribute("xmlns", null,
                                              "xsi", "http://www.w3.org/2001/XMLSchema-instance");
         indentingStreamWriter.writeAttribute("http://www.w3.org/2001/XMLSchema-instance", "schemaLocation", 
-                                             "http://www.ahmp.cz/schema/validacesip/v1 http://www.ahmp.cz/schema/validacesip/v1/validace.xsd");
+                                             "http://www.ahmp.cz/schema/validacesip/v1 http://www.ahmp.cz/schema/validacesip/v1/validaceSIP.xsd");
 
         // write attributes to root element
         indentingStreamWriter.writeAttribute("validaceID",
