@@ -6,20 +6,19 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
-import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //
 // OBSAHOVÁ č.44
 //
 // Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut DMDID s
-// hodnotou uvedenou v atributu ID jakéhokoli elementu <nsesss:Komponenta>.",
+// hodnotou uvedenou v atributu ID jakéhokoli elementu <nsesss:Komponenta>.
 //
-public class Pravidlo44 extends K06PravidloBaseOld {
+public class Pravidlo44 extends K06PravidloBase {
 	
 	static final public String OBS44 = "obs44";
 
@@ -31,56 +30,63 @@ public class Pravidlo44 extends K06PravidloBaseOld {
 	}
 
 	@Override
-	protected boolean kontrolaPravidla() {
+    protected void kontrola() {
 	    // cteni mets:file
         List<Element> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);
         List<Element> nodeListKomponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
         if(nodeListKomponenty.size() != nodeListMetsFile.size()){
-            return nastavChybu("Nenalezen shodný počet <nsesss:Komponenta> a <mets:file>.");
+            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen shodný počet <nsesss:Komponenta> a <mets:file>.");
         }
         if(nodeListKomponenty.size()==0) {
-            return true;
+            return;
         }
 
-        Map<String, Node> filesIdMap = new HashMap<>();
-        for(Node metsFile: nodeListMetsFile){
-            String dmdid = ValuesGetter.getValueOfAttribut(metsFile, "DMDID");
+        Map<String, Element> filesIdMap = new HashMap<>();
+        for (Element metsFile : nodeListMetsFile) {
+            String dmdid = metsFile.getAttribute("DMDID");
             if(StringUtils.isEmpty(dmdid)) {
-                return nastavChybu("Element <mets:file> nemá atribut DMDID.",  metsFile);
+                nastavChybu(BaseCode.CHYBI_ATRIBUT, "Element <mets:file> nemá atribut DMDID.", metsFile);
             }
-            Node prevNode = filesIdMap.put(dmdid, metsFile);
+            Element prevNode = filesIdMap.put(dmdid, metsFile);
             if(prevNode!=null) {
-                return nastavChybu("Více elementů <mets:file> má shodnou hodnotu DMDID.",  metsFile);
+                nastavChybu(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
+                            "Více elementů <mets:file> má shodnou hodnotu DMDID.",
+                            metsFile);
             }
         }
 
         // cteni nsesss:komponenta
-        Map<String, Node> komponentyIdMap = new HashMap<>();
+        Map<String, Element> komponentyIdMap = new HashMap<>();
         for (Element komponenta : nodeListKomponenty) {
-            String id = ValuesGetter.getValueOfAttribut(komponenta, "ID");
+            String id = komponenta.getAttribute("ID");
             if(StringUtils.isEmpty(id)){
-                return nastavChybu("Element <nsesss:Komponenta> nemá atribut ID. " + getJmenoIdentifikator(komponenta), komponenta);
+                nastavChybu(BaseCode.CHYBI_HODNOTA_ATRIBUTU,
+                            "Element <nsesss:Komponenta> nemá atribut ID. " + getJmenoIdentifikator(komponenta),
+                            komponenta);
             }
             
             // Check if exists in fileIdMap            
-            Node divNode = filesIdMap.get(id);
+            Element divNode = filesIdMap.get(id);
             if(divNode==null) {
-                return nastavChybu("Element <nsesss:Komponenta> nemá odpovídající záznam ve strukturální mapě. " + getJmenoIdentifikator(komponenta), komponenta);
+                nastavChybu(BaseCode.CHYBI_ELEMENT,
+                            "Element <nsesss:Komponenta> nemá odpovídající záznam ve strukturální mapě. "
+                                    + getJmenoIdentifikator(komponenta),
+                            komponenta);
             }
             
             komponentyIdMap.put(id, komponenta);
         }
         
         // Kontrola odkazů ze strukturální mapy
-        for(Node metsFile: nodeListMetsFile) {
-            String dmdid = ValuesGetter.getValueOfAttribut(metsFile, "DMDID");
-            Node dmdNode = komponentyIdMap.get(dmdid);
+        for (Element metsFile : nodeListMetsFile) {
+            String dmdid = metsFile.getAttribute("DMDID");
+            Element dmdNode = komponentyIdMap.get(dmdid);
             if(dmdNode==null) {
-                return nastavChybu("Element <mets:file> neodkazuje na odpovídající <nsesss:Komponenta>",
-                                   metsFile);
+                nastavChybu(BaseCode.CHYBI_ELEMENT,
+                            "Element <mets:file> neodkazuje na odpovídající <nsesss:Komponenta>",
+                            metsFile);
             }
         }
-        return true;
 	}
 
 }
