@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.Validate;
-import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
@@ -26,8 +26,8 @@ public class Pravidlo10 extends K06PravidloBase {
 
     @Override
     protected void kontrola() {
-        Node metsMets = metsParser.getMetsRootNode();
-        List<Node> metsHdrs = ValuesGetter.getChildList(metsMets, "mets:metsHdr");
+        Element metsMets = metsParser.getMetsRootNode();
+        List<Element> metsHdrs = ValuesGetter.getChildNodes(metsMets, "mets:metsHdr");
         if (CollectionUtils.isEmpty(metsHdrs)) {
             nastavChybu(BaseCode.CHYBI_ELEMENT,
                     "Kořenový element <mets:mets> nemá žádný dětský element <mets:metsHdr>.", metsMets);

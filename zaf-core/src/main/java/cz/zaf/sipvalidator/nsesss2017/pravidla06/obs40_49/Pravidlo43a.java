@@ -3,7 +3,6 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49;
 import java.util.List;
 
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.mets.MetsElements;
@@ -36,7 +35,7 @@ public class Pravidlo43a extends K06PravidloBase
             return;
         }
 
-        List<Node> fileGrpList = ValuesGetter.getChildList(fileSec, MetsElements.FILE_GRP);
+        List<Element> fileGrpList = ValuesGetter.getChildNodes(fileSec, MetsElements.FILE_GRP);
 
         if (fileGrpList.size() != 1) {
             nastavChybu(BaseCode.CHYBI_ELEMENT,

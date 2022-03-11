@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
@@ -47,8 +46,8 @@ public class Pravidlo40 extends K06PravidloBase {
             }
             boolean maHodnotuNe = analogovyDokument.getTextContent().toLowerCase().equals("ne");
             if(maHodnotuNe){
-            	Node metsMets = metsParser.getMetsRootNode();
-                List<Node> fileSecNodes = ValuesGetter.getChildList(metsMets, "mets:fileSec");
+                Element metsMets = metsParser.getMetsRootNode();
+                List<Element> fileSecNodes = ValuesGetter.getChildNodes(metsMets, "mets:fileSec");
                 if (CollectionUtils.isEmpty(fileSecNodes)) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT,
                                 "Element <mets:mets> neobsahuje žádný element <mets:fileSec>.",

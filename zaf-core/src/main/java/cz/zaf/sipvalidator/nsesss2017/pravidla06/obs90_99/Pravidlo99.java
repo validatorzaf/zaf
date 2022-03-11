@@ -140,8 +140,8 @@ public class Pravidlo99 extends K06PravidloBaseOld {
             return true;
         }
         for (Element fileGrpNode : nodeListFileGrp) {
-            List<Node> fileNodes = ValuesGetter.getChildList(fileGrpNode, "mets:file");
-            for (Node fileNode : fileNodes) {
+            List<Element> fileNodes = ValuesGetter.getChildNodes(fileGrpNode, "mets:file");
+            for (Element fileNode : fileNodes) {
                 // overeni ID, zda ma byt soubor kontrolovan
                 String dmdid = ValuesGetter.getValueOfAttribut(fileNode, JmenaElementu.DMDID);
                 if (!checkFiles.contains(dmdid)) {
@@ -150,8 +150,8 @@ public class Pravidlo99 extends K06PravidloBaseOld {
 
                 String mimeType = ValuesGetter.getValueOfAttribut(fileNode, "MIMETYPE");
                 if ("application/pdf".equalsIgnoreCase(mimeType)) {
-                    List<Node> flocatNodes = ValuesGetter.getChildList(fileNode, "mets:FLocat");
-                    for (Node flocatNode : flocatNodes) {
+                    List<Element> flocatNodes = ValuesGetter.getChildNodes(fileNode, "mets:FLocat");
+                    for (Element flocatNode : flocatNodes) {
                         if (!checkPdfA(flocatNode)) {
                             return false;
                         }

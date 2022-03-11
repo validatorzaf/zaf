@@ -22,8 +22,6 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import cz.zaf.sipvalidator.helper.Helper;
-
 
 public class ValuesGetter {
                 
@@ -357,20 +355,6 @@ public class ValuesGetter {
         }
         Element parent = (Element) parentNode;
         return getXChild(parent, nazevSourozence);
-    }  
-        
-    public static List<Node> getChildList(Node parent, String... childNames) {
-        ArrayList<Node> list = new ArrayList<>();
-        if(parent == null) return list;
-        NodeList nodeList = parent.getChildNodes();
-        for(int i = 0; i < nodeList.getLength(); i++){
-            Node node = nodeList.item(i);
-            String name = node.getNodeName();
-            if(Helper.obsahujePoleHodnotu(childNames, name)){
-                list.add(node);
-            }
-        }
-        return list;
     }
     
     public static List<Element> getAllChildNodes(Element parent, List<Element> nodes) {
