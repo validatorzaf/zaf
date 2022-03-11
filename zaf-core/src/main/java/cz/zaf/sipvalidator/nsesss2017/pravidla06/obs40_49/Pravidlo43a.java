@@ -5,8 +5,9 @@ import java.util.List;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 //
@@ -15,7 +16,7 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 // Pokud existuje element <mets:fileSec>, obsahuje právě jeden dětský element
 // <mets:fileGrp>.
 //
-public class Pravidlo43a extends K06PravidloBaseOld
+public class Pravidlo43a extends K06PravidloBase
 {
 
     static final public String OBS43A = "obs43a";
@@ -28,19 +29,19 @@ public class Pravidlo43a extends K06PravidloBaseOld
     }
 
     @Override
-    protected boolean kontrolaPravidla() {
+    protected void kontrola() {
         Element metsMets = metsParser.getMetsRootNode();
         Element fileSec = ValuesGetter.getXChild(metsMets, "mets:fileSec");
         if (fileSec == null) {
-            return true;
+            return;
         }
 
         List<Node> fileGrpList = ValuesGetter.getChildList(fileSec, MetsElements.FILE_GRP);
 
         if (fileGrpList.size() != 1) {
-            return nastavChybu("Element <mets:fileSec> neobsahuje právě jeden element <mets:fileGrp>.", fileSec);
+            nastavChybu(BaseCode.CHYBI_ELEMENT,
+                        "Element <mets:fileSec> neobsahuje právě jeden element <mets:fileGrp>.", fileSec);
         }
-        return true;
     }
 
 }
