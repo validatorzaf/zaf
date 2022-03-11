@@ -5,8 +5,8 @@
  */
 package cz.zaf.sipvalidator.nsesss2017;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 
 import org.apache.tika.Tika;
 
@@ -105,10 +105,10 @@ public class MimetypeDetector {
         }
     };
 
-    public static MimeTypeResult getMimeType(File file) {
+    public static MimeTypeResult getMimeType(Path file) {
         
         try {
-            String tika = tikaInstance.detect(file.toPath());
+            String tika = tikaInstance.detect(file);
             /*
             String fileUt = Files.probeContentType(file.toPath());
             */
