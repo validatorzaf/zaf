@@ -25,18 +25,18 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 // formátu příslušné komponenty číselníku IANA na URL:
 // http://www.iana.org/assignments/media-types/media-types.xhtml.
 public class Pravidlo45 extends K06PravidloBase {
-	
-	static final public String OBS45 = "obs45";
 
-	public Pravidlo45() {
-		super(OBS45,
-				"Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut MIMETYPE s hodnotou identifikace souborového formátu příslušné komponenty.",
-				"Komponenta (počítačový soubor) má uvedený chybný datový formát.",
-				"Bod 2.15. přílohy č. 3 NSESSS."
-				);
-	}
+    static final public String OBS45 = "obs45";
 
-	@Override
+    public Pravidlo45() {
+        super(OBS45,
+                "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut MIMETYPE s hodnotou identifikace souborového formátu příslušné komponenty.",
+                "Komponenta (počítačový soubor) má uvedený chybný datový formát.",
+                "Bod 2.15. přílohy č. 3 NSESSS."
+        );
+    }
+
+    @Override
     protected void kontrola() {
         List<Element> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);
         for (Element metsFile : nodeListMetsFile) {
@@ -58,16 +58,16 @@ public class Pravidlo45 extends K06PravidloBase {
         String xlinkHref = flocat.getAttribute("xlink:href"); // komponenty/jmenosouboru
         if (StringUtils.isBlank(xlinkHref)) {
             nastavChybu(BaseCode.CHYBI_ELEMENT,
-                        "Element <mets:FLocat> nemá atribut xlink:href.", flocat);
+                    "Element <mets:FLocat> nemá atribut xlink:href.", flocat);
         }
         xlinkHref = HelperString.replaceSeparators(xlinkHref);
 
         // kontrola, ze kazda cesta zacina: komponenty/
         if (!xlinkHref.startsWith("komponenty" + File.separator)) {
-            nastavChybu(BaseCode.CHYBI_HODNOTA_ATRIBUTU,
-                        "Element <mets:FLocat> má ve svém atributu xlink:href špatně uvedenou cestu ke komponentě: "
-                                + xlinkHref + ".",
-                        flocat);
+            nastavChybu(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
+                    "Element <mets:FLocat> má ve svém atributu xlink:href špatně uvedenou cestu ke komponentě: "
+                    + xlinkHref + ".",
+                    flocat);
         }
 
         Path sipPath = context.getSip().getCesta();
@@ -75,68 +75,67 @@ public class Pravidlo45 extends K06PravidloBase {
 
         if (!Files.isRegularFile(filePath)) {
             nastavChybu(BaseCode.CHYBI_KOMPONENTA,
-                        "Nenalezena příslušná komponenta ve složce komponenty.",
-                        "Chybí soubor: " + xlinkHref + ".");
+                    "Nenalezena příslušná komponenta ve složce komponenty.",
+                    "Chybí soubor: " + xlinkHref + ".");
         }
 
         MimeTypeResult detectedType = MimetypeDetector.getMimeType(filePath);
         if (detectedType.getDetectionStatus() == DetectionStatus.FAILED) {
             nastavChybu(BaseCode.CHYBNA_KOMPONENTA,
-                        "U komponenty s deklarovaným typem: " + mimeType + " došlo k selhání detekce typu: "
-                                + detectedType.getException(),
-                        "Soubor: " + xlinkHref + ".");
+                    "U komponenty s deklarovaným typem: " + mimeType + " došlo k selhání detekce typu: "
+                    + detectedType.getException(),
+                    "Soubor: " + xlinkHref + ".");
         }
         String detectedMimeType = detectedType.getTikaMimetype();
         if (StringUtils.isBlank(detectedMimeType)) {
             nastavChybu(BaseCode.CHYBNA_KOMPONENTA,
-                        "U komponenty s deklarovaným typem: " + mimeType
-                                + " se nepodařilo typ správně detekovat.", "Soubor: " + xlinkHref + ".");
+                    "U komponenty s deklarovaným typem: " + mimeType
+                    + " se nepodařilo typ správně detekovat.", "Soubor: " + xlinkHref + ".");
         }
         if (!detectedType.isMimetype(mimeType)) {
             // vyjimky sem
-            if (detectedMimeType.equals("application/x-zip-compressed") ||
-                    detectedMimeType.equals("application/x-dbf") ||
-                    detectedMimeType.equals("application/pkcs7-signature")) {
+            if (detectedMimeType.equals("application/x-zip-compressed")
+                    || detectedMimeType.equals("application/x-dbf")
+                    || detectedMimeType.equals("application/pkcs7-signature")) {
                 // datová schránka
                 // application/vnd.software602.filler.form-xml-zip
                 if (detectedMimeType.equals("application/pkcs7-signature")) {
                     if (!mimeType.equals("application/vnd.software602.filler.form-xml-zip")) {
                         if (!kontrolaDatoveZpravy(filePath)) {
                             nastavChybu(BaseCode.CHYBNA_KOMPONENTA,
-                                        "Komponenta je soubor typu: " + detectedMimeType
-                                                + ", ale její deklarovaný MIMETYPE je: " + mimeType
-                                                + ". Nejedná se o soubor datové schránky",
-                                        "Soubor: " + xlinkHref + ".");
+                                    "Komponenta je soubor typu: " + detectedMimeType
+                                    + ", ale její deklarovaný MIMETYPE je: " + mimeType
+                                    + ". Nejedná se o soubor datové schránky",
+                                    "Soubor: " + xlinkHref + ".");
                         }
                     }
                 }
-                if (detectedMimeType.equals("application/x-zip-compressed") &&
-                        !mimeType.equals("application/zip")) {
+                if (detectedMimeType.equals("application/x-zip-compressed")
+                        && !mimeType.equals("application/zip")) {
                     nastavChybu(BaseCode.CHYBNA_KOMPONENTA,
-                                "Komponenta je soubor typu: " + detectedMimeType
-                                        + ", ale její deklarovaný MIMETYPE je: " + mimeType + ".",
-                                "Soubor: " + xlinkHref + ".");
+                            "Komponenta je soubor typu: " + detectedMimeType
+                            + ", ale její deklarovaný MIMETYPE je: " + mimeType + ".",
+                            "Soubor: " + xlinkHref + ".");
                 }
 
-                if (detectedMimeType.equals("application/x-dbf") &&
-                        !mimeType.equals("application/vnd.software602.filler.form-xml-zip")) {
+                if (detectedMimeType.equals("application/x-dbf")
+                        && !mimeType.equals("application/vnd.software602.filler.form-xml-zip")) {
                     nastavChybu(BaseCode.CHYBNA_KOMPONENTA,
-                                "Komponenta je soubor typu: " + detectedMimeType
-                                        + ", ale její deklarovaný MIMETYPE je: " + mimeType + ".",
-                                "Soubor: " + xlinkHref + ".");
+                            "Komponenta je soubor typu: " + detectedMimeType
+                            + ", ale její deklarovaný MIMETYPE je: " + mimeType + ".",
+                            "Soubor: " + xlinkHref + ".");
                 }
             } else {
                 nastavChybu(BaseCode.CHYBNA_KOMPONENTA,
-                            "Komponenta je soubor typu: " + detectedMimeType
-                                    + ", ale její deklarovaný MIMETYPE je: " + mimeType + ".",
-                            "Soubor: " + xlinkHref + ".");
+                        "Komponenta je soubor typu: " + detectedMimeType
+                        + ", ale její deklarovaný MIMETYPE je: " + mimeType + ".",
+                        "Soubor: " + xlinkHref + ".");
             }
         }
     }
 
-    
     private boolean kontrolaDatoveZpravy(Path file) {
-    	// TODO: zlepseni cteni, pridani kontroly schematu apod.    	
+        // TODO: zlepseni cteni, pridani kontroly schematu apod.    	
         try (BufferedReader reader = Files.newBufferedReader(file)) {
             while (reader.readLine() != null) {
                 String line = reader.readLine();
@@ -144,10 +143,10 @@ public class Pravidlo45 extends K06PravidloBase {
                     return true;
                 }
             }
-        } catch(IOException ioe) {
-        	// TODO: improve error reporting
-        	// now we can silently ignore this error
+        } catch (IOException ioe) {
+            // TODO: improve error reporting
+            // now we can silently ignore this error
         }
         return false;
-	}
+    }
 }
