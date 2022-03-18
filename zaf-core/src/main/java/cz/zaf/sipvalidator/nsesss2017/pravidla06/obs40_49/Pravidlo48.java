@@ -1,66 +1,68 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.io.File;
 import java.util.List;
 
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
+import org.apache.commons.lang.StringUtils;
 
 //OBSAHOVÁ č.48 Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut SIZE s hodnotou velikosti příslušné komponenty v bytech.",
-public class Pravidlo48 extends K06PravidloBaseOld {
-	
-	static final public String OBS48 = "obs48";
+public class Pravidlo48 extends K06PravidloBase {
 
-	public Pravidlo48() {
-		
-		super(OBS48, 
-			    "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut SIZE s hodnotou velikosti příslušné komponenty v bytech.",
-			    "Chybí velikost komponenty (počítačového souboru) nebo je uvedena chybně.",			    
-				"Bod 2.15. přílohy č. 3 NSESSS.");
-	}
+    static final public String OBS48 = "obs48";
 
-	@Override
-	protected boolean kontrolaPravidla() {
+    public Pravidlo48() {
+
+        super(OBS48,
+                "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut SIZE s hodnotou velikosti příslušné komponenty v bytech.",
+                "Chybí velikost komponenty (počítačového souboru) nebo je uvedena chybně.",
+                "Bod 2.15. přílohy č. 3 NSESSS.");
+    }
+
+    @Override
+    protected void kontrola() {
         List<Element> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);
         for (Element metsFile : nodeListMetsFile) {
-            if(!kontrolaSouboru(metsFile)) {
-            	return false;
+            String hodnotaAtrSize = metsFile.getAttribute("SIZE");
+            if (StringUtils.isBlank(hodnotaAtrSize)) {
+                nastavChybu(BaseCode.CHYBI_ATRIBUT,
+                        "Element <mets:file> neobsahuje atribut SIZE.", metsFile);
+            }
+
+            Element elFLocat = ValuesGetter.getXChild(metsFile, MetsElements.FLOCAT);
+            if (elFLocat == null) {
+                nastavChybu(BaseCode.CHYBI_ELEMENT,
+                        "Nenalezen dětský element <mets:FLocat> elementu <mets:file>.", metsFile);
+            }
+
+            String hodnotaAtrXlinkHref = elFLocat.getAttribute("xlink:href");
+            if (StringUtils.isBlank(hodnotaAtrXlinkHref)) {
+                nastavChybu(BaseCode.CHYBI_ATRIBUT,
+                        "Element <mets:FLocat> neobsahuje atribut xlink:href.", elFLocat);
+            }
+
+            hodnotaAtrXlinkHref = HelperString.replaceSeparators(hodnotaAtrXlinkHref);
+            String cestaKeKomponente = SIP_MAIN_helper.getCesta_komponenty(context.getSip());
+            File file = new File(cestaKeKomponente);
+            file = new File(file.getParentFile().getAbsolutePath() + File.separator + hodnotaAtrXlinkHref);
+            if (!file.exists()) {
+                nastavChybu(BaseCode.CHYBNA_KOMPONENTA,
+                        "Nenalezena příslušná komponenta v složce komponenty.",
+                        getMistoChyby(elFLocat) + " Soubor: " + hodnotaAtrXlinkHref + ".");
+            }
+            String velikost = String.valueOf(file.length());
+            if (!velikost.equals(hodnotaAtrSize)) {
+                nastavChybu(BaseCode.CHYBNA_KOMPONENTA,
+                        "Velikost komponenty není totožná s metadaty.",
+                        getMistoChyby(metsFile) + " Komponenta: " + file.getName() + ".");
             }
         }
-        return true;
-	}
-
-    private boolean kontrolaSouboru(Element metsFile) {
-        if(!ValuesGetter.hasAttribut(metsFile, "SIZE")){
-            return nastavChybu("Element <mets:file> neobsahuje atribut SIZE.", metsFile);
-        }
-        String hodnotaVelikosti = ValuesGetter.getValueOfAttribut(metsFile, "SIZE");            
-        Node flocat = ValuesGetter.getXChild(metsFile, "mets:FLocat");
-        if(flocat == null){
-            return nastavChybu("Nenalezen dětský element <mets:FLocat> elementu <mets:file>.", metsFile);
-        }
-        if(!ValuesGetter.hasAttribut(flocat, "xlink:href")){
-            return nastavChybu("Element <mets:FLocat> neobsahuje atribut xlink:href.", flocat);
-        }
-        String xlinkHref = ValuesGetter.getValueOfAttribut(flocat, "xlink:href"); // komponenty/jmenosouboru
-        xlinkHref = HelperString.replaceSeparators(xlinkHref);
-        String cestaKeKomponente = SIP_MAIN_helper.getCesta_komponenty(context.getSip());
-        File file = new File(cestaKeKomponente);
-        file = new File(file.getParentFile().getAbsolutePath() + File.separator + xlinkHref);
-        if(!file.exists()){
-        	return nastavChybu("Nenalezena příslušná komponenta v složce komponenty.", getMistoChyby(flocat) + " Soubor: " + xlinkHref + ".");
-        }
-        String velikost = String.valueOf(file.length());
-        if(!velikost.equals(hodnotaVelikosti)){
-            return nastavChybu("Velikost komponenty není totožná s metadaty.", getMistoChyby(metsFile) + " Komponenta: " + file.getName() + ".");
-        }
-        return true;
-	}
-
+    }
 }
