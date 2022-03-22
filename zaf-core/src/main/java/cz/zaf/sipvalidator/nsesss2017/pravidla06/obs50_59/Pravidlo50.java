@@ -1,15 +1,16 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.util.List;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
-public class Pravidlo50 extends K06PravidloBaseOld {
+public class Pravidlo50 extends K06PravidloBase {
 
     static final public String OBS50 = "obs50";
 
@@ -22,21 +23,19 @@ public class Pravidlo50 extends K06PravidloBaseOld {
 
     //OBSAHOVÁ č.50 Pokud existuje jakýkoli element <mets:file>, každý obsahuje právě jeden dětský element <mets:FLocat>.",
     @Override
-    protected boolean kontrolaPravidla() {
+    protected void kontrola() {
         List<Element> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);
         for (Element metsFile : nodeListMetsFile) {
-            List<Node> childNodes = ValuesGetter.getChildNodes(metsFile);
-            if(childNodes.size()==0) {
-                return nastavChybu("Element <mets:file> nemá žádný dětský element <mets:FLocat>.", metsFile);
+            List<Element> childNodes = ValuesGetter.getChildNodes(metsFile);
+            if (childNodes.isEmpty()) {
+                nastavChybu(BaseCode.CHYBI_ELEMENT, "Element <mets:file> nemá žádný dětský element <mets:FLocat>.", metsFile);
             }
-            if(childNodes.size()>1) {
-                return nastavChybu("Element <mets:file> má více dětský elementů, očekáván je právě jeden <mets:FLocat>.", metsFile);
+            if (childNodes.size() > 1) {
+                nastavChybu(BaseCode.NEPOVOLENY_ELEMENT, "Element <mets:file> má více dětských elementů, očekáván je právě jeden <mets:FLocat>.", metsFile);
             }
             if (!"mets:FLocat".equals(childNodes.get(0).getNodeName())) {
-                return nastavChybu("Element <mets:file> neobsahuje právě jeden element <mets:FLocat>.", metsFile);
+                nastavChybu(BaseCode.CHYBI_ELEMENT, "Element <mets:file> neobsahuje právě jeden element <mets:FLocat>.", metsFile);
             }
         }
-        return true;
     }
-
 }

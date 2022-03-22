@@ -1,5 +1,6 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,10 +10,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
-public class Pravidlo56 extends K06PravidloBaseOld {
+public class Pravidlo56 extends K06PravidloBase {
 
     static final public String OBS56 = "obs56";
 
@@ -25,37 +26,35 @@ public class Pravidlo56 extends K06PravidloBaseOld {
 
     //OBSAHOVÁ č.56 Pokud existuje jakýkoli element <mets:fptr>, každý obsahuje atribut FILEID s hodnotou, která odpovídá hodnotě atributu ID elementu <mets:file> příslušné komponenty. Příslušnost vyjadřuje stejná hodnota atributu DMDID rodičovského elementu <mets:div> a elementu <mets:file>.",
     @Override
-    protected boolean kontrolaPravidla() {
+    protected void kontrola() {
         List<Element> nodeListMetsFptr = metsParser.getNodes(MetsElements.FPTR);
-        if (nodeListMetsFptr.size() == 0) {
-            return true;
-        }
+        if (!nodeListMetsFptr.isEmpty()) {
 
-        Map<String, Node> fptrFileIdMap = new HashMap<>();
-        for (Element metsFptr : nodeListMetsFptr) {
-            String fileId = ValuesGetter.getValueOfAttribut(metsFptr, "FILEID");
-            if (StringUtils.isEmpty(fileId)) {
-                return nastavChybu("Element <mets:fptr> neobsahuje atribut FILEID.", metsFptr);
+            Map<String, Node> fptrFileIdMap = new HashMap<>();
+            for (Element metsFptr : nodeListMetsFptr) {
+                String fileId = ValuesGetter.getValueOfAttribut(metsFptr, "FILEID");
+                if (StringUtils.isEmpty(fileId)) {
+                    nastavChybu(BaseCode.CHYBI_ATRIBUT, "Element <mets:fptr> neobsahuje atribut FILEID.", metsFptr);
+                }
+                fptrFileIdMap.put(fileId, metsFptr);
+                // TODO: Check if multiple fptr do not have same FILEID
             }
-            fptrFileIdMap.put(fileId, metsFptr);
-            // TODO: Check if multiple fptr do not have same FILEID
-        }
 
-        List<Element> nodeListFile = metsParser.getNodes(MetsElements.FILE);
-        if (nodeListFile.size() == 0) {
-            return nastavChybu("Nenalezen element <mets:file>.");
+            List<Element> nodeListFile = metsParser.getNodes(MetsElements.FILE);
+            if (nodeListFile.isEmpty()) {
+                nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <mets:file>.");
+            }
+            for (Element metsFile : nodeListFile) {
+                String idFile = ValuesGetter.getValueOfAttribut(metsFile, "ID");
+                if (StringUtils.isEmpty(idFile)) {
+                    nastavChybu(BaseCode.CHYBI_ATRIBUT, "Element <mets:file> neobsahuje atribut ID.", metsFile);
+                }
+                Node fptrNode = fptrFileIdMap.get(idFile);
+                if (fptrNode == null) {
+                    nastavChybu(BaseCode.CHYBI_ELEMENT, "K elementu <mets:file> nenalezen odpovídající element <mets:FLocat>.", metsFile);
+                }
+            }
         }
-        for (Element metsFile : nodeListFile) {
-            String idFile = ValuesGetter.getValueOfAttribut(metsFile, "ID");
-            if(StringUtils.isEmpty(idFile)) {
-                return nastavChybu("Element <mets:file> neobsahuje atribut ID.", metsFile);
-            }
-            Node fptrNode = fptrFileIdMap.get(idFile);
-            if(fptrNode==null) {
-                return nastavChybu("K elementu <mets:file> nenalezen odpovídající element <mets:FLocat>.", metsFile);
-            }
-        }        
-        return true;
     }
 
 }

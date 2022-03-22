@@ -1,14 +1,15 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.helper.HelperString;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 
-public class Pravidlo57 extends K06PravidloBaseOld {
+public class Pravidlo57 extends K06PravidloBase {
 
     static final public String OBS57 = "obs57";
 
@@ -21,18 +22,17 @@ public class Pravidlo57 extends K06PravidloBaseOld {
 
     //OBSAHOVÁ č.57 Jakýkoli element <nsesss:Identifikator> obsahuje neprázdnou hodnotu.",
     @Override
-    protected boolean kontrolaPravidla() {
+    protected void kontrola() {
         List<Element> identifikatory = metsParser.getIdentifikatory();
         if (CollectionUtils.isEmpty(identifikatory)) {
-            return nastavChybu("Nenalezen žádný element <nsesss:Identifikator>.");
+            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen žádný element <nsesss:Identifikator>.");
         }
         for (Element identifikator : identifikatory) {
             String str = identifikator.getTextContent();
             if (!HelperString.hasContent(str)) {
-                return nastavChybu("Element <nsesss:Identifikator> obsahuje prázdnou hodnotu.", identifikator);
+                nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element <nsesss:Identifikator> obsahuje prázdnou hodnotu.", identifikator);
             }
         }
-        return true;
     }
 
 }

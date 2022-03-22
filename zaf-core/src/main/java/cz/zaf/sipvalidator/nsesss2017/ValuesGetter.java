@@ -220,6 +220,22 @@ public class ValuesGetter {
     
     }
 
+        public static List<Element> getChildNodes(Element parentElement){
+        if (parentElement == null) {
+            return Collections.emptyList();
+        }
+        List<Element> list = new ArrayList<>();
+        NodeList childNodes = parentElement.getChildNodes();
+        int pocetDeti = childNodes.getLength();
+        for (int i = 0; i < pocetDeti; i++) {
+            Node childNode = childNodes.item(i);
+            if (childNode.getNodeType() == Node.ELEMENT_NODE) {
+                list.add((Element) childNode);
+            }
+        }
+        return list;
+    }
+    
     /**
      * Vrati seznam uzlu s danym jmenem
      * 

@@ -14,6 +14,9 @@ public enum BaseCode implements ErrorCode {
     /**
      * TODO: Dopsat pravidla užití kódů
      */
+    
+    DUPLICITA("Nalezena nepovolená duplicita entity, elementu, hodnoty..."),
+    
     CHYBA_KRIZVEHO_ODKAZU("Křížový odkaz neplní správně svou funkci"),
     
     CHYBI_ELEMENT("Chybí element"),
@@ -28,6 +31,10 @@ public enum BaseCode implements ErrorCode {
 
     CHYBNA_HODNOTA_ATRIBUTU("Chybná hodnota atributu"),
 
+    CHYBNA_HODNOTA_ELEMENTU("Chybná hodnota elementu"),
+    
+    CHYBNY_ELEMENT("Chybný element"),
+    
     CHYBI_KOMPONENTA("Chybí soubor odpovídající komponentě"),
 
     CHYBNA_KOMPONENTA("Chyba v komponentě");
