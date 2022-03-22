@@ -20,6 +20,7 @@ public class NsessV3 {
     public final static String DATUMU_ZAVRENI = "nsesss:DatumUzavreni";
     public final static String DATUM_VYTVORENI = "nsesss:DatumVytvoreni";
     public final static String DOKUMENT = "nsesss:Dokument";
+    public final static String DOKUMENTY = "nsesss:Dokumenty";
     public final static String DORUCENE_MNOZSTVI = "nsesss:DoruceneMnozstvi";
     public final static String DORUCENY_DOKUMENT = "nsesss:DorucenyDokument";
     public final static String DIL = "nsesss:Dil";

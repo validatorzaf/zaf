@@ -1,18 +1,18 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.util.List;
 
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
-public class Pravidlo69 extends K06PravidloBaseOld {
-
+public class Pravidlo69 extends K06PravidloBase {
+    
     static final public String OBS69 = "obs69";
-
+    
     public Pravidlo69() {
         super(OBS69,
                 "Pokud je základní entitou dokument (<nsesss:Dokument>), potom její element <nsesss:EvidencniUdaje> obsahuje dětský element <nsesss:Vyrizeni>.",
@@ -22,21 +22,20 @@ public class Pravidlo69 extends K06PravidloBaseOld {
 
     //OBSAHOVÁ č.69 Pokud je základní entitou dokument (<nsesss:Dokument>), potom její element <nsesss:EvidencniUdaje> obsahuje dětský element <nsesss:Vyrizeni>.",
     @Override
-    protected boolean kontrolaPravidla() {
+    protected void kontrola() {
         List<Element> zakladniEntity = predpokladZakladniEntity();
-        if(zakladniEntity==null) {
-            return false;
+        if (zakladniEntity == null) {
+            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezena žádná základní entita.");
         }
         
         for (Element ze : zakladniEntity) {
-            if (ze.getNodeName().equals("nsesss:Dokument")) {
-                Node node = ValuesGetter.getXChild(ze, NsessV3.EVIDENCNI_UDAJE, NsessV3.VYRIZENI);
-                if (node == null) {
-                    return nastavChybu("Nenalezen element <nsesss:Vyrizeni>. " + getJmenoIdentifikator(ze),
-                                       ze);
+            if (ze.getNodeName().equals(NsessV3.DOKUMENT)) {
+                Element elVyrizeni = ValuesGetter.getXChild(ze, NsessV3.EVIDENCNI_UDAJE, NsessV3.VYRIZENI);
+                if (elVyrizeni == null) {
+                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Vyrizeni>. " + getJmenoIdentifikator(ze),
+                            ze, kontrola.getEntityId(ze));
                 }
             }
         }
-        return true;
     }
 }

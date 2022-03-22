@@ -17,83 +17,81 @@ import cz.zaf.sipvalidator.nsesss2017.EntityId.DruhEntity;
 import cz.zaf.sipvalidator.sip.ChybaPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
-
+import java.util.ArrayList;
 
 /**
  * Obsahova kontrola
- * 
+ *
  */
 public class K06_Obsahova
-        extends KontrolaBase
-{
-	
+        extends KontrolaBase {
+
     static final public String NAME = "kontrola obsahu";
 
-	SipInfo sipSoubor;
-	private ObsahovePravidlo[] seznamPravidel;
+    SipInfo sipSoubor;
+    private ObsahovePravidlo[] seznamPravidel;
 
     MetsParser metsParser;
 
     private List<Element> zakladniEntity;
-    
+
     /**
      * Mapa kontrol
      */
     Map<String, ObsahovePravidlo> kontroly = new HashMap<>();
-       
+
     public K06_Obsahova(ObsahovePravidlo[] obsahovaPravidla) {
-    	this.seznamPravidel = obsahovaPravidla;
-    } 
-            
+        this.seznamPravidel = obsahovaPravidla;
+    }
+
     public String getJmenoIdentifikator(Element node) {
-        if(node != null){
+        if (node != null) {
             Element entity = getEntity(node);
             return getJmeno(entity) + " " + getIdentifikatory(entity) + ".";
         }
         return "";
     }
-    
-    private Element getEntity(Element node) {
+
+    public Element getEntity(Element node) {
         String nodeName = node.getNodeName();
-        if(!isMainEnetity(nodeName)){
+        if (!isMainEnetity(nodeName)) {
             return getEntity((Element) node.getParentNode());
-        }
-        else{
+        } else {
             return node;
         }
     }
-    
-    private boolean isMainEnetity(String nodeName){
-        boolean bol = (nodeName.equals("nsesss:SpisovyPlan") || nodeName.equals("nsesss:VecnaSkupina") || nodeName.equals("TypovySpis") || nodeName.equals("nsesss:Soucast") || nodeName.equals("nsesss:Dil") || nodeName.equals("nsesss:Spis") || nodeName.equals("nsesss:Dokument"));  
+
+    private boolean isMainEnetity(String nodeName) {
+        boolean bol = (nodeName.equals("nsesss:SpisovyPlan") || nodeName.equals("nsesss:VecnaSkupina") || nodeName.equals("TypovySpis") || nodeName.equals("nsesss:Soucast") || nodeName.equals("nsesss:Dil") || nodeName.equals("nsesss:Spis") || nodeName.equals("nsesss:Dokument"));
         return bol;
     }
-    
+
     public EntityId getEntityId(Element node) {
         String nodename = node.getNodeName();
         Node identNode;
         DruhEntity druhEntity;
         switch (nodename) {
-        case NsessV3.SPISOVY_PLAN:
-            identNode = ValuesGetter.getXChild(node, NsessV3.IDENTIFIKATOR);
-            druhEntity = DruhEntity.SPISOVY_PLAN;
-            break;
-        case NsessV3.DOKUMENT:
-            identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
-                                               "nsesss:Identifikace", NsessV3.IDENTIFIKATOR);
-            druhEntity = DruhEntity.DOKUMENT;
-            break;
-        case NsessV3.SPIS:
-            identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
-                                               "nsesss:Identifikace", NsessV3.IDENTIFIKATOR);
-            druhEntity = DruhEntity.SPIS;
-            break;
-        case NsessV3.DIL:
-            identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
-                                               "nsesss:Identifikace", NsessV3.IDENTIFIKATOR);
-            druhEntity = DruhEntity.DIL;
-            break;
-        default:
-            return null;
+            case NsessV3.SPISOVY_PLAN:
+                identNode = ValuesGetter.getXChild(node, NsessV3.IDENTIFIKATOR);
+                druhEntity = DruhEntity.SPISOVY_PLAN;
+                break;
+            case NsessV3.DOKUMENT:
+                identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
+                        "nsesss:Identifikace", NsessV3.IDENTIFIKATOR);
+                druhEntity = DruhEntity.DOKUMENT;
+                break;
+            case NsessV3.SPIS:
+                identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
+                        "nsesss:Identifikace", NsessV3.IDENTIFIKATOR);
+                druhEntity = DruhEntity.SPIS;
+                break;
+            case NsessV3.DIL:
+                identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
+                        "nsesss:Identifikace", NsessV3.IDENTIFIKATOR);
+                druhEntity = DruhEntity.DIL;
+                break;
+            default:
+                return null;
         }
         String hodnota, zdroj;
         if (identNode == null) {
@@ -108,31 +106,43 @@ public class K06_Obsahova
 
     }
 
+    public List<EntityId> getEntityId(List<Element> listEl) {
+        List<EntityId> listEntityIds = new ArrayList<>();
+        listEl.stream().map((el) -> getEntityId(el)).forEachOrdered((entId) -> {
+            listEntityIds.add(entId);
+        });
+        return listEntityIds;
+    }
+
     public String getIdentifikatory(Element node) {
         String nodename = node.getNodeName();
         String hodnota = "nenalezeno", zdroj = "nenalezeno";
         Node identifikator;
-        if(nodename.equals(NsessV3.SPISOVY_PLAN)){
+        if (nodename.equals(NsessV3.SPISOVY_PLAN)) {
             identifikator = ValuesGetter.getXChild(node, NsessV3.IDENTIFIKATOR);
-            if(identifikator!= null){
+            if (identifikator != null) {
                 hodnota = identifikator.getTextContent();
                 boolean ma = ValuesGetter.hasAttribut(identifikator, "zdroj");
-                if(ma) zdroj = ValuesGetter.getValueOfAttribut(identifikator, "zdroj");
-                return "(Ident. hodnota: "+ hodnota + ", zdroj: " + zdroj + ")";
+                if (ma) {
+                    zdroj = ValuesGetter.getValueOfAttribut(identifikator, "zdroj");
+                }
+                return "(Ident. hodnota: " + hodnota + ", zdroj: " + zdroj + ")";
             }
         }
-        identifikator = ValuesGetter.getXChild(node,NsessV3.EVIDENCNI_UDAJE, 
-                                               "nsesss:Identifikace", NsessV3.IDENTIFIKATOR);
-        if(identifikator!= null){
+        identifikator = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
+                "nsesss:Identifikace", NsessV3.IDENTIFIKATOR);
+        if (identifikator != null) {
             hodnota = identifikator.getTextContent();
             boolean ma = ValuesGetter.hasAttribut(identifikator, "zdroj");
-            if(ma) zdroj = ValuesGetter.getValueOfAttribut(identifikator, "zdroj");
-            return "(Ident. hodnota: "+ hodnota + ", zdroj: " + zdroj + ")";
+            if (ma) {
+                zdroj = ValuesGetter.getValueOfAttribut(identifikator, "zdroj");
+            }
+            return "(Ident. hodnota: " + hodnota + ", zdroj: " + zdroj + ")";
         }
-                
-        return "(Ident. hodnota: "+ hodnota + ", zdroj: " + zdroj + ")";
+
+        return "(Ident. hodnota: " + hodnota + ", zdroj: " + zdroj + ")";
     }
-    
+
     public String getMistoChyby(Node node) {
         if (node == null) {
             return null;
@@ -150,26 +160,32 @@ public class K06_Obsahova
         sb.append(", element <").append(node.getNodeName()).append(">.");
         return sb.toString();
     }
-    
-    private String getJmeno(Node node){
+
+    private String getJmeno(Node node) {
         String jmeno = node.getNodeName();
-        switch(jmeno){
-            case "nsesss:SpisovyPlan": return "Spisový plán";
-            case "nsesss:VecnaSkupina": return "Věcná skupina";
-            case "nsesss:TypovySpis": return "Typový spis";
-            case "nsesss:Soucast": return "Součást";
-            case "nsesss:Dil": return "Díl";
-            case "nsesss:Spis": return "Spis";
-            case "nsesss:Dokument": return "Dokument";
+        switch (jmeno) {
+            case "nsesss:SpisovyPlan":
+                return "Spisový plán";
+            case "nsesss:VecnaSkupina":
+                return "Věcná skupina";
+            case "nsesss:TypovySpis":
+                return "Typový spis";
+            case "nsesss:Soucast":
+                return "Součást";
+            case "nsesss:Dil":
+                return "Díl";
+            case "nsesss:Spis":
+                return "Spis";
+            case "nsesss:Dokument":
+                return "Dokument";
         }
         return "";
     }
-    
+
     /**
-     * 
+     *
      * @param idPravidla
-     * @param errorCode
-     *            kod chyby
+     * @param errorCode kod chyby
      * @param textPravidla
      * @param detailChyby
      * @param obecnyPopisChyby
@@ -177,12 +193,12 @@ public class K06_Obsahova
      * @param zdroj
      */
     void pridejChybu(String idPravidla,
-                     ErrorCode errorCode,
-                     String textPravidla,
-                     String detailChyby,
-                     String obecnyPopisChyby,
-                     String mistoChyby,
-                     String zdroj) {
+            ErrorCode errorCode,
+            String textPravidla,
+            String detailChyby,
+            String obecnyPopisChyby,
+            String mistoChyby,
+            String zdroj) {
         ChybaPravidla p = new ChybaPravidla(idPravidla,
                 textPravidla,
                 detailChyby,
@@ -193,48 +209,47 @@ public class K06_Obsahova
         vysledekKontroly.add(p);
 
     }
-                    
+
     // na konci oddělovač nehlídá
     static public boolean spisZnakObsahujeOddelovac(String spisovy_znak) {
-        for(int i = 0; i < spisovy_znak.length()-1; i++){
+        for (int i = 0; i < spisovy_znak.length() - 1; i++) {
             char c = spisovy_znak.charAt(i);
-            if(c == ' ' || c == '-' || c == '_' || c == '\\' || c == '/' || c == '.'){
+            if (c == ' ' || c == '-' || c == '_' || c == '\\' || c == '/' || c == '.') {
                 return true;
             }
-            
+
         }
-        
+
         return false;
     }
 
-
-	@Override
+    @Override
     public void provedKontrolu() {
         // Nastaveni promenych pro kontroly
         // bude nutne casem prepracovat
         this.metsParser = ctx.getMetsParser();
         this.zakladniEntity = metsParser.getZakladniEntity();
-		
-		this.sipSoubor = ctx.getSip();
 
-		for (int i = 0; i < seznamPravidel.length; i++) {
-			ObsahovePravidlo pravidlo = seznamPravidel[i];
+        this.sipSoubor = ctx.getSip();
 
-	        String kodPravidla = pravidlo.getKodPravidla();
-	        // skip excluded checks
-	        if (ctx.isExcluded(kodPravidla)) {
-	            continue;
-	        }
+        for (int i = 0; i < seznamPravidel.length; i++) {
+            ObsahovePravidlo pravidlo = seznamPravidel[i];
 
-	        pravidlo.kontrolaPravidla(this);
-		}
-		
-	}
+            String kodPravidla = pravidlo.getKodPravidla();
+            // skip excluded checks
+            if (ctx.isExcluded(kodPravidla)) {
+                continue;
+            }
+
+            pravidlo.kontrolaPravidla(this);
+        }
+
+    }
 
     @Override
-	public String getNazev() {
-		return NAME;
-	}
+    public String getNazev() {
+        return NAME;
+    }
 
     @Override
     TypUrovenKontroly getUrovenKontroly() {
@@ -248,5 +263,5 @@ public class K06_Obsahova
     public MetsParser getMetsParser() {
         return metsParser;
     }
-    
+
 }

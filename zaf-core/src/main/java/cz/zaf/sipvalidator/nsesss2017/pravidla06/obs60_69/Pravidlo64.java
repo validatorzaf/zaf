@@ -1,11 +1,11 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.util.List;
 
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -19,7 +19,7 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 // <nsesss:RokSpousteciUdalosti>, 1 a hodnoty elementu <nsesss:SkartacniLhuta>
 // uvedeného v rodičovském elementu <nsesss:SkartacniRezim>.
 //
-public class Pravidlo64 extends K06PravidloBaseOld {
+public class Pravidlo64 extends K06PravidloBase {
 
     static final public String OBS64 = "obs64";
 
@@ -31,66 +31,59 @@ public class Pravidlo64 extends K06PravidloBaseOld {
     }
 
     @Override
-    protected boolean kontrolaPravidla() {
+    protected void kontrola() {
         List<Element> zakladniEntity = predpokladZakladniEntity();
         if (zakladniEntity == null) {
-            return false;
+            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezena žádná základní entita.");
         }
         for (int i = 0; i < zakladniEntity.size(); i++) {
-            Element zakladnientita = zakladniEntity.get(i);
-            if (zakladnientita.getNodeName().equals("nsesss:Dokument")) {
-                Element vyrazovani = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE,
-                                                            NsessV3.VYRAZOVANI);
-                if (vyrazovani == null) {
-                    return nastavChybu("Nenalezen element <nsesss:Vyrazovani>. "
-                            + getJmenoIdentifikator(zakladnientita),
-                                       zakladnientita);
+            Element elZakladniEntita = zakladniEntity.get(i);
+            if (elZakladniEntita.getNodeName().equals(NsessV3.DOKUMENT)) {
+                Element elvyrazovani = ValuesGetter.getXChild(elZakladniEntita, NsessV3.EVIDENCNI_UDAJE, NsessV3.VYRAZOVANI);
+                if (elvyrazovani == null) {
+                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Vyrazovani>. " + getJmenoIdentifikator(elZakladniEntita),
+                            elZakladniEntita, kontrola.getEntityId(elZakladniEntita));
                 }
-                Element skartacniRezim = ValuesGetter.getXChild(vyrazovani, "nsesss:SkartacniRezim");
-                if (skartacniRezim == null) {
-                    return nastavChybu("Nenalezen element <nsesss:SkartacniRezim>. "
-                            + getJmenoIdentifikator(zakladnientita),
-                                       zakladnientita);
+                Element elSkartacniRezim = ValuesGetter.getXChild(elvyrazovani, NsessV3.SKARTACNI_REZIM);
+                if (elSkartacniRezim == null) {
+                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:SkartacniRezim>. " + getJmenoIdentifikator(elZakladniEntita),
+                            elZakladniEntita, kontrola.getEntityId(elZakladniEntita));
                 }
-                Element skartacniLhuta_node = ValuesGetter.getXChild(skartacniRezim, "nsesss:SkartacniLhuta");
-                if (skartacniLhuta_node == null) {
-                    return nastavChybu("Nenalezen element <nsesss:SkartacniLhuta>. "
-                            + getJmenoIdentifikator(zakladnientita),
-                                       skartacniRezim);
+                Element elSkartacniLhuta = ValuesGetter.getXChild(elSkartacniRezim, NsessV3.SKARTACNI_LHUTA);
+                if (elSkartacniLhuta == null) {
+                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:SkartacniLhuta>. " + getJmenoIdentifikator(elZakladniEntita),
+                            elSkartacniRezim, kontrola.getEntityId(elZakladniEntita));
                 }
-                String skartacniLhuta = skartacniLhuta_node.getTextContent();
-                Node rso = ValuesGetter.getXChild(vyrazovani, "nsesss:DataceVyrazeni", "nsesss:RokSkartacniOperace");
-                Node rsu = ValuesGetter.getXChild(vyrazovani, "nsesss:DataceVyrazeni", "nsesss:RokSpousteciUdalosti");
-                if (rso == null) {
-                    return nastavChybu("Nenalezen element <nsesss:RokSkartacniOperace>. "
-                            + getJmenoIdentifikator(zakladnientita),
-                                       zakladnientita);
+                String hodnotaElSkartacniLhuta = elSkartacniLhuta.getTextContent();
+                Element elRokSkartOperace = ValuesGetter.getXChild(elvyrazovani, NsessV3.DATACE_VYRAZENI, NsessV3.ROK_SKARTACNI_OPERACE);
+                Element elRokSousteciUdalosti = ValuesGetter.getXChild(elvyrazovani, NsessV3.DATACE_VYRAZENI, NsessV3.ROK_SPOUSTECI_UDALOSTI);
+                if (elRokSkartOperace == null) {
+                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:RokSkartacniOperace>. " + getJmenoIdentifikator(elZakladniEntita),
+                            elZakladniEntita, kontrola.getEntityId(elZakladniEntita));
                 }
-                if (rsu == null) {
-                    return nastavChybu("Nenalezen element <nsesss:RokSpousteciUdalosti>. "
-                            + getJmenoIdentifikator(zakladnientita),
-                                       zakladnientita);
+                if (elRokSousteciUdalosti == null) {
+                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:RokSpousteciUdalosti>. " + getJmenoIdentifikator(elZakladniEntita),
+                            elZakladniEntita, kontrola.getEntityId(elZakladniEntita));
                 }
-                String rokSkartacniOperace = rso.getTextContent();
-                String rokSpousteciUdalosti = rsu.getTextContent();
+
+                String rokSkartacniOperace = elRokSkartOperace.getTextContent();
+                String rokSpousteciUdalosti = elRokSousteciUdalosti.getTextContent();
 
                 try {
                     int hodnotaOperace = Integer.parseInt(rokSkartacniOperace);
-                    int hodnotaLhuta = Integer.parseInt(skartacniLhuta);
+                    int hodnotaLhuta = Integer.parseInt(hodnotaElSkartacniLhuta);
                     int hodnotaUdalosti = Integer.parseInt(rokSpousteciUdalosti);
                     if (hodnotaOperace < (hodnotaLhuta + hodnotaUdalosti + 1)) {
-                        return nastavChybu("Rok skartační operace: " + hodnotaOperace + ", lhůta: " + hodnotaLhuta
-                                + ", událost: " + hodnotaUdalosti + ". " + getJmenoIdentifikator(zakladnientita),
-                                           zakladnientita);
+                        nastavChybu(BaseCode.CHYBA, "Rok skartační operace: " + hodnotaOperace + ", lhůta: " + hodnotaLhuta
+                                + ", událost: " + hodnotaUdalosti + ". " + getJmenoIdentifikator(elZakladniEntita),
+                                elZakladniEntita, kontrola.getEntityId(elZakladniEntita));
                     }
                 } catch (NumberFormatException e) {
-                    return nastavChybu("Zápis roku je uveden ve špatném formátu. "
-                            + getJmenoIdentifikator(zakladnientita),
-                                       zakladnientita);
+                    nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Zápis roku je uveden ve špatném formátu. " + getJmenoIdentifikator(elZakladniEntita),
+                            elZakladniEntita, kontrola.getEntityId(elZakladniEntita));
                 }
 
             }
         }
-        return true;
     }
 }

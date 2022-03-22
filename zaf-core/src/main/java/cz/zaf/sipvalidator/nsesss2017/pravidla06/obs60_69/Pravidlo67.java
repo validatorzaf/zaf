@@ -1,5 +1,6 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -8,9 +9,8 @@ import java.util.Map;
 import java.util.Set;
 
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -19,10 +19,10 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 // <nsesss:Vyrazovani>, <nsesss:SkartacniRezim> obsahuje element <nsesss:SkartacniZnak> hodnotu, 
 // která je rovna nejvyššímu skartačnímu znaku dětské entity dokument (<nsesss:Dokument>), 
 // přičemž priorita skartačních znaků od nejvyšší po nejnižší je v pořadí A, V, S.",
-public class Pravidlo67 extends K06PravidloBaseOld {
-
+public class Pravidlo67 extends K06PravidloBase {
+    
     static final public String OBS67 = "obs67";
-
+    
     public Pravidlo67() {
         super(OBS67,
                 "Pokud je základní entitou díl (<nsesss:Dil>) nebo spis (<nsesss:Spis>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:SkartacniRezim> obsahuje element <nsesss:SkartacniZnak> hodnotu, která je rovna nejvyššímu skartačnímu znaku dětské entity dokument (<nsesss:Dokument>), přičemž priorita skartačních znaků od nejvyšší po nejnižší je v pořadí A, V, S.",
@@ -31,112 +31,111 @@ public class Pravidlo67 extends K06PravidloBaseOld {
     }
     
     @Override
-    protected boolean kontrolaPravidla() {
+    protected void kontrola() {
         List<Element> zakladniEntity = predpokladZakladniEntity();
         if (zakladniEntity == null) {
-            return false;
+            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezena žádná základní entita.");
         }
-
-        Set<Node> zakladniDokumenty = new HashSet<>();
+        
+        Set<Element> zakladniDokumenty = new HashSet<>();
         List<Element> spisyDily = new ArrayList<>();
         for (Element zakladnientita : zakladniEntity) {
             String zeName = zakladnientita.getNodeName();
             if (NsessV3.SPIS.equals(zeName) || NsessV3.DIL.equals(zeName)) {
                 spisyDily.add(zakladnientita);
-            } else 
-            if (NsessV3.DOKUMENT.equals(zeName)) {
+            } else if (NsessV3.DOKUMENT.equals(zeName)) {
                 zakladniDokumenty.add(zakladnientita);
-            }            
-        }
-        if(spisyDily.size()==0) {
-            return true;
-        }
-        
-        List<Element> dokumenty = metsParser.getDokumenty();
-        if (dokumenty == null || dokumenty.size() == 0) {
-            return nastavChybu("Nenalezen žádný dětský element <nsesss:Dokument>.", spisyDily);
-        }
-        // priprava sk. znaku dle zakladnich entit
-        Map<Node, Set<String> > skZnaky = new HashMap<>();
-        for (Element dokument : dokumenty) {
-            // zakladni dokumenty se nezahrnuji
-            if(zakladniDokumenty.contains(dokument)) {
-                continue;
-            }
-            
-            // nalezeni rodicovske zakl. entity
-            Element dokumentyNode = ValuesGetter.getXParent(dokument, "nsesss:Dokumenty");
-            if(dokumentyNode==null) {
-                return nastavChybu("Nenalezen rodičovský element <nsesss:Dokumenty> elementu <nsesss:Dokument>. "
-                        + getJmenoIdentifikator(dokument), dokument);
-            }
-            Node rodicNode = dokumentyNode.getParentNode();
-            if(rodicNode==null) {
-                return nastavChybu("Nenalezen rodičovský element elementu <nsesss:Dokument>. "
-                        + getJmenoIdentifikator(dokument), dokument);
-            }
-            Set<String> skZnakyDokumentu = skZnaky.computeIfAbsent(rodicNode, n -> new HashSet<>() );
-            
-            Node nd = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, "nsesss:Vyrazovani",
-                                             "nsesss:SkartacniRezim", "nsesss:SkartacniZnak");
-            if (nd == null) {
-                return nastavChybu("Nenalezen dětský element <nsesss:SkartacniZnak> elementu <nsesss:Dokument>. "
-                        + getJmenoIdentifikator(dokument), dokument);
-            }
-            String znak = nd.getTextContent();
-            skZnakyDokumentu.add(znak);
-        }
-        
-        for (Element spisDil : spisyDily) {
-            Set<String> skZnakyDokumentu = skZnaky.get(spisDil);
-            if(skZnakyDokumentu==null) {
-                return nastavChybu("Nenalezeny žádné <nsesss:SkartacniZnak> dětských elementu <nsesss:Dokument> základní entity."
-                        + getJmenoIdentifikator(spisDil), spisDil);                
-            }
-            if(!kontrola(spisDil, skZnakyDokumentu)) {
-                return false;
             }
         }
+        if (!spisyDily.isEmpty()) {
+            List<Element> dokumenty = metsParser.getDokumenty();
+            if (dokumenty == null || dokumenty.isEmpty()) {
+                nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen žádný dětský element <nsesss:Dokument>.",
+                        spisyDily, kontrola.getEntityId(spisyDily));
+            }
+            // priprava sk. znaku dle zakladnich entit
+            Map<Element, Set<String>> skZnaky = new HashMap<>();
+            for (Element dokument : dokumenty) {
+                // zakladni dokumenty se nezahrnuji
+                if (zakladniDokumenty.contains(dokument)) {
+                    continue;
+                }
 
-        return true;
+                // nalezeni rodicovske zakl. entity
+                Element dokumentyNode = ValuesGetter.getXParent(dokument, NsessV3.DOKUMENTY);
+                if (dokumentyNode == null) {
+                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen rodičovský element <nsesss:Dokumenty> elementu <nsesss:Dokument>. "
+                            + getJmenoIdentifikator(dokument),
+                            dokument, kontrola.getEntityId(dokument));
+                }
+                Element rodicNode = (Element) dokumentyNode.getParentNode();
+                if (rodicNode == null) {
+                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen rodičovský element elementu <nsesss:Dokumenty>. "
+                            + getJmenoIdentifikator(dokument),
+                            dokument, kontrola.getEntityId(dokument));
+                }
+                Set<String> skZnakyDokumentu = skZnaky.computeIfAbsent(rodicNode, n -> new HashSet<>());
+                
+                Element elSkartacniZnak = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, NsessV3.VYRAZOVANI,
+                        NsessV3.SKARTACNI_REZIM, NsessV3.SKARTACNI_ZNAK);
+                if (elSkartacniZnak == null) {
+                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen dětský element <nsesss:SkartacniZnak> elementu <nsesss:Dokument>. "
+                            + getJmenoIdentifikator(dokument),
+                            dokument, kontrola.getEntityId(rodicNode));
+                }
+                String znak = elSkartacniZnak.getTextContent();
+                skZnakyDokumentu.add(znak);
+            }
+            
+            for (Element spisDil : spisyDily) {
+                Set<String> skZnakyDokumentu = skZnaky.get(spisDil);
+                if (skZnakyDokumentu == null) {
+                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen žádný element <nsesss:SkartacniZnak> dětských elementů <nsesss:Dokument> základní entity."
+                            + getJmenoIdentifikator(spisDil),
+                            spisDil, kontrola.getEntityId(spisDil));
+                }
+                kontrola(spisDil, skZnakyDokumentu);
+            }
+        }
     }
-
-    private boolean kontrola(Element zakladnientita, Set<String> skZnakyDokumentu) {
-        Node n = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, 
-                                        "nsesss:Vyrazovani",
-                                        "nsesss:SkartacniRezim", "nsesss:SkartacniZnak");
+    
+    private void kontrola(Element zakladnientita, Set<String> skZnakyDokumentu) {
+        Element n = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE,
+                NsessV3.VYRAZOVANI,
+                NsessV3.SKARTACNI_REZIM, NsessV3.SKARTACNI_ZNAK);
         if (n == null) {
-            return nastavChybu("Nenalezen dětský element <nsesss:SkartacniZnak> základní entity. "
-                    + getJmenoIdentifikator(zakladnientita), zakladnientita);
+            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen dětský element <nsesss:SkartacniZnak> základní entity. "
+                    + getJmenoIdentifikator(zakladnientita),
+                    zakladnientita, kontrola.getEntityId(zakladnientita));
         }
         String skZnakME = n.getTextContent();
-
+        
         switch (skZnakME) {
-        case "A":
-            if (!skZnakyDokumentu.contains("A")) {
-                return nastavChybu("Spis se skartačním znakem A neobsahuje žádný dokument se skartačním znakem A. "
-                        + getJmenoIdentifikator(zakladnientita), n);
-            }
-            break;
-        case "V":
-            if (skZnakyDokumentu.contains("A")) {
-                return nastavChybu("Spis se skartačním znakem V obsahuje dokument se skartačním znakem A. "
-                        + getJmenoIdentifikator(zakladnientita) + " " + getJmenoIdentifikator(zakladnientita),
-                        zakladnientita);
-            }
-            if (!skZnakyDokumentu.contains("V")) {
-                return nastavChybu("Spis se skartačním znakem V neobsahuje žádný dokument se skartačním znakem V. "
-                        + getJmenoIdentifikator(zakladnientita), n);
-            }
-            break;
-        case "S":
-            if (skZnakyDokumentu.contains("A")||skZnakyDokumentu.contains("V")) {
-                return nastavChybu("Spis se skartačním znakem S obsahuje dokument se skartačním znakem A nebo V. "
-                        + getJmenoIdentifikator(zakladnientita), zakladnientita);
-            
-            }
-            break;
+            case "A":
+                if (!skZnakyDokumentu.contains("A")) {
+                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Spis se skartačním znakem A neobsahuje žádný dokument se skartačním znakem A. "
+                            + getJmenoIdentifikator(zakladnientita),
+                            n, kontrola.getEntityId(zakladnientita));
+                }
+                break;
+            case "V":
+                if (skZnakyDokumentu.contains("A")) {
+                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Spis se skartačním znakem V obsahuje dokument se skartačním znakem A. "
+                            + getJmenoIdentifikator(zakladnientita) + " " + getJmenoIdentifikator(zakladnientita),
+                            zakladnientita, kontrola.getEntityId(zakladnientita));
+                }
+                if (!skZnakyDokumentu.contains("V")) {
+                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Spis se skartačním znakem V neobsahuje žádný dokument se skartačním znakem V. "
+                            + getJmenoIdentifikator(zakladnientita), n, kontrola.getEntityId(zakladnientita));
+                }
+                break;
+            case "S":
+                if (skZnakyDokumentu.contains("A") || skZnakyDokumentu.contains("V")) {
+                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Spis se skartačním znakem S obsahuje dokument se skartačním znakem A nebo V. "
+                            + getJmenoIdentifikator(zakladnientita), zakladnientita, kontrola.getEntityId(zakladnientita));
+                    
+                }
+                break;
         }
-        return true;
-    }    
+    }
 }
