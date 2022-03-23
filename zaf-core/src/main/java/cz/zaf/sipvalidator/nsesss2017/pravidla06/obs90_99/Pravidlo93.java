@@ -1,6 +1,7 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
+import cz.zaf.sipvalidator.helper.HelperString;
 import java.util.List;
 
 import org.w3c.dom.Element;
@@ -26,7 +27,7 @@ public class Pravidlo93 extends K06PravidloBase {
 
         for (Element nazev : nazvy) {
             String str = nazev.getTextContent();
-            if (StringUtils.isBlank(str)) {
+            if (!HelperString.hasContent(str)) {
                 Element entita = kontrola.getEntity(nazev);
                 nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element <nsesss:Nazev> obsahuje prázdnou hodnotu. " + getJmenoIdentifikator(nazev),
                         nazev, kontrola.getEntityId(entita));
