@@ -17,7 +17,7 @@ public class NsessV3 {
     public final static String DATUM_DORUCENI = "nsesss:DatumDoruceni";
     public final static String DATUM_ODESLANI = "nsesss:DatumOdeslani";
     public final static String DATUM_OTEVRENI = "nsesss:DatumOtevreni";
-    public final static String DATUMU_ZAVRENI = "nsesss:DatumUzavreni";
+    public final static String DATUM_UZAVRENI = "nsesss:DatumUzavreni";
     public final static String DATUM_VYTVORENI = "nsesss:DatumVytvoreni";
     public final static String DOKUMENT = "nsesss:Dokument";
     public final static String DOKUMENTY = "nsesss:Dokumenty";
@@ -43,6 +43,7 @@ public class NsessV3 {
     public final static String MANIPULACE = "nsesss:Manipulace";
     public final static String MATERSKA_ENTITA = "nsesss:MaterskaEntita";
     public final static String MATERSKE_ENTITY = "nsesss:MaterskeEntity";
+    public final static String MNOZSTVI = "nsesss:Mnozstvi";
     public final static String NAZEV = "nsesss:Nazev";
     public final static String NAZEV_EVIDENCEDOKUMENTU = "nsesss:NazevEvidenceDokumentu";
     public final static String NAZEV_FYZICKEOSOBY = "nsesss:NazevFyzickeOsoby";
@@ -56,6 +57,8 @@ public class NsessV3 {
     public final static String ODUVODNENI = "nsesss:Oduvodneni";
     public final static String ORGANIZACNI_UTVAR = "nsesss:OrganizacniUtvar";
     public final static String PLATNOST = "nsesss:Platnost";
+    public final static String PLATNOST_DO = "nsesss:PlatnostDo";
+    public final static String PLATNOST_OD = "nsesss:PlatnostOd";
     public final static String PLNE_URCENY_SPISOVY_ZNAK = "nsesss:PlneUrcenySpisovyZnak";
     public final static String POPIS = "nsesss:Popis";
     public final static String PORADOVE_CISLO = "nsesss:PoradoveCislo";

@@ -77,19 +77,28 @@ public class K06_Obsahova
                 break;
             case NsessV3.DOKUMENT:
                 identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
-                        "nsesss:Identifikace", NsessV3.IDENTIFIKATOR);
+                        NsessV3.IDENTIFIKACE, NsessV3.IDENTIFIKATOR);
                 druhEntity = DruhEntity.DOKUMENT;
                 break;
             case NsessV3.SPIS:
                 identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
-                        "nsesss:Identifikace", NsessV3.IDENTIFIKATOR);
+                        NsessV3.IDENTIFIKACE, NsessV3.IDENTIFIKATOR);
                 druhEntity = DruhEntity.SPIS;
                 break;
             case NsessV3.DIL:
                 identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
-                        "nsesss:Identifikace", NsessV3.IDENTIFIKATOR);
+                        NsessV3.IDENTIFIKACE, NsessV3.IDENTIFIKATOR);
                 druhEntity = DruhEntity.DIL;
                 break;
+            case NsessV3.KOMPONENTA:
+                identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
+                        NsessV3.IDENTIFIKACE, NsessV3.IDENTIFIKATOR);
+                druhEntity = DruhEntity.KOMPONENTA;
+                break;
+            case NsessV3.SKARTACNI_RIZENI:
+                identNode = ValuesGetter.getXChild(node, NsessV3.IDENTIFIKATOR);
+                druhEntity = DruhEntity.SKARTACNI_RIZENI;
+                break;    
             default:
                 return null;
         }

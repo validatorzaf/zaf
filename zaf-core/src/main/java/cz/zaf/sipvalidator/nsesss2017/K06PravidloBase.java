@@ -186,6 +186,11 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
             final EntityId entityId) {
         throw pripravChybu(errorCode, detailChyby).setMistoChyby(getMistoChyby(mistoChyby)).addEntity(entityId);
     }
+    
+    protected void nastavChybu(ErrorCode errorCode, String detailChyby, final String mistoChyby,
+            final EntityId entityId) {
+        throw pripravChybu(errorCode, detailChyby).setMistoChyby(mistoChyby).addEntity(entityId);
+    }
 
     protected void nastavChybu(ErrorCode errorCode, String detailChyby, final Node mistoChyby,
             final List<EntityId> entityIds) {

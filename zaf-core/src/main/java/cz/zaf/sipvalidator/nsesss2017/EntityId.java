@@ -14,7 +14,9 @@ public class EntityId {
         SPISOVY_PLAN,
         DIL,
         SPIS,
-        DOKUMENT
+        DOKUMENT,
+        KOMPONENTA,
+        SKARTACNI_RIZENI
     }
 
     private final String identifikator;
