@@ -1,14 +1,15 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Element;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
-public class Pravidlo92 extends K06PravidloBaseOld {
+public class Pravidlo92 extends K06PravidloBase {
 
     static final public String OBS92 = "obs92";
 
@@ -20,8 +21,9 @@ public class Pravidlo92 extends K06PravidloBaseOld {
 
     // číslo o osmi číslicích, jejichž vážený součet je dělitelný jedenácti beze zbytku
     public static boolean icoCounter(String string) {
-        if (string.length() != 8)
+        if (string.length() != 8) {
             return false;
+        }
         int posledniCislice;
         try {
             Long.parseLong(string);
@@ -37,8 +39,9 @@ public class Pravidlo92 extends K06PravidloBaseOld {
         for (int i = 0; i < string.length(); i++) {
             int cislo = Character.getNumericValue(string.charAt(i));
             soucetVsech += vaha * cislo;
-            if (i == string.length() - 2)
+            if (i == string.length() - 2) {
                 vazenySoucetIco = soucetVsech;
+            }
             vaha--;
         }
         int zbytek = soucetVsech % 11;
@@ -49,29 +52,28 @@ public class Pravidlo92 extends K06PravidloBaseOld {
 
     //OBSAHOVÁ č.92 Pokud existuje jakýkoli element <nsesss:Identifikator> s atributem zdroj s hodnotou IČ nebo IČO, hodnota obsahuje číslo o osmi číslicích, jejichž vážený součet je dělitelný jedenácti beze zbytku.",
     @Override
-    protected boolean kontrolaPravidla() {
+    protected void kontrola() {
         List<Element> identifikatory = metsParser.getIdentifikatory();
         if (CollectionUtils.isEmpty(identifikatory)) {
-            return nastavChybu("Nenalezen element <nsesss:Identifikator>.");
+            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Identifikator>.");
         }
         for (int i = 0; i < identifikatory.size(); i++) {
             Element identif = identifikatory.get(i);
+            Element entita = kontrola.getEntity(identif);
             if (!ValuesGetter.hasAttribut(identif, "zdroj")) {
-                return nastavChybu("Elementu <nsesss:Identifikátor> chybí atribut zdroj. " + getJmenoIdentifikator(
-                                                                                                                   identif),
-                                   getMistoChyby(identif));
+                nastavChybu(BaseCode.CHYBI_ATRIBUT, "Elementu <nsesss:Identifikátor> chybí atribut zdroj. " + getJmenoIdentifikator(identif),
+                        getMistoChyby(identif), kontrola.getEntityId(entita));
             }
             String str = ValuesGetter.getValueOfAttribut(identif, "zdroj");
             if (str.equals("IČ") || str.equals("IČO")) {
                 String hodnota = identif.getTextContent();
                 if (!icoCounter(hodnota)) {
-                    return nastavChybu("IČO není ve správném formátu. " + getJmenoIdentifikator(identif),
-                                       getMistoChyby(identif));
+                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "IČO není ve správném formátu. " + getJmenoIdentifikator(identif),
+                            getMistoChyby(identif), kontrola.getEntityId(entita));
 
                 }
             }
         }
-        return true;
     }
 
 }

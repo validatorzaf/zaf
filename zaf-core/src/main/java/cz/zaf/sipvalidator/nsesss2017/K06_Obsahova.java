@@ -71,6 +71,21 @@ public class K06_Obsahova
         Node identNode;
         DruhEntity druhEntity;
         switch (nodename) {
+            case NsessV3.VECNA_SKUPINA:
+                identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
+                        NsessV3.IDENTIFIKACE, NsessV3.IDENTIFIKATOR);
+                druhEntity = DruhEntity.VECNA_SKUPINA;
+                break;
+            case NsessV3.SOUCAST:
+                identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
+                        NsessV3.IDENTIFIKACE, NsessV3.IDENTIFIKATOR);
+                druhEntity = DruhEntity.SOUCAST;
+                break;
+            case NsessV3.TYPOVY_SPIS:
+                identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
+                        NsessV3.IDENTIFIKACE, NsessV3.IDENTIFIKATOR);
+                druhEntity = DruhEntity.TYPOVY_SPIS;
+                break;    
             case NsessV3.SPISOVY_PLAN:
                 identNode = ValuesGetter.getXChild(node, NsessV3.IDENTIFIKATOR);
                 druhEntity = DruhEntity.SPISOVY_PLAN;
