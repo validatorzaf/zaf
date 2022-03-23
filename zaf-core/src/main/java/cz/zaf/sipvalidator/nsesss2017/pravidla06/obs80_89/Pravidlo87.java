@@ -1,15 +1,15 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.util.List;
 
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
-public class Pravidlo87 extends K06PravidloBaseOld {
+public class Pravidlo87 extends K06PravidloBase {
 
     static final public String OBS87 = "obs87";
 
@@ -25,21 +25,20 @@ public class Pravidlo87 extends K06PravidloBaseOld {
     // Pravidlo se uplatňuje i obráceně - v případě uvedení elementu <nsesss:Prijemce> 
     // je uveden i element <nsesss:DatumOdeslani>.",
     @Override
-    protected boolean kontrolaPravidla() {
+    protected void kontrola() {
         List<Element> vyrizeni = metsParser.getNodes(NsessV3.VYRIZENI);
-        for (Element n : vyrizeni) {
-            Node datumOdeslani = ValuesGetter.getXChild(n, "nsesss:DatumOdeslani");
-            Node prijemce = ValuesGetter.getXChild(n, "nsesss:Prijemce");
+        for (Element elVyrizeni : vyrizeni) {
+            Element datumOdeslani = ValuesGetter.getXChild(elVyrizeni, NsessV3.DATUM_ODESLANI);
+            Element prijemce = ValuesGetter.getXChild(elVyrizeni, NsessV3.PRIJEMCE);
+            Element entita = kontrola.getEntity(elVyrizeni);
             if (datumOdeslani != null && prijemce == null) {
-                return nastavChybu("Nenalezen element <nsesss:Prijemce>. " + getJmenoIdentifikator(n),
-                                  n);
+                nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Prijemce>. " + getJmenoIdentifikator(elVyrizeni),
+                        elVyrizeni, kontrola.getEntityId(entita));
             }
             if (prijemce != null && datumOdeslani == null) {
-                return nastavChybu("Nenalezen element <nsesss:DatumOdeslani>. " + getJmenoIdentifikator(n),
-                                  n);
+                nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:DatumOdeslani>. " + getJmenoIdentifikator(elVyrizeni),
+                        elVyrizeni, kontrola.getEntityId(entita));
             }
         }
-        return true;
     }
-
 }

@@ -1,17 +1,17 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
-public class Pravidlo81 extends K06PravidloBaseOld {
+public class Pravidlo81 extends K06PravidloBase {
 
     static final public String OBS81 = "obs81";
 
@@ -25,30 +25,29 @@ public class Pravidlo81 extends K06PravidloBaseOld {
     //OBSAHOVÁ č.81 Pokud je v jakémkoli elementu <nsesss:UrceneCasoveObdobi> uveden dětský element <nsesss:DatumDo>, 
     // potom je jeho hodnota větší než <nsesss:DatumOd>.
     @Override
-    protected boolean kontrolaPravidla() {
+    protected void kontrola() {
         List<Element> urceneCasoveObdobi = metsParser.getNodes(NsessV3.URCENE_CASOVE_OBDOBI);
-        for (Element n : urceneCasoveObdobi) {
-            Node nodeDo = ValuesGetter.getXChild(n, "nsesss:DatumDo");
+        for (Element elUrcCasObdobi : urceneCasoveObdobi) {
+            Element nodeDo = ValuesGetter.getXChild(elUrcCasObdobi, NsessV3.DATUM_DO);
             if (nodeDo != null) {
-                Node nodeOd = ValuesGetter.getXChild(n, "nsesss:DatumOd");
+                Element nodeOd = ValuesGetter.getXChild(elUrcCasObdobi, NsessV3.DATUM_OD);
                 if (nodeOd == null) {
-                    return nastavChybu("Nenalezen element <nsesss:DatumOd>. " + getJmenoIdentifikator(n),
-                                      n);
+                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:DatumOd>. " + getJmenoIdentifikator(elUrcCasObdobi),
+                            elUrcCasObdobi);
                 }
                 try {
                     Date dateOd = ValuesGetter.vytvorDate(nodeOd, "yyyy-MM-dd");
                     Date dateDo = ValuesGetter.vytvorDate(nodeDo, "yyyy-MM-dd");
                     if (!dateOd.before(dateDo)) {
-                        return nastavChybu("Nesplněna podmínka pravidla. OD: " + dateOd + ". DO: " + dateDo + ". "
-                                + getJmenoIdentifikator(n), getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo));
+                        nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Nesplněna podmínka pravidla. OD: " + dateOd + ". DO: " + dateDo + ". "
+                                + getJmenoIdentifikator(elUrcCasObdobi), getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo));
                     }
                 } catch (ParseException ex) {
-                    return nastavChybu("Hodnoty dat jsou v nepovoleném formátu. " + getJmenoIdentifikator(n),
-                                      getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo));
+                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Hodnoty dat jsou v nepovoleném formátu. " + getJmenoIdentifikator(elUrcCasObdobi),
+                            getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo));
                 }
             }
         }
-        return true;
     }
 
 }

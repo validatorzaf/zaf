@@ -14,7 +14,9 @@ public class NsessV3 {
     public final static String CAS_POUZITI = "nsesss:CasPouziti";
     public final static String DATACE_VYRAZENI = "nsesss:DataceVyrazeni";
     public final static String DATUM = "nsesss:Datum";
+    public final static String DATUM_DO = "nsesss:DatumDo";
     public final static String DATUM_DORUCENI = "nsesss:DatumDoruceni";
+    public final static String DATUM_OD = "nsesss:DatumOd";
     public final static String DATUM_ODESLANI = "nsesss:DatumOdeslani";
     public final static String DATUM_OTEVRENI = "nsesss:DatumOtevreni";
     public final static String DATUM_UZAVRENI = "nsesss:DatumUzavreni";
@@ -43,6 +45,8 @@ public class NsessV3 {
     public final static String MANIPULACE = "nsesss:Manipulace";
     public final static String MATERSKA_ENTITA = "nsesss:MaterskaEntita";
     public final static String MATERSKE_ENTITY = "nsesss:MaterskeEntity";
+    public final static String MESIC_DO = "nsesss:MesicDo";
+    public final static String MESIC_OD = "nsesss:MesicOd";
     public final static String MNOZSTVI = "nsesss:Mnozstvi";
     public final static String NAZEV = "nsesss:Nazev";
     public final static String NAZEV_EVIDENCEDOKUMENTU = "nsesss:NazevEvidenceDokumentu";
@@ -72,6 +76,8 @@ public class NsessV3 {
     public final static String PRISTUPNOST = "nsesss:Pristupnost";
     public final static String PUVOD = "nsesss:Puvod";
     public final static String ROK = "nsesss:Rok";
+    public final static String ROK_DO = "nsesss:RokDo";
+    public final static String ROK_OD = "nsesss:RokOd";
     public final static String ROK_SPOUSTECI_UDALOSTI = "nsesss:RokSpousteciUdalosti";
     public final static String ROK_SKARTACNI_OPERACE = "nsesss:RokSkartacniOperace";
     public final static String SIDLO_ORGANIZACE = "nsesss:SidloOrganizace";

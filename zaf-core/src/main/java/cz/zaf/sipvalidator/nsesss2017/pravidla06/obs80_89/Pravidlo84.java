@@ -1,16 +1,16 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.util.List;
 
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.helper.HelperString;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
+import org.apache.commons.lang.StringUtils;
 
-public class Pravidlo84 extends K06PravidloBaseOld {
+public class Pravidlo84 extends K06PravidloBase {
 
     static final public String OBS84 = "obs84";
 
@@ -25,26 +25,27 @@ public class Pravidlo84 extends K06PravidloBaseOld {
     // s hodnotou jiný způsob, potom je na stejné úrovni posledního uvedeného elementu uveden dětský 
     // element <nsesss:ObsahVyrizeni> s neprázdnou hodnotou.",
     @Override
-    protected boolean kontrolaPravidla() {
+    protected void kontrola() {
         List<Element> vyrizenis = metsParser.getNodes(NsessV3.VYRIZENI);
-        for (Element n : vyrizenis) {
-            boolean maZpusobSHodnotou = ValuesGetter.getObsahujeRodicElementSHodnotou(n, "nsesss:Zpusob",
-                                                                                      "jiný způsob");
+        for (Element elVyrizeni : vyrizenis) {
+            boolean maZpusobSHodnotou = ValuesGetter.getObsahujeRodicElementSHodnotou(elVyrizeni, NsessV3.ZPUSOB,
+                    "jiný způsob");
             if (maZpusobSHodnotou) {
-                Node obs_vyr = ValuesGetter.getXChild(n, "nsesss:ObsahVyrizeni");
+                Element entita = kontrola.getEntity(elVyrizeni);
+                Element obs_vyr = ValuesGetter.getXChild(elVyrizeni, NsessV3.OBSAH_VYRIZENI);
                 if (obs_vyr == null) {
-                    return nastavChybu("Nenalezen element <nsesss:ObsahVyrizeni>. " + getJmenoIdentifikator(n),
-                                       n);
-                }
-                if (!HelperString.hasContent(obs_vyr.getTextContent())) {
-                    return nastavChybu("Element <nsesss:ObsahVyrizeni> obsahuje prázdnou hodnotu. "
-                            + getJmenoIdentifikator(n),
-                                       obs_vyr);
+                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:ObsahVyrizeni>. " + getJmenoIdentifikator(elVyrizeni),
+                            elVyrizeni, kontrola.getEntityId(entita));
+                } else {
+                    String hodnotaElObsVyrizeni = obs_vyr.getTextContent();
+                    if (StringUtils.isBlank(hodnotaElObsVyrizeni)) {
+                        nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element <nsesss:ObsahVyrizeni> obsahuje prázdnou hodnotu. "
+                                + getJmenoIdentifikator(elVyrizeni),
+                                obs_vyr, kontrola.getEntityId(entita));
+                    }
                 }
             }
         }
-
-        return true;
     }
 
 }

@@ -1,17 +1,17 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
-public class Pravidlo82 extends K06PravidloBaseOld {
+public class Pravidlo82 extends K06PravidloBase {
 
     static final public String OBS82 = "obs82";
 
@@ -24,40 +24,34 @@ public class Pravidlo82 extends K06PravidloBaseOld {
 
     //OBSAHOVÁ č.82 Pokud je v jakémkoli elementu <nsesss:UrceneCasoveObdobi> uveden dětský element <nsesss:MesicDo>, potom je jeho hodnota větší než <nsesss:MesicOd>.",
     @Override
-    protected boolean kontrolaPravidla() {
+    protected void kontrola() {
         List<Element> urceneCasoveObdobi = metsParser.getNodes(NsessV3.URCENE_CASOVE_OBDOBI);
         for (Element urcenecasoveobdobi : urceneCasoveObdobi) {
-            Node nodeDo = ValuesGetter.getXChild(urcenecasoveobdobi, "nsesss:MesicDo");
+            Element nodeDo = ValuesGetter.getXChild(urcenecasoveobdobi, NsessV3.MESIC_DO);
             if (nodeDo != null) {
-                Node nodeOd = ValuesGetter.getXChild(urcenecasoveobdobi, "nsesss:MesicOd");
+                Element nodeOd = ValuesGetter.getXChild(urcenecasoveobdobi, NsessV3.MESIC_OD);
                 if (nodeOd == null) {
-                    return nastavChybu("Nenalezen element <nsesss:MesicOd>. " + getJmenoIdentifikator(
-                                                                                                     urcenecasoveobdobi),
-                                       urcenecasoveobdobi);
+                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:MesicOd>. " + getJmenoIdentifikator(urcenecasoveobdobi),
+                            urcenecasoveobdobi);
                 }
-                Date dateOd, dateDo;
+                Date dateOd = null, dateDo = null;
                 try {
                     dateOd = ValuesGetter.vytvorDate(nodeOd, "yyyy-MM-dd", "yyyy-MM");
                     dateDo = ValuesGetter.vytvorDate(nodeDo, "yyyy-MM-dd", "yyyy-MM");
-
                 } catch (ParseException ex) {
-                    return nastavChybu("Hodnoty dat jsou v nepovoleném formátu. " + getJmenoIdentifikator(
-                                                                                                         urcenecasoveobdobi),
-                                       getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo));
+                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Hodnoty dat jsou v nepovoleném formátu. " + getJmenoIdentifikator(urcenecasoveobdobi),
+                            getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo));
                 }
                 if (dateOd == null || dateDo == null) {
-                    return nastavChybu("Hodnoty dat v nepovoleném formátu. " + getJmenoIdentifikator(
-                                                                                                     urcenecasoveobdobi),
-                                       getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo));
-                }
-                if (!dateOd.before(dateDo)) {
-                    return nastavChybu("Nesplněna podmínka pravidla. OD: " + dateOd + ". DO: " + dateDo + ". "
+                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Hodnoty dat v nepovoleném formátu. " + getJmenoIdentifikator(urcenecasoveobdobi),
+                            getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo));
+                } else if (!dateOd.before(dateDo)) {
+                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Nesplněna podmínka pravidla. OD: " + dateOd + ". DO: " + dateDo + ". "
                             + getJmenoIdentifikator(urcenecasoveobdobi),
-                                       getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo));
+                            getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo));
                 }
             }
         }
-        return true;
     }
 
 }
