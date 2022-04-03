@@ -9,6 +9,7 @@ public class NsessV3 {
 
     public final static String ANALOGOVY_DOKUMENT = "nsesss:AnalogovyDokument";
     public final static String AUTOR = "nsesss:Autor";
+    public final static String BEZPECNOSTNI_KATEGORIE = "nsesss:BezpecnostniKategorie";
     public final static String CAS_OVERENI = "nsesss:CasOvereni";
     public final static String CAS_POUZITI = "nsesss:CasPouziti";
     public final static String DATACE_VYRAZENI = "nsesss:DataceVyrazeni";
