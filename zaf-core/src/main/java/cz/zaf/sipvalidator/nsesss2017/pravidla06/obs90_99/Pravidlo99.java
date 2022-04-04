@@ -1,5 +1,6 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,17 +13,17 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.pdfa.ValidationResult;
 import cz.zaf.sipvalidator.pdfa.VeraValidatorProxy;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
+import org.w3c.dom.Node;
 
 //
 // Obsahova 99
@@ -47,7 +48,7 @@ import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 // atribut MIMETYPE s hodnotou application/pdf, potom souborový formát příslušné
 // komponenty odpovídá normě PDF/A alespoň ve verzi 1b.
 //
-public class Pravidlo99 extends K06PravidloBaseOld {
+public class Pravidlo99 extends K06PravidloBase {
 
     static Logger log = LoggerFactory.getLogger(Pravidlo99.class);
 
@@ -63,15 +64,15 @@ public class Pravidlo99 extends K06PravidloBaseOld {
     }
 
     @Override
-    protected boolean kontrolaPravidla() {
-        
+    protected void kontrola() {
+
         Set<Node> digitDoks = new HashSet<>();
 
         List<Element> dokumentNodes = metsParser.getDokumenty();
         for (Element dokumentNode : dokumentNodes) {
             Element analogDokNode = ValuesGetter.getXChild(dokumentNode, NsessV3.EVIDENCNI_UDAJE,
-                                                        "nsesss:Manipulace",
-                                                        "nsesss:AnalogovyDokument");
+                    NsessV3.MANIPULACE,
+                    NsessV3.ANALOGOVY_DOKUMENT);
             if (analogDokNode != null) {
                 String value = analogDokNode.getTextContent();
                 if ("ne".equals(value)) {
@@ -83,7 +84,7 @@ public class Pravidlo99 extends K06PravidloBaseOld {
         // získání všech komponent ve výstupním datovém formátu
         List<Element> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
         if (CollectionUtils.isEmpty(komponenty)) {
-            return true;
+            return;
         }
 
         Map<Node, Map<Integer, Node>> kandidati = new HashMap<>();
@@ -98,9 +99,10 @@ public class Pravidlo99 extends K06PravidloBaseOld {
             String formaUchovani = ValuesGetter.getValueOfAttribut(komponenta, JmenaElementu.FORMA_UCHOVANI);
 
             // posuzujeme jen original ve vystupnim formatu nebo original
-            if (!JmenaElementu.FORMA_UCHOVANI_ORIGINAL_VE_VYST_DAT_FORMATU.equals(formaUchovani) &&
-                    !JmenaElementu.FORMA_UCHOVANI_ORIGINAL.equals(formaUchovani))
+            if (!JmenaElementu.FORMA_UCHOVANI_ORIGINAL_VE_VYST_DAT_FORMATU.equals(formaUchovani)
+                    && !JmenaElementu.FORMA_UCHOVANI_ORIGINAL.equals(formaUchovani)) {
                 continue;
+            }
 
             // nalezeni/pridani mapy k rodici            
             Map<Integer, Node> mapaPoradi = kandidati.get(dokumentNode);
@@ -128,8 +130,9 @@ public class Pravidlo99 extends K06PravidloBaseOld {
             for (Node komponenta : komponentyDlePoradi.values()) {
                 String id = ValuesGetter.getValueOfAttribut(komponenta, JmenaElementu.ID);
                 if (StringUtils.isEmpty(id)) {
-                    return nastavChybu("Komponenta neni ve formátu Pdf/A (chybí atribut ID) " + komponenta,
-                                       komponenta);
+                    Element elKomponenta = (Element) komponenta;
+                    nastavChybu(BaseCode.CHYBNA_KOMPONENTA, "Komponenta neni ve formátu Pdf/A (chybí atribut ID) " + komponenta,
+                            komponenta, kontrola.getEntityId(elKomponenta));
                 }
                 checkFiles.add(id);
             }
@@ -137,10 +140,10 @@ public class Pravidlo99 extends K06PravidloBaseOld {
 
         List<Element> nodeListFileGrp = metsParser.getNodes(MetsElements.FILE_GRP);
         if (CollectionUtils.isEmpty(nodeListFileGrp)) {
-            return true;
+            return;
         }
         for (Element fileGrpNode : nodeListFileGrp) {
-            List<Element> fileNodes = ValuesGetter.getChildNodes(fileGrpNode, "mets:file");
+            List<Element> fileNodes = ValuesGetter.getChildNodes(fileGrpNode, MetsElements.FILE);
             for (Element fileNode : fileNodes) {
                 // overeni ID, zda ma byt soubor kontrolovan
                 String dmdid = ValuesGetter.getValueOfAttribut(fileNode, JmenaElementu.DMDID);
@@ -150,18 +153,13 @@ public class Pravidlo99 extends K06PravidloBaseOld {
 
                 String mimeType = ValuesGetter.getValueOfAttribut(fileNode, "MIMETYPE");
                 if ("application/pdf".equalsIgnoreCase(mimeType)) {
-                    List<Element> flocatNodes = ValuesGetter.getChildNodes(fileNode, "mets:FLocat");
+                    List<Element> flocatNodes = ValuesGetter.getChildNodes(fileNode, MetsElements.FLOCAT);
                     for (Element flocatNode : flocatNodes) {
-                        if (!checkPdfA(flocatNode)) {
-                            return false;
-                        }
+                        checkPdfA(flocatNode);
                     }
                 }
             }
         }
-
-        return true;
-
     }
 
     private boolean isVyssiVerze(Node puvodniKomp, Node novaKomp) {
@@ -171,15 +169,15 @@ public class Pravidlo99 extends K06PravidloBaseOld {
         return (verzeNovy > verzeOrig);
     }
 
-    private boolean checkPdfA(Node flocatNode) {
+    private void checkPdfA(Node flocatNode) {
         if (!ValuesGetter.hasAttribut(flocatNode, "xlink:href")) {
-            return nastavChybu("Komponenta neni ve formátu Pdf/A (chybí xlink:href)" + flocatNode,
-                               getMistoChyby(flocatNode));
+            nastavChybu(BaseCode.CHYBI_ATRIBUT, "Komponenta neni ve formátu Pdf/A (chybí xlink:href)" + flocatNode,
+                    getMistoChyby(flocatNode));
         }
         String href = ValuesGetter.getValueOfAttribut(flocatNode, "xlink:href");
         // TODO: Dává toto smysl, asi musí být vždy komponenty
         if (!href.startsWith("komponenty")) {
-            return true;
+            return;
         }
         href = HelperString.replaceSeparators(href);
         String cestaKeKomponente = SIP_MAIN_helper.getCesta_komponenty(context.getSip())
@@ -193,16 +191,15 @@ public class Pravidlo99 extends K06PravidloBaseOld {
                 }
                 ValidationResult vr = veraValidatorProxy.validate(file.toPath());
                 if (!vr.isCompliant()) {
-                    return nastavChybu("Komponenta neni ve formátu Pdf/A " + flocatNode +
-                            ", detail: " + vr.getErrorMessage(),
-                                       getMistoChyby(flocatNode));
+                    nastavChybu(BaseCode.CHYBNA_KOMPONENTA, "Komponenta neni ve formátu Pdf/A " + flocatNode
+                            + ", detail: " + vr.getErrorMessage(),
+                            getMistoChyby(flocatNode));
                 }
             } catch (Throwable e) {
                 log.debug("Failed to validate PDF.", e);
-                return nastavChybu("Formátu Pdf/A se nepodařilo ověřit u komponenty " + flocatNode,
-                                   getMistoChyby(flocatNode));
+                nastavChybu(BaseCode.CHYBA, "Formátu Pdf/A se nepodařilo ověřit u komponenty " + flocatNode,
+                        getMistoChyby(flocatNode));
             }
         }
-        return true;
     }
 }

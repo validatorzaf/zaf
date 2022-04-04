@@ -16,7 +16,10 @@ public class EntityId {
         SPIS,
         DOKUMENT,
         KOMPONENTA,
-        SKARTACNI_RIZENI
+        SKARTACNI_RIZENI,
+        VECNA_SKUPINA,
+        SOUCAST,
+        TYPOVY_SPIS
     }
 
     private final String identifikator;

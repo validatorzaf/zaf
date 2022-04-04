@@ -96,6 +96,7 @@ public class NsessV3 {
     public final static String TYPOVY_SPIS = "nsesss:TypovySpis";
     public final static String UKLADACI_JEDNOTKA = "nsesss:UkladaciJednotka";
     public final static String URCENE_CASOVE_OBDOBI = "nsesss:UrceneCasoveObdobi";
+    public final static String UZAVRENI = "nsesss:Uzavreni";
     public final static String VECNA_SKUPINA = "nsesss:VecnaSkupina";
     public final static String VLASTNI_DOKUMENT = "nsesss:VlastniDokument";
     public final static String VYDAVATEL = "nsesss:Vydavatel";
