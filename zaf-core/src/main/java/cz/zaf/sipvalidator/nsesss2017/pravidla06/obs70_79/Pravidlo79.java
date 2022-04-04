@@ -1,16 +1,16 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
-public class Pravidlo79 extends K06PravidloBaseOld {
+public class Pravidlo79 extends K06PravidloBase {
 
     static final public String OBS79 = "obs79";
 
@@ -25,46 +25,39 @@ public class Pravidlo79 extends K06PravidloBaseOld {
     // v níž je uvedený rok větší nebo roven hodnotě uvedené v elementu <nsesss:RokSkartacniOperace> 
     // uvnitř rodičovského elementu <nsesss:DataceVyrazeni> stejné entity.",
     @Override
-    protected boolean kontrolaPravidla() {
+    protected void kontrola() {
         List<Element> skartacniRizeni = metsParser.getNodes(NsessV3.SKARTACNI_RIZENI);
         if (CollectionUtils.isEmpty(skartacniRizeni)) {
-            return nastavChybu("Nenalezen element <nsesss:SkartacniRizeni>.");
+            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:SkartacniRizeni>.");
         }
         for (Element skrizeni : skartacniRizeni) {
-            Element dataceVyrazeni = ValuesGetter.getSourozencePrvnihoSeJmenem(skrizeni, "nsesss:DataceVyrazeni");
+            Element dataceVyrazeni = ValuesGetter.getSourozencePrvnihoSeJmenem(skrizeni, NsessV3.DATACE_VYRAZENI);
             if (dataceVyrazeni == null) {
-                return nastavChybu("Nenalezen element <nsesss:DataceVyrazeni>. " + getJmenoIdentifikator(skrizeni),
-                                   skrizeni);
+                nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:DataceVyrazeni>. " + getJmenoIdentifikator(skrizeni),
+                        skrizeni, kontrola.getEntityId(skrizeni));
             }
-            Node rokSkOperace = ValuesGetter.getXChild(dataceVyrazeni, NsessV3.ROK_SKARTACNI_OPERACE);
+            Element rokSkOperace = ValuesGetter.getXChild(dataceVyrazeni, NsessV3.ROK_SKARTACNI_OPERACE);
             if (rokSkOperace == null) {
-                return nastavChybu("Nenalezen element <nsesss:RokSkartacniOperace>. " + getJmenoIdentifikator(skrizeni),
-                                   dataceVyrazeni);
+                nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:RokSkartacniOperace>. " + getJmenoIdentifikator(skrizeni),
+                        dataceVyrazeni, kontrola.getEntityId(skrizeni));
             }
-            Integer rokOperace = vratRok(rokSkOperace);
-            if (rokOperace == null) {
-                return false;
-            }
+            Integer rokOperace = vratRok(rokSkOperace); //když null zavolá nastavChybu() sám
 
-            Node datum = ValuesGetter.getXChild(skrizeni, "nsesss:Datum");
+            Element datum = ValuesGetter.getXChild(skrizeni, NsessV3.DATUM);
             if (datum == null) {
-                return nastavChybu("Nenalezen element <nsesss:Datum>. " + getJmenoIdentifikator(skrizeni),
-                                   skrizeni);
+                nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Datum>. " + getJmenoIdentifikator(skrizeni),
+                        skrizeni, kontrola.getEntityId(skrizeni));
             }
             Integer rokSkRizeni = vratRok(datum);
-            if (rokSkRizeni == null) {
-                return false;
-            }
 
             if (!(rokSkRizeni >= rokOperace)) {
-                return nastavChybu("Nesplněna podmínka pravidla." + " Datum: " + rokSkRizeni
+                nastavChybu(BaseCode.CHYBA, "Nesplněna podmínka pravidla." + " Datum: " + rokSkRizeni
                         + ". Rok skartační operace: " + rokOperace
                         + ". " + getJmenoIdentifikator(skrizeni),
-                                   getMistoChyby(datum) + " " + getMistoChyby(rokSkOperace));
+                        getMistoChyby(datum) + " " + getMistoChyby(rokSkOperace),
+                        kontrola.getEntityId(skrizeni));
             }
-
         }
-        return true;
     }
 
 }
