@@ -1,15 +1,15 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.util.List;
 
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
-public class Pravidlo83 extends K06PravidloBaseOld {
+public class Pravidlo83 extends K06PravidloBase {
 
     static final public String OBS83 = "obs83";
 
@@ -23,32 +23,26 @@ public class Pravidlo83 extends K06PravidloBaseOld {
     //OBSAHOVÁ č.83 Pokud je v jakémkoli elementu <nsesss:UrceneCasoveObdobi> uveden dětský element 
     // <nsesss:RokDo>, potom je jeho hodnota větší než <nsesss:RokOd>."
     @Override
-    protected boolean kontrolaPravidla() {
+    protected void kontrola() {
         List<Element> urceneCasoveObdobi = metsParser.getNodes(NsessV3.URCENE_CASOVE_OBDOBI);
         for (Element ucobdobi : urceneCasoveObdobi) {
-            Node nodeDo = ValuesGetter.getXChild(ucobdobi, "nsesss:RokDo");
+            Element nodeDo = ValuesGetter.getXChild(ucobdobi, NsessV3.ROK_DO);
             if (nodeDo != null) {
-                Node nodeOd = ValuesGetter.getXChild(ucobdobi, "nsesss:RokOd");
+                Element nodeOd = ValuesGetter.getXChild(ucobdobi, NsessV3.ROK_OD);
                 if (nodeOd == null) {
-                    return nastavChybu("Nenalezen element <nsesss:RokOd>. " + getJmenoIdentifikator(ucobdobi),
-                                      ucobdobi);
+                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:RokOd>. " + getJmenoIdentifikator(ucobdobi),
+                            ucobdobi);
                 }
                 Integer intOd = vratRok(nodeOd);
-                if (intOd == null) {
-                    return false;
-                }
                 Integer intDo = vratRok(nodeDo);
-                if (intDo == null) {
-                    return false;
-                }
+
                 if (!(intOd < intDo)) {
-                    return nastavChybu("Nesplněna podmínka pravidla. OD: " + intOd + ". DO: " + intDo + ". "
-                            + getJmenoIdentifikator(ucobdobi), 
+                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Nesplněna podmínka pravidla. OD: " + intOd + ". DO: " + intDo + ". "
+                            + getJmenoIdentifikator(ucobdobi),
                             getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo));
                 }
             }
         }
-        return true;
     }
 
 }
