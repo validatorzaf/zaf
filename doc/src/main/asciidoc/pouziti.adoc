@@ -7,6 +7,11 @@ přímo integrovat do jiné Java aplikace ve formě samostatné knihovny.
 [[CmdValidator]]
 == Samostatný CmdValidator
 
+Samostatný CmdValidator validátor je založen na dané verzi ZAF a 
+umožňuje jeho přímé použití bez programové integrace.
+Výstupem z CmdValidatoru je protokol obsahově zcela totožný 
+s protokolem vytvořeným použitím zaf-core.
+
 Validátor ZAF lze volat prostřednictvím příkazového řádku:
 
 `java -jar CmdValidator.jar [přepínače] <path>`
