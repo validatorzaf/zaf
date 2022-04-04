@@ -1,18 +1,18 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
-public class Pravidlo78 extends K06PravidloBaseOld {
+public class Pravidlo78 extends K06PravidloBase {
 
     static final public String OBS78 = "obs78";
 
@@ -25,33 +25,31 @@ public class Pravidlo78 extends K06PravidloBaseOld {
 
     //OBSAHOVÁ č.78 Element <nsesss:SkartacniRizeni> je uveden pouze v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani> základní entity.",
     @Override
-    protected boolean kontrolaPravidla() {
+    protected void kontrola() {
         List<Element> zakladniEntity = predpokladZakladniEntity();
         if (zakladniEntity == null) {
-            return false;
+            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezena žádná základní entita.");
         }
         List<Element> skartacniRizeni = metsParser.getNodes(NsessV3.SKARTACNI_RIZENI);
-        Set<Node> skartacniRizeniSet = new HashSet<>(skartacniRizeni);
+        Set<Element> skartacniRizeniSet = new HashSet<>(skartacniRizeni);
 
         for (Element zakladnientita : zakladniEntity) {
-            Node node = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, 
-                                               "nsesss:Vyrazovani", NsessV3.SKARTACNI_RIZENI);
+            Element node = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE,
+                    NsessV3.VYRAZOVANI, NsessV3.SKARTACNI_RIZENI);
             if (node == null) {
-                return nastavChybu("Element <nsesss:SkartacniRizeni> není správně zatříděn. " + getJmenoIdentifikator(zakladnientita),
-                                   zakladnientita);
+                nastavChybu(BaseCode.CHYBI_ELEMENT, "Element <nsesss:SkartacniRizeni> není správně zatříděn. " + getJmenoIdentifikator(zakladnientita),
+                        zakladnientita, kontrola.getEntityId(zakladnientita));
             }
-            if(!skartacniRizeniSet.remove(node)) {
-                return nastavChybu("Element <nsesss:SkartacniRizeni> není správně zatříděn. " + getJmenoIdentifikator(zakladnientita),
-                                   zakladnientita);                
+            if (!skartacniRizeniSet.remove(node)) {
+                nastavChybu(BaseCode.CHYBNY_ELEMENT, "Element <nsesss:SkartacniRizeni> není správně zatříděn. " + getJmenoIdentifikator(zakladnientita),
+                        zakladnientita, kontrola.getEntityId(zakladnientita));
             }
         }
 
         if (!skartacniRizeniSet.isEmpty()) {
-            return nastavChybu("Nalezen chybně použitý element <nsesss:SkartacniRizeni>.",
-                               new ArrayList<>(skartacniRizeniSet));
+            nastavChybu(BaseCode.CHYBNY_ELEMENT, "Nalezen chybně použitý element <nsesss:SkartacniRizeni>.",
+                    new ArrayList<>(skartacniRizeniSet));
         }
-        
-        return true;
     }
 
 }

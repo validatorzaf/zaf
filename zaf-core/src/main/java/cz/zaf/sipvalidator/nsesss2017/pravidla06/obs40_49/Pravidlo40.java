@@ -38,7 +38,7 @@ public class Pravidlo40 extends K06PravidloBase {
                                                             "nsesss:Manipulace", "nsesss:AnalogovyDokument");
             // TODO: Je toto nutne? mozna musi existovat jiz ze souladu se schematem
             if (analogovyDokument == null) {
-                nastavChybu(BaseCode.CHYBA,
+                nastavChybu(BaseCode.CHYBI_ELEMENT,
                             "Element <nsesss:Dokument> " + kontrola.getIdentifikatory(dokument)
                                     + " neobsahuje element <nsesss:AnalogovyDokument>.",
                             dokument,
@@ -54,7 +54,7 @@ public class Pravidlo40 extends K06PravidloBase {
                                 metsMets);
                 }
                 if (fileSecNodes.size() > 1) {
-                    nastavChybu(BaseCode.CHYBA,
+                    nastavChybu(BaseCode.NEPOVOLENY_ELEMENT,
                                 "Element <mets:mets> obsahuje více dětský element <mets:fileSec>.",
                                 metsMets);
                 } else {

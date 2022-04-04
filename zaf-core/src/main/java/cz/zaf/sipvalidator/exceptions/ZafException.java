@@ -52,6 +52,11 @@ public class ZafException extends RuntimeException {
         entityIds.add(entityId);
         return this;
     }
+    
+    public ZafException addEntity(List<EntityId> listEntityId) {
+        entityIds.addAll(listEntityId);
+        return this;
+    }
 
     public List<EntityId> getEntityIds() {
         return entityIds;

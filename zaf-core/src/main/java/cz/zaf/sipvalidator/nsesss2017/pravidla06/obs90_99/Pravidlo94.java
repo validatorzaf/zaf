@@ -1,16 +1,16 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
-public class Pravidlo94 extends K06PravidloBaseOld {
+public class Pravidlo94 extends K06PravidloBase {
 
     static final public String OBS94 = "obs94";
 
@@ -25,34 +25,35 @@ public class Pravidlo94 extends K06PravidloBaseOld {
     // <nsesss:EvidencniUdaje>, <nsesss:Trideni> element <nsesss:PlneUrcenySpisovyZnak> s hodnotou, 
     // jejíž poslední část je stejná jako hodnota elementu <nsesss:JednoduchySpisovyZnak>.",
     @Override
-    protected boolean kontrolaPravidla() {
+    protected void kontrola() {
         List<Element> plneurcenySpisovyZnak = metsParser.getNodes(NsessV3.PLNE_URCENY_SPISOVY_ZNAK);
         if (CollectionUtils.isEmpty(plneurcenySpisovyZnak)) {
-            return nastavChybu("Nenalezen element <nsesss:PlneUrcenySpisovyZnak>.");
+            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:PlneUrcenySpisovyZnak>.");
         }
         for (Element puzNode : plneurcenySpisovyZnak) {
             // kontrola jen pokud je rodic nsesss:Trideni
-            Node trideni = ValuesGetter.getParent(puzNode, NsessV3.TRIDENI);
-            if(trideni==null) {
+            Element trideni = ValuesGetter.getParent(puzNode, NsessV3.TRIDENI);
+            if (trideni == null) {
                 continue;
             }
 
-            Node jzNode = ValuesGetter.getSourozencePrvnihoSeJmenem(puzNode, "nsesss:JednoduchySpisovyZnak");
+            Element jzNode = ValuesGetter.getSourozencePrvnihoSeJmenem(puzNode, NsessV3.JEDNODUCHY_SPISOVY_ZNAK);
+            Element entita = kontrola.getEntity(jzNode);
             if (jzNode == null) {
-                return nastavChybu("Nenalezen element <nsesss:JednoduchySpisovyZnak>. " 
-                        + getJmenoIdentifikator(puzNode), puzNode);
+                nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak>. "
+                        + getJmenoIdentifikator(puzNode), puzNode, kontrola.getEntityId(entita));
             }
             String jednoduchy = jzNode.getTextContent();
             String plneUrceny = puzNode.getTextContent();
             if (!jednoduchy.equals(plneUrceny)) {
                 if (!plneUrceny.endsWith(jednoduchy)) {
-                    return nastavChybu("Část plně určeného spis. znaku za oddělovačem neodpovídá jedn. spis. znaku. "
-                            + getJmenoIdentifikator(puzNode), getMistoChyby(puzNode) + " "
-                                    + getMistoChyby(jzNode));
+                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Část plně určeného spis. znaku za oddělovačem neodpovídá jedn. spis. znaku. "
+                            + getJmenoIdentifikator(puzNode),
+                            getMistoChyby(puzNode) + " " + getMistoChyby(jzNode),
+                            kontrola.getEntityId(entita));
                 }
             }
         }
-        return true;
     }
 
 }

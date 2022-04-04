@@ -1,14 +1,15 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.util.List;
 
 import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
-public class Pravidlo55 extends K06PravidloBaseOld {
+public class Pravidlo55 extends K06PravidloBase {
 
     static final public String OBS55 = "obs55";
 
@@ -21,7 +22,7 @@ public class Pravidlo55 extends K06PravidloBaseOld {
 
     //OBSAHOVÁ č.55 Pokud existuje jakýkoli element <mets:div> s atributem TYPE s hodnotou komponenta, každý obsahuje právě jeden element <mets:fptr>.
     @Override
-    protected boolean kontrolaPravidla() {
+    protected void kontrola() {
         List<Element> nodeListDiv = metsParser.getNodes(MetsElements.DIV);
 
         for (Element div : nodeListDiv) {
@@ -29,13 +30,12 @@ public class Pravidlo55 extends K06PravidloBaseOld {
             if (obsahuje) {
                 List<Element> list = ValuesGetter.getChildNodes(div, "mets:fptr");
                 if (list.isEmpty()) {
-                    return nastavChybu("Element <mets:div> neobsahuje element <mets:fptr>.", div);
+                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Element <mets:div> neobsahuje element <mets:fptr>.", div);
                 }
                 if (list.size() > 1) {
-                    return nastavChybu("Elementu <mets:div> obsahuje více elementů <mets:fptr>.", div);
+                    nastavChybu(BaseCode.NEPOVOLENY_ELEMENT, "Elementu <mets:div> obsahuje více elementů <mets:fptr>.", div);
                 }
             }
         }
-        return true;
     }
 }

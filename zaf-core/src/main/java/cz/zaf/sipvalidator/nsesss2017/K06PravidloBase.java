@@ -14,9 +14,8 @@ import cz.zaf.sipvalidator.exceptions.codes.ErrorCode;
 
 /**
  * Zakladni implementace spustitelneho pravidla
- * 
- * Kazde takove pravidlo vytvari prave jeden
- * zaznam ve vystupu
+ *
+ * Kazde takove pravidlo vytvari prave jeden zaznam ve vystupu
  *
  */
 public abstract class K06PravidloBase implements ObsahovePravidlo {
@@ -38,9 +37,9 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
     protected KontrolaNsess2017Context context;
 
     public K06PravidloBase(final String kodPravidla,
-                           final String textPravidla,
-                           final String obecnyPopisChyby,
-                           final String zdrojChyby) {
+            final String textPravidla,
+            final String obecnyPopisChyby,
+            final String zdrojChyby) {
         Validate.notNull(kodPravidla);
         Validate.notNull(textPravidla);
 
@@ -84,12 +83,12 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
         }
 
         kontrola.pridejChybu(kodPravidla,
-                             errorCode,
-                             textPravidla,
-                             detailChyby,
-                             obecnyPopisChyby,
-                             mistoChyby,
-                             zdrojChyby);
+                errorCode,
+                textPravidla,
+                detailChyby,
+                obecnyPopisChyby,
+                mistoChyby,
+                zdrojChyby);
 
         this.context = null;
         this.kontrola = null;
@@ -101,9 +100,9 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
 
     /**
      * Pravidlo predpoklada existenci zakladnich entit
-     * 
+     *
      * Dojde k selhani pokud neexistuji.
-     * 
+     *
      * @return Seznam základních entit, null při neexistenci
      */
     protected List<Element> predpokladZakladniEntity() {
@@ -139,11 +138,9 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
 
     /**
      * Nastaveni chyby a mista jejiho vyskytu
-     * 
-     * @param detailChyby
-     *            detailní popis chyby
-     * @param mistoChyby
-     *            určení místa chyby
+     *
+     * @param detailChyby detailní popis chyby
+     * @param mistoChyby určení místa chyby
      * @return Vraci vzdy false, lze vyuzit pro jednoradkovy zapis
      */
     protected boolean nastavChybu(final String detailChyby, final String mistoChyby) {
@@ -155,21 +152,26 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
         return new ZafException(errorCode, detailChyby);
     }
 
-    protected void nastavChybu(ErrorCode errorCode, String detailChyby){
-     throw pripravChybu(errorCode, detailChyby);
+    protected void nastavChybu(ErrorCode errorCode, String detailChyby) {
+        throw pripravChybu(errorCode, detailChyby);
     }
-    
+
     protected void nastavChybu(ErrorCode errorCode, String detailChyby,
-                               List<? extends Node> errorList) {
+            List<? extends Node> errorList) {
         String mistoCh = errorList.stream().map(n -> getMistoChyby(n)).collect(Collectors.joining(" "));
         throw pripravChybu(errorCode, detailChyby).setMistoChyby(mistoCh);
     }
-    
-    protected void nastavChybu(ErrorCode errorCode, String detailChyby,
-                               List<? extends Node> errorList,
-                               final EntityId entityId) {
+
+    protected void nastavChybu(ErrorCode errorCode, String detailChyby, 
+            List<? extends Node> errorList, final EntityId entityId) {
         String mistoCh = errorList.stream().map(n -> getMistoChyby(n)).collect(Collectors.joining(" "));
         throw pripravChybu(errorCode, detailChyby).setMistoChyby(mistoCh).addEntity(entityId);
+    }
+    
+    protected void nastavChybu(ErrorCode errorCode, String detailChyby, 
+            List<? extends Node> errorList, final List<EntityId> listEntityId) {
+        String mistoCh = errorList.stream().map(n -> getMistoChyby(n)).collect(Collectors.joining(" "));
+        throw pripravChybu(errorCode, detailChyby).setMistoChyby(mistoCh).addEntity(listEntityId);
     }
 
     protected void nastavChybu(ErrorCode errorCode, final String detailChyby, final Node mistoChyby) {
@@ -181,8 +183,23 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
     }
 
     protected void nastavChybu(ErrorCode errorCode, String detailChyby, final Node mistoChyby,
-                               final EntityId entityId) {
-        throw pripravChybu(errorCode, detailChyby).setMistoChyby(getMistoChyby(mistoChyby));
+            final EntityId entityId) {
+        throw pripravChybu(errorCode, detailChyby).setMistoChyby(getMistoChyby(mistoChyby)).addEntity(entityId);
+    }
+    
+    protected void nastavChybu(ErrorCode errorCode, String detailChyby, final String mistoChyby,
+            final EntityId entityId) {
+        throw pripravChybu(errorCode, detailChyby).setMistoChyby(mistoChyby).addEntity(entityId);
+    }
+
+    protected void nastavChybu(ErrorCode errorCode, String detailChyby, final Node mistoChyby,
+            final List<EntityId> entityIds) {
+        throw pripravChybu(errorCode, detailChyby).setMistoChyby(getMistoChyby(mistoChyby)).addEntity(entityIds);
+    }
+
+    protected void nastavChybu(ErrorCode errorCode, String detailChyby, final String mistoChyby,
+            final List<EntityId> entityIds) {
+        throw pripravChybu(errorCode, detailChyby).setMistoChyby(mistoChyby).addEntity(entityIds);
     }
 
     @Override
@@ -211,20 +228,34 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
 
     /**
      * Nacteni roku z obsahu elementu
-     * 
-     * @param node
-     *            Element pro nacteni roku
+     *
+     * @param node Element pro nacteni roku
      * @return Vraci rok z retezce
      */
+    protected Integer vratRok(Element node) {
+        String content = node.getTextContent();
+        String strYear = content.substring(0, 4);
+        try {
+            return Integer.parseInt(strYear);
+        } catch (NumberFormatException nfe) {
+            Element entita = kontrola.getEntity(node);
+            nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Hodnota roku v elementu <" + node.getNodeName() + "> uvedena ve špatném formátu. Hodnota: "
+                    + content,
+                    node, kontrola.getEntityId(entita));
+            return null;
+        }
+    }
+    // využívají další pravidla nad dosud upravená s Node, až se to předělá na element všechno, tak tuhle smazat
     protected Integer vratRok(Node node) {
         String content = node.getTextContent();
         String strYear = content.substring(0, 4);
         try {
             return Integer.parseInt(strYear);
         } catch (NumberFormatException nfe) {
-            nastavChybu("Hodnota roku v elementu <" + node.getNodeName() + "> uvedena ve špatném formátu. Hodnota: "
+            Element entita = kontrola.getEntity((Element) node);
+            nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Hodnota roku v elementu <" + node.getNodeName() + "> uvedena ve špatném formátu. Hodnota: "
                     + content,
-                        node);
+                    node, kontrola.getEntityId(entita));
             return null;
         }
     }

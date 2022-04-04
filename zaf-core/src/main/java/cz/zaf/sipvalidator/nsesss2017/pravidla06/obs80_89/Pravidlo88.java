@@ -1,17 +1,17 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.helper.HelperString;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
+import org.apache.commons.lang.StringUtils;
 
-public class Pravidlo88 extends K06PravidloBaseOld {
+public class Pravidlo88 extends K06PravidloBase {
 
     static final public String OBS88 = "obs88";
 
@@ -27,10 +27,10 @@ public class Pravidlo88 extends K06PravidloBaseOld {
     // obsahuje dětský element <nsesss:DatumOdeslani>, pak element <nsesss:Vyrizeni> obsahuje element 
     // <nsesss:OdeslaneMnozstvi> s neprázdnou hodnotou."
     @Override
-    protected boolean kontrolaPravidla() {
+    protected void kontrola() {
         List<Element> dokumenty = predpokladDokumenty();
         if (CollectionUtils.isEmpty(dokumenty)) {
-            return false;
+            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen žádný element <nsesss:Dokument>.");
         }
 
         for (int i = 0; i < dokumenty.size(); i++) {
@@ -40,28 +40,29 @@ public class Pravidlo88 extends K06PravidloBaseOld {
             if (evidUdaje == null) {
                 continue;
             }
-            Node analog = ValuesGetter.getXChild(evidUdaje, "nsesss:Manipulace", "nsesss:AnalogovyDokument");
+            Element analog = ValuesGetter.getXChild(evidUdaje, NsessV3.MANIPULACE, NsessV3.ANALOGOVY_DOKUMENT);
             if (analog != null) {
                 String hodnota = analog.getTextContent();
                 if (hodnota.equals("ano")) {
-                    Node datumOdeslani = ValuesGetter.getXChild(evidUdaje, NsessV3.VYRIZENI,
-                                                                "nsesss:DatumOdeslani");
+                    Element datumOdeslani = ValuesGetter.getXChild(evidUdaje, NsessV3.VYRIZENI,
+                            NsessV3.DATUM_ODESLANI);
                     if (datumOdeslani != null) {
-                        Node node = ValuesGetter.getXChild(evidUdaje, NsessV3.VYRIZENI,
-                                                           "nsesss:OdeslaneMnozstvi");
-                        if (node == null) {
-                            return nastavChybu("Nenalezen element <nsesss:OdeslaneMnozstvi>. "
-                                    + getJmenoIdentifikator(dokument), getMistoChyby(dokument));
-                        }
-                        if (!HelperString.hasContent(node.getTextContent())) {
-                            return nastavChybu("Element <nsesss:OdeslaneMnozstvi> obsahuje prázdnou hodnotu. "
-                                    + getJmenoIdentifikator(dokument), getMistoChyby(node));
+                        Element elOdeslaneMnozstvi = ValuesGetter.getXChild(evidUdaje, NsessV3.VYRIZENI,
+                                NsessV3.ODESLANE_MNOZSTVI);
+                        if (elOdeslaneMnozstvi == null) {
+                            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:OdeslaneMnozstvi>. "
+                                    + getJmenoIdentifikator(dokument), getMistoChyby(dokument), kontrola.getEntityId(dokument));
+                        } else {
+                            String hodnotaElOdeslaneMnozstvi = elOdeslaneMnozstvi.getTextContent();
+                            if (StringUtils.isBlank(hodnotaElOdeslaneMnozstvi)) {
+                                nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element <nsesss:OdeslaneMnozstvi> obsahuje prázdnou hodnotu. "
+                                        + getJmenoIdentifikator(dokument), getMistoChyby(elOdeslaneMnozstvi), kontrola.getEntityId(dokument));
+                            }
                         }
                     }
                 }
             }
         }
-        return true;
     }
 
 }
