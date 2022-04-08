@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,17 +19,15 @@ import java.util.ArrayList;
  */
 public class UrlJazykyParser {
     
-    String url;
-    ArrayList<String> jazyky;
+    static final String URL = "/jazyky.txt";
+    List<String> jazyky = new ArrayList<>();
     
     public UrlJazykyParser(){
-        this.url = "jazyky.txt";
-        jazyky = new ArrayList<>();
     }
     
-    public void NactiJazykyZUrl() throws IOException{
+    public void nactiJazykyZUrl() throws IOException {
        
-        InputStream res = getClass().getResourceAsStream("/jazyky.txt");
+        InputStream res = getClass().getResourceAsStream(URL);
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(res))) {
             String line;
             while ((line = reader.readLine()) != null) {
