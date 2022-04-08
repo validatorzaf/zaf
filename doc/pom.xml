@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>zaf</artifactId>
 		<groupId>cz.zaf</groupId>
-		<version>0.9.5-SNAPSHOT</version>
+		<version>0.9.5</version>
 	</parent>
 	<artifactId>zaf-documentation</artifactId>
 	<packaging>pom</packaging>
