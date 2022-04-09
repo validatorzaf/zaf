@@ -45,6 +45,13 @@ public class CmdParams {
     boolean davkovyRezim = false;
 
     /**
+     * Priznak testu pameti
+     * 
+     * V pripade testu pameti dojde k opakovani testu
+     */
+    boolean memTest = false;
+
+    /**
      * Aktivni profil validace
      */
     ProfilValidace profilValidace = ZakladniProfilValidace.SKARTACE_METADATA;
@@ -90,6 +97,14 @@ public class CmdParams {
 
     public boolean isDavkovyRezim() {
         return davkovyRezim;
+    }
+
+    public boolean isMemTest() {
+        return memTest;
+    }
+
+    public void setMemTest(boolean memTest) {
+        this.memTest = memTest;
     }
 
     public ProfilValidace getProfilValidace() {
@@ -171,6 +186,8 @@ public class CmdParams {
                 if (!readExclude(arg.substring(10))) {
                     return false;
                 }
+            } else if (arg.equals("--memTest")) {
+                this.memTest = true;
             } else {
                 inputPath = arg;
             }

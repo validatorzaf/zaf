@@ -1,9 +1,13 @@
 package cz.zaf.sipvalidator;
 
+import java.lang.ref.WeakReference;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import cz.zaf.sipvalidator.nsesss2017.SipValidator;
 import cz.zaf.sipvalidator.pdfa.VeraValidatorProxy;
@@ -20,6 +24,9 @@ public class CmdValidator {
 
     public static final int ERR_WRONG_PARAMS = 1;
     public static final int ERR_FAILED = 2;
+
+    final static Logger log = LoggerFactory.getLogger(CmdValidator.class);
+
     private CmdParams cmdParams;
 
     public CmdValidator(final CmdParams cmdParams) {
@@ -52,11 +59,34 @@ public class CmdValidator {
         try(XmlProtokolWriter protokolWriter = new XmlProtokolWriter(cmdParams.getOutput(), 
                                                                      cmdParams.getIdKontroly(), 
                                                                      cmdParams.getProfilValidace());) {
-            if (cmdParams.isDavkovyRezim()) {
-                validateDavka(protokolWriter);
-            } else {
-                validateSip(protokolWriter);
+            int repeatCnt = 1;
+            if (cmdParams.isMemTest()) {
+                repeatCnt = 10000;
             }
+
+            for (int i = 0; i < repeatCnt; i++) {
+                if (i > 0) {
+                    gc();
+                    log.debug("Run count: " + i);
+                }
+                if (cmdParams.isDavkovyRezim()) {
+                    validateDavka(protokolWriter);
+                } else {
+                    validateSip(protokolWriter);
+                }
+            }
+        }
+    }
+
+    /**
+     * Helper method to check if GC was run
+     */
+    public static void gc() {
+        Object obj = new Object();
+        WeakReference ref = new WeakReference<Object>(obj);
+        obj = null;
+        while (ref.get() != null) {
+            System.gc();
         }
     }
 
