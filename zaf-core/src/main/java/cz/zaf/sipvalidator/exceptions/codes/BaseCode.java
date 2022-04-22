@@ -17,7 +17,7 @@ public enum BaseCode implements ErrorCode {
     
     DUPLICITA("Nalezena nepovolená duplicita entity, elementu, hodnoty..."),
     
-    CHYBA_KRIZVEHO_ODKAZU("Křížový odkaz neplní správně svou funkci"),
+    CHYBA_KRIZOVEHO_ODKAZU("Křížový odkaz neplní správně svou funkci"),
     
     CHYBI_ELEMENT("Chybí element"),
 
