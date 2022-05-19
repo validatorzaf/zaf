@@ -82,7 +82,7 @@ public class Pravidlo29 extends K06PravidloBase {
                 String ident_ko = identifikator_ko.getTextContent();
 
                 if (zdroj_me.equals(zdroj_ko) && ident_me.equals(ident_ko)) {
-                    nastavChybu(BaseCode.CHYBA_KRIZVEHO_ODKAZU, "Element <nsesss:KrizovyOdkaz> odkazuje na vlastní základní entitu.",
+                    nastavChybu(BaseCode.CHYBA_KRIZOVEHO_ODKAZU, "Element <nsesss:KrizovyOdkaz> odkazuje na vlastní základní entitu.",
                             krizovyOdkaz);
                 }
 
@@ -108,13 +108,13 @@ public class Pravidlo29 extends K06PravidloBase {
                     }
                 }
                 if (pocitadlo == 0) {
-                    nastavChybu(BaseCode.CHYBA_KRIZVEHO_ODKAZU,
+                    nastavChybu(BaseCode.CHYBA_KRIZOVEHO_ODKAZU,
                             "Nenalezena žádná základní entita, na kterou odkazuje element <nsesss:KrizovyOdkaz> s id: "
                             + ident_ko + " a zdrojem: " + zdroj_ko + ".",
                             krizovyOdkaz);
                 }
                 if (pocitadlo > 1) {
-                    nastavChybu(BaseCode.CHYBA_KRIZVEHO_ODKAZU,
+                    nastavChybu(BaseCode.CHYBA_KRIZOVEHO_ODKAZU,
                             "Element <nsesss:KrizovyOdkaz> s id: " + ident_ko + " a zdrojem: " + zdroj_ko + " odkazuje na více základních entit.",
                             listElChybnych);
                 }
