@@ -31,6 +31,7 @@ public class CmdParams {
         output.println(" -i|--id= Identifikátor prováděné kontroly");
         output.println(" -z|--hrozba= Podrobnosti v případě nalezení hrozby (pro předání z antivirového programu)");
         output.println(" -o|--output= Jméno souboru nebo adresáře pro uložení výsledků");
+        output.println(" -p|--ports= Rozsah portů pro vnitřní procesy (standardně 10000-32000)");
     }
 
     String inputPath = System.getProperty("user.dir");

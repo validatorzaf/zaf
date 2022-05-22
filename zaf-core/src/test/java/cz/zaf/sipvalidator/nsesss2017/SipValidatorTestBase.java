@@ -23,13 +23,13 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
+import cz.zaf.sipvalidator.sip.ChybaPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 import cz.zaf.sipvalidator.sip.SipLoader;
 import cz.zaf.sipvalidator.sip.StavKontroly;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.VysledekKontroly;
-import cz.zaf.sipvalidator.sip.ChybaPravidla;
 
 /**
  * Zakladni impl. testu
@@ -56,6 +56,17 @@ public abstract class SipValidatorTestBase {
         }
     }
 
+    Path getPath(String relativePath) throws UnsupportedEncodingException {
+        ClassLoader classLoader = getClass().getClassLoader();
+        URL url = classLoader.getResource(relativePath);
+        if (url == null) {
+            fail("Failed to locate sip, path: " + relativePath);
+        }
+
+        String filePath = java.net.URLDecoder.decode(url.getFile(), StandardCharsets.UTF_8.name());
+        return new File(filePath).toPath();
+    }
+
     /**
      * 
      * @param sipPath
@@ -64,17 +75,9 @@ public abstract class SipValidatorTestBase {
      * @return
      */
     SipLoader loadSip(String sipPath, LoadType expLoadType) {
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL url = classLoader.getResource(sipPath);
-        if (url == null) {
-            fail("Failed to locate sip, path: " + sipPath);
-        }
-        String filePath;
         try {
-            filePath = java.net.URLDecoder.decode(url.getFile(), StandardCharsets.UTF_8.name());
-            File file = new File(filePath);
-            String sourceDir = file.getAbsolutePath();
-            //String sourceDir = "testdata/01 KONTROLA DATA";
+            Path sourceDirPath = getPath(sipPath);
+            String sourceDir = sourceDirPath.toAbsolutePath().toString();
 
             SipLoader sipLoader = new SipLoader(sourceDir, workDirPath.normalize().toString());
 

@@ -1,6 +1,5 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99;
 
-import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -13,7 +12,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
@@ -23,7 +24,6 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.pdfa.ValidationResult;
 import cz.zaf.sipvalidator.pdfa.VeraValidatorProxy;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
-import org.w3c.dom.Node;
 
 //
 // Obsahova 99
@@ -189,7 +189,7 @@ public class Pravidlo99 extends K06PravidloBase {
                 if (veraValidatorProxy == null) {
                     veraValidatorProxy = VeraValidatorProxy.init();
                 }
-                ValidationResult vr = veraValidatorProxy.validate(file.toPath());
+                ValidationResult vr = VeraValidatorProxy.validate(file.toPath());
                 if (!vr.isCompliant()) {
                     nastavChybu(BaseCode.CHYBNA_KOMPONENTA, "Komponenta neni ve formátu Pdf/A " + flocatNode
                             + ", detail: " + vr.getErrorMessage(),
