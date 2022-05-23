@@ -10,7 +10,7 @@
 
 	<groupId>cz.zaf</groupId>
 	<artifactId>zaf</artifactId>
-	<version>0.9.6-SNAPSHOT</version>
+	<version>0.9.6</version>
 	<packaging>pom</packaging>
 	<name>ZAF</name>
 
@@ -182,7 +182,7 @@
     <scm>
         <connection>scm:git:ssh://gitlab.lightcomp.cz/zaf/zaf.git</connection>
         <developerConnection>scm:git:ssh://git@gitlab.lightcomp.cz/zaf/zaf.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>zaf-0.9.6</tag>
     </scm>
 	<distributionManagement>
 		<repository>
