@@ -22,9 +22,9 @@ import javax.xml.validation.Validator;
 import org.xml.sax.SAXException;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
+import cz.zaf.sipvalidator.sip.ChybaPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
-import cz.zaf.sipvalidator.sip.ChybaPravidla;
 
 /**
  * Kontrola souladu se schématem XSD
@@ -101,7 +101,8 @@ public class K05_ProtiSchematu
                 obecnyPopisChyby,
                 null,
                 VAL1_ZDROJ,
-                BaseCode.CHYBA);
+                BaseCode.CHYBA,
+                null);
         vysledekKontroly.add(p);
 
     }

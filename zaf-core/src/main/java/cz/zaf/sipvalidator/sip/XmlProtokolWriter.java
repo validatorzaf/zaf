@@ -28,6 +28,7 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,10 +38,14 @@ import com.ctc.wstx.api.WstxInputProperties;
 import com.sun.xml.txw2.output.IndentingXMLStreamWriter;
 
 import cz.zaf.schema.validacesip.ObjectFactory;
+import cz.zaf.schema.validacesip.TEntity;
+import cz.zaf.schema.validacesip.TIdentifikator;
 import cz.zaf.schema.validacesip.TKontrola;
 import cz.zaf.schema.validacesip.TPravidlo;
 import cz.zaf.schema.validacesip.TSip;
+import cz.zaf.schema.validacesip.TTypEntity;
 import cz.zaf.schema.validacesip.TVysledekKontroly;
+import cz.zaf.sipvalidator.nsesss2017.EntityId;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 
 public class XmlProtokolWriter implements ProtokolWriter,
@@ -226,6 +231,50 @@ public class XmlProtokolWriter implements ProtokolWriter,
         pravNode.setVypisChyby(pravidlo.getVypisChyby());
         pravNode.setMistoChyby(pravidlo.getMistoChyby());
         pravNode.setKodChyby(pravidlo.getKodChyby().getErrorCode());
+
+        List<EntityId> entityIds = pravidlo.getEntityIds();
+        if (CollectionUtils.isNotEmpty(entityIds)) {
+            TEntity entityNode = objectFactory.createTEntity();
+            List<TIdentifikator> idents = entityNode.getIdentifikator();
+            for (EntityId entityId : entityIds) {
+                TIdentifikator ident = objectFactory.createTIdentifikator();
+                ident.setZdroj(entityId.getZdroj());
+                ident.setValue(entityId.getIdentifikator());
+                TTypEntity typEntity = null;
+                switch (entityId.getDruhEntity()) {
+                case SPISOVY_PLAN:
+                    typEntity = TTypEntity.SPISOVÝ_PLÁN;
+                    break;
+                case VECNA_SKUPINA:
+                    typEntity = TTypEntity.VĚCNÁ_SKUPINA;
+                    break;
+                case DIL:
+                    typEntity = TTypEntity.DÍL;
+                    break;
+                case SPIS:
+                    typEntity = TTypEntity.SPIS;
+                    break;
+                case DOKUMENT:
+                    typEntity = TTypEntity.DOKUMENT;
+                    break;
+                case SOUCAST:
+                    typEntity = TTypEntity.SOUČÁST;
+                    break;
+                case TYPOVY_SPIS:
+                case KOMPONENTA:
+                case SKARTACNI_RIZENI:
+                default:
+                    continue;
+                }
+                if (typEntity == null) {
+                    continue;
+                }
+                ident.setTyp(typEntity);
+
+                idents.add(ident);
+            }
+            pravNode.setEntity(entityNode);
+        }
         return pravNode;
     }
 

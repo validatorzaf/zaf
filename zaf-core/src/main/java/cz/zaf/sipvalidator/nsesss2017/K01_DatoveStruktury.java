@@ -10,11 +10,11 @@ import java.io.File;
 import java.nio.file.Path;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
+import cz.zaf.sipvalidator.sip.ChybaPravidla;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
-import cz.zaf.sipvalidator.sip.ChybaPravidla;
 
 
 /**
@@ -115,7 +115,8 @@ public class K01_DatoveStruktury
                 vypisChyby, popisChybyObecny,
                 null,
                 zdrojePravidla[index],
-                BaseCode.CHYBA);
+                BaseCode.CHYBA,
+                null);
         vysledekKontroly.add(p);
         
     }

@@ -10,8 +10,8 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 import cz.zaf.sipvalidator.exceptions.codes.XmlCode;
-import cz.zaf.sipvalidator.sip.VysledekKontroly;
 import cz.zaf.sipvalidator.sip.ChybaPravidla;
+import cz.zaf.sipvalidator.sip.VysledekKontroly;
 
 /**
  * Error handler pro validaci schematu
@@ -107,7 +107,8 @@ public class ErrorHandlerValidaceXSD implements ErrorHandler {
                 K05_ProtiSchematu.VAL1_POPIS_CHYBY,
                 mistoChyby,
                 K05_ProtiSchematu.VAL1_ZDROJ,
-                XmlCode.NEODPOVIDA_SCHEMATU);
+                XmlCode.NEODPOVIDA_SCHEMATU,
+                null);
         k.add(p);
     }
 

@@ -22,9 +22,9 @@ import com.ibm.icu.text.CharsetDetector; // lib ucu4j-56.jar
 import com.ibm.icu.text.CharsetMatch; // lib ucu4j-56.jar
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
+import cz.zaf.sipvalidator.sip.ChybaPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
-import cz.zaf.sipvalidator.sip.ChybaPravidla;
 
 /**
  * Kontroluje kódování SIP souboru.
@@ -163,7 +163,8 @@ public class K02_ZnakoveSady
                     chybaKodovani,
                     obecnyPopisChyby, null,
                     "Požadavek 11.2.7 NSESSS.",
-                    BaseCode.CHYBA);
+                    BaseCode.CHYBA,
+                    null);
             vysledekKontroly.add(p);
         }
 

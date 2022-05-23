@@ -10,7 +10,7 @@ package cz.zaf.sipvalidator.nsesss2017;
  */
 public class EntityId {
 
-    enum DruhEntity {
+    public enum DruhEntity {
         SPISOVY_PLAN,
         DIL,
         SPIS,
@@ -34,6 +34,18 @@ public class EntityId {
         this.identifikator = identifikator;
         this.zdroj = zdroj;
         this.druhEntity = druhEntity;
+    }
+
+    public String getIdentifikator() {
+        return identifikator;
+    }
+
+    public String getZdroj() {
+        return zdroj;
+    }
+
+    public DruhEntity getDruhEntity() {
+        return druhEntity;
     }
 
 }

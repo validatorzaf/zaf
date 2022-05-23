@@ -17,9 +17,9 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
+import cz.zaf.sipvalidator.sip.ChybaPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
-import cz.zaf.sipvalidator.sip.ChybaPravidla;
 
 /**
  * Kontrola správnosti XML
@@ -78,7 +78,8 @@ public class K03_Spravnosti
                     popisChybyObecny,
                     null,
                     "Požadavek 11.2.2 NSESSS.", // zdroj
-                    BaseCode.CHYBA);
+                    BaseCode.CHYBA,
+                    null);
             vysledekKontroly.add(p);
         }
 

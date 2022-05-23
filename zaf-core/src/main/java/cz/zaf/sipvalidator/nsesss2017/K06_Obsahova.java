@@ -5,6 +5,7 @@
  */
 package cz.zaf.sipvalidator.nsesss2017;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +18,6 @@ import cz.zaf.sipvalidator.nsesss2017.EntityId.DruhEntity;
 import cz.zaf.sipvalidator.sip.ChybaPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
-import java.util.ArrayList;
 
 /**
  * Obsahova kontrola
@@ -216,20 +216,28 @@ public class K06_Obsahova
      * @param mistoChyby
      * @param zdroj
      */
-    void pridejChybu(String idPravidla,
+    void pridejChybu(String kodPravidla,
             ErrorCode errorCode,
             String textPravidla,
             String detailChyby,
             String obecnyPopisChyby,
             String mistoChyby,
             String zdroj) {
-        ChybaPravidla p = new ChybaPravidla(idPravidla,
+        pridejChybu(kodPravidla, errorCode, textPravidla, detailChyby, obecnyPopisChyby, mistoChyby, zdroj,
+                    null);
+    }
+
+    public void pridejChybu(String kodPravidla, ErrorCode errorCode, String textPravidla, String detailChyby,
+                            String obecnyPopisChyby, String mistoChyby, String zdrojChyby,
+                            List<EntityId> entityIds) {
+        ChybaPravidla p = new ChybaPravidla(kodPravidla,
                 textPravidla,
                 detailChyby,
                 obecnyPopisChyby,
                 mistoChyby,
-                zdroj,
-                errorCode);
+                zdrojChyby,
+                errorCode,
+                entityIds);
         vysledekKontroly.add(p);
 
     }

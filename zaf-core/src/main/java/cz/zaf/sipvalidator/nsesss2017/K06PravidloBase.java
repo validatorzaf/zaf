@@ -65,6 +65,7 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
         this.context = this.kontrola.getContext();
 
         ErrorCode errorCode = null;
+        List<EntityId> entityIds = null;
 
         try {
             kontrola();
@@ -75,20 +76,20 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
             detailChyby = e.getMessage();
             mistoChyby = e.getMistoChyby();
 
-            // TODO: ID chybnych entit lze pridat do vystupu 
-            // List<EntityId> entityIds = e.getEntityIds();
+            entityIds = e.getEntityIds();
         } catch (Exception e) {
             errorCode = BaseCode.NEZNAMA_CHYBA;
             detailChyby = e.getLocalizedMessage();
         }
 
         kontrola.pridejChybu(kodPravidla,
-                errorCode,
-                textPravidla,
-                detailChyby,
-                obecnyPopisChyby,
-                mistoChyby,
-                zdrojChyby);
+                             errorCode,
+                             textPravidla,
+                             detailChyby,
+                             obecnyPopisChyby,
+                             mistoChyby,
+                             zdrojChyby,
+                             entityIds);
 
         this.context = null;
         this.kontrola = null;

@@ -9,8 +9,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.ChybaPravidla;
+import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 
 
 /**
@@ -69,7 +69,8 @@ public class K00_SkodlivehoKodu
                 textPravidla,
                 descr, popisChybyObecny, null,
                 zdroj,
-                BaseCode.CHYBA);
+                BaseCode.CHYBA,
+                null);
         vysledekKontroly.add(p);
 	}
 

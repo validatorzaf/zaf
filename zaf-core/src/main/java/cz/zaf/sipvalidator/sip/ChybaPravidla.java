@@ -1,8 +1,13 @@
 package cz.zaf.sipvalidator.sip;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.Validate;
 
 import cz.zaf.sipvalidator.exceptions.codes.ErrorCode;
+import cz.zaf.sipvalidator.nsesss2017.EntityId;
 
 /**
  * Vysledek kontroly jednoho pravidla
@@ -51,14 +56,22 @@ public class ChybaPravidla {
      */
     final private ErrorCode errorCode;
 
+    /**
+     * Seznam chybných entit
+     * 
+     * Seznam může být null.
+     */
+    final private List<EntityId> entityIds;
+
     public ChybaPravidla(
-                            final String id,
-                            final String textPravidla,
-                            final String vypisChyby,
-                            final String popisChybyObecny,
-                            final String mistoChyby,
-                            final String zdroj,
-                            final ErrorCode errorCode) {
+                         final String id,
+                         final String textPravidla,
+                         final String vypisChyby,
+                         final String popisChybyObecny,
+                         final String mistoChyby,
+                         final String zdroj,
+                         final ErrorCode errorCode,
+                         final List<EntityId> entityIds) {
         Validate.notEmpty(id);
         Validate.notEmpty(textPravidla);
 
@@ -69,6 +82,12 @@ public class ChybaPravidla {
         this.mistoChyby = mistoChyby;
         this.zdroj = zdroj;
         this.errorCode = errorCode;
+        if (CollectionUtils.isNotEmpty(entityIds)) {
+            // Copy IDs
+            this.entityIds = entityIds.stream().collect(Collectors.toList());
+        } else {
+            this.entityIds = null;
+        }
     }
 
     public String getId(){
@@ -97,5 +116,9 @@ public class ChybaPravidla {
 
     public ErrorCode getKodChyby() {
         return errorCode;
+    }
+
+    public List<EntityId> getEntityIds() {
+        return entityIds;
     }
 }

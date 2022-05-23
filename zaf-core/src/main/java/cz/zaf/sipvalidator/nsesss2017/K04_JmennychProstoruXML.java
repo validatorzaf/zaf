@@ -8,9 +8,9 @@ package cz.zaf.sipvalidator.nsesss2017;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
+import cz.zaf.sipvalidator.sip.ChybaPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
-import cz.zaf.sipvalidator.sip.ChybaPravidla;
 
 /**
  * Kontrola jmennych prostoru
@@ -54,7 +54,8 @@ public class K04_JmennychProstoruXML
                     detailChyby,
                     obecnyPopisChyby, null,
                     "Bod 2.1. přílohy č. 3 NSESSS.", // zdroj
-                    BaseCode.CHYBA);
+                    BaseCode.CHYBA,
+                    null);
             vysledekKontroly.add(p);
         }
     }
@@ -97,7 +98,8 @@ public class K04_JmennychProstoruXML
                     detailChyby,
                     obecnyPopisChyby, null,
                     "Bod 2.1. přílohy č. 3 NSESSS.", // zdroj
-                    BaseCode.CHYBA);
+                    BaseCode.CHYBA,
+                    null);
             vysledekKontroly.add(p);
         }
 
