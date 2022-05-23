@@ -54,6 +54,8 @@ public class VeraValidatorProxy {
 
     final private ExecutorService executor = Executors.newSingleThreadExecutor();
 
+    private List<Path> deleteFiles;
+
     private final static SAXParserFactory factory = SAXParserFactory.newInstance();
 
     static private boolean useServerMode;
@@ -75,11 +77,9 @@ public class VeraValidatorProxy {
     static private int parallelRunCounter = 0;
 
     private VeraValidatorProxy(final Path veraAppPath,
-                               final String javaBin,
-                               final boolean useServerMode) {
+                               final String javaBin) {
         this.veraAppPath = veraAppPath;
         this.javaBin = javaBin;
-        this.useServerMode = useServerMode;
 
     }
 
@@ -123,9 +123,13 @@ public class VeraValidatorProxy {
 
             try {
                 instance.executor.shutdownNow();
-            } finally {
-                instance = null;
+                // clean up has to be called after shutdown
+                // when all handles are freed
+                instance.cleanUp();
+            } catch (Exception e) {
+                log.error("Filed to clean up VeraValidatorProxy", e);
             }
+            instance = null;
         }
     }
 
@@ -154,7 +158,6 @@ public class VeraValidatorProxy {
 
         String serverMode = System.getProperty(ZAF_VERA_SERVERMODE);
 
-        boolean useServerMode;
         if (serverMode != null && (serverMode == "0" ||
                 serverMode == "false" || serverMode == "disabled")) {
             log.debug("VeraValidatorProxy will not use serverMode");
@@ -165,7 +168,7 @@ public class VeraValidatorProxy {
 
         }
 
-        instance = new VeraValidatorProxy(veraAppPath, javaBin, useServerMode);
+        instance = new VeraValidatorProxy(veraAppPath, javaBin);
 
         Validate.isTrue(inactivityExecutor == null);
         
@@ -254,6 +257,10 @@ public class VeraValidatorProxy {
             if (!cdt.await(5, TimeUnit.MINUTES)) {
                 log.error("Failed to read results, timeout");
             }
+
+            // try to delete temp files
+            cleanUp();
+
         } catch (IOException | InterruptedException e) {
             log.debug("Failed to run validator.", e);
             vr.setError("Výjimka při ověření: " + e.toString());
@@ -261,6 +268,24 @@ public class VeraValidatorProxy {
             finishServerValidation();
         }
         return vr;
+    }
+
+    private void cleanUp() {
+        // delete temp files
+        if (deleteFiles != null) {
+            List<Path> undeletedFiles = null;
+            for (Path deleteFile : deleteFiles) {
+                try {
+                    Files.delete(deleteFile);
+                } catch (Exception e) {
+                    if (undeletedFiles == null) {
+                        undeletedFiles = new ArrayList<>(deleteFiles.size());
+                    }
+                    undeletedFiles.add(deleteFile);
+                }
+            }
+            deleteFiles = undeletedFiles;
+        }
     }
 
     static synchronized private void prepareServerValidation() {
@@ -319,6 +344,8 @@ public class VeraValidatorProxy {
                 if (Files.isReadable(outputPath)) {
                     try (InputStream xmlInputStream = Files.newInputStream(outputPath)) {
                         return readOutput(xmlInputStream);
+                    } finally {
+                        addDeleteFile(outputPath);
                     }
                 } else {
                     return "Failed to read file: " + outputPath;
@@ -326,6 +353,20 @@ public class VeraValidatorProxy {
 
             }
         }
+    }
+
+    /**
+     * Add file for later removal
+     * 
+     * Method is called from tread reading results
+     * 
+     * @param fileToDelete
+     */
+    private void addDeleteFile(Path fileToDelete) {
+        if (this.deleteFiles == null) {
+            this.deleteFiles = new ArrayList<Path>(1);
+        }
+        this.deleteFiles.add(fileToDelete);
     }
 
     private ValidationResult singleRun(Path pdfPath) {
