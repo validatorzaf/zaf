@@ -171,7 +171,7 @@ public class Pravidlo105 extends K06PravidloBase {
         }
         if (origList.size() > 0) {
             if (!hasOriginalVeVystupnimFormatu) {
-                nastavChybu(BaseCode.CHYBA,
+                nastavChybu(BaseCode.CHYBI_KOMPONENTA,
                             "Nenalezen originál ve výstupním formátu, existují originály, které ho vyžadují. Počet. "
                                     + origList.size(), origList,
                             kontrola.getEntityId(digiDokNode));

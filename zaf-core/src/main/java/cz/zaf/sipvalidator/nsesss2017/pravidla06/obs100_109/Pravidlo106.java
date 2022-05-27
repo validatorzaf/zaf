@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
@@ -71,7 +72,7 @@ public class Pravidlo106 extends K06PravidloBase {
         }
     }
 
-    private boolean kontrola(Element dokNode, Integer pozice, List<Element> komps) {
+    private void kontrola(Element dokNode, Integer pozice, List<Element> komps) {
 
         Integer nejvyssiVerzeVystFormatu = null;
         Integer nejvyssiVerze = null;
@@ -93,13 +94,12 @@ public class Pravidlo106 extends K06PravidloBase {
 
         if (nejvyssiVerzeVystFormatu != null) {
             if (nejvyssiVerze > nejvyssiVerzeVystFormatu) {
-                return nastavChybu("Existuje komponenta s vyšší verzí v nevýstupním formátu než je komponenta ve výstupním formátu, pozice: "
-                        + pozice
-                        + ", kolidující verze: " + nejvyssiVerzeVystFormatu, kompVeVystFormatu);
+                nastavChybu(BaseCode.CHYBA,
+                            "Existuje komponenta s vyšší verzí v nevýstupním formátu než je komponenta ve výstupním formátu, pozice: "
+                                    + pozice + ", kolidující verze: " + nejvyssiVerzeVystFormatu,
+                            kompVeVystFormatu,
+                            kontrola.getEntityId(dokNode));
             }
         }
-
-        return true;
     }
-
 }
