@@ -1,10 +1,10 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69;
 
-import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.util.List;
 
 import org.w3c.dom.Element;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
@@ -74,7 +74,8 @@ public class Pravidlo64 extends K06PravidloBase {
                     int hodnotaLhuta = Integer.parseInt(hodnotaElSkartacniLhuta);
                     int hodnotaUdalosti = Integer.parseInt(rokSpousteciUdalosti);
                     if (hodnotaOperace < (hodnotaLhuta + hodnotaUdalosti + 1)) {
-                        nastavChybu(BaseCode.CHYBA, "Rok skartační operace: " + hodnotaOperace + ", lhůta: " + hodnotaLhuta
+                        nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Rok skartační operace: " + hodnotaOperace
+                                + ", lhůta: " + hodnotaLhuta
                                 + ", událost: " + hodnotaUdalosti + ". " + getJmenoIdentifikator(elZakladniEntita),
                                 elZakladniEntita, kontrola.getEntityId(elZakladniEntita));
                     }
