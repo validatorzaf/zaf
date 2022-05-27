@@ -54,7 +54,7 @@ public class K04_JmennychProstoruXML
                     detailChyby,
                     obecnyPopisChyby, null,
                     "Bod 2.1. přílohy č. 3 NSESSS.", // zdroj
-                    BaseCode.CHYBA,
+                    BaseCode.CHYBI_ELEMENT,
                     null);
             vysledekKontroly.add(p);
         }
