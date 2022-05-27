@@ -94,7 +94,7 @@ public class Pravidlo103 extends K06PravidloBase {
                     String formaUchovani = ValuesGetter.getValueOfAttribut(komponenta, JmenaElementu.FORMA_UCHOVANI);
                     if (JmenaElementu.FORMA_UCHOVANI_ORIGINAL.equals(formaUchovani)) {
                         if (original != null) {
-                            nastavChybu(BaseCode.CHYBA,
+                            nastavChybu(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
                                         "Dokument má více komponent se shodným pořadím označených jako originál. poradi: "
                                                 + komponentyNaPozici.getKey(), digitDok.getKey(),
                                         kontrola.getEntityId(digitDok.getKey()));
