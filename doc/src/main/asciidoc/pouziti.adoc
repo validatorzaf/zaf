@@ -48,6 +48,22 @@ Validátor ZAF lze volat prostřednictvím příkazového řádku:
   Jméno souboru nebo adresáře pro uložení výsledků
 
 
+=== Systémové parametry
+
+Pokročilé funkce validátoru je možné řídit pomocí systémových parametrů (parametr *-D*).
+
+*zaf.vera.servermode*::
+  Určuje, zda se validátor použije v serverovém režimu nebo je vždy samostatně
+  spouštěn pro každý jednotlivý běh. Přípustné hodnoty jsou *true* | *false*. 
+  Ve výchozím režimu se použije serverový režim.
+  
+*zaf.vera.path*::
+  Cesta k lokální instalaci VeraPDF validátoru. Jedná se o úplnou cestu k .jar souboru
+  včetně tohoto souboru. Pokud není nastaveno, použije se verze validátoru vestavěná 
+  přímo do aplikace.
+ 
+
+
 [[pouziti_priklady]]
 === Příklady volání
 
@@ -59,6 +75,11 @@ Validace jednotlivého SIPu se zápisem výstupu do protokolu:
 Validace SIPů uložených v adresáři:
 
 `java -jar CmdValidator.jar -b "C:\temp\SIP1580724295329"`
+
+
+Validace SIPů uložených v adresáři s využitím jiné verze VeraPDF:
+
+`java -Dzaf.vera.path=C:\verapdf\greenfield-apps.jar -jar CmdValidator.jar -d 3 -b "C:\temp\SIP1580724295329"`
 
 
 

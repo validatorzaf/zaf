@@ -904,38 +904,6 @@ Zdroj:: Příloha č. 2 NSESSS, ř. 1476.
 Popis chyby:: Chybí množství odeslaného dokumentu v analogové podobě.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
-[[obs89]]
-== obs89
-
-[horizontal]
-
-Pravidlo:: Pokud je základní entitou dokument (<nsesss:Dokument>), potom obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> element <nsesss:RokSpousteciUdalosti> hodnotu, v níž je uvedený rok větší nebo roven hodnotě uvedené v elementu <nsesss:Datum> v hierarchii elementů <nsesss:EvidencniUdaje> a <nsesss:Vyrizeni>.
-Kód:: obs89
-Zdroj:: null
-Popis chyby:: Není v souladu rok spouštěcí události a datum vyřízení u dokumentu.
-Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
-
-[[obs90]]
-== obs90
-
-[horizontal]
-
-Pravidlo:: Pokud je základní entitou spis (<nsesss:Spis>), potom obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> element <nsesss:RokSpousteciUdalosti> hodnotu, v níž je uvedený rok větší nebo roven hodnotě uvedené v elementu <nsesss:Datum> v hierarchii elementů <nsesss:EvidencniUdaje> a <nsesss:VyrizeniUzavreni>.
-Kód:: obs90
-Zdroj:: null
-Popis chyby:: Není v souladu rok spouštěcí události a datum vyřízení nebo datum uzavření u spisu.
-Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
-
-[[obs91]]
-== obs91
-
-[horizontal]
-
-Pravidlo:: Pokud je základní entitou díl (<nsesss:Dil>), potom obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> element <nsesss:RokSpousteciUdalosti> hodnotu, v níž je uvedený rok větší nebo roven hodnotě uvedené v elementu <nsesss:Datum> v hierarchii elementů <nsesss:EvidencniUdaje> a <nsesss:Uzavreni>.
-Kód:: obs91
-Zdroj:: null
-Popis chyby:: Není v souladu rok spouštěcí události a datum uzavření u dílu.
-Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
 [[obs92]]
 == obs92
