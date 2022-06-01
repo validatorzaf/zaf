@@ -25,6 +25,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,7 +41,12 @@ public class VeraValidatorProxy {
      */
     public static final String ZAF_VERA_SERVERMODE = "zaf.vera.servermode";
 
-    // 5 minutes
+    /**
+     * Name of system property allows to use Vera installed locally
+     */
+    public static final String ZAF_VERA_PATH = "zaf.vera.path";
+
+    // 10 minutes
     public static int inactivityDelay = 10;
     public static TimeUnit inactivityTimeunit = TimeUnit.MINUTES;
 
@@ -139,19 +145,38 @@ public class VeraValidatorProxy {
         }
 
         log.debug("Starting VeraValidatorProxy");
-        InputStream veraAppStream = VeraValidatorProxy.class.getResourceAsStream("/verapdf/greenfield-apps.jar");
-        if (veraAppStream == null) {
-            log.error("Failed to load verapdf from resources");
-            throw new RuntimeException("Failed to load verapdf from resources");
+
+        Path veraAppPath;
+        String veraPathParam = System.getProperty(ZAF_VERA_PATH);
+        if (StringUtils.isNotBlank(veraPathParam)) {
+            // Use external validator
+            veraAppPath = Paths.get(veraPathParam);
+            if (!Files.isRegularFile(veraAppPath)) {
+                String errorMsg = new StringBuilder()
+                        .append("Incorrect value of parameter '")
+                        .append(ZAF_VERA_PATH)
+                        .append("': ")
+                        .append(veraPathParam)
+                        .append(". Valid path to the .jar file is expected.").toString();
+                log.error(errorMsg);
+                throw new RuntimeException(errorMsg);
+            }
+        } else {
+            // Use internal validator
+            InputStream veraAppStream = VeraValidatorProxy.class.getResourceAsStream("/verapdf/greenfield-apps.jar");
+            if (veraAppStream == null) {
+                log.error("Failed to load verapdf from resources");
+                throw new RuntimeException("Failed to load verapdf from resources");
+            }
+            // extract to temp directory
+            File greenFieldAppJar = File.createTempFile("zaf-greenfield-apps", ".jar");
+            greenFieldAppJar.deleteOnExit();
+            veraAppPath = greenFieldAppJar.toPath();
+
+            Files.copy(veraAppStream, veraAppPath, StandardCopyOption.REPLACE_EXISTING);
         }
+        log.debug("Using VeraPDF: {}", veraAppPath);
 
-        // extract to temp directory
-        File greenFieldAppJar = File.createTempFile("zaf-greenfield-apps", ".jar");
-        greenFieldAppJar.deleteOnExit();
-
-        Path veraAppPath = greenFieldAppJar.toPath();
-
-        Files.copy(veraAppStream, veraAppPath, StandardCopyOption.REPLACE_EXISTING);
 
         String javaHome = System.getProperty("java.home");
         String javaBin = javaHome + File.separator + "bin" + File.separator + "java";
