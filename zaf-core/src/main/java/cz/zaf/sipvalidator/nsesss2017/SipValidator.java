@@ -90,7 +90,7 @@ public class SipValidator {
 
         UrovenKontroly<KontrolaNsess2017Context> aktivniKontrola = null;
         try {
-            // provedeni kontrol
+            // provedeni kontrol            
             ctx = new KontrolaNsess2017Context(metsParser, sip, excludeChecks);
             for (UrovenKontroly<KontrolaNsess2017Context> kontrola : kontroly) {
                 aktivniKontrola = kontrola;

@@ -37,7 +37,7 @@ import cz.zaf.sipvalidator.sip.VysledekKontroly;
  */
 public abstract class SipValidatorTestBase {
 
-    Logger log = LoggerFactory.getLogger(SipValidatorTestBase.class);
+    static final Logger log = LoggerFactory.getLogger(SipValidatorTestBase.class);
 
     static Path workDirPath;
 
@@ -54,6 +54,11 @@ public abstract class SipValidatorTestBase {
         for (Handler handler : root.getHandlers()) {
             handler.setLevel(Level.ALL);
         }
+    }
+
+    // set fixed date for all tests
+    static {
+        System.setProperty(KontrolaNsess2017Context.ZAF_VALIDATION_DATE, "2014-07-01");
     }
 
     Path getPath(String relativePath) throws UnsupportedEncodingException {

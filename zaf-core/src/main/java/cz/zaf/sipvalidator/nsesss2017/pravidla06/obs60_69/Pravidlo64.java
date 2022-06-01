@@ -1,5 +1,6 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.w3c.dom.Element;
@@ -14,10 +15,10 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 //
 // Pokud je základní entitou dokument (<nsesss:Dokument>), potom v hierarchii
 // dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>,
-// <nsesss:DataceVyrazeni> obsahuje element <nsesss:RokSkartacniOperace>
-// hodnotu, která je rovna nebo větší součtu hodnoty elementu
-// <nsesss:RokSpousteciUdalosti>, 1 a hodnoty elementu <nsesss:SkartacniLhuta>
-// uvedeného v rodičovském elementu <nsesss:SkartacniRezim>.
+// <nsesss:DataceVyrazeni> je součet hodnoty elementu
+// <nsesss:RokSpousteciUdalosti>,
+// 1 a hodnoty elementu <nsesss:SkartacniLhuta> uvedeného v rodičovském elementu
+// <nsesss:SkartacniRezim> menší nebo roven aktuálnímu roku.
 //
 public class Pravidlo64 extends K06PravidloBase {
 
@@ -25,7 +26,7 @@ public class Pravidlo64 extends K06PravidloBase {
 
     public Pravidlo64() {
         super(OBS64,
-                "Pokud je základní entitou dokument (<nsesss:Dokument>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> obsahuje element <nsesss:RokSkartacniOperace> hodnotu, která je rovna nebo větší součtu hodnoty elementu <nsesss:RokSpousteciUdalosti>, 1 a hodnoty elementu <nsesss:SkartacniLhuta> uvedeného v rodičovském elementu <nsesss:SkartacniRezim>.",
+                "Pokud je základní entitou dokument (<nsesss:Dokument>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> je součet hodnoty elementu <nsesss:RokSpousteciUdalosti>, 1 a hodnoty elementu <nsesss:SkartacniLhuta> uvedeného v rodičovském elementu <nsesss:SkartacniRezim> menší nebo roven aktuálnímu roku.",
                 "Uveden je chybně rok skartační operace u dokumentu (počítá se jako rok spouštěcí události + 1 + skartační lhůta).",
                 "§ 15 odst. 4 vyhlášky č. 259/2012 Sb.");
     }
@@ -39,52 +40,57 @@ public class Pravidlo64 extends K06PravidloBase {
         for (int i = 0; i < zakladniEntity.size(); i++) {
             Element elZakladniEntita = zakladniEntity.get(i);
             if (elZakladniEntita.getNodeName().equals(NsessV3.DOKUMENT)) {
-                Element elvyrazovani = ValuesGetter.getXChild(elZakladniEntita, NsessV3.EVIDENCNI_UDAJE, NsessV3.VYRAZOVANI);
-                if (elvyrazovani == null) {
-                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Vyrazovani>. " + getJmenoIdentifikator(elZakladniEntita),
-                            elZakladniEntita, kontrola.getEntityId(elZakladniEntita));
-                }
-                Element elSkartacniRezim = ValuesGetter.getXChild(elvyrazovani, NsessV3.SKARTACNI_REZIM);
-                if (elSkartacniRezim == null) {
-                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:SkartacniRezim>. " + getJmenoIdentifikator(elZakladniEntita),
-                            elZakladniEntita, kontrola.getEntityId(elZakladniEntita));
-                }
-                Element elSkartacniLhuta = ValuesGetter.getXChild(elSkartacniRezim, NsessV3.SKARTACNI_LHUTA);
-                if (elSkartacniLhuta == null) {
-                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:SkartacniLhuta>. " + getJmenoIdentifikator(elZakladniEntita),
-                            elSkartacniRezim, kontrola.getEntityId(elZakladniEntita));
-                }
-                String hodnotaElSkartacniLhuta = elSkartacniLhuta.getTextContent();
-                Element elRokSkartOperace = ValuesGetter.getXChild(elvyrazovani, NsessV3.DATACE_VYRAZENI, NsessV3.ROK_SKARTACNI_OPERACE);
-                Element elRokSousteciUdalosti = ValuesGetter.getXChild(elvyrazovani, NsessV3.DATACE_VYRAZENI, NsessV3.ROK_SPOUSTECI_UDALOSTI);
-                if (elRokSkartOperace == null) {
-                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:RokSkartacniOperace>. " + getJmenoIdentifikator(elZakladniEntita),
-                            elZakladniEntita, kontrola.getEntityId(elZakladniEntita));
-                }
-                if (elRokSousteciUdalosti == null) {
-                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:RokSpousteciUdalosti>. " + getJmenoIdentifikator(elZakladniEntita),
-                            elZakladniEntita, kontrola.getEntityId(elZakladniEntita));
-                }
-
-                String rokSkartacniOperace = elRokSkartOperace.getTextContent();
-                String rokSpousteciUdalosti = elRokSousteciUdalosti.getTextContent();
-
-                try {
-                    int hodnotaOperace = Integer.parseInt(rokSkartacniOperace);
-                    int hodnotaLhuta = Integer.parseInt(hodnotaElSkartacniLhuta);
-                    int hodnotaUdalosti = Integer.parseInt(rokSpousteciUdalosti);
-                    if (hodnotaOperace < (hodnotaLhuta + hodnotaUdalosti + 1)) {
-                        nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Rok skartační operace: " + hodnotaOperace
-                                + ", lhůta: " + hodnotaLhuta
-                                + ", událost: " + hodnotaUdalosti + ". " + getJmenoIdentifikator(elZakladniEntita),
-                                elZakladniEntita, kontrola.getEntityId(elZakladniEntita));
-                    }
-                } catch (NumberFormatException e) {
-                    nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Zápis roku je uveden ve špatném formátu. " + getJmenoIdentifikator(elZakladniEntita),
-                            elZakladniEntita, kontrola.getEntityId(elZakladniEntita));
-                }
-
+                kontrolaDokumentu(elZakladniEntita);
             }
+        }
+    }
+
+    private void kontrolaDokumentu(Element elDokument) {
+        Element elvyrazovani = ValuesGetter.getXChild(elDokument, NsessV3.EVIDENCNI_UDAJE, NsessV3.VYRAZOVANI);
+        if (elvyrazovani == null) {
+            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Vyrazovani>. "
+                    + getJmenoIdentifikator(elDokument), elDokument, kontrola.getEntityId(elDokument));
+        }
+
+        // ziskani skartacni lhuty
+        Element elSkartacniRezim = ValuesGetter.getXChild(elvyrazovani, NsessV3.SKARTACNI_REZIM);
+        if (elSkartacniRezim == null) {
+            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:SkartacniRezim>. "
+                    + getJmenoIdentifikator(elDokument), elDokument, kontrola.getEntityId(elDokument));
+        }
+        Element elSkartacniLhuta = ValuesGetter.getXChild(elSkartacniRezim, NsessV3.SKARTACNI_LHUTA);
+        if (elSkartacniLhuta == null) {
+            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:SkartacniLhuta>. "
+                    + getJmenoIdentifikator(elDokument), elSkartacniRezim, kontrola.getEntityId(elDokument));
+        }
+        String hodnotaElSkartacniLhuta = elSkartacniLhuta.getTextContent();
+
+        // zjisteni roku spousteci udalosti
+        Element elRokSousteciUdalosti = ValuesGetter.getXChild(elvyrazovani, NsessV3.DATACE_VYRAZENI,
+                                                               NsessV3.ROK_SPOUSTECI_UDALOSTI);
+        if (elRokSousteciUdalosti == null) {
+            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:RokSpousteciUdalosti>. "
+                    + getJmenoIdentifikator(elDokument),
+                        elDokument, kontrola.getEntityId(elDokument));
+        }
+
+        String rokSpousteciUdalosti = elRokSousteciUdalosti.getTextContent();
+
+        try {
+            LocalDate localDate = this.context.getLocalDate();
+            int hodnotaOperace = localDate.getYear();
+            int hodnotaLhuta = Integer.parseInt(hodnotaElSkartacniLhuta);
+            int hodnotaUdalosti = Integer.parseInt(rokSpousteciUdalosti);
+            if (hodnotaOperace < (hodnotaLhuta + hodnotaUdalosti + 1)) {
+                nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Rok skartační operace: " + hodnotaOperace
+                        + ", lhůta: " + hodnotaLhuta
+                        + ", událost: " + hodnotaUdalosti + ". " + getJmenoIdentifikator(elDokument),
+                            elDokument, kontrola.getEntityId(elDokument));
+            }
+        } catch (NumberFormatException e) {
+            nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Zápis roku je uveden ve špatném formátu. "
+                    + getJmenoIdentifikator(elDokument),
+                        elDokument, kontrola.getEntityId(elDokument));
         }
     }
 }
