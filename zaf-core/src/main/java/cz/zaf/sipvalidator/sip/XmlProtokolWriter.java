@@ -53,6 +53,7 @@ public class XmlProtokolWriter implements ProtokolWriter,
     
     public static String XML_PREFIX = "kontrolasip";
     public static String SCHEMA_URL = "http://www.ahmp.cz/schema/validacesip/v1";
+    public static String ZAF_RULE_VERSION = "2";
     
     private static Logger logger = LoggerFactory.getLogger(XmlProtokolWriter.class);
     
@@ -162,7 +163,7 @@ public class XmlProtokolWriter implements ProtokolWriter,
 
         indentingStreamWriter.writeAttribute("nazevAplikace", artifactId);
         indentingStreamWriter.writeAttribute("verzeAplikace", verzeApp);
-        indentingStreamWriter.writeAttribute("verzePravidel", "1");
+        indentingStreamWriter.writeAttribute("verzePravidel", ZAF_RULE_VERSION);
     }
     
 

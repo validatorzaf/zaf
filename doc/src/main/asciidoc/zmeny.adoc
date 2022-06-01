@@ -5,3 +5,6 @@
 
 * Přidána pravidla <<obs100>>, <<obs101>>, <<obs102>>, <<obs103>>, <<obs104>>, <<obs105>>, <<obs106>>, <<obs107>>
 
+== v2, 1.6.2022
+
+* Zrušena pravidla ověření spouštěcí události: obs89, obs90, obs91
