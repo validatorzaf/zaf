@@ -144,12 +144,12 @@
                 <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
                 <nsesss:Oduvodneni>Vyplývá ze spisového plánu organizace</nsesss:Oduvodneni>
                 <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
-                <nsesss:SkartacniLhuta>3</nsesss:SkartacniLhuta>
+                <nsesss:SkartacniLhuta>7</nsesss:SkartacniLhuta>
                 <nsesss:SpousteciUdalost>Uzavření entity</nsesss:SpousteciUdalost>
               </nsesss:SkartacniRezim>
               <nsesss:DataceVyrazeni>
-                <nsesss:RokSpousteciUdalosti>2010</nsesss:RokSpousteciUdalosti>
-                <nsesss:RokSkartacniOperace>2018</nsesss:RokSkartacniOperace>
+                <nsesss:RokSpousteciUdalosti>2014</nsesss:RokSpousteciUdalosti>
+                <nsesss:RokSkartacniOperace>2016</nsesss:RokSkartacniOperace>
               </nsesss:DataceVyrazeni>
               <nsesss:SkartacniRizeni>
                 <nsesss:Datum datum="2018-12-31T00:00:00.000+01:00">2018-12-31</nsesss:Datum>
