@@ -163,7 +163,7 @@ public class Pravidlo107 extends K06PravidloBase {
         String mimeType = ValuesGetter.getValueOfAttribut(fileNode, "MIMETYPE");
         if (!checkedMimeTypes.contains(mimeType)) {
             EntityId entityId = kontrola.getEntityId(digiDokNode);
-            nastavChybu(BaseCode.CHYBA,
+            nastavChybu(BaseCode.CHYBI_KOMPONENTA,
                         "Originál ve výstupním formátu pro nejvyšší verzi komponenty nemá přípustný mimetype. Zjištěn typ: "
                                 + mimeType, fileNode, entityId);
         }

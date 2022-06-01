@@ -94,7 +94,7 @@ public class Pravidlo106 extends K06PravidloBase {
 
         if (nejvyssiVerzeVystFormatu != null) {
             if (nejvyssiVerze > nejvyssiVerzeVystFormatu) {
-                nastavChybu(BaseCode.CHYBA,
+                nastavChybu(BaseCode.CHYBI_KOMPONENTA,
                             "Existuje komponenta s vyšší verzí v nevýstupním formátu než je komponenta ve výstupním formátu, pozice: "
                                     + pozice + ", kolidující verze: " + nejvyssiVerzeVystFormatu,
                             kompVeVystFormatu,

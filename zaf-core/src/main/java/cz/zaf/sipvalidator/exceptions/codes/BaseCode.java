@@ -38,7 +38,13 @@ public enum BaseCode implements ErrorCode {
     CHYBI_KOMPONENTA("Chybí soubor odpovídající komponentě"),
 
     /**
-     * Obvykle se použije pro chybný obsah komponenty
+     * Použije se v případě chybné definice verzí komponent
+     * ve vztahu k výstupním formátům apod.
+     */
+    CHYBNA_DEFINICE_KOMPONENTY("Definice komponenty je chybná"),
+
+    /**
+     * Obvykle se použije pro chybný obsah komponenty 
      * (např. poškozené/neplatné PDF-A)
      */
     CHYBNA_KOMPONENTA("Chyba v komponentě");
