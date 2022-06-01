@@ -1,6 +1,5 @@
 package cz.zaf.sipvalidator.nsesss2017;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09.Pravidlo1;
@@ -1854,7 +1853,6 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     }
 
     @Test
-    @Disabled
     void testK06_64_02() {
         testPackageK06("64-chyba2", StavKontroly.CHYBA,
                        ZakladniProfilValidace.PREJIMKA,

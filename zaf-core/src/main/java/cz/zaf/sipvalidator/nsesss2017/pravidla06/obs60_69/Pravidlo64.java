@@ -1,6 +1,5 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.w3c.dom.Element;
@@ -77,8 +76,7 @@ public class Pravidlo64 extends K06PravidloBase {
         String rokSpousteciUdalosti = elRokSousteciUdalosti.getTextContent();
 
         try {
-            LocalDate localDate = this.context.getLocalDate();
-            int hodnotaOperace = localDate.getYear();
+            int hodnotaOperace = context.getLocalDate().getYear();
             int hodnotaLhuta = Integer.parseInt(hodnotaElSkartacniLhuta);
             int hodnotaUdalosti = Integer.parseInt(rokSpousteciUdalosti);
             if (hodnotaOperace < (hodnotaLhuta + hodnotaUdalosti + 1)) {
