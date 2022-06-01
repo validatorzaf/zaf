@@ -10,8 +10,7 @@
   </mets:metsHdr>
   <mets:dmdSec ID="IDa5">
     <mets:mdWrap LABEL="Schéma XML pro předávání dokumentů a jejich metadat do archivu" MDTYPE="OTHER" MDTYPEVERSION="3.0" MIMETYPE="text/xml" OTHERMDTYPE="NSESSS">
-      <mets:xmlData>
-        
+      <mets:xmlData>        
         <nsesss:Spis ID="ID7">
           <nsesss:EvidencniUdaje>
             <nsesss:Identifikace>
@@ -90,7 +89,7 @@
                             </nsesss:Trideni>
                             <nsesss:Vyrazovani/>
                             <nsesss:Manipulace>
-                              <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+                              <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
                               <nsesss:DatumOtevreni>2012-01-01</nsesss:DatumOtevreni>
                             </nsesss:Manipulace>
                           </nsesss:EvidencniUdaje>
@@ -108,7 +107,7 @@
                       </nsesss:SkartacniRezim>
                     </nsesss:Vyrazovani>
                     <nsesss:Manipulace>
-                      <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+                      <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
                       <nsesss:DatumOtevreni>2012-01-01</nsesss:DatumOtevreni>
                       <nsesss:DatumUzavreni>2015-12-31</nsesss:DatumUzavreni>
                     </nsesss:Manipulace>
@@ -188,7 +187,7 @@
               </nsesss:SkartacniRizeni>
             </nsesss:Vyrazovani>
             <nsesss:Manipulace>
-              <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+              <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
               <nsesss:DatumOtevreni>2012-08-17</nsesss:DatumOtevreni>
               <nsesss:DatumUzavreni>2012-11-30</nsesss:DatumUzavreni>
             </nsesss:Manipulace>
@@ -214,6 +213,7 @@
                   <nsesss:DorucenyDokument>
                     <nsesss:DatumDoruceni>2012-08-13</nsesss:DatumDoruceni>
                     <nsesss:OdesilatelovoEvidencniCislo>444/KUPCE/2012</nsesss:OdesilatelovoEvidencniCislo>
+                    <nsesss:DoruceneMnozstvi>1-1/0/2-4</nsesss:DoruceneMnozstvi>
                     <nsesss:Odesilatel>
                       <nsesss:Subjekt>
                         <nsesss:IdentifikatorOrganizace zdroj="IČ">70892822</nsesss:IdentifikatorOrganizace>
@@ -258,41 +258,10 @@
                   </nsesss:DataceVyrazeni>
                 </nsesss:Vyrazovani>
                 <nsesss:Manipulace>
-                  <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+                  <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                  <nsesss:UkladaciJednotka>karton č. 5</nsesss:UkladaciJednotka>
                 </nsesss:Manipulace>
               </nsesss:EvidencniUdaje>
-              <nsesss:Komponenty>
-                <nsesss:Komponenta ID="ID5" druh="průvodní dopis" forma_uchovani="originál ve výstupním datovém formátu" poradi="1" verze="1">
-                  <nsesss:EvidencniUdaje>
-                    <nsesss:Identifikace>
-                      <nsesss:Identifikator zdroj="ERMS">identifikátor komponenty05</nsesss:Identifikator>
-                    </nsesss:Identifikace>
-                    <nsesss:Popis>
-                      <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
-                      <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
-                    </nsesss:Popis>
-                    <nsesss:Trideni>
-                      <nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
-                      <nsesss:PlneUrcenySpisovyZnak>33.3</nsesss:PlneUrcenySpisovyZnak>
-                    </nsesss:Trideni>
-                  </nsesss:EvidencniUdaje>
-                </nsesss:Komponenta>
-                <nsesss:Komponenta ID="ID6" druh="příloha" forma_uchovani="originál ve výstupním datovém formátu" poradi="2" verze="1">
-                  <nsesss:EvidencniUdaje>
-                    <nsesss:Identifikace>
-                      <nsesss:Identifikator zdroj="ERMS">identifikátor komponenty06</nsesss:Identifikator>
-                    </nsesss:Identifikace>
-                    <nsesss:Popis>
-                      <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
-                      <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
-                    </nsesss:Popis>
-                    <nsesss:Trideni>
-                      <nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
-                      <nsesss:PlneUrcenySpisovyZnak>33.3</nsesss:PlneUrcenySpisovyZnak>
-                    </nsesss:Trideni>
-                  </nsesss:EvidencniUdaje>
-                </nsesss:Komponenta>
-              </nsesss:Komponenty>
             </nsesss:Dokument>
             <nsesss:Dokument ID="ID8">
               <nsesss:EvidencniUdaje>
@@ -313,6 +282,7 @@
                 <nsesss:Puvod>
                   <nsesss:VlastniDokument>
                     <nsesss:DatumVytvoreni>2012-08-20</nsesss:DatumVytvoreni>
+                    <nsesss:VytvoreneMnozstvi>1-1/0/2-4</nsesss:VytvoreneMnozstvi>
                     <nsesss:Autor>
                       <nsesss:Subjekt>
                         <nsesss:IdentifikatorOrganizace zdroj="IČ">27520536</nsesss:IdentifikatorOrganizace>
@@ -345,6 +315,7 @@
                     </nsesss:Subjekt>
                   </nsesss:Zpracovatel>
                   <nsesss:DatumOdeslani>2012-09-01</nsesss:DatumOdeslani>
+                  <nsesss:OdeslaneMnozstvi>1-1/0/2-4</nsesss:OdeslaneMnozstvi>
                   <nsesss:Prijemce>
                     <nsesss:Subjekt>
                       <nsesss:IdentifikatorOrganizace zdroj="IČ">70892822</nsesss:IdentifikatorOrganizace>
@@ -369,41 +340,10 @@
                   </nsesss:DataceVyrazeni>
                 </nsesss:Vyrazovani>
                 <nsesss:Manipulace>
-                  <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+                  <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                  <nsesss:UkladaciJednotka>karton č. 5</nsesss:UkladaciJednotka>
                 </nsesss:Manipulace>
               </nsesss:EvidencniUdaje>
-              <nsesss:Komponenty>
-                <nsesss:Komponenta ID="ID9" druh="průvodní dopis" forma_uchovani="originál ve výstupním datovém formátu" poradi="1" verze="1">
-                  <nsesss:EvidencniUdaje>
-                    <nsesss:Identifikace>
-                      <nsesss:Identifikator zdroj="ERMS">identifikátor komponenty05_2</nsesss:Identifikator>
-                    </nsesss:Identifikace>
-                    <nsesss:Popis>
-                      <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
-                      <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
-                    </nsesss:Popis>
-                    <nsesss:Trideni>
-                      <nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
-                      <nsesss:PlneUrcenySpisovyZnak>33.3</nsesss:PlneUrcenySpisovyZnak>
-                    </nsesss:Trideni>
-                  </nsesss:EvidencniUdaje>
-                </nsesss:Komponenta>
-                <nsesss:Komponenta ID="ID10" druh="příloha" forma_uchovani="originál ve výstupním datovém formátu" poradi="2" verze="1">
-                  <nsesss:EvidencniUdaje>
-                    <nsesss:Identifikace>
-                      <nsesss:Identifikator zdroj="ERMS">identifikátor komponenty06_2</nsesss:Identifikator>
-                    </nsesss:Identifikace>
-                    <nsesss:Popis>
-                      <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
-                      <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
-                    </nsesss:Popis>
-                    <nsesss:Trideni>
-                      <nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
-                      <nsesss:PlneUrcenySpisovyZnak>33.3</nsesss:PlneUrcenySpisovyZnak>
-                    </nsesss:Trideni>
-                  </nsesss:EvidencniUdaje>
-                </nsesss:Komponenta>
-              </nsesss:Komponenty>
             </nsesss:Dokument>
           </nsesss:Dokumenty>
         </nsesss:Spis>
@@ -625,102 +565,6 @@
       </mets:mdWrap>
     </mets:digiprovMD>
   </mets:amdSec>
-  <mets:amdSec ID="amd02">
-    <mets:digiprovMD ID="digiProv02">
-      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
-        <mets:xmlData>
-          <tp:TransakcniLogObjektu>
-            <tp:TransLogInfo>
-              <tp:Identifikator>
-                <tns:HodnotaID>TP02_VApnS</tns:HodnotaID>
-                <tns:ZdrojID>ERMS</tns:ZdrojID>
-              </tp:Identifikator>
-              <tp:DatumVzniku>2012-08-13T08:12:45</tp:DatumVzniku>
-              <tp:DatumCasOd>2012-08-13T08:12:45</tp:DatumCasOd>
-              <tp:DatumCasDo>2018-01-01T08:12:45</tp:DatumCasDo>
-              <tp:Objekt>
-                <tp:TypObjektu>
-                  <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
-                </tp:TypObjektu>
-                <tp:Identifikator>
-                  <tns:HodnotaID>identifikátor komponenty05</tns:HodnotaID>
-                  <tns:ZdrojID>ERMS</tns:ZdrojID>
-                </tp:Identifikator>
-              </tp:Objekt>
-            </tp:TransLogInfo>
-            <tp:Udalosti>
-              <tp:Udalost>
-                <tp:Poradi>1</tp:Poradi>
-                <tp:DatumVzniku>2012-08-13T08:12:45</tp:DatumVzniku>
-                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
-                <tp:TypUdalosti>
-                  <tp:TypUdalostiId>Doruceno</tp:TypUdalostiId>
-                </tp:TypUdalosti>
-                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
-              </tp:Udalost>
-              <tp:Udalost>
-                <tp:Poradi>2</tp:Poradi>
-                <tp:DatumVzniku>2012-08-13T08:12:49</tp:DatumVzniku>
-                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
-                <tp:TypUdalosti>
-                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
-                </tp:TypUdalosti>
-                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
-              </tp:Udalost>
-            </tp:Udalosti>
-          </tp:TransakcniLogObjektu>
-        </mets:xmlData>
-      </mets:mdWrap>
-    </mets:digiprovMD>
-  </mets:amdSec>
-  <mets:amdSec ID="amd03">
-    <mets:digiprovMD ID="digiProv03">
-      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
-        <mets:xmlData>
-          <tp:TransakcniLogObjektu>
-            <tp:TransLogInfo>
-              <tp:Identifikator>
-                <tns:HodnotaID>TP03_VApnS</tns:HodnotaID>
-                <tns:ZdrojID>ERMS</tns:ZdrojID>
-              </tp:Identifikator>
-              <tp:DatumVzniku>2012-08-13T08:12:45</tp:DatumVzniku>
-              <tp:DatumCasOd>2012-08-13T08:12:45</tp:DatumCasOd>
-              <tp:DatumCasDo>2018-01-01T08:12:45</tp:DatumCasDo>
-              <tp:Objekt>
-                <tp:TypObjektu>
-                  <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
-                </tp:TypObjektu>
-                <tp:Identifikator>
-                  <tns:HodnotaID>identifikátor komponenty06</tns:HodnotaID>
-                  <tns:ZdrojID>ERMS</tns:ZdrojID>
-                </tp:Identifikator>
-              </tp:Objekt>
-            </tp:TransLogInfo>
-            <tp:Udalosti>
-              <tp:Udalost>
-                <tp:Poradi>1</tp:Poradi>
-                <tp:DatumVzniku>2012-08-13T08:12:45</tp:DatumVzniku>
-                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
-                <tp:TypUdalosti>
-                  <tp:TypUdalostiId>Doruceno</tp:TypUdalostiId>
-                </tp:TypUdalosti>
-                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
-              </tp:Udalost>
-              <tp:Udalost>
-                <tp:Poradi>2</tp:Poradi>
-                <tp:DatumVzniku>2012-08-13T08:12:49</tp:DatumVzniku>
-                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
-                <tp:TypUdalosti>
-                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
-                </tp:TypUdalosti>
-                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
-              </tp:Udalost>
-            </tp:Udalosti>
-          </tp:TransakcniLogObjektu>
-        </mets:xmlData>
-      </mets:mdWrap>
-    </mets:digiprovMD>
-  </mets:amdSec>
   <mets:amdSec ID="amd08">
     <mets:digiprovMD ID="digiProv08">
       <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
@@ -834,117 +678,6 @@
                 <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
                 <tp:TypUdalosti>
                   <tp:TypUdalostiId>VlozeniDoSkartacnihoNavrhu</tp:TypUdalostiId>
-                </tp:TypUdalosti>
-              </tp:Udalost>
-            </tp:Udalosti>
-          </tp:TransakcniLogObjektu>
-        </mets:xmlData>
-      </mets:mdWrap>
-    </mets:digiprovMD>
-  </mets:amdSec>
-  <mets:amdSec ID="amd09">
-    <mets:digiprovMD ID="digiProv09">
-      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
-        <mets:xmlData>
-          <tp:TransakcniLogObjektu>
-            <tp:TransLogInfo>
-              <tp:Identifikator>
-                <tns:HodnotaID>TP09_VApnS</tns:HodnotaID>
-                <tns:ZdrojID>ERMS</tns:ZdrojID>
-              </tp:Identifikator>
-              <tp:DatumVzniku>2012-08-20T08:12:45</tp:DatumVzniku>
-              <tp:DatumCasOd>2012-08-20T08:12:45</tp:DatumCasOd>
-              <tp:DatumCasDo>2018-01-01T08:12:45</tp:DatumCasDo>
-              <tp:Objekt>
-                <tp:TypObjektu>
-                  <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
-                </tp:TypObjektu>
-                <tp:Identifikator>
-                  <tns:HodnotaID>identifikátor komponenty05_2</tns:HodnotaID>
-                  <tns:ZdrojID>ERMS</tns:ZdrojID>
-                </tp:Identifikator>
-              </tp:Objekt>
-            </tp:TransLogInfo>
-            <tp:Udalosti>
-              <tp:Udalost>
-                <tp:Poradi>1</tp:Poradi>
-                <tp:DatumVzniku>2012-08-20T08:30:45</tp:DatumVzniku>
-                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
-                <tp:TypUdalosti>
-                  <tp:TypUdalostiId>VlozeniKDokumentu</tp:TypUdalostiId>
-                </tp:TypUdalosti>
-                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
-              </tp:Udalost>
-              <tp:Udalost>
-                <tp:Poradi>2</tp:Poradi>
-                <tp:DatumVzniku>2012-08-20T08:31:45</tp:DatumVzniku>
-                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
-                <tp:TypUdalosti>
-                  <tp:TypUdalostiId>PripojeniPodpisu</tp:TypUdalostiId>
-                </tp:TypUdalosti>
-              </tp:Udalost>
-              <tp:Udalost>
-                <tp:Poradi>3</tp:Poradi>
-                <tp:DatumVzniku>2012-08-20T08:32:45</tp:DatumVzniku>
-                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
-                <tp:TypUdalosti>
-                  <tp:TypUdalostiId>PripojeniRazitka</tp:TypUdalostiId>
-                </tp:TypUdalosti>
-              </tp:Udalost>
-            </tp:Udalosti>
-          </tp:TransakcniLogObjektu>
-        </mets:xmlData>
-      </mets:mdWrap>
-    </mets:digiprovMD>
-  </mets:amdSec>
-  <mets:amdSec ID="amd10">
-    <mets:digiprovMD ID="digiProv10">
-      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
-        <mets:xmlData>
-          <tp:TransakcniLogObjektu>
-            <tp:TransLogInfo>
-              <tp:Identifikator>
-                <tns:HodnotaID>TP10_VApnS</tns:HodnotaID>
-                <tns:ZdrojID>ERMS</tns:ZdrojID>
-              </tp:Identifikator>
-              <tp:DatumVzniku>2012-08-20T08:12:45</tp:DatumVzniku>
-              <tp:DatumCasOd>2012-08-20T08:12:45</tp:DatumCasOd>
-              <tp:DatumCasDo>2018-01-01T08:12:45</tp:DatumCasDo>
-              <tp:Objekt>
-                <tp:TypObjektu>
-                  <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
-                </tp:TypObjektu>
-                <tp:Identifikator>
-                  <tns:HodnotaID>identifikátor komponenty06_2</tns:HodnotaID>
-                  <tns:ZdrojID>ERMS</tns:ZdrojID>
-                </tp:Identifikator>
-              </tp:Objekt>
-            </tp:TransLogInfo>
-            <tp:Udalosti>
-              <tp:Udalost>
-                <tp:Poradi>1</tp:Poradi>
-                <tp:DatumVzniku>2012-08-20T08:12:45</tp:DatumVzniku>
-                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
-                <tp:TypUdalosti>
-                  <tp:TypUdalostiId>VlozeniKDokumentu</tp:TypUdalostiId>
-                </tp:TypUdalosti>
-                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
-              </tp:Udalost>
-              <tp:Udalost>
-                <tp:Poradi>2</tp:Poradi>
-                <tp:DatumVzniku>2012-08-20T08:20:45</tp:DatumVzniku>
-                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
-                <tp:TypUdalosti>
-                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
-                </tp:TypUdalosti>
-                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
-              </tp:Udalost>
-              <tp:Udalost>
-                <tp:Poradi>3</tp:Poradi>
-                <tp:DatumVzniku>2012-08-20T08:21:45</tp:DatumVzniku>
-                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
-                <tp:TypUdalosti>
-                  <tp:TypUdalostiId>PripojeniRazitka</tp:TypUdalostiId>
                 </tp:TypUdalosti>
               </tp:Udalost>
             </tp:Udalosti>
@@ -1075,43 +808,13 @@
       </mets:mdWrap>
     </mets:digiprovMD>
   </mets:amdSec>
-  <mets:fileSec>
-    <mets:fileGrp>
-      <mets:file CHECKSUM="fc1dda79c943a9d1d4e929b31db1deca747aa86b93f13c6a7e63bbd490107bbf" CHECKSUMTYPE="SHA-256" CREATED="2018-01-26T10:54:12" DMDID="ID5" ID="IDf1" MIMETYPE="application/pdf" SIZE="44056">
-        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty/pruvodka.pdf" xlink:type="simple"/>
-      </mets:file>
-      <mets:file CHECKSUM="cec73aa7a821bb1fcf2b5cbc6877609c6db9967b4b4e201401cae9426c1e1f24" CHECKSUMTYPE="SHA-256" CREATED="2018-01-26T10:54:12" DMDID="ID6" ID="IDf2" MIMETYPE="application/pdf" SIZE="61424">
-        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty/priloha.pdf" xlink:type="simple"/>
-      </mets:file>
-      <mets:file CHECKSUM="fc1dda79c943a9d1d4e929b31db1deca747aa86b93f13c6a7e63bbd490107bbf" CHECKSUMTYPE="SHA-256" CREATED="2018-01-26T10:54:12" DMDID="ID9" ID="IDf3" MIMETYPE="application/pdf" SIZE="44056">
-        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty/pruvodka1.pdf" xlink:type="simple"/>
-      </mets:file>
-      <mets:file CHECKSUM="cec73aa7a821bb1fcf2b5cbc6877609c6db9967b4b4e201401cae9426c1e1f24" CHECKSUMTYPE="SHA-256" CREATED="2018-01-26T10:54:12" DMDID="ID10" ID="IDf4" MIMETYPE="application/pdf" SIZE="61424">
-        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty/priloha1.pdf" xlink:type="simple"/>
-      </mets:file>
-    </mets:fileGrp>
-  </mets:fileSec>
   <mets:structMap>
     <mets:div ADMID="amd04" DMDID="ID4" TYPE="spisový plán">
       <mets:div ADMID="amd05" DMDID="ID3" TYPE="věcná skupina">
         <mets:div ADMID="amd06" DMDID="ID2" TYPE="věcná skupina">
           <mets:div ADMID="amd07" DMDID="ID7" TYPE="spis">
-            <mets:div ADMID="amd01" DMDID="ID1" TYPE="dokument">
-              <mets:div ADMID="amd02" DMDID="ID5" TYPE="komponenta">
-                <mets:fptr FILEID="IDf1"/>
-              </mets:div>
-              <mets:div ADMID="amd03" DMDID="ID6" TYPE="komponenta">
-                <mets:fptr FILEID="IDf2"/>
-              </mets:div>
-            </mets:div>
-            <mets:div ADMID="amd08" DMDID="ID8" TYPE="dokument">
-              <mets:div ADMID="amd09" DMDID="ID9" TYPE="komponenta">
-                <mets:fptr FILEID="IDf3"/>
-              </mets:div>
-              <mets:div ADMID="amd10" DMDID="ID10" TYPE="komponenta">
-                <mets:fptr FILEID="IDf4"/>
-              </mets:div>
-            </mets:div>
+            <mets:div ADMID="amd01" DMDID="ID1" TYPE="dokument"/>
+            <mets:div ADMID="amd08" DMDID="ID8" TYPE="dokument"/>
           </mets:div>
         </mets:div>
       </mets:div>
