@@ -10,4 +10,4 @@
 * Zrušena pravidla ověření spouštěcí události: obs89, obs90, obs91
 * Změna pravidla <<obs64>> - posuzuje se ve vztahu k aktuálnímu roku
 * Změna pravidla <<obs65>> - posuzuje se ve vztahu k aktuálnímu roku
-* Zrušeno pravidlo ověření správnosti uvedení roku skartační operace: obs66, nahrazeno úpravami <<obs64> a <<obs65>>
+* Zrušeno pravidlo ověření správnosti uvedení roku skartační operace: obs66, nahrazeno úpravami <<obs64>> a <<obs65>>
