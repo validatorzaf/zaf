@@ -1885,6 +1885,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     }
 
     @Test
+    void testK06_64_OK04() {
+        testPackageK06("64-OK4", null,
+                       ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo64.OBS64 },
+                       new String[] {});
+    }
+
+    @Test
     void testK06_65_01() {
         testPackageK06("65-chyba1", StavKontroly.CHYBA,
                        ZakladniProfilValidace.PREJIMKA,
@@ -1935,6 +1943,22 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     @Test
     void testK06_65_OK05() {
         testPackageK06("65-OK5", null,
+                       ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo65.OBS65 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_65_OK06() {
+        testPackageK06("65-OK6", null,
+                       ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo65.OBS65 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_65_OK07() {
+        testPackageK06("65-OK7", null,
                        ZakladniProfilValidace.PREJIMKA,
                        new String[] { Pravidlo65.OBS65 },
                        new String[] {});
