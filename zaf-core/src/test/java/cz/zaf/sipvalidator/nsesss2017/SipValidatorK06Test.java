@@ -69,7 +69,6 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo62;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo63;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo64;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo65;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo66;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo67;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo68;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo69;
@@ -1961,22 +1960,6 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("65-OK7", null,
                        ZakladniProfilValidace.PREJIMKA,
                        new String[] { Pravidlo65.OBS65 },
-                       new String[] {});
-    }
-
-    @Test
-    void testK06_66_01() {
-        testPackageK06("66-chyba", StavKontroly.CHYBA,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] {},
-                       new String[] { Pravidlo66.OBS66 });
-    }
-
-    @Test
-    void testK06_66_OK01() {
-        testPackageK06("66-OK", null,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] { Pravidlo66.OBS66 },
                        new String[] {});
     }
 

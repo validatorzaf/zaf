@@ -639,6 +639,8 @@ Kód:: obs64
 Zdroj:: § 15 odst. 4 vyhlášky č. 259/2012 Sb.
 Popis chyby:: Uveden je chybně rok skartační operace u dokumentu (počítá se jako rok spouštěcí události + 1 + skartační lhůta).
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+Vysvětlení:: Ověření u SIPů, kde je základní entitou dokument, že je možné skartační řízení realizovat dle nastavených skartačních lhůt 
+ve vztahu k dataci vzniku dokumentu.
 
 [[obs65]]
 == obs65
@@ -650,17 +652,9 @@ Kód:: obs65
 Zdroj:: § 15 odst. 5 vyhlášky č. 259/2012 Sb.
 Popis chyby:: Uveden je chybně rok skartační operace u dílu nebo spisu (počítá se jak podle roku spouštěcí události + 1 + skartační lhůta, tak podle roku skartační operace u dokumentů - záleží na tom, co je vyšší).
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+Vysvětlení:: Ověření u SIPů, kde je základní spis nebo díl, že je možné skartační řízení realizovat dle nastavených skartačních lhůt 
+ve vztahu k dataci vzniku příslušné základní entity. Současně se provede kontrola všech dokumentů, že je opět u nich dle lhůt možné realizovat skartační řízení.
 
-[[obs66]]
-== obs66
-
-[horizontal]
-
-Pravidlo:: Pokud je základní entitou díl (<nsesss:Dil>), spis (<nsesss:Spis> nebo dokument (<nsesss:Dokument>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> obsahuje element <nsesss:RokSkartacniOperace> hodnotu, která je menší nebo rovna aktuálnímu roku.
-Kód:: obs66
-Zdroj:: § 20 odst. 1 vyhlášky č. 259/2012 Sb.
-Popis chyby:: U dílu, spisu nebo dokumentu nelze provést skartační řízení, protože ještě nenadešel uváděný rok skartační operace.
-Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
 [[obs67]]
 == obs67

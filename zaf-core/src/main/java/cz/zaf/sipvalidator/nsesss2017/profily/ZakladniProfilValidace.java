@@ -68,7 +68,6 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo62;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo63;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo64;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo65;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo66;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo67;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo68;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo69;
@@ -167,8 +166,7 @@ public enum ZakladniProfilValidace
 					new Pravidlo62(), 
 					new Pravidlo63(), 
 					new Pravidlo64(), 
-					new Pravidlo65(), 
-					new Pravidlo66(), 
+                    new Pravidlo65(),
 					new Pravidlo67(), 
 					new Pravidlo68(), 
 					new Pravidlo69(), 
@@ -273,8 +271,7 @@ public enum ZakladniProfilValidace
 					new Pravidlo62(), 
 					new Pravidlo63(), 
 					new Pravidlo64(), 
-					new Pravidlo65(), 
-					new Pravidlo66(), 
+                    new Pravidlo65(),
 					new Pravidlo67(), 
 					new Pravidlo68(), 
 					new Pravidlo69(), 
@@ -380,8 +377,7 @@ public enum ZakladniProfilValidace
 					new Pravidlo62(), 
 					new Pravidlo63(), 
 					new Pravidlo64(), 
-					new Pravidlo65(), 
-					new Pravidlo66(), 
+                    new Pravidlo65(),
 					new Pravidlo67(), 
 					new Pravidlo68(), 
 					new Pravidlo69(), 
@@ -487,8 +483,7 @@ public enum ZakladniProfilValidace
 					new Pravidlo62(), 
 					new Pravidlo63(), 
 					new Pravidlo64(), 
-					new Pravidlo65(), 
-					new Pravidlo66(), 
+                    new Pravidlo65(),
 					new Pravidlo67(), 
 					new Pravidlo68(), 
 					new Pravidlo69(), 
