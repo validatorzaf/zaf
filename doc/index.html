@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.7.1">
-<title>ZAF 0.9.6: Dokumentace</title>
+<title>ZAF 0.9.7: Dokumentace</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -523,7 +523,7 @@ table.CodeRay td.code>pre{padding:0}
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>ZAF 0.9.6: Dokumentace</h1>
+<h1>ZAF 0.9.7: Dokumentace</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Obsah</div>
 <ul class="sectlevel1">
@@ -588,6 +588,25 @@ validátory digitálních archivů.</p>
 <ul>
 <li>
 <p>Přidána pravidla <a href="#obs100">obs100</a>, <a href="#obs101">obs101</a>, <a href="#obs102">obs102</a>, <a href="#obs103">obs103</a>, <a href="#obs104">obs104</a>, <a href="#obs105">obs105</a>, <a href="#obs106">obs106</a>, <a href="#obs107">obs107</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_v2_2_6_2022">v2, 2.6.2022</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Zrušena pravidla ověření spouštěcí události: obs89, obs90, obs91</p>
+</li>
+<li>
+<p>Změna pravidla <a href="#obs64">obs64</a> - posuzuje se ve vztahu k aktuálnímu roku</p>
+</li>
+<li>
+<p>Změna pravidla <a href="#obs65">obs65</a> - posuzuje se ve vztahu k aktuálnímu roku</p>
+</li>
+<li>
+<p>Zrušeno pravidlo ověření správnosti uvedení roku skartační operace: obs66, nahrazeno úpravami <a href="#obs64&gt; a &lt;&lt;obs65">[obs64&gt; a &lt;&lt;obs65]</a></p>
 </li>
 </ul>
 </div>
@@ -696,6 +715,28 @@ s protokolem vytvořeným použitím zaf-core.</p>
 </div>
 </div>
 <div class="sect3">
+<h4 id="_systémové_parametry">Systémové parametry</h4>
+<div class="paragraph">
+<p>Pokročilé funkce validátoru je možné řídit pomocí systémových parametrů (parametr <strong>-D</strong>).</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>zaf.vera.servermode</strong></dt>
+<dd>
+<p>Určuje, zda se validátor použije v serverovém režimu nebo je vždy samostatně
+spouštěn pro každý jednotlivý běh. Přípustné hodnoty jsou <strong>true</strong> | <strong>false</strong>.
+Ve výchozím režimu se použije serverový režim.</p>
+</dd>
+<dt class="hdlist1"><strong>zaf.vera.path</strong></dt>
+<dd>
+<p>Cesta k lokální instalaci VeraPDF validátoru. Jedná se o úplnou cestu k .jar souboru
+včetně tohoto souboru. Pokud není nastaveno, použije se verze validátoru vestavěná
+přímo do aplikace.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
 <h4 id="pouziti_priklady">Příklady volání</h4>
 <div class="paragraph">
 <p>Validace jednotlivého SIPu se zápisem výstupu do protokolu:</p>
@@ -708,6 +749,12 @@ s protokolem vytvořeným použitím zaf-core.</p>
 </div>
 <div class="paragraph">
 <p><code>java -jar CmdValidator.jar -b "C:\temp\SIP1580724295329"</code></p>
+</div>
+<div class="paragraph">
+<p>Validace SIPů uložených v adresáři s využitím jiné verze VeraPDF:</p>
+</div>
+<div class="paragraph">
+<p><code>java -Dzaf.vera.path=C:\verapdf\greenfield-apps.jar -jar CmdValidator.jar -d 3 -b "C:\temp\SIP1580724295329"</code></p>
 </div>
 </div>
 </div>
@@ -838,7 +885,7 @@ Ty jsou také dostupné v repozitáři pro Maven a je možné je přímo použí
 <pre class="CodeRay highlight"><code data-lang="xml">  <span class="tag">&lt;dependency&gt;</span>
     <span class="tag">&lt;groupId&gt;</span>cz.zaf<span class="tag">&lt;/groupId&gt;</span>
     <span class="tag">&lt;artifactId&gt;</span>zaf-core<span class="tag">&lt;/artifactId&gt;</span>
-    <span class="tag">&lt;version&gt;</span>0.9.6<span class="tag">&lt;/version&gt;</span>
+    <span class="tag">&lt;version&gt;</span>0.9.7<span class="tag">&lt;/version&gt;</span>
   <span class="tag">&lt;/dependency&gt;</span></code></pre>
 </div>
 </div>
@@ -3982,7 +4029,7 @@ Aktivní
 Pravidlo
 </td>
 <td class="hdlist2">
-<p>Pokud je základní entitou dokument (&lt;nsesss:Dokument&gt;), potom v hierarchii dětských elementů &lt;nsesss:EvidencniUdaje&gt;, &lt;nsesss:Vyrazovani&gt;, &lt;nsesss:DataceVyrazeni&gt; obsahuje element &lt;nsesss:RokSkartacniOperace&gt; hodnotu, která je rovna nebo větší součtu hodnoty elementu &lt;nsesss:RokSpousteciUdalosti&gt;, 1 a hodnoty elementu &lt;nsesss:SkartacniLhuta&gt; uvedeného v rodičovském elementu &lt;nsesss:SkartacniRezim&gt;.</p>
+<p>Pokud je základní entitou dokument (&lt;nsesss:Dokument&gt;), potom v hierarchii dětských elementů &lt;nsesss:EvidencniUdaje&gt;, &lt;nsesss:Vyrazovani&gt;, &lt;nsesss:DataceVyrazeni&gt; je součet hodnoty elementu &lt;nsesss:RokSpousteciUdalosti&gt;, 1 a hodnoty elementu &lt;nsesss:SkartacniLhuta&gt; uvedeného v rodičovském elementu &lt;nsesss:SkartacniRezim&gt; menší nebo roven aktuálnímu roku.</p>
 </td>
 </tr>
 <tr>
@@ -4017,6 +4064,15 @@ Aktivní
 <p>skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka</p>
 </td>
 </tr>
+<tr>
+<td class="hdlist1">
+Vysvětlení
+</td>
+<td class="hdlist2">
+<p>Ověření u SIPů, kde je základní entitou dokument, že je možné skartační řízení realizovat dle nastavených skartačních lhůt
+ve vztahu k dataci vzniku dokumentu.</p>
+</td>
+</tr>
 </table>
 </div>
 </div>
@@ -4029,7 +4085,7 @@ Aktivní
 Pravidlo
 </td>
 <td class="hdlist2">
-<p>Pokud je základní entitou díl (&lt;nsesss:Dil&gt;) nebo spis (&lt;nsesss:Spis&gt;), potom v hierarchii dětských elementů &lt;nsesss:EvidencniUdaje&gt;, &lt;nsesss:Vyrazovani&gt;, &lt;nsesss:DataceVyrazeni&gt; obsahuje element &lt;nsesss:RokSkartacniOperace&gt; hodnotu, která je rovna nebo větší vyšší hodnotě, přičemž jednou hodnotou je součet hodnoty elementu &lt;nsesss:RokSpousteciUdalosti&gt;, 1 a hodnoty elementu &lt;nsesss:SkartacniLhuta&gt; uvedeného v rodičovském elementu &lt;nsesss:SkartacniRezim&gt; a druhou hodnotou nejvyšší hodnota součtu hodnoty elementu &lt;nsesss:DatumDoruceni&gt; nebo &lt;nsesss:DatumVytvoreni&gt; (v závislosti na tom, zda jde o doručený nebo vlastní dokument), 1 a hodnoty elementu &lt;nsesss:SkartacniLhuta&gt; jakékoli dětské entity dokument (nsesss:Dokument&gt;).</p>
+<p>Pokud je základní entitou díl (&lt;nsesss:Dil&gt;) nebo spis (&lt;nsesss:Spis&gt;), potom v hierarchii dětských elementů &lt;nsesss:EvidencniUdaje&gt;, &lt;nsesss:Vyrazovani&gt;, &lt;nsesss:DataceVyrazeni&gt; je součet hodnoty elementu &lt;nsesss:RokSpousteciUdalosti&gt;, 1 a hodnoty elementu &lt;nsesss:SkartacniLhuta&gt; uvedeného v rodičovském elementu &lt;nsesss:SkartacniRezim&gt; menší nebo roven aktuálnímu roku. Pro všechny entity dokument (&lt;nsesss:Dokument&gt;) dále platí, že součet hodnoty elementu &lt;nsesss:DatumDoruceni&gt; nebo &lt;nsesss:DatumVytvoreni&gt; (v závislosti na tom, zda jde o doručený nebo vlastní dokument), 1 a hodnoty elementu &lt;nsesss:SkartacniLhuta&gt; je menší nebo roven aktuálnímu roku.</p>
 </td>
 </tr>
 <tr>
@@ -4064,51 +4120,13 @@ Aktivní
 <p>skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka</p>
 </td>
 </tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="obs66">obs66</h4>
-<div class="hdlist">
-<table>
 <tr>
 <td class="hdlist1">
-Pravidlo
+Vysvětlení
 </td>
 <td class="hdlist2">
-<p>Pokud je základní entitou díl (&lt;nsesss:Dil&gt;), spis (&lt;nsesss:Spis&gt; nebo dokument (&lt;nsesss:Dokument&gt;), potom v hierarchii dětských elementů &lt;nsesss:EvidencniUdaje&gt;, &lt;nsesss:Vyrazovani&gt;, &lt;nsesss:DataceVyrazeni&gt; obsahuje element &lt;nsesss:RokSkartacniOperace&gt; hodnotu, která je menší nebo rovna aktuálnímu roku.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Kód
-</td>
-<td class="hdlist2">
-<p>obs66</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Zdroj
-</td>
-<td class="hdlist2">
-<p>§ 20 odst. 1 vyhlášky č. 259/2012 Sb.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Popis chyby
-</td>
-<td class="hdlist2">
-<p>U dílu, spisu nebo dokumentu nelze provést skartační řízení, protože ještě nenadešel uváděný rok skartační operace.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Aktivní
-</td>
-<td class="hdlist2">
-<p>skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka</p>
+<p>Ověření u SIPů, kde je základní spis nebo díl, že je možné skartační řízení realizovat dle nastavených skartačních lhůt
+ve vztahu k dataci vzniku příslušné základní entity. Současně se provede kontrola všech dokumentů, že je opět u nich dle lhůt možné realizovat skartační řízení.</p>
 </td>
 </tr>
 </table>
@@ -5149,147 +5167,6 @@ Aktivní
 </div>
 </div>
 <div class="sect3">
-<h4 id="obs89">obs89</h4>
-<div class="hdlist">
-<table>
-<tr>
-<td class="hdlist1">
-Pravidlo
-</td>
-<td class="hdlist2">
-<p>Pokud je základní entitou dokument (&lt;nsesss:Dokument&gt;), potom obsahuje v hierarchii dětských elementů &lt;nsesss:EvidencniUdaje&gt;, &lt;nsesss:Vyrazovani&gt;, &lt;nsesss:DataceVyrazeni&gt; element &lt;nsesss:RokSpousteciUdalosti&gt; hodnotu, v níž je uvedený rok větší nebo roven hodnotě uvedené v elementu &lt;nsesss:Datum&gt; v hierarchii elementů &lt;nsesss:EvidencniUdaje&gt; a &lt;nsesss:Vyrizeni&gt;.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Kód
-</td>
-<td class="hdlist2">
-<p>obs89</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Zdroj
-</td>
-<td class="hdlist2">
-<p>null</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Popis chyby
-</td>
-<td class="hdlist2">
-<p>Není v souladu rok spouštěcí události a datum vyřízení u dokumentu.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Aktivní
-</td>
-<td class="hdlist2">
-<p>skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka</p>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="obs90">obs90</h4>
-<div class="hdlist">
-<table>
-<tr>
-<td class="hdlist1">
-Pravidlo
-</td>
-<td class="hdlist2">
-<p>Pokud je základní entitou spis (&lt;nsesss:Spis&gt;), potom obsahuje v hierarchii dětských elementů &lt;nsesss:EvidencniUdaje&gt;, &lt;nsesss:Vyrazovani&gt;, &lt;nsesss:DataceVyrazeni&gt; element &lt;nsesss:RokSpousteciUdalosti&gt; hodnotu, v níž je uvedený rok větší nebo roven hodnotě uvedené v elementu &lt;nsesss:Datum&gt; v hierarchii elementů &lt;nsesss:EvidencniUdaje&gt; a &lt;nsesss:VyrizeniUzavreni&gt;.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Kód
-</td>
-<td class="hdlist2">
-<p>obs90</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Zdroj
-</td>
-<td class="hdlist2">
-<p>null</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Popis chyby
-</td>
-<td class="hdlist2">
-<p>Není v souladu rok spouštěcí události a datum vyřízení nebo datum uzavření u spisu.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Aktivní
-</td>
-<td class="hdlist2">
-<p>skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka</p>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="obs91">obs91</h4>
-<div class="hdlist">
-<table>
-<tr>
-<td class="hdlist1">
-Pravidlo
-</td>
-<td class="hdlist2">
-<p>Pokud je základní entitou díl (&lt;nsesss:Dil&gt;), potom obsahuje v hierarchii dětských elementů &lt;nsesss:EvidencniUdaje&gt;, &lt;nsesss:Vyrazovani&gt;, &lt;nsesss:DataceVyrazeni&gt; element &lt;nsesss:RokSpousteciUdalosti&gt; hodnotu, v níž je uvedený rok větší nebo roven hodnotě uvedené v elementu &lt;nsesss:Datum&gt; v hierarchii elementů &lt;nsesss:EvidencniUdaje&gt; a &lt;nsesss:Uzavreni&gt;.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Kód
-</td>
-<td class="hdlist2">
-<p>obs91</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Zdroj
-</td>
-<td class="hdlist2">
-<p>null</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Popis chyby
-</td>
-<td class="hdlist2">
-<p>Není v souladu rok spouštěcí události a datum uzavření u dílu.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Aktivní
-</td>
-<td class="hdlist2">
-<p>skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka</p>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
 <h4 id="obs92">obs92</h4>
 <div class="hdlist">
 <table>
@@ -6150,7 +6027,7 @@ Aktivní
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-05-23 09:19:20 UTC
+Last updated 2022-06-02 06:54:48 UTC
 </div>
 </div>
 </body>
