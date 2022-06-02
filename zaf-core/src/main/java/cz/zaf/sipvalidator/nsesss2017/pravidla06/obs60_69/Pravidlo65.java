@@ -15,14 +15,16 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 //
 // Pokud je základní entitou díl (<nsesss:Dil>) nebo spis (<nsesss:Spis>), potom
 // v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>,
-// <nsesss:DataceVyrazeni> obsahuje element <nsesss:RokSkartacniOperace>
-// hodnotu, která je rovna nebo větší vyšší hodnotě, přičemž jednou hodnotou je
+// <nsesss:DataceVyrazeni> je
 // součet hodnoty elementu <nsesss:RokSpousteciUdalosti>, 1 a hodnoty elementu
 // <nsesss:SkartacniLhuta> uvedeného v rodičovském elementu
-// <nsesss:SkartacniRezim> a druhou hodnotou nejvyšší hodnota součtu hodnoty
-// elementu <nsesss:DatumDoruceni> nebo <nsesss:DatumVytvoreni> (v závislosti na
-// tom, zda jde o doručený nebo vlastní dokument), 1 a hodnoty elementu
-// <nsesss:SkartacniLhuta> jakékoli dětské entity dokument (nsesss:Dokument>).
+// <nsesss:SkartacniRezim>
+// menší nebo roven aktuálnímu roku. Pro všechny entity dokument
+// (<nsesss:Dokument>) dále platí,
+// že součet hodnoty elementu <nsesss:DatumDoruceni> nebo
+// <nsesss:DatumVytvoreni> (v závislosti na tom, zda jde o doručený nebo vlastní
+// dokument), 1 a hodnoty elementu <nsesss:SkartacniLhuta>
+// je menší nebo roven aktuálnímu roku.
 //
 public class Pravidlo65 extends K06PravidloBase {
 
@@ -30,7 +32,7 @@ public class Pravidlo65 extends K06PravidloBase {
 
     public Pravidlo65() {
         super(OBS65,
-                "Pokud je základní entitou díl (<nsesss:Dil>) nebo spis (<nsesss:Spis>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> obsahuje element <nsesss:RokSkartacniOperace> hodnotu, která je rovna nebo větší vyšší hodnotě, přičemž jednou hodnotou je součet hodnoty elementu <nsesss:RokSpousteciUdalosti>, 1 a hodnoty elementu <nsesss:SkartacniLhuta> uvedeného v rodičovském elementu <nsesss:SkartacniRezim> a druhou hodnotou nejvyšší hodnota součtu hodnoty elementu <nsesss:DatumDoruceni> nebo <nsesss:DatumVytvoreni> (v závislosti na tom, zda jde o doručený nebo vlastní dokument), 1 a hodnoty elementu <nsesss:SkartacniLhuta> jakékoli dětské entity dokument (nsesss:Dokument>).",
+                "Pokud je základní entitou díl (<nsesss:Dil>) nebo spis (<nsesss:Spis>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:DataceVyrazeni> je součet hodnoty elementu <nsesss:RokSpousteciUdalosti>, 1 a hodnoty elementu <nsesss:SkartacniLhuta> uvedeného v rodičovském elementu <nsesss:SkartacniRezim> menší nebo roven aktuálnímu roku. Pro všechny entity dokument (<nsesss:Dokument>) dále platí, že součet hodnoty elementu <nsesss:DatumDoruceni> nebo <nsesss:DatumVytvoreni> (v závislosti na tom, zda jde o doručený nebo vlastní dokument), 1 a hodnoty elementu <nsesss:SkartacniLhuta> je menší nebo roven aktuálnímu roku.",
                 "Uveden je chybně rok skartační operace u dílu nebo spisu (počítá se jak podle roku spouštěcí události + 1 + skartační lhůta, tak podle roku skartační operace u dokumentů - záleží na tom, co je vyšší).",
                 "§ 15 odst. 5 vyhlášky č. 259/2012 Sb.");
     }
@@ -42,24 +44,6 @@ public class Pravidlo65 extends K06PravidloBase {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezena žádná základní entita.");
         }
 
-        // zjistit ze spisu / dilu (vse povine)
-        // - nsesss:EvidencniUdaje a nsesss:VyrizeniUzavreni
-        // - nsesss:RokSpousteciUdalosti
-        // - nsesss:DatumVytvoreni
-
-        // Priklad: 
-        // - zachovani do 2025 - rok spousteci udalosti
-        // - 
-
-        // TODO: kontrola vsech dokumentu na skartacni lhutu
-        //  soucasne overeni, ze obsahují element nsesss:Vyrizeni (volitelne), hledame datum 
-        // Kontrola: zda vyrizeni < vytvoreni rodice - detekce umeleho rodice     
-
-        // základní entita obsahuje nsesss:DatumVytvoreni s vyšší hodnotou než je je nejvyšší hodnota elementu 
-        // nsesss:Vyrizeni dětských entit dokument a 
-        // současně obsahuje základní entita nsesss:RokSpousteciUdalosti se stejnou hodnotou jako je hodnota 
-        // roku uvedená v elementu nsesss:Datum v hierarchii elementů  
-        // zakl entity.
         List<Element> dokumenty = metsParser.getDokumenty();
 
         // dokumenty 
@@ -187,12 +171,10 @@ public class Pravidlo65 extends K06PravidloBase {
                         "Součet hodnot elementů <nsesss:RokSpousteciUdalosti> + 1 + <nsesss:SkartacniLhuta>: "
                                 + rokSpousteciUdalostiSpis + " + 1 + " + skartacniLhutaSpis + " = "
                                 + minLhutaSpis
-                                + ", je roven nejvyšší hodnotě elementu <nsesss:RokSkartacniOperace> elementu <nsesss:Dokument>: "
+                                + " je u základní entity menší než rok skartační operace. Lhůta dokumentu <nsesss:Dokument> je: "
                                 + minLhutaDokumentu
-                                + ". Nerovná se však hodnotě elementu <nsesss:RokSkartacniOperace> základní entity: "
-                                + rokSkartacniOperace + ". " + getJmenoIdentifikator(zakladniEntita)
-                                + " "
-                                + getJmenoIdentifikator(dokument),
+                                + ". Ta je však vyšší než-li rok skartační operace: "
+                                + rokSkartacniOperace + ".",
                         getMistoChyby(zakladniEntita) + " " + getMistoChyby(dokument),
                         kontrola.getEntityId(listElementu));
         }
