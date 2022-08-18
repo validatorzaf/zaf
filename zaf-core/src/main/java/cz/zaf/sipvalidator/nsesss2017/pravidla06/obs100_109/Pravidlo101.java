@@ -13,7 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBaseOld;
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
+import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
@@ -24,7 +25,7 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 // <nsesss:Komponenta> se stejnou hodnotou atributu poradi obsahují stejnou
 // hodnotu atributu druh.
 //
-public class Pravidlo101 extends K06PravidloBaseOld {
+public class Pravidlo101 extends K06PravidloBase {
 
     static Logger log = LoggerFactory.getLogger(Pravidlo101.class);
 
@@ -38,59 +39,56 @@ public class Pravidlo101 extends K06PravidloBaseOld {
     }
 
     @Override
-    protected boolean kontrolaPravidla() {
+    protected void kontrola() {
         // získání všech komponent ve výstupním datovém formátu
         List<Element> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
         if (CollectionUtils.isEmpty(komponenty)) {
-            return true;
+            return;
         }
 
         // sort by parent
         Node parentNode = null;
-        TreeMap<Integer, List<Node>> treeMap = new TreeMap<>();
-        for (Node komponenta : komponenty) {
+        TreeMap<Integer, List<Element>> treeMap = new TreeMap<>();
+        for (Element komponenta : komponenty) {
             Node parent = komponenta.getParentNode();
             if (parent != parentNode) {
-                if (!checkValues(treeMap)) {
-                    return false;
-                }
+                checkValues(treeMap);
                 // reset parent
                 treeMap = new TreeMap<>();
                 parentNode = parent;
             }
             Integer poradi = ValuesGetter.getAttribute(komponenta, "poradi");
-            List<Node> l = treeMap.computeIfAbsent(poradi, p -> {
+            List<Element> l = treeMap.computeIfAbsent(poradi, p -> {
                 return new ArrayList<>();
             });
             l.add(komponenta);
         }
-        if (!checkValues(treeMap)) {
-            return false;
-        }
+        checkValues(treeMap);
 
-        return true;
     }
 
-    private boolean checkValues(TreeMap<Integer, List<Node>> treeMap) {
-        for (Entry<Integer, List<Node>> entry : treeMap.entrySet()) {
+    private void checkValues(TreeMap<Integer, List<Element>> treeMap) {
+        for (Entry<Integer, List<Element>> entry : treeMap.entrySet()) {
             Integer position = entry.getKey();
             // check nodes
-            List<Node> nodes = entry.getValue();
-            Iterator<Node> it = nodes.iterator();
-            Node firstNode = it.next();
+            List<Element> nodes = entry.getValue();
+            Iterator<Element> it = nodes.iterator();
+            Element firstNode = it.next();
             String druh = ValuesGetter.getValueOfAttribut(firstNode, "druh");
             while (it.hasNext()) {
-                Node nextNode = it.next();
+                Element nextNode = it.next();
                 String otherDruh = ValuesGetter.getValueOfAttribut(nextNode, "druh");
                 if (!Objects.equals(druh, otherDruh)) {
-                    return nastavChybu("Komponenta má druh odlišný od jiné komponenty na stejné pozici, pozice: "
-                            + position + ", očekávaná hodnota: " + druh
-                            + ", zjištěná hodnota: " + otherDruh,
-                                       nextNode);
+                    List<Element> list = new ArrayList<>();
+                    list.add(firstNode);
+                    list.add(nextNode);
+                    nastavChybu(BaseCode.CHYBNA_KOMPONENTA, "Komponenta má druh odlišný od jiné komponenty na stejné pozici, pozice: " + position + ", "
+                            + "očekávaná hodnota: " + druh + ", zjištěná hodnota: " + otherDruh,
+                            list, kontrola.getEntityId(list));
                 }
+                firstNode = nextNode;
             }
         }
-        return true;
     }
 
 }

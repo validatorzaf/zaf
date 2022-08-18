@@ -392,13 +392,13 @@ public class ValuesGetter {
         return Objects.equals(textContent, elementValue);
     }
     
-    public static Node getNodeByValueOfAtributFromSpecificList(List<Node> nodeList, String atributName,
+    public static Element getElementByValueOfAtributFromSpecificList(List<Element> list, String atributName,
                                                                String atributValue) {
-        for(int i = 0; i < nodeList.size(); i++){
-            Node n = nodeList.get(i);
-            boolean find = hasAttributValue(n, atributName, atributValue);
+        for(int i = 0; i < list.size(); i++){
+            Element e = list.get(i);
+            boolean find = hasAttributValue(e, atributName, atributValue);
             if(find){
-                return n;
+                return e;
             } 
         }
         return null;

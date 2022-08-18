@@ -27,28 +27,31 @@ public class Pravidlo82 extends K06PravidloBase {
     protected void kontrola() {
         List<Element> urceneCasoveObdobi = metsParser.getNodes(NsessV3.URCENE_CASOVE_OBDOBI);
         for (Element urcenecasoveobdobi : urceneCasoveObdobi) {
+            Element elEntita = kontrola.getEntity(urcenecasoveobdobi);
             Element nodeDo = ValuesGetter.getXChild(urcenecasoveobdobi, NsessV3.MESIC_DO);
             if (nodeDo != null) {
                 Element nodeOd = ValuesGetter.getXChild(urcenecasoveobdobi, NsessV3.MESIC_OD);
                 if (nodeOd == null) {
-                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:MesicOd>. " + getJmenoIdentifikator(urcenecasoveobdobi),
-                            urcenecasoveobdobi);
+                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:MesicOd>.", urcenecasoveobdobi,
+                            kontrola.getEntityId(elEntita));
                 }
                 Date dateOd = null, dateDo = null;
                 try {
                     dateOd = ValuesGetter.vytvorDate(nodeOd, "yyyy-MM-dd", "yyyy-MM");
                     dateDo = ValuesGetter.vytvorDate(nodeDo, "yyyy-MM-dd", "yyyy-MM");
                 } catch (ParseException ex) {
-                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Hodnoty dat jsou v nepovoleném formátu. " + getJmenoIdentifikator(urcenecasoveobdobi),
-                            getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo));
+                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Hodnoty dat jsou v nepovoleném formátu.",
+                            getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo),
+                            kontrola.getEntityId(elEntita));
                 }
                 if (dateOd == null || dateDo == null) {
-                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Hodnoty dat v nepovoleném formátu. " + getJmenoIdentifikator(urcenecasoveobdobi),
-                            getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo));
+                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Hodnoty dat v nepovoleném formátu.",
+                            getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo),
+                            kontrola.getEntityId(elEntita));
                 } else if (!dateOd.before(dateDo)) {
-                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Nesplněna podmínka pravidla. OD: " + dateOd + ". DO: " + dateDo + ". "
-                            + getJmenoIdentifikator(urcenecasoveobdobi),
-                            getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo));
+                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Nesplněna podmínka pravidla. OD: " + dateOd + ". DO: " + dateDo + ".",
+                            getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo),
+                            kontrola.getEntityId(elEntita));
                 }
             }
         }
