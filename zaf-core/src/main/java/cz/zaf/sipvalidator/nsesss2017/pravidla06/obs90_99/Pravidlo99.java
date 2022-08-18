@@ -55,7 +55,8 @@ public class Pravidlo99 extends K06PravidloBase {
     public static final String OBS99 = "obs99";
 
     VeraValidatorProxy veraValidatorProxy;
-
+    List<Element> komponenty;
+    
     public Pravidlo99() {
         super(OBS99,
                 "Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ne a zároveň obsahuje element <nsesss:Komponenty>, ze všech dětských elementů <nsesss:Komponenta>, který obsahuje atribut forma_uchovani s hodnotou originál nebo originál ve výstupním datovém formátu a současně atribut verze s hodnotou nejvyššího čísla verze, potom jakýkoli element <mets:file>, který obsahuje atribut DMDID s hodnotou uvedenou v atributu ID jakéhokoli elementu <nsesss:Komponenta> příslušné komponenty a dále obsahuje atribut MIMETYPE s hodnotou application/pdf, reprezentuje příslušnou komponentu ve shodě s normou PDF/A.",
@@ -82,11 +83,11 @@ public class Pravidlo99 extends K06PravidloBase {
         }
 
         // získání všech komponent ve výstupním datovém formátu
-        List<Element> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
+        komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
         if (CollectionUtils.isEmpty(komponenty)) {
             return;
         }
-
+        
         Map<Node, Map<Integer, Node>> kandidati = new HashMap<>();
         for (Element komponenta : komponenty) {
             // Kontrola, zda je soucast digit dokumentu?
@@ -131,8 +132,8 @@ public class Pravidlo99 extends K06PravidloBase {
                 String id = ValuesGetter.getValueOfAttribut(komponenta, JmenaElementu.ID);
                 if (StringUtils.isEmpty(id)) {
                     Element elKomponenta = (Element) komponenta;
-                    nastavChybu(BaseCode.CHYBNA_KOMPONENTA, "Komponenta neni ve formátu Pdf/A (chybí atribut ID) " + komponenta,
-                            komponenta, kontrola.getEntityId(elKomponenta));
+                    nastavChybu(BaseCode.CHYBNA_KOMPONENTA, "Komponenta neni ve formátu Pdf/A (chybí atribut ID).",
+                            elKomponenta, kontrola.getEntityId(elKomponenta));
                 }
                 checkFiles.add(id);
             }
@@ -150,12 +151,11 @@ public class Pravidlo99 extends K06PravidloBase {
                 if (!checkFiles.contains(dmdid)) {
                     continue;
                 }
-
                 String mimeType = ValuesGetter.getValueOfAttribut(fileNode, "MIMETYPE");
                 if ("application/pdf".equalsIgnoreCase(mimeType)) {
                     List<Element> flocatNodes = ValuesGetter.getChildNodes(fileNode, MetsElements.FLOCAT);
                     for (Element flocatNode : flocatNodes) {
-                        checkPdfA(flocatNode);
+                        checkPdfA(flocatNode, dmdid);
                     }
                 }
             }
@@ -169,10 +169,12 @@ public class Pravidlo99 extends K06PravidloBase {
         return (verzeNovy > verzeOrig);
     }
 
-    private void checkPdfA(Node flocatNode) {
+    private void checkPdfA(Node flocatNode, String dmdid) {
+        Element elKomponenta = ValuesGetter.getElementByValueOfAtributFromSpecificList(komponenty, "ID", dmdid);
         if (!ValuesGetter.hasAttribut(flocatNode, "xlink:href")) {
-            nastavChybu(BaseCode.CHYBI_ATRIBUT, "Komponenta neni ve formátu Pdf/A (chybí xlink:href)" + flocatNode,
-                    getMistoChyby(flocatNode));
+            nastavChybu(BaseCode.CHYBI_ATRIBUT, "Komponenta neni ve formátu Pdf/A (chybí xlink:href).",
+                    getMistoChyby(flocatNode) + " " + getMistoChyby(elKomponenta),
+                    kontrola.getEntityId(elKomponenta));
         }
         String href = ValuesGetter.getValueOfAttribut(flocatNode, "xlink:href");
         // TODO: Dává toto smysl, asi musí být vždy komponenty
@@ -191,14 +193,16 @@ public class Pravidlo99 extends K06PravidloBase {
                 }
                 ValidationResult vr = VeraValidatorProxy.validate(file.toPath());
                 if (!vr.isCompliant()) {
-                    nastavChybu(BaseCode.CHYBNA_KOMPONENTA, "Komponenta neni ve formátu Pdf/A " + flocatNode
+                    nastavChybu(BaseCode.CHYBNA_KOMPONENTA, "Komponenta neni ve formátu Pdf/A." + flocatNode
                             + ", detail: " + vr.getErrorMessage(),
-                            getMistoChyby(flocatNode));
+                            getMistoChyby(flocatNode) + " " + getMistoChyby(elKomponenta),
+                            kontrola.getEntityId(elKomponenta));
                 }
             } catch (Throwable e) {
                 log.debug("Failed to validate PDF.", e);
-                nastavChybu(BaseCode.CHYBA, "Formátu Pdf/A se nepodařilo ověřit u komponenty " + flocatNode,
-                        getMistoChyby(flocatNode));
+                nastavChybu(BaseCode.CHYBA, "Formátu Pdf/A se nepodařilo ověřit u komponenty.",
+                        getMistoChyby(flocatNode) + " " + getMistoChyby(elKomponenta),
+                        kontrola.getEntityId(elKomponenta));
             }
         }
     }

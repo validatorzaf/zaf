@@ -57,7 +57,7 @@ public class Pravidlo106 extends K06PravidloBase {
             Integer poradiKomponeta = Integer.valueOf(poradiKomponentyStr);
 
             Map<Integer, List<Element>> komponentyDlePoradi = doks.computeIfAbsent(dokumentNode,
-                                                                                dn -> new HashMap<>());
+                    dn -> new HashMap<>());
             List<Element> kompList = komponentyDlePoradi.computeIfAbsent(poradiKomponeta, pk -> new ArrayList<>());
             kompList.add(komponenta);
         }
@@ -76,9 +76,9 @@ public class Pravidlo106 extends K06PravidloBase {
 
         Integer nejvyssiVerzeVystFormatu = null;
         Integer nejvyssiVerze = null;
-        Node kompVeVystFormatu = null;
+        Element kompVeVystFormatu = null;
 
-        for (Node komp : komps) {
+        for (Element komp : komps) {
             Integer verze = ValuesGetter.getAttribute(komp, JmenaElementu.VERZE);
             if (nejvyssiVerze == null || verze > nejvyssiVerze) {
                 nejvyssiVerze = verze;
@@ -94,11 +94,13 @@ public class Pravidlo106 extends K06PravidloBase {
 
         if (nejvyssiVerzeVystFormatu != null) {
             if (nejvyssiVerze > nejvyssiVerzeVystFormatu) {
+                List<Element> list = new ArrayList<>();
+                list.add(dokNode);
+                list.add(kompVeVystFormatu);
                 nastavChybu(BaseCode.CHYBI_KOMPONENTA,
-                            "Existuje komponenta s vyšší verzí v nevýstupním formátu než je komponenta ve výstupním formátu, pozice: "
-                                    + pozice + ", kolidující verze: " + nejvyssiVerzeVystFormatu,
-                            kompVeVystFormatu,
-                            kontrola.getEntityId(dokNode));
+                        "Existuje komponenta s vyšší verzí v nevýstupním formátu než je komponenta ve výstupním formátu, pozice: "
+                        + pozice + ", kolidující verze: " + nejvyssiVerzeVystFormatu,
+                        list, kontrola.getEntityId(list));
             }
         }
     }
