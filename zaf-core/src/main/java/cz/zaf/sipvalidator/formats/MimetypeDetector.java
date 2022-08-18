@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.zaf.sipvalidator.nsesss2017;
+package cz.zaf.sipvalidator.formats;
 
 import java.io.IOException;
 import java.nio.file.Path;
 
 import org.apache.tika.Tika;
+
+import cz.zaf.sipvalidator.formats.MimetypeDetector.MimeTypeResult.DetectionStatus;
 
 /**
  * Mimetype detector
@@ -25,65 +27,61 @@ public class MimetypeDetector {
             FAILED
         }
 
-        DetectionStatus detectionStatus = DetectionStatus.FAILED;
-        private Exception exception;
-        private String tikaMimetype;
-        private String systemMimetype;
-        private String mimeTypeConnection;
+        MimeTypeResult data = new MimeTypeResult(DetectionStatus.FAILED);
 
         public MimeTypeResult(Exception ex) {
-            detectionStatus = DetectionStatus.FAILED;
-            this.exception = ex;
+            data.detectionStatus = DetectionStatus.FAILED;
+            this.data.exception = ex;
         }
 
         public MimeTypeResult(final String tika,
                               final String fileUt,
                               final String mimeTypeConnection) {
-            detectionStatus = DetectionStatus.OK;
-            this.tikaMimetype = tika;
-            this.systemMimetype = fileUt;
-            this.mimeTypeConnection = mimeTypeConnection;
+            data.detectionStatus = DetectionStatus.OK;
+            this.data.tikaMimetype = tika;
+            this.data.systemMimetype = fileUt;
+            this.data.mimeTypeConnection = mimeTypeConnection;
         }
 
         public MimeTypeResult(String tika, String fileUt) {
-            detectionStatus = DetectionStatus.OK;
-            this.tikaMimetype = tika;
-            this.systemMimetype = fileUt;
+            data.detectionStatus = DetectionStatus.OK;
+            this.data.tikaMimetype = tika;
+            this.data.systemMimetype = fileUt;
         }
 
         public MimeTypeResult(String tika) {
-            detectionStatus = DetectionStatus.OK;
-            this.tikaMimetype = tika;
+            data.detectionStatus = DetectionStatus.OK;
+            this.data.tikaMimetype = tika;
         }
 
         public DetectionStatus getDetectionStatus() {
-            return detectionStatus;
+            return data.detectionStatus;
         }
 
         public Exception getException() {
-            return exception;
+            return data.exception;
         }
 
         public String getTikaMimetype() {
-            return tikaMimetype;
+            return data.tikaMimetype;
         }
 
         public String getSystemMimetype() {
-            return systemMimetype;
+            return data.systemMimetype;
         }
 
         public String getMimeTypeConnection() {
-            return mimeTypeConnection;
+            return data.mimeTypeConnection;
         }
 
         public boolean isMimetype(String extType) {
-            if (compareType(tikaMimetype, extType)) {
+            if (compareType(data.tikaMimetype, extType)) {
                 return true;
             }
-            if (compareType(systemMimetype, extType)) {
+            if (compareType(data.systemMimetype, extType)) {
                 return true;
             }
-            if (compareType(mimeTypeConnection, extType)) {
+            if (compareType(data.mimeTypeConnection, extType)) {
                 return true;
             }
             return false;
@@ -107,6 +105,8 @@ public class MimetypeDetector {
 
     public static MimeTypeResult getMimeType(Path file) {
         
+        String siegFriedPath = System.getProperty("zaf.siegfried.path");
+
         try {
             String tika = tikaInstance.detect(file);
             /*

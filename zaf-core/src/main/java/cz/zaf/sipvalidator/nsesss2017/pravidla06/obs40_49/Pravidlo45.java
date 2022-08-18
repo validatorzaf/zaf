@@ -11,19 +11,33 @@ import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
+import cz.zaf.sipvalidator.formats.MimetypeDetector;
+import cz.zaf.sipvalidator.formats.MimetypeDetector.MimeTypeResult;
+import cz.zaf.sipvalidator.formats.MimetypeDetector.MimeTypeResult.DetectionStatus;
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import cz.zaf.sipvalidator.nsesss2017.MimetypeDetector;
-import cz.zaf.sipvalidator.nsesss2017.MimetypeDetector.MimeTypeResult;
-import cz.zaf.sipvalidator.nsesss2017.MimetypeDetector.MimeTypeResult.DetectionStatus;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
+/*
+ * Návrh nových parametrů (z minula)
+ * -p Rozsah portů pro vnitřní procesy (standardně 10000-32000)
+ * Příklad: -p 20000-20005 či --ports=20000-20005
+ * -D definice hodnot
+ * SIEGFIRIED_PATH=
+ * DROID_PATH=
+ * Jak s parametrizacemi pravidel? OBS45 – jak přepínat různé varianty?
+ * TIKA vs SIEGFRIED?
+ * -D FORMAT_IDENT_TOOL=TIKA | SIEGFRIED
+ */
+
+//
 // OBSAHOVÁ č.45 Pokud existuje jakýkoli element <mets:file>,
 // každý obsahuje atribut MIMETYPE s hodnotou identifikace souborového
 // formátu příslušné komponenty číselníku IANA na URL:
 // http://www.iana.org/assignments/media-types/media-types.xhtml.
+//
 public class Pravidlo45 extends K06PravidloBase {
 
     static final public String OBS45 = "obs45";
