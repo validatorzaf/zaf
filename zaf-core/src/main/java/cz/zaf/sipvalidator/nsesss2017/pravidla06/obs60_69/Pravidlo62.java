@@ -9,6 +9,7 @@ import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.UrlJazykyParser;
+import java.util.ArrayList;
 
 //
 // OBSAHOVÁ č.62 Pokud existuje jakýkoli element <nsesss:Jazyk>, každý obsahuje
@@ -42,7 +43,8 @@ public class Pravidlo62 extends K06PravidloBase {
             String hodnotaJazyk = jazyk.getTextContent();
             boolean jeObsazen = parserZUrl.jeObsazenJazyk(hodnotaJazyk);
             if (!jeObsazen) {
-                nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Nenalezena hodnota odpovídající ISO 639-2:1998. " + getJmenoIdentifikator(jazyk), jazyk);
+                Element elEntita = kontrola.getEntity(jazyk);
+                nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Nenalezena hodnota odpovídající ISO 639-2:1998.", jazyk, kontrola.getEntityId(elEntita));
             }
         }
     }
