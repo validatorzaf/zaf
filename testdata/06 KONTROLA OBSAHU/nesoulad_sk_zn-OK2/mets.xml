@@ -1,0 +1,1727 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:ns3="info:lc/xmlns/premis-v2" xmlns:ns5="http://desa.i.cz/nsext/v3" xmlns:nsesss="http://www.mvcr.cz/nsesss/v3" xmlns:tns="http://mvcr.cz/ess/v_1.0.0.0" xmlns:tp="http://nsess.public.cz/erms_trans/v_01_01" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" LABEL="Datový balíček pro provedení skartačního řízení" OBJID="e40726cf-4669-4017-bd79-b2054866190a" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 TransakcniProtokolNavrh_verze1.7.xsd">
+   <mets:metsHdr CREATEDATE="2022-03-17T14:53:57.798+01:00" LASTMODDATE="2022-03-17T14:53:57.798+01:00">
+      <mets:agent ID="agent_001" ROLE="CREATOR" TYPE="ORGANIZATION">
+         <mets:name>GDPR anonymizováno</mets:name>
+         <mets:note>prod</mets:note>
+      </mets:agent>
+      <mets:agent ID="agent_002" ROLE="CREATOR" TYPE="INDIVIDUAL">
+         <mets:name>GDPR anonymizováno</mets:name>
+         <mets:note>GDPR anonymizováno</mets:note>
+      </mets:agent>
+   </mets:metsHdr>
+   <mets:dmdSec ID="DM_0001">
+      <mets:mdWrap LABEL="Schéma XML pro předávání dokumentů a jejich metadat do archivu" MDTYPE="OTHER" MDTYPEVERSION="3.0" MIMETYPE="text/xml" OTHERMDTYPE="NSESSS">
+         <mets:xmlData>
+            <nsesss:Dokument ID="RECORD_mc20es50778498_e40726cf-4669-4017-bd79-b2054866190a">
+               <nsesss:EvidencniUdaje>
+                  <nsesss:Identifikace>
+                     <nsesss:Identifikator zdroj="ERMS">mc20es50778498</nsesss:Identifikator>
+                  </nsesss:Identifikace>
+                  <nsesss:Popis>
+                     <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  </nsesss:Popis>
+                  <nsesss:Evidence>
+                     <nsesss:EvidencniCislo>MCP20 008085/2013/OZOSA/MP</nsesss:EvidencniCislo>
+                     <nsesss:PoradoveCislo>8085</nsesss:PoradoveCislo>
+                     <nsesss:UrceneCasoveObdobi>
+                        <nsesss:Rok>2013</nsesss:Rok>
+                     </nsesss:UrceneCasoveObdobi>
+                     <nsesss:NazevEvidenceDokumentu>ERMS</nsesss:NazevEvidenceDokumentu>
+                  </nsesss:Evidence>
+                  <nsesss:Puvod>
+                     <nsesss:VlastniDokument>
+                        <nsesss:DatumVytvoreni>2013-06-24</nsesss:DatumVytvoreni>
+                        <nsesss:VytvoreneMnozstvi>1/0/4/-</nsesss:VytvoreneMnozstvi>
+                        <nsesss:Autor>
+                           <nsesss:Subjekt>
+                              <nsesss:IdentifikatorOrganizace zdroj="IČ">00240192</nsesss:IdentifikatorOrganizace>
+                              <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                              <nsesss:IdentifikatorFyzickeOsoby zdroj="ERMS">1669</nsesss:IdentifikatorFyzickeOsoby>
+                              <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+                              <nsesss:OrganizacniUtvar>Oddělení správních agend</nsesss:OrganizacniUtvar>
+                              <nsesss:PracovniPozice>Vedoucí oddělení správních agend</nsesss:PracovniPozice>
+                              <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                           </nsesss:Subjekt>
+                        </nsesss:Autor>
+                     </nsesss:VlastniDokument>
+                  </nsesss:Puvod>
+                  <nsesss:Trideni>
+                     <nsesss:JednoduchySpisovyZnak>2</nsesss:JednoduchySpisovyZnak>
+                     <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                     <nsesss:TypDokumentu>
+                        <nsesss:Identifikator zdroj="ERMS">605.1.2</nsesss:Identifikator>
+                        <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                     </nsesss:TypDokumentu>
+                     <nsesss:MaterskeEntity>
+                        <nsesss:VecnaSkupina ID="ID-7e00ac99-d732-4dc3-ae69-6e42e42eb62c">
+                           <nsesss:EvidencniUdaje>
+                              <nsesss:Identifikace>
+                                 <nsesss:Identifikator zdroj="ERMS">11101</nsesss:Identifikator>
+                              </nsesss:Identifikace>
+                              <nsesss:Popis>
+                                 <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                              </nsesss:Popis>
+                              <nsesss:Puvod>
+                                 <nsesss:DatumVytvoreni>2012-01-01+01:00</nsesss:DatumVytvoreni>
+                              </nsesss:Puvod>
+                              <nsesss:Trideni>
+                                 <nsesss:JednoduchySpisovyZnak>2</nsesss:JednoduchySpisovyZnak>
+                                 <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                                 <nsesss:MaterskaEntita>
+                                    <nsesss:VecnaSkupina ID="ID-3082461b-09ec-4041-ab40-8881abef30e2">
+                                       <nsesss:EvidencniUdaje>
+                                          <nsesss:Identifikace>
+                                             <nsesss:Identifikator zdroj="ERMS">11099</nsesss:Identifikator>
+                                          </nsesss:Identifikace>
+                                          <nsesss:Popis>
+                                             <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                                          </nsesss:Popis>
+                                          <nsesss:Puvod>
+                                             <nsesss:DatumVytvoreni>2012-01-01+01:00</nsesss:DatumVytvoreni>
+                                          </nsesss:Puvod>
+                                          <nsesss:Trideni>
+                                             <nsesss:JednoduchySpisovyZnak>1</nsesss:JednoduchySpisovyZnak>
+                                             <nsesss:PlneUrcenySpisovyZnak>605.1</nsesss:PlneUrcenySpisovyZnak>
+                                             <nsesss:MaterskaEntita>
+                                                <nsesss:VecnaSkupina ID="ID-706be902-c13e-4123-950d-1949635c928c">
+                                                   <nsesss:EvidencniUdaje>
+                                                      <nsesss:Identifikace>
+                                                         <nsesss:Identifikator zdroj="ERMS">11098</nsesss:Identifikator>
+                                                      </nsesss:Identifikace>
+                                                      <nsesss:Popis>
+                                                         <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                                                      </nsesss:Popis>
+                                                      <nsesss:Puvod>
+                                                         <nsesss:DatumVytvoreni>2012-01-01+01:00</nsesss:DatumVytvoreni>
+                                                      </nsesss:Puvod>
+                                                      <nsesss:Trideni>
+                                                         <nsesss:JednoduchySpisovyZnak>605</nsesss:JednoduchySpisovyZnak>
+                                                         <nsesss:PlneUrcenySpisovyZnak>605</nsesss:PlneUrcenySpisovyZnak>
+                                                         <nsesss:SpisovyPlan ID="ID-4a4e0946-1053-43a6-b970-fb10d392ed26">
+                                                            <nsesss:Identifikator zdroj="ERMS">29</nsesss:Identifikator>
+                                                            <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                                                            <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                                                            <nsesss:Manipulace>
+                                                               <nsesss:DatumOtevreni>2012-01-01+01:00</nsesss:DatumOtevreni>
+                                                               <nsesss:DatumUzavreni>2015-06-01+02:00</nsesss:DatumUzavreni>
+                                                            </nsesss:Manipulace>
+                                                            <nsesss:Vydavatel>
+                                                               <nsesss:Subjekt>
+                                                                  <nsesss:IdentifikatorOrganizace zdroj="ERMS">prod</nsesss:IdentifikatorOrganizace>
+                                                                  <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                                                                  <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                                                               </nsesss:Subjekt>
+                                                            </nsesss:Vydavatel>
+                                                         </nsesss:SpisovyPlan>
+                                                      </nsesss:Trideni>
+                                                      <nsesss:Vyrazovani>
+                                                         <nsesss:SkartacniRezim>
+                                                            <nsesss:Identifikator zdroj="ERMS">10353</nsesss:Identifikator>
+                                                            <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                                                            <nsesss:Oduvodneni>-</nsesss:Oduvodneni>
+                                                            <nsesss:SkartacniZnak>V</nsesss:SkartacniZnak>
+                                                            <nsesss:SkartacniLhuta>50</nsesss:SkartacniLhuta>
+                                                            <nsesss:SpousteciUdalost>AFTER_ENTITY_CLOSED</nsesss:SpousteciUdalost>
+                                                         </nsesss:SkartacniRezim>
+                                                      </nsesss:Vyrazovani>
+                                                      <nsesss:Manipulace>
+                                                         <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                                                         <nsesss:DatumOtevreni>2012-01-01+01:00</nsesss:DatumOtevreni>
+                                                         <nsesss:DatumUzavreni>2015-06-01+02:00</nsesss:DatumUzavreni>
+                                                      </nsesss:Manipulace>
+                                                   </nsesss:EvidencniUdaje>
+                                                </nsesss:VecnaSkupina>
+                                             </nsesss:MaterskaEntita>
+                                          </nsesss:Trideni>
+                                          <nsesss:Vyrazovani>
+                                             <nsesss:SkartacniRezim>
+                                                <nsesss:Identifikator zdroj="ERMS">10352</nsesss:Identifikator>
+                                                <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                                                <nsesss:Oduvodneni>-</nsesss:Oduvodneni>
+                                                <nsesss:SkartacniZnak>V</nsesss:SkartacniZnak>
+                                                <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+                                                <nsesss:SpousteciUdalost>AFTER_ENTITY_CLOSED</nsesss:SpousteciUdalost>
+                                             </nsesss:SkartacniRezim>
+                                          </nsesss:Vyrazovani>
+                                          <nsesss:Manipulace>
+                                             <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                                             <nsesss:DatumOtevreni>2012-01-01+01:00</nsesss:DatumOtevreni>
+                                             <nsesss:DatumUzavreni>2015-06-01+02:00</nsesss:DatumUzavreni>
+                                          </nsesss:Manipulace>
+                                       </nsesss:EvidencniUdaje>
+                                    </nsesss:VecnaSkupina>
+                                 </nsesss:MaterskaEntita>
+                              </nsesss:Trideni>
+                              <nsesss:Vyrazovani>
+                                 <nsesss:SkartacniRezim>
+                                    <nsesss:Identifikator zdroj="ERMS">10333</nsesss:Identifikator>
+                                    <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                                    <nsesss:Oduvodneni>-</nsesss:Oduvodneni>
+                                    <nsesss:SkartacniZnak>A</nsesss:SkartacniZnak>
+                                    <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+                                    <nsesss:SpousteciUdalost>AFTER_ENTITY_CLOSED</nsesss:SpousteciUdalost>
+                                 </nsesss:SkartacniRezim>
+                              </nsesss:Vyrazovani>
+                              <nsesss:Manipulace>
+                                 <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                                 <nsesss:DatumOtevreni>2012-01-01+01:00</nsesss:DatumOtevreni>
+                                 <nsesss:DatumUzavreni>2015-06-01+02:00</nsesss:DatumUzavreni>
+                              </nsesss:Manipulace>
+                           </nsesss:EvidencniUdaje>
+                        </nsesss:VecnaSkupina>
+                     </nsesss:MaterskeEntity>
+                  </nsesss:Trideni>
+                  <nsesss:Vyrizeni>
+                     <nsesss:Datum>2013-07-02</nsesss:Datum>
+                     <nsesss:Zpusob>jiný způsob</nsesss:Zpusob>
+                     <nsesss:ObsahVyrizeni>odesláno</nsesss:ObsahVyrizeni>
+                     <nsesss:Oduvodneni>odesláno</nsesss:Oduvodneni>
+                     <nsesss:Zpracovatel>
+                        <nsesss:Subjekt>
+                           <nsesss:IdentifikatorOrganizace zdroj="IČ">00240192</nsesss:IdentifikatorOrganizace>
+                           <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                           <nsesss:IdentifikatorFyzickeOsoby zdroj="ERMS">1669</nsesss:IdentifikatorFyzickeOsoby>
+                           <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+                           <nsesss:OrganizacniUtvar>Oddělení správních agend</nsesss:OrganizacniUtvar>
+                           <nsesss:PracovniPozice>Vedoucí oddělení správních agend</nsesss:PracovniPozice>
+                           <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                        </nsesss:Subjekt>
+                     </nsesss:Zpracovatel>
+                     <nsesss:DatumOdeslani>2013-06-25</nsesss:DatumOdeslani>
+                     <nsesss:Prijemce>
+                        <nsesss:Subjekt>
+                           <nsesss:IdentifikatorOrganizace zdroj="ERMS">1112416</nsesss:IdentifikatorOrganizace>
+                           <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                           <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                           <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
+                        </nsesss:Subjekt>
+                     </nsesss:Prijemce>
+                  </nsesss:Vyrizeni>
+                  <nsesss:Vyrazovani>
+                     <nsesss:SkartacniRezim>
+                        <nsesss:Identifikator zdroj="ERMS">S1</nsesss:Identifikator>
+                        <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                        <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                        <nsesss:Oduvodneni/>
+                        <nsesss:SkartacniZnak>A</nsesss:SkartacniZnak>
+                        <nsesss:SkartacniLhuta>1</nsesss:SkartacniLhuta>
+                        <nsesss:SpousteciUdalost>AFTER_ENTITY_CLOSED</nsesss:SpousteciUdalost>
+                     </nsesss:SkartacniRezim>
+                     <nsesss:DataceVyrazeni>
+                        <nsesss:RokSpousteciUdalosti>2013</nsesss:RokSpousteciUdalosti>
+                        <nsesss:RokSkartacniOperace>2015</nsesss:RokSkartacniOperace>
+                     </nsesss:DataceVyrazeni>
+                  </nsesss:Vyrazovani>
+                  <nsesss:Manipulace>
+                     <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+                     <nsesss:UkladaciJednotka>UJ 01527/2018</nsesss:UkladaciJednotka>
+                  </nsesss:Manipulace>
+               </nsesss:EvidencniUdaje>
+               <nsesss:Komponenty>
+                  <nsesss:Komponenta ID="FILE_877927_e40726cf-4669-4017-bd79-b2054866190a" druh="dokument" forma_uchovani="originál" poradi="1" verze="1">
+                     <nsesss:EvidencniUdaje>
+                        <nsesss:Identifikace>
+                           <nsesss:Identifikator zdroj="ERMS">36fa3335-d12f-47db-8ecb-9503dc03714b</nsesss:Identifikator>
+                        </nsesss:Identifikace>
+                        <nsesss:Popis>
+                           <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                           <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                        </nsesss:Popis>
+                        <nsesss:Trideni>
+                           <nsesss:JednoduchySpisovyZnak>2</nsesss:JednoduchySpisovyZnak>
+                           <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                        </nsesss:Trideni>
+                     </nsesss:EvidencniUdaje>
+                  </nsesss:Komponenta>
+                  <nsesss:Komponenta ID="FILE_877931_e40726cf-4669-4017-bd79-b2054866190a" druh="dokument" forma_uchovani="originál" poradi="2" verze="1">
+                     <nsesss:EvidencniUdaje>
+                        <nsesss:Identifikace>
+                           <nsesss:Identifikator zdroj="ERMS">650e27cc-cbcb-4168-b242-0711ff75eab0</nsesss:Identifikator>
+                        </nsesss:Identifikace>
+                        <nsesss:Popis>
+                           <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                           <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                        </nsesss:Popis>
+                        <nsesss:Trideni>
+                           <nsesss:JednoduchySpisovyZnak>2</nsesss:JednoduchySpisovyZnak>
+                           <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                        </nsesss:Trideni>
+                     </nsesss:EvidencniUdaje>
+                  </nsesss:Komponenta>
+                  <nsesss:Komponenta ID="FILE_877938_e40726cf-4669-4017-bd79-b2054866190a" druh="dokument" forma_uchovani="koncept" poradi="3" verze="1">
+                     <nsesss:EvidencniUdaje>
+                        <nsesss:Identifikace>
+                           <nsesss:Identifikator zdroj="ERMS">f047ca89-6c6b-4c27-b30e-807be26134bd</nsesss:Identifikator>
+                        </nsesss:Identifikace>
+                        <nsesss:Popis>
+                           <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                           <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                        </nsesss:Popis>
+                        <nsesss:Trideni>
+                           <nsesss:JednoduchySpisovyZnak>2</nsesss:JednoduchySpisovyZnak>
+                           <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                        </nsesss:Trideni>
+                        <nsesss:Prevod>
+                           <nsesss:KonverzeDD>
+                              <nsesss:Ztvarneni>
+                                 <nsesss:Oduvodneni>Převod DD</nsesss:Oduvodneni>
+                                 <nsesss:OdkazZtvarneni>
+                                    <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                                    <nsesss:Identifikator zdroj="ERMS">10401553</nsesss:Identifikator>
+                                 </nsesss:OdkazZtvarneni>
+                              </nsesss:Ztvarneni>
+                              <nsesss:Ztvarneni>
+                                 <nsesss:Oduvodneni>Protokol převod DD</nsesss:Oduvodneni>
+                                 <nsesss:OdkazZtvarneni>
+                                    <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                                    <nsesss:Identifikator zdroj="ERMS">10401555</nsesss:Identifikator>
+                                 </nsesss:OdkazZtvarneni>
+                              </nsesss:Ztvarneni>
+                           </nsesss:KonverzeDD>
+                        </nsesss:Prevod>
+                     </nsesss:EvidencniUdaje>
+                  </nsesss:Komponenta>
+                  <nsesss:Komponenta ID="FILE_877940_e40726cf-4669-4017-bd79-b2054866190a" druh="dokument" forma_uchovani="koncept" poradi="4" verze="1">
+                     <nsesss:EvidencniUdaje>
+                        <nsesss:Identifikace>
+                           <nsesss:Identifikator zdroj="ERMS">dedb90b4-faf8-4d0d-b5ea-b6fc1fc90527</nsesss:Identifikator>
+                        </nsesss:Identifikace>
+                        <nsesss:Popis>
+                           <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                           <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                        </nsesss:Popis>
+                        <nsesss:Trideni>
+                           <nsesss:JednoduchySpisovyZnak>2</nsesss:JednoduchySpisovyZnak>
+                           <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                        </nsesss:Trideni>
+                        <nsesss:Prevod>
+                           <nsesss:KonverzeDD>
+                              <nsesss:Ztvarneni>
+                                 <nsesss:Oduvodneni>Převod DD</nsesss:Oduvodneni>
+                                 <nsesss:OdkazZtvarneni>
+                                    <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                                    <nsesss:Identifikator zdroj="ERMS">10401558</nsesss:Identifikator>
+                                 </nsesss:OdkazZtvarneni>
+                              </nsesss:Ztvarneni>
+                              <nsesss:Ztvarneni>
+                                 <nsesss:Oduvodneni>Protokol převod DD</nsesss:Oduvodneni>
+                                 <nsesss:OdkazZtvarneni>
+                                    <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                                    <nsesss:Identifikator zdroj="ERMS">10401560</nsesss:Identifikator>
+                                 </nsesss:OdkazZtvarneni>
+                              </nsesss:Ztvarneni>
+                           </nsesss:KonverzeDD>
+                        </nsesss:Prevod>
+                     </nsesss:EvidencniUdaje>
+                  </nsesss:Komponenta>
+                  <nsesss:Komponenta ID="FILE_879775_e40726cf-4669-4017-bd79-b2054866190a" druh="dokument" forma_uchovani="koncept" poradi="5" verze="1">
+                     <nsesss:EvidencniUdaje>
+                        <nsesss:Identifikace>
+                           <nsesss:Identifikator zdroj="ERMS">9cbc09cf-f53e-4473-8f99-15a876191f69</nsesss:Identifikator>
+                        </nsesss:Identifikace>
+                        <nsesss:Popis>
+                           <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                           <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                        </nsesss:Popis>
+                        <nsesss:Trideni>
+                           <nsesss:JednoduchySpisovyZnak>2</nsesss:JednoduchySpisovyZnak>
+                           <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                        </nsesss:Trideni>
+                     </nsesss:EvidencniUdaje>
+                  </nsesss:Komponenta>
+                  <nsesss:Komponenta ID="FILE_879780_e40726cf-4669-4017-bd79-b2054866190a" druh="dokument" forma_uchovani="koncept" poradi="6" verze="1">
+                     <nsesss:EvidencniUdaje>
+                        <nsesss:Identifikace>
+                           <nsesss:Identifikator zdroj="ERMS">a1e1f469-c107-4402-92ed-df1efc11a046</nsesss:Identifikator>
+                        </nsesss:Identifikace>
+                        <nsesss:Popis>
+                           <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                           <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                        </nsesss:Popis>
+                        <nsesss:Trideni>
+                           <nsesss:JednoduchySpisovyZnak>2</nsesss:JednoduchySpisovyZnak>
+                           <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                        </nsesss:Trideni>
+                     </nsesss:EvidencniUdaje>
+                  </nsesss:Komponenta>
+                  <nsesss:Komponenta ID="FILE_879785_e40726cf-4669-4017-bd79-b2054866190a" druh="dokument" forma_uchovani="originál" poradi="7" verze="1">
+                     <nsesss:EvidencniUdaje>
+                        <nsesss:Identifikace>
+                           <nsesss:Identifikator zdroj="ERMS">39125e85-d965-46af-9e94-804bec8bff62</nsesss:Identifikator>
+                        </nsesss:Identifikace>
+                        <nsesss:Popis>
+                           <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                           <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                        </nsesss:Popis>
+                        <nsesss:Trideni>
+                           <nsesss:JednoduchySpisovyZnak>2</nsesss:JednoduchySpisovyZnak>
+                           <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                        </nsesss:Trideni>
+                     </nsesss:EvidencniUdaje>
+                  </nsesss:Komponenta>
+                  <nsesss:Komponenta ID="FILE_17146618_e40726cf-4669-4017-bd79-b2054866190a" druh="dokument" forma_uchovani="originál" poradi="8" verze="1">
+                     <nsesss:EvidencniUdaje>
+                        <nsesss:Identifikace>
+                           <nsesss:Identifikator zdroj="ERMS">c25ad5bc-2d51-4b17-84ae-a8a3ea09d8ce</nsesss:Identifikator>
+                        </nsesss:Identifikace>
+                        <nsesss:Popis>
+                           <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                           <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                        </nsesss:Popis>
+                        <nsesss:Trideni>
+                           <nsesss:JednoduchySpisovyZnak>2</nsesss:JednoduchySpisovyZnak>
+                           <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                        </nsesss:Trideni>
+                     </nsesss:EvidencniUdaje>
+                  </nsesss:Komponenta>
+                  <nsesss:Komponenta ID="FILE_17146620_e40726cf-4669-4017-bd79-b2054866190a" druh="dokument" forma_uchovani="originál" poradi="9" verze="1">
+                     <nsesss:EvidencniUdaje>
+                        <nsesss:Identifikace>
+                           <nsesss:Identifikator zdroj="ERMS">c8053a28-ed43-4cb8-a065-c5a686bf60f6</nsesss:Identifikator>
+                        </nsesss:Identifikace>
+                        <nsesss:Popis>
+                           <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                           <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                        </nsesss:Popis>
+                        <nsesss:Trideni>
+                           <nsesss:JednoduchySpisovyZnak>2</nsesss:JednoduchySpisovyZnak>
+                           <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                        </nsesss:Trideni>
+                     </nsesss:EvidencniUdaje>
+                  </nsesss:Komponenta>
+                  <nsesss:Komponenta ID="FILE_17146622_e40726cf-4669-4017-bd79-b2054866190a" druh="dokument" forma_uchovani="originál" poradi="10" verze="1">
+                     <nsesss:EvidencniUdaje>
+                        <nsesss:Identifikace>
+                           <nsesss:Identifikator zdroj="ERMS">049ab95b-1246-4fef-b832-94bf8961bb0f</nsesss:Identifikator>
+                        </nsesss:Identifikace>
+                        <nsesss:Popis>
+                           <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                           <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                        </nsesss:Popis>
+                        <nsesss:Trideni>
+                           <nsesss:JednoduchySpisovyZnak>2</nsesss:JednoduchySpisovyZnak>
+                           <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                        </nsesss:Trideni>
+                     </nsesss:EvidencniUdaje>
+                  </nsesss:Komponenta>
+                  <nsesss:Komponenta ID="FILE_17146624_e40726cf-4669-4017-bd79-b2054866190a" druh="dokument" forma_uchovani="originál" poradi="11" verze="1">
+                     <nsesss:EvidencniUdaje>
+                        <nsesss:Identifikace>
+                           <nsesss:Identifikator zdroj="ERMS">8969a639-b9db-45a7-b5b7-a32bf74d9c1f</nsesss:Identifikator>
+                        </nsesss:Identifikace>
+                        <nsesss:Popis>
+                           <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                           <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                        </nsesss:Popis>
+                        <nsesss:Trideni>
+                           <nsesss:JednoduchySpisovyZnak>2</nsesss:JednoduchySpisovyZnak>
+                           <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                        </nsesss:Trideni>
+                     </nsesss:EvidencniUdaje>
+                  </nsesss:Komponenta>
+                  <nsesss:Komponenta ID="FILE_17146626_e40726cf-4669-4017-bd79-b2054866190a" druh="dokument" forma_uchovani="originál" poradi="12" verze="1">
+                     <nsesss:EvidencniUdaje>
+                        <nsesss:Identifikace>
+                           <nsesss:Identifikator zdroj="ERMS">729871e9-cb8d-4575-9965-fd92ba885eac</nsesss:Identifikator>
+                        </nsesss:Identifikace>
+                        <nsesss:Popis>
+                           <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                           <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                        </nsesss:Popis>
+                        <nsesss:Trideni>
+                           <nsesss:JednoduchySpisovyZnak>2</nsesss:JednoduchySpisovyZnak>
+                           <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                        </nsesss:Trideni>
+                     </nsesss:EvidencniUdaje>
+                  </nsesss:Komponenta>
+                  <nsesss:Komponenta ID="FILE_17146628_e40726cf-4669-4017-bd79-b2054866190a" druh="dokument" forma_uchovani="originál" poradi="13" verze="1">
+                     <nsesss:EvidencniUdaje>
+                        <nsesss:Identifikace>
+                           <nsesss:Identifikator zdroj="ERMS">284575d2-ece3-4fc6-89fe-a233947a59c8</nsesss:Identifikator>
+                        </nsesss:Identifikace>
+                        <nsesss:Popis>
+                           <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                           <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                        </nsesss:Popis>
+                        <nsesss:Trideni>
+                           <nsesss:JednoduchySpisovyZnak>2</nsesss:JednoduchySpisovyZnak>
+                           <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                        </nsesss:Trideni>
+                     </nsesss:EvidencniUdaje>
+                  </nsesss:Komponenta>
+                  <nsesss:Komponenta ID="FILE_10401553_e40726cf-4669-4017-bd79-b2054866190a" druh="dokument" forma_uchovani="originál" poradi="3" verze="2">
+                     <nsesss:EvidencniUdaje>
+                        <nsesss:Identifikace>
+                           <nsesss:Identifikator zdroj="ERMS">12d556a0-5130-48f9-bacd-7a8c139d574d</nsesss:Identifikator>
+                        </nsesss:Identifikace>
+                        <nsesss:Popis>
+                           <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                           <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                        </nsesss:Popis>
+                        <nsesss:Trideni>
+                           <nsesss:JednoduchySpisovyZnak>2</nsesss:JednoduchySpisovyZnak>
+                           <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                        </nsesss:Trideni>
+                        <nsesss:Prevod>
+                           <nsesss:KonverzeDD>
+                              <nsesss:Oduvodneni>Převod DD</nsesss:Oduvodneni>
+                              <nsesss:OdkazPuvodniKomponenta>
+                                 <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                                 <nsesss:Identifikator zdroj="ERMS">877938</nsesss:Identifikator>
+                              </nsesss:OdkazPuvodniKomponenta>
+                           </nsesss:KonverzeDD>
+                        </nsesss:Prevod>
+                     </nsesss:EvidencniUdaje>
+                  </nsesss:Komponenta>
+                  <nsesss:Komponenta ID="FILE_10401555_e40726cf-4669-4017-bd79-b2054866190a" druh="dokument" forma_uchovani="originál" poradi="4" verze="2">
+                     <nsesss:EvidencniUdaje>
+                        <nsesss:Identifikace>
+                           <nsesss:Identifikator zdroj="ERMS">6ce01997-76be-4007-8efa-4f1e0b74e2f3</nsesss:Identifikator>
+                        </nsesss:Identifikace>
+                        <nsesss:Popis>
+                           <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                           <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                        </nsesss:Popis>
+                        <nsesss:Trideni>
+                           <nsesss:JednoduchySpisovyZnak>2</nsesss:JednoduchySpisovyZnak>
+                           <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                        </nsesss:Trideni>
+                        <nsesss:Prevod>
+                           <nsesss:KonverzeDD>
+                              <nsesss:Oduvodneni>Protokol převod DD</nsesss:Oduvodneni>
+                              <nsesss:OdkazPuvodniKomponenta>
+                                 <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                                 <nsesss:Identifikator zdroj="ERMS">877938</nsesss:Identifikator>
+                              </nsesss:OdkazPuvodniKomponenta>
+                           </nsesss:KonverzeDD>
+                        </nsesss:Prevod>
+                     </nsesss:EvidencniUdaje>
+                  </nsesss:Komponenta>
+                  <nsesss:Komponenta ID="FILE_10401558_e40726cf-4669-4017-bd79-b2054866190a" druh="dokument" forma_uchovani="originál" poradi="5" verze="2">
+                     <nsesss:EvidencniUdaje>
+                        <nsesss:Identifikace>
+                           <nsesss:Identifikator zdroj="ERMS">14261331-9c58-4e20-9ba1-b4704c59adc3</nsesss:Identifikator>
+                        </nsesss:Identifikace>
+                        <nsesss:Popis>
+                           <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                           <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                        </nsesss:Popis>
+                        <nsesss:Trideni>
+                           <nsesss:JednoduchySpisovyZnak>2</nsesss:JednoduchySpisovyZnak>
+                           <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                        </nsesss:Trideni>
+                        <nsesss:Prevod>
+                           <nsesss:KonverzeDD>
+                              <nsesss:Oduvodneni>Převod DD</nsesss:Oduvodneni>
+                              <nsesss:OdkazPuvodniKomponenta>
+                                 <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                                 <nsesss:Identifikator zdroj="ERMS">877940</nsesss:Identifikator>
+                              </nsesss:OdkazPuvodniKomponenta>
+                           </nsesss:KonverzeDD>
+                        </nsesss:Prevod>
+                     </nsesss:EvidencniUdaje>
+                  </nsesss:Komponenta>
+                  <nsesss:Komponenta ID="FILE_10401560_e40726cf-4669-4017-bd79-b2054866190a" druh="dokument" forma_uchovani="originál" poradi="6" verze="2">
+                     <nsesss:EvidencniUdaje>
+                        <nsesss:Identifikace>
+                           <nsesss:Identifikator zdroj="ERMS">ebd37565-bc41-4324-b534-67c4dce30497</nsesss:Identifikator>
+                        </nsesss:Identifikace>
+                        <nsesss:Popis>
+                           <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                           <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                        </nsesss:Popis>
+                        <nsesss:Trideni>
+                           <nsesss:JednoduchySpisovyZnak>2</nsesss:JednoduchySpisovyZnak>
+                           <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                        </nsesss:Trideni>
+                        <nsesss:Prevod>
+                           <nsesss:KonverzeDD>
+                              <nsesss:Oduvodneni>Protokol převod DD</nsesss:Oduvodneni>
+                              <nsesss:OdkazPuvodniKomponenta>
+                                 <nsesss:PlneUrcenySpisovyZnak>605.1.2</nsesss:PlneUrcenySpisovyZnak>
+                                 <nsesss:Identifikator zdroj="ERMS">877940</nsesss:Identifikator>
+                              </nsesss:OdkazPuvodniKomponenta>
+                           </nsesss:KonverzeDD>
+                        </nsesss:Prevod>
+                     </nsesss:EvidencniUdaje>
+                  </nsesss:Komponenta>
+               </nsesss:Komponenty>
+            </nsesss:Dokument>
+         </mets:xmlData>
+      </mets:mdWrap>
+   </mets:dmdSec>
+   <mets:amdSec ID="AMD_FILE_877927_e40726cf-4669-4017-bd79-b2054866190a">
+      <mets:digiprovMD ID="ID-266dc7b1-21d4-41a0-815e-78dd555f0c20">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tns:HodnotaID>022020ad-3ec3-4100-9f1a-8fcacc4e9860</tns:HodnotaID>
+                        <tns:ZdrojID>UUID</tns:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2022-03-17T14:54:15.129+01:00</tp:DatumVzniku>
+                     <tp:DatumCasOd>2013-06-24T00:00:00.000+02:00</tp:DatumCasOd>
+                     <tp:DatumCasDo>2022-03-17T14:54:15.129+01:00</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.15.1.5</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tns:HodnotaID>36fa3335-d12f-47db-8ecb-9503dc03714b</tns:HodnotaID>
+                           <tns:ZdrojID>ERMS</tns:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti/>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="AMD_FILE_877931_e40726cf-4669-4017-bd79-b2054866190a">
+      <mets:digiprovMD ID="ID-17f5754d-5899-4570-be3e-d4f455f45f19">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tns:HodnotaID>03aec9c7-49c3-4160-8812-68c82145e88b</tns:HodnotaID>
+                        <tns:ZdrojID>UUID</tns:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2022-03-17T14:54:15.129+01:00</tp:DatumVzniku>
+                     <tp:DatumCasOd>2013-06-24T00:00:00.000+02:00</tp:DatumCasOd>
+                     <tp:DatumCasDo>2022-03-17T14:54:15.129+01:00</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.15.1.5</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tns:HodnotaID>650e27cc-cbcb-4168-b242-0711ff75eab0</tns:HodnotaID>
+                           <tns:ZdrojID>ERMS</tns:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti/>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="AMD_FILE_877938_e40726cf-4669-4017-bd79-b2054866190a">
+      <mets:digiprovMD ID="ID-8f456997-5bce-4a68-ae5d-009762ab6b9f">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tns:HodnotaID>eb924411-da81-47a4-aff3-6793ab5010fe</tns:HodnotaID>
+                        <tns:ZdrojID>UUID</tns:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2022-03-17T14:54:15.129+01:00</tp:DatumVzniku>
+                     <tp:DatumCasOd>2013-06-24T00:00:00.000+02:00</tp:DatumCasOd>
+                     <tp:DatumCasDo>2022-03-17T14:54:15.129+01:00</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.15.1.5</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tns:HodnotaID>f047ca89-6c6b-4c27-b30e-807be26134bd</tns:HodnotaID>
+                           <tns:ZdrojID>ERMS</tns:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti/>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="AMD_FILE_877940_e40726cf-4669-4017-bd79-b2054866190a">
+      <mets:digiprovMD ID="ID-f2ec1322-fe3c-4628-a5d1-0de78adc80e2">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tns:HodnotaID>57c267fe-9c59-4b92-9845-445391a821d5</tns:HodnotaID>
+                        <tns:ZdrojID>UUID</tns:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2022-03-17T14:54:15.129+01:00</tp:DatumVzniku>
+                     <tp:DatumCasOd>2013-06-24T00:00:00.000+02:00</tp:DatumCasOd>
+                     <tp:DatumCasDo>2022-03-17T14:54:15.129+01:00</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.15.1.5</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tns:HodnotaID>dedb90b4-faf8-4d0d-b5ea-b6fc1fc90527</tns:HodnotaID>
+                           <tns:ZdrojID>ERMS</tns:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti/>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="AMD_FILE_879775_e40726cf-4669-4017-bd79-b2054866190a">
+      <mets:digiprovMD ID="ID-670352eb-195d-4cb4-a926-87f16feb725e">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tns:HodnotaID>1361afbb-b335-484a-b711-ff0c23ccec9a</tns:HodnotaID>
+                        <tns:ZdrojID>UUID</tns:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2022-03-17T14:54:15.129+01:00</tp:DatumVzniku>
+                     <tp:DatumCasOd>2013-06-24T00:00:00.000+02:00</tp:DatumCasOd>
+                     <tp:DatumCasDo>2022-03-17T14:54:15.129+01:00</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.15.1.5</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tns:HodnotaID>9cbc09cf-f53e-4473-8f99-15a876191f69</tns:HodnotaID>
+                           <tns:ZdrojID>ERMS</tns:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti/>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="AMD_FILE_879780_e40726cf-4669-4017-bd79-b2054866190a">
+      <mets:digiprovMD ID="ID-491eff2f-885b-4e86-be38-cbbb8e3355cc">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tns:HodnotaID>934a871e-4bee-4ed3-b0b6-d9f39861250b</tns:HodnotaID>
+                        <tns:ZdrojID>UUID</tns:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2022-03-17T14:54:15.129+01:00</tp:DatumVzniku>
+                     <tp:DatumCasOd>2013-06-24T00:00:00.000+02:00</tp:DatumCasOd>
+                     <tp:DatumCasDo>2022-03-17T14:54:15.129+01:00</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.15.1.5</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tns:HodnotaID>a1e1f469-c107-4402-92ed-df1efc11a046</tns:HodnotaID>
+                           <tns:ZdrojID>ERMS</tns:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti/>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="AMD_FILE_879785_e40726cf-4669-4017-bd79-b2054866190a">
+      <mets:digiprovMD ID="ID-9349ab99-66b2-4a57-87d5-09446c8e77d3">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tns:HodnotaID>1bed18a9-5913-4177-a3e4-5d67e752b261</tns:HodnotaID>
+                        <tns:ZdrojID>UUID</tns:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2022-03-17T14:54:15.129+01:00</tp:DatumVzniku>
+                     <tp:DatumCasOd>2013-06-24T00:00:00.000+02:00</tp:DatumCasOd>
+                     <tp:DatumCasDo>2022-03-17T14:54:15.129+01:00</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.15.1.5</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tns:HodnotaID>39125e85-d965-46af-9e94-804bec8bff62</tns:HodnotaID>
+                           <tns:ZdrojID>ERMS</tns:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti/>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="AMD_FILE_17146618_e40726cf-4669-4017-bd79-b2054866190a">
+      <mets:digiprovMD ID="ID-4abdd68f-1332-4784-b07f-09af8f051fdb">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tns:HodnotaID>8b182146-d126-45fc-b05d-2b86ccc3992c</tns:HodnotaID>
+                        <tns:ZdrojID>UUID</tns:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2022-03-17T14:54:15.129+01:00</tp:DatumVzniku>
+                     <tp:DatumCasOd>2013-06-24T00:00:00.000+02:00</tp:DatumCasOd>
+                     <tp:DatumCasDo>2022-03-17T14:54:15.129+01:00</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.15.1.5</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tns:HodnotaID>c25ad5bc-2d51-4b17-84ae-a8a3ea09d8ce</tns:HodnotaID>
+                           <tns:ZdrojID>ERMS</tns:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti/>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="AMD_FILE_17146620_e40726cf-4669-4017-bd79-b2054866190a">
+      <mets:digiprovMD ID="ID-ac4d6813-ab6e-4d73-a3b8-12879790e347">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tns:HodnotaID>fc74d2d7-a34a-4732-a2e4-8e7bf83b87cf</tns:HodnotaID>
+                        <tns:ZdrojID>UUID</tns:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2022-03-17T14:54:15.129+01:00</tp:DatumVzniku>
+                     <tp:DatumCasOd>2013-06-24T00:00:00.000+02:00</tp:DatumCasOd>
+                     <tp:DatumCasDo>2022-03-17T14:54:15.129+01:00</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.15.1.5</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tns:HodnotaID>c8053a28-ed43-4cb8-a065-c5a686bf60f6</tns:HodnotaID>
+                           <tns:ZdrojID>ERMS</tns:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti/>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="AMD_FILE_17146622_e40726cf-4669-4017-bd79-b2054866190a">
+      <mets:digiprovMD ID="ID-a120551d-1a4a-4918-aa90-ed8be1dc6137">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tns:HodnotaID>2f6b5d47-7131-4b6e-84c3-44ea73d51c73</tns:HodnotaID>
+                        <tns:ZdrojID>UUID</tns:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2022-03-17T14:54:15.129+01:00</tp:DatumVzniku>
+                     <tp:DatumCasOd>2013-06-24T00:00:00.000+02:00</tp:DatumCasOd>
+                     <tp:DatumCasDo>2022-03-17T14:54:15.129+01:00</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.15.1.5</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tns:HodnotaID>049ab95b-1246-4fef-b832-94bf8961bb0f</tns:HodnotaID>
+                           <tns:ZdrojID>ERMS</tns:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti/>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="AMD_FILE_17146624_e40726cf-4669-4017-bd79-b2054866190a">
+      <mets:digiprovMD ID="ID-854d09c7-6489-4980-95c2-09636d360268">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tns:HodnotaID>6ac4c7dd-01e7-4d5f-b1c7-177a868abd55</tns:HodnotaID>
+                        <tns:ZdrojID>UUID</tns:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2022-03-17T14:54:15.129+01:00</tp:DatumVzniku>
+                     <tp:DatumCasOd>2013-06-24T00:00:00.000+02:00</tp:DatumCasOd>
+                     <tp:DatumCasDo>2022-03-17T14:54:15.129+01:00</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.15.1.5</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tns:HodnotaID>8969a639-b9db-45a7-b5b7-a32bf74d9c1f</tns:HodnotaID>
+                           <tns:ZdrojID>ERMS</tns:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti/>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="AMD_FILE_17146626_e40726cf-4669-4017-bd79-b2054866190a">
+      <mets:digiprovMD ID="ID-68d68db7-a26b-4eb8-ab26-4a04391d3d77">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tns:HodnotaID>55a88aae-b41c-484e-bcea-a74825e2c02f</tns:HodnotaID>
+                        <tns:ZdrojID>UUID</tns:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2022-03-17T14:54:15.129+01:00</tp:DatumVzniku>
+                     <tp:DatumCasOd>2013-06-24T00:00:00.000+02:00</tp:DatumCasOd>
+                     <tp:DatumCasDo>2022-03-17T14:54:15.129+01:00</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.15.1.5</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tns:HodnotaID>729871e9-cb8d-4575-9965-fd92ba885eac</tns:HodnotaID>
+                           <tns:ZdrojID>ERMS</tns:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti/>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="AMD_FILE_17146628_e40726cf-4669-4017-bd79-b2054866190a">
+      <mets:digiprovMD ID="ID-2efb7054-9eb2-4c32-b8be-ae1e3202f4fb">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tns:HodnotaID>c10f9c57-58b0-459d-9f6c-d9dbd3a21b3f</tns:HodnotaID>
+                        <tns:ZdrojID>UUID</tns:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2022-03-17T14:54:15.129+01:00</tp:DatumVzniku>
+                     <tp:DatumCasOd>2013-06-24T00:00:00.000+02:00</tp:DatumCasOd>
+                     <tp:DatumCasDo>2022-03-17T14:54:15.129+01:00</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.15.1.5</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tns:HodnotaID>284575d2-ece3-4fc6-89fe-a233947a59c8</tns:HodnotaID>
+                           <tns:ZdrojID>ERMS</tns:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti/>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="AMD_FILE_10401553_e40726cf-4669-4017-bd79-b2054866190a">
+      <mets:digiprovMD ID="ID-58dd86e6-022b-45f4-93a0-83aec6c9f348">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tns:HodnotaID>0c0266ad-1928-48db-9532-61d78ca5fda5</tns:HodnotaID>
+                        <tns:ZdrojID>UUID</tns:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2022-03-17T14:54:15.129+01:00</tp:DatumVzniku>
+                     <tp:DatumCasOd>2013-06-24T00:00:00.000+02:00</tp:DatumCasOd>
+                     <tp:DatumCasDo>2022-03-17T14:54:15.129+01:00</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.15.1.5</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tns:HodnotaID>12d556a0-5130-48f9-bacd-7a8c139d574d</tns:HodnotaID>
+                           <tns:ZdrojID>ERMS</tns:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti/>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="AMD_FILE_10401555_e40726cf-4669-4017-bd79-b2054866190a">
+      <mets:digiprovMD ID="ID-985f7778-c8bd-40e4-9e5a-17d3cde79413">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tns:HodnotaID>2a4e733d-e127-4f0e-860e-a4b8281b4b61</tns:HodnotaID>
+                        <tns:ZdrojID>UUID</tns:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2022-03-17T14:54:15.129+01:00</tp:DatumVzniku>
+                     <tp:DatumCasOd>2013-06-24T00:00:00.000+02:00</tp:DatumCasOd>
+                     <tp:DatumCasDo>2022-03-17T14:54:15.129+01:00</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.15.1.5</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tns:HodnotaID>6ce01997-76be-4007-8efa-4f1e0b74e2f3</tns:HodnotaID>
+                           <tns:ZdrojID>ERMS</tns:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti/>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="AMD_FILE_10401558_e40726cf-4669-4017-bd79-b2054866190a">
+      <mets:digiprovMD ID="ID-a0551d7b-c004-400e-a1e3-2bfb8e37baee">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tns:HodnotaID>62dca2ea-7c35-41e3-bd85-a2fcefcb5f85</tns:HodnotaID>
+                        <tns:ZdrojID>UUID</tns:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2022-03-17T14:54:15.129+01:00</tp:DatumVzniku>
+                     <tp:DatumCasOd>2013-06-24T00:00:00.000+02:00</tp:DatumCasOd>
+                     <tp:DatumCasDo>2022-03-17T14:54:15.129+01:00</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.15.1.5</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tns:HodnotaID>14261331-9c58-4e20-9ba1-b4704c59adc3</tns:HodnotaID>
+                           <tns:ZdrojID>ERMS</tns:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti/>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="AMD_FILE_10401560_e40726cf-4669-4017-bd79-b2054866190a">
+      <mets:digiprovMD ID="ID-cc306ba3-1b17-44b5-a986-5d712f003ecf">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tns:HodnotaID>ca9b3653-168a-4b34-99c7-c91ebde4c8d8</tns:HodnotaID>
+                        <tns:ZdrojID>UUID</tns:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2022-03-17T14:54:15.129+01:00</tp:DatumVzniku>
+                     <tp:DatumCasOd>2013-06-24T00:00:00.000+02:00</tp:DatumCasOd>
+                     <tp:DatumCasDo>2022-03-17T14:54:15.129+01:00</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.15.1.5</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tns:HodnotaID>ebd37565-bc41-4324-b534-67c4dce30497</tns:HodnotaID>
+                           <tns:ZdrojID>ERMS</tns:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti/>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="LOG_0001">
+      <mets:digiprovMD ID="ID-2b3b9028-caa2-451b-b833-2e12fe08c0c2">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tns:HodnotaID>af1f7538-3e16-4c96-97aa-a26a3806c185</tns:HodnotaID>
+                        <tns:ZdrojID>UUID</tns:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2022-03-17T14:54:15.129+01:00</tp:DatumVzniku>
+                     <tp:DatumCasOd>2013-06-24T00:00:00.000+02:00</tp:DatumCasOd>
+                     <tp:DatumCasDo>2022-03-17T14:54:15.129+01:00</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.15.1.5</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>VecnaSkupina</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tns:HodnotaID>11101</tns:HodnotaID>
+                           <tns:ZdrojID>ERMS</tns:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti>
+                     <tp:Udalost>
+                        <tp:Poradi>1</tp:Poradi>
+                        <tp:DatumVzniku>2013-06-24T00:00:00.000+02:00</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>Otevreni</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>2</tp:Poradi>
+                        <tp:DatumVzniku>2015-06-01T00:00:00.000+02:00</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>Uzavreni</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                     </tp:Udalost>
+                  </tp:Udalosti>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="LOG_0002">
+      <mets:digiprovMD ID="ID-d1360c93-e4a8-400d-9ddb-34036cbb27ee">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tns:HodnotaID>e55e6c8d-d0ee-4c08-8477-540d904fe49f</tns:HodnotaID>
+                        <tns:ZdrojID>UUID</tns:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2022-03-17T14:54:15.129+01:00</tp:DatumVzniku>
+                     <tp:DatumCasOd>2012-01-01T00:00:00.000+01:00</tp:DatumCasOd>
+                     <tp:DatumCasDo>2022-03-17T14:54:15.129+01:00</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.15.1.5</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>VecnaSkupina</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tns:HodnotaID>11099</tns:HodnotaID>
+                           <tns:ZdrojID>ERMS</tns:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti>
+                     <tp:Udalost>
+                        <tp:Poradi>3</tp:Poradi>
+                        <tp:DatumVzniku>2012-01-01T00:00:00.000+01:00</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>Otevreni</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>4</tp:Poradi>
+                        <tp:DatumVzniku>2015-06-01T00:00:00.000+02:00</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>Uzavreni</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                     </tp:Udalost>
+                  </tp:Udalosti>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="LOG_0003">
+      <mets:digiprovMD ID="ID-028b8f20-bfee-44d6-a69a-9a0dd558d89a">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tns:HodnotaID>8917baf9-412f-4311-a6ef-4387154187a3</tns:HodnotaID>
+                        <tns:ZdrojID>UUID</tns:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2022-03-17T14:54:15.129+01:00</tp:DatumVzniku>
+                     <tp:DatumCasOd>2012-01-01T00:00:00.000+01:00</tp:DatumCasOd>
+                     <tp:DatumCasDo>2022-03-17T14:54:15.129+01:00</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.15.1.5</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>VecnaSkupina</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tns:HodnotaID>11098</tns:HodnotaID>
+                           <tns:ZdrojID>ERMS</tns:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti>
+                     <tp:Udalost>
+                        <tp:Poradi>5</tp:Poradi>
+                        <tp:DatumVzniku>2012-01-01T00:00:00.000+01:00</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>Otevreni</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>6</tp:Poradi>
+                        <tp:DatumVzniku>2015-06-01T00:00:00.000+02:00</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>Uzavreni</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                     </tp:Udalost>
+                  </tp:Udalosti>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="LOG_0004">
+      <mets:digiprovMD ID="ID-55e3ab71-d39e-420a-898e-f385b8412b1b">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tns:HodnotaID>e2a2a93d-5a4d-4266-92ac-ee9efeed9b62</tns:HodnotaID>
+                        <tns:ZdrojID>UUID</tns:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2022-03-17T14:54:15.129+01:00</tp:DatumVzniku>
+                     <tp:DatumCasOd>2012-01-01T00:00:00.000+01:00</tp:DatumCasOd>
+                     <tp:DatumCasDo>2022-03-17T14:54:15.129+01:00</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.15.1.5</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>SpisovyPlan</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tns:HodnotaID>29</tns:HodnotaID>
+                           <tns:ZdrojID>ERMS</tns:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti>
+                     <tp:Udalost>
+                        <tp:Poradi>7</tp:Poradi>
+                        <tp:DatumVzniku>2012-01-01T00:00:00.000+01:00</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>Otevreni</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>8</tp:Poradi>
+                        <tp:DatumVzniku>2015-06-01T00:00:00.000+02:00</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>Uzavreni</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                     </tp:Udalost>
+                  </tp:Udalosti>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="LOG_0005">
+      <mets:digiprovMD ID="ID-13d96968-efb1-4d3c-8edf-dda0adc5c9f1">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="1.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tns:HodnotaID>f778d8df-077a-4acf-b0c6-ece1320b0320</tns:HodnotaID>
+                        <tns:ZdrojID>UUID</tns:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2022-03-17T13:54:15.153Z</tp:DatumVzniku>
+                     <tp:DatumCasOd>2020-02-17T18:09:21.003Z</tp:DatumCasOd>
+                     <tp:DatumCasDo>2022-03-16T13:04:19.533Z</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.15.1.5</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>Dokument</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tns:HodnotaID>mc20es50778498</tns:HodnotaID>
+                           <tns:ZdrojID>ERMS</tns:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti>
+                     <tp:Udalost>
+                        <tp:Poradi>387203</tp:Poradi>
+                        <tp:DatumVzniku>2020-02-17T18:09:21.003Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_QA_102</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>0007da98-e148-423b-8fd1-d5052885b90e</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>e40726cf-4669-4017-bd79-b2054866190a</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>387204</tp:Poradi>
+                        <tp:DatumVzniku>2020-02-17T18:09:21.157Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_QA_101</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>0007da98-e148-423b-8fd1-d5052885b90e</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>e40726cf-4669-4017-bd79-b2054866190a</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>387205</tp:Poradi>
+                        <tp:DatumVzniku>2020-02-17T18:09:21.177Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_IC_102</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>0007da98-e148-423b-8fd1-d5052885b90e</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>e40726cf-4669-4017-bd79-b2054866190a</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>387206</tp:Poradi>
+                        <tp:DatumVzniku>2020-02-17T18:09:21.490Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_IC_112</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>0007da98-e148-423b-8fd1-d5052885b90e</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>e40726cf-4669-4017-bd79-b2054866190a</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>387207</tp:Poradi>
+                        <tp:DatumVzniku>2020-02-17T18:09:21.603Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_IC_116</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>0007da98-e148-423b-8fd1-d5052885b90e</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>e40726cf-4669-4017-bd79-b2054866190a</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>387208</tp:Poradi>
+                        <tp:DatumVzniku>2020-02-17T18:09:21.893Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_IC_105</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>0007da98-e148-423b-8fd1-d5052885b90e</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>e40726cf-4669-4017-bd79-b2054866190a</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>387209</tp:Poradi>
+                        <tp:DatumVzniku>2020-02-17T18:09:22.207Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_AC_100</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>0007da98-e148-423b-8fd1-d5052885b90e</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>e40726cf-4669-4017-bd79-b2054866190a</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>387210</tp:Poradi>
+                        <tp:DatumVzniku>2020-02-17T18:09:22.590Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiText>Ověření integrity</tp:TypUdalostiText>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_DM_160</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>0007da98-e148-423b-8fd1-d5052885b90e</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>e40726cf-4669-4017-bd79-b2054866190a</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>584654</tp:Poradi>
+                        <tp:DatumVzniku>2021-06-23T11:09:15.890Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>VlozeniDoSkartacnihoNavrhu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_RD_131</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>e40726cf-4669-4017-bd79-b2054866190a</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>704394</tp:Poradi>
+                        <tp:DatumVzniku>2022-02-07T22:38:14.303Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>VyjmutiZeSkartacnihoNavrhu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_RD_135</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>e40726cf-4669-4017-bd79-b2054866190a</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>732366</tp:Poradi>
+                        <tp:DatumVzniku>2022-03-08T13:18:29.587Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>VlozeniDoSkartacnihoNavrhu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_RD_131</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>e40726cf-4669-4017-bd79-b2054866190a</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>769113</tp:Poradi>
+                        <tp:DatumVzniku>2022-03-10T14:16:11.627Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>VyjmutiZeSkartacnihoNavrhu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_RD_135</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>e40726cf-4669-4017-bd79-b2054866190a</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>793604</tp:Poradi>
+                        <tp:DatumVzniku>2022-03-11T16:09:43.877Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>VlozeniDoSkartacnihoNavrhu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_RD_131</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>e40726cf-4669-4017-bd79-b2054866190a</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>826778</tp:Poradi>
+                        <tp:DatumVzniku>2022-03-12T10:25:39.977Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>VyjmutiZeSkartacnihoNavrhu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_RD_135</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>e40726cf-4669-4017-bd79-b2054866190a</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>848681</tp:Poradi>
+                        <tp:DatumVzniku>2022-03-14T10:42:05.217Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>VlozeniDoSkartacnihoNavrhu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_RD_131</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>e40726cf-4669-4017-bd79-b2054866190a</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>880100</tp:Poradi>
+                        <tp:DatumVzniku>2022-03-15T07:24:49.967Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>VyjmutiZeSkartacnihoNavrhu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_RD_135</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>e40726cf-4669-4017-bd79-b2054866190a</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>896857</tp:Poradi>
+                        <tp:DatumVzniku>2022-03-15T09:06:11.980Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>VlozeniDoSkartacnihoNavrhu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_RD_131</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>e40726cf-4669-4017-bd79-b2054866190a</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>928694</tp:Poradi>
+                        <tp:DatumVzniku>2022-03-16T12:16:36.197Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>VyjmutiZeSkartacnihoNavrhu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_RD_135</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>e40726cf-4669-4017-bd79-b2054866190a</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>939416</tp:Poradi>
+                        <tp:DatumVzniku>2022-03-16T13:04:19.533Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>VlozeniDoSkartacnihoNavrhu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_RD_131</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>e40726cf-4669-4017-bd79-b2054866190a</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                  </tp:Udalosti>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:structMap TYPE="LOGICAL">
+      <mets:div ADMID="LOG_0004" DMDID="ID-4a4e0946-1053-43a6-b970-fb10d392ed26" TYPE="spisový plán">
+         <mets:div ADMID="LOG_0003" DMDID="ID-706be902-c13e-4123-950d-1949635c928c" TYPE="věcná skupina">
+            <mets:div ADMID="LOG_0002" DMDID="ID-3082461b-09ec-4041-ab40-8881abef30e2" TYPE="věcná skupina">
+               <mets:div ADMID="LOG_0001" DMDID="ID-7e00ac99-d732-4dc3-ae69-6e42e42eb62c" TYPE="věcná skupina">
+                  <mets:div ADMID="LOG_0005" DMDID="RECORD_mc20es50778498_e40726cf-4669-4017-bd79-b2054866190a" LABEL="Oznamovací povinnost - Blažkovi" ORDER="1" TYPE="dokument">
+                     <mets:div ADMID="AMD_FILE_877927_e40726cf-4669-4017-bd79-b2054866190a" DMDID="FILE_877927_e40726cf-4669-4017-bd79-b2054866190a" TYPE="komponenta"/>
+                     <mets:div ADMID="AMD_FILE_877931_e40726cf-4669-4017-bd79-b2054866190a" DMDID="FILE_877931_e40726cf-4669-4017-bd79-b2054866190a" TYPE="komponenta"/>
+                     <mets:div ADMID="AMD_FILE_17146620_e40726cf-4669-4017-bd79-b2054866190a" DMDID="FILE_17146620_e40726cf-4669-4017-bd79-b2054866190a" TYPE="komponenta"/>
+                     <mets:div ADMID="AMD_FILE_17146624_e40726cf-4669-4017-bd79-b2054866190a" DMDID="FILE_17146624_e40726cf-4669-4017-bd79-b2054866190a" TYPE="komponenta"/>
+                     <mets:div ADMID="AMD_FILE_17146628_e40726cf-4669-4017-bd79-b2054866190a" DMDID="FILE_17146628_e40726cf-4669-4017-bd79-b2054866190a" TYPE="komponenta"/>
+                     <mets:div ADMID="AMD_FILE_10401553_e40726cf-4669-4017-bd79-b2054866190a" DMDID="FILE_10401553_e40726cf-4669-4017-bd79-b2054866190a" TYPE="komponenta"/>
+                     <mets:div ADMID="AMD_FILE_10401555_e40726cf-4669-4017-bd79-b2054866190a" DMDID="FILE_10401555_e40726cf-4669-4017-bd79-b2054866190a" TYPE="komponenta"/>
+                     <mets:div ADMID="AMD_FILE_10401558_e40726cf-4669-4017-bd79-b2054866190a" DMDID="FILE_10401558_e40726cf-4669-4017-bd79-b2054866190a" TYPE="komponenta"/>
+                     <mets:div ADMID="AMD_FILE_10401560_e40726cf-4669-4017-bd79-b2054866190a" DMDID="FILE_10401560_e40726cf-4669-4017-bd79-b2054866190a" TYPE="komponenta"/>
+                     <mets:div ADMID="AMD_FILE_877938_e40726cf-4669-4017-bd79-b2054866190a" DMDID="FILE_877938_e40726cf-4669-4017-bd79-b2054866190a" TYPE="komponenta"/>
+                     <mets:div ADMID="AMD_FILE_877940_e40726cf-4669-4017-bd79-b2054866190a" DMDID="FILE_877940_e40726cf-4669-4017-bd79-b2054866190a" TYPE="komponenta"/>
+                     <mets:div ADMID="AMD_FILE_879775_e40726cf-4669-4017-bd79-b2054866190a" DMDID="FILE_879775_e40726cf-4669-4017-bd79-b2054866190a" TYPE="komponenta"/>
+                     <mets:div ADMID="AMD_FILE_879780_e40726cf-4669-4017-bd79-b2054866190a" DMDID="FILE_879780_e40726cf-4669-4017-bd79-b2054866190a" TYPE="komponenta"/>
+                     <mets:div ADMID="AMD_FILE_879785_e40726cf-4669-4017-bd79-b2054866190a" DMDID="FILE_879785_e40726cf-4669-4017-bd79-b2054866190a" TYPE="komponenta"/>
+                     <mets:div ADMID="AMD_FILE_17146618_e40726cf-4669-4017-bd79-b2054866190a" DMDID="FILE_17146618_e40726cf-4669-4017-bd79-b2054866190a" TYPE="komponenta"/>
+                     <mets:div ADMID="AMD_FILE_17146622_e40726cf-4669-4017-bd79-b2054866190a" DMDID="FILE_17146622_e40726cf-4669-4017-bd79-b2054866190a" TYPE="komponenta"/>
+                     <mets:div ADMID="AMD_FILE_17146626_e40726cf-4669-4017-bd79-b2054866190a" DMDID="FILE_17146626_e40726cf-4669-4017-bd79-b2054866190a" TYPE="komponenta"/>
+                  </mets:div>
+               </mets:div>
+            </mets:div>
+         </mets:div>
+      </mets:div>
+   </mets:structMap>
+</mets:mets>
