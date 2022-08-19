@@ -11,9 +11,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
+import cz.zaf.sipvalidator.formats.MimeTypeResult;
+import cz.zaf.sipvalidator.formats.MimeTypeResult.DetectionStatus;
 import cz.zaf.sipvalidator.formats.MimetypeDetector;
-import cz.zaf.sipvalidator.formats.MimetypeDetector.MimeTypeResult;
-import cz.zaf.sipvalidator.formats.MimetypeDetector.MimeTypeResult.DetectionStatus;
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
