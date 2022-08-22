@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -41,6 +42,7 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 // application/xml
 // application/xml-dtd
 //
+// Kontrola se neprovádí, pokud byla základní entita vyřízena/uzavřena do 31. 7. 2012 včetně.
 //
 public class Pravidlo107 extends K06PravidloBase {
 
@@ -74,7 +76,8 @@ public class Pravidlo107 extends K06PravidloBase {
                         + "- audio/mpeg\r\n"
                         + "- audio/x-wav\r\n"
                         + "- application/xml\r\n"
-                        + "- application/xml-dtd",
+                        + "- application/xml-dtd\r\n"
+                        + "Kontrola se neprovádí, pokud byla základní entita vyřízena/uzavřena do 31. 7. 2012 včetně.",
                 "Komponenta (počítačový soubory) není ve výstupním datovém formátu.",
                 "§ 23 odst. 2 vyhlášky č. 259/2012 Sb.; Informační list NA, čá. 6/2020, č. 3/2020.");
     }
@@ -106,6 +109,11 @@ public class Pravidlo107 extends K06PravidloBase {
             return;
         }
 
+        List<Element> zaklEntity = metsParser.getZakladniEntity();        
+        // overeni datumu uzavreni/vyrizeni
+        Set<Element> povoleneZaklEntity = zaklEntity.stream().filter(ze -> vratKontrolaVystupniFormat(ze))
+                .collect(Collectors.toSet());
+        
         // Ulozeni nejvyssich verzi
         // Struktura obsahuje: Dokument, Pozice, Komponenta s nejvyssi verzi
         Map<Element, Map<Integer, Element>> doks = new HashMap<>();
@@ -113,6 +121,10 @@ public class Pravidlo107 extends K06PravidloBase {
             // Kontrola, zda je soucast digit dokumentu?
             Element komponentyNode = (Element) komponenta.getParentNode();
             Element dokumentNode = (Element) komponentyNode.getParentNode();
+            // overeni, zda je povolena zakl entita
+            if (!ValuesGetter.jeSoucasti(dokumentNode, povoleneZaklEntity)) {
+                continue;
+            }            
 
             Map<Integer, Element> komponentaDlePoradi = doks.computeIfAbsent(dokumentNode,
                                                                           dn -> new HashMap<>());

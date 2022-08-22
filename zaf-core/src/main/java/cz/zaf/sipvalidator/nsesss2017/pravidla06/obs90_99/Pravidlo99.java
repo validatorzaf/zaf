@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -38,15 +39,8 @@ import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 // s hodnotou uvedenou v atributu ID jakéhokoli elementu <nsesss:Komponenta>
 // příslušné komponenty a dále obsahuje atribut MIMETYPE s hodnotou
 // application/pdf, reprezentuje příslušnou komponentu ve shodě s normou PDF/A.
-//
-//
-// Původní znění:
-// Pokud existuje jakýkoli element <nsesss:Komponenta>, který obsahuje atribut
-// forma_uchovani s hodnotou originál ve výstupním datovém formátu, a současně
-// jakýkoli element <mets:file>, který obsahuje atribut DMDID s hodnotou
-// uvedenou v atributu ID příslušného elementu <nsesss:Komponenta> a současně
-// atribut MIMETYPE s hodnotou application/pdf, potom souborový formát příslušné
-// komponenty odpovídá normě PDF/A alespoň ve verzi 1b.
+// Kontrola se neprovádí, pokud byla základní entita vyřízena/uzavřena do 31. 7.
+// 2012 včetně.
 //
 public class Pravidlo99 extends K06PravidloBase {
 
@@ -59,7 +53,7 @@ public class Pravidlo99 extends K06PravidloBase {
     
     public Pravidlo99() {
         super(OBS99,
-                "Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ne a zároveň obsahuje element <nsesss:Komponenty>, ze všech dětských elementů <nsesss:Komponenta>, který obsahuje atribut forma_uchovani s hodnotou originál nebo originál ve výstupním datovém formátu a současně atribut verze s hodnotou nejvyššího čísla verze, potom jakýkoli element <mets:file>, který obsahuje atribut DMDID s hodnotou uvedenou v atributu ID jakéhokoli elementu <nsesss:Komponenta> příslušné komponenty a dále obsahuje atribut MIMETYPE s hodnotou application/pdf, reprezentuje příslušnou komponentu ve shodě s normou PDF/A.",
+                "Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ne a zároveň obsahuje element <nsesss:Komponenty>, ze všech dětských elementů <nsesss:Komponenta>, který obsahuje atribut forma_uchovani s hodnotou originál nebo originál ve výstupním datovém formátu a současně atribut verze s hodnotou nejvyššího čísla verze, potom jakýkoli element <mets:file>, který obsahuje atribut DMDID s hodnotou uvedenou v atributu ID jakéhokoli elementu <nsesss:Komponenta> příslušné komponenty a dále obsahuje atribut MIMETYPE s hodnotou application/pdf, reprezentuje příslušnou komponentu ve shodě s normou PDF/A. Kontrola se neprovádí, pokud byla základní entita vyřízena/uzavřena do 31. 7. 2012 včetně.",
                 "Komponenta (počítačový soubor) v datovém formátu PDF není ve výstupním datovém formátu.",
                 "§ 23 odst. 2 vyhlášky č. 259/2012 Sb.; Informační list NA, čá. 6/2020, č. 3/2020.");
     }
@@ -67,10 +61,20 @@ public class Pravidlo99 extends K06PravidloBase {
     @Override
     protected void kontrola() {
 
-        Set<Node> digitDoks = new HashSet<>();
+        Set<Element> digitDoks = new HashSet<>();
+
+        List<Element> zaklEntity = metsParser.getZakladniEntity();
+        // overeni datumu uzavreni/vyrizeni
+        Set<Element> povoleneZaklEntity = zaklEntity.stream().filter(ze -> vratKontrolaVystupniFormat(ze))
+                .collect(Collectors.toSet());
 
         List<Element> dokumentNodes = metsParser.getDokumenty();
         for (Element dokumentNode : dokumentNodes) {
+            // overeni, zda je povolena zakl entita
+            if (!ValuesGetter.jeSoucasti(dokumentNode, povoleneZaklEntity)) {
+                continue;
+            }
+
             Element analogDokNode = ValuesGetter.getXChild(dokumentNode, NsessV3.EVIDENCNI_UDAJE,
                     NsessV3.MANIPULACE,
                     NsessV3.ANALOGOVY_DOKUMENT);
@@ -161,6 +165,7 @@ public class Pravidlo99 extends K06PravidloBase {
             }
         }
     }
+
 
     private boolean isVyssiVerze(Node puvodniKomp, Node novaKomp) {
         // nutne porovnat verze

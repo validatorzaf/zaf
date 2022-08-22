@@ -11,3 +11,7 @@
 * Změna pravidla <<obs64>> - posuzuje se ve vztahu k aktuálnímu roku
 * Změna pravidla <<obs65>> - posuzuje se ve vztahu k aktuálnímu roku
 * Zrušeno pravidlo ověření správnosti uvedení roku skartační operace: obs66, nahrazeno úpravami <<obs64>> a <<obs65>>
+
+== v3, 25.8.2022
+
+* Podmíněné zpracování pravidel <<obs99>>, <<obs105>>, <<obs107>>. Kontrola se neprovádí, pokud byla základní entita vyřízena/uzavřena do 31. 7. 2012 včetně.

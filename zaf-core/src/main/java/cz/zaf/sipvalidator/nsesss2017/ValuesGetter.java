@@ -15,6 +15,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import org.apache.commons.lang3.Validate;
 import org.w3c.dom.Element;
@@ -342,6 +343,27 @@ public class ValuesGetter {
             return true;
         }
         return isXParent(foundedParent, nextParent);
+    }
+
+    /**
+     * Overeni, zda node je soucasti jednoho z podstromu
+     * 
+     * @param node
+     * @param mozniRodice
+     * @return
+     */
+    public static boolean jeSoucasti(Element node, Set<Element> mozniRodice) {
+        while (node != null) {
+            if (mozniRodice.contains(node)) {
+                return true;
+            }
+            Node nodeParent = node.getParentNode();
+            if (nodeParent == null || nodeParent.getNodeType() != ELEMENT_NODE) {
+                return false;
+            }
+            node = (Element) nodeParent;
+        }
+        return false;
     }
             
     public static Date vytvorDate(Node node, String... vzorDatumu) throws ParseException{

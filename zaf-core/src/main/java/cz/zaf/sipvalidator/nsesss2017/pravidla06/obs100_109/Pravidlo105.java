@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 import java.util.Set;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -41,6 +42,8 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 // existuje element <nsesss:Komponenta>, který obsahuje atribut forma_uchovani
 // originál ve výstupním datovém formátu.
 //
+// Kontrola se neprovádí, pokud byla základní entita vyřízena/uzavřena do 31. 7. 2012 včetně.
+//
 //
 public class Pravidlo105 extends K06PravidloBase {
 
@@ -65,17 +68,27 @@ public class Pravidlo105 extends K06PravidloBase {
                         + "- application/rtf\r\n"
                         + "- application/vnd.oasis.opendocument.text\r\n"
                         + "- application/vnd.apple.pages\r\n"
-                        + "existuje element <nsesss:Komponenta>, který obsahuje atribut forma_uchovani originál ve výstupním datovém formátu.",
+                        + "existuje element <nsesss:Komponenta>, který obsahuje atribut forma_uchovani originál ve výstupním datovém formátu. Kontrola se neprovádí, pokud byla základní entita vyřízena/uzavřena do 31. 7. 2012 včetně.",
                 "Uveden je chybně originál ve výstupním datovém formátu komponent (počítačových souborů).",
                 "§ 23 odst. 2 vyhlášky č. 259/2012 Sb.; Informační list NA, čá. 6/2020, č. 3/2020.");
     }
 
     @Override
     protected void kontrola() {
+        List<Element> zaklEntity = metsParser.getZakladniEntity();        
+        // overeni datumu uzavreni/vyrizeni
+        Set<Element> povoleneZaklEntity = zaklEntity.stream().filter(ze -> vratKontrolaVystupniFormat(ze))
+                .collect(Collectors.toSet());
+        
         Set<Element> digitDoks = new HashSet<>();
 
         List<Element> dokumentNodes = metsParser.getDokumenty();
         for (Element dokumentNode : dokumentNodes) {
+            // overeni, zda je povolena zakl entita
+            if (!ValuesGetter.jeSoucasti(dokumentNode, povoleneZaklEntity)) {
+                continue;
+            }
+            
             Element analogDokNode = ValuesGetter.getXChild(dokumentNode, NsessV3.EVIDENCNI_UDAJE,
                                                         "nsesss:Manipulace",
                                                         "nsesss:AnalogovyDokument");

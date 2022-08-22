@@ -151,19 +151,19 @@ public class MetsParser {
                 }
                 Element elem = (Element) node;
                 switch (node.getNodeName()) {
-                case "nsesss:Dokument":
+                case NsessV3.DOKUMENT:
                     zakladniEntity.add(elem);
                     if (sipType == null) {
                         sipType = SipType.DOKUMENT;
                     }
                     break;
-                case "nsesss:Spis":
+                case NsessV3.SPIS:
                     zakladniEntity.add(elem);
                     if (sipType == null) {
                         sipType = SipType.SPIS;
                     }
                     break;
-                case "nsesss:Dil":
+                case NsessV3.DIL:
                     zakladniEntity.add(elem);
                     if (sipType == SipType.DIL) {
                         sipType = SipType.DIL;

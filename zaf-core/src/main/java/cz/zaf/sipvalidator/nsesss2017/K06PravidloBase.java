@@ -1,5 +1,7 @@
 package cz.zaf.sipvalidator.nsesss2017;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +21,12 @@ import cz.zaf.sipvalidator.exceptions.codes.ErrorCode;
  *
  */
 public abstract class K06PravidloBase implements ObsahovePravidlo {
+
+    /**
+     * Výstupní datový formát: Neprovádění kontroly, pokud byla základní entita
+     * vyřízena/uzavřena do 31. 7. 2012 včetně.
+     */
+    final public static LocalDate ROZHODNE_DATUM_VYSTUPNI_FORMAT = LocalDate.parse("2012-07-31");
 
     protected K06_Obsahova kontrola;
 
@@ -246,18 +254,52 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
             return null;
         }
     }
-    // využívají další pravidla nad dosud upravená s Node, až se to předělá na element všechno, tak tuhle smazat
-    protected Integer vratRok(Node node) {
+
+    protected boolean jePozdeji(Element node, LocalDate rozhodneDatum) {
         String content = node.getTextContent();
-        String strYear = content.substring(0, 4);
         try {
-            return Integer.parseInt(strYear);
-        } catch (NumberFormatException nfe) {
-            Element entita = kontrola.getEntity((Element) node);
-            nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Hodnota roku v elementu <" + node.getNodeName() + "> uvedena ve špatném formátu. Hodnota: "
-                    + content,
-                    node, kontrola.getEntityId(entita));
-            return null;
+            LocalDate date = LocalDate.parse(content);
+            return date.isAfter(rozhodneDatum);
+        } catch (DateTimeParseException dtpe) {
+            Element entita = kontrola.getEntity(node);
+            nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
+                        "Hodnota v elementu <" + node.getNodeName() + "> uvedena ve špatném formátu. Hodnota: "
+                                + content,
+                        node, kontrola.getEntityId(entita));
+            return false;
         }
     }
+
+    /**
+     * Test, zda se na zakladni entitu uplatni pozadavek na vystupni format
+     * 
+     * @param zaklEntita
+     * @return
+     */
+    protected boolean vratKontrolaVystupniFormat(Element zaklEntita) {
+        Element datumVyrizeni;
+        switch (zaklEntita.getNodeName()) {
+        case NsessV3.DIL:
+            datumVyrizeni = ValuesGetter.getXChild(zaklEntita, NsessV3.EVIDENCNI_UDAJE, NsessV3.UZAVRENI,
+                                                   NsessV3.DATUM);
+            break;
+        case NsessV3.SPIS:
+            datumVyrizeni = ValuesGetter.getXChild(zaklEntita, NsessV3.EVIDENCNI_UDAJE, NsessV3.VYRIZENI_UZAVRENI,
+                                                   NsessV3.DATUM);
+            break;
+        case NsessV3.DOKUMENT:
+            datumVyrizeni = ValuesGetter.getXChild(zaklEntita, NsessV3.EVIDENCNI_UDAJE, NsessV3.VYRIZENI,
+                                                   NsessV3.DATUM);
+            break;
+        default:
+            nastavChybu(BaseCode.NEPOVOLENY_ELEMENT, "Neni zakladni entita", zaklEntita);
+            datumVyrizeni = null;
+        }
+        if (datumVyrizeni != null) {
+            return jePozdeji(datumVyrizeni, ROZHODNE_DATUM_VYSTUPNI_FORMAT);
+        }
+
+        return false;
+    }
+
 }
