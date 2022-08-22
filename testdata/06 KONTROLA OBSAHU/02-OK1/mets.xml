@@ -323,11 +323,20 @@
       </mets:mdWrap>
     </mets:digiprovMD>
   </mets:amdSec>
+  <mets:fileSec>
+    <mets:fileGrp>
+      <mets:file CHECKSUM="9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08" CHECKSUMTYPE="SHA-256" CREATED="2015-11-09T17:02:33" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" ID="MP120B04D1FC" MIMETYPE="text/plain" OWNERID="MP120B04D1FC" SIZE="4">
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\soubor.txt" xlink:type="simple"/>
+      </mets:file>
+    </mets:fileGrp>
+  </mets:fileSec>
   <mets:structMap>
     <mets:div ADMID="amd001" DMDID="MP12P00BTZ3Z_Gordic.Ginis.V.S.2005" TYPE="spisový plán">
       <mets:div ADMID="amd002" DMDID="MP12P00BTZ3Z_Gordic.Ginis.V.S.2005-087.1" TYPE="věcná skupina">
         <mets:div ADMID="amd003" DMDID="MP12P00BTZ3Z" TYPE="dokument">
-          <mets:div ADMID="amd004" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" TYPE="komponenta"/>
+          <mets:div ADMID="amd004" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" TYPE="komponenta">
+            <mets:fptr FILEID="MP120B04D1FC"/>
+          </mets:div>
         </mets:div>
       </mets:div>
     </mets:div>
