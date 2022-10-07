@@ -61,7 +61,11 @@ Pokročilé funkce validátoru je možné řídit pomocí systémových parametr
   Cesta k lokální instalaci VeraPDF validátoru. Jedná se o úplnou cestu k .jar souboru
   včetně tohoto souboru. Pokud není nastaveno, použije se verze validátoru vestavěná 
   přímo do aplikace.
- 
+
+*zaf.zip.encoding*::
+  Nastavení výchozího kódování pro rozbalování ZIP souborů. Jako výchozí kódování
+  je nastaveno *UTF-8*. Dříve se v českém prostředí využívalo jako primární kódování
+  *IBM852*. 
 
 
 [[pouziti_priklady]]
