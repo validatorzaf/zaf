@@ -100,7 +100,7 @@ public class CmdValidator {
     private SipInfo validateSip(String sipPath) throws Exception {
         // nahrani sipu
         try(SipLoader sipLoader = new SipLoader(sipPath,
-                cmdParams.getWorkDir()); ) { 
+                cmdParams.getWorkDir(), cmdParams.isKeepFiles());) {
 
             SipValidator sipValidator = new SipValidator(cmdParams.getProfilValidace(), cmdParams.getExcludeChecks());
             sipValidator.setHrozba(cmdParams.getHrozba());

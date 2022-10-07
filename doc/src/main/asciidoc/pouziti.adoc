@@ -28,6 +28,9 @@ Validátor ZAF lze volat prostřednictvím příkazového řádku:
 *-w|--workdir=*::
   Umístění pracovního adresáře, zde budou SIPy rozbaleny
   
+*-k|--keep*::
+  Zachování rozbalených souborů na disku, jinak jsou odstraněny
+  
 *-d|--druh=*::
   Druh validace (1 - výchozí):
 

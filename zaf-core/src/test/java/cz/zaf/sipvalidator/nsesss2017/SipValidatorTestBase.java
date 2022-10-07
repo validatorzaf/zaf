@@ -84,7 +84,7 @@ public abstract class SipValidatorTestBase {
             Path sourceDirPath = getPath(sipPath);
             String sourceDir = sourceDirPath.toAbsolutePath().toString();
 
-            SipLoader sipLoader = new SipLoader(sourceDir, workDirPath.normalize().toString());
+            SipLoader sipLoader = new SipLoader(sourceDir, workDirPath.normalize().toString(), false);
 
             // kontrola zpusobu nahrani
             if (expLoadType != null) {

@@ -64,8 +64,14 @@ public class SipLoader
      */
     private Path pathForDelete;
 
-    public SipLoader(final String inputPath, final String workDir) {
+    /**
+     * Příznak umožňující zachování rozbalených souborů
+     */
+    private boolean keepExtactedFiles;
+
+    public SipLoader(final String inputPath, final String workDir, final boolean keepExtactedFiles) {
         this.workDir = workDir;
+        this.keepExtactedFiles = keepExtactedFiles;
 		loadSip(inputPath);
 	}
 
@@ -241,7 +247,9 @@ public class SipLoader
 	@Override
 	public void close() throws Exception {
         if (pathForDelete != null) {
-            FileOps.recursiveDelete(pathForDelete);
+            if (!keepExtactedFiles) {
+                FileOps.recursiveDelete(pathForDelete);
+            }
             pathForDelete = null;
         }        
 	}

@@ -23,6 +23,7 @@ public class CmdParams {
         output.println("Přepínače:");
         output.println(" -b|--batch Dávkový režim, cesta je adresář obsahující SIPy");
         output.println(" -w|--workdir= Umístění pracovního adresáře, zde budou SIPy rozbaleny");
+        output.println(" -k|--keep Zachování rozbalených souborů na disku");
         output.println(" -d|--druh= Druh kontroly (1 - výchozí):");
         output.println("        1 = pro provedení skartačního řízení (jen metadata bez přiložených komponent)");
         output.println("        2 = pro provedení skartačního řízení (s přiloženými komponentami)");
@@ -78,6 +79,11 @@ public class CmdParams {
     private String idKontroly;
 
     /**
+     * Příznak pro zachování rozbalených SIPů
+     */
+    boolean keepFiles = false;
+
+    /**
      * Seznam kontrol, ktere se nemaji provadet
      */
     final private List<String> excludeChecks = new ArrayList<>();
@@ -106,6 +112,14 @@ public class CmdParams {
 
     public void setMemTest(boolean memTest) {
         this.memTest = memTest;
+    }
+
+    public boolean isKeepFiles() {
+        return keepFiles;
+    }
+
+    public void setKeepFiles(boolean keepFiles) {
+        this.keepFiles = keepFiles;
     }
 
     public ProfilValidace getProfilValidace() {
@@ -139,6 +153,8 @@ public class CmdParams {
             String arg = args[pos];
             if (arg.equals("-b") || arg.equals("--batch")) {
                 davkovyRezim = true;
+            } else if (arg.equals("-k") || arg.equals("--keep")) {
+                keepFiles = true;
             } else if (arg.equals("-w")) {
                 if (!readW()) {
                     return false;
