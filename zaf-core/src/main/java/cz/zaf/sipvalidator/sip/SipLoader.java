@@ -24,6 +24,13 @@ public class SipLoader
 {
     private static Logger log = LoggerFactory.getLogger(SipLoader.class);
 
+    /**
+     * Property to set ZIP encoding.
+     * 
+     * If property is not set default encoding is UTF-8.
+     */
+    public static final String ZAF_ZIP_ENCODING = "zaf.zip.encoding";
+
     SipInfo.LoadStatus loadStatus = null;
 
 	LoadType loadType = LoadType.LT_UNKNOWN;
@@ -141,7 +148,14 @@ public class SipLoader
         log.debug("Unzipping file: {}, workDir: {}", zipPath, pathForUnzip);
 
         ZipFile zipFile = new ZipFile(zipPath.toFile());
-        zipFile.setCharset(Charset.forName("IBM852")); // extrakce českých znaků
+
+        String zipEncoding = System.getProperty(ZAF_ZIP_ENCODING);
+        if (zipEncoding == null) {
+            // Dříve bylo výchozí kódování
+            // pro ČR: Charset.forName("IBM852"));
+            zipEncoding = "UTF8";
+        }
+        zipFile.setCharset(Charset.forName(zipEncoding)); // extrakce českých znaků
         boolean isvalidZipFile = zipFile.isValidZipFile();
         if (!isvalidZipFile) {
             loadStatus = LoadStatus.ERR_UNZIP_FAILED;

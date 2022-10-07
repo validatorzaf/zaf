@@ -111,13 +111,24 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     static public final String PATH_DATA_K06 = "testdata/06 KONTROLA OBSAHU";
 
     void testPackageK06(String path,
+                        LoadType loadType,
                         StavKontroly stavKontroly,
                         ProfilValidace profilValidace,
                         String[] pravidlaOk, String[] pravidlaChybna) {
-        testPackage(PATH_DATA_K06 + "/" + path, LoadType.LT_DIR,
+        testPackage(PATH_DATA_K06 + "/" + path, loadType,
                     profilValidace,
                     TypUrovenKontroly.OBSAHOVA,
                     stavKontroly, pravidlaOk, pravidlaChybna);
+    }
+
+    void testPackageK06(String path,
+                        StavKontroly stavKontroly,
+                        ProfilValidace profilValidace,
+                        String[] pravidlaOk, String[] pravidlaChybna) {
+        testPackageK06(path, LoadType.LT_DIR,
+                       stavKontroly,
+                       profilValidace,
+                       pravidlaOk, pravidlaChybna);
     }
 
     @Test
@@ -1350,6 +1361,15 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     @Test
     void testK06_52_OK02() {
         testPackageK06("52-OK2", null,
+                       ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo52.OBS52 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_52_OK03() {
+        testPackageK06("52-OK3.zip", LoadType.LT_ZIP,
+                       null,
                        ZakladniProfilValidace.PREJIMKA,
                        new String[] { Pravidlo52.OBS52 },
                        new String[] {});

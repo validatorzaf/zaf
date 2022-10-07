@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.exceptions.ZafException;
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.mets.MetsElements;
@@ -203,9 +204,11 @@ public class Pravidlo99 extends K06PravidloBase {
                             getMistoChyby(flocatNode) + " " + getMistoChyby(elKomponenta),
                             kontrola.getEntityId(elKomponenta));
                 }
+            } catch (ZafException ze) {
+                throw ze;
             } catch (Throwable e) {
-                log.debug("Failed to validate PDF.", e);
-                nastavChybu(BaseCode.CHYBA, "Formátu Pdf/A se nepodařilo ověřit u komponenty.",
+                log.error("Failed to validate PDF.", e);
+                nastavChybu(BaseCode.CHYBA, "Formát Pdf/A se nepodařilo ověřit u komponenty.",
                         getMistoChyby(flocatNode) + " " + getMistoChyby(elKomponenta),
                         kontrola.getEntityId(elKomponenta));
             }
