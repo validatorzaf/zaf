@@ -15,3 +15,7 @@
 == v3, 25.8.2022
 
 * Podmíněné zpracování pravidel <<obs99>>, <<obs105>>, <<obs107>>. Kontrola se neprovádí, pokud byla základní entita vyřízena/uzavřena do 31. 7. 2012 včetně.
+
+
+== v4, 26.11.2022
+* Nové pravidlo <<obs54>> pro kontrolu vazby mezi strukturální mapou, popisnými a administrativními metadaty. Pravidlo nahrazuje dřívější 54a.
