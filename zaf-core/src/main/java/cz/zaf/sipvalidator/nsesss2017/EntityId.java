@@ -1,12 +1,14 @@
 package cz.zaf.sipvalidator.nsesss2017;
 
 /**
- * Identifikátor entity
+ * Identifikátor entity pro předání jako chyba.
  * 
- * Pro identifikaci entity se uvádí:
- * - typ entity
- * - zdroj identifikátoru
- * - hodnota identifikátoru
+ * @see PairZdrojIdent
+ * 
+ *      Pro identifikaci entity se uvádí:
+ *      - typ entity
+ *      - zdroj identifikátoru
+ *      - hodnota identifikátoru
  */
 public class EntityId {
 
@@ -22,30 +24,22 @@ public class EntityId {
         TYPOVY_SPIS
     }
 
-    private final String identifikator;
-    
-    private final String zdroj;
-
     private final DruhEntity druhEntity;
 
+    private final PairZdrojIdent zdrojIdent;
+
     public EntityId(final DruhEntity druhEntity,
-                    final String identifikator,
-                    final String zdroj) {
-        this.identifikator = identifikator;
-        this.zdroj = zdroj;
+                    final PairZdrojIdent zdrojIdent) {
         this.druhEntity = druhEntity;
-    }
-
-    public String getIdentifikator() {
-        return identifikator;
-    }
-
-    public String getZdroj() {
-        return zdroj;
+        this.zdrojIdent = zdrojIdent;
     }
 
     public DruhEntity getDruhEntity() {
         return druhEntity;
+    }
+
+    public PairZdrojIdent getZdrojIdent() {
+        return zdrojIdent;
     }
 
 }

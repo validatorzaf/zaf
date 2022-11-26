@@ -239,8 +239,8 @@ public class XmlProtokolWriter implements ProtokolWriter,
             List<TIdentifikator> idents = entityNode.getIdentifikator();
             for (EntityId entityId : entityIds) {
                 TIdentifikator ident = objectFactory.createTIdentifikator();
-                ident.setZdroj(entityId.getZdroj());
-                ident.setValue(entityId.getIdentifikator());
+                ident.setZdroj(entityId.getZdrojIdent().getZdroj());
+                ident.setValue(entityId.getZdrojIdent().getIdentifikator());
                 TTypEntity typEntity = null;
                 switch (entityId.getDruhEntity()) {
                 case SPISOVY_PLAN:

@@ -4,12 +4,12 @@ import java.util.Objects;
 
 public class PairZdrojIdent {
 
-    private String zdroj;
-    private String ident;
+    final private String zdroj;
+    final private String identifikator;
 
-    public PairZdrojIdent(final String zdroj, final String ident) {
+    public PairZdrojIdent(final String zdroj, final String identifikator) {
         this.zdroj = zdroj;
-        this.ident = ident;
+        this.identifikator = identifikator;
     }
 
     @Override
@@ -20,7 +20,7 @@ public class PairZdrojIdent {
         if (o == null) {
             return false;
         }
-        if (this.getClass() != o.getClass()) {
+        if (!(o instanceof PairZdrojIdent)) {
             return false;        
         }
 
@@ -28,7 +28,7 @@ public class PairZdrojIdent {
         if(!Objects.equals(zdroj, op.zdroj)) {
             return false;
         }
-        if(!Objects.equals(ident, op.ident)) {
+        if (!Objects.equals(identifikator, op.identifikator)) {
             return false;
         }
         return true;
@@ -36,14 +36,14 @@ public class PairZdrojIdent {
     
     @Override
     public int hashCode() {
-        return Objects.hash(zdroj, ident);
+        return Objects.hash(zdroj, identifikator);
     }
 
     public String getZdroj() {
         return zdroj;
     }
 
-    public String getIdent() {
-        return ident;
+    public String getIdentifikator() {
+        return identifikator;
     }
 }

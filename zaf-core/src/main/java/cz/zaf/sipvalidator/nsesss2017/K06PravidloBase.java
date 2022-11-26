@@ -91,13 +91,13 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
         }
 
         kontrola.pridejChybu(kodPravidla,
-                             errorCode,
-                             textPravidla,
-                             detailChyby,
-                             obecnyPopisChyby,
-                             mistoChyby,
-                             zdrojChyby,
-                             entityIds);
+                errorCode,
+                textPravidla,
+                detailChyby,
+                obecnyPopisChyby,
+                mistoChyby,
+                zdrojChyby,
+                entityIds);
 
         this.context = null;
         this.kontrola = null;
@@ -171,13 +171,13 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
         throw pripravChybu(errorCode, detailChyby).setMistoChyby(mistoCh);
     }
 
-    protected void nastavChybu(ErrorCode errorCode, String detailChyby, 
+    protected void nastavChybu(ErrorCode errorCode, String detailChyby,
             List<? extends Node> errorList, final EntityId entityId) {
         String mistoCh = errorList.stream().map(n -> getMistoChyby(n)).collect(Collectors.joining(" "));
         throw pripravChybu(errorCode, detailChyby).setMistoChyby(mistoCh).addEntity(entityId);
     }
-    
-    protected void nastavChybu(ErrorCode errorCode, String detailChyby, 
+
+    protected void nastavChybu(ErrorCode errorCode, String detailChyby,
             List<? extends Node> errorList, final List<EntityId> listEntityId) {
         String mistoCh = errorList.stream().map(n -> getMistoChyby(n)).collect(Collectors.joining(" "));
         throw pripravChybu(errorCode, detailChyby).setMistoChyby(mistoCh).addEntity(listEntityId);
@@ -195,7 +195,7 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
             final EntityId entityId) {
         throw pripravChybu(errorCode, detailChyby).setMistoChyby(getMistoChyby(mistoChyby)).addEntity(entityId);
     }
-    
+
     protected void nastavChybu(ErrorCode errorCode, String detailChyby, final String mistoChyby,
             final EntityId entityId) {
         throw pripravChybu(errorCode, detailChyby).setMistoChyby(mistoChyby).addEntity(entityId);
@@ -264,8 +264,8 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
             Element entita = kontrola.getEntity(node);
             nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
                         "Hodnota v elementu <" + node.getNodeName() + "> uvedena ve špatném formátu. Hodnota: "
-                                + content,
-                        node, kontrola.getEntityId(entita));
+                    + content,
+                    node, kontrola.getEntityId(entita));
             return false;
         }
     }
