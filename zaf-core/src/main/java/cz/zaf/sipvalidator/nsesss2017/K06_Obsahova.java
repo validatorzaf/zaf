@@ -66,7 +66,7 @@ public class K06_Obsahova
         return bol;
     }
 
-    public EntityId getEntityId(Element node) {
+    static public EntityId getEntityId(Element node) {
         String nodename = node.getNodeName();
         Node identNode;
         DruhEntity druhEntity;
@@ -85,7 +85,7 @@ public class K06_Obsahova
                 identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
                         NsessV3.IDENTIFIKACE, NsessV3.IDENTIFIKATOR);
                 druhEntity = DruhEntity.TYPOVY_SPIS;
-                break;    
+                break;
             case NsessV3.SPISOVY_PLAN:
                 identNode = ValuesGetter.getXChild(node, NsessV3.IDENTIFIKATOR);
                 druhEntity = DruhEntity.SPISOVY_PLAN;
@@ -113,7 +113,7 @@ public class K06_Obsahova
             case NsessV3.SKARTACNI_RIZENI:
                 identNode = ValuesGetter.getXChild(node, NsessV3.IDENTIFIKATOR);
                 druhEntity = DruhEntity.SKARTACNI_RIZENI;
-                break;    
+                break;
             default:
                 return null;
         }
@@ -125,8 +125,9 @@ public class K06_Obsahova
             hodnota = identNode.getTextContent();
             zdroj = ValuesGetter.getValueOfAttribut(identNode, "zdroj");
         }
+        PairZdrojIdent zdrojIdent = new PairZdrojIdent(zdroj, hodnota);
 
-        return new EntityId(druhEntity, hodnota, zdroj);
+        return new EntityId(druhEntity, zdrojIdent);
 
     }
 
@@ -136,6 +137,26 @@ public class K06_Obsahova
             listEntityIds.add(entId);
         });
         return listEntityIds;
+    }
+
+    /**
+     * Vrati odkaz na element tIdentifikator
+     * 
+     * @param element
+     * @return
+     */
+    public Element getIdentifikator(Element element) {
+        String elementName = element.getNodeName();
+        Element identifikator;
+
+        if (elementName.equals(NsessV3.SPISOVY_PLAN)) {
+            identifikator = ValuesGetter.getXChild(element, NsessV3.IDENTIFIKATOR);
+            return identifikator;
+        } else {
+            identifikator = ValuesGetter.getXChild(element, NsessV3.EVIDENCNI_UDAJE,
+                    NsessV3.IDENTIFIKACE, NsessV3.IDENTIFIKATOR);
+            return identifikator;
+        }
     }
 
     public String getIdentifikatory(Element node) {
@@ -224,12 +245,12 @@ public class K06_Obsahova
             String mistoChyby,
             String zdroj) {
         pridejChybu(kodPravidla, errorCode, textPravidla, detailChyby, obecnyPopisChyby, mistoChyby, zdroj,
-                    null);
+                null);
     }
 
     public void pridejChybu(String kodPravidla, ErrorCode errorCode, String textPravidla, String detailChyby,
-                            String obecnyPopisChyby, String mistoChyby, String zdrojChyby,
-                            List<EntityId> entityIds) {
+            String obecnyPopisChyby, String mistoChyby, String zdrojChyby,
+            List<EntityId> entityIds) {
         ChybaPravidla p = new ChybaPravidla(kodPravidla,
                 textPravidla,
                 detailChyby,
