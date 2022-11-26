@@ -385,7 +385,7 @@ Pravidlo:: Pokud existuje element <mets:fileSec>, obsahuje právě jeden dětsk�
 Kód:: obs43a
 Zdroj:: Bod 2.14. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí připojení komponent (počítačových souborů) nebo je špatně strukturováno.
-Aktivní:: skartační řízení (s komponentami), přejímka
+Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
 [[obs44]]
 == obs44
@@ -396,7 +396,7 @@ Pravidlo:: Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribu
 Kód:: obs44
 Zdroj:: Bod 2.15. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí provázání komponenty (počítačového souboru) s popisnou částí.
-Aktivní:: skartační řízení (s komponentami), přejímka
+Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
 [[obs45]]
 == obs45
@@ -418,7 +418,7 @@ Pravidlo:: Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribu
 Kód:: obs46
 Zdroj:: Bod 2.15. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí popis pro ověření celistvosti komponenty (počítačového souboru) nebo je chybně uveden.
-Aktivní:: skartační řízení (s komponentami), přejímka
+Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
 [[obs47]]
 == obs47
@@ -451,7 +451,7 @@ Pravidlo:: Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribu
 Kód:: obs49
 Zdroj:: Bod 2.15. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí datum vytvoření komponenty (počítačového souboru).
-Aktivní:: skartační řízení (s komponentami), přejímka
+Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
 [[obs50]]
 == obs50
@@ -462,7 +462,7 @@ Pravidlo:: Pokud existuje jakýkoli element <mets:file>, každý obsahuje práv�
 Kód:: obs50
 Zdroj:: Bod 2.16. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí připojení komponenty (počítačového souboru) do datového balíčku SIP nebo je provedeno chybně.
-Aktivní:: skartační řízení (s komponentami), přejímka
+Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
 [[obs51]]
 == obs51
@@ -473,7 +473,7 @@ Pravidlo:: Pokud existuje jakýkoli element <mets:FLocat>, každý obsahuje atri
 Kód:: obs51
 Zdroj:: Bod 2.16. přílohy č. 3 NSESSS.
 Popis chyby:: Uveden je chybně popis odkazu na komponentu (počítačový soubor).
-Aktivní:: skartační řízení (s komponentami), přejímka
+Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
 [[obs52]]
 == obs52
@@ -495,7 +495,7 @@ Pravidlo:: Pokud existuje jakýkoli element <mets:FLocat>, každý obsahuje atri
 Kód:: obs53
 Zdroj:: Bod 2.16. přílohy č. 3 NSESSS.
 Popis chyby:: Uveden je chybně popis odkazu na komponentu (počítačový soubor).
-Aktivní:: skartační řízení (s komponentami), přejímka
+Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
 [[obs54]]
 == obs54
@@ -539,7 +539,7 @@ Pravidlo:: Pokud existuje jakýkoli element <mets:fptr>, každý obsahuje atribu
 Kód:: obs56
 Zdroj:: Bod 2.19. přílohy č. 3 NSESSS.
 Popis chyby:: Není v souladu provázání komponent (počítačových souborů) mezi částí počítačových souborů a strukturální mapou.
-Aktivní:: skartační řízení (s komponentami), přejímka
+Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
 [[obs57]]
 == obs57
@@ -583,7 +583,7 @@ Pravidlo:: Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii děts
 Kód:: obs60
 Zdroj:: Příloha č. 2 NSESSS, ř. 45.
 Popis chyby:: Chybí popis komponenty (počítačového souboru) dokumentu v digitální podobě.
-Aktivní:: skartační řízení (s komponentami), přejímka
+Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
 [[obs61]]
 == obs61
