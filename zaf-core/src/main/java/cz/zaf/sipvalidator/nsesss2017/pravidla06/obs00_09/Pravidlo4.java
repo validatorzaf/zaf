@@ -31,7 +31,7 @@ public class Pravidlo4 extends K06PravidloBase {
         }
 
         if (StringUtils.isBlank(hod)) {
-            nastavChybu(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
+            nastavChybu(BaseCode.CHYBI_HODNOTA_ATRIBUTU,
                         "Atribut xmlns:xsi kořenového elementu <mets:mets> má prázdnou hodnotu.", metsMets);
         }
         
