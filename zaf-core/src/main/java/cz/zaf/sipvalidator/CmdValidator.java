@@ -55,7 +55,7 @@ public class CmdValidator {
         }
     }
 
-    private void validate() throws Exception {
+    public void validate() throws Exception {
         try(XmlProtokolWriter protokolWriter = new XmlProtokolWriter(cmdParams.getOutput(), 
                                                                      cmdParams.getIdKontroly(), 
                                                                      cmdParams.getProfilValidace());) {
@@ -90,14 +90,14 @@ public class CmdValidator {
         }
     }
 
-    private void validateSip(ProtokolWriter protokolWriter) throws Exception {
+    public void validateSip(ProtokolWriter protokolWriter) throws Exception {
 
         SipInfo sipInfo = validateSip(cmdParams.getInputPath());
         
         protokolWriter.writeVysledek(sipInfo);
     }
 
-    private SipInfo validateSip(String sipPath) throws Exception {
+    public SipInfo validateSip(String sipPath) throws Exception {
         // nahrani sipu
         try(SipLoader sipLoader = new SipLoader(sipPath,
                 cmdParams.getWorkDir(), cmdParams.isKeepFiles());) {
@@ -111,7 +111,7 @@ public class CmdValidator {
 
     }
 
-    private void validateDavka(ProtokolWriter protokolWriter) throws Exception {
+    public void validateDavka(ProtokolWriter protokolWriter) throws Exception {
         Path inputDir = Paths.get(cmdParams.getInputPath());
         if (!Files.isDirectory(inputDir)) {
             throw new IllegalArgumentException("Input path is not directory: " + cmdParams.getInputPath());
