@@ -274,7 +274,9 @@ public class XmlProtokolWriter implements ProtokolWriter,
 
                 idents.add(ident);
             }
-            pravNode.setEntity(entityNode);
+            if (idents.size() > 0) {
+                pravNode.setEntity(entityNode);
+            }
         }
         return pravNode;
     }
