@@ -118,7 +118,7 @@ jedna ze základních entit je vyřízena/uzavřena do 31. 7. 2012
                       </nsesss:SkartacniRezim>
                     </nsesss:Vyrazovani>
                     <nsesss:Manipulace>
-                      <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                      <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
                       <nsesss:DatumOtevreni datum="2008-03-20T00:00:00.000+01:00">2008-03-20</nsesss:DatumOtevreni>
                       <nsesss:DatumUzavreni datum="2999-01-01T00:00:00.000+01:00">2999-01-01</nsesss:DatumUzavreni>
                     </nsesss:Manipulace>
@@ -127,7 +127,7 @@ jedna ze základních entit je vyřízena/uzavřena do 31. 7. 2012
               </nsesss:MaterskeEntity>
             </nsesss:Trideni>
             <nsesss:Vyrizeni>
-              <nsesss:Datum datum="2012-10-10T00:00:00.000+01:00">2012-10-10</nsesss:Datum>
+              <nsesss:Datum datum="2012-05-10T00:00:00.000+01:00">2012-05-10</nsesss:Datum>
               <nsesss:Zpusob>vzetí na vědomí</nsesss:Zpusob>
               <nsesss:ObsahVyrizeni>, Vyřízeno vzetím na vědomí.</nsesss:ObsahVyrizeni>
               <nsesss:Oduvodneni>Vyřízeno vzetím na vědomí</nsesss:Oduvodneni>
@@ -185,7 +185,7 @@ jedna ze základních entit je vyřízena/uzavřena do 31. 7. 2012
               </nsesss:DataceVyrazeni>
             </nsesss:Vyrazovani>
             <nsesss:Manipulace>
-              <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+              <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
               <nsesss:SpravceSpisovny>
                 <nsesss:Subjekt>
                   <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.SE">MP12SE00A013</nsesss:IdentifikatorOrganizace>
@@ -375,7 +375,7 @@ jedna ze základních entit je vyřízena/uzavřena do 31. 7. 2012
               </nsesss:DataceVyrazeni>
             </nsesss:Vyrazovani>
             <nsesss:Manipulace>
-              <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+              <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
               <nsesss:SpravceSpisovny>
                 <nsesss:Subjekt>
                   <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.SE">MP12SE00A013</nsesss:IdentifikatorOrganizace>
