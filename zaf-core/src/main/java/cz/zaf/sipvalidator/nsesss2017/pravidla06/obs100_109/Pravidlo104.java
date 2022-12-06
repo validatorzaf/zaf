@@ -41,7 +41,7 @@ public class Pravidlo104 extends K06PravidloBase {
         super(OBS104,
                 "Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ne a zároveň obsahuje element <nsesss:Komponenty>, ze všech dětských elementů <nsesss:Komponenta> se stejnou hodnotou atributu poradi, mezi kterými neexistuje žádný element <nsesss:Komponenta> s hodnotou atributu forma_uchovani originál ve výstupním datovém formátu, existuje právě jeden element <nsesss:Komponenta>, který obsahuje atribut forma_uchovani s hodnotou originál a současně atribut verze s hodnotou nejvyššího čísla verze.",
                 "Uvedena je chybně verze komponent (počítačových souborů).",
-                "Uvedena je chybně verze originálu komponent (počítačových souborů).");
+                "Informační list NA, čá. 6/2020, č. 3/2020.");
     }
 
     @Override
