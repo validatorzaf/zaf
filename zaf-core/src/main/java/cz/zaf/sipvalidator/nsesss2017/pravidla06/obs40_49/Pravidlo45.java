@@ -100,7 +100,7 @@ public class Pravidlo45 extends K06PravidloBase {
                     + detectedType.getException(),
                     "Soubor: " + xlinkHref + ".");
         }
-        String detectedMimeType = detectedType.getTikaMimetype();
+        String detectedMimeType = detectedType.getDetectedMimetype();
         if (StringUtils.isBlank(detectedMimeType)) {
             nastavChybu(BaseCode.CHYBNA_KOMPONENTA,
                     "U komponenty s deklarovaným typem: " + mimeType

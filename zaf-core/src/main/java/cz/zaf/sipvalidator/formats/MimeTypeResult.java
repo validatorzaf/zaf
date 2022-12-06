@@ -8,9 +8,7 @@ public class MimeTypeResult {
 
     final public DetectionStatus detectionStatus;
     public Exception exception;
-    public String tikaMimetype;
-    public String systemMimetype;
-    public String mimeTypeConnection;
+    public String detectedMimetype;
 
     public MimeTypeResult(DetectionStatus detectionStatus) {
         this.detectionStatus = detectionStatus;
@@ -21,34 +19,13 @@ public class MimeTypeResult {
         this.exception = ex;
     }
 
-    public MimeTypeResult(final String tika,
-                          final String fileUt,
-                          final String mimeTypeConnection) {
+    public MimeTypeResult(final String detectedMimetype) {
         this(DetectionStatus.OK);
-        this.tikaMimetype = tika;
-        this.systemMimetype = fileUt;
-        this.mimeTypeConnection = mimeTypeConnection;
-    }
-
-    public MimeTypeResult(String tika, String fileUt) {
-        this(DetectionStatus.OK);
-        this.tikaMimetype = tika;
-        this.systemMimetype = fileUt;
-    }
-
-    public MimeTypeResult(String tika) {
-        this(DetectionStatus.OK);
-        this.tikaMimetype = tika;
+        this.detectedMimetype = detectedMimetype;
     }
 
     public boolean isMimetype(String extType) {
-        if (compareType(tikaMimetype, extType)) {
-            return true;
-        }
-        if (compareType(systemMimetype, extType)) {
-            return true;
-        }
-        if (compareType(mimeTypeConnection, extType)) {
+        if (compareType(detectedMimetype, extType)) {
             return true;
         }
         return false;
@@ -77,15 +54,7 @@ public class MimeTypeResult {
         return exception;
     }
 
-    public String getTikaMimetype() {
-        return tikaMimetype;
-    }
-
-    public String getSystemMimetype() {
-        return systemMimetype;
-    }
-
-    public String getMimeTypeConnection() {
-        return mimeTypeConnection;
+    public String getDetectedMimetype() {
+        return detectedMimetype;
     }
 }
