@@ -376,6 +376,14 @@ Zdroj:: Bod 2.13. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí připojení komponent (počítačových souborů).
 Aktivní:: skartační řízení (s komponentami), přejímka
 
+[horizontal]
+
+Pravidlo:: Pokud existuje jakýkoli element mets:file, každý obsahuje atribut MIMETYPE, jeho hodnota musí odpovídat pravidlům pro tvorbu označení MIMETYPE uvedených na https://www.iana.org/assignments/media-types/media-types.xhtml a musí odpovídat typu referencovaného souboru.
+Kód:: obs41
+Zdroj:: Bod 2.15. přílohy č. 3 NSESSS.
+Popis chyby:: Atribut MIMETYPE elementu mets:file neobsahuje správnou hodnotu nebo je prázdný.
+Aktivní:: skartační řízení (s komponentami), přejímka
+
 [[obs43a]]
 == obs43a
 
@@ -676,6 +684,17 @@ Pravidlo:: Každá entita věcná skupina (<nsesss:VecnaSkupina>), která je rod
 Kód:: obs68
 Zdroj:: § 15 odst. 2 vyhlášky č. 259/2012 Sb.; příloha č. 2 NSESSS, ř. 1250.
 Popis chyby:: Chybí skartační režim věcné skupiny.
+Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[obs68a]]
+== obs68a
+
+[horizontal]
+
+Pravidlo:: Každá základní entita díl (<nsesss:Dil>), spis (<nsesss:Spis>) nebo dokument (<nsesss:Dokument>) obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:SkartacniRezim> element <nsesss:SkartacniZnak> s hodnotou, která je rovna hodnotě stejného elementu rodičovské entity věcná skupina (<nsesss:VecnaSkupina>) nebo součást (<nsesss:Soucast>).
+Kód:: obs68a
+Zdroj:: Požadavek 6.1.6. a 6.1.16. NSESSS.
+Popis chyby:: Skartační znak dílu, spisu nebo dokumentu není v souladu s věcnou skupinou nebo součástí, do které je základní entita zatříděn..
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
 [[obs69]]
