@@ -5,44 +5,16 @@
  */
 package cz.zaf.sipvalidator.formats;
 
-import java.io.IOException;
 import java.nio.file.Path;
-
-import org.apache.tika.Tika;
 
 /**
  * Mimetype detector
  * 
  */
-public class MimetypeDetector {
+public interface MimetypeDetector {
     
-    static private Tika tikaInstance = new Tika();
+    public MimeTypeResult getMimeType(Path file);
 
-    public static MimeTypeResult getMimeType(Path file) {
-        
-        String siegFriedPath = System.getProperty("zaf.siegfried.path");
-
-        try {
-            String tika = tikaInstance.detect(file);
-            /*
-            String fileUt = Files.probeContentType(file.toPath());
-            */
-
-            /*
-            String mimeTypes = null;
-            URLConnection urlConnection = file.toURL().openConnection();
-            try {
-                mimeTypes = urlConnection.getContentType();
-            } finally {
-                if (urlConnection != null) {
-                    urlConnection.getInputStream().close();
-                }
-            }
-            */
-            return new MimeTypeResult(tika);
-        } catch (IOException ex) {
-            return new MimeTypeResult(ex);
-        }
-    }
+    public void cleanUp();
     
 }

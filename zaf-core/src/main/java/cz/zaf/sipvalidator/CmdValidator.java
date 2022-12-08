@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cz.zaf.sipvalidator.formats.MimetypeDetectorFactory;
 import cz.zaf.sipvalidator.nsesss2017.SipValidator;
 import cz.zaf.sipvalidator.pdfa.VeraValidatorProxy;
 import cz.zaf.sipvalidator.sip.ProtokolWriter;
@@ -52,6 +53,7 @@ public class CmdValidator {
         } finally {
             // cleanup Vera
             VeraValidatorProxy.destroy();
+            MimetypeDetectorFactory.destroy();
         }
     }
 

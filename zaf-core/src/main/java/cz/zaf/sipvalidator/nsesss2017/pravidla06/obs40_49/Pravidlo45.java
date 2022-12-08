@@ -13,7 +13,7 @@ import org.w3c.dom.Element;
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.formats.MimeTypeResult;
 import cz.zaf.sipvalidator.formats.MimeTypeResult.DetectionStatus;
-import cz.zaf.sipvalidator.formats.MimetypeDetector;
+import cz.zaf.sipvalidator.formats.MimetypeDetectorFactory;
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
@@ -93,7 +93,7 @@ public class Pravidlo45 extends K06PravidloBase {
                     "Chybí soubor: " + xlinkHref + ".");
         }
 
-        MimeTypeResult detectedType = MimetypeDetector.getMimeType(filePath);
+        MimeTypeResult detectedType = MimetypeDetectorFactory.getMimeType(filePath);
         if (detectedType.getDetectionStatus() == DetectionStatus.FAILED) {
             nastavChybu(BaseCode.CHYBNA_KOMPONENTA,
                     "U komponenty s deklarovaným typem: " + mimeType + " došlo k selhání detekce typu: "
