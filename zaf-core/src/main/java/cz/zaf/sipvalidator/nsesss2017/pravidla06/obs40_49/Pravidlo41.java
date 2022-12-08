@@ -47,7 +47,7 @@ public class Pravidlo41 extends K06PravidloBase {
     }
 
     private boolean isPrefix(String mimetype) {
-        String[] povolenePrefixy = {"application, audio, font, example, image, message, model, multipart, text, video"};
+        String[] povolenePrefixy = {"application", "audio", "font", "example", "image", "message", "model", "multipart", "text", "video"};
         String povinnyZnak = "/";
         for (String povolenyPrefix : povolenePrefixy) {
             if (mimetype.startsWith(povolenyPrefix + povinnyZnak)) {
