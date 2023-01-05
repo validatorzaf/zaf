@@ -386,7 +386,7 @@ Pravidlo:: Pokud existuje jakýkoli element mets:file, každý obsahuje atribut 
 Kód:: obs41
 Zdroj:: Bod 2.15. přílohy č. 3 NSESSS.
 Popis chyby:: Atribut MIMETYPE elementu mets:file neobsahuje správnou hodnotu nebo je prázdný.
-Aktivní:: skartační řízení (s komponentami), přejímka
+Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
 
 [[obs43a]]

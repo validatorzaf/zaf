@@ -247,6 +247,7 @@ public enum ZakladniProfilValidace
 					new Pravidlo37(),
 					new Pravidlo38(),
 					new Pravidlo39(),
+                    new Pravidlo41(),
                     new Pravidlo43a(),
                     new Pravidlo44(),
 					// new Pravidlo45(), 
