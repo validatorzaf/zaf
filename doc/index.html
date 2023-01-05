@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.7.1">
-<title>ZAF 1.0.0: Dokumentace</title>
+<title>ZAF 1.0.1: Dokumentace</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -523,7 +523,7 @@ table.CodeRay td.code>pre{padding:0}
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>ZAF 1.0.0: Dokumentace</h1>
+<h1>ZAF 1.0.1: Dokumentace</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Obsah</div>
 <ul class="sectlevel1">
@@ -537,6 +537,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#pouziti">Použití</a>
 <ul class="sectlevel2">
 <li><a href="#CmdValidator">Samostatný CmdValidator</a></li>
+<li><a href="#ZafSystParametry">Systémové parametry</a></li>
 <li><a href="#pouziti_schema_xsd">Výsledek validace</a></li>
 <li><a href="#_java_knihovna_přímá_integrace">Java knihovna - přímá integrace</a></li>
 <li><a href="#pouziti_logovani">Možnosti logování</a></li>
@@ -637,9 +638,6 @@ validátory digitálních archivů.</p>
 <ul>
 <li>
 <p>Nové pravidlo <a href="#obs41">obs41</a></p>
-</li>
-<li>
-<p>Nové pravidlo <a href="#obs68a">obs68a</a></p>
 </li>
 </ul>
 </div>
@@ -751,8 +749,9 @@ s protokolem vytvořeným použitím zaf-core.</p>
 </dl>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_systémové_parametry">Systémové parametry</h4>
+</div>
+<div class="sect2">
+<h3 id="ZafSystParametry">Systémové parametry</h3>
 <div class="paragraph">
 <p>Pokročilé funkce validátoru je možné řídit pomocí systémových parametrů (parametr <strong>-D</strong>).</p>
 </div>
@@ -770,6 +769,23 @@ Ve výchozím režimu se použije serverový režim.</p>
 včetně tohoto souboru. Pokud není nastaveno, použije se verze validátoru vestavěná
 přímo do aplikace.</p>
 </dd>
+<dt class="hdlist1"><strong>zaf.siegfried.path</strong></dt>
+<dd>
+<p>Úplná cesta ke spustitelnému souboru aplikace SiegFried. Pokud je cesta nastavena
+použije se tato aplikace pro ověření správnosti mimeType viz
+<a href="#obs45">pravidlo obs45</a>. Příklad:</p>
+<div class="literalblock">
+<div class="content">
+<pre>`-Dzaf.siegfried.path=C:\toolkits\zaf\sf\sf.exe`</pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1"><strong>zaf.siegfried.port</strong></dt>
+<dd>
+<p>Volitelný parametr pro určení portu, který má být využit aplikací SiegFried.
+Výchozí hodnota je port <strong>20000</strong>. Port nesmí být obsazen jiným procesem jinak není
+možné SiegFried spustit.</p>
+</dd>
 <dt class="hdlist1"><strong>zaf.zip.encoding</strong></dt>
 <dd>
 <p>Nastavení výchozího kódování pro rozbalování ZIP souborů. Jako výchozí kódování
@@ -777,7 +793,6 @@ je nastaveno <strong>UTF-8</strong>. Dříve se v českém prostředí využíva
 <strong>IBM852</strong>.</p>
 </dd>
 </dl>
-</div>
 </div>
 <div class="sect3">
 <h4 id="pouziti_priklady">Příklady volání</h4>
@@ -915,7 +930,7 @@ je nastaveno <strong>UTF-8</strong>. Dříve se v českém prostředí využíva
 <h3 id="_java_knihovna_přímá_integrace">Java knihovna - přímá integrace</h3>
 <div class="paragraph">
 <p>Validátor ZAF je možné volat jako součást jiné Java aplikace a integrovat ho s ní. Pokud není možná
-přímá integrace lze použít :<a href="#CmdValidator">řádkovou aplikaci CmdValidator</a>.</p>
+přímá integrace lze použít <a href="#CmdValidator">řádkovou aplikaci CmdValidator</a>.</p>
 </div>
 <div class="paragraph">
 <p>V rámci projektu na GitHub.com jsou k dispozici zdrojové kódy aplikace a binární balíčky.
@@ -928,7 +943,7 @@ Ty jsou také dostupné v repozitáři pro Maven a je možné je přímo použí
 <pre class="CodeRay highlight"><code data-lang="xml">  <span class="tag">&lt;dependency&gt;</span>
     <span class="tag">&lt;groupId&gt;</span>cz.zaf<span class="tag">&lt;/groupId&gt;</span>
     <span class="tag">&lt;artifactId&gt;</span>zaf-core<span class="tag">&lt;/artifactId&gt;</span>
-    <span class="tag">&lt;version&gt;</span>1.0.0<span class="tag">&lt;/version&gt;</span>
+    <span class="tag">&lt;version&gt;</span>1.0.1<span class="tag">&lt;/version&gt;</span>
   <span class="tag">&lt;/dependency&gt;</span></code></pre>
 </div>
 </div>
@@ -3023,7 +3038,7 @@ Popis chyby
 Aktivní
 </td>
 <td class="hdlist2">
-<p>skartační řízení (s komponentami), přejímka</p>
+<p>skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka</p>
 </td>
 </tr>
 </table>
@@ -3168,6 +3183,10 @@ Aktivní
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>Pro ověření formátu příslušné komponenty je standardně využíván nástroj Apache Tika. Pomocí konfigurace je
+možné alternativně použít SiegFried, viz <a href="#ZafSystParametry">systémové parametry</a>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -4303,53 +4322,6 @@ Popis chyby
 </td>
 <td class="hdlist2">
 <p>Chybí skartační režim věcné skupiny.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Aktivní
-</td>
-<td class="hdlist2">
-<p>skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka</p>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="obs68a">obs68a</h4>
-<div class="hdlist">
-<table>
-<tr>
-<td class="hdlist1">
-Pravidlo
-</td>
-<td class="hdlist2">
-<p>Každá základní entita díl (&lt;nsesss:Dil&gt;), spis (&lt;nsesss:Spis&gt;) nebo dokument (&lt;nsesss:Dokument&gt;) obsahuje v hierarchii dětských elementů &lt;nsesss:EvidencniUdaje&gt;, &lt;nsesss:Vyrazovani&gt;, &lt;nsesss:SkartacniRezim&gt; element &lt;nsesss:SkartacniZnak&gt; s hodnotou, která je rovna hodnotě stejného elementu rodičovské entity věcná skupina (&lt;nsesss:VecnaSkupina&gt;) nebo součást (&lt;nsesss:Soucast&gt;).</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Kód
-</td>
-<td class="hdlist2">
-<p>obs68a</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Zdroj
-</td>
-<td class="hdlist2">
-<p>Požadavek 6.1.6. a 6.1.16. NSESSS.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Popis chyby
-</td>
-<td class="hdlist2">
-<p>Skartační znak dílu, spisu nebo dokumentu není v souladu s věcnou skupinou nebo součástí, do které je základní entita zatříděn..</p>
 </td>
 </tr>
 <tr>
@@ -6167,7 +6139,7 @@ Aktivní
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-01-05 07:05:43 UTC
+Last updated 2023-01-05 10:29:25 UTC
 </div>
 </div>
 </body>
