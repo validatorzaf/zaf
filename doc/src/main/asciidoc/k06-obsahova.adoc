@@ -376,6 +376,10 @@ Zdroj:: Bod 2.13. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí připojení komponent (počítačových souborů).
 Aktivní:: skartační řízení (s komponentami), přejímka
 
+
+[[obs41]]
+== obs41
+
 [horizontal]
 
 Pravidlo:: Pokud existuje jakýkoli element mets:file, každý obsahuje atribut MIMETYPE, jeho hodnota musí odpovídat pravidlům pro tvorbu označení MIMETYPE uvedených na https://www.iana.org/assignments/media-types/media-types.xhtml a musí odpovídat typu referencovaného souboru.
@@ -383,6 +387,7 @@ Kód:: obs41
 Zdroj:: Bod 2.15. přílohy č. 3 NSESSS.
 Popis chyby:: Atribut MIMETYPE elementu mets:file neobsahuje správnou hodnotu nebo je prázdný.
 Aktivní:: skartační řízení (s komponentami), přejímka
+
 
 [[obs43a]]
 == obs43a
@@ -685,6 +690,7 @@ Kód:: obs68
 Zdroj:: § 15 odst. 2 vyhlášky č. 259/2012 Sb.; příloha č. 2 NSESSS, ř. 1250.
 Popis chyby:: Chybí skartační režim věcné skupiny.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
 
 [[obs68a]]
 == obs68a

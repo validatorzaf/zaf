@@ -53,7 +53,7 @@ public class XmlProtokolWriter implements ProtokolWriter,
     
     public static String XML_PREFIX = "kontrolasip";
     public static String SCHEMA_URL = "http://www.ahmp.cz/schema/validacesip/v1";
-    public static String ZAF_RULE_VERSION = "4";
+    public static String ZAF_RULE_VERSION = "5";
     
     private static Logger logger = LoggerFactory.getLogger(XmlProtokolWriter.class);
     
