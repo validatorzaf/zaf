@@ -1,4 +1,4 @@
-﻿[[zmeny]]
+﻿[[nov0zmeny]]
 = Změny v pravidlech
 
 == v1, 1.1.2022
@@ -19,3 +19,7 @@
 
 == v4, 26.11.2022
 * Nové pravidlo <<obs54>> pro kontrolu vazby mezi strukturální mapou, popisnými a administrativními metadaty. Pravidlo nahrazuje dřívější 54a.
+
+== v5, 5.1.2023
+* Nové pravidlo <<obs41>>
+* Nové pravidlo <<obs68a>>

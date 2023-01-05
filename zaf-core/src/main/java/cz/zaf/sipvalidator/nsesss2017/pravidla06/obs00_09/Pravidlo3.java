@@ -31,7 +31,7 @@ public class Pravidlo3 extends K06PravidloBase {
         }
 
         if (StringUtils.isBlank(hodLab)) {
-            nastavChybu(BaseCode.CHYBI_ATRIBUT,
+            nastavChybu(BaseCode.CHYBI_HODNOTA_ATRIBUTU,
                         "Atribut LABEL kořenového elementu <mets:mets> nemá správnou hodnotu. Jeho hodnota je prázdná.",
                         metsMets);
         }

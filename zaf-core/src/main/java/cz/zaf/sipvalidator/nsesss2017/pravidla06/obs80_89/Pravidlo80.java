@@ -1,12 +1,11 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89;
 
-import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
-import java.util.Calendar;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Element;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
@@ -38,7 +37,7 @@ public class Pravidlo80 extends K06PravidloBase {
             }
             Integer date = vratRok(datum);
 
-            int year = Calendar.getInstance().get(Calendar.YEAR);
+            int year = context.getLocalDate().getYear();
             if (!(date <= year)) {
                 nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Hodnota elementu <nsesss:Datum> (" + date + ") je vyšší než aktuální rok. "
                         + getJmenoIdentifikator(skrizeni), datum, kontrola.getEntityId(skrizeni));

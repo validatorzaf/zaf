@@ -43,6 +43,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo37;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo38;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo39;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo40;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo41;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo43a;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo44;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo45;
@@ -69,6 +70,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo64;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo65;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo67;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo68;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo68a;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69.Pravidlo69;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79.Pravidlo70;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79.Pravidlo71;
@@ -271,6 +273,7 @@ public enum ZakladniProfilValidace
                     new Pravidlo65(),
 					new Pravidlo67(), 
 					new Pravidlo68(), 
+                                        new Pravidlo68a(),
 					new Pravidlo69(), 
 					new Pravidlo70(), 
 					new Pravidlo71(), 
@@ -350,6 +353,7 @@ public enum ZakladniProfilValidace
 					new Pravidlo38(),
 					new Pravidlo39(), 
                     new Pravidlo40(),
+                    new Pravidlo41(),
                     new Pravidlo43a(),
 					new Pravidlo44(), 
 					new Pravidlo45(), 
@@ -376,6 +380,7 @@ public enum ZakladniProfilValidace
                     new Pravidlo65(),
 					new Pravidlo67(), 
 					new Pravidlo68(), 
+                                        new Pravidlo68a(),
 					new Pravidlo69(), 
 					new Pravidlo70(), 
 					new Pravidlo71(), 
@@ -455,6 +460,7 @@ public enum ZakladniProfilValidace
 					new Pravidlo38(),
 					new Pravidlo39(), 
                     new Pravidlo40(),
+                    new Pravidlo41(),
                     new Pravidlo43a(),
 					new Pravidlo44(), 
 					new Pravidlo45(), 
@@ -480,7 +486,8 @@ public enum ZakladniProfilValidace
 					new Pravidlo64(), 
                     new Pravidlo65(),
 					new Pravidlo67(), 
-					new Pravidlo68(), 
+					new Pravidlo68(),
+                                        new Pravidlo68a(),
 					new Pravidlo69(), 
 					new Pravidlo70(), 
 					new Pravidlo71(), 
