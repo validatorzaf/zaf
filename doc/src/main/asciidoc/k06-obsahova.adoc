@@ -692,17 +692,6 @@ Popis chyby:: Chybí skartační režim věcné skupiny.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
 
-[[obs68a]]
-== obs68a
-
-[horizontal]
-
-Pravidlo:: Každá základní entita díl (<nsesss:Dil>), spis (<nsesss:Spis>) nebo dokument (<nsesss:Dokument>) obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:SkartacniRezim> element <nsesss:SkartacniZnak> s hodnotou, která je rovna hodnotě stejného elementu rodičovské entity věcná skupina (<nsesss:VecnaSkupina>) nebo součást (<nsesss:Soucast>).
-Kód:: obs68a
-Zdroj:: Požadavek 6.1.6. a 6.1.16. NSESSS.
-Popis chyby:: Skartační znak dílu, spisu nebo dokumentu není v souladu s věcnou skupinou nebo součástí, do které je základní entita zatříděn..
-Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
-
 [[obs69]]
 == obs69
 
