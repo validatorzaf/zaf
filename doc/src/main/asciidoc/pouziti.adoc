@@ -51,7 +51,8 @@ Validátor ZAF lze volat prostřednictvím příkazového řádku:
   Jméno souboru nebo adresáře pro uložení výsledků
 
 
-=== Systémové parametry
+[[ZafSystParametry]]
+== Systémové parametry
 
 Pokročilé funkce validátoru je možné řídit pomocí systémových parametrů (parametr *-D*).
 
@@ -64,6 +65,18 @@ Pokročilé funkce validátoru je možné řídit pomocí systémových parametr
   Cesta k lokální instalaci VeraPDF validátoru. Jedná se o úplnou cestu k .jar souboru
   včetně tohoto souboru. Pokud není nastaveno, použije se verze validátoru vestavěná 
   přímo do aplikace.
+  
+*zaf.siegfried.path*::
+  Úplná cesta ke spustitelnému souboru aplikace SiegFried. Pokud je cesta nastavena 
+  použije se tato aplikace pro ověření správnosti mimeType viz 
+  xref:k06-obsahova.adoc#obs45[pravidlo obs45]. Příklad:
+   
+  `-Dzaf.siegfried.path=C:\toolkits\zaf\sf\sf.exe`
+
+*zaf.siegfried.port*::
+  Volitelný parametr pro určení portu, který má být využit aplikací SiegFried.
+  Výchozí hodnota je port *20000*. Port nesmí být obsazen jiným procesem jinak není 
+  možné SiegFried spustit.
 
 *zaf.zip.encoding*::
   Nastavení výchozího kódování pro rozbalování ZIP souborů. Jako výchozí kódování
@@ -168,7 +181,7 @@ Výsledný dokument obsahuje:
 
 == Java knihovna - přímá integrace
 Validátor ZAF je možné volat jako součást jiné Java aplikace a integrovat ho s ní. Pokud není možná
-přímá integrace lze použít :xref:pouziti.adoc#CmdValidator[řádkovou aplikaci CmdValidator].
+přímá integrace lze použít xref:pouziti.adoc#CmdValidator[řádkovou aplikaci CmdValidator].
 
 V rámci projektu na GitHub.com jsou k dispozici zdrojové kódy aplikace a binární balíčky. 
 Ty jsou také dostupné v repozitáři pro Maven a je možné je přímo používat.

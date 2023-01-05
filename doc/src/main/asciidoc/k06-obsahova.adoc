@@ -422,6 +422,10 @@ Zdroj:: Bod 2.15. přílohy č. 3 NSESSS.
 Popis chyby:: Komponenta (počítačový soubor) má uvedený chybný datový formát.
 Aktivní:: skartační řízení (s komponentami), přejímka
 
+Pro ověření formátu příslušné komponenty je standardně využíván nástroj Apache Tika. Pomocí konfigurace je 
+možné alternativně použít SiegFried, viz xref:pouziti.adoc#ZafSystParametry[systémové parametry].
+
+
 [[obs46]]
 == obs46
 

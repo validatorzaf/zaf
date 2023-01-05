@@ -22,4 +22,3 @@
 
 == v5, 5.1.2023
 * Nové pravidlo <<obs41>>
-* Nové pravidlo <<obs68a>>
