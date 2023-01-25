@@ -1,20 +1,36 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang.StringUtils;
 import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
-import org.apache.commons.lang.StringUtils;
 
 // Pokud existuje jakýkoli element mets:file, každý obsahuje atribut MIMETYPE, jeho hodnota musí odpovídat pravidlům pro tvorbu označení MIMETYPE 
 // uvedených na https://www.iana.org/assignments/media-types/media-types.xhtml a musí odpovídat typu referencovaného souboru.
 public class Pravidlo41 extends K06PravidloBase {
 
     static final public String OBS41 = "obs41";
+
+    static final Set<String> POVOLENE_PREFIXY = new HashSet<>();
+    static {
+        POVOLENE_PREFIXY.add("application");
+        POVOLENE_PREFIXY.add("audio");
+        POVOLENE_PREFIXY.add("font");
+        POVOLENE_PREFIXY.add("example");
+        POVOLENE_PREFIXY.add("image");
+        POVOLENE_PREFIXY.add("message");
+        POVOLENE_PREFIXY.add("model");
+        POVOLENE_PREFIXY.add("multipart");
+        POVOLENE_PREFIXY.add("text");
+        POVOLENE_PREFIXY.add("video");
+    }
 
     public Pravidlo41() {
         super(OBS41,
@@ -39,22 +55,34 @@ public class Pravidlo41 extends K06PravidloBase {
             if(mimetype.isEmpty()){
                 nastavChybu(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Hodnota atributu MIMETYPE elementu <mets:file> je prázdná.", elMetsFile);
             }
-            if(!isPrefix(mimetype)){
-                nastavChybu(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Hodnota atributu MIMETYPE elementu <mets:file> neobsahuje správnou hodnotu.", elMetsFile);
-            }
+            checkSyntax(mimetype, elMetsFile);
         }
 
     }
 
-    private boolean isPrefix(String mimetype) {
-        String[] povolenePrefixy = {"application", "audio", "font", "example", "image", "message", "model", "multipart", "text", "video"};
-        String povinnyZnak = "/";
-        for (String povolenyPrefix : povolenePrefixy) {
-            if (mimetype.startsWith(povolenyPrefix + povinnyZnak)) {
-                return true;
-            }
+    private void checkSyntax(String mimetype, Element elMetsFile) {
+        int separatorPos = mimetype.indexOf('/');
+        if (separatorPos < 0) {
+            nastavChybu(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
+                        "Hodnota atributu MIMETYPE elementu <mets:file> neobsahuje lomítko (oddělovač).",
+                        elMetsFile);
         }
-        return false;
+        String type = mimetype.substring(0, separatorPos);
+        String subtype = mimetype.substring(separatorPos + 1);
+
+        // check type
+        if (!POVOLENE_PREFIXY.contains(type)) {
+            nastavChybu(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
+                        "Hodnota atributu MIMETYPE elementu <mets:file> neobsahuje povolený typ, hodnota: " + mimetype,
+                        elMetsFile);
+        }
+
+        // check subtype
+        if (subtype.length() == 0) {
+            nastavChybu(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
+                        "Hodnota atributu MIMETYPE elementu <mets:file> neobsahuje podtype, hodnota: " + mimetype,
+                        elMetsFile);
+        }
     }
 
 }
