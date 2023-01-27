@@ -12,8 +12,17 @@ import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 
-// Pokud existuje jakýkoli element mets:file, každý obsahuje atribut MIMETYPE, jeho hodnota musí odpovídat pravidlům pro tvorbu označení MIMETYPE 
-// uvedených na https://www.iana.org/assignments/media-types/media-types.xhtml a musí odpovídat typu referencovaného souboru.
+// Pokud existuje jakýkoli element mets:file, každý obsahuje atribut MIMETYPE,
+// jeho hodnota musí odpovídat pravidlům pro tvorbu označení MIMETYPE
+// uvedených na https://www.iana.org/assignments/media-types/media-types.xhtml a
+// musí odpovídat typu referencovaného souboru.
+//
+//
+// Rozšířená kontrola souladu s:
+//
+//
+//
+//
 public class Pravidlo41 extends K06PravidloBase {
 
     static final public String OBS41 = "obs41";
@@ -52,23 +61,21 @@ public class Pravidlo41 extends K06PravidloBase {
             if (StringUtils.isBlank(mimetype)) {
                 nastavChybu(BaseCode.CHYBI_ATRIBUT, "Element <mets:file> nemá atribut MIMETYPE.", elMetsFile);
             }
-            if(mimetype.isEmpty()){
-                nastavChybu(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Hodnota atributu MIMETYPE elementu <mets:file> je prázdná.", elMetsFile);
-            }
             checkSyntax(mimetype, elMetsFile);
         }
 
     }
 
     private void checkSyntax(String mimetype, Element elMetsFile) {
-        int separatorPos = mimetype.indexOf('/');
+        String mimetypeLower = mimetype.toLowerCase();
+        int separatorPos = mimetypeLower.indexOf('/');
         if (separatorPos < 0) {
             nastavChybu(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
                         "Hodnota atributu MIMETYPE elementu <mets:file> neobsahuje lomítko (oddělovač).",
                         elMetsFile);
         }
-        String type = mimetype.substring(0, separatorPos);
-        String subtype = mimetype.substring(separatorPos + 1);
+        String type = mimetypeLower.substring(0, separatorPos);
+        String subtype = mimetypeLower.substring(separatorPos + 1);
 
         // check type
         if (!POVOLENE_PREFIXY.contains(type)) {
