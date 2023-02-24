@@ -20,7 +20,7 @@ Aktivní:: skartační řízení (jen metadata), skartační řízení (s kompon
 
 Pravidlo:: Element <mets:mets> obsahuje atribut LABEL s hodnotou Datový balíček pro provedení skartačního řízení nebo Datový balíček pro předávání dokumentů a jejich metadat do archivu.
 Kód:: obs2
-Zdroj:: Bod 2.1. přílohy č. 3 NSESSS.
+Zdroj:: Bod 2.1. přílohy č. 3 NSESSS, navíc jsou přípustné i balíčky pro předání do archivu, v souladu s praxí NA ČR a shodně s pravidlem obs3.
 Popis chyby:: Uveden je chybně popis datového balíčku SIP.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami)
 
