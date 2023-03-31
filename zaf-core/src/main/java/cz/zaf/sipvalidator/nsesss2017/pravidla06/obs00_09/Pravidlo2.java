@@ -18,7 +18,7 @@ public class Pravidlo2 extends K06PravidloBase {
 		super(OBS2,
 				"Element <mets:mets> obsahuje atribut LABEL s hodnotou Datový balíček pro provedení skartačního řízení nebo Datový balíček pro předávání dokumentů a jejich metadat do archivu.",
 				"Uveden je chybně popis datového balíčku SIP.", 
-                "Bod 2.1. přílohy č. 3 NSESSS, navíc jsou přípustné i balíčky pro předání do archivu, v souladu s praxí NA ČR a shodně s pravidlem obs3.");
+                "Bod 2.1. přílohy č. 3 NSESSS, navíc jsou přípustné i balíčky pro předání do archivu, v souladu s praxí NA ČR a shodně s pravidlem obs3 (Informační list NA, 2018, částka 2, č. 19/2018).");
 	}
 
 	@Override
