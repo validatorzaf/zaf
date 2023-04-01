@@ -1125,3 +1125,13 @@ Zdroj:: § 23 odst. 2 vyhlášky č. 259/2012 Sb.; Informační list NA, čá. 6
 Popis chyby:: Komponenta (počítačový soubory) není ve výstupním datovém formátu.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[obs108]]
+== obs108
+
+[horizontal]
+
+Pravidlo:: Element s atributem datum obsahuje hodnotu, která po interpretaci denního data je rovna hodnotě elementu.
+Kód:: obs108
+Zdroj:: -
+Popis chyby:: Chybně je vyplněn časový údaj.
+Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
