@@ -15,6 +15,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs100_109.Pravidlo104;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs100_109.Pravidlo105;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs100_109.Pravidlo106;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs100_109.Pravidlo107;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs100_109.Pravidlo108;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo10;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo11;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19.Pravidlo12;
@@ -3428,5 +3429,173 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("107-chyba2", StavKontroly.CHYBA, ZakladniProfilValidace.PREJIMKA,
                        new String[] {},
                        new String[] { Pravidlo107.OBS107 });
+    }
+
+    @Test
+    void testK06_108_OK01() {
+        testPackageK06("108-OK1", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo108.OBS108 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_108_OK02() {
+        testPackageK06("108-OK2", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo108.OBS108 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_108_OK03() {
+        testPackageK06("108-OK3", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo108.OBS108 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_108_OK04() {
+        testPackageK06("108-OK4", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo108.OBS108 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_108_OK05() {
+        testPackageK06("108-OK5", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo108.OBS108 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_108_OK06() {
+        testPackageK06("108-OK6", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo108.OBS108 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_108_OK07() {
+        testPackageK06("108-OK7", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo108.OBS108 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_108_OK08() {
+        testPackageK06("108-OK8", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo108.OBS108 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_108_OK09() {
+        testPackageK06("108-OK9", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo108.OBS108 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_108_OK10() {
+        testPackageK06("108-OK10", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo108.OBS108 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_108_OK11() {
+        testPackageK06("108-OK11", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo108.OBS108 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_108_OK12() {
+        testPackageK06("108-OK12", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] { Pravidlo108.OBS108 },
+                       new String[] {});
+    }
+
+    @Test
+    void testK06_108_chyba01() {
+        testPackageK06("108-chyba1", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] { },
+                       new String[] { Pravidlo108.OBS108 });
+    }
+
+    @Test
+    void testK06_108_chyba02() {
+        testPackageK06("108-chyba2", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { Pravidlo108.OBS108 });
+    }
+
+    @Test
+    void testK06_108_chyba03() {
+        testPackageK06("108-chyba3", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { Pravidlo108.OBS108 });
+    }
+
+    @Test
+    void testK06_108_chyba04() {
+        testPackageK06("108-chyba4", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { Pravidlo108.OBS108 });
+    }
+
+    @Test
+    void testK06_108_chyba05() {
+        testPackageK06("108-chyba5", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { Pravidlo108.OBS108 });
+    }
+
+    @Test
+    void testK06_108_chyba06() {
+        testPackageK06("108-chyba6", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { Pravidlo108.OBS108 });
+    }
+
+    @Test
+    void testK06_108_chyba07() {
+        testPackageK06("108-chyba7", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { Pravidlo108.OBS108 });
+    }
+
+    @Test
+    void testK06_108_chyba08() {
+        testPackageK06("108-chyba8", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { Pravidlo108.OBS108 });
+    }
+
+    @Test
+    void testK06_108_chyba09() {
+        testPackageK06("108-chyba9", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { Pravidlo108.OBS108 });
+    }
+
+    @Test
+    void testK06_108_chyba10() {
+        testPackageK06("108-chyba10", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { Pravidlo108.OBS108 });
+    }
+
+    @Test
+    void testK06_108_chyba11() {
+        testPackageK06("108-chyba11", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { Pravidlo108.OBS108 });
+    }
+
+    @Test
+    void testK06_108_chyba12() {
+        testPackageK06("108-chyba12", null, ZakladniProfilValidace.PREJIMKA,
+                       new String[] {},
+                       new String[] { Pravidlo108.OBS108 });
     }
 }
