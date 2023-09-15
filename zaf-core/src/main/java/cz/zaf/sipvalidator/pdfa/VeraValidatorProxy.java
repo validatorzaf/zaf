@@ -62,6 +62,8 @@ public class VeraValidatorProxy {
 
     private List<Path> deleteFiles;
 
+    static private BufferedReader activeProcessReader;
+
     private final static SAXParserFactory factory = SAXParserFactory.newInstance();
 
     static private boolean useServerMode;
@@ -111,6 +113,7 @@ public class VeraValidatorProxy {
         if (activeProcess != null) {
             activeProcess.destroy();
             activeProcess = null;
+            activeProcessReader = null;
         }
     }
 
@@ -231,12 +234,12 @@ public class VeraValidatorProxy {
 
         // Run vera
         ProcessBuilder pb = new ProcessBuilder(params);
-        // Error is not merged with standard output
-        pb.redirectErrorStream(false);
+        // Error is merged with standard output
+        pb.redirectErrorStream(true);
         return pb.start();
     }
 
-    private ValidationResult validateOnServer(Path pdfPath) {
+    synchronized private ValidationResult validateOnServer(Path pdfPath) {
         Validate.notNull(inactivityExecutor);
 
         prepareServerValidation();
@@ -247,10 +250,12 @@ public class VeraValidatorProxy {
             String pdfAbsPath = pdfPath.toAbsolutePath().toString();
             if (activeProcess == null || !activeProcess.isAlive()) {
                 activeProcess = createProcess(pdfAbsPath, true);
+                InputStreamReader sr = new InputStreamReader(activeProcess.getInputStream(), "utf-8");
+                activeProcessReader = new BufferedReader(sr);
             } else {
                 OutputStream paramStream = activeProcess.getOutputStream();
                 try {
-                    log.debug("Appending request to process file {}", pdfAbsPath);
+                    log.debug("Request to process file {}", pdfAbsPath);
 
                     OutputStreamWriter sw = new OutputStreamWriter(paramStream, "UTF-8");
                     sw.append(pdfAbsPath);
@@ -267,7 +272,8 @@ public class VeraValidatorProxy {
             final CountDownLatch cdt = new CountDownLatch(1);
             executor.execute(() -> {
                 try {
-                    String errorMsg = readServerOutput(activeProcess.getInputStream());
+                    String errorMsg = readServerOutput(activeProcessReader);
+                    log.debug("Server output: {}", errorMsg);
                     if (errorMsg == null) {
                         vr.setCompliant(true);
                     } else {
@@ -354,18 +360,20 @@ public class VeraValidatorProxy {
     /**
      * Read output from server mode
      * 
-     * @param inputStream
+     * @param processReader
      * @return
      * @throws IOException
      * @throws SAXException
      * @throws ParserConfigurationException
      */
-    private String readServerOutput(InputStream inputStream) throws IOException, ParserConfigurationException,
+    private String readServerOutput(BufferedReader processReader) throws IOException, ParserConfigurationException,
             SAXException {
-        InputStreamReader sr = new InputStreamReader(inputStream, "utf-8");
-        BufferedReader reader = new BufferedReader(sr);
+        if (processReader == null) {
+            throw new RuntimeException("Process reader cannot be null");
+        }
         while (true) {
-            String line = reader.readLine();
+            // read next line from VeraPDF
+            String line = processReader.readLine();
             log.debug("VeraPDF output: " + line);
             if (line.endsWith(".xml")) {
                 Path outputPath = Paths.get(line);
@@ -480,7 +488,18 @@ public class VeraValidatorProxy {
 
         parser.parse(inputStream, dh);
 
-        return isCompliant.get() ? null : sb.length() > 0 ? sb.toString() : "Nerozpoznaná chyba";
+        String result;
+        if (isCompliant.get()) {
+            result = null;
+        } else {
+            if (sb.length() > 0) {
+                result = sb.toString();
+            } else {
+                result = "Nerozpoznaná chyba";
+            }
+        }
+
+        return result;
     }
 
 }
