@@ -183,8 +183,8 @@ public class VeraValidatorProxy {
 
         String serverMode = System.getProperty(ZAF_VERA_SERVERMODE);
 
-        if (serverMode != null && (serverMode == "0" ||
-                serverMode == "false" || serverMode == "disabled")) {
+        if (serverMode != null && (serverMode.equals("0") ||
+                serverMode.equalsIgnoreCase("false") || serverMode.equalsIgnoreCase("disabled"))) {
             log.debug("VeraValidatorProxy will not use serverMode");
             useServerMode = false;
         } else {
@@ -231,7 +231,8 @@ public class VeraValidatorProxy {
 
         // Run vera
         ProcessBuilder pb = new ProcessBuilder(params);
-        pb.redirectErrorStream(true);
+        // Error is not merged with standard output
+        pb.redirectErrorStream(false);
         return pb.start();
     }
 
@@ -249,6 +250,8 @@ public class VeraValidatorProxy {
             } else {
                 OutputStream paramStream = activeProcess.getOutputStream();
                 try {
+                    log.debug("Appending request to process file {}", pdfAbsPath);
+
                     OutputStreamWriter sw = new OutputStreamWriter(paramStream, "UTF-8");
                     sw.append(pdfAbsPath);
                     sw.append("\n");
@@ -450,14 +453,14 @@ public class VeraValidatorProxy {
             @Override
             public void startElement(String uri, String localName, String qName, Attributes attributes)
                     throws SAXException {
-                if (qName.equals("validationResult")) {
+                if (qName.equals("validationReport")) {
                     String isCompliantValue = attributes.getValue("isCompliant");
                     if (isCompliantValue != null) {
                         if (isCompliantValue.equals("true")) {
                             isCompliant.set(true);
                         } else {
                             sb.append("Neodpovídá standardu: ");
-                            String flavourValue = attributes.getValue("flavour");
+                            String flavourValue = attributes.getValue("profileName");
                             if (flavourValue != null) {
                                 sb.append(flavourValue);
                             } else {
