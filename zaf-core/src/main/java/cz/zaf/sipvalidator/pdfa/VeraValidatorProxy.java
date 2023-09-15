@@ -183,8 +183,8 @@ public class VeraValidatorProxy {
 
         String serverMode = System.getProperty(ZAF_VERA_SERVERMODE);
 
-        if (serverMode != null && (serverMode == "0" ||
-                serverMode == "false" || serverMode == "disabled")) {
+        if (serverMode != null && (serverMode.equals("0") ||
+                serverMode.equalsIgnoreCase("false") || serverMode.equalsIgnoreCase("disabled"))) {
             log.debug("VeraValidatorProxy will not use serverMode");
             useServerMode = false;
         } else {
