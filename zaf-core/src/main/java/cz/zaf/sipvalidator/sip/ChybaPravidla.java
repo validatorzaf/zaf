@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.Validate;
 
+import cz.zaf.common.validation.Rule;
 import cz.zaf.sipvalidator.exceptions.codes.ErrorCode;
 import cz.zaf.sipvalidator.nsesss2017.EntityId;
 
@@ -62,6 +63,22 @@ public class ChybaPravidla {
      * Seznam může být null.
      */
     final private List<EntityId> entityIds;
+
+    public ChybaPravidla(final Rule rule,
+                         final String vypisChyby,
+                         final String mistoChyby,
+                         final ErrorCode errorCode,
+                         final List<EntityId> entityIds
+                         ) {
+                             this(rule.getCode(),
+                                     rule.getDescription(),
+                                     vypisChyby,
+                                     rule.getGenericError(),
+                                     mistoChyby,
+                                     rule.getRuleSource(),
+                                     errorCode,
+                                     entityIds);
+                         }
 
     public ChybaPravidla(
                          final String id,

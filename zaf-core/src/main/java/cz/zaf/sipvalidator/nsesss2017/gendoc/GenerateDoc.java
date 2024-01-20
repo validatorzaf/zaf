@@ -9,7 +9,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import cz.zaf.sipvalidator.nsesss2017.ObsahovePravidlo;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.ObsahovePravidlo;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 
@@ -21,13 +21,13 @@ public class GenerateDoc {
     ObsahovePravidlo[] skartaceUplny = ZakladniProfilValidace.SKARTACE_UPLNY.createObsahovaPravidla();
 
     Map<String, ObsahovePravidlo> prejimkaMap = Stream.of(prejimka).collect(Collectors.toMap(
-                                                                                             ObsahovePravidlo::getKodPravidla,
+                                                                                             ObsahovePravidlo::getCode,
                                                                                              Function.identity()));
     Map<String, ObsahovePravidlo> skartaceMetadataMap = Stream.of(skartaceMetadata).collect(Collectors.toMap(
-                                                                                                             ObsahovePravidlo::getKodPravidla,
+                                                                                                             ObsahovePravidlo::getCode,
                                                                                                              Function.identity()));
     Map<String, ObsahovePravidlo> skartaceUplnyMap = Stream.of(skartaceUplny).collect(Collectors.toMap(
-                                                                                                       ObsahovePravidlo::getKodPravidla,
+                                                                                                       ObsahovePravidlo::getCode,
                                                                                                        Function.identity()));
     List<String> pravidla = new ArrayList<>();
     Map<String, ObsahovePravidlo> pravidlaMap = new HashMap<>();
@@ -41,8 +41,8 @@ public class GenerateDoc {
 
     private void pridejPravidla(ObsahovePravidlo[] pravidlaIn) {
         for (ObsahovePravidlo prav : pravidlaIn) {
-            if (pravidlaMap.putIfAbsent(prav.getKodPravidla(), prav) == null) {
-                pravidla.add(prav.getKodPravidla());
+            if (pravidlaMap.putIfAbsent(prav.getCode(), prav) == null) {
+                pravidla.add(prav.getCode());
             }
         }
     }
@@ -57,7 +57,7 @@ public class GenerateDoc {
 
     private void write(PrintStream out, ObsahovePravidlo pravidlo) {
 
-        String kod = pravidlo.getKodPravidla();
+        String kod = pravidlo.getCode();
         // String zjištění, kdy je pravidlo aktivní
         List<ProfilValidace> aktivni = new ArrayList<>();
         if (skartaceMetadataMap.containsKey(kod)) {
@@ -78,7 +78,7 @@ public class GenerateDoc {
             aktivniText = "neaktivní";
         }
 
-        String textPravidla = pravidlo.getTtextPravidla();
+        String textPravidla = pravidlo.getDescription();
         textPravidla = textPravidla.replace("\r", "");
         textPravidla = textPravidla.replace("\n- ", "\n* ");
 
@@ -89,8 +89,8 @@ public class GenerateDoc {
         out.println();
         out.println("Pravidlo:: " + textPravidla);
         out.println("Kód:: " + kod);
-        out.println("Zdroj:: " + pravidlo.getZdroj());
-        out.println("Popis chyby:: " + pravidlo.getObecnyPopisChyby());
+        out.println("Zdroj:: " + pravidlo.getRuleSource());
+        out.println("Popis chyby:: " + pravidlo.getGenericError());
         out.println("Aktivní:: " + aktivniText);
         out.println();
     }

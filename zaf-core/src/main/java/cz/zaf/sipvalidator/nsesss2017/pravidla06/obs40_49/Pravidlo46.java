@@ -6,7 +6,8 @@ import java.util.List;
 import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+
 import org.apache.commons.lang.StringUtils;
 
 //OBSAHOVÁ č.46 Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut CHECKSUMTYPE hodnotu SHA-256 nebo SHA-512.",

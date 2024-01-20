@@ -49,5 +49,4 @@ abstract public class KontrolaBase
 
     abstract TypUrovenKontroly getUrovenKontroly();
     abstract void provedKontrolu();
-
 }

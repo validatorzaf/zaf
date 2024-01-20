@@ -6,8 +6,8 @@ import java.util.List;
 import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
 public class Pravidlo55 extends K06PravidloBase {
 

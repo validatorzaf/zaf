@@ -68,6 +68,8 @@ public class SipValidator {
         K06_Obsahova oks = new K06_Obsahova(profilValidace.createObsahovaPravidla());
         kontroly.add(oks);
         
+        K07_Komponent kfs = new K07_Komponent(profilValidace.createFormatovaPravidla());
+        kontroly.add(kfs);
         return kontroly;
     }
 

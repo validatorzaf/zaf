@@ -48,10 +48,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo40;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo41;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo43a;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo44;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo45;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo46;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo47;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo48;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo49;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo50;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo51;
@@ -100,7 +97,6 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo95;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo96;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo97;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo98;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo99;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
@@ -1021,158 +1017,6 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     }
 
     @Test
-    void testK06_45_01() {
-        testPackageK06("45-chyba1", StavKontroly.CHYBA,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] {},
-                       new String[] { Pravidlo45.OBS45 });
-    }
-
-    @Test
-    void testK06_45_02() {
-        testPackageK06("45-chyba2", StavKontroly.CHYBA,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] {},
-                       new String[] { Pravidlo45.OBS45 });
-    }
-
-    @Test
-    void testK06_45_03() {
-        testPackageK06("45-chyba3", StavKontroly.CHYBA,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] {},
-                       new String[] { Pravidlo45.OBS45 });
-    }
-
-    @Test
-    void testK06_45_04() {
-        testPackageK06("45-chyba4", StavKontroly.CHYBA,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] {},
-                       new String[] { Pravidlo45.OBS45 });
-    }
-
-    @Test
-    void testK06_45_05() {
-        testPackageK06("45-chyba5", StavKontroly.CHYBA,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] {},
-                       new String[] { Pravidlo45.OBS45 });
-    }
-
-    @Test
-    void testK06_45_06() {
-        testPackageK06("45-chyba6", StavKontroly.CHYBA,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] {},
-                       new String[] { Pravidlo45.OBS45 });
-    }
-
-    @Test
-    void testK06_45_07() {
-        testPackageK06("45-chyba7", StavKontroly.CHYBA,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] {},
-                       new String[] { Pravidlo45.OBS45 });
-    }
-
-    @Test
-    void testK06_45_08() {
-        testPackageK06("45-chyba8", StavKontroly.CHYBA,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] {},
-                       new String[] { Pravidlo45.OBS45 });
-    }
-
-    @Test
-    void testK06_45_OK01() {
-        testPackageK06("45-OK1", null,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] { Pravidlo45.OBS45 },
-                       new String[] {});
-    }
-
-    @Test
-    void testK06_45_OK02() {
-        testPackageK06("45-OK2", null,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] { Pravidlo45.OBS45 },
-                       new String[] {});
-    }
-
-    @Test
-    void testK06_45_OK03() {
-        testPackageK06("45-OK3", null,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] { Pravidlo45.OBS45 },
-                       new String[] {});
-    }
-
-    @Test
-    void testK06_45_OK04() {
-        testPackageK06("45-OK4", null,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] { Pravidlo45.OBS45 },
-                       new String[] {});
-    }
-
-    @Test
-    void testK06_45_OK05() {
-        testPackageK06("45-OK5", null,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] { Pravidlo45.OBS45 },
-                       new String[] {});
-    }
-
-    @Test
-    void testK06_45_OK06() {
-        testPackageK06("45-OK6", null,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] { Pravidlo45.OBS45 },
-                       new String[] {});
-    }
-
-    @Test
-    void testK06_45_OK07() {
-        testPackageK06("45-OK7", null,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] { Pravidlo45.OBS45 },
-                       new String[] {});
-    }
-
-    @Test
-    void testK06_45_OK08() {
-        testPackageK06("45-OK8", null,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] { Pravidlo45.OBS45 },
-                       new String[] {});
-    }
-
-    @Test
-    void testK06_45_OK09() {
-        testPackageK06("45-OK9", null,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] { Pravidlo45.OBS45 },
-                       new String[] {});
-    }
-
-    @Test
-    void testK06_45_OK10() {
-        testPackageK06("45-OK10", null,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] { Pravidlo45.OBS45 },
-                       new String[] {});
-    }
-
-    @Test
-    void testK06_45_OK11() {
-        testPackageK06("45-OK11", null,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] { Pravidlo45.OBS45 },
-                       new String[] {});
-    }
-
-    @Test
     void testK06_46_01() {
         testPackageK06("46-chyba1", StavKontroly.CHYBA,
                        ZakladniProfilValidace.PREJIMKA,
@@ -1201,62 +1045,6 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
         testPackageK06("46-OK2", null,
                        ZakladniProfilValidace.PREJIMKA,
                        new String[] { Pravidlo46.OBS46 },
-                       new String[] {});
-    }
-
-    @Test
-    void testK06_47_01() {
-        testPackageK06("47-chyba1", StavKontroly.CHYBA,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] {},
-                       new String[] { Pravidlo47.OBS47 });
-    }
-
-    @Test
-    void testK06_47_02() {
-        testPackageK06("47-chyba2", StavKontroly.CHYBA,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] {},
-                       new String[] { Pravidlo47.OBS47 });
-    }
-
-    @Test
-    void testK06_47_OK01() {
-        testPackageK06("47-OK1", null,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] { Pravidlo47.OBS47 },
-                       new String[] {});
-    }
-
-    @Test
-    void testK06_47_OK02() {
-        testPackageK06("47-OK2", null,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] { Pravidlo47.OBS47 },
-                       new String[] {});
-    }
-
-    @Test
-    void testK06_48_01() {
-        testPackageK06("48-chyba1", StavKontroly.CHYBA,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] {},
-                       new String[] { Pravidlo48.OBS48 });
-    }
-
-    @Test
-    void testK06_48_02() {
-        testPackageK06("48-chyba2", StavKontroly.CHYBA,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] {},
-                       new String[] { Pravidlo48.OBS48 });
-    }
-
-    @Test
-    void testK06_48_OK01() {
-        testPackageK06("48-OK", null,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] { Pravidlo48.OBS48 },
                        new String[] {});
     }
 
@@ -2970,75 +2758,6 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
                        new String[] {});
     }
 
-    @Test
-    void testK06_99_OK01() {
-        testPackageK06("99-OK1", null,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] { Pravidlo99.OBS99 },
-                       new String[] {});
-    }
-
-    @Test
-    void testK06_99_OK02() {
-        testPackageK06("99-OK2", null,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] { Pravidlo99.OBS99 },
-                       new String[] {});
-    }
-
-    @Test
-    void testK06_99_OK03() {
-        testPackageK06("99-OK3", null,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] { Pravidlo99.OBS99 },
-                       new String[] {});
-    }
-
-    @Test
-    void testK06_99_OK04() {
-        testPackageK06("99-OK4", null,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] { Pravidlo99.OBS99 },
-                       new String[] {});
-    }
-
-    @Test
-    void testK06_99_OK05() {
-        testPackageK06("99-OK5", null,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] { Pravidlo99.OBS99 },
-                       new String[] {});
-    }
-
-    @Test
-    void testK06_99_OK06() {
-        testPackageK06("99-OK6", null,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] { Pravidlo99.OBS99 },
-                       new String[] {});
-    }
-
-    @Test
-    void testK06_99_OK07() {
-        testPackageK06("99-OK7", null,
-                       ZakladniProfilValidace.PREJIMKA,
-                       new String[] { Pravidlo99.OBS99 },
-                       new String[] {});
-    }
-
-    @Test
-    void testK06_99_01() {
-        testPackageK06("99-chyba1", StavKontroly.CHYBA, ZakladniProfilValidace.PREJIMKA,
-                       new String[] {},
-                       new String[] { Pravidlo99.OBS99 });
-    }
-
-    @Test
-    void testK06_99_02() {
-        testPackageK06("99-chyba2", StavKontroly.CHYBA, ZakladniProfilValidace.PREJIMKA,
-                       new String[] {},
-                       new String[] { Pravidlo99.OBS99 });
-    }
 
     @Test
     void testK06_100_OK01() {

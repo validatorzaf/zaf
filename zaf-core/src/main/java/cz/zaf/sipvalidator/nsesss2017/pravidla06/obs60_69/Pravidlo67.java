@@ -10,9 +10,9 @@ import java.util.Set;
 
 import org.w3c.dom.Element;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
 // OBSAHOVÁ č.67 Pokud je základní entitou díl (<nsesss:Dil>) nebo 
 // spis (<nsesss:Spis>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, 

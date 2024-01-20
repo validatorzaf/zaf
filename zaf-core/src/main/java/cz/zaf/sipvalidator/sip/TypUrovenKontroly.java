@@ -12,7 +12,8 @@ public enum TypUrovenKontroly {
 	SPRAVNOSTI(3),
 	JMENNE_PROSTORY_XML(4),
 	PROTI_SCHEMATU(5),
-	OBSAHOVA(6);
+    OBSAHOVA(6),
+    KOMPONENT(7);
 	
 	/**
 	 * Ciselny kod urovne kontroly
