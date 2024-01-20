@@ -1,12 +1,12 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Element;
-
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 
 // OBSAHOVÁ č.28 Pokud neexistuje žádný element <nsesss:KrizovyOdkaz> s
 // atributem pevny s hodnotou ano,

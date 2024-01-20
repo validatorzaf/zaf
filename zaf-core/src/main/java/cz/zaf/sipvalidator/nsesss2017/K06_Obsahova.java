@@ -15,6 +15,7 @@ import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.exceptions.codes.ErrorCode;
 import cz.zaf.sipvalidator.nsesss2017.EntityId.DruhEntity;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.ObsahovePravidlo;
 import cz.zaf.sipvalidator.sip.ChybaPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
@@ -52,7 +53,13 @@ public class K06_Obsahova
         return "";
     }
 
-    public Element getEntity(Element node) {
+    /**
+     * Vyhledani entity na zaklade elementu
+     * 
+     * @param node
+     * @return
+     */
+    static public Element getEntity(Element node) {
         String nodeName = node.getNodeName();
         if (!isMainEnetity(nodeName)) {
             return getEntity((Element) node.getParentNode());
@@ -61,7 +68,7 @@ public class K06_Obsahova
         }
     }
 
-    private boolean isMainEnetity(String nodeName) {
+    static private boolean isMainEnetity(String nodeName) {
         boolean bol = (nodeName.equals("nsesss:SpisovyPlan") || nodeName.equals("nsesss:VecnaSkupina") || nodeName.equals("TypovySpis") || nodeName.equals("nsesss:Soucast") || nodeName.equals("nsesss:Dil") || nodeName.equals("nsesss:Spis") || nodeName.equals("nsesss:Dokument"));
         return bol;
     }
@@ -131,7 +138,7 @@ public class K06_Obsahova
 
     }
 
-    public List<EntityId> getEntityId(List<Element> listEl) {
+    static public List<EntityId> getEntityId(List<Element> listEl) {
         List<EntityId> listEntityIds = new ArrayList<>();
         listEl.stream().map((el) -> getEntityId(el)).forEachOrdered((entId) -> {
             listEntityIds.add(entId);
@@ -186,24 +193,6 @@ public class K06_Obsahova
         }
 
         return "(Ident. hodnota: " + hodnota + ", zdroj: " + zdroj + ")";
-    }
-
-    public String getMistoChyby(Node node) {
-        if (node == null) {
-            return null;
-        }
-        Object lineNumber = node.getUserData(PositionalXMLReader.LINE_NUMBER_KEY_NAME);
-        if (lineNumber == null) {
-            return null;
-        }
-        Object colNumber = node.getUserData(PositionalXMLReader.COLUMN_NUMBER);
-        StringBuilder sb = new StringBuilder();
-        sb.append("Řádek ").append(lineNumber);
-        if (colNumber != null) {
-            sb.append(":").append(colNumber);
-        }
-        sb.append(", element <").append(node.getNodeName()).append(">.");
-        return sb.toString();
     }
 
     private String getJmeno(Node node) {
@@ -288,7 +277,7 @@ public class K06_Obsahova
         for (int i = 0; i < seznamPravidel.length; i++) {
             ObsahovePravidlo pravidlo = seznamPravidel[i];
 
-            String kodPravidla = pravidlo.getKodPravidla();
+            String kodPravidla = pravidlo.getCode();
             // skip excluded checks
             if (ctx.isExcluded(kodPravidla)) {
                 continue;

@@ -3,8 +3,8 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19;
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
 //OBSAHOVÁ č.14 Element <mets:metsHdr> obsahuje atribut LASTMODDATE.",
 public class Pravidlo14 extends K06PravidloBase {

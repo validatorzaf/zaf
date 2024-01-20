@@ -27,4 +27,6 @@ include::k05-schema-xsd.adoc[]
 
 include::k06-obsahova.adoc[]
 
+include::k07-komponenty.adoc[]
+
 :leveloffset: -1

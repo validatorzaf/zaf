@@ -3,8 +3,8 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs20_29;
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
 //OBSAHOVÁ č.27 Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> právě jeden dětský element <mets:xmlData>.",
 public class Pravidlo27 extends K06PravidloBase {

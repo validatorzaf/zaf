@@ -4,8 +4,8 @@ import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
 //OBSAHOVÁ č.26 Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MIMETYPE s hodnotou text/xml.",
 public class Pravidlo26 extends K06PravidloBase {

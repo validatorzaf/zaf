@@ -1,18 +1,21 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59;
 
-import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.w3c.dom.Element;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 
+// OBSAHOVÁ č.52 Pokud existuje jakýkoli element <mets:FLocat>,
+// každý obsahuje atribut xlink:href s hodnotou, která odpovídá relativní
+// cestě odkazu jakékoli komponenty uložené ve složce komponenty.
 public class Pravidlo52 extends K06PravidloBase {
 
     static final public String OBS52 = "obs52";
@@ -24,7 +27,6 @@ public class Pravidlo52 extends K06PravidloBase {
                 "Bod 2.16. přílohy č. 3 NSESSS.");
     }
 
-    //OBSAHOVÁ č.52 Pokud existuje jakýkoli element <mets:FLocat>, každý obsahuje atribut xlink:href s hodnotou, která odpovídá relativní cestě odkazu jakékoli komponenty uložené ve složce komponenty.",
     @Override
     protected void kontrola() {
 

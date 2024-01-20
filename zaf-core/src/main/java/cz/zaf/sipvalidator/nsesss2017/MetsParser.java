@@ -22,6 +22,7 @@ import org.xml.sax.SAXException;
 
 import cz.zaf.common.xml.DFDocumentWalker;
 import cz.zaf.common.xml.NodeAggregator;
+import cz.zaf.common.xml.PositionalXMLReader;
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipInfo.SipType;

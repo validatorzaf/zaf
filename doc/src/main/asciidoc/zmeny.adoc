@@ -22,3 +22,7 @@
 
 == v5, 5.1.2023
 * Nové pravidlo <<obs41>>
+
+== v6, xxxx.2024
+ * Přesun pravidel pro kontrolu komponent do samostatné vrstvy: <<kom01>> (dříve obs48), <<kom02>> (dříve obs47),
+   <<kom03>> (dříve obs45), <<kom04>> (dříve obs99)

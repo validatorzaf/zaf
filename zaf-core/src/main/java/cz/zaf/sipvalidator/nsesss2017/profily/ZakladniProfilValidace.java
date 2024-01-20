@@ -1,6 +1,6 @@
 package cz.zaf.sipvalidator.nsesss2017.profily;
 
-import cz.zaf.sipvalidator.nsesss2017.ObsahovePravidlo;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.ObsahovePravidlo;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09.Pravidlo1;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09.Pravidlo2;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09.Pravidlo3;
@@ -47,10 +47,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo40;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo41;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo43a;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo44;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo45;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo46;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo47;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo48;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49.Pravidlo49;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo50;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo51;
@@ -99,7 +96,11 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo95;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo96;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo97;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo98;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo99;
+import cz.zaf.sipvalidator.nsesss2017.pravidla07.KomponentovePravidlo;
+import cz.zaf.sipvalidator.nsesss2017.pravidla07.kom00_09.Pravidlo7_01;
+import cz.zaf.sipvalidator.nsesss2017.pravidla07.kom00_09.Pravidlo7_02;
+import cz.zaf.sipvalidator.nsesss2017.pravidla07.kom00_09.Pravidlo7_03;
+import cz.zaf.sipvalidator.nsesss2017.pravidla07.kom00_09.Pravidlo7_04;
 
 public enum ZakladniProfilValidace 
 	implements ProfilValidace {
@@ -144,11 +145,8 @@ public enum ZakladniProfilValidace
 					new Pravidlo39(), 
                     new Pravidlo40(),
                     new Pravidlo43a(),
-					new Pravidlo44(), 
-					new Pravidlo45(), 
-					new Pravidlo46(), 
-					new Pravidlo47(), 
-					new Pravidlo48(), 
+                    new Pravidlo44(),
+                    new Pravidlo46(),
 					new Pravidlo49(), 
 					new Pravidlo50(), 
 					new Pravidlo51(), 
@@ -196,8 +194,7 @@ public enum ZakladniProfilValidace
 					new Pravidlo95(), 
 					new Pravidlo96(), 
 					new Pravidlo97(), 
-					new Pravidlo98(), 
-                    new Pravidlo99(),
+                    new Pravidlo98(),
                     new Pravidlo100(),
                     new Pravidlo101(),
                     new Pravidlo102(),
@@ -209,7 +206,18 @@ public enum ZakladniProfilValidace
                     new Pravidlo108()
 			};
 			return prav;
-		}		
+        }
+
+        @Override
+        public KomponentovePravidlo[] createFormatovaPravidla() {
+            KomponentovePravidlo[] prav = {
+                    new Pravidlo7_01(),
+                    new Pravidlo7_02(),
+                    new Pravidlo7_03(),
+                    new Pravidlo7_04(),
+            };
+            return prav;
+        }
 	},
 	SKARTACE_METADATA("skartační řízení (jen metadata)") {
 		@Override
@@ -316,6 +324,12 @@ public enum ZakladniProfilValidace
 			};
 			return prav;
 		}		
+
+        @Override
+        public KomponentovePravidlo[] createFormatovaPravidla() {
+            KomponentovePravidlo[] prav = {};
+            return prav;
+        }
 	},
 	SKARTACE_UPLNY("skartační řízení (s komponentami)") {
 		@Override
@@ -358,10 +372,7 @@ public enum ZakladniProfilValidace
                     new Pravidlo41(),
                     new Pravidlo43a(),
 					new Pravidlo44(), 
-					new Pravidlo45(), 
-					new Pravidlo46(), 
-					new Pravidlo47(), 
-					new Pravidlo48(), 
+                    new Pravidlo46(),
 					new Pravidlo49(), 
 					new Pravidlo50(), 
 					new Pravidlo51(), 
@@ -409,8 +420,7 @@ public enum ZakladniProfilValidace
 					new Pravidlo95(), 
 					new Pravidlo96(), 
 					new Pravidlo97(), 
-					new Pravidlo98(), 
-                    new Pravidlo99(),
+                    new Pravidlo98(),
                     new Pravidlo100(),
                     new Pravidlo101(),
                     new Pravidlo102(),
@@ -423,6 +433,17 @@ public enum ZakladniProfilValidace
 			};
 			return prav;
 		}		
+
+        @Override
+        public KomponentovePravidlo[] createFormatovaPravidla() {
+            KomponentovePravidlo[] prav = {
+                    new Pravidlo7_01(),
+                    new Pravidlo7_02(),
+                    new Pravidlo7_03(),
+                    new Pravidlo7_04(),
+            };
+            return prav;
+        }
 	},
 	PREJIMKA("přejímka") {
 		@Override
@@ -465,10 +486,7 @@ public enum ZakladniProfilValidace
                     new Pravidlo41(),
                     new Pravidlo43a(),
 					new Pravidlo44(), 
-					new Pravidlo45(), 
-					new Pravidlo46(), 
-					new Pravidlo47(), 
-					new Pravidlo48(), 
+                    new Pravidlo46(),
 					new Pravidlo49(), 
 					new Pravidlo50(), 
 					new Pravidlo51(), 
@@ -516,8 +534,7 @@ public enum ZakladniProfilValidace
 					new Pravidlo95(), 
 					new Pravidlo96(), 
 					new Pravidlo97(), 
-					new Pravidlo98(), 
-                    new Pravidlo99(),
+                    new Pravidlo98(),
                     new Pravidlo100(),
                     new Pravidlo101(),
                     new Pravidlo102(),
@@ -530,6 +547,17 @@ public enum ZakladniProfilValidace
 			};
 			return prav;
 		}		
+
+        @Override
+        public KomponentovePravidlo[] createFormatovaPravidla() {
+            KomponentovePravidlo[] prav = {
+                    new Pravidlo7_01(),
+                    new Pravidlo7_02(),
+                    new Pravidlo7_03(),
+                    new Pravidlo7_04(),
+            };
+            return prav;
+        }
 	};
 	
     final String nazev;

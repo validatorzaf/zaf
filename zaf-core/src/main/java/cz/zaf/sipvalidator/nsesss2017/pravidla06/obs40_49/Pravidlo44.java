@@ -9,8 +9,8 @@ import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
 //
 // OBSAHOVÁ č.44
@@ -35,7 +35,9 @@ public class Pravidlo44 extends K06PravidloBase {
         List<Element> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);
         List<Element> nodeListKomponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
         if (nodeListKomponenty.size() != nodeListMetsFile.size()) {
-            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen shodný počet <nsesss:Komponenta> a <mets:file>.");
+            nastavChybu(BaseCode.CHYBI_ELEMENT,
+                        "Nenalezen shodný počet <nsesss:Komponenta> a <mets:file>." + "Komponenty ("
+                                + nodeListKomponenty.size() + ") vs File (" + nodeListMetsFile.size() + ")");
         }
         if (nodeListKomponenty.isEmpty()) {
             return;

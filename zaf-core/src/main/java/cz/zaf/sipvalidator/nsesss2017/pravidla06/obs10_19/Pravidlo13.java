@@ -4,8 +4,8 @@ import com.fasterxml.jackson.databind.JsonSerializable;
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import org.w3c.dom.Element;
 
-import cz.zaf.sipvalidator.nsesss2017.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
 //OBSAHOVÁ č.13 Element <mets:mets> obsahuje právě jeden dětský element <mets:structMap>.",
 public class Pravidlo13 extends K06PravidloBase {
