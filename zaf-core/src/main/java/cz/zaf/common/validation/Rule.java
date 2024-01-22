@@ -5,7 +5,7 @@ package cz.zaf.common.validation;
  * 
  * This is abstract interface with rule definition.
  */
-public interface Rule {
+public interface Rule<Ctx extends RuleEvaluationContext> {
 
     /**
      * Rule code
@@ -34,4 +34,11 @@ public interface Rule {
      * @return generic error description
      */
     public String getGenericError();
+
+    /**
+     * Evaluate rule if it fit
+     * 
+     * @param ctx
+     */
+    public void eval(Ctx ctx);
 }

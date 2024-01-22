@@ -5,11 +5,15 @@
  */
 package cz.zaf.sipvalidator.nsesss2017;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
-import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.sip.ChybaPravidla;
+import cz.zaf.common.validation.Rule;
+import cz.zaf.sipvalidator.nsesss2017.pravidla00.VirCheckContext;
+import cz.zaf.sipvalidator.nsesss2017.pravidla00.vir00_09.Pravidlo1;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 
 
@@ -18,11 +22,10 @@ import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
  * 
  */
 public class K00_SkodlivehoKodu
-        extends KontrolaBase
+        extends KontrolaBase<VirCheckContext>
 {
 	
-	static public final String VIR1 = "vir1";
-    static public final String NAME = "škodlivého kódu";
+	static public final String NAME = "škodlivého kódu";
 
     private boolean kontrolaOk = true;
 	private String errorDescr;
@@ -51,30 +54,15 @@ public class K00_SkodlivehoKodu
 
 	@Override
     public void provedKontrolu() {
-        if (kontrolaOk) {
-            return;
-        }
+        VirCheckContext virtCheckContext = new VirCheckContext(kontrolaOk, errorDescr);
 
-		String descr;
-        if (errorDescr == null) {
-            descr = "Chybové hlášení nebylo předáno.";
-        } else {
-            descr = errorDescr;
-        }
-        String textPravidla = "Datový balíček SIP neobsahuje hrozbu.";
-        String popisChybyObecny = "Datový balíček SIP obsahuje hrozbu.";
-        String zdroj = "§ 21 odst. 6 vyhlášky č. 259/2012 Sb.";
+        List<Rule<VirCheckContext>> rules = new ArrayList<>();
+        rules.add(new Pravidlo1());
 
-        ChybaPravidla p = new ChybaPravidla(VIR1,
-                textPravidla,
-                descr, popisChybyObecny, null,
-                zdroj,
-                BaseCode.CHYBA,
-                null);
-        vysledekKontroly.add(p);
+        provedKontrolu(virtCheckContext, rules);
 	}
 
-	@Override
+    @Override
 	public String getNazev() {
 		return NAME;
 	}

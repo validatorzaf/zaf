@@ -19,6 +19,7 @@ import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.EntityId;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
+import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
@@ -174,7 +175,7 @@ public class Pravidlo107 extends K06PravidloBase {
         }
         String mimeType = ValuesGetter.getValueOfAttribut(fileNode, "MIMETYPE");
         if (!checkedMimeTypes.contains(mimeType)) {
-            EntityId entityId = kontrola.getEntityId(digiDokNode);
+            EntityId entityId = K06_Obsahova.getEntityId(digiDokNode);
             nastavChybu(BaseCode.CHYBI_KOMPONENTA,
                         "Originál ve výstupním formátu pro nejvyšší verzi komponenty nemá přípustný mimetype. Zjištěn typ: "
                                 + mimeType, fileNode, entityId);

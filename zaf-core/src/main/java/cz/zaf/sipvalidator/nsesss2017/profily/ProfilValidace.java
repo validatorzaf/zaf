@@ -1,7 +1,7 @@
 package cz.zaf.sipvalidator.nsesss2017.profily;
 
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.ObsahovePravidlo;
-import cz.zaf.sipvalidator.nsesss2017.pravidla07.KomponentovePravidlo;
+import cz.zaf.sipvalidator.nsesss2017.pravidla07.K07PravidloBase;
 
 /**
  * Rozhraní pro validační profily
@@ -36,5 +36,5 @@ public interface ProfilValidace {
      * 
      * @return Pole pravidel
      */
-    public KomponentovePravidlo[] createFormatovaPravidla();
+    public K07PravidloBase[] createFormatovaPravidla();
 }

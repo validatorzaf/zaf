@@ -96,7 +96,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo95;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo96;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo97;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo98;
-import cz.zaf.sipvalidator.nsesss2017.pravidla07.KomponentovePravidlo;
+import cz.zaf.sipvalidator.nsesss2017.pravidla07.K07PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.pravidla07.kom00_09.Pravidlo7_01;
 import cz.zaf.sipvalidator.nsesss2017.pravidla07.kom00_09.Pravidlo7_02;
 import cz.zaf.sipvalidator.nsesss2017.pravidla07.kom00_09.Pravidlo7_03;
@@ -209,8 +209,8 @@ public enum ZakladniProfilValidace
         }
 
         @Override
-        public KomponentovePravidlo[] createFormatovaPravidla() {
-            KomponentovePravidlo[] prav = {
+        public K07PravidloBase[] createFormatovaPravidla() {
+            K07PravidloBase[] prav = {
                     new Pravidlo7_01(),
                     new Pravidlo7_02(),
                     new Pravidlo7_03(),
@@ -326,8 +326,8 @@ public enum ZakladniProfilValidace
 		}		
 
         @Override
-        public KomponentovePravidlo[] createFormatovaPravidla() {
-            KomponentovePravidlo[] prav = {};
+        public K07PravidloBase[] createFormatovaPravidla() {
+            K07PravidloBase[] prav = {};
             return prav;
         }
 	},
@@ -435,8 +435,8 @@ public enum ZakladniProfilValidace
 		}		
 
         @Override
-        public KomponentovePravidlo[] createFormatovaPravidla() {
-            KomponentovePravidlo[] prav = {
+        public K07PravidloBase[] createFormatovaPravidla() {
+            K07PravidloBase[] prav = {
                     new Pravidlo7_01(),
                     new Pravidlo7_02(),
                     new Pravidlo7_03(),
@@ -549,8 +549,8 @@ public enum ZakladniProfilValidace
 		}		
 
         @Override
-        public KomponentovePravidlo[] createFormatovaPravidla() {
-            KomponentovePravidlo[] prav = {
+        public K07PravidloBase[] createFormatovaPravidla() {
+            K07PravidloBase[] prav = {
                     new Pravidlo7_01(),
                     new Pravidlo7_02(),
                     new Pravidlo7_03(),

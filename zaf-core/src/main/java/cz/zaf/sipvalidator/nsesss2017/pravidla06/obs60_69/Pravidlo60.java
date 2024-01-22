@@ -1,10 +1,11 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs60_69;
 
-import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.util.List;
 
 import org.w3c.dom.Element;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
+import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
@@ -33,13 +34,14 @@ public class Pravidlo60 extends K06PravidloBase {
                     NsessV3.ANALOGOVY_DOKUMENT);
             if (ad == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:AnalogovyDokument>. Dokumentu "
-                        + kontrola.getIdentifikatory(dokument) + ".", dokument, kontrola.getEntityId(dokument));
+                        + K06_Obsahova.getIdentifikatory(dokument) + ".", dokument, K06_Obsahova.getEntityId(dokument));
             }
             String hodnotaAnalogovyDokument = ad.getTextContent();
             if ("ne".equals(hodnotaAnalogovyDokument)) {
                 if (ValuesGetter.getXChild(dokument, "nsesss:Komponenty") == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen povinný element <nsesss:Komponenty>. Dokumentu "
-                            + kontrola.getIdentifikatory(dokument) + ".", dokument, kontrola.getEntityId(dokument));
+                            + K06_Obsahova.getIdentifikatory(dokument) + ".", dokument, K06_Obsahova.getEntityId(
+                                                                                                                 dokument));
                 }
             }
         }

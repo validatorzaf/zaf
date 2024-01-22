@@ -1,6 +1,6 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs100_109;
 
-import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -12,11 +12,11 @@ import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
+import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
-
-import java.util.ArrayList;
 
 //
 // Pokud existuje jakýkoli element <nsesss:Komponenty>, všechny dětské elementy
@@ -69,7 +69,7 @@ public class Pravidlo102 extends K06PravidloBase {
                 list.add(komponenta);
                 list.add(prevKomponenta);
                 nastavChybu(BaseCode.CHYBNA_KOMPONENTA, "Existuje více komponent se shodným číslem verze, poradi: " + poradi + ", verze: " + verze,
-                        list, kontrola.getEntityId(list));
+                            list, K06_Obsahova.getEntityId(list));
             }
         }
         checkValues(treeMap);
@@ -88,7 +88,7 @@ public class Pravidlo102 extends K06PravidloBase {
                     Element elKomponenta = zaznamVerze.getValue();
                     nastavChybu(BaseCode.CHYBNA_KOMPONENTA, "Nalezeno neočekávané číslo verze. Pořadí komponenty: " + poradi
                             + ", verze: " + verze + ", očekávané číslo verze: " + expectedVerze,
-                            elKomponenta, kontrola.getEntityId(elKomponenta));
+                                elKomponenta, K06_Obsahova.getEntityId(elKomponenta));
                 }
                 expectedVerze++;
             }

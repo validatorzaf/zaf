@@ -16,7 +16,6 @@ import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.exceptions.codes.ErrorCode;
 import cz.zaf.sipvalidator.nsesss2017.EntityId;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
-import cz.zaf.sipvalidator.nsesss2017.KontrolaNsess2017Context;
 import cz.zaf.sipvalidator.nsesss2017.MetsParser;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
@@ -35,7 +34,7 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
      */
     final public static LocalDate ROZHODNE_DATUM_VYSTUPNI_FORMAT = LocalDate.parse("2012-07-31");
 
-    protected K06_Obsahova kontrola;
+    protected K06KontrolaContext kontrola;
 
     final protected String kodPravidla;
     final protected String textPravidla;
@@ -48,8 +47,6 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
     protected List<EntityId> chybneEntity;
 
     protected MetsParser metsParser;
-
-    protected KontrolaNsess2017Context context;
 
     public K06PravidloBase(final String kodPravidla,
             final String textPravidla,
@@ -70,43 +67,11 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
     protected abstract void kontrola();
 
     @Override
-    public void kontrolaPravidla(final K06_Obsahova kontrola) {
-        this.kontrola = kontrola;
-        // reset promennych pred spustenim
-        String mistoChyby = null;
-        String detailChyby = null;
-
+    public void eval(final K06KontrolaContext kontrolaCtx) {
+        this.kontrola = kontrolaCtx;
         this.metsParser = kontrola.getMetsParser();
-        this.context = this.kontrola.getContext();
-
-        ErrorCode errorCode = null;
-        List<EntityId> entityIds = null;
-
-        try {
-            kontrola();
-            // vse ok
-            return;
-        } catch (ZafException e) {
-            errorCode = e.getErrorCode();
-            detailChyby = e.getMessage();
-            mistoChyby = e.getMistoChyby();
-
-            entityIds = e.getEntityIds();
-        } catch (Exception e) {
-            errorCode = BaseCode.NEZNAMA_CHYBA;
-            detailChyby = e.getLocalizedMessage();
-        }
-
-        kontrola.pridejChybu(kodPravidla,
-                errorCode,
-                textPravidla,
-                detailChyby,
-                obecnyPopisChyby,
-                mistoChyby,
-                zdrojChyby,
-                entityIds);
-
-        this.context = null;
+        kontrola();
+        this.metsParser = null;
         this.kontrola = null;
     }
 
@@ -239,7 +204,7 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
     }
 
     protected String getJmenoIdentifikator(Element node) {
-        return kontrola.getJmenoIdentifikator(node);
+        return K06_Obsahova.getJmenoIdentifikator(node);
     }
 
     /**
@@ -254,10 +219,11 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
         try {
             return Integer.parseInt(strYear);
         } catch (NumberFormatException nfe) {
-            Element entita = kontrola.getEntity(node);
-            nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Hodnota roku v elementu <" + node.getNodeName() + "> uvedena ve špatném formátu. Hodnota: "
-                    + content,
-                    node, kontrola.getEntityId(entita));
+            Element entita = K06_Obsahova.getEntity(node);
+            nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
+                        "Hodnota roku v elementu <" + node.getNodeName() + "> uvedena ve špatném formátu. Hodnota: "
+                                + content,
+                        node, K06_Obsahova.getEntityId(entita));
             return null;
         }
     }

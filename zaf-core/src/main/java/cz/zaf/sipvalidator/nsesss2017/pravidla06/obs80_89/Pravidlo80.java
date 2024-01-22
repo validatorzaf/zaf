@@ -37,7 +37,7 @@ public class Pravidlo80 extends K06PravidloBase {
             }
             Integer date = vratRok(datum);
 
-            int year = context.getLocalDate().getYear();
+            int year = kontrola.getContext().getLocalDate().getYear();
             if (!(date <= year)) {
                 nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Hodnota elementu <nsesss:Datum> (" + date + ") je vyšší než aktuální rok. "
                         + getJmenoIdentifikator(skrizeni), datum, kontrola.getEntityId(skrizeni));

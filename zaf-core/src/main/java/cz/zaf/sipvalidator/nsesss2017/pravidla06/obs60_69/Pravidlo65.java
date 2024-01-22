@@ -61,7 +61,7 @@ public class Pravidlo65 extends K06PravidloBase {
     }
 
     private void kontrolaSpisuDilu(Element elZakladniEntita, List<Element> dokumenty) {
-        int rokSkartacniOperace = this.context.getLocalDate().getYear();
+        int rokSkartacniOperace = this.kontrola.getContext().getLocalDate().getYear();
 
         Element elRokSpousteciUdalosti = ValuesGetter.getXChild(elZakladniEntita, NsessV3.EVIDENCNI_UDAJE,
                                                                 NsessV3.VYRAZOVANI,

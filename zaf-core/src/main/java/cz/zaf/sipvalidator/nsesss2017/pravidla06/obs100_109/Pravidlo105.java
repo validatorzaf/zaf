@@ -6,8 +6,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.stream.Collectors;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -19,6 +19,7 @@ import org.w3c.dom.Node;
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
+import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
@@ -187,7 +188,7 @@ public class Pravidlo105 extends K06PravidloBase {
                 nastavChybu(BaseCode.CHYBI_KOMPONENTA,
                             "Nenalezen originál ve výstupním formátu, existují originály, které ho vyžadují. Počet. "
                                     + origList.size(), origList,
-                            kontrola.getEntityId(digiDokNode));
+                            K06_Obsahova.getEntityId(digiDokNode));
             }
         }
     }

@@ -1,6 +1,5 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs100_109;
 
-import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
@@ -10,8 +9,9 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
+import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
@@ -77,7 +77,7 @@ public class Pravidlo100 extends K06PravidloBase {
                 Element elKomponenta = (Element) e.getValue().get(0);
                 nastavChybu(BaseCode.CHYBNA_KOMPONENTA, "Komponenta má chybné pořadí, poslední zjištěné pořadí je: "
                         + pos + ", pořadí následující komponenty má však hodnotu: " + key,
-                        elKomponenta, kontrola.getEntityId(elKomponenta));
+                            elKomponenta, K06_Obsahova.getEntityId(elKomponenta));
             }
             pos++;
         }

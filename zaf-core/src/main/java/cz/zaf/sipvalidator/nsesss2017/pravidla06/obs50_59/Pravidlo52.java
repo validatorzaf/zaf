@@ -43,7 +43,8 @@ public class Pravidlo52 extends K06PravidloBase {
                 }
                 href = HelperString.replaceSeparators(href);
 
-                String cestaKeKomponente = SIP_MAIN_helper.getCesta_komponenty(context.getSip()).replaceFirst("komponenty",
+                String cestaKeKomponente = SIP_MAIN_helper.getCesta_komponenty(kontrola.getContext().getSip())
+                        .replaceFirst("komponenty",
                         "")
                         + href;
                 File file = new File(cestaKeKomponente);
@@ -57,7 +58,8 @@ public class Pravidlo52 extends K06PravidloBase {
                 }
                 seznam_z_xml.add(file.getName());
             }
-            File[] listKomponent = new File(SIP_MAIN_helper.getCesta_komponenty(context.getSip())).listFiles();
+            File[] listKomponent = new File(SIP_MAIN_helper.getCesta_komponenty(kontrola.getContext().getSip()))
+                    .listFiles();
             for (File listKomponent1 : listKomponent) {
                 String name = listKomponent1.getName();
                 boolean jeVSeznamu = false;

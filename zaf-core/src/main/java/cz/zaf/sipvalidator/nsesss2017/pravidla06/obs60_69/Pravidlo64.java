@@ -76,7 +76,7 @@ public class Pravidlo64 extends K06PravidloBase {
         String rokSpousteciUdalosti = elRokSousteciUdalosti.getTextContent();
 
         try {
-            int hodnotaOperace = context.getLocalDate().getYear();
+            int hodnotaOperace = kontrola.getContext().getLocalDate().getYear();
             int hodnotaLhuta = Integer.parseInt(hodnotaElSkartacniLhuta);
             int hodnotaUdalosti = Integer.parseInt(rokSpousteciUdalosti);
             if (hodnotaOperace < (hodnotaLhuta + hodnotaUdalosti + 1)) {

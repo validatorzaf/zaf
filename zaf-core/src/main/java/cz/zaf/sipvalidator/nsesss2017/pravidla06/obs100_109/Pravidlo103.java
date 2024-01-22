@@ -16,6 +16,7 @@ import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
+import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
@@ -97,7 +98,7 @@ public class Pravidlo103 extends K06PravidloBase {
                             nastavChybu(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
                                         "Dokument má více komponent se shodným pořadím označených jako originál. poradi: "
                                                 + komponentyNaPozici.getKey(), digitDok.getKey(),
-                                        kontrola.getEntityId(digitDok.getKey()));
+                                        K06_Obsahova.getEntityId(digitDok.getKey()));
                         }
                         original = komponenta;
                     }
@@ -106,7 +107,7 @@ public class Pravidlo103 extends K06PravidloBase {
                     nastavChybu(BaseCode.CHYBA,
                                 "Dokument neobsahuje komponentu označenou jako originál. poradi: "
                             + komponentyNaPozici.getKey(), digitDok.getKey(),
-                            kontrola.getEntityId(digitDok.getKey()));
+                                K06_Obsahova.getEntityId(digitDok.getKey()));
                 }
             }
         }

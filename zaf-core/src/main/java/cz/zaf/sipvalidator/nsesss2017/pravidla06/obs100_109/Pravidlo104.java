@@ -16,6 +16,7 @@ import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
+import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
@@ -126,7 +127,7 @@ public class Pravidlo104 extends K06PravidloBase {
                 nastavChybu(BaseCode.CHYBA,
                             "Existuje více komponent s formou uchování originál, pozice: " + pozice
                                     + ", kolidující verze: " + verze, komp,
-                            kontrola.getEntityId(digiDokNode));
+                            K06_Obsahova.getEntityId(digiDokNode));
             }
 
             verzeOriginal = verze;
@@ -136,7 +137,7 @@ public class Pravidlo104 extends K06PravidloBase {
         if (verzeOriginal == null) {
             nastavChybu(BaseCode.CHYBA, "Nebyla nalezena komponenta s formou uchování originál, pozice: " + pozice,
                         digiDokNode,
-                        kontrola.getEntityId(digiDokNode));
+                        K06_Obsahova.getEntityId(digiDokNode));
         }
 
         // Kontrola, zda je nejvyssi verze
@@ -146,7 +147,7 @@ public class Pravidlo104 extends K06PravidloBase {
                     + ", nejvyšší číslo verze: " + nejvyssiVerze
                     + ", číslo verze originálu: " + verzeOriginal,
                         digiDokNode,
-                        kontrola.getEntityId(digiDokNode));
+                        K06_Obsahova.getEntityId(digiDokNode));
         }
     }
 }

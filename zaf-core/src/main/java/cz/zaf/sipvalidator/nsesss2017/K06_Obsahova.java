@@ -13,10 +13,11 @@ import java.util.Map;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+import cz.zaf.common.validation.Rule;
 import cz.zaf.sipvalidator.exceptions.codes.ErrorCode;
 import cz.zaf.sipvalidator.nsesss2017.EntityId.DruhEntity;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06KontrolaContext;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.ObsahovePravidlo;
-import cz.zaf.sipvalidator.sip.ChybaPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 
@@ -25,7 +26,7 @@ import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
  *
  */
 public class K06_Obsahova
-        extends KontrolaBase {
+        extends KontrolaBase<K06KontrolaContext> {
 
     static final public String NAME = "kontrola obsahu";
 
@@ -45,7 +46,7 @@ public class K06_Obsahova
         this.seznamPravidel = obsahovaPravidla;
     }
 
-    public String getJmenoIdentifikator(Element node) {
+    static public String getJmenoIdentifikator(Element node) {
         if (node != null) {
             Element entity = getEntity(node);
             return getJmeno(entity) + " " + getIdentifikatory(entity) + ".";
@@ -152,7 +153,7 @@ public class K06_Obsahova
      * @param element
      * @return
      */
-    public Element getIdentifikator(Element element) {
+    static public Element getIdentifikator(Element element) {
         String elementName = element.getNodeName();
         Element identifikator;
 
@@ -166,7 +167,7 @@ public class K06_Obsahova
         }
     }
 
-    public String getIdentifikatory(Element node) {
+    static public String getIdentifikatory(Element node) {
         String nodename = node.getNodeName();
         String hodnota = "nenalezeno", zdroj = "nenalezeno";
         Node identifikator;
@@ -195,7 +196,7 @@ public class K06_Obsahova
         return "(Ident. hodnota: " + hodnota + ", zdroj: " + zdroj + ")";
     }
 
-    private String getJmeno(Node node) {
+    static private String getJmeno(Node node) {
         String jmeno = node.getNodeName();
         switch (jmeno) {
             case "nsesss:SpisovyPlan":
@@ -220,36 +221,14 @@ public class K06_Obsahova
      *
      * @param idPravidla
      * @param errorCode kod chyby
-     * @param textPravidla
      * @param detailChyby
-     * @param obecnyPopisChyby
      * @param mistoChyby
-     * @param zdroj
      */
-    void pridejChybu(String kodPravidla,
-            ErrorCode errorCode,
-            String textPravidla,
-            String detailChyby,
-            String obecnyPopisChyby,
-            String mistoChyby,
-            String zdroj) {
-        pridejChybu(kodPravidla, errorCode, textPravidla, detailChyby, obecnyPopisChyby, mistoChyby, zdroj,
-                null);
-    }
-
-    public void pridejChybu(String kodPravidla, ErrorCode errorCode, String textPravidla, String detailChyby,
-            String obecnyPopisChyby, String mistoChyby, String zdrojChyby,
-            List<EntityId> entityIds) {
-        ChybaPravidla p = new ChybaPravidla(kodPravidla,
-                textPravidla,
-                detailChyby,
-                obecnyPopisChyby,
-                mistoChyby,
-                zdrojChyby,
-                errorCode,
-                entityIds);
-        vysledekKontroly.add(p);
-
+    void pridejChybu(final Rule<K06KontrolaContext> rule,
+                     ErrorCode errorCode,
+                     String detailChyby,
+                     String mistoChyby) {
+        pridejChybu(rule, errorCode, detailChyby, mistoChyby, null);
     }
 
     // na konci oddělovač nehlídá
@@ -267,24 +246,9 @@ public class K06_Obsahova
 
     @Override
     public void provedKontrolu() {
-        // Nastaveni promenych pro kontroly
-        // bude nutne casem prepracovat
-        this.metsParser = ctx.getMetsParser();
-        this.zakladniEntity = metsParser.getZakladniEntity();
 
-        this.sipSoubor = ctx.getSip();
-
-        for (int i = 0; i < seznamPravidel.length; i++) {
-            ObsahovePravidlo pravidlo = seznamPravidel[i];
-
-            String kodPravidla = pravidlo.getCode();
-            // skip excluded checks
-            if (ctx.isExcluded(kodPravidla)) {
-                continue;
-            }
-
-            pravidlo.kontrolaPravidla(this);
-        }
+        K06KontrolaContext k06KontrolaContext = new K06KontrolaContext(ctx.getMetsParser(), ctx);
+        provedKontrolu(k06KontrolaContext, seznamPravidel);
 
     }
 

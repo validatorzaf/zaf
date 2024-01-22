@@ -2,6 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla07;
 
 import org.w3c.dom.Element;
 
+import cz.zaf.common.validation.Rule;
 import cz.zaf.common.xml.PositionalXMLReader;
 import cz.zaf.sipvalidator.exceptions.ZafException;
 import cz.zaf.sipvalidator.exceptions.ZafXmlPositionException;
@@ -10,7 +11,7 @@ import cz.zaf.sipvalidator.exceptions.codes.ErrorCode;
 /**
  * Vychozi trida pro implementaci pravidel kontrol komponent
  */
-abstract public class K07PravidloBase implements KomponentovePravidlo {
+abstract public class K07PravidloBase implements Rule<K07KontrolaContext> {
 
     final protected String kodPravidla;
     final protected String textPravidla;
@@ -50,7 +51,7 @@ abstract public class K07PravidloBase implements KomponentovePravidlo {
     }
 
     @Override
-    final public void kontrolaPravidla(K07KontrolaContext ctx) {
+    final public void eval(K07KontrolaContext ctx) {
         this.ctx = ctx;
         kontrola();
         this.ctx = null;

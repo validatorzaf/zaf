@@ -6,6 +6,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
+import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
@@ -39,10 +40,10 @@ public class Pravidlo40 extends K06PravidloBase {
             // TODO: Je toto nutne? mozna musi existovat jiz ze souladu se schematem
             if (analogovyDokument == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT,
-                            "Element <nsesss:Dokument> " + kontrola.getIdentifikatory(dokument)
+                            "Element <nsesss:Dokument> " + K06_Obsahova.getIdentifikatory(dokument)
                                     + " neobsahuje element <nsesss:AnalogovyDokument>.",
                             dokument,
-                            kontrola.getEntityId(dokument));
+                            K06_Obsahova.getEntityId(dokument));
             }
             boolean maHodnotuNe = analogovyDokument.getTextContent().toLowerCase().equals("ne");
             if(maHodnotuNe){
