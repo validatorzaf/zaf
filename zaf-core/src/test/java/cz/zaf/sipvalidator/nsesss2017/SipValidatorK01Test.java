@@ -2,6 +2,9 @@ package cz.zaf.sipvalidator.nsesss2017;
 
 import org.junit.jupiter.api.Test;
 
+import cz.zaf.sipvalidator.nsesss2017.pravidla01.dat00_09.Pravidlo1;
+import cz.zaf.sipvalidator.nsesss2017.pravidla01.dat00_09.Pravidlo2;
+import cz.zaf.sipvalidator.nsesss2017.pravidla01.dat00_09.Pravidlo3;
 import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 import cz.zaf.sipvalidator.sip.StavKontroly;
@@ -23,15 +26,15 @@ class SipValidatorK01Test
     @Test
     void testK01_01_OK01() {
         testPackageK01("data1-OK", LoadType.LT_DIR, StavKontroly.CHYBA,
-                       new String[] { K01_DatoveStruktury.DATA1, K01_DatoveStruktury.DATA2 },
-                       new String[] { K01_DatoveStruktury.DATA3 });
+                       new String[] { Pravidlo1.KOD, Pravidlo2.KOD },
+                       new String[] { Pravidlo3.DATA3 });
     }
 
     @Test
     void testK01_01_01() {
         testPackageK01("data1-chyba1.xml", LoadType.LT_XML, StavKontroly.CHYBA,
                        null,
-                       new String[] { K01_DatoveStruktury.DATA1 });
+                       new String[] { Pravidlo1.KOD });
     }
 
     @Test
@@ -39,92 +42,92 @@ class SipValidatorK01Test
         testPackageK01("data1-chyba2.zip", LoadType.LT_ZIP, StavKontroly.CHYBA,
                        new String[] {},
                        new String[] {
-                               K01_DatoveStruktury.DATA1,
-                               K01_DatoveStruktury.DATA2 });
+                               Pravidlo1.KOD,
+                               Pravidlo2.KOD });
     }
 
     @Test
     void testK01_01_03() {
         testPackageK01("data1-chyba3.pdf", LoadType.LT_UNKNOWN, StavKontroly.CHYBA,
-                       new String[] { K01_DatoveStruktury.DATA2 },
-                       new String[] { K01_DatoveStruktury.DATA1, K01_DatoveStruktury.DATA3 });
+                       new String[] { Pravidlo2.KOD },
+                       new String[] { Pravidlo1.KOD, Pravidlo3.DATA3 });
     }
 
     @Test
     void testK01_01_04() {
         testPackageK01("data1-chyba4.zip", LoadType.LT_ZIP, StavKontroly.CHYBA,
                        null,
-                       new String[] { K01_DatoveStruktury.DATA1,
-                               K01_DatoveStruktury.DATA2, K01_DatoveStruktury.DATA3 });
+                       new String[] { Pravidlo1.KOD,
+                               Pravidlo2.KOD, Pravidlo3.DATA3 });
     }
 
     @Test
     void testK01_02_01() {
         testPackageK01("data2-chyba1.zip", LoadType.LT_ZIP, StavKontroly.CHYBA,
-                       new String[] { K01_DatoveStruktury.DATA1 },
-                       new String[] { K01_DatoveStruktury.DATA2, K01_DatoveStruktury.DATA3 });
+                       new String[] { Pravidlo1.KOD },
+                       new String[] { Pravidlo2.KOD, Pravidlo3.DATA3 });
     }
 
     @Test
     void testK01_02_02() {
         testPackageK01("data2-chyba2.zip", LoadType.LT_ZIP, StavKontroly.CHYBA,
-                       new String[] { K01_DatoveStruktury.DATA1 },
-                       new String[] { K01_DatoveStruktury.DATA2, K01_DatoveStruktury.DATA3 });
+                       new String[] { Pravidlo1.KOD },
+                       new String[] { Pravidlo2.KOD, Pravidlo3.DATA3 });
     }
 
     @Test
     void testK01_02_03() {
         testPackageK01("data2-chyba3.zip", LoadType.LT_ZIP, StavKontroly.CHYBA,
-                       new String[] { K01_DatoveStruktury.DATA1 },
-                       new String[] { K01_DatoveStruktury.DATA2, K01_DatoveStruktury.DATA3 });
+                       new String[] { Pravidlo1.KOD },
+                       new String[] { Pravidlo2.KOD, Pravidlo3.DATA3 });
     }
 
     @Test
     void testK01_02_OK01() {
         testPackageK01("data2-OK1.zip", LoadType.LT_ZIP, StavKontroly.CHYBA,
-                       new String[] { K01_DatoveStruktury.DATA1, K01_DatoveStruktury.DATA2 },
-                       new String[] { K01_DatoveStruktury.DATA3 });
+                       new String[] { Pravidlo1.KOD, Pravidlo2.KOD },
+                       new String[] { Pravidlo3.DATA3 });
     }
 
     @Test
     void testK01_11() {
         testPackageK01("data3-chyba1", LoadType.LT_DIR, StavKontroly.CHYBA,
-                       new String[] { K01_DatoveStruktury.DATA1, K01_DatoveStruktury.DATA2 },
-                       new String[] { K01_DatoveStruktury.DATA3 });
+                       new String[] { Pravidlo1.KOD, Pravidlo2.KOD },
+                       new String[] { Pravidlo3.DATA3 });
     }
 
     @Test
     void testK01_12() {
         testPackageK01("data3-chyba2", LoadType.LT_DIR, StavKontroly.CHYBA,
-                       new String[] { K01_DatoveStruktury.DATA1, K01_DatoveStruktury.DATA2 },
-                       new String[] { K01_DatoveStruktury.DATA3 });
+                       new String[] { Pravidlo1.KOD, Pravidlo2.KOD },
+                       new String[] { Pravidlo3.DATA3 });
     }
 
     @Test
     void testK01_13() {
         testPackageK01("data3-chyba3", LoadType.LT_DIR, StavKontroly.CHYBA,
-                       new String[] { K01_DatoveStruktury.DATA1, K01_DatoveStruktury.DATA2 },
-                       new String[] { K01_DatoveStruktury.DATA3 });
+                       new String[] { Pravidlo1.KOD, Pravidlo2.KOD },
+                       new String[] { Pravidlo3.DATA3 });
     }
 
     @Test
     void testK01_14() {
         testPackageK01("data3-chyba4", LoadType.LT_DIR, StavKontroly.CHYBA,
-                       new String[] { K01_DatoveStruktury.DATA1, K01_DatoveStruktury.DATA2 },
-                       new String[] { K01_DatoveStruktury.DATA3 });
+                       new String[] { Pravidlo1.KOD, Pravidlo2.KOD },
+                       new String[] { Pravidlo3.DATA3 });
     }
 
     @Test
     void testK01_15() {
         testPackageK01("data3-OK1", LoadType.LT_DIR, StavKontroly.OK,
-                       new String[] { K01_DatoveStruktury.DATA1, K01_DatoveStruktury.DATA2, K01_DatoveStruktury.DATA3 },
+                       new String[] { Pravidlo1.KOD, Pravidlo2.KOD, Pravidlo3.DATA3 },
                        null);
     }
 
     @Test
     void testK01_16() {
         testPackageK01("data3-OK2", LoadType.LT_DIR, StavKontroly.OK,
-                       new String[] { K01_DatoveStruktury.DATA1, K01_DatoveStruktury.DATA2, K01_DatoveStruktury.DATA3 },
+                       new String[] { Pravidlo1.KOD, Pravidlo2.KOD, Pravidlo3.DATA3 },
                        null);
     }
 }

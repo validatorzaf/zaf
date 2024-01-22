@@ -5,14 +5,11 @@
  */
 package cz.zaf.sipvalidator.nsesss2017;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
-import cz.zaf.common.validation.Rule;
 import cz.zaf.sipvalidator.nsesss2017.pravidla00.VirCheckContext;
+import cz.zaf.sipvalidator.nsesss2017.pravidla00.VirCheckRule;
 import cz.zaf.sipvalidator.nsesss2017.pravidla00.vir00_09.Pravidlo1;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 
@@ -55,9 +52,10 @@ public class K00_SkodlivehoKodu
 	@Override
     public void provedKontrolu() {
         VirCheckContext virtCheckContext = new VirCheckContext(kontrolaOk, errorDescr);
-
-        List<Rule<VirCheckContext>> rules = new ArrayList<>();
-        rules.add(new Pravidlo1());
+        
+        VirCheckRule rules[] = {
+                new Pravidlo1()
+        };
 
         provedKontrolu(virtCheckContext, rules);
 	}

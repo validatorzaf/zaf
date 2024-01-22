@@ -1,11 +1,11 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla00.vir00_09;
 
-import cz.zaf.common.validation.Rule;
 import cz.zaf.sipvalidator.exceptions.ZafException;
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.pravidla00.VirCheckContext;
+import cz.zaf.sipvalidator.nsesss2017.pravidla00.VirCheckRule;
 
-public class Pravidlo1 implements Rule<VirCheckContext> {
+public class Pravidlo1 implements VirCheckRule {
 
     static public final String KOD = "vir1";
     static final String textPravidla = "Datový balíček SIP neobsahuje hrozbu.";
