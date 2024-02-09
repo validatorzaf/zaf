@@ -8,7 +8,7 @@ Kontrola komponent a jejich obsahu
 [horizontal]
 
 Pravidlo:: Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut SIZE s hodnotou velikosti příslušné komponenty v bytech.
-Kód:: obs48
+Kód:: kom01
 Zdroj:: Bod 2.15. přílohy č. 3 NSESSS.
 Popis chyby:: Chybí velikost komponenty (počítačového souboru) nebo je uvedena chybně.
 Aktivní:: skartační řízení (s komponentami), přejímka
@@ -20,7 +20,7 @@ Aktivní:: skartační řízení (s komponentami), přejímka
 [horizontal]
 
 Pravidlo:: Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut CHECKSUM s hodnotou kontrolního součtu příslušné komponenty podle kryptografického algoritmu uvedeného v atributu CHECKSUMTYPE.
-Kód:: obs47
+Kód:: kom02
 Zdroj:: Bod 2.15. přílohy č. 3 NSESSS.
 Popis chyby:: Celistvost komponenty (počítačového souboru) je narušena nebo chybí možnost jejího ověření.
 Aktivní:: skartační řízení (s komponentami), přejímka
@@ -32,7 +32,7 @@ Aktivní:: skartační řízení (s komponentami), přejímka
 [horizontal]
 
 Pravidlo:: Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut MIMETYPE s hodnotou identifikace souborového formátu příslušné komponenty.
-Kód:: obs45
+Kód:: kom03
 Zdroj:: Bod 2.15. přílohy č. 3 NSESSS.
 Popis chyby:: Komponenta (počítačový soubor) má uvedený chybný datový formát.
 Aktivní:: skartační řízení (s komponentami), přejímka
@@ -47,7 +47,7 @@ možné alternativně použít SiegFried, viz xref:pouziti.adoc#ZafSystParametry
 [horizontal]
 
 Pravidlo:: Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ne a zároveň obsahuje element <nsesss:Komponenty>, ze všech dětských elementů <nsesss:Komponenta>, který obsahuje atribut forma_uchovani s hodnotou originál nebo originál ve výstupním datovém formátu a současně atribut verze s hodnotou nejvyššího čísla verze, potom jakýkoli element <mets:file>, který obsahuje atribut DMDID s hodnotou uvedenou v atributu ID jakéhokoli elementu <nsesss:Komponenta> příslušné komponenty a dále obsahuje atribut MIMETYPE s hodnotou application/pdf, reprezentuje příslušnou komponentu ve shodě s normou PDF/A. Kontrola se neprovádí, pokud byla základní entita vyřízena/uzavřena do 31. 7. 2012 včetně.
-Kód:: obs99
+Kód:: kom04
 Zdroj:: § 23 odst. 2 vyhlášky č. 259/2012 Sb.; Informační list NA, čá. 6/2020, č. 3/2020.
 Popis chyby:: Komponenta (počítačový soubor) v datovém formátu PDF není ve výstupním datovém formátu.
 Aktivní:: skartační řízení (s komponentami), přejímka
