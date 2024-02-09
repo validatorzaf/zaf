@@ -32,7 +32,7 @@ v repozitáři pro Maven [https://www.lightcomp.cz/releases/repository/lc-public
 
 ### Vývojová verze
 
-Výdána verze 1.1.0-rc-1
+Výdána verze 1.1.0-rc-2
 
 Jednotlivé verze jsou dostupné na [GitHub Releases](https://github.com/validatorzaf/zaf/releases) a 
 v repozitáři pro Maven [https://www.lightcomp.cz/releases/repository/lc-public-release/](https://www.lightcomp.cz/releases/repository/lc-public-release/).
