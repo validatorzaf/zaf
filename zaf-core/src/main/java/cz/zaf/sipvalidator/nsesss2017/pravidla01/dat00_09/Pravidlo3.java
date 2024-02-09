@@ -11,10 +11,10 @@ import cz.zaf.sipvalidator.sip.SipInfo;
 
 public class Pravidlo3 extends DatCheckRuleBase {
 
-    static final public String DATA3 = "data3";
+    static final public String KOD = "data3";
 
     public Pravidlo3() {
-        super(DATA3,
+        super(KOD,
                 "Složka obsahuje právě jeden soubor pojmenovaný mets.xml nebo právě jeden soubor pojmenovaný mets.xml a složku pojmenovanou komponenty.",
                 "Uvedena jsou chybně metadata a komponenty (počítačové soubory) v datovém balíčku SIP.",
                 "Požadavek 11.2.2, 11.2.3 a 11.2.8 NSESSS.");

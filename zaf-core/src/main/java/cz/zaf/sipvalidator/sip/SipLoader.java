@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.Validate;
 import org.slf4j.Logger;
@@ -208,6 +209,10 @@ public class SipLoader
         log.debug("Checking zip content, expected main directory: {}", ocekavanejmeno);
         try {
             ArrayList<FileHeader> list = (ArrayList<FileHeader>) zipFile.getFileHeaders();
+            if (CollectionUtils.isEmpty(list)) {
+                log.info("Empty ZIP file");
+                return false;
+            }
             for (int i = 0; i < list.size(); i++) {
                 FileHeader fh = list.get(i);
                 String s = fh.getFileName();
