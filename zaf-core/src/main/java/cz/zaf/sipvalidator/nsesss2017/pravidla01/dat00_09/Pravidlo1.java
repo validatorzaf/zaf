@@ -10,7 +10,7 @@ import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 // (jeho MIME Content-type je detekován jako application/zip) nebo složka.
 public class Pravidlo1 extends DatCheckRuleBase {
 
-    static final public String KOD = "data1";
+    static final public String KOD = "dat1";
 
     public Pravidlo1() {
         super(KOD,

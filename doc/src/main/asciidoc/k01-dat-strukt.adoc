@@ -22,7 +22,7 @@ Popis chyby:: Uvedeno je chybně označení datového balíčku SIP.
 
 [horizontal]
 
-Pravidlo:: Pokud je datový balíček SIP komprimován do souboru v datovém formátu ZIP, po rozbalení obsahuje právě jednu složku. Ta má stejný název jako je název souboru v datovém formátu ZIP.
+Pravidlo:: Složka obsahuje právě jeden soubor pojmenovaný mets.xml nebo právě jeden soubor pojmenovaný mets.xml a složku pojmenovanou komponenty.
 Kód:: dat3
 Zdroj:: Požadavek 11.2.2, 11.2.3 a 11.2.8 NSESSS.
 Popis chyby:: Uvedena jsou chybně metadata a komponenty (počítačové soubory) v datovém balíčku SIP.

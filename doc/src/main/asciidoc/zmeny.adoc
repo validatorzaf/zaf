@@ -18,11 +18,11 @@
 
 
 == v4, 26.11.2022
-* Nové pravidlo <<obs54>> pro kontrolu vazby mezi strukturální mapou, popisnými a administrativními metadaty. Pravidlo nahrazuje dřívější 54a.
+* Nové pravidlo <<obs54>> pro kontrolu vazby mezi strukturální mapou, popisnými a administrativními metadaty. Zrušeno pravidlo obs54a, nahrazeno úpravami obs54.
 
 == v5, 5.1.2023
 * Nové pravidlo <<obs41>>
 
 == v6, 23.1.2024
- * Přesun pravidel pro kontrolu komponent do samostatné vrstvy: <<kom01>> (dříve obs48), <<kom02>> (dříve obs47),
-   <<kom03>> (dříve obs45), <<kom04>> (dříve obs99)
+ * Přesun pravidel pro kontrolu komponent do samostatné vrstvy: <<kom1>> (dříve obs48), <<kom2>> (dříve obs47),
+   <<kom3>> (dříve obs45), <<kom4>> (dříve obs99)

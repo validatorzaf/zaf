@@ -49,7 +49,7 @@ public class Pravidlo7_04 extends K07PravidloBase {
 
     static Logger log = LoggerFactory.getLogger(Pravidlo7_04.class);
 
-    public static final String KOD = "kom04";
+    public static final String KOD = "kom4";
 
     VeraValidatorProxy veraValidatorProxy;
     List<Element> komponenty;

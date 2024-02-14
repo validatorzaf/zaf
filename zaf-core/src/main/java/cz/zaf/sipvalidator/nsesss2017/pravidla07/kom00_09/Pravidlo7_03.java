@@ -35,7 +35,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla07.K07PravidloEachFile;
 //
 public class Pravidlo7_03 extends K07PravidloEachFile {
 
-    static final public String KOD = "kom03";
+    static final public String KOD = "kom3";
 
     public Pravidlo7_03() {
         super(KOD,

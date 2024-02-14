@@ -1,15 +1,14 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89;
 
-import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Element;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
-
-import org.apache.commons.lang3.StringUtils;
 
 public class Pravidlo85 extends K06PravidloBase {
     
@@ -18,7 +17,7 @@ public class Pravidlo85 extends K06PravidloBase {
     public Pravidlo85() {
         super(OBS85,
                 "Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano, potom element <nsesss:Manipulace> obsahuje dětský element <nsesss:UkladaciJednotka> s neprázdnou hodnotou.",
-                "Chybí ukládací jednotka dokumentu v analogově podobě.",
+                "Chybí ukládací jednotka dokumentu v analogové podobě.",
                 "Příloha č. 2 NSESSS, ř. 1352.");
     }
 

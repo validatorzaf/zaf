@@ -69,7 +69,7 @@ Pokročilé funkce validátoru je možné řídit pomocí systémových parametr
 *zaf.siegfried.path*::
   Úplná cesta ke spustitelnému souboru aplikace SiegFried. Pokud je cesta nastavena 
   použije se tato aplikace pro ověření správnosti mimeType viz 
-  xref:k06-obsahova.adoc#obs45[pravidlo obs45]. Příklad:
+  xref:k07-komponenty.adoc#kom3[pravidlo kom3]. Příklad:
    
   `-Dzaf.siegfried.path=C:\toolkits\zaf\sf\sf.exe`
 

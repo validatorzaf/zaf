@@ -11,7 +11,7 @@ import cz.zaf.sipvalidator.sip.SipInfo;
 
 public class Pravidlo3 extends DatCheckRuleBase {
 
-    static final public String KOD = "data3";
+    static final public String KOD = "dat3";
 
     public Pravidlo3() {
         super(KOD,

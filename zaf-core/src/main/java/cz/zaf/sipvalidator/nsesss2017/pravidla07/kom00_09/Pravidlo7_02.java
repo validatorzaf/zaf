@@ -16,7 +16,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla07.K07PravidloEachFile;
 //OBSAHOVÁ č.47 Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut CHECKSUM s hodnotou kontrolního součtu příslušné komponenty podle kryptografického algoritmu uvedeného v atributu CHECKSUMTYPE.",
 public class Pravidlo7_02 extends K07PravidloEachFile {
 
-    static final public String KOD = "kom02";
+    static final public String KOD = "kom2";
 
     public Pravidlo7_02() {
         super(KOD,

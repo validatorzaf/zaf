@@ -8,7 +8,7 @@ import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 
 public class Pravidlo2 extends DatCheckRuleBase {
 
-    static final public String KOD = "data2";
+    static final public String KOD = "dat2";
 
     public Pravidlo2() {
         super(KOD,

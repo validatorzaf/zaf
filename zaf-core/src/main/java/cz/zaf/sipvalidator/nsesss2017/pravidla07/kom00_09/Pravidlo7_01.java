@@ -16,7 +16,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla07.K07PravidloEachFile;
 // s hodnotou velikosti příslušné komponenty v bytech
 public class Pravidlo7_01 extends K07PravidloEachFile {
 
-    static final public String KOD = "kom01";
+    static final public String KOD = "kom1";
 
     public Pravidlo7_01() {
         super(KOD,
