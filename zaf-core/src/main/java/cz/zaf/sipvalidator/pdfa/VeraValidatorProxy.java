@@ -46,6 +46,20 @@ public class VeraValidatorProxy {
      */
     public static final String ZAF_VERA_PATH = "zaf.vera.path";
 
+    /**
+     * Interval before timeout when running validation
+     * 
+     * Value is number of minutes
+     */
+    public static final String ZAF_VERA_TIMEOUT = "zaf.vera.timeout";
+
+    /**
+     * JVM options
+     * 
+     * Extra JVM parameters
+     */
+    public static final String ZAF_VERA_JVM_PARAMS = "zaf.vera.jvm.params";
+
     // 10 minutes
     public static int inactivityDelay = 10;
     public static TimeUnit inactivityTimeunit = TimeUnit.MINUTES;
@@ -57,6 +71,11 @@ public class VeraValidatorProxy {
     private Path veraAppPath;
 
     private String javaBin;
+
+    /**
+     * Collection of JVM params
+     */
+    private List<String> jvmParams;
 
     final private ExecutorService executor = Executors.newSingleThreadExecutor();
 
@@ -88,7 +107,22 @@ public class VeraValidatorProxy {
                                final String javaBin) {
         this.veraAppPath = veraAppPath;
         this.javaBin = javaBin;
-
+        String jvmOptions = System.getProperty(ZAF_VERA_JVM_PARAMS);
+        
+        // read JVM options
+        if (StringUtils.isNotBlank(jvmOptions)) {
+            // TODO: implement better parsing
+            String[] opts = jvmOptions.split(" ");
+            if(opts!=null&&opts.length>0) {
+                jvmParams = new ArrayList<>(opts.length);
+                for(String opt: opts) {
+                    opt = opt.trim();
+                    if(StringUtils.isNoneEmpty(opt)) {
+                        jvmParams.add(opt);
+                    }
+                }
+            }
+        }
     }
 
     public static int getInactivityDelay() {
@@ -99,6 +133,28 @@ public class VeraValidatorProxy {
                                           final TimeUnit inactivityTimeunit) {
         VeraValidatorProxy.inactivityDelay = inactivityDelay;
         VeraValidatorProxy.inactivityTimeunit = inactivityTimeunit;
+    }
+
+    /**
+     * Return number of minutes to wait
+     * 
+     * @return
+     */
+    public static int getTimeout() {
+        String param = System.getProperty(ZAF_VERA_TIMEOUT);
+        if (StringUtils.isNotBlank(param)) {
+            try {
+                int i = Integer.parseInt(param);
+                if (i > 0) {
+                    return i;
+                }
+            } catch (NumberFormatException nfe) {
+                // return default value in case of failure
+            }
+        }
+        // default value is five minutes
+        return 5;
+
     }
 
     public static TimeUnit getInactivityTimeunit() {
@@ -223,7 +279,11 @@ public class VeraValidatorProxy {
 
     private Process createProcess(String pdfPath, boolean serverMode) throws IOException {
         List<String> params = new ArrayList<>(10);
-        params.addAll(Arrays.asList(javaBin, "-classpath",
+        params.add(javaBin);
+        if (jvmParams != null && jvmParams.size() > 0) {
+            params.addAll(jvmParams);
+        }
+        params.addAll(Arrays.asList("-classpath",
                                     this.veraAppPath.toAbsolutePath().toString(),
                                     "org.verapdf.apps.GreenfieldCliWrapper",
                                     "--format", "xml"));
@@ -288,7 +348,7 @@ public class VeraValidatorProxy {
             });
 
             // wait to read results
-            if (!cdt.await(5, TimeUnit.MINUTES)) {
+            if (!cdt.await(getTimeout(), TimeUnit.MINUTES)) {
                 log.error("Failed to read results, timeout");
             }
 
@@ -407,11 +467,18 @@ public class VeraValidatorProxy {
 
     private ValidationResult singleRun(Path pdfPath) {
         
-        ProcessBuilder pb = new ProcessBuilder(javaBin, "-classpath",
-                this.veraAppPath.toAbsolutePath().toString(),
-                "org.verapdf.apps.GreenfieldCliWrapper",
-                "--format", "xml",
-                pdfPath.toAbsolutePath().toString());
+        List<String> params = new ArrayList<>(10);
+        params.add(javaBin);
+        if (jvmParams != null && jvmParams.size() > 0) {
+            params.addAll(jvmParams);
+        }
+        params.addAll(Arrays.asList("-classpath",
+                                    this.veraAppPath.toAbsolutePath().toString(),
+                                    "org.verapdf.apps.GreenfieldCliWrapper",
+                                    "--format", "xml",
+                                    pdfPath.toAbsolutePath().toString()));
+
+        ProcessBuilder pb = new ProcessBuilder(params);
 
         pb.redirectErrorStream(true);
 
@@ -436,7 +503,7 @@ public class VeraValidatorProxy {
                 }
             });
 
-            if (!p.waitFor(5, TimeUnit.MINUTES)) {
+            if (!p.waitFor(getTimeout(), TimeUnit.MINUTES)) {
                 p.destroy();
                 return vr;
             }

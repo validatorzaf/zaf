@@ -66,6 +66,16 @@ Pokročilé funkce validátoru je možné řídit pomocí systémových parametr
   včetně tohoto souboru. Pokud není nastaveno, použije se verze validátoru vestavěná 
   přímo do aplikace.
   
+*zaf.vera.timeout*::
+  Určení maximální doby běhu validátoru v minutách. Výchozí hodnota je 5minut.
+
+*zaf.vera.jvm.params*::
+  Dodatečné volby pro JVM v němž je spuštěn validátor VeraPDF. Volbu například použít 
+  pro nastavení maximální velikosti paměti dostupné pro validátor.
+  Příklad:
+   
+  `-Dzaf.vera.jvm.params=-Xmx1g`
+
 *zaf.siegfried.path*::
   Úplná cesta ke spustitelnému souboru aplikace SiegFried. Pokud je cesta nastavena 
   použije se tato aplikace pro ověření správnosti mimeType viz 
