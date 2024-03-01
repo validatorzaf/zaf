@@ -32,7 +32,7 @@ import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
  */
 public class K05_ProtiSchematu
         extends KontrolaBase {
-    static final public String NAME = "souladu se schématem XSD";
+    static final public String NAME = "proti schématu";
 
     static final public String VAL1 = "val1";
     static final public String VAL1_TEXT = "Soubor je validní proti schématům mets.xsd (v1.11), xlink.xsd (v2), nsesss.xsd (v3), nsesss-TrP.xsd, ess_ns.xsd a dmBaseTypes.xsd (v2.1).";
