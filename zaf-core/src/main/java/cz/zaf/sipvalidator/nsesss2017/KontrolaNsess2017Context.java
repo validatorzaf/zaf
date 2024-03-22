@@ -37,11 +37,11 @@ public class KontrolaNsess2017Context extends KontrolaContext {
         }
     }
 
-    MetsParser getMetsParser() {
+    public MetsParser getMetsParser() {
         return metsParser;
     }
 
-    Document getMainDocument() {
+    public Document getMainDocument() {
         return metsParser.getDocument();
     }
 
