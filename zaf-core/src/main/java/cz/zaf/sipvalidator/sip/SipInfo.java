@@ -92,7 +92,6 @@ public class SipInfo{
     final protected ArrayList<VysledekKontroly> seznam_kontrol = new ArrayList<>();
     
     private String sip_kodovani;
-    private String xsi_schemaLocation;
     
     public enum LoadStatus {
         OK,
@@ -192,14 +191,6 @@ public class SipInfo{
     
     public void setKodovani(String kodovani){
         sip_kodovani = kodovani;
-    }
-    
-	public String get_xsi_schemaLocation(){
-        return xsi_schemaLocation;
-    }
-    
-    public void set_xsi_schemaLocation(String hodnota){
-        xsi_schemaLocation = hodnota;
     }
 
     /**
