@@ -23,6 +23,11 @@ public class ZafException extends RuntimeException {
         this.errorCode = errorCode;
     }
 
+    public ZafException(final ErrorCode errorCode, final String detailChyby, Throwable cause) {
+        super(detailChyby, cause);
+        this.errorCode = errorCode;
+    }
+
     public ZafException(final ErrorCode errorCode, final String detailChyby, final String mistoChyby) {
         super(detailChyby);
         this.errorCode = errorCode;
