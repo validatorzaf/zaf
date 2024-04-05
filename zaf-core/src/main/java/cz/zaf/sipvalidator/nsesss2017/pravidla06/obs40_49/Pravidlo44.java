@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Element;
 
@@ -33,14 +34,15 @@ public class Pravidlo44 extends K06PravidloBase {
     protected void kontrola() {
         // cteni mets:file
         List<Element> nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);
+        if (CollectionUtils.isEmpty(nodeListMetsFile)) {
+            // dalsi kontrola je jen pokud existuje File
+            return;
+        }
         List<Element> nodeListKomponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
         if (nodeListKomponenty.size() != nodeListMetsFile.size()) {
             nastavChybu(BaseCode.CHYBI_ELEMENT,
                         "Nenalezen shodný počet <nsesss:Komponenta> a <mets:file>." + "Komponenty ("
                                 + nodeListKomponenty.size() + ") vs File (" + nodeListMetsFile.size() + ")");
-        }
-        if (nodeListKomponenty.isEmpty()) {
-            return;
         }
 
         Map<String, Element> filesIdMap = new HashMap<>();
