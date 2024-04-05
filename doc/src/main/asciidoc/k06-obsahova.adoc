@@ -679,7 +679,6 @@ Aktivní:: skartační řízení (jen metadata), skartační řízení (s kompon
 
 Pravidlo:: Pokud existuje jakýkoli element <nsesss:DatumOtevreni>, obsahuje stejnou nebo menší hodnotu, než je hodnota elementu <nsesss:DatumUzavreni>, pokud poslední uvedený element existuje uvnitř rodičovského elementu <nsesss:Manipulace>.
 Kód:: obs71
-Zdroj:: null
 Popis chyby:: Není v souladu datum otevření a datum uzavření spisového plánu, věcné skupiny, typového spisu, součásti, dílu nebo spisu.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
@@ -723,7 +722,6 @@ Aktivní:: skartační řízení (jen metadata), skartační řízení (s kompon
 
 Pravidlo:: Pokud existuje jakýkoli element <nsesss:Platnost>, v každém obsahuje jeho dětský element <nsesss:PlatnostOd> stejnou nebo menší hodnotu, než je hodnota elementu <nsesss:PlatnostDo>.
 Kód:: obs75
-Zdroj:: null
 Popis chyby:: Není v souladu rozsah platnosti certifikátu elektronického podpisu, elektronické značky nebo časového razítka.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
@@ -767,7 +765,6 @@ Aktivní:: přejímka
 
 Pravidlo:: V elementu <nsesss:SkartacniRizeni> obsahuje element <nsesss:Datum> hodnotu, v níž je uvedený rok větší nebo roven hodnotě uvedené v elementu <nsesss:RokSkartacniOperace> uvnitř rodičovského elementu <nsesss:DataceVyrazeni> stejné entity.
 Kód:: obs79
-Zdroj:: null
 Popis chyby:: Není v souladu datum skartačního řízení a roku skartační operace.
 Aktivní:: přejímka
 
@@ -789,7 +786,6 @@ Aktivní:: přejímka
 
 Pravidlo:: Pokud je v jakémkoli elementu <nsesss:UrceneCasoveObdobi> uveden dětský element <nsesss:DatumDo>, potom je jeho hodnota větší než <nsesss:DatumOd>.
 Kód:: obs81
-Zdroj:: null
 Popis chyby:: Není v souladu rozsah určeného časového období.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
@@ -800,7 +796,6 @@ Aktivní:: skartační řízení (jen metadata), skartační řízení (s kompon
 
 Pravidlo:: Pokud je v jakémkoli elementu <nsesss:UrceneCasoveObdobi> uveden dětský element <nsesss:MesicDo>, potom je jeho hodnota větší než <nsesss:MesicOd>.
 Kód:: obs82
-Zdroj:: null
 Popis chyby:: Není v souladu rozsah určeného časového období.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
@@ -811,7 +806,6 @@ Aktivní:: skartační řízení (jen metadata), skartační řízení (s kompon
 
 Pravidlo:: Pokud je v jakémkoli elementu <nsesss:UrceneCasoveObdobi> uveden dětský element <nsesss:RokDo>, potom je jeho hodnota větší než <nsesss:RokOd>.
 Kód:: obs83
-Zdroj:: null
 Popis chyby:: Není v souladu rozsah určeného časového období.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
@@ -878,7 +872,6 @@ Aktivní:: skartační řízení (jen metadata), skartační řízení (s kompon
 
 Pravidlo:: Pokud existuje jakýkoli element <nsesss:Identifikator> s atributem zdroj s hodnotou IČ nebo IČO, hodnota obsahuje číslo o osmi číslicích, přičemž vážený součet prvních sedmi číslic má po dělení jedenácti zbytek, který po odečtení od 11 a následném vydělení 10 má zbytek roven poslední číslici.
 Kód:: obs92
-Zdroj:: null
 Popis chyby:: Chybně je uvedeno IČO subjektu.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
