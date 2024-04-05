@@ -90,9 +90,7 @@ public class SipInfo{
     final private LoadType loadType;
     
     final protected ArrayList<VysledekKontroly> seznam_kontrol = new ArrayList<>();
-    
-    private String sip_kodovani;
-    
+
     public enum LoadStatus {
         OK,
         ERR_UNZIP_FAILED,
@@ -183,14 +181,6 @@ public class SipInfo{
     
     ArrayList<VysledekKontroly> getSeznamKontrol(){
         return seznam_kontrol;
-    }
-
-    public String getKodovani(){
-        return sip_kodovani;
-    }
-    
-    public void setKodovani(String kodovani){
-        sip_kodovani = kodovani;
     }
 
     /**
