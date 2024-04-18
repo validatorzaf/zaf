@@ -1,4 +1,3 @@
-
 package cz.zaf.sipvalidator.sip;
 
 import java.io.IOException;
@@ -38,26 +37,25 @@ import org.xml.sax.SAXException;
 import com.ctc.wstx.api.WstxInputProperties;
 import com.sun.xml.txw2.output.IndentingXMLStreamWriter;
 
-import cz.zaf.schema.validace_v1.ObjectFactory;
-import cz.zaf.schema.validace_v1.TBalicek;
-import cz.zaf.schema.validace_v1.TEntity;
-import cz.zaf.schema.validace_v1.TIdentifikator;
-import cz.zaf.schema.validace_v1.TKontrola;
-import cz.zaf.schema.validace_v1.TPravidlo;
-import cz.zaf.schema.validace_v1.TTypEntity;
-import cz.zaf.schema.validace_v1.TVysledekKontroly;
+import cz.zaf.schema.validacesip.ObjectFactory;
+import cz.zaf.schema.validacesip.TEntity;
+import cz.zaf.schema.validacesip.TIdentifikator;
+import cz.zaf.schema.validacesip.TKontrola;
+import cz.zaf.schema.validacesip.TPravidlo;
+import cz.zaf.schema.validacesip.TSip;
+import cz.zaf.schema.validacesip.TTypEntity;
+import cz.zaf.schema.validacesip.TVysledekKontroly;
 import cz.zaf.sipvalidator.nsesss2017.EntityId;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
-import cz.zaf.sipvalidator.profily.ProfilPravidel;
 
-public class XmlProtokolWriter implements ProtokolWriter
- {
+public class XmlProtokolWriterOld implements ProtokolWriter
+{
     
-    public static final String SCHEMA_URL = "https://stands.nacr.cz/validace_zaf/v1";
-    public static ProfilPravidel zafRuleProfile = ProfilPravidel.NSESSS2017;
+    public static String XML_PREFIX = "kontrolasip";
+    public static String SCHEMA_URL = "http://www.ahmp.cz/schema/validacesip/v1";
     
-    private static Logger logger = LoggerFactory.getLogger(XmlProtokolWriter.class);
+    private static Logger logger = LoggerFactory.getLogger(XmlProtokolWriterOld.class);
     
     final static ObjectFactory objectFactory = new ObjectFactory();
 
@@ -75,33 +73,24 @@ public class XmlProtokolWriter implements ProtokolWriter
     
     {
         SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        try (InputStream is = XmlProtokolWriter.class.getClassLoader()
-                .getResourceAsStream("schema/validace_v1.xsd")) {
+        try (InputStream is = XmlProtokolWriterOld.class.getClassLoader()
+                .getResourceAsStream("schema/validaceSIP.xsd")) {
             schema = sf.newSchema(new StreamSource(is));
         } catch (IOException | SAXException e) {
             throw new RuntimeException("Failed to load internal XSD", e);
         }
         
         try {
-            jaxbContext = JAXBContext.newInstance(TBalicek.class);
+            jaxbContext = JAXBContext.newInstance(TSip.class);
         } catch (JAXBException e) {
             logger.error("Failed to initialize JAXBContext", e);
             throw new IllegalStateException("Failed to initialize JAXBContext", e);
         }
     }
 
-    public XmlProtokolWriter(final String outputPath,
-				            final String kontrolaId,
-				            final ProfilValidace profilValidace) throws IOException, JAXBException, XMLStreamException,
-    		DatatypeConfigurationException {
-    	this(outputPath, kontrolaId, profilValidace, zafRuleProfile, NsessV3.ZAF_RULE_VERSION);
-    }
-    
-    public XmlProtokolWriter(final String outputPath,
+    public XmlProtokolWriterOld(final String outputPath,
                              final String kontrolaId,
-                             final ProfilValidace profilValidace,
-                             final ProfilPravidel profilPravidel,
-                             final String verzePravidel) throws IOException, JAXBException, XMLStreamException,
+                             final ProfilValidace profilValidace) throws IOException, JAXBException, XMLStreamException,
             DatatypeConfigurationException {
         if (StringUtils.isNoneBlank(outputPath)) {
             this.outputPath = Paths.get(outputPath);
@@ -127,17 +116,17 @@ public class XmlProtokolWriter implements ProtokolWriter
         indentingStreamWriter.setIndentStep("    ");
         
         indentingStreamWriter.writeStartDocument();
-        indentingStreamWriter.writeStartElement("validace");
+        indentingStreamWriter.writeStartElement("validaceSIP");
         indentingStreamWriter.setDefaultNamespace(SCHEMA_URL);
         indentingStreamWriter.setPrefix("xsi", "http://www.w3.org/2001/XMLSchema-instance");
          indentingStreamWriter.writeAttribute("xmlns", SCHEMA_URL);
         indentingStreamWriter.writeAttribute("xmlns", null,
                                              "xsi", "http://www.w3.org/2001/XMLSchema-instance");
         indentingStreamWriter.writeAttribute("http://www.w3.org/2001/XMLSchema-instance", "schemaLocation", 
-                                             "https://stands.nacr.cz/validace_zaf/v1 https://stands.nacr.cz/validace_zaf/v1/validace_v1.xsd");
+                                             "http://www.ahmp.cz/schema/validacesip/v1 http://www.ahmp.cz/schema/validacesip/v1/validaceSIP.xsd");
 
         // write attributes to root element
-        indentingStreamWriter.writeAttribute("identifikatorValidace",
+        indentingStreamWriter.writeAttribute("validaceID",
                                              kontrolaId == null ? UUID.randomUUID().toString() : kontrolaId);
         
         pripravAppInfo();
@@ -174,7 +163,6 @@ public class XmlProtokolWriter implements ProtokolWriter
 
         indentingStreamWriter.writeAttribute("nazevAplikace", artifactId);
         indentingStreamWriter.writeAttribute("verzeAplikace", verzeApp);
-        indentingStreamWriter.writeAttribute("profilPravidel", zafRuleProfile.toString());
         indentingStreamWriter.writeAttribute("verzePravidel", NsessV3.ZAF_RULE_VERSION);
     }
     
@@ -182,37 +170,37 @@ public class XmlProtokolWriter implements ProtokolWriter
     @Override
     public void writeVysledek(SipInfo sipInfo) throws JAXBException {
         
-        TBalicek balicek = convert(sipInfo);
+        TSip sip = convert(sipInfo);
         
-        JAXBElement<TBalicek> jaxbElement = new JAXBElement<>(new QName(SCHEMA_URL, "balicek"), TBalicek.class, balicek);
+        JAXBElement<TSip> jaxbElement = new JAXBElement<>(new QName(SCHEMA_URL, "sip"), TSip.class, sip);
         marshaller.marshal(jaxbElement, indentingStreamWriter);
 
     }
     
-    private static void writeBalicekInfo(TBalicek balicekNode, SipInfo sipInfo) {
+    private static void writeSipInfo(TSip sipNode, SipInfo sipInfo) {
         String metsObjId = sipInfo.getMetsObjId();
         if (StringUtils.isNotEmpty(metsObjId)) {
-            balicekNode.setIdentifikator(metsObjId);
+            sipNode.setOBJID(metsObjId);
         }
 
         String g = sipInfo.getNameZip();
         if (g == null) {
             g = sipInfo.getName();
         }
-        balicekNode.setNazevSouboru(g);
+        sipNode.setNazevSouboru(g);
 
     }
 
-    private TBalicek convert(SipInfo sipInfo) {
-        TBalicek balicek = objectFactory.createTBalicek();
-        writeBalicekInfo(balicek, sipInfo);
+    private TSip convert(SipInfo sipInfo) {
+        TSip sip = objectFactory.createTSip();
+        writeSipInfo(sip, sipInfo);
         
         List<VysledekKontroly> kontroly = sipInfo.getSeznamKontrol();
         for (VysledekKontroly vysl : kontroly) {
             TKontrola kontrolaXml = convert(vysl);
-            balicek.getKontrola().add(kontrolaXml);
+            sip.getKontrola().add(kontrolaXml);
         }        
-        return balicek;
+        return sip;
     }
     
     private static TKontrola convert(VysledekKontroly vysl) {

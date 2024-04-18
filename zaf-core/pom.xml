@@ -120,7 +120,9 @@
 						<configuration>
 							<sources>
 								<source>${xjcDirectory}/validacexsd</source>
-								<source>${project.build.directory}/generated-sources/validacexsd</source>
+								<source>${project.build.directory}/generated-sources/validacesip</source>
+								<source>${project.build.directory}/generated-sources/validace_v1</source>
+								<source>${project.build.directory}/generated-sources/validace_v1</source>
 							</sources>
 						</configuration>
 					</execution>
@@ -132,7 +134,22 @@
 				<version>0.14.0</version>
 				<executions>
 					<execution>
-						<id>jaxb2-generate-validacexsd</id>
+						<id>jaxb2-validacexsd</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<phase>generate-sources</phase>
+						<configuration>
+							<generateDirectory>${project.build.directory}/generated-sources/validacesip</generateDirectory>
+							<schemaDirectory>src/main/resources/schema</schemaDirectory>
+							<schemaIncludes>
+								<include>validaceSIP.xsd</include>
+							</schemaIncludes>
+							<generatePackage>cz.zaf.schema.validacesip</generatePackage>							
+						</configuration>
+					</execution>
+					<execution>
+						<id>jaxb2-generate-validace-v1-xsd</id>
 						<phase>generate-sources</phase>
 						<goals>
 							<goal>generate</goal>
@@ -140,10 +157,10 @@
 						<configuration>
 							<schemaDirectory>src/main/resources/schema</schemaDirectory>
 							<schemaIncludes>
-								<include>validaceSIP.xsd</include>
+								<include>validace_v1.xsd</include>
 							</schemaIncludes>
-							<generatePackage>cz.zaf.schema.validacesip</generatePackage>
-							<generateDirectory>${project.build.directory}/generated-sources/validacexsd</generateDirectory>
+							<generatePackage>cz.zaf.schema.validace_v1</generatePackage>
+							<generateDirectory>${project.build.directory}/generated-sources/validace_v1</generateDirectory>
 						</configuration>
 					</execution>
 				</executions>
@@ -278,7 +295,7 @@
         			    <configuration>
                             <skip>false</skip>
                             <excludePackageNames>cz.zaf.schema.*</excludePackageNames>
-                            <sourcepath>${project.basedir}/src/main/java:${project.build.directory}/generated-sources/validacexsd</sourcepath>
+                            <sourcepath>${project.basedir}/src/main/java:${project.build.directory}/generated-sources/validacesip:${project.build.directory}/generated-sources/validace_v1</sourcepath>
         			    </configuration>
         			</plugin>			
   				</plugins>
