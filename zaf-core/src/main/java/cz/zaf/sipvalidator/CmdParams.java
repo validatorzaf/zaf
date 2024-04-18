@@ -4,6 +4,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import cz.zaf.sipvalidator.formats.VystupniFormat;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 
@@ -33,6 +34,9 @@ public class CmdParams {
         output.println(" -z|--hrozba= Podrobnosti v případě nalezení hrozby (pro předání z antivirového programu)");
         output.println(" -o|--output= Jméno souboru nebo adresáře pro uložení výsledků");
         output.println(" -p|--ports= Rozsah portů pro vnitřní procesy (standardně 10000-32000)");
+        output.println(" -f|--outputformat= Výstupní formát (1 - výchozí)");
+        output.println(" 		1 = obecné schéma (validace_v1.xsd)");
+        output.println(" 		2 = schéma pouze pro kontrolu NSESSS");
     }
 
     String inputPath = System.getProperty("user.dir");
@@ -58,6 +62,11 @@ public class CmdParams {
      */
     ProfilValidace profilValidace = ZakladniProfilValidace.SKARTACE_METADATA;
 
+    /**
+     * Výstupní formát
+     */
+    VystupniFormat vystupniFormat = VystupniFormat.VALIDACE_V1;
+    
     /**
      * Popis hrozby
      */
@@ -126,7 +135,11 @@ public class CmdParams {
         return profilValidace;
     }
 
-    public List<String> getExcludeChecks() {
+    public VystupniFormat getVystupniFormat() {
+		return vystupniFormat;
+	}
+
+	public List<String> getExcludeChecks() {
         return excludeChecks;
     }
 
@@ -201,6 +214,14 @@ public class CmdParams {
                 }
             } else if (arg.startsWith("--exclude=")) {
                 if (!readExclude(arg.substring(10))) {
+                    return false;
+                }
+            } else if (arg.equals("-f")) {
+                if (!readF()) {
+                    return false;
+                }
+            } else if (arg.startsWith("--outputformat=")) {
+                if (!readOutputFormat(arg.substring(15))) {
                     return false;
                 }
             } else if (arg.equals("--memTest")) {
@@ -347,6 +368,36 @@ public class CmdParams {
             return false;
         }
         workDir = args[pos];
+        return true;
+    }
+    
+    private boolean readF() {
+        pos++;
+        if (pos == args.length) {
+            System.out.println("Missing typ vystupniho formatu");
+            return false;
+        }
+        String arg = args[pos];
+        return readOutputFormat(arg);
+    }
+
+    private boolean readOutputFormat(String arg) {
+        try {
+            int outputFormat = Integer.parseInt(arg);
+            switch (outputFormat) {
+            case 1:
+                vystupniFormat = VystupniFormat.VALIDACE_V1;
+                break;                
+            case 2:
+            	vystupniFormat = VystupniFormat.VALIDACE_SIP;
+                break;
+            default:
+                System.out.println("Chybný typ výstupního formátu: " + arg);
+            }
+        } catch (NumberFormatException nfe) {
+            System.out.println("Není číslo: " + arg);
+            return false;
+        }
         return true;
     }
 }

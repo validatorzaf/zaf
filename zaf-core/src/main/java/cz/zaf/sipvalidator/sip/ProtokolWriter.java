@@ -7,7 +7,7 @@ import javax.xml.bind.JAXBException;
  * 
  *
  */
-public interface ProtokolWriter {
+public interface ProtokolWriter extends AutoCloseable {
     
     /**
      * Append result of SIP validation

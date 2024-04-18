@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:validace_zaf="https://stands.nacr.cz/validace_zaf/v1" targetNamespace="https://stands.nacr.cz/validace_zaf/v1" elementFormDefault="qualified" attributeFormDefault="unqualified" id="validace_zaf" version="1" xml:lang="cs">
+    <xs:annotation>
+        <xs:documentation>Schéma XML pro zaznamenání výsledku validace datového balíčku</xs:documentation>
+    </xs:annotation>
+    
+    <!-- definice kořenových elementů -->
+    <xs:element name="validace">
+        <xs:annotation>
+            <xs:documentation>Prvek pro popis provedené validace a zaznamenání jejího výsledku.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="balicek" type="validace_zaf:tBalicek" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="identifikatorValidace" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>Jednoznačný identifikátor provedené validace.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="datumValidace" type="xs:dateTime" use="required">
+                <xs:annotation>
+                    <xs:documentation>Prvek pro zaznamenání časového údaje provedení validace. Datum je zaznamenáno ve formátu UTC (ve tvaru "yyyy-MM-dd'T'HH:mm:ssXXX").</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="nazevAplikace" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>Název aplikace, která provádí validaci.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="verzeAplikace" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>Verze aplikace, která provádí validaci.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="profilPravidel" type="validace_zaf:tProfilPravidel" use="required" />
+            <xs:attribute name="verzePravidel" type="xs:positiveInteger" use="required">
+                <xs:annotation>
+                    <xs:documentation>Verze pravidel, podle kterých se provádí validace.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="druhValidace" type="validace_zaf:tDruhValidace" use="required" />
+        </xs:complexType>
+    </xs:element>
+    <!-- konec definice kořenových elementů -->
+    
+    <!-- definice jednoduchých typů -->
+    <xs:simpleType name="tDruhValidace">
+        <xs:annotation>
+            <xs:documentation>Prvek pro zaznamenání účelu validace datových balíčků v rámci profilu. Podle tohoto účelu je zvolena příslušná kontrola s určitými pravidly.</xs:documentation>
+        </xs:annotation>
+        <xs:union memberTypes="validace_zaf:tDruhValidaceCiselnik xs:string" />
+    </xs:simpleType>
+    
+    <xs:simpleType name="tDruhValidaceCiselnik">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="skartační řízení (jen metadata)" />
+            <xs:enumeration value="skartační řízení (s komponentami)" />
+            <xs:enumeration value="přejímka" />
+        </xs:restriction>
+    </xs:simpleType>
+       
+    <xs:simpleType name="tProfilPravidel">
+        <xs:annotation>
+            <xs:documentation>Název pravidel určených pro konkrétní typ datového balíčku, podle kterých se provádí validace.</xs:documentation>
+        </xs:annotation>
+        <xs:union memberTypes="validace_zaf:tProfilPravidelCiselnik xs:string" />
+    </xs:simpleType>
+    
+    <xs:simpleType name="tProfilPravidelCiselnik">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NSESSS2017" />
+            <xs:enumeration value="NSESSS2023" />
+            <xs:enumeration value="AP2023" />
+            <xs:enumeration value="DAAIP2024" />
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="tTypEntity">
+        <xs:annotation>
+            <xs:documentation>Prvek pro zaznamenání typu entity.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Archivní soubor" />
+            <xs:enumeration value="Část jednotlivosti" />
+            <xs:enumeration value="Díl" />
+            <xs:enumeration value="Dokument" />
+            <xs:enumeration value="Jednotlivost" />
+            <xs:enumeration value="Série" />
+            <xs:enumeration value="Složka" />
+            <xs:enumeration value="Součást" />
+            <xs:enumeration value="Spis" />
+            <xs:enumeration value="Spisový plán" />
+            <xs:enumeration value="Věcná skupina" />
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="tVysledekKontroly">
+        <xs:annotation>
+            <xs:documentation>Prvek pro zaznamenání výsledku kontroly.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ok" />
+            <xs:enumeration value="chyba" />
+            <xs:enumeration value="nespustena" />
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- konec definice jednoduchých typů -->
+    
+    <!-- definice složených typů -->
+    <xs:complexType name="tBalicek">
+        <xs:annotation>
+            <xs:documentation>Prvek pro popis datového balíčku.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="kontrola" type="validace_zaf:tKontrola" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="nazevSouboru" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>Název souboru/složky datového balíčku.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="identifikator" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Jednoznačný identifikátor datového balíčku.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    
+    <xs:complexType name="tEntity">
+        <xs:annotation>
+            <xs:documentation>Prvek pro popis entit, kterých se chyba týká.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="identifikator" type="validace_zaf:tIdentifikator" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tIdentifikator">
+        <xs:annotation>
+            <xs:documentation>Hodnota identifikátoru.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="typ" type="validace_zaf:tTypEntity" use="required">
+                    <xs:annotation>
+                        <xs:documentation>Typ entity.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="zdroj" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Zdroj identifikátoru.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    
+    <xs:complexType name="tKontrola">
+        <xs:annotation>
+            <xs:documentation>Prvek pro popis kontroly podle skupiny pravidel.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="pravidlo" type="validace_zaf:tPravidlo" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="nazev" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>Název kontroly.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="stav" type="validace_zaf:tVysledekKontroly" use="required" />
+        <xs:attribute name="vnitrniSoubor" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Relativní cesta vnitřního souboru k souboru/složce celého datového balíčku.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    
+    <xs:complexType name="tPravidlo">
+        <xs:annotation>
+            <xs:documentation>Prvek pro popis konkrétního pravidla, podle kterého se kontrola provádí.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="kod" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Jednoznačné označení pravidla.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="zneni" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Znění pravidla.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="zdroj" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Odkaz na normu, která implikuje definici pravidla.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="kodChyby" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Kód chyby umožňující její strojovou interpretaci.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="popisChyby" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Lidsky srozumitelný popis v případě porušení pravidla.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="vypisChyby" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Chybový stav s podrobnostmi dané nalezené chyby.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="mistoChyby" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Odkaz na řádek a sloupec v souboru, kde byla nalezena chyba.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="entity" type="validace_zaf:tEntity" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+    <!-- konec definice složených typů -->
+    
+</xs:schema>

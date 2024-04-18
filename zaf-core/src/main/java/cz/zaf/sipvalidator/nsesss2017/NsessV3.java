@@ -6,6 +6,8 @@ package cz.zaf.sipvalidator.nsesss2017;
  *
  */
 public class NsessV3 {
+    // Verze pravidel NSESSS
+    public final static String ZAF_RULE_VERSION = "6";
 
     public final static String ANALOGOVY_DOKUMENT = "nsesss:AnalogovyDokument";
     public final static String AUTOR = "nsesss:Autor";
@@ -106,6 +108,7 @@ public class NsessV3 {
     public final static String VYTVORENE_MNOZSTVI = "nsesss:VytvoreneMnozstvi";
     public final static String ZPRACOVATEL = "nsesss:Zpracovatel";
     public final static String ZPUSOB = "nsesss:Zpusob";
+    
 
     private NsessV3() {
     }

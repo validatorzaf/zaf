@@ -10,11 +10,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import cz.zaf.sipvalidator.formats.MimetypeDetectorFactory;
+import cz.zaf.sipvalidator.formats.VystupniFormat;
 import cz.zaf.sipvalidator.nsesss2017.SipValidator;
 import cz.zaf.sipvalidator.pdfa.VeraValidatorProxy;
 import cz.zaf.sipvalidator.sip.ProtokolWriter;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipLoader;
+import cz.zaf.sipvalidator.sip.XmlProtokolWriterOld;
 import cz.zaf.sipvalidator.sip.XmlProtokolWriter;
 
 /**
@@ -56,11 +58,24 @@ public class CmdValidator {
             MimetypeDetectorFactory.destroy();
         }
     }
+    
+    private ProtokolWriter createWriter() throws Exception {
+    	ProtokolWriter protokolWriter = null;
+    	if (cmdParams.vystupniFormat == VystupniFormat.VALIDACE_V1) {
+    		protokolWriter = new XmlProtokolWriter(cmdParams.getOutput(), 
+                    cmdParams.getIdKontroly(), 
+                    cmdParams.getProfilValidace());
+    	}
+    	else {
+    		protokolWriter = new XmlProtokolWriterOld(cmdParams.getOutput(), 
+                    cmdParams.getIdKontroly(), 
+                    cmdParams.getProfilValidace());
+    	}
+    	return protokolWriter;
+    }
 
     public void validate() throws Exception {
-        try(XmlProtokolWriter protokolWriter = new XmlProtokolWriter(cmdParams.getOutput(), 
-                                                                     cmdParams.getIdKontroly(), 
-                                                                     cmdParams.getProfilValidace());) {
+        try(ProtokolWriter protokolWriter = createWriter();) {
             int repeatCnt = 1;
             if (cmdParams.isMemTest()) {
                 repeatCnt = 10000;
@@ -103,7 +118,7 @@ public class CmdValidator {
         // nahrani sipu
         try(SipLoader sipLoader = new SipLoader(sipPath,
                 cmdParams.getWorkDir(), cmdParams.isKeepFiles());) {
-
+        	
             SipValidator sipValidator = new SipValidator(cmdParams.getProfilValidace(), cmdParams.getExcludeChecks());
             sipValidator.setHrozba(cmdParams.getHrozba());
             sipValidator.validate(sipLoader);
