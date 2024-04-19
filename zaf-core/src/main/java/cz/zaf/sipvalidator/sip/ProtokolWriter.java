@@ -1,6 +1,6 @@
 package cz.zaf.sipvalidator.sip;
 
-import javax.xml.bind.JAXBException;
+import jakarta.xml.bind.JAXBException;
 
 /**
  * Protokol writter
