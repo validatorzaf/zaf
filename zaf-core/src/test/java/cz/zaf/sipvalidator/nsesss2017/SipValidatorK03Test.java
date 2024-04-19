@@ -2,6 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017;
 
 import org.junit.jupiter.api.Test;
 
+import cz.zaf.sipvalidator.nsesss2017.pravidla03.wf00_09.Pravidlo1;
 import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 import cz.zaf.sipvalidator.sip.StavKontroly;
@@ -23,27 +24,27 @@ public class SipValidatorK03Test extends SipValidatorTestBase {
     void testK03_01() {
         testPackageK03("wf1-chyba1", StavKontroly.CHYBA,
                        new String[] {},
-                       new String[] { K03_Spravnosti.WF1 });
+                       new String[] { Pravidlo1.KOD });
     }
 
     @Test
     void testK03_02() {
         testPackageK03("wf1-chyba2", StavKontroly.CHYBA,
                        new String[] {},
-                       new String[] { K03_Spravnosti.WF1 });
+                       new String[] { Pravidlo1.KOD });
     }
 
     @Test
     void testK03_OK_01() {
         testPackageK03("wf1-OK1", StavKontroly.OK,
-                       new String[] { K03_Spravnosti.WF1 },
+                       new String[] { Pravidlo1.KOD },
                        new String[] {});
     }
 
     @Test
     void testK03_OK_02() {
         testPackageK03("wf1-OK2", StavKontroly.OK,
-                       new String[] { K03_Spravnosti.WF1 },
+                       new String[] { Pravidlo1.KOD },
                        new String[] {});
     }
 }
