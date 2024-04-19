@@ -1,5 +1,6 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs100_109;
 
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -9,7 +10,6 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.apache.commons.lang3.StringUtils;
-import org.joda.time.LocalDate;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -87,7 +87,7 @@ public class Pravidlo108 extends K06PravidloBase {
         if (tz == DatatypeConstants.FIELD_UNDEFINED) {
             // no time zone, simply check values
             if (xmlCal.getYear() != cntDate.getYear() ||
-                    xmlCal.getMonth() != cntDate.getMonthOfYear() ||
+                    xmlCal.getMonth() != cntDate.getMonth().getValue() ||
                     xmlCal.getDay() != cntDate.getDayOfMonth()) {
                 nastavChybu(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
                             "Nesoulad hodnot datace, hodnota atributu: " + attrValue + ", hodnota elementu: "
@@ -97,7 +97,7 @@ public class Pravidlo108 extends K06PravidloBase {
             // time including time zone
             // TODO: use time-zone related shift?
             if (xmlCal.getYear() != cntDate.getYear() ||
-                    xmlCal.getMonth() != cntDate.getMonthOfYear() ||
+                    xmlCal.getMonth() != cntDate.getMonth().getValue() ||
                     xmlCal.getDay() != cntDate.getDayOfMonth()) {
                 nastavChybu(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
                             "Nesoulad hodnot datace, hodnota atributu: " + attrValue + ", hodnota elementu: "

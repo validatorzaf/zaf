@@ -1,9 +1,8 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19;
 
-import com.fasterxml.jackson.databind.JsonSerializable;
-import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import org.w3c.dom.Element;
 
+import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 

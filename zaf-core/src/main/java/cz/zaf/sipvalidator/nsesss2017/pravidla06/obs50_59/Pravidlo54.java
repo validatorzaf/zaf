@@ -6,23 +6,22 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Element;
 
-import com.google.common.base.Objects;
-
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.EntityId;
 import cz.zaf.sipvalidator.nsesss2017.EntityId.DruhEntity;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.NsessV3;
 import cz.zaf.sipvalidator.nsesss2017.PairZdrojIdent;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
 //
 // OBSAHOVÁ č.54: Každý element mets:div obsahuje dětský element podle struktury
@@ -483,7 +482,7 @@ public class Pravidlo54 extends K06PravidloBase {
 
         public OdkazDmdSec getOdkazDmdSecById(String dmdid) {
             for (OdkazDmdSec odkaz : odkazyDmdSec) {
-                if (Objects.equal(dmdid, odkaz.getId())) {
+                if (Objects.equals(dmdid, odkaz.getId())) {
                     return odkaz;
                 }
             }
