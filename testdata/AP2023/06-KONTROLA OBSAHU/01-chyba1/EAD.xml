@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ead:ead xmlns:ead="http://ead3.archivists.org/schema/" xmlns:cam="http://cam.tacr.cz/2019">
+<ead:control>
+  <ead:recordid>1239</ead:recordid>
+
+  <ead:otherrecordid localtype="CZ_MVCR_FINDING_AID_ID">123456</ead:otherrecordid>
+
+  <ead:filedesc encodinganalog="2099">
+    <ead:titlestmt>
+      <!-- Povinný název archivního souboru -->
+      <ead:titleproper>EadTest1</ead:titleproper>
+      <!-- Název archivní pomůcky -->
+      <ead:subtitle>VEmpty</ead:subtitle>
+    </ead:titlestmt>
+    <!-- Informace o publikaci pomucky -->
+    <ead:publicationstmt>
+      <!-- Datum a misto vydani -->
+      <ead:date localtype="RELEASE_DATE_PLACE">Praha v roce 2055</ead:date>
+      <!-- Datum zachyceneho stavu --> 
+      <ead:date localtype="FINDING_AID_DATE">2. dubna 2024</ead:date>
+    </ead:publicationstmt>
+  </ead:filedesc>
+
+  <ead:maintenancestatus value="derived" />
+
+  <ead:maintenanceagency countrycode="CZ">
+    <!-- Identifikátor z číselníku archivů -->
+    <ead:agencycode localtype="CZ_MVCR_INSTITUTION_ID">mua</ead:agencycode>
+    <!-- Jméno archivu -->
+    <ead:agencyname>Masarykův ústav a Archiv AV ČR, v.v.i.</ead:agencyname>
+  </ead:maintenanceagency>
+
+  <!-- Verze profilu EAD -->
+  <ead:localcontrol localtype="CZ_FINDING_AID_EAD_PROFILE">
+    <ead:term identifier="CZ_EAD3_PROFILE_20240301">profil platný od března 2024</ead:term>
+  </ead:localcontrol>
+
+  <!-- Druh archivní pomůcky -->
+  <ead:localcontrol localtype="FINDING_AID_TYPE">
+    <ead:term identifier="MANIP_SEZNAM">Manipulační seznam</ead:term>
+  </ead:localcontrol>
+
+  <!-- Pravidla tvorby archivního popisu -->
+  <ead:localcontrol localtype="RULES">
+    <ead:term identifier="CZ_ZP2013">základní pravidla od roku 2013</ead:term>
+  </ead:localcontrol>
+
+  <ead:maintenancehistory>
+    <ead:maintenanceevent>
+      <ead:eventtype value="created"></ead:eventtype>
+      <ead:eventdatetime standarddatetime="2024-04-21T00:40:58.204+02:00">2024-04-21T00:40:58.204+02:00</ead:eventdatetime>
+      <!-- Typ vytvoření popisu machine|human -->
+      <ead:agenttype value="machine"></ead:agenttype>
+      <!-- Jméno agenta -->
+      <ead:agent>ELZA 2.8.17</ead:agent>
+    </ead:maintenanceevent>
+  </ead:maintenancehistory>
+  
+</ead:control>
+
+<ead:archdesc level="fonds" base="https://archdesc.nacr.cz/dids/24632884-db43-45b7-9cdf-1a0032cdc4e4">
+<ead:did>
+  <!-- Evidencni jednotky -->
+  <ead:unitid localtype="PORADOVE_CISLO" label="pořadové číslo">1</ead:unitid>
+
+  <!-- Počet JP -->
+  <ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="quantity" coverage="whole">
+    <ead:quantity>1</ead:quantity>
+    <ead:unittype>desc_units</ead:unittype>
+  </ead:physdescstructured>
+    
+</ead:did>
+  
+</ead:archdesc>  
+</ead:ead>
+
