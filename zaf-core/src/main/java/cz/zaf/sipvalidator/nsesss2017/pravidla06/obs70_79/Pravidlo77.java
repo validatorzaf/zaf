@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.w3c.dom.Element;
 
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -34,13 +34,13 @@ public class Pravidlo77 extends K06PravidloBase {
 
         for (int i = 0; i < zakladniEntity.size(); i++) {
             Element zakladnientita = zakladniEntity.get(i);
-            Element analogovy = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, NsessV3.MANIPULACE,
-                    NsessV3.ANALOGOVY_DOKUMENT);
+            Element analogovy = ValuesGetter.getXChild(zakladnientita, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.MANIPULACE,
+                    NsesssV3.ANALOGOVY_DOKUMENT);
             if (analogovy != null) {
                 String analogovyZakladni = analogovy.getTextContent();
                 if (analogovyZakladni.equals("ano")) {
-                    Element mnozstvi = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, NsessV3.VYRAZOVANI,
-                            NsessV3.SKARTACNI_RIZENI, NsessV3.MNOZSTVI);
+                    Element mnozstvi = ValuesGetter.getXChild(zakladnientita, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.VYRAZOVANI,
+                            NsesssV3.SKARTACNI_RIZENI, NsesssV3.MNOZSTVI);
                     if (mnozstvi == null) {
                         nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Mnozstvi> základní entity. "
                                 + getJmenoIdentifikator(zakladnientita),

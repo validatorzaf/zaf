@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Element;
 
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -36,9 +36,9 @@ public class Pravidlo76 extends K06PravidloBase {
 
         for (int i = 0; i < zakladniEntity.size(); i++) {
             Element zakladnientita = zakladniEntity.get(i);
-            if (zakladnientita.getNodeName().equals(NsessV3.DIL) || zakladnientita.getNodeName().equals(NsessV3.SPIS)) {
-                Element an_ze = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, NsessV3.MANIPULACE,
-                        NsessV3.ANALOGOVY_DOKUMENT);
+            if (zakladnientita.getNodeName().equals(NsesssV3.DIL) || zakladnientita.getNodeName().equals(NsesssV3.SPIS)) {
+                Element an_ze = ValuesGetter.getXChild(zakladnientita, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.MANIPULACE,
+                        NsesssV3.ANALOGOVY_DOKUMENT);
                 if (an_ze == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Element <" + zakladnientita.getNodeName() + "> "
                             + "neobsahuje dětský element <nsesss:AnalogovyDokument>. " + getJmenoIdentifikator(zakladnientita),
@@ -53,8 +53,8 @@ public class Pravidlo76 extends K06PravidloBase {
                 }
                 for (int j = 0; j < dokumenty.size(); j++) {
                     Element dokument = dokumenty.get(j);
-                    Element node = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, NsessV3.MANIPULACE,
-                            NsessV3.ANALOGOVY_DOKUMENT);
+                    Element node = ValuesGetter.getXChild(dokument, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.MANIPULACE,
+                            NsesssV3.ANALOGOVY_DOKUMENT);
                     if (node == null) {
                         nastavChybu(BaseCode.CHYBI_ELEMENT, "Element <nsesss:Dokument> neobsahuje dětský element <nsesss:AnalogovyDokument>. "
                                 + getJmenoIdentifikator(dokument),
@@ -70,9 +70,9 @@ public class Pravidlo76 extends K06PravidloBase {
                     }
                 }
             }
-            if (zakladnientita.getNodeName().equals(NsessV3.DOKUMENT)) {
-                Element and = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE, NsessV3.MANIPULACE,
-                        NsessV3.ANALOGOVY_DOKUMENT);
+            if (zakladnientita.getNodeName().equals(NsesssV3.DOKUMENT)) {
+                Element and = ValuesGetter.getXChild(zakladnientita, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.MANIPULACE,
+                        NsesssV3.ANALOGOVY_DOKUMENT);
                 if (and == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Element <nsesss:Dokument> neobsahuje dětský element <nsesss:AnalogovyDokument>. "
                             + getJmenoIdentifikator(zakladnientita),
@@ -81,7 +81,7 @@ public class Pravidlo76 extends K06PravidloBase {
                 String analogovyzakladni = and.getTextContent();
                 if ("ano".equals(analogovyzakladni)) {
                     // nalezeni alespon jedne rodicovske vecne skupiny
-                    List<Element> vsechnyVecneSkupiny = metsParser.getNodes(NsessV3.VECNA_SKUPINA);
+                    List<Element> vsechnyVecneSkupiny = metsParser.getNodes(NsesssV3.VECNA_SKUPINA);
                     List<Element> vecneSkupiny = ValuesGetter.getAllChildNodes(zakladnientita, vsechnyVecneSkupiny);
                     if (CollectionUtils.isEmpty(vecneSkupiny)) {
                         nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:VecnaSkupina>. "
@@ -89,8 +89,8 @@ public class Pravidlo76 extends K06PravidloBase {
                                 zakladnientita, kontrola.getEntityId(zakladnientita));
                     }
                     for (Element vs : vecneSkupiny) {
-                        Element elAnalogovyDokumentVecSkupiny = ValuesGetter.getXChild(vs, NsessV3.EVIDENCNI_UDAJE, NsessV3.MANIPULACE,
-                                NsessV3.ANALOGOVY_DOKUMENT);
+                        Element elAnalogovyDokumentVecSkupiny = ValuesGetter.getXChild(vs, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.MANIPULACE,
+                                NsesssV3.ANALOGOVY_DOKUMENT);
                         if (elAnalogovyDokumentVecSkupiny == null) {
                             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:AnalogovyDokument>. "
                                     + getJmenoIdentifikator(vs),

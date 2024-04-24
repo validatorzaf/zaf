@@ -20,7 +20,7 @@ import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -90,7 +90,7 @@ public class Pravidlo105 extends K06PravidloBase {
                 continue;
             }
             
-            Element analogDokNode = ValuesGetter.getXChild(dokumentNode, NsessV3.EVIDENCNI_UDAJE,
+            Element analogDokNode = ValuesGetter.getXChild(dokumentNode, NsesssV3.EVIDENCNI_UDAJE,
                                                         "nsesss:Manipulace",
                                                         "nsesss:AnalogovyDokument");
             if (analogDokNode != null) {
@@ -102,7 +102,7 @@ public class Pravidlo105 extends K06PravidloBase {
         }
 
         // Zjisteni seznamu komponent ciste digitalnich dokumentu
-        List<Element> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
+        List<Element> komponenty = metsParser.getNodes(NsesssV3.KOMPONENTA);
         if (CollectionUtils.isEmpty(komponenty)) {
             return;
         }

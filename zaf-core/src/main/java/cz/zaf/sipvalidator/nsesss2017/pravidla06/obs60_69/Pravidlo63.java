@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.w3c.dom.Element;
 
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -26,11 +26,11 @@ public class Pravidlo63 extends K06PravidloBase {
     // potom je na stejné úrovni posledního uvedeného elementu uveden dětský element <nsesss:Oduvodneni> s neprázdnou hodnotou.",
     @Override
     protected void kontrola() {
-        List<Element> vyrizenis = metsParser.getNodes(NsessV3.VYRIZENI);
+        List<Element> vyrizenis = metsParser.getNodes(NsesssV3.VYRIZENI);
         for (Element elVyrizeni : vyrizenis) {
-            boolean maZpusobSHodnotou = ValuesGetter.getObsahujeRodicElementSHodnotou(elVyrizeni, NsessV3.ZPUSOB, "jiný způsob");
+            boolean maZpusobSHodnotou = ValuesGetter.getObsahujeRodicElementSHodnotou(elVyrizeni, NsesssV3.ZPUSOB, "jiný způsob");
             if (maZpusobSHodnotou) {
-                Element elOduvodneni = ValuesGetter.getXChild(elVyrizeni, NsessV3.ODUVODNENI);
+                Element elOduvodneni = ValuesGetter.getXChild(elVyrizeni, NsesssV3.ODUVODNENI);
                 Element elDokument = kontrola.getEntity(elVyrizeni);
                 if (elOduvodneni == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen povinný element <nsesss:Oduvodneni>. " + getJmenoIdentifikator(elVyrizeni),
@@ -43,11 +43,11 @@ public class Pravidlo63 extends K06PravidloBase {
                 }
             }
         }
-        List<Element> vyrizeniUzavrenis = metsParser.getNodes(NsessV3.VYRIZENI_UZAVRENI);
+        List<Element> vyrizeniUzavrenis = metsParser.getNodes(NsesssV3.VYRIZENI_UZAVRENI);
         for (Element elVyrizeniUzavreni : vyrizeniUzavrenis) {
-            boolean maZpusobSHodnotou = ValuesGetter.getObsahujeRodicElementSHodnotou(elVyrizeniUzavreni, NsessV3.ZPUSOB, "jiný způsob");
+            boolean maZpusobSHodnotou = ValuesGetter.getObsahujeRodicElementSHodnotou(elVyrizeniUzavreni, NsesssV3.ZPUSOB, "jiný způsob");
             if (maZpusobSHodnotou) {
-                Element elOduvodneni = ValuesGetter.getXChild(elVyrizeniUzavreni, NsessV3.ODUVODNENI);
+                Element elOduvodneni = ValuesGetter.getXChild(elVyrizeniUzavreni, NsesssV3.ODUVODNENI);
                 Element elDokument = kontrola.getEntity(elVyrizeniUzavreni);
                 if (elOduvodneni == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen povinný element <nsesss:Oduvodneni>. " + getJmenoIdentifikator(elVyrizeniUzavreni),

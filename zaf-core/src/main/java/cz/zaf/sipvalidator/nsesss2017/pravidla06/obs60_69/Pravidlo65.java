@@ -6,7 +6,7 @@ import java.util.List;
 import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -54,7 +54,7 @@ public class Pravidlo65 extends K06PravidloBase {
         for (int i = 0; i < zakladniEntity.size(); i++) {
             Element elZakladniEntita = zakladniEntity.get(i);
             String nazevZakladniEntity = elZakladniEntita.getNodeName();
-            if (nazevZakladniEntity.equals(NsessV3.SPIS) || nazevZakladniEntity.equals(NsessV3.DIL)) {
+            if (nazevZakladniEntity.equals(NsesssV3.SPIS) || nazevZakladniEntity.equals(NsesssV3.DIL)) {
                 kontrolaSpisuDilu(elZakladniEntita, dokumenty);
             }
         }
@@ -63,10 +63,10 @@ public class Pravidlo65 extends K06PravidloBase {
     private void kontrolaSpisuDilu(Element elZakladniEntita, List<Element> dokumenty) {
         int rokSkartacniOperace = this.kontrola.getContext().getLocalDate().getYear();
 
-        Element elRokSpousteciUdalosti = ValuesGetter.getXChild(elZakladniEntita, NsessV3.EVIDENCNI_UDAJE,
-                                                                NsessV3.VYRAZOVANI,
-                                                                NsessV3.DATACE_VYRAZENI,
-                                                                NsessV3.ROK_SPOUSTECI_UDALOSTI);
+        Element elRokSpousteciUdalosti = ValuesGetter.getXChild(elZakladniEntita, NsesssV3.EVIDENCNI_UDAJE,
+                                                                NsesssV3.VYRAZOVANI,
+                                                                NsesssV3.DATACE_VYRAZENI,
+                                                                NsesssV3.ROK_SPOUSTECI_UDALOSTI);
         if (elRokSpousteciUdalosti == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:RokSpousteciUdalosti>."
                     + getJmenoIdentifikator(elZakladniEntita),
@@ -83,8 +83,8 @@ public class Pravidlo65 extends K06PravidloBase {
                         elRokSpousteciUdalosti, kontrola.getEntityId(elZakladniEntita));
         }
 
-        Element skartacniLhutaNode = ValuesGetter.getXChild(elZakladniEntita, NsessV3.EVIDENCNI_UDAJE, NsessV3.VYRAZOVANI,
-                                                          NsessV3.SKARTACNI_REZIM, NsessV3.SKARTACNI_LHUTA);
+        Element skartacniLhutaNode = ValuesGetter.getXChild(elZakladniEntita, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.VYRAZOVANI,
+                                                          NsesssV3.SKARTACNI_REZIM, NsesssV3.SKARTACNI_LHUTA);
         if (skartacniLhutaNode == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:SkartacniLhuta>. "
                     + getJmenoIdentifikator(elZakladniEntita), elZakladniEntita,
@@ -121,10 +121,10 @@ public class Pravidlo65 extends K06PravidloBase {
     private void kontrolaDokumentu(Element zakladniEntita, int rokSkartacniOperace,
                                    Element dokument, int minLhutaSpis,
                                    int rokSpousteciUdalostiSpis, int skartacniLhutaSpis) {
-        Element elSkartacniLhutaDokumentu = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE,
-                                                                   NsessV3.VYRAZOVANI,
-                                                                   NsessV3.SKARTACNI_REZIM,
-                                                                   NsessV3.SKARTACNI_LHUTA);
+        Element elSkartacniLhutaDokumentu = ValuesGetter.getXChild(dokument, NsesssV3.EVIDENCNI_UDAJE,
+                                                                   NsesssV3.VYRAZOVANI,
+                                                                   NsesssV3.SKARTACNI_REZIM,
+                                                                   NsesssV3.SKARTACNI_LHUTA);
         if (elSkartacniLhutaDokumentu == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:SkartacniLhuta>. "
                     + getJmenoIdentifikator(dokument),
@@ -140,11 +140,11 @@ public class Pravidlo65 extends K06PravidloBase {
                                         .getEntityId(dokument));
         }
 
-        Element datumVznikuDokumentuNode = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, NsessV3.PUVOD,
-                                                                  NsessV3.VLASTNI_DOKUMENT, NsessV3.DATUM_VYTVORENI);
+        Element datumVznikuDokumentuNode = ValuesGetter.getXChild(dokument, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.PUVOD,
+                                                                  NsesssV3.VLASTNI_DOKUMENT, NsesssV3.DATUM_VYTVORENI);
         if (datumVznikuDokumentuNode == null) {
-            datumVznikuDokumentuNode = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, NsessV3.PUVOD,
-                                                              NsessV3.DORUCENY_DOKUMENT, NsessV3.DATUM_DORUCENI);
+            datumVznikuDokumentuNode = ValuesGetter.getXChild(dokument, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.PUVOD,
+                                                              NsesssV3.DORUCENY_DOKUMENT, NsesssV3.DATUM_DORUCENI);
         }
         if (datumVznikuDokumentuNode == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element vytvoření nebo doručení dokumentu. "

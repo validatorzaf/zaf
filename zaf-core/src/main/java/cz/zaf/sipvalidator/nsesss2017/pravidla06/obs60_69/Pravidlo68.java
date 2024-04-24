@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.w3c.dom.Element;
 
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -31,23 +31,23 @@ public class Pravidlo68 extends K06PravidloBase {
         for (Element zakladnientita : zakladniEntity) {
             String nazevZakladniEntity = zakladnientita.getNodeName();
             Element vecnaskupina = null;
-            if (nazevZakladniEntity.equals(NsessV3.SPIS) || nazevZakladniEntity.equals(NsessV3.DOKUMENT)) {
-                if (nazevZakladniEntity.equals(NsessV3.DOKUMENT)) {
-                    vecnaskupina = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE,
-                            NsessV3.TRIDENI, NsessV3.MATERSKE_ENTITY,
-                            NsessV3.VECNA_SKUPINA);
+            if (nazevZakladniEntity.equals(NsesssV3.SPIS) || nazevZakladniEntity.equals(NsesssV3.DOKUMENT)) {
+                if (nazevZakladniEntity.equals(NsesssV3.DOKUMENT)) {
+                    vecnaskupina = ValuesGetter.getXChild(zakladnientita, NsesssV3.EVIDENCNI_UDAJE,
+                            NsesssV3.TRIDENI, NsesssV3.MATERSKE_ENTITY,
+                            NsesssV3.VECNA_SKUPINA);
                 } else {
-                    vecnaskupina = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE,
-                            NsessV3.TRIDENI, NsessV3.MATERSKA_ENTITA,
-                            NsessV3.VECNA_SKUPINA);
+                    vecnaskupina = ValuesGetter.getXChild(zakladnientita, NsesssV3.EVIDENCNI_UDAJE,
+                            NsesssV3.TRIDENI, NsesssV3.MATERSKA_ENTITA,
+                            NsesssV3.VECNA_SKUPINA);
                 }
 
                 if (vecnaskupina == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezena rodičovská entita věcná skupina základní entity. "
                             + getJmenoIdentifikator(zakladnientita), zakladnientita, kontrola.getEntityId(zakladnientita));
                 }
-                Element sr = ValuesGetter.getXChild(vecnaskupina, NsessV3.EVIDENCNI_UDAJE, NsessV3.VYRAZOVANI,
-                        NsessV3.SKARTACNI_REZIM);
+                Element sr = ValuesGetter.getXChild(vecnaskupina, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.VYRAZOVANI,
+                        NsesssV3.SKARTACNI_REZIM);
                 if (sr == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:SkartacniRezim>. " + getJmenoIdentifikator(vecnaskupina),
                             vecnaskupina, kontrola.getEntityId(zakladnientita));

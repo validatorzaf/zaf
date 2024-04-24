@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.w3c.dom.Element;
 
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -27,13 +27,13 @@ public class Pravidlo84 extends K06PravidloBase {
     // element <nsesss:ObsahVyrizeni> s neprázdnou hodnotou.",
     @Override
     protected void kontrola() {
-        List<Element> vyrizenis = metsParser.getNodes(NsessV3.VYRIZENI);
+        List<Element> vyrizenis = metsParser.getNodes(NsesssV3.VYRIZENI);
         for (Element elVyrizeni : vyrizenis) {
-            boolean maZpusobSHodnotou = ValuesGetter.getObsahujeRodicElementSHodnotou(elVyrizeni, NsessV3.ZPUSOB,
+            boolean maZpusobSHodnotou = ValuesGetter.getObsahujeRodicElementSHodnotou(elVyrizeni, NsesssV3.ZPUSOB,
                     "jiný způsob");
             if (maZpusobSHodnotou) {
                 Element entita = kontrola.getEntity(elVyrizeni);
-                Element obs_vyr = ValuesGetter.getXChild(elVyrizeni, NsessV3.OBSAH_VYRIZENI);
+                Element obs_vyr = ValuesGetter.getXChild(elVyrizeni, NsesssV3.OBSAH_VYRIZENI);
                 if (obs_vyr == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:ObsahVyrizeni>. " + getJmenoIdentifikator(elVyrizeni),
                             elVyrizeni, kontrola.getEntityId(entita));

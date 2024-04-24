@@ -7,7 +7,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -46,7 +46,7 @@ public class Pravidlo29 extends K06PravidloBase {
             for (int i = 0; i < pevneKrizoveOdkazy.size(); i++) {
                 Element krizovyOdkaz = pevneKrizoveOdkazy.get(i);
                 Element materska_zakl_entita_eu = ValuesGetter.getXParent(krizovyOdkaz, "nsesss:Souvislosti",
-                        NsessV3.EVIDENCNI_UDAJE);
+                        NsesssV3.EVIDENCNI_UDAJE);
 
                 if (materska_zakl_entita_eu == null) {
                     nastavChybu(BaseCode.NEPOVOLENY_ELEMENT,
@@ -90,7 +90,7 @@ public class Pravidlo29 extends K06PravidloBase {
                 int pocitadlo = 0;
                 List<Element> listElChybnych = new ArrayList<>();
                 for (Element zaklEntita : zaklEntity) {
-                    Node id_ze = ValuesGetter.getXChild(zaklEntita, NsessV3.EVIDENCNI_UDAJE,
+                    Node id_ze = ValuesGetter.getXChild(zaklEntita, NsesssV3.EVIDENCNI_UDAJE,
                             "nsesss:Identifikace",
                             "nsesss:Identifikator");
                     if (id_ze == null) {

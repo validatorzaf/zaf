@@ -6,7 +6,7 @@ import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -30,8 +30,8 @@ public class Pravidlo60 extends K06PravidloBase {
         }
         for (int i = 0; i < dokumenty.size(); i++) {
             Element dokument = dokumenty.get(i);
-            Element ad = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, NsessV3.MANIPULACE,
-                    NsessV3.ANALOGOVY_DOKUMENT);
+            Element ad = ValuesGetter.getXChild(dokument, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.MANIPULACE,
+                    NsesssV3.ANALOGOVY_DOKUMENT);
             if (ad == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:AnalogovyDokument>. Dokumentu "
                         + K06_Obsahova.getIdentifikatory(dokument) + ".", dokument, K06_Obsahova.getEntityId(dokument));
