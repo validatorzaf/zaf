@@ -7,7 +7,7 @@ import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -35,7 +35,7 @@ public class Pravidlo40 extends K06PravidloBase {
         }
         
         for (Element dokument : dokumenty) {
-            Element analogovyDokument = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE,
+            Element analogovyDokument = ValuesGetter.getXChild(dokument, NsesssV3.EVIDENCNI_UDAJE,
                                                             "nsesss:Manipulace", "nsesss:AnalogovyDokument");
             // TODO: Je toto nutne? mozna musi existovat jiz ze souladu se schematem
             if (analogovyDokument == null) {

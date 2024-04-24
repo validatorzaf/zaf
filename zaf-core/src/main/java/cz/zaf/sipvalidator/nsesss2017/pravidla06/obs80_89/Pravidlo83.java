@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.w3c.dom.Element;
 
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -24,12 +24,12 @@ public class Pravidlo83 extends K06PravidloBase {
     // <nsesss:RokDo>, potom je jeho hodnota větší než <nsesss:RokOd>."
     @Override
     protected void kontrola() {
-        List<Element> urceneCasoveObdobi = metsParser.getNodes(NsessV3.URCENE_CASOVE_OBDOBI);
+        List<Element> urceneCasoveObdobi = metsParser.getNodes(NsesssV3.URCENE_CASOVE_OBDOBI);
         for (Element ucobdobi : urceneCasoveObdobi) {
             Element elEntita = kontrola.getEntity(ucobdobi);
-            Element nodeDo = ValuesGetter.getXChild(ucobdobi, NsessV3.ROK_DO);
+            Element nodeDo = ValuesGetter.getXChild(ucobdobi, NsesssV3.ROK_DO);
             if (nodeDo != null) {
-                Element nodeOd = ValuesGetter.getXChild(ucobdobi, NsessV3.ROK_OD);
+                Element nodeOd = ValuesGetter.getXChild(ucobdobi, NsesssV3.ROK_OD);
                 if (nodeOd == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:RokOd>.", ucobdobi,
                             kontrola.getEntityId(elEntita));

@@ -21,7 +21,7 @@ import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.pravidla07.K07PravidloBase;
@@ -79,9 +79,9 @@ public class Pravidlo7_04 extends K07PravidloBase {
                 continue;
             }
 
-            Element analogDokNode = ValuesGetter.getXChild(dokumentNode, NsessV3.EVIDENCNI_UDAJE,
-                    NsessV3.MANIPULACE,
-                    NsessV3.ANALOGOVY_DOKUMENT);
+            Element analogDokNode = ValuesGetter.getXChild(dokumentNode, NsesssV3.EVIDENCNI_UDAJE,
+                    NsesssV3.MANIPULACE,
+                    NsesssV3.ANALOGOVY_DOKUMENT);
             if (analogDokNode != null) {
                 String value = analogDokNode.getTextContent();
                 if ("ne".equals(value)) {
@@ -91,7 +91,7 @@ public class Pravidlo7_04 extends K07PravidloBase {
         }
 
         // získání všech komponent ve výstupním datovém formátu
-        komponenty = ctx.getMetsParser().getNodes(NsessV3.KOMPONENTA);
+        komponenty = ctx.getMetsParser().getNodes(NsesssV3.KOMPONENTA);
         if (CollectionUtils.isEmpty(komponenty)) {
             return;
         }

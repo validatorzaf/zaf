@@ -95,7 +95,7 @@ public class K05_ProtiSchematu
 
         String obecnyPopisChyby = VAL1_POPIS_CHYBY;
 
-        ChybaPravidla p = new ChybaPravidla(VAL1,
+        ChybaPravidla p = new ChybaPravidlaNsesss2017(VAL1,
                 VAL1_TEXT,
                 detailChyby,
                 obecnyPopisChyby,

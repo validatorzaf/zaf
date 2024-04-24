@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Element;
 
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -37,19 +37,19 @@ public class Pravidlo88 extends K06PravidloBase {
         for (int i = 0; i < dokumenty.size(); i++) {
             Element dokument = dokumenty.get(i);
 
-            Element evidUdaje = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE);
+            Element evidUdaje = ValuesGetter.getXChild(dokument, NsesssV3.EVIDENCNI_UDAJE);
             if (evidUdaje == null) {
                 continue;
             }
-            Element analog = ValuesGetter.getXChild(evidUdaje, NsessV3.MANIPULACE, NsessV3.ANALOGOVY_DOKUMENT);
+            Element analog = ValuesGetter.getXChild(evidUdaje, NsesssV3.MANIPULACE, NsesssV3.ANALOGOVY_DOKUMENT);
             if (analog != null) {
                 String hodnota = analog.getTextContent();
                 if (hodnota.equals("ano")) {
-                    Element datumOdeslani = ValuesGetter.getXChild(evidUdaje, NsessV3.VYRIZENI,
-                            NsessV3.DATUM_ODESLANI);
+                    Element datumOdeslani = ValuesGetter.getXChild(evidUdaje, NsesssV3.VYRIZENI,
+                            NsesssV3.DATUM_ODESLANI);
                     if (datumOdeslani != null) {
-                        Element elOdeslaneMnozstvi = ValuesGetter.getXChild(evidUdaje, NsessV3.VYRIZENI,
-                                NsessV3.ODESLANE_MNOZSTVI);
+                        Element elOdeslaneMnozstvi = ValuesGetter.getXChild(evidUdaje, NsesssV3.VYRIZENI,
+                                NsesssV3.ODESLANE_MNOZSTVI);
                         if (elOdeslaneMnozstvi == null) {
                             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:OdeslaneMnozstvi>. "
                                     + getJmenoIdentifikator(dokument), getMistoChyby(dokument), kontrola.getEntityId(dokument));

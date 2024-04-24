@@ -6,7 +6,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -38,12 +38,12 @@ public class Pravidlo70 extends K06PravidloBase {
         for (int i = 0; i < size; i++) {
             Element identifikator = identifikatory.get(i);
             Element rodic = (Element) identifikator.getParentNode();
-            if (ValuesGetter.getChildNodes(rodic, NsessV3.IDENTIFIKATOR).size() > 1) {
-                Element komponenta = ValuesGetter.getXParent(identifikator, NsessV3.IDENTIFIKACE,
-                        NsessV3.EVIDENCNI_UDAJE, NsessV3.KOMPONENTA);
+            if (ValuesGetter.getChildNodes(rodic, NsesssV3.IDENTIFIKATOR).size() > 1) {
+                Element komponenta = ValuesGetter.getXParent(identifikator, NsesssV3.IDENTIFIKACE,
+                        NsesssV3.EVIDENCNI_UDAJE, NsesssV3.KOMPONENTA);
                 if (komponenta == null) {
-                    Element entita = (Element) ValuesGetter.getXParent(identifikator, NsessV3.IDENTIFIKACE,
-                            NsessV3.EVIDENCNI_UDAJE).getParentNode();
+                    Element entita = (Element) ValuesGetter.getXParent(identifikator, NsesssV3.IDENTIFIKACE,
+                            NsesssV3.EVIDENCNI_UDAJE).getParentNode();
                     
                     nastavChybu(BaseCode.NEPOVOLENY_ELEMENT, "Element <nsesss:Identifikator> se opakuje přes nesplnění podmínky pravidla. "
                             + getJmenoIdentifikator(entita), identifikator, kontrola.getEntityId(entita));

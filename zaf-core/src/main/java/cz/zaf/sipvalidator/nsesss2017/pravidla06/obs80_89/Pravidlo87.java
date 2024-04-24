@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.w3c.dom.Element;
 
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -26,10 +26,10 @@ public class Pravidlo87 extends K06PravidloBase {
     // je uveden i element <nsesss:DatumOdeslani>.",
     @Override
     protected void kontrola() {
-        List<Element> vyrizeni = metsParser.getNodes(NsessV3.VYRIZENI);
+        List<Element> vyrizeni = metsParser.getNodes(NsesssV3.VYRIZENI);
         for (Element elVyrizeni : vyrizeni) {
-            Element datumOdeslani = ValuesGetter.getXChild(elVyrizeni, NsessV3.DATUM_ODESLANI);
-            Element prijemce = ValuesGetter.getXChild(elVyrizeni, NsessV3.PRIJEMCE);
+            Element datumOdeslani = ValuesGetter.getXChild(elVyrizeni, NsesssV3.DATUM_ODESLANI);
+            Element prijemce = ValuesGetter.getXChild(elVyrizeni, NsesssV3.PRIJEMCE);
             Element entita = kontrola.getEntity(elVyrizeni);
             if (datumOdeslani != null && prijemce == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Prijemce>. " + getJmenoIdentifikator(elVyrizeni),

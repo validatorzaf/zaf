@@ -8,7 +8,7 @@ import org.apache.commons.collections4.IterableUtils;
 import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -34,50 +34,50 @@ public class Pravidlo95 extends K06PravidloBase {
     // <nsesss:PlneUrcenySpisovyZnak> výchozí entity před posledním oddělovačem.",
     @Override
     protected void kontrola() {
-        List<Element> vecneSkupiny = metsParser.getNodes(NsessV3.VECNA_SKUPINA);
+        List<Element> vecneSkupiny = metsParser.getNodes(NsesssV3.VECNA_SKUPINA);
         if (CollectionUtils.isEmpty(vecneSkupiny)) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:VecnaSkupina>.");
         }
-        List<Element> soucasti = metsParser.getNodes(NsessV3.SOUCAST);
-        List<Element> typoveSpisy = metsParser.getNodes(NsessV3.TYPOVY_SPIS);
+        List<Element> soucasti = metsParser.getNodes(NsesssV3.SOUCAST);
+        List<Element> typoveSpisy = metsParser.getNodes(NsesssV3.TYPOVY_SPIS);
 
         Iterable<Element> multiCol = IterableUtils.chainedIterable(vecneSkupiny, soucasti, typoveSpisy);
         for (Element entita : multiCol) {
-            Element pu_entita = ValuesGetter.getXChild(entita, NsessV3.EVIDENCNI_UDAJE, NsessV3.TRIDENI,
-                    NsessV3.PLNE_URCENY_SPISOVY_ZNAK);
+            Element pu_entita = ValuesGetter.getXChild(entita, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
+                    NsesssV3.PLNE_URCENY_SPISOVY_ZNAK);
 
             if (pu_entita == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(entita),
                         entita, kontrola.getEntityId(entita));
             }
 
-            Element je_entita = ValuesGetter.getSourozencePrvnihoSeJmenem(pu_entita, NsessV3.JEDNODUCHY_SPISOVY_ZNAK);
+            Element je_entita = ValuesGetter.getSourozencePrvnihoSeJmenem(pu_entita, NsesssV3.JEDNODUCHY_SPISOVY_ZNAK);
             if (je_entita == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(entita),
                         entita, kontrola.getEntityId(entita));
             }
 
-            Element pu_rodic = ValuesGetter.getXChild(entita, NsessV3.EVIDENCNI_UDAJE, NsessV3.TRIDENI,
-                    NsessV3.MATERSKA_ENTITA, NsessV3.VECNA_SKUPINA,
-                    NsessV3.EVIDENCNI_UDAJE, NsessV3.TRIDENI,
-                    NsessV3.PLNE_URCENY_SPISOVY_ZNAK);
+            Element pu_rodic = ValuesGetter.getXChild(entita, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
+                    NsesssV3.MATERSKA_ENTITA, NsesssV3.VECNA_SKUPINA,
+                    NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
+                    NsesssV3.PLNE_URCENY_SPISOVY_ZNAK);
             if (pu_rodic == null) {
-                pu_rodic = ValuesGetter.getXChild(entita, NsessV3.EVIDENCNI_UDAJE, NsessV3.TRIDENI,
-                        NsessV3.MATERSKA_ENTITA, NsessV3.TYPOVY_SPIS,
-                        NsessV3.EVIDENCNI_UDAJE,
-                        NsessV3.TRIDENI, NsessV3.PLNE_URCENY_SPISOVY_ZNAK);
+                pu_rodic = ValuesGetter.getXChild(entita, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
+                        NsesssV3.MATERSKA_ENTITA, NsesssV3.TYPOVY_SPIS,
+                        NsesssV3.EVIDENCNI_UDAJE,
+                        NsesssV3.TRIDENI, NsesssV3.PLNE_URCENY_SPISOVY_ZNAK);
             }
             if (pu_rodic == null) {
-                pu_rodic = ValuesGetter.getXChild(entita, NsessV3.EVIDENCNI_UDAJE, NsessV3.TRIDENI,
-                        NsessV3.MATERSKA_ENTITA, NsessV3.SOUCAST, NsessV3.EVIDENCNI_UDAJE,
-                        NsessV3.TRIDENI, NsessV3.PLNE_URCENY_SPISOVY_ZNAK);
+                pu_rodic = ValuesGetter.getXChild(entita, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
+                        NsesssV3.MATERSKA_ENTITA, NsesssV3.SOUCAST, NsesssV3.EVIDENCNI_UDAJE,
+                        NsesssV3.TRIDENI, NsesssV3.PLNE_URCENY_SPISOVY_ZNAK);
             }
             if (pu_rodic == null) {
-                pu_rodic = ValuesGetter.getXChild(entita, NsessV3.EVIDENCNI_UDAJE, NsessV3.TRIDENI,
-                        NsessV3.SPISOVY_PLAN);
+                pu_rodic = ValuesGetter.getXChild(entita, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
+                        NsesssV3.SPISOVY_PLAN);
             }
             if (pu_rodic != null) {
-                if (pu_rodic.getNodeName().equals(NsessV3.SPISOVY_PLAN)) {
+                if (pu_rodic.getNodeName().equals(NsesssV3.SPISOVY_PLAN)) {
                     if (K06_Obsahova.spisZnakObsahujeOddelovac(pu_entita.getTextContent())) {
                         nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Spisový znak nejvyšší věcné skupiny v sobě nesmí obsahovat oddělovač. "
                                 + getJmenoIdentifikator(entita), entita, kontrola.getEntityId(entita));

@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Element;
 
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -26,24 +26,24 @@ public class Pravidlo79 extends K06PravidloBase {
     // uvnitř rodičovského elementu <nsesss:DataceVyrazeni> stejné entity.",
     @Override
     protected void kontrola() {
-        List<Element> skartacniRizeni = metsParser.getNodes(NsessV3.SKARTACNI_RIZENI);
+        List<Element> skartacniRizeni = metsParser.getNodes(NsesssV3.SKARTACNI_RIZENI);
         if (CollectionUtils.isEmpty(skartacniRizeni)) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:SkartacniRizeni>.");
         }
         for (Element skrizeni : skartacniRizeni) {
-            Element dataceVyrazeni = ValuesGetter.getSourozencePrvnihoSeJmenem(skrizeni, NsessV3.DATACE_VYRAZENI);
+            Element dataceVyrazeni = ValuesGetter.getSourozencePrvnihoSeJmenem(skrizeni, NsesssV3.DATACE_VYRAZENI);
             if (dataceVyrazeni == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:DataceVyrazeni>. " + getJmenoIdentifikator(skrizeni),
                         skrizeni, kontrola.getEntityId(skrizeni));
             }
-            Element rokSkOperace = ValuesGetter.getXChild(dataceVyrazeni, NsessV3.ROK_SKARTACNI_OPERACE);
+            Element rokSkOperace = ValuesGetter.getXChild(dataceVyrazeni, NsesssV3.ROK_SKARTACNI_OPERACE);
             if (rokSkOperace == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:RokSkartacniOperace>. " + getJmenoIdentifikator(skrizeni),
                         dataceVyrazeni, kontrola.getEntityId(skrizeni));
             }
             Integer rokOperace = vratRok(rokSkOperace); //když null zavolá nastavChybu() sám
 
-            Element datum = ValuesGetter.getXChild(skrizeni, NsessV3.DATUM);
+            Element datum = ValuesGetter.getXChild(skrizeni, NsesssV3.DATUM);
             if (datum == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Datum>. " + getJmenoIdentifikator(skrizeni),
                         skrizeni, kontrola.getEntityId(skrizeni));

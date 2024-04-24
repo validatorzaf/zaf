@@ -6,7 +6,7 @@ import java.util.List;
 import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.UrlJazykyParser;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -39,7 +39,7 @@ public class Pravidlo62 extends K06PravidloBase {
 
     @Override
     protected void kontrola() {
-        List<Element> jazyky = metsParser.getNodes(NsessV3.JAZYK);
+        List<Element> jazyky = metsParser.getNodes(NsesssV3.JAZYK);
         for (Element jazyk : jazyky) {
             String hodnotaJazyk = jazyk.getTextContent();
             boolean jeObsazen = parserZUrl.jeObsazenJazyk(hodnotaJazyk);

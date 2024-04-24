@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.w3c.dom.Element;
 
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -26,12 +26,12 @@ public class Pravidlo81 extends K06PravidloBase {
     // potom je jeho hodnota větší než <nsesss:DatumOd>.
     @Override
     protected void kontrola() {
-        List<Element> urceneCasoveObdobi = metsParser.getNodes(NsessV3.URCENE_CASOVE_OBDOBI);
+        List<Element> urceneCasoveObdobi = metsParser.getNodes(NsesssV3.URCENE_CASOVE_OBDOBI);
         for (Element elUrcCasObdobi : urceneCasoveObdobi) {
             Element elEntita = kontrola.getEntity(elUrcCasObdobi);
-            Element nodeDo = ValuesGetter.getXChild(elUrcCasObdobi, NsessV3.DATUM_DO);
+            Element nodeDo = ValuesGetter.getXChild(elUrcCasObdobi, NsesssV3.DATUM_DO);
             if (nodeDo != null) {
-                Element nodeOd = ValuesGetter.getXChild(elUrcCasObdobi, NsessV3.DATUM_OD);
+                Element nodeOd = ValuesGetter.getXChild(elUrcCasObdobi, NsesssV3.DATUM_OD);
                 if (nodeOd == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:DatumOd>.", elUrcCasObdobi,
                             kontrola.getEntityId(elEntita));

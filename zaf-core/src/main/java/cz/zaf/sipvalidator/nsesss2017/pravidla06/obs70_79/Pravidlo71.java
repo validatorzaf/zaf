@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.w3c.dom.Element;
 
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -26,10 +26,10 @@ public class Pravidlo71 extends K06PravidloBase {
     // Pokud existuje jakýkoli element <nsesss:DatumOtevreni>, obsahuje stejnou nebo menší hodnotu, než je hodnota elementu <nsesss:DatumUzavreni>, pokud poslední uvedený element existuje uvnitř rodičovského elementu <nsesss:Manipulace>.
     @Override
     protected void kontrola() {
-        List<Element> manipulace = metsParser.getNodes(NsessV3.MANIPULACE);
+        List<Element> manipulace = metsParser.getNodes(NsesssV3.MANIPULACE);
         for (Element manip_node : manipulace) {
-            Element nodeOtevreni = ValuesGetter.findFirstChild(manip_node, NsessV3.DATUM_OTEVRENI);
-            Element nodeUzavreni = ValuesGetter.findFirstChild(manip_node, NsessV3.DATUM_UZAVRENI);
+            Element nodeOtevreni = ValuesGetter.findFirstChild(manip_node, NsesssV3.DATUM_OTEVRENI);
+            Element nodeUzavreni = ValuesGetter.findFirstChild(manip_node, NsesssV3.DATUM_UZAVRENI);
             if (nodeOtevreni != null && nodeUzavreni != null) {
                 Element entita = kontrola.getEntity(manip_node);
                 Date datumOtevreni = null;

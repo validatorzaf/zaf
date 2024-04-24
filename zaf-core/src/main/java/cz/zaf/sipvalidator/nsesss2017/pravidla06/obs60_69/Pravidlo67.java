@@ -10,7 +10,7 @@ import java.util.Set;
 
 import org.w3c.dom.Element;
 
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -41,9 +41,9 @@ public class Pravidlo67 extends K06PravidloBase {
         List<Element> spisyDily = new ArrayList<>();
         for (Element zakladnientita : zakladniEntity) {
             String zeName = zakladnientita.getNodeName();
-            if (NsessV3.SPIS.equals(zeName) || NsessV3.DIL.equals(zeName)) {
+            if (NsesssV3.SPIS.equals(zeName) || NsesssV3.DIL.equals(zeName)) {
                 spisyDily.add(zakladnientita);
-            } else if (NsessV3.DOKUMENT.equals(zeName)) {
+            } else if (NsesssV3.DOKUMENT.equals(zeName)) {
                 zakladniDokumenty.add(zakladnientita);
             }
         }
@@ -62,7 +62,7 @@ public class Pravidlo67 extends K06PravidloBase {
                 }
 
                 // nalezeni rodicovske zakl. entity
-                Element dokumentyNode = ValuesGetter.getXParent(dokument, NsessV3.DOKUMENTY);
+                Element dokumentyNode = ValuesGetter.getXParent(dokument, NsesssV3.DOKUMENTY);
                 if (dokumentyNode == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen rodičovský element <nsesss:Dokumenty> elementu <nsesss:Dokument>. "
                             + getJmenoIdentifikator(dokument),
@@ -76,8 +76,8 @@ public class Pravidlo67 extends K06PravidloBase {
                 }
                 Set<String> skZnakyDokumentu = skZnaky.computeIfAbsent(rodicNode, n -> new HashSet<>());
                 
-                Element elSkartacniZnak = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, NsessV3.VYRAZOVANI,
-                        NsessV3.SKARTACNI_REZIM, NsessV3.SKARTACNI_ZNAK);
+                Element elSkartacniZnak = ValuesGetter.getXChild(dokument, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.VYRAZOVANI,
+                        NsesssV3.SKARTACNI_REZIM, NsesssV3.SKARTACNI_ZNAK);
                 if (elSkartacniZnak == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen dětský element <nsesss:SkartacniZnak> elementu <nsesss:Dokument>. "
                             + getJmenoIdentifikator(dokument),
@@ -100,9 +100,9 @@ public class Pravidlo67 extends K06PravidloBase {
     }
     
     private void kontrola(Element zakladnientita, Set<String> skZnakyDokumentu) {
-        Element n = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE,
-                NsessV3.VYRAZOVANI,
-                NsessV3.SKARTACNI_REZIM, NsessV3.SKARTACNI_ZNAK);
+        Element n = ValuesGetter.getXChild(zakladnientita, NsesssV3.EVIDENCNI_UDAJE,
+                NsesssV3.VYRAZOVANI,
+                NsesssV3.SKARTACNI_REZIM, NsesssV3.SKARTACNI_ZNAK);
         if (n == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen dětský element <nsesss:SkartacniZnak> základní entity. "
                     + getJmenoIdentifikator(zakladnientita),

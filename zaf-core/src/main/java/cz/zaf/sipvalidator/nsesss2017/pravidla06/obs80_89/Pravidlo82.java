@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.w3c.dom.Element;
 
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -25,12 +25,12 @@ public class Pravidlo82 extends K06PravidloBase {
     //OBSAHOVÁ č.82 Pokud je v jakémkoli elementu <nsesss:UrceneCasoveObdobi> uveden dětský element <nsesss:MesicDo>, potom je jeho hodnota větší než <nsesss:MesicOd>.",
     @Override
     protected void kontrola() {
-        List<Element> urceneCasoveObdobi = metsParser.getNodes(NsessV3.URCENE_CASOVE_OBDOBI);
+        List<Element> urceneCasoveObdobi = metsParser.getNodes(NsesssV3.URCENE_CASOVE_OBDOBI);
         for (Element urcenecasoveobdobi : urceneCasoveObdobi) {
             Element elEntita = kontrola.getEntity(urcenecasoveobdobi);
-            Element nodeDo = ValuesGetter.getXChild(urcenecasoveobdobi, NsessV3.MESIC_DO);
+            Element nodeDo = ValuesGetter.getXChild(urcenecasoveobdobi, NsesssV3.MESIC_DO);
             if (nodeDo != null) {
-                Element nodeOd = ValuesGetter.getXChild(urcenecasoveobdobi, NsessV3.MESIC_OD);
+                Element nodeOd = ValuesGetter.getXChild(urcenecasoveobdobi, NsesssV3.MESIC_OD);
                 if (nodeOd == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:MesicOd>.", urcenecasoveobdobi,
                             kontrola.getEntityId(elEntita));

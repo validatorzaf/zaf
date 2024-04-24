@@ -46,7 +46,7 @@ import cz.zaf.schema.validacesip.TSip;
 import cz.zaf.schema.validacesip.TTypEntity;
 import cz.zaf.schema.validacesip.TVysledekKontroly;
 import cz.zaf.sipvalidator.nsesss2017.EntityId;
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 
 public class XmlProtokolWriterOld implements ProtokolWriter
@@ -163,7 +163,7 @@ public class XmlProtokolWriterOld implements ProtokolWriter
 
         indentingStreamWriter.writeAttribute("nazevAplikace", artifactId);
         indentingStreamWriter.writeAttribute("verzeAplikace", verzeApp);
-        indentingStreamWriter.writeAttribute("verzePravidel", NsessV3.ZAF_RULE_VERSION);
+        indentingStreamWriter.writeAttribute("verzePravidel", NsesssV3.ZAF_RULE_VERSION);
     }
     
 
