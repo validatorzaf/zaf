@@ -25,7 +25,6 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,15 +35,9 @@ import com.sun.xml.txw2.output.IndentingXMLStreamWriter;
 
 import cz.zaf.schema.validace_v1.ObjectFactory;
 import cz.zaf.schema.validace_v1.TBalicek;
-import cz.zaf.schema.validace_v1.TEntity;
-import cz.zaf.schema.validace_v1.TIdentifikator;
 import cz.zaf.schema.validace_v1.TKontrola;
 import cz.zaf.schema.validace_v1.TPravidlo;
-import cz.zaf.schema.validace_v1.TTypEntity;
 import cz.zaf.schema.validace_v1.TVysledekKontroly;
-import cz.zaf.sipvalidator.nsesss2017.EntityId;
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
-import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.profily.ProfilPravidel;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBElement;
@@ -55,11 +48,10 @@ public class XmlProtokolWriter implements ProtokolWriter
  {
     
     public static final String SCHEMA_URL = "https://stands.nacr.cz/validace_zaf/v1";
-    public static ProfilPravidel zafRuleProfile = ProfilPravidel.NSESSS2017;
     
     private static Logger logger = LoggerFactory.getLogger(XmlProtokolWriter.class);
     
-    final static ObjectFactory objectFactory = new ObjectFactory();
+    public static final ObjectFactory objectFactory = new ObjectFactory();
 
     private OutputStream outputStream;
     boolean closeOutputStream = false;
@@ -89,17 +81,14 @@ public class XmlProtokolWriter implements ProtokolWriter
             throw new IllegalStateException("Failed to initialize JAXBContext", e);
         }
     }
-
-    public XmlProtokolWriter(final String outputPath,
-				            final String kontrolaId,
-				            final ProfilValidace profilValidace) throws IOException, JAXBException, XMLStreamException,
-    		DatatypeConfigurationException {
-    	this(outputPath, kontrolaId, profilValidace, zafRuleProfile, NsessV3.ZAF_RULE_VERSION);
-    }
+    
+    private ProfilPravidel profilPravidel = null;
+    private String verzePravidel = "";
+    private String druhValidace = "";
     
     public XmlProtokolWriter(final String outputPath,
                              final String kontrolaId,
-                             final ProfilValidace profilValidace,
+                             final String druhValidace,
                              final ProfilPravidel profilPravidel,
                              final String verzePravidel) throws IOException, JAXBException, XMLStreamException,
             DatatypeConfigurationException {
@@ -139,11 +128,13 @@ public class XmlProtokolWriter implements ProtokolWriter
         // write attributes to root element
         indentingStreamWriter.writeAttribute("identifikatorValidace",
                                              kontrolaId == null ? UUID.randomUUID().toString() : kontrolaId);
-        
+    
+        this.profilPravidel = profilPravidel;
+        this.verzePravidel = verzePravidel;
+        this.druhValidace = druhValidace;
         pripravAppInfo();
         pripravCas();
         
-        String pouzitiKontroly = profilValidace.getNazev();
         /*
         if(!pouzitiKontroly.equals(TPouzitiKontroly.SKARTAČNÍ_ŘÍZENÍ_JEN_METADATA)&&
                 !pouzitiKontroly.equals(TPouzitiKontroly.SKARTAČNÍ_ŘÍZENÍ_S_KOMPONENTAMI)&&
@@ -152,7 +143,6 @@ public class XmlProtokolWriter implements ProtokolWriter
             pouzitiKontroly = TPouzitiKontroly.SKARTAČNÍ_ŘÍZENÍ_JEN_METADATA.value();
         }*/
     
-        indentingStreamWriter.writeAttribute("druhValidace", pouzitiKontroly);
     }
     
     private void pripravCas() throws DatatypeConfigurationException, XMLStreamException {
@@ -174,8 +164,9 @@ public class XmlProtokolWriter implements ProtokolWriter
 
         indentingStreamWriter.writeAttribute("nazevAplikace", artifactId);
         indentingStreamWriter.writeAttribute("verzeAplikace", verzeApp);
-        indentingStreamWriter.writeAttribute("profilPravidel", zafRuleProfile.toString());
-        indentingStreamWriter.writeAttribute("verzePravidel", NsessV3.ZAF_RULE_VERSION);
+        indentingStreamWriter.writeAttribute("profilPravidel", profilPravidel.toString());
+        indentingStreamWriter.writeAttribute("verzePravidel", verzePravidel);
+        indentingStreamWriter.writeAttribute("druhValidace", druhValidace);
     }
     
 
@@ -245,51 +236,7 @@ public class XmlProtokolWriter implements ProtokolWriter
         pravNode.setMistoChyby(pravidlo.getMistoChyby());
         pravNode.setKodChyby(pravidlo.getKodChyby().getErrorCode());
 
-        List<EntityId> entityIds = pravidlo.getEntityIds();
-        if (CollectionUtils.isNotEmpty(entityIds)) {
-            TEntity entityNode = objectFactory.createTEntity();
-            List<TIdentifikator> idents = entityNode.getIdentifikator();
-            for (EntityId entityId : entityIds) {
-                TIdentifikator ident = objectFactory.createTIdentifikator();
-                ident.setZdroj(entityId.getZdrojIdent().getZdroj());
-                ident.setValue(entityId.getZdrojIdent().getIdentifikator());
-                TTypEntity typEntity = null;
-                switch (entityId.getDruhEntity()) {
-                case SPISOVY_PLAN:
-                    typEntity = TTypEntity.SPISOVÝ_PLÁN;
-                    break;
-                case VECNA_SKUPINA:
-                    typEntity = TTypEntity.VĚCNÁ_SKUPINA;
-                    break;
-                case DIL:
-                    typEntity = TTypEntity.DÍL;
-                    break;
-                case SPIS:
-                    typEntity = TTypEntity.SPIS;
-                    break;
-                case DOKUMENT:
-                    typEntity = TTypEntity.DOKUMENT;
-                    break;
-                case SOUCAST:
-                    typEntity = TTypEntity.SOUČÁST;
-                    break;
-                case TYPOVY_SPIS:
-                case KOMPONENTA:
-                case SKARTACNI_RIZENI:
-                default:
-                    continue;
-                }
-                if (typEntity == null) {
-                    continue;
-                }
-                ident.setTyp(typEntity);
-
-                idents.add(ident);
-            }
-            if (idents.size() > 0) {
-                pravNode.setEntity(entityNode);
-            }
-        }
+        pravidlo.zapisDetail(pravNode);
         return pravNode;
     }
 

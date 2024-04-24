@@ -17,7 +17,7 @@ import cz.zaf.sipvalidator.exceptions.codes.ErrorCode;
 import cz.zaf.sipvalidator.nsesss2017.EntityId;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.MetsParser;
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 
 /**
@@ -252,17 +252,17 @@ public abstract class K06PravidloBase implements ObsahovePravidlo {
     static public boolean vratKontrolaVystupniFormat(Element zaklEntita) {
         Element datumVyrizeni;
         switch (zaklEntita.getNodeName()) {
-        case NsessV3.DIL:
-            datumVyrizeni = ValuesGetter.getXChild(zaklEntita, NsessV3.EVIDENCNI_UDAJE, NsessV3.UZAVRENI,
-                                                   NsessV3.DATUM);
+        case NsesssV3.DIL:
+            datumVyrizeni = ValuesGetter.getXChild(zaklEntita, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.UZAVRENI,
+                                                   NsesssV3.DATUM);
             break;
-        case NsessV3.SPIS:
-            datumVyrizeni = ValuesGetter.getXChild(zaklEntita, NsessV3.EVIDENCNI_UDAJE, NsessV3.VYRIZENI_UZAVRENI,
-                                                   NsessV3.DATUM);
+        case NsesssV3.SPIS:
+            datumVyrizeni = ValuesGetter.getXChild(zaklEntita, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.VYRIZENI_UZAVRENI,
+                                                   NsesssV3.DATUM);
             break;
-        case NsessV3.DOKUMENT:
-            datumVyrizeni = ValuesGetter.getXChild(zaklEntita, NsessV3.EVIDENCNI_UDAJE, NsessV3.VYRIZENI,
-                                                   NsessV3.DATUM);
+        case NsesssV3.DOKUMENT:
+            datumVyrizeni = ValuesGetter.getXChild(zaklEntita, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.VYRIZENI,
+                                                   NsesssV3.DATUM);
             break;
         default:
             nastavChybu(BaseCode.NEPOVOLENY_ELEMENT, "Neni zakladni entita", zaklEntita);

@@ -57,7 +57,7 @@ abstract public class KontrolaBase<KontrolaContext extends RuleEvaluationContext
                             String detailChyby,
                             String mistoChyby,
                             List<EntityId> entityIds) {
-        ChybaPravidla p = new ChybaPravidla(pravidlo,
+        ChybaPravidla p = new ChybaPravidlaNsesss2017(pravidlo,
                 detailChyby,
                 mistoChyby,
                 errorCode,

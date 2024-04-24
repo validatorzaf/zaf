@@ -101,7 +101,7 @@ public class ErrorHandlerValidaceXSD implements ErrorHandler {
             textChyby += " " +celaChybovaHlaska;
         }
 
-        ChybaPravidla p = new ChybaPravidla(K05_ProtiSchematu.VAL1,
+        ChybaPravidla p = new ChybaPravidlaNsesss2017(K05_ProtiSchematu.VAL1,
                 K05_ProtiSchematu.VAL1_TEXT,
                 textChyby,
                 K05_ProtiSchematu.VAL1_POPIS_CHYBY,
