@@ -8,7 +8,7 @@ import java.util.Set;
 
 import org.w3c.dom.Element;
 
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -30,12 +30,12 @@ public class Pravidlo78 extends K06PravidloBase {
         if (zakladniEntity == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezena žádná základní entita.");
         }
-        List<Element> skartacniRizeni = metsParser.getNodes(NsessV3.SKARTACNI_RIZENI);
+        List<Element> skartacniRizeni = metsParser.getNodes(NsesssV3.SKARTACNI_RIZENI);
         Set<Element> skartacniRizeniSet = new HashSet<>(skartacniRizeni);
 
         for (Element zakladnientita : zakladniEntity) {
-            Element node = ValuesGetter.getXChild(zakladnientita, NsessV3.EVIDENCNI_UDAJE,
-                    NsessV3.VYRAZOVANI, NsessV3.SKARTACNI_RIZENI);
+            Element node = ValuesGetter.getXChild(zakladnientita, NsesssV3.EVIDENCNI_UDAJE,
+                    NsesssV3.VYRAZOVANI, NsesssV3.SKARTACNI_RIZENI);
             if (node == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Element <nsesss:SkartacniRizeni> není správně zatříděn. " + getJmenoIdentifikator(zakladnientita),
                         zakladnientita, kontrola.getEntityId(zakladnientita));

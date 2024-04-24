@@ -14,7 +14,7 @@ import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -40,7 +40,7 @@ public class Pravidlo102 extends K06PravidloBase {
     @Override
     protected void kontrola() {
         // získání všech komponent ve výstupním datovém formátu
-        List<Element> komponenty = metsParser.getNodes(NsessV3.KOMPONENTA);
+        List<Element> komponenty = metsParser.getNodes(NsesssV3.KOMPONENTA);
         if (CollectionUtils.isEmpty(komponenty)) {
             return;
         }

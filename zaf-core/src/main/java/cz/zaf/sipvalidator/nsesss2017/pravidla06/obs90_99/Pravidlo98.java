@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.w3c.dom.Element;
 
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -46,24 +46,24 @@ public class Pravidlo98 extends K06PravidloBase {
 
         for (int i = 0; i < zakladniEntity.size(); i++) {
             Element zakladnientita = zakladniEntity.get(i);
-            if (zakladnientita.getNodeName().equals(NsessV3.DIL)
-                    || zakladnientita.getNodeName().equals(NsessV3.SPIS)) {
+            if (zakladnientita.getNodeName().equals(NsesssV3.DIL)
+                    || zakladnientita.getNodeName().equals(NsesssV3.SPIS)) {
                 kontrolaEntity(zakladnientita, dokumenty);
             }
         }
     }
 
     private void kontrolaEntity(Element zakladniEntita, List<Element> dokumenty) {
-        Element n_zakl_jsz = ValuesGetter.getXChild(zakladniEntita, NsessV3.EVIDENCNI_UDAJE, NsessV3.TRIDENI,
-                NsessV3.JEDNODUCHY_SPISOVY_ZNAK);
+        Element n_zakl_jsz = ValuesGetter.getXChild(zakladniEntita, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
+                NsesssV3.JEDNODUCHY_SPISOVY_ZNAK);
         if (n_zakl_jsz == null) {
             String detailChyby = "Nenalezen element <nsesss:JednoduchySpisovyZnak> základní entity. "
                     + kontrola.getJmenoIdentifikator(zakladniEntita);
             nastavChybu(BaseCode.CHYBI_ELEMENT, detailChyby, getMistoChyby(zakladniEntita),
                     kontrola.getEntityId(zakladniEntita));
         }
-        Element n_zakl_pusz = ValuesGetter.getXChild(zakladniEntita, NsessV3.EVIDENCNI_UDAJE, NsessV3.TRIDENI,
-                NsessV3.PLNE_URCENY_SPISOVY_ZNAK);
+        Element n_zakl_pusz = ValuesGetter.getXChild(zakladniEntita, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
+                NsesssV3.PLNE_URCENY_SPISOVY_ZNAK);
         if (n_zakl_pusz == null) {
             String detailChyby = "Nenalezen element <nsesss:PlneUrcenySpisovyZnak> základní entity. "
                     + kontrola.getJmenoIdentifikator(zakladniEntita);
@@ -77,16 +77,16 @@ public class Pravidlo98 extends K06PravidloBase {
 
         for (int j = 0; j < dokumenty.size(); j++) {
             Element dokument = dokumenty.get(j);
-            Element n_j = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, NsessV3.TRIDENI,
-                    NsessV3.JEDNODUCHY_SPISOVY_ZNAK);
+            Element n_j = ValuesGetter.getXChild(dokument, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
+                    NsesssV3.JEDNODUCHY_SPISOVY_ZNAK);
             if (n_j == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak>. "
                         + kontrola.getJmenoIdentifikator(dokument),
                         getMistoChyby(dokument), kontrola.getEntityId(dokument));
             }
             jednoduchy = n_j.getTextContent();
-            Element n_p = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, NsessV3.TRIDENI,
-                    NsessV3.PLNE_URCENY_SPISOVY_ZNAK);
+            Element n_p = ValuesGetter.getXChild(dokument, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
+                    NsesssV3.PLNE_URCENY_SPISOVY_ZNAK);
             if (n_p == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. "
                         + kontrola.getJmenoIdentifikator(dokument), getMistoChyby(dokument),

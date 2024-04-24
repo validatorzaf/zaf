@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Element;
 
 import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -32,13 +32,13 @@ public class Pravidlo85 extends K06PravidloBase {
         } else {
             for (int i = 0; i < dokumenty.size(); i++) {
                 Element dokument = dokumenty.get(i);
-                Element analog = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, NsessV3.MANIPULACE,
-                        NsessV3.ANALOGOVY_DOKUMENT);
+                Element analog = ValuesGetter.getXChild(dokument, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.MANIPULACE,
+                        NsesssV3.ANALOGOVY_DOKUMENT);
                 if (analog != null) {
                     String hodnota = analog.getTextContent();
                     if (hodnota.equals("ano")) {
                         Element uklalaciJednotka = ValuesGetter.getSourozencePrvnihoSeJmenem(analog,
-                                NsessV3.UKLADACI_JEDNOTKA);
+                                NsesssV3.UKLADACI_JEDNOTKA);
                         if (uklalaciJednotka == null) {
                             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:UkladaciJednotka>. " + getJmenoIdentifikator(
                                     dokument),

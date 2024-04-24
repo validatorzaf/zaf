@@ -11,13 +11,14 @@ import org.slf4j.LoggerFactory;
 
 import cz.zaf.sipvalidator.formats.MimetypeDetectorFactory;
 import cz.zaf.sipvalidator.formats.VystupniFormat;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.SipValidator;
 import cz.zaf.sipvalidator.pdfa.VeraValidatorProxy;
 import cz.zaf.sipvalidator.sip.ProtokolWriter;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipLoader;
-import cz.zaf.sipvalidator.sip.XmlProtokolWriterOld;
 import cz.zaf.sipvalidator.sip.XmlProtokolWriter;
+import cz.zaf.sipvalidator.sip.XmlProtokolWriterOld;
 
 /**
  * Command line validator
@@ -64,7 +65,9 @@ public class CmdValidator {
     	if (cmdParams.vystupniFormat == VystupniFormat.VALIDACE_V1) {
     		protokolWriter = new XmlProtokolWriter(cmdParams.getOutput(), 
                     cmdParams.getIdKontroly(), 
-                    cmdParams.getProfilValidace());
+                    cmdParams.getProfilValidace().getNazev(),
+                    NsesssV3.ZAF_RULE_PROFILE, 
+                    NsesssV3.ZAF_RULE_VERSION);
     	}
     	else {
     		protokolWriter = new XmlProtokolWriterOld(cmdParams.getOutput(), 

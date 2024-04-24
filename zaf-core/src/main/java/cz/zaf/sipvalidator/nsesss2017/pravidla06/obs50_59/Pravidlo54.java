@@ -18,7 +18,7 @@ import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.EntityId;
 import cz.zaf.sipvalidator.nsesss2017.EntityId.DruhEntity;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.PairZdrojIdent;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
@@ -111,8 +111,8 @@ public class Pravidlo54 extends K06PravidloBase {
     }
 
     private void zpracujElementyDmdSec() {
-        String[] listNsesssEntit = {NsessV3.SPISOVY_PLAN, NsessV3.VECNA_SKUPINA, NsessV3.SOUCAST, NsessV3.TYPOVY_SPIS,
-            NsessV3.DIL, NsessV3.SPIS, NsessV3.DOKUMENT, NsessV3.KOMPONENTA};
+        String[] listNsesssEntit = {NsesssV3.SPISOVY_PLAN, NsesssV3.VECNA_SKUPINA, NsesssV3.SOUCAST, NsesssV3.TYPOVY_SPIS,
+            NsesssV3.DIL, NsesssV3.SPIS, NsesssV3.DOKUMENT, NsesssV3.KOMPONENTA};
         for (String jmenoNsesssEntity : listNsesssEntit) {
             List<Element> listHledanychEntit = metsParser.getNodes(jmenoNsesssEntity);
             // 
@@ -415,42 +415,42 @@ public class Pravidlo54 extends K06PravidloBase {
             switch (druhEntity) {
             case VECNA_SKUPINA:
                 if (DruhEntity.SPISOVY_PLAN.equals(parentDruhEntity)) {
-                    parentElement = ValuesGetter.getXChild(elOdkazu, NsessV3.EVIDENCNI_UDAJE, NsessV3.TRIDENI,
-                                                           NsessV3.SPISOVY_PLAN);
+                    parentElement = ValuesGetter.getXChild(elOdkazu, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
+                                                           NsesssV3.SPISOVY_PLAN);
                 } else
                 if (DruhEntity.VECNA_SKUPINA.equals(parentDruhEntity)) {
-                    parentElement = ValuesGetter.getXChild(elOdkazu, NsessV3.EVIDENCNI_UDAJE, NsessV3.TRIDENI,
-                                                           NsessV3.MATERSKA_ENTITA, NsessV3.VECNA_SKUPINA);
+                    parentElement = ValuesGetter.getXChild(elOdkazu, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
+                                                           NsesssV3.MATERSKA_ENTITA, NsesssV3.VECNA_SKUPINA);
                 }
                 break;
             case TYPOVY_SPIS:
-                parentElement = ValuesGetter.getXChild(elOdkazu, NsessV3.EVIDENCNI_UDAJE, NsessV3.TRIDENI,
-                                                       NsessV3.MATERSKA_ENTITA, NsessV3.VECNA_SKUPINA);
+                parentElement = ValuesGetter.getXChild(elOdkazu, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
+                                                       NsesssV3.MATERSKA_ENTITA, NsesssV3.VECNA_SKUPINA);
                 break;
             case SOUCAST:
-                parentElement = ValuesGetter.getXChild(elOdkazu, NsessV3.EVIDENCNI_UDAJE, NsessV3.TRIDENI,
-                                                       NsessV3.MATERSKA_ENTITA, NsessV3.TYPOVY_SPIS);
+                parentElement = ValuesGetter.getXChild(elOdkazu, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
+                                                       NsesssV3.MATERSKA_ENTITA, NsesssV3.TYPOVY_SPIS);
                 break;
             case SPIS:
-                parentElement = ValuesGetter.getXChild(elOdkazu, NsessV3.EVIDENCNI_UDAJE, NsessV3.TRIDENI,
-                                                       NsessV3.MATERSKA_ENTITA, NsessV3.VECNA_SKUPINA);
+                parentElement = ValuesGetter.getXChild(elOdkazu, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
+                                                       NsesssV3.MATERSKA_ENTITA, NsesssV3.VECNA_SKUPINA);
                 break;
             case DIL:
-                parentElement = ValuesGetter.getXChild(elOdkazu, NsessV3.EVIDENCNI_UDAJE, NsessV3.TRIDENI,
-                                                       NsessV3.MATERSKA_ENTITA, NsessV3.SOUCAST);
+                parentElement = ValuesGetter.getXChild(elOdkazu, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
+                                                       NsesssV3.MATERSKA_ENTITA, NsesssV3.SOUCAST);
                 break;
             case DOKUMENT:
                 if (DruhEntity.VECNA_SKUPINA.equals(parentDruhEntity)) {
-                    parentElement = ValuesGetter.getXChild(elOdkazu, NsessV3.EVIDENCNI_UDAJE, NsessV3.TRIDENI,
-                                                           NsessV3.MATERSKE_ENTITY, NsessV3.VECNA_SKUPINA);
+                    parentElement = ValuesGetter.getXChild(elOdkazu, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
+                                                           NsesssV3.MATERSKE_ENTITY, NsesssV3.VECNA_SKUPINA);
                 } else if (DruhEntity.SPIS.equals(parentDruhEntity)) {
-                    parentElement = ValuesGetter.getXParent(elOdkazu, NsessV3.DOKUMENTY, NsessV3.SPIS);
+                    parentElement = ValuesGetter.getXParent(elOdkazu, NsesssV3.DOKUMENTY, NsesssV3.SPIS);
                 } else if (DruhEntity.DIL.equals(parentDruhEntity)) {
-                    parentElement = ValuesGetter.getXParent(elOdkazu, NsessV3.DOKUMENTY, NsessV3.DIL);
+                    parentElement = ValuesGetter.getXParent(elOdkazu, NsesssV3.DOKUMENTY, NsesssV3.DIL);
                 }
                 break;
             case KOMPONENTA:
-                parentElement = ValuesGetter.getXParent(elOdkazu, NsessV3.KOMPONENTY, NsessV3.DOKUMENT);
+                parentElement = ValuesGetter.getXParent(elOdkazu, NsesssV3.KOMPONENTY, NsesssV3.DOKUMENT);
                 break;
             default:
                 // nop

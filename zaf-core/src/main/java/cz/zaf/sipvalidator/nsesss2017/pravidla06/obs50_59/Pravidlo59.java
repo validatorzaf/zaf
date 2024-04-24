@@ -12,7 +12,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.sipvalidator.nsesss2017.CompareNodes;
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.PairZdrojIdent;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
@@ -32,7 +32,7 @@ public class Pravidlo59 extends K06PravidloBase {
     @Override
     protected void kontrola() {
         Map<PairZdrojIdent, List<Element>> identMap = new HashMap<>();
-        List<Element> identList = metsParser.getNodes(NsessV3.IDENTIFIKATOR);
+        List<Element> identList = metsParser.getNodes(NsesssV3.IDENTIFIKATOR);
         for (Element ident : identList) {
             // get parent entity
             Element parentNode = getEntityWithIdentifikator(ident);
@@ -71,27 +71,27 @@ public class Pravidlo59 extends K06PravidloBase {
 
     public static boolean shouldBeChecked(Node node) {
         switch (node.getNodeName()) {
-            case NsessV3.SPISOVY_PLAN:
+            case NsesssV3.SPISOVY_PLAN:
                 return true;
-            case NsessV3.VECNA_SKUPINA:
+            case NsesssV3.VECNA_SKUPINA:
                 return true;
-            case NsessV3.TYPOVY_SPIS:
+            case NsesssV3.TYPOVY_SPIS:
                 return true;
-            case NsessV3.SOUCAST:
+            case NsesssV3.SOUCAST:
                 return true;
-            case NsessV3.SPIS:
+            case NsesssV3.SPIS:
                 return true;
-            case NsessV3.DIL:
+            case NsesssV3.DIL:
                 return true;
-            case NsessV3.DOKUMENT:
+            case NsesssV3.DOKUMENT:
                 return true;
-            case NsessV3.KOMPONENTA:
+            case NsesssV3.KOMPONENTA:
                 return true;
-            case NsessV3.BEZPECNOSTNI_KATEGORIE:
+            case NsesssV3.BEZPECNOSTNI_KATEGORIE:
                 return true;
-            case NsessV3.SKARTACNI_REZIM:
+            case NsesssV3.SKARTACNI_REZIM:
                 return true;
-            case NsessV3.TYP_DOKUMENTU:
+            case NsesssV3.TYP_DOKUMENTU:
                 return true;
         }
         return false;
@@ -100,10 +100,10 @@ public class Pravidlo59 extends K06PravidloBase {
     public static Element getEntityWithIdentifikator(Element identifikator) {
         Element parentNode = (Element) identifikator.getParentNode();
         String parentName = parentNode.getNodeName();
-        if (parentName.equals(NsessV3.IDENTIFIKACE)) {
+        if (parentName.equals(NsesssV3.IDENTIFIKACE)) {
             parentNode = (Element) parentNode.getParentNode();
             parentName = parentNode.getNodeName();
-            if (parentName.equals(NsessV3.EVIDENCNI_UDAJE)) {
+            if (parentName.equals(NsesssV3.EVIDENCNI_UDAJE)) {
                 return (Element) parentNode.getParentNode();
             } else {
                 return parentNode;

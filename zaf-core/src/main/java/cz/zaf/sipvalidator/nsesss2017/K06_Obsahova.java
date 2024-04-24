@@ -79,47 +79,47 @@ public class K06_Obsahova
         Node identNode;
         DruhEntity druhEntity;
         switch (nodename) {
-            case NsessV3.VECNA_SKUPINA:
-                identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
-                        NsessV3.IDENTIFIKACE, NsessV3.IDENTIFIKATOR);
+            case NsesssV3.VECNA_SKUPINA:
+                identNode = ValuesGetter.getXChild(node, NsesssV3.EVIDENCNI_UDAJE,
+                        NsesssV3.IDENTIFIKACE, NsesssV3.IDENTIFIKATOR);
                 druhEntity = DruhEntity.VECNA_SKUPINA;
                 break;
-            case NsessV3.SOUCAST:
-                identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
-                        NsessV3.IDENTIFIKACE, NsessV3.IDENTIFIKATOR);
+            case NsesssV3.SOUCAST:
+                identNode = ValuesGetter.getXChild(node, NsesssV3.EVIDENCNI_UDAJE,
+                        NsesssV3.IDENTIFIKACE, NsesssV3.IDENTIFIKATOR);
                 druhEntity = DruhEntity.SOUCAST;
                 break;
-            case NsessV3.TYPOVY_SPIS:
-                identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
-                        NsessV3.IDENTIFIKACE, NsessV3.IDENTIFIKATOR);
+            case NsesssV3.TYPOVY_SPIS:
+                identNode = ValuesGetter.getXChild(node, NsesssV3.EVIDENCNI_UDAJE,
+                        NsesssV3.IDENTIFIKACE, NsesssV3.IDENTIFIKATOR);
                 druhEntity = DruhEntity.TYPOVY_SPIS;
                 break;
-            case NsessV3.SPISOVY_PLAN:
-                identNode = ValuesGetter.getXChild(node, NsessV3.IDENTIFIKATOR);
+            case NsesssV3.SPISOVY_PLAN:
+                identNode = ValuesGetter.getXChild(node, NsesssV3.IDENTIFIKATOR);
                 druhEntity = DruhEntity.SPISOVY_PLAN;
                 break;
-            case NsessV3.DOKUMENT:
-                identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
-                        NsessV3.IDENTIFIKACE, NsessV3.IDENTIFIKATOR);
+            case NsesssV3.DOKUMENT:
+                identNode = ValuesGetter.getXChild(node, NsesssV3.EVIDENCNI_UDAJE,
+                        NsesssV3.IDENTIFIKACE, NsesssV3.IDENTIFIKATOR);
                 druhEntity = DruhEntity.DOKUMENT;
                 break;
-            case NsessV3.SPIS:
-                identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
-                        NsessV3.IDENTIFIKACE, NsessV3.IDENTIFIKATOR);
+            case NsesssV3.SPIS:
+                identNode = ValuesGetter.getXChild(node, NsesssV3.EVIDENCNI_UDAJE,
+                        NsesssV3.IDENTIFIKACE, NsesssV3.IDENTIFIKATOR);
                 druhEntity = DruhEntity.SPIS;
                 break;
-            case NsessV3.DIL:
-                identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
-                        NsessV3.IDENTIFIKACE, NsessV3.IDENTIFIKATOR);
+            case NsesssV3.DIL:
+                identNode = ValuesGetter.getXChild(node, NsesssV3.EVIDENCNI_UDAJE,
+                        NsesssV3.IDENTIFIKACE, NsesssV3.IDENTIFIKATOR);
                 druhEntity = DruhEntity.DIL;
                 break;
-            case NsessV3.KOMPONENTA:
-                identNode = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
-                        NsessV3.IDENTIFIKACE, NsessV3.IDENTIFIKATOR);
+            case NsesssV3.KOMPONENTA:
+                identNode = ValuesGetter.getXChild(node, NsesssV3.EVIDENCNI_UDAJE,
+                        NsesssV3.IDENTIFIKACE, NsesssV3.IDENTIFIKATOR);
                 druhEntity = DruhEntity.KOMPONENTA;
                 break;
-            case NsessV3.SKARTACNI_RIZENI:
-                identNode = ValuesGetter.getXChild(node, NsessV3.IDENTIFIKATOR);
+            case NsesssV3.SKARTACNI_RIZENI:
+                identNode = ValuesGetter.getXChild(node, NsesssV3.IDENTIFIKATOR);
                 druhEntity = DruhEntity.SKARTACNI_RIZENI;
                 break;
             default:
@@ -157,12 +157,12 @@ public class K06_Obsahova
         String elementName = element.getNodeName();
         Element identifikator;
 
-        if (elementName.equals(NsessV3.SPISOVY_PLAN)) {
-            identifikator = ValuesGetter.getXChild(element, NsessV3.IDENTIFIKATOR);
+        if (elementName.equals(NsesssV3.SPISOVY_PLAN)) {
+            identifikator = ValuesGetter.getXChild(element, NsesssV3.IDENTIFIKATOR);
             return identifikator;
         } else {
-            identifikator = ValuesGetter.getXChild(element, NsessV3.EVIDENCNI_UDAJE,
-                    NsessV3.IDENTIFIKACE, NsessV3.IDENTIFIKATOR);
+            identifikator = ValuesGetter.getXChild(element, NsesssV3.EVIDENCNI_UDAJE,
+                    NsesssV3.IDENTIFIKACE, NsesssV3.IDENTIFIKATOR);
             return identifikator;
         }
     }
@@ -171,8 +171,8 @@ public class K06_Obsahova
         String nodename = node.getNodeName();
         String hodnota = "nenalezeno", zdroj = "nenalezeno";
         Node identifikator;
-        if (nodename.equals(NsessV3.SPISOVY_PLAN)) {
-            identifikator = ValuesGetter.getXChild(node, NsessV3.IDENTIFIKATOR);
+        if (nodename.equals(NsesssV3.SPISOVY_PLAN)) {
+            identifikator = ValuesGetter.getXChild(node, NsesssV3.IDENTIFIKATOR);
             if (identifikator != null) {
                 hodnota = identifikator.getTextContent();
                 boolean ma = ValuesGetter.hasAttribut(identifikator, "zdroj");
@@ -182,8 +182,8 @@ public class K06_Obsahova
                 return "(Ident. hodnota: " + hodnota + ", zdroj: " + zdroj + ")";
             }
         }
-        identifikator = ValuesGetter.getXChild(node, NsessV3.EVIDENCNI_UDAJE,
-                "nsesss:Identifikace", NsessV3.IDENTIFIKATOR);
+        identifikator = ValuesGetter.getXChild(node, NsesssV3.EVIDENCNI_UDAJE,
+                "nsesss:Identifikace", NsesssV3.IDENTIFIKATOR);
         if (identifikator != null) {
             hodnota = identifikator.getTextContent();
             boolean ma = ValuesGetter.hasAttribut(identifikator, "zdroj");

@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Element;
 
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -31,22 +31,22 @@ public class Pravidlo93a extends K06PravidloBase {
     
     @Override
     protected void kontrola() {
-        List<Element> vsList = metsParser.getNodes(NsessV3.VECNA_SKUPINA);
+        List<Element> vsList = metsParser.getNodes(NsesssV3.VECNA_SKUPINA);
         if (CollectionUtils.isEmpty(vsList)) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen žádný element <nsesss:VecnaSkupina>");
         }
         for (Element vs : vsList) {
-            Element spl = ValuesGetter.getXChild(vs, NsessV3.EVIDENCNI_UDAJE, NsessV3.TRIDENI, NsessV3.SPISOVY_PLAN);
+            Element spl = ValuesGetter.getXChild(vs, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI, NsesssV3.SPISOVY_PLAN);
             if (spl != null) {
-                Element jsz = ValuesGetter.getXChild(vs, NsessV3.EVIDENCNI_UDAJE, NsessV3.TRIDENI,
-                        NsessV3.JEDNODUCHY_SPISOVY_ZNAK);
+                Element jsz = ValuesGetter.getXChild(vs, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
+                        NsesssV3.JEDNODUCHY_SPISOVY_ZNAK);
                 if (jsz == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(vs),
                             vs,
                             kontrola.getEntityId(vs));
                 }
-                Element pusz = ValuesGetter.getXChild(vs, NsessV3.EVIDENCNI_UDAJE, NsessV3.TRIDENI,
-                        NsessV3.PLNE_URCENY_SPISOVY_ZNAK);
+                Element pusz = ValuesGetter.getXChild(vs, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
+                        NsesssV3.PLNE_URCENY_SPISOVY_ZNAK);
                 if (pusz == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(vs),
                             vs, kontrola.getEntityId(vs));

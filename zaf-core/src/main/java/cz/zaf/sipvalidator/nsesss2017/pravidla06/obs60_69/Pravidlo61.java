@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.w3c.dom.Element;
 
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -31,16 +31,16 @@ public class Pravidlo61 extends K06PravidloBase {
         }
         for (int i = 0; i < dokumenty.size(); i++) {
             Element dokument = dokumenty.get(i);
-            Element ad = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, NsessV3.MANIPULACE,
-                    NsessV3.ANALOGOVY_DOKUMENT);
+            Element ad = ValuesGetter.getXChild(dokument, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.MANIPULACE,
+                    NsesssV3.ANALOGOVY_DOKUMENT);
             if (ad == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:AnalogovyDokument>. Dokumentu " + kontrola.getIdentifikatory(dokument) + ".",
                         dokument, kontrola.getEntityId(dokument));
             }
             String hodnotaAnalogovyDokument = ad.getTextContent();
-            Element elDorucenyDokument = ValuesGetter.getXChild(dokument, NsessV3.EVIDENCNI_UDAJE, NsessV3.PUVOD, NsessV3.DORUCENY_DOKUMENT);
+            Element elDorucenyDokument = ValuesGetter.getXChild(dokument, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.PUVOD, NsesssV3.DORUCENY_DOKUMENT);
             if ("ano".equals(hodnotaAnalogovyDokument) && elDorucenyDokument != null) {
-                Element elDoruceneMnozstvi = ValuesGetter.getXChild(elDorucenyDokument, NsessV3.DORUCENE_MNOZSTVI);
+                Element elDoruceneMnozstvi = ValuesGetter.getXChild(elDorucenyDokument, NsesssV3.DORUCENE_MNOZSTVI);
                 if (elDoruceneMnozstvi == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen povinný element <nsesss:DoruceneMnozstvi>. Dokumentu "
                             + kontrola.getIdentifikatory(dokument) + ".", dokument, kontrola.getEntityId(dokument));

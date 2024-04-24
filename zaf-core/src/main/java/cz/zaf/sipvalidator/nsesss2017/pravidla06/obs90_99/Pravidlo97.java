@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.w3c.dom.Element;
 
-import cz.zaf.sipvalidator.nsesss2017.NsessV3;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -35,10 +35,10 @@ public class Pravidlo97 extends K06PravidloBase {
         }
         
         Element zakladniEntitaPrvni = zakladniEntity.get(0);
-        Element n0_j = ValuesGetter.getXChild(zakladniEntitaPrvni, NsessV3.EVIDENCNI_UDAJE, NsessV3.TRIDENI,
-                NsessV3.JEDNODUCHY_SPISOVY_ZNAK);
-        Element n0_p = ValuesGetter.getXChild(zakladniEntitaPrvni, NsessV3.EVIDENCNI_UDAJE, NsessV3.TRIDENI,
-                NsessV3.PLNE_URCENY_SPISOVY_ZNAK);
+        Element n0_j = ValuesGetter.getXChild(zakladniEntitaPrvni, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
+                NsesssV3.JEDNODUCHY_SPISOVY_ZNAK);
+        Element n0_p = ValuesGetter.getXChild(zakladniEntitaPrvni, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
+                NsesssV3.PLNE_URCENY_SPISOVY_ZNAK);
         if (n0_j == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak> základní entity. "
                     + getJmenoIdentifikator(zakladniEntitaPrvni), getMistoChyby(zakladniEntitaPrvni),
@@ -54,10 +54,10 @@ public class Pravidlo97 extends K06PravidloBase {
         String plneUrceny = n0_p.getTextContent();
         for (int i = 1; i < zakladniEntity.size(); i++) {
             Element zakladniEntita = zakladniEntity.get(i);
-            Element n_j = ValuesGetter.getXChild(zakladniEntita, NsessV3.EVIDENCNI_UDAJE, NsessV3.TRIDENI,
-                    NsessV3.JEDNODUCHY_SPISOVY_ZNAK);
-            Element n_p = ValuesGetter.getXChild(zakladniEntita, NsessV3.EVIDENCNI_UDAJE, NsessV3.TRIDENI,
-                    NsessV3.PLNE_URCENY_SPISOVY_ZNAK);
+            Element n_j = ValuesGetter.getXChild(zakladniEntita, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
+                    NsesssV3.JEDNODUCHY_SPISOVY_ZNAK);
+            Element n_p = ValuesGetter.getXChild(zakladniEntita, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
+                    NsesssV3.PLNE_URCENY_SPISOVY_ZNAK);
             if (n_j == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak> základní entity. "
                         + getJmenoIdentifikator(zakladniEntita), getMistoChyby(zakladniEntita),
