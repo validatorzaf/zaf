@@ -12,11 +12,12 @@ import org.slf4j.LoggerFactory;
 import cz.zaf.sipvalidator.formats.MimetypeDetectorFactory;
 import cz.zaf.sipvalidator.formats.VystupniFormat;
 import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.SipValidator;
+import cz.zaf.sipvalidator.nsesss2017.ValidatorNsesss2017;
 import cz.zaf.sipvalidator.pdfa.VeraValidatorProxy;
+import cz.zaf.sipvalidator.profily.ProfilPravidel;
 import cz.zaf.sipvalidator.sip.ProtokolWriter;
 import cz.zaf.sipvalidator.sip.SipInfo;
-import cz.zaf.sipvalidator.sip.SipLoader;
+import cz.zaf.sipvalidator.sip.Validator;
 import cz.zaf.sipvalidator.sip.XmlProtokolWriter;
 import cz.zaf.sipvalidator.sip.XmlProtokolWriterOld;
 
@@ -32,9 +33,11 @@ public class CmdValidator {
     final static Logger log = LoggerFactory.getLogger(CmdValidator.class);
 
     private CmdParams cmdParams;
+    private Validator validator = null;
 
     public CmdValidator(final CmdParams cmdParams) {
         this.cmdParams = cmdParams;
+        this.validator = createValidator();
     }
 
     public static void main(String[] args) {
@@ -82,7 +85,7 @@ public class CmdValidator {
             int repeatCnt = 1;
             if (cmdParams.isMemTest()) {
                 repeatCnt = 10000;
-            }
+            } 
 
             for (int i = 0; i < repeatCnt; i++) {
                 if (i > 0) {
@@ -112,23 +115,27 @@ public class CmdValidator {
 
     public void validateSip(ProtokolWriter protokolWriter) throws Exception {
 
-        SipInfo sipInfo = validateSip(cmdParams.getInputPath());
+        SipInfo sipInfo = validator.validateBalicek(cmdParams.getInputPath());
         
         protokolWriter.writeVysledek(sipInfo);
     }
-
-    public SipInfo validateSip(String sipPath) throws Exception {
-        // nahrani sipu
-        try(SipLoader sipLoader = new SipLoader(sipPath,
-                cmdParams.getWorkDir(), cmdParams.isKeepFiles());) {
-        	
-            SipValidator sipValidator = new SipValidator(cmdParams.getProfilValidace(), cmdParams.getExcludeChecks());
-            sipValidator.setHrozba(cmdParams.getHrozba());
-            sipValidator.validate(sipLoader);
-        
-            return sipLoader.getSip();
+    
+    private ProfilPravidel identifikujTypBalicku() {
+    	return ProfilPravidel.NSESSS2017;
+    }
+    
+    private Validator createValidator() {
+    	ProfilPravidel skutecnyTyp = cmdParams.typBalicku;
+    	if (cmdParams.typBalicku == null) {
+        	skutecnyTyp = identifikujTypBalicku();
         }
-
+    	switch (skutecnyTyp) {
+    		case NSESSS2017 :
+    		default :
+    			return new ValidatorNsesss2017(cmdParams.getHrozba(),
+                    cmdParams.getWorkDir(), cmdParams.isKeepFiles(),
+                    cmdParams.getProfilValidace(), cmdParams.getExcludeChecks());
+    	}
     }
 
     public void validateDavka(ProtokolWriter protokolWriter) throws Exception {
@@ -139,7 +146,7 @@ public class CmdValidator {
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(inputDir)) {
             for (final Path path : stream) {
                 final String dirPath = path.toAbsolutePath().toString();
-                final SipInfo sipInfo = validateSip(dirPath);
+                final SipInfo sipInfo = validator.validateBalicek(dirPath);
                 
                 protokolWriter.writeVysledek(sipInfo);
             }
