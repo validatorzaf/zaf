@@ -7,6 +7,7 @@ import java.util.List;
 import cz.zaf.sipvalidator.formats.VystupniFormat;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
+import cz.zaf.sipvalidator.profily.ProfilPravidel;
 
 /**
  * Třída pro načtení vstupních parametrů
@@ -34,6 +35,11 @@ public class CmdParams {
         output.println(" -z|--hrozba= Podrobnosti v případě nalezení hrozby (pro předání z antivirového programu)");
         output.println(" -o|--output= Jméno souboru nebo adresáře pro uložení výsledků");
         output.println(" -p|--ports= Rozsah portů pro vnitřní procesy (standardně 10000-32000)");
+        output.println(" -t|--typ= Typ balíčku (1 - výchozí)");
+        output.println(" 		1 = AUTO");
+        output.println(" 		2 = NSESSS2017");
+        output.println(" 		3 = AP2023");
+        output.println(" 		4 = DAAIP2024");
         output.println(" -f|--outputformat= Výstupní formát (1 - výchozí)");
         output.println(" 		1 = obecné schéma (validace_v1.xsd)");
         output.println(" 		2 = schéma pouze pro kontrolu NSESSS");
@@ -66,6 +72,11 @@ public class CmdParams {
      * Výstupní formát
      */
     VystupniFormat vystupniFormat = VystupniFormat.VALIDACE_V1;
+    
+    /**
+     * Typ balíčku
+     */
+    ProfilPravidel typBalicku = null;
     
     /**
      * Popis hrozby
@@ -214,6 +225,14 @@ public class CmdParams {
                 }
             } else if (arg.startsWith("--exclude=")) {
                 if (!readExclude(arg.substring(10))) {
+                    return false;
+                }
+            } else if (arg.equals("-t")) {
+                if (!readT()) {
+                    return false;
+                }
+            } else if (arg.startsWith("--typ=")) {
+                if (!readTyp(arg.substring(6))) {
                     return false;
                 }
             } else if (arg.equals("-f")) {
@@ -368,6 +387,45 @@ public class CmdParams {
             return false;
         }
         workDir = args[pos];
+        return true;
+    }
+    
+    private boolean readT() {
+        pos++;
+        if (pos == args.length) {
+            System.out.println("Missing typ balíčku");
+            return false;
+        }
+        String arg = args[pos];
+        return readTyp(arg);
+    }
+
+    private boolean readTyp(String arg) {
+        try {
+            int typ = Integer.parseInt(arg);
+            switch (typ) {
+            case 1:
+                typBalicku = null;
+                break;                
+            case 2:
+            	typBalicku = ProfilPravidel.NSESSS2017;
+                break;
+            case 3:
+            	typBalicku = ProfilPravidel.NSESSS2023;
+                break;                
+            case 4:
+            	typBalicku = ProfilPravidel.AP2023;
+                break;                
+            case 5:
+            	typBalicku = ProfilPravidel.DAAIP2024;
+                break;                
+            default:
+                System.out.println("Chybný typ balíčku: " + arg);
+            }
+        } catch (NumberFormatException nfe) {
+            System.out.println("Není číslo: " + arg);
+            return false;
+        }
         return true;
     }
     
