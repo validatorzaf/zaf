@@ -19,6 +19,7 @@ import cz.zaf.sipvalidator.sip.ProtokolWriter;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.Validator;
 import cz.zaf.sipvalidator.sip.XmlProtokolWriter;
+import cz.zaf.sipvalidator.sip.XmlProtokolWriter;
 import cz.zaf.sipvalidator.sip.XmlProtokolWriterOld;
 
 /**
