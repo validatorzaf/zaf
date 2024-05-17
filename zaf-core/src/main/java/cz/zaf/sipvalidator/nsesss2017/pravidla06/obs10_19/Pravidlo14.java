@@ -1,8 +1,8 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs10_19;
 
-import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import org.w3c.dom.Node;
 
+import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 

@@ -3,8 +3,8 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla01.dat00_09;
 import java.io.File;
 import java.nio.file.Path;
 
-import cz.zaf.sipvalidator.exceptions.ZafException;
-import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
+import cz.zaf.common.exceptions.ZafException;
+import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.pravidla01.DatCheckRuleBase;
 import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.SipInfo;

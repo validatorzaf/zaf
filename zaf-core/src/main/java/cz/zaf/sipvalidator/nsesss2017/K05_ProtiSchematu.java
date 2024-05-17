@@ -21,7 +21,7 @@ import javax.xml.validation.Validator;
 
 import org.xml.sax.SAXException;
 
-import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
+import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.sip.ChybaPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;

@@ -1,6 +1,5 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59;
 
-import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -11,6 +10,7 @@ import java.util.Map.Entry;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.CompareNodes;
 import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.PairZdrojIdent;

@@ -9,7 +9,7 @@ import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-import cz.zaf.sipvalidator.exceptions.codes.XmlCode;
+import cz.zaf.common.exceptions.codes.XmlCode;
 import cz.zaf.sipvalidator.sip.ChybaPravidla;
 import cz.zaf.sipvalidator.sip.VysledekKontroly;
 

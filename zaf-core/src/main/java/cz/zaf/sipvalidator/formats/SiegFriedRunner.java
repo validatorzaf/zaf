@@ -23,8 +23,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.Yaml;
 
-import cz.zaf.sipvalidator.exceptions.ZafException;
-import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
+import cz.zaf.common.exceptions.ZafException;
+import cz.zaf.common.exceptions.codes.BaseCode;
 
 /**
  * Class to run detection in SiegFried

@@ -8,7 +8,7 @@ import java.nio.file.Path;
 import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Element;
 
-import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
+import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.formats.MimeTypeResult;
 import cz.zaf.sipvalidator.formats.MimeTypeResult.DetectionStatus;
 import cz.zaf.sipvalidator.formats.MimetypeDetectorFactory;

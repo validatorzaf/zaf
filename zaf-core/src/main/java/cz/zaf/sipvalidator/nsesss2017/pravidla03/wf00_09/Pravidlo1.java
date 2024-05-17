@@ -6,8 +6,8 @@ import java.net.MalformedURLException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import cz.zaf.sipvalidator.exceptions.ZafException;
-import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
+import cz.zaf.common.exceptions.ZafException;
+import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.pravidla03.WfCheckRuleBase;
 import cz.zaf.sipvalidator.sip.SipInfo;
 

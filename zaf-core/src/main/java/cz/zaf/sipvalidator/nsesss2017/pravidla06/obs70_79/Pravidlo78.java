@@ -1,6 +1,5 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79;
 
-import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -8,6 +7,7 @@ import java.util.Set;
 
 import org.w3c.dom.Element;
 
+import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;

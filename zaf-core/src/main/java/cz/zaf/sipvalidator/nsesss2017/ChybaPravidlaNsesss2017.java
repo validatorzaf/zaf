@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
 
+import cz.zaf.common.exceptions.codes.ErrorCode;
 import cz.zaf.common.validation.Rule;
 import cz.zaf.common.validation.RuleEvaluationContext;
 import cz.zaf.schema.validace_v1.TEntity;
 import cz.zaf.schema.validace_v1.TIdentifikator;
 import cz.zaf.schema.validace_v1.TPravidlo;
 import cz.zaf.schema.validace_v1.TTypEntity;
-import cz.zaf.sipvalidator.exceptions.codes.ErrorCode;
 import cz.zaf.sipvalidator.sip.ChybaPravidla;
 import cz.zaf.sipvalidator.sip.XmlProtokolWriter;
 

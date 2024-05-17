@@ -5,11 +5,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cz.zaf.common.exceptions.ZafException;
+import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.common.exceptions.codes.ErrorCode;
 import cz.zaf.common.validation.Rule;
 import cz.zaf.common.validation.RuleEvaluationContext;
-import cz.zaf.sipvalidator.exceptions.ZafException;
-import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.exceptions.codes.ErrorCode;
 import cz.zaf.sipvalidator.sip.ChybaPravidla;
 import cz.zaf.sipvalidator.sip.StavKontroly;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;

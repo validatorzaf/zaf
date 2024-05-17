@@ -2,11 +2,11 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla07;
 
 import org.w3c.dom.Element;
 
+import cz.zaf.common.exceptions.ZafException;
+import cz.zaf.common.exceptions.ZafXmlPositionException;
+import cz.zaf.common.exceptions.codes.ErrorCode;
 import cz.zaf.common.validation.Rule;
 import cz.zaf.common.xml.PositionalXMLReader;
-import cz.zaf.sipvalidator.exceptions.ZafException;
-import cz.zaf.sipvalidator.exceptions.ZafXmlPositionException;
-import cz.zaf.sipvalidator.exceptions.codes.ErrorCode;
 
 /**
  * Vychozi trida pro implementaci pravidel kontrol komponent

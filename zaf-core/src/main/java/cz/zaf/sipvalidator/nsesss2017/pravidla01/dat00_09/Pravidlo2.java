@@ -1,7 +1,7 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla01.dat00_09;
 
-import cz.zaf.sipvalidator.exceptions.ZafException;
-import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
+import cz.zaf.common.exceptions.ZafException;
+import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.pravidla01.DatCheckRuleBase;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;

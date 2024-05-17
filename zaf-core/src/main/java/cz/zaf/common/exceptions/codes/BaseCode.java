@@ -1,4 +1,4 @@
-package cz.zaf.sipvalidator.exceptions.codes;
+package cz.zaf.common.exceptions.codes;
 
 public enum BaseCode implements ErrorCode {
 

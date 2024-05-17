@@ -1,10 +1,10 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99;
 
-import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import java.util.List;
 
 import org.w3c.dom.Element;
 
+import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;

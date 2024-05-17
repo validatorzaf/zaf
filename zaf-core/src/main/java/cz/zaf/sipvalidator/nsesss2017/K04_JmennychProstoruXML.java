@@ -7,11 +7,11 @@ package cz.zaf.sipvalidator.nsesss2017;
 
 import org.w3c.dom.Node;
 
+import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.pravidla04.NsCheckContext;
 import cz.zaf.sipvalidator.nsesss2017.pravidla04.NsCheckRule;
 import cz.zaf.sipvalidator.nsesss2017.pravidla04.ns00_09.Pravidlo1;
 import cz.zaf.sipvalidator.nsesss2017.pravidla04.ns00_09.Pravidlo2;
-import cz.zaf.sipvalidator.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.sip.ChybaPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;

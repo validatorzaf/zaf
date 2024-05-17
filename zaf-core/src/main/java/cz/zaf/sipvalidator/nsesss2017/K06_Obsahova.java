@@ -13,8 +13,8 @@ import java.util.Map;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+import cz.zaf.common.exceptions.codes.ErrorCode;
 import cz.zaf.common.validation.Rule;
-import cz.zaf.sipvalidator.exceptions.codes.ErrorCode;
 import cz.zaf.sipvalidator.nsesss2017.EntityId.DruhEntity;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06KontrolaContext;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.ObsahovePravidlo;
