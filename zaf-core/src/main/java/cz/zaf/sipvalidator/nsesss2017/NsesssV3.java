@@ -1,6 +1,6 @@
 package cz.zaf.sipvalidator.nsesss2017;
 
-import cz.zaf.sipvalidator.profily.ProfilPravidel;
+import cz.zaf.validator.profiles.ValidationProfiles;
 
 /**
  * Jména elementů pro XML dle NSESSS, v3
@@ -108,7 +108,7 @@ public class NsesssV3 {
     public final static String VYRIZENI = "nsesss:Vyrizeni";
     public final static String VYRIZENI_UZAVRENI = "nsesss:VyrizeniUzavreni";
     public final static String VYTVORENE_MNOZSTVI = "nsesss:VytvoreneMnozstvi";
-    public final static ProfilPravidel ZAF_RULE_PROFILE = ProfilPravidel.NSESSS2017;
+    public final static ValidationProfiles ZAF_RULE_PROFILE = ValidationProfiles.NSESSS2017;
     public final static String ZPRACOVATEL = "nsesss:Zpracovatel";
     public final static String ZPUSOB = "nsesss:Zpusob";
     

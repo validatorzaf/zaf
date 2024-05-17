@@ -7,7 +7,7 @@ import java.util.List;
 import cz.zaf.sipvalidator.formats.VystupniFormat;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
-import cz.zaf.sipvalidator.profily.ProfilPravidel;
+import cz.zaf.validator.profiles.ValidationProfiles;
 
 /**
  * Třída pro načtení vstupních parametrů
@@ -76,7 +76,7 @@ public class CmdParams {
     /**
      * Typ balíčku
      */
-    ProfilPravidel typBalicku = null;
+    ValidationProfiles typBalicku = null;
     
     /**
      * Popis hrozby
@@ -408,16 +408,16 @@ public class CmdParams {
                 typBalicku = null;
                 break;                
             case 2:
-            	typBalicku = ProfilPravidel.NSESSS2017;
+            	typBalicku = ValidationProfiles.NSESSS2017;
                 break;
             case 3:
-            	typBalicku = ProfilPravidel.NSESSS2023;
+            	typBalicku = ValidationProfiles.NSESSS2023;
                 break;                
             case 4:
-            	typBalicku = ProfilPravidel.AP2023;
+            	typBalicku = ValidationProfiles.AP2023;
                 break;                
             case 5:
-            	typBalicku = ProfilPravidel.DAAIP2024;
+            	typBalicku = ValidationProfiles.DAAIP2024;
                 break;                
             default:
                 System.out.println("Chybný typ balíčku: " + arg);

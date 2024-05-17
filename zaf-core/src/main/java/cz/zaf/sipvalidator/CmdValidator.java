@@ -17,9 +17,9 @@ import cz.zaf.sipvalidator.formats.VystupniFormat;
 import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValidatorNsesss2017;
 import cz.zaf.sipvalidator.pdfa.VeraValidatorProxy;
-import cz.zaf.sipvalidator.profily.ProfilPravidel;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.Validator;
+import cz.zaf.validator.profiles.ValidationProfiles;
 
 /**
  * Command line validator
@@ -120,12 +120,12 @@ public class CmdValidator {
         protokolWriter.writeVysledek(sipInfo);
     }
     
-    private ProfilPravidel identifikujTypBalicku() {
-    	return ProfilPravidel.NSESSS2017;
+    private ValidationProfiles identifikujTypBalicku() {
+    	return ValidationProfiles.NSESSS2017;
     }
     
     private Validator createValidator() {
-    	ProfilPravidel skutecnyTyp = cmdParams.typBalicku;
+    	ValidationProfiles skutecnyTyp = cmdParams.typBalicku;
     	if (cmdParams.typBalicku == null) {
         	skutecnyTyp = identifikujTypBalicku();
         }
