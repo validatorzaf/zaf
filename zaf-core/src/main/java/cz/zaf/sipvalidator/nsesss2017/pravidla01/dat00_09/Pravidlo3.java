@@ -1,12 +1,12 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla01.dat00_09;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.pravidla01.DatCheckRuleBase;
-import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 import cz.zaf.sipvalidator.sip.SipInfo;
 
 public class Pravidlo3 extends DatCheckRuleBase {
@@ -33,7 +33,7 @@ public class Pravidlo3 extends DatCheckRuleBase {
             if (ctx.getContext().maMetsXml()) {
                 StringBuilder sb = new StringBuilder();
                 sb.append("SIP balíček obsahuje právě jeden soubor \"mets.xml\"");
-                if (SIP_MAIN_helper.maSlozku_komponenty(sipInfo)) {
+                if (Files.isDirectory(ctx.getContext().getKomponentyPath().toAbsolutePath())) {
                     sb.append(" a složku komponenty.");
                 } else {
                     sb.append(".");

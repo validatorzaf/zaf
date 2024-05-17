@@ -1,6 +1,7 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla07.kom00_09;
 
-import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -27,7 +28,6 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.pravidla07.K07PravidloBase;
 import cz.zaf.sipvalidator.pdfa.ValidationResult;
 import cz.zaf.sipvalidator.pdfa.VeraValidatorProxy;
-import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 
 //
 // Obsahova 99
@@ -193,16 +193,14 @@ public class Pravidlo7_04 extends K07PravidloBase {
             return;
         }
         href = HelperString.replaceSeparators(href);
-        String cestaKeKomponente = SIP_MAIN_helper.getCesta_komponenty(ctx.getSip())
-                .replaceFirst("komponenty", "") + href;
+        Path cestaKeKomponente = this.ctx.getContext().getKomponentaPath(href).toAbsolutePath();
 
-        File file = new File(cestaKeKomponente);
-        if (file.exists()) {
+        if (Files.isRegularFile(cestaKeKomponente)) {
             try {
                 if (veraValidatorProxy == null) {
                     veraValidatorProxy = VeraValidatorProxy.init();
                 }
-                ValidationResult vr = VeraValidatorProxy.validate(file.toPath());
+                ValidationResult vr = VeraValidatorProxy.validate(cestaKeKomponente);
                 if (!vr.isCompliant()) {
                     K06PravidloBase.nastavChybu(BaseCode.CHYBNA_KOMPONENTA, "Komponenta neni ve formátu Pdf/A."
                             + flocatNode
