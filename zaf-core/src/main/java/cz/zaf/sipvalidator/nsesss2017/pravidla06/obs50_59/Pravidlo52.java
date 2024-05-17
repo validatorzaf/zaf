@@ -1,17 +1,22 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
 
 import org.w3c.dom.Element;
 
+import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.helper.HelperString;
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
-import cz.zaf.sipvalidator.sip.SIP_MAIN_helper;
 
 // OBSAHOVÁ č.52 Pokud existuje jakýkoli element <mets:FLocat>,
 // každý obsahuje atribut xlink:href s hodnotou, která odpovídá relativní
@@ -32,7 +37,10 @@ public class Pravidlo52 extends K06PravidloBase {
 
         List<Element> nodeListFlocat = metsParser.getNodes(MetsElements.FLOCAT);
         if (!nodeListFlocat.isEmpty()) {
-            ArrayList<String> seznam_z_xml = new ArrayList<>();
+            Path sipPath = kontrola.getContext().getSip().getCesta().toAbsolutePath();
+            String prefix = sipPath.toAbsolutePath().toString();
+
+            Set<String> souboryZXML = new HashSet<>();
             for (Element elFlocat : nodeListFlocat) {
                 if (!ValuesGetter.hasAttribut(elFlocat, "xlink:href")) {
                     nastavChybu(BaseCode.CHYBI_ATRIBUT, "Element <mets:FLocat> neobsahuje atribut xlink:href.", elFlocat);
@@ -43,12 +51,8 @@ public class Pravidlo52 extends K06PravidloBase {
                 }
                 href = HelperString.replaceSeparators(href);
 
-                String cestaKeKomponente = SIP_MAIN_helper.getCesta_komponenty(kontrola.getContext().getSip())
-                        .replaceFirst("komponenty",
-                        "")
-                        + href;
-                File file = new File(cestaKeKomponente);
-                if (!file.exists()) {
+                Path kompPath = kontrola.getContext().getKomponentaPath(href);
+                if (!Files.isRegularFile(kompPath)) {
                     if (href.contains(File.separator)) {
                         int s = href.lastIndexOf(File.separator);
                         String g = href.substring(s + 1);
@@ -56,23 +60,23 @@ public class Pravidlo52 extends K06PravidloBase {
                     }
                     nastavChybu(BaseCode.CHYBI_KOMPONENTA, "Komponenta " + href + " nenalezena.", elFlocat);
                 }
-                seznam_z_xml.add(file.getName());
+                souboryZXML.add(href);
             }
-            File[] listKomponent = new File(SIP_MAIN_helper.getCesta_komponenty(kontrola.getContext().getSip()))
-                    .listFiles();
-            for (File listKomponent1 : listKomponent) {
-                String name = listKomponent1.getName();
-                boolean jeVSeznamu = false;
-                for (int y = 0; y < seznam_z_xml.size(); y++) {
-                    if (seznam_z_xml.get(y).equals(name)) {
-                        jeVSeznamu = true;
-                    }
-                }
-                if (!jeVSeznamu) {
-                    nastavChybu(BaseCode.CHYBNA_KOMPONENTA, "Komponenta " + name
-                            + " ve složce komponenty nemá na sebe žádný odkaz z elementu <mets:FLocat>.", "komponenty"
-                            + File.separator + name);
-                }
+            Path sourceDir = this.kontrola.getContext().getKomponentyPath().toAbsolutePath();
+            try (Stream<Path> stream = Files.walk(sourceDir)) {
+                stream.filter(Files::isRegularFile)
+                        .forEach(file -> {
+                            // kontrola
+                            String relativePath = sipPath.relativize(file).toString();
+                            if (!souboryZXML.contains(relativePath)) {
+                                nastavChybu(BaseCode.CHYBNA_KOMPONENTA, "Komponenta " + relativePath
+                                        + " ve složce komponenty nemá na sebe žádný odkaz z elementu <mets:FLocat>.",
+                                            relativePath);
+                            }
+                        });
+            } catch (IOException e) {
+                throw new ZafException(BaseCode.CHYBNA_KOMPONENTA, "Nelze prochazet slozku " + sourceDir.toString()
+                        + ".", e);
             }
         }
     }

@@ -1,6 +1,7 @@
 package cz.zaf.sipvalidator.nsesss2017;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -18,6 +19,8 @@ public class KontrolaNsess2017Context extends KontrolaContext {
      * Format of date is yyyy-mm-dd
      */
     public static final String ZAF_VALIDATION_DATE = "zaf.validation.date";
+
+    public static final String KOMPONENTY_DIR = "komponenty";
 
     final MetsParser metsParser;
 
@@ -64,4 +67,21 @@ public class KontrolaNsess2017Context extends KontrolaContext {
         return localDate;
     }
 
+    /**
+     * Vraci cestu do SIPu cesta/komponenty
+     * 
+     * @return
+     */
+    public Path getKomponentyPath() {
+        return sip.getCesta().resolve(KOMPONENTY_DIR);
+    }
+
+    /**
+     * Vraci cestu ke jedné komponentě
+     * 
+     * @return
+     */
+    public Path getKomponentaPath(String href) {
+        return sip.getCesta().resolve(href);
+    }
 }

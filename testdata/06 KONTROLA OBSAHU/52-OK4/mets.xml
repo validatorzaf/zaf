@@ -1,0 +1,1158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mets:mets xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:tp="http://nsess.public.cz/erms_trans/v_01_01" xmlns:tns="http://mvcr.cz/ess/v_1.0.0.0" xmlns:nsesss="http://www.mvcr.cz/nsesss/v3" xmlns:mets="http://www.loc.gov/METS/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OBJID="F3371001-27EC-4854-AB30-2546A558CB01" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 http://www.mvcr.cz/nsesss/v3/nsesss-TrP.xsd">
+  <mets:metsHdr CREATEDATE="2019-02-21T17:01:01.197" LASTMODDATE="2019-02-21T17:01:01.197">
+    <mets:agent ID="agent_001" ROLE="CREATOR" TYPE="ORGANIZATION">
+      <mets:name>Nejvyšší kontrolní úřad</mets:name>
+      <mets:note>Jankovcova 1518/2, 170 04 Praha 7</mets:note>
+    </mets:agent>
+    <mets:agent ID="agent_002" ROLE="CREATOR" TYPE="INDIVIDUAL">
+      <mets:name>Systém</mets:name>
+      <mets:note>Systém</mets:note>
+    </mets:agent>
+  </mets:metsHdr>
+  <mets:dmdSec ID="dmd_Object_346038">
+    <mets:mdWrap LABEL="Schéma XML pro předávání dokumentů a jejich metadat do archivu" MIMETYPE="text/xml" MDTYPE="OTHER" OTHERMDTYPE="NSESSS" MDTYPEVERSION="3.0">
+      <mets:xmlData>
+        <nsesss:Spis ID="Object_346038">
+          <nsesss:EvidencniUdaje>
+            <nsesss:Identifikace>
+              <nsesss:Identifikator zdroj="0NKUAA">78A6F785-B9A4-4584-9416-039276C76823</nsesss:Identifikator>
+            </nsesss:Identifikace>
+            <nsesss:Popis>
+              <nsesss:Nazev>331/04 - XXXXX YYYYYY</nsesss:Nazev>
+            </nsesss:Popis>
+            <nsesss:Evidence>
+              <nsesss:EvidencniCislo>331/04</nsesss:EvidencniCislo>
+              <nsesss:PoradoveCislo>331</nsesss:PoradoveCislo>
+              <nsesss:UrceneCasoveObdobi>
+                <nsesss:Rok>2004</nsesss:Rok>
+              </nsesss:UrceneCasoveObdobi>
+              <nsesss:NazevEvidenceDokumentu>ERMS</nsesss:NazevEvidenceDokumentu>
+            </nsesss:Evidence>
+            <nsesss:Puvod>
+              <nsesss:DatumVytvoreni datum="2004-01-15T13:15:21.217">2004-01-15</nsesss:DatumVytvoreni>
+            </nsesss:Puvod>
+            <nsesss:Trideni>
+              <nsesss:JednoduchySpisovyZnak>65</nsesss:JednoduchySpisovyZnak>
+              <nsesss:PlneUrcenySpisovyZnak>65</nsesss:PlneUrcenySpisovyZnak>
+              <nsesss:MaterskaEntita>
+                <nsesss:VecnaSkupina ID="Object_39777">
+                  <nsesss:EvidencniUdaje>
+                    <nsesss:Identifikace>
+                      <nsesss:Identifikator zdroj="0NKUAA">692148BD-67F8-42AD-B72B-C86D9BB5E69D</nsesss:Identifikator>
+                    </nsesss:Identifikace>
+                    <nsesss:Popis>
+                      <nsesss:Nazev>Ostatní agendy Úřadu</nsesss:Nazev>
+                    </nsesss:Popis>
+                    <nsesss:Puvod>
+                      <nsesss:DatumVytvoreni datum="1900-01-01T00:00:00">1900-01-01</nsesss:DatumVytvoreni>
+                    </nsesss:Puvod>
+                    <nsesss:Trideni>
+                      <nsesss:JednoduchySpisovyZnak>65</nsesss:JednoduchySpisovyZnak>
+                      <nsesss:PlneUrcenySpisovyZnak>65</nsesss:PlneUrcenySpisovyZnak>
+                      <nsesss:SpisovyPlan ID="Object_4072054">
+                        <nsesss:Identifikator zdroj="0NKUAA">7F646D0F-C485-4D4E-8C5C-6CE9F7DF5E56</nsesss:Identifikator>
+                        <nsesss:Nazev>NKÚ</nsesss:Nazev>
+                        <nsesss:Manipulace>
+                          <nsesss:DatumOtevreni datum="2002-01-02T00:00:00">2002-01-02</nsesss:DatumOtevreni>
+                        </nsesss:Manipulace>
+                        <nsesss:Vydavatel>
+                          <nsesss:Subjekt>
+                            <nsesss:IdentifikatorFyzickeOsoby zdroj="0NKUAA">5462BB4E-D8FB-4F49-A2E9-E85EDDDBF8AF</nsesss:IdentifikatorFyzickeOsoby>
+                            <nsesss:NazevFyzickeOsoby />
+                            <nsesss:PostovniAdresa>Jankovcova 1518/2, 170 04 Praha 7</nsesss:PostovniAdresa>
+                            <nsesss:ElektronickyKontakt />
+                          </nsesss:Subjekt>
+                        </nsesss:Vydavatel>
+                      </nsesss:SpisovyPlan>
+                    </nsesss:Trideni>
+                    <nsesss:Vyrazovani>
+                      <nsesss:SkartacniRezim>
+                        <nsesss:Identifikator zdroj="0NKUAA">F4F78672-10B8-471D-B577-444D89546990</nsesss:Identifikator>
+                        <nsesss:Nazev>V/5 Uzavření</nsesss:Nazev>
+                        <nsesss:Oduvodneni>Dle platného spisového plánu</nsesss:Oduvodneni>
+                        <nsesss:SkartacniZnak>V</nsesss:SkartacniZnak>
+                        <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+                        <nsesss:SpousteciUdalost>Uzavření</nsesss:SpousteciUdalost>
+                      </nsesss:SkartacniRezim>
+                    </nsesss:Vyrazovani>
+                    <nsesss:Manipulace>
+                      <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+                      <nsesss:DatumOtevreni datum="2002-01-02T00:00:00">2002-01-02</nsesss:DatumOtevreni>
+                      <nsesss:DatumUzavreni datum="2014-01-08T10:13:26.383">2014-01-08</nsesss:DatumUzavreni>
+                    </nsesss:Manipulace>
+                  </nsesss:EvidencniUdaje>
+                </nsesss:VecnaSkupina>
+              </nsesss:MaterskaEntita>
+            </nsesss:Trideni>
+            <nsesss:VyrizeniUzavreni>
+              <nsesss:Datum datum="2005-11-03T09:34:34.110">2005-11-03</nsesss:Datum>
+              <nsesss:Zpusob>jiný způsob</nsesss:Zpusob>
+              <nsesss:ObsahVyrizeni>Uzavření spisu</nsesss:ObsahVyrizeni>
+              <nsesss:Oduvodneni>Uzavření spisu</nsesss:Oduvodneni>
+              <nsesss:Zpracovatel>
+                <nsesss:Subjekt>
+                  <nsesss:IdentifikatorOrganizace zdroj="0NKUAA">A26EBF51-E27F-4E30-B184-38A84B7BC212</nsesss:IdentifikatorOrganizace>
+                  <nsesss:NazevOrganizace>Nejvyšší kontrolní úřad</nsesss:NazevOrganizace>
+                  <nsesss:IdentifikatorFyzickeOsoby zdroj="0NKUAA">3BBE1388-F268-4CDB-A74C-85D71A051F4E</nsesss:IdentifikatorFyzickeOsoby>
+                  <nsesss:NazevFyzickeOsoby>Marcela Šatanová</nsesss:NazevFyzickeOsoby>
+                  <nsesss:OrganizacniUtvar>Sekretariát Kolegia</nsesss:OrganizacniUtvar>
+                  <nsesss:PracovniPozice />
+                  <nsesss:SidloOrganizace />
+                </nsesss:Subjekt>
+              </nsesss:Zpracovatel>
+              <nsesss:OdkazVyrizujiciDokument>
+                <nsesss:PlneUrcenySpisovyZnak>65</nsesss:PlneUrcenySpisovyZnak>
+                <nsesss:Identifikator zdroj="0NKUAA">78A6F785-B9A4-4584-9416-039276C76823</nsesss:Identifikator>
+              </nsesss:OdkazVyrizujiciDokument>
+              <nsesss:OdkazVyrizovanyDokument>
+                <nsesss:PlneUrcenySpisovyZnak>65</nsesss:PlneUrcenySpisovyZnak>
+                <nsesss:Identifikator zdroj="0NKUAA">78A6F785-B9A4-4584-9416-039276C76823</nsesss:Identifikator>
+              </nsesss:OdkazVyrizovanyDokument>
+            </nsesss:VyrizeniUzavreni>
+            <nsesss:Vyrazovani>
+              <nsesss:SkartacniRezim>
+                <nsesss:Identifikator zdroj="0NKUAA">30BBED20-3F56-4981-9F62-4CD0221A04DA</nsesss:Identifikator>
+                <nsesss:Nazev>S/10 Uzavření</nsesss:Nazev>
+                <nsesss:Oduvodneni>Dle platného spisového plánu</nsesss:Oduvodneni>
+                <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+                <nsesss:SkartacniLhuta>10</nsesss:SkartacniLhuta>
+                <nsesss:SpousteciUdalost>Uzavření</nsesss:SpousteciUdalost>
+              </nsesss:SkartacniRezim>
+              <nsesss:DataceVyrazeni>
+                <nsesss:RokSpousteciUdalosti>2005</nsesss:RokSpousteciUdalosti>
+                <nsesss:RokSkartacniOperace>2016</nsesss:RokSkartacniOperace>
+              </nsesss:DataceVyrazeni>
+              <nsesss:SkartacniRizeni>
+                <nsesss:Datum datum="2017-11-27T12:18:35.770">2017-11-27</nsesss:Datum>
+                <nsesss:SkartacniOperace>trvalé uložení</nsesss:SkartacniOperace>
+                <nsesss:Posuzovatel>
+                  <nsesss:Subjekt>
+                    <nsesss:IdentifikatorOrganizace zdroj="0NKUAA">A26EBF51-E27F-4E30-B184-38A84B7BC212</nsesss:IdentifikatorOrganizace>
+                    <nsesss:NazevOrganizace>Nejvyšší kontrolní úřad</nsesss:NazevOrganizace>
+                    <nsesss:IdentifikatorFyzickeOsoby zdroj="0NKUAA">D0CDF825-839F-4F70-BB88-1A1579B2E41E</nsesss:IdentifikatorFyzickeOsoby>
+                    <nsesss:NazevFyzickeOsoby>Ing. Ladislav Bříza</nsesss:NazevFyzickeOsoby>
+                    <nsesss:OrganizacniUtvar>Sekretariát VŘ správní sekce</nsesss:OrganizacniUtvar>
+                    <nsesss:PracovniPozice />
+                    <nsesss:SidloOrganizace />
+                  </nsesss:Subjekt>
+                </nsesss:Posuzovatel>
+              </nsesss:SkartacniRizeni>
+            </nsesss:Vyrazovani>
+            <nsesss:Manipulace>
+              <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+              <nsesss:DatumOtevreni datum="2004-01-15T13:15:21.217">2004-01-15</nsesss:DatumOtevreni>
+              <nsesss:DatumUzavreni datum="2005-11-03T09:34:34.110">2005-11-03</nsesss:DatumUzavreni>
+            </nsesss:Manipulace>
+          </nsesss:EvidencniUdaje>
+          <nsesss:Dokumenty>
+            <nsesss:Dokument ID="Object_199160">
+              <nsesss:EvidencniUdaje>
+                <nsesss:Identifikace>
+                  <nsesss:Identifikator zdroj="0NKUAA">7C929159-66B3-4348-8ECB-11C341F95CCC</nsesss:Identifikator>
+                </nsesss:Identifikace>
+                <nsesss:Popis>
+                  <nsesss:Nazev>04-23774 - 331/04-120/44 - Stížnost na spol. pro zemědělskou výrobu Ostředek a.s. ors. Benešov u Prahy</nsesss:Nazev>
+                </nsesss:Popis>
+                <nsesss:Evidence>
+                  <nsesss:EvidencniCislo>04-23774</nsesss:EvidencniCislo>
+                  <nsesss:PoradoveCislo>23774</nsesss:PoradoveCislo>
+                  <nsesss:UrceneCasoveObdobi>
+                    <nsesss:Rok>2004</nsesss:Rok>
+                  </nsesss:UrceneCasoveObdobi>
+                  <nsesss:NazevEvidenceDokumentu>ERMS</nsesss:NazevEvidenceDokumentu>
+                </nsesss:Evidence>
+                <nsesss:Puvod>
+                  <nsesss:DorucenyDokument>
+                    <nsesss:DatumVytvoreni datum="2004-01-15T09:41:58.920">2004-01-15</nsesss:DatumVytvoreni>
+                    <nsesss:DatumDoruceni datum="2004-01-15T00:00:00">2004-01-15</nsesss:DatumDoruceni>
+                    <nsesss:DoruceneMnozstvi>1-1</nsesss:DoruceneMnozstvi>
+                    <nsesss:Odesilatel>
+                      <nsesss:Subjekt>
+                        <nsesss:IdentifikatorFyzickeOsoby zdroj="0NKUAA">8280C3D5-F7B2-45EF-8669-F3F151476B7A</nsesss:IdentifikatorFyzickeOsoby>
+                        <nsesss:NazevFyzickeOsoby>Naj Lustjig</nsesss:NazevFyzickeOsoby>
+                        <nsesss:PostovniAdresa>Lidova 485, 281 00 RRRRR</nsesss:PostovniAdresa>
+                        <nsesss:ElektronickyKontakt />
+                      </nsesss:Subjekt>
+                    </nsesss:Odesilatel>
+                  </nsesss:DorucenyDokument>
+                </nsesss:Puvod>
+                <nsesss:Trideni>
+                  <nsesss:JednoduchySpisovyZnak>65</nsesss:JednoduchySpisovyZnak>
+                  <nsesss:PlneUrcenySpisovyZnak>65</nsesss:PlneUrcenySpisovyZnak>
+                  <nsesss:TypDokumentu>
+                    <nsesss:Identifikator zdroj="0NKUAA">7DA5E041-C413-4099-8794-2A1C6B3969A1</nsesss:Identifikator>
+                    <nsesss:Nazev>Obecný</nsesss:Nazev>
+                  </nsesss:TypDokumentu>
+                </nsesss:Trideni>
+                <nsesss:Vyrizeni>
+                  <nsesss:Datum datum="2005-11-03T09:34:34.110">2005-11-03</nsesss:Datum>
+                  <nsesss:Zpusob>jiný způsob</nsesss:Zpusob>
+                  <nsesss:ObsahVyrizeni />
+                  <nsesss:Oduvodneni />
+                  <nsesss:Zpracovatel>
+                    <nsesss:Subjekt>
+                      <nsesss:IdentifikatorOrganizace zdroj="0NKUAA">A26EBF51-E27F-4E30-B184-38A84B7BC212</nsesss:IdentifikatorOrganizace>
+                      <nsesss:NazevOrganizace>Nejvyšší kontrolní úřad</nsesss:NazevOrganizace>
+                      <nsesss:IdentifikatorFyzickeOsoby zdroj="0NKUAA">2196055E-43CF-40AC-B50E-80F9514E7E1E</nsesss:IdentifikatorFyzickeOsoby>
+                      <nsesss:NazevFyzickeOsoby>Vlasta Veverková</nsesss:NazevFyzickeOsoby>
+                      <nsesss:OrganizacniUtvar>Sekretariát VŘ správní sekce</nsesss:OrganizacniUtvar>
+                      <nsesss:PracovniPozice />
+                      <nsesss:SidloOrganizace />
+                    </nsesss:Subjekt>
+                  </nsesss:Zpracovatel>
+                  <nsesss:OdkazVyrizujiciDokument>
+                    <nsesss:PlneUrcenySpisovyZnak>65</nsesss:PlneUrcenySpisovyZnak>
+                    <nsesss:Identifikator zdroj="0NKUAA">7C929159-66B3-4348-8ECB-11C341F95CCC</nsesss:Identifikator>
+                  </nsesss:OdkazVyrizujiciDokument>
+                  <nsesss:OdkazVyrizovanyDokument>
+                    <nsesss:PlneUrcenySpisovyZnak>65</nsesss:PlneUrcenySpisovyZnak>
+                    <nsesss:Identifikator zdroj="0NKUAA">7C929159-66B3-4348-8ECB-11C341F95CCC</nsesss:Identifikator>
+                  </nsesss:OdkazVyrizovanyDokument>
+                </nsesss:Vyrizeni>
+                <nsesss:Vyrazovani>
+                  <nsesss:SkartacniRezim>
+                    <nsesss:Identifikator zdroj="0NKUAA">30BBED20-3F56-4981-9F62-4CD0221A04DA</nsesss:Identifikator>
+                    <nsesss:Nazev>S/10 Uzavření</nsesss:Nazev>
+                    <nsesss:Oduvodneni>Dle platného spisového plánu</nsesss:Oduvodneni>
+                    <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+                    <nsesss:SkartacniLhuta>10</nsesss:SkartacniLhuta>
+                    <nsesss:SpousteciUdalost>Uzavření</nsesss:SpousteciUdalost>
+                  </nsesss:SkartacniRezim>
+                  <nsesss:DataceVyrazeni>
+                    <nsesss:RokSpousteciUdalosti>2005</nsesss:RokSpousteciUdalosti>
+                    <nsesss:RokSkartacniOperace>2016</nsesss:RokSkartacniOperace>
+                  </nsesss:DataceVyrazeni>
+                  <nsesss:SkartacniRizeni>
+                    <nsesss:Datum datum="2017-11-27T12:18:35.770">2017-11-27</nsesss:Datum>
+                    <nsesss:SkartacniOperace>trvalé uložení</nsesss:SkartacniOperace>
+                    <nsesss:Posuzovatel>
+                      <nsesss:Subjekt>
+                        <nsesss:IdentifikatorOrganizace zdroj="0NKUAA">A26EBF51-E27F-4E30-B184-38A84B7BC212</nsesss:IdentifikatorOrganizace>
+                        <nsesss:NazevOrganizace>Nejvyšší kontrolní úřad</nsesss:NazevOrganizace>
+                        <nsesss:IdentifikatorFyzickeOsoby zdroj="0NKUAA">D0CDF825-839F-4F70-BB88-1A1579B2E41E</nsesss:IdentifikatorFyzickeOsoby>
+                        <nsesss:NazevFyzickeOsoby>Ing. Ladislav Bříza</nsesss:NazevFyzickeOsoby>
+                        <nsesss:OrganizacniUtvar>Sekretariát VŘ správní sekce</nsesss:OrganizacniUtvar>
+                        <nsesss:PracovniPozice />
+                        <nsesss:SidloOrganizace />
+                      </nsesss:Subjekt>
+                    </nsesss:Posuzovatel>
+                  </nsesss:SkartacniRizeni>
+                </nsesss:Vyrazovani>
+                <nsesss:Manipulace>
+                  <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                </nsesss:Manipulace>
+              </nsesss:EvidencniUdaje>
+              <nsesss:Komponenty>
+                <nsesss:Komponenta ID="Object_527940" poradi="1" druh="Hlavní soubor" verze="1" forma_uchovani="originál">
+                  <nsesss:EvidencniUdaje>
+                    <nsesss:Identifikace>
+                      <nsesss:Identifikator zdroj="0NKUAA">56F79972-E8E9-43E5-89BB-31F1CBAB78CE</nsesss:Identifikator>
+                    </nsesss:Identifikace>
+                    <nsesss:Popis>
+                      <nsesss:Nazev>aei59300.TIF</nsesss:Nazev>
+                      <nsesss:Komentar>podání</nsesss:Komentar>
+                    </nsesss:Popis>
+                    <nsesss:Trideni>
+                      <nsesss:JednoduchySpisovyZnak>65</nsesss:JednoduchySpisovyZnak>
+                      <nsesss:PlneUrcenySpisovyZnak>65</nsesss:PlneUrcenySpisovyZnak>
+                    </nsesss:Trideni>
+                  </nsesss:EvidencniUdaje>
+                </nsesss:Komponenta>
+              </nsesss:Komponenty>
+            </nsesss:Dokument>
+            <nsesss:Dokument ID="Object_199576">
+              <nsesss:EvidencniUdaje>
+                <nsesss:Identifikace>
+                  <nsesss:Identifikator zdroj="0NKUAA">5A5779C1-5CEF-4761-8604-AC6068FBF42E</nsesss:Identifikator>
+                </nsesss:Identifikace>
+                <nsesss:Popis>
+                  <nsesss:Nazev>04-23982 - 331/04-120/63 - Odpověď Veselý</nsesss:Nazev>
+                </nsesss:Popis>
+                <nsesss:Evidence>
+                  <nsesss:EvidencniCislo>04-23982</nsesss:EvidencniCislo>
+                  <nsesss:PoradoveCislo>23982</nsesss:PoradoveCislo>
+                  <nsesss:UrceneCasoveObdobi>
+                    <nsesss:Rok>2004</nsesss:Rok>
+                  </nsesss:UrceneCasoveObdobi>
+                  <nsesss:NazevEvidenceDokumentu>ERMS</nsesss:NazevEvidenceDokumentu>
+                </nsesss:Evidence>
+                <nsesss:Puvod>
+                  <nsesss:VlastniDokument>
+                    <nsesss:DatumVytvoreni datum="2004-01-20T12:23:12.377">2004-01-20</nsesss:DatumVytvoreni>
+                    <nsesss:Autor>
+                      <nsesss:Subjekt>
+                        <nsesss:IdentifikatorOrganizace zdroj="0NKUAA">A26EBF51-E27F-4E30-B184-38A84B7BC212</nsesss:IdentifikatorOrganizace>
+                        <nsesss:NazevOrganizace>Nejvyšší kontrolní úřad</nsesss:NazevOrganizace>
+                        <nsesss:IdentifikatorFyzickeOsoby zdroj="0NKUAA">3BBE1388-F268-4CDB-A74C-85D71A051F4E</nsesss:IdentifikatorFyzickeOsoby>
+                        <nsesss:NazevFyzickeOsoby>Marcela Šatanová</nsesss:NazevFyzickeOsoby>
+                        <nsesss:OrganizacniUtvar>Sekretariát Kolegia</nsesss:OrganizacniUtvar>
+                        <nsesss:PracovniPozice />
+                        <nsesss:SidloOrganizace />
+                      </nsesss:Subjekt>
+                    </nsesss:Autor>
+                  </nsesss:VlastniDokument>
+                </nsesss:Puvod>
+                <nsesss:Trideni>
+                  <nsesss:JednoduchySpisovyZnak>65</nsesss:JednoduchySpisovyZnak>
+                  <nsesss:PlneUrcenySpisovyZnak>65</nsesss:PlneUrcenySpisovyZnak>
+                  <nsesss:TypDokumentu>
+                    <nsesss:Identifikator zdroj="0NKUAA">7DA5E041-C413-4099-8794-2A1C6B3969A1</nsesss:Identifikator>
+                    <nsesss:Nazev>Obecný</nsesss:Nazev>
+                  </nsesss:TypDokumentu>
+                </nsesss:Trideni>
+                <nsesss:Vyrizeni>
+                  <nsesss:Datum datum="2004-01-20T12:52:41.610">2004-01-20</nsesss:Datum>
+                  <nsesss:Zpusob>jiný způsob</nsesss:Zpusob>
+                  <nsesss:ObsahVyrizeni />
+                  <nsesss:Oduvodneni />
+                  <nsesss:Zpracovatel>
+                    <nsesss:Subjekt>
+                      <nsesss:IdentifikatorOrganizace zdroj="0NKUAA">A26EBF51-E27F-4E30-B184-38A84B7BC212</nsesss:IdentifikatorOrganizace>
+                      <nsesss:NazevOrganizace>Nejvyšší kontrolní úřad</nsesss:NazevOrganizace>
+                      <nsesss:IdentifikatorFyzickeOsoby zdroj="0NKUAA">3BBE1388-F268-4CDB-A74C-85D71A051F4E</nsesss:IdentifikatorFyzickeOsoby>
+                      <nsesss:NazevFyzickeOsoby>Marcela Šatanová</nsesss:NazevFyzickeOsoby>
+                      <nsesss:OrganizacniUtvar>Sekretariát Kolegia</nsesss:OrganizacniUtvar>
+                      <nsesss:PracovniPozice />
+                      <nsesss:SidloOrganizace />
+                    </nsesss:Subjekt>
+                  </nsesss:Zpracovatel>
+                  <nsesss:OdkazVyrizujiciDokument>
+                    <nsesss:PlneUrcenySpisovyZnak>65</nsesss:PlneUrcenySpisovyZnak>
+                    <nsesss:Identifikator zdroj="0NKUAA">5A5779C1-5CEF-4761-8604-AC6068FBF42E</nsesss:Identifikator>
+                  </nsesss:OdkazVyrizujiciDokument>
+                  <nsesss:OdkazVyrizovanyDokument>
+                    <nsesss:PlneUrcenySpisovyZnak>65</nsesss:PlneUrcenySpisovyZnak>
+                    <nsesss:Identifikator zdroj="0NKUAA">5A5779C1-5CEF-4761-8604-AC6068FBF42E</nsesss:Identifikator>
+                  </nsesss:OdkazVyrizovanyDokument>
+                  <nsesss:DatumOdeslani datum="2004-01-20T12:52:41.610">2004-01-20</nsesss:DatumOdeslani>
+                  <nsesss:OdeslaneMnozstvi>1</nsesss:OdeslaneMnozstvi>
+                  <nsesss:Prijemce>
+                    <nsesss:Subjekt>
+                      <nsesss:IdentifikatorFyzickeOsoby zdroj="0NKUAA">8280C3D5-F7B2-45EF-8669-F3F151476B7A</nsesss:IdentifikatorFyzickeOsoby>
+                      <nsesss:NazevFyzickeOsoby>Xxxx Yyyyyyy</nsesss:NazevFyzickeOsoby>
+                      <nsesss:PostovniAdresa>Lkhkjh 485, 281 00 Kolk</nsesss:PostovniAdresa>
+                      <nsesss:ElektronickyKontakt />
+                    </nsesss:Subjekt>
+                  </nsesss:Prijemce>
+                </nsesss:Vyrizeni>
+                <nsesss:Vyrazovani>
+                  <nsesss:SkartacniRezim>
+                    <nsesss:Identifikator zdroj="0NKUAA">30BBED20-3F56-4981-9F62-4CD0221A04DA</nsesss:Identifikator>
+                    <nsesss:Nazev>S/10 Uzavření</nsesss:Nazev>
+                    <nsesss:Oduvodneni>Dle platného spisového plánu</nsesss:Oduvodneni>
+                    <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+                    <nsesss:SkartacniLhuta>10</nsesss:SkartacniLhuta>
+                    <nsesss:SpousteciUdalost>Uzavření</nsesss:SpousteciUdalost>
+                  </nsesss:SkartacniRezim>
+                  <nsesss:DataceVyrazeni>
+                    <nsesss:RokSpousteciUdalosti>2005</nsesss:RokSpousteciUdalosti>
+                    <nsesss:RokSkartacniOperace>2016</nsesss:RokSkartacniOperace>
+                  </nsesss:DataceVyrazeni>
+                  <nsesss:SkartacniRizeni>
+                    <nsesss:Datum datum="2017-11-27T12:18:35.770">2017-11-27</nsesss:Datum>
+                    <nsesss:SkartacniOperace>trvalé uložení</nsesss:SkartacniOperace>
+                    <nsesss:Posuzovatel>
+                      <nsesss:Subjekt>
+                        <nsesss:IdentifikatorOrganizace zdroj="0NKUAA">A26EBF51-E27F-4E30-B184-38A84B7BC212</nsesss:IdentifikatorOrganizace>
+                        <nsesss:NazevOrganizace>Nejvyšší kontrolní úřad</nsesss:NazevOrganizace>
+                        <nsesss:IdentifikatorFyzickeOsoby zdroj="0NKUAA">D0CDF825-839F-4F70-BB88-1A1579B2E41E</nsesss:IdentifikatorFyzickeOsoby>
+                        <nsesss:NazevFyzickeOsoby>Ing. Ladislav Bříza</nsesss:NazevFyzickeOsoby>
+                        <nsesss:OrganizacniUtvar>Sekretariát VŘ správní sekce</nsesss:OrganizacniUtvar>
+                        <nsesss:PracovniPozice />
+                        <nsesss:SidloOrganizace />
+                      </nsesss:Subjekt>
+                    </nsesss:Posuzovatel>
+                  </nsesss:SkartacniRizeni>
+                </nsesss:Vyrazovani>
+                <nsesss:Manipulace>
+                  <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                </nsesss:Manipulace>
+              </nsesss:EvidencniUdaje>
+              <nsesss:Komponenty>
+                <nsesss:Komponenta ID="Object_528466" poradi="1" druh="Hlavní soubor" verze="2" forma_uchovani="originál">
+                  <nsesss:EvidencniUdaje>
+                    <nsesss:Identifikace>
+                      <nsesss:Identifikator zdroj="0NKUAA">E8281481-A88B-4A52-923E-7C00B42D6484</nsesss:Identifikator>
+                    </nsesss:Identifikace>
+                    <nsesss:Popis>
+                      <nsesss:Nazev>1026.doc</nsesss:Nazev>
+                      <nsesss:Komentar>Word: služební písemnost</nsesss:Komentar>
+                    </nsesss:Popis>
+                    <nsesss:Trideni>
+                      <nsesss:JednoduchySpisovyZnak>65</nsesss:JednoduchySpisovyZnak>
+                      <nsesss:PlneUrcenySpisovyZnak>65</nsesss:PlneUrcenySpisovyZnak>
+                    </nsesss:Trideni>
+                  </nsesss:EvidencniUdaje>
+                </nsesss:Komponenta>
+              </nsesss:Komponenty>
+            </nsesss:Dokument>
+          </nsesss:Dokumenty>
+        </nsesss:Spis>
+      </mets:xmlData>
+    </mets:mdWrap>
+  </mets:dmdSec>
+  <mets:amdSec ID="amd_Object_346038">
+    <mets:digiprovMD ID="md_Object_346038">
+      <mets:mdWrap MIMETYPE="text/xml" MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>3460382016020320190215</tns:HodnotaID>
+                <tns:ZdrojID>0NKUAA</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2019-02-21T17:01:01.213</tp:DatumVzniku>
+              <tp:DatumCasOd>2016-02-03T10:07:54.880</tp:DatumCasOd>
+              <tp:DatumCasDo>2019-02-15T14:53:14.947</tp:DatumCasDo>
+              <tp:Software>Athena</tp:Software>
+              <tp:VerzeSoftware>4.5.23</tp:VerzeSoftware>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Spis</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>78A6F785-B9A4-4584-9416-039276C76823</tns:HodnotaID>
+                  <tns:ZdrojID>0NKUAA</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti>
+              <tp:Udalost>
+                <tp:Poradi>1</tp:Poradi>
+                <tp:DatumVzniku>2016-02-03T10:07:54.880</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav vyřazení složky z Spisovna na Spisovna</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>2</tp:Poradi>
+                <tp:DatumVzniku>2016-03-29T12:25:37.930</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav vyřazení složky z K předání do archivu na K předání do archivu</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>3</tp:Poradi>
+                <tp:DatumVzniku>2017-01-12T09:33:40.990</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven skartační režim složky vyřazení z V/10 Uzavření na V/10 Uzavření</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>4</tp:Poradi>
+                <tp:DatumVzniku>2017-11-27T12:24:58.073</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaveno skartační řízení složky vyřazení  </tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>5</tp:Poradi>
+                <tp:DatumVzniku>2017-11-27T12:24:58.073</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky  </tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>6</tp:Poradi>
+                <tp:DatumVzniku>2017-12-06T17:01:26.610</tp:DatumVzniku>
+                <tp:provedlKdo>Systém</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Předložit k posouzení na Předložit k posouzení</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>7</tp:Poradi>
+                <tp:DatumVzniku>2019-01-07T09:57:45.850</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Posoudit na Posoudit</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>8</tp:Poradi>
+                <tp:DatumVzniku>2019-01-07T17:01:42.817</tp:DatumVzniku>
+                <tp:provedlKdo>Systém</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Vybrat za archiválii na Vybrat za archiválii</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>9</tp:Poradi>
+                <tp:DatumVzniku>2019-01-15T13:31:02.593</tp:DatumVzniku>
+                <tp:provedlKdo>PilsCom PilsCom</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Předložit k posouzení na Předložit k posouzení</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>10</tp:Poradi>
+                <tp:DatumVzniku>2019-01-28T14:12:55.743</tp:DatumVzniku>
+                <tp:provedlKdo>PilsCom PilsCom</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Předložit k posouzení na Předložit k posouzení</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>11</tp:Poradi>
+                <tp:DatumVzniku>2019-02-07T15:25:27.727</tp:DatumVzniku>
+                <tp:provedlKdo>PilsCom PilsCom</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Posoudit na Posoudit</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>12</tp:Poradi>
+                <tp:DatumVzniku>2019-02-07T16:54:32.670</tp:DatumVzniku>
+                <tp:provedlKdo>Systém</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Vybrat za archiválii na Vybrat za archiválii</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>13</tp:Poradi>
+                <tp:DatumVzniku>2019-02-15T14:20:00.653</tp:DatumVzniku>
+                <tp:provedlKdo>PilsCom PilsCom</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Předložit k posouzení na Předložit k posouzení</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>14</tp:Poradi>
+                <tp:DatumVzniku>2019-02-15T14:53:14.947</tp:DatumVzniku>
+                <tp:provedlKdo>PilsCom PilsCom</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Posoudit na Posoudit</tp:PopisUdalosti>
+              </tp:Udalost>
+            </tp:Udalosti>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd_Object_39777">
+    <mets:digiprovMD ID="md_Object_39777">
+      <mets:mdWrap MIMETYPE="text/xml" MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>397772011041520140108</tns:HodnotaID>
+                <tns:ZdrojID>0NKUAA</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2019-02-21T17:01:01.230</tp:DatumVzniku>
+              <tp:DatumCasOd>2011-04-15T17:56:13.143</tp:DatumCasOd>
+              <tp:DatumCasDo>2014-01-08T10:13:26.383</tp:DatumCasDo>
+              <tp:Software>Athena</tp:Software>
+              <tp:VerzeSoftware>4.5.23</tp:VerzeSoftware>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>VecnaSkupina</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>692148BD-67F8-42AD-B72B-C86D9BB5E69D</tns:HodnotaID>
+                  <tns:ZdrojID>0NKUAA</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti>
+              <tp:Udalost>
+                <tp:Poradi>1</tp:Poradi>
+                <tp:DatumVzniku>2011-04-15T17:56:13.143</tp:DatumVzniku>
+                <tp:provedlKdo>Systém</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Založena nová složka typu: Znak písemnosti</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>2</tp:Poradi>
+                <tp:DatumVzniku>2013-12-27T08:27:46.043</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Odebrán přístup: profil NKÚ. Důvod úpravy: Nastavení nových znaků. Znak bude zneaktivněn, až budou uzavřeny všechny spisy s tímto znakem.</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>3</tp:Poradi>
+                <tp:DatumVzniku>2013-12-27T08:27:46.047</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Odebrán přístup: spisový uzel 30. Důvod úpravy: Nastavení nových znaků. Znak bude zneaktivněn, až budou uzavřeny všechny spisy s tímto znakem.</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>4</tp:Poradi>
+                <tp:DatumVzniku>2014-01-08T10:13:26.383</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Deaktivace spisového znaku. Důvod úpravy: Zneaktivnění starého spis. znaku.</tp:PopisUdalosti>
+              </tp:Udalost>
+            </tp:Udalosti>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd_Object_4072054">
+    <mets:digiprovMD ID="md_Object_4072054">
+      <mets:mdWrap MIMETYPE="text/xml" MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>40720542014072520140725</tns:HodnotaID>
+                <tns:ZdrojID>0NKUAA</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2019-02-21T17:01:01.230</tp:DatumVzniku>
+              <tp:DatumCasOd>2014-07-25T15:05:04.523</tp:DatumCasOd>
+              <tp:DatumCasDo>2014-07-25T15:05:04.523</tp:DatumCasDo>
+              <tp:Software>Athena</tp:Software>
+              <tp:VerzeSoftware>4.5.23</tp:VerzeSoftware>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>SpisovyPlan</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>7F646D0F-C485-4D4E-8C5C-6CE9F7DF5E56</tns:HodnotaID>
+                  <tns:ZdrojID>0NKUAA</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti>
+              <tp:Udalost>
+                <tp:Poradi>1</tp:Poradi>
+                <tp:DatumVzniku>2014-07-25T15:05:04.523</tp:DatumVzniku>
+                <tp:provedlKdo>Systém</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Založena nová složka typu: Sada znaků písemnosti</tp:PopisUdalosti>
+              </tp:Udalost>
+            </tp:Udalosti>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd_Object_199160">
+    <mets:digiprovMD ID="md_Object_199160">
+      <mets:mdWrap MIMETYPE="text/xml" MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>1991602004011520190215</tns:HodnotaID>
+                <tns:ZdrojID>0NKUAA</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2019-02-21T17:01:01.230</tp:DatumVzniku>
+              <tp:DatumCasOd>2004-01-15T09:41:58.920</tp:DatumCasOd>
+              <tp:DatumCasDo>2019-02-15T14:53:14.963</tp:DatumCasDo>
+              <tp:Software>Athena</tp:Software>
+              <tp:VerzeSoftware>4.5.23</tp:VerzeSoftware>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Dokument</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>7C929159-66B3-4348-8ECB-11C341F95CCC</tns:HodnotaID>
+                  <tns:ZdrojID>0NKUAA</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti>
+              <tp:Udalost>
+                <tp:Poradi>1</tp:Poradi>
+                <tp:DatumVzniku>2004-01-15T09:41:58.920</tp:DatumVzniku>
+                <tp:provedlKdo>Vlasta Veverková</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Naskenovaný dokument</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>2</tp:Poradi>
+                <tp:DatumVzniku>2004-01-15T09:41:58.920</tp:DatumVzniku>
+                <tp:provedlKdo>Vlasta Veverková</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Dokument předaný</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>3</tp:Poradi>
+                <tp:DatumVzniku>2016-02-22T11:58:58.790</tp:DatumVzniku>
+                <tp:provedlKdo>Systém</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Zalozeni</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Vytvořen fulltextový soubor k dokumentu: aei59300.TIF</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>4</tp:Poradi>
+                <tp:DatumVzniku>2017-11-27T12:24:58.090</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Založeno vyřazení složky</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>5</tp:Poradi>
+                <tp:DatumVzniku>2017-11-27T12:24:58.090</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaveno převzetí vyřazení ze složky složka spisu 331/04 (1) - veselý jan</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>6</tp:Poradi>
+                <tp:DatumVzniku>2017-11-27T12:24:58.090</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastavení datumu spisovny   </tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>7</tp:Poradi>
+                <tp:DatumVzniku>2017-11-27T12:24:58.107</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven skartační režim složky vyřazení  </tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>8</tp:Poradi>
+                <tp:DatumVzniku>2017-11-27T12:24:58.107</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav vyřazení složky z Vyřazení založeno na Vyřazení založeno</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>9</tp:Poradi>
+                <tp:DatumVzniku>2017-11-27T12:24:58.107</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven datum spoustěcí události  </tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>10</tp:Poradi>
+                <tp:DatumVzniku>2017-11-27T12:24:58.120</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaveno skartační řízení složky vyřazení  </tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>11</tp:Poradi>
+                <tp:DatumVzniku>2017-11-27T12:24:58.120</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky  </tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>12</tp:Poradi>
+                <tp:DatumVzniku>2017-12-06T17:01:26.703</tp:DatumVzniku>
+                <tp:provedlKdo>Systém</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Předložit k posouzení na Předložit k posouzení</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>13</tp:Poradi>
+                <tp:DatumVzniku>2019-01-07T09:57:45.867</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Posoudit na Posoudit</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>14</tp:Poradi>
+                <tp:DatumVzniku>2019-01-07T17:01:43.053</tp:DatumVzniku>
+                <tp:provedlKdo>Systém</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Vybrat za archiválii na Vybrat za archiválii</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>15</tp:Poradi>
+                <tp:DatumVzniku>2019-01-15T13:31:02.610</tp:DatumVzniku>
+                <tp:provedlKdo>PilsCom PilsCom</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Předložit k posouzení na Předložit k posouzení</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>16</tp:Poradi>
+                <tp:DatumVzniku>2019-01-28T14:12:55.813</tp:DatumVzniku>
+                <tp:provedlKdo>PilsCom PilsCom</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Předložit k posouzení na Předložit k posouzení</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>17</tp:Poradi>
+                <tp:DatumVzniku>2019-02-07T15:25:27.867</tp:DatumVzniku>
+                <tp:provedlKdo>PilsCom PilsCom</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Posoudit na Posoudit</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>18</tp:Poradi>
+                <tp:DatumVzniku>2019-02-07T16:54:32.870</tp:DatumVzniku>
+                <tp:provedlKdo>Systém</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Vybrat za archiválii na Vybrat za archiválii</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>19</tp:Poradi>
+                <tp:DatumVzniku>2019-02-15T14:20:00.750</tp:DatumVzniku>
+                <tp:provedlKdo>PilsCom PilsCom</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Předložit k posouzení na Předložit k posouzení</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>20</tp:Poradi>
+                <tp:DatumVzniku>2019-02-15T14:53:14.963</tp:DatumVzniku>
+                <tp:provedlKdo>PilsCom PilsCom</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Posoudit na Posoudit</tp:PopisUdalosti>
+              </tp:Udalost>
+            </tp:Udalosti>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd_Object_199576">
+    <mets:digiprovMD ID="md_Object_199576">
+      <mets:mdWrap MIMETYPE="text/xml" MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>1995762004012020190215</tns:HodnotaID>
+                <tns:ZdrojID>0NKUAA</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2019-02-21T17:01:01.243</tp:DatumVzniku>
+              <tp:DatumCasOd>2004-01-20T12:23:12.390</tp:DatumCasOd>
+              <tp:DatumCasDo>2019-02-15T14:53:14.980</tp:DatumCasDo>
+              <tp:Software>Athena</tp:Software>
+              <tp:VerzeSoftware>4.5.23</tp:VerzeSoftware>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Dokument</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>5A5779C1-5CEF-4761-8604-AC6068FBF42E</tns:HodnotaID>
+                  <tns:ZdrojID>0NKUAA</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti>
+              <tp:Udalost>
+                <tp:Poradi>1</tp:Poradi>
+                <tp:DatumVzniku>2004-01-20T12:23:12.390</tp:DatumVzniku>
+                <tp:provedlKdo>Marcela Šatanová</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nový interní dokument</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>2</tp:Poradi>
+                <tp:DatumVzniku>2017-11-27T12:24:58.107</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Založeno vyřazení složky</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>3</tp:Poradi>
+                <tp:DatumVzniku>2017-11-27T12:24:58.107</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven skartační režim složky vyřazení  </tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>4</tp:Poradi>
+                <tp:DatumVzniku>2017-11-27T12:24:58.107</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav vyřazení složky z Vyřazení založeno na Vyřazení založeno</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>5</tp:Poradi>
+                <tp:DatumVzniku>2017-11-27T12:24:58.107</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven datum spoustěcí události  </tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>6</tp:Poradi>
+                <tp:DatumVzniku>2017-11-27T12:24:58.107</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaveno převzetí vyřazení ze složky složka spisu 331/04 (1) - veselý jan</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>7</tp:Poradi>
+                <tp:DatumVzniku>2017-11-27T12:24:58.107</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastavení datumu spisovny   </tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>8</tp:Poradi>
+                <tp:DatumVzniku>2017-11-27T12:24:58.120</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky  </tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>9</tp:Poradi>
+                <tp:DatumVzniku>2017-11-27T12:24:58.120</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaveno skartační řízení složky vyřazení  </tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>10</tp:Poradi>
+                <tp:DatumVzniku>2017-12-06T17:01:26.720</tp:DatumVzniku>
+                <tp:provedlKdo>Systém</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Předložit k posouzení na Předložit k posouzení</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>11</tp:Poradi>
+                <tp:DatumVzniku>2019-01-07T09:57:45.900</tp:DatumVzniku>
+                <tp:provedlKdo>Ing. Ladislav Bříza</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Posoudit na Posoudit</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>12</tp:Poradi>
+                <tp:DatumVzniku>2019-01-07T17:01:43.067</tp:DatumVzniku>
+                <tp:provedlKdo>Systém</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Vybrat za archiválii na Vybrat za archiválii</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>13</tp:Poradi>
+                <tp:DatumVzniku>2019-01-15T13:31:02.627</tp:DatumVzniku>
+                <tp:provedlKdo>PilsCom PilsCom</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Předložit k posouzení na Předložit k posouzení</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>14</tp:Poradi>
+                <tp:DatumVzniku>2019-01-28T14:12:55.850</tp:DatumVzniku>
+                <tp:provedlKdo>PilsCom PilsCom</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Předložit k posouzení na Předložit k posouzení</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>15</tp:Poradi>
+                <tp:DatumVzniku>2019-02-07T15:25:27.887</tp:DatumVzniku>
+                <tp:provedlKdo>PilsCom PilsCom</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Posoudit na Posoudit</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>16</tp:Poradi>
+                <tp:DatumVzniku>2019-02-07T16:54:33.050</tp:DatumVzniku>
+                <tp:provedlKdo>Systém</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Vybrat za archiválii na Vybrat za archiválii</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>17</tp:Poradi>
+                <tp:DatumVzniku>2019-02-15T14:20:00.793</tp:DatumVzniku>
+                <tp:provedlKdo>PilsCom PilsCom</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Předložit k posouzení na Předložit k posouzení</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>18</tp:Poradi>
+                <tp:DatumVzniku>2019-02-15T14:53:14.980</tp:DatumVzniku>
+                <tp:provedlKdo>PilsCom PilsCom</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Nastaven stav digitálního archivu vyřazení složky z Posoudit na Posoudit</tp:PopisUdalosti>
+              </tp:Udalost>
+            </tp:Udalosti>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd_Object_527940">
+    <mets:digiprovMD ID="md_Object_527940">
+      <mets:mdWrap MIMETYPE="text/xml" MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>52794020190221</tns:HodnotaID>
+                <tns:ZdrojID>0NKUAA</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2019-02-21T17:01:01.260</tp:DatumVzniku>
+              <tp:DatumCasOd>1900-01-01T00:00:00</tp:DatumCasOd>
+              <tp:DatumCasDo>1900-01-01T00:00:00</tp:DatumCasDo>
+              <tp:Software>Athena</tp:Software>
+              <tp:VerzeSoftware>4.5.23</tp:VerzeSoftware>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>56F79972-E8E9-43E5-89BB-31F1CBAB78CE</tns:HodnotaID>
+                  <tns:ZdrojID>0NKUAA</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti />
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd_Object_528466">
+    <mets:digiprovMD ID="md_Object_528466">
+      <mets:mdWrap MIMETYPE="text/xml" MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="1.0">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tns:HodnotaID>52846620190221</tns:HodnotaID>
+                <tns:ZdrojID>0NKUAA</tns:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2019-02-21T17:01:01.260</tp:DatumVzniku>
+              <tp:DatumCasOd>1900-01-01T00:00:00</tp:DatumCasOd>
+              <tp:DatumCasDo>1900-01-01T00:00:00</tp:DatumCasDo>
+              <tp:Software>Athena</tp:Software>
+              <tp:VerzeSoftware>4.5.23</tp:VerzeSoftware>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tns:HodnotaID>E8281481-A88B-4A52-923E-7C00B42D6484</tns:HodnotaID>
+                  <tns:ZdrojID>0NKUAA</tns:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti />
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:fileSec>
+    <mets:fileGrp>
+      <mets:file ID="file_527940" DMDID="Object_527940" OWNERID="56F79972-E8E9-43E5-89BB-31F1CBAB78CE" CHECKSUM="0E781F74837D7F19F40242D780F3FAEF1F0F2920DC14AC3CE8A85C1D93CE9167" CHECKSUMTYPE="SHA-256" SIZE="33602" CREATED="2004-01-15T09:41:58.920" MIMETYPE="image/tiff">
+        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="komponenty/56F79972-E8E9-43E5-89BB-31F1CBAB78CE/aei59300.TIF" />
+      </mets:file>
+      <mets:file ID="file_528466" DMDID="Object_528466" OWNERID="E8281481-A88B-4A52-923E-7C00B42D6484" CHECKSUM="278FB59D217955C4B0C356917498CB47441262F8FD7630401BAD98B22C477F62" CHECKSUMTYPE="SHA-256" SIZE="22528" CREATED="2004-01-20T12:23:12.377" MIMETYPE="application/msword">
+        <mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="komponenty/E8281481-A88B-4A52-923E-7C00B42D6484/1026.doc" />
+      </mets:file>
+    </mets:fileGrp>
+  </mets:fileSec>
+  <mets:structMap>
+    <mets:div DMDID="Object_4072054" ADMID="amd_Object_4072054" TYPE="spisový plán">
+      <mets:div DMDID="Object_39777" ADMID="amd_Object_39777" TYPE="věcná skupina">
+        <mets:div DMDID="Object_346038" ADMID="amd_Object_346038" TYPE="spis">
+          <mets:div DMDID="Object_199160" ADMID="amd_Object_199160" TYPE="dokument">
+            <mets:div DMDID="Object_527940" ADMID="amd_Object_527940" TYPE="komponenta">
+              <mets:fptr FILEID="file_527940" />
+            </mets:div>
+          </mets:div>
+          <mets:div DMDID="Object_199576" ADMID="amd_Object_199576" TYPE="dokument">
+            <mets:div DMDID="Object_528466" ADMID="amd_Object_528466" TYPE="komponenta">
+              <mets:fptr FILEID="file_528466" />
+            </mets:div>
+          </mets:div>
+        </mets:div>
+      </mets:div>
+    </mets:div>
+  </mets:structMap>
+</mets:mets>
