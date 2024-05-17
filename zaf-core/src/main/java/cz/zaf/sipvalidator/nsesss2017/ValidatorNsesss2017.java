@@ -1,5 +1,6 @@
 package cz.zaf.sipvalidator.nsesss2017;
 
+import java.nio.file.Path;
 import java.util.List;
 
 import cz.zaf.common.result.ValidationResult;
@@ -25,11 +26,10 @@ public class ValidatorNsesss2017 implements Validator {
 	}
 
 	@Override
-    public ValidationResult validateBalicek(String balicekPath) throws Exception 
+    public ValidationResult validate(Path path) throws Exception
 	{	
 		// nahrani sipu
-        try(SipLoader sipLoader = new SipLoader(balicekPath,
-                workDir, isKeepFiles);) {
+        try (SipLoader sipLoader = new SipLoader(path, workDir, isKeepFiles);) {
         	
             SipValidator sipValidator = new SipValidator(profilValidace, excludeChecks);
             sipValidator.setHrozba(hrozba);

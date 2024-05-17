@@ -23,8 +23,8 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 
 import cz.zaf.common.result.RuleValidationError;
-import cz.zaf.common.result.ValidationStatus;
 import cz.zaf.common.result.ValidationLayerResult;
+import cz.zaf.common.result.ValidationStatus;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
@@ -81,9 +81,9 @@ public abstract class SipValidatorTestBase {
     SipLoader loadSip(String sipPath, LoadType expLoadType) {
         try {
             Path sourceDirPath = getPath(sipPath);
-            String sourceDir = sourceDirPath.toAbsolutePath().toString();
+            Path absPath = sourceDirPath.toAbsolutePath();
 
-            SipLoader sipLoader = new SipLoader(sourceDir, workDirPath.normalize().toString(), false);
+            SipLoader sipLoader = new SipLoader(absPath, workDirPath.normalize().toString(), false);
 
             // kontrola zpusobu nahrani
             if (expLoadType != null) {

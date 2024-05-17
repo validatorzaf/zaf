@@ -115,7 +115,9 @@ public class CmdValidator {
 
     public void validateSip(ProtokolWriter protokolWriter) throws Exception {
 
-        ValidationResult sipInfo = validator.validateBalicek(cmdParams.getInputPath());
+        Path sipPath = Paths.get(cmdParams.getInputPath());
+
+        ValidationResult sipInfo = validator.validate(sipPath);
         
         protokolWriter.writeVysledek(sipInfo);
     }
@@ -146,8 +148,8 @@ public class CmdValidator {
         }
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(inputDir)) {
             for (final Path path : stream) {
-                final String dirPath = path.toAbsolutePath().toString();
-                final ValidationResult sipInfo = validator.validateBalicek(dirPath);
+                final Path absDirPath = path.toAbsolutePath();
+                final ValidationResult sipInfo = validator.validate(absDirPath);
                 
                 protokolWriter.writeVysledek(sipInfo);
             }

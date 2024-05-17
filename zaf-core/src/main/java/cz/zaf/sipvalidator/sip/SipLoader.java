@@ -71,10 +71,11 @@ public class SipLoader
      */
     private boolean keepExtactedFiles;
 
-    public SipLoader(final String inputPath, final String workDir, final boolean keepExtactedFiles) {
+    public SipLoader(final Path path, final String workDir, final boolean keepExtactedFiles) {
+        sipPath = path;
         this.workDir = workDir;
         this.keepExtactedFiles = keepExtactedFiles;
-		loadSip(inputPath);
+        loadSip();
 	}
 
     public static long getSipLenght(Path sipPath) {
@@ -100,8 +101,8 @@ public class SipLoader
         }
     }
 
-	private void loadSip(String inputPath) {		
-		detectLoadType(inputPath);
+    private void loadSip() {
+        detectLoadType();
 
         // osetreni unzip
         if (loadType == LoadType.LT_ZIP) {
@@ -230,12 +231,12 @@ public class SipLoader
         return true;
     }
 
-    private void detectLoadType(String inputPath) {
-		sipPath = Paths.get(inputPath);
+    private void detectLoadType() {
         sipName = sipPath.getName(sipPath.getNameCount() - 1).toString();
         if (Files.isDirectory(sipPath)) {
 			loadType = LoadType.LT_DIR;
 		} else {
+            String inputPath = this.sipPath.getFileName().toString();
 			String lowerCasePath = inputPath.toLowerCase();
 			if(lowerCasePath.endsWith(".zip")) {
 				loadType = LoadType.LT_ZIP;
