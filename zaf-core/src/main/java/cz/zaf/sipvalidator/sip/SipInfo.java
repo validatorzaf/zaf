@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 import org.apache.commons.lang3.Validate;
 
+import cz.zaf.common.validation.ValidationType;
+
 /**
  * Informace o Sipu
  * 
@@ -89,7 +91,7 @@ public class SipInfo{
      */
     final private LoadType loadType;
     
-    final protected ArrayList<VysledekKontroly> seznam_kontrol = new ArrayList<>();
+    final protected ArrayList<VysledekKontroly> validationResults = new ArrayList<>();
 
     public enum LoadStatus {
         OK,
@@ -130,7 +132,7 @@ public class SipInfo{
     }
 
 	public void reset_data_Kontroly(){
-        seznam_kontrol.clear();
+        validationResults.clear();
     }
     
     public LoadStatus getLoadStatus() {
@@ -179,20 +181,20 @@ public class SipInfo{
         return nameZipFile;
     }
     
-    ArrayList<VysledekKontroly> getSeznamKontrol(){
-        return seznam_kontrol;
+    public ArrayList<VysledekKontroly> getValidationResults() {
+        return validationResults;
     }
 
     /**
      * Vrati uroven kontroly daneho typu
      * 
-     * @param typUrovneKontroly
+     * @param validationType
      *            typ požadované úrovně kontroly
      * @return Výsledek kontroly, případně null pokud kontrola nebyla provedena
      */
-	public VysledekKontroly getUrovenKontroly(TypUrovenKontroly typUrovneKontroly) {
-		for(VysledekKontroly kontrola: seznam_kontrol) {
-			if(kontrola.getTypUrovneKontroly()==typUrovneKontroly) {
+    public VysledekKontroly getUrovenKontroly(ValidationType validationType) {
+		for(VysledekKontroly kontrola: validationResults) {
+            if (kontrola.getTypUrovneKontroly().equals(validationType)) {
 				return kontrola;
 			}
 		}
@@ -204,24 +206,24 @@ public class SipInfo{
 		// kontrola, zda jiz nebyla pridana
 		VysledekKontroly urovenKontroly = getUrovenKontroly(k.getTypUrovneKontroly());
 		Validate.isTrue(urovenKontroly==null);
-		seznam_kontrol.add(k);
+		validationResults.add(k);
 	}
 
 	public boolean isKontrolyProvedeny() {
-		if(seznam_kontrol!=null&&seznam_kontrol.size()==TypUrovenKontroly.values().length) {
+		if(validationResults!=null&&validationResults.size()==TypUrovenKontroly.values().length) {
 			return true;
 		}
 		return false;
 	}
 
 	public VysledekKontroly getKontrola(int indexKontroly) {
-		if(seznam_kontrol==null) {
+		if(validationResults==null) {
 			return null;
 		}
-		if(seznam_kontrol.size()>=indexKontroly) {
+		if(validationResults.size()>=indexKontroly) {
 			return null;
 		}
-		return seznam_kontrol.get(indexKontroly);
+		return validationResults.get(indexKontroly);
 	}
     
 }

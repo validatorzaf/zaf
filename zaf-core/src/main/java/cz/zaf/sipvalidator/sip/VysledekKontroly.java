@@ -7,9 +7,14 @@ package cz.zaf.sipvalidator.sip;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.Validate;
+
+import cz.zaf.common.result.RuleValidationError;
+import cz.zaf.common.result.ValidationStatus;
+import cz.zaf.common.validation.ValidationType;
 
 /**
  * Výsledek kontroly Sipu
@@ -24,18 +29,18 @@ public class VysledekKontroly {
 	
 	final TypUrovenKontroly urovenKontroly;
 	
-    List<ChybaPravidla> chyby = new ArrayList<>();
+    List<RuleValidationError> chyby = new ArrayList<>();
 	
     String kontrolaNazev;
     
     /**
      * Stav kontroly
      */
-    StavKontroly stavKontroly = StavKontroly.NESPUSTENA;
+    ValidationStatus stavKontroly = ValidationStatus.NOT_EXCECUTED;
 
     public VysledekKontroly(final TypUrovenKontroly urovenKontroly, 
     		final String kontrolaNazev){
-    	Validate.notNull(urovenKontroly);
+        Objects.requireNonNull(urovenKontroly);
     	Validate.notEmpty(kontrolaNazev);
     	
     	this.urovenKontroly = urovenKontroly;
@@ -46,23 +51,23 @@ public class VysledekKontroly {
         return kontrolaNazev;        
     }
     
-    public StavKontroly getStavKontroly(){
+    public ValidationStatus getStavKontroly(){
         return stavKontroly;
     }
     
-    public void setStav(final StavKontroly stavKontroly){
+    public void setStav(final ValidationStatus stavKontroly){
     	// Lze nastavovat jen koncove (vysledek) a nikoliv pocatecni stavy
-    	Validate.isTrue(stavKontroly!=StavKontroly.NESPUSTENA);
+    	Validate.isTrue(stavKontroly!=ValidationStatus.NOT_EXCECUTED);
     	
         this.stavKontroly = stavKontroly;
     }
 
-	public void add(ChybaPravidla p) {
+	public void add(RuleValidationError p) {
         chyby.add(p);
         // nastaveni stavu
-        if (stavKontroly != StavKontroly.CHYBA) {
+        if (stavKontroly != ValidationStatus.ERROR) {
 			// doslo k selhani -> error
-			stavKontroly = StavKontroly.CHYBA;
+			stavKontroly = ValidationStatus.ERROR;
 		}
 	}
 
@@ -70,7 +75,7 @@ public class VysledekKontroly {
         return chyby.size();
 	}
 
-	public ChybaPravidla get(int i) {
+	public RuleValidationError get(int i) {
         return chyby.get(i);
 	}
 
@@ -78,7 +83,7 @@ public class VysledekKontroly {
         return chyby.isEmpty();
 	}
 
-	public TypUrovenKontroly getTypUrovneKontroly() {
+    public ValidationType getTypUrovneKontroly() {
 		return urovenKontroly;
 	}
 
@@ -88,19 +93,19 @@ public class VysledekKontroly {
 	}
 
 	public boolean isProvedena() {
-		return stavKontroly!=StavKontroly.NESPUSTENA;
+		return stavKontroly!=ValidationStatus.NOT_EXCECUTED;
 	}
 
 	public boolean isOk() {
-		return stavKontroly==StavKontroly.OK;
+		return stavKontroly==ValidationStatus.OK;
 	}
 
-    public List<ChybaPravidla> getPravidla() {
+    public List<RuleValidationError> getPravidla() {
         return chyby;
     }
 
-    public ChybaPravidla getPravidlo(String kodPravidla) {
-        for (ChybaPravidla pravidlo : chyby) {
+    public RuleValidationError getPravidlo(String kodPravidla) {
+        for (RuleValidationError pravidlo : chyby) {
             if (pravidlo.getId().equals(kodPravidla)) {
                 return pravidlo;
             }

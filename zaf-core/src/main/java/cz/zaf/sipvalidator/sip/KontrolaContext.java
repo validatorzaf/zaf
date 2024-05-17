@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import cz.zaf.common.result.ValidationStatus;
+
 /**
  * Kontext provadene kontroly
  *
@@ -42,14 +44,14 @@ public class KontrolaContext {
      * @return true při selhání, false pokud kontrola neproběhla nebo je ok
      */
 	public boolean isFailed() {
-		ArrayList<VysledekKontroly> kontroly = sip.getSeznamKontrol();
+		ArrayList<VysledekKontroly> kontroly = sip.getValidationResults();
 		if(kontroly==null||kontroly.size()==0) {
 			return false;
 		}
 		// dle stavu posledni kontroly se rozhodneme
 		VysledekKontroly posledniKontrola = kontroly.get(kontroly.size()-1);
-		StavKontroly stav = posledniKontrola.getStavKontroly();
-		if(stav!=StavKontroly.OK) {
+		ValidationStatus stav = posledniKontrola.getStavKontroly();
+		if(stav!=ValidationStatus.OK) {
 			// neni provedena -> selhani jiz nekde drive
 			return true;
 		}

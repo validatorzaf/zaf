@@ -1,5 +1,6 @@
-package cz.zaf.sipvalidator.sip;
+package cz.zaf.common.result;
 
+import cz.zaf.sipvalidator.sip.SipInfo;
 import jakarta.xml.bind.JAXBException;
 
 /**

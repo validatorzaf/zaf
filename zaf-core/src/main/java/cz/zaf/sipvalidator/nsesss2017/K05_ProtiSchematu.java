@@ -22,7 +22,7 @@ import javax.xml.validation.Validator;
 import org.xml.sax.SAXException;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.sip.ChybaPravidla;
+import cz.zaf.common.result.RuleValidationError;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 
@@ -95,7 +95,7 @@ public class K05_ProtiSchematu
 
         String obecnyPopisChyby = VAL1_POPIS_CHYBY;
 
-        ChybaPravidla p = new ChybaPravidlaNsesss2017(VAL1,
+        RuleValidationError p = new ChybaPravidlaNsesss2017(VAL1,
                 VAL1_TEXT,
                 detailChyby,
                 obecnyPopisChyby,

@@ -1,4 +1,4 @@
-package cz.zaf.sipvalidator.sip;
+package cz.zaf.common.result;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,7 +19,7 @@ import cz.zaf.sipvalidator.nsesss2017.EntityId;
  * Vysledek kontroly jednoho pravidla
  * 
  */
-public abstract class ChybaPravidla {
+public abstract class RuleValidationError {
     /**
      * Identifikator kontroly
      * Pouziva se v report XML pro jeji oznaceni
@@ -69,7 +69,7 @@ public abstract class ChybaPravidla {
      */
     final private List<EntityId> entityIds;
 
-    public ChybaPravidla(final Rule<? extends RuleEvaluationContext> rule,
+    public RuleValidationError(final Rule<? extends RuleEvaluationContext> rule,
                          final String vypisChyby,
                          final String mistoChyby,
                          final ErrorCode errorCode,
@@ -85,7 +85,7 @@ public abstract class ChybaPravidla {
                                      entityIds);
                          }
 
-    public ChybaPravidla(
+    public RuleValidationError(
                          final String id,
                          final String textPravidla,
                          final String vypisChyby,

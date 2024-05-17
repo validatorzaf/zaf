@@ -2,6 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017;
 
 import org.junit.jupiter.api.Test;
 
+import cz.zaf.common.result.ValidationStatus;
 import cz.zaf.sipvalidator.nsesss2017.pravidla07.kom00_09.Pravidlo7_01;
 import cz.zaf.sipvalidator.nsesss2017.pravidla07.kom00_09.Pravidlo7_02;
 import cz.zaf.sipvalidator.nsesss2017.pravidla07.kom00_09.Pravidlo7_03;
@@ -9,7 +10,6 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla07.kom00_09.Pravidlo7_04;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
-import cz.zaf.sipvalidator.sip.StavKontroly;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 
 public class SipValidatorK07Test extends SipValidatorTestBase {
@@ -17,7 +17,7 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
 
     void testPackage(String path,
                      LoadType loadType,
-                     StavKontroly stavKontroly,
+                     ValidationStatus stavKontroly,
                      ProfilValidace profilValidace,
                      String[] pravidlaOk, String[] pravidlaChybna) {
         testPackage(PATH_DATA_K07 + "/" + path, loadType,
@@ -27,7 +27,7 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
     }
 
     void testPackage(String path,
-                     StavKontroly stavKontroly,
+                     ValidationStatus stavKontroly,
                      ProfilValidace profilValidace,
                      String[] pravidlaOk, String[] pravidlaChybna) {
         testPackage(path, LoadType.LT_DIR,
@@ -38,7 +38,7 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
 
     @Test
     void testK07_01_01() {
-        testPackage("01-chyba1", StavKontroly.CHYBA,
+        testPackage("01-chyba1", ValidationStatus.ERROR,
                     ZakladniProfilValidace.PREJIMKA,
                     new String[] {},
                     new String[] { Pravidlo7_01.KOD });
@@ -46,7 +46,7 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
 
     @Test
     void testK07_01_02() {
-        testPackage("01-chyba2", StavKontroly.CHYBA,
+        testPackage("01-chyba2", ValidationStatus.ERROR,
                     ZakladniProfilValidace.PREJIMKA,
                     new String[] {},
                     new String[] { Pravidlo7_01.KOD });
@@ -62,7 +62,7 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
 
     @Test
     void testK07_02_01() {
-        testPackage("02-chyba1", StavKontroly.CHYBA,
+        testPackage("02-chyba1", ValidationStatus.ERROR,
                     ZakladniProfilValidace.PREJIMKA,
                     new String[] {},
                     new String[] { Pravidlo7_02.KOD });
@@ -70,7 +70,7 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
 
     @Test
     void testK07_02_02() {
-        testPackage("02-chyba2", StavKontroly.CHYBA,
+        testPackage("02-chyba2", ValidationStatus.ERROR,
                     ZakladniProfilValidace.PREJIMKA,
                     new String[] {},
                     new String[] { Pravidlo7_02.KOD });
@@ -94,7 +94,7 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
 
     @Test
     void testK07_03_01() {
-        testPackage("03-chyba1", StavKontroly.CHYBA,
+        testPackage("03-chyba1", ValidationStatus.ERROR,
                     ZakladniProfilValidace.PREJIMKA,
                     new String[] {},
                     new String[] { Pravidlo7_03.KOD });
@@ -102,7 +102,7 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
 
     @Test
     void testK07_03_02() {
-        testPackage("03-chyba2", StavKontroly.CHYBA,
+        testPackage("03-chyba2", ValidationStatus.ERROR,
                     ZakladniProfilValidace.PREJIMKA,
                     new String[] {},
                     new String[] { Pravidlo7_03.KOD });
@@ -110,7 +110,7 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
 
     @Test
     void testK07_03_03() {
-        testPackage("03-chyba3", StavKontroly.CHYBA,
+        testPackage("03-chyba3", ValidationStatus.ERROR,
                     ZakladniProfilValidace.PREJIMKA,
                     new String[] {},
                     new String[] { Pravidlo7_03.KOD });
@@ -118,7 +118,7 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
 
     @Test
     void testK07_03_05() {
-        testPackage("03-chyba5", StavKontroly.CHYBA,
+        testPackage("03-chyba5", ValidationStatus.ERROR,
                     ZakladniProfilValidace.PREJIMKA,
                     new String[] {},
                     new String[] { Pravidlo7_03.KOD });
@@ -126,7 +126,7 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
 
     @Test
     void testK07_03_06() {
-        testPackage("03-chyba6", StavKontroly.CHYBA,
+        testPackage("03-chyba6", ValidationStatus.ERROR,
                     ZakladniProfilValidace.PREJIMKA,
                     new String[] {},
                     new String[] { Pravidlo7_03.KOD });
@@ -134,7 +134,7 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
 
     @Test
     void testK07_03_07() {
-        testPackage("03-chyba7", StavKontroly.CHYBA,
+        testPackage("03-chyba7", ValidationStatus.ERROR,
                     ZakladniProfilValidace.PREJIMKA,
                     new String[] {},
                     new String[] { Pravidlo7_03.KOD });
@@ -286,14 +286,14 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
 
     @Test
     void testK07_04_01() {
-        testPackage("04-chyba1", StavKontroly.CHYBA, ZakladniProfilValidace.PREJIMKA,
+        testPackage("04-chyba1", ValidationStatus.ERROR, ZakladniProfilValidace.PREJIMKA,
                     new String[] {},
                     new String[] { Pravidlo7_04.KOD });
     }
 
     @Test
     void testK07_04_02() {
-        testPackage("04-chyba2", StavKontroly.CHYBA, ZakladniProfilValidace.PREJIMKA,
+        testPackage("04-chyba2", ValidationStatus.ERROR, ZakladniProfilValidace.PREJIMKA,
                     new String[] {},
                     new String[] { Pravidlo7_04.KOD });
     }

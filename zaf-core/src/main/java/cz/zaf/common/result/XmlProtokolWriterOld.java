@@ -1,5 +1,4 @@
-
-package cz.zaf.sipvalidator.sip;
+package cz.zaf.common.result;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,6 +24,7 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,25 +33,33 @@ import org.xml.sax.SAXException;
 import com.ctc.wstx.api.WstxInputProperties;
 import com.sun.xml.txw2.output.IndentingXMLStreamWriter;
 
-import cz.zaf.schema.validace_v1.ObjectFactory;
-import cz.zaf.schema.validace_v1.TBalicek;
-import cz.zaf.schema.validace_v1.TKontrola;
-import cz.zaf.schema.validace_v1.TPravidlo;
-import cz.zaf.schema.validace_v1.TVysledekKontroly;
-import cz.zaf.sipvalidator.profily.ProfilPravidel;
+import cz.zaf.schema.validacesip.ObjectFactory;
+import cz.zaf.schema.validacesip.TEntity;
+import cz.zaf.schema.validacesip.TIdentifikator;
+import cz.zaf.schema.validacesip.TKontrola;
+import cz.zaf.schema.validacesip.TPravidlo;
+import cz.zaf.schema.validacesip.TSip;
+import cz.zaf.schema.validacesip.TTypEntity;
+import cz.zaf.schema.validacesip.TVysledekKontroly;
+import cz.zaf.sipvalidator.nsesss2017.EntityId;
+import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
+import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
+import cz.zaf.sipvalidator.sip.SipInfo;
+import cz.zaf.sipvalidator.sip.VysledekKontroly;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBElement;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
 
-public class XmlProtokolWriter implements ProtokolWriter
- {
+public class XmlProtokolWriterOld implements ProtokolWriter
+{
     
-    public static final String SCHEMA_URL = "https://stands.nacr.cz/validace_zaf/v1";
+    public static String XML_PREFIX = "kontrolasip";
+    public static String SCHEMA_URL = "http://www.ahmp.cz/schema/validacesip/v1";
     
-    private static Logger logger = LoggerFactory.getLogger(XmlProtokolWriter.class);
+    private static Logger logger = LoggerFactory.getLogger(XmlProtokolWriterOld.class);
     
-    public static final ObjectFactory objectFactory = new ObjectFactory();
+    final static ObjectFactory objectFactory = new ObjectFactory();
 
     private OutputStream outputStream;
     boolean closeOutputStream = false;
@@ -67,30 +75,24 @@ public class XmlProtokolWriter implements ProtokolWriter
     
     {
         SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        try (InputStream is = XmlProtokolWriter.class.getClassLoader()
-                .getResourceAsStream("schema/validace_v1.xsd")) {
+        try (InputStream is = XmlProtokolWriterOld.class.getClassLoader()
+                .getResourceAsStream("schema/validaceSIP.xsd")) {
             schema = sf.newSchema(new StreamSource(is));
         } catch (IOException | SAXException e) {
             throw new RuntimeException("Failed to load internal XSD", e);
         }
         
         try {
-            jaxbContext = JAXBContext.newInstance(TBalicek.class);
+            jaxbContext = JAXBContext.newInstance(TSip.class);
         } catch (JAXBException e) {
             logger.error("Failed to initialize JAXBContext", e);
             throw new IllegalStateException("Failed to initialize JAXBContext", e);
         }
     }
-    
-    private ProfilPravidel profilPravidel = null;
-    private String verzePravidel = "";
-    private String druhValidace = "";
-    
-    public XmlProtokolWriter(final String outputPath,
+
+    public XmlProtokolWriterOld(final String outputPath,
                              final String kontrolaId,
-                             final String druhValidace,
-                             final ProfilPravidel profilPravidel,
-                             final String verzePravidel) throws IOException, JAXBException, XMLStreamException,
+                             final ProfilValidace profilValidace) throws IOException, JAXBException, XMLStreamException,
             DatatypeConfigurationException {
         if (StringUtils.isNoneBlank(outputPath)) {
             this.outputPath = Paths.get(outputPath);
@@ -116,25 +118,23 @@ public class XmlProtokolWriter implements ProtokolWriter
         indentingStreamWriter.setIndentStep("    ");
         
         indentingStreamWriter.writeStartDocument();
-        indentingStreamWriter.writeStartElement("validace");
+        indentingStreamWriter.writeStartElement("validaceSIP");
         indentingStreamWriter.setDefaultNamespace(SCHEMA_URL);
         indentingStreamWriter.setPrefix("xsi", "http://www.w3.org/2001/XMLSchema-instance");
          indentingStreamWriter.writeAttribute("xmlns", SCHEMA_URL);
         indentingStreamWriter.writeAttribute("xmlns", null,
                                              "xsi", "http://www.w3.org/2001/XMLSchema-instance");
         indentingStreamWriter.writeAttribute("http://www.w3.org/2001/XMLSchema-instance", "schemaLocation", 
-                                             "https://stands.nacr.cz/validace_zaf/v1 https://stands.nacr.cz/validace_zaf/v1/validace_v1.xsd");
+                                             "http://www.ahmp.cz/schema/validacesip/v1 http://www.ahmp.cz/schema/validacesip/v1/validaceSIP.xsd");
 
         // write attributes to root element
-        indentingStreamWriter.writeAttribute("identifikatorValidace",
+        indentingStreamWriter.writeAttribute("validaceID",
                                              kontrolaId == null ? UUID.randomUUID().toString() : kontrolaId);
-    
-        this.profilPravidel = profilPravidel;
-        this.verzePravidel = verzePravidel;
-        this.druhValidace = druhValidace;
+        
         pripravAppInfo();
         pripravCas();
         
+        String pouzitiKontroly = profilValidace.getNazev();
         /*
         if(!pouzitiKontroly.equals(TPouzitiKontroly.SKARTAČNÍ_ŘÍZENÍ_JEN_METADATA)&&
                 !pouzitiKontroly.equals(TPouzitiKontroly.SKARTAČNÍ_ŘÍZENÍ_S_KOMPONENTAMI)&&
@@ -143,6 +143,7 @@ public class XmlProtokolWriter implements ProtokolWriter
             pouzitiKontroly = TPouzitiKontroly.SKARTAČNÍ_ŘÍZENÍ_JEN_METADATA.value();
         }*/
     
+        indentingStreamWriter.writeAttribute("druhValidace", pouzitiKontroly);
     }
     
     private void pripravCas() throws DatatypeConfigurationException, XMLStreamException {
@@ -164,46 +165,44 @@ public class XmlProtokolWriter implements ProtokolWriter
 
         indentingStreamWriter.writeAttribute("nazevAplikace", artifactId);
         indentingStreamWriter.writeAttribute("verzeAplikace", verzeApp);
-        indentingStreamWriter.writeAttribute("profilPravidel", profilPravidel.toString());
-        indentingStreamWriter.writeAttribute("verzePravidel", verzePravidel);
-        indentingStreamWriter.writeAttribute("druhValidace", druhValidace);
+        indentingStreamWriter.writeAttribute("verzePravidel", NsesssV3.ZAF_RULE_VERSION);
     }
     
 
     @Override
     public void writeVysledek(SipInfo sipInfo) throws JAXBException {
         
-        TBalicek balicek = convert(sipInfo);
+        TSip sip = convert(sipInfo);
         
-        JAXBElement<TBalicek> jaxbElement = new JAXBElement<>(new QName(SCHEMA_URL, "balicek"), TBalicek.class, balicek);
+        JAXBElement<TSip> jaxbElement = new JAXBElement<>(new QName(SCHEMA_URL, "sip"), TSip.class, sip);
         marshaller.marshal(jaxbElement, indentingStreamWriter);
 
     }
     
-    private static void writeBalicekInfo(TBalicek balicekNode, SipInfo sipInfo) {
+    private static void writeSipInfo(TSip sipNode, SipInfo sipInfo) {
         String metsObjId = sipInfo.getMetsObjId();
         if (StringUtils.isNotEmpty(metsObjId)) {
-            balicekNode.setIdentifikator(metsObjId);
+            sipNode.setOBJID(metsObjId);
         }
 
         String g = sipInfo.getNameZip();
         if (g == null) {
             g = sipInfo.getName();
         }
-        balicekNode.setNazevSouboru(g);
+        sipNode.setNazevSouboru(g);
 
     }
 
-    private TBalicek convert(SipInfo sipInfo) {
-        TBalicek balicek = objectFactory.createTBalicek();
-        writeBalicekInfo(balicek, sipInfo);
+    private TSip convert(SipInfo sipInfo) {
+        TSip sip = objectFactory.createTSip();
+        writeSipInfo(sip, sipInfo);
         
-        List<VysledekKontroly> kontroly = sipInfo.getSeznamKontrol();
+        List<VysledekKontroly> kontroly = sipInfo.getValidationResults();
         for (VysledekKontroly vysl : kontroly) {
             TKontrola kontrolaXml = convert(vysl);
-            balicek.getKontrola().add(kontrolaXml);
+            sip.getKontrola().add(kontrolaXml);
         }        
-        return balicek;
+        return sip;
     }
     
     private static TKontrola convert(VysledekKontroly vysl) {
@@ -212,7 +211,7 @@ public class XmlProtokolWriter implements ProtokolWriter
         kontrolaXml.setStav(convert(vysl.getStavKontroly()));
 
         // prevod pravidel
-        for (ChybaPravidla pravidlo : vysl.getPravidla()) {
+        for (RuleValidationError pravidlo : vysl.getPravidla()) {
             TPravidlo pravNode = convert(pravidlo);
             kontrolaXml.getPravidlo().add(pravNode);
         }
@@ -226,7 +225,7 @@ public class XmlProtokolWriter implements ProtokolWriter
      *            vysledek pravidla
      * @return Prevedene pravidlo
      */
-    private static TPravidlo convert(ChybaPravidla pravidlo) {
+    private static TPravidlo convert(RuleValidationError pravidlo) {
         TPravidlo pravNode = objectFactory.createTPravidlo();
         pravNode.setKod(pravidlo.getId());
         pravNode.setZneni(pravidlo.getTextPravidla());
@@ -236,15 +235,59 @@ public class XmlProtokolWriter implements ProtokolWriter
         pravNode.setMistoChyby(pravidlo.getMistoChyby());
         pravNode.setKodChyby(pravidlo.getKodChyby().getErrorCode());
 
-        pravidlo.zapisDetail(pravNode);
+        List<EntityId> entityIds = pravidlo.getEntityIds();
+        if (CollectionUtils.isNotEmpty(entityIds)) {
+            TEntity entityNode = objectFactory.createTEntity();
+            List<TIdentifikator> idents = entityNode.getIdentifikator();
+            for (EntityId entityId : entityIds) {
+                TIdentifikator ident = objectFactory.createTIdentifikator();
+                ident.setZdroj(entityId.getZdrojIdent().getZdroj());
+                ident.setValue(entityId.getZdrojIdent().getIdentifikator());
+                TTypEntity typEntity = null;
+                switch (entityId.getDruhEntity()) {
+                case SPISOVY_PLAN:
+                    typEntity = TTypEntity.SPISOVÝ_PLÁN;
+                    break;
+                case VECNA_SKUPINA:
+                    typEntity = TTypEntity.VĚCNÁ_SKUPINA;
+                    break;
+                case DIL:
+                    typEntity = TTypEntity.DÍL;
+                    break;
+                case SPIS:
+                    typEntity = TTypEntity.SPIS;
+                    break;
+                case DOKUMENT:
+                    typEntity = TTypEntity.DOKUMENT;
+                    break;
+                case SOUCAST:
+                    typEntity = TTypEntity.SOUČÁST;
+                    break;
+                case TYPOVY_SPIS:
+                case KOMPONENTA:
+                case SKARTACNI_RIZENI:
+                default:
+                    continue;
+                }
+                if (typEntity == null) {
+                    continue;
+                }
+                ident.setTyp(typEntity);
+
+                idents.add(ident);
+            }
+            if (idents.size() > 0) {
+                pravNode.setEntity(entityNode);
+            }
+        }
         return pravNode;
     }
 
-    private static TVysledekKontroly convert(StavKontroly stavKontroly) {
+    private static TVysledekKontroly convert(ValidationStatus stavKontroly) {
         switch (stavKontroly) {
-        case CHYBA:
+        case ERROR:
             return TVysledekKontroly.CHYBA;
-        case NESPUSTENA:
+        case NOT_EXCECUTED:
             return TVysledekKontroly.NESPUSTENA;
         case OK:
             return TVysledekKontroly.OK;

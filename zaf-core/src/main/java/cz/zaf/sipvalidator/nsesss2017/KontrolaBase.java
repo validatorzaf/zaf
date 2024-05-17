@@ -8,10 +8,10 @@ import org.slf4j.LoggerFactory;
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.common.exceptions.codes.ErrorCode;
+import cz.zaf.common.result.RuleValidationError;
+import cz.zaf.common.result.ValidationStatus;
 import cz.zaf.common.validation.Rule;
 import cz.zaf.common.validation.RuleEvaluationContext;
-import cz.zaf.sipvalidator.sip.ChybaPravidla;
-import cz.zaf.sipvalidator.sip.StavKontroly;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.UrovenKontroly;
 import cz.zaf.sipvalidator.sip.VysledekKontroly;
@@ -43,7 +43,7 @@ abstract public class KontrolaBase<KontrolaContext extends RuleEvaluationContext
 
         long startTime = System.currentTimeMillis();
         // vychozi stav je ok
-        vysledekKontroly.setStav(StavKontroly.OK);
+        vysledekKontroly.setStav(ValidationStatus.OK);
         provedKontrolu();
 
         long finishTime = System.currentTimeMillis();
@@ -57,7 +57,7 @@ abstract public class KontrolaBase<KontrolaContext extends RuleEvaluationContext
                             String detailChyby,
                             String mistoChyby,
                             List<EntityId> entityIds) {
-        ChybaPravidla p = new ChybaPravidlaNsesss2017(pravidlo,
+        RuleValidationError p = new ChybaPravidlaNsesss2017(pravidlo,
                 detailChyby,
                 mistoChyby,
                 errorCode,

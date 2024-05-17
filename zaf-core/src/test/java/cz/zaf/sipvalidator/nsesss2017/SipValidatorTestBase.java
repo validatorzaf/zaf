@@ -22,12 +22,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 
+import cz.zaf.common.result.RuleValidationError;
+import cz.zaf.common.result.ValidationStatus;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
-import cz.zaf.sipvalidator.sip.ChybaPravidla;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 import cz.zaf.sipvalidator.sip.SipLoader;
-import cz.zaf.sipvalidator.sip.StavKontroly;
 import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 import cz.zaf.sipvalidator.sip.VysledekKontroly;
 
@@ -105,7 +105,7 @@ public abstract class SipValidatorTestBase {
     void testPackage(String path, LoadType expLoadType,
                      ProfilValidace profilValidace,
                      TypUrovenKontroly typUrovneKontroly,
-                     StavKontroly stavKontroly, String[] pravidlaOk, String[] pravidlaChybna) {
+                     ValidationStatus stavKontroly, String[] pravidlaOk, String[] pravidlaChybna) {
         log.debug("Loading SIP: {}, loadType: {}, urovenKontroly: {}", path, expLoadType, typUrovneKontroly);
 
         SipLoader sipLoader = loadSip(path, expLoadType);
@@ -118,11 +118,11 @@ public abstract class SipValidatorTestBase {
         if (stavKontroly != null) {
             if (!vysledek.getStavKontroly().equals(stavKontroly)) {
                 // detail selhanych kontrol
-                if (vysledek.getStavKontroly() == StavKontroly.CHYBA) {
+                if (vysledek.getStavKontroly() == ValidationStatus.ERROR) {
                     // doslo k neocekavanemu selhani -> vypis selhanych
                     boolean errorLogged = false;
                     for (String pravidloOk : pravidlaOk) {
-                        ChybaPravidla prav = vysledek.getPravidlo(pravidloOk);
+                        RuleValidationError prav = vysledek.getPravidlo(pravidloOk);
                         if (prav != null) {
                             log.error("Chybujici pravidlo: {}, vypisChyby: {}, mistoChyby: {}", pravidloOk,
                                       prav.getVypisChyby(), prav.getMistoChyby(), prav.getMistoChyby());
@@ -131,7 +131,7 @@ public abstract class SipValidatorTestBase {
                     }
                     if(!errorLogged) {
                         // vypis vsech chybujicich kontrol
-                        for(ChybaPravidla prav: vysledek.getPravidla()) {
+                        for(RuleValidationError prav: vysledek.getPravidla()) {
                             log.error("Chybujici pravidlo: {}, vypisChyby: {}, mistoChyby: {}",
                                       prav.getId(),
                                       prav.getVypisChyby(), prav.getMistoChyby(), prav.getMistoChyby());
@@ -149,7 +149,7 @@ public abstract class SipValidatorTestBase {
         if (pravidlaOk != null) {
             for (int i = 0; i < pravidlaOk.length; i++) {
                 String kodPravidla = pravidlaOk[i];
-                ChybaPravidla pravidlo = vysledek.getPravidlo(kodPravidla);
+                RuleValidationError pravidlo = vysledek.getPravidlo(kodPravidla);
                 if (pravidlo != null) {
                     fail(() -> "SIP: " + path + ", Pravidlo: " + kodPravidla
                         + ", ocekavano OK, ale selhalo, misto chyby: " + pravidlo.getMistoChyby()
@@ -162,7 +162,7 @@ public abstract class SipValidatorTestBase {
         if (pravidlaChybna != null) {
             for (int i = 0; i < pravidlaChybna.length; i++) {
                 String kodPravidla = pravidlaChybna[i];
-                ChybaPravidla pravidlo = vysledek.getPravidlo(kodPravidla);
+                RuleValidationError pravidlo = vysledek.getPravidlo(kodPravidla);
                 if (pravidlo == null) {
                     fail(() -> "SIP: " + path + ", Pravidlo: " + kodPravidla
                             + ", ocekavana Chyba, ale bylo OK");

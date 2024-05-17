@@ -9,18 +9,17 @@ import java.nio.file.Paths;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cz.zaf.common.result.ProtokolWriter;
+import cz.zaf.common.result.XmlProtokolWriter;
+import cz.zaf.common.result.XmlProtokolWriterOld;
 import cz.zaf.sipvalidator.formats.MimetypeDetectorFactory;
 import cz.zaf.sipvalidator.formats.VystupniFormat;
 import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValidatorNsesss2017;
 import cz.zaf.sipvalidator.pdfa.VeraValidatorProxy;
 import cz.zaf.sipvalidator.profily.ProfilPravidel;
-import cz.zaf.sipvalidator.sip.ProtokolWriter;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.Validator;
-import cz.zaf.sipvalidator.sip.XmlProtokolWriter;
-import cz.zaf.sipvalidator.sip.XmlProtokolWriter;
-import cz.zaf.sipvalidator.sip.XmlProtokolWriterOld;
 
 /**
  * Command line validator

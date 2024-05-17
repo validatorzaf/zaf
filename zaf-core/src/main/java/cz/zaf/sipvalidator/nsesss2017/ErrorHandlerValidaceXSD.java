@@ -10,7 +10,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 import cz.zaf.common.exceptions.codes.XmlCode;
-import cz.zaf.sipvalidator.sip.ChybaPravidla;
+import cz.zaf.common.result.RuleValidationError;
 import cz.zaf.sipvalidator.sip.VysledekKontroly;
 
 /**
@@ -101,7 +101,7 @@ public class ErrorHandlerValidaceXSD implements ErrorHandler {
             textChyby += " " +celaChybovaHlaska;
         }
 
-        ChybaPravidla p = new ChybaPravidlaNsesss2017(K05_ProtiSchematu.VAL1,
+        RuleValidationError p = new ChybaPravidlaNsesss2017(K05_ProtiSchematu.VAL1,
                 K05_ProtiSchematu.VAL1_TEXT,
                 textChyby,
                 K05_ProtiSchematu.VAL1_POPIS_CHYBY,

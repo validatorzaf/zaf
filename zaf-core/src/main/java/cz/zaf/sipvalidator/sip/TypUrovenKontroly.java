@@ -1,35 +1,23 @@
 package cz.zaf.sipvalidator.sip;
 
+import cz.zaf.common.validation.ValidationType;
+
 /**
  * Urovne kontroly
  * 
  *
  */
-public enum TypUrovenKontroly {
-	SKODLIVY_KOD(0),
-	DATOVE_STRUKTURY(1),
-	ZNAKOVE_SADY(2),
-	SPRAVNOSTI(3),
-	JMENNE_PROSTORY_XML(4),
-	PROTI_SCHEMATU(5),
-    OBSAHOVA(6),
-    KOMPONENT(7);
+public enum TypUrovenKontroly
+        implements ValidationType {
+    SKODLIVY_KOD,
+    DATOVE_STRUKTURY,
+    ZNAKOVE_SADY,
+    SPRAVNOSTI,
+    JMENNE_PROSTORY_XML,
+    PROTI_SCHEMATU,
+    OBSAHOVA,
+    KOMPONENT;
 	
-	/**
-	 * Ciselny kod urovne kontroly
-	 */
-	private int level;
-
-	private TypUrovenKontroly(int level) {
-		this.level = level;
-	}
-	
-	/**
-     * Vrati uroven kontroly
-     * 
-     * @return Číslo úrovně kontroly
-     */
-	public int getLevel() {
-		return level;
+    private TypUrovenKontroly() {
 	}
 }
