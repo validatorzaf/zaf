@@ -44,7 +44,6 @@ import cz.zaf.schema.validacesip.TVysledekKontroly;
 import cz.zaf.sipvalidator.nsesss2017.EntityId;
 import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
-import cz.zaf.sipvalidator.sip.SipInfo;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBElement;
 import jakarta.xml.bind.JAXBException;
@@ -169,7 +168,7 @@ public class XmlProtokolWriterOld implements ProtokolWriter
     
 
     @Override
-    public void writeVysledek(SipInfo sipInfo) throws JAXBException {
+    public void writeVysledek(ValidationResult sipInfo) throws JAXBException {
         
         TSip sip = convert(sipInfo);
         
@@ -178,33 +177,29 @@ public class XmlProtokolWriterOld implements ProtokolWriter
 
     }
     
-    private static void writeSipInfo(TSip sipNode, SipInfo sipInfo) {
-        String metsObjId = sipInfo.getMetsObjId();
+    private static void writeSipInfo(TSip sipNode, ValidationResult sipInfo) {
+        String metsObjId = sipInfo.getValidatedObjectId();
         if (StringUtils.isNotEmpty(metsObjId)) {
             sipNode.setOBJID(metsObjId);
         }
 
-        String g = sipInfo.getNameZip();
-        if (g == null) {
-            g = sipInfo.getName();
-        }
-        sipNode.setNazevSouboru(g);
+        sipNode.setNazevSouboru(sipInfo.getValidatedObjectName());
 
     }
 
-    private TSip convert(SipInfo sipInfo) {
+    private TSip convert(ValidationResult sipInfo) {
         TSip sip = objectFactory.createTSip();
         writeSipInfo(sip, sipInfo);
         
-        List<ValidationResult> kontroly = sipInfo.getValidationResults();
-        for (ValidationResult vysl : kontroly) {
+        List<ValidationLayerResult> kontroly = sipInfo.getValidationLayerResults();
+        for (ValidationLayerResult vysl : kontroly) {
             TKontrola kontrolaXml = convert(vysl);
             sip.getKontrola().add(kontrolaXml);
         }        
         return sip;
     }
     
-    private static TKontrola convert(ValidationResult vysl) {
+    private static TKontrola convert(ValidationLayerResult vysl) {
         TKontrola kontrolaXml = objectFactory.createTKontrola();
         kontrolaXml.setNazev(vysl.getValidationName());
         kontrolaXml.setStav(convert(vysl.getValidationStatus()));

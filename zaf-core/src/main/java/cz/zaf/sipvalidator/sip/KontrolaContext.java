@@ -5,8 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import cz.zaf.common.result.ValidationLayerResult;
 import cz.zaf.common.result.ValidationStatus;
-import cz.zaf.common.result.ValidationResult;
 
 /**
  * Kontext provadene kontroly
@@ -29,7 +29,7 @@ public class KontrolaContext {
         this.excludeChecks.addAll(excludeCheckList);
 	}
 
-	public void pridejKontrolu(ValidationResult k) {
+	public void pridejKontrolu(ValidationLayerResult k) {
 
 		sip.pridejKontrolu(k);		
 		
@@ -45,12 +45,12 @@ public class KontrolaContext {
      * @return true při selhání, false pokud kontrola neproběhla nebo je ok
      */
 	public boolean isFailed() {
-		ArrayList<ValidationResult> kontroly = sip.getValidationResults();
+        ArrayList<ValidationLayerResult> kontroly = sip.getValidationLayerResults();
 		if(kontroly==null||kontroly.size()==0) {
 			return false;
 		}
 		// dle stavu posledni kontroly se rozhodneme
-		ValidationResult posledniKontrola = kontroly.get(kontroly.size()-1);
+		ValidationLayerResult posledniKontrola = kontroly.get(kontroly.size()-1);
 		ValidationStatus stav = posledniKontrola.getValidationStatus();
 		if(stav!=ValidationStatus.OK) {
 			// neni provedena -> selhani jiz nekde drive

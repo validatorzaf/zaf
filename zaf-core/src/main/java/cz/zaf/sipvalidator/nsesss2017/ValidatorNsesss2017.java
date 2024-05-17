@@ -2,10 +2,10 @@ package cz.zaf.sipvalidator.nsesss2017;
 
 import java.util.List;
 
+import cz.zaf.common.result.ValidationResult;
+import cz.zaf.common.validation.Validator;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
-import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipLoader;
-import cz.zaf.sipvalidator.sip.Validator;
 
 public class ValidatorNsesss2017 implements Validator {
 	
@@ -25,7 +25,7 @@ public class ValidatorNsesss2017 implements Validator {
 	}
 
 	@Override
-	public SipInfo validateBalicek(String balicekPath) throws Exception 
+    public ValidationResult validateBalicek(String balicekPath) throws Exception 
 	{	
 		// nahrani sipu
         try(SipLoader sipLoader = new SipLoader(balicekPath,

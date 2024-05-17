@@ -6,10 +6,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +22,7 @@ import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.model.FileHeader;
 
 public class SipLoader
-	implements AutoCloseable
+        implements AutoCloseable
 {
     private static Logger log = LoggerFactory.getLogger(SipLoader.class);
 
@@ -261,7 +262,7 @@ public class SipLoader
 
 	public SipInfo getSip() {
 		// can be called only on loaded state
-		Validate.notNull(sip);
+        Objects.requireNonNull(sip);
 		return sip;
 	}
 

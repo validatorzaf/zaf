@@ -1,6 +1,5 @@
 package cz.zaf.common.result;
 
-import cz.zaf.sipvalidator.sip.SipInfo;
 import jakarta.xml.bind.JAXBException;
 
 /**
@@ -13,10 +12,10 @@ public interface ProtokolWriter extends AutoCloseable {
     /**
      * Append result of SIP validation
      * 
-     * @param sipInfo
-     *            SIP info
+     * @param validationResult
+     *            Výsledek validace
      * @throws JAXBException
      *             Výjimka v případě chyby serializace XML
      */
-    void writeVysledek(SipInfo sipInfo) throws JAXBException;
+    void writeVysledek(ValidationResult validationResult) throws JAXBException;
 }

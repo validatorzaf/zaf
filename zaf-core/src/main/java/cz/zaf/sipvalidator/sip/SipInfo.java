@@ -9,7 +9,9 @@ import java.util.ArrayList;
 
 import org.apache.commons.lang3.Validate;
 
+import cz.zaf.common.result.ValidationLayerResult;
 import cz.zaf.common.result.ValidationResult;
+import cz.zaf.common.validation.ValidationInput;
 import cz.zaf.common.validation.ValidationType;
 import cz.zaf.sipvalidator.nsesss2017.TypUrovenKontroly;
 
@@ -19,7 +21,7 @@ import cz.zaf.sipvalidator.nsesss2017.TypUrovenKontroly;
  * Objekt obsahuje odkaz na data SIPu 
  * a výsledek provedených kontrol.
  */
-public class SipInfo{
+public class SipInfo implements ValidationInput, ValidationResult {
 	
 	public static enum LoadType {
 		LT_UNKNOWN("nepovolený formát"),
@@ -93,7 +95,7 @@ public class SipInfo{
      */
     final private LoadType loadType;
     
-    final protected ArrayList<ValidationResult> validationResults = new ArrayList<>();
+    final protected ArrayList<ValidationLayerResult> validationResults = new ArrayList<>();
 
     public enum LoadStatus {
         OK,
@@ -132,10 +134,6 @@ public class SipInfo{
         this.sipPath = sipPath;
         this.loadStatus = loadStatus;
     }
-
-	public void reset_data_Kontroly(){
-        validationResults.clear();
-    }
     
     public LoadStatus getLoadStatus() {
         return loadStatus;
@@ -170,8 +168,9 @@ public class SipInfo{
     public SipType getType(){
         return sipType;
     }
-    
-    public String getMetsObjId(){
+
+    @Override
+    public String getValidatedObjectId() {
         return metsObjId;
     }
     
@@ -183,7 +182,14 @@ public class SipInfo{
         return nameZipFile;
     }
     
-    public ArrayList<ValidationResult> getValidationResults() {
+    public String getValidatedObjectName() {
+        if (nameZipFile != null) {
+            return nameZipFile;
+        }
+        return name;
+    }
+
+    public ArrayList<ValidationLayerResult> getValidationLayerResults() {
         return validationResults;
     }
 
@@ -194,8 +200,8 @@ public class SipInfo{
      *            typ požadované úrovně kontroly
      * @return Výsledek kontroly, případně null pokud kontrola nebyla provedena
      */
-    public ValidationResult getUrovenKontroly(ValidationType validationType) {
-		for(ValidationResult kontrola: validationResults) {
+    public ValidationLayerResult getUrovenKontroly(ValidationType validationType) {
+		for(ValidationLayerResult kontrola: validationResults) {
             if (kontrola.getValidationType().equals(validationType)) {
 				return kontrola;
 			}
@@ -204,9 +210,9 @@ public class SipInfo{
 		
 	}
 
-	public void pridejKontrolu(ValidationResult k) {
+	public void pridejKontrolu(ValidationLayerResult k) {
 		// kontrola, zda jiz nebyla pridana
-		ValidationResult urovenKontroly = getUrovenKontroly(k.getValidationType());
+		ValidationLayerResult urovenKontroly = getUrovenKontroly(k.getValidationType());
 		Validate.isTrue(urovenKontroly==null);
 		validationResults.add(k);
 	}
@@ -218,7 +224,7 @@ public class SipInfo{
 		return false;
 	}
 
-	public ValidationResult getKontrola(int indexKontroly) {
+	public ValidationLayerResult getKontrola(int indexKontroly) {
 		if(validationResults==null) {
 			return null;
 		}
@@ -226,6 +232,5 @@ public class SipInfo{
 			return null;
 		}
 		return validationResults.get(indexKontroly);
-	}
-    
+    }
 }

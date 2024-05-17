@@ -38,7 +38,6 @@ import cz.zaf.schema.validace_v1.TBalicek;
 import cz.zaf.schema.validace_v1.TKontrola;
 import cz.zaf.schema.validace_v1.TPravidlo;
 import cz.zaf.schema.validace_v1.TVysledekKontroly;
-import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.validator.profiles.ValidationProfiles;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBElement;
@@ -172,7 +171,7 @@ public class XmlProtokolWriter implements ProtokolWriter
     
 
     @Override
-    public void writeVysledek(SipInfo sipInfo) throws JAXBException {
+    public void writeVysledek(ValidationResult sipInfo) throws JAXBException {
         
         TBalicek balicek = convert(sipInfo);
         
@@ -181,33 +180,30 @@ public class XmlProtokolWriter implements ProtokolWriter
 
     }
     
-    private static void writeBalicekInfo(TBalicek balicekNode, SipInfo sipInfo) {
-        String metsObjId = sipInfo.getMetsObjId();
+    private static void writeBalicekInfo(TBalicek balicekNode,
+                                         ValidationResult sipInfo) {
+        String metsObjId = sipInfo.getValidatedObjectId();
         if (StringUtils.isNotEmpty(metsObjId)) {
             balicekNode.setIdentifikator(metsObjId);
         }
 
-        String g = sipInfo.getNameZip();
-        if (g == null) {
-            g = sipInfo.getName();
-        }
-        balicekNode.setNazevSouboru(g);
+        balicekNode.setNazevSouboru(sipInfo.getValidatedObjectName());
 
     }
 
-    private TBalicek convert(SipInfo sipInfo) {
+    private TBalicek convert(ValidationResult sipInfo) {
         TBalicek balicek = objectFactory.createTBalicek();
         writeBalicekInfo(balicek, sipInfo);
         
-        List<ValidationResult> kontroly = sipInfo.getValidationResults();
-        for (ValidationResult vysl : kontroly) {
+        List<ValidationLayerResult> kontroly = sipInfo.getValidationLayerResults();
+        for (ValidationLayerResult vysl : kontroly) {
             TKontrola kontrolaXml = convert(vysl);
             balicek.getKontrola().add(kontrolaXml);
         }        
         return balicek;
     }
     
-    private static TKontrola convert(ValidationResult vysl) {
+    private static TKontrola convert(ValidationLayerResult vysl) {
         TKontrola kontrolaXml = objectFactory.createTKontrola();
         kontrolaXml.setNazev(vysl.getValidationName());
         kontrolaXml.setStav(convert(vysl.getValidationStatus()));

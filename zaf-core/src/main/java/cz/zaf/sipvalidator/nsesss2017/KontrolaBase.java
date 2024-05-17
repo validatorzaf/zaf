@@ -10,7 +10,7 @@ import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.common.exceptions.codes.ErrorCode;
 import cz.zaf.common.result.RuleValidationError;
 import cz.zaf.common.result.ValidationStatus;
-import cz.zaf.common.result.ValidationResult;
+import cz.zaf.common.result.ValidationLayerResult;
 import cz.zaf.common.validation.Rule;
 import cz.zaf.common.validation.RuleEvaluationContext;
 import cz.zaf.sipvalidator.sip.UrovenKontroly;
@@ -21,7 +21,7 @@ abstract public class KontrolaBase<KontrolaContext extends RuleEvaluationContext
     static Logger log = LoggerFactory.getLogger(KontrolaBase.class);
 
     protected KontrolaNsess2017Context ctx;
-    protected ValidationResult vysledekKontroly;
+    protected ValidationLayerResult vysledekKontroly;
 
     @Override
     public void provedKontrolu(KontrolaNsess2017Context ctx) {
@@ -30,7 +30,7 @@ abstract public class KontrolaBase<KontrolaContext extends RuleEvaluationContext
         // nejprve precteme, zda jiz byl selhany
         boolean failed = ctx.isFailed();
 
-        vysledekKontroly = new ValidationResult(getUrovenKontroly(),
+        vysledekKontroly = new ValidationLayerResult(getUrovenKontroly(),
                 getNazev());
         ctx.pridejKontrolu(vysledekKontroly);
         // po selhane kontrole se jiz nepokracuje

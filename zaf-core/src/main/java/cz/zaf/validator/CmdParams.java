@@ -1,4 +1,4 @@
-package cz.zaf.sipvalidator;
+package cz.zaf.validator;
 
 import java.io.PrintStream;
 import java.util.ArrayList;

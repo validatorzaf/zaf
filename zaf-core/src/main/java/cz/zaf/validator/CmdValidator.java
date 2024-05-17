@@ -1,4 +1,4 @@
-package cz.zaf.sipvalidator;
+package cz.zaf.validator;
 
 import java.lang.ref.WeakReference;
 import java.nio.file.DirectoryStream;
@@ -10,15 +10,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import cz.zaf.common.result.ProtokolWriter;
+import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.result.XmlProtokolWriter;
 import cz.zaf.common.result.XmlProtokolWriterOld;
+import cz.zaf.common.validation.Validator;
 import cz.zaf.sipvalidator.formats.MimetypeDetectorFactory;
 import cz.zaf.sipvalidator.formats.VystupniFormat;
 import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValidatorNsesss2017;
 import cz.zaf.sipvalidator.pdfa.VeraValidatorProxy;
-import cz.zaf.sipvalidator.sip.SipInfo;
-import cz.zaf.sipvalidator.sip.Validator;
 import cz.zaf.validator.profiles.ValidationProfiles;
 
 /**
@@ -115,7 +115,7 @@ public class CmdValidator {
 
     public void validateSip(ProtokolWriter protokolWriter) throws Exception {
 
-        SipInfo sipInfo = validator.validateBalicek(cmdParams.getInputPath());
+        ValidationResult sipInfo = validator.validateBalicek(cmdParams.getInputPath());
         
         protokolWriter.writeVysledek(sipInfo);
     }
@@ -130,9 +130,10 @@ public class CmdValidator {
         	skutecnyTyp = identifikujTypBalicku();
         }
     	switch (skutecnyTyp) {
-    		case NSESSS2017 :
-    		default :
-    			return new ValidatorNsesss2017(cmdParams.getHrozba(),
+        case AP2023:
+        case NSESSS2017:
+        default:
+            return new ValidatorNsesss2017(cmdParams.getHrozba(),
                     cmdParams.getWorkDir(), cmdParams.isKeepFiles(),
                     cmdParams.getProfilValidace(), cmdParams.getExcludeChecks());
     	}
@@ -146,7 +147,7 @@ public class CmdValidator {
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(inputDir)) {
             for (final Path path : stream) {
                 final String dirPath = path.toAbsolutePath().toString();
-                final SipInfo sipInfo = validator.validateBalicek(dirPath);
+                final ValidationResult sipInfo = validator.validateBalicek(dirPath);
                 
                 protokolWriter.writeVysledek(sipInfo);
             }
