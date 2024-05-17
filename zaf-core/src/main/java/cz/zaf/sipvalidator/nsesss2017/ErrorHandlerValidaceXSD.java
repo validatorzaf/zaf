@@ -11,17 +11,17 @@ import org.xml.sax.SAXParseException;
 
 import cz.zaf.common.exceptions.codes.XmlCode;
 import cz.zaf.common.result.RuleValidationError;
-import cz.zaf.sipvalidator.sip.VysledekKontroly;
+import cz.zaf.common.result.ValidationResult;
 
 /**
  * Error handler pro validaci schematu
  * 
  */
 public class ErrorHandlerValidaceXSD implements ErrorHandler {
-    VysledekKontroly k;
+    ValidationResult k;
     public boolean nalezenaChyba = false;
 
-    public ErrorHandlerValidaceXSD(VysledekKontroly k) {
+    public ErrorHandlerValidaceXSD(ValidationResult k) {
         this.k = k;
     }
 

@@ -11,7 +11,6 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla01.DatCheckRule;
 import cz.zaf.sipvalidator.nsesss2017.pravidla01.dat00_09.Pravidlo1;
 import cz.zaf.sipvalidator.nsesss2017.pravidla01.dat00_09.Pravidlo2;
 import cz.zaf.sipvalidator.nsesss2017.pravidla01.dat00_09.Pravidlo3;
-import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 
 
 /**

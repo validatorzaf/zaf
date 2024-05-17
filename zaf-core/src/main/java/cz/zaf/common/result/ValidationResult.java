@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.zaf.sipvalidator.sip;
+package cz.zaf.common.result;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +12,6 @@ import java.util.Objects;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.Validate;
 
-import cz.zaf.common.result.RuleValidationError;
-import cz.zaf.common.result.ValidationStatus;
 import cz.zaf.common.validation.ValidationType;
 
 /**
@@ -25,7 +23,7 @@ import cz.zaf.common.validation.ValidationType;
  * Trida umoznuje ulozit vysledek jedne kontroly.
  * 
  */
-public class VysledekKontroly {
+public class ValidationResult {
 
     /**
      * Typ validace / kontroly
@@ -37,14 +35,14 @@ public class VysledekKontroly {
      */
     String validationName;
 
-    List<RuleValidationError> chyby = new ArrayList<>();
+    List<RuleValidationError> ruleErrors = new ArrayList<>();
     
     /**
      * Stav kontroly
      */
     ValidationStatus validationStatus = ValidationStatus.NOT_EXCECUTED;
 
-    public VysledekKontroly(final ValidationType validationType,
+    public ValidationResult(final ValidationType validationType,
                             final String validationName) {
         Objects.requireNonNull(validationType);
         Validate.notEmpty(validationName);
@@ -69,7 +67,7 @@ public class VysledekKontroly {
     }
 
 	public void add(RuleValidationError p) {
-        chyby.add(p);
+        ruleErrors.add(p);
         // nastaveni stavu
         if (validationStatus != ValidationStatus.ERROR) {
 			// doslo k selhani -> error
@@ -78,11 +76,11 @@ public class VysledekKontroly {
 	}
 
 	public int size() {
-        return chyby.size();
+        return ruleErrors.size();
 	}
 
 	public boolean isEmpty() {
-        return chyby.isEmpty();
+        return ruleErrors.isEmpty();
 	}
 
     public ValidationType getValidationType() {
@@ -91,7 +89,7 @@ public class VysledekKontroly {
 
 	public boolean isFailed() {		
 		// pokud je stav false -> je selhana
-        return CollectionUtils.isNotEmpty(chyby);
+        return CollectionUtils.isNotEmpty(ruleErrors);
 	}
 
 	public boolean isProvedena() {
@@ -103,11 +101,11 @@ public class VysledekKontroly {
 	}
 
     public List<RuleValidationError> getPravidla() {
-        return chyby;
+        return ruleErrors;
     }
 
     public RuleValidationError getPravidlo(String kodPravidla) {
-        for (RuleValidationError pravidlo : chyby) {
+        for (RuleValidationError pravidlo : ruleErrors) {
             if (pravidlo.getId().equals(kodPravidla)) {
                 return pravidlo;
             }

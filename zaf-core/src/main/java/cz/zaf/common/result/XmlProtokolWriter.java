@@ -39,7 +39,6 @@ import cz.zaf.schema.validace_v1.TKontrola;
 import cz.zaf.schema.validace_v1.TPravidlo;
 import cz.zaf.schema.validace_v1.TVysledekKontroly;
 import cz.zaf.sipvalidator.sip.SipInfo;
-import cz.zaf.sipvalidator.sip.VysledekKontroly;
 import cz.zaf.validator.profiles.ValidationProfiles;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBElement;
@@ -200,15 +199,15 @@ public class XmlProtokolWriter implements ProtokolWriter
         TBalicek balicek = objectFactory.createTBalicek();
         writeBalicekInfo(balicek, sipInfo);
         
-        List<VysledekKontroly> kontroly = sipInfo.getValidationResults();
-        for (VysledekKontroly vysl : kontroly) {
+        List<ValidationResult> kontroly = sipInfo.getValidationResults();
+        for (ValidationResult vysl : kontroly) {
             TKontrola kontrolaXml = convert(vysl);
             balicek.getKontrola().add(kontrolaXml);
         }        
         return balicek;
     }
     
-    private static TKontrola convert(VysledekKontroly vysl) {
+    private static TKontrola convert(ValidationResult vysl) {
         TKontrola kontrolaXml = objectFactory.createTKontrola();
         kontrolaXml.setNazev(vysl.getValidationName());
         kontrolaXml.setStav(convert(vysl.getValidationStatus()));

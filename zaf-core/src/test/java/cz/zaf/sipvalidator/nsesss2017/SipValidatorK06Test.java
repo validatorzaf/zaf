@@ -101,7 +101,6 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo98;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
-import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 
 public class SipValidatorK06Test extends SipValidatorTestBase {
 

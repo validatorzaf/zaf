@@ -14,7 +14,6 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla04.NsCheckRule;
 import cz.zaf.sipvalidator.nsesss2017.pravidla04.ns00_09.Pravidlo1;
 import cz.zaf.sipvalidator.nsesss2017.pravidla04.ns00_09.Pravidlo2;
 import cz.zaf.sipvalidator.sip.SipInfo;
-import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 
 /**
  * Kontrola jmennych prostoru

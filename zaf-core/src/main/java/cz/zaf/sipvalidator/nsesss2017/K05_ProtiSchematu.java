@@ -24,7 +24,6 @@ import org.xml.sax.SAXException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.common.result.RuleValidationError;
 import cz.zaf.sipvalidator.sip.SipInfo;
-import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 
 /**
  * Kontrola souladu se schématem XSD

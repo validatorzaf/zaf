@@ -19,7 +19,6 @@ import cz.zaf.sipvalidator.nsesss2017.EntityId.DruhEntity;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06KontrolaContext;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.ObsahovePravidlo;
 import cz.zaf.sipvalidator.sip.SipInfo;
-import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 
 /**
  * Obsahova kontrola

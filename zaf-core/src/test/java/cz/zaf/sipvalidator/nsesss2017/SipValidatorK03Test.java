@@ -6,7 +6,6 @@ import cz.zaf.common.result.ValidationStatus;
 import cz.zaf.sipvalidator.nsesss2017.pravidla03.wf00_09.Pravidlo1;
 import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
-import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 
 public class SipValidatorK03Test extends SipValidatorTestBase {
 

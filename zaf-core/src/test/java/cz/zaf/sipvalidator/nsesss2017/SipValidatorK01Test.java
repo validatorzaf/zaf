@@ -8,7 +8,6 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla01.dat00_09.Pravidlo2;
 import cz.zaf.sipvalidator.nsesss2017.pravidla01.dat00_09.Pravidlo3;
 import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
-import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 
 class SipValidatorK01Test
         extends SipValidatorTestBase {

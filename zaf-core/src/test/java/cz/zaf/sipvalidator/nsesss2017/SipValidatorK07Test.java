@@ -10,7 +10,6 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla07.kom00_09.Pravidlo7_04;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
-import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 
 public class SipValidatorK07Test extends SipValidatorTestBase {
     static public final String PATH_DATA_K07 = "testdata/07 KONTROLA KOMPONENT";

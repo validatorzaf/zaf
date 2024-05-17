@@ -1,4 +1,4 @@
-package cz.zaf.sipvalidator.sip;
+package cz.zaf.sipvalidator.nsesss2017;
 
 import cz.zaf.common.validation.ValidationType;
 

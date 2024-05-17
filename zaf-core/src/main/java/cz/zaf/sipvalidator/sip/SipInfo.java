@@ -9,7 +9,9 @@ import java.util.ArrayList;
 
 import org.apache.commons.lang3.Validate;
 
+import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.validation.ValidationType;
+import cz.zaf.sipvalidator.nsesss2017.TypUrovenKontroly;
 
 /**
  * Informace o Sipu
@@ -91,7 +93,7 @@ public class SipInfo{
      */
     final private LoadType loadType;
     
-    final protected ArrayList<VysledekKontroly> validationResults = new ArrayList<>();
+    final protected ArrayList<ValidationResult> validationResults = new ArrayList<>();
 
     public enum LoadStatus {
         OK,
@@ -181,7 +183,7 @@ public class SipInfo{
         return nameZipFile;
     }
     
-    public ArrayList<VysledekKontroly> getValidationResults() {
+    public ArrayList<ValidationResult> getValidationResults() {
         return validationResults;
     }
 
@@ -192,8 +194,8 @@ public class SipInfo{
      *            typ požadované úrovně kontroly
      * @return Výsledek kontroly, případně null pokud kontrola nebyla provedena
      */
-    public VysledekKontroly getUrovenKontroly(ValidationType validationType) {
-		for(VysledekKontroly kontrola: validationResults) {
+    public ValidationResult getUrovenKontroly(ValidationType validationType) {
+		for(ValidationResult kontrola: validationResults) {
             if (kontrola.getValidationType().equals(validationType)) {
 				return kontrola;
 			}
@@ -202,9 +204,9 @@ public class SipInfo{
 		
 	}
 
-	public void pridejKontrolu(VysledekKontroly k) {
+	public void pridejKontrolu(ValidationResult k) {
 		// kontrola, zda jiz nebyla pridana
-		VysledekKontroly urovenKontroly = getUrovenKontroly(k.getValidationType());
+		ValidationResult urovenKontroly = getUrovenKontroly(k.getValidationType());
 		Validate.isTrue(urovenKontroly==null);
 		validationResults.add(k);
 	}
@@ -216,7 +218,7 @@ public class SipInfo{
 		return false;
 	}
 
-	public VysledekKontroly getKontrola(int indexKontroly) {
+	public ValidationResult getKontrola(int indexKontroly) {
 		if(validationResults==null) {
 			return null;
 		}

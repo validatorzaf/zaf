@@ -8,7 +8,6 @@ package cz.zaf.sipvalidator.nsesss2017;
 import cz.zaf.sipvalidator.nsesss2017.pravidla02.KodCheckContext;
 import cz.zaf.sipvalidator.nsesss2017.pravidla02.KodCheckRule;
 import cz.zaf.sipvalidator.nsesss2017.pravidla02.kod00_09.Pravidlo1;
-import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 
 /**
  * Kontroluje kódování SIP souboru.

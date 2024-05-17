@@ -8,7 +8,6 @@ package cz.zaf.sipvalidator.nsesss2017;
 import cz.zaf.sipvalidator.nsesss2017.pravidla03.wf00_09.Pravidlo1;
 import cz.zaf.sipvalidator.nsesss2017.pravidla03.WfCheckContext;
 import cz.zaf.sipvalidator.nsesss2017.pravidla03.WfCheckRule;
-import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 
 /**
  * Kontrola správnosti XML

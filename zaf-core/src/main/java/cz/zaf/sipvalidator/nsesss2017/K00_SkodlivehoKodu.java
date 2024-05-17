@@ -11,7 +11,6 @@ import org.apache.commons.lang3.Validate;
 import cz.zaf.sipvalidator.nsesss2017.pravidla00.VirCheckContext;
 import cz.zaf.sipvalidator.nsesss2017.pravidla00.VirCheckRule;
 import cz.zaf.sipvalidator.nsesss2017.pravidla00.vir00_09.Pravidlo1;
-import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 
 
 /**

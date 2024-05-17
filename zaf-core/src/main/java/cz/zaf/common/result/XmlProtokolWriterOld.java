@@ -45,7 +45,6 @@ import cz.zaf.sipvalidator.nsesss2017.EntityId;
 import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo;
-import cz.zaf.sipvalidator.sip.VysledekKontroly;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBElement;
 import jakarta.xml.bind.JAXBException;
@@ -197,15 +196,15 @@ public class XmlProtokolWriterOld implements ProtokolWriter
         TSip sip = objectFactory.createTSip();
         writeSipInfo(sip, sipInfo);
         
-        List<VysledekKontroly> kontroly = sipInfo.getValidationResults();
-        for (VysledekKontroly vysl : kontroly) {
+        List<ValidationResult> kontroly = sipInfo.getValidationResults();
+        for (ValidationResult vysl : kontroly) {
             TKontrola kontrolaXml = convert(vysl);
             sip.getKontrola().add(kontrolaXml);
         }        
         return sip;
     }
     
-    private static TKontrola convert(VysledekKontroly vysl) {
+    private static TKontrola convert(ValidationResult vysl) {
         TKontrola kontrolaXml = objectFactory.createTKontrola();
         kontrolaXml.setNazev(vysl.getValidationName());
         kontrolaXml.setStav(convert(vysl.getValidationStatus()));

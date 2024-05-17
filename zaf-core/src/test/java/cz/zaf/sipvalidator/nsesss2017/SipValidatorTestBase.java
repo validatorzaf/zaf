@@ -24,12 +24,11 @@ import org.slf4j.bridge.SLF4JBridgeHandler;
 
 import cz.zaf.common.result.RuleValidationError;
 import cz.zaf.common.result.ValidationStatus;
+import cz.zaf.common.result.ValidationResult;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 import cz.zaf.sipvalidator.sip.SipLoader;
-import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
-import cz.zaf.sipvalidator.sip.VysledekKontroly;
 
 /**
  * Zakladni impl. testu
@@ -113,7 +112,7 @@ public abstract class SipValidatorTestBase {
         sipValidator.validate(sipLoader);
         SipInfo sipInfo = sipLoader.getSip();
 
-        VysledekKontroly vysledek = sipInfo.getUrovenKontroly(typUrovneKontroly);
+        ValidationResult vysledek = sipInfo.getUrovenKontroly(typUrovneKontroly);
 
         if (stavKontroly != null) {
             if (!vysledek.getValidationStatus().equals(stavKontroly)) {

@@ -2,7 +2,6 @@ package cz.zaf.sipvalidator.nsesss2017;
 
 import cz.zaf.sipvalidator.nsesss2017.pravidla07.K07KontrolaContext;
 import cz.zaf.sipvalidator.nsesss2017.pravidla07.K07PravidloBase;
-import cz.zaf.sipvalidator.sip.TypUrovenKontroly;
 
 /**
  * Kontrola komponent
