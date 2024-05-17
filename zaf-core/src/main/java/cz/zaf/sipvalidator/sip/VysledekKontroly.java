@@ -17,7 +17,7 @@ import cz.zaf.common.result.ValidationStatus;
 import cz.zaf.common.validation.ValidationType;
 
 /**
- * Výsledek kontroly Sipu
+ * Výsledek kontroly
  * 
  * SIP prochazi sadou kontrol. Kazda kontrola
  * je tvorena sadou kontrolnich pravidel.
@@ -26,12 +26,18 @@ import cz.zaf.common.validation.ValidationType;
  * 
  */
 public class VysledekKontroly {
-	
+
+    /**
+     * Typ validace / kontroly
+     */
     final ValidationType validationType;
 	
+    /**
+     * Nazev kontroly
+     */
+    String validationName;
+
     List<RuleValidationError> chyby = new ArrayList<>();
-	
-    String kontrolaNazev;
     
     /**
      * Stav kontroly
@@ -39,16 +45,16 @@ public class VysledekKontroly {
     ValidationStatus validationStatus = ValidationStatus.NOT_EXCECUTED;
 
     public VysledekKontroly(final ValidationType validationType,
-    		final String kontrolaNazev){
+                            final String validationName) {
         Objects.requireNonNull(validationType);
-    	Validate.notEmpty(kontrolaNazev);
+        Validate.notEmpty(validationName);
     	
     	this.validationType = validationType;
-        this.kontrolaNazev = kontrolaNazev;
+        this.validationName = validationName;
     }
 
-    public String getKontrola_nazev(){
-        return kontrolaNazev;        
+    public String getValidationName(){
+        return validationName;        
     }
     
     public ValidationStatus getValidationStatus(){
@@ -73,10 +79,6 @@ public class VysledekKontroly {
 
 	public int size() {
         return chyby.size();
-	}
-
-	public RuleValidationError get(int i) {
-        return chyby.get(i);
 	}
 
 	public boolean isEmpty() {

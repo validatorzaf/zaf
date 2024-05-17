@@ -210,7 +210,7 @@ public class XmlProtokolWriter implements ProtokolWriter
     
     private static TKontrola convert(VysledekKontroly vysl) {
         TKontrola kontrolaXml = objectFactory.createTKontrola();
-        kontrolaXml.setNazev(vysl.getKontrola_nazev());
+        kontrolaXml.setNazev(vysl.getValidationName());
         kontrolaXml.setStav(convert(vysl.getValidationStatus()));
 
         // prevod pravidel
