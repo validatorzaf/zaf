@@ -27,7 +27,7 @@ import cz.zaf.common.validation.ValidationType;
  */
 public class VysledekKontroly {
 	
-	final TypUrovenKontroly urovenKontroly;
+    final ValidationType validationType;
 	
     List<RuleValidationError> chyby = new ArrayList<>();
 	
@@ -36,14 +36,14 @@ public class VysledekKontroly {
     /**
      * Stav kontroly
      */
-    ValidationStatus stavKontroly = ValidationStatus.NOT_EXCECUTED;
+    ValidationStatus validationStatus = ValidationStatus.NOT_EXCECUTED;
 
-    public VysledekKontroly(final TypUrovenKontroly urovenKontroly, 
+    public VysledekKontroly(final ValidationType validationType,
     		final String kontrolaNazev){
-        Objects.requireNonNull(urovenKontroly);
+        Objects.requireNonNull(validationType);
     	Validate.notEmpty(kontrolaNazev);
     	
-    	this.urovenKontroly = urovenKontroly;
+    	this.validationType = validationType;
         this.kontrolaNazev = kontrolaNazev;
     }
 
@@ -51,23 +51,23 @@ public class VysledekKontroly {
         return kontrolaNazev;        
     }
     
-    public ValidationStatus getStavKontroly(){
-        return stavKontroly;
+    public ValidationStatus getValidationStatus(){
+        return validationStatus;
     }
     
     public void setStav(final ValidationStatus stavKontroly){
     	// Lze nastavovat jen koncove (vysledek) a nikoliv pocatecni stavy
     	Validate.isTrue(stavKontroly!=ValidationStatus.NOT_EXCECUTED);
     	
-        this.stavKontroly = stavKontroly;
+        this.validationStatus = stavKontroly;
     }
 
 	public void add(RuleValidationError p) {
         chyby.add(p);
         // nastaveni stavu
-        if (stavKontroly != ValidationStatus.ERROR) {
+        if (validationStatus != ValidationStatus.ERROR) {
 			// doslo k selhani -> error
-			stavKontroly = ValidationStatus.ERROR;
+			validationStatus = ValidationStatus.ERROR;
 		}
 	}
 
@@ -83,8 +83,8 @@ public class VysledekKontroly {
         return chyby.isEmpty();
 	}
 
-    public ValidationType getTypUrovneKontroly() {
-		return urovenKontroly;
+    public ValidationType getValidationType() {
+		return validationType;
 	}
 
 	public boolean isFailed() {		
@@ -93,11 +93,11 @@ public class VysledekKontroly {
 	}
 
 	public boolean isProvedena() {
-		return stavKontroly!=ValidationStatus.NOT_EXCECUTED;
+		return validationStatus!=ValidationStatus.NOT_EXCECUTED;
 	}
 
 	public boolean isOk() {
-		return stavKontroly==ValidationStatus.OK;
+		return validationStatus==ValidationStatus.OK;
 	}
 
     public List<RuleValidationError> getPravidla() {

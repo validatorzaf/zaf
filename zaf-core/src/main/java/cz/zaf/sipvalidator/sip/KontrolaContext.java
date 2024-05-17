@@ -50,7 +50,7 @@ public class KontrolaContext {
 		}
 		// dle stavu posledni kontroly se rozhodneme
 		VysledekKontroly posledniKontrola = kontroly.get(kontroly.size()-1);
-		ValidationStatus stav = posledniKontrola.getStavKontroly();
+		ValidationStatus stav = posledniKontrola.getValidationStatus();
 		if(stav!=ValidationStatus.OK) {
 			// neni provedena -> selhani jiz nekde drive
 			return true;

@@ -194,7 +194,7 @@ public class SipInfo{
      */
     public VysledekKontroly getUrovenKontroly(ValidationType validationType) {
 		for(VysledekKontroly kontrola: validationResults) {
-            if (kontrola.getTypUrovneKontroly().equals(validationType)) {
+            if (kontrola.getValidationType().equals(validationType)) {
 				return kontrola;
 			}
 		}
@@ -204,7 +204,7 @@ public class SipInfo{
 
 	public void pridejKontrolu(VysledekKontroly k) {
 		// kontrola, zda jiz nebyla pridana
-		VysledekKontroly urovenKontroly = getUrovenKontroly(k.getTypUrovneKontroly());
+		VysledekKontroly urovenKontroly = getUrovenKontroly(k.getValidationType());
 		Validate.isTrue(urovenKontroly==null);
 		validationResults.add(k);
 	}

@@ -116,9 +116,9 @@ public abstract class SipValidatorTestBase {
         VysledekKontroly vysledek = sipInfo.getUrovenKontroly(typUrovneKontroly);
 
         if (stavKontroly != null) {
-            if (!vysledek.getStavKontroly().equals(stavKontroly)) {
+            if (!vysledek.getValidationStatus().equals(stavKontroly)) {
                 // detail selhanych kontrol
-                if (vysledek.getStavKontroly() == ValidationStatus.ERROR) {
+                if (vysledek.getValidationStatus() == ValidationStatus.ERROR) {
                     // doslo k neocekavanemu selhani -> vypis selhanych
                     boolean errorLogged = false;
                     for (String pravidloOk : pravidlaOk) {
@@ -141,7 +141,7 @@ public abstract class SipValidatorTestBase {
                 }
 
                 fail(() -> "SIP: " + path + ", Očekávaný stav: "
-                    + stavKontroly + ", výsledný stav: " + vysledek.getStavKontroly());
+                    + stavKontroly + ", výsledný stav: " + vysledek.getValidationStatus());
             }
         }
 

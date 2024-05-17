@@ -49,7 +49,7 @@ abstract public class KontrolaBase<KontrolaContext extends RuleEvaluationContext
         long finishTime = System.currentTimeMillis();
 
         log.debug("Dokoncena kontrola: {}, doba trvani: {}ms, stav: {}", this.getNazev(),
-                  finishTime - startTime, vysledekKontroly.getStavKontroly());
+                  finishTime - startTime, vysledekKontroly.getValidationStatus());
     }
 
     public void pridejChybu(Rule<KontrolaContext> pravidlo,
