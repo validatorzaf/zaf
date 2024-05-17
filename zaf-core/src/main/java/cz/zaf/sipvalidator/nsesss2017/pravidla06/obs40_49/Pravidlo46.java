@@ -2,13 +2,12 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs40_49;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
-
-import org.apache.commons.lang.StringUtils;
 
 //OBSAHOVÁ č.46 Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut CHECKSUMTYPE hodnotu SHA-256 nebo SHA-512.",
 public class Pravidlo46 extends K06PravidloBase {

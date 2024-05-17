@@ -3,14 +3,13 @@ package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
-
-import org.apache.commons.lang.StringUtils;
 
 public class Pravidlo88 extends K06PravidloBase {
 

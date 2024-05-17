@@ -1,6 +1,6 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Node;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
