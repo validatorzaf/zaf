@@ -42,6 +42,7 @@ public class K06_Obsahova
     Map<String, ObsahovePravidlo> kontroly = new HashMap<>();
 
     public K06_Obsahova(ObsahovePravidlo[] obsahovaPravidla) {
+        super(TypUrovenKontroly.OBSAHOVA);
         this.seznamPravidel = obsahovaPravidla;
     }
 
@@ -249,16 +250,6 @@ public class K06_Obsahova
         K06KontrolaContext k06KontrolaContext = new K06KontrolaContext(ctx.getMetsParser(), ctx);
         provedKontrolu(k06KontrolaContext, seznamPravidel);
 
-    }
-
-    @Override
-    public String getNazev() {
-        return NAME;
-    }
-
-    @Override
-    TypUrovenKontroly getUrovenKontroly() {
-        return TypUrovenKontroly.OBSAHOVA;
     }
 
     public List<Element> getZakladniEnity() {

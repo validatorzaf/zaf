@@ -13,17 +13,8 @@ public class K07_Komponent extends KontrolaBase<K07KontrolaContext> {
     private K07PravidloBase[] pravidla;
 
     public K07_Komponent(final K07PravidloBase[] pravidla) {
+        super(TypUrovenKontroly.KOMPONENT);
         this.pravidla = pravidla;
-    }
-
-    @Override
-    public String getNazev() {
-        return NAME;
-    }
-
-    @Override
-    TypUrovenKontroly getUrovenKontroly() {
-        return TypUrovenKontroly.KOMPONENT;
     }
 
     @Override
@@ -32,5 +23,4 @@ public class K07_Komponent extends KontrolaBase<K07KontrolaContext> {
 
         provedKontrolu(kontrolaCtx, pravidla);
     }
-
 }

@@ -5,15 +5,10 @@
  */
 package cz.zaf.sipvalidator.nsesss2017;
 
-import org.w3c.dom.Node;
-
-import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.common.result.RuleValidationError;
 import cz.zaf.sipvalidator.nsesss2017.pravidla04.NsCheckContext;
 import cz.zaf.sipvalidator.nsesss2017.pravidla04.NsCheckRule;
 import cz.zaf.sipvalidator.nsesss2017.pravidla04.ns00_09.Pravidlo1;
 import cz.zaf.sipvalidator.nsesss2017.pravidla04.ns00_09.Pravidlo2;
-import cz.zaf.sipvalidator.sip.SipInfo;
 
 /**
  * Kontrola jmennych prostoru
@@ -25,6 +20,7 @@ public class K04_JmennychProstoruXML
     static final public String NAME = "jmenných prostorů";
 
     public K04_JmennychProstoruXML() {
+        super(TypUrovenKontroly.JMENNE_PROSTORY_XML);
     }
 
 
@@ -40,14 +36,4 @@ public class K04_JmennychProstoruXML
 
         this.provedKontrolu(namespCheckContext, rules);
 	}
-
-    @Override
-    public String getNazev() {
-        return NAME;
-    }
-
-    @Override
-    TypUrovenKontroly getUrovenKontroly() {
-        return TypUrovenKontroly.JMENNE_PROSTORY_XML;
-    }
 }

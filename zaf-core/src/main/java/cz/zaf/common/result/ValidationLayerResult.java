@@ -42,13 +42,11 @@ public class ValidationLayerResult {
      */
     ValidationStatus validationStatus = ValidationStatus.NOT_EXCECUTED;
 
-    public ValidationLayerResult(final ValidationType validationType,
-                            final String validationName) {
+    public ValidationLayerResult(final ValidationType validationType) {
         Objects.requireNonNull(validationType);
-        Validate.notEmpty(validationName);
-    	
-    	this.validationType = validationType;
-        this.validationName = validationName;
+
+        this.validationType = validationType;
+        this.validationName = validationType.getDescription();
     }
 
     public String getValidationName(){

@@ -6,10 +6,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cz.zaf.common.validation.BaseValidator;
+import cz.zaf.common.validation.ValidationLayer;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipLoader;
-import cz.zaf.sipvalidator.sip.UrovenKontroly;
 
 /**
  * SIP validator dle NSESSS 2017
@@ -23,8 +24,7 @@ public class SipValidator {
 
     K00_SkodlivehoKodu ksk;
 
-    final List<UrovenKontroly<KontrolaNsess2017Context>> kontroly;
-    private KontrolaNsess2017Context ctx;
+    final List<ValidationLayer<KontrolaNsess2017Context>> kontroly;
 
     /**
      * Seznam kontrol k vynechani
@@ -44,8 +44,8 @@ public class SipValidator {
      *            validační profil
      * @return Seznam připravených úrovní kontroly
      */
-    private List<UrovenKontroly<KontrolaNsess2017Context>> pripravKontroly(ProfilValidace profilValidace) {
-        ArrayList<UrovenKontroly<KontrolaNsess2017Context>> kontroly = new ArrayList<>(7);
+    private List<ValidationLayer<KontrolaNsess2017Context>> pripravKontroly(ProfilValidace profilValidace) {
+        List<ValidationLayer<KontrolaNsess2017Context>> kontroly = new ArrayList<>(7);
 
         ksk = new K00_SkodlivehoKodu();
         kontroly.add(ksk);
@@ -89,24 +89,10 @@ public class SipValidator {
         metsParser.parse(sipLoader);
 
         SipInfo sip = sipLoader.getSip();
-
-        UrovenKontroly<KontrolaNsess2017Context> aktivniKontrola = null;
-        try {
-            // provedeni kontrol            
-            ctx = new KontrolaNsess2017Context(metsParser, sip, excludeChecks);
-            for (UrovenKontroly<KontrolaNsess2017Context> kontrola : kontroly) {
-                aktivniKontrola = kontrola;
-                kontrola.provedKontrolu(ctx);
-            }
-            aktivniKontrola = null;
-        } catch (Exception e) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("Uncatched exception");
-            if (aktivniKontrola != null) {
-                sb.append(", aktivniKontrola: ").append(aktivniKontrola.getNazev());
-            }
-            log.error(sb.toString() + ", detail: " + e.toString(), e);
-            throw new IllegalStateException(sb.toString(), e);
-        }
+        
+        // provedeni kontrol
+        KontrolaNsess2017Context ctx = new KontrolaNsess2017Context(metsParser, sip, excludeChecks);
+        BaseValidator<KontrolaNsess2017Context> validator = new BaseValidator<>(kontroly);
+        validator.validate(ctx);
     }
 }

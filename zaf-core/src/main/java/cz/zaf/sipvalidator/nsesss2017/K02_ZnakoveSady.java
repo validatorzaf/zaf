@@ -17,30 +17,23 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla02.kod00_09.Pravidlo1;
  */
 public class K02_ZnakoveSady
         extends KontrolaBase<KodCheckContext> {
+
     static final public String NAME = "znakové sady";
     
+    public K02_ZnakoveSady() {
+        super(TypUrovenKontroly.ZNAKOVE_SADY);
+    }
 
     @Override
     public void provedKontrolu() {
 
-    	   KodCheckContext kodCheckContext = new KodCheckContext(ctx);
+        KodCheckContext kodCheckContext = new KodCheckContext(ctx);
 
-    	   KodCheckRule rules[] = {
-                   new Pravidlo1(),
-           };
+        KodCheckRule rules[] = {
+                new Pravidlo1(),
+        };
 
-           this.provedKontrolu(kodCheckContext, rules);
+        this.provedKontrolu(kodCheckContext, rules);
 
-        }
-
-    @Override
-    public String getNazev() {
-        return NAME;
     }
-
-    @Override
-    TypUrovenKontroly getUrovenKontroly() {
-        return TypUrovenKontroly.ZNAKOVE_SADY;
-    }
-
 }

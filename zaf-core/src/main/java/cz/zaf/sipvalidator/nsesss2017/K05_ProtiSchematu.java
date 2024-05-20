@@ -41,6 +41,7 @@ public class K05_ProtiSchematu
     static Map<String, Schema> schemaCache = new HashMap<>();
 
     public K05_ProtiSchematu() {
+        super(TypUrovenKontroly.PROTI_SCHEMATU);
     }
 
     private void validaceVResource(ErrorHandlerValidaceXSD handler, String resource, SipInfo file)
@@ -75,7 +76,7 @@ public class K05_ProtiSchematu
         String detailChyby;
         SipInfo file = ctx.getSip();
         try {
-            ErrorHandlerValidaceXSD handler = new ErrorHandlerValidaceXSD(vysledekKontroly);
+            ErrorHandlerValidaceXSD handler = new ErrorHandlerValidaceXSD(validationResult);
             validaceVResource(handler, "/schema/sip2017.xsd", file);
             if (!handler.getNalezenaChyba()) {
                 // vse ok
@@ -102,17 +103,7 @@ public class K05_ProtiSchematu
                 VAL1_ZDROJ,
                 BaseCode.CHYBA,
                 null);
-        vysledekKontroly.add(p);
+        pridejChybu(p);
 
-    }
-
-    @Override
-    public String getNazev() {
-        return NAME;
-    }
-
-    @Override
-    TypUrovenKontroly getUrovenKontroly() {
-        return TypUrovenKontroly.PROTI_SCHEMATU;
     }
 }

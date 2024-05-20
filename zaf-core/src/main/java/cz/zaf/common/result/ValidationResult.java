@@ -20,6 +20,36 @@ public interface ValidationResult {
      */
     String getValidatedObjectName();
 
+    /**
+     * Get validation results for all validated layers
+     * 
+     * @return
+     */
     List<ValidationLayerResult> getValidationLayerResults();
 
+    /**
+     * Check if validation failed
+     * 
+     * @return
+     */
+    default boolean isFailed() {
+        return isFailed(this);
+    }
+
+    static boolean isFailed(ValidationResult vr) {
+        List<ValidationLayerResult> kontroly = vr.getValidationLayerResults();
+        if (kontroly == null || kontroly.size() == 0) {
+            // not failed if empty
+            return false;
+        }
+
+        // dle stavu posledni kontroly se rozhodneme
+        ValidationLayerResult posledniKontrola = kontroly.get(kontroly.size() - 1);
+        ValidationStatus stav = posledniKontrola.getValidationStatus();
+        if (stav != ValidationStatus.OK) {
+            // error or not executed -> selhani jiz nekde drive
+            return true;
+        }
+        return false;
+    }
 }

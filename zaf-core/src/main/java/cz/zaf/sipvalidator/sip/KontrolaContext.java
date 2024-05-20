@@ -1,19 +1,18 @@
 package cz.zaf.sipvalidator.sip;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import cz.zaf.common.result.ValidationLayerResult;
-import cz.zaf.common.result.ValidationStatus;
+import cz.zaf.common.result.ValidationResult;
+import cz.zaf.common.validation.ValidationLayerContext;
 
 /**
  * Kontext provadene kontroly
  *
  */
-public class KontrolaContext {
-	
+public class KontrolaContext implements ValidationLayerContext {
+
 	/**
 	 * SIP nad nimz je provadena kontrola
 	 */
@@ -29,37 +28,16 @@ public class KontrolaContext {
         this.excludeChecks.addAll(excludeCheckList);
 	}
 
-	public void pridejKontrolu(ValidationLayerResult k) {
-
-		sip.pridejKontrolu(k);		
-		
-    }
-
     public boolean isExcluded(String checkId) {
         return excludeChecks.contains(checkId);
     }
 
-	/**
-     * Kontrola, zda doslo k selhani
-     * 
-     * @return true při selhání, false pokud kontrola neproběhla nebo je ok
-     */
-	public boolean isFailed() {
-        ArrayList<ValidationLayerResult> kontroly = sip.getValidationLayerResults();
-		if(kontroly==null||kontroly.size()==0) {
-			return false;
-		}
-		// dle stavu posledni kontroly se rozhodneme
-		ValidationLayerResult posledniKontrola = kontroly.get(kontroly.size()-1);
-		ValidationStatus stav = posledniKontrola.getValidationStatus();
-		if(stav!=ValidationStatus.OK) {
-			// neni provedena -> selhani jiz nekde drive
-			return true;
-		}
-		return false;
-	}
-
 	public SipInfo getSip() {
 		return sip;
 	}
+
+    @Override
+    public ValidationResult getValidationResult() {
+        return sip;
+    }
 }

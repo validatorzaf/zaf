@@ -10,44 +10,49 @@ import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.common.exceptions.codes.ErrorCode;
 import cz.zaf.common.result.RuleValidationError;
 import cz.zaf.common.result.ValidationLayerResult;
-import cz.zaf.common.result.ValidationStatus;
 import cz.zaf.common.validation.Rule;
 import cz.zaf.common.validation.RuleEvaluationContext;
-import cz.zaf.sipvalidator.sip.UrovenKontroly;
+import cz.zaf.common.validation.ValidationLayer;
+import cz.zaf.common.validation.ValidationType;
 
 abstract public class KontrolaBase<KontrolaContext extends RuleEvaluationContext>
-        implements UrovenKontroly<KontrolaNsess2017Context> {
+        implements ValidationLayer<KontrolaNsess2017Context> {
 
     static Logger log = LoggerFactory.getLogger(KontrolaBase.class);
 
     protected KontrolaNsess2017Context ctx;
-    protected ValidationLayerResult vysledekKontroly;
+
+    private ValidationType validationType;
+
+    protected ValidationLayerResult validationResult;
+
+    KontrolaBase(final ValidationType validationType) {
+        this.validationType = validationType;
+    }
 
     @Override
-    public void provedKontrolu(KontrolaNsess2017Context ctx) {
-        this.ctx = ctx;
+    public ValidationType getType() {
+        return validationType;
+    }
 
-        // nejprve precteme, zda jiz byl selhany
-        boolean failed = ctx.isFailed();
+    @Override
+    public void validate(KontrolaNsess2017Context context, ValidationLayerResult result) throws Exception
+    {
+        this.ctx = context;
+        this.validationResult = result;
 
-        vysledekKontroly = new ValidationLayerResult(getUrovenKontroly(), getNazev());
-        ctx.pridejKontrolu(vysledekKontroly);
-        // po selhane kontrole se jiz nepokracuje
-        if (failed) {
-            return;
-        }
-        
-        log.debug("Zahajena kontrola: {}", this.getNazev());
+        log.debug("Zahajena kontrola: {}", validationType.getDescription());
 
         long startTime = System.currentTimeMillis();
-        // vychozi stav je ok
-        vysledekKontroly.setStav(ValidationStatus.OK);
         provedKontrolu();
 
         long finishTime = System.currentTimeMillis();
 
-        log.debug("Dokoncena kontrola: {}, doba trvani: {}ms, stav: {}", this.getNazev(),
-                  finishTime - startTime, vysledekKontroly.getValidationStatus());
+        log.debug("Dokoncena kontrola: {}, doba trvani: {}ms, stav: {}", validationType.getDescription(),
+                  finishTime - startTime, result.getValidationStatus());
+
+        this.validationResult = null;
+        this.ctx = null;
     }
 
     public void pridejChybu(Rule<KontrolaContext> pravidlo,
@@ -60,7 +65,11 @@ abstract public class KontrolaBase<KontrolaContext extends RuleEvaluationContext
                 mistoChyby,
                 errorCode,
                 entityIds);
-        vysledekKontroly.add(p);
+        validationResult.add(p);
+    }
+
+    public void pridejChybu(RuleValidationError p) {
+        validationResult.add(p);
     }
 
     protected void provedKontrolu(KontrolaContext kontrolaContext, List<Rule<KontrolaContext>> rules) {
@@ -117,8 +126,6 @@ abstract public class KontrolaBase<KontrolaContext extends RuleEvaluationContext
     public KontrolaNsess2017Context getContext() {
         return ctx;
     }
-
-    abstract TypUrovenKontroly getUrovenKontroly();
 
     /**
      * Provedeni kontroly jednotlivych pravidel

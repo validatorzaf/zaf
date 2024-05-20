@@ -6,8 +6,10 @@
 package cz.zaf.sipvalidator.sip;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 
-import org.apache.commons.lang3.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import cz.zaf.common.result.ValidationLayerResult;
 import cz.zaf.common.result.ValidationResult;
@@ -22,6 +24,8 @@ import cz.zaf.sipvalidator.nsesss2017.TypUrovenKontroly;
  * a výsledek provedených kontrol.
  */
 public class SipInfo implements ValidationInput, ValidationResult {
+
+    private static Logger log = LoggerFactory.getLogger(SipInfo.class);
 	
 	public static enum LoadType {
 		LT_UNKNOWN("nepovolený formát"),
@@ -95,7 +99,7 @@ public class SipInfo implements ValidationInput, ValidationResult {
      */
     final private LoadType loadType;
     
-    final protected ArrayList<ValidationLayerResult> validationResults = new ArrayList<>();
+    final protected List<ValidationLayerResult> validationResults = new ArrayList<>();
 
     public enum LoadStatus {
         OK,
@@ -189,9 +193,6 @@ public class SipInfo implements ValidationInput, ValidationResult {
         return name;
     }
 
-    public ArrayList<ValidationLayerResult> getValidationLayerResults() {
-        return validationResults;
-    }
 
     /**
      * Vrati uroven kontroly daneho typu
@@ -206,15 +207,11 @@ public class SipInfo implements ValidationInput, ValidationResult {
 				return kontrola;
 			}
 		}
+
+        log.error("Cannot find validation: {}", validationType);
+
 		return null;
 		
-	}
-
-	public void pridejKontrolu(ValidationLayerResult k) {
-		// kontrola, zda jiz nebyla pridana
-		ValidationLayerResult urovenKontroly = getUrovenKontroly(k.getValidationType());
-		Validate.isTrue(urovenKontroly==null);
-		validationResults.add(k);
 	}
 
 	public boolean isKontrolyProvedeny() {
@@ -232,5 +229,10 @@ public class SipInfo implements ValidationInput, ValidationResult {
 			return null;
 		}
 		return validationResults.get(indexKontroly);
+    }
+
+    @Override
+    public List<ValidationLayerResult> getValidationLayerResults() {
+        return validationResults;
     }
 }

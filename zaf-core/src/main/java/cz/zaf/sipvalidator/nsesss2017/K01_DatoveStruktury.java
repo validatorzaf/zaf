@@ -24,6 +24,7 @@ public class K01_DatoveStruktury
     static final public String NAME = "datové struktury";
 
     public K01_DatoveStruktury() {
+        super(TypUrovenKontroly.DATOVE_STRUKTURY);
     }
 
 
@@ -40,14 +41,4 @@ public class K01_DatoveStruktury
 
         this.provedKontrolu(datCheckContext, rules);
 	}
-
-	@Override
-	public String getNazev() {
-		return NAME;
-	}
-    
-    @Override
-    TypUrovenKontroly getUrovenKontroly() {
-        return TypUrovenKontroly.DATOVE_STRUKTURY;
-    }
 }

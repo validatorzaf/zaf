@@ -35,11 +35,12 @@ public class CmdParams {
         output.println(" -z|--hrozba= Podrobnosti v případě nalezení hrozby (pro předání z antivirového programu)");
         output.println(" -o|--output= Jméno souboru nebo adresáře pro uložení výsledků");
         output.println(" -p|--ports= Rozsah portů pro vnitřní procesy (standardně 10000-32000)");
-        output.println(" -t|--typ= Typ balíčku (1 - výchozí)");
-        output.println(" 		1 = AUTO");
-        output.println(" 		2 = NSESSS2017");
-        output.println(" 		3 = AP2023");
-        output.println(" 		4 = DAAIP2024");
+        output.println(" -t|--type= Typ balíčku (AUTO - výchozí)");
+        output.println(" 		AUTO - automatická detekce formátu vstupu");
+        output.println(" 		NSESSS2017");
+        output.println("        NSESSS2023");
+        output.println(" 		AP2023");
+        output.println(" 		DAAIP2024");
         output.println(" -f|--outputformat= Výstupní formát (1 - výchozí)");
         output.println(" 		1 = obecné schéma (validace_v1.xsd)");
         output.println(" 		2 = schéma pouze pro kontrolu NSESSS");
@@ -402,21 +403,20 @@ public class CmdParams {
 
     private boolean readTyp(String arg) {
         try {
-            int typ = Integer.parseInt(arg);
-            switch (typ) {
-            case 1:
+            switch (arg) {
+            case "AUTO":
                 typBalicku = null;
                 break;                
-            case 2:
+            case "NSESSS2017":
             	typBalicku = ValidationProfiles.NSESSS2017;
                 break;
-            case 3:
+            case "NSESSS2023":
             	typBalicku = ValidationProfiles.NSESSS2023;
                 break;                
-            case 4:
+            case "AP2023":
             	typBalicku = ValidationProfiles.AP2023;
                 break;                
-            case 5:
+            case "DAAIP2024":
             	typBalicku = ValidationProfiles.DAAIP2024;
                 break;                
             default:

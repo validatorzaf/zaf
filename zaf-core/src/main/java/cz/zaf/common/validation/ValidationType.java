@@ -5,4 +5,10 @@ package cz.zaf.common.validation;
  */
 public interface ValidationType {
 
+    /**
+     * Return description of type
+     * 
+     * @return
+     */
+    public String getDescription();
 }

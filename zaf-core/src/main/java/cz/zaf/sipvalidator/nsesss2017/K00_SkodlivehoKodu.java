@@ -27,6 +27,7 @@ public class K00_SkodlivehoKodu
 	private String errorDescr;
 
     public K00_SkodlivehoKodu() {
+        super(TypUrovenKontroly.SKODLIVY_KOD);
     }
 
     /**
@@ -58,14 +59,4 @@ public class K00_SkodlivehoKodu
 
         provedKontrolu(virtCheckContext, rules);
 	}
-
-    @Override
-	public String getNazev() {
-		return NAME;
-	}
-
-    @Override
-    TypUrovenKontroly getUrovenKontroly() {
-        return TypUrovenKontroly.SKODLIVY_KOD;
-    }
 }

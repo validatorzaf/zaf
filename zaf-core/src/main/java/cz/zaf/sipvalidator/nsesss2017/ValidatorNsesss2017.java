@@ -10,11 +10,11 @@ import cz.zaf.sipvalidator.sip.SipLoader;
 
 public class ValidatorNsesss2017 implements Validator {
 	
-	private String hrozba = "";
-	private String workDir = "";
-	private boolean isKeepFiles = false;
-	private ProfilValidace profilValidace = null;
-	private List<String> excludeChecks = null;
+    private final String hrozba;
+    private final String workDir;
+    private final boolean isKeepFiles;
+    private final ProfilValidace profilValidace;
+    private final List<String> excludeChecks;
 	
 	public ValidatorNsesss2017(String hrozba, String workDir, boolean isKeepFiles,
 		ProfilValidace profilValidace, List<String> excludeChecks) {
