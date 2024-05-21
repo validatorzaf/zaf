@@ -9,28 +9,28 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.ObsahovePravidlo;
+import cz.zaf.common.validation.Rule;
+import cz.zaf.common.validation.RuleEvaluationContext;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 
 public class GenerateDoc {
 
-    ObsahovePravidlo[] devel = ZakladniProfilValidace.DEVEL.createObsahovaPravidla();
-    ObsahovePravidlo[] prejimka = ZakladniProfilValidace.PREJIMKA.createObsahovaPravidla();
-    ObsahovePravidlo[] skartaceMetadata = ZakladniProfilValidace.SKARTACE_METADATA.createObsahovaPravidla();
-    ObsahovePravidlo[] skartaceUplny = ZakladniProfilValidace.SKARTACE_UPLNY.createObsahovaPravidla();
+    Rule<? extends RuleEvaluationContext>[] devel = ZakladniProfilValidace.DEVEL.createObsahovaPravidla();
+    Rule<? extends RuleEvaluationContext>[] prejimka = ZakladniProfilValidace.PREJIMKA.createObsahovaPravidla();
+    Rule<? extends RuleEvaluationContext>[] skartaceMetadata = ZakladniProfilValidace.SKARTACE_METADATA
+            .createObsahovaPravidla();
+    Rule<? extends RuleEvaluationContext>[] skartaceUplny = ZakladniProfilValidace.SKARTACE_UPLNY
+            .createObsahovaPravidla();
 
-    Map<String, ObsahovePravidlo> prejimkaMap = Stream.of(prejimka).collect(Collectors.toMap(
-                                                                                             ObsahovePravidlo::getCode,
-                                                                                             Function.identity()));
-    Map<String, ObsahovePravidlo> skartaceMetadataMap = Stream.of(skartaceMetadata).collect(Collectors.toMap(
-                                                                                                             ObsahovePravidlo::getCode,
-                                                                                                             Function.identity()));
-    Map<String, ObsahovePravidlo> skartaceUplnyMap = Stream.of(skartaceUplny).collect(Collectors.toMap(
-                                                                                                       ObsahovePravidlo::getCode,
-                                                                                                       Function.identity()));
+    Map<String, Rule<? extends RuleEvaluationContext>> prejimkaMap = Stream.of(prejimka)
+            .collect(Collectors.toMap(Rule::getCode, Function.identity()));
+    Map<String, Rule<? extends RuleEvaluationContext>> skartaceMetadataMap = Stream.of(skartaceMetadata)
+            .collect(Collectors.toMap(Rule::getCode, Function.identity()));
+    Map<String, Rule<? extends RuleEvaluationContext>> skartaceUplnyMap = Stream.of(skartaceUplny)
+            .collect(Collectors.toMap(Rule::getCode, Function.identity()));
     List<String> pravidla = new ArrayList<>();
-    Map<String, ObsahovePravidlo> pravidlaMap = new HashMap<>();
+    Map<String, Rule<? extends RuleEvaluationContext>> pravidlaMap = new HashMap<>();
 
     public GenerateDoc() {
         pridejPravidla(devel);
@@ -39,8 +39,8 @@ public class GenerateDoc {
         pridejPravidla(skartaceUplny);
     }
 
-    private void pridejPravidla(ObsahovePravidlo[] pravidlaIn) {
-        for (ObsahovePravidlo prav : pravidlaIn) {
+    private void pridejPravidla(Rule<? extends RuleEvaluationContext>[] pravidlaIn) {
+        for (Rule<? extends RuleEvaluationContext> prav : pravidlaIn) {
             if (pravidlaMap.putIfAbsent(prav.getCode(), prav) == null) {
                 pravidla.add(prav.getCode());
             }
@@ -49,13 +49,13 @@ public class GenerateDoc {
 
     private void write(PrintStream out) {
         for (String pravKod : pravidla) {
-            ObsahovePravidlo pravidlo = pravidlaMap.get(pravKod);
+            Rule<? extends RuleEvaluationContext> pravidlo = pravidlaMap.get(pravKod);
             write(out, pravidlo);
         }
 
     }
 
-    private void write(PrintStream out, ObsahovePravidlo pravidlo) {
+    private void write(PrintStream out, Rule<? extends RuleEvaluationContext> pravidlo) {
 
         String kod = pravidlo.getCode();
         // String zjištění, kdy je pravidlo aktivní

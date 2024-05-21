@@ -70,7 +70,7 @@ public class CmdValidator {
     		protokolWriter = new XmlProtokolWriter(cmdParams.getOutput(), 
                     cmdParams.getIdKontroly(), 
                     cmdParams.getProfilValidace().getNazev(),
-                    NsesssV3.ZAF_RULE_PROFILE, 
+                    validator.getValidatorType(),
                     NsesssV3.ZAF_RULE_VERSION);
     	}
     	else {

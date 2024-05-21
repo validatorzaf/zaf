@@ -3,6 +3,7 @@ package cz.zaf.common.validation;
 import java.nio.file.Path;
 
 import cz.zaf.common.result.ValidationResult;
+import cz.zaf.validator.profiles.ValidationProfiles;
 
 public interface Validator {
 
@@ -15,4 +16,11 @@ public interface Validator {
      * @throws Exception
      */
     public ValidationResult validate(Path path) throws Exception;
+
+    /**
+     * Return type of validator
+     * 
+     * @return
+     */
+    public ValidationProfiles getValidatorType();
 }

@@ -17,7 +17,6 @@ import cz.zaf.common.exceptions.codes.ErrorCode;
 import cz.zaf.common.validation.Rule;
 import cz.zaf.sipvalidator.nsesss2017.EntityId.DruhEntity;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06KontrolaContext;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.ObsahovePravidlo;
 import cz.zaf.sipvalidator.sip.SipInfo;
 
 /**
@@ -30,7 +29,7 @@ public class K06_Obsahova
     static final public String NAME = "kontrola obsahu";
 
     SipInfo sipSoubor;
-    private ObsahovePravidlo[] seznamPravidel;
+    private Rule<K06KontrolaContext>[] seznamPravidel;
 
     MetsParser metsParser;
 
@@ -39,9 +38,9 @@ public class K06_Obsahova
     /**
      * Mapa kontrol
      */
-    Map<String, ObsahovePravidlo> kontroly = new HashMap<>();
+    Map<String, Rule<K06KontrolaContext>> kontroly = new HashMap<>();
 
-    public K06_Obsahova(ObsahovePravidlo[] obsahovaPravidla) {
+    public K06_Obsahova(Rule<K06KontrolaContext>[] obsahovaPravidla) {
         super(TypUrovenKontroly.OBSAHOVA);
         this.seznamPravidel = obsahovaPravidla;
     }

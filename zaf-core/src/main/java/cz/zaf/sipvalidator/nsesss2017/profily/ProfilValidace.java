@@ -1,6 +1,7 @@
 package cz.zaf.sipvalidator.nsesss2017.profily;
 
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.ObsahovePravidlo;
+import cz.zaf.common.validation.Rule;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06KontrolaContext;
 import cz.zaf.sipvalidator.nsesss2017.pravidla07.K07PravidloBase;
 
 /**
@@ -25,7 +26,7 @@ public interface ProfilValidace {
      * 
      * @return Pole pravidel
      */
-    public ObsahovePravidlo[] createObsahovaPravidla();
+    public Rule<K06KontrolaContext>[] createObsahovaPravidla();
 
     /**
      * Vrátí seznam připravených obsahových kontrol

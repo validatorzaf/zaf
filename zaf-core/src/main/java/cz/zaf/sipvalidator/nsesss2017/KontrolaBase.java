@@ -55,7 +55,7 @@ abstract public class KontrolaBase<KontrolaContext extends RuleEvaluationContext
         this.ctx = null;
     }
 
-    public void pridejChybu(Rule<KontrolaContext> pravidlo,
+    public void pridejChybu(Rule<? extends KontrolaContext> pravidlo,
                             ErrorCode errorCode,
                             String detailChyby,
                             String mistoChyby,
@@ -74,14 +74,14 @@ abstract public class KontrolaBase<KontrolaContext extends RuleEvaluationContext
 
     protected void provedKontrolu(KontrolaContext kontrolaContext, List<Rule<KontrolaContext>> rules) {
 
-        for (Rule<KontrolaContext> rule : rules) {
+        for (var rule : rules) {
 
             provedKontrolu(kontrolaContext, rule);
         }
     }
 
     protected void provedKontrolu(KontrolaContext kontrolaContext, Rule<KontrolaContext>[] rules) {
-        for (Rule<KontrolaContext> rule : rules) {
+        for (var rule : rules) {
 
             provedKontrolu(kontrolaContext, rule);
         }

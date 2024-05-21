@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.w3c.dom.Document;
@@ -22,6 +23,8 @@ public class EadLoader implements Closeable, ValidationInput, ValidationResult {
     private Exception parserError;
 
     private Document document;
+
+    final protected List<ValidationLayerResult> validationResults = new ArrayList<>();
 
     public EadLoader(Path filePath) {
         this.filePath = filePath;
@@ -83,8 +86,7 @@ public class EadLoader implements Closeable, ValidationInput, ValidationResult {
 
     @Override
     public List<ValidationLayerResult> getValidationLayerResults() {
-        // TODO Auto-generated method stub
-        return null;
+        return validationResults;
     }
 
 }
