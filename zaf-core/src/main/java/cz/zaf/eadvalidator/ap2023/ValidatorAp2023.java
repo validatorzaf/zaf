@@ -9,7 +9,7 @@ import cz.zaf.eadvalidator.ap2023.profile.EadValidationProfile;
 // import cz.zaf.validator.ap2023.profily.ProfilValidaceEad;
 // import cz.zaf.sipvalidator.ead.EadInfo;
 // import cz.zaf.sipvalidator.ead.EadLoader;
-import cz.zaf.validator.profiles.ValidationProfiles;
+import cz.zaf.validator.profiles.ValidationProfile;
 
 public class ValidatorAp2023 implements Validator {
 	
@@ -37,7 +37,7 @@ public class ValidatorAp2023 implements Validator {
 	}
 
     @Override
-    public ValidationProfiles getValidatorType() {
-        return ValidationProfiles.AP2023;
+    public ValidationProfile getValidatorType() {
+        return ValidationProfile.AP2023;
     }
 }

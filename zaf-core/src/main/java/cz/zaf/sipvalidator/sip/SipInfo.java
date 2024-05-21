@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 import cz.zaf.common.result.ValidationLayerResult;
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.validation.ValidationInput;
-import cz.zaf.common.validation.ValidationType;
+import cz.zaf.common.validation.ValidationLayerInfo;
 import cz.zaf.sipvalidator.nsesss2017.TypUrovenKontroly;
 
 /**
@@ -201,7 +201,7 @@ public class SipInfo implements ValidationInput, ValidationResult {
      *            typ požadované úrovně kontroly
      * @return Výsledek kontroly, případně null pokud kontrola nebyla provedena
      */
-    public ValidationLayerResult getUrovenKontroly(ValidationType validationType) {
+    public ValidationLayerResult getUrovenKontroly(ValidationLayerInfo validationType) {
 		for(ValidationLayerResult kontrola: validationResults) {
             if (kontrola.getValidationType().equals(validationType)) {
 				return kontrola;

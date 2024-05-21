@@ -2,7 +2,6 @@ package cz.zaf.sipvalidator.nsesss2017.profily;
 
 import cz.zaf.common.validation.Rule;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06KontrolaContext;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.ObsahovePravidlo;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09.Pravidlo1;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09.Pravidlo2;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs00_09.Pravidlo3;
@@ -111,7 +110,7 @@ public enum ZakladniProfilValidace
 	DEVEL("vývojářská validace") {
 		@Override
         public Rule<K06KontrolaContext>[] createObsahovaPravidla() {
-            Rule[] prav = {
+            Rule prav[] = {
 					new Pravidlo1(),
 					new Pravidlo2(), 
 					new Pravidlo3(),
@@ -224,7 +223,7 @@ public enum ZakladniProfilValidace
 	SKARTACE_METADATA("skartační řízení (jen metadata)") {
 		@Override
         public Rule<K06KontrolaContext>[] createObsahovaPravidla() {
-			ObsahovePravidlo[] prav = {
+            Rule[] prav = {
 					new Pravidlo1(),
 					new Pravidlo2(), 
 					//new Pravidlo3(),
@@ -336,7 +335,7 @@ public enum ZakladniProfilValidace
 	SKARTACE_UPLNY("skartační řízení (s komponentami)") {
 		@Override
         public Rule<K06KontrolaContext>[] createObsahovaPravidla() {
-			ObsahovePravidlo[] prav = {
+            Rule[] prav = {
 					new Pravidlo1(),
 					new Pravidlo2(), 
 					// new Pravidlo3(),
@@ -450,7 +449,7 @@ public enum ZakladniProfilValidace
 	PREJIMKA("přejímka") {
 		@Override
         public Rule<K06KontrolaContext>[] createObsahovaPravidla() {
-			ObsahovePravidlo[] prav = {
+            Rule[] prav = {
 					new Pravidlo1(),
 					// new Pravidlo2(), 
 					new Pravidlo3(),

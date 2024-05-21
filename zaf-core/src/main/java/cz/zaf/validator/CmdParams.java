@@ -7,7 +7,7 @@ import java.util.List;
 import cz.zaf.sipvalidator.formats.VystupniFormat;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
-import cz.zaf.validator.profiles.ValidationProfiles;
+import cz.zaf.validator.profiles.ValidationProfile;
 
 /**
  * Třída pro načtení vstupních parametrů
@@ -26,22 +26,25 @@ public class CmdParams {
         output.println(" -b|--batch Dávkový režim, cesta je adresář obsahující SIPy");
         output.println(" -w|--workdir= Umístění pracovního adresáře, zde budou SIPy rozbaleny");
         output.println(" -k|--keep Zachování rozbalených souborů na disku");
-        output.println(" -d|--druh= Druh kontroly (1 - výchozí):");
+        output.println(" -d|--druh= Druh kontroly pro danou validaci (AUTO - výchozí), stačí uvést druh:");
+        output.println("        AUTO = výběr základní kontroly pro daný typ kontroly");
         output.println("        1 = pro provedení skartačního řízení (jen metadata bez přiložených komponent)");
         output.println("        2 = pro provedení skartačního řízení (s přiloženými komponentami)");
         output.println("        3 = pro předávání dokumentů a jejich metadat do archivu");
+        output.println("        AD = archivní popis (pro AP2023)");
+        output.println("        FA = archivní pomůcka (pro AP2023)");
         output.println(" -e|--exclude= Seznam kontrol oddělených čárkou, které se nemají provádět");
         output.println(" -i|--id= Identifikátor prováděné kontroly");
         output.println(" -z|--hrozba= Podrobnosti v případě nalezení hrozby (pro předání z antivirového programu)");
         output.println(" -o|--output= Jméno souboru nebo adresáře pro uložení výsledků");
         output.println(" -p|--ports= Rozsah portů pro vnitřní procesy (standardně 10000-32000)");
-        output.println(" -t|--type= Typ balíčku (AUTO - výchozí)");
+        output.println(" -t|--type= Typ validace (AUTO - výchozí)");
         output.println(" 		AUTO - automatická detekce formátu vstupu");
         output.println(" 		NSESSS2017");
         output.println("        NSESSS2023");
         output.println(" 		AP2023");
         output.println(" 		DAAIP2024");
-        output.println(" -f|--outputformat= Výstupní formát (1 - výchozí)");
+        output.println(" -f|--format= Výstupní formát (1 - výchozí)");
         output.println(" 		1 = obecné schéma (validace_v1.xsd)");
         output.println(" 		2 = schéma pouze pro kontrolu NSESSS");
     }
@@ -77,7 +80,7 @@ public class CmdParams {
     /**
      * Typ balíčku
      */
-    ValidationProfiles typBalicku = null;
+    ValidationProfile typBalicku = null;
     
     /**
      * Popis hrozby
@@ -193,7 +196,7 @@ public class CmdParams {
                     return false;
                 }
             } else if (arg.startsWith("--druh=")) {
-                if (!readDruh(arg.substring(7))) {
+                if (!readDruh(arg.substring("--druh=".length()))) {
                     return false;
                 }
             } else if (arg.equals("-i")) {
@@ -232,16 +235,16 @@ public class CmdParams {
                 if (!readT()) {
                     return false;
                 }
-            } else if (arg.startsWith("--typ=")) {
-                if (!readTyp(arg.substring(6))) {
+            } else if (arg.startsWith("--type=")) {
+                if (!readTyp(arg.substring("--type=".length()))) {
                     return false;
                 }
             } else if (arg.equals("-f")) {
                 if (!readF()) {
                     return false;
                 }
-            } else if (arg.startsWith("--outputformat=")) {
-                if (!readOutputFormat(arg.substring(15))) {
+            } else if (arg.startsWith("--format=")) {
+                if (!readOutputFormat(arg.substring("--format=".length()))) {
                     return false;
                 }
             } else if (arg.equals("--memTest")) {
@@ -408,16 +411,16 @@ public class CmdParams {
                 typBalicku = null;
                 break;                
             case "NSESSS2017":
-            	typBalicku = ValidationProfiles.NSESSS2017;
+            	typBalicku = ValidationProfile.NSESSS2017;
                 break;
             case "NSESSS2023":
-            	typBalicku = ValidationProfiles.NSESSS2023;
+            	typBalicku = ValidationProfile.NSESSS2023;
                 break;                
             case "AP2023":
-            	typBalicku = ValidationProfiles.AP2023;
+            	typBalicku = ValidationProfile.AP2023;
                 break;                
             case "DAAIP2024":
-            	typBalicku = ValidationProfiles.DAAIP2024;
+            	typBalicku = ValidationProfile.DAAIP2024;
                 break;                
             default:
                 System.out.println("Chybný typ balíčku: " + arg);

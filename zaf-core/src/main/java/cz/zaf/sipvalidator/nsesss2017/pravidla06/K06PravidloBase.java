@@ -13,6 +13,7 @@ import org.w3c.dom.Node;
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.common.exceptions.codes.ErrorCode;
+import cz.zaf.common.validation.Rule;
 import cz.zaf.common.xml.PositionalXMLReader;
 import cz.zaf.sipvalidator.nsesss2017.EntityId;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
@@ -26,7 +27,7 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
  * Kazde takove pravidlo vytvari prave jeden zaznam ve vystupu
  *
  */
-public abstract class K06PravidloBase implements ObsahovePravidlo {
+public abstract class K06PravidloBase implements Rule<K06KontrolaContext> {
 
     /**
      * Výstupní datový formát: Neprovádění kontroly, pokud byla základní entita

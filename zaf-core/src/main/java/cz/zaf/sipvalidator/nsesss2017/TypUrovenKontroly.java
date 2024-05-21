@@ -1,6 +1,6 @@
 package cz.zaf.sipvalidator.nsesss2017;
 
-import cz.zaf.common.validation.ValidationType;
+import cz.zaf.common.validation.ValidationLayerInfo;
 
 /**
  * Urovne kontroly
@@ -8,7 +8,7 @@ import cz.zaf.common.validation.ValidationType;
  *
  */
 public enum TypUrovenKontroly
-        implements ValidationType {
+        implements ValidationLayerInfo {
     SKODLIVY_KOD(K00_SkodlivehoKodu.NAME),
     DATOVE_STRUKTURY(K01_DatoveStruktury.NAME),
     ZNAKOVE_SADY(K02_ZnakoveSady.NAME),

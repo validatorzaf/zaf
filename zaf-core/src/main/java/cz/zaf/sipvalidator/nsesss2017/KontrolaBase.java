@@ -13,7 +13,7 @@ import cz.zaf.common.result.ValidationLayerResult;
 import cz.zaf.common.validation.Rule;
 import cz.zaf.common.validation.RuleEvaluationContext;
 import cz.zaf.common.validation.ValidationLayer;
-import cz.zaf.common.validation.ValidationType;
+import cz.zaf.common.validation.ValidationLayerInfo;
 
 abstract public class KontrolaBase<KontrolaContext extends RuleEvaluationContext>
         implements ValidationLayer<KontrolaNsess2017Context> {
@@ -22,16 +22,16 @@ abstract public class KontrolaBase<KontrolaContext extends RuleEvaluationContext
 
     protected KontrolaNsess2017Context ctx;
 
-    private ValidationType validationType;
+    private ValidationLayerInfo validationType;
 
     protected ValidationLayerResult validationResult;
 
-    KontrolaBase(final ValidationType validationType) {
+    KontrolaBase(final ValidationLayerInfo validationType) {
         this.validationType = validationType;
     }
 
     @Override
-    public ValidationType getType() {
+    public ValidationLayerInfo getType() {
         return validationType;
     }
 

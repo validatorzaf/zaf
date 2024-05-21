@@ -7,7 +7,7 @@ import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.validation.Validator;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.sip.SipLoader;
-import cz.zaf.validator.profiles.ValidationProfiles;
+import cz.zaf.validator.profiles.ValidationProfile;
 
 public class ValidatorNsesss2017 implements Validator {
 	
@@ -41,8 +41,8 @@ public class ValidatorNsesss2017 implements Validator {
 	}
 
     @Override
-    public ValidationProfiles getValidatorType() {
-        return ValidationProfiles.NSESSS2017;
+    public ValidationProfile getValidatorType() {
+        return ValidationProfile.NSESSS2017;
     }
 
 }

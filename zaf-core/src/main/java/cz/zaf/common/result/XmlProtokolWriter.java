@@ -38,7 +38,7 @@ import cz.zaf.schema.validace_v1.TBalicek;
 import cz.zaf.schema.validace_v1.TKontrola;
 import cz.zaf.schema.validace_v1.TPravidlo;
 import cz.zaf.schema.validace_v1.TVysledekKontroly;
-import cz.zaf.validator.profiles.ValidationProfiles;
+import cz.zaf.validator.profiles.ValidationProfile;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBElement;
 import jakarta.xml.bind.JAXBException;
@@ -82,14 +82,14 @@ public class XmlProtokolWriter implements ProtokolWriter
         }
     }
     
-    private ValidationProfiles profilPravidel = null;
+    private ValidationProfile profilPravidel = null;
     private String verzePravidel = "";
     private String druhValidace = "";
     
     public XmlProtokolWriter(final String outputPath,
                              final String kontrolaId,
                              final String druhValidace,
-                             final ValidationProfiles profilPravidel,
+                             final ValidationProfile profilPravidel,
                              final String verzePravidel) throws IOException, JAXBException, XMLStreamException,
             DatatypeConfigurationException {
         if (StringUtils.isNoneBlank(outputPath)) {
