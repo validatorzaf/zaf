@@ -3,7 +3,7 @@ package cz.zaf.common.validation;
 /**
  * Validation type
  */
-public interface ValidationLayerInfo {
+public interface ValidationLayerType {
 
     /**
      * Return description of type

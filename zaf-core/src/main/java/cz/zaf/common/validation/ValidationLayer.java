@@ -12,7 +12,7 @@ public interface ValidationLayer<T extends ValidationLayerContext> {
      * 
      * @return
      */
-    public ValidationLayerInfo getType();
+    public ValidationLayerType getType();
     
     /**
      * Validate rules in layer

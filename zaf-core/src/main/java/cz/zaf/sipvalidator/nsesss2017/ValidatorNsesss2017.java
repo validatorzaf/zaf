@@ -3,13 +3,14 @@ package cz.zaf.sipvalidator.nsesss2017;
 import java.nio.file.Path;
 import java.util.List;
 
+import cz.zaf.common.result.ValidationProfileInfo;
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.validation.Validator;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.sip.SipLoader;
 import cz.zaf.validator.profiles.ValidationProfile;
 
-public class ValidatorNsesss2017 implements Validator {
+public class ValidatorNsesss2017 implements Validator, ValidationProfileInfo {
 	
     private final String hrozba;
     private final String workDir;
@@ -41,8 +42,23 @@ public class ValidatorNsesss2017 implements Validator {
 	}
 
     @Override
-    public ValidationProfile getValidatorType() {
-        return ValidationProfile.NSESSS2017;
+    public ValidationProfileInfo getProfileInfo() {
+        return this;
+    }
+
+    @Override
+    public String getProfileName() {
+        return ValidationProfile.NSESSS2017.toString();
+    }
+
+    @Override
+    public String getValidationType() {
+        return profilValidace.getNazev();
+    }
+
+    @Override
+    public String getProfileVersion() {
+        return NsesssV3.ZAF_RULE_VERSION;
     }
 
 }

@@ -17,7 +17,6 @@ import cz.zaf.common.validation.Validator;
 import cz.zaf.eadvalidator.ap2023.ValidatorAp2023;
 import cz.zaf.sipvalidator.formats.MimetypeDetectorFactory;
 import cz.zaf.sipvalidator.formats.VystupniFormat;
-import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValidatorNsesss2017;
 import cz.zaf.sipvalidator.pdfa.VeraValidatorProxy;
 import cz.zaf.validator.profiles.ValidationProfile;
@@ -65,18 +64,15 @@ public class CmdValidator {
     }
     
     private ProtokolWriter createWriter() throws Exception {
-    	ProtokolWriter protokolWriter = null;
-    	if (cmdParams.vystupniFormat == VystupniFormat.VALIDACE_V1) {
+        ProtokolWriter protokolWriter = null;
+        if (cmdParams.vystupniFormat == VystupniFormat.VALIDACE_V1) {
+
     		protokolWriter = new XmlProtokolWriter(cmdParams.getOutput(), 
-                    cmdParams.getIdKontroly(), 
-                    cmdParams.getProfilValidace().getNazev(),
-                    validator.getValidatorType(),
-                    NsesssV3.ZAF_RULE_VERSION);
+                    cmdParams.getIdKontroly(), validator.getProfileInfo());
     	}
     	else {
     		protokolWriter = new XmlProtokolWriterOld(cmdParams.getOutput(), 
-                    cmdParams.getIdKontroly(), 
-                    cmdParams.getProfilValidace());
+                    cmdParams.getIdKontroly(), validator.getProfileInfo());
     	}
     	return protokolWriter;
     }
@@ -134,7 +130,7 @@ public class CmdValidator {
         }
     	switch (skutecnyTyp) {
         case AP2023:
-            return new ValidatorAp2023(null, cmdParams.getExcludeChecks());
+            return new ValidatorAp2023(cmdParams.getAp2023profile(), cmdParams.getExcludeChecks());
         case NSESSS2017:
         default:
             return new ValidatorNsesss2017(cmdParams.getHrozba(),

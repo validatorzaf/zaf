@@ -2,7 +2,7 @@ package cz.zaf.eadvalidator.ap2023.layers.fvl01;
 
 import cz.zaf.common.result.ValidationLayerResult;
 import cz.zaf.common.validation.ValidationLayer;
-import cz.zaf.common.validation.ValidationLayerInfo;
+import cz.zaf.common.validation.ValidationLayerType;
 import cz.zaf.eadvalidator.ap2023.EadValidationContext;
 import cz.zaf.eadvalidator.ap2023.ValidationLayers;
 import cz.zaf.eadvalidator.ap2023.layers.fvl01.fvl00_09.Rule01;
@@ -24,7 +24,7 @@ public class FormatValidationLayer
     }
 
     @Override
-    public ValidationLayerInfo getType() {
+    public ValidationLayerType getType() {
         return ValidationLayers.BASIC_FILE_FORMAT;
     }
 

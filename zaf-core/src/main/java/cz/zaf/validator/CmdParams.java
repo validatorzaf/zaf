@@ -4,6 +4,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
 import cz.zaf.sipvalidator.formats.VystupniFormat;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
@@ -70,7 +71,16 @@ public class CmdParams {
     /**
      * Aktivni profil validace
      */
-    ProfilValidace profilValidace = ZakladniProfilValidace.SKARTACE_METADATA;
+    ProfilValidace nsesssProfile = ZakladniProfilValidace.SKARTACE_METADATA;
+
+    /**
+     * Profile pro AP2023
+     */
+    AP2023Profile ap2023profile = AP2023Profile.ARCH_DESC;
+
+    public AP2023Profile getAp2023profile() {
+        return ap2023profile;
+    }
 
     /**
      * Výstupní formát
@@ -147,7 +157,7 @@ public class CmdParams {
     }
 
     public ProfilValidace getProfilValidace() {
-        return profilValidace;
+        return nsesssProfile;
     }
 
     public VystupniFormat getVystupniFormat() {
@@ -351,19 +361,30 @@ public class CmdParams {
 
     private boolean readDruh(String arg) {
         try {
+            switch (arg) {
+            case "AUTO":
+                return true;
+            case "FA":
+                ap2023profile = AP2023Profile.FINDING_AID;
+                return true;
+            case "AD":
+                ap2023profile = AP2023Profile.ARCH_DESC;
+                return true;
+            }
+
             int druh = Integer.parseInt(arg);
             switch (druh) {
             case 0:
-                profilValidace = ZakladniProfilValidace.DEVEL;
+                nsesssProfile = ZakladniProfilValidace.DEVEL;
                 break;                
             case 1:
-                profilValidace = ZakladniProfilValidace.SKARTACE_METADATA;
+                nsesssProfile = ZakladniProfilValidace.SKARTACE_METADATA;
                 break;
             case 2:
-                profilValidace = ZakladniProfilValidace.SKARTACE_UPLNY;
+                nsesssProfile = ZakladniProfilValidace.SKARTACE_UPLNY;
                 break;
             case 3:
-                profilValidace = ZakladniProfilValidace.PREJIMKA;
+                nsesssProfile = ZakladniProfilValidace.PREJIMKA;
                 break;
             default:
                 System.out.println("Chybný druh validace: " + arg);

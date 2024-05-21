@@ -12,7 +12,7 @@ import java.util.Objects;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.Validate;
 
-import cz.zaf.common.validation.ValidationLayerInfo;
+import cz.zaf.common.validation.ValidationLayerType;
 
 /**
  * Výsledek kontroly
@@ -28,7 +28,7 @@ public class ValidationLayerResult {
     /**
      * Typ validace / kontroly
      */
-    final ValidationLayerInfo validationType;
+    final ValidationLayerType validationType;
 	
     /**
      * Nazev kontroly
@@ -42,7 +42,7 @@ public class ValidationLayerResult {
      */
     ValidationStatus validationStatus = ValidationStatus.NOT_EXCECUTED;
 
-    public ValidationLayerResult(final ValidationLayerInfo validationType) {
+    public ValidationLayerResult(final ValidationLayerType validationType) {
         Objects.requireNonNull(validationType);
 
         this.validationType = validationType;
@@ -81,7 +81,7 @@ public class ValidationLayerResult {
         return ruleErrors.isEmpty();
 	}
 
-    public ValidationLayerInfo getValidationType() {
+    public ValidationLayerType getValidationType() {
 		return validationType;
 	}
 

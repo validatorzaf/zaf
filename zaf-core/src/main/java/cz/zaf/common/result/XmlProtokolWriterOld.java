@@ -43,7 +43,6 @@ import cz.zaf.schema.validacesip.TTypEntity;
 import cz.zaf.schema.validacesip.TVysledekKontroly;
 import cz.zaf.sipvalidator.nsesss2017.EntityId;
 import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBElement;
 import jakarta.xml.bind.JAXBException;
@@ -90,8 +89,10 @@ public class XmlProtokolWriterOld implements ProtokolWriter
 
     public XmlProtokolWriterOld(final String outputPath,
                              final String kontrolaId,
-                             final ProfilValidace profilValidace) throws IOException, JAXBException, XMLStreamException,
+                                final ValidationProfileInfo profileInfo) throws IOException, JAXBException,
+            XMLStreamException,
             DatatypeConfigurationException {
+
         if (StringUtils.isNoneBlank(outputPath)) {
             this.outputPath = Paths.get(outputPath);
             if (Files.isDirectory(this.outputPath)) {
@@ -132,16 +133,7 @@ public class XmlProtokolWriterOld implements ProtokolWriter
         pripravAppInfo();
         pripravCas();
         
-        String pouzitiKontroly = profilValidace.getNazev();
-        /*
-        if(!pouzitiKontroly.equals(TPouzitiKontroly.SKARTAČNÍ_ŘÍZENÍ_JEN_METADATA)&&
-                !pouzitiKontroly.equals(TPouzitiKontroly.SKARTAČNÍ_ŘÍZENÍ_S_KOMPONENTAMI)&&
-                !pouzitiKontroly.equals(TPouzitiKontroly.PŘEJÍMKA)
-                ) {
-            pouzitiKontroly = TPouzitiKontroly.SKARTAČNÍ_ŘÍZENÍ_JEN_METADATA.value();
-        }*/
-    
-        indentingStreamWriter.writeAttribute("druhValidace", pouzitiKontroly);
+        indentingStreamWriter.writeAttribute("druhValidace", profileInfo.getValidationType());
     }
     
     private void pripravCas() throws DatatypeConfigurationException, XMLStreamException {

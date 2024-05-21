@@ -38,7 +38,6 @@ import cz.zaf.schema.validace_v1.TBalicek;
 import cz.zaf.schema.validace_v1.TKontrola;
 import cz.zaf.schema.validace_v1.TPravidlo;
 import cz.zaf.schema.validace_v1.TVysledekKontroly;
-import cz.zaf.validator.profiles.ValidationProfile;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBElement;
 import jakarta.xml.bind.JAXBException;
@@ -82,16 +81,15 @@ public class XmlProtokolWriter implements ProtokolWriter
         }
     }
     
-    private ValidationProfile profilPravidel = null;
-    private String verzePravidel = "";
-    private String druhValidace = "";
+    private final ValidationProfileInfo profileInfo;
     
     public XmlProtokolWriter(final String outputPath,
                              final String kontrolaId,
-                             final String druhValidace,
-                             final ValidationProfile profilPravidel,
-                             final String verzePravidel) throws IOException, JAXBException, XMLStreamException,
+                             final ValidationProfileInfo profileInfo) throws IOException, JAXBException,
+            XMLStreamException,
             DatatypeConfigurationException {
+        this.profileInfo = profileInfo;
+
         if (StringUtils.isNoneBlank(outputPath)) {
             this.outputPath = Paths.get(outputPath);
             if (Files.isDirectory(this.outputPath)) {
@@ -129,9 +127,6 @@ public class XmlProtokolWriter implements ProtokolWriter
         indentingStreamWriter.writeAttribute("identifikatorValidace",
                                              kontrolaId == null ? UUID.randomUUID().toString() : kontrolaId);
     
-        this.profilPravidel = profilPravidel;
-        this.verzePravidel = verzePravidel;
-        this.druhValidace = druhValidace;
         pripravAppInfo();
         pripravCas();
         
@@ -164,9 +159,9 @@ public class XmlProtokolWriter implements ProtokolWriter
 
         indentingStreamWriter.writeAttribute("nazevAplikace", artifactId);
         indentingStreamWriter.writeAttribute("verzeAplikace", verzeApp);
-        indentingStreamWriter.writeAttribute("profilPravidel", profilPravidel.toString());
-        indentingStreamWriter.writeAttribute("verzePravidel", verzePravidel);
-        indentingStreamWriter.writeAttribute("druhValidace", druhValidace);
+        indentingStreamWriter.writeAttribute("profilPravidel", profileInfo.getProfileName());
+        indentingStreamWriter.writeAttribute("verzePravidel", profileInfo.getProfileVersion());
+        indentingStreamWriter.writeAttribute("druhValidace", profileInfo.getValidationType());
     }
     
 

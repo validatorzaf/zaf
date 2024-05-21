@@ -3,6 +3,7 @@ package cz.zaf.eadvalidator.ap2023;
 import java.nio.file.Path;
 import java.util.List;
 
+import cz.zaf.common.result.ValidationProfileInfo;
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.validation.Validator;
 import cz.zaf.eadvalidator.ap2023.profile.EadValidationProfile;
@@ -11,7 +12,7 @@ import cz.zaf.eadvalidator.ap2023.profile.EadValidationProfile;
 // import cz.zaf.sipvalidator.ead.EadLoader;
 import cz.zaf.validator.profiles.ValidationProfile;
 
-public class ValidatorAp2023 implements Validator {
+public class ValidatorAp2023 implements Validator, ValidationProfileInfo {
 	
     private EadValidationProfile profilValidace = null;
 	private List<String> excludeChecks = null;
@@ -37,7 +38,22 @@ public class ValidatorAp2023 implements Validator {
 	}
 
     @Override
-    public ValidationProfile getValidatorType() {
-        return ValidationProfile.AP2023;
+    public ValidationProfileInfo getProfileInfo() {
+        return this;
+    }
+
+    @Override
+    public String getProfileName() {
+        return ValidationProfile.AP2023.toString();
+    }
+
+    @Override
+    public String getValidationType() {
+        return profilValidace.getName();
+    }
+
+    @Override
+    public String getProfileVersion() {
+        return "1";
     }
 }

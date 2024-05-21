@@ -2,8 +2,8 @@ package cz.zaf.common.validation;
 
 import java.nio.file.Path;
 
+import cz.zaf.common.result.ValidationProfileInfo;
 import cz.zaf.common.result.ValidationResult;
-import cz.zaf.validator.profiles.ValidationProfile;
 
 public interface Validator {
 
@@ -22,5 +22,5 @@ public interface Validator {
      * 
      * @return
      */
-    public ValidationProfile getValidatorType();
+    public ValidationProfileInfo getProfileInfo();
 }
