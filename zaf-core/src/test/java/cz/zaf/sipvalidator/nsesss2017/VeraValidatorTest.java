@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import cz.zaf.sipvalidator.pdfa.ValidationResult;
 import cz.zaf.sipvalidator.pdfa.VeraValidatorProxy;
+import cz.zaf.validator.TestHelper;
 
 class VeraValidatorTest extends SipValidatorTestBase {
 
@@ -31,14 +32,14 @@ class VeraValidatorTest extends SipValidatorTestBase {
             assertNotNull(vvp);
             
             // test invalid PDF
-            Path invalidSrcPath = getPath(SipValidatorK07Test.PATH_DATA_K07
+            Path invalidSrcPath = TestHelper.getPath(SipValidatorK07Test.PATH_DATA_K07
                     + "/04-chyba1/komponenty/soubor.pdf");
             ValidationResult vr1 = VeraValidatorProxy.validate(invalidSrcPath);
             assertFalse(vr1.isCompliant());
             assertTrue(StringUtils.isNotBlank(vr1.getErrorMessage()));
 
             // test valid PDF
-            Path validSrcPath = getPath(SipValidatorK07Test.PATH_DATA_K07
+            Path validSrcPath = TestHelper.getPath(SipValidatorK07Test.PATH_DATA_K07
                     + "/04-OK1/komponenty/soubor.pdf");
             ValidationResult vr2 = VeraValidatorProxy.validate(validSrcPath);
             assertTrue(vr2.isCompliant());
@@ -48,7 +49,7 @@ class VeraValidatorTest extends SipValidatorTestBase {
             assertFalse(VeraValidatorProxy.isActiveServer());
 
             // test opetovneho startu
-            Path invalidSrcPath2 = getPath(SipValidatorK07Test.PATH_DATA_K07
+            Path invalidSrcPath2 = TestHelper.getPath(SipValidatorK07Test.PATH_DATA_K07
                     + "/04-OK1/komponenty/soubor.txt");
             ValidationResult vr3 = VeraValidatorProxy.validate(invalidSrcPath2);
             assertFalse(vr3.isCompliant());
