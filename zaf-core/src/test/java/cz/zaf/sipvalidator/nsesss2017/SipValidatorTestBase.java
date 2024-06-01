@@ -9,8 +9,10 @@ import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -73,17 +75,46 @@ public abstract class SipValidatorTestBase {
     void testPackage(String path, LoadType expLoadType,
                      ProfilValidace profilValidace,
                      TypUrovenKontroly typUrovneKontroly,
-                     ValidationStatus stavKontroly, String[] pravidlaOk, String[] pravidlaChybna) {
+                     ValidationStatus stavKontroly,
+                     String[] pravidlaOk,
+                     String[] pravidlaChybna) {
+        testPackage(path, expLoadType, profilValidace, typUrovneKontroly, stavKontroly,
+                    pravidlaOk, pravidlaChybna, null);
+    }
+
+    void testPackage(String path, LoadType expLoadType,
+                     ProfilValidace profilValidace,
+                     TypUrovenKontroly typUrovneKontroly,
+                     ValidationStatus stavKontroly,
+                     String[] pravidlaOk,
+                     String[] pravidlaChybna,
+                     String[] exclChecks) {
         log.debug("Loading SIP: {}, loadType: {}, urovenKontroly: {}", path, expLoadType, typUrovneKontroly);
 
+        List<String> exclCheckList = exclChecks == null ? Collections.emptyList() : Arrays.asList(exclChecks);
+
         SipLoader sipLoader = loadSip(path, expLoadType);
-        SipValidator sipValidator = new SipValidator(profilValidace, Collections.emptyList());
+        SipValidator sipValidator = new SipValidator(profilValidace, exclCheckList);
         sipValidator.validate(sipLoader);
         SipInfo sipInfo = sipLoader.getSip();
 
-        ValidationLayerResult vysledek = sipInfo.getUrovenKontroly(typUrovneKontroly);
+        ValidationLayerResult result = sipInfo.getUrovenKontroly(typUrovneKontroly);
+        if (result == null) {
+            log.error("Missing result for SIP: {}, urovenKontroly: {}", path, typUrovneKontroly);
+            var cnt = sipInfo.getValidationLayerResults().size();
+            if (cnt > 0) {
+                // try to read last validation
+                result = sipInfo.getKontrola(cnt - 1);
+                var ruleResults = result.getPravidla();
+                for (var ruleResult : ruleResults) {
+                    log.error("Failed rule in previouse layer: {}, {}, misto: {}", ruleResult.getId(),
+                              ruleResult.getVypisChyby(), ruleResult.getMistoChyby());
+                }
+            }
+            fail("Result is null, path: " + path);
+        }
 
-        TestHelper.checkTestResult(path, stavKontroly, vysledek, pravidlaOk, pravidlaChybna);
+        TestHelper.checkTestResult(path, stavKontroly, result, pravidlaOk, pravidlaChybna);
     }
 
     @BeforeAll

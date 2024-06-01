@@ -216,7 +216,7 @@
                 </nsesss:Trideni>
               </nsesss:EvidencniUdaje>
             </nsesss:Komponenta>
-            <nsesss:Komponenta ID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FD" druh="průvodní dopis" forma_uchovani="originál" poradi="1" verze="1">
+            <nsesss:Komponenta ID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FD" druh="průvodní dopis" forma_uchovani="originál" poradi="2" verze="1">
               <nsesss:EvidencniUdaje>
                 <nsesss:Identifikace>
                   <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.E">MP120B04D1FD</nsesss:Identifikator>
@@ -400,7 +400,7 @@
           </mets:div>
           <mets:div ADMID="amd005" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FD" TYPE="komponenta">
             <mets:fptr FILEID="MP120B04D1FD"/>
-          </mets:div>            
+          </mets:div>
         </mets:div>
       </mets:div>
     </mets:div>

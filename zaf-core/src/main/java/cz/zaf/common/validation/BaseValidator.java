@@ -37,22 +37,20 @@ public class BaseValidator<T extends ValidationLayerContext> {
             for (ValidationLayer<T> validationLayer : validationLayers) {
                 activeLayer = validationLayer;
 
-                ValidationLayerResult vlr = new ValidationLayerResult(validationLayer.getType());
                 // po selhane kontrole se jiz nepokracuje
                 ValidationResult validationResult = context.getValidationResult();
-                var failed = validationResult.isFailed();
                 // add result
+                ValidationLayerResult vlr = new ValidationLayerResult(validationLayer.getType());
                 context.addLayerResult(vlr);
-
-                if (failed) {
-                    // return as non executed
-                    return;
-                }
                 // vychozi stav je ok
                 vlr.setStav(ValidationStatus.OK);
 
                 validationLayer.validate(context, vlr);
 
+                if (validationResult.isFailed()) {
+                    // return as non executed
+                    return;
+                }
             }
             activeLayer = null;
         } catch (Exception e) {

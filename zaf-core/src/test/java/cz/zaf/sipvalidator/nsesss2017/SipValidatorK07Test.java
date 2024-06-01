@@ -3,6 +3,17 @@ package cz.zaf.sipvalidator.nsesss2017;
 import org.junit.jupiter.api.Test;
 
 import cz.zaf.common.result.ValidationStatus;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs100_109.Pravidlo102;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs100_109.Pravidlo103;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs100_109.Pravidlo105;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs100_109.Pravidlo106;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs30_39.Pravidlo39;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs50_59.Pravidlo54;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs70_79.Pravidlo77;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89.Pravidlo85;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs80_89.Pravidlo88;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo94;
+import cz.zaf.sipvalidator.nsesss2017.pravidla06.obs90_99.Pravidlo95;
 import cz.zaf.sipvalidator.nsesss2017.pravidla07.kom00_09.Pravidlo7_01;
 import cz.zaf.sipvalidator.nsesss2017.pravidla07.kom00_09.Pravidlo7_02;
 import cz.zaf.sipvalidator.nsesss2017.pravidla07.kom00_09.Pravidlo7_03;
@@ -18,11 +29,21 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
                      LoadType loadType,
                      ValidationStatus stavKontroly,
                      ProfilValidace profilValidace,
-                     String[] pravidlaOk, String[] pravidlaChybna) {
+                     String[] pravidlaOk, String[] pravidlaChybna, String[] exclChecks) {
         testPackage(PATH_DATA_K07 + "/" + path, loadType,
                     profilValidace,
                     TypUrovenKontroly.KOMPONENT,
-                    stavKontroly, pravidlaOk, pravidlaChybna);
+                    stavKontroly, pravidlaOk, pravidlaChybna, exclChecks);
+    }
+
+    void testPackage(String path,
+                     ValidationStatus stavKontroly,
+                     ProfilValidace profilValidace,
+                     String[] pravidlaOk, String[] pravidlaChybna, String[] exclChecks) {
+        testPackage(path, LoadType.LT_DIR,
+                    stavKontroly,
+                    profilValidace,
+                    pravidlaOk, pravidlaChybna, exclChecks);
     }
 
     void testPackage(String path,
@@ -32,7 +53,7 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
         testPackage(path, LoadType.LT_DIR,
                     stavKontroly,
                     profilValidace,
-                    pravidlaOk, pravidlaChybna);
+                    pravidlaOk, pravidlaChybna, null);
     }
 
     @Test
@@ -176,7 +197,8 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
         testPackage("03-OK5", null,
                     ZakladniProfilValidace.PREJIMKA,
                     new String[] { Pravidlo7_03.KOD },
-                    new String[] {});
+                    new String[] {},
+                    new String[] { Pravidlo105.OBS105 });
     }
 
     @Test
@@ -184,7 +206,8 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
         testPackage("03-OK6", null,
                     ZakladniProfilValidace.PREJIMKA,
                     new String[] { Pravidlo7_03.KOD },
-                    new String[] {});
+                    new String[] {},
+                    new String[] { Pravidlo103.OBS103 });
     }
 
     @Test
@@ -192,7 +215,8 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
         testPackage("03-OK7", null,
                     ZakladniProfilValidace.PREJIMKA,
                     new String[] { Pravidlo7_03.KOD },
-                    new String[] {});
+                    new String[] {},
+                    new String[] { Pravidlo102.OBS102, Pravidlo103.OBS103 });
     }
 
     @Test
@@ -200,7 +224,8 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
         testPackage("03-OK8", null,
                     ZakladniProfilValidace.PREJIMKA,
                     new String[] { Pravidlo7_03.KOD },
-                    new String[] {});
+                    new String[] {},
+                    new String[] { Pravidlo102.OBS102, Pravidlo103.OBS103 });
     }
 
     @Test
@@ -208,7 +233,9 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
         testPackage("03-OK9", null,
                     ZakladniProfilValidace.PREJIMKA,
                     new String[] { Pravidlo7_03.KOD },
-                    new String[] {});
+                    new String[] {},
+                    new String[] { Pravidlo94.OBS94, Pravidlo95.OBS95, Pravidlo102.OBS102, Pravidlo103.OBS103,
+                            Pravidlo105.OBS105 });
     }
 
     @Test
@@ -216,7 +243,9 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
         testPackage("03-OK10", null,
                     ZakladniProfilValidace.PREJIMKA,
                     new String[] { Pravidlo7_03.KOD },
-                    new String[] {});
+                    new String[] {},
+                    new String[] { Pravidlo39.OBS39, Pravidlo54.OBS54, Pravidlo77.OBS77, Pravidlo95.OBS95,
+                            Pravidlo102.OBS102, Pravidlo103.OBS103 });
     }
 
     @Test
@@ -224,7 +253,8 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
         testPackage("03-OK11", null,
                     ZakladniProfilValidace.PREJIMKA,
                     new String[] { Pravidlo7_03.KOD },
-                    new String[] {});
+                    new String[] {},
+                    new String[] { Pravidlo102.OBS102, Pravidlo103.OBS103, Pravidlo105.OBS105 });
     }
 
     @Test
@@ -240,7 +270,8 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
         testPackage("04-OK2", null,
                     ZakladniProfilValidace.PREJIMKA,
                     new String[] { Pravidlo7_04.KOD },
-                    new String[] {});
+                    new String[] {},
+                    new String[] { Pravidlo106.OBS106 });
     }
 
     @Test
@@ -248,7 +279,8 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
         testPackage("04-OK3", null,
                     ZakladniProfilValidace.PREJIMKA,
                     new String[] { Pravidlo7_04.KOD },
-                    new String[] {});
+                    new String[] {},
+                    new String[] { Pravidlo85.OBS85, Pravidlo88.OBS88 });
     }
 
     @Test
@@ -264,7 +296,8 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
         testPackage("04-OK5", null,
                     ZakladniProfilValidace.PREJIMKA,
                     new String[] { Pravidlo7_04.KOD },
-                    new String[] {});
+                    new String[] {},
+                    new String[] { Pravidlo77.OBS77 });
     }
 
     @Test

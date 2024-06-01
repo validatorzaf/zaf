@@ -225,7 +225,7 @@ public class SipInfo implements ValidationInput, ValidationResult {
 		if(validationResults==null) {
 			return null;
 		}
-		if(validationResults.size()>=indexKontroly) {
+        if (validationResults.size() <= indexKontroly) {
 			return null;
 		}
 		return validationResults.get(indexKontroly);

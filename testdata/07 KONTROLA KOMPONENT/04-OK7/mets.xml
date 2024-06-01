@@ -183,6 +183,23 @@ základní entita (je jich více) vyřízena/uzavřena do 31. 7. 2012
                 <nsesss:RokSpousteciUdalosti>2012</nsesss:RokSpousteciUdalosti>
                 <nsesss:RokSkartacniOperace>2014</nsesss:RokSkartacniOperace>
               </nsesss:DataceVyrazeni>
+              <nsesss:SkartacniRizeni>
+                <nsesss:Datum datum="2018-01-01T00:00:00.000">2018-01-01</nsesss:Datum>
+                <nsesss:Mnozstvi>12 balíků</nsesss:Mnozstvi>
+                <nsesss:SkartacniOperace>trvalé uložení</nsesss:SkartacniOperace>
+                <nsesss:Posuzovatel>
+                  <nsesss:Subjekt>
+                    <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.ISU">MP12SE00A013</nsesss:IdentifikatorOrganizace>
+                    <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                    <nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MP12.SZ">MP12SZ00CZU4</nsesss:IdentifikatorFyzickeOsoby>
+                    <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+                    <nsesss:OrganizacniUtvar>Odbor provozní</nsesss:OrganizacniUtvar>
+                    <nsesss:PracovniPozice>objednávky a faktury OPR</nsesss:PracovniPozice>
+                    <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                  </nsesss:Subjekt>
+                </nsesss:Posuzovatel>
+              </nsesss:SkartacniRizeni>
+
             </nsesss:Vyrazovani>
             <nsesss:Manipulace>
               <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
@@ -373,6 +390,22 @@ základní entita (je jich více) vyřízena/uzavřena do 31. 7. 2012
                 <nsesss:RokSpousteciUdalosti>2012</nsesss:RokSpousteciUdalosti>
                 <nsesss:RokSkartacniOperace>2014</nsesss:RokSkartacniOperace>
               </nsesss:DataceVyrazeni>
+              <nsesss:SkartacniRizeni>
+                <nsesss:Datum datum="2018-01-01T00:00:00.000">2018-01-01</nsesss:Datum>
+                <nsesss:Mnozstvi>12 balíků</nsesss:Mnozstvi>
+                <nsesss:SkartacniOperace>trvalé uložení</nsesss:SkartacniOperace>
+                <nsesss:Posuzovatel>
+                  <nsesss:Subjekt>
+                    <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.ISU">MP12SE00A013</nsesss:IdentifikatorOrganizace>
+                    <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                    <nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MP12.SZ">MP12SZ00CZU4</nsesss:IdentifikatorFyzickeOsoby>
+                    <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+                    <nsesss:OrganizacniUtvar>Odbor provozní</nsesss:OrganizacniUtvar>
+                    <nsesss:PracovniPozice>objednávky a faktury OPR</nsesss:PracovniPozice>
+                    <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                  </nsesss:Subjekt>
+                </nsesss:Posuzovatel>
+              </nsesss:SkartacniRizeni>
             </nsesss:Vyrazovani>
             <nsesss:Manipulace>
               <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>

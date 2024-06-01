@@ -19,8 +19,6 @@ import cz.zaf.sipvalidator.sip.SipLoader;
 public class SipValidator {
 
     static private Logger log = LoggerFactory.getLogger(SipValidator.class);
-    
-    private MetsParser metsParser;
 
     K00_SkodlivehoKodu ksk;
 
@@ -84,12 +82,12 @@ public class SipValidator {
     }
 
     public void validate(SipLoader sipLoader) {
-        
-        metsParser = new MetsParser();
-        metsParser.parse(sipLoader);
 
         SipInfo sip = sipLoader.getSip();
         
+        MetsParser metsParser = new MetsParser();
+        metsParser.parse(sip);
+
         // provedeni kontrol
         KontrolaNsess2017Context ctx = new KontrolaNsess2017Context(metsParser, sip, excludeChecks);
         BaseValidator<KontrolaNsess2017Context> validator = new BaseValidator<>(kontroly);

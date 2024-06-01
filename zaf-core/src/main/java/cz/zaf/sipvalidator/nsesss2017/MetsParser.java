@@ -26,7 +26,6 @@ import cz.zaf.common.xml.PositionalXMLReader;
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipInfo.SipType;
-import cz.zaf.sipvalidator.sip.SipLoader;
 
 /**
  * METS parser
@@ -75,8 +74,8 @@ public class MetsParser {
     }
     */
 
-    public void parse(SipLoader sipLoader) {
-        Path cestaMets = sipLoader.getSip().getCestaMets();
+    public void parse(SipInfo sipInfo) {
+        Path cestaMets = sipInfo.getCestaMets();
         if(cestaMets==null) {
             parserError = "Není definována cesta k mets.xml";
             return;
@@ -86,7 +85,7 @@ public class MetsParser {
             document = xmlReader.readXML(is);
 
             // vlastni nacteni dat
-            readDocument(sipLoader.getSip());
+            readDocument(sipInfo);
         } catch (SAXException e) {
             parserError = e.toString();
         } catch (IOException e) {

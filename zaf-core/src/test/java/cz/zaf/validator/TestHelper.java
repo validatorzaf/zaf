@@ -49,16 +49,21 @@ public abstract class TestHelper {
     }
 
     static public void checkTestResult(String path,
-                                       ValidationStatus stavKontroly, ValidationLayerResult vysledek,
+                                       ValidationStatus stavKontroly,
+                                       ValidationLayerResult result,
                                        String[] pravidlaOk, String[] pravidlaChybna) {
+        if (result == null) {
+            fail("Result is null, path: " + path);
+        }
+
         if (stavKontroly != null) {
-            if (!vysledek.getValidationStatus().equals(stavKontroly)) {
+            if (!result.getValidationStatus().equals(stavKontroly)) {
                 // detail selhanych kontrol
-                if (vysledek.getValidationStatus() == ValidationStatus.ERROR) {
+                if (result.getValidationStatus() == ValidationStatus.ERROR) {
                     // doslo k neocekavanemu selhani -> vypis selhanych
                     boolean errorLogged = false;
                     for (String pravidloOk : pravidlaOk) {
-                        RuleValidationError prav = vysledek.getPravidlo(pravidloOk);
+                        RuleValidationError prav = result.getPravidlo(pravidloOk);
                         if (prav != null) {
                             log.error("Chybujici pravidlo: {}, vypisChyby: {}, mistoChyby: {}", pravidloOk,
                                       prav.getVypisChyby(), prav.getMistoChyby(), prav.getMistoChyby());
@@ -67,7 +72,7 @@ public abstract class TestHelper {
                     }
                     if(!errorLogged) {
                         // vypis vsech chybujicich kontrol
-                        for(RuleValidationError prav: vysledek.getPravidla()) {
+                        for (RuleValidationError prav : result.getPravidla()) {
                             log.error("Chybujici pravidlo: {}, vypisChyby: {}, mistoChyby: {}",
                                       prav.getId(),
                                       prav.getVypisChyby(), prav.getMistoChyby(), prav.getMistoChyby());
@@ -77,7 +82,7 @@ public abstract class TestHelper {
                 }
     
                 fail(() -> "SIP: " + path + ", Očekávaný stav: "
-                    + stavKontroly + ", výsledný stav: " + vysledek.getValidationStatus());
+                        + stavKontroly + ", výsledný stav: " + result.getValidationStatus());
             }
         }
     
@@ -85,7 +90,7 @@ public abstract class TestHelper {
         if (pravidlaOk != null) {
             for (int i = 0; i < pravidlaOk.length; i++) {
                 String kodPravidla = pravidlaOk[i];
-                RuleValidationError pravidlo = vysledek.getPravidlo(kodPravidla);
+                RuleValidationError pravidlo = result.getPravidlo(kodPravidla);
                 if (pravidlo != null) {
                     fail(() -> "SIP: " + path + ", Pravidlo: " + kodPravidla
                         + ", ocekavano OK, ale selhalo, misto chyby: " + pravidlo.getMistoChyby()
@@ -98,7 +103,7 @@ public abstract class TestHelper {
         if (pravidlaChybna != null) {
             for (int i = 0; i < pravidlaChybna.length; i++) {
                 String kodPravidla = pravidlaChybna[i];
-                RuleValidationError pravidlo = vysledek.getPravidlo(kodPravidla);
+                RuleValidationError pravidlo = result.getPravidlo(kodPravidla);
                 if (pravidlo == null) {
                     fail(() -> "SIP: " + path + ", Pravidlo: " + kodPravidla
                             + ", ocekavana Chyba, ale bylo OK");

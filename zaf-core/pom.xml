@@ -71,10 +71,10 @@
 			<groupId>org.apache.tika</groupId>
 			<artifactId>tika-core</artifactId>
 		</dependency>
-		<!--<dependency>
+		<dependency>
 			<groupId>org.apache.tika</groupId>
-			<artifactId>tika-parsers</artifactId>
-		</dependency>-->
+			<artifactId>tika-parsers-standard-package</artifactId>
+		</dependency>
 		<!-- Tika depdendecies to eliminate warnings -->
 		<dependency>
 			<groupId>org.apache.pdfbox</groupId>

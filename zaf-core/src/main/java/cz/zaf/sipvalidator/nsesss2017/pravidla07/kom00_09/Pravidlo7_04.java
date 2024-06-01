@@ -30,7 +30,7 @@ import cz.zaf.sipvalidator.pdfa.ValidationResult;
 import cz.zaf.sipvalidator.pdfa.VeraValidatorProxy;
 
 //
-// Obsahova 99
+// Komponent 04
 //
 // Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských
 // elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element
