@@ -6,10 +6,10 @@ import java.nio.file.Path;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.pravidla01.DatCheckRuleBase;
+import cz.zaf.sipvalidator.nsesss2017.PravidloBase;
 import cz.zaf.sipvalidator.sip.SipInfo;
 
-public class Pravidlo3 extends DatCheckRuleBase {
+public class Pravidlo3 extends PravidloBase {
 
     static final public String KOD = "dat3";
 

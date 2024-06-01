@@ -6,7 +6,6 @@
 package cz.zaf.sipvalidator.nsesss2017;
 
 import cz.zaf.common.validation.SimpleRuleContext;
-import cz.zaf.sipvalidator.nsesss2017.pravidla04.NsCheckRule;
 import cz.zaf.sipvalidator.nsesss2017.pravidla04.ns00_09.Pravidlo1;
 import cz.zaf.sipvalidator.nsesss2017.pravidla04.ns00_09.Pravidlo2;
 
@@ -29,7 +28,7 @@ public class K04_JmennychProstoruXML
 
         SimpleRuleContext<KontrolaNsess2017Context> namespCheckContext = new SimpleRuleContext<>(ctx);
 
-        NsCheckRule rules[] = {
+        PravidloBase rules[] = {
                 new Pravidlo1(),
                 new Pravidlo2(),
         };

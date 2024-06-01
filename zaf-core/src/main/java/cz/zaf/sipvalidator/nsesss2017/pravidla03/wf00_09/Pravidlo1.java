@@ -8,11 +8,11 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.pravidla03.WfCheckRuleBase;
+import cz.zaf.sipvalidator.nsesss2017.PravidloBase;
 import cz.zaf.sipvalidator.sip.SipInfo;
 
 // Soubor obsahuje právě jeden kořenový element <mets:mets>.
-public class Pravidlo1 extends WfCheckRuleBase {
+public class Pravidlo1 extends PravidloBase {
 
     static final public String KOD = "wf1";
 

@@ -1,9 +1,12 @@
-package cz.zaf.sipvalidator.nsesss2017.pravidla04;
+package cz.zaf.sipvalidator.nsesss2017;
 
+import cz.zaf.common.validation.Rule;
 import cz.zaf.common.validation.SimpleRuleContext;
-import cz.zaf.sipvalidator.nsesss2017.KontrolaNsess2017Context;
 
-public abstract class NsCheckRuleBase implements NsCheckRule {
+/**
+ * Vychozi trida pro jednoducha pravidla
+ */
+public abstract class PravidloBase implements Rule<SimpleRuleContext<KontrolaNsess2017Context>> {
 
     final protected String kodPravidla;
     final protected String textPravidla;
@@ -12,7 +15,7 @@ public abstract class NsCheckRuleBase implements NsCheckRule {
 
     protected SimpleRuleContext<KontrolaNsess2017Context> ctx;
 
-    public NsCheckRuleBase(final String kodPravidla,
+    public PravidloBase(final String kodPravidla,
                             final String textPravidla,
                             final String obecnyPopisChyby,
                             final String zdrojChyby) {

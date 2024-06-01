@@ -14,10 +14,10 @@ import com.ibm.icu.text.CharsetMatch; // lib ucu4j-56.jar
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.pravidla02.KodCheckRuleBase;
+import cz.zaf.sipvalidator.nsesss2017.PravidloBase;
 
 // Znakovou sadou souboru je Unicode/UCS v kódování UTF-8 bez BOM (Byte order mark).
-public class Pravidlo1 extends KodCheckRuleBase {
+public class Pravidlo1 extends PravidloBase {
 
     static final public String KOD = "kod1";
     

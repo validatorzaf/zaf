@@ -5,8 +5,7 @@
  */
 package cz.zaf.sipvalidator.nsesss2017;
 
-import cz.zaf.sipvalidator.nsesss2017.pravidla03.WfCheckContext;
-import cz.zaf.sipvalidator.nsesss2017.pravidla03.WfCheckRule;
+import cz.zaf.common.validation.SimpleRuleContext;
 import cz.zaf.sipvalidator.nsesss2017.pravidla03.wf00_09.Pravidlo1;
 
 /**
@@ -14,7 +13,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla03.wf00_09.Pravidlo1;
  * 
  */
 public class K03_Spravnosti
-        extends KontrolaBase<WfCheckContext> {
+        extends KontrolaBase<SimpleRuleContext<KontrolaNsess2017Context>> {
 
     static final public String NAME = "správnosti XML";
 
@@ -25,9 +24,9 @@ public class K03_Spravnosti
     @Override
     public void validateImpl() {
 
- 	   WfCheckContext wfCheckContext = new WfCheckContext(ctx);
+        SimpleRuleContext<KontrolaNsess2017Context> wfCheckContext = new SimpleRuleContext<>(ctx);
 
- 	   WfCheckRule rules[] = {
+        PravidloBase rules[] = {
                 new Pravidlo1(),
         };
 

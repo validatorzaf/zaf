@@ -4,10 +4,10 @@ import org.w3c.dom.Node;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.pravidla04.NsCheckRuleBase;
+import cz.zaf.sipvalidator.nsesss2017.PravidloBase;
 
 // Soubor obsahuje právě jeden kořenový element <mets:mets>.
-public class Pravidlo1 extends NsCheckRuleBase {
+public class Pravidlo1 extends PravidloBase {
 
     static final public String KOD = "ns1";
 

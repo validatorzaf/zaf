@@ -5,8 +5,7 @@
  */
 package cz.zaf.sipvalidator.nsesss2017;
 
-import cz.zaf.sipvalidator.nsesss2017.pravidla02.KodCheckContext;
-import cz.zaf.sipvalidator.nsesss2017.pravidla02.KodCheckRule;
+import cz.zaf.common.validation.SimpleRuleContext;
 import cz.zaf.sipvalidator.nsesss2017.pravidla02.kod00_09.Pravidlo1;
 
 /**
@@ -16,7 +15,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla02.kod00_09.Pravidlo1;
  * 
  */
 public class K02_ZnakoveSady
-        extends KontrolaBase<KodCheckContext> {
+        extends KontrolaBase<SimpleRuleContext<KontrolaNsess2017Context>> {
 
     static final public String NAME = "znakové sady";
     
@@ -27,9 +26,9 @@ public class K02_ZnakoveSady
     @Override
     public void validateImpl() {
 
-        KodCheckContext kodCheckContext = new KodCheckContext(ctx);
+        SimpleRuleContext<KontrolaNsess2017Context> kodCheckContext = new SimpleRuleContext<>(ctx);
 
-        KodCheckRule rules[] = {
+        PravidloBase rules[] = {
                 new Pravidlo1(),
         };
 

@@ -6,8 +6,7 @@
 package cz.zaf.sipvalidator.nsesss2017;
 
 
-import cz.zaf.sipvalidator.nsesss2017.pravidla01.DatCheckContext;
-import cz.zaf.sipvalidator.nsesss2017.pravidla01.DatCheckRule;
+import cz.zaf.common.validation.SimpleRuleContext;
 import cz.zaf.sipvalidator.nsesss2017.pravidla01.dat00_09.Pravidlo1;
 import cz.zaf.sipvalidator.nsesss2017.pravidla01.dat00_09.Pravidlo2;
 import cz.zaf.sipvalidator.nsesss2017.pravidla01.dat00_09.Pravidlo3;
@@ -18,7 +17,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla01.dat00_09.Pravidlo3;
  * 
  */
 public class K01_DatoveStruktury
-        extends KontrolaBase<DatCheckContext>
+        extends KontrolaBase<SimpleRuleContext<KontrolaNsess2017Context>>
 {
 	
     static final public String NAME = "datové struktury";
@@ -31,9 +30,9 @@ public class K01_DatoveStruktury
 	@Override
     public void validateImpl() {
 
-        DatCheckContext datCheckContext = new DatCheckContext(ctx);
+        SimpleRuleContext<KontrolaNsess2017Context> datCheckContext = new SimpleRuleContext<>(ctx);
 
-        DatCheckRule rules[] = {
+        PravidloBase rules[] = {
                 new Pravidlo1(),
                 new Pravidlo2(),
                 new Pravidlo3(),

@@ -8,8 +8,7 @@ package cz.zaf.sipvalidator.nsesss2017;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
-import cz.zaf.sipvalidator.nsesss2017.pravidla00.VirCheckContext;
-import cz.zaf.sipvalidator.nsesss2017.pravidla00.VirCheckRule;
+import cz.zaf.common.validation.SimpleRuleContext;
 import cz.zaf.sipvalidator.nsesss2017.pravidla00.vir00_09.Pravidlo1;
 
 
@@ -18,7 +17,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla00.vir00_09.Pravidlo1;
  * 
  */
 public class K00_SkodlivehoKodu
-        extends KontrolaBase<VirCheckContext>
+        extends KontrolaBase<SimpleRuleContext<KontrolaNsess2017Context>>
 {
 	
 	static public final String NAME = "škodlivého kódu";
@@ -51,10 +50,10 @@ public class K00_SkodlivehoKodu
 
 	@Override
     public void validateImpl() {
-        VirCheckContext virtCheckContext = new VirCheckContext(kontrolaOk, errorDescr);
+        SimpleRuleContext<KontrolaNsess2017Context> virtCheckContext = new SimpleRuleContext<>(ctx);
         
-        VirCheckRule rules[] = {
-                new Pravidlo1()
+        PravidloBase rules[] = {
+                new Pravidlo1(kontrolaOk, errorDescr)
         };
 
         provedKontrolu(virtCheckContext, rules);
