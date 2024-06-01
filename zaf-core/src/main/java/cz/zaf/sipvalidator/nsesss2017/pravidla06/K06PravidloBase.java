@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.Validate;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
@@ -14,7 +13,7 @@ import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.common.exceptions.codes.ErrorCode;
 import cz.zaf.common.result.EntityId;
-import cz.zaf.common.validation.Rule;
+import cz.zaf.common.validation.BaseRule;
 import cz.zaf.common.xml.PositionalXMLReader;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.MetsParser;
@@ -27,7 +26,7 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
  * Kazde takove pravidlo vytvari prave jeden zaznam ve vystupu
  *
  */
-public abstract class K06PravidloBase implements Rule<K06KontrolaContext> {
+public abstract class K06PravidloBase extends BaseRule<K06KontrolaContext> {
 
     /**
      * Výstupní datový formát: Neprovádění kontroly, pokud byla základní entita
@@ -36,11 +35,6 @@ public abstract class K06PravidloBase implements Rule<K06KontrolaContext> {
     final public static LocalDate ROZHODNE_DATUM_VYSTUPNI_FORMAT = LocalDate.parse("2012-07-31");
 
     protected K06KontrolaContext kontrola;
-
-    final protected String kodPravidla;
-    final protected String textPravidla;
-    final protected String obecnyPopisChyby;
-    final protected String zdrojChyby;
 
     /**
      * Volitelný seznam entit, kde byla identifikována chyba
@@ -53,13 +47,7 @@ public abstract class K06PravidloBase implements Rule<K06KontrolaContext> {
             final String textPravidla,
             final String obecnyPopisChyby,
             final String zdrojChyby) {
-        Validate.notNull(kodPravidla);
-        Validate.notNull(textPravidla);
-
-        this.kodPravidla = kodPravidla;
-        this.textPravidla = textPravidla;
-        this.obecnyPopisChyby = obecnyPopisChyby;
-        this.zdrojChyby = zdrojChyby;
+        super(kodPravidla, textPravidla, obecnyPopisChyby, zdrojChyby);
     }
 
     /**
@@ -182,26 +170,6 @@ public abstract class K06PravidloBase implements Rule<K06KontrolaContext> {
     static public void nastavChybu(ErrorCode errorCode, String detailChyby, final String mistoChyby,
             final List<EntityId> entityIds) {
         throw pripravChybu(errorCode, detailChyby).setMistoChyby(mistoChyby).addEntity(entityIds);
-    }
-
-    @Override
-    public String getCode() {
-        return kodPravidla;
-    }
-
-    @Override
-    public String getDescription() {
-        return textPravidla;
-    }
-
-    @Override
-    public String getGenericError() {
-        return obecnyPopisChyby;
-    }
-
-    @Override
-    public String getRuleSource() {
-        return zdrojChyby;
     }
 
     protected String getJmenoIdentifikator(Element node) {
