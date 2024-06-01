@@ -41,7 +41,7 @@ import cz.zaf.schema.validacesip.TPravidlo;
 import cz.zaf.schema.validacesip.TSip;
 import cz.zaf.schema.validacesip.TTypEntity;
 import cz.zaf.schema.validacesip.TVysledekKontroly;
-import cz.zaf.sipvalidator.nsesss2017.EntityId;
+import cz.zaf.sipvalidator.nsesss2017.DruhEntity;
 import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBElement;
@@ -227,10 +227,11 @@ public class XmlProtokolWriterOld implements ProtokolWriter
             List<TIdentifikator> idents = entityNode.getIdentifikator();
             for (EntityId entityId : entityIds) {
                 TIdentifikator ident = objectFactory.createTIdentifikator();
-                ident.setZdroj(entityId.getZdrojIdent().getZdroj());
-                ident.setValue(entityId.getZdrojIdent().getIdentifikator());
+                ident.setZdroj(entityId.getId().getSource());
+                ident.setValue(entityId.getId().getIdentifier());
                 TTypEntity typEntity = null;
-                switch (entityId.getDruhEntity()) {
+                EntityType entityType = entityId.getEntityType();
+                switch ((DruhEntity) entityType) {
                 case SPISOVY_PLAN:
                     typEntity = TTypEntity.SPISOVÝ_PLÁN;
                     break;

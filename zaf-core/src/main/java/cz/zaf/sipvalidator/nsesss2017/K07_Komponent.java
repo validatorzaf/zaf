@@ -18,7 +18,7 @@ public class K07_Komponent extends KontrolaBase<K07KontrolaContext> {
     }
 
     @Override
-    void provedKontrolu() {
+    protected void validateImpl() {
         K07KontrolaContext kontrolaCtx = new K07KontrolaContext(ctx.getMetsParser(), ctx);
 
         provedKontrolu(kontrolaCtx, pravidla);

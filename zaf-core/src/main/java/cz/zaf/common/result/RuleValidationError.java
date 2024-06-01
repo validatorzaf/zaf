@@ -13,13 +13,12 @@ import cz.zaf.schema.validace_v1.TEntity;
 import cz.zaf.schema.validace_v1.TIdentifikator;
 import cz.zaf.schema.validace_v1.TPravidlo;
 import cz.zaf.schema.validace_v1.TTypEntity;
-import cz.zaf.sipvalidator.nsesss2017.EntityId;
 
 /**
  * Vysledek kontroly jednoho pravidla
  * 
  */
-public abstract class RuleValidationError {
+public class RuleValidationError {
     /**
      * Identifikator kontroly
      * Pouziva se v report XML pro jeji oznaceni
@@ -144,5 +143,30 @@ public abstract class RuleValidationError {
         return entityIds;
     }
     
-    public abstract void zapisDetail(TPravidlo pravNode);
+    public void zapisDetail(TPravidlo pravNode) {
+        List<EntityId> entityIds = this.getEntityIds();
+        if (CollectionUtils.isNotEmpty(entityIds)) {
+            TEntity entityNode = XmlProtokolWriter.objectFactory.createTEntity();
+            List<TIdentifikator> idents = entityNode.getIdentifikator();
+            for (EntityId entityId : entityIds) {
+                TIdentifikator ident = XmlProtokolWriter.objectFactory.createTIdentifikator();
+                ident.setZdroj(entityId.getId().getSource());
+                ident.setValue(entityId.getId().getIdentifier());
+                TTypEntity typEntity = null;
+                EntityType entityType = entityId.getEntityType();
+                if (entityType != null) {
+                    typEntity = entityType.getTypEntity();
+                }
+                if (typEntity == null) {
+                    continue;
+                }
+                ident.setTyp(typEntity);
+
+                idents.add(ident);
+            }
+            if (idents.size() > 0) {
+                pravNode.setEntity(entityNode);
+            }
+        }
+    }
 }

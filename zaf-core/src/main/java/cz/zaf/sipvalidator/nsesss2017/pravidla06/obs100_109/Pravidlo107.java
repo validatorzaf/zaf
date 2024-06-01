@@ -16,8 +16,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.common.result.EntityId;
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.EntityId;
 import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.NsesssV3;

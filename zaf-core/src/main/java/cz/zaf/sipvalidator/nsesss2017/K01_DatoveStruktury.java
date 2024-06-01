@@ -29,7 +29,7 @@ public class K01_DatoveStruktury
 
 
 	@Override
-    public void provedKontrolu() {
+    public void validateImpl() {
 
         DatCheckContext datCheckContext = new DatCheckContext(ctx);
 

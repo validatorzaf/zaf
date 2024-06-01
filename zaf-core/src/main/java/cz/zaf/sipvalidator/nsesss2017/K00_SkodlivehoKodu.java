@@ -50,7 +50,7 @@ public class K00_SkodlivehoKodu
 	}
 
 	@Override
-    public void provedKontrolu() {
+    public void validateImpl() {
         VirCheckContext virtCheckContext = new VirCheckContext(kontrolaOk, errorDescr);
         
         VirCheckRule rules[] = {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cz.zaf.common.exceptions.codes.ErrorCode;
-import cz.zaf.sipvalidator.nsesss2017.EntityId;
+import cz.zaf.common.result.EntityId;
 
 public class ZafException extends RuntimeException {
 

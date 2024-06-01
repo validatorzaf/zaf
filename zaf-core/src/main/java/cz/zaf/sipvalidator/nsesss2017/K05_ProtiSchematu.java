@@ -23,6 +23,7 @@ import org.xml.sax.SAXException;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.common.result.RuleValidationError;
+import cz.zaf.common.validation.SimpleRuleContext;
 import cz.zaf.sipvalidator.sip.SipInfo;
 
 /**
@@ -30,7 +31,7 @@ import cz.zaf.sipvalidator.sip.SipInfo;
  * 
  */
 public class K05_ProtiSchematu
-        extends KontrolaBase {
+        extends KontrolaBase<SimpleRuleContext<KontrolaNsess2017Context>> {
     static final public String NAME = "proti schématu";
 
     static final public String VAL1 = "val1";
@@ -71,7 +72,7 @@ public class K05_ProtiSchematu
     }
 
     @Override
-    public void provedKontrolu() {
+    public void validateImpl() {
 
         String detailChyby;
         SipInfo file = ctx.getSip();
@@ -95,7 +96,7 @@ public class K05_ProtiSchematu
 
         String obecnyPopisChyby = VAL1_POPIS_CHYBY;
 
-        RuleValidationError p = new ChybaPravidlaNsesss2017(VAL1,
+        RuleValidationError p = new RuleValidationError(VAL1,
                 VAL1_TEXT,
                 detailChyby,
                 obecnyPopisChyby,

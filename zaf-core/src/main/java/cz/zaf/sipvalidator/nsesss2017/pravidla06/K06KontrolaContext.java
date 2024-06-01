@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.w3c.dom.Element;
 
+import cz.zaf.common.result.EntityId;
 import cz.zaf.common.validation.RuleEvaluationContext;
-import cz.zaf.sipvalidator.nsesss2017.EntityId;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.KontrolaNsess2017Context;
 import cz.zaf.sipvalidator.nsesss2017.MetsParser;

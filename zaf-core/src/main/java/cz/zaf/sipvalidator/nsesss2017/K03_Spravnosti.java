@@ -23,7 +23,7 @@ public class K03_Spravnosti
     }
 
     @Override
-    public void provedKontrolu() {
+    public void validateImpl() {
 
  	   WfCheckContext wfCheckContext = new WfCheckContext(ctx);
 

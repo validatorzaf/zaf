@@ -33,11 +33,7 @@ public interface ValidationResult {
      * @return
      */
     default boolean isFailed() {
-        return isFailed(this);
-    }
-
-    static boolean isFailed(ValidationResult vr) {
-        List<ValidationLayerResult> kontroly = vr.getValidationLayerResults();
+        List<ValidationLayerResult> kontroly = getValidationLayerResults();
         if (kontroly == null || kontroly.size() == 0) {
             // not failed if empty
             return false;

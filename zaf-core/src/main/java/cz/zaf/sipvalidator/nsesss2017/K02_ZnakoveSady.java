@@ -25,7 +25,7 @@ public class K02_ZnakoveSady
     }
 
     @Override
-    public void provedKontrolu() {
+    public void validateImpl() {
 
         KodCheckContext kodCheckContext = new KodCheckContext(ctx);
 

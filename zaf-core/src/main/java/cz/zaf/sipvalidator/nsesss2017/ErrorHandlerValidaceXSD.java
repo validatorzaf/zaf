@@ -101,7 +101,7 @@ public class ErrorHandlerValidaceXSD implements ErrorHandler {
             textChyby += " " +celaChybovaHlaska;
         }
 
-        RuleValidationError p = new ChybaPravidlaNsesss2017(K05_ProtiSchematu.VAL1,
+        RuleValidationError p = new RuleValidationError(K05_ProtiSchematu.VAL1,
                 K05_ProtiSchematu.VAL1_TEXT,
                 textChyby,
                 K05_ProtiSchematu.VAL1_POPIS_CHYBY,

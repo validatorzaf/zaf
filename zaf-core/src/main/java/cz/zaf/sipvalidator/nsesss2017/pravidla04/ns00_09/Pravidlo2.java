@@ -6,7 +6,6 @@ import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla04.NsCheckRuleBase;
-import cz.zaf.sipvalidator.sip.SipInfo;
 
 // Element <mets:mets> obsahuje atribut xsi:schemaLocation s hodnotou http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 TransakcniProtokolNavrh_verze1.7.xsd
 // nebo s hodnotou http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 http://www.mvcr.cz/nsesss/v3/nsesss-TrP.xsd.
@@ -23,7 +22,6 @@ public class Pravidlo2 extends NsCheckRuleBase {
 
     @Override
     protected void kontrola() {
-        boolean stav = false;
         String detailChyby = null;
 
         Node metsMets = this.ctx.getContext().getMetsParser().getMetsRootNode();
@@ -34,10 +32,10 @@ public class Pravidlo2 extends NsCheckRuleBase {
             if (ValuesGetter.hasAttribut(metsMets, "xsi:schemaLocation")) 
             {
                 String hodnota = ValuesGetter.getValueOfAttribut(metsMets, "xsi:schemaLocation");
-                if (hodnota.equals("http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 TransakcniProtokolNavrh_verze1.7.xsd")
-                    == false && 
-                    hodnota.equals("http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 http://www.mvcr.cz/nsesss/v3/nsesss-TrP.xsd")
-                    == false) 
+                if (!hodnota.equals(
+                                    "http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 TransakcniProtokolNavrh_verze1.7.xsd")
+                        &&
+                        !hodnota.equals("http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 http://www.mvcr.cz/nsesss/v3/nsesss-TrP.xsd")) 
                 {
                 	detailChyby = "Schéma v souboru SIP je špatně uvedeno, hodnota: " + hodnota;
                     throw new ZafException(BaseCode.CHYBA, detailChyby);

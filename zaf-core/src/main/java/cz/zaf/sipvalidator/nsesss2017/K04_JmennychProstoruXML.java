@@ -5,7 +5,7 @@
  */
 package cz.zaf.sipvalidator.nsesss2017;
 
-import cz.zaf.sipvalidator.nsesss2017.pravidla04.NsCheckContext;
+import cz.zaf.common.validation.SimpleRuleContext;
 import cz.zaf.sipvalidator.nsesss2017.pravidla04.NsCheckRule;
 import cz.zaf.sipvalidator.nsesss2017.pravidla04.ns00_09.Pravidlo1;
 import cz.zaf.sipvalidator.nsesss2017.pravidla04.ns00_09.Pravidlo2;
@@ -15,7 +15,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla04.ns00_09.Pravidlo2;
  * 
  */
 public class K04_JmennychProstoruXML
-        extends KontrolaBase<NsCheckContext> {
+        extends KontrolaBase<SimpleRuleContext<KontrolaNsess2017Context>> {
             
     static final public String NAME = "jmenných prostorů";
 
@@ -25,9 +25,9 @@ public class K04_JmennychProstoruXML
 
 
 	@Override
-    public void provedKontrolu() {
+    public void validateImpl() {
 
-        NsCheckContext namespCheckContext = new NsCheckContext(ctx);
+        SimpleRuleContext<KontrolaNsess2017Context> namespCheckContext = new SimpleRuleContext<>(ctx);
 
         NsCheckRule rules[] = {
                 new Pravidlo1(),

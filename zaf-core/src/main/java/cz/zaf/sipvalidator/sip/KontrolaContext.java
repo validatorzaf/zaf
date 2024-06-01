@@ -11,7 +11,7 @@ import cz.zaf.common.validation.ValidationLayerContext;
  * Kontext provadene kontroly
  *
  */
-public class KontrolaContext implements ValidationLayerContext {
+public abstract class KontrolaContext implements ValidationLayerContext {
 
 	/**
 	 * SIP nad nimz je provadena kontrola
@@ -28,8 +28,9 @@ public class KontrolaContext implements ValidationLayerContext {
         this.excludeChecks.addAll(excludeCheckList);
 	}
 
-    public boolean isExcluded(String checkId) {
-        return excludeChecks.contains(checkId);
+    @Override
+    public boolean isExcluded(String ruleCode) {
+        return excludeChecks.contains(ruleCode);
     }
 
 	public SipInfo getSip() {

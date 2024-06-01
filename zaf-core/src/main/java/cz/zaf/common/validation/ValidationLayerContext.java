@@ -15,4 +15,13 @@ public interface ValidationLayerContext {
     default void addLayerResult(ValidationLayerResult vlr) {
         getValidationResult().getValidationLayerResults().add(vlr);
     }
+
+    /**
+     * Return if rule is excluded
+     * 
+     * @param code
+     * @return
+     */
+    boolean isExcluded(String code);
+
 }

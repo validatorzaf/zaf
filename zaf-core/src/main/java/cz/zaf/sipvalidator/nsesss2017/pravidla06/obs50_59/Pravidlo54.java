@@ -14,12 +14,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.common.result.EntityId;
+import cz.zaf.common.result.EntityType;
+import cz.zaf.common.result.IndetifierWithSource;
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.EntityId;
-import cz.zaf.sipvalidator.nsesss2017.EntityId.DruhEntity;
+import cz.zaf.sipvalidator.nsesss2017.DruhEntity;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
 import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.PairZdrojIdent;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -52,7 +53,7 @@ public class Pravidlo54 extends K06PravidloBase {
      */
     List<Entita> listEntit = new ArrayList<>();
 
-    private Map<PairZdrojIdent, Entita> entitaMap = new HashMap<>();
+    private Map<IndetifierWithSource, Entita> entitaMap = new HashMap<>();
 
     /**
      * DMD ID to entity
@@ -118,7 +119,7 @@ public class Pravidlo54 extends K06PravidloBase {
             // 
             for (Element entElem : listHledanychEntit) {
                 EntityId entitaId = K06_Obsahova.getEntityId(entElem);
-                PairZdrojIdent zdrojIdent = entitaId.getZdrojIdent();
+                IndetifierWithSource zdrojIdent = entitaId.getId();
                 Entita entita = getOrCreateEntity(zdrojIdent);
 
                 String id = hodnotaAtributu(entElem, "ID");
@@ -152,7 +153,7 @@ public class Pravidlo54 extends K06PravidloBase {
      * @param zdrojIdent
      * @return
      */
-    private Entita getOrCreateEntity(PairZdrojIdent zdrojIdent) {
+    private Entita getOrCreateEntity(IndetifierWithSource zdrojIdent) {
         Entita entita = entitaMap.get(zdrojIdent);
         if (entita == null) {
             entita = createEntity();
@@ -322,7 +323,7 @@ public class Pravidlo54 extends K06PravidloBase {
                 OdkazDmdSec dmd = it.next();
                 // porovnani hodnot
                 // staci porovnat typ
-                if (!prvniDmd.getEntityId().getDruhEntity().equals(dmd.getEntityId().getDruhEntity())) {
+                if (!prvniDmd.getEntityId().getEntityType().equals(dmd.getEntityId().getEntityType())) {
                     nastavChybu(BaseCode.CHYBNY_ELEMENT,
                                 "Entity nsesss se shodnými identifikátory nemají stejný typ.",
                                 getDmdElements(), prvniDmd.getEntityId());
@@ -360,8 +361,8 @@ public class Pravidlo54 extends K06PravidloBase {
                 // je to tedy mozne jen nad urovni dokumentu vyse
                 // konkretne: spisovy plan, věcné skupiny, spisu, součásti, dílu
                 OdkazDmdSec odkazDmdSec = odkazyDmdSec.get(0);
-                DruhEntity druhEntity = odkazDmdSec.getEntityId().getDruhEntity();
-                if (druhEntity == DruhEntity.KOMPONENTA || druhEntity == DruhEntity.DOKUMENT) {
+                EntityType druhEntity = odkazDmdSec.getEntityId().getEntityType();
+                if (DruhEntity.KOMPONENTA == druhEntity || DruhEntity.DOKUMENT == druhEntity) {
                     List<Element> listkomponent = getDmdElements();
                     nastavChybu(BaseCode.CHYBNY_ELEMENT, "Entita v dmdSec je uvedena vícekrát.",
                                 listkomponent, odkazDmdSec.getEntityId());
@@ -381,7 +382,7 @@ public class Pravidlo54 extends K06PravidloBase {
             Element elMetsDivParent = (Element) odkazMetsDiv.getElMetsDiv().getParentNode();
             EntityId entityId = odkazDmdSec.getEntityId();
             // kontrola, zda je entita korenova (spisovy plan)
-            if (entityId.getDruhEntity().equals(DruhEntity.SPISOVY_PLAN)) {
+            if (entityId.getEntityType().equals(DruhEntity.SPISOVY_PLAN)) {
                 String elMetsDivParentName = elMetsDivParent.getNodeName();
                 // musi byt primo pod strukturalni mapou, jinak chyba
                 if (!MetsElements.STRUCTMAP.equals(elMetsDivParentName)) {
@@ -408,11 +409,12 @@ public class Pravidlo54 extends K06PravidloBase {
                                 OdkazDmdSec odkazDmdSecParent,
                                 OdkazMetsDiv odkazMetsDiv) {
             Element elOdkazu = odkazDmdSec.getElement();
-            DruhEntity druhEntity = odkazDmdSec.getEntityId().getDruhEntity();
+            EntityType druhEntity = odkazDmdSec.getEntityId().getEntityType();
 
-            DruhEntity parentDruhEntity = odkazDmdSecParent.getEntityId().getDruhEntity();
+            EntityType parentDruhEntity = odkazDmdSecParent.getEntityId().getEntityType();
             Element parentElement = null;
-            switch (druhEntity) {
+            // TODO: refactor without retyping
+            switch ((DruhEntity) druhEntity) {
             case VECNA_SKUPINA:
                 if (DruhEntity.SPISOVY_PLAN.equals(parentDruhEntity)) {
                     parentElement = ValuesGetter.getXChild(elOdkazu, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
@@ -465,9 +467,9 @@ public class Pravidlo54 extends K06PravidloBase {
             } else {
                 EntityId nalezenyRodicEntityId = K06_Obsahova.getEntityId(parentElement);
 
-                PairZdrojIdent parentIdentZdroj = odkazDmdSecParent.getEntityId().getZdrojIdent();
+                IndetifierWithSource parentIdentZdroj = odkazDmdSecParent.getEntityId().getId();
 
-                if (!parentIdentZdroj.equals(nalezenyRodicEntityId.getZdrojIdent())) {
+                if (!parentIdentZdroj.equals(nalezenyRodicEntityId.getId())) {
                     nastavChybu(BaseCode.CHYBNY_ELEMENT,
                                 "Nenalezen očekávaný rodičovský element. Rodič nemá očekávané hodnoty v identifikátoru",
                                 Arrays.asList(odkazDmdSec.getElement(), odkazDmdSecParent.getElement(),
@@ -494,10 +496,10 @@ public class Pravidlo54 extends K06PravidloBase {
 
         final Element element;
         final String id;
-        final PairZdrojIdent zdrojIdent;
+        final IndetifierWithSource zdrojIdent;
 
         public OdkazAmdSec(final Element elAmdSec, final String id,
-                           final PairZdrojIdent zdrojIdent) {
+                           final IndetifierWithSource zdrojIdent) {
             this.element = elAmdSec;
             this.id = id;
             this.zdrojIdent = zdrojIdent;
@@ -511,7 +513,7 @@ public class Pravidlo54 extends K06PravidloBase {
             return id;
         }
 
-        public PairZdrojIdent getZdrojIdent() {
+        public IndetifierWithSource getZdrojIdent() {
             return zdrojIdent;
         }
 
@@ -568,7 +570,7 @@ public class Pravidlo54 extends K06PravidloBase {
         String id = hodnotaAtributu(elAmdSec, "ID");
         String identifikatorHodnota = elHodnotaID.getTextContent();
         String identifikatorZdroj = elZdroj.getTextContent();
-        PairZdrojIdent zdrojIdent = new PairZdrojIdent(identifikatorZdroj, identifikatorHodnota);
+        IndetifierWithSource zdrojIdent = new IndetifierWithSource(identifikatorZdroj, identifikatorHodnota);
 
         return new OdkazAmdSec(elIdentifikator, id, zdrojIdent);
     }

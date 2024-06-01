@@ -1,5 +1,8 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla04;
 
+import cz.zaf.common.validation.SimpleRuleContext;
+import cz.zaf.sipvalidator.nsesss2017.KontrolaNsess2017Context;
+
 public abstract class NsCheckRuleBase implements NsCheckRule {
 
     final protected String kodPravidla;
@@ -7,7 +10,7 @@ public abstract class NsCheckRuleBase implements NsCheckRule {
     final protected String obecnyPopisChyby;
     final protected String zdrojChyby;
 
-    protected NsCheckContext ctx;
+    protected SimpleRuleContext<KontrolaNsess2017Context> ctx;
 
     public NsCheckRuleBase(final String kodPravidla,
                             final String textPravidla,
@@ -40,7 +43,7 @@ public abstract class NsCheckRuleBase implements NsCheckRule {
     }
 
     @Override
-    public void eval(NsCheckContext ctx) {
+    public void eval(SimpleRuleContext<KontrolaNsess2017Context> ctx) {
         this.ctx = ctx;
         kontrola();
         this.ctx = null;

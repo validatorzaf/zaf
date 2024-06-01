@@ -14,8 +14,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.common.exceptions.codes.ErrorCode;
+import cz.zaf.common.result.EntityId;
+import cz.zaf.common.result.IndetifierWithSource;
 import cz.zaf.common.validation.Rule;
-import cz.zaf.sipvalidator.nsesss2017.EntityId.DruhEntity;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06KontrolaContext;
 import cz.zaf.sipvalidator.sip.SipInfo;
 
@@ -132,7 +133,7 @@ public class K06_Obsahova
             hodnota = identNode.getTextContent();
             zdroj = ValuesGetter.getValueOfAttribut(identNode, "zdroj");
         }
-        PairZdrojIdent zdrojIdent = new PairZdrojIdent(zdroj, hodnota);
+        IndetifierWithSource zdrojIdent = new IndetifierWithSource(zdroj, hodnota);
 
         return new EntityId(druhEntity, zdrojIdent);
 
@@ -244,7 +245,7 @@ public class K06_Obsahova
     }
 
     @Override
-    public void provedKontrolu() {
+    public void validateImpl() {
 
         K06KontrolaContext k06KontrolaContext = new K06KontrolaContext(ctx.getMetsParser(), ctx);
         provedKontrolu(k06KontrolaContext, seznamPravidel);

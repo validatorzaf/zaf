@@ -11,9 +11,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.common.result.IndetifierWithSource;
 import cz.zaf.sipvalidator.nsesss2017.CompareNodes;
 import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.PairZdrojIdent;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
@@ -31,7 +31,7 @@ public class Pravidlo59 extends K06PravidloBase {
     //OBSAHOVÁ č.59 Žádná entita (od spisového plánu po dokument) nebo objekt <nsesss:Komponenta>, <nsesss:BezpecnostniKategorie>, <nsesss:SkartacniRezim> nebo <nsesss:TypDokumentu> neobsahuje stejné hodnoty elementu <nsesss:Identifikator> a jeho atributu zdroj a současně odlišné hodnoty v ostatních elementech, jako má jiná entita nebo objekt uvedeného typu, kromě atributu ID uvedené entity.
     @Override
     protected void kontrola() {
-        Map<PairZdrojIdent, List<Element>> identMap = new HashMap<>();
+        Map<IndetifierWithSource, List<Element>> identMap = new HashMap<>();
         List<Element> identList = metsParser.getNodes(NsesssV3.IDENTIFIKATOR);
         for (Element ident : identList) {
             // get parent entity
@@ -44,14 +44,14 @@ public class Pravidlo59 extends K06PravidloBase {
             String hodnotaIdentifikatoru = ident.getTextContent();
             String hodnotaAtrZdroj = ValuesGetter.getValueOfAttribut(ident, "zdroj");
 
-            PairZdrojIdent pair = new PairZdrojIdent(hodnotaAtrZdroj, hodnotaIdentifikatoru);
+            IndetifierWithSource pair = new IndetifierWithSource(hodnotaAtrZdroj, hodnotaIdentifikatoru);
 
             List<Element> nodeList = identMap.computeIfAbsent(pair, (p) -> new ArrayList<>());
             nodeList.add(parentNode);
         }
 
         // Porovnani uzlu se shodnymi ident
-        for (Entry<PairZdrojIdent, List<Element>> entry : identMap.entrySet()) {
+        for (Entry<IndetifierWithSource, List<Element>> entry : identMap.entrySet()) {
             List<Element> nodeList = entry.getValue();
 
             Iterator<Element> it = nodeList.iterator();
