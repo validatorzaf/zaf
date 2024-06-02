@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -19,16 +20,21 @@ import cz.zaf.common.xml.PositionalXMLReader;
 
 public class EadLoader implements Closeable, ValidationInput, ValidationResult {
 
-    private Path filePath;
+    private final Path filePath;
     private Exception parserError;
 
     private Document document;
 
     final protected List<ValidationLayerResult> validationResults = new ArrayList<>();
 
-    public EadLoader(Path filePath) {
+    public EadLoader(final Path filePath) {
+        Objects.requireNonNull(filePath);
+
         this.filePath = filePath;
-        init();
+    }
+
+    public Path getFilePath() {
+        return filePath;
     }
 
     public Exception getParserError() {
@@ -42,7 +48,7 @@ public class EadLoader implements Closeable, ValidationInput, ValidationResult {
     /**
      * Load EAD from file
      */
-    private void init() {
+    public void load() {
         try (InputStream is = Files.newInputStream(filePath)) {
             PositionalXMLReader xmlReader = new PositionalXMLReader();
             document = xmlReader.readXML(is);

@@ -23,6 +23,6 @@ public class EadValidationContext implements RuleEvaluationContext, ValidationLa
 
     @Override
     public boolean isExcluded(String code) {
-        return true;
+        return false;
     }
 }

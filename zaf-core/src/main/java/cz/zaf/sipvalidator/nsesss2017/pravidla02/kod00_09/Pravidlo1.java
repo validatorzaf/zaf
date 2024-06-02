@@ -58,10 +58,10 @@ public class Pravidlo1 extends PravidloBase {
         }
     }
 
-    private String getKodovaniVDeklaraci() throws ZafException {
+    private String nactiKodovaniVDeklaraci() throws ZafException {
         try (InputStream is = Files.newInputStream(ctx.getContext().getSip().getCestaMets())) {
             // lib commons-io-2.4
-            BOMInputStream bomIn = new BOMInputStream(is, false);
+            BOMInputStream bomIn = BOMInputStream.builder().setInputStream(is).get();
             if (bomIn.hasBOM()) {
                 String chybaKodovani = "Soubor obsahuje chybně BOM prefix.";
                 throw new ZafException(BaseCode.CHYBA, chybaKodovani);
@@ -92,7 +92,7 @@ public class Pravidlo1 extends PravidloBase {
             throw new ZafException(BaseCode.CHYBA, "Soubor mets.xml neexistuje.");
         }
         
-        String vDeklaraci = getKodovaniVDeklaraci();
+        String vDeklaraci = nactiKodovaniVDeklaraci();
         String skutecneKodovani = getKodovani();
         if (!skutecneKodovani.toLowerCase().equals("utf-8")) {
             String chybaKodovani = "Kódování souboru: " + skutecneKodovani + ". Deklarované kódování: " + vDeklaraci
