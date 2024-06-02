@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import cz.zaf.common.validation.BaseValidator;
 import cz.zaf.common.validation.ValidationLayer;
+import cz.zaf.common.validation.ValidatorListener;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipLoader;
@@ -16,7 +17,7 @@ import cz.zaf.sipvalidator.sip.SipLoader;
  * SIP validator dle NSESSS 2017
  *
  */
-public class SipValidator {
+public class SipValidator implements ValidatorListener<KontrolaNsess2017Context> {
 
     static private Logger log = LoggerFactory.getLogger(SipValidator.class);
 
@@ -85,12 +86,27 @@ public class SipValidator {
 
         SipInfo sip = sipLoader.getSip();
         
-        MetsParser metsParser = new MetsParser();
-        metsParser.parse(sip);
-
         // provedeni kontrol
-        KontrolaNsess2017Context ctx = new KontrolaNsess2017Context(metsParser, sip, excludeChecks);
+        KontrolaNsess2017Context ctx = new KontrolaNsess2017Context(sip, excludeChecks);
         BaseValidator<KontrolaNsess2017Context> validator = new BaseValidator<>(kontroly);
+        validator.registerListener(this);
         validator.validate(ctx);
+    }
+
+    @Override
+    public void layerValidationStarted(KontrolaNsess2017Context context,
+                                       ValidationLayer<KontrolaNsess2017Context> layer) {
+        if (layer.getClass() == K03_Spravnosti.class) {
+            // nacteni dokumentu pokud zaciname kontrolovat jeho spravnost a jedna se o XML
+            MetsParser metsParser = new MetsParser();
+            metsParser.parse(context.getSip());
+
+            context.setMetsParser(metsParser);
+        }
+    }
+
+    @Override
+    public void layerValidationFinished(KontrolaNsess2017Context context,
+                                        ValidationLayer<KontrolaNsess2017Context> layer) {
     }
 }

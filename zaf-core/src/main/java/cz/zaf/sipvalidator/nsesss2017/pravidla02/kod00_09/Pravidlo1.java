@@ -88,22 +88,21 @@ public class Pravidlo1 extends PravidloBase {
     @Override
     protected void kontrola() {
         
-        String chybaKodovani = null;
-
-        if (ctx.getContext().maMetsXml() == false) {
-        	chybaKodovani = "Soubor mets.xml neexistuje.";
-        	throw new ZafException(BaseCode.CHYBA, chybaKodovani);
+        if (!ctx.getContext().maMetsXml()) {
+            throw new ZafException(BaseCode.CHYBA, "Soubor mets.xml neexistuje.");
         }
         
         String vDeklaraci = getKodovaniVDeklaraci();
         String skutecneKodovani = getKodovani();
         if (!skutecneKodovani.toLowerCase().equals("utf-8")) {
-            chybaKodovani = "Kódování souboru: " + skutecneKodovani + ". Deklarované kódování: " + vDeklaraci + ".";
+            String chybaKodovani = "Kódování souboru: " + skutecneKodovani + ". Deklarované kódování: " + vDeklaraci
+                    + ".";
             throw new ZafException(BaseCode.CHYBA, chybaKodovani);
         }    
 
         if (!vDeklaraci.toLowerCase().equals(skutecneKodovani)) {
-            chybaKodovani = "Kódování souboru: " + skutecneKodovani + ". Deklarované kódování: " + vDeklaraci + ".";
+            String chybaKodovani = "Kódování souboru: " + skutecneKodovani + ". Deklarované kódování: " + vDeklaraci
+                    + ".";
             throw new ZafException(BaseCode.CHYBA, chybaKodovani);
         }
     }

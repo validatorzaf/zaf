@@ -1,6 +1,6 @@
 package cz.zaf.sipvalidator.nsesss2017;
 
-import java.io.File;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.List;
@@ -22,16 +22,15 @@ public class KontrolaNsess2017Context extends KontrolaContext {
 
     public static final String KOMPONENTY_DIR = "komponenty";
 
-    final MetsParser metsParser;
+    MetsParser metsParser;
 
     /**
      * Date when check is executed
      */
     final private LocalDate localDate;
 
-    public KontrolaNsess2017Context(MetsParser mp, SipInfo sip, List<String> excludeChecks) {
+    public KontrolaNsess2017Context(SipInfo sip, List<String> excludeChecks) {
         super(sip, excludeChecks);
-        this.metsParser = mp;
         String extLocalDate = System.getProperty(ZAF_VALIDATION_DATE);
         if (StringUtils.isNotEmpty(extLocalDate)) {
             this.localDate = LocalDate.parse(extLocalDate);
@@ -54,8 +53,8 @@ public class KontrolaNsess2017Context extends KontrolaContext {
      * @return true pokud existuje mets.xml
      */
     public boolean maMetsXml() {
-        File m = sip.getCestaMets().toFile();
-        return m.exists();
+        var metsPath = sip.getCestaMets();
+        return (metsPath == null) ? false : Files.isRegularFile(metsPath);
     }
 
     /**
@@ -83,5 +82,9 @@ public class KontrolaNsess2017Context extends KontrolaContext {
      */
     public Path getKomponentaPath(String href) {
         return sip.getCesta().resolve(href);
+    }
+
+    public void setMetsParser(final MetsParser metsParser) {
+        this.metsParser = metsParser;
     }
 }

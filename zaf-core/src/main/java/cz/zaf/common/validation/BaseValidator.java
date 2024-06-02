@@ -1,5 +1,6 @@
 package cz.zaf.common.validation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -21,8 +22,21 @@ public class BaseValidator<T extends ValidationLayerContext> {
 
     protected final List<ValidationLayer<T>> validationLayers;
     
+    /**
+     * Validator listeners
+     */
+    private List<ValidatorListener<T>> listeners = new ArrayList<>();
+
     public BaseValidator(final List<ValidationLayer<T>> validations) {
         this.validationLayers = validations;
+    }
+
+    public void registerListener(ValidatorListener<T> listener) {
+        listeners.add(listener);
+    }
+
+    public void unregisterListener(ValidatorListener<T> listener) {
+        listeners.remove(listener);
     }
 
     /**
@@ -37,6 +51,8 @@ public class BaseValidator<T extends ValidationLayerContext> {
             for (ValidationLayer<T> validationLayer : validationLayers) {
                 activeLayer = validationLayer;
 
+                listeners.forEach(l -> l.layerValidationStarted(context, validationLayer));
+
                 // po selhane kontrole se jiz nepokracuje
                 ValidationResult validationResult = context.getValidationResult();
                 // add result
@@ -46,6 +62,8 @@ public class BaseValidator<T extends ValidationLayerContext> {
                 vlr.setStav(ValidationStatus.OK);
 
                 validationLayer.validate(context, vlr);
+
+                listeners.forEach(l -> l.layerValidationFinished(context, validationLayer));
 
                 if (validationResult.isFailed()) {
                     // return as non executed

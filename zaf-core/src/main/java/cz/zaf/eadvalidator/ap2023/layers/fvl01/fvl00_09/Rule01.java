@@ -4,10 +4,9 @@ import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.common.exceptions.codes.XmlCode;
 import cz.zaf.eadvalidator.ap2023.EadLoader;
-import cz.zaf.eadvalidator.ap2023.EadValidationContext;
-import cz.zaf.eadvalidator.ap2023.layers.fvl01.FVLRule;
+import cz.zaf.eadvalidator.ap2023.EadRule;
 
-public class Rule01 extends FVLRule {
+public class Rule01 extends EadRule {
 
     static final public String CODE = "fvl1";
 
@@ -19,7 +18,7 @@ public class Rule01 extends FVLRule {
     }
 
     @Override
-    public void eval(EadValidationContext ctx) {
+    protected void evalImpl() {
         EadLoader eadLoader = ctx.getLoader();
         if (eadLoader.getDocument() == null) {
             if (eadLoader.getParserError() != null) {
