@@ -8,7 +8,7 @@ import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 
 public class SipValidatorK05Test extends SipValidatorTestBase {
 
-    static public final String PATH_DATA_K05 = "testdata/05 KONTROLA PROTI SCHEMATU";
+    static public final String PATH_DATA_K05 = "testdata/NSESSS2017/05 KONTROLA PROTI SCHEMATU";
 
     void testPackageK05(String path,
                         ValidationStatus stavKontroly, String[] pravidlaOk, String[] pravidlaChybna) {

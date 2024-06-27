@@ -10,7 +10,7 @@ import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 
 public class SipValidatorK04Test extends SipValidatorTestBase {
 
-    static public final String PATH_DATA_K04 = "testdata/04 KONTROLA JMENNYCH PROSTORU XML";
+    static public final String PATH_DATA_K04 = "testdata/NSESSS2017/04 KONTROLA JMENNYCH PROSTORU XML";
 
     void testPackageK04(String path,
                         ValidationStatus stavKontroly, String[] pravidlaOk, String[] pravidlaChybna) {

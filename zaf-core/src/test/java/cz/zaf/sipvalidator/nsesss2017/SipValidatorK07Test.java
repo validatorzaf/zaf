@@ -23,7 +23,7 @@ import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 
 public class SipValidatorK07Test extends SipValidatorTestBase {
-    static public final String PATH_DATA_K07 = "testdata/07 KONTROLA KOMPONENT";
+    static public final String PATH_DATA_K07 = "testdata/NSESSS2017/07 KONTROLA KOMPONENT";
 
     void testPackage(String path,
                      LoadType loadType,

@@ -104,7 +104,7 @@ import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 
 public class SipValidatorK06Test extends SipValidatorTestBase {
 
-    static public final String PATH_DATA_K06 = "testdata/06 KONTROLA OBSAHU";
+    static public final String PATH_DATA_K06 = "testdata/NSESSS2017/06 KONTROLA OBSAHU";
 
     void testPackageK06(String path,
                         LoadType loadType,

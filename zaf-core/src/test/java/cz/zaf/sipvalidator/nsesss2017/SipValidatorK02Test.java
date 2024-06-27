@@ -9,7 +9,7 @@ import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 
 public class SipValidatorK02Test extends SipValidatorTestBase {
 
-    static public final String PATH_DATA_K02 = "testdata/02 KONTROLA ZNAKOVE SADY";
+    static public final String PATH_DATA_K02 = "testdata/NSESSS2017/02 KONTROLA ZNAKOVE SADY";
 
     void testPackageK02(String path,
                         ValidationStatus stavKontroly, String[] pravidlaOk, String[] pravidlaChybna) {
