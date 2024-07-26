@@ -41,7 +41,7 @@ public abstract class TestHelper {
         ClassLoader classLoader = TestHelper.class.getClassLoader();
         URL url = classLoader.getResource(relativePath);
         if (url == null) {
-            fail("Failed to locate sip, path: " + relativePath);
+            fail("Failed to locate resource, path: " + relativePath);
         }
 
         String filePath = java.net.URLDecoder.decode(url.getFile(), StandardCharsets.UTF_8.name());

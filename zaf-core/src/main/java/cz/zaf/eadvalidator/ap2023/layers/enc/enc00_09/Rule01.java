@@ -1,15 +1,9 @@
 package cz.zaf.eadvalidator.ap2023.layers.enc.enc00_09;
 
-import java.io.InputStream;
-import java.nio.file.Files;
-
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamReader;
-
-import org.apache.commons.io.input.BOMInputStream;
-
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.common.xml.EncodingDetector;
+import cz.zaf.common.xml.EncodingDetector.Result;
 import cz.zaf.eadvalidator.ap2023.EadRule;
 
 public class Rule01 extends EadRule {
@@ -24,33 +18,29 @@ public class Rule01 extends EadRule {
 
     @Override
     protected void evalImpl() {
-        String deklarace = nactiKodovaniVDeklaraci();
-    }
-
-    private String nactiKodovaniVDeklaraci() throws ZafException {
-        try (InputStream is = Files.newInputStream(ctx.getLoader().getFilePath())) {
-            // lib commons-io-2.4
-            BOMInputStream bomIn = BOMInputStream.builder().setInputStream(is).get();
-            if (bomIn.hasBOM()) {
-                String chybaKodovani = "Soubor obsahuje chybně BOM prefix.";
-                throw new ZafException(BaseCode.CHYBA, chybaKodovani);
-            }
-
-            final XMLStreamReader xmlStreamReader = XMLInputFactory.newInstance().createXMLStreamReader(bomIn);
-
-            return xmlStreamReader.getCharacterEncodingScheme();
-        } catch (Exception e) {
-            ZafException ze;
-            if (e instanceof ZafException) {
-                // pass ZafException
-                ze = (ZafException) e;
-            } else {
-                String chybaKodovani = "Chyba při detekci kódování: " + e.toString();
-                ze = new ZafException(BaseCode.CHYBA, chybaKodovani, e);
-            }
-            throw ze;
+        Result detected;
+        try {
+        	detected = EncodingDetector.detect(ctx.getLoader().getFilePath(), false);
+        } catch(Exception e) {
+            String chybaKodovani = "Chyba při detekci kódování: " + e.toString();
+            throw new ZafException(BaseCode.CHYBA, chybaKodovani, e);        	
+        }
+        if(detected.hasBom()) {
+            String chybaKodovani = "Soubor obsahuje chybně BOM prefix.";
+            throw new ZafException(BaseCode.CHYBA, chybaKodovani);        	
+        }
+        
+        if(!detected.getDetectedEncoding().equals("utf-8")) {
+            String chybaKodovani = "Kódování souboru: " + detected.getDetectedEncoding() + ". Deklarované kódování: " + 
+            		detected.getSchemaEncoding() + ".";
+            throw new ZafException(BaseCode.CHYBA, chybaKodovani);        	
         }
 
+        if (!detected.getSchemaEncoding().toLowerCase().equals(detected.getDetectedEncoding())) {
+            String chybaKodovani = "Kódování souboru: " + detected.getDetectedEncoding() + ". Deklarované kódování: " + 
+            		detected.getSchemaEncoding() + ".";
+            throw new ZafException(BaseCode.CHYBA, chybaKodovani);
+        }
     }
 
 }
