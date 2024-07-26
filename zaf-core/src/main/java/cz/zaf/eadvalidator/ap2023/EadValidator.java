@@ -7,7 +7,7 @@ import cz.zaf.common.validation.BaseValidator;
 import cz.zaf.common.validation.ValidationLayer;
 import cz.zaf.common.validation.ValidatorListener;
 import cz.zaf.eadvalidator.ap2023.layers.enc.EncodingValidationLayer;
-import cz.zaf.eadvalidator.ap2023.layers.fvl01.FormatValidationLayer;
+import cz.zaf.eadvalidator.ap2023.layers.wf.WellFormedLayer;
 import cz.zaf.eadvalidator.ap2023.profile.EadValidationProfile;
 
 public class EadValidator implements ValidatorListener<EadValidationContext> {
@@ -21,7 +21,7 @@ public class EadValidator implements ValidatorListener<EadValidationContext> {
     private List<ValidationLayer<EadValidationContext>> prepareValidations(EadValidationProfile profilValidace) {
         List<ValidationLayer<EadValidationContext>> validations = new ArrayList<>(2);
         validations.add(new EncodingValidationLayer());
-        validations.add(new FormatValidationLayer());
+        validations.add(new WellFormedLayer());
         return validations;
     }
 
@@ -36,7 +36,7 @@ public class EadValidator implements ValidatorListener<EadValidationContext> {
 
     @Override
     public void layerValidationStarted(EadValidationContext context, ValidationLayer<EadValidationContext> layer) {
-        if (layer.getType() == ValidationLayers.BASIC_FILE_FORMAT) {
+        if (layer.getType() == ValidationLayers.WELL_FORMED) {
             // ead
             context.getLoader().load();
         }
