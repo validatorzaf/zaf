@@ -21,11 +21,9 @@ public class Pravidlo1 extends PravidloBase {
     @Override
     protected void kontrola() {
         Node metsMets = this.ctx.getContext().getMainDocument().getDocumentElement();
-        boolean stav = false;
-        String detailChyby = null;
 
         if (metsMets == null || !metsMets.getNodeName().equals("mets:mets")) {
-            detailChyby = "Datový balíček SIP neobsahuje kořenový element <mets:mets>.";
+        	String detailChyby = "Datový balíček SIP neobsahuje kořenový element <mets:mets>.";
             throw new ZafException(BaseCode.CHYBI_ELEMENT, detailChyby);
         }
     }

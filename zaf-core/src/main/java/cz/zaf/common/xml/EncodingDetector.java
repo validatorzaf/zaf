@@ -57,7 +57,7 @@ public class EncodingDetector {
 	public static Result detect(Path inputFile, boolean allowBom) throws IOException, XMLStreamException, FactoryConfigurationError {
 		Result result = new Result();
 		
-		try (InputStream is = Files.newInputStream(inputFile)) {			
+		try (InputStream is = Files.newInputStream(inputFile)) {
 
 			// lib commons-io-2.4
 			BOMInputStream bomIn = BOMInputStream.builder().setInputStream(is).get();
@@ -74,19 +74,30 @@ public class EncodingDetector {
 		// detect encoding from text
         // lib ucu4j-56.jar
         CharsetDetector det = new CharsetDetector();
-        if(StringUtils.isNotBlank(result.getSchemaEncoding())) {
-        	det.setDeclaredEncoding(result.getSchemaEncoding());
-        }
         try (InputStream is = Files.newInputStream(inputFile)) {
 
             BufferedInputStream buf = new BufferedInputStream(is);
             CharsetDetector setText = det.setText(buf);
 
             // lib ucu4j-56.jar
-            CharsetMatch detect = setText.detect();
+            CharsetMatch matchedCharsets[] = setText.detectAll();
+            
+            if(matchedCharsets!=null&&matchedCharsets.length>0) {
+            	var detected = matchedCharsets[0];
+            	// overeni, zda je mozne najit deklarovane schema
+            	if(StringUtils.isNotBlank(result.getSchemaEncoding())) {
+            		var declared = result.getSchemaEncoding().toLowerCase();
+            		for(var d: matchedCharsets) {
+            			if(d.getName().toLowerCase().equals(declared)) {
+            				detected = d; 
+            				break;
+            			}
+            		}
+            	}
 
-            // kvůli upřesnění
-            result.setDetectedEncoding(detect.getName().toLowerCase());
+            	// kvůli upřesnění
+            	result.setDetectedEncoding(detected.getName().toLowerCase());
+            }
         }
 		
         return result;		

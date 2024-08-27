@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
@@ -19,6 +21,8 @@ import cz.zaf.common.validation.ValidationInput;
 import cz.zaf.common.xml.PositionalXMLReader;
 
 public class EadLoader implements Closeable, ValidationInput, ValidationResult {
+	
+	private static Logger log = LoggerFactory.getLogger(EadLoader.class);
 
     private final Path filePath;
     private Exception parserError;
@@ -47,27 +51,36 @@ public class EadLoader implements Closeable, ValidationInput, ValidationResult {
 
     /**
      * Load EAD from file
+     * 
+     * Return loaded document or null if failed
      */
-    public void load() {
+    public Document load() {
+    	log.debug("Parsing EAD, file: {}", filePath);
+    	
+    	// reset previous document (if any)
+    	document = null;
+    	
         try (InputStream is = Files.newInputStream(filePath)) {
             PositionalXMLReader xmlReader = new PositionalXMLReader();
             document = xmlReader.readXML(is);
-
-            // vlastni nacteni dat
-            readDocument();
         } catch (SAXException e) {
             parserError = e;
-        } catch (IOException e) {
+            log.error("Parsing failed, file: {}", filePath, e);
+        } catch (IOException e) {        	
             parserError = e;
+            log.error("Reading failed, file: {}", filePath, e);
         }
+        return document;
     }
 
+    /*
     private void readDocument() {
+    	// TODO: parse content
         Node element = this.document.getFirstChild();
         while (element != null) {
             element = element.getNextSibling();
         }
-    }
+    }*/
 
     @Override
     public void close() throws IOException {
