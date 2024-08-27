@@ -3,8 +3,6 @@ package cz.zaf.eadvalidator.ap2023;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import cz.zaf.common.validation.BaseValidator;
 import cz.zaf.common.validation.ValidationLayer;
 import cz.zaf.common.validation.ValidatorListener;
@@ -40,24 +38,7 @@ public class EadValidator implements ValidatorListener<EadValidationContext> {
 
     @Override
     public void layerValidationStarted(EadValidationContext context, ValidationLayer<EadValidationContext> layer) {
-    	/*
         if (layer.getType() == ValidationLayers.NAMESPACE) {
-        	log.debug("Parsing EAD, file: {}", context.getLoader().getFilePath());
-            // load XML document if well-formatted
-            Document doc = context.getLoader().load();
-            if(doc==null) {
-            	log.error("Parsing failed, file: {}", context.getLoader().getFilePath(), context.getLoader().getParserError());
-            	
-            	throw new ZafException(XmlCode.FAILED_TO_PARSE, "Nepodařilo se načíst soubor: " + context.getLoader().getFilePath(),
-            			context.getLoader().getParserError());
-            }
-        }
-        */
-    }
-
-    @Override
-    public void layerValidationFinished(EadValidationContext context, ValidationLayer<EadValidationContext> layer) {
-        if (layer.getType() == ValidationLayers.WELL_FORMED) {
         	// kontrola nacteni dokumentu
         	var document = context.getLoader().getDocument();
         	if(document==null) {
@@ -65,5 +46,9 @@ public class EadValidator implements ValidatorListener<EadValidationContext> {
         	}
         	context.setRootNode(document.getDocumentElement());
         }
+    }
+
+    @Override
+    public void layerValidationFinished(EadValidationContext context, ValidationLayer<EadValidationContext> layer) {
     }
 }
