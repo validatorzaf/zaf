@@ -31,9 +31,11 @@ public abstract class TestHelper {
         SLF4JBridgeHandler.install();
 
         java.util.logging.Logger root = java.util.logging.Logger.getLogger("");
-        root.setLevel(Level.ALL);
+        //root.setLevel(Level.ALL); - set for debug
+        root.setLevel(Level.INFO);
         for (Handler handler : root.getHandlers()) {
-            handler.setLevel(Level.ALL);
+            // handler.setLevel(Level.ALL); - set for debug
+        	handler.setLevel(Level.INFO);
         }
     }
 
