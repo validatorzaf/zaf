@@ -1,0 +1,47 @@
+package cz.zaf.common.xml;
+
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.xml.XMLConstants;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+
+/**
+ * Load and cache Schema as resource
+ */
+public class SchemaResourceLoader {
+	static Map<String, Schema> schemaCache = new HashMap<>();
+	
+	// schema factory can be used only SingleThreaded!!!
+	// can be used only from loadSchema method
+	static SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+	
+	private synchronized static Schema loadSchema(String resource) {
+		URL schemaFile = SchemaResourceLoader.class.getResource(resource);
+		if(schemaFile==null) {
+			throw new IllegalStateException("Cannot resource: "+resource);
+		}        
+		try {
+			var schema = schemaFactory.newSchema(schemaFile);
+			schemaCache.put(resource, schema);
+			return schema;
+		} catch (Exception e) {
+			throw new IllegalStateException("Cannot load schema: "+resource, e);
+		}
+	}
+
+	/**
+	 * Return schema
+	 * 
+	 * If schema is not loaded try to load shared resource
+	 * @param resource
+	 * @return
+	 * @throws Throw IllegalStateException if cannot load schema
+	 */
+	public static Schema get(String resource) {
+		return schemaCache.computeIfAbsent(resource, SchemaResourceLoader::loadSchema);
+	}
+	
+}
