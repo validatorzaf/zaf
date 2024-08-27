@@ -7,6 +7,8 @@ package cz.zaf.common.xml;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -31,11 +33,20 @@ import org.xml.sax.helpers.DefaultHandler;
 public class PositionalXMLReader {
     public final static String LINE_NUMBER_KEY_NAME = "lineNumber";
     public final static String COLUMN_NUMBER = "columnNumber";
+    public final static String NS_MAPPING = "nsMapping";
 
     final static SAXParserFactory factory = SAXParserFactory.newInstance();
+    final static DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+    {
+    	// Namespaces are used
+    	factory.setValidating(false);
+    	docBuilderFactory.setNamespaceAware(true);
+    	docBuilderFactory.setValidating(false);
+    }
 
     Document doc;
     SAXParser parser;
+    Map<String, String> nsMapping = new HashMap<>();
 
     final Stack<Element> elementStack = new Stack<Element>();
     final StringBuilder textBuffer = new StringBuilder();
@@ -58,6 +69,10 @@ public class PositionalXMLReader {
             }
             el.setUserData(LINE_NUMBER_KEY_NAME, this.locator.getLineNumber(), null);
             el.setUserData(COLUMN_NUMBER, this.locator.getColumnNumber(), null);
+            if(nsMapping.size()>0) {
+            	el.setUserData(NS_MAPPING, nsMapping, null);
+            	nsMapping = new HashMap<>();
+            }
             elementStack.push(el);
         }
 
@@ -87,6 +102,16 @@ public class PositionalXMLReader {
                 textBuffer.delete(0, textBuffer.length());
             }
         }
+        
+        @Override
+        public void startPrefixMapping (String prefix, String uri) {
+        	nsMapping.put(prefix, uri);
+        }
+        
+        @Override
+        public void endPrefixMapping(String prefix) {
+        	
+        }
     };
 
     public PositionalXMLReader() {
@@ -96,7 +121,6 @@ public class PositionalXMLReader {
     public Document readXML(final InputStream is) throws IOException, SAXException {
         try {
             parser = factory.newSAXParser();
-            final DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             final DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
             doc = docBuilder.newDocument();
             parser.parse(is, handler);

@@ -19,6 +19,7 @@ import cz.zaf.common.result.ValidationLayerResult;
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.validation.ValidationInput;
 import cz.zaf.common.xml.PositionalXMLReader;
+import cz.zaf.common.xml.PositionalXMLReader2;
 
 public class EadLoader implements Closeable, ValidationInput, ValidationResult {
 	
@@ -61,7 +62,7 @@ public class EadLoader implements Closeable, ValidationInput, ValidationResult {
     	document = null;
     	
         try (InputStream is = Files.newInputStream(filePath)) {
-            PositionalXMLReader xmlReader = new PositionalXMLReader();
+            PositionalXMLReader2 xmlReader = new PositionalXMLReader2();
             document = xmlReader.readXML(is);
         } catch (SAXException e) {
             parserError = e;

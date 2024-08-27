@@ -53,7 +53,7 @@
 		<dependency>
 			<groupId>com.fasterxml.woodstox</groupId>
 			<artifactId>woodstox-core</artifactId>
-			<version>6.6.2</version>
+			<version>6.7.0</version>
 		</dependency>		
 		<!-- Pridano kvuli tride com.sun.xml.txw2.output.IndentingXMLStreamWriter v exportu
              Asi lepe zvazit jeji nahradu vlastni impl a odstraneni dependency -->

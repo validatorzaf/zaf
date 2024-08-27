@@ -57,8 +57,6 @@
 		
 		<ead:maintenancehistory>
 			<ead:maintenanceevent> <!-- obs31 -->
-				<ead:eventtype value="created"></ead:eventtype>
-				<ead:eventdatetime standarddatetime="2024-01-01T01:23:45.678+01:00">2024-01-01T01:23:45.678+01:00</ead:eventdatetime> <!-- obs32 -->
 				<ead:agenttype value="machine"></ead:agenttype> <!-- obs33 -->
 				<ead:agent>Agent 1.0</ead:agent> <!-- obs34 -->
 			</ead:maintenanceevent>

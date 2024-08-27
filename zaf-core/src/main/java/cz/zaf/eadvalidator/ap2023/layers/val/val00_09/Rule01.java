@@ -1,12 +1,7 @@
 package cz.zaf.eadvalidator.ap2023.layers.val.val00_09;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-
-import javax.xml.transform.Source;
 import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamSource;
 
 import org.xml.sax.SAXException;
 
@@ -15,8 +10,8 @@ import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.common.xml.SchemaResourceLoader;
 import cz.zaf.common.xml.ValidationRuleErrorHandler;
 import cz.zaf.eadvalidator.ap2023.EadRule;
+import cz.zaf.eadvalidator.ap2023.cam.CamNS;
 import cz.zaf.eadvalidator.ap2023.ead.EadNS;
-import cz.zaf.sipvalidator.sip.SipInfo;
 
 public class Rule01 extends EadRule {
 	
@@ -31,16 +26,12 @@ public class Rule01 extends EadRule {
 
 	@Override
 	protected void evalImpl() {
-		var schema = SchemaResourceLoader.get(EadNS.SCHEMA_RESOURCE);
+		var schema = SchemaResourceLoader.getCombined(EadNS.SCHEMA_RESOURCE, CamNS.SCHEMA_RESOURCE);
 		var validator = schema.newValidator();
 		validator.setErrorHandler(new ValidationRuleErrorHandler());
 		
-		// TODO: User already parsed document instead of new parsing
-		//DOMSource source = new DOMSource(ctx.getDocument());
-		//try {        
-        try (InputStream is = Files.newInputStream(ctx.getLoader().getFilePath())) {
-            Source source = new StreamSource(is);
-		
+		DOMSource source = new DOMSource(ctx.getRootElement());
+		try {        		
 			validator.validate(source);
 		} catch (SAXException e) {
 			throw new ZafException(BaseCode.CHYBA, "Chyba SAX", e);			

@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.xml.XMLConstants;
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
@@ -45,6 +47,39 @@ public class SchemaResourceLoader {
 	 */
 	public static Schema get(String resource) {
 		return schemaCache.computeIfAbsent(resource, SchemaResourceLoader::loadSchema);
+	}
+
+	/**
+	 * Return combined schema
+	 * @param params
+	 * @return
+	 */
+	public static Schema getCombined(String...params) {
+		// aggregate all schemas
+		StringBuilder sb = new StringBuilder();
+		for(var param: params) {
+			if(sb.length()>0) {
+				sb.append(":");
+			}
+			sb.append(param);
+		}
+		String key = sb.toString();
+		return schemaCache.computeIfAbsent(key, k -> {
+			Source schemas [] = new Source[params.length]; 			
+			
+			try {
+				int pos = 0;
+				for (var resource : params) {
+					URL schemaFile = SchemaResourceLoader.class.getResource(resource);
+					Source source = new StreamSource(schemaFile.openStream());
+					schemas[pos] = source;
+					pos++;
+				}
+				return schemaFactory.newSchema(schemas);
+			} catch(Exception e) {
+				throw new IllegalStateException("Cannot load schemas", e);
+			}
+		});
 	}
 	
 }
