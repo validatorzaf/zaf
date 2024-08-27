@@ -114,6 +114,9 @@ public abstract class BaseValidationLayer<T extends ValidationLayerContext, RCtx
         } catch (Exception e) {
             errorCode = BaseCode.NEZNAMA_CHYBA;
             detailChyby = e.getLocalizedMessage();
+            if(detailChyby==null) {
+            	detailChyby = e.getMessage();
+            }
         }
 
         pridejChybu(pravidlo,

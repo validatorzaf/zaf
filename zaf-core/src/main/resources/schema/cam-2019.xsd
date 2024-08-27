@@ -1,0 +1,1028 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://cam.tacr.cz/2019" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://cam.tacr.cz/2019" elementFormDefault="qualified">
+	<xs:annotation>
+		<xs:documentation>Schéma dat pro systém CAM. Programátorské rozhraní je založeno na REST službách s možností přenosu dat v XML formátu. Služby jsou popsány formou OpenAPI rozhraní. Toto schéma slouží pro definici struktury přenášených dat.
+
+Změny:
+	- 4.3.2020 - Oprava povinnosti atributů EntityIdGroup, nově jsou nepovinné
+	- 1.10.2020 - Doplnění volitelného atributu reud k Entity pro předání UUID nahrazující entity
+	- 6.11.2020 -Doplnění ItemBinary pro přenos binárních dat</xs:documentation>
+	</xs:annotation>
+	<xs:element name="bu" type="s1:BatchUpdate"/>
+	<xs:element name="bue" type="s1:BatchUpdateError"/>
+	<xs:element name="bus" type="s1:BatchUpdateSaved"/>
+	<xs:element name="ent" type="s1:Entity">
+		<xs:annotation>
+			<xs:documentation>Root element for single entity.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="entityTypes" type="s1:EntityTypes"/>
+	<xs:element name="ents" type="s1:Entities"/>
+	<xs:element name="errs" type="s1:EntityRecordRevisions">
+		<xs:annotation>
+			<xs:documentation>Kořenový element pro kolekci záznamů revizí entit</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="qr" type="s1:QueryResult">
+		<xs:annotation>
+			<xs:documentation>Výsledek dotazu</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ups" type="s1:Updates"/>
+	<xs:element name="upsf" type="s1:UpdatesFrom"/>
+	<xs:simpleType name="BinaryStream">
+		<xs:annotation>
+			<xs:documentation>Binární data</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:base64Binary"/>
+	</xs:simpleType>
+	<xs:simpleType name="Boolean">
+		<xs:annotation>
+			<xs:documentation>Logická hodnota</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+	<xs:simpleType name="Code">
+		<xs:annotation>
+			<xs:documentation>Generic code of item, used as ID</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="DateTime">
+		<xs:annotation>
+			<xs:documentation>Čas a datum. Používá se pro informaci o času změny apod.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+	<xs:simpleType name="EntityId">
+		<xs:annotation>
+			<xs:documentation>Číselné ID entity v CAMu</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long"/>
+	</xs:simpleType>
+	<xs:simpleType name="EntityRecordState">
+		<xs:annotation>
+			<xs:documentation>Stav záznamu</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ERS_APPROVED"/>
+			<xs:enumeration value="ERS_INVALID"/>
+			<xs:enumeration value="ERS_NEW"/>
+			<xs:enumeration value="ERS_REPLACED"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EntityRef">
+		<xs:annotation>
+			<xs:documentation>Odkaz na entitu v rámci XML</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:IDREF"/>
+	</xs:simpleType>
+	<xs:simpleType name="ErrorType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ET_DUPLICATED_UUID">
+				<xs:annotation>
+					<xs:documentation>Zjištěn jiný záznam se shodným UUID.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ET_ERROR">
+				<xs:annotation>
+					<xs:documentation>Obecná chyba při ukládání entity</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ET_OTHER_REV">
+				<xs:annotation>
+					<xs:documentation>Existuje záznam s jiným ID poslední revize.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ET_PREF_NAME_EXIST">
+				<xs:annotation>
+					<xs:documentation>Záznam s tímto preferovaným jménem již existuje.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Integer">
+		<xs:restriction base="xs:integer"/>
+	</xs:simpleType>
+	<xs:simpleType name="LogicalValue">
+		<xs:annotation>
+			<xs:documentation>Logická hodnota true/false</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+	<xs:simpleType name="LongString">
+		<xs:annotation>
+			<xs:documentation>Dlouhý řetězec s délkou maximálně 250 znaků</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="250"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PartType">
+		<xs:annotation>
+			<xs:documentation>Typ vytvářené části</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PT_BODY">
+				<xs:annotation>
+					<xs:documentation>Body, tělo přístupového bodu</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PT_CRE">
+				<xs:annotation>
+					<xs:documentation>Creation, vznik</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PT_EVENT">
+				<xs:annotation>
+					<xs:documentation>Event - událost (například: studium)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PT_EXT">
+				<xs:annotation>
+					<xs:documentation>Extincion - zánik</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PT_IDENT">
+				<xs:annotation>
+					<xs:documentation>Identifikátory přístupového bodu (například ISO kód země, IČ)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PT_NAME">
+				<xs:annotation>
+					<xs:documentation>Označení entity</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PT_REL">
+				<xs:annotation>
+					<xs:documentation>Jednoduchý vztah</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String">
+		<xs:annotation>
+			<xs:documentation>Řetězec, obecný text</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="UUID">
+		<xs:annotation>
+			<xs:documentation>Jednoznačný identifikátor typu UUID.
+
+Identifikátor může být UUID verze 1 nebo verze 4.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[14][0-9a-fA-F]{3}-[8-9a-bA-B][0-9a-fA-F]{3}-[0-9a-fA-F]{12}"/>
+			<xs:length value="36"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="BatchEntityRecordRev">
+		<xs:annotation>
+			<xs:documentation>Odkaz na konkrétní revizi entity.
+V závislosti na užití odkazu jsou vyplněny identifikátory: eid a euid. V případě požadavku na změnu entity musí alespoň jeden z nich být vyplněn. Při vracení informací o entitě z CAM jsou nastaveny oba dva.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence/>
+		<xs:attribute name="eid" use="optional" type="s1:EntityId">
+			<xs:annotation>
+				<xs:documentation>Číselný identifikátor entity.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="euid" use="optional" type="s1:UUID">
+			<xs:annotation>
+				<xs:documentation>Identifikátor typu UUID</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="lid" use="required" type="xs:ID">
+			<xs:annotation>
+				<xs:documentation>Lokální ID entity, používá se pro jeho identifikaci v XML.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="rev" use="required" type="s1:UUID">
+			<xs:annotation>
+				<xs:documentation>UUID verze entity</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="BatchInfo">
+		<xs:annotation>
+			<xs:documentation>Informace o zaslané dávce</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:group ref="s1:BatchUserInfo" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="bid" use="optional" type="s1:UUID">
+			<xs:annotation>
+				<xs:documentation>Identiifikátor dávky. Umožňuje ji později identifikovat.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="BatchUpdate">
+		<xs:sequence>
+			<xs:element name="inf" type="s1:BatchInfo" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Každá aktualizace se zasílá včetně svého UUID a informace o uživateli, který provedl změny.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:group ref="s1:Change" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BatchUpdateError">
+		<xs:annotation>
+			<xs:documentation>Chyba uložení dávky</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="s1:BatchUpdateResult">
+				<xs:sequence>
+					<xs:element name="em" type="s1:ErrorMessage" minOccurs="1" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BatchUpdateResult" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Abstraktní typ pro výsledek aktualizace.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="BatchUpdateSaved">
+		<xs:annotation>
+			<xs:documentation>Odpověď na úspěšné zpracování dávky.
+
+Vrací se seznam informací o revizích entit. U každé revize je vyplněno:
+	- číselný identifikátor entity
+	- UUID entity
+	- Lokální identifikátor entity v rámci dávky
+	- Identifikátor revize entity</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="s1:BatchUpdateResult">
+				<xs:sequence>
+					<xs:element name="rev" type="s1:BatchEntityRecordRev" minOccurs="1" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="trns" use="optional" type="s1:UUID">
+					<xs:annotation>
+						<xs:documentation>Identifikátor transakce</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CreateEntity">
+		<xs:annotation>
+			<xs:documentation>Vytvoření přístupového bodu v rámci dávky</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="s1:NewEntityRecord">
+				<xs:sequence/>
+				<xs:attribute name="lid" use="required" type="xs:ID">
+					<xs:annotation>
+						<xs:documentation>Identifikátor přístupového bodu v dávce</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DeleteItems">
+		<xs:annotation>
+			<xs:documentation>Vymaže prvky popis z části</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="s1:ItemRefs">
+				<xs:sequence/>
+				<xs:attributeGroup ref="s1:PartRefGroup"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DeletePart">
+		<xs:annotation>
+			<xs:documentation>Vymaže část</xs:documentation>
+		</xs:annotation>
+		<xs:sequence/>
+		<xs:attributeGroup ref="s1:PartRefGroup"/>
+	</xs:complexType>
+	<xs:complexType name="Entities">
+		<xs:annotation>
+			<xs:documentation>Collection of entities</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ent" type="s1:Entity" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Entity">
+		<xs:annotation>
+			<xs:documentation>Element popisující jednu entitu.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="revi" type="s1:RevInfo" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Detaily poslední revize</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="prts" type="s1:Parts" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="eid" use="required" type="s1:EntityId">
+			<xs:annotation>
+				<xs:documentation>ID přístupového bodu</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="euid" use="required" type="s1:UUID">
+			<xs:annotation>
+				<xs:documentation>Identifikátor entity v externích systémech. Identifikátor slouží pro prevenci vzniku duplicit</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ens" use="required" type="s1:EntityRecordState">
+			<xs:annotation>
+				<xs:documentation>Stav přístupového bodu</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ent" use="required" type="s1:Code">
+			<xs:annotation>
+				<xs:documentation>Třída entity</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="reid" use="optional" type="s1:EntityId">
+			<xs:annotation>
+				<xs:documentation>Identifikátor nahrazují entity. Uvádí se při stavu APS_REPLACED.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="reud" use="optional" type="s1:UUID">
+			<xs:annotation>
+				<xs:documentation>UUID nahrazují entity. Uvádí se při stavu APS_REPLACED.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="EntityRecordRef">
+		<xs:annotation>
+			<xs:documentation>Odkaz na entitu. Je tvořen číselným identifikátorem a UUID. Dle místa užití se určuje jejich povinnost.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence/>
+		<xs:attributeGroup ref="s1:EntityIdGroup"/>
+	</xs:complexType>
+	<xs:complexType name="EntityRecordRevInfo">
+		<xs:annotation>
+			<xs:documentation>Informace o existenci revize.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence/>
+		<xs:attribute name="eid" use="required" type="s1:EntityId">
+			<xs:annotation>
+				<xs:documentation>ID entity</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="euid" use="required" type="s1:UUID">
+			<xs:annotation>
+				<xs:documentation>Doplňkový jednoznačný identifikátor entity. Primárně slouží pro prevenci duplicit.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="rev" use="required" type="s1:UUID">
+			<xs:annotation>
+				<xs:documentation>UUID aktuáln revize záznamu entity</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="EntityRecordRevision">
+		<xs:annotation>
+			<xs:documentation>Jedna revize záznamu entity</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:group ref="s1:RevChanges" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="eid" use="required" type="s1:EntityId">
+			<xs:annotation>
+				<xs:documentation>Číselný identifikátor entity</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="euid" use="required" type="s1:UUID">
+			<xs:annotation>
+				<xs:documentation>Identifikátor entity typu UUID</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="bid" use="optional" type="s1:UUID">
+			<xs:annotation>
+				<xs:documentation>UUID dávky v níž byla revize zaslána</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="rev" use="required" type="s1:UUID">
+			<xs:annotation>
+				<xs:documentation>UUID revize</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="EntityRecordRevisions">
+		<xs:annotation>
+			<xs:documentation>Kolekce revizí záznamů entit</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="rev" type="s1:EntityRecordRevision" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EntityType">
+		<xs:annotation>
+			<xs:documentation>Třída archivní entity</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="s1:LongString" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="readOnly" type="s1:LogicalValue" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="code" use="required" type="s1:Code"/>
+		<xs:attribute name="parent" use="optional" type="s1:Code">
+			<xs:annotation>
+				<xs:documentation>Odkaz na rodiče</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="EntityTypes">
+		<xs:annotation>
+			<xs:documentation>Seznam tříd entit</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="entityType" type="s1:EntityType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ErrorMessage">
+		<xs:annotation>
+			<xs:documentation>Detail chyby k jednotlivému přístupovému bodu</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="et" type="s1:ErrorType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="msg" type="s1:String" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="lid" use="optional" type="xs:ID">
+			<xs:annotation>
+				<xs:documentation>Lokální identifikátor záznamu ve zdrojovém XML</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="FoundEntites">
+		<xs:annotation>
+			<xs:documentation>Seznam stručných informací o entitách</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fei" type="s1:FoundEntityInfo" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FoundEntityInfo">
+		<xs:annotation>
+			<xs:documentation>Stručná informace o entitě</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="s1:String" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Označení přístupového bodu</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dsc" type="s1:String" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Stručná charakteristika</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rl" type="s1:ResultLookup" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="et" use="required" type="s1:Code">
+			<xs:annotation>
+				<xs:documentation>Třída/podtřída entity</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attributeGroup ref="s1:EntityIdGroup"/>
+	</xs:complexType>
+	<xs:complexType name="HightlightPos">
+		<xs:annotation>
+			<xs:documentation>Pozice ke zvýraznění. Relevantní část odpovědi.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence/>
+		<xs:attribute name="epos" use="required" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Koncová pozice. Indexováno od 0.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="spos" use="required" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Pozice od, index od 0</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ItemBinary">
+		<xs:annotation>
+			<xs:documentation>Binární data</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="s1:BinaryStream">
+				<xs:attributeGroup ref="s1:ItemAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ItemBoolean">
+		<xs:annotation>
+			<xs:documentation>Prvek popisu s logickou hodnotou</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="s1:Boolean">
+				<xs:attributeGroup ref="s1:ItemAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ItemEntityRef">
+		<xs:annotation>
+			<xs:documentation>Reference na entitu</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Odkaz na entitu může být absolutní nebo relativní v rámci dokumentu</xs:documentation>
+				</xs:annotation>
+				<xs:element name="er" type="s1:EntityRecordRef" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="lid" type="s1:EntityRef" minOccurs="1" maxOccurs="1"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attributeGroup ref="s1:ItemAttributes"/>
+	</xs:complexType>
+	<xs:complexType name="ItemEnum">
+		<xs:sequence/>
+		<xs:attributeGroup ref="s1:ItemAttributes"/>
+	</xs:complexType>
+	<xs:complexType name="ItemInteger">
+		<xs:annotation>
+			<xs:documentation>Číselná hodnota</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="s1:Integer">
+				<xs:attributeGroup ref="s1:ItemAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ItemLink">
+		<xs:annotation>
+			<xs:documentation>Odkaz na externí zdroj dat</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="url" type="s1:String" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>URL odkazu</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nm" type="s1:String" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Název odkazu</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attributeGroup ref="s1:ItemAttributes"/>
+	</xs:complexType>
+	<xs:complexType name="ItemRef">
+		<xs:annotation>
+			<xs:documentation>Reference na prvek popisu</xs:documentation>
+		</xs:annotation>
+		<xs:sequence/>
+		<xs:attributeGroup ref="s1:ItemAttributes"/>
+	</xs:complexType>
+	<xs:complexType name="ItemRefs">
+		<xs:annotation>
+			<xs:documentation>Reference na prvky popisu</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ir" type="s1:ItemRef" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Items">
+		<xs:annotation>
+			<xs:documentation>Collection of items</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice minOccurs="1" maxOccurs="unbounded">
+				<xs:element name="ci" type="s1:ItemBinary" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="bi" type="s1:ItemBoolean" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="ai" type="s1:ItemEntityRef" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="ei" type="s1:ItemEnum" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="ii" type="s1:ItemInteger" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="li" type="s1:ItemLink" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="si" type="s1:ItemString" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="di" type="s1:ItemUnitDate" minOccurs="1" maxOccurs="1"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ItemString">
+		<xs:annotation>
+			<xs:documentation>Řetězcová hodnota.
+
+V řetězcové hodnotě se přenášejí tyto datové typy:
+	- MEMO - text libovolné délky s řádkováním
+	- TEXT_250 - text bez řádkování, maximální délka 250 znaků.
+	- TEXT_50 - text bez řádkování, maximální délka 50 znaků.
+	- COORDINATES - souřadnice - bod, linie, polygon a jejich kolekce
+
+Souřadnice jsou serializovány do formátu WKT  ( ISO/IEC 13249-3:2016).</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="s1:String">
+				<xs:attributeGroup ref="s1:ItemAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ItemUnitDate">
+		<xs:complexContent>
+			<xs:extension base="s1:TimeInterval">
+				<xs:sequence/>
+				<xs:attributeGroup ref="s1:ItemAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="NewEntityRecord">
+		<xs:annotation>
+			<xs:documentation>Struktura pro novou entitu</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="prts" type="s1:Parts" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="et" use="required" type="s1:Code">
+			<xs:annotation>
+				<xs:documentation>Kód třídy/podtřídy entity</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="euid" use="optional" type="s1:UUID">
+			<xs:annotation>
+				<xs:documentation>Jednoznačný identifikátor entity v původním zdrojovém systému.
+Identifikátor entity musí být jednoznačný. Pokud není předán, tak je automaticky vygenerován na serveru. Identifikátor je dále neměný.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="NewItems">
+		<xs:annotation>
+			<xs:documentation>Nové prvky popisu</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="s1:Items">
+				<xs:sequence/>
+				<xs:attributeGroup ref="s1:PartRefGroup"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Part">
+		<xs:annotation>
+			<xs:documentation>Část přístupového bodu</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="itms" type="s1:Items" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Prvky popisu tvořící část</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="eits" type="s1:Items" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Rozšiřující prvky popisu a jejich hodnoty.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="prnt" use="optional" type="s1:UUID">
+			<xs:annotation>
+				<xs:documentation>Odkaz na nadřízenou část entity, identifikátor příslušného Partu.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attributeGroup ref="s1:PartRefGroup"/>
+	</xs:complexType>
+	<xs:complexType name="Parts">
+		<xs:annotation>
+			<xs:documentation>Collection of parts</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="p" type="s1:Part" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Popis jedné části entity</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="QueryResult">
+		<xs:annotation>
+			<xs:documentation>Odpověď na dotaz</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ri" type="s1:ResultInfo" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="list" type="s1:FoundEntites" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResultInfo">
+		<xs:annotation>
+			<xs:documentation>Shrnutí výsledků dotazu, celkový počet</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="cnt" type="s1:Integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Celkový počet záznamů</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResultLookup">
+		<xs:annotation>
+			<xs:documentation>Náhled relevantní částí entity</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="v" type="s1:String" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Kontext výsledku, umožňuje citovat jednu nebo více částí ze zdrojové entity na jejichž základě byla entita nalezena.
+
+Při vyhledání "Antonín" se může vrátit
+...Antonín Novák malíř (1850-1905) .....jeho učitel Antonín Laštovička ....</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="hp" type="s1:HightlightPos" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="pt" use="optional" type="s1:PartType">
+			<xs:annotation>
+				<xs:documentation>Odkaz na část z níž odpověď pochází. Uvádí se v případě, kdy odpověď je z právě jedné části.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="RevInfo">
+		<xs:annotation>
+			<xs:documentation>Informace o revizi entity. Obsahuje čas zápisu revize, informace o uživateli a jeho jméno.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="rid" type="s1:UUID" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>UUID revize archivní entity</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="usr" type="s1:LongString" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Jméno uživatele, který změny provedl</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="usid" type="s1:EntityRecordRef" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>ID uživatele, který změnu provedl</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="modt" type="s1:DateTime" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Datum a čas revize</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SetRecordState">
+		<xs:annotation>
+			<xs:documentation>Nastavení stavu záznamu</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="rs" type="s1:EntityRecordState" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Nový stav</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Odkaz na entitu může být absolutní nebo relativní v rámci dokumentu</xs:documentation>
+				</xs:annotation>
+				<xs:element name="er" type="s1:EntityRecordRef" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="lid" type="s1:EntityRef" minOccurs="1" maxOccurs="1"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TimeInterval">
+		<xs:annotation>
+			<xs:documentation>Komplexní datace.
+Umožňuje reprezentovat časový okamžik nebo časový interval.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence/>
+		<xs:attribute name="f" use="required" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>from / od
+Uvádí se hodnota dle ISO-8601 avšak pouze ve formátu [-]YYYY-MM-DDThh:mm:ss.
+Hodnota je bez milisekund a časového pásma. 
+
+Rok má vždy minimálně 4 pozice. Je možné uvádět i roky před 1583.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="fe" use="optional" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>From is estimate. If not present then value is not estimate. Set this value only if 'from' is set.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="fmt" use="optional" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Formát uložené datace.
+
+Možnosti hodnot formátu:
+	- století: C
+	- rok: Y
+	- rok/měsíc: YM
+	- datum (rok/měsíc/den): D
+	- datum a čas: DT
+
+Formát může být zadán:
+	- jako jedna hodnota (např. Y)
+	- jako interval (např. Y-Y)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="to" use="required" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>to / do
+Uvádí se hodnota dle ISO-8601 avšak pouze ve formátu [-]YYYY-MM-DDThh:mm:ss.
+Hodnota je bez milisekund a časového pásma. 
+
+Rok má vždy minimálně 4 pozice. Je možné uvádět i roky před 1583.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="toe" use="optional" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>Flag if to is estimate. If flag is not present then to is not estimate. Use this attribute only if 'to' is set.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="UpdateEntity">
+		<xs:annotation>
+			<xs:documentation>Aktualizace záznamu archivní entity. Skládá se z odkazu na entitu a prováděné změny. Pokud se s entitou pracuje v rámci dávky poprvé, tak se uvádí plný odkaz na entitu. Při opakované práci s entitou se využívá odkaz na její první místo použití.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:group ref="s1:BatchEntityRef" minOccurs="1" maxOccurs="1"/>
+			<xs:group ref="s1:UpdateEntityRecordGroup" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UpdateItems">
+		<xs:annotation>
+			<xs:documentation>Aktualizace prvků v části</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="s1:Items">
+				<xs:sequence/>
+				<xs:attributeGroup ref="s1:PartRefGroup"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Updates">
+		<xs:annotation>
+			<xs:documentation>Seznam aktualizací</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ri" type="s1:EntityRecordRevInfo" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UpdatesFrom">
+		<xs:annotation>
+			<xs:documentation>Seznam aktualizací od dané transakce</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="inf" type="s1:UpdatesInfo" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Souhrná informace o aktualizacích</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ups" type="s1:Updates" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UpdatesInfo">
+		<xs:annotation>
+			<xs:documentation>Informace o proběhlých aktualizacích</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="from" type="s1:UUID" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>UUID aktualizace od níž je počet změněných AP vypočten</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="to" type="s1:UUID" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>UUID poslední aktualizace</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cnt" type="s1:Integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Počet změněných záznamů.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="BatchEntityRef">
+		<xs:annotation>
+			<xs:documentation>Odkaz na záznam entity v dávce.
+Entita je odkazována pomocí identifikátoru CAM nebo pomocí lokálního identifikátoru v rámci dávky.
+Pokud je entita odkazována pomocí identifikátoru CAM, tak musí být povinně vyplněno buď eid (číselný identifikátor entity) nebo euid (UUID entity). Pokud jsou vyplněny obě hodnoty současně, tak musí odpovídat jedné entitě.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="e" type="s1:BatchEntityRecordRev" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="lid" type="s1:EntityRef" minOccurs="1" maxOccurs="1"/>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="BatchUserInfo">
+		<xs:annotation>
+			<xs:documentation>Informace o uživateli, který je autorem změny. Uvede se buď identifikátor entity uživatele nebo jeho jméno. Povinně se uvádí jeden z těchto údajů.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="usr" type="s1:LongString" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Jméno uživatele, který změny provedl</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="usid" type="s1:EntityId" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>ID uživatele, který změnu provedl</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="Change">
+		<xs:annotation>
+			<xs:documentation>Element pro zapouzdření různých typů změn</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="ce" type="s1:CreateEntity" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ue" type="s1:UpdateEntity" minOccurs="1" maxOccurs="1"/>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="RevChanges">
+		<xs:choice>
+			<xs:element name="ner" type="s1:NewEntityRecord" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="np" type="s1:Part" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nis" type="s1:NewItems" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="uis" type="s1:UpdateItems" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="dp" type="s1:DeletePart" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="dis" type="s1:DeleteItems" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="sent" type="s1:Code" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Změna třídy/podtřídy entity. Zasílá se kód nové podtřídy.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="spfn" type="s1:UUID" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Změna preferovaného jména. Zasílá se identifikátor nového preferovaného jména.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="srs" type="s1:SetRecordState" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Změna stavu záznamu. Zasílá se nový stav.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="UpdateEntityRecordGroup">
+		<xs:annotation>
+			<xs:documentation>Typ aktualizační změny</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="nip" type="s1:Part" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="nis" type="s1:NewItems" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="uis" type="s1:UpdateItems" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="dp" type="s1:DeletePart" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="dis" type="s1:DeleteItems" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="set" type="s1:Code" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Změna preferovaného jména. Zasílá se identifikátor nového preferovaného jména.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="srs" type="s1:SetRecordState" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Změna stavu přístupového bodu. Zasílá se nový stav.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="spfn" type="s1:UUID" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Změna preferovaného jména. Zasílá se identifikátor nového preferovaného jména.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+	<xs:attributeGroup name="EntityIdGroup">
+		<xs:annotation>
+			<xs:documentation>Primární identifikátory entity. Každá entita má svůj číselný identifikátor (atribut eid) a identifikátor typu UUD (atribut euid)</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="eid" use="optional" type="s1:EntityId">
+			<xs:annotation>
+				<xs:documentation>Číselný identifikátor entity</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="euid" use="optional" type="s1:UUID">
+			<xs:annotation>
+				<xs:documentation>Identifikátor typu UUID</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ItemAttributes">
+		<xs:annotation>
+			<xs:documentation>Atributy prvku popisu</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="s" use="optional" type="s1:Code">
+			<xs:annotation>
+				<xs:documentation>specifikace</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="t" use="required" type="s1:Code">
+			<xs:annotation>
+				<xs:documentation>typ prvku popisu</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="uuid" use="optional" type="s1:UUID">
+			<xs:annotation>
+				<xs:documentation>volitelné UUID prvku popisu, povinně u opakovatelných</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PartRefGroup">
+		<xs:annotation>
+			<xs:documentation>Odkaz na část</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="pid" use="optional" type="s1:UUID"/>
+		<xs:attribute name="t" use="required" type="s1:PartType"/>
+	</xs:attributeGroup>
+</xs:schema>

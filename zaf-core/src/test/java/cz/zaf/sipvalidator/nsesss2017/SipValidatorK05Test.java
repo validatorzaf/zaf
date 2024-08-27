@@ -3,6 +3,7 @@ package cz.zaf.sipvalidator.nsesss2017;
 import org.junit.jupiter.api.Test;
 
 import cz.zaf.common.result.ValidationStatus;
+import cz.zaf.sipvalidator.nsesss2017.pravidla05.val00_09.Pravidlo1;
 import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
 
@@ -22,41 +23,41 @@ public class SipValidatorK05Test extends SipValidatorTestBase {
     void testK05_01() {
         testPackageK05("val1-chyba1", ValidationStatus.ERROR,
                        new String[] {},
-                       new String[] { K05_ProtiSchematu.VAL1 });
+                       new String[] { Pravidlo1.VAL1 });
     }
 
     @Test
     void testK05_02() {
         testPackageK05("val1-chyba2", ValidationStatus.ERROR,
                        new String[] {},
-                       new String[] { K05_ProtiSchematu.VAL1 });
+                       new String[] { Pravidlo1.VAL1 });
     }
 
     @Test
     void testK05_03() {
         testPackageK05("val1-chyba3", ValidationStatus.ERROR,
                        new String[] {},
-                       new String[] { K05_ProtiSchematu.VAL1 });
+                       new String[] { Pravidlo1.VAL1 });
     }
 
     @Test
     void testK05_OK01() {
         testPackageK05("val1-OK1", ValidationStatus.OK,
-                       new String[] { K05_ProtiSchematu.VAL1 },
+                       new String[] { Pravidlo1.VAL1 },
                        new String[] {});
     }
 
     @Test
     void testK05_OK02() {
         testPackageK05("val1-OK2", ValidationStatus.OK,
-                       new String[] { K05_ProtiSchematu.VAL1 },
+                       new String[] { Pravidlo1.VAL1 },
                        new String[] {});
     }
 
     @Test
     void testK05_OK03() {
         testPackageK05("val1-OK3", ValidationStatus.OK,
-                       new String[] { K05_ProtiSchematu.VAL1 },
+                       new String[] { Pravidlo1.VAL1 },
                        new String[] {});
     }
 }

@@ -9,6 +9,7 @@ import cz.zaf.common.validation.ValidatorListener;
 import cz.zaf.eadvalidator.ap2023.layers.enc.EncodingValidationLayer;
 import cz.zaf.eadvalidator.ap2023.layers.wf.WellFormedLayer;
 import cz.zaf.eadvalidator.ap2023.layers.ns.NamespaceValidationLayer;
+import cz.zaf.eadvalidator.ap2023.layers.val.SchemaValidationLayer;
 import cz.zaf.eadvalidator.ap2023.profile.EadValidationProfile;
 
 public class EadValidator implements ValidatorListener<EadValidationContext> {
@@ -24,6 +25,7 @@ public class EadValidator implements ValidatorListener<EadValidationContext> {
         validations.add(new EncodingValidationLayer());
         validations.add(new WellFormedLayer());
         validations.add(new NamespaceValidationLayer());
+        validations.add(new SchemaValidationLayer());
         return validations;
     }
 

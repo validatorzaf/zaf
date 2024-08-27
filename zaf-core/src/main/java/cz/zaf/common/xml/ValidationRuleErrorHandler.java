@@ -3,26 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.zaf.sipvalidator.nsesss2017;
+package cz.zaf.common.xml;
 
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
+import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.XmlCode;
-import cz.zaf.common.result.RuleValidationError;
-import cz.zaf.common.result.ValidationLayerResult;
 
 /**
  * Error handler pro validaci schematu
  * 
  */
-public class ErrorHandlerValidaceXSD implements ErrorHandler {
-    ValidationLayerResult k;
-    public boolean nalezenaChyba = false;
+public class ValidationRuleErrorHandler implements ErrorHandler {
 
-    public ErrorHandlerValidaceXSD(ValidationLayerResult k) {
-        this.k = k;
+    public ValidationRuleErrorHandler() {
     }
 
     @Override
@@ -42,10 +38,7 @@ public class ErrorHandlerValidaceXSD implements ErrorHandler {
     
     private void setUpError(SAXParseException e, int priorita){
         // Vypisuje se jen prvni chyba
-        if(nalezenaChyba) {
-            return;
-        }
-        nalezenaChyba = true;
+
         String textPriorita = "";
         switch(priorita){
             case(0):
@@ -73,7 +66,6 @@ public class ErrorHandlerValidaceXSD implements ErrorHandler {
             String nazevChybejicihoTagu = textZaPosledniDvojteckou.substring(0, indexPosledniSlozeneZavorky);
 
             textChyby += " CHYBÍ ELEMENT "+nazevChybejicihoTagu + ".";
-//            mistoChyby += " Element " + nazevChybejicihoTagu + "."; 
             vypsano = true;
         }
         
@@ -101,20 +93,7 @@ public class ErrorHandlerValidaceXSD implements ErrorHandler {
             textChyby += " " +celaChybovaHlaska;
         }
 
-        RuleValidationError p = new RuleValidationError(K05_ProtiSchematu.VAL1,
-                K05_ProtiSchematu.VAL1_TEXT,
-                textChyby,
-                K05_ProtiSchematu.VAL1_POPIS_CHYBY,
-                mistoChyby,
-                K05_ProtiSchematu.VAL1_ZDROJ,
-                XmlCode.NEODPOVIDA_SCHEMATU,
-                null);
-        k.add(p);
-    }
-
-    public boolean getNalezenaChyba() {
-        return nalezenaChyba;
-    }
-    
+        throw new ZafException(XmlCode.NEODPOVIDA_SCHEMATU, textChyby, mistoChyby);        
+    }    
     
 }

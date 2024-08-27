@@ -18,15 +18,18 @@ public class SchemaResourceLoader {
 	// can be used only from loadSchema method
 	static SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 	
+	/**
+	 * Function load schema and return it
+	 * @param resource
+	 * @return
+	 */
 	private synchronized static Schema loadSchema(String resource) {
 		URL schemaFile = SchemaResourceLoader.class.getResource(resource);
 		if(schemaFile==null) {
 			throw new IllegalStateException("Cannot resource: "+resource);
 		}        
 		try {
-			var schema = schemaFactory.newSchema(schemaFile);
-			schemaCache.put(resource, schema);
-			return schema;
+			return schemaFactory.newSchema(schemaFile);
 		} catch (Exception e) {
 			throw new IllegalStateException("Cannot load schema: "+resource, e);
 		}
