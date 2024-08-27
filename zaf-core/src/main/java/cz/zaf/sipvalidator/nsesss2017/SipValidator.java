@@ -19,8 +19,6 @@ import cz.zaf.sipvalidator.sip.SipLoader;
  */
 public class SipValidator implements ValidatorListener<KontrolaNsess2017Context> {
 
-    static private Logger log = LoggerFactory.getLogger(SipValidator.class);
-
     K00_SkodlivehoKodu ksk;
 
     final List<ValidationLayer<KontrolaNsess2017Context>> kontroly;
