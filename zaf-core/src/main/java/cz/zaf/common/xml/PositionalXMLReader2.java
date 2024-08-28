@@ -132,28 +132,4 @@ public class PositionalXMLReader2 {
             throw new RuntimeException("Can't create SAX parser / DOM builder.", e);
         }
     }
-
-    /**
-     * Return formatted position of node in XML
-     * 
-     * @param node
-     * @return
-     */
-    static public String formatPosition(Node node) {
-        if (node == null) {
-            return null;
-        }
-        Object lineNumber = node.getUserData(PositionalXMLReader.LINE_NUMBER_KEY_NAME);
-        if (lineNumber == null) {
-            return null;
-        }
-        Object colNumber = node.getUserData(PositionalXMLReader.COLUMN_NUMBER);
-        StringBuilder sb = new StringBuilder();
-        sb.append("Řádek ").append(lineNumber);
-        if (colNumber != null) {
-            sb.append(":").append(colNumber);
-        }
-        sb.append(", element <").append(node.getNodeName()).append(">.");
-        return sb.toString();
-    }
 }

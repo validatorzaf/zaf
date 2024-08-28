@@ -1,0 +1,21 @@
+﻿<?xml version="1.0"?>
+<jxb:bindings version="3.0"
+	xmlns:jxb="https://jakarta.ee/xml/ns/jaxb"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+	xmlns:inheritance="urn:jaxb.jvnet.org:plugin:inheritance"
+	jxb:extensionBindingPrefixes="xjc">
+
+  <jxb:bindings schemaLocation="ead3.xsd">
+    <jxb:bindings node="//xs:complexType[@name='languagedeclaration']//xs:element[@name='script']">
+      <jxb:property name="LanguageDeclarationScript"/>
+    </jxb:bindings>
+    <jxb:bindings node="//xs:complexType[@name='languageset']//xs:element[@name='script']">
+      <jxb:property name="LanguageSetScript"/>
+    </jxb:bindings>
+        
+<!--    <jxb:bindings node="//xs:element[@name='script'][2]">
+      <jxb:property name="Script2"/>
+    </jxb:bindings>-->
+  </jxb:bindings>
+</jxb:bindings>

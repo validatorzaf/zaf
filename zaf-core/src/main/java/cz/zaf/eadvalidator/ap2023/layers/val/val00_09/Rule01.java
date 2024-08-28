@@ -38,6 +38,18 @@ public class Rule01 extends EadRule {
 		} catch (IOException e) {
 			throw new ZafException(BaseCode.CHYBA, "Chyba IO", e);
 		}
+		try {
+			// Parse to JAXB
+			ctx.getLoader().loadJaxb();
+		} catch(Exception e) {
+			throw new ZafException(BaseCode.CHYBA, "Chyba JAXB", e);
+		}
+		
+		if(ctx.getLoader().getEad()==null) {
+			// toto by nemelo nastat
+			throw new ZafException(BaseCode.NEZNAMA_CHYBA, "Po načtení pomocí JAXB chybí kořenový objekt");
+		}
+		
 	}
 
 }

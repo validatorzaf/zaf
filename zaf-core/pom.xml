@@ -166,26 +166,16 @@
 								<source>${xjcDirectory}/validacexsd</source>
 								<source>${project.build.directory}/generated-sources/validacesip</source>
 								<source>${project.build.directory}/generated-sources/validace_v1</source>
-								<source>${project.build.directory}/generated-sources/validace_v1</source>
+								<source>${project.build.directory}/generated-sources/ead3</source>
 							</sources>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
 			<plugin>
-				
 				<groupId>org.jvnet.jaxb</groupId>
 				<artifactId>jaxb-maven-plugin</artifactId>
-				<version>4.0.0</version>
-<!--				<groupId>org.jvnet.jaxb2.maven2</groupId>-->
-<!--				<artifactId>maven-jaxb2-plugin</artifactId>-->
-<!--				<version>0.15.3</version>-->
-<!--				<dependencies><dependency>-->
-<!--				    <groupId>org.glassfish.jaxb</groupId>-->
-<!--				    <artifactId>jaxb-runtime</artifactId>-->
-<!--				    <version>2.3.3</version>-->
-<!--				</dependency></dependencies>-->
-				
+				<version>4.0.8</version>			
 				<executions>
 					<execution>
 						<id>jaxb2-validacexsd</id>
@@ -215,6 +205,33 @@
 							</schemaIncludes>
 							<generatePackage>cz.zaf.schema.validace_v1</generatePackage>
 							<generateDirectory>${project.build.directory}/generated-sources/validace_v1</generateDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>jaxb-generate-ead3-xsd</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemaDirectory>src/main/resources/schema</schemaDirectory>
+							<schemaIncludes>
+								<include>ead3.xsd</include>
+							</schemaIncludes>
+							<generatePackage>cz.zaf.schema.ead3</generatePackage>
+							<generateDirectory>${project.build.directory}/generated-sources/ead3</generateDirectory>
+                            <bindingDirectory>${project.basedir}/src/main/resources/schema</bindingDirectory>
+                            <bindingIncludes>
+                                <include>ead3-bindings.xml</include>
+							</bindingIncludes>
+                            <plugins>
+                                <plugin>
+                                    <groupId>org.jvnet.jaxb</groupId>
+                                    <artifactId>jaxb-plugins</artifactId>
+                                    <version>4.0.8</version>
+								</plugin>
+							</plugins>
+
 						</configuration>
 					</execution>
 				</executions>
