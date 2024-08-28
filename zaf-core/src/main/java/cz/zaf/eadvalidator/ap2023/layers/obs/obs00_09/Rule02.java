@@ -1,6 +1,5 @@
 package cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;

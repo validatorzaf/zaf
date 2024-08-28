@@ -13,6 +13,7 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule01;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule02;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule03;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule04;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule05;
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
 import cz.zaf.eadvalidator.ap2023.profile.EadValidationProfile;
 
@@ -31,6 +32,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 			Rule02.class,
 			Rule03.class,
 			Rule04.class,
+			Rule05.class,
 	};
 
 	public ContentValidationLayer(EadValidationProfile profilValidace) {
@@ -63,7 +65,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 			}
 		}
 
-        this.provedKontrolu(ctx, rules);
+		this.provedKontrolu(ctx, rules);
 		
 		
 	}

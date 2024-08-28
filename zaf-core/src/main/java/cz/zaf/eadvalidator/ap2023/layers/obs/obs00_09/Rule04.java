@@ -26,7 +26,7 @@ public class Rule04 extends EadRule {
 		Filedesc filedesc = ead.getControl().getFiledesc();
 		String encAnal = filedesc.getEncodinganalog();
 		if(StringUtils.isEmpty(encAnal)) {
-			throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybi nebo przdný atribut.", ctx.formatEadPosition(filedesc));			
+			throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybi nebo je prázdný atribut encodinganalog.", ctx.formatEadPosition(filedesc));			
 		}
 		// zkusime prevest na cislo
 		try {
