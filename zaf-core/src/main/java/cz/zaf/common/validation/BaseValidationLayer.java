@@ -73,6 +73,8 @@ public abstract class BaseValidationLayer<T extends ValidationLayerContext, RCtx
         validationResult.add(p);
     }
 
+    // this method is not used and probably could be removed
+    // or refactor to be usable (problem is generic collection of rules
     protected void provedKontrolu(RCtx kontrolaContext, List<Rule<RCtx>> rules) {
 
         for (var rule : rules) {

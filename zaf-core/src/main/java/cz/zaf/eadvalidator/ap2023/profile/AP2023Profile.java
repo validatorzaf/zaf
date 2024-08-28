@@ -17,5 +17,7 @@ public enum AP2023Profile implements EadValidationProfile {
             return "archivní popis";
         }
 
-    }
+    },
+    
+    
 }

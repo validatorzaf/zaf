@@ -28,7 +28,7 @@ public class EadValidator implements ValidatorListener<EadValidationContext> {
         validations.add(new WellFormedLayer());
         validations.add(new NamespaceValidationLayer());
         validations.add(new SchemaValidationLayer());
-        validations.add(new ContentValidationLayer());
+        validations.add(new ContentValidationLayer(profilValidace));
         return validations;
     }
 

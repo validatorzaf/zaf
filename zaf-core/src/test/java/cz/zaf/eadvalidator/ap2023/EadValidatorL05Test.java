@@ -11,7 +11,7 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
 	
     @Test
     void testObs_01_OK01() {
-    	testObs("sdilene_OK1.xml",
+    	testPopis("sdilene_OK1.xml",
                 ValidationStatus.OK,
                 new String[] { Rule01.CODE },
                 new String[] {});
@@ -19,18 +19,33 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
     
     @Test
     void testObs_01_chyba01() {
-    	testObs("05-KONTROLA OBSAHU/001_chyba1.xml",
+    	testPopis("05-KONTROLA OBSAHU/001_chyba1.xml",
                 ValidationStatus.ERROR,
                 new String[] { },
                 new String[] {Rule01.CODE });
     }
     
+    private void testPopis(String path,
+            ValidationStatus status,
+            String[] oks,
+            String[] fails) {
+    	testObs(path, AP2023Profile.ARCH_DESC, status, oks, fails);
+    }    
+
+    private void testPomucka(String path,
+            ValidationStatus status,
+            String[] oks,
+            String[] fails) {
+    	testObs(path, AP2023Profile.FINDING_AID, status, oks, fails);
+    }    
+
     private void testObs(String path,
+    		AP2023Profile profile,
             ValidationStatus status,
             String[] oks,
             String[] fails) {
     	testEad(PATH_TESTDATA + "/" + path,
-    			AP2023Profile.ARCH_DESC,
+    			profile,
     			ValidationLayers.OBSAH,
     			status,
     			oks, fails);
