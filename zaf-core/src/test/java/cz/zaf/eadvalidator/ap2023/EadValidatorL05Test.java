@@ -5,16 +5,25 @@ import org.junit.jupiter.api.Test;
 import cz.zaf.common.result.ValidationStatus;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule01;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule02;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule03;
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
 
 public class EadValidatorL05Test extends EadValidatorTestBase {
 	static public final String PATH_TESTDATA = "testdata/AP2023";
 	
     @Test
-    void testObs_01_OK01() {
+    void testObs_OK01() {
+    	testPomucka("sdilene_OK1.xml",
+                ValidationStatus.OK,
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE },
+                new String[] {});
+    }
+
+    @Test
+    void testObs_OK02() {
     	testPopis("sdilene_OK1.xml",
                 ValidationStatus.OK,
-                new String[] { Rule01.CODE, Rule02.CODE },
+                new String[] { Rule01.CODE, Rule03.CODE },
                 new String[] {});
     }
     
@@ -64,6 +73,22 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
                 ValidationStatus.ERROR,
                 new String[] {Rule01.CODE },
                 new String[] {Rule02.CODE });
+    }
+
+    @Test
+    void testObs_03_chyba01() {
+    	testPomucka("05-KONTROLA OBSAHU/003_chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[] {Rule01.CODE, Rule02.CODE },
+                new String[] { Rule03.CODE });
+    }
+
+    @Test
+    void testObs_03_chyba02() {
+    	testPomucka("05-KONTROLA OBSAHU/003_chyba2.xml",
+                ValidationStatus.ERROR,
+                new String[] { Rule01.CODE, Rule02.CODE },
+                new String[] { Rule03.CODE });
     }
 
     private void testPopis(String path,

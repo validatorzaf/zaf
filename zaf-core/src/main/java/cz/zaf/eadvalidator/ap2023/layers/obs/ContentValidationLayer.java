@@ -11,6 +11,7 @@ import cz.zaf.eadvalidator.ap2023.EadValidationContext;
 import cz.zaf.eadvalidator.ap2023.ValidationLayers;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule01;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule02;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule03;
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
 import cz.zaf.eadvalidator.ap2023.profile.EadValidationProfile;
 
@@ -19,12 +20,14 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 	private EadValidationProfile profilValidace;
 	
 	Class<?> archDescRules[] = {
-			Rule01.class
+			Rule01.class,
+			Rule03.class,			
 	};
 	
 	Class<?> findingAidRules[] = {
 			Rule01.class,
 			Rule02.class,
+			Rule03.class,
 	};
 
 	public ContentValidationLayer(EadValidationProfile profilValidace) {
