@@ -15,6 +15,7 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule03;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule04;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule05;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule06;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule07;
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
 import cz.zaf.eadvalidator.ap2023.profile.EadValidationProfile;
 
@@ -35,6 +36,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 			Rule04.class,
 			Rule05.class,
 			Rule06.class,
+			Rule07.class,
 	};
 
 	public ContentValidationLayer(EadValidationProfile profilValidace) {
