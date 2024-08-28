@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ead:ead xmlns:ead="http://ead3.archivists.org/schema/" xmlns:cam="http://cam.tacr.cz/2019">
+	<ead:control>
+		<ead:recordid>d0f7e14f-a655-4902-a6fd-e141bbe6ca6b</ead:recordid> <!-- obs1 -->
+		<ead:otherrecordid localtype="CZ_MVCR_FINDING_AID_ID">5</ead:otherrecordid> <!-- obs2 -->
+		<ead:otherrecordid localtype="INTERNAL_REV_ID">revId</ead:otherrecordid> <!-- obs3 -->
+		
+		<ead:filedesc encodinganalog="123"> <!-- obs4 -->
+			<ead:titlestmt>
+				<ead:titleproper></ead:titleproper>
+				<ead:subtitle>Název hotové pomůcky</ead:subtitle> <!-- obs5 -->
+			</ead:titlestmt>
+			
+			<ead:publicationstmt> <!-- obs6 -->
+				<ead:date localtype="RELEASE_DATE_PLACE">datum</ead:date> <!-- obs7 -->
+				<ead:date localtype="DESCRIPTION_DATE">datum</ead:date> <!-- obs8 -->
+				<ead:date localtype="FINDING_AID_DATE"></ead:date> <!-- obs9 -->
+			</ead:publicationstmt>
+		</ead:filedesc>
+		
+		<ead:maintenancestatus value="new"></ead:maintenancestatus>
+		<ead:maintenanceagency>
+			<ead:agencycode></ead:agencycode>
+			<ead:agencyname></ead:agencyname>
+		</ead:maintenanceagency>
+		
+		<ead:maintenancehistory>
+			<ead:maintenanceevent>
+				<ead:eventtype value="created"></ead:eventtype>
+				<ead:eventdatetime></ead:eventdatetime>
+				<ead:agenttype value="human"></ead:agenttype>
+				<ead:agent></ead:agent>
+			</ead:maintenanceevent>
+		</ead:maintenancehistory>
+	</ead:control>
+	<ead:archdesc level="fonds">
+		<ead:did>
+			<ead:physdescstructured physdescstructuredtype="spaceoccupied" coverage="whole">
+				<ead:quantity></ead:quantity>
+				<ead:unittype></ead:unittype>
+			</ead:physdescstructured>
+		</ead:did>
+		
+		<ead:dsc>
+			<ead:c level="series">
+				<ead:did>
+					<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole">
+						<ead:quantity></ead:quantity>
+						<ead:unittype></ead:unittype>
+					</ead:physdescstructured>
+				</ead:did>
+				
+				<ead:c level="item">
+					<ead:did>
+						<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole">
+							<ead:quantity></ead:quantity>
+							<ead:unittype></ead:unittype>
+						</ead:physdescstructured>
+					</ead:did>
+				</ead:c>
+			</ead:c>
+		</ead:dsc>
+	</ead:archdesc>
+</ead:ead>
