@@ -44,7 +44,7 @@
 			            </goals>
 			            <configuration>
 			                <!--<classifier>spring-boot</classifier>-->
-			                <mainClass>cz.zaf.sipvalidator.CmdValidator</mainClass>
+			                <mainClass>cz.zaf.validator.CmdValidator</mainClass>
 			            </configuration>
 			        </execution>
 			    </executions>
