@@ -209,11 +209,11 @@
 	<distributionManagement>
 		<repository>
 			<id>LightCompReleaseRepository</id>
-			<url>http://artifactory.lightcomp.cz:8081/artifactory/releases</url>
+			<url>http://artifactory.lightcomp.cz:8081/artifactory/distributions</url>
 		</repository>
 		<snapshotRepository>
 			<id>frnkRepo</id>
-			<url>http://10.2.0.2:8080/artifactory/libs-snapshot-local</url>
+			<url>http://artifactory.lightcomp.cz:8081/artifactory/libs-snapshot-local</url>
 		</snapshotRepository>
 
 	</distributionManagement>
