@@ -18,8 +18,8 @@ import cz.zaf.schema.ead3.Publicationstmt;
 public class Rule07 extends EadRule {
 	
 	static final public String CODE = "obs7";
-	static final public String RULE_TEXT = "Element <ead:publicationstmt> obsahuje právě jeden element <ead:date> s atributem \"localtype\" o hodnotě \"RELEASE_DATE_PLACE\".";
-	static final public String RULE_ERROR = "Element <ead:publicationstmt> neobsahuje právě jeden element <ead:date> s atributem \"localtype\" o hodnotě \"RELEASE_DATE_PLACE\".";
+	static final public String RULE_TEXT = "Element <ead:publicationstmt> obsahuje právě jeden element <ead:date> s atributem \"localtype\" o hodnotě \"RELEASE_DATE_PLACE\". Tento element <ead:date> obsahuje neprázdnou hodnotu.";
+	static final public String RULE_ERROR = "Element <ead:publicationstmt> neobsahuje právě jeden element <ead:date> s atributem \"localtype\" o hodnotě \"RELEASE_DATE_PLACE\". Případně je tento element <ead:date> prázdný.";
 	static final public String RULE_SOURCE = "Část 4.1.2 profilu EAD3 MV ČR"; 
 	
 	public Rule07() {
