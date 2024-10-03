@@ -7,6 +7,7 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule01;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule02;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule03;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule04;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule04a;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule05;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule06;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule07;
@@ -22,7 +23,7 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
     void testObs_OK01() {
     	testPomucka("sdilene_OK1.xml",
                 ValidationStatus.OK,
-                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule04a.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
                 		Rule11.CODE },
                 new String[] {});
     }
@@ -31,7 +32,7 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
     void testObs_OK02() {
     	testPopis("sdilene_OK1.xml",
                 ValidationStatus.OK,
-                new String[] { Rule01.CODE, Rule03.CODE, Rule04.CODE },
+                new String[] { Rule01.CODE, Rule03.CODE, Rule04.CODE, Rule04a.CODE },
                 new String[] {});
     }
     
@@ -121,6 +122,22 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
                 ValidationStatus.ERROR,
                 new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE },
                 new String[] { Rule04.CODE });
+    }
+
+    @Test
+    void testObs_04a_chyba01() {
+    	testPomucka("05-KONTROLA OBSAHU/004a_chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[] {Rule01.CODE, Rule02.CODE, Rule03.CODE },
+                new String[] { Rule04a.CODE });
+    }
+
+    @Test
+    void testObs_04a_chyba02() {
+    	testPomucka("05-KONTROLA OBSAHU/004a_chyba2.xml",
+                ValidationStatus.ERROR,
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE },
+                new String[] { Rule04a.CODE });
     }
 
     @Test
