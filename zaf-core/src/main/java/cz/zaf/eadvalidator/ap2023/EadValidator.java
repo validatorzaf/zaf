@@ -19,6 +19,7 @@ public class EadValidator implements ValidatorListener<EadValidationContext> {
     List<ValidationLayer<EadValidationContext>> validations;
 
     public EadValidator(EadValidationProfile profilValidace, List<String> excludeChecks) {
+    	// TODO: process exclude checks
         this.validations = prepareValidations(profilValidace);
     }
 

@@ -15,6 +15,7 @@ import cz.zaf.common.result.XmlProtokolWriter;
 import cz.zaf.common.result.XmlProtokolWriterOld;
 import cz.zaf.common.validation.Validator;
 import cz.zaf.eadvalidator.ap2023.ValidatorAp2023;
+import cz.zaf.earkvalidator.ValidatorDAAIP2024;
 import cz.zaf.sipvalidator.formats.MimetypeDetectorFactory;
 import cz.zaf.sipvalidator.formats.VystupniFormat;
 import cz.zaf.sipvalidator.nsesss2017.ValidatorNsesss2017;
@@ -131,6 +132,8 @@ public class CmdValidator {
     	switch (skutecnyTyp) {
         case AP2023:
             return new ValidatorAp2023(cmdParams.getAp2023profile(), cmdParams.getExcludeChecks());
+        case DAAIP2024:
+        	return new ValidatorDAAIP2024(cmdParams.getExcludeChecks());
         case NSESSS2017:
         default:
             return new ValidatorNsesss2017(cmdParams.getHrozba(),

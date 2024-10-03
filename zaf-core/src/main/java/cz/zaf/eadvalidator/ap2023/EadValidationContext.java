@@ -27,7 +27,7 @@ public class EadValidationContext implements RuleEvaluationContext, ValidationLa
 
     @Override
     public ValidationResult getValidationResult() {
-        return eadLoader;
+        return eadLoader.getResult();
     }
 
     @Override
