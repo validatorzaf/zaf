@@ -13,10 +13,10 @@ import cz.zaf.earkvalidator.AipLoader.AipSrcType;
 import cz.zaf.earkvalidator.AipRule;
 
 public class Rule01 extends AipRule {
-	private static final String CODE = "dat01";
-	static final public String RULE_TEXT = "Balíček SIP může mít podobu složky.";
-	static final public String RULE_ERROR = "Obsah složky není dostupný.";
-	static final public String RULE_SOURCE = "CZDAX-PSP0101"; 
+	public static final String CODE = "dat01";
+	public static final String RULE_TEXT = "Balíček SIP může mít podobu složky.";
+	public static final String RULE_ERROR = "Obsah složky není dostupný.";
+	public static final String RULE_SOURCE = "CZDAX-PSP0101"; 
 
 	public Rule01() {
 		super(CODE, RULE_TEXT, RULE_ERROR, RULE_SOURCE);
@@ -34,8 +34,7 @@ public class Rule01 extends AipRule {
 			return;
 		}
 		// Kontrola zda slozka obsahuje datové soubory
-		try {
-			DirectoryStream<Path> stream = Files.newDirectoryStream(srcPath);
+		try(DirectoryStream<Path> stream = Files.newDirectoryStream(srcPath)) {
 			// Kontrola, zda složka není prázdná
 			Iterator<Path> it = stream.iterator();
 			if(!it.hasNext()) {

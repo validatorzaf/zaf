@@ -10,7 +10,6 @@ import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.schema.ead3.Ead;
-import cz.zaf.schema.ead3.Subtitle;
 import cz.zaf.schema.ead3.Titleproper;
 import cz.zaf.schema.ead3.Titlestmt;
 

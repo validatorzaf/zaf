@@ -45,6 +45,7 @@ public class ValidatorDAAIP2024 implements Validator {
 	public ValidationResult validate(Path path) throws Exception {
 		// nahrani eadu
         try (AipLoader aipLoader = new AipLoader(path);) {
+        	aipLoader.init();
         	
             AipValidator aipValidator = new AipValidator(daaip2024Profile, excludeChecks);
 
