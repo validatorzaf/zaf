@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
+import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 import cz.zaf.sipvalidator.formats.VystupniFormat;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
@@ -34,6 +35,9 @@ public class CmdParams {
         output.println("        3 = pro předávání dokumentů a jejich metadat do archivu");
         output.println("        AD = archivní popis (pro AP2023)");
         output.println("        FA = archivní pomůcka (pro AP2023)");
+        output.println("        AIP = výměnný AIP (pro DAAIP2024)");
+        output.println("        DIP_METADATA = metadatový DIP (pro DAAIP2024)");
+        output.println("        DIP_CONTENT = úplný DIP (pro DAAIP2024)");
         output.println(" -e|--exclude= Seznam kontrol oddělených čárkou, které se nemají provádět");
         output.println(" -i|--id= Identifikátor prováděné kontroly");
         output.println(" -z|--hrozba= Podrobnosti v případě nalezení hrozby (pro předání z antivirového programu)");
@@ -76,10 +80,15 @@ public class CmdParams {
     /**
      * Profile pro AP2023
      */
-    AP2023Profile ap2023profile = AP2023Profile.ARCH_DESC;
+    AP2023Profile ap2023Profile = AP2023Profile.ARCH_DESC;
+    
+    /**
+     * Profile pro DAAIP2024
+     */
+    DAAIP2024Profile da2024Profile = DAAIP2024Profile.AIP;
 
-    public AP2023Profile getAp2023profile() {
-        return ap2023profile;
+    public AP2023Profile getAp2023Profile() {
+        return ap2023Profile;
     }
 
     /**
@@ -365,11 +374,20 @@ public class CmdParams {
             case "AUTO":
                 return true;
             case "FA":
-                ap2023profile = AP2023Profile.FINDING_AID;
+                ap2023Profile = AP2023Profile.FINDING_AID;
                 return true;
             case "AD":
-                ap2023profile = AP2023Profile.ARCH_DESC;
+                ap2023Profile = AP2023Profile.ARCH_DESC;
                 return true;
+            case "AIP":
+            	da2024Profile = DAAIP2024Profile.AIP;
+            	return true;
+            case "DIP_METADATA":
+            	da2024Profile = DAAIP2024Profile.DIP_METADATA;
+            	return true;
+            case "DIP_CONTENT":
+            	da2024Profile = DAAIP2024Profile.DIP_CONTENT;
+            	return true;
             }
 
             int druh = Integer.parseInt(arg);
@@ -482,4 +500,8 @@ public class CmdParams {
         }
         return true;
     }
+
+	public DAAIP2024Profile getDa2024Profile() {
+		return da2024Profile;
+	}
 }

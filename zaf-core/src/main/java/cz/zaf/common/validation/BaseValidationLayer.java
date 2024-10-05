@@ -1,5 +1,7 @@
 package cz.zaf.common.validation;
 
+import java.lang.reflect.Constructor;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -72,6 +74,27 @@ public abstract class BaseValidationLayer<T extends ValidationLayerContext, RCtx
     public void pridejChybu(RuleValidationError p) {
         validationResult.add(p);
     }
+    
+    /**
+     * Create rules from classes.
+     * @param ruleClasses
+     * @return
+     */
+    protected List<Rule<RCtx>> createRules(Class<?>[] ruleClasses) {
+    	List<Rule<RCtx>> rules = new ArrayList<>(ruleClasses.length);
+    	for (Class<?> ruleClass : ruleClasses) {
+			try {
+				Constructor<?> constr = ruleClass.getDeclaredConstructor();
+				@SuppressWarnings("unchecked")
+				Rule<RCtx> rule = (Rule<RCtx>)constr.newInstance();
+				rules.add(rule);
+			} catch (Exception e) {
+				throw new IllegalStateException("Nelze vytvořit třídu pravidla: " + ruleClass.getName());
+			}
+		}
+		return rules;
+	}
+
 
     // this method is not used and probably could be removed
     // or refactor to be usable (problem is generic collection of rules

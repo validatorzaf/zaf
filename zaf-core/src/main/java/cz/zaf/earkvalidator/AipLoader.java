@@ -11,7 +11,7 @@ import cz.zaf.common.result.ValidationResultImpl;
  */
 public class AipLoader implements AutoCloseable {
 	
-	enum AipSrcType {
+	public enum AipSrcType {
 		DIRECTORY,
 		FILE
 	}
@@ -55,6 +55,10 @@ public class AipLoader implements AutoCloseable {
 
 	public ValidationResult getResult() {
 		return validationResult;
+	}
+
+	public Path getAipSrcPath() {
+		return aipSrcPath;
 	}
 
 }

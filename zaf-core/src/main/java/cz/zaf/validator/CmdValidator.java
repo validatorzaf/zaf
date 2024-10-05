@@ -151,9 +151,9 @@ public class CmdValidator {
         }
     	switch (skutecnyTyp) {
         case AP2023:
-            return new ValidatorAp2023(cmdParams.getAp2023profile(), cmdParams.getExcludeChecks());
+            return new ValidatorAp2023(cmdParams.getAp2023Profile(), cmdParams.getExcludeChecks());
         case DAAIP2024:
-        	return new ValidatorDAAIP2024(cmdParams.getExcludeChecks());
+        	return new ValidatorDAAIP2024(cmdParams.getDa2024Profile(), cmdParams.getExcludeChecks());
         case NSESSS2017:
         default:
             return new ValidatorNsesss2017(cmdParams.getHrozba(),

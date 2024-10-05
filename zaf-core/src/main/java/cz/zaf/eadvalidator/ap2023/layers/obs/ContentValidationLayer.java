@@ -1,10 +1,10 @@
 package cz.zaf.eadvalidator.ap2023.layers.obs;
 
-import java.lang.reflect.Constructor;
+import java.util.List;
 
 import cz.zaf.common.validation.BaseValidationLayer;
+import cz.zaf.common.validation.Rule;
 import cz.zaf.common.validation.ValidationSubprofile;
-import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.eadvalidator.ap2023.EadValidationContext;
 import cz.zaf.eadvalidator.ap2023.ValidationLayers;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule01;
@@ -64,18 +64,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 			throw new IllegalStateException("Neznámý profil: " + profilValidace);
 		}
 		
-		// List<EadRule> rules = new ArrayList<>(ruleClasses.length);
-		EadRule rules[] = new EadRule[ruleClasses.length];
-		for(int i=0; i<ruleClasses.length; i++) {
-			Class<?> clazz = ruleClasses[i];
-			try {
-				Constructor<?> constr = clazz.getDeclaredConstructor();
-				EadRule rule = (EadRule)constr.newInstance();
-				rules[i] = rule;
-			} catch (Exception e) {
-				throw new IllegalStateException("Nelze vytvořit třídu pravidla: " + clazz.getName());
-			}
-		}
+		List<Rule<EadValidationContext>> rules = createRules(ruleClasses);
 
 		this.provedKontrolu(ctx, rules);
 		
