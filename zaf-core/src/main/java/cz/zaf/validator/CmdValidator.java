@@ -1,6 +1,8 @@
 package cz.zaf.validator;
 
+import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -121,6 +123,24 @@ public class CmdValidator {
     }
     
     private ValidationProfile identifikujTypBalicku() {
+    	Path inputPath = Paths.get(cmdParams.getInputPath());
+    	if(Files.isRegularFile(inputPath)) {
+    		// pokud je soubor, tak musí být pomůcka
+    		return ValidationProfile.AP2023;
+    	}
+    	// we have to detect file type
+    	// check if input path is a directory
+    	if (Files.isDirectory(inputPath)) {
+	    	// read fist 100 characters from METS.xml if exists
+	    	try {
+	    		String metsData = Files.readString(inputPath.resolve("METS.xml"), StandardCharsets.UTF_8);
+	    		if(metsData.contains("PROFILE=\"https://stands.nacr.cz/da/2023/aip.xml\"")) {
+	    			return ValidationProfile.DAAIP2024;
+	    		}
+    		} catch (IOException e) {
+	    		// ignore
+	    	}
+    	}
     	return ValidationProfile.NSESSS2017;
     }
     

@@ -8,6 +8,7 @@ import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.validation.Validator;
 import cz.zaf.eadvalidator.ap2023.EadLoader;
 import cz.zaf.eadvalidator.ap2023.EadValidator;
+import cz.zaf.validator.profiles.ValidationProfile;
 
 public class ValidatorDAAIP2024 implements Validator {
 	
@@ -15,7 +16,7 @@ public class ValidatorDAAIP2024 implements Validator {
 
 		@Override
 		public String getProfileName() {
-			return "standard";
+			return ValidationProfile.DAAIP2024.toString();
 		}
 
 		@Override
@@ -25,7 +26,7 @@ public class ValidatorDAAIP2024 implements Validator {
 
 		@Override
 		public String getProfileVersion() {
-			return "1.0";
+			return "1";
 		}		
 	}; 
 	
