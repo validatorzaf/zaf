@@ -35,4 +35,8 @@ public class AipValidationContext implements RuleEvaluationContext, ValidationLa
         		excludeChecks.contains(code):false;
 	}
 
+	public AipLoader getLoader() {
+		return aipLoader;
+	}
+
 }

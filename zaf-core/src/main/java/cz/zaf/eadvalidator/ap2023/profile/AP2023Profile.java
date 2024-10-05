@@ -1,6 +1,8 @@
 package cz.zaf.eadvalidator.ap2023.profile;
 
-public enum AP2023Profile implements EadValidationProfile {
+import cz.zaf.common.validation.ValidationSubprofile;
+
+public enum AP2023Profile implements ValidationSubprofile {
     FINDING_AID {
 
         @Override

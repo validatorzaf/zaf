@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 import cz.zaf.common.validation.BaseValidator;
+import cz.zaf.common.validation.ValidationSubprofile;
 import cz.zaf.common.validation.ValidationLayer;
 import cz.zaf.common.validation.ValidatorListener;
 import cz.zaf.eadvalidator.ap2023.layers.enc.EncodingValidationLayer;
@@ -12,7 +13,6 @@ import cz.zaf.eadvalidator.ap2023.layers.wf.WellFormedLayer;
 import cz.zaf.eadvalidator.ap2023.layers.ns.NamespaceValidationLayer;
 import cz.zaf.eadvalidator.ap2023.layers.val.SchemaValidationLayer;
 import cz.zaf.eadvalidator.ap2023.layers.obs.ContentValidationLayer;
-import cz.zaf.eadvalidator.ap2023.profile.EadValidationProfile;
 
 public class EadValidator implements ValidatorListener<EadValidationContext> {
 
@@ -23,12 +23,12 @@ public class EadValidator implements ValidatorListener<EadValidationContext> {
      */
 	private List<String> excludeChecks;
 
-    public EadValidator(EadValidationProfile profilValidace, List<String> excludeChecks) {
+    public EadValidator(ValidationSubprofile profilValidace, List<String> excludeChecks) {
     	this.excludeChecks = excludeChecks;
         this.validations = prepareValidations(profilValidace);
     }
 
-    private List<ValidationLayer<EadValidationContext>> prepareValidations(EadValidationProfile profilValidace) {
+    private List<ValidationLayer<EadValidationContext>> prepareValidations(ValidationSubprofile profilValidace) {
         List<ValidationLayer<EadValidationContext>> validations = new ArrayList<>(5);
         validations.add(new EncodingValidationLayer());
         validations.add(new WellFormedLayer());

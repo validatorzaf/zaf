@@ -1,6 +1,6 @@
-package cz.zaf.eadvalidator.ap2023.profile;
+package cz.zaf.common.validation;
 
-public interface EadValidationProfile {
+public interface ValidationSubprofile {
 
     /**
      * Return name of validation profile

@@ -3,6 +3,7 @@ package cz.zaf.eadvalidator.ap2023.layers.obs;
 import java.lang.reflect.Constructor;
 
 import cz.zaf.common.validation.BaseValidationLayer;
+import cz.zaf.common.validation.ValidationSubprofile;
 import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.eadvalidator.ap2023.EadValidationContext;
 import cz.zaf.eadvalidator.ap2023.ValidationLayers;
@@ -19,11 +20,10 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule09;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs10_19.Rule11;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs10_19.Rule12;
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
-import cz.zaf.eadvalidator.ap2023.profile.EadValidationProfile;
 
 public class ContentValidationLayer extends BaseValidationLayer<EadValidationContext, EadValidationContext> {
 
-	private EadValidationProfile profilValidace;
+	private ValidationSubprofile profilValidace;
 	
 	Class<?> archDescRules[] = {
 			Rule01.class,
@@ -47,7 +47,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 			Rule12.class,
 	};
 
-	public ContentValidationLayer(EadValidationProfile profilValidace) {
+	public ContentValidationLayer(ValidationSubprofile profilValidace) {
 		super(ValidationLayers.OBSAH);
 		this.profilValidace = profilValidace;
 	}

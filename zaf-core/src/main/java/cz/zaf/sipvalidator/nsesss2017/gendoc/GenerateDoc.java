@@ -72,7 +72,7 @@ public class GenerateDoc {
 
         String aktivniText;
         if (aktivni.size() > 0) {
-            List<String> nazvy = aktivni.stream().map(p -> p.getNazev()).collect(Collectors.toList());
+            List<String> nazvy = aktivni.stream().map(p -> p.getName()).collect(Collectors.toList());
             aktivniText = String.join(", ", nazvy);
         } else {
             aktivniText = "neaktivní";

@@ -1,6 +1,7 @@
 package cz.zaf.earkvalidator;
 
 import java.nio.file.Path;
+import java.util.Objects;
 
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.result.ValidationResultImpl;
@@ -10,10 +11,40 @@ import cz.zaf.common.result.ValidationResultImpl;
  */
 public class AipLoader implements AutoCloseable {
 	
-	ValidationResult validationResult; 
+	enum AipSrcType {
+		DIRECTORY,
+		FILE
+	}
+	
+	ValidationResult validationResult;
+	
+	private AipSrcType aipSrcType;
+	
+	/**
+	 * Original path to the AIP
+	 */
+	private Path aipSrcPath; 
 
-	public AipLoader(Path path) {
-		validationResult = new ValidationResultImpl(null, path.getFileName().toString());
+	public AipLoader(Path aipSrcPath) {
+		Objects.requireNonNull(aipSrcPath);
+		
+		this.aipSrcPath = aipSrcPath;
+		validationResult = new ValidationResultImpl(null, aipSrcPath.getFileName().toString());
+	}
+	
+	/**
+	 * Load AIP
+	 */
+	public void init() {
+		if (aipSrcPath.toFile().isDirectory()) {
+			aipSrcType = AipSrcType.DIRECTORY;
+		} else {
+			aipSrcType = AipSrcType.FILE;
+		}		
+	}
+	
+	public AipSrcType getAipSrcType() {
+		return aipSrcType;
 	}
 
 	@Override

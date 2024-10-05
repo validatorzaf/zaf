@@ -4,42 +4,42 @@ import java.util.Objects;
 
 public abstract class BaseRule<Ctx extends RuleEvaluationContext> implements Rule<Ctx> {
 
-    final protected String kodPravidla;
-    final protected String textPravidla;
-    final protected String obecnyPopisChyby;
-    final protected String zdrojChyby;
+    final protected String code;
+    final protected String ruleText;
+    final protected String ruleError;
+    final protected String ruleSource;
 
-    public BaseRule(final String kodPravidla,
-                    final String textPravidla,
-                    final String obecnyPopisChyby,
-                    final String zdrojChyby) {
-        Objects.requireNonNull(kodPravidla);
-        Objects.requireNonNull(textPravidla);
+    public BaseRule(final String code,
+                    final String ruleText,
+                    final String ruleError,
+                    final String ruleSource) {
+        Objects.requireNonNull(code);
+        Objects.requireNonNull(ruleText);
 
-        this.kodPravidla = kodPravidla;
-        this.textPravidla = textPravidla;
-        this.obecnyPopisChyby = obecnyPopisChyby;
-        this.zdrojChyby = zdrojChyby;
+        this.code = code;
+        this.ruleText = ruleText;
+        this.ruleError = ruleError;
+        this.ruleSource = ruleSource;
     }
 
     @Override
     public String getCode() {
-        return kodPravidla;
+        return code;
     }
 
     @Override
     public String getRuleSource() {
-        return zdrojChyby;
+        return ruleSource;
     }
 
     @Override
     public String getDescription() {
-        return textPravidla;
+        return ruleText;
     }
 
     @Override
     public String getGenericError() {
-        return obecnyPopisChyby;
+        return ruleError;
     }
 
 }

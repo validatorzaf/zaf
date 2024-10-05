@@ -26,7 +26,7 @@ public class AipValidator {
 
 	public void validate(AipLoader aipLoader) {
 
-		AipValidationContext aipValidationContext = new AipValidationContext(aipLoader, excludeChecks);
+		AipValidationContext aipValidationContext = new AipValidationContext(aipLoader, excludeChecks);		
 		
 		BaseValidator<AipValidationContext> validator = new BaseValidator<>(validations);
 		validator.validate(aipValidationContext);		
