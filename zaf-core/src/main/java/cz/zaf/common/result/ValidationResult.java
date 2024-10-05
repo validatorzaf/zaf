@@ -2,6 +2,12 @@ package cz.zaf.common.result;
 
 import java.util.List;
 
+/**
+ * Result of validation
+ * 
+ * Result of validation consists of objectId, object name 
+ * and list of layer validation results.
+ */
 public interface ValidationResult {
 
     /**

@@ -17,14 +17,19 @@ import cz.zaf.eadvalidator.ap2023.profile.EadValidationProfile;
 public class EadValidator implements ValidatorListener<EadValidationContext> {
 
     List<ValidationLayer<EadValidationContext>> validations;
+    
+    /**
+     * List of excluded checks
+     */
+	private List<String> excludeChecks;
 
     public EadValidator(EadValidationProfile profilValidace, List<String> excludeChecks) {
-    	// TODO: process exclude checks
+    	this.excludeChecks = excludeChecks;
         this.validations = prepareValidations(profilValidace);
     }
 
     private List<ValidationLayer<EadValidationContext>> prepareValidations(EadValidationProfile profilValidace) {
-        List<ValidationLayer<EadValidationContext>> validations = new ArrayList<>(2);
+        List<ValidationLayer<EadValidationContext>> validations = new ArrayList<>(5);
         validations.add(new EncodingValidationLayer());
         validations.add(new WellFormedLayer());
         validations.add(new NamespaceValidationLayer());
@@ -35,7 +40,7 @@ public class EadValidator implements ValidatorListener<EadValidationContext> {
 
     public void validate(EadLoader eadLoader) {
 
-        EadValidationContext context = new EadValidationContext(eadLoader);
+        EadValidationContext context = new EadValidationContext(eadLoader, excludeChecks);
 
         BaseValidator<EadValidationContext> validator = new BaseValidator<>(validations);
         validator.registerListener(this);

@@ -1,5 +1,9 @@
 package cz.zaf.eadvalidator.ap2023;
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import javax.xml.stream.Location;
 
 import org.w3c.dom.Document;
@@ -16,9 +20,13 @@ public class EadValidationContext implements RuleEvaluationContext, ValidationLa
     private EadLoader eadLoader;
 	private Element rootElement;
 	private boolean useEadPrefix = true;
+	private Set<String> excludeChecks = null;
 
-    EadValidationContext(final EadLoader eadLoader) {
+    EadValidationContext(final EadLoader eadLoader, final List<String> excludeChecks) {
         this.eadLoader = eadLoader;
+        if(excludeChecks!=null) {
+        	this.excludeChecks = excludeChecks.stream().collect(Collectors.toSet()); 
+        }
     }
 
     public EadLoader getLoader() {
@@ -32,7 +40,8 @@ public class EadValidationContext implements RuleEvaluationContext, ValidationLa
 
     @Override
     public boolean isExcluded(String code) {
-        return false;
+    	return (excludeChecks!=null)?
+    		excludeChecks.contains(code):false;
     }
 
     /**
