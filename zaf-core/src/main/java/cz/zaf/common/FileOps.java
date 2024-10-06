@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.function.Function;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -171,4 +172,64 @@ public class FileOps {
 
         return true;
     }
+
+    /** 
+     * Format file size to user friendly format (KB, MB, GB, TB)
+     * @param size
+     * @return
+     */
+	public static String formatSize(long size) {
+		if (size < 1024) {
+			return size + " B";
+		}
+		else if (size < 1024 * 1024) {
+			return (size / 1024) + " KB";
+		}
+		else if (size < 1024 * 1024 * 1024) {
+			return (size / 1024 / 1024) + " MB";
+		}
+		else if (size < 1024 * 1024 * 1024 * 1024) {
+			return (size / 1024 / 1024 / 1024) + " GB";
+		}
+		return Long.toString(size / 1024 / 1024 / 1024 / 1024) + " TB";
+	}
+
+	/**
+	 * Parse size from string format (B KB, MB, GB, TB)
+	 * 
+	 * If size is not parsable, returns 0
+	 *
+	 * @param maxSizeStr
+	 * @return
+	 */
+	public static long parseSize(String maxSizeStr) {
+		if (StringUtils.isEmpty(maxSizeStr)) {
+			return 0;
+		}
+		try {
+			long value = Long.parseLong(maxSizeStr.replaceAll("[^0-9]", ""));
+			
+			// parse units in suffix
+			String units = maxSizeStr.replaceAll("[0-9]", "");
+			if ("B".equals(units)||StringUtils.isBlank(units)) {
+				return value;
+			}
+			if ("KB".equals(units)) {
+				return value * 1024;
+			}
+			if ("MB".equals(units)) {
+				return value * 1024 * 1024;
+			}
+			if ("GB".equals(units)) {
+				return value * 1024 * 1024 * 1024;
+			}
+			if ("TB".equals(units)) {
+				return value * 1024 * 1024 * 1024 * 1024;
+			}
+		} catch (NumberFormatException e) {
+			log.error("Failed to parse size: {}", maxSizeStr, e);
+		}
+		
+		return 0;
+	}
 }
