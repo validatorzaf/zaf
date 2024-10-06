@@ -7,6 +7,7 @@ import cz.zaf.common.validation.BaseValidator;
 import cz.zaf.common.validation.ValidationLayer;
 import cz.zaf.earkvalidator.layers.dat.DataValidationLayer;
 import cz.zaf.earkvalidator.layers.enc.EncodingValidationLayer;
+import cz.zaf.earkvalidator.layers.wf.WellFormedLayer;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 
 public class AipValidator {
@@ -24,6 +25,7 @@ public class AipValidator {
 		List<ValidationLayer<AipValidationContext>> validations = new ArrayList<>();
 		validations.add(new DataValidationLayer(daaip2024Profile));
 		validations.add(new EncodingValidationLayer());
+		validations.add(new WellFormedLayer());
 		return validations; 
 	}
 

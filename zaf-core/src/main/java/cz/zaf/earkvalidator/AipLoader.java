@@ -1,6 +1,7 @@
 package cz.zaf.earkvalidator;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -9,10 +10,13 @@ import java.util.Objects;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 import cz.zaf.common.FileOps;
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.result.ValidationResultImpl;
+import cz.zaf.common.xml.PositionalXMLReader2;
 import cz.zaf.earkvalidator.eark.EarkConstants;
 
 /**
@@ -68,7 +72,18 @@ public class AipLoader implements AutoCloseable {
 	/**
      * Příznak umožňující zachování rozbalených souborů
      */
-	private boolean keepExtactedFiles; 
+	private boolean keepExtactedFiles;
+
+	/**
+	 * Loaded METS document
+	 */
+	private Document document;
+	
+	private Exception metsParserError;
+
+	public Exception getMetsParserError() {
+		return metsParserError;
+	}
 
 	public AipLoader(Path aipSrcPath, final String workDir, final boolean keepExtactedFiles) {
 		Objects.requireNonNull(aipSrcPath);
@@ -218,6 +233,25 @@ public class AipLoader implements AutoCloseable {
 			return null;
 		}
 		return aipPath.resolve(EarkConstants.METADATA_DIR_NAME);
+	}
+
+	public Document loadMets() {
+    	log.debug("Parsing METS.xml, file: {}", getMetsPath());
+    	
+    	// reset previous document (if any)
+    	document = null;
+    	
+        try (InputStream is = Files.newInputStream(getMetsPath())) {
+            PositionalXMLReader2 xmlReader = new PositionalXMLReader2();
+            document = xmlReader.readXML(is);
+        } catch (SAXException e) {
+            metsParserError = e;
+            log.error("Parsing failed, file: {}", getMetsPath(), e);
+        } catch (IOException e) {        	
+        	metsParserError = e;
+            log.error("Reading failed, file: {}", getMetsPath(), e);
+        }
+        return document;
 	}
 
 }
