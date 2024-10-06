@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import cz.zaf.common.FileOps;
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.result.ValidationResultImpl;
+import cz.zaf.earkvalidator.eark.EarkConstants;
 
 /**
  * Load AIP from filesystem
@@ -193,6 +194,20 @@ public class AipLoader implements AutoCloseable {
 
 	public Path getAipPath() {
 		return aipPath;
+	}
+
+	/**
+	 * Return path to METS file
+	 * @return Return null if AIP is not loaded
+	 */
+	public Path getMetsPath() {
+		if(aipPath == null) {
+			return null;
+		}
+		if(loadStatus != LoadStatus.OK) {
+			return null;
+		}
+		return aipPath.resolve(EarkConstants.METS_FILE_NAME);
 	}
 
 }
