@@ -22,4 +22,11 @@ public final class Properties {
 	 * If not set, default limit is 50 000.
 	 */
 	public static final String ZAF_AIP_MAX_FILECOUNT = "zaf.aip.max.filecount";
+
+	/**
+	 * Maximal allowed size of METS.xml.
+	 * 
+	 * If not set, default limit is 10 MB.
+	 */
+	public static final String ZAF_METS_MAX_SIZE = "zaf.mets.max.size";
 }

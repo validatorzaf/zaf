@@ -7,11 +7,13 @@ import cz.zaf.common.validation.Rule;
 import cz.zaf.earkvalidator.AipValidationContext;
 import cz.zaf.earkvalidator.ValidationLayers;
 import cz.zaf.earkvalidator.layers.wf.wf00_09.Rule01;
+import cz.zaf.earkvalidator.layers.wf.wf00_09.Rule02;
 
 public class WellFormedLayer extends BaseValidationLayer<AipValidationContext, AipValidationContext> {
 
 	private Class<?>[] ruleClasses = {
-			Rule01.class
+			Rule01.class,
+			Rule02.class,
 	};
 	
 	public WellFormedLayer() {
