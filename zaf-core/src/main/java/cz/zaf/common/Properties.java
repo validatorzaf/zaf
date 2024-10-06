@@ -15,4 +15,11 @@ public final class Properties {
 	 * If not set, default limit is 10 GB.
 	 */
 	public static final String ZAF_AIP_MAX_SIZE = "zaf.aip.max.size";
+
+	/**
+	 * Maximal number of files
+	 * 
+	 * If not set, default limit is 50 000.
+	 */
+	public static final String ZAF_AIP_MAX_FILECOUNT = "zaf.aip.max.filecount";
 }

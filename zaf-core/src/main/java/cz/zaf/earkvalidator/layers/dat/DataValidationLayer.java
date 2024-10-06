@@ -11,6 +11,7 @@ import cz.zaf.earkvalidator.layers.dat.dat00_09.Rule03;
 import cz.zaf.earkvalidator.layers.dat.dat00_09.Rule04;
 import cz.zaf.earkvalidator.layers.dat.dat00_09.Rule05;
 import cz.zaf.earkvalidator.layers.dat.dat00_09.Rule06;
+import cz.zaf.earkvalidator.layers.dat.dat00_09.Rule07;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 import cz.zaf.earkvalidator.AipValidationContext;
 
@@ -23,6 +24,7 @@ public class DataValidationLayer extends BaseValidationLayer<AipValidationContex
 			Rule04.class,
 			Rule05.class,
 			Rule06.class,
+			Rule07.class,
 	};	
 
 	static Class<?> dipRuleClasses[] = {
@@ -32,6 +34,7 @@ public class DataValidationLayer extends BaseValidationLayer<AipValidationContex
 			Rule04.class,
 			// Rule05.class,
 			// Rule06.class,
+			// Rule07.class,
 	};	
 	
 	Class<?> ruleClasses[];
