@@ -210,4 +210,14 @@ public class AipLoader implements AutoCloseable {
 		return aipPath.resolve(EarkConstants.METS_FILE_NAME);
 	}
 
+	public Path getMetadataPath() {
+		if(aipPath == null) {
+			return null;
+		}
+		if(loadStatus != LoadStatus.OK) {
+			return null;
+		}
+		return aipPath.resolve(EarkConstants.METADATA_DIR_NAME);
+	}
+
 }

@@ -118,7 +118,7 @@ public class FileOps {
             zipFile.setCharset(Charset.forName(zipEncoding)); // extrakce českých znaků
             boolean isvalidZipFile = zipFile.isValidZipFile();
             if (!isvalidZipFile) {
-            	return false;
+             	return false;
             }
         	
             if(zipChecker!=null) {

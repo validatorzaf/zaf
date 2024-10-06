@@ -8,6 +8,7 @@ import cz.zaf.earkvalidator.ValidationLayers;
 import cz.zaf.earkvalidator.layers.dat.dat00_09.Rule01;
 import cz.zaf.earkvalidator.layers.dat.dat00_09.Rule02;
 import cz.zaf.earkvalidator.layers.dat.dat00_09.Rule03;
+import cz.zaf.earkvalidator.layers.dat.dat00_09.Rule04;
 import cz.zaf.earkvalidator.AipValidationContext;
 
 public class DataValidationLayer extends BaseValidationLayer<AipValidationContext, AipValidationContext> {
@@ -16,6 +17,7 @@ public class DataValidationLayer extends BaseValidationLayer<AipValidationContex
 			Rule01.class,
 			Rule02.class,
 			Rule03.class,
+			Rule04.class,
 	};	
 
 	public DataValidationLayer() {
