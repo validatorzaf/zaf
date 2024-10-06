@@ -17,9 +17,6 @@ import org.apache.commons.lang.StringUtils;
 import com.ibm.icu.text.CharsetDetector;
 import com.ibm.icu.text.CharsetMatch;
 
-import cz.zaf.common.exceptions.ZafException;
-import cz.zaf.common.exceptions.codes.BaseCode;
-
 public class EncodingDetector {
 	
 	public static class Result {

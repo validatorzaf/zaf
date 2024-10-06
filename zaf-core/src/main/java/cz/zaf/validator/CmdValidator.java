@@ -153,7 +153,8 @@ public class CmdValidator {
         case AP2023:
             return new ValidatorAp2023(cmdParams.getAp2023Profile(), cmdParams.getExcludeChecks());
         case DAAIP2024:
-        	return new ValidatorDAAIP2024(cmdParams.getDa2024Profile(), cmdParams.getExcludeChecks());
+        	return new ValidatorDAAIP2024(cmdParams.getDa2024Profile(), cmdParams.getExcludeChecks(),
+        			cmdParams.getWorkDir(), cmdParams.isKeepFiles());
         case NSESSS2017:
         default:
             return new ValidatorNsesss2017(cmdParams.getHrozba(),

@@ -8,7 +8,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class DFDocumentWalker {
-    List<NodeAggregator> aggregators = new ArrayList();
+    List<NodeAggregator> aggregators = new ArrayList<>();
     
     public void addAggregator(NodeAggregator aggregator) {
         aggregators.add(aggregator);

@@ -27,7 +27,7 @@ public class AipValidatorTestBase {
 			ValidationStatus status,
 			String[] pravidlaOk, String[] pravidlaChybna) {
         log.debug("Loading EAD: {}, urovenKontroly: {}", inputPath, validationProfile);
-        ValidatorDAAIP2024 vdaaip = new ValidatorDAAIP2024(validationProfile, null);
+        ValidatorDAAIP2024 vdaaip = new ValidatorDAAIP2024(validationProfile, null, null, false);
 
 
         ValidationResult result;
