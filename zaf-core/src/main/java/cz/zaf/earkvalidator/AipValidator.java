@@ -21,7 +21,7 @@ public class AipValidator {
 
 	private List<ValidationLayer<AipValidationContext>> prepareValidations(DAAIP2024Profile daaip2024Profile) {
 		List<ValidationLayer<AipValidationContext>> validations = new ArrayList<>();
-		validations.add(new DataValidationLayer());
+		validations.add(new DataValidationLayer(daaip2024Profile));
 		return validations; 
 	}
 

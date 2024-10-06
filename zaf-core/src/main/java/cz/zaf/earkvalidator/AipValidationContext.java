@@ -17,7 +17,8 @@ public class AipValidationContext implements RuleEvaluationContext, ValidationLa
 	
 	private Set<String> excludeChecks = null;	
 	
-	public AipValidationContext(final AipLoader aipLoader, final List<String> excludeChecks) {
+	public AipValidationContext(final AipLoader aipLoader, 
+			final List<String> excludeChecks) {
 		this.aipLoader = aipLoader;
         if(excludeChecks!=null) {
         	this.excludeChecks = excludeChecks.stream().collect(Collectors.toSet()); 

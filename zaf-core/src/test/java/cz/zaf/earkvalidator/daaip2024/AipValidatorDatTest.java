@@ -12,6 +12,7 @@ import cz.zaf.earkvalidator.layers.dat.dat00_09.Rule01;
 import cz.zaf.earkvalidator.layers.dat.dat00_09.Rule02;
 import cz.zaf.earkvalidator.layers.dat.dat00_09.Rule03;
 import cz.zaf.earkvalidator.layers.dat.dat00_09.Rule04;
+import cz.zaf.earkvalidator.layers.dat.dat00_09.Rule05;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 import cz.zaf.validator.TestHelper;
 
@@ -23,7 +24,7 @@ public class AipValidatorDatTest extends AipValidatorTestBase {
     void testDAT_01_OK01() {
     	testDat("OK1/8b58672e-7893-45c3-ab37-2b133389329d",
                 ValidationStatus.OK,
-                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE },
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE },
                 new String[] {});
     }
 
@@ -38,14 +39,14 @@ public class AipValidatorDatTest extends AipValidatorTestBase {
     	testDat("01-KONTROLA DATA/01-CHYBA01",
                 ValidationStatus.ERROR,
                 new String[] { },
-                new String[] {Rule01.CODE, Rule03.CODE, Rule04.CODE });
+                new String[] {Rule01.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE });
     }
 
     @Test
     void testDAT_02_OK01() {
     	testDat("01-KONTROLA DATA/02-OK1/8b58672e-7893-45c3-ab37-2b133389329d.zip",
                 ValidationStatus.OK,
-                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE },
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE },
                 new String[] {  });
     }
     
@@ -55,7 +56,7 @@ public class AipValidatorDatTest extends AipValidatorTestBase {
     	testDat("01-KONTROLA DATA/02-CHYBA01.txt",
                 ValidationStatus.ERROR,
                 new String[] { Rule01.CODE },
-                new String[] { Rule02.CODE, Rule03.CODE, Rule04.CODE });
+                new String[] { Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE });
     }
 
     @Test
@@ -63,14 +64,14 @@ public class AipValidatorDatTest extends AipValidatorTestBase {
     	testDat("01-KONTROLA DATA/02-CHYBA02.zip",
                 ValidationStatus.ERROR,
                 new String[] { Rule01.CODE },
-                new String[] { Rule02.CODE, Rule03.CODE, Rule04.CODE });
+                new String[] { Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE });
     }
 
     @Test
     void testDAT_03_CHYBA01() throws IOException {
     	testDat("01-KONTROLA DATA/03-CHYBA01/8b58672e-7893-45c3-ab37-2b133389329d",
                 ValidationStatus.ERROR,
-                new String[] { Rule01.CODE, Rule02.CODE },
+                new String[] { Rule01.CODE, Rule02.CODE, Rule05.CODE },
                 new String[] { Rule03.CODE, Rule04.CODE });
     }
 
@@ -78,7 +79,7 @@ public class AipValidatorDatTest extends AipValidatorTestBase {
     void testDAT_04_CHYBA01() throws IOException {
     	testDat("01-KONTROLA DATA/04-CHYBA01/8b58672e-7893-45c3-ab37-2b133389329d",
                 ValidationStatus.ERROR,
-                new String[] { Rule01.CODE, Rule02.CODE },
+                new String[] { Rule01.CODE, Rule02.CODE, Rule05.CODE },
                 new String[] { Rule03.CODE, Rule04.CODE });
     }
 
@@ -86,8 +87,16 @@ public class AipValidatorDatTest extends AipValidatorTestBase {
     void testDAT_04_CHYBA02() throws IOException {
     	testDat("01-KONTROLA DATA/04-CHYBA02/8b58672e-7893-45c3-ab37-2b133389329d",
                 ValidationStatus.ERROR,
-                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE },
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule05.CODE },
                 new String[] { Rule04.CODE });
+    }
+
+    @Test
+    void testDAT_05_CHYBA01() throws IOException {
+    	testDat("01-KONTROLA DATA/05-CHYBA01/8b58672e-7893-45c3-2b133389329d",
+                ValidationStatus.ERROR,
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE},
+                new String[] { Rule04.CODE, Rule05.CODE  });
     }
 
     private void testDat(String path,
