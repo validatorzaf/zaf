@@ -4,7 +4,10 @@ import cz.zaf.common.validation.ValidationLayerType;
 
 public enum ValidationLayers implements ValidationLayerType {
 	
-	DATA("datová správnost");
+	DATA("Datová správnost"),
+    ENCODING("Kódování"),
+    WELL_FORMED("Správnost formátu"),
+	NAMESPACE("Jmenné prostory");
 	
 	private final String description;
 	
