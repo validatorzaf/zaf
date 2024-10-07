@@ -75,6 +75,21 @@ public abstract class BaseValidationLayer<T extends ValidationLayerContext, RCtx
         validationResult.add(p);
     }
     
+	public List<? extends BaseRule<RCtx> > createRules(List<Class<? extends BaseRule<RCtx> >> ruleClasses) {
+    	List<BaseRule<RCtx>> rules = new ArrayList<>(ruleClasses.size());
+    	for (Class<? extends BaseRule<RCtx> > ruleClass : ruleClasses) {
+			try {
+				Constructor<? extends BaseRule<RCtx>> constr = ruleClass.getDeclaredConstructor();
+				BaseRule<RCtx> rule = constr.newInstance();
+				rules.add(rule);
+			} catch (Exception e) {
+				throw new IllegalStateException("Nelze vytvořit třídu pravidla: " + ruleClass.getName());
+			}
+		}
+		return rules;
+	}
+    
+    
     /**
      * Create rules from classes.
      * @param ruleClasses
@@ -98,7 +113,7 @@ public abstract class BaseValidationLayer<T extends ValidationLayerContext, RCtx
 
     // this method is not used and probably could be removed
     // or refactor to be usable (problem is generic collection of rules
-    protected void provedKontrolu(RCtx kontrolaContext, List<Rule<RCtx>> rules) {
+    protected void provedKontrolu(RCtx kontrolaContext, List<? extends Rule<RCtx>> rules) {
 
         for (var rule : rules) {
 

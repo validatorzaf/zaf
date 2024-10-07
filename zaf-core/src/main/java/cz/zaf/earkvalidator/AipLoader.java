@@ -5,7 +5,14 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+
+import javax.xml.stream.Location;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
 
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
@@ -19,6 +26,11 @@ import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.result.ValidationResultImpl;
 import cz.zaf.common.xml.PositionalXMLReader2;
 import cz.zaf.earkvalidator.eark.EarkConstants;
+import cz.zaf.schema.mets_1_12_1.Mets;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBElement;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Unmarshaller.Listener;
 
 /**
  * Load AIP from filesystem
@@ -27,7 +39,17 @@ public class AipLoader implements AutoCloseable {
 	
 	static private final Logger log = LoggerFactory.getLogger(AipLoader.class);
 	
-	public enum AipSrcType {
+    static private JAXBContext metsContext;
+    {
+    	try {
+    		metsContext = JAXBContext.newInstance(Mets.class);
+    	} catch(JAXBException e) {
+    		throw new RuntimeException("Failed to initialize JAXB", e);
+    	}
+    }
+    static XMLInputFactory xmlInputFactory = XMLInputFactory.newFactory();
+
+    public enum AipSrcType {
 		DIRECTORY,
 		FILE
 	}
@@ -81,6 +103,10 @@ public class AipLoader implements AutoCloseable {
 	private Document document;
 	
 	private Exception metsParserError;
+
+	private Mets mets;
+
+	private Map<Object, Location> metsToLocationMap;
 
 	public Exception getMetsParserError() {
 		return metsParserError;
@@ -257,6 +283,38 @@ public class AipLoader implements AutoCloseable {
 
 	public Document getMetsDocument() {
 		return document;
+	}
+
+	public void loadMetsJaxb() throws JAXBException, XMLStreamException, IOException {
+		Objects.requireNonNull(document);
+		
+		final Map<Object, Location> jaxbToLocationMap = new HashMap<>();
+		
+		var unmarshaller = metsContext.createUnmarshaller();
+		
+		// Create XMLEvent stream which can be monitored during unmarshalling
+		try(InputStream fis = Files.newInputStream(getMetsPath())) {
+			XMLStreamReader xsr = xmlInputFactory.createXMLStreamReader(fis);
+			
+			unmarshaller.setListener(new Listener() {
+				public void beforeUnmarshal(Object target, Object parent) {
+					Location location = xsr.getLocation();
+					if(location!=null) {
+						jaxbToLocationMap.put(target, location);
+					}
+					
+				}
+			});
+			
+			JAXBElement<Mets> metsObject = unmarshaller.unmarshal(xsr, Mets.class);
+			this.mets = metsObject.getValue();
+			this.metsToLocationMap = jaxbToLocationMap;
+		}				
+		
+	}
+
+	public Mets getMets() {
+		return mets;
 	}
 
 }

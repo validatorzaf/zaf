@@ -50,7 +50,21 @@ public class AipValidatorTestBase {
             }
         }
 
-        fail("Validation results not found, name: " + validationType);		
+        StringBuilder sb = new StringBuilder();
+		sb.append("Validation results not found, name: ").append(validationType);
+		if(result.getValidationLayerResults().size() > 0) {
+			// add validation layer results
+			sb.append(" Other results: ");
+			for(ValidationLayerResult vlr : result.getValidationLayerResults()) {
+				sb.append("\n").append(vlr.getValidationType()).append(": ").append(vlr.isOk()?"OK":"FAIL");
+				if(vlr.isFailed()) {
+					for(var failedRule: vlr.getPravidla()) {
+						sb.append("\n\t").append(failedRule.getId()).append(": ").append(failedRule.getVypisChyby());
+					}
+				}
+			}
+		}
+        fail(sb.toString());		
 	}
 
 	private void testAip(String inputPath, 

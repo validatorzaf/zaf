@@ -9,7 +9,7 @@ import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.common.xml.PositionalXMLReader;
 import cz.zaf.earkvalidator.AipRule;
-import cz.zaf.earkvalidator.eark.EarkConstants;
+import cz.zaf.schemas.mets.MetsNS;
 
 public class Rule02 extends AipRule {
 	public static final String CODE = "ns02";
@@ -31,7 +31,7 @@ public class Rule02 extends AipRule {
 		if(StringUtils.isEmpty(value)) {
 			throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Nenalezen platný atribut xmlns");
 		}
-		if(!EarkConstants.NS_METS.equals(value)) {
+		if(!MetsNS.NS_METS.equals(value)) {
 			throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Chybná hodnota xmlns: "+value); 
 		}
 		

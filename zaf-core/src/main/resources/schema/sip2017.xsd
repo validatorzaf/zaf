@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <schema elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema">
-    <import namespace="http://www.loc.gov/METS/" schemaLocation="2017mets.xsd"/>
-    <import namespace="http://www.w3.org/1999/xlink" schemaLocation="2017xlink.xsd"/>
+    <import namespace="http://www.loc.gov/METS/" schemaLocation="mets/v1.11/mets.xsd"/>
+    <import namespace="http://www.w3.org/1999/xlink" schemaLocation="mets/xlink.xsd"/>
     <import namespace="http://www.mvcr.cz/nsesss/v3" schemaLocation="2017nsesss.xsd"/>
     <import namespace="http://nsess.public.cz/erms_trans/v_01_01" schemaLocation="2017TransakcniProtokolNavrh_verze17.xsd"/>
     <import namespace="http://mvcr.cz/ess/v_1.0.0.0" schemaLocation="2017ess_ns.xsd"/>

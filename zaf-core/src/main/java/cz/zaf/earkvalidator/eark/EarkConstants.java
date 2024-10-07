@@ -3,9 +3,6 @@ package cz.zaf.earkvalidator.eark;
 
 public final class EarkConstants { 
 	
-	public static final String  NS_METS = "http://www.loc.gov/METS/";
-	public static final String  NS_METS_LOCATION = "http://www.loc.gov/standards/mets/mets.xsd";
-	
 	public static final String  NS_XSI = "http://www.w3.org/2001/XMLSchema-instance";	
 	public static final String  XSI_SCHEMA_LOCATION = "schemaLocation";
 	

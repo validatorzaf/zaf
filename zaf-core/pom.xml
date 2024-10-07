@@ -163,10 +163,10 @@
 						</goals>
 						<configuration>
 							<sources>
-								<source>${xjcDirectory}/validacexsd</source>
 								<source>${project.build.directory}/generated-sources/validacesip</source>
 								<source>${project.build.directory}/generated-sources/validace_v1</source>
 								<source>${project.build.directory}/generated-sources/ead3</source>
+								<source>${project.build.directory}/generated-sources/mets_1_12_1</source>
 							</sources>
 						</configuration>
 					</execution>
@@ -223,6 +223,33 @@
                             <bindingDirectory>${project.basedir}/src/main/resources/schema</bindingDirectory>
                             <bindingIncludes>
                                 <include>ead3-bindings.xml</include>
+							</bindingIncludes>
+                            <plugins>
+                                <plugin>
+                                    <groupId>org.jvnet.jaxb</groupId>
+                                    <artifactId>jaxb-plugins</artifactId>
+                                    <version>4.0.8</version>
+								</plugin>
+							</plugins>
+
+						</configuration>
+					</execution>
+					<execution>
+						<id>jaxb-generate-mets-1-12-1-xsd</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemaDirectory>src/main/resources/schema/mets/v1.12.1</schemaDirectory>
+							<schemaIncludes>
+								<include>mets.xsd</include>
+							</schemaIncludes>
+							<generatePackage>cz.zaf.schema.mets_1_12_1</generatePackage>
+							<generateDirectory>${project.build.directory}/generated-sources/mets_1_12_1</generateDirectory>
+                            <bindingDirectory>${project.basedir}/src/main/resources/schema/mets/v1.12.1</bindingDirectory>
+                            <bindingIncludes>
+                                <include>mets-bindings.xml</include>
 							</bindingIncludes>
                             <plugins>
                                 <plugin>

@@ -2,6 +2,7 @@ package cz.zaf.earkvalidator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import cz.zaf.common.validation.BaseValidator;
 import cz.zaf.common.validation.ValidationLayer;
@@ -10,6 +11,7 @@ import cz.zaf.earkvalidator.layers.dat.DataValidationLayer;
 import cz.zaf.earkvalidator.layers.enc.EncodingValidationLayer;
 import cz.zaf.earkvalidator.layers.wf.WellFormedLayer;
 import cz.zaf.earkvalidator.layers.ns.NamespaceValidationLayer;
+import cz.zaf.earkvalidator.layers.val.SchemaValidationLayer;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 
 public class AipValidator implements ValidatorListener<AipValidationContext> {
@@ -29,6 +31,7 @@ public class AipValidator implements ValidatorListener<AipValidationContext> {
 		validations.add(new EncodingValidationLayer());
 		validations.add(new WellFormedLayer());
 		validations.add(new NamespaceValidationLayer());
+		validations.add(new SchemaValidationLayer());
 		return validations; 
 	}
 
@@ -50,7 +53,21 @@ public class AipValidator implements ValidatorListener<AipValidationContext> {
         		throw new NullPointerException("Document is null");
         	}
         	context.setMetsRootElement(document.getDocumentElement());
-        }		
+        }
+        if(layer.getType()==ValidationLayers.OBSAH) {
+        	// overeni nahrani JAXB
+        	if(context.getLoader().getMets()==null) {
+        		try {
+        			// Pokud by uzivatel preskocil pravidlo val.Rule1,
+        			// tak je nutne manualni nacteni JAXB zde
+        			context.getLoader().loadMetsJaxb();
+        		} catch(Exception e) {
+        			throw new NullPointerException("Failed to load JAXB object");
+        		}
+        	}
+        	Objects.requireNonNull(context.getLoader().getMets());
+        }
+        
 	}
 
 	@Override

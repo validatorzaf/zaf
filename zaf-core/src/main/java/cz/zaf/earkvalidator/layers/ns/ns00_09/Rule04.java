@@ -11,6 +11,7 @@ import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.earkvalidator.AipRule;
 import cz.zaf.earkvalidator.eark.EarkConstants;
+import cz.zaf.schemas.mets.MetsNS;
 
 public class Rule04 extends AipRule {
 	public static final String CODE = "ns04";
@@ -23,7 +24,7 @@ public class Rule04 extends AipRule {
 	// Expected schema locations
 	static Map<String, String> expectedSchemaLocations = new HashMap<>();
 	static {
-		expectedSchemaLocations.put(EarkConstants.NS_METS, EarkConstants.NS_METS_LOCATION); 
+		expectedSchemaLocations.put(MetsNS.NS_METS, MetsNS.NS_METS_LOCATION); 
 		expectedSchemaLocations.put(EarkConstants.NS_XLINK, EarkConstants.NS_XLINK_LOCATION);
 		expectedSchemaLocations.put(EarkConstants.NS_CSIP, EarkConstants.NS_CSIP_LOCATION);
 	}

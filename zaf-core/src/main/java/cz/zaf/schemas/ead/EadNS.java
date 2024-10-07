@@ -1,4 +1,4 @@
-package cz.zaf.eadvalidator.ap2023.ead;
+package cz.zaf.schemas.ead;
 
 /**
  * EAD namespace definitions and constants

@@ -7,7 +7,9 @@ public enum ValidationLayers implements ValidationLayerType {
 	DATA("Datová správnost"),
     ENCODING("Kódování"),
     WELL_FORMED("Správnost formátu"),
-	NAMESPACE("Jmenné prostory");
+	NAMESPACE("Jmenné prostory"),
+	VALIDATION("Soulad se schématem"),
+	OBSAH("Obsahové kontroly");
 	
 	private final String description;
 	
