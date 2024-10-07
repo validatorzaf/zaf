@@ -33,7 +33,7 @@ public class AipValidatorValTest extends AipValidatorTestBase {
                 ValidationStatus.ERROR,
                 new String[] {  },
                 new String[] { Rule01.CODE });
-    }	
+    }
 
     private void testVal(String path,
             ValidationStatus status,
