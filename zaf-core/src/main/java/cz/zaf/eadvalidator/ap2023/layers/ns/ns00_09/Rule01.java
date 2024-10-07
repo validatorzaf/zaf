@@ -22,7 +22,7 @@ public class Rule01 extends EadRule {
         Element eadRoot = ctx.getRootElement();
 
         if (eadRoot == null || !eadRoot.getNodeName().equals("ead:ead")) {
-        	String detailChyby = "Soubir neobsahuje kořenový element <ead:ead>.";
+        	String detailChyby = "Soubor neobsahuje kořenový element <ead:ead>.";
             throw new ZafException(BaseCode.CHYBI_ELEMENT, detailChyby);
         }
 

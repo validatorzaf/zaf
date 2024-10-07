@@ -5,12 +5,14 @@ import java.util.List;
 
 import cz.zaf.common.validation.BaseValidator;
 import cz.zaf.common.validation.ValidationLayer;
+import cz.zaf.common.validation.ValidatorListener;
 import cz.zaf.earkvalidator.layers.dat.DataValidationLayer;
 import cz.zaf.earkvalidator.layers.enc.EncodingValidationLayer;
 import cz.zaf.earkvalidator.layers.wf.WellFormedLayer;
+import cz.zaf.earkvalidator.layers.ns.NamespaceValidationLayer;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 
-public class AipValidator {
+public class AipValidator implements ValidatorListener<AipValidationContext> {
 
 	private List<String> excludeChecks;
 	private List<ValidationLayer<AipValidationContext>> validations;
@@ -26,6 +28,7 @@ public class AipValidator {
 		validations.add(new DataValidationLayer(daaip2024Profile));
 		validations.add(new EncodingValidationLayer());
 		validations.add(new WellFormedLayer());
+		validations.add(new NamespaceValidationLayer());
 		return validations; 
 	}
 
@@ -34,7 +37,25 @@ public class AipValidator {
 		AipValidationContext aipValidationContext = new AipValidationContext(aipLoader, excludeChecks);		
 		
 		BaseValidator<AipValidationContext> validator = new BaseValidator<>(validations);
+		validator.registerListener(this);
 		validator.validate(aipValidationContext);		
+	}
+
+	@Override
+	public void layerValidationStarted(AipValidationContext context, ValidationLayer<AipValidationContext> layer) {
+        if(layer.getType()==ValidationLayers.NAMESPACE) {
+        	// kontrola nacteni dokumentu
+        	var document = context.getLoader().getMetsDocument();
+        	if(document==null) {
+        		throw new NullPointerException("Document is null");
+        	}
+        	context.setMetsRootElement(document.getDocumentElement());
+        }		
+	}
+
+	@Override
+	public void layerValidationFinished(AipValidationContext context, ValidationLayer<AipValidationContext> layer) {
+		// NOP		
 	}
 
 }

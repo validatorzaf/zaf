@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.w3c.dom.Element;
+
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.validation.RuleEvaluationContext;
 import cz.zaf.common.validation.ValidationLayerContext;
@@ -15,7 +17,9 @@ public class AipValidationContext implements RuleEvaluationContext, ValidationLa
 	 */
 	private AipLoader aipLoader;
 	
-	private Set<String> excludeChecks = null;	
+	private Set<String> excludeChecks = null;
+	
+	private Element metsRootElement = null;
 	
 	public AipValidationContext(final AipLoader aipLoader, 
 			final List<String> excludeChecks) {
@@ -38,6 +42,13 @@ public class AipValidationContext implements RuleEvaluationContext, ValidationLa
 
 	public AipLoader getLoader() {
 		return aipLoader;
+	}
+
+	public Element getMetsRootElement() {
+		return metsRootElement;
+	}
+	public void setMetsRootElement(Element metsRootElement) {
+		this.metsRootElement = metsRootElement;
 	}
 
 }
