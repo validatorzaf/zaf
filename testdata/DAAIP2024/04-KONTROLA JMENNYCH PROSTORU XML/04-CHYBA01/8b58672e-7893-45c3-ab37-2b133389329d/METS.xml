@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- 
+  V metadatových souborech je využíván výchozí namespace z důvodu 
+  nevnořování schémat a pro snazší čitelnost.
+
+  OBJID balíčku musí odpovídat názvu složky, kde je uložen. 
+  Pokud je předán samostatně zabalený balíček v ZIP, měl by odpovídat
+  i název tohoto ZIP souboru.
+
+  V EARK se uvádí atribut PROFILE="https://earkcsip.dilcis.eu/profile/E-ARK-CSIP.xml",
+  pro ČR změněno na: PROFILE="https://stands.nacr.cz/da/2023/aip.xml", tím je také 
+  určena verze standardu balíčku.
+
+  Názvy všech souborů jsou "Case sensitiv", tj. musí odpovídat velká a malá písmena,
+  mohou obsahovat diakritiku v UTF-8 bez zakázaných znaků (mezera, lomítka, plus, !...).
+
+  Doporučením (best practice) v názvech souborů je:
+  - vyhnout se kolizím názvů souborů z hlediska velkých a malých písmen
+  - nepoužívat české znaky v názvech souborů a ponechávat je v metadatech
+
+  -->
+<mets xmlns="http://www.loc.gov/METS/"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:csip="https://DILCIS.eu/XML/METS/CSIPExtensionMETS"
+      xsi:schemaLocation="http://www.loc.gov/METS/http://www.loc.gov/standards/mets/mets.xsd
+                          http://www.w3.org/1999/xlink http://www.loc.gov/standards/mets/xlink.xsd
+                          https://DILCIS.eu/XML/METS/CSIPExtensionMETS https://earkcsip.dilcis.eu/schema/DILCISExtensionMETS.xsd"
+     OBJID="8b58672e-7893-45c3-ab37-2b133389329d"
+     TYPE="Dataset"
+     csip:CONTENTINFORMATIONTYPE="OTHER"
+     csip:OTHERCONTENTINFORMATIONTYPE="NSESSS"     
+     PROFILE="https://stands.nacr.cz/da/2023/aip.xml"
+     >
+</mets>
