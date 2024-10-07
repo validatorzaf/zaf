@@ -7,6 +7,12 @@
 	jxb:extensionBindingPrefixes="xjc">
 
   <jxb:bindings schemaLocation="mets.xsd">
+    <!-- Make accessible other attributes -->
+    <jxb:bindings node="//xs:complexType[@name='metsType']">
+      <jxb:property name="otherAttributes">
+        <jxb:baseType name="xs:anyAttribute"/>
+      </jxb:property>
+    </jxb:bindings>
     <!-- line 594 -->
     <jxb:bindings node="//xs:complexType[@name='metsType']//xs:attribute[@name='LABEL']">
       <jxb:property name="LabelValue"/>

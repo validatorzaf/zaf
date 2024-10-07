@@ -263,6 +263,10 @@
 					</execution>
 				</executions>
             	<dependencies>
+            	<!-- Following dependency fixes the problem: 
+            	     DTD factory class org.apache.xerces.impl.dv.dtd.DTDDVFactoryImpl does not extend from DTDDVFactory.
+            	     This is cauesed by newer xerces used for library.
+            	 -->
                 <dependency>
                     <groupId>xerces</groupId>
                     <artifactId>xercesImpl</artifactId>
