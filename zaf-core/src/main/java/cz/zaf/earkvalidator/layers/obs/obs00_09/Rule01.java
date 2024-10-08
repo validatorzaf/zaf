@@ -9,7 +9,7 @@ import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.earkvalidator.AipRule;
 import cz.zaf.schema.mets_1_12_1.Mets;
 
-public class Rule01  extends AipRule {
+public class Rule01 extends AipRule {
 	public static final String CODE = "obs01";
 	public static final String RULE_TEXT = "Element <mets> obsahuje atribut OBJID s neprázdnou hodnotou, hodnota je shodná s označením složky.";
 	public static final String RULE_ERROR = "Chybná hodnota atributu OBJID v koření METS.xml.";
@@ -24,7 +24,7 @@ public class Rule01  extends AipRule {
 		Mets mets = ctx.getMets();
 		String objId = mets.getOBJID();
 		if(StringUtils.isBlank(objId)) {
-			throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Prazdná hodnota atributu OBJID");
+			throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Prazdná hodnota atributu OBJID");
 		}
 		Path aipPath = ctx.getLoader().getAipPath();
 		String dirName = aipPath.getFileName().toString();
