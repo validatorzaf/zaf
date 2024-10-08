@@ -317,4 +317,9 @@ public class AipLoader implements AutoCloseable {
 		return mets;
 	}
 
+	public Location getMetsLocation(Object obj) {
+		Objects.requireNonNull(this.metsToLocationMap);
+		return metsToLocationMap.get(obj);
+	}
+
 }

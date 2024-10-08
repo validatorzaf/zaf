@@ -12,6 +12,7 @@ import cz.zaf.earkvalidator.layers.enc.EncodingValidationLayer;
 import cz.zaf.earkvalidator.layers.wf.WellFormedLayer;
 import cz.zaf.earkvalidator.layers.ns.NamespaceValidationLayer;
 import cz.zaf.earkvalidator.layers.val.SchemaValidationLayer;
+import cz.zaf.earkvalidator.layers.obs.ContentValidationLayer;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 
 public class AipValidator implements ValidatorListener<AipValidationContext> {
@@ -32,6 +33,7 @@ public class AipValidator implements ValidatorListener<AipValidationContext> {
 		validations.add(new WellFormedLayer());
 		validations.add(new NamespaceValidationLayer());
 		validations.add(new SchemaValidationLayer());
+		validations.add(new ContentValidationLayer());
 		return validations; 
 	}
 
