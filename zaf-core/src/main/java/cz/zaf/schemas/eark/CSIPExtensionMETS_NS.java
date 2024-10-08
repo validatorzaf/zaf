@@ -10,4 +10,6 @@ public class CSIPExtensionMETS_NS {
 	
 	public static final String CONTENTINFORMATIONTYPE = "CONTENTINFORMATIONTYPE";
 	public static final String OTHERCONTENTINFORMATIONTYPE= "OTHERCONTENTINFORMATIONTYPE";
+	public static final String OAISPACKAGETYPE = "OAISPACKAGETYPE";
+	public static final String AIP = "AIP";
 }
