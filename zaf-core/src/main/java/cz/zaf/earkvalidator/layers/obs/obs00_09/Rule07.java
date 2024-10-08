@@ -25,7 +25,7 @@ public class Rule07 extends AipRule {
 		
 		if (metsHdr.getCREATEDATE() == null) {
 			throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Nenalezen atribut mets/metsHdr/@CREATEDATE.", 
-					ctx.formatMetsPosition(ctx.getMets()));
+					ctx.formatMetsPosition(metsHdr));
 		}
 	}
 
