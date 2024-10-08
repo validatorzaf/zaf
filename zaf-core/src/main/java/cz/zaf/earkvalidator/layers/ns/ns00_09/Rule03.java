@@ -10,6 +10,7 @@ import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.common.xml.PositionalXMLReader;
 import cz.zaf.earkvalidator.AipRule;
 import cz.zaf.earkvalidator.eark.EarkConstants;
+import cz.zaf.schemas.eark.CSIPExtensionMETS_NS;
 
 public class Rule03 extends AipRule {
 	public static final String CODE = "ns03";
@@ -54,7 +55,7 @@ public class Rule03 extends AipRule {
 		if(StringUtils.isEmpty(value)) {
 			throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Nenalezen platný atribut xmlns:csip");
 		}
-		if(!EarkConstants.NS_CSIP.equals(value)) {
+		if(!CSIPExtensionMETS_NS.NS_CSIP.equals(value)) {
 			throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Chybná hodnota xmlns:csip=\""+value+"\""); 
 		}
 	}
