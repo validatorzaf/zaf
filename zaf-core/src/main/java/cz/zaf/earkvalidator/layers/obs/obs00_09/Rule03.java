@@ -28,7 +28,7 @@ public class Rule03 extends AipRule {
 			throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Nenalezen atribut csip:CONTENTINFORMATIONTYPE");
 		}
 		
-		String value = otherAttrs.get(new QName(CSIPExtensionMETS_NS.NS_CSIP, "CONTENTINFORMATIONTYPE"));
+		String value = otherAttrs.get(new QName(CSIPExtensionMETS_NS.NS_CSIP, CSIPExtensionMETS_NS.CONTENTINFORMATIONTYPE));
 		if(StringUtils.isEmpty(value)) {
 			throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Nenalezen atribut csip:CONTENTINFORMATIONTYPE");
 		}
