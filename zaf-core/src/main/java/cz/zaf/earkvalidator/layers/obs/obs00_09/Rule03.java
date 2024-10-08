@@ -25,15 +25,16 @@ public class Rule03 extends AipRule {
 	public void evalImpl() {
 		Map<QName, String> otherAttrs = ctx.getMets().getOtherAttributes();
 		if(otherAttrs==null) {
-			throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Nenalezen atribut csip:CONTENTINFORMATIONTYPE");
+			throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Nenalezen atribut csip:CONTENTINFORMATIONTYPE", ctx.formatMetsPosition(ctx.getMets()));
 		}
 		
 		String value = otherAttrs.get(new QName(CSIPExtensionMETS_NS.NS_CSIP, CSIPExtensionMETS_NS.CONTENTINFORMATIONTYPE));
 		if(StringUtils.isEmpty(value)) {
-			throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Nenalezen atribut csip:CONTENTINFORMATIONTYPE");
+			throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Nenalezen atribut csip:CONTENTINFORMATIONTYPE", ctx.formatMetsPosition(ctx.getMets()));
 		}
 		if(!CSIPExtensionMETS_NS.OTHER.equals(value)) {
-			throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Chybná hodnota atributu csip:CONTENTINFORMATIONTYPE, value: "+value);
+			throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Chybná hodnota atributu csip:CONTENTINFORMATIONTYPE, value: "+value,
+					ctx.formatMetsPosition(ctx.getMets()));
 		}
 	}
 }

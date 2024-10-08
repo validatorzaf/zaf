@@ -24,7 +24,8 @@ public class Rule01 extends AipRule {
 		Mets mets = ctx.getMets();
 		String objId = mets.getOBJID();
 		if(StringUtils.isBlank(objId)) {
-			throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Prazdná hodnota atributu OBJID");
+			throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Prazdná hodnota atributu OBJID",
+					ctx.formatMetsPosition(ctx.getMets()));
 		}
 		Path aipPath = ctx.getLoader().getAipPath();
 		String dirName = aipPath.getFileName().toString();

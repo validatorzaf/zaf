@@ -1,5 +1,7 @@
 package cz.zaf.earkvalidator.layers.obs.obs00_09;
 
+import cz.zaf.common.exceptions.ZafException;
+import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.earkvalidator.AipRule;
 
 public class Rule05 extends AipRule {
@@ -14,7 +16,15 @@ public class Rule05 extends AipRule {
 	
 	@Override
 	public void evalImpl() {
-		
+		String profile = ctx.getMets().getPROFILE();
+		if (profile == null) {
+			throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Nenalezen atribut PROFILE", 
+					ctx.formatMetsPosition(ctx.getMets()));
+		}
+		if(!profile.equals("https://stands.nacr.cz/da/2023/aip.xml")) {
+			throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Chybná hodnota atribut PROFILE: "+profile, 
+					ctx.formatMetsPosition(ctx.getMets()));
+		}
 	}
 
 

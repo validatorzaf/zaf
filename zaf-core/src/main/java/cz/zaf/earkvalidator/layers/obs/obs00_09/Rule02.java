@@ -22,7 +22,8 @@ public class Rule02 extends AipRule {
 		Mets mets = ctx.getMets();
 		String type = mets.getTYPE();
 		if(StringUtils.isBlank(type)) {
-			throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Prazdná hodnota atributu TYPE.");
+			throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Prazdná hodnota atributu TYPE.",
+					ctx.formatMetsPosition(ctx.getMets()));
 		}
 	}
 
