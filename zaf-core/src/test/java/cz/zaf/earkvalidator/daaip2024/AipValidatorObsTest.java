@@ -13,6 +13,26 @@ import cz.zaf.earkvalidator.layers.obs.obs00_09.Rule06;
 import cz.zaf.earkvalidator.layers.obs.obs00_09.Rule07;
 import cz.zaf.earkvalidator.layers.obs.obs00_09.Rule08;
 import cz.zaf.earkvalidator.layers.obs.obs00_09.Rule09;
+import cz.zaf.earkvalidator.layers.obs.obs10_19.Rule10;
+import cz.zaf.earkvalidator.layers.obs.obs10_19.Rule11;
+import cz.zaf.earkvalidator.layers.obs.obs10_19.Rule12;
+import cz.zaf.earkvalidator.layers.obs.obs10_19.Rule13;
+import cz.zaf.earkvalidator.layers.obs.obs10_19.Rule14;
+import cz.zaf.earkvalidator.layers.obs.obs10_19.Rule15;
+import cz.zaf.earkvalidator.layers.obs.obs10_19.Rule16;
+import cz.zaf.earkvalidator.layers.obs.obs10_19.Rule17;
+import cz.zaf.earkvalidator.layers.obs.obs10_19.Rule18;
+import cz.zaf.earkvalidator.layers.obs.obs10_19.Rule19;
+import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule20;
+import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule21;
+import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule22;
+import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule23;
+import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule24;
+import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule25;
+import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule26;
+import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule27;
+import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule28;
+import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule29;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 
 public class AipValidatorObsTest extends AipValidatorTestBase {
@@ -23,7 +43,9 @@ public class AipValidatorObsTest extends AipValidatorTestBase {
     void testObs_01_OK01() {
     	testObs("OK1/8b58672e-7893-45c3-ab37-2b133389329d",
                 ValidationStatus.OK,
-                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE },
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+						Rule10.CODE, Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule18.CODE, Rule19.CODE,
+						Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE, Rule26.CODE, Rule27.CODE, Rule28.CODE, Rule29.CODE },
                 new String[] {});
     }	
 	

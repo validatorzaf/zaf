@@ -15,6 +15,26 @@ import cz.zaf.earkvalidator.layers.obs.obs00_09.Rule06;
 import cz.zaf.earkvalidator.layers.obs.obs00_09.Rule07;
 import cz.zaf.earkvalidator.layers.obs.obs00_09.Rule08;
 import cz.zaf.earkvalidator.layers.obs.obs00_09.Rule09;
+import cz.zaf.earkvalidator.layers.obs.obs10_19.Rule10;
+import cz.zaf.earkvalidator.layers.obs.obs10_19.Rule11;
+import cz.zaf.earkvalidator.layers.obs.obs10_19.Rule12;
+import cz.zaf.earkvalidator.layers.obs.obs10_19.Rule13;
+import cz.zaf.earkvalidator.layers.obs.obs10_19.Rule14;
+import cz.zaf.earkvalidator.layers.obs.obs10_19.Rule15;
+import cz.zaf.earkvalidator.layers.obs.obs10_19.Rule16;
+import cz.zaf.earkvalidator.layers.obs.obs10_19.Rule17;
+import cz.zaf.earkvalidator.layers.obs.obs10_19.Rule18;
+import cz.zaf.earkvalidator.layers.obs.obs10_19.Rule19;
+import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule20;
+import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule21;
+import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule22;
+import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule23;
+import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule24;
+import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule25;
+import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule26;
+import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule27;
+import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule28;
+import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule29;
 
 public class ContentValidationLayer extends BaseValidationLayer<AipValidationContext, AipValidationContext> {
 
@@ -27,7 +47,27 @@ public class ContentValidationLayer extends BaseValidationLayer<AipValidationCon
 			Rule06.class,
 			Rule07.class,
 			Rule08.class,
-			Rule09.class
+			Rule09.class,
+			Rule10.class,
+			Rule11.class,
+			Rule12.class,
+			Rule13.class,
+			Rule14.class,
+			Rule15.class,
+			Rule16.class,
+			Rule17.class,
+			Rule18.class,
+			Rule19.class,
+			Rule20.class,
+			Rule21.class,
+			Rule22.class,
+			Rule23.class,
+			Rule24.class,
+			Rule25.class,
+			Rule26.class,
+			Rule27.class,
+			Rule28.class,
+			Rule29.class
 		);
 	
 	private List<Class<? extends BaseRule<AipValidationContext>>> ruleClasses;
