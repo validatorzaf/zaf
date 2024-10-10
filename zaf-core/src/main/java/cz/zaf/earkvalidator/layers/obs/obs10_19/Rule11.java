@@ -25,7 +25,7 @@ public class Rule11 extends AipRule {
 	public void evalImpl() {
 		List<MdSecType> dmdSecs = ctx.getMets().getDmdSec();
 		if(CollectionUtils.isEmpty(dmdSecs)) {
-			throw new ZafException(BaseCode.CHYBI_ELEMENT , "Chybi element.", ctx.formatMetsPosition(ctx.getMets()));
+			return;
 		}
 		for(MdSecType dmdSec: dmdSecs) {
 			if(dmdSec.getID() == null) {
