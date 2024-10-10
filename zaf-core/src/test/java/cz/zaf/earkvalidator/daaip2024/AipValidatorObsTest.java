@@ -137,7 +137,7 @@ public class AipValidatorObsTest extends AipValidatorTestBase {
                 ValidationStatus.ERROR,	
                 new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule08.CODE, Rule09.CODE },
                 new String[] { Rule07.CODE });
-    }	
+    }
 
     @Test
     void testObs_08_CHYBA01() {
@@ -145,7 +145,7 @@ public class AipValidatorObsTest extends AipValidatorTestBase {
                 ValidationStatus.ERROR,	
                 new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule09.CODE },
                 new String[] { Rule08.CODE });
-    }	
+    }
 
     @Test
     void testObs_09_CHYBA01() {
@@ -153,7 +153,7 @@ public class AipValidatorObsTest extends AipValidatorTestBase {
                 ValidationStatus.ERROR,	
                 new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE },
                 new String[] { Rule09.CODE });
-    }	
+    }
 
     @Test
     void testObs_09_CHYBA02() {
@@ -161,7 +161,7 @@ public class AipValidatorObsTest extends AipValidatorTestBase {
                 ValidationStatus.ERROR,	
                 new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE },
                 new String[] { Rule09.CODE });
-    }	
+    }
 
     @Test
     void testObs_10_CHYBA01() {
@@ -169,7 +169,7 @@ public class AipValidatorObsTest extends AipValidatorTestBase {
                 ValidationStatus.ERROR,	
                 new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE },
                 new String[] { Rule10.CODE });
-    }	
+    }
 
     @Test
     void testObs_10_CHYBA02() {
@@ -177,7 +177,7 @@ public class AipValidatorObsTest extends AipValidatorTestBase {
                 ValidationStatus.ERROR,	
                 new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE },
                 new String[] { Rule10.CODE });
-    }	
+    }
 
 
     @Test
@@ -186,7 +186,7 @@ public class AipValidatorObsTest extends AipValidatorTestBase {
                 ValidationStatus.ERROR,	
                 new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE },
                 new String[] { Rule10.CODE });
-    }	
+    }
 
     @Test
     void testObs_10_CHYBA04() {
@@ -194,7 +194,7 @@ public class AipValidatorObsTest extends AipValidatorTestBase {
                 ValidationStatus.ERROR,	
                 new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE },
                 new String[] { Rule10.CODE });
-    }	
+    }
 
     @Test
     void testObs_10_CHYBA05() {
@@ -202,7 +202,15 @@ public class AipValidatorObsTest extends AipValidatorTestBase {
                 ValidationStatus.ERROR,	
                 new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE },
                 new String[] { Rule10.CODE });
-    }	
+    }
+
+    @Test
+    void testObs_11_CHYBA01() {
+    	testObs("06-KONTROLA OBSAHU/11-CHYBA01/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, Rule10.CODE },
+                new String[] { Rule11.CODE });
+    }
 
     private void testObs(String path,
             ValidationStatus status,
