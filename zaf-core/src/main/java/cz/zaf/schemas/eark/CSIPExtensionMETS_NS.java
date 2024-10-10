@@ -12,4 +12,8 @@ public class CSIPExtensionMETS_NS {
 	public static final String OTHERCONTENTINFORMATIONTYPE= "OTHERCONTENTINFORMATIONTYPE";
 	public static final String OAISPACKAGETYPE = "OAISPACKAGETYPE";
 	public static final String AIP = "AIP";
+	
+	public static final String AGENT_OTHERTYPE_SOFTWARE = "SOFTWARE";
+	public static final String NOTETYPE = "NOTETYPE";
+	public static final String SOFTWARE_VERSION = "SOFTWARE VERSION";
 }

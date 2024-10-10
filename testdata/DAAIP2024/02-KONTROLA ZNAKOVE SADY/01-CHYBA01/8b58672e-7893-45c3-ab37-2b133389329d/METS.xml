@@ -40,10 +40,6 @@
       <name>HlavoRucni Aplikace</name>
       <note csip:NOTETYPE="SOFTWARE VERSION">0.3</note>
     </agent>
-    <!-- zdrojový archiv, povinnì -->
-    <agent ROLE="DISSEMINATOR" TYPE="ORGANIZATION">    
-      <name>Název archivu</name>
-    </agent>
   </metsHdr>
 
   <!-- CREATED: Cas a datum vytvoreni metadat -->

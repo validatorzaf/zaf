@@ -163,6 +163,47 @@ public class AipValidatorObsTest extends AipValidatorTestBase {
                 new String[] { Rule09.CODE });
     }	
 
+    @Test
+    void testObs_10_CHYBA01() {
+    	testObs("06-KONTROLA OBSAHU/10-CHYBA01/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE },
+                new String[] { Rule10.CODE });
+    }	
+
+    @Test
+    void testObs_10_CHYBA02() {
+    	testObs("06-KONTROLA OBSAHU/10-CHYBA02/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE },
+                new String[] { Rule10.CODE });
+    }	
+
+
+    @Test
+    void testObs_10_CHYBA03() {
+    	testObs("06-KONTROLA OBSAHU/10-CHYBA03/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE },
+                new String[] { Rule10.CODE });
+    }	
+
+    @Test
+    void testObs_10_CHYBA04() {
+    	testObs("06-KONTROLA OBSAHU/10-CHYBA04/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE },
+                new String[] { Rule10.CODE });
+    }	
+
+    @Test
+    void testObs_10_CHYBA05() {
+    	testObs("06-KONTROLA OBSAHU/10-CHYBA05/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE },
+                new String[] { Rule10.CODE });
+    }	
+
     private void testObs(String path,
             ValidationStatus status,
             String[] oks,
