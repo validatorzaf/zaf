@@ -15,4 +15,6 @@ public class MetsNS {
 	static final public String AGENT_TYPE_ORGANIZATION = "ORGANIZATION";
 	static final public String AGENT_TYPE_PERSON = "PERSON";
 	public static final String AGENT_ROLE_CREATOR = "CREATOR";
+	public static final String STATUS_CURRENT = "CURRENT";
+	public static final String STATUS_SUPERSEDED = "SUPERSEDED";
 }
