@@ -11,8 +11,6 @@ import cz.zaf.earkvalidator.AipRule;
 import cz.zaf.schema.mets_1_12_1.AmdSecType;
 import cz.zaf.schema.mets_1_12_1.MdSecType;
 import cz.zaf.schema.mets_1_12_1.MdSecType.MdRef;
-import cz.zaf.schemas.mets.MetsNS;
-import cz.zaf.schemas.mets.XLinkNS;
 
 public class Rule23 extends AipRule {
 	public static final String CODE = "obs23";
