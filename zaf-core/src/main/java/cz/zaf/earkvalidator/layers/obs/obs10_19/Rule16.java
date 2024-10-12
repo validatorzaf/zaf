@@ -31,11 +31,11 @@ public class Rule16 extends AipRule {
 			return;
 		}
 		
-		for(MdSecType dmdSec: dmdSecs) {
-			MdRef mdref = dmdSec.getMdRef();
+		for(MdSecType mdSec: dmdSecs) {
+			MdRef mdref = mdSec.getMdRef();
 			// CZDAX-PMT0306
 			if(mdref == null) {
-				throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element mets/dmdSec/mdRef.", ctx.formatMetsPosition(dmdSec));
+				throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element mets/dmdSec/mdRef.", ctx.formatMetsPosition(mdSec));
 			}
 			// CZDAX-PMT0310
 			String mdtype = mdref.getMDTYPE();
