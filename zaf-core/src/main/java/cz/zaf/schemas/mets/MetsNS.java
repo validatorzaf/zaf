@@ -19,5 +19,6 @@ public class MetsNS {
 	public static final String STATUS_SUPERSEDED = "SUPERSEDED";
 	public static final String LOCTYPE_URL = "URL";
 	public static final String MDTYPE_EAD = "EAD";
+	public static final String MDTYPE_PREMIS = "PREMIS";
 	public static final String CHECKSUMTYPE_SHA_512 = "SHA-512";
 }
