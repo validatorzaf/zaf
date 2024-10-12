@@ -383,6 +383,16 @@ public class AipValidatorObsTest extends AipValidatorTestBase {
                 new String[] { Rule18.CODE });
     }
 
+
+    @Test
+    void testObs_19_CHYBA01() {
+    	testObs("06-KONTROLA OBSAHU/19-CHYBA01/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, Rule10.CODE, 
+                		Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule18.CODE },
+                new String[] { Rule19.CODE });
+    }
+
     private void testObs(String path,
             ValidationStatus status,
             String[] oks,
