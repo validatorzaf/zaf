@@ -9,4 +9,5 @@ public class EarkCz {
 	
 	public static final String GROUPID_INHERENT = "INHERENT";
 	public static final String GROUPID_CONTEXTUAL = "CONTEXTUAL";
+	public static final String GROUPID_PRESERVATION = "PRESERVATION";
 }
