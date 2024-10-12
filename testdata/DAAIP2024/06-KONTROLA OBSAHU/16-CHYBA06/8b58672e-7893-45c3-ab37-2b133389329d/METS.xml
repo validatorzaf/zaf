@@ -51,7 +51,6 @@
            SIZE="5892"
            CHECKSUM="B9EFEBD41D16B45F723519E4130E287E2EF430BA83AD0C28B46329E9E3A2F9019E6B10CD3857EA9D60FABD2B174E8C11AB51F932E838FBC486F31B98EB21763A"
            CHECKSUMTYPE="SHA-512"
-           CREATED="2023-09-06T10:03:39+01:00"
            xlink:type="simple" xlink:href="metadata/descriptive/pruvodka.xml" />
   </dmdSec>
   <!-- Pokud vznikne archivní popis (kontextuální) musí být uveden s GROUPID="CONTEXTUAL" -->

@@ -295,6 +295,67 @@ public class AipValidatorObsTest extends AipValidatorTestBase {
                 		Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE },
                 new String[] { Rule15.CODE });
     }
+    
+    // CZDAX-PMT0310
+    @Test
+    void testObs_16_CHYBA01() {
+    	testObs("06-KONTROLA OBSAHU/16-CHYBA01/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, Rule10.CODE, 
+                		Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE },
+                new String[] { Rule16.CODE });
+    }
+    
+    // CZDAX-PMT0311
+    @Test
+    void testObs_16_CHYBA02() {
+    	testObs("06-KONTROLA OBSAHU/16-CHYBA02/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, Rule10.CODE, 
+                		Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE },
+                new String[] { Rule16.CODE });
+    }
+    
+    // CZDAX-PMT0312
+    @Test
+    void testObs_16_CHYBA03() {
+    	testObs("06-KONTROLA OBSAHU/16-CHYBA03/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, Rule10.CODE, 
+                		Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE },
+                new String[] { Rule16.CODE });
+    }
+
+    // CZDAX-PMT0314
+    @Test
+    void testObs_16_CHYBA04() {
+    	testObs("06-KONTROLA OBSAHU/16-CHYBA04/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, Rule10.CODE, 
+                		Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE },
+                new String[] { Rule16.CODE });
+    }
+
+    // CZDAX-PMT0315
+    @Test
+    void testObs_16_CHYBA05() {
+    	testObs("06-KONTROLA OBSAHU/16-CHYBA05/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, Rule10.CODE, 
+                		Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE },
+                new String[] { Rule16.CODE });
+    }
+
+    // CZDAX-PMT0313
+    @Test
+    void testObs_16_CHYBA06() {
+    	testObs("06-KONTROLA OBSAHU/16-CHYBA06/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, Rule10.CODE, 
+                		Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE },
+                new String[] { Rule16.CODE });
+    }
+
     private void testObs(String path,
             ValidationStatus status,
             String[] oks,
