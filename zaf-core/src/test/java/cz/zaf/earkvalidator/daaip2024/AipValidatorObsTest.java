@@ -33,6 +33,14 @@ import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule26;
 import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule27;
 import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule28;
 import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule29;
+import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule30;
+import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule31;
+import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule32;
+import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule33;
+import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule34;
+import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule35;
+import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule36;
+import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule37;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 
 public class AipValidatorObsTest extends AipValidatorTestBase {
@@ -45,7 +53,8 @@ public class AipValidatorObsTest extends AipValidatorTestBase {
                 ValidationStatus.OK,
                 new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
 						Rule10.CODE, Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule18.CODE, Rule19.CODE,
-						Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE, Rule26.CODE, Rule27.CODE, Rule28.CODE, Rule29.CODE },
+						Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE, Rule26.CODE, Rule27.CODE, Rule28.CODE, Rule29.CODE,
+						Rule30.CODE, Rule31.CODE, Rule32.CODE, Rule33.CODE, Rule34.CODE, Rule35.CODE, Rule36.CODE, Rule37.CODE },
                 new String[] {});
     }	
 	

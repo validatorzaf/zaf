@@ -35,6 +35,14 @@ import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule26;
 import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule27;
 import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule28;
 import cz.zaf.earkvalidator.layers.obs.obs20_29.Rule29;
+import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule30;
+import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule31;
+import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule32;
+import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule33;
+import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule34;
+import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule35;
+import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule36;
+import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule37;
 
 public class ContentValidationLayer extends BaseValidationLayer<AipValidationContext, AipValidationContext> {
 
@@ -67,7 +75,15 @@ public class ContentValidationLayer extends BaseValidationLayer<AipValidationCon
 			Rule26.class,
 			Rule27.class,
 			Rule28.class,
-			Rule29.class
+			Rule29.class,
+			Rule30.class,
+			Rule31.class,
+			Rule32.class,
+			Rule33.class,
+			Rule34.class,
+			Rule35.class,
+			Rule36.class,
+			Rule37.class
 		);
 	
 	private List<Class<? extends BaseRule<AipValidationContext>>> ruleClasses;
