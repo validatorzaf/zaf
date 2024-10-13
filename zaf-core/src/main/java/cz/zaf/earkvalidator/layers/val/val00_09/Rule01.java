@@ -28,7 +28,7 @@ public class Rule01 extends AipRule {
 	@Override
 	public void evalImpl() {
 		
-		var schema = SchemaResourceLoader.getCombined(MetsNS.SCHEMA_RESOURCE_V_1_12_1, XLinkNS.SCHEMA_RESOURCE, CSIPExtensionMETS_NS.SCHEMA_RESOURCE);
+		var schema = SchemaResourceLoader.getCombined(XLinkNS.SCHEMA_RESOURCE, CSIPExtensionMETS_NS.SCHEMA_RESOURCE, MetsNS.SCHEMA_RESOURCE_V_1_12_1);
 		var validator = schema.newValidator();
 		validator.setErrorHandler(new ValidationRuleErrorHandler());
 		
