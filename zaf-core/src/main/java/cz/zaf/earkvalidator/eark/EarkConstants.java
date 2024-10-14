@@ -14,7 +14,10 @@ public final class EarkConstants {
 	
 	public static final String METADATA_DIR_NAME = "metadata";
 	public static final String USE_DOCUMENTATION = "Documentation";
+	public static final String USE_REPRESENTATIONS = "Representations";
 	public static final String USE_SCHEMAS = "Schemas";
+	
 	public static final String DOCUMENTATION_DIR_NAME = "documentation";
+	public static final String REPRESENTATIONS_DIR_NAME = "representations";
 	public static final String SCHEMAS_DIR_NAME = "schemas";
 }

@@ -32,10 +32,10 @@ public class Rule29 extends AipRule {
 		List<FileGrp> filegroups = filesec.getFileGrp();
 		FileGrp filegrpSchemas = null;
 		for(FileGrp filegrp: filegroups) {
-			// check each filegrp, if it contains USE=Documentation then
-			// its files have to be in the folder documentation
+			// check each filegrp, if it contains USE=Schemas then
+			// its files have to be in the folder schemas
 			String use = filegrp.getUSE();
-			if(!use.equals(EarkConstants.USE_SCHEMAS)) {
+			if(!EarkConstants.USE_SCHEMAS.equals(use)) {
 				continue;
 			}
 			// check if onnly one exists
@@ -43,7 +43,7 @@ public class Rule29 extends AipRule {
 				throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Předaná schemata jsou uvedena ve více elementech mets/fileSec/fileGrp[@USE='Schemas'].", ctx.formatMetsPosition(filesec));
 			}
 			filegrpSchemas = filegrp;
-			// check all pathes are documentation/...
+			// check all pathes are schemas/...
 			List<FileType> files = filegrp.getFile();
 			if(CollectionUtils.isEmpty(files)) {
 				throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Předaná schemata jsou uvedena bez souborů v mets/fileSec/fileGrp[@USE='Schemas'].", ctx.formatMetsPosition(filesec));
@@ -53,6 +53,9 @@ public class Rule29 extends AipRule {
 				// kontrola spravnosti cest
 				for(FLocat flocat: flocats) {
 					String href = flocat.getHref();
+					if(href==null) {
+						throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí atribu mets/fileSec/fileGrp[@USE='Schemas']/file/flocat/@href.", ctx.formatMetsPosition(flocat));
+					}
 					if(!href.startsWith(EarkConstants.SCHEMAS_DIR_NAME+"/")) {
 						throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Předaná schemata jsou bez souborů v mets/fileSec/fileGrp[@USE='Schemas']/file/flocat/@href: "+href, ctx.formatMetsPosition(flocat));
 					}

@@ -35,7 +35,7 @@ public class Rule28 extends AipRule {
 			// check each filegrp, if it contains USE=Documentation then
 			// its files have to be in the folder documentation
 			String use = filegrp.getUSE();
-			if(!use.equals(EarkConstants.USE_DOCUMENTATION)) {
+			if(!EarkConstants.USE_DOCUMENTATION.equals(use)) {
 				continue;
 			}
 			// check if onnly one exists
@@ -53,6 +53,10 @@ public class Rule28 extends AipRule {
 				// kontrola spravnosti cest
 				for(FLocat flocat: flocats) {
 					String href = flocat.getHref();
+					if(href==null) {
+						throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí atribu mets/fileSec/fileGrp[@USE='Documentation']/file/flocat/@href.", ctx.formatMetsPosition(flocat));
+					}
+					
 					if(!href.startsWith(EarkConstants.DOCUMENTATION_DIR_NAME+"/")) {
 						throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Předaná dokumentace je uvedena bez souborů v mets/fileSec/fileGrp[@USE='Documentation']/file/flocat/@href: "+href, ctx.formatMetsPosition(flocat));
 					}
