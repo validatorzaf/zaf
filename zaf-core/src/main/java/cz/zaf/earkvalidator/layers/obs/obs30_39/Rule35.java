@@ -48,8 +48,12 @@ public class Rule35 extends AipRule {
 				if(logicalStructMap!=null) {
 					throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nelze uvést dvě logické strukturální mapy.", ctx.formatMetsPosition(structMap));
 				}
-				logicalStructMap = structMap;				
+				logicalStructMap = structMap;
+				continue;
 			}
+			
+			// jiny typ strukt. mapy
+			throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepodporovaný typ strukt. mapy. Type: "+structMap.getTYPE(), ctx.formatMetsPosition(structMap));
 		}
 		if(physicalStructMap==null) {
 			throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybí fyzická strukturální mapa.", ctx.formatMetsPosition(ctx.getMets()));
