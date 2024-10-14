@@ -59,6 +59,17 @@ public class AipValidatorObsTest extends AipValidatorTestBase {
     }	
 	
     @Test
+    void testObs_01_OK02() {
+    	testObs("OK2/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.OK,
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+						Rule10.CODE, Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule18.CODE, Rule19.CODE,
+						Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE, Rule26.CODE, Rule27.CODE, Rule28.CODE, Rule29.CODE,
+						Rule30.CODE, Rule31.CODE, Rule32.CODE, Rule33.CODE, Rule34.CODE, Rule35.CODE, Rule36.CODE, Rule37.CODE },
+                new String[] {});
+    }	
+
+    @Test
     void testObs_01_CHYBA01() {
     	testObs("06-KONTROLA OBSAHU/01-CHYBA01/8b58672e-7893-45c3-ab37-2b133389329d",
                 ValidationStatus.ERROR,	
@@ -927,6 +938,94 @@ public class AipValidatorObsTest extends AipValidatorTestBase {
                 		Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE, Rule26.CODE, Rule27.CODE, Rule28.CODE, Rule29.CODE,
                 		Rule30.CODE, Rule31.CODE, Rule32.CODE, Rule33.CODE, Rule34.CODE, Rule35.CODE },
                 new String[] { Rule36.CODE });
+    }
+
+    @Test
+    void testObs_37_CHYBA01() {
+    	testObs("06-KONTROLA OBSAHU/37-CHYBA01/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, Rule10.CODE, 
+                		Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule19.CODE,
+                		Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE, Rule26.CODE, Rule27.CODE, Rule28.CODE, Rule29.CODE,
+                		Rule30.CODE, Rule31.CODE, Rule32.CODE, Rule33.CODE, Rule34.CODE, Rule35.CODE, Rule36.CODE },
+                new String[] { Rule37.CODE });
+    }
+
+    @Test
+    void testObs_37_CHYBA02() {
+    	testObs("06-KONTROLA OBSAHU/37-CHYBA02/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, Rule10.CODE, 
+                		Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule19.CODE,
+                		Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE, Rule26.CODE, Rule27.CODE, Rule28.CODE, Rule29.CODE,
+                		Rule30.CODE, Rule31.CODE, Rule32.CODE, Rule33.CODE, Rule34.CODE, Rule35.CODE, Rule36.CODE },
+                new String[] { Rule37.CODE });
+    }
+
+    @Test
+    void testObs_37_CHYBA03() {
+    	testObs("06-KONTROLA OBSAHU/37-CHYBA03/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, Rule10.CODE, 
+                		Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule19.CODE,
+                		Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE, Rule26.CODE, Rule27.CODE, Rule28.CODE, Rule29.CODE,
+                		Rule30.CODE, Rule31.CODE, Rule32.CODE, Rule33.CODE, Rule34.CODE, Rule35.CODE, Rule36.CODE },
+                new String[] { Rule37.CODE });
+    }
+
+    @Test
+    void testObs_37_CHYBA04() {
+    	testObs("06-KONTROLA OBSAHU/37-CHYBA04/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, Rule10.CODE, 
+                		Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule19.CODE,
+                		Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE, Rule26.CODE, Rule27.CODE, Rule28.CODE, Rule29.CODE,
+                		Rule30.CODE, Rule31.CODE, Rule32.CODE, Rule33.CODE, Rule34.CODE, Rule35.CODE, Rule36.CODE },
+                new String[] { Rule37.CODE });
+    }
+
+    @Test
+    void testObs_37_CHYBA05() {
+    	testObs("06-KONTROLA OBSAHU/37-CHYBA05/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, Rule10.CODE, 
+                		Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule19.CODE,
+                		Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE, Rule26.CODE, Rule27.CODE, Rule28.CODE, Rule29.CODE,
+                		Rule30.CODE, Rule31.CODE, Rule32.CODE, Rule33.CODE, Rule34.CODE, Rule35.CODE, Rule36.CODE },
+                new String[] { Rule37.CODE });
+    }
+
+    @Test
+    void testObs_37_CHYBA06() {
+    	testObs("06-KONTROLA OBSAHU/37-CHYBA06/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, Rule10.CODE, 
+                		Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule19.CODE,
+                		Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE, Rule26.CODE, Rule27.CODE, Rule28.CODE, Rule29.CODE,
+                		Rule30.CODE, Rule31.CODE, Rule32.CODE, Rule33.CODE, Rule34.CODE, Rule35.CODE, Rule36.CODE },
+                new String[] { Rule37.CODE });
+    }
+
+    @Test
+    void testObs_37_CHYBA07() {
+    	testObs("06-KONTROLA OBSAHU/37-CHYBA07/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, Rule10.CODE, 
+                		Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule19.CODE,
+                		Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE, Rule26.CODE, Rule27.CODE, Rule28.CODE, Rule29.CODE,
+                		Rule30.CODE, Rule31.CODE, Rule32.CODE, Rule33.CODE, Rule34.CODE, Rule35.CODE, Rule36.CODE },
+                new String[] { Rule37.CODE });
+    }
+
+    @Test
+    void testObs_37_CHYBA08() {
+    	testObs("06-KONTROLA OBSAHU/37-CHYBA08/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, Rule10.CODE, 
+                		Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule19.CODE,
+                		Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE, Rule26.CODE, Rule27.CODE, Rule28.CODE, Rule29.CODE,
+                		Rule30.CODE, Rule31.CODE, Rule32.CODE, Rule33.CODE, Rule34.CODE, Rule35.CODE, Rule36.CODE },
+                new String[] { Rule37.CODE });
     }
 
     private void testObs(String path,

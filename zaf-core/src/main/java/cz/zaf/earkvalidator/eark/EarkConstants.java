@@ -23,4 +23,10 @@ public final class EarkConstants {
 	
 	public static final String STRUCTMAP_TYPE_PHYSICAL = "PHYSICAL";
 	public static final String STRUCTMAP_LABEL_CSIP = "CSIP";
+	
+	
+	public static final String STRUCTMAP_LABEL_DOCUMENTATION = "Documentation";
+	public static final String STRUCTMAP_LABEL_METADATA = "Metadata";
+	public static final String STRUCTMAP_LABEL_REPRESENTATIONS = "Representations";
+	public static final String STRUCTMAP_LABEL_SCHEMAS = "Schemas";
 }

@@ -80,6 +80,24 @@
   </amdSec>
   <!-- Odkazy na datové soubory -->
   <fileSec ID="uuid-2828842b-f6b3-414e-91cb-4155f470410f">
+    <fileGrp ID="uuid-04cee1c8-0a27-409d-95f6-fb5a3a4a3eb6" USE="Documentation">
+      <file ID="uuid-205a2ae4-c616-4fc9-9a82-d5faa759d06e" CREATED="2023-09-06T11:21:10+01:00" MIMETYPE="text/plain"
+           SIZE="8"
+           CHECKSUM="932dbaace94a66d9e2e8c262ce2325156e35d822aa6f42a43d5b3093660925d61ff7eb51f9c208c3fc1f704d35631ea882c6e3c5b0dc711a19a58563375051fc"
+           CHECKSUMTYPE="SHA-512">
+        <!-- Jedná se o původní původcovská metadata, která jsou předmětem LTP ochrany -->
+        <FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="documentation/intro.txt" />
+      </file>
+    </fileGrp>
+    <fileGrp ID="uuid-f8847dfc-16a9-44d5-ba44-da8edc9ebf12" USE="Schemas">
+      <file ID="uuid-0e588c64-772a-4adf-b33d-232365a666ed" CREATED="2023-09-06T11:21:10+01:00" MIMETYPE="text/plain"
+           SIZE="8"
+           CHECKSUM="932dbaace94a66d9e2e8c262ce2325156e35d822aa6f42a43d5b3093660925d61ff7eb51f9c208c3fc1f704d35631ea882c6e3c5b0dc711a19a58563375051fc"
+           CHECKSUMTYPE="SHA-512">
+        <!-- Jedná se o původní původcovská metadata, která jsou předmětem LTP ochrany -->
+        <FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="schemas/schema.xsd" />
+      </file>
+    </fileGrp>
     <!-- Možná pevná pojmenování složek:        
         - submission
         - ostatní názvy reprezentací dle uvážení archivu
@@ -107,6 +125,12 @@
   </fileSec>
   <structMap ID="uuid-3fc4a40e-b5f6-4f03-9b17-3ce67147ebc8" TYPE="PHYSICAL" LABEL="CSIP">
     <div ID="uuid-a221ded8-f1e0-4071-bac3-f49f87d4e9fd">
+      <div ID="uuid-8e2ef2b6-1518-4ab8-8915-e1ccf60f6157" LABEL="Documentation">
+        <fptr FILEID="uuid-04cee1c8-0a27-409d-95f6-fb5a3a4a3eb6"/>
+      </div>
+      <div ID="uuid-51425b97-8f84-4648-8d8b-b7fd31aee707" LABEL="Schemas">
+        <fptr FILEID="uuid-f8847dfc-16a9-44d5-ba44-da8edc9ebf12"/>
+      </div>
       <!-- Zde je limit: DMDID může být velké, obdobně ADMID -->
       <div ID="uuid-05be91e2-1ff8-4ad1-b2ba-e90e6216fb8d" LABEL="Metadata" 
            DMDID="uuid-98564a30-1a03-4819-bea7-a8ffb56c0618"
