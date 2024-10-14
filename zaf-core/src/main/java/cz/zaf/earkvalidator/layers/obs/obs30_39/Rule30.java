@@ -9,6 +9,7 @@ import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.earkvalidator.AipRule;
 import cz.zaf.earkvalidator.eark.EarkConstants;
 import cz.zaf.schema.mets_1_12_1.FileType;
+import cz.zaf.schema.mets_1_12_1.FileType.FContent;
 import cz.zaf.schema.mets_1_12_1.FileType.FLocat;
 import cz.zaf.schema.mets_1_12_1.MetsType.FileSec;
 import cz.zaf.schema.mets_1_12_1.MetsType.FileSec.FileGrp;
@@ -45,7 +46,19 @@ public class Rule30 extends AipRule {
 				throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Předaná reprezentact bez souborů v mets/fileSec/fileGrp[@USE='"+use+"'].", ctx.formatMetsPosition(filesec));
 			}
 			for(FileType file: files) {
+				FContent fileContent = file.getFContent();
+				if(fileContent!=null) {
+					throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Neočekávaný element", ctx.formatMetsPosition(fileContent));
+				}
+				List<FileType> subfiles = file.getFile();
+				if(CollectionUtils.isNotEmpty(subfiles)) {
+					throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Neočekávaný element", ctx.formatMetsPosition(subfiles.get(0)));
+				}
+				
 				List<FLocat> flocats = file.getFLocat();
+				if(flocats.size()>1) {
+					throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Neočekávná vícenásobná definice flocat.", ctx.formatMetsPosition(flocats.get(1)));
+				}
 				// kontrola spravnosti cest
 				for(FLocat flocat: flocats) {
 					String href = flocat.getHref();
