@@ -189,25 +189,27 @@ public class Rule37 extends AipRule {
 
 	private void checkRepresentationsDiv(DivType div) {
 		FileSec fileSec = ctx.getMets().getFileSec();
+
+		Set<FileGrp> fileGrps = new HashSet<>();
+		if(fileSec!=null) {
+			for (FileGrp grp : fileSec.getFileGrp()) {
+				String use = grp.getUSE();
+				if (use != null && use.startsWith(EarkConstants.USE_REPRESENTATIONS + "/")) {
+					fileGrps.add(grp);
+				}
+			}
+		}
 		
 		// get all filesec groups
 		if(div==null) {
 			if(fileSec==null) {
 				return;
 			}
-			List<FileGrp> fileGrps = fileSec.getFileGrp();
 			if(CollectionUtils.isEmpty(fileGrps)) {
 				return;
 			}
-			throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element mets/fileSec/fileGrp[@USE='"+EarkConstants.USE_REPRESENTATIONS+"']", ctx.formatMetsPosition(div));
+			throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element mets/fileSec/fileGrp[@USE='"+EarkConstants.USE_REPRESENTATIONS+"']", ctx.formatMetsPosition(fileSec));
 		}
-		Set<FileGrp> fileGrps = new HashSet<>();
-		for(FileGrp grp: fileSec.getFileGrp()) {
-			String use = grp.getUSE();
-			if(use!=null && use.startsWith(EarkConstants.USE_REPRESENTATIONS+"/")) {
-				fileGrps.add(grp);
-			}
-		}			
 		
 		if(CollectionUtils.isNotEmpty(div.getADMID())) {
 			throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Neplatný atribut mets/structMap/div/div[@LABEL='"+EarkConstants.STRUCTMAP_LABEL_REPRESENTATIONS+"']/@ADMID.", ctx.formatMetsPosition(div));

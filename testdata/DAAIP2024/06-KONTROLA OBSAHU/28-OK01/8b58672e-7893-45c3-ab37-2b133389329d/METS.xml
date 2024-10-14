@@ -92,10 +92,13 @@
   </fileSec>
   <structMap ID="uuid-3fc4a40e-b5f6-4f03-9b17-3ce67147ebc8" TYPE="PHYSICAL" LABEL="CSIP">
     <div ID="uuid-a221ded8-f1e0-4071-bac3-f49f87d4e9fd">
+      <div ID="uuid-56170b89-49cb-4572-b6d0-53d06e9d45bd" LABEL="Documentation">
+          <fptr FILEID="uuid-a13c7fb3-caad-4505-8a3e-144fc6dca744" />
+      </div>
       <!-- Zde je limit: DMDID může být velké, obdobně ADMID -->
       <div ID="uuid-05be91e2-1ff8-4ad1-b2ba-e90e6216fb8d" LABEL="Metadata" 
            DMDID="uuid-98564a30-1a03-4819-bea7-a8ffb56c0618"
-           ADMID="uuid-7900a1cd-5316-48c2-906a-6f236ab174d6"/>
+           ADMID="uuid-7900a1cd-5316-48c2-906a-6f236ab174d6 uuid-358fe9ca-d9b6-4813-9a13-d1ecc1b6eb30"/>
     </div>
   </structMap>
   <!-- Logická strukturální mapa 
