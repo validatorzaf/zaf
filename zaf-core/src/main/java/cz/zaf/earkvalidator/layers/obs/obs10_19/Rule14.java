@@ -8,8 +8,8 @@ import org.apache.commons.lang3.StringUtils;
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.earkvalidator.AipRule;
+import cz.zaf.earkvalidator.eark.EarkCz;
 import cz.zaf.schema.mets_1_12_1.MdSecType;
-import cz.zaf.schemas.eark.EarkCz;
 
 public class Rule14 extends AipRule {
 	public static final String CODE = "obs14";

@@ -1,4 +1,4 @@
-package cz.zaf.schemas.eark;
+package cz.zaf.earkvalidator.eark;
 
 /**
  * Doplňující konstanty pro český profil EARK
@@ -10,4 +10,6 @@ public class EarkCz {
 	public static final String GROUPID_INHERENT = "INHERENT";
 	public static final String GROUPID_CONTEXTUAL = "CONTEXTUAL";
 	public static final String GROUPID_PRESERVATION = "PRESERVATION";
+	
+	public static final String STRUCTMAP_TYPE_LOGICAL = "LOGICAL";
 }

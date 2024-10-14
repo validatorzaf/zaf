@@ -20,4 +20,6 @@ public final class EarkConstants {
 	public static final String DOCUMENTATION_DIR_NAME = "documentation";
 	public static final String REPRESENTATIONS_DIR_NAME = "representations";
 	public static final String SCHEMAS_DIR_NAME = "schemas";
+	
+	public static final String STRUCTMAP_TYPE_PHYSICAL = "PHYSICAL";	
 }

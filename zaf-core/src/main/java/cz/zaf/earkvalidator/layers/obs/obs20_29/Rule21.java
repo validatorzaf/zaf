@@ -7,9 +7,9 @@ import org.apache.commons.collections4.CollectionUtils;
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.earkvalidator.AipRule;
+import cz.zaf.earkvalidator.eark.EarkCz;
 import cz.zaf.schema.mets_1_12_1.AmdSecType;
 import cz.zaf.schema.mets_1_12_1.MdSecType;
-import cz.zaf.schemas.eark.EarkCz;
 
 public class Rule21 extends AipRule {
 	public static final String CODE = "obs21";
