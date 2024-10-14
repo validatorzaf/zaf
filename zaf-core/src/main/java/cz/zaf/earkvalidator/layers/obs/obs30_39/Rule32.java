@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.earkvalidator.AipRule;
+import cz.zaf.earkvalidator.eark.ValidatorId;
 import cz.zaf.schema.mets_1_12_1.MetsType.FileSec;
 import cz.zaf.schema.mets_1_12_1.MetsType.FileSec.FileGrp;
 
@@ -35,6 +36,10 @@ public class Rule32 extends AipRule {
 			}
 			if(StringUtils.isBlank(id)) {
 				throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Skupina souborů nemá uveden identifikátor.", ctx.formatMetsPosition(filegrp));
+			}
+			// check ID format
+			if(!ValidatorId.checkFormatId(id)) {
+				throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Chybná hodnota atributu mets/fileSec/fileGrp/@ID, value: "+id+".", ctx.formatMetsPosition(filegrp));
 			}
 		}
 	}
