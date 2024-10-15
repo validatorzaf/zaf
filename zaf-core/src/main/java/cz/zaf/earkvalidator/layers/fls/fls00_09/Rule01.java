@@ -1,5 +1,6 @@
 package cz.zaf.earkvalidator.layers.fls.fls00_09;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -11,6 +12,7 @@ import cz.zaf.earkvalidator.eark.EarkConstants;
 import cz.zaf.schema.mets_1_12_1.DivType;
 import cz.zaf.schema.mets_1_12_1.DivType.Fptr;
 import cz.zaf.schema.mets_1_12_1.FileType;
+import cz.zaf.schema.mets_1_12_1.FileType.FLocat;
 import cz.zaf.schema.mets_1_12_1.MdSecType;
 import cz.zaf.schema.mets_1_12_1.MdSecType.MdRef;
 import cz.zaf.schema.mets_1_12_1.MetsType.FileSec.FileGrp;
@@ -64,10 +66,10 @@ public class Rule01 extends AipRule {
 
 	private void checkMetadata(MdSecType mdSec) {
 		MdRef mdRef = mdSec.getMdRef();
-		checkFile(mdRef, mdRef.getHref());
+		checkFile(mdRef, mdRef.getHref(), mdRef.getSIZE());
 	}
 
-	private void checkFile(Object srcObj, String href) {
+	private void checkFile(Object srcObj, String href, Long expectedSize) {
 		Path aipPath = ctx.getLoader().getAipPath();
 		Path filePath = aipPath.resolve(href);
 		// check existence of the file
@@ -75,15 +77,26 @@ public class Rule01 extends AipRule {
 			throw new ZafException(BaseCode.CHYBI_KOMPONENTA, "Nenalezen soubor: "+filePath, 
 					ctx.formatMetsPosition(srcObj));
 		}
-		// TODO: check file size and checksum		
+		if(expectedSize!=null) {
+			try {
+				long realSize = Files.size(filePath);
+				if(realSize!=expectedSize) {
+					throw new ZafException(BaseCode.CHYBNA_KOMPONENTA, "Odlišná skutečná a deklarovaná velikost souboru, cesta: "+href + ", skutečná: " + realSize + ", deklarovaná: " + expectedSize,
+							ctx.formatMetsPosition(srcObj));
+				}
+			} catch (IOException e) {
+				throw new ZafException(BaseCode.CHYBNA_KOMPONENTA, "Chyba IO, cesta: "+filePath, e);
+			}
+		}
+		// TODO: check checksum		
 	}
 
 	private void checkFptr(Fptr fptr) {	
 		Object fileId = fptr.getFILEID();
 		FileGrp fileGrp = (FileGrp) fileId;
 		for(FileType fileElem: fileGrp.getFile()) {
-			String href = fileElem.getFLocat().get(0).getHref();
-			checkFile(fileElem, href);
+			FLocat fileRef = fileElem.getFLocat().get(0);
+			checkFile(fileElem, fileRef.getHref(), fileElem.getSIZE());
 		}
 	}
 
