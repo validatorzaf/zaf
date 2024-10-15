@@ -1,0 +1,15 @@
+= NSESSS2017
+
+Kontrola datových balíčků SIP probíhá podle 
+https://www.mvcr.cz/clanek/narodni-standard-pro-elektronicke-systemy-spisove-sluzby.aspx[národního standardu pro elektronické systémy spisové služby z r. 2017] na základě sestavených xref:pravidla[pravidel].
+
+Kontrola škodlivého kódu probíhá externě a aplikace pouze načítá výsledky této
+kontroly podle použitých přepínačů.
+
+:leveloffset: +1
+
+include::NSESSS2017/pravidla.adoc[]
+
+include::NSESSS2017/zmeny.adoc[]
+
+:leveloffset: -1
