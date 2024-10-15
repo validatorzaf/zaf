@@ -10,7 +10,7 @@ import cz.zaf.earkvalidator.layers.ns.ns00_09.Rule03;
 import cz.zaf.earkvalidator.layers.ns.ns00_09.Rule04;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 
-public class AipValidatorNSTest extends AipValidatorTestBase {
+public class NSTest extends AipValidatorTestBase {
 
 	static public final String PATH_TESTDATA = "testdata/DAAIP2024";
 	

@@ -19,7 +19,7 @@ import cz.zaf.earkvalidator.layers.dat.dat00_09.Rule07;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 import cz.zaf.validator.TestHelper;
 
-public class AipValidatorDatTest extends AipValidatorTestBase {
+public class DatTest extends AipValidatorTestBase {
 	
     static public final String PATH_TESTDATA = "testdata/DAAIP2024";
 

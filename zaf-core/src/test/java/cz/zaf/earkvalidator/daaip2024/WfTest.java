@@ -9,7 +9,7 @@ import cz.zaf.earkvalidator.layers.wf.wf00_09.Rule01;
 import cz.zaf.earkvalidator.layers.wf.wf00_09.Rule02;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 
-public class AipValidatorWfTest extends AipValidatorTestBase {
+public class WfTest extends AipValidatorTestBase {
 	
     static public final String PATH_TESTDATA = "testdata/DAAIP2024";
 

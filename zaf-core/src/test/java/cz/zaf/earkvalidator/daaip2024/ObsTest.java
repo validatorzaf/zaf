@@ -43,7 +43,7 @@ import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule36;
 import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule37;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 
-public class AipValidatorObsTest extends AipValidatorTestBase {
+public class ObsTest extends AipValidatorTestBase {
 
 	static public final String PATH_TESTDATA = "testdata/DAAIP2024";
 
