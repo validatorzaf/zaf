@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import javax.xml.stream.Location;
 
+import org.apache.commons.lang.StringUtils;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.result.ValidationResult;
@@ -68,16 +69,27 @@ public class AipValidationContext implements RuleEvaluationContext, ValidationLa
 			}
 			if(loc.getColumnNumber()>0) {
 				sb.append(":").append(loc.getColumnNumber());
-			}
-			sb.append(", ");
+			}			
 		}
-		
+
+		// vypis elementu
+		boolean elementFound = false;
 		Class<?> clazz = object.getClass();
-		if(clazz.isAnnotationPresent(XmlType.class)) {
+		if(clazz.isAnnotationPresent(XmlType.class)) {			
 			XmlType xmlType = clazz.getAnnotation(XmlType.class);
 			String name = xmlType.name();
-			sb.append("element: <").append(name).append(">");
-		} else {
+			if(StringUtils.isNotBlank(name)) {
+				if (sb.length() > 0) {
+					sb.append(", ");
+				}
+				sb.append("element: <").append(name).append(">");
+				elementFound = true;
+			}
+		}
+		if(!elementFound) {
+			if(sb.length()>0) {
+				sb.append(", ");
+			}			
 			sb.append("objekt: ");
 			sb.append(object.getClass().getSimpleName());
 		}
