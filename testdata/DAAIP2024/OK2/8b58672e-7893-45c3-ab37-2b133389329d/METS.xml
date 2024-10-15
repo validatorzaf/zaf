@@ -104,7 +104,7 @@
         -->
     <fileGrp ID="uuid-a13c7fb3-caad-4505-8a3e-144fc6dca744" USE="Representations/submission">
       <file ID="uuid-440a295f-c1ed-4d85-a737-57f1042d5a37" CREATED="2023-09-06T11:21:10+01:00" MIMETYPE="application/xml"
-           SIZE="18264"
+           SIZE="17843"
            CHECKSUM="09FA6976F18AE6DCE0C5CB4694BC8ADD8C77D769EEF3FCD8DB065B1D263D3887AD43250FD8A25E695FFCCBCACFF35D45A629B6EC79FB4C27D65DB3BD96532E2B"
            CHECKSUMTYPE="SHA-512">
         <!-- Jedná se o původní původcovská metadata, která jsou předmětem LTP ochrany -->
