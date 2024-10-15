@@ -19,6 +19,14 @@ public class FlsTest extends AipValidatorTestBase  {
                 new String[] {});
     }	
 
+    @Test
+    void testFls_01_CHYBA01() {
+    	testFls("07-KONTROLA SOUBORU/01-CHYBA01/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,
+                new String[] { Rule02.CODE },
+                new String[] { Rule01.CODE });
+    }	
+
     private void testFls(String path,
             ValidationStatus status,
             String[] oks,
