@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- 
+  V metadatových souborech je využíván výchozí namespace z důvodu 
+  nevnořování schémat a pro snazší čitelnost.
+
+  OBJID balíčku musí odpovídat názvu složky, kde je uložen. 
+  Pokud je předán samostatně zabalený balíček v ZIP, měl by odpovídat
+  i název tohoto ZIP souboru.
+
+  V EARK se uvádí atribut PROFILE="https://earkcsip.dilcis.eu/profile/E-ARK-CSIP.xml",
+  pro ČR změněno na: PROFILE="https://stands.nacr.cz/da/2023/aip.xml", tím je také 
+  určena verze standardu balíčku.
+
+  Názvy všech souborů jsou "Case sensitiv", tj. musí odpovídat velká a malá písmena,
+  mohou obsahovat diakritiku v UTF-8 bez zakázaných znaků (mezera, lomítka, plus, !...).
+
+  Doporučením (best practice) v názvech souborů je:
+  - vyhnout se kolizím názvů souborů z hlediska velkých a malých písmen
+  - nepoužívat české znaky v názvech souborů a ponechávat je v metadatech
+
+  -->
+<mets xmlns="http://www.loc.gov/METS/"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:csip="https://DILCIS.eu/XML/METS/CSIPExtensionMETS"
+      xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd
+                          http://www.w3.org/1999/xlink http://www.loc.gov/standards/mets/xlink.xsd
+                          https://DILCIS.eu/XML/METS/CSIPExtensionMETS https://earkcsip.dilcis.eu/schema/DILCISExtensionMETS.xsd"
+     OBJID="8b58672e-7893-45c3-ab37-2b133389329d"
+     TYPE="Dataset"
+     csip:CONTENTINFORMATIONTYPE="OTHER"
+     csip:OTHERCONTENTINFORMATIONTYPE="NSESSS"     
+     PROFILE="https://stands.nacr.cz/da/2022/aip.xml"
+     >
+  <!-- 
+    @LASTMODDATE - není umožněn obdobně u ostatních volitelných atributů
+    -->
+  <metsHdr CREATEDATE="2023-12-01T18:00:10+01:00" csip:OAISPACKAGETYPE="AIP">
+    <agent ROLE="CREATOR" TYPE="OTHER" OTHERTYPE="SOFTWARE">
+      <name>HlavoRucni Aplikace</name>
+      <note csip:NOTETYPE="SOFTWARE VERSION">0.3</note>
+    </agent>
+  </metsHdr>
+
+  <!-- CREATED: Cas a datum vytvoreni metadat -->
+  <!-- STATUS: https://earkcsip.dilcis.eu/schema/CSIPVocabularyStatus.xml -->
+  <!-- V případě staršího metadatového popisu se použije status: SUPERSEDED, nutné uspořádání dle času -->
+  <!-- Odpovídá pruvodka.xml, musí povinně být předána pokud existuje -->
+  <dmdSec ID="uuid-98564a30-1a03-4819-bea7-a8ffb56c0618" CREATED="2023-09-06T11:21:10+01:00" STATUS="CURRENT" GROUPID="INHERENT">
+    <mdRef LOCTYPE="URL" MDTYPE="EAD" MIMETYPE="application/xml" 
+           SIZE="5892"
+           CHECKSUM="B9EFEBD41D16B45F723519E4130E287E2EF430BA83AD0C28B46329E9E3A2F9019E6B10CD3857EA9D60FABD2B174E8C11AB51F932E838FBC486F31B98EB21763A"
+           CHECKSUMTYPE="SHA-512"
+           xlink:type="simple" xlink:href="metadata/descriptive/pruvodka.xml" />
+  </dmdSec>
+  <!-- Pokud vznikne archivní popis (kontextuální) musí být uveden s GROUPID="CONTEXTUAL" -->
+
+  <!-- Administrativní metadata (o uchování) -->
+  <amdSec>
+    <digiprovMD ID="uuid-7900a1cd-5316-48c2-906a-6f236ab174d6" STATUS="CURRENT" GROUPID="PRESERVATION">
+      <!-- Muze se skladat z vice souboru, doporuceni: PREMIS.xml -->
+      <mdRef LOCTYPE="URL" MDTYPE="PREMIS" MIMETYPE="application/xml"
+             SIZE="5892"
+             CHECKSUM="B9EFEBD41D16B45F723519E4130E287E2EF430BA83AD0C28B46329E9E3A2F9019E6B10CD3857EA9D60FABD2B174E8C11AB51F932E838FBC486F31B98EB21763A"
+             CHECKSUMTYPE="SHA-512"
+             xlink:type="simple" xlink:href="metadata/preservation/PACKAGE-INFO.xml"
+      />
+    </digiprovMD>
+    <digiprovMD ID="uuid-358fe9ca-d9b6-4813-9a13-d1ecc1b6eb30" STATUS="CURRENT" GROUPID="PRESERVATION">
+      <mdRef LOCTYPE="URL" MDTYPE="PREMIS" MIMETYPE="application/xml"
+             SIZE="5892"
+             CHECKSUM="B9EFEBD41D16B45F723519E4130E287E2EF430BA83AD0C28B46329E9E3A2F9019E6B10CD3857EA9D60FABD2B174E8C11AB51F932E838FBC486F31B98EB21763A"
+             CHECKSUMTYPE="SHA-512"
+             xlink:type="simple" xlink:href="metadata/preservation/PREMIS.xml"
+      />
+    </digiprovMD>
+  </amdSec>
+  <!-- Odkazy na datové soubory -->
+  <fileSec ID="uuid-2828842b-f6b3-414e-91cb-4155f470410f">
+    <!-- Možná pevná pojmenování složek:        
+        - submission
+        - ostatní názvy reprezentací dle uvážení archivu
+        -->
+    <fileGrp ID="uuid-a13c7fb3-caad-4505-8a3e-144fc6dca744" USE="Representations/submission">
+      <file ID="uuid-440a295f-c1ed-4d85-a737-57f1042d5a37" CREATED="2023-09-06T11:21:10+01:00" MIMETYPE="application/xml"
+           SIZE="18264"
+           CHECKSUM="09FA6976F18AE6DCE0C5CB4694BC8ADD8C77D769EEF3FCD8DB065B1D263D3887AD43250FD8A25E695FFCCBCACFF35D45A629B6EC79FB4C27D65DB3BD96532E2B"
+           CHECKSUMTYPE="SHA-512">
+        <!-- Jedná se o původní původcovská metadata, která jsou předmětem LTP ochrany -->
+        <FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="representations/submission/data/mets.xml" />
+      </file>
+
+      <file ID="uuid-8e78c90f-21e6-4799-a77a-2700c34bc9b2" CREATED="2023-09-06T11:21:10+01:00" MIMETYPE="application/pdf" SIZE="44056" 
+            CHECKSUMTYPE="SHA-512" CHECKSUM="88DF182D958BCFB7F95B392543654BA1D070DEBDCB982E7856D08BB0C6B1069E89A2F8B44BABE125E1A7F5383DB06778CBC249BE0380555BF2969EA89500FF94">
+        <!-- Zde je cesta k souboru (fyzická), nejedná se nutně o původní název -->
+        <FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="representations/submission/data/komponenty/pruvodka.pdf"/>
+      </file>
+      <file ID="uuid-e7b6beea-1006-4ed0-9424-33d3491c2bc5" CREATED="2023-09-06T11:21:10+01:00" MIMETYPE="application/pdf" SIZE="61424" CHECKSUMTYPE="SHA-512" CHECKSUM="E04AFA6107A9FB6A3FF208E7C9667B3CED146A8AB0404EF00834DEF8B9E89E1712F065BEC66261D30EBD73A2584A1F5847CD8432437F9F0686DCBF571F46DFE5">
+        <FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="representations/submission/data/komponenty/priloha.pdf"/>
+      </file>
+    </fileGrp>
+    <!-- <fileGrp ID="uuid-a13c7fb3-caad-4505-8a3e-144fc6dca744" USE="Representations/addition-1"> -->
+    <!-- <fileGrp ID="uuid-a13c7fb3-caad-4505-8a3e-144fc6dca744" USE="Representations/migration-1"> -->    
+  </fileSec>
+  <structMap ID="uuid-3fc4a40e-b5f6-4f03-9b17-3ce67147ebc8" TYPE="PHYSICAL" LABEL="CSIP">
+    <div ID="uuid-a221ded8-f1e0-4071-bac3-f49f87d4e9fd">
+      <!-- Zde je limit: DMDID může být velké, obdobně ADMID -->
+      <div ID="uuid-05be91e2-1ff8-4ad1-b2ba-e90e6216fb8d" LABEL="Metadata" 
+           DMDID="uuid-98564a30-1a03-4819-bea7-a8ffb56c0618"
+           ADMID="uuid-7900a1cd-5316-48c2-906a-6f236ab174d6"/>
+      <div ID="uuid-fdbcda7a-1e00-40bf-9bf8-6bac88373640" LABEL="Representations">
+        <fptr FILEID="uuid-a13c7fb3-caad-4505-8a3e-144fc6dca744"/>
+      </div>
+    </div>
+  </structMap>
+  <!-- Logická strukturální mapa 
+       
+   Musí obsahovat to, co je předmětem archivního popisu, nad rámec dat 
+   již definovaných ve fyzické structmap, ta však mohou být zopakována, resp. opakovaně odkazována.
+   Logická strukturální mapa může být maximálně jedna.
+
+   Může obsahovat i elementy <div> bez souborů, tj. fptr, které tvoří čistě logické struktury.
+
+   Pokrývá:
+   - logické seskupování komponent
+   - popis něčeho bez datové reprezentace (bez komponnety)
+   
+   U NSESSS je povinná - odpovídá SIPu
+                 - bylo by vhodné reprezentovat i věcné skupiny
+   U Mimoskartacniho řízení odpovídá původním adresářům v přejímce
+
+    PREMIS: pozadavek na moznost uchovani puvodniho nazvu pokud dojde k jeho zmene pri uchovani
+    -->
+  <structMap ID="uuid-4ab9adfb-6e4a-43d3-a05a-38302901f8f2" TYPE="LOGICAL" LABEL="CZDAX-LOGICAL-STRUCTURE">
+    <!-- Nemuze byt soucasne balicek i spisovy plan !!!! -->
+    <div ID="uuid-82f42018-e998-4878-bc48-c951251cf454" LABEL="Spisový plán_název" TYPE="spisplan">
+      <div ID="uuid-ac73f202-a2a0-4309-9ce7-6c1e426be654" LABEL="Název věcné skupiny 44 - např. HOSPODÁŘSKÉ PROVOZY, SLUŽBY" TYPE="vecnaskp">
+        <div ID="uuid-89a2ecb1-6951-4f97-b1ad-beff25e6cf2d" LABEL="Název věcné skupiny 44_4 - např. Dokumentace o převzetí a výdeji věcí a finančních hotovostí do úschovy" TYPE="vecnaskp">
+          <div ID="uuid-082a283c-0731-4160-9490-32921f2f88d2" LABEL="Název dokumentu, věc-doručený dokument" TYPE="dokument">
+            <!-- Odkaz ze zakladni entity na původcovská metadata (mets.xml z předaného SIPu) -->
+            <fptr FILEID="uuid-440a295f-c1ed-4d85-a737-57f1042d5a37"/>
+            <div LABEL="pruvodnidopis.pdf" TYPE="komponenta" ID="uuid-2163b9ff-15d6-426f-ab7a-81daf22a97ce">
+              <fptr FILEID="uuid-8e78c90f-21e6-4799-a77a-2700c34bc9b2"/>
+            </div>
+            <div LABEL="priloha.pdf" TYPE="komponenta" ID="uuid-30fe3d95-4c83-4984-ab62-712c5f7843b7">
+              <fptr FILEID="uuid-e7b6beea-1006-4ed0-9424-33d3491c2bc5"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </structMap>
+
+</mets>

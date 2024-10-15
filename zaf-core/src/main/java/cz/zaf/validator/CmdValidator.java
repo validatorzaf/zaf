@@ -1,6 +1,8 @@
 package cz.zaf.validator;
 
+import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,6 +17,7 @@ import cz.zaf.common.result.XmlProtokolWriter;
 import cz.zaf.common.result.XmlProtokolWriterOld;
 import cz.zaf.common.validation.Validator;
 import cz.zaf.eadvalidator.ap2023.ValidatorAp2023;
+import cz.zaf.earkvalidator.ValidatorDAAIP2024;
 import cz.zaf.sipvalidator.formats.MimetypeDetectorFactory;
 import cz.zaf.sipvalidator.formats.VystupniFormat;
 import cz.zaf.sipvalidator.nsesss2017.ValidatorNsesss2017;
@@ -120,6 +123,24 @@ public class CmdValidator {
     }
     
     private ValidationProfile identifikujTypBalicku() {
+    	Path inputPath = Paths.get(cmdParams.getInputPath());
+    	if(Files.isRegularFile(inputPath)) {
+    		// pokud je soubor, tak musí být pomůcka
+    		return ValidationProfile.AP2023;
+    	}
+    	// we have to detect file type
+    	// check if input path is a directory
+    	if (Files.isDirectory(inputPath)) {
+	    	// read fist 100 characters from METS.xml if exists
+	    	try {
+	    		String metsData = Files.readString(inputPath.resolve("METS.xml"), StandardCharsets.UTF_8);
+	    		if(metsData.contains("PROFILE=\"https://stands.nacr.cz/da/2023/aip.xml\"")) {
+	    			return ValidationProfile.DAAIP2024;
+	    		}
+    		} catch (IOException e) {
+	    		// ignore
+	    	}
+    	}
     	return ValidationProfile.NSESSS2017;
     }
     
@@ -130,7 +151,10 @@ public class CmdValidator {
         }
     	switch (skutecnyTyp) {
         case AP2023:
-            return new ValidatorAp2023(cmdParams.getAp2023profile(), cmdParams.getExcludeChecks());
+            return new ValidatorAp2023(cmdParams.getAp2023Profile(), cmdParams.getExcludeChecks());
+        case DAAIP2024:
+        	return new ValidatorDAAIP2024(cmdParams.getDa2024Profile(), cmdParams.getExcludeChecks(),
+        			cmdParams.getWorkDir(), cmdParams.isKeepFiles());
         case NSESSS2017:
         default:
             return new ValidatorNsesss2017(cmdParams.getHrozba(),

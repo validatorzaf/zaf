@@ -83,8 +83,27 @@ public abstract class TestHelper {
                     }
                 }
     
-                fail(() -> "SIP: " + path + ", Očekávaný stav: "
-                        + stavKontroly + ", výsledný stav: " + result.getValidationStatus());
+                fail(() -> {
+                	StringBuilder sb = new StringBuilder();
+                	sb.append("AIP: ").append(path).append(", Očekávaný stav: ").append(stavKontroly)
+                	.append(", výsledný stav: ").append(result.getValidationStatus());
+                	if(stavKontroly==ValidationStatus.OK) {
+                		// was expected OK, have to write failed states
+                        for (String pravidloOk : pravidlaOk) {
+                            RuleValidationError prav = result.getPravidlo(pravidloOk);
+							if (prav != null) {
+								sb.append("\nChybné pravidlo: ").append(prav.getId());
+								if(prav.getVypisChyby()!=null) {
+									sb.append(", vypisChyby: ").append(prav.getVypisChyby());
+								}
+								if(prav.getMistoChyby()!=null) {
+									sb.append(", mistoChyby: ").append(prav.getMistoChyby());
+								}							
+							}
+                        }
+                	}
+                    return sb.toString();
+                    });
             }
         }
     

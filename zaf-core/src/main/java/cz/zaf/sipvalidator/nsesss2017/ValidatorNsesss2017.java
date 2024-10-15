@@ -53,7 +53,7 @@ public class ValidatorNsesss2017 implements Validator, ValidationProfileInfo {
 
     @Override
     public String getValidationType() {
-        return profilValidace.getNazev();
+        return profilValidace.getName();
     }
 
     @Override

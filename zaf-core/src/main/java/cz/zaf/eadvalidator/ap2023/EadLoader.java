@@ -5,9 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -22,8 +20,8 @@ import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-import cz.zaf.common.result.ValidationLayerResult;
 import cz.zaf.common.result.ValidationResult;
+import cz.zaf.common.result.ValidationResultImpl;
 import cz.zaf.common.validation.ValidationInput;
 import cz.zaf.common.xml.PositionalXMLReader2;
 import cz.zaf.schema.ead3.Ead;
@@ -32,14 +30,10 @@ import jakarta.xml.bind.JAXBElement;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller.Listener;
 
-public class EadLoader implements Closeable, ValidationInput, ValidationResult {
+public class EadLoader implements Closeable, ValidationInput {
 	
 	private static Logger log = LoggerFactory.getLogger(EadLoader.class);
 
-    private final Path filePath;
-    private Exception parserError;
-
-    private Document document;
     static private JAXBContext ead3Context;
     {
     	try {
@@ -50,7 +44,15 @@ public class EadLoader implements Closeable, ValidationInput, ValidationResult {
     }
     static XMLInputFactory xmlInputFactory = XMLInputFactory.newFactory();
 
-    final protected List<ValidationLayerResult> validationResults = new ArrayList<>();
+    private final Path filePath;
+    private Exception parserError;
+
+    /**
+     * Validation result
+     */
+    private ValidationResult validationResult;
+
+    private Document document;
 
     /**
      * Loaded EAD Object using JAXB
@@ -66,6 +68,7 @@ public class EadLoader implements Closeable, ValidationInput, ValidationResult {
         Objects.requireNonNull(filePath);
 
         this.filePath = filePath;
+        this.validationResult = new ValidationResultImpl(null, filePath.getFileName().toString());
     }
 
     public Path getFilePath() {
@@ -111,23 +114,7 @@ public class EadLoader implements Closeable, ValidationInput, ValidationResult {
     }
 
     public ValidationResult getResult() {
-        return this;
-    }
-
-    @Override
-    public String getValidatedObjectId() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public String getValidatedObjectName() {
-        return filePath.getFileName().toString();
-    }
-
-    @Override
-    public List<ValidationLayerResult> getValidationLayerResults() {
-        return validationResults;
+        return validationResult;
     }
 
     /**

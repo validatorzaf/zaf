@@ -1,0 +1,59 @@
+﻿<?xml version="1.0"?>
+<jxb:bindings version="3.0"
+	xmlns:jxb="https://jakarta.ee/xml/ns/jaxb"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+	xmlns:inheritance="urn:jaxb.jvnet.org:plugin:inheritance"
+	jxb:extensionBindingPrefixes="xjc">
+
+  <jxb:bindings schemaLocation="mets.xsd">
+    <!-- Make accessible other attributes -->
+    <jxb:bindings node="//xs:complexType[@name='metsType']">
+      <jxb:property name="otherAttributes">
+        <jxb:baseType name="xs:anyAttribute"/>
+      </jxb:property>
+    </jxb:bindings>
+    <!-- line 594 -->
+    <jxb:bindings node="//xs:complexType[@name='metsType']//xs:attribute[@name='LABEL']">
+      <jxb:property name="LabelValue"/>
+    </jxb:bindings>
+    <!-- line 727 -->
+    <jxb:bindings node="//xs:complexType[@name='structMapType']//xs:attribute[@name='LABEL']">
+      <jxb:property name="LabelValue2"/>
+    </jxb:bindings>
+    <!-- line 1206 -->
+    <jxb:bindings node="//xs:complexType[@name='behaviorSecType']//xs:attribute[@name='LABEL']">
+      <jxb:property name="LabelValue3"/>
+    </jxb:bindings>
+    <!-- line 1259 -->
+    <jxb:bindings node="//xs:complexType[@name='behaviorType']//xs:attribute[@name='LABEL']">
+      <jxb:property name="LabelValue4"/>
+    </jxb:bindings>
+    <!-- line 1290 -->
+    <jxb:bindings node="//xs:complexType[@name='objectType']//xs:attribute[@name='LABEL']">
+      <jxb:property name="LabelValue5"/>
+    </jxb:bindings>
+    <!-- line 1323 -->    
+    <jxb:bindings node="//xs:element[@name='mdRef']//xs:attribute[@name='LABEL']">
+      <jxb:property name="LabelValue6"/>
+    </jxb:bindings>
+    <!-- line 1372 -->
+    <jxb:bindings node="//xs:element[@name='mdWrap']//xs:attribute[@name='LABEL']">
+      <jxb:property name="LabelValue7"/>
+    </jxb:bindings>
+    <!-- line 1689 -->
+    <jxb:bindings node="//xs:attributeGroup[@name='ORDERLABELS']//xs:attribute[@name='LABEL']">
+      <jxb:property name="LabelValue8"/>
+    </jxb:bindings>
+<!--    <jxb:bindings node="//xs:complexType[@name='languagedeclaration']//xs:element[@name='script']">
+      <jxb:property name="LanguageDeclarationScript"/>
+    </jxb:bindings>
+    <jxb:bindings node="//xs:complexType[@name='languageset']//xs:element[@name='script']">
+      <jxb:property name="LanguageSetScript"/>
+    </jxb:bindings>-->
+        
+<!--    <jxb:bindings node="//xs:element[@name='script'][2]">
+      <jxb:property name="Script2"/>
+    </jxb:bindings>-->
+  </jxb:bindings>
+</jxb:bindings>

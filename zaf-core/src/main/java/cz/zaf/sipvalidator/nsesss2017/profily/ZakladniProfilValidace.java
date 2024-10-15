@@ -568,7 +568,7 @@ public enum ZakladniProfilValidace
     }
 
     @Override
-    public String getNazev() {
+    public String getName() {
         return nazev;
     }
 }

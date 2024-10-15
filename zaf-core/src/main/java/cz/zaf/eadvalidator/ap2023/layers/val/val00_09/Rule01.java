@@ -10,8 +10,8 @@ import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.common.xml.SchemaResourceLoader;
 import cz.zaf.common.xml.ValidationRuleErrorHandler;
 import cz.zaf.eadvalidator.ap2023.EadRule;
-import cz.zaf.eadvalidator.ap2023.cam.CamNS;
-import cz.zaf.eadvalidator.ap2023.ead.EadNS;
+import cz.zaf.schemas.cam.CamNS;
+import cz.zaf.schemas.ead.EadNS;
 
 public class Rule01 extends EadRule {
 	

@@ -1,14 +1,11 @@
 package cz.zaf.sipvalidator.sip;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Objects;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
@@ -17,21 +14,11 @@ import org.slf4j.LoggerFactory;
 import cz.zaf.common.FileOps;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadStatus;
 import cz.zaf.sipvalidator.sip.SipInfo.LoadType;
-import net.lingala.zip4j.ZipFile;
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.model.FileHeader;
 
 public class SipLoader
         implements AutoCloseable
 {
     private static Logger log = LoggerFactory.getLogger(SipLoader.class);
-
-    /**
-     * Property to set ZIP encoding.
-     * 
-     * If property is not set default encoding is UTF-8.
-     */
-    public static final String ZAF_ZIP_ENCODING = "zaf.zip.encoding";
 
     SipInfo.LoadStatus loadStatus = null;
 
@@ -155,81 +142,38 @@ public class SipLoader
         Validate.isTrue(loadStatus == null, "unzipSip can be called only once");
 
         log.debug("Unzipping file: {}, workDir: {}", zipPath, pathForUnzip);
-
-        ZipFile zipFile = new ZipFile(zipPath.toFile());
-
-        String zipEncoding = System.getProperty(ZAF_ZIP_ENCODING);
-        if (zipEncoding == null) {
-            // Dříve bylo výchozí kódování
-            // pro ČR: Charset.forName("IBM852"));
-            zipEncoding = "UTF8";
-        }
-        zipFile.setCharset(Charset.forName(zipEncoding)); // extrakce českých znaků
-        boolean isvalidZipFile = zipFile.isValidZipFile();
-        if (!isvalidZipFile) {
-            loadStatus = LoadStatus.ERR_UNZIP_FAILED;
-            // invalid ZIP file
-            log.info("File is not valid ZIP, fileName: {}", zipPath);
-            return null;
-        }
         // ocekavane jmeno je bez koncovky .ZIP
-        String ocekavanejmeno = zipFile.getFile().getName();
-        ocekavanejmeno = ocekavanejmeno.substring(0, ocekavanejmeno.length() - 4);
-
-        boolean spravnaStrukturaZipu = obsahujePraveAdresar(zipFile, ocekavanejmeno);
-        if (!spravnaStrukturaZipu) {
-            loadStatus = LoadStatus.ERR_ZIP_INCORRECT_STRUCTURE;
-            return null;
-        }
-        // drop any existing item on disk
-        try {
-            Path pathForDelete = pathForUnzip.resolve(ocekavanejmeno);
-            FileOps.recursiveDelete(pathForDelete);
-        } catch (IOException e) {
-            loadStatus = LoadStatus.ERR_UNZIP_FAILED;
-            // invalid ZIP file
-            log.error("Failed to delete existing item", e);
-            return null;
-        }
-        try {
-            zipFile.extractAll(pathForUnzip.toString());
-            Path rozbaleny = pathForUnzip.resolve(ocekavanejmeno);
-            return rozbaleny;
-        } catch (ZipException ex) {
-            loadStatus = LoadStatus.ERR_UNZIP_FAILED;
-            return null;
-        }
-    }
-
-    /**
-     * Kontrola zda obsahuje jen jeden adresar
-     * 
-     * @param zipFile
-     * @return
-     */
-    private static boolean obsahujePraveAdresar(ZipFile zipFile, String ocekavanejmeno) {
-        log.debug("Checking zip content, expected main directory: {}", ocekavanejmeno);
-        try {
-            ArrayList<FileHeader> list = (ArrayList<FileHeader>) zipFile.getFileHeaders();
-            if (CollectionUtils.isEmpty(list)) {
-                log.info("Empty ZIP file");
+        final String jmenozip = zipPath.toFile().getName();
+        final String ocekavanejmeno = jmenozip.substring(0, jmenozip.length() - 4);
+        
+        if (!FileOps.unzip(zipPath, pathForUnzip, (zipFile) -> {
+        	if(!FileOps.containsSingleDirectory(zipFile, ocekavanejmeno)) {
+                loadStatus = LoadStatus.ERR_ZIP_INCORRECT_STRUCTURE;
+                return false;
+        	}
+            // drop any existing item on disk
+            try {
+                Path pathForDelete = pathForUnzip.resolve(ocekavanejmeno);
+                FileOps.recursiveDelete(pathForDelete);
+            } catch (IOException e) {
+                loadStatus = LoadStatus.ERR_UNZIP_FAILED;
+                // invalid ZIP file
+                log.error("Failed to delete existing item", e);
                 return false;
             }
-            for (int i = 0; i < list.size(); i++) {
-                FileHeader fh = list.get(i);
-                String s = fh.getFileName();
-                if (!(s.contains(ocekavanejmeno + "\\") || s.contains(ocekavanejmeno + "/"))) {
-                    log.info("Found unexpected content in zip: {}", s);
-                    return false;
-                }
-            }
-        } catch (ZipException ex) {
-            log.error("Exception in ZIP library", ex);
-            return false;
+	        return true;
+        })) {
+			if(loadStatus == null) {
+				loadStatus = LoadStatus.ERR_UNZIP_FAILED;
+				// invalid ZIP file
+				log.info("File is not valid ZIP, fileName: {}", zipPath);			}
+			return null;
         }
 
-        return true;
+        Path rozbaleny = pathForUnzip.resolve(ocekavanejmeno);
+        return rozbaleny;
     }
+
 
     private void detectLoadType() {
         sipName = sipPath.getName(sipPath.getNameCount() - 1).toString();

@@ -9,7 +9,7 @@ import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.common.xml.PositionalXMLReader;
 import cz.zaf.eadvalidator.ap2023.EadRule;
-import cz.zaf.eadvalidator.ap2023.ead.EadNS;
+import cz.zaf.schemas.ead.EadNS;
 
 public class Rule02 extends EadRule {
 	static final public String CODE = "ns2";
