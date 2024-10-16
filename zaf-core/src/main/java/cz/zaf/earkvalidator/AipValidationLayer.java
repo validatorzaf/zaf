@@ -26,7 +26,7 @@ public class AipValidationLayer extends BaseValidationLayer<AipValidationContext
 	@Override
 	protected void validateImpl() {
 		var rules = createRules(ruleClasses);
-		
+		// Here we can prepare layer specific context		
 		provedKontrolu(ctx, rules);		
 	}
 

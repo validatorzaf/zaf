@@ -51,11 +51,27 @@ public abstract class TestHelper {
     }
 
     static public void checkTestResult(String path,
+            ValidationStatus stavKontroly,
+            ValidationLayerResult result,
+            String[] pravidlaOk, String[] pravidlaChybna) {
+    	checkTestResult(path, stavKontroly, result, pravidlaOk, pravidlaChybna, null);
+    }
+
+    static public void checkTestResult(String path,
                                        ValidationStatus stavKontroly,
                                        ValidationLayerResult result,
-                                       String[] pravidlaOk, String[] pravidlaChybna) {
+                                       String[] pravidlaOk, String[] pravidlaChybna,
+                                       String innerFileName) {
         if (result == null) {
             fail("Result is null, path: " + path);
+        }
+        
+        // check if relevant result accoring innerFileName
+        if(innerFileName != null) {
+	        String resultInnerFileName = result.getInnerFileName();
+	        if(!innerFileName.equals(resultInnerFileName)) {
+		        return;
+	        }
         }
 
         if (stavKontroly != null) {
