@@ -3,8 +3,6 @@ package cz.zaf.premis;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,13 +14,9 @@ import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.result.ValidationResultImpl;
 import cz.zaf.common.result.ValidationStatus;
 import cz.zaf.common.validation.BaseValidationContext;
-import cz.zaf.common.validation.ValidationLayer;
 import cz.zaf.premisvalidator.PremisValidationContext;
-import cz.zaf.premisvalidator.PremisValidationLayer;
 import cz.zaf.premisvalidator.ValidationLayers;
 import cz.zaf.premisvalidator.ValidatorPremisInner;
-import cz.zaf.premisvalidator.layers.enc.Encoding;
-import cz.zaf.premisvalidator.layers.wf.WellFormed;
 import cz.zaf.validator.TestHelper;
 
 public class PremisValidatorTestBase {
@@ -58,13 +52,8 @@ public class PremisValidatorTestBase {
             Path sourcePath = TestHelper.getPath(inputPath);
             Path absPath = sourcePath.toAbsolutePath();
             
-            PremisValidationContext premisCtx = new PremisValidationContext(absPath);
-			
-			List<ValidationLayer<ValidatorTestContext>> validations = new ArrayList<>();
-			validations.add(new PremisValidationLayer<ValidatorTestContext>(ValidationLayers.ENCODING, inputPath, premisCtx, Encoding.ruleClasses));
-			validations.add(new PremisValidationLayer<ValidatorTestContext>(ValidationLayers.WELL_FORMED, inputPath, premisCtx, WellFormed.ruleClasses));
-			
-			ValidatorPremisInner<ValidatorTestContext> vdaaip = new ValidatorPremisInner<>(absPath, validations);
+            PremisValidationContext premisCtx = new PremisValidationContext(absPath);			
+			ValidatorPremisInner<ValidatorTestContext> vdaaip = new ValidatorPremisInner<>(inputPath, premisCtx);
 			vdaaip.validate(vtx, inputPath);
         } catch (Exception e) {
             if (e instanceof ZafException) {

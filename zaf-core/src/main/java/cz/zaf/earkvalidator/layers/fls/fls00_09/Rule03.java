@@ -1,20 +1,15 @@
 package cz.zaf.earkvalidator.layers.fls.fls00_09;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.common.validation.ValidationLayer;
 import cz.zaf.earkvalidator.AipRule;
 import cz.zaf.earkvalidator.AipValidationContext;
 import cz.zaf.earkvalidator.eark.EarkConstants;
 import cz.zaf.premisvalidator.PremisValidationContext;
-import cz.zaf.premisvalidator.PremisValidationLayer;
-import cz.zaf.premisvalidator.ValidationLayers;
 import cz.zaf.premisvalidator.ValidatorPremisInner;
-import cz.zaf.premisvalidator.layers.enc.Encoding;
 import cz.zaf.schema.mets_1_12_1.DivType;
 import cz.zaf.schema.mets_1_12_1.MdSecType;
 import cz.zaf.schema.mets_1_12_1.MdSecType.MdRef;
@@ -58,13 +53,8 @@ public class Rule03 extends AipRule {
 		Path aipPath = ctx.getLoader().getAipPath();
 		Path premisPath = aipPath.resolve(relativePath);
 		
-		PremisValidationContext permisCtx = new PremisValidationContext(premisPath);
-		
-		List<ValidationLayer<AipValidationContext>> validations = new ArrayList<>();
-		validations.add(new PremisValidationLayer<AipValidationContext>(ValidationLayers.ENCODING, relativePath, permisCtx, Encoding.ruleClasses));
-		validations.add(new PremisValidationLayer<AipValidationContext>(ValidationLayers.WELL_FORMED, relativePath, permisCtx, Encoding.ruleClasses));
-		
-		ValidatorPremisInner<AipValidationContext> vpi = new ValidatorPremisInner<>(premisPath, validations);
+		PremisValidationContext permisCtx = new PremisValidationContext(premisPath);		
+		ValidatorPremisInner<AipValidationContext> vpi = new ValidatorPremisInner<>(relativePath, permisCtx);
 		ctx.addInnerFileValidation(vpi, relativePath);
 	}
 

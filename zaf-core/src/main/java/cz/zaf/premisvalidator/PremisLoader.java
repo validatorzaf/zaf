@@ -9,5 +9,4 @@ public class PremisLoader extends XmlDocumentLoader {
 	public PremisLoader(final Path sourceFile) {
 		super(sourceFile);
 	}
-
 }
