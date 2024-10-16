@@ -1,17 +1,19 @@
 package cz.zaf.earkvalidator.layers.fls.fls00_09;
 
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.common.validation.BaseValidator;
 import cz.zaf.common.validation.ValidationLayer;
-import cz.zaf.common.validation.ValidationLayerContext;
 import cz.zaf.earkvalidator.AipRule;
 import cz.zaf.earkvalidator.AipValidationContext;
-import cz.zaf.earkvalidator.AipValidationLayer;
-import cz.zaf.earkvalidator.ValidationLayers;
 import cz.zaf.earkvalidator.eark.EarkConstants;
+import cz.zaf.premisvalidator.PremisValidationContext;
+import cz.zaf.premisvalidator.ValidationLayers;
+import cz.zaf.premisvalidator.ValidatorPremisInner;
+import cz.zaf.premisvalidator.layers.enc.Encoding;
 import cz.zaf.schema.mets_1_12_1.DivType;
 import cz.zaf.schema.mets_1_12_1.MdSecType;
 import cz.zaf.schema.mets_1_12_1.MdSecType.MdRef;
@@ -52,9 +54,17 @@ public class Rule03 extends AipRule {
 	}
 
 	private void preparePremisValidation(String relativePath) {
-		BaseValidator<AipValidationContext> validator = (BaseValidator<AipValidationContext>) ctx.getValidator();		
-		validator.addValidationLayer(new AipValidationLayer(ValidationLayers.COMMPONENT_ENCODING, relativePath));
-		validator.addValidationLayer(new AipValidationLayer(ValidationLayers.COMMPONENT_WELL_FORMED, relativePath));
+		Path aipPath = ctx.getLoader().getAipPath();
+		Path premisPath = aipPath.resolve(relativePath);
+		
+		PremisValidationContext permisCtx = new PremisValidationContext(premisPath);
+		
+		List<ValidationLayer<AipValidationContext>> validations = new ArrayList<>();
+		validations.add(new Encoding<AipValidationContext>(ValidationLayers.ENCODING, relativePath, permisCtx));
+		// validations.add(new AipValidationLayer(ValidationLayers.WELL_FORMED, relativePath));
+		
+		ValidatorPremisInner<AipValidationContext> vpi = new ValidatorPremisInner<>(premisPath, validations);
+		ctx.addInnerFileValidation(vpi, relativePath);
 	}
 
 }

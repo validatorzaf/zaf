@@ -1,4 +1,4 @@
-package cz.zaf.earkvalidator.layers.comp_wf.comp_wf00_09;
+package cz.zaf.premisvalidator.layers.wf.wf00_09;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -8,9 +8,9 @@ import cz.zaf.common.FileOps;
 import cz.zaf.common.Properties;
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.earkvalidator.AipRule;
+import cz.zaf.premisvalidator.PremisRule;
 
-public class Rule02 extends AipRule  {
+public class Rule02 extends PremisRule  {
 	public static final String CODE = "komp_wf02";
 	public static final String RULE_TEXT = "Soubor má předpokládanou velikost.";
 	public static final String RULE_ERROR = "Metadatový soubor je příliš velký.";
@@ -43,8 +43,7 @@ public class Rule02 extends AipRule  {
 			}
 		} catch (IOException e) {
         	throw new ZafException(BaseCode.CHYBA, 
-        			"Nepodařilo se zjistit velikost souboru. Cesta: " + filePath,
-        			ctx.getLoader().getMetsParserError());        	
+        			"Nepodařilo se zjistit velikost souboru. Cesta: " + filePath);        	
 		}
 	}
 }

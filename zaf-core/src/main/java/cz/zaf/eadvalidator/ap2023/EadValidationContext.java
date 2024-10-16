@@ -93,14 +93,4 @@ public class EadValidationContext
 		}
 		return sb.toString();
 	}
-
-	// not used
-	@Override
-	public BaseValidator<? extends ValidationLayerContext> getValidator() {
-		return null;
-	}
-
-	@Override
-	public void setValidator(BaseValidator<? extends ValidationLayerContext> validator) {		
-	}	
 }

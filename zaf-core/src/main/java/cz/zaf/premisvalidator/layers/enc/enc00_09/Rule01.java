@@ -1,4 +1,4 @@
-package cz.zaf.earkvalidator.layers.comp_enc.comp_enc00_09;
+package cz.zaf.premisvalidator.layers.enc.enc00_09;
 
 import java.nio.file.Path;
 
@@ -6,10 +6,10 @@ import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.common.xml.EncodingDetector;
 import cz.zaf.common.xml.EncodingDetector.Result;
-import cz.zaf.earkvalidator.AipRule;
+import cz.zaf.premisvalidator.PremisRule;
 
-public class Rule01  extends AipRule  {
-	public static final String CODE = "komp_kod01";
+public class Rule01  extends PremisRule  {
+	public static final String CODE = "kod01";
 	public static final String RULE_TEXT = "Znakovou sadou souboru je Unicode/UCS v kódování UTF-8 bez BOM (Byte Order Mark).";
 	public static final String RULE_ERROR = "Znaková sada souboru není Unicode/UCS v kódování UTF-8 bez BOM (Byte order mark).";
 	public static final String RULE_SOURCE = "CZDAX-PSP020"; 
@@ -48,4 +48,3 @@ public class Rule01  extends AipRule  {
 		
 	}
 }
-

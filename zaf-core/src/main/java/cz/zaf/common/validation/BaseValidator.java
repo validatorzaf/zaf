@@ -45,8 +45,7 @@ public class BaseValidator<T extends ValidationLayerContext> {
      * @param context
      */
     public void validate(T context) {
-    	context.setValidator(this);
-    	
+ 	
         ValidationLayer<T> activeLayer = null;
         
 
@@ -86,10 +85,5 @@ public class BaseValidator<T extends ValidationLayerContext> {
             log.error(sb.toString() + ", detail: " + e.toString(), e);
             throw new IllegalStateException(sb.toString(), e);
         }
-
     }
-
-	public void addValidationLayer(ValidationLayer<T> validationLayer) {
-		validationLayers.add(validationLayer);		
-	}
 }

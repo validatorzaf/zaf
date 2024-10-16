@@ -23,15 +23,4 @@ public interface ValidationLayerContext {
      * @return
      */
     boolean isExcluded(String code);
-    
-    /**
-     * Return instance of validator
-     * @return
-     */
-    BaseValidator<? extends ValidationLayerContext> getValidator();
-
-    /**
-     * Set instance of validator
-     */
-	void setValidator(BaseValidator<? extends ValidationLayerContext> validator);
 }

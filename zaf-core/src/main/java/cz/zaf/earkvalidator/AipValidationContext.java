@@ -1,6 +1,6 @@
 package cz.zaf.earkvalidator;
 
-import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.stream.Location;
@@ -10,7 +10,9 @@ import org.w3c.dom.Element;
 
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.validation.BaseValidationContext;
+import cz.zaf.common.validation.InnerFileValidator;
 import cz.zaf.common.validation.RuleEvaluationContext;
+import cz.zaf.premisvalidator.ValidatorPremisInner;
 import cz.zaf.schema.mets_1_12_1.Mets;
 import jakarta.xml.bind.annotation.XmlType;
 
@@ -22,12 +24,28 @@ public class AipValidationContext extends BaseValidationContext implements RuleE
 	private AipLoader aipLoader;
 	
 	private Element metsRootElement = null;
-
-	/**
-	 * Active file for checks
-	 */
-	private Path activeFile;
 	
+	private List<InnerValidatorRequest> innerValidators = new ArrayList<>();
+	
+	public static class InnerValidatorRequest {
+		final InnerFileValidator<AipValidationContext> innerValidator;
+		final String innerFilePath;
+		
+		public InnerValidatorRequest(InnerFileValidator<AipValidationContext> innerValidator, String innerFilePath) {
+			this.innerValidator = innerValidator;
+			this.innerFilePath = innerFilePath;
+		}
+
+		public InnerFileValidator<AipValidationContext> getInnerValidator() {
+			return innerValidator;
+		}
+
+		public String getInnerFilePath() {
+			return innerFilePath;
+		}
+		
+	};
+
 	public AipValidationContext(final AipLoader aipLoader, 
 			final List<String> excludeChecks) {
 		super(excludeChecks);
@@ -90,15 +108,19 @@ public class AipValidationContext extends BaseValidationContext implements RuleE
 		return sb.toString();
 	}
 
-	/**
-	 * Return active path for validation
-	 * @return
-	 */
-	public Path getActiveFile() {
-		return activeFile;
+    /**
+     * Allow to add next validator
+     * @param innerFileValidator
+     * @param innerFilePath
+     */
+	public void addInnerFileValidation(InnerFileValidator<AipValidationContext> innerFileValidator, String innerFilePath) {
+		innerValidators.add(new InnerValidatorRequest(innerFileValidator, innerFilePath));
 	}
-	
-	void setActiveFile(Path activeFile) {
-		this.activeFile = activeFile;
+
+	/**
+	 * @return the innerValidators
+	 */
+	public List<InnerValidatorRequest > getInnerValidators() {
+		return innerValidators;
 	}
 }
