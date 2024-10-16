@@ -1,8 +1,7 @@
 package cz.zaf.earkvalidator;
 
+import java.nio.file.Path;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.xml.stream.Location;
 
@@ -10,39 +9,34 @@ import org.apache.commons.lang.StringUtils;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.result.ValidationResult;
+import cz.zaf.common.validation.BaseValidationContext;
 import cz.zaf.common.validation.RuleEvaluationContext;
-import cz.zaf.common.validation.ValidationLayerContext;
 import cz.zaf.schema.mets_1_12_1.Mets;
 import jakarta.xml.bind.annotation.XmlType;
 
-public class AipValidationContext implements RuleEvaluationContext, ValidationLayerContext{
+public class AipValidationContext extends BaseValidationContext implements RuleEvaluationContext {
 	
 	/**
 	 * AIP loader
 	 */
 	private AipLoader aipLoader;
 	
-	private Set<String> excludeChecks = null;
-	
 	private Element metsRootElement = null;
+
+	/**
+	 * Active file for checks
+	 */
+	private Path activeFile;
 	
 	public AipValidationContext(final AipLoader aipLoader, 
 			final List<String> excludeChecks) {
+		super(excludeChecks);
 		this.aipLoader = aipLoader;
-        if(excludeChecks!=null) {
-        	this.excludeChecks = excludeChecks.stream().collect(Collectors.toSet()); 
-        }		
 	}
 
 	@Override
 	public ValidationResult getValidationResult() {
 		return aipLoader.getResult();
-	}
-
-	@Override
-	public boolean isExcluded(String code) {
-    	return (excludeChecks!=null)?
-        		excludeChecks.contains(code):false;
 	}
 
 	public AipLoader getLoader() {
@@ -96,4 +90,15 @@ public class AipValidationContext implements RuleEvaluationContext, ValidationLa
 		return sb.toString();
 	}
 
+	/**
+	 * Return active path for validation
+	 * @return
+	 */
+	public Path getActiveFile() {
+		return activeFile;
+	}
+	
+	void setActiveFile(Path activeFile) {
+		this.activeFile = activeFile;
+	}
 }

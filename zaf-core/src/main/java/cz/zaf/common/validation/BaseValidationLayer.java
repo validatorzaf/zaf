@@ -24,14 +24,31 @@ public abstract class BaseValidationLayer<T extends ValidationLayerContext, RCtx
     private final ValidationLayerType validationType;
 
     protected ValidationLayerResult validationResult;
+    
+    /**
+     * Name of checked inner file
+     * 
+     * Might be null if validation is not based on inner file.
+     */
+    protected final String innerFileName;
 
     protected BaseValidationLayer(final ValidationLayerType validationType) {
+    	this(validationType, null);
+    }
+
+    protected BaseValidationLayer(final ValidationLayerType validationType, final String innerFileName) {
         this.validationType = validationType;
+        this.innerFileName = innerFileName;
     }
 
     @Override
     public ValidationLayerType getType() {
         return validationType;
+    }
+    
+    @Override
+    public String getInnerFileName() {
+    	return innerFileName;
     }
 
     public T getContext() {

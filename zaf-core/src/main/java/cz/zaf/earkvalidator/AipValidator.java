@@ -1,11 +1,13 @@
 package cz.zaf.earkvalidator;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import cz.zaf.common.validation.BaseValidator;
 import cz.zaf.common.validation.ValidationLayer;
+import cz.zaf.common.validation.ValidationLayerType;
 import cz.zaf.common.validation.ValidatorListener;
 import cz.zaf.earkvalidator.layers.dat.DataValidationLayer;
 import cz.zaf.earkvalidator.layers.enc.EncodingValidationLayer;
@@ -70,6 +72,11 @@ public class AipValidator implements ValidatorListener<AipValidationContext> {
         		}
         	}
         	Objects.requireNonNull(context.getLoader().getMets());
+        }
+        if(layer.getType()==ValidationLayers.COMMPONENT_ENCODING) {
+	        Path aipPath = context.getLoader().getAipPath();
+	        Path activeFilePath = aipPath.resolve(layer.getInnerFileName());
+	        context.setActiveFile(activeFilePath);
         }
         
 	}

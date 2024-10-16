@@ -1,8 +1,6 @@
 package cz.zaf.eadvalidator.ap2023;
 
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.xml.stream.Location;
 
@@ -10,23 +8,24 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.result.ValidationResult;
+import cz.zaf.common.validation.BaseValidationContext;
+import cz.zaf.common.validation.BaseValidator;
 import cz.zaf.common.validation.RuleEvaluationContext;
 import cz.zaf.common.validation.ValidationLayerContext;
 import cz.zaf.schema.ead3.Ead;
 import jakarta.xml.bind.annotation.XmlType;
 
-public class EadValidationContext implements RuleEvaluationContext, ValidationLayerContext {
+public class EadValidationContext
+	extends BaseValidationContext
+	implements RuleEvaluationContext {
 
     private EadLoader eadLoader;
 	private Element rootElement;
 	private boolean useEadPrefix = true;
-	private Set<String> excludeChecks = null;
 
     EadValidationContext(final EadLoader eadLoader, final List<String> excludeChecks) {
+    	super(excludeChecks);
         this.eadLoader = eadLoader;
-        if(excludeChecks!=null) {
-        	this.excludeChecks = excludeChecks.stream().collect(Collectors.toSet()); 
-        }
     }
 
     public EadLoader getLoader() {
@@ -36,12 +35,6 @@ public class EadValidationContext implements RuleEvaluationContext, ValidationLa
     @Override
     public ValidationResult getValidationResult() {
         return eadLoader.getResult();
-    }
-
-    @Override
-    public boolean isExcluded(String code) {
-    	return (excludeChecks!=null)?
-    		excludeChecks.contains(code):false;
     }
 
     /**
@@ -99,5 +92,15 @@ public class EadValidationContext implements RuleEvaluationContext, ValidationLa
 			sb.append(object.getClass().getSimpleName());
 		}
 		return sb.toString();
+	}
+
+	// not used
+	@Override
+	public BaseValidator<? extends ValidationLayerContext> getValidator() {
+		return null;
+	}
+
+	@Override
+	public void setValidator(BaseValidator<? extends ValidationLayerContext> validator) {		
 	}	
 }

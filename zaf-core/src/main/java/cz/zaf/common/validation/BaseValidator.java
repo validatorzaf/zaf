@@ -20,7 +20,7 @@ public class BaseValidator<T extends ValidationLayerContext> {
 
     static private Logger log = LoggerFactory.getLogger(BaseValidator.class);
 
-    protected final List<ValidationLayer<T>> validationLayers;
+    protected final List<ValidationLayer<T>> validationLayers = new ArrayList<>();
     
     /**
      * Validator listeners
@@ -28,7 +28,7 @@ public class BaseValidator<T extends ValidationLayerContext> {
     private List<ValidatorListener<T>> listeners = new ArrayList<>();
 
     public BaseValidator(final List<ValidationLayer<T>> validations) {
-        this.validationLayers = validations;
+        this.validationLayers.addAll(validations);
     }
 
     public void registerListener(ValidatorListener<T> listener) {
@@ -45,30 +45,36 @@ public class BaseValidator<T extends ValidationLayerContext> {
      * @param context
      */
     public void validate(T context) {
+    	context.setValidator(this);
+    	
         ValidationLayer<T> activeLayer = null;
+        
 
         try {
-            for (ValidationLayer<T> validationLayer : validationLayers) {
-                activeLayer = validationLayer;
+        	// validation layers might be dynamically added
+        	// validationLayers is mutable ArrayList
+            for (int i = 0; i<validationLayers.size(); i++) {
+                activeLayer = validationLayers.get(i);
 
-                listeners.forEach(l -> l.layerValidationStarted(context, validationLayer));
+                final ValidationLayer<T> vl = activeLayer; 
+                listeners.forEach(l -> l.layerValidationStarted(context, vl));
 
                 // po selhane kontrole se jiz nepokracuje
                 ValidationResult validationResult = context.getValidationResult();
-                // add result
-                ValidationLayerResult vlr = new ValidationLayerResult(validationLayer.getType());
+                // add resultinnerFileName
+                ValidationLayerResult vlr = new ValidationLayerResult(activeLayer.getType(), activeLayer.getInnerFileName());
                 context.addLayerResult(vlr);
                 // vychozi stav je ok
                 vlr.setStav(ValidationStatus.OK);
 
-                validationLayer.validate(context, vlr);
+                activeLayer.validate(context, vlr);
 
-                listeners.forEach(l -> l.layerValidationFinished(context, validationLayer));
+                listeners.forEach(l -> l.layerValidationFinished(context, vl));
 
                 if (validationResult.isFailed()) {
                     // return as non executed
                     return;
-                }
+                }                
             }
             activeLayer = null;
         } catch (Exception e) {
@@ -82,4 +88,8 @@ public class BaseValidator<T extends ValidationLayerContext> {
         }
 
     }
+
+	public void addValidationLayer(ValidationLayer<T> validationLayer) {
+		validationLayers.add(validationLayer);		
+	}
 }
