@@ -59,7 +59,7 @@ public class AipValidator implements ValidatorListener<AipValidationContext> {
 			InnerValidatorRequest request = aipValidationContext.getInnerValidators().get(i);
 			InnerFileValidator<AipValidationContext> innerValidator = request.getInnerValidator();
 			try {
-				innerValidator.validate(aipValidationContext, request.getInnerFilePath(), aipValidationContext.getValidationResult());
+				innerValidator.validate(aipValidationContext, request.getInnerFilePath());
 			} catch(Exception e) {
 	            StringBuilder sb = new StringBuilder();
 	            sb.append("Uncatched exception");

@@ -28,6 +28,36 @@ public class AipValidatorTestBase {
 			String[] pravidlaOk, String[] pravidlaChybna) {
 		testAip(inputPath, validationProfile, validationType, status, pravidlaOk, pravidlaChybna, null);
 	}
+	
+	protected void testFull(String inputPath, 
+			DAAIP2024Profile validationProfile, boolean expectedSuccess) {
+        log.debug("Loading AIP: {}, urovenKontroly: {}", inputPath, validationProfile);
+        ValidatorDAAIP2024 vdaaip = new ValidatorDAAIP2024(validationProfile, null, null, false);
+
+
+        ValidationResult result;
+        try {
+            Path sourcePath = TestHelper.getPath(inputPath);
+            Path absPath = sourcePath.toAbsolutePath();
+
+            result = vdaaip.validate(absPath);
+        } catch (Exception e) {
+            if (e instanceof ZafException) {
+                throw (ZafException) e;
+            }
+            throw new ZafException(BaseCode.CHYBA, "Error to run validate", e);
+        }
+		
+        if(expectedSuccess) {
+        	if(result.isFailed()) {
+        		throw new ZafException(BaseCode.CHYBA, "Očekáváno OK, ale nastala chyba.");
+        	}
+        } else {
+        	if(!result.isFailed()) {
+        		throw new ZafException(BaseCode.CHYBA, "Očekávána CHYBA, ale je OK.");
+        	}
+        }		
+	}	
 
 	protected void testAip(String inputPath, 
 			DAAIP2024Profile validationProfile, 
@@ -35,7 +65,7 @@ public class AipValidatorTestBase {
 			ValidationStatus status,
 			String[] pravidlaOk, String[] pravidlaChybna,
 			String innerFileName) {
-        log.debug("Loading EAD: {}, urovenKontroly: {}", inputPath, validationProfile);
+        log.debug("Loading AIP: {}, urovenKontroly: {}", inputPath, validationProfile);
         ValidatorDAAIP2024 vdaaip = new ValidatorDAAIP2024(validationProfile, null, null, false);
 
 

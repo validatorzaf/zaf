@@ -11,6 +11,7 @@ import cz.zaf.earkvalidator.AipRule;
 import cz.zaf.earkvalidator.AipValidationContext;
 import cz.zaf.earkvalidator.eark.EarkConstants;
 import cz.zaf.premisvalidator.PremisValidationContext;
+import cz.zaf.premisvalidator.PremisValidationLayer;
 import cz.zaf.premisvalidator.ValidationLayers;
 import cz.zaf.premisvalidator.ValidatorPremisInner;
 import cz.zaf.premisvalidator.layers.enc.Encoding;
@@ -60,8 +61,8 @@ public class Rule03 extends AipRule {
 		PremisValidationContext permisCtx = new PremisValidationContext(premisPath);
 		
 		List<ValidationLayer<AipValidationContext>> validations = new ArrayList<>();
-		validations.add(new Encoding<AipValidationContext>(ValidationLayers.ENCODING, relativePath, permisCtx));
-		// validations.add(new AipValidationLayer(ValidationLayers.WELL_FORMED, relativePath));
+		validations.add(new PremisValidationLayer<AipValidationContext>(ValidationLayers.ENCODING, relativePath, permisCtx, Encoding.ruleClasses));
+		validations.add(new PremisValidationLayer<AipValidationContext>(ValidationLayers.WELL_FORMED, relativePath, permisCtx, Encoding.ruleClasses));
 		
 		ValidatorPremisInner<AipValidationContext> vpi = new ValidatorPremisInner<>(premisPath, validations);
 		ctx.addInnerFileValidation(vpi, relativePath);

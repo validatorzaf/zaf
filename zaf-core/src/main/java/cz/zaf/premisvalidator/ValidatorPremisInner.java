@@ -3,7 +3,6 @@ package cz.zaf.premisvalidator;
 import java.nio.file.Path;
 import java.util.List;
 
-import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.validation.BaseValidator;
 import cz.zaf.common.validation.InnerFileValidator;
 import cz.zaf.common.validation.ValidationLayer;
@@ -20,7 +19,7 @@ public class ValidatorPremisInner<T extends ValidationLayerContext> implements I
 	}
 	
 	@Override
-	public void validate(T context, String innerFileName, ValidationResult result) throws Exception {
+	public void validate(T context, String innerFileName) throws Exception {
 		BaseValidator<T> validator = new BaseValidator<T>(validations);
 		validator.validate(context);		
 	}

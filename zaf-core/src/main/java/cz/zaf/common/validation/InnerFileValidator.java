@@ -15,5 +15,5 @@ public interface InnerFileValidator<T extends ValidationLayerContext> {
 	 * @param result
 	 * @throws Exception
 	 */
-	public void validate(T context, String innerFileName, ValidationResult result) throws Exception;
+	public void validate(T context, String innerFileName) throws Exception;
 }
