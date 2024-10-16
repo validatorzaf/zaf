@@ -5,6 +5,7 @@ import java.util.List;
 import cz.zaf.common.validation.BaseRule;
 import cz.zaf.common.validation.ValidationLayerType;
 import cz.zaf.earkvalidator.layers.comp_enc.CompEncoding;
+import cz.zaf.earkvalidator.layers.comp_wf.CompWellFormed;
 
 public enum ValidationLayers implements ValidationLayerType {
 	
@@ -16,7 +17,8 @@ public enum ValidationLayers implements ValidationLayerType {
 	OBSAH("Obsahové kontroly"),
 	FILES("Kontroly souborů"),
 	// Dynamic layers added as needed
-	COMMPONENT_ENCODING("Kódování komponent", CompEncoding.ruleClasses)
+	COMMPONENT_ENCODING("Kódování komponent", CompEncoding.ruleClasses),
+	COMMPONENT_WELL_FORMED("Správnost formátu komponent", CompWellFormed.ruleClasses)
 	;
 	
 	private final String description;

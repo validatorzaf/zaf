@@ -54,6 +54,7 @@ public class Rule03 extends AipRule {
 	private void preparePremisValidation(String relativePath) {
 		BaseValidator<AipValidationContext> validator = (BaseValidator<AipValidationContext>) ctx.getValidator();		
 		validator.addValidationLayer(new AipValidationLayer(ValidationLayers.COMMPONENT_ENCODING, relativePath));
+		validator.addValidationLayer(new AipValidationLayer(ValidationLayers.COMMPONENT_WELL_FORMED, relativePath));
 	}
 
 }
