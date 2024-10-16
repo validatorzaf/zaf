@@ -15,7 +15,7 @@ import cz.zaf.schemas.premis.PremisNS;
 
 public class Rule04 extends PremisRule {
 	public static final String CODE = "ns04";
-	public static final String RULE_TEXT = "\"Kořenový element obsahuje atribut xsi:schemaLocation s hodnotou \"http://www.loc.gov/premis/v3 http://www.loc.gov/standards/premis/premis.xsd\".";
+	public static final String RULE_TEXT = "Kořenový element obsahuje atribut xsi:schemaLocation s hodnotou \"http://www.loc.gov/premis/v3 http://www.loc.gov/standards/premis/premis.xsd\".";
 	public static final String RULE_ERROR = "Chybí informace o umístění pro některé ze schémat.";
 	public static final String RULE_SOURCE = "CZDAX-PMT0101";
 	
