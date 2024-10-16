@@ -22,6 +22,7 @@ import cz.zaf.premisvalidator.PremisValidationLayer;
 import cz.zaf.premisvalidator.ValidationLayers;
 import cz.zaf.premisvalidator.ValidatorPremisInner;
 import cz.zaf.premisvalidator.layers.enc.Encoding;
+import cz.zaf.premisvalidator.layers.wf.WellFormed;
 import cz.zaf.validator.TestHelper;
 
 public class PremisValidatorTestBase {
@@ -61,7 +62,7 @@ public class PremisValidatorTestBase {
 			
 			List<ValidationLayer<ValidatorTestContext>> validations = new ArrayList<>();
 			validations.add(new PremisValidationLayer<ValidatorTestContext>(ValidationLayers.ENCODING, inputPath, premisCtx, Encoding.ruleClasses));
-			validations.add(new PremisValidationLayer<ValidatorTestContext>(ValidationLayers.WELL_FORMED, inputPath, premisCtx, Encoding.ruleClasses));
+			validations.add(new PremisValidationLayer<ValidatorTestContext>(ValidationLayers.WELL_FORMED, inputPath, premisCtx, WellFormed.ruleClasses));
 			
 			ValidatorPremisInner<ValidatorTestContext> vdaaip = new ValidatorPremisInner<>(absPath, validations);
 			vdaaip.validate(vtx, inputPath);

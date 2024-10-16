@@ -101,7 +101,7 @@ public abstract class TestHelper {
     
                 fail(() -> {
                 	StringBuilder sb = new StringBuilder();
-                	sb.append("AIP: ").append(path).append(", Očekávaný stav: ").append(stavKontroly)
+                	sb.append("Vstup: ").append(path).append(", Očekávaný stav: ").append(stavKontroly)
                 	.append(", výsledný stav: ").append(result.getValidationStatus());
                 	if(stavKontroly==ValidationStatus.OK) {
                 		// was expected OK, have to write failed states

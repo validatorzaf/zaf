@@ -4,7 +4,6 @@ import org.w3c.dom.Document;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.XmlCode;
-import cz.zaf.earkvalidator.AipRule;
 import cz.zaf.premisvalidator.PremisRule;
 
 public class Rule01 extends PremisRule  {
@@ -21,11 +20,11 @@ public class Rule01 extends PremisRule  {
 	protected void evalImpl() {
         // Dokument se podařilo načíst, můžeme zkusit standardní načtení
         // load XML document if well-formatted
-        Document doc = null; //ctx.getLoader().loadPremis();
+        Document doc = ctx.getLoader().load();
         if(doc==null) {            	            	
         	throw new ZafException(XmlCode.FAILED_TO_PARSE, 
-        			"Nepodařilo se načíst soubor: " + ctx.getActiveFile());
-        			//ctx.getLoader().getMetsParserError());        	
+        			"Nepodařilo se načíst soubor: " + ctx.getActiveFile(),
+        			ctx.getLoader().getParserError());        	
         }
 	}
 }
