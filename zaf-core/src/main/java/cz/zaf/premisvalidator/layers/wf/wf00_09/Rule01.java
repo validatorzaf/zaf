@@ -21,7 +21,7 @@ public class Rule01 extends PremisRule  {
         // Dokument se podařilo načíst, můžeme zkusit standardní načtení
         // load XML document if well-formatted
         Document doc = ctx.getLoader().load();
-        if(doc==null) {            	            	
+        if(doc==null) {
         	throw new ZafException(XmlCode.FAILED_TO_PARSE, 
         			"Nepodařilo se načíst soubor: " + ctx.getActiveFile(),
         			ctx.getLoader().getParserError());        	
