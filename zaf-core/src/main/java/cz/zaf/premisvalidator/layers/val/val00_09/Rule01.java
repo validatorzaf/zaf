@@ -3,7 +3,6 @@ package cz.zaf.premisvalidator.layers.val.val00_09;
 import java.io.IOException;
 
 import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamSource;
 
 import org.xml.sax.SAXException;
 
@@ -18,7 +17,7 @@ public class Rule01 extends PremisRule {
 	public static final String CODE = "val01";
 	public static final String RULE_TEXT = "Soubor MUSÍ odpovídat oficiálnímu schématu PREMIS, verze 3.0.";
 	public static final String RULE_ERROR = "Soubor neodpovídá schématu PREMIS.";
-	public static final String RULE_SOURCE = "CZDAX-PMT0002";
+	public static final String RULE_SOURCE = "CZDAX-PMS0101";
 
 	public Rule01() {
 		super(CODE, RULE_TEXT, RULE_ERROR, RULE_SOURCE);

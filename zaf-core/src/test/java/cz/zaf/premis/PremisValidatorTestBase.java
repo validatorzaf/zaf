@@ -17,6 +17,7 @@ import cz.zaf.common.validation.BaseValidationContext;
 import cz.zaf.premisvalidator.PremisValidationContext;
 import cz.zaf.premisvalidator.ValidationLayers;
 import cz.zaf.premisvalidator.ValidatorPremisInner;
+import cz.zaf.premisvalidator.profile.PremisProfile;
 import cz.zaf.validator.TestHelper;
 
 public class PremisValidatorTestBase {
@@ -41,7 +42,8 @@ public class PremisValidatorTestBase {
 
 	public void testPremis(String inputPath, 
 			ValidationLayers validationType, 
-			ValidationStatus status, 
+			ValidationStatus status,
+			PremisProfile premisProfile,
 			String[] pravidlaOk,
 			String[] pravidlaChybna) {
 
@@ -53,7 +55,7 @@ public class PremisValidatorTestBase {
             Path absPath = sourcePath.toAbsolutePath();
             
             PremisValidationContext premisCtx = new PremisValidationContext(absPath);			
-			ValidatorPremisInner<ValidatorTestContext> vdaaip = new ValidatorPremisInner<>(inputPath, premisCtx);
+			ValidatorPremisInner<ValidatorTestContext> vdaaip = new ValidatorPremisInner<>(inputPath, premisCtx, premisProfile);
 			vdaaip.validate(vtx, inputPath);
         } catch (Exception e) {
             if (e instanceof ZafException) {

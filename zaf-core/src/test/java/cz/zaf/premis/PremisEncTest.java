@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import cz.zaf.common.result.ValidationStatus;
 import cz.zaf.premisvalidator.ValidationLayers;
 import cz.zaf.premisvalidator.layers.enc.enc00_09.Rule01;
+import cz.zaf.premisvalidator.profile.PremisProfile;
 
 public class PremisEncTest extends PremisValidatorTestBase {
 
@@ -57,6 +58,8 @@ public class PremisEncTest extends PremisValidatorTestBase {
             String[] fails) {
 		testPremis(PATH_TESTDATA + "/" + path,
 				ValidationLayers.ENCODING,
-				status, oks, fails);
+				status,
+				PremisProfile.METADATA,
+				oks, fails);
 	}	
 }

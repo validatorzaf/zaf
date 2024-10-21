@@ -1,6 +1,9 @@
 package cz.zaf.premisvalidator;
 
 import java.nio.file.Path;
+import java.util.Objects;
+
+import javax.xml.stream.Location;
 
 import cz.zaf.common.xml.XmlDocumentLoader;
 import cz.zaf.schema.premis3.PremisComplexType;

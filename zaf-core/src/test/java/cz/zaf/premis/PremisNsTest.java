@@ -8,6 +8,7 @@ import cz.zaf.premisvalidator.layers.ns.ns00_09.Rule01;
 import cz.zaf.premisvalidator.layers.ns.ns00_09.Rule02;
 import cz.zaf.premisvalidator.layers.ns.ns00_09.Rule03;
 import cz.zaf.premisvalidator.layers.ns.ns00_09.Rule04;
+import cz.zaf.premisvalidator.profile.PremisProfile;
 
 public class PremisNsTest extends PremisValidatorTestBase {
 
@@ -75,7 +76,9 @@ public class PremisNsTest extends PremisValidatorTestBase {
             String[] fails) {
 		testPremis(PATH_TESTDATA + "/" + path,
 				ValidationLayers.NAMESPACE,
-				status, oks, fails);
+				status, 
+				PremisProfile.METADATA,
+				oks, fails);
 	}	
 
 }

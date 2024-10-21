@@ -6,6 +6,7 @@ import cz.zaf.common.result.ValidationStatus;
 import cz.zaf.premisvalidator.ValidationLayers;
 import cz.zaf.premisvalidator.layers.wf.wf00_09.Rule01;
 import cz.zaf.premisvalidator.layers.wf.wf00_09.Rule02;
+import cz.zaf.premisvalidator.profile.PremisProfile;
 
 public class PremisWfTest extends PremisValidatorTestBase {
 
@@ -33,7 +34,8 @@ public class PremisWfTest extends PremisValidatorTestBase {
             String[] fails) {
 		testPremis(PATH_TESTDATA + "/" + path,
 				ValidationLayers.WELL_FORMED,
-				status, oks, fails);
+				status, 
+				PremisProfile.METADATA, oks, fails);
 	}	
 
 }

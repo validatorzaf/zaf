@@ -1,0 +1,29 @@
+package cz.zaf.premisvalidator.layers.obs;
+
+import java.util.List;
+
+import cz.zaf.common.validation.BaseRule;
+import cz.zaf.premisvalidator.PremisValidationContext;
+import cz.zaf.premisvalidator.layers.obs.obs00_09.Rule01;
+import cz.zaf.premisvalidator.layers.obs.obs00_09.Rule02;
+import cz.zaf.premisvalidator.profile.PremisProfile;
+
+public class ContentVal {
+	static private	 final List<Class<? extends BaseRule<PremisValidationContext>>> packageRuleClasses = List.of(
+			Rule01.class
+			);
+	
+	static private	 final List<Class<? extends BaseRule<PremisValidationContext>>> metadataRuleClasses = List.of(
+			Rule02.class
+			);
+
+	public static List<Class<? extends BaseRule<PremisValidationContext>>> getRuleClasses(PremisProfile profile) {
+		switch(profile) {
+		case PACKAGE_INFO:
+			return packageRuleClasses;
+		case METADATA:
+			return metadataRuleClasses;
+		}
+		return metadataRuleClasses;
+	}
+}

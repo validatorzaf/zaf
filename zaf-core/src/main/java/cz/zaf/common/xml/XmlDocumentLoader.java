@@ -124,4 +124,10 @@ public class XmlDocumentLoader<T> {
 	public T getRootObj() {
 		return rootObj;
 	}
+
+
+	public Location getXmlLocation(Object object) {
+		Objects.requireNonNull(this.objToLocationMap);
+		return objToLocationMap.get(object);
+	}
 }

@@ -10,6 +10,7 @@ import cz.zaf.earkvalidator.AipValidationContext;
 import cz.zaf.earkvalidator.eark.EarkConstants;
 import cz.zaf.premisvalidator.PremisValidationContext;
 import cz.zaf.premisvalidator.ValidatorPremisInner;
+import cz.zaf.premisvalidator.profile.PremisProfile;
 import cz.zaf.schema.mets_1_12_1.DivType;
 import cz.zaf.schema.mets_1_12_1.MdSecType;
 import cz.zaf.schema.mets_1_12_1.MdSecType.MdRef;
@@ -53,8 +54,11 @@ public class Rule03 extends AipRule {
 		Path aipPath = ctx.getLoader().getAipPath();
 		Path premisPath = aipPath.resolve(relativePath);
 		
-		PremisValidationContext permisCtx = new PremisValidationContext(premisPath);		
-		ValidatorPremisInner<AipValidationContext> vpi = new ValidatorPremisInner<>(relativePath, permisCtx);
+		boolean isPackageInfo = relativePath.equals	("metadata/preservation/PACKAGE-INFO.xml");
+		PremisProfile profile = isPackageInfo?PremisProfile.PACKAGE_INFO:PremisProfile.METADATA;
+		
+		PremisValidationContext permisCtx = new PremisValidationContext(premisPath);				
+		ValidatorPremisInner<AipValidationContext> vpi = new ValidatorPremisInner<>(relativePath, permisCtx, profile);
 		ctx.addInnerFileValidation(vpi, relativePath);
 	}
 
