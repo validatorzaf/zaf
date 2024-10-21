@@ -26,13 +26,13 @@ public class Rule04 extends PremisRule {
 
 	@Override
 	public void evalImpl() {
-		PremisComplexType premis = ctx.getLoader().getRootObj();
-		boolean localIdentFound = false;
+		PremisComplexType premis = ctx.getLoader().getRootObj();		
 		for(AgentComplexType agent: premis.getAgent()) {
 			if(agent.getAgentIdentifier() == null) {
 				throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element agent/agentIdentifier.", ctx.formatPosition(agent));
 			}
 			List<AgentIdentifierComplexType> agentIdents = agent.getAgentIdentifier();
+			boolean localIdentFound = false;
 			for(AgentIdentifierComplexType ident: agentIdents) {
 				StringPlusAuthority identType = ident.getAgentIdentifierType();
 				if (!PremisNS.IDENT_TYPE_LOCAL.equals(identType.getValue())) {
