@@ -46,9 +46,6 @@ public class Rule07 extends PremisRule {
 				throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Chybný odkaz na soubor, typ: "+objIdent.getObjectIdentifierType().getValue()+".", ctx.formatPosition(file));
 			}
 			String identValue = objIdent.getObjectIdentifierValue();
-			if(EarkCz.OBJECT_IDENTIFIER_ITSELF.equals(identValue)) {
-				continue;
-			}
 			if(!ValidatorId.checkFormatId(identValue)) {
 				throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Chybný odkaz na reprezentaci.", ctx.formatPosition(file));
 			}
