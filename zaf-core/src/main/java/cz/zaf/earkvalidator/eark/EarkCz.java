@@ -14,4 +14,7 @@ public class EarkCz {
 	public static final String STRUCTMAP_TYPE_LOGICAL = "LOGICAL";
 	
 	public static final String PACKAGE_INFO_FILENAME = "PACKAGE-INFO.xml";
+	
+	// Odkaz na aktuální balíček. Používá se ve spojení s lokálním identifikátorem (local).
+	public static final String OBJECT_IDENTIFIER_ITSELF = "_THIS";
 }

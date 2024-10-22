@@ -22,7 +22,7 @@ public class Rule06 extends PremisRule {
 	public static final String CODE = "obs06";
 	public static final String RULE_TEXT = "Odkazovaná reprezentace má platný identifikátor a název.";
 	public static final String RULE_ERROR = "Chybný odkaz na reprezentaci.";
-	public static final String RULE_SOURCE = "CZDAX-PMS0401, CZDAX-PMS0402, CZDAX-PMS0403";
+	public static final String RULE_SOURCE = "CZDAX-PMS0201, CZDAX-PMS0401, CZDAX-PMS0402, CZDAX-PMS0403";
 
 
 	public Rule06() {

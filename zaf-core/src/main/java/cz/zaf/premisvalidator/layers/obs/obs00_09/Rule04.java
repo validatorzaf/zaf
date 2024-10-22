@@ -17,7 +17,7 @@ public class Rule04 extends PremisRule {
 	public static final String CODE = "obs04";
 	public static final String RULE_TEXT = "Každý agent má uveden svůj identifikátor dle specifikace.";
 	public static final String RULE_ERROR = "Agent má uveden chybný identifikátor.";
-	public static final String RULE_SOURCE = "CZDAX-PMS0601";
+	public static final String RULE_SOURCE = "CZDAX-PMS0201, CZDAX-PMS0601";
 
 
 	public Rule04() {

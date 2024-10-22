@@ -13,6 +13,9 @@ import cz.zaf.premisvalidator.layers.obs.obs00_09.Rule03;
 import cz.zaf.premisvalidator.layers.obs.obs00_09.Rule04;
 import cz.zaf.premisvalidator.layers.obs.obs00_09.Rule05;
 import cz.zaf.premisvalidator.layers.obs.obs00_09.Rule06;
+import cz.zaf.premisvalidator.layers.obs.obs00_09.Rule07;
+import cz.zaf.premisvalidator.layers.obs.obs00_09.Rule08;
+import cz.zaf.premisvalidator.layers.obs.obs00_09.Rule09;
 import cz.zaf.premisvalidator.profile.PremisProfile;
 
 public class PremisCntTest extends PremisValidatorTestBase {
@@ -23,7 +26,7 @@ public class PremisCntTest extends PremisValidatorTestBase {
     void testCnt_01_OK01() {
     	testPkgInfo("sdilene-ok1.xml",
                 ValidationStatus.OK,
-                new String[] { Rule01.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE },
+                new String[] { Rule01.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE },
                 new String[] {});
     }
 
@@ -31,7 +34,7 @@ public class PremisCntTest extends PremisValidatorTestBase {
     void testCnt_02_OK01() {
     	testMetadata("sdilene-ok2.xml",
                 ValidationStatus.OK,
-                new String[] { Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE },
+                new String[] { Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE },
                 new String[] {});
     }
 
@@ -132,6 +135,22 @@ public class PremisCntTest extends PremisValidatorTestBase {
                 new String[] { Rule06.CODE });
     }
 
+    @Test
+    void testCnt_07_Chyba01() {
+    	testMetadata("05-KONTROLA OBSAHU/07-chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[] { Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE },
+                new String[] { Rule07.CODE });
+    }
+
+    @Test
+    void testCnt_07_Chyba02() {
+    	testMetadata("05-KONTROLA OBSAHU/07-chyba2.xml",
+                ValidationStatus.ERROR,
+                new String[] { Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE },
+                new String[] { Rule07.CODE });
+    }
+    
     private void testPkgInfo(String path,
             ValidationStatus status,
             String[] oks,
