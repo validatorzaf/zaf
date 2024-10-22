@@ -17,7 +17,7 @@ Validátor ZAF lze volat prostřednictvím příkazového řádku:
 `java -jar CmdValidator.jar [přepínače] <path>`
 
 *path*::
-  cesta k SIPu, v případě dávkového režimu ke složce se SIPy
+  cesta k SIPu/AIPu/XML, v případě dávkového režimu ke složce se vstupními daty
 
 
 === Přepínače
@@ -32,11 +32,17 @@ Validátor ZAF lze volat prostřednictvím příkazového řádku:
   Zachování rozbalených souborů na disku, jinak jsou odstraněny
   
 *-d|--druh=*::
-  Druh validace (1 - výchozí):
+  Druh kontroly pro danou validaci (AUTO - výchozí), stačí uvést druh:
 
+ * AUTO = výběr základní kontroly pro daný typ kontroly
  * 1 = pro provedení skartačního řízení (jen metadata bez přiložených komponent)
  * 2 = pro provedení skartačního řízení (s přiloženými komponentami)
  * 3 = pro předávání dokumentů a jejich metadat do archivu
+ * AD = archivní popis (pro AP2023)
+ * FA = archivní pomůcka (pro AP2023)
+ * AIP = výměnný AIP (pro DAAIP2024)
+ * DIP_METADATA = metadatový DIP (pro DAAIP2024)
+ * DIP_CONTENT = úplný DIP (pro DAAIP2024)
 
 *-e|--exclude=*::
   Seznam kontrol oddělených čárkou, které se nemají provádět
@@ -50,6 +56,24 @@ Validátor ZAF lze volat prostřednictvím příkazového řádku:
 *-o|--output=*::
   Jméno souboru nebo adresáře pro uložení výsledků
 
+*-p|--ports=*::
+  Rozsah portů pro vnitřní procesy (standardně 10000-32000)
+  
+*-t|--type=*::
+  Typ validace (AUTO - výchozí)
+  
+ * AUTO - automatická detekce formátu vstupu
+ * NSESSS2017
+ * NSESSS2023
+ * AP2023
+ * DAAIP2024
+ 
+*-f|--format=*::
+  Výstupní formát (1 - výchozí)
+  
+ * 1 = obecné schéma (validace_v1.xsd)
+ * 2 = schéma pouze pro kontrolu NSESSS
+ 
 
 [[ZafSystParametry]]
 == Systémové parametry

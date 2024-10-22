@@ -202,6 +202,7 @@ public class XmlProtokolWriter implements ProtokolWriter
         TKontrola kontrolaXml = objectFactory.createTKontrola();
         kontrolaXml.setNazev(vysl.getValidationName());
         kontrolaXml.setStav(convert(vysl.getValidationStatus()));
+        kontrolaXml.setVnitrniSoubor(vysl.getInnerFileName());
 
         // prevod pravidel
         for (RuleValidationError pravidlo : vysl.getPravidla()) {

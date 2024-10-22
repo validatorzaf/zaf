@@ -10,7 +10,7 @@ include::uvod.adoc[]
 
 include::pouziti.adoc[]
 
-include::pravidla.adoc[]
+include::NSESSS2017.adoc[]
 
 :leveloffset: -1
 

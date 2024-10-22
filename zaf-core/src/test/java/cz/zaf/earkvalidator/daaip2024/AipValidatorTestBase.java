@@ -26,7 +26,46 @@ public class AipValidatorTestBase {
 			ValidationLayerType validationType, 
 			ValidationStatus status,
 			String[] pravidlaOk, String[] pravidlaChybna) {
-        log.debug("Loading EAD: {}, urovenKontroly: {}", inputPath, validationProfile);
+		testAip(inputPath, validationProfile, validationType, status, pravidlaOk, pravidlaChybna, null);
+	}
+	
+	protected void testFull(String inputPath, 
+			DAAIP2024Profile validationProfile, boolean expectedSuccess) {
+        log.debug("Loading AIP: {}, urovenKontroly: {}", inputPath, validationProfile);
+        ValidatorDAAIP2024 vdaaip = new ValidatorDAAIP2024(validationProfile, null, null, false);
+
+
+        ValidationResult result;
+        try {
+            Path sourcePath = TestHelper.getPath(inputPath);
+            Path absPath = sourcePath.toAbsolutePath();
+
+            result = vdaaip.validate(absPath);
+        } catch (Exception e) {
+            if (e instanceof ZafException) {
+                throw (ZafException) e;
+            }
+            throw new ZafException(BaseCode.CHYBA, "Error to run validate", e);
+        }
+		
+        if(expectedSuccess) {
+        	if(result.isFailed()) {
+        		throw new ZafException(BaseCode.CHYBA, "Očekáváno OK, ale nastala chyba.");
+        	}
+        } else {
+        	if(!result.isFailed()) {
+        		throw new ZafException(BaseCode.CHYBA, "Očekávána CHYBA, ale je OK.");
+        	}
+        }		
+	}	
+
+	protected void testAip(String inputPath, 
+			DAAIP2024Profile validationProfile, 
+			ValidationLayerType validationType, 
+			ValidationStatus status,
+			String[] pravidlaOk, String[] pravidlaChybna,
+			String innerFileName) {
+        log.debug("Loading AIP: {}, urovenKontroly: {}", inputPath, validationProfile);
         ValidatorDAAIP2024 vdaaip = new ValidatorDAAIP2024(validationProfile, null, null, false);
 
 
@@ -45,7 +84,7 @@ public class AipValidatorTestBase {
 
         for (ValidationLayerResult vlr : result.getValidationLayerResults()) {
             if (vlr.getValidationType() == validationType) {
-                testAip(inputPath, vlr, status, pravidlaOk, pravidlaChybna);
+                testAip(inputPath, vlr, status, pravidlaOk, pravidlaChybna, innerFileName);
                 return;
             }
         }
@@ -71,8 +110,9 @@ public class AipValidatorTestBase {
 			ValidationLayerResult validationResult, 
 			ValidationStatus status, 
 			String[] pravidlaOk,
-			String[] pravidlaChybna) {
-		TestHelper.checkTestResult(inputPath, status, validationResult, pravidlaOk, pravidlaChybna);		
+			String[] pravidlaChybna,
+			String innerFileName) {
+		TestHelper.checkTestResult(inputPath, status, validationResult, pravidlaOk, pravidlaChybna, innerFileName);		
 	}
 
 }

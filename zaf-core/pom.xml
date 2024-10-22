@@ -167,6 +167,7 @@
 								<source>${project.build.directory}/generated-sources/validace_v1</source>
 								<source>${project.build.directory}/generated-sources/ead3</source>
 								<source>${project.build.directory}/generated-sources/mets_1_12_1</source>
+								<source>${project.build.directory}/generated-sources/premis3</source>
 							</sources>
 						</configuration>
 					</execution>
@@ -250,6 +251,33 @@
                             <bindingDirectory>${project.basedir}/src/main/resources/schema/mets/v1.12.1</bindingDirectory>
                             <bindingIncludes>
                                 <include>mets-bindings.xml</include>
+							</bindingIncludes>
+                            <plugins>
+                                <plugin>
+                                    <groupId>org.jvnet.jaxb</groupId>
+                                    <artifactId>jaxb-plugins</artifactId>
+                                    <version>4.0.8</version>
+								</plugin>
+							</plugins>
+
+						</configuration>
+					</execution>
+					<execution>
+						<id>jaxb-generate-premis3-xsd</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemaDirectory>src/main/resources/schema/premis</schemaDirectory>
+							<schemaIncludes>
+								<include>premis-v3-0.xsd</include>
+							</schemaIncludes>
+							<generatePackage>cz.zaf.schema.premis3</generatePackage>
+							<generateDirectory>${project.build.directory}/generated-sources/premis3</generateDirectory>
+                            <bindingDirectory>${project.basedir}/src/main/resources/schema/premis</bindingDirectory>
+                            <bindingIncludes>
+                                <include>premis3-bindings.xml</include>
 							</bindingIncludes>
                             <plugins>
                                 <plugin>

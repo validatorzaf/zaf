@@ -1,13 +1,10 @@
 ﻿[[intro]]
 = Úvod
 
-Validátor ZAF je knihovna pro kontrolu datových balíčků SIP podle 
-https://www.mvcr.cz/clanek/narodni-standard-pro-elektronicke-systemy-spisove-sluzby.aspx[národního standardu pro elektronické systémy spisové služby z r. 2017] na základě sestavených
-xref:pravidla[pravidel].
+Validátor ZAF je knihovna pro kontrolu datových balíčků SIP, AIP balíčků ve výměnném formátu a archivního popisu ve formátu EAD dle českého profilu.
+
 Aplikace provádí načtení balíčků SIP (příp. rozbalení ze souborů ZIP),
-kontrolu a uložení xref:pouziti.adoc#pouziti_schema_xsd[výsledků kontroly] do souboru XML vytvořeného podle schématu XSD.
-Kontrola škodlivého kódu probíhá externě a aplikace pouze načítá výsledky této
-kontroly podle použitých přepínačů. Pokud je v rámci jednoho z typů kontrol
+kontrolu a uložení xref:pouziti.adoc#pouziti_schema_xsd[výsledků kontroly] do souboru XML vytvořeného podle schématu XSD. Pokud je v rámci jednoho z typů kontrol
 nalezena chyba, další typy kontrol se neprovádí.
 
 Vývoj a další rozvoj Validátoru ZAF probíhá ve spolupráci Hlavního města Prahy, Magistrátu hlavního města Prahy, 
@@ -15,15 +12,7 @@ odboru Archiv hlavního města Prahy; https://udauk.cuni.cz/ARCH-1.html[Univerzi
 
 Validátor ZAF je vyvíjen se snahou o zjištění shody a případných chyb validovaných balíčků SIP s NSESSS.
 Použití Validátoru ZAF neprokazuje splnění požadavků na balíčky SIP ze strany archivů rozhodujících 
-ve skartačním řízení. Výsledky validace Validátorem ZAF nemusí být shodné s výsledky zjištěnými 
-validátory digitálních archivů.
-
-
-:leveloffset: +1
-
-include::zmeny.adoc[]
-
-:leveloffset: -1
+ve skartačním řízení. Výsledky validace Validátorem ZAF nemusí být shodné s výsledky zjištěnými validátory digitálních archivů.
 
 == Licenční podmínky
 

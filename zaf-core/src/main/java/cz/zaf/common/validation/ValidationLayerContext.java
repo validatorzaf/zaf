@@ -23,5 +23,4 @@ public interface ValidationLayerContext {
      * @return
      */
     boolean isExcluded(String code);
-
 }

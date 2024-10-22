@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import cz.zaf.common.validation.BaseValidator;
+import cz.zaf.common.validation.InnerFileValidator;
 import cz.zaf.common.validation.ValidationLayer;
 import cz.zaf.common.validation.ValidatorListener;
+import cz.zaf.earkvalidator.AipValidationContext.InnerValidatorRequest;
 import cz.zaf.earkvalidator.layers.dat.DataValidationLayer;
 import cz.zaf.earkvalidator.layers.enc.EncodingValidationLayer;
 import cz.zaf.earkvalidator.layers.wf.WellFormedLayer;
@@ -17,6 +22,8 @@ import cz.zaf.earkvalidator.layers.fls.FilesValidationLayer;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 
 public class AipValidator implements ValidatorListener<AipValidationContext> {
+	
+	static private Logger log = LoggerFactory.getLogger(AipValidator.class);
 
 	private List<String> excludeChecks;
 	private List<ValidationLayer<AipValidationContext>> validations;
@@ -45,7 +52,24 @@ public class AipValidator implements ValidatorListener<AipValidationContext> {
 		
 		BaseValidator<AipValidationContext> validator = new BaseValidator<>(validations);
 		validator.registerListener(this);
-		validator.validate(aipValidationContext);		
+		validator.validate(aipValidationContext);
+		
+		// run additional validators
+		for(int i = 0; i < aipValidationContext.getInnerValidators().size(); i++) {
+			InnerValidatorRequest request = aipValidationContext.getInnerValidators().get(i);
+			InnerFileValidator<AipValidationContext> innerValidator = request.getInnerValidator();
+			try {
+				innerValidator.validate(aipValidationContext, request.getInnerFilePath());
+			} catch(Exception e) {
+	            StringBuilder sb = new StringBuilder();
+	            sb.append("Uncatched exception");
+	            if (innerValidator != null) {
+	                sb.append(", aktivniKontrola: ").append(innerValidator);
+	            }
+	            log.error(sb.toString() + ", detail: " + e.toString(), e);
+	            throw new IllegalStateException(sb.toString(), e);
+			}
+		}
 	}
 
 	@Override
@@ -71,7 +95,6 @@ public class AipValidator implements ValidatorListener<AipValidationContext> {
         	}
         	Objects.requireNonNull(context.getLoader().getMets());
         }
-        
 	}
 
 	@Override

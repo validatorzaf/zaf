@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<premis xmlns="http://www.loc.gov/premis/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.loc.gov/premis/v3 http://www.loc.gov/standards/premis/premis.xsd"
+        version="3.0">
+        <!-- Stavy
+            - Cíl: umět vyměnit informace o životním cyklu jednotlivých částí balíčku/komponent
+            Události:
+            - ingestion (přejímka) - váže se vždy k celému balíčku, viz PACKAGE-INFO.xml
+            - creation? (digitalizace) - váže se k jednotlivému souboru/komponentě
+            - deletion (vymazání) - váže se k jednotlivému souboru/komponentě
+            - migration - vazba n:m
+            - packing 
+            - unpacking
+
+            Neuvedené události nejsou podporovány, resp. mohou být přeneseny, ale jiným způsobem
+            
+            Události bez výsledku (mohou být zaznamenány):
+            - fixity check
+            - virus check
+            - format identification
+            - validation
+
+        -->
+  <object xsi:type="file">
+    <!-- Priklad pro: representations/submission/data/komponenty/pruvodka.pdf -->
+    <objectIdentifier>
+      <objectIdentifierType>local</objectIdentifierType>
+      <objectIdentifierValue>uuid-8e78c90f-21e6-4799-a77a-2700c34bc9b2</objectIdentifierValue>
+    </objectIdentifier>
+    <objectCharacteristics>    
+      <!-- Lze uvest jine typy kontrolnich souctu, viz https://id.loc.gov/vocabulary/preservation/cryptographicHashFunctions.html -->
+      <fixity>
+        <messageDigestAlgorithm>sha512</messageDigestAlgorithm>
+        <messageDigest>88DF182D958BCFB7F95B392543654BA1D070DEBDCB982E7856D08BB0C6B1069E89A2F8B44BABE125E1A7F5383DB06778CBC249BE0380555BF2969EA89500FF94</messageDigest>
+        <messageDigestOriginator>uuid-18074e4a-05e5-492b-9a21-a650baca17c8</messageDigestOriginator>
+      </fixity>
+      <!-- Rozpoznané formatRegistry jsou: PRONOM (preferováno), MIME, FDD
+           Pokud formát není v PRONOM ev. jiném registru uvede se textově v formatDesignation
+           V případě nerozponaného formát se uvádí pevná hodnota neznámý
+           Opakování <format> není chtěné
+        -->
+      <format>
+        <formatDesignation>
+          <formatName>Acrobat PDF/A - Portable Document Format</formatName>
+          <formatVersion>1a</formatVersion>
+        </formatDesignation>
+        <formatRegistry>
+          <formatRegistryName>PRONOM</formatRegistryName>
+          <formatRegistryKey>fmt/95</formatRegistryKey>
+        </formatRegistry>
+      </format>
+      <format>
+        <formatRegistry>
+          <formatRegistryName>MIME</formatRegistryName>
+          <formatRegistryKey>application/pdf</formatRegistryKey>
+        </formatRegistry>
+      </format>
+    </objectCharacteristics>
+    <!-- Volitelné jméno, resp. původní název souboru 
+         Uvádí se jen u objektů na základě ingest, uvádí se jako relativní cesta v rámci původního SIPu
+         Cesta se odděluje pomocí lomítka / (nikoliv \\)
+      -->
+    <originalName>komponenty/priloha.pdf</originalName>
+  </object>
+
+  <!-- Výpočet kontrolního součtu -->
+  <event>
+    <eventIdentifier>
+      <eventIdentifierType>local</eventIdentifierType>
+      <eventIdentifierValue>uuid-f225a257-331d-4eb2-ac5f-dba44b3391cb</eventIdentifierValue>
+    </eventIdentifier>
+    <eventType>fix</eventType>
+    <eventDateTime>2023-10-12/2023-05-16</eventDateTime>
+    <linkingAgentIdentifier>
+      <linkingAgentIdentifierType>local</linkingAgentIdentifierType>
+      <linkingAgentIdentifierValue>uuid-18074e4a-05e5-492b-9a21-a650baca17c8</linkingAgentIdentifierValue>
+      <linkingAgentRole>val</linkingAgentRole>
+    </linkingAgentIdentifier>
+    <linkingObjectIdentifier>
+      <linkingObjectIdentifierType>local</linkingObjectIdentifierType>
+      <linkingObjectIdentifierValue>uuid-8e78c90f-21e6-4799-a77a-2700c34bc9b2</linkingObjectIdentifierValue>
+      <linkingObjectRole>sou</linkingObjectRole>
+    </linkingObjectIdentifier>    
+  </event>
+
+  <agent>
+    <agentIdentifier>
+      <agentIdentifierType>local</agentIdentifierType>
+      <agentIdentifierValue>uuid-18074e4a-05e5-492b-9a21-a650baca17c8</agentIdentifierValue>
+    </agentIdentifier>
+    <agentName>sha512sum (GNU coreutils)</agentName>
+    <agentType>sof</agentType>
+    <agentVersion>8.22</agentVersion>    
+  </agent>
+</premis>

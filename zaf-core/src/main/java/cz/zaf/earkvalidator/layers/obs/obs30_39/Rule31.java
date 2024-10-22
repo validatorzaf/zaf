@@ -35,7 +35,7 @@ public class Rule31 extends AipRule {
 			// check each filegrp, if it contains USE=Representations/ then
 			// its files have to be in the folder representations/
 			String use = filegrp.getUSE();
-			if(!use.startsWith(EarkConstants.USE_REPRESENTATIONS+"/")) {
+			if(!use.startsWith(EarkConstants.USE_REPRESENTATIONS)) {
 				continue;
 			}
 

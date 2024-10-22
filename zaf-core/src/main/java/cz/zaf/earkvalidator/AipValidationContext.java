@@ -1,47 +1,59 @@
 package cz.zaf.earkvalidator;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.xml.stream.Location;
 
+import org.apache.commons.lang.StringUtils;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.result.ValidationResult;
+import cz.zaf.common.validation.BaseValidationContext;
+import cz.zaf.common.validation.InnerFileValidator;
 import cz.zaf.common.validation.RuleEvaluationContext;
-import cz.zaf.common.validation.ValidationLayerContext;
 import cz.zaf.schema.mets_1_12_1.Mets;
 import jakarta.xml.bind.annotation.XmlType;
 
-public class AipValidationContext implements RuleEvaluationContext, ValidationLayerContext{
+public class AipValidationContext extends BaseValidationContext implements RuleEvaluationContext {
 	
 	/**
 	 * AIP loader
 	 */
 	private AipLoader aipLoader;
 	
-	private Set<String> excludeChecks = null;
-	
 	private Element metsRootElement = null;
 	
+	private List<InnerValidatorRequest> innerValidators = new ArrayList<>();
+	
+	public static class InnerValidatorRequest {
+		final InnerFileValidator<AipValidationContext> innerValidator;
+		final String innerFilePath;
+		
+		public InnerValidatorRequest(InnerFileValidator<AipValidationContext> innerValidator, String innerFilePath) {
+			this.innerValidator = innerValidator;
+			this.innerFilePath = innerFilePath;
+		}
+
+		public InnerFileValidator<AipValidationContext> getInnerValidator() {
+			return innerValidator;
+		}
+
+		public String getInnerFilePath() {
+			return innerFilePath;
+		}
+		
+	};
+
 	public AipValidationContext(final AipLoader aipLoader, 
 			final List<String> excludeChecks) {
+		super(excludeChecks);
 		this.aipLoader = aipLoader;
-        if(excludeChecks!=null) {
-        	this.excludeChecks = excludeChecks.stream().collect(Collectors.toSet()); 
-        }		
 	}
 
 	@Override
 	public ValidationResult getValidationResult() {
 		return aipLoader.getResult();
-	}
-
-	@Override
-	public boolean isExcluded(String code) {
-    	return (excludeChecks!=null)?
-        		excludeChecks.contains(code):false;
 	}
 
 	public AipLoader getLoader() {
@@ -68,20 +80,46 @@ public class AipValidationContext implements RuleEvaluationContext, ValidationLa
 			}
 			if(loc.getColumnNumber()>0) {
 				sb.append(":").append(loc.getColumnNumber());
-			}
-			sb.append(", ");
+			}			
 		}
-		
+
+		// vypis elementu
+		boolean elementFound = false;
 		Class<?> clazz = object.getClass();
-		if(clazz.isAnnotationPresent(XmlType.class)) {
+		if(clazz.isAnnotationPresent(XmlType.class)) {			
 			XmlType xmlType = clazz.getAnnotation(XmlType.class);
 			String name = xmlType.name();
-			sb.append("element: <").append(name).append(">");
-		} else {
+			if(StringUtils.isNotBlank(name)) {
+				if (sb.length() > 0) {
+					sb.append(", ");
+				}
+				sb.append("element: <").append(name).append(">");
+				elementFound = true;
+			}
+		}
+		if(!elementFound) {
+			if(sb.length()>0) {
+				sb.append(", ");
+			}			
 			sb.append("objekt: ");
 			sb.append(object.getClass().getSimpleName());
 		}
 		return sb.toString();
 	}
 
+    /**
+     * Allow to add next validator
+     * @param innerFileValidator
+     * @param innerFilePath
+     */
+	public void addInnerFileValidation(InnerFileValidator<AipValidationContext> innerFileValidator, String innerFilePath) {
+		innerValidators.add(new InnerValidatorRequest(innerFileValidator, innerFilePath));
+	}
+
+	/**
+	 * @return the innerValidators
+	 */
+	public List<InnerValidatorRequest > getInnerValidators() {
+		return innerValidators;
+	}
 }

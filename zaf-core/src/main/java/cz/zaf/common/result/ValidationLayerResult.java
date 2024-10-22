@@ -33,7 +33,12 @@ public class ValidationLayerResult {
     /**
      * Nazev kontroly
      */
-    String validationName;
+    final String validationName;
+    
+    /**
+     * Optional inner file name
+     */
+    final String innerFileName;
 
     List<RuleValidationError> ruleErrors = new ArrayList<>();
     
@@ -42,11 +47,13 @@ public class ValidationLayerResult {
      */
     ValidationStatus validationStatus = ValidationStatus.NOT_EXCECUTED;
 
-    public ValidationLayerResult(final ValidationLayerType validationType) {
+    public ValidationLayerResult(final ValidationLayerType validationType, 
+								 final String innerFileNamefinal ) {
         Objects.requireNonNull(validationType);
 
         this.validationType = validationType;
         this.validationName = validationType.getDescription();
+        this.innerFileName = innerFileNamefinal;
     }
 
     public String getValidationName(){
@@ -110,5 +117,9 @@ public class ValidationLayerResult {
         }
         return null;
     }
+
+	public String getInnerFileName() {
+		return innerFileName;
+	}
     
 }

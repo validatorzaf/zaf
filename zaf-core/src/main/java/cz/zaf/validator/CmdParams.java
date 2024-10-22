@@ -22,7 +22,7 @@ public class CmdParams {
         PrintStream output = System.out;
         output.println("CmdValidator [přepínače] [<path>]");
         output.println("");
-        output.println("path - cesta k SIPu, v případě dávkového režimu ke složce se SIPy");
+        output.println("path - cesta k SIPu/AIPu/XML, v případě dávkového režimu ke složce daty");
         output.println("");
         output.println("Přepínače:");
         output.println(" -b|--batch Dávkový režim, cesta je adresář obsahující SIPy");

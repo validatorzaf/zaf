@@ -41,6 +41,8 @@ import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule34;
 import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule35;
 import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule36;
 import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule37;
+import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule38;
+import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule39;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 
 public class ObsTest extends AipValidatorTestBase {
@@ -54,7 +56,7 @@ public class ObsTest extends AipValidatorTestBase {
                 new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
 						Rule10.CODE, Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule18.CODE, Rule19.CODE,
 						Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE, Rule26.CODE, Rule27.CODE, Rule28.CODE, Rule29.CODE,
-						Rule30.CODE, Rule31.CODE, Rule32.CODE, Rule33.CODE, Rule34.CODE, Rule35.CODE, Rule36.CODE, Rule37.CODE },
+						Rule30.CODE, Rule31.CODE, Rule32.CODE, Rule33.CODE, Rule34.CODE, Rule35.CODE, Rule36.CODE, Rule37.CODE, Rule38.CODE, Rule39.CODE },
                 new String[] {});
     }	
 	
@@ -65,7 +67,7 @@ public class ObsTest extends AipValidatorTestBase {
                 new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
 						Rule10.CODE, Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule18.CODE, Rule19.CODE,
 						Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE, Rule26.CODE, Rule27.CODE, Rule28.CODE, Rule29.CODE,
-						Rule30.CODE, Rule31.CODE, Rule32.CODE, Rule33.CODE, Rule34.CODE, Rule35.CODE, Rule36.CODE, Rule37.CODE },
+						Rule30.CODE, Rule31.CODE, Rule32.CODE, Rule33.CODE, Rule34.CODE, Rule35.CODE, Rule36.CODE, Rule37.CODE, Rule38.CODE, Rule39.CODE },
                 new String[] {});
     }	
 
@@ -1026,6 +1028,72 @@ public class ObsTest extends AipValidatorTestBase {
                 		Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE, Rule26.CODE, Rule27.CODE, Rule28.CODE, Rule29.CODE,
                 		Rule30.CODE, Rule31.CODE, Rule32.CODE, Rule33.CODE, Rule34.CODE, Rule35.CODE, Rule36.CODE },
                 new String[] { Rule37.CODE });
+    }
+
+    @Test
+    void testObs_38_CHYBA01() {
+    	testObs("06-KONTROLA OBSAHU/38-CHYBA01/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, Rule10.CODE, 
+                		Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule19.CODE,
+                		Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE, Rule26.CODE, Rule27.CODE, Rule28.CODE, Rule29.CODE,
+                		Rule30.CODE, Rule31.CODE, Rule32.CODE, Rule33.CODE, Rule34.CODE, Rule35.CODE, Rule36.CODE, Rule37.CODE },
+                new String[] { Rule38.CODE });
+    }
+
+    @Test
+    void testObs_38_CHYBA02() {
+    	testObs("06-KONTROLA OBSAHU/38-CHYBA02/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, Rule10.CODE, 
+                		Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule19.CODE,
+                		Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE, Rule26.CODE, Rule27.CODE, Rule28.CODE, Rule29.CODE,
+                		Rule30.CODE, Rule31.CODE, Rule32.CODE, Rule33.CODE, Rule34.CODE, Rule35.CODE, Rule36.CODE, Rule37.CODE },
+                new String[] { Rule38.CODE });
+    }
+
+    @Test
+    void testObs_38_CHYBA03() {
+    	testObs("06-KONTROLA OBSAHU/38-CHYBA03/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, Rule10.CODE, 
+                		Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule19.CODE,
+                		Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE, Rule26.CODE, Rule27.CODE, Rule28.CODE, Rule29.CODE,
+                		Rule30.CODE, Rule31.CODE, Rule32.CODE, Rule33.CODE, Rule34.CODE, Rule35.CODE, Rule36.CODE, Rule37.CODE },
+                new String[] { Rule38.CODE });
+    }
+
+    @Test
+    void testObs_38_CHYBA04() {
+    	testObs("06-KONTROLA OBSAHU/38-CHYBA04/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, Rule10.CODE, 
+                		Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule19.CODE,
+                		Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE, Rule26.CODE, Rule27.CODE, Rule28.CODE, Rule29.CODE,
+                		Rule30.CODE, Rule31.CODE, Rule32.CODE, Rule33.CODE, Rule34.CODE, Rule35.CODE, Rule36.CODE, Rule37.CODE },
+                new String[] { Rule38.CODE });
+    }
+
+    @Test
+    void testObs_38_CHYBA05() {
+    	testObs("06-KONTROLA OBSAHU/38-CHYBA05/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, Rule10.CODE, 
+                		Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule19.CODE,
+                		Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE, Rule26.CODE, Rule27.CODE, Rule28.CODE, Rule29.CODE,
+                		Rule30.CODE, Rule31.CODE, Rule32.CODE, Rule33.CODE, Rule34.CODE, Rule35.CODE, Rule36.CODE, Rule37.CODE },
+                new String[] { Rule38.CODE });
+    }
+    
+    @Test
+    void testObs_39_CHYBA01() {
+    	testObs("06-KONTROLA OBSAHU/39-CHYBA01/8b58672e-7893-45c3-ab37-2b133389329d",
+                ValidationStatus.ERROR,	
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, Rule10.CODE, 
+                		Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule19.CODE,
+                		Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE, Rule26.CODE, Rule27.CODE, Rule28.CODE, Rule29.CODE,
+                		Rule30.CODE, Rule31.CODE, Rule32.CODE, Rule33.CODE, Rule34.CODE, Rule35.CODE, Rule36.CODE, Rule37.CODE },
+                new String[] { Rule39.CODE });
     }
 
     private void testObs(String path,

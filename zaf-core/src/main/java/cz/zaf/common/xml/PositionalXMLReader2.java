@@ -8,7 +8,10 @@ package cz.zaf.common.xml;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 import java.util.Stack;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -17,6 +20,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -43,7 +47,9 @@ public class PositionalXMLReader2 {
 
     Document doc;
     SAXParser parser;
-    Map<String, String> nsMapping = new HashMap<>();
+    final private Map<String, String> nsMapping = new HashMap<>();
+    // Explicitly applied NS
+    final private Set<String> appliedNs = new HashSet<>();
 
     final Stack<Element> elementStack = new Stack<Element>();
     final StringBuilder textBuffer = new StringBuilder();
@@ -59,13 +65,14 @@ public class PositionalXMLReader2 {
         public void startElement(final String uri, final String localName, final String qName,
                                  final Attributes attributes)
                 throws SAXException {
-            addTextIfNeeded();
+            addTextIfNeeded();            
             final Element el = doc.createElementNS(uri, qName);
+            addNsIfNeeded(el);
             if(attributes!=null) {
             	var attrCnt = attributes.getLength(); 
 				for (int i = 0; i < attrCnt; i++) {
 					String attrNs = attributes.getURI(i);
-					String attrQName = attributes.getQName(i);
+					String attrQName = attributes.getQName(i);					
 					String attrValue = attributes.getValue(i);
 					el.setAttributeNS(attrNs, attrQName, attrValue);
 				}
@@ -73,13 +80,14 @@ public class PositionalXMLReader2 {
             el.setUserData(PositionalXMLReader.LINE_NUMBER_KEY_NAME, this.locator.getLineNumber(), null);
             el.setUserData(PositionalXMLReader.COLUMN_NUMBER, this.locator.getColumnNumber(), null);
             if(nsMapping.size()>0) {
-            	el.setUserData(PositionalXMLReader.NS_MAPPING, nsMapping, null);
-            	nsMapping = new HashMap<>();
+            	// copy current namespace mapping
+            	el.setUserData(PositionalXMLReader.NS_MAPPING, new HashMap<>(nsMapping), null);
             }
             elementStack.push(el);
         }
 
-        @Override
+
+		@Override
         public void endElement(final String uri, final String localName, final String qName) {
             addTextIfNeeded();
             final Element closedEl = elementStack.pop();
@@ -113,7 +121,9 @@ public class PositionalXMLReader2 {
         
         @Override
         public void endPrefixMapping(String prefix) {
-        	
+        	String ns = nsMapping.remove(prefix);
+        	appliedNs.remove(prefix);
+        	Objects.nonNull(ns);
         }
     };
 
@@ -132,4 +142,22 @@ public class PositionalXMLReader2 {
             throw new RuntimeException("Can't create SAX parser / DOM builder.", e);
         }
     }
+
+    private void addNsIfNeeded(Element el) {
+    	if(appliedNs.size()==nsMapping.size()) {
+        	return;
+    	}
+    	for(var ns: nsMapping.keySet()) {
+	    	if(appliedNs.contains(ns)) {
+	    		continue;
+	    	}
+	    	String nsUri = nsMapping.get(ns);
+	    	if(StringUtils.isEmpty(ns)) {
+	    		el.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", nsUri);
+	    	} else {
+	    		el.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:"+ns, nsUri);
+	    	}
+	    	appliedNs.add(ns);
+    	}
+	}
 }

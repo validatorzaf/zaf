@@ -15,6 +15,15 @@ public interface ValidationLayer<T extends ValidationLayerContext> {
     public ValidationLayerType getType();
     
     /**
+     * Return name of inner file name.
+     * 
+     * Return null if main file is checked, e.g. METS.xml.
+     * 
+     * @return
+     */
+    public String getInnerFileName();
+    
+    /**
      * Validate rules in layer
      * 
      * @param context
