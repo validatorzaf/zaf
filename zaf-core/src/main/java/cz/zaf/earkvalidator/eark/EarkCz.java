@@ -12,4 +12,6 @@ public class EarkCz {
 	public static final String GROUPID_PRESERVATION = "PRESERVATION";
 	
 	public static final String STRUCTMAP_TYPE_LOGICAL = "LOGICAL";
+	
+	public static final String PACKAGE_INFO_FILENAME = "PACKAGE-INFO.xml";
 }
