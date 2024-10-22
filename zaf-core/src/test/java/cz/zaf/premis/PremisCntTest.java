@@ -168,6 +168,30 @@ public class PremisCntTest extends PremisValidatorTestBase {
     }
 
     @Test
+    void testCnt_09_Ok01() {
+    	testMetadata("05-KONTROLA OBSAHU/09-ok1.xml",
+                ValidationStatus.OK,
+                new String[] { Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE },
+                new String[] {  });
+    }
+
+    @Test
+    void testCnt_09_Chyba01() {
+    	testMetadata("05-KONTROLA OBSAHU/09-chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[] { Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE },
+                new String[] { Rule09.CODE });
+    }
+
+    @Test
+    void testCnt_09_Chyba02() {
+    	testMetadata("05-KONTROLA OBSAHU/09-chyba2.xml",
+                ValidationStatus.ERROR,
+                new String[] { Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE },
+                new String[] { Rule09.CODE });
+    }
+
+    @Test
     void testCnt_08_Chyba03() {
     	testPkgInfo("05-KONTROLA OBSAHU/08-chyba3.xml",
                 ValidationStatus.ERROR,

@@ -17,4 +17,7 @@ public class EarkCz {
 	
 	// Odkaz na aktuální balíček. Používá se ve spojení s lokálním identifikátorem (local).
 	public static final String OBJECT_IDENTIFIER_ITSELF = "_THIS";
+	
+	// CZDAX-PMS0304
+	public static final String EVENT_DATETIME_NA = "NA";
 }

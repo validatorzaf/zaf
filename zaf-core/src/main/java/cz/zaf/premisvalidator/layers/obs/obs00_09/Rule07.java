@@ -2,7 +2,6 @@ package cz.zaf.premisvalidator.layers.obs.obs00_09;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.earkvalidator.eark.EarkCz;
 import cz.zaf.earkvalidator.eark.ValidatorId;
 import cz.zaf.premisvalidator.PremisRule;
 import cz.zaf.schema.premis3.File;
