@@ -43,6 +43,7 @@ import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule34;
 import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule35;
 import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule36;
 import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule37;
+import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule38;
 import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule39;
 
 public class ContentValidationLayer extends BaseValidationLayer<AipValidationContext, AipValidationContext> {
@@ -85,6 +86,7 @@ public class ContentValidationLayer extends BaseValidationLayer<AipValidationCon
 			Rule35.class,
 			Rule36.class,
 			Rule37.class,
+			Rule38.class,
 			Rule39.class
 		);
 	
