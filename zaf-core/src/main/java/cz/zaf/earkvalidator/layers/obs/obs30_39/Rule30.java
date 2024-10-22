@@ -36,7 +36,7 @@ public class Rule30 extends AipRule {
 			// check each filegrp, if it contains USE=Representations/ then
 			// its files have to be in the folder representations/
 			String use = filegrp.getUSE();
-			if(!use.startsWith(EarkConstants.USE_REPRESENTATIONS+"/")) {
+			if(!use.startsWith(EarkConstants.USE_REPRESENTATIONS)) {
 				continue;
 			}
 			
@@ -71,7 +71,7 @@ public class Rule30 extends AipRule {
 					
 					// nazev slozky a reprezentace musí být shodný s nazvem odkazu na reprezentací
 					String dirName = href.substring(EarkConstants.REPRESENTATIONS_DIR_NAME.length()+1, href.length());
-					String repName = use.substring(EarkConstants.USE_REPRESENTATIONS.length()+1, use.length());
+					String repName = use.substring(EarkConstants.USE_REPRESENTATIONS.length(), use.length());
 					if(!dirName.startsWith(repName)) {
 						throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, 
 								"Název složky musí být shodný s názvem reprezentace, href: "+href, 

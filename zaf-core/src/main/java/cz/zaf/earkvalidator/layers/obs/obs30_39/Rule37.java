@@ -194,7 +194,7 @@ public class Rule37 extends AipRule {
 		if(fileSec!=null) {
 			for (FileGrp grp : fileSec.getFileGrp()) {
 				String use = grp.getUSE();
-				if (use != null && use.startsWith(EarkConstants.USE_REPRESENTATIONS + "/")) {
+				if (use != null && use.startsWith(EarkConstants.USE_REPRESENTATIONS)) {
 					fileGrps.add(grp);
 				}
 			}

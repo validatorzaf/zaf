@@ -9,11 +9,13 @@ import cz.zaf.earkvalidator.AipRule;
 import cz.zaf.earkvalidator.AipValidationContext;
 import cz.zaf.earkvalidator.eark.EarkConstants;
 import cz.zaf.premisvalidator.PremisValidationContext;
+import cz.zaf.premisvalidator.RepresentationInfo;
 import cz.zaf.premisvalidator.ValidatorPremisInner;
 import cz.zaf.premisvalidator.profile.PremisProfile;
 import cz.zaf.schema.mets_1_12_1.DivType;
 import cz.zaf.schema.mets_1_12_1.MdSecType;
 import cz.zaf.schema.mets_1_12_1.MdSecType.MdRef;
+import cz.zaf.schema.mets_1_12_1.MetsType.FileSec.FileGrp;
 import cz.zaf.schema.mets_1_12_1.StructMapType;
 import cz.zaf.schemas.mets.MetsNS;
 
@@ -54,10 +56,23 @@ public class Rule03 extends AipRule {
 		Path aipPath = ctx.getLoader().getAipPath();
 		Path premisPath = aipPath.resolve(relativePath);
 		
+		List<FileGrp> fileGroups = ctx.getMets().getFileSec().getFileGrp();
+		
 		boolean isPackageInfo = relativePath.equals	("metadata/preservation/PACKAGE-INFO.xml");
 		PremisProfile profile = isPackageInfo?PremisProfile.PACKAGE_INFO:PremisProfile.METADATA;
 		
-		PremisValidationContext permisCtx = new PremisValidationContext(premisPath);				
+		PremisValidationContext permisCtx = new PremisValidationContext(premisPath);
+		permisCtx.setRepresentationReader(repId -> {
+			for(FileGrp grp: fileGroups) {
+				if(grp.getID().equals(repId)) {
+					if(grp.getUSE().startsWith(EarkConstants.USE_REPRESENTATIONS)) {
+						String name = grp.getUSE().substring(EarkConstants.USE_REPRESENTATIONS.length());
+						return new RepresentationInfo(repId, name, grp);
+					}
+				}
+			}
+			return null;
+		});
 		ValidatorPremisInner<AipValidationContext> vpi = new ValidatorPremisInner<>(relativePath, permisCtx, profile);
 		ctx.addInnerFileValidation(vpi, relativePath);
 	}

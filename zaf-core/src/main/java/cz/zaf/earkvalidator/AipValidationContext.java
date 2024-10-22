@@ -12,7 +12,6 @@ import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.validation.BaseValidationContext;
 import cz.zaf.common.validation.InnerFileValidator;
 import cz.zaf.common.validation.RuleEvaluationContext;
-import cz.zaf.premisvalidator.ValidatorPremisInner;
 import cz.zaf.schema.mets_1_12_1.Mets;
 import jakarta.xml.bind.annotation.XmlType;
 

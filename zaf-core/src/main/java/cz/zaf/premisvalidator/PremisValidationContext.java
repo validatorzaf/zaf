@@ -1,19 +1,21 @@
 package cz.zaf.premisvalidator;
 
 import java.nio.file.Path;
+import java.util.function.Function;
 
 import javax.xml.stream.Location;
 
 import org.apache.commons.lang.StringUtils;
 
 import cz.zaf.common.validation.RuleEvaluationContext;
-import cz.zaf.schema.premis3.EventComplexType;
 import jakarta.xml.bind.annotation.XmlType;
 
 public class PremisValidationContext implements RuleEvaluationContext {
 	
 	private Path activeFile;
 	private PremisLoader loader;
+	// private Map<String, RepresentationInfo> representations = new HashMap<>();
+	private Function<String, RepresentationInfo> representationReader;
 
 	public PremisValidationContext(Path activeFile) {
 		this.activeFile = activeFile;
@@ -64,4 +66,18 @@ public class PremisValidationContext implements RuleEvaluationContext {
 		return sb.toString();
 	}
 
+	public RepresentationInfo getRepresentation(String represnentationId) {
+		if(representationReader!=null) {
+			return representationReader.apply(represnentationId);
+		}
+		return null;
+	}
+
+	public Function<String, RepresentationInfo> getRepresentationReader() {
+		return representationReader;
+	}
+
+	public void setRepresentationReader(Function<String, RepresentationInfo> representationReader) {
+		this.representationReader = representationReader;
+	}
 }
