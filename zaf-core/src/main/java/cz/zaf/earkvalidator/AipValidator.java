@@ -41,7 +41,7 @@ public class AipValidator implements ValidatorListener<AipValidationContext> {
 		validations.add(new WellFormedLayer());
 		validations.add(new NamespaceValidationLayer());
 		validations.add(new SchemaValidationLayer());
-		validations.add(new ContentValidationLayer());
+		validations.add(new ContentValidationLayer(daaip2024Profile));
 		validations.add(new FilesValidationLayer());
 		return validations; 
 	}

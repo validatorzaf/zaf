@@ -18,6 +18,7 @@ import cz.zaf.common.result.XmlProtokolWriterOld;
 import cz.zaf.common.validation.Validator;
 import cz.zaf.eadvalidator.ap2023.ValidatorAp2023;
 import cz.zaf.earkvalidator.ValidatorDAAIP2024;
+import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 import cz.zaf.sipvalidator.formats.MimetypeDetectorFactory;
 import cz.zaf.sipvalidator.formats.VystupniFormat;
 import cz.zaf.sipvalidator.nsesss2017.ValidatorNsesss2017;
@@ -95,7 +96,7 @@ public class CmdValidator {
                 if (cmdParams.isDavkovyRezim()) {
                     validateDavka(protokolWriter);
                 } else {
-                    validateSip(protokolWriter);
+                    validatePackage(protokolWriter);
                 }
             }
         }
@@ -113,46 +114,73 @@ public class CmdValidator {
         }
     }
 
-    public void validateSip(ProtokolWriter protokolWriter) throws Exception {
+    public void validatePackage(ProtokolWriter protokolWriter) throws Exception {
 
-        Path sipPath = Paths.get(cmdParams.getInputPath());
+        Path path = Paths.get(cmdParams.getInputPath());
 
-        ValidationResult sipInfo = validator.validate(sipPath);
+        ValidationResult result = validator.validate(path);
         
-        protokolWriter.writeVysledek(sipInfo);
+        protokolWriter.writeVysledek(result);
     }
+    
+    private DAAIP2024Profile detectSubProfileDAAIP2024(String metsData) {
+		if(metsData==null) {
+			Path inputPath = Paths.get(cmdParams.getInputPath());
+			try {
+				metsData = Files.readString(inputPath.resolve("METS.xml"), StandardCharsets.UTF_8);
+			} catch (IOException e) {
+				// ignore error
+				return DAAIP2024Profile.AIP;
+			}
+		}
+		// Detect subprofile
+		if(metsData.contains("csip:OTHERCONTENTINFORMATIONTYPE=\"change_request_v1_0\"")) {
+			return DAAIP2024Profile.SIP_CHANGE;
+		}
+		
+		// TODO: improve detection according existence of representations
+		return DAAIP2024Profile.AIP;
+	}
     
     private ValidationProfile identifikujTypBalicku() {
     	Path inputPath = Paths.get(cmdParams.getInputPath());
     	if(Files.isRegularFile(inputPath)) {
     		// pokud je soubor, tak musí být pomůcka
-    		return ValidationProfile.AP2023;
-    	}
+    		cmdParams.validationProfile = ValidationProfile.AP2023; 
+    	} else
     	// we have to detect file type
     	// check if input path is a directory
     	if (Files.isDirectory(inputPath)) {
+    		// Default choice is:
+    		cmdParams.validationProfile = ValidationProfile.NSESSS2017;
 	    	// read fist 100 characters from METS.xml if exists
 	    	try {
 	    		String metsData = Files.readString(inputPath.resolve("METS.xml"), StandardCharsets.UTF_8);
 	    		if(metsData.contains("PROFILE=\"https://stands.nacr.cz/da/2023/aip.xml\"")) {
-	    			return ValidationProfile.DAAIP2024;
+	    			cmdParams.validationProfile = ValidationProfile.DAAIP2024;
+	    			// Detect subprofile
+	    			cmdParams.da2024Profile = detectSubProfileDAAIP2024(metsData);
 	    		}
+	    		
     		} catch (IOException e) {
 	    		// ignore
-	    	}
+	    	}	    	
     	}
-    	return ValidationProfile.NSESSS2017;
+    	return cmdParams.validationProfile;
     }
     
     private Validator createValidator() {
-    	ValidationProfile skutecnyTyp = cmdParams.typBalicku;
-    	if (cmdParams.typBalicku == null) {
+    	ValidationProfile skutecnyTyp = cmdParams.validationProfile;
+    	if (cmdParams.validationProfile == null) {
         	skutecnyTyp = identifikujTypBalicku();
         }
     	switch (skutecnyTyp) {
         case AP2023:
             return new ValidatorAp2023(cmdParams.getAp2023Profile(), cmdParams.getExcludeChecks());
         case DAAIP2024:
+        	if(cmdParams.getDa2024Profile()==null) {
+        		cmdParams.da2024Profile = detectSubProfileDAAIP2024(null);
+        	}
         	return new ValidatorDAAIP2024(cmdParams.getDa2024Profile(), cmdParams.getExcludeChecks(),
         			cmdParams.getWorkDir(), cmdParams.isKeepFiles());
         case NSESSS2017:

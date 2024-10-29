@@ -38,6 +38,7 @@ public class CmdParams {
         output.println("        AIP = výměnný AIP (pro DAAIP2024)");
         output.println("        DIP_METADATA = metadatový DIP (pro DAAIP2024)");
         output.println("        DIP_CONTENT = úplný DIP (pro DAAIP2024)");
+        output.println("        SIP_CHANGE = změnový SIP (pro DAAIP2024)");
         output.println(" -e|--exclude= Seznam kontrol oddělených čárkou, které se nemají provádět");
         output.println(" -i|--id= Identifikátor prováděné kontroly");
         output.println(" -z|--hrozba= Podrobnosti v případě nalezení hrozby (pro předání z antivirového programu)");
@@ -85,7 +86,7 @@ public class CmdParams {
     /**
      * Profile pro DAAIP2024
      */
-    DAAIP2024Profile da2024Profile = DAAIP2024Profile.AIP;
+    DAAIP2024Profile da2024Profile = null;
 
     public AP2023Profile getAp2023Profile() {
         return ap2023Profile;
@@ -97,9 +98,9 @@ public class CmdParams {
     VystupniFormat vystupniFormat = VystupniFormat.VALIDACE_V1;
     
     /**
-     * Typ balíčku
+     * Validation profile
      */
-    ValidationProfile typBalicku = null;
+    ValidationProfile validationProfile = null;
     
     /**
      * Popis hrozby
@@ -388,6 +389,9 @@ public class CmdParams {
             case "DIP_CONTENT":
             	da2024Profile = DAAIP2024Profile.DIP_CONTENT;
             	return true;
+            case "SIP_CHANGE":
+            	da2024Profile = DAAIP2024Profile.SIP_CHANGE;
+            	return true;
             }
 
             int druh = Integer.parseInt(arg);
@@ -447,19 +451,19 @@ public class CmdParams {
         try {
             switch (arg) {
             case "AUTO":
-                typBalicku = null;
+                validationProfile = null;
                 break;                
             case "NSESSS2017":
-            	typBalicku = ValidationProfile.NSESSS2017;
+            	validationProfile = ValidationProfile.NSESSS2017;
                 break;
             case "NSESSS2023":
-            	typBalicku = ValidationProfile.NSESSS2023;
+            	validationProfile = ValidationProfile.NSESSS2023;
                 break;                
             case "AP2023":
-            	typBalicku = ValidationProfile.AP2023;
+            	validationProfile = ValidationProfile.AP2023;
                 break;                
             case "DAAIP2024":
-            	typBalicku = ValidationProfile.DAAIP2024;
+            	validationProfile = ValidationProfile.DAAIP2024;
                 break;                
             default:
                 System.out.println("Chybný typ balíčku: " + arg);
