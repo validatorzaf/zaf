@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ead xmlns="http://ead3.archivists.org/schema/">
+    <control>
+        <recordid>id</recordid>
+        <filedesc encodinganalog="20">
+            <titlestmt>
+                <titleproper>Rektorát Univerzity Karlovy</titleproper>
+            </titlestmt>
+        </filedesc>
+        <maintenancestatus value="new"/>
+        <publicationstatus value="inprocess"/>
+        <maintenanceagency>
+            <agencycode>620000010</agencycode>
+            <agencyname>Archiv UK Praha</agencyname>
+        </maintenanceagency>
+    </control>
+    <archdesc otherlevel="balicek" level="otherlevel">
+        <did>
+            <unitid>2fde031b-0cac-4e5a-b04a-8ad8da08bed4</unitid>
+        </did>
+        <dsc>
+            <c level="otherlevel" otherlevel="vecnaskp" id="uuid-2e9d2e65-b2e9-4e5e-ad84-1730553f3be3">
+                <did>
+                    <unittitle>Organizace, záležitosti vedení UK a jednotlivých pracovišť</unittitle>
+                    <unitid localtype="JINE" label="ESSS">eSSL:UKRUKVS12488</unitid>
+                    <unitid localtype="UKLADACI_ZNAK" label="ukládací znak / spisový znak">A</unitid>
+                    <unitid localtype="UUID">vs_1</unitid>
+                </did>
+                <c level="otherlevel" otherlevel="vecnaskp" id="uuid-2d0ade07-9db1-41a0-a2e6-e5b3c041943f">
+                    <did>
+                        <unittitle>Hodnocení a kontrola</unittitle>
+                        <unitid localtype="JINE" label="ESSS">eSSL:UKRUKVS12513</unitid>
+                        <unitid localtype="UKLADACI_ZNAK" label="ukládací znak / spisový znak">A/VIII</unitid>
+                        <unitid localtype="UUID">vs_2</unitid>
+                    </did>
+                    <c level="otherlevel" otherlevel="vecnaskp" id="uuid-506b5ba5-b9a4-4907-b0f2-f87e7db046e3">
+                        <did>
+                            <unittitle>Evaluace, hodnocení UK, fakult a jednotlivých pracovišť (podklady, dílčí řešení apod.)</unittitle>
+                            <unitid localtype="JINE" label="ESSS">eSSL:UKRUKVS12515</unitid>
+                            <unitid localtype="UKLADACI_ZNAK" label="ukládací znak / spisový znak">A/VIII/2</unitid>
+                            <unitid localtype="UUID">vs_3</unitid>
+                        </did>
+                        <c level="otherlevel" otherlevel="dokument" id="uuid-9c110a9a-7943-420f-a3f1-9f239463ed1a">
+                            <did>
+<unittitle>test digitálního dokumentu</unittitle>
+<unitid localtype="JINE" label="ESSS">eSSL:UKRUK1001135080</unitid>
+<unitid localtype="CISLO_JEDNACI" label="číslo jednací">UKRUK/21298/2019</unitid>
+<unitid localtype="PORADOVE_CISLO" label="pořadové číslo">21298</unitid>
+<unitid localtype="UUID">d_4</unitid>
+                            </did>
+                            <relations>
+<relation relationtype="cpfrelation" linkrole="RECIPIENT" linktitle="příjemce">
+    <relationentry>Ondřej Malý; Ondřej Malý,Špitálsk 150,50012  HRADEC KRÁLOVÉ</relationentry>
+</relation>
+<relation relationtype="cpfrelation" linkrole="ENTITY" linktitle="zpracovatel">
+    <relationentry>Univerzita Karlova; 410:Rektorát, Oddělení pro informační systém UK; 00216208</relationentry>
+</relation>
+<relation relationtype="cpfrelation" linkrole="ENTITY" linktitle="zpracovatel">
+    <relationentry>Ondřej Malý; 410:Rektorát, Oddělení pro informační systém UK; 14897044; Univerzita Karlova</relationentry>
+</relation>
+                            </relations>
+                            <c level="otherlevel" otherlevel="komponenta" id="uuid-fbe853c9-ca38-43f2-a7a6-1b310a560f72">
+<did>
+    <unittitle>test.docx</unittitle>
+    <unitid localtype="JINE" label="ESSS">eSSL:fid91048</unitid>
+    <unitid localtype="UUID">k_5</unitid>
+    <dao daotype="borndigital" id="uuid-f38a4ded-5344-4c0c-a831-80b671caa800"/>
+</did>
+                            </c>
+                            <c level="otherlevel" otherlevel="komponenta" id="uuid-dd716b31-e2ec-4323-9f8b-91acd6b4f0e3">
+<did>
+    <unittitle>test.docx</unittitle>
+    <unitid localtype="JINE" label="ESSS">eSSL:fid91049</unitid>
+    <unitid localtype="UUID">k_6</unitid>
+    <dao daotype="borndigital" id="uuid-703b2af0-40c6-46e2-9ead-2864d520e2a7"/>
+</did>
+                            </c>
+                            <c level="otherlevel" otherlevel="komponenta" id="uuid-8db7c7ac-2ff4-4742-912b-5cb66e916b45">
+<did>
+    <unittitle>test.docx</unittitle>
+    <unitid localtype="JINE" label="ESSS">eSSL:fid91050</unitid>
+    <unitid localtype="UUID">k_7</unitid>
+    <dao daotype="borndigital" id="uuid-4af8ec7a-5f8c-436e-b205-4b4da9ebd146"/>
+</did>
+                            </c>
+                            <c level="otherlevel" otherlevel="komponenta" id="uuid-ad3ce227-7934-419e-8d09-76207f2b649b">
+<did>
+    <unittitle>test.docx</unittitle>
+    <unitid localtype="JINE" label="ESSS">eSSL:fid91051</unitid>
+    <unitid localtype="UUID">k_8</unitid>
+    <dao daotype="borndigital" id="uuid-a0c10488-e5ef-493c-a78c-de285ad27d1a"/>
+</did>
+                            </c>
+                            <c level="otherlevel" otherlevel="komponenta" id="uuid-d89bc552-5c61-4ee5-a034-8462f64a1da9">
+<did>
+    <unittitle>test.docx</unittitle>
+    <unitid localtype="JINE" label="ESSS">eSSL:fid91052</unitid>
+    <unitid localtype="UUID">k_9</unitid>
+    <dao daotype="borndigital" id="uuid-37142b04-ad1e-44ae-987d-27d5ec62bb42"/>
+</did>
+                            </c>
+                            <c level="otherlevel" otherlevel="komponenta" id="uuid-6b00a42f-da9a-4074-8da2-285a194cfd6f">
+<did>
+    <unittitle>test.docx.pdf</unittitle>
+    <unitid localtype="JINE" label="ESSS">eSSL:fid1000544137</unitid>
+    <unitid localtype="UUID">k_10</unitid>
+    <dao daotype="borndigital" id="uuid-b36fcbd4-6f29-4d56-ae33-58106e25918e"/>
+</did>
+                            </c>
+                        </c>
+                    </c>
+                </c>
+            </c>
+        </dsc>
+        <fileplan encodinganalog="eSSL:UKRUKSPISPLAN10">
+            <head>Spisový plán 2019</head>
+            <chronlist>
+                <chronitem>
+                    <daterange>
+                        <fromdate standarddate="2019"/>
+                    </daterange>
+                    <event>Platnost spisového plánu</event>
+                </chronitem>
+            </chronlist>
+        </fileplan>
+    </archdesc>
+</ead>

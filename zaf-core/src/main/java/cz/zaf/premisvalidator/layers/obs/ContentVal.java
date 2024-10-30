@@ -46,6 +46,8 @@ public class ContentVal {
 		switch(profile) {
 		case PACKAGE_INFO:
 			return packageRuleClasses;
+		case PACKAGE_INFO_CHANGE:
+			return packageRuleClasses;
 		case METADATA:
 			return metadataRuleClasses;
 		}
