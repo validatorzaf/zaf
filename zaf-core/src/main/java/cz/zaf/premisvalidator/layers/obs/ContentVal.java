@@ -13,6 +13,7 @@ import cz.zaf.premisvalidator.layers.obs.obs00_09.Rule06;
 import cz.zaf.premisvalidator.layers.obs.obs00_09.Rule07;
 import cz.zaf.premisvalidator.layers.obs.obs00_09.Rule08;
 import cz.zaf.premisvalidator.layers.obs.obs00_09.Rule09;
+import cz.zaf.premisvalidator.layers.obs.obs10_19.Rule10;
 import cz.zaf.premisvalidator.profile.PremisProfile;
 
 public class ContentVal {
@@ -24,7 +25,8 @@ public class ContentVal {
 			Rule06.class,
 			Rule07.class,
 			Rule08.class,
-			Rule09.class
+			Rule09.class,
+			Rule10.class
 			);
 	
 	static private	 final List<Class<? extends BaseRule<PremisValidationContext>>> metadataRuleClasses = List.of(
