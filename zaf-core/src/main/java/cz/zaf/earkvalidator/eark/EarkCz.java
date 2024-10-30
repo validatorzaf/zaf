@@ -12,6 +12,8 @@ public class EarkCz {
 	public static final String GROUPID_CONTEXTUAL = "CONTEXTUAL";
 	public static final String GROUPID_PRESERVATION = "PRESERVATION";
 	
+	public static final String REPRESENTATION_SUBMISSION = "submission";
+	
 	public static final String STRUCTMAP_TYPE_LOGICAL = "LOGICAL";
 	public static final String STRUCTMAP_LOGICAL_NAME = "CZDAX-LOGICAL-STRUCTURE";	
 	
