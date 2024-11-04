@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.earkvalidator.eark.PremisConstants;
 import cz.zaf.premisvalidator.PremisRule;
 import cz.zaf.schema.premis3.EventComplexType;
 import cz.zaf.schema.premis3.PremisComplexType;
@@ -23,23 +24,23 @@ public class Rule02 extends PremisRule {
 	public static final Set<String> eventTypes = Set.of(
 			// CZDAX-PMP0203 - vznik / digitalizace
 			// CZDAX-PMP0303 - vznik
-			"cre",
+			PremisConstants.EVENT_TYPE_CRE,
 			// CZDAX-PMP0205 - smazání
-			"del",
+			PremisConstants.EVENT_TYPE_DEL,
 			// PMP0207 - migrace
-			"mig",
+			PremisConstants.EVENT_TYPE_MIG,
 			//  PMP0212 - zabalení
-			"pac",
+			PremisConstants.EVENT_TYPE_PAC,
 			// PMP0216 - rozbalení
-			"unp",
+			PremisConstants.EVENT_TYPE_UNP,
 			// CZDAX-PMP0305 - Kontrola neporušenosti obsahu
-			"fix",
+			PremisConstants.EVENT_TYPE_FIX,
 			// CZDAX-PMP0307 - Antivirová kontrola
-			"vir",
+			PremisConstants.EVENT_TYPE_VIR,
 			// CZDAX-PMP0311 - Identifikace formátů
-			"for",
+			PremisConstants.EVENT_TYPE_FOR,
 			// CZDAX-PMP0314 - Validace
-			"val"
+			PremisConstants.EVENT_TYPE_VAL
 			);
 
 	public Rule02() {

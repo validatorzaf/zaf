@@ -134,6 +134,18 @@
 
   </object>
 
+  <object xsi:type="intellectualEntity">
+    <!-- Definice vlastního balíčku -->
+    <objectIdentifier>
+      <objectIdentifierType>local</objectIdentifierType>
+      <objectIdentifierValue>uuid-4fde4201-3034-4ea1-bc88-a4adfcaa0f5a</objectIdentifierValue>
+    </objectIdentifier>
+    <objectIdentifier>
+      <objectIdentifierType>AIP_ID</objectIdentifierType>
+      <objectIdentifierValue>83554</objectIdentifierValue>
+    </objectIdentifier>
+  </object>
+
   <!-- Vznik dokumentu/objektu z nějž se stala archiválie-->
   <event>
     <eventIdentifier>
@@ -234,90 +246,47 @@
   </event>
 
   <!-- Pokud dojde k přenosu do jiného archivu vytvoří se událost typu transfer -->
+  <!--
   <event>
     <eventIdentifier>
       <eventIdentifierType>local</eventIdentifierType>
       <eventIdentifierValue>uuid-27c8a259-7cf5-47e2-9bce-3b3da7f7c063</eventIdentifierValue>
     </eventIdentifier>
-    <!-- Určení, že se jedná o přenos -->
+    ## Určení, že se jedná o přenos
     <eventType>tra</eventType>
     <eventDateTime>2023-10-12T00:00:00+01:00</eventDateTime>
-    <!--  Přejímající archiv -->
+    ## Přejímající archiv
     <linkingAgentIdentifier>
       <linkingAgentIdentifierType>local</linkingAgentIdentifierType>
       <linkingAgentIdentifierValue>uuid-65863862-b2a7-4e83-8de9-62130a305b22</linkingAgentIdentifierValue>
       <linkingAgentRole>CURATOR</linkingAgentRole>
     </linkingAgentIdentifier>
-    <!-- Uvedeni zdrojoveho balicku -->
+    ## Uvedeni zdrojoveho balicku
+    <linkingObjectIdentifier>
+      <linkingObjectIdentifierType>local</linkingObjectIdentifierType>
+      <linkingObjectIdentifierValue>uuid-86164008-21af-43ab-93c5-6ac9af0cec7f</linkingObjectIdentifierValue>
+      <linkingObjectRole>sou</linkingObjectRole>
+    </linkingObjectIdentifier>
+    ## Uvedeni ciloveho balicku
     <linkingObjectIdentifier>
       <linkingObjectIdentifierType>local</linkingObjectIdentifierType>
       <linkingObjectIdentifierValue>_THIS</linkingObjectIdentifierValue>
-      <linkingObjectRole>sou</linkingObjectRole>
+      <linkingObjectRole>out</linkingObjectRole>
     </linkingObjectIdentifier>
-    <!-- Uvedeni vnitrni/vnejsi zmeny -->
+    ## Uvedeni vnitrni/vnejsi zmeny ...
     <linkingObjectIdentifier>
       <linkingObjectIdentifierType>CZ_NAD_VNIZ</linkingObjectIdentifierType>
       <linkingObjectIdentifierValue>100/2023</linkingObjectIdentifierValue>
       <linkingObjectRole>out</linkingObjectRole>
     </linkingObjectIdentifier>
-    <!--  Cílový archivní fond -->
+    ## Cílový archivní fond
     <linkingObjectIdentifier>
       <linkingObjectIdentifierType>local</linkingObjectIdentifierType>
       <linkingObjectIdentifierValue>uuid-c1e39569-6ff5-415d-a752-903988080c03</linkingObjectIdentifierValue>
       <linkingObjectRole>out</linkingObjectRole>
     </linkingObjectIdentifier>
-  </event>
+  </event>-->
 
-  <!-- Pokud dojde k přenosu do jiného digitálního archivu vytvoří se událost typu export -->
-  <event>
-    <eventIdentifier>
-      <eventIdentifierType>local</eventIdentifierType>
-      <eventIdentifierValue>uuid-306cf919-3adc-4b8f-8a07-674433fc0a30</eventIdentifierValue>
-    </eventIdentifier>
-    <!-- Určení, že se jedná o přenos -->
-    <eventType>exp</eventType>
-    <eventDateTime>2024-10-12T00:00:00+01:00</eventDateTime>
-    <!--  Přejímající archiv -->
-    <linkingAgentIdentifier>
-      <linkingAgentIdentifierType>local</linkingAgentIdentifierType>
-      <linkingAgentIdentifierValue>uuid-65863862-b2a7-4e83-8de9-62130a305b22</linkingAgentIdentifierValue>
-      <linkingAgentRole>CURATOR</linkingAgentRole>
-    </linkingAgentIdentifier>
-    <!-- Uvedeni zdrojoveho balicku -->
-    <linkingObjectIdentifier>
-      <linkingObjectIdentifierType>local</linkingObjectIdentifierType>
-      <linkingObjectIdentifierValue>_THIS</linkingObjectIdentifierValue>
-      <linkingObjectRole>sou</linkingObjectRole>
-    </linkingObjectIdentifier>
-    <!-- Uvedeni vnitrni/vnejsi zmeny -->
-    <linkingObjectIdentifier>
-      <linkingObjectIdentifierType>CZ_NAD_VNEZ</linkingObjectIdentifierType>
-      <linkingObjectIdentifierValue>100/2024</linkingObjectIdentifierValue>
-      <linkingObjectRole>out</linkingObjectRole>
-    </linkingObjectIdentifier>
-  </event>
-  <!-- Informace o technickém vzniku balíčku -->
-  <event>
-    <eventIdentifier>
-      <eventIdentifierType>local</eventIdentifierType>
-      <eventIdentifierValue>uuid-943df74c-2e09-4d77-9799-2267249fd676</eventIdentifierValue>
-    </eventIdentifier>
-    <!-- Určení, že se jedná o přenos -->
-    <eventType>ipc</eventType>
-    <eventDateTime>2023-10-12T00:00:00+01:00</eventDateTime>
-    <!-- software tvořící balíček -->
-    <linkingAgentIdentifier>
-      <linkingAgentIdentifierType>local</linkingAgentIdentifierType>
-      <linkingAgentIdentifierValue>uuid-18074e4a-05e5-492b-9a21-a650baca17c8</linkingAgentIdentifierValue>
-      <linkingAgentRole>imp</linkingAgentRole>
-    </linkingAgentIdentifier>
-    <!-- Uvedeni cílového balicku -->
-    <linkingObjectIdentifier>
-      <linkingObjectIdentifierType>local</linkingObjectIdentifierType>
-      <linkingObjectIdentifierValue>_THIS</linkingObjectIdentifierValue>
-      <linkingObjectRole>out</linkingObjectRole>
-    </linkingObjectIdentifier>
-  </event>
   <!-- Osoba: předávající, původce,... -->
   <agent>
     <agentIdentifier>
@@ -349,15 +318,4 @@
     <agentName>Národní archiv</agentName>
     <agentType>org</agentType>
   </agent>
-
-  <!-- Software -->
-<agent>
-  <agentIdentifier>
-    <agentIdentifierType>local</agentIdentifierType>
-    <agentIdentifierValue>uuid-18074e4a-05e5-492b-9a21-a650baca17c8</agentIdentifierValue>
-  </agentIdentifier>
-  <agentName>Amadeus</agentName>
-  <agentType>sof</agentType>
-  <agentVersion>1.22</agentVersion>
-</agent>
 </premis>

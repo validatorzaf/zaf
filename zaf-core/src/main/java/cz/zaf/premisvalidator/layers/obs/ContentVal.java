@@ -16,6 +16,8 @@ import cz.zaf.premisvalidator.layers.obs.obs00_09.Rule09;
 import cz.zaf.premisvalidator.layers.obs.obs10_19.Rule10;
 import cz.zaf.premisvalidator.layers.obs.obs10_19.Rule11;
 import cz.zaf.premisvalidator.layers.obs.obs10_19.Rule12;
+import cz.zaf.premisvalidator.layers.obs.obs10_19.Rule13;
+import cz.zaf.premisvalidator.layers.obs.obs10_19.Rule14;
 import cz.zaf.premisvalidator.profile.PremisProfile;
 
 public class ContentVal {
@@ -30,7 +32,9 @@ public class ContentVal {
 			Rule09.class,
 			Rule10.class,
 			Rule11.class,
-			Rule12.class
+			Rule12.class,
+			Rule13.class,
+			Rule14.class
 			);
 	
 	static private	 final List<Class<? extends BaseRule<PremisValidationContext>>> packageSipChangeRuleClasses = List.of(

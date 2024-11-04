@@ -15,6 +15,11 @@ public class CompleteTest extends AipValidatorTestBase {
     	testCompleteAip("OK1/8b58672e-7893-45c3-ab37-2b133389329d", true);
     }
     
+    @Test
+    void test_01_OK02() {
+    	testCompleteAip("OK2/8b58672e-7893-45c3-ab37-2b133389329d", true);
+    }
+
     private void testCompleteAip(String path,
     		boolean expectedSuccess) {
 		testFull(PATH_TESTDATA + "/" + path,
