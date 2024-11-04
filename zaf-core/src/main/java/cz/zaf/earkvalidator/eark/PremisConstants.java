@@ -5,6 +5,14 @@ public final class PremisConstants {
 	
 	public static final String IDENT_TYPE_CAM = "CAM_ID";
 	public static final String IDENT_TYPE_INSTITUTION = "INSTITUTION_ID";
+	// CZDAX-PKG0607
+	public static final String IDENT_TYPE_INGESTION = "INGESTION_ID";
+	// CZDAX-PKG0608
+	public static final String IDENT_TYPE_REFERENCE_NUMBER = "REFERENCE_NUMBER";	
+	// CZDAX-PKG0609
+	public static final String IDENT_TYPE_CZ_NAD_VNEZ = "CZ_NAD_VNEZ";	
+	// CZDAX-PKG0610
+	public static final String IDENT_TYPE_CZ_NAD_VNIZ = "CZ_NAD_VNIZ";	
 	
 	
 	public static final String AGENT_TYPE_SOFTWARE = "sof";	
@@ -51,5 +59,6 @@ public final class PremisConstants {
 	public static final String ROLE_SUBMITTER = "SUBMITTER";
 	// CZDAX-PKG0604
 	public static final String ROLE_CURATOR = "CURATOR";
+
 	
 }

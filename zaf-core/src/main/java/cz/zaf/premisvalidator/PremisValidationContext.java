@@ -14,7 +14,11 @@ import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.common.validation.RuleEvaluationContext;
 import cz.zaf.schema.premis3.AgentComplexType;
 import cz.zaf.schema.premis3.AgentIdentifierComplexType;
+import cz.zaf.schema.premis3.IntellectualEntity;
+import cz.zaf.schema.premis3.ObjectComplexType;
+import cz.zaf.schema.premis3.ObjectIdentifierComplexType;
 import cz.zaf.schema.premis3.PremisComplexType;
+import cz.zaf.schema.premis3.Representation;
 import jakarta.xml.bind.annotation.XmlType;
 
 public class PremisValidationContext implements RuleEvaluationContext {
@@ -24,6 +28,7 @@ public class PremisValidationContext implements RuleEvaluationContext {
 	// private Map<String, RepresentationInfo> representations = new HashMap<>();
 	private Function<String, RepresentationInfo> representationReader;
 	private Map<String, Map<String, AgentComplexType>> agentsByIdType = new HashMap<>();
+	private Map<String, Map<String, IntellectualEntity>> intelEntsByIdType = new HashMap<>();
 
 	public PremisValidationContext(Path activeFile) {
 		this.activeFile = activeFile;
@@ -111,5 +116,32 @@ public class PremisValidationContext implements RuleEvaluationContext {
 			}
 		}
 		return agentsById.get(linkingAgentIdentifierValue);
+	}
+
+	public IntellectualEntity getIntelEntById(String identType, String identValue) {
+		PremisComplexType premis = loader.getRootObj();
+		if(premis==null) {
+			throw new IllegalStateException("Premis root object not found.");
+		}
+		Map<String, IntellectualEntity> intelEntsById = intelEntsByIdType .get(identType);
+		if(intelEntsById==null) {
+			intelEntsById = new HashMap<>();
+			intelEntsByIdType.put(identType, intelEntsById);
+			// load agents
+			for(ObjectComplexType obj: premis.getObject()) {
+				if(obj instanceof IntellectualEntity) {
+					IntellectualEntity intEnt = (IntellectualEntity) obj;
+					for(ObjectIdentifierComplexType ident: intEnt.getObjectIdentifier()) {
+						if(identType.equals(ident.getObjectIdentifierType().getValue())) {
+							IntellectualEntity prevValue = intelEntsById.put(ident.getObjectIdentifierValue(), intEnt);
+							if(prevValue!=null) {
+								throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Duplicitní element object/objectIdentifier.", formatPosition(ident));
+							}
+						}
+					}
+				}
+			}
+		}
+		return intelEntsById.get(identValue);
 	}
 }
