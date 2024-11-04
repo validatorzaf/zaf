@@ -7,22 +7,14 @@ import java.util.Set;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.earkvalidator.eark.EarkCz;
 import cz.zaf.earkvalidator.eark.PremisConstants;
 import cz.zaf.premisvalidator.PremisRule;
-import cz.zaf.premisvalidator.RepresentationInfo;
 import cz.zaf.schema.premis3.AgentComplexType;
 import cz.zaf.schema.premis3.AgentIdentifierComplexType;
 import cz.zaf.schema.premis3.EventComplexType;
-import cz.zaf.schema.premis3.IntellectualEntity;
 import cz.zaf.schema.premis3.LinkingAgentIdentifierComplexType;
-import cz.zaf.schema.premis3.ObjectComplexType;
-import cz.zaf.schema.premis3.ObjectIdentifierComplexType;
-import cz.zaf.schema.premis3.OriginalNameComplexType;
 import cz.zaf.schema.premis3.PremisComplexType;
-import cz.zaf.schema.premis3.Representation;
 import cz.zaf.schema.premis3.StringPlusAuthority;
-import cz.zaf.schemas.premis.PremisNS;
 
 public class Rule14 extends PremisRule {
 

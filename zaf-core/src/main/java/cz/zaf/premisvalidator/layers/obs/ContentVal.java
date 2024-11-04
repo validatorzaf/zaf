@@ -18,6 +18,12 @@ import cz.zaf.premisvalidator.layers.obs.obs10_19.Rule11;
 import cz.zaf.premisvalidator.layers.obs.obs10_19.Rule12;
 import cz.zaf.premisvalidator.layers.obs.obs10_19.Rule13;
 import cz.zaf.premisvalidator.layers.obs.obs10_19.Rule14;
+import cz.zaf.premisvalidator.layers.obs.obs10_19.Rule15;
+import cz.zaf.premisvalidator.layers.obs.obs10_19.Rule16;
+import cz.zaf.premisvalidator.layers.obs.obs10_19.Rule17;
+import cz.zaf.premisvalidator.layers.obs.obs10_19.Rule18;
+import cz.zaf.premisvalidator.layers.obs.obs10_19.Rule19;
+import cz.zaf.premisvalidator.layers.obs.obs20_29.Rule20;
 import cz.zaf.premisvalidator.profile.PremisProfile;
 
 public class ContentVal {
@@ -34,7 +40,12 @@ public class ContentVal {
 			Rule11.class,
 			Rule12.class,
 			Rule13.class,
-			Rule14.class
+			Rule14.class,
+			Rule15.class,
+			Rule16.class,
+			Rule17.class,
+			Rule18.class,
+			Rule19.class
 			);
 	
 	static private	 final List<Class<? extends BaseRule<PremisValidationContext>>> packageSipChangeRuleClasses = List.of(
@@ -47,7 +58,8 @@ public class ContentVal {
 			Rule08.class,
 			Rule09.class,
 			Rule10.class,
-			Rule11.class
+			Rule11.class,
+			Rule20.class
 			);
 
 	static private	 final List<Class<? extends BaseRule<PremisValidationContext>>> metadataRuleClasses = List.of(
