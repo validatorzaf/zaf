@@ -74,8 +74,7 @@ public class Rule16 extends PremisRule {
 					throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Nenalezen agent: "+agentRef.getLinkingAgentIdentifierValue()+".", ctx.formatPosition(agentRef));
 				}
 				
-			}
-
+			} else 
 			if(PremisConstants.ROLE_CURATOR.equals(role.getValue())) {
 				// CZDAX-PKG0604: Přejímající archiv reprezentovaný agentem MUSÍ být uveden a to pomocí vztahu CURATOR. 
 				//                V rámci jedné události MŮŽE být uveden nanejvýš jeden přejímající.
@@ -89,6 +88,8 @@ public class Rule16 extends PremisRule {
 					throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Nenalezen agent: "+agentRef.getLinkingAgentIdentifierValue()+".", ctx.formatPosition(agentRef));
 				}
 				
+			} else {
+				throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Nerozponana role agenta: "+role.getValue()+".", ctx.formatPosition(agentRef));
 			}
 		}
 		
@@ -191,6 +192,8 @@ public class Rule16 extends PremisRule {
 				} else {
 					throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Nerozpoznaný objekt: "+objRef.getLinkingObjectIdentifierValue()+".", ctx.formatPosition(objRef));
 				}
+			} else {
+				throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Nerozpoznaná role: "+role.getAuthority()+".", ctx.formatPosition(objRef));
 			}
 		}
 		
