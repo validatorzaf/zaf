@@ -2,13 +2,13 @@ package cz.zaf.premisvalidator.layers.obs.obs00_09;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.earkvalidator.eark.PremisConstants;
 import cz.zaf.earkvalidator.eark.ValidatorId;
 import cz.zaf.premisvalidator.PremisRule;
 import cz.zaf.schema.premis3.File;
 import cz.zaf.schema.premis3.ObjectComplexType;
 import cz.zaf.schema.premis3.ObjectIdentifierComplexType;
 import cz.zaf.schema.premis3.PremisComplexType;
-import cz.zaf.schemas.premis.PremisNS;
 
 public class Rule07 extends PremisRule {
 
@@ -36,7 +36,7 @@ public class Rule07 extends PremisRule {
 	private void checkFile(File file) {
 		ObjectIdentifierComplexType identFound = null;
 		for(ObjectIdentifierComplexType objIdent: file.getObjectIdentifier()) {
-			if(PremisNS.IDENT_TYPE_LOCAL.equals(objIdent.getObjectIdentifierType().getValue())) {
+			if(PremisConstants.IDENT_TYPE_LOCAL.equals(objIdent.getObjectIdentifierType().getValue())) {
 				if(identFound!=null) {
 					throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Opakovaně uvedený lokální identifikátor.", ctx.formatPosition(objIdent));
 				}

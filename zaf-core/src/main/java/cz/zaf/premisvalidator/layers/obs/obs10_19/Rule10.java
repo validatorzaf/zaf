@@ -3,13 +3,13 @@ package cz.zaf.premisvalidator.layers.obs.obs10_19;
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.earkvalidator.eark.EarkCz;
+import cz.zaf.earkvalidator.eark.PremisConstants;
 import cz.zaf.earkvalidator.eark.ValidatorId;
 import cz.zaf.premisvalidator.PremisRule;
 import cz.zaf.schema.premis3.IntellectualEntity;
 import cz.zaf.schema.premis3.ObjectIdentifierComplexType;
 import cz.zaf.schema.premis3.PremisComplexType;
 import cz.zaf.schema.premis3.StringPlusAuthority;
-import cz.zaf.schemas.premis.PremisNS;
 
 public class Rule10 extends PremisRule {
 
@@ -44,7 +44,7 @@ public class Rule10 extends PremisRule {
 			StringPlusAuthority identType = objIdent.getObjectIdentifierType();
 			String type = identType.getValue();
 			// Rule08 is checking format, here we check only object type
-			if(PremisNS.IDENT_TYPE_LOCAL.equals(type)) {
+			if(PremisConstants.IDENT_TYPE_LOCAL.equals(type)) {
 				if(localIdent!=null) {
 					throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Opakovaně uvedený lokální identifikátor.", ctx.formatPosition(objIdent));
 				}

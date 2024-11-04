@@ -7,11 +7,11 @@ import org.apache.commons.lang3.StringUtils;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.earkvalidator.eark.PremisConstants;
 import cz.zaf.premisvalidator.PremisRule;
 import cz.zaf.schema.premis3.AgentComplexType;
 import cz.zaf.schema.premis3.PremisComplexType;
 import cz.zaf.schema.premis3.StringPlusAuthority;
-import cz.zaf.schemas.premis.PremisNS;
 
 public class Rule05 extends PremisRule {
 
@@ -33,7 +33,7 @@ public class Rule05 extends PremisRule {
 			if(agentType==null || StringUtils.isBlank(agentType.getValue())) {
 				throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nalezen agent bez uvedení typu.", ctx.formatPosition(agent));
 			}
-			if(!PremisNS.AGENT_TYPE_SOFTWARE.equals(agentType.getValue())) {
+			if(!PremisConstants.AGENT_TYPE_SOFTWARE.equals(agentType.getValue())) {
 				continue;
 			}
 			List<StringPlusAuthority> names = agent.getAgentName();

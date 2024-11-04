@@ -3,13 +3,13 @@ package cz.zaf.premisvalidator.layers.obs.obs10_19;
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.earkvalidator.eark.EarkCz;
+import cz.zaf.earkvalidator.eark.PremisConstants;
 import cz.zaf.premisvalidator.PremisRule;
 import cz.zaf.premisvalidator.RepresentationInfo;
 import cz.zaf.schema.premis3.ObjectIdentifierComplexType;
 import cz.zaf.schema.premis3.OriginalNameComplexType;
 import cz.zaf.schema.premis3.PremisComplexType;
 import cz.zaf.schema.premis3.Representation;
-import cz.zaf.schemas.premis.PremisNS;
 
 public class Rule12 extends PremisRule {
 
@@ -50,7 +50,7 @@ public class Rule12 extends PremisRule {
 		}
 		ObjectIdentifierComplexType localIdent = null;
 		for(ObjectIdentifierComplexType objIdent: repSubmission.getObjectIdentifier()) {
-			if(objIdent.getObjectIdentifierType()!=null && PremisNS.IDENT_TYPE_LOCAL.equals(objIdent.getObjectIdentifierType().getValue())) {
+			if(objIdent.getObjectIdentifierType()!=null && PremisConstants.IDENT_TYPE_LOCAL.equals(objIdent.getObjectIdentifierType().getValue())) {
 				localIdent = objIdent; 
 			}
 		}

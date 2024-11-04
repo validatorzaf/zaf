@@ -1,6 +1,17 @@
 package cz.zaf.earkvalidator.eark;
 
 public final class PremisConstants {
+	public static final String IDENT_TYPE_LOCAL = "local";
+	
+	public static final String IDENT_TYPE_CAM = "CAM_ID";
+	public static final String IDENT_TYPE_INSTITUTION = "INSTITUTION_ID";
+	
+	
+	public static final String AGENT_TYPE_SOFTWARE = "sof";	
+	public static final String AGENT_TYPE_PERSON = "per";
+	public static final String AGENT_TYPE_ORGANIZATION = "org";
+	public static final String AGENT_TYPE_OTHER_ORGANIZATION = "organization";
+	
 	// CZDAX-PKG0501 - vznik
 	// CZDAX-PMP0203 - vznik / digitalizace
 	// CZDAX-PMP0303 - vznik	
@@ -34,5 +45,11 @@ public final class PremisConstants {
 	public static final String ROLE_OUT = "out";
 	// CZDAX-PKG0606 - vložení do DA
 	public static final String ROLE_SOU = "sou";
+	// CZDAX-PKG0503
+	public static final String ROLE_ORIGINATOR = "ORIGINATOR";
+	// CZDAX-PKG0603
+	public static final String ROLE_SUBMITTER = "SUBMITTER";
+	// CZDAX-PKG0604
+	public static final String ROLE_CURATOR = "CURATOR";
 	
 }

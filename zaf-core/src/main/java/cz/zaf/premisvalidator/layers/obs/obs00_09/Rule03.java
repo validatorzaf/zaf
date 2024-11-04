@@ -2,13 +2,13 @@ package cz.zaf.premisvalidator.layers.obs.obs00_09;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.earkvalidator.eark.PremisConstants;
 import cz.zaf.earkvalidator.eark.ValidatorId;
 import cz.zaf.premisvalidator.PremisRule;
 import cz.zaf.schema.premis3.EventComplexType;
 import cz.zaf.schema.premis3.EventIdentifierComplexType;
 import cz.zaf.schema.premis3.PremisComplexType;
 import cz.zaf.schema.premis3.StringPlusAuthority;
-import cz.zaf.schemas.premis.PremisNS;
 
 public class Rule03 extends PremisRule {
 
@@ -32,7 +32,7 @@ public class Rule03 extends PremisRule {
 				throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element event/eventIdentifier.", ctx.formatPosition(event));
 			}
 			StringPlusAuthority identType = eventIdent.getEventIdentifierType();
-			if(!PremisNS.IDENT_TYPE_LOCAL.equals(identType.getValue())) {
+			if(!PremisConstants.IDENT_TYPE_LOCAL.equals(identType.getValue())) {
 				throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Chybná hodnota elementu event/eventIdentifier/eventIdentifierType, value: "+identType.getValue(), ctx.formatPosition(event));
 			}
 			

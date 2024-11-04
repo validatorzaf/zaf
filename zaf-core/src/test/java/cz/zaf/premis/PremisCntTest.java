@@ -324,6 +324,33 @@ public class PremisCntTest extends PremisValidatorTestBase {
                 new String[] { Rule13.CODE });
     }
 
+    @Test
+    void testCnt_13_Chyba03() {
+    	testPkgInfo("05-KONTROLA OBSAHU/13-chyba3.xml",
+                ValidationStatus.ERROR,
+                new String[] { Rule01.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, 
+                		Rule11.CODE, Rule12.CODE },
+                new String[] { Rule10.CODE, Rule13.CODE });
+    }
+
+    @Test
+    void testCnt_14_Chyba01() {
+    	testPkgInfo("05-KONTROLA OBSAHU/14-chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[] { Rule01.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, 
+                		Rule10.CODE, Rule11.CODE, Rule12.CODE, Rule13.CODE },
+                new String[] { Rule14.CODE });
+    }
+
+    @Test
+    void testCnt_14_Chyba02() {
+    	testPkgInfo("05-KONTROLA OBSAHU/14-chyba2.xml",
+                ValidationStatus.ERROR,
+                new String[] { Rule01.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, 
+                		Rule10.CODE, Rule11.CODE, Rule12.CODE, Rule13.CODE },
+                new String[] { Rule14.CODE });
+    }
+
     private void testPkgInfo(String path,
             ValidationStatus status,
             String[] oks,

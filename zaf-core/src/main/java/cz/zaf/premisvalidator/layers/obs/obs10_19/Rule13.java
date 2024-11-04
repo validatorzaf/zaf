@@ -18,7 +18,6 @@ import cz.zaf.schema.premis3.ObjectComplexType;
 import cz.zaf.schema.premis3.ObjectIdentifierComplexType;
 import cz.zaf.schema.premis3.PremisComplexType;
 import cz.zaf.schema.premis3.StringPlusAuthority;
-import cz.zaf.schemas.premis.PremisNS;
 
 public class Rule13 extends PremisRule {
 
@@ -26,8 +25,8 @@ public class Rule13 extends PremisRule {
 	public static final String RULE_TEXT = "Balíček má správně uvedenu hodnotu identifikátoru.";
 	public static final String RULE_ERROR = "Chybně uvedena hodnota identifikátoru balíčku.";
 	public static final String RULE_SOURCE = "CZDAX-PKG0301, CZDAX-PKG0302, CZDAX-PKG0303, CZDAX-PKG0304";
-	private Map<String, IntellectualEntity> aipsMap;
 	
+	private Map<String, IntellectualEntity> aipsMap  = new HashMap<>();	
 	private Set<String> usedAips = new HashSet<>();
 
 
@@ -37,7 +36,6 @@ public class Rule13 extends PremisRule {
 
 	@Override
 	public void evalImpl() {
-		aipsMap = new HashMap<>();
 		PremisComplexType premis = ctx.getLoader().getRootObj();
 		// zjisteni vsech popsanych balicku a jejich lokalnich identifikatoru
 		for(ObjectComplexType obj: premis.getObject()) {
@@ -89,7 +87,7 @@ public class Rule13 extends PremisRule {
 			for(StringPlusAuthority role: objRef.getLinkingObjectRole()) {
 				if(PremisConstants.ROLE_OUT.equals(role.getValue())) {
 					// has to exist exactly one local with package identifier
-					if(PremisNS.IDENT_TYPE_LOCAL.equals(objRef.getLinkingObjectIdentifierType().getValue())) {	
+					if(PremisConstants.IDENT_TYPE_LOCAL.equals(objRef.getLinkingObjectIdentifierType().getValue())) {	
 						// check if valid package ref
 						if(aipsMap.containsKey(objRef.getLinkingObjectIdentifierValue())) {
 							if(localRef!=null) {
@@ -114,7 +112,7 @@ public class Rule13 extends PremisRule {
 			for(StringPlusAuthority role: objRef.getLinkingObjectRole()) {
 				if(PremisConstants.ROLE_SOU.equals(role.getValue())) {
 					// has to exist exactly one local with package identifier
-					if(PremisNS.IDENT_TYPE_LOCAL.equals(objRef.getLinkingObjectIdentifierType().getValue())) {	
+					if(PremisConstants.IDENT_TYPE_LOCAL.equals(objRef.getLinkingObjectIdentifierType().getValue())) {	
 						// check if valid package ref
 						if(aipsMap.containsKey(objRef.getLinkingObjectIdentifierValue())) {
 							if(localRef!=null) {
@@ -139,7 +137,7 @@ public class Rule13 extends PremisRule {
 			for(StringPlusAuthority role: objRef.getLinkingObjectRole()) {
 				if(PremisConstants.ROLE_SOU.equals(role.getValue())) {
 					// has to exist exactly one local with package identifier
-					if(PremisNS.IDENT_TYPE_LOCAL.equals(objRef.getLinkingObjectIdentifierType().getValue())) {	
+					if(PremisConstants.IDENT_TYPE_LOCAL.equals(objRef.getLinkingObjectIdentifierType().getValue())) {	
 						// check if valid package ref
 						if(aipsMap.containsKey(objRef.getLinkingObjectIdentifierValue())) {
 							if(localRef!=null) {
@@ -164,7 +162,7 @@ public class Rule13 extends PremisRule {
 			for(StringPlusAuthority role: objRef.getLinkingObjectRole()) {
 				if(PremisConstants.ROLE_OUT.equals(role.getValue())) {
 					// has to exist exactly one local with package identifier
-					if(PremisNS.IDENT_TYPE_LOCAL.equals(objRef.getLinkingObjectIdentifierType().getValue())) {	
+					if(PremisConstants.IDENT_TYPE_LOCAL.equals(objRef.getLinkingObjectIdentifierType().getValue())) {	
 						// check if valid package ref
 						if(aipsMap.containsKey(objRef.getLinkingObjectIdentifierValue())) {
 							if(localRef!=null) {
@@ -201,7 +199,7 @@ public class Rule13 extends PremisRule {
 			if(objIdent.getObjectIdentifierType() == null) {
 				throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Chybí typ identifikátoru.", ctx.formatPosition(intent));
 			}
-			if(PremisNS.IDENT_TYPE_LOCAL.equals(objIdent.getObjectIdentifierType().getValue())) {
+			if(PremisConstants.IDENT_TYPE_LOCAL.equals(objIdent.getObjectIdentifierType().getValue())) {
 				if(localIdentValue!=null) {
 					throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Opakovaná hodnota lokálního identifikátoru.", ctx.formatPosition(objIdent));
 				}
