@@ -53,12 +53,13 @@ public final class PremisConstants {
 	public static final String ROLE_OUT = "out";
 	// CZDAX-PKG0606 - vložení do DA
 	public static final String ROLE_SOU = "sou";
+	// CZDAX-PKG0903
+	public static final String ROLE_IMP = "imp";
 	// CZDAX-PKG0503
 	public static final String ROLE_ORIGINATOR = "ORIGINATOR";
 	// CZDAX-PKG0603
 	public static final String ROLE_SUBMITTER = "SUBMITTER";
 	// CZDAX-PKG0604
 	public static final String ROLE_CURATOR = "CURATOR";
-
 	
 }

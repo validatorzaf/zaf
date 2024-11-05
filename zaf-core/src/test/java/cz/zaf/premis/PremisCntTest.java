@@ -604,6 +604,48 @@ public class PremisCntTest extends PremisValidatorTestBase {
                 		Rule10.CODE, Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE },
                 new String[] { Rule18.CODE });
     }
+    
+    @Test
+    void testCnt_19_Chyba01() {
+    	testPkgInfo("05-KONTROLA OBSAHU/19-chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[] { Rule01.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, 
+                		Rule10.CODE, Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule18.CODE },
+                new String[] { Rule19.CODE });
+    }
+    
+    @Test
+    void testCnt_19_Chyba02() {
+    	testPkgInfo("05-KONTROLA OBSAHU/19-chyba2.xml",
+                ValidationStatus.ERROR,
+                new String[] { Rule01.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, 
+                		Rule10.CODE, Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule18.CODE },
+                new String[] { Rule19.CODE });
+    }
+    @Test
+    void testCnt_19_Chyba03() {
+    	testPkgInfo("05-KONTROLA OBSAHU/19-chyba3.xml",
+                ValidationStatus.ERROR,
+                new String[] { Rule01.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, 
+                		Rule10.CODE, Rule11.CODE, Rule12.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule18.CODE },
+                new String[] { Rule13.CODE, Rule19.CODE });
+    }
+    @Test
+    void testCnt_19_Chyba04() {
+    	testPkgInfo("05-KONTROLA OBSAHU/19-chyba4.xml",
+                ValidationStatus.ERROR,
+                new String[] { Rule01.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, 
+                		Rule10.CODE, Rule11.CODE, Rule12.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule18.CODE },
+                new String[] { Rule13.CODE, Rule19.CODE });
+    }
+    @Test
+    void testCnt_19_Chyba05() {
+    	testPkgInfo("05-KONTROLA OBSAHU/19-chyba5.xml",
+                ValidationStatus.ERROR,
+                new String[] { Rule01.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE, 
+                		Rule10.CODE, Rule11.CODE, Rule12.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule18.CODE },
+                new String[] { Rule13.CODE, Rule19.CODE });
+    }
     private void testPkgInfo(String path,
             ValidationStatus status,
             String[] oks,
