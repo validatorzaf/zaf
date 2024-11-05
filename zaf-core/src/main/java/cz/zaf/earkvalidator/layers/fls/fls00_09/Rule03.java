@@ -60,8 +60,10 @@ public class Rule03 extends AipRule {
 		PremisProfile profile = isPackageInfo?PremisProfile.PACKAGE_INFO:PremisProfile.METADATA;
 		
 		PremisValidationContext permisCtx = new PremisValidationContext(premisPath);
+		// context will be deleted after finishing this rule
+		final var localCtx = ctx;
 		permisCtx.setRepresentationReader(repId -> {
-			var fileSec = ctx.getMets().getFileSec();
+			var fileSec = localCtx.getMets().getFileSec();
 			if(fileSec!=null) {	
 				for (FileGrp grp : fileSec.getFileGrp()) {
 					if (grp.getID().equals(repId)) {

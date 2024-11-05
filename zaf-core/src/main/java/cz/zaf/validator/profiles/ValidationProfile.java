@@ -11,7 +11,8 @@ public enum ValidationProfile {
 	NSESSS2017(ValidatorNsesss2017.getValidatorInfo()),
     NSESSS2023(null),
     AP2023(null),
-    DAAIP2024(ValidatorDAAIP2024.getValidatorInfo());
+    DAAIP2024(ValidatorDAAIP2024.getValidatorInfo()),
+    DAAIP2024_PREMIS(ValidatorDAAIP2024.getPremisValidatorInfo());	
 	
 	private ValidatorInfo validatorInfo;
 
