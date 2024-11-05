@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mets xmlns="http://www.loc.gov/METS/"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:csip="https://DILCIS.eu/XML/METS/CSIPExtensionMETS"
+      xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd
+                          http://www.w3.org/1999/xlink http://www.loc.gov/standards/mets/xlink.xsd
+                          https://DILCIS.eu/XML/METS/CSIPExtensionMETS https://earkcsip.dilcis.eu/schema/DILCISExtensionMETS.xsd"
+     OBJID="04ccc520-c5a9-4c9f-a83f-28d91fd37aa7"
+     TYPE="Dataset"
+     csip:CONTENTINFORMATIONTYPE="OTHER"
+     csip:OTHERCONTENTINFORMATIONTYPE="change_request_v1_0"
+     PROFILE="https://stands.nacr.cz/da/2023/aip.xml"
+     >
+    <metsHdr CREATEDATE="2024-10-08T10:41:45+02:00" csip:OAISPACKAGETYPE="AIP">
+        <agent ROLE="CREATOR" TYPE="OTHER" OTHERTYPE="SOFTWARE">
+            <name>ELZA</name>
+            <note csip:NOTETYPE="SOFTWARE VERSION">3.0</note>
+        </agent>
+    </metsHdr>
+    <dmdSec ID="uuid-d309181f-4c0c-4b9f-9106-6dd0dcfbea66" GROUPID="CONTEXTUAL" CREATED="2024-10-08T10:41:45+02:00" STATUS="CURRENT">
+        <mdRef xlink:type="simple" xlink:href="metadata/descriptive/EAD-CONTEXT.xml" MDTYPE="EAD" LOCTYPE="URL" MIMETYPE="application/xml" SIZE="6481" CHECKSUM="1d6b29a9e1dfec734be61b05c3f5349e142f5ab03785fd68f3f8d45015830d78279e2caef79bc77802728b54323eba90ab271a0e7c32f2e7000f0f1a43fa82d" CHECKSUMTYPE="SHA-512" CREATED="2024-10-08T10:41:45+02:00"/>
+    </dmdSec>
+    <amdSec>
+        <digiprovMD ID="uuid-072714bb-17a2-4aca-a83e-6c7d547f955e" GROUPID="PRESERVATION" STATUS="CURRENT">
+            <mdRef xlink:type="simple" xlink:href="metadata/preservation/PACKAGE-INFO.xml" MDTYPE="PREMIS" LOCTYPE="URL" MIMETYPE="application/xml" 
+                   SIZE="3656" 
+                   CHECKSUM="dd5062ecb1e00d38e3f0bf38904854d165b243754f65e9fe269ea2e3cb1c158ecc82b5845bca8b9dc446ff43228566a726b0caf0bda21ef0de43499be77eb385" CHECKSUMTYPE="SHA-512" CREATED="2024-10-08T10:41:45+02:00"/>
+        </digiprovMD>
+    </amdSec>
+    <structMap ID="uuid-23650ffd-46ee-427d-bdee-00a6d378c6b9" TYPE="PHYSICAL" LABEL="CSIP">
+        <div ID="uuid-536680a0-9474-4dc8-9955-cecf4a0e9d90">
+            <div ID="uuid-a1d4fafa-4ddf-4ce2-9082-47052e263dfa" DMDID="uuid-d309181f-4c0c-4b9f-9106-6dd0dcfbea66" ADMID="uuid-072714bb-17a2-4aca-a83e-6c7d547f955e" LABEL="Metadata"/>
+        </div>
+    </structMap>
+</mets>

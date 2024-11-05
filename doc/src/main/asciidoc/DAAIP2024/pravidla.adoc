@@ -1,0 +1,674 @@
+[[DAAIP2024_pravidla]]
+= Pravidla
+
+Validátor má definovánu sadu pravidel, která se při kontrole uplatní. Sada pravidel se dělí na oblasti kontroly. 
+U každého pravidla je vždy uvedeno:
+
+* znění pravidla
+* kód pravidla - jednoznačný identifikátor
+* zdroj - informace o zdroji pravidla, obvykle odkaz na závazný dokument (vyhláška, standard, metodický pokyn)
+* popis chyby - zobrazená informace uživateli v případě porušení pravidla
+* aktivita pravidla - kdy se pravidlo uplatní, například jen při předávání úplných AIPů; 
+  pokud není uvedeno pravidlo se uplatní vždy
+
+:leveloffset: +1
+
+= Datová správnost
+
+SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+[[DAAIP2024_dat01]]
+== dat01
+
+[horizontal]
+
+Pravidlo:: Balíček SIP může mít podobu složky.
+Kód:: dat01
+Zdroj:: CZDAX-PSP0101
+Popis chyby:: Obsah složky není dostupný.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_dat02]]
+== dat02
+
+[horizontal]
+
+Pravidlo:: Pokud je jednotlivý balíček předáván v zabalené/komprimované podobě, MUSÍ v tomto kontejneru (TAR nebo ZIP) být jedna složka nejvyšší úrovně. Detekovaný mimetype kontejneru MUSÍ být application/zip nebo application/x-tar
+Kód:: dat02
+Zdroj:: CZDAX-PSP0103
+Popis chyby:: Soubor s balíčkem nemá rozpoznanou podobu.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_dat03]]
+== dat03
+
+[horizontal]
+
+Pravidlo:: Balíček MUSÍ obsahovat kořenový METS.xml.
+Kód:: dat03
+Zdroj:: CZDAX-PSP0104
+Popis chyby:: V balíčku chybí soubor METS.xml.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_dat04]]
+== dat04
+
+[horizontal]
+
+Pravidlo:: Balíček MUSÍ obsahovat podsložku metadata.
+Kód:: dat04
+Zdroj:: CZDAX-PSP0105
+Popis chyby:: V balíčku chybí složka metadata.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_dat05]]
+== dat05
+
+[horizontal]
+
+Pravidlo:: Složka s balíčkem má podobu UUID.
+Kód:: dat05
+Zdroj:: CZDAX-PMT0102
+Popis chyby:: Označení složky s balíčkem neodpovídá formátu UUID.
+Aktivní:: AIP
+
+[[DAAIP2024_dat06]]
+== dat06
+
+[horizontal]
+
+Pravidlo:: Balíček MUSÍ mít technicky zpracovatelnou velikost. Výchozí limit pro maximální velikost balíčku je stanoven na 10 GB.
+Kód:: dat06
+Zdroj:: CZDAX-PPR0303
+Popis chyby:: Balíček je příliš velký.
+Aktivní:: AIP, změnový SIP
+
+[[DAAIP2024_dat07]]
+== dat07
+
+[horizontal]
+
+Pravidlo:: Balíček MUSÍ obsahovat nanejvýš definované množství souborů.
+Kód:: dat07
+Zdroj:: CZDAX-PPR0304
+Popis chyby:: Balíček obsahuje příliš mnoho souborů.
+Aktivní:: AIP, změnový SIP
+
+= Kódování
+
+[[DAAIP2024_kod01]]
+== kod01
+
+[horizontal]
+
+Pravidlo:: Znakovou sadou souboru je Unicode/UCS v kódování UTF-8 bez BOM (Byte Order Mark).
+Kód:: kod01
+Zdroj:: CZDAX-PSP020
+Popis chyby:: Znaková sada souboru není Unicode/UCS v kódování UTF-8 bez BOM (Byte order mark).
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+= Správnost formátu
+
+[[DAAIP2024_wf01]]
+== wf01
+
+[horizontal]
+
+Pravidlo:: Soubor je dle standardu XML v 1.0.
+Kód:: wf01
+Zdroj:: CZDAX-PSP020
+Popis chyby:: Kontrolovaný soubor nedodržuje syntaxi jazyka XML.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_wf02]]
+== wf02
+
+[horizontal]
+
+Pravidlo:: Soubor má předpokládanou velikost.
+Kód:: wf02
+Zdroj:: CZDAX-PPR0303
+Popis chyby:: Soubor METS.xml je příliš velký.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+= Jmenné prostory
+
+[[DAAIP2024_ns01]]
+== ns01
+
+[horizontal]
+
+Pravidlo:: Soubor obsahuje právě jeden kořenový element <mets>.
+Kód:: ns01
+Zdroj:: CZDAX-PMT0002
+Popis chyby:: Chybí kořenový element <mets>.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_ns02]]
+== ns02
+
+[horizontal]
+
+Pravidlo:: Kořenový element obsahuje schéma xmlns="http://www.loc.gov/METS/".
+Kód:: ns02
+Zdroj:: CZDAX-PSP0202
+Popis chyby:: Není použito výchozí schéma: xmlns="http://www.loc.gov/METS/".
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_ns03]]
+== ns03
+
+[horizontal]
+
+Pravidlo:: Kořenový element obsahuje doplňující schémata: xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance", xmlns:xlink="http://www.w3.org/1999/xlink", xmlns:csip="https://DILCIS.eu/XML/METS/CSIPExtensionMETS".
+Kód:: ns03
+Zdroj:: CZDAX-PMT0101
+Popis chyby:: Chybí odkaz na některé z povinných schémat: xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance", xmlns:xlink="http://www.w3.org/1999/xlink", xmlns:csip="https://DILCIS.eu/XML/METS/CSIPExtensionMETS".
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_ns04]]
+== ns04
+
+[horizontal]
+
+Pravidlo:: Kořenový element obsahuje atribut xsi:schemaLocation s hodnotou "http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd
+                          http://www.w3.org/1999/xlink http://www.loc.gov/standards/mets/xlink.xsd
+                          https://DILCIS.eu/XML/METS/CSIPExtensionMETS https://earkcsip.dilcis.eu/schema/DILCISExtensionMETS.xsd"
+Kód:: ns04
+Zdroj:: CZDAX-PMT0101
+Popis chyby:: Chybí informace o umístění pro některé ze schémat.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+= Soulad se schématem
+
+[[DAAIP2024_val01]]
+== val01
+
+[horizontal]
+
+Pravidlo:: Soubor METS.xml v informačním balíčku MUSÍ odpovídat oficiálnímu schématu METS, verze 1.12.1.
+Kód:: val01
+Zdroj:: CZDAX-PMT0002
+Popis chyby:: Soubor neodpovídá schématu.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+= Obsahové kontroly
+
+[[DAAIP2024_obs01]]
+== obs01
+
+[horizontal]
+
+Pravidlo:: Element <mets> obsahuje atribut OBJID s neprázdnou hodnotou, hodnota je shodná s označením složky.
+Kód:: obs01
+Zdroj:: CZDAX-PMT0102
+Popis chyby:: Chybná hodnota atributu OBJID v koření METS.xml.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs02]]
+== obs02
+
+[horizontal]
+
+Pravidlo:: V elementu <mets> musí být atribut TYPE s neprázdnou hodnotou.
+Kód:: obs02
+Zdroj:: CZDAX-PMT0103, CZDAX-PMT0104
+Popis chyby:: Chybí atribut TYPE v elementu <mets>.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs03]]
+== obs03
+
+[horizontal]
+
+Pravidlo:: V elementu <mets> musí být atribut csip:CONTENTINFORMATIONTYPE="OTHER".
+Kód:: obs03
+Zdroj:: CZDAX-PMT0105, CZDAX-PMT0106
+Popis chyby:: Atribut csip:CONTENTINFORMATIONTYPE v elementu <mets> chybí nebo má nesprávnou hodnotu.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs04a]]
+== obs04a
+
+[horizontal]
+
+Pravidlo:: V elementu <mets> musí atribut csip:OTHERCONTENTINFORMATIONTYPE mít hodnotu 'change_request_v1_0'.
+Kód:: obs04a
+Zdroj:: 4.2.1. Základní podoba balíčku, CZDAX-PPR0202, CZDAX-PMT0106, CZDAX-SZB0101, CZDAX-VSB0101
+Popis chyby:: Atribut csip:OTHERCONTENTINFORMATIONTYPE v elementu <mets> chybí nebo má chybnou hodnotu.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs05]]
+== obs05
+
+[horizontal]
+
+Pravidlo:: V elementu <mets> musí hodnota atribitu PROFILE být: https://stands.nacr.cz/da/2023/aip.xml.
+Kód:: obs05
+Zdroj:: CZDAX-PMT0107
+Popis chyby:: Atribut PROFILE v <mets> chybí nebo má chybnou hodnotu.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs06]]
+== obs06
+
+[horizontal]
+
+Pravidlo:: Element <metsHdr> musí existovat.
+Kód:: obs06
+Zdroj:: CZDAX-PMT0201
+Popis chyby:: Chybí element <metsHdr>.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs07]]
+== obs07
+
+[horizontal]
+
+Pravidlo:: V atributu mets/metsHdr/@CREATEDATE musí být zapsán čas vzniku balíčku.
+Kód:: obs07
+Zdroj:: CZDAX-PMT0202
+Popis chyby:: Chybí atribut mets/metsHdr/@CREATEDATE.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs08]]
+== obs08
+
+[horizontal]
+
+Pravidlo:: Neexistuje atribut: mets/metsHdr/@LASTMODDATE.
+Kód:: obs08
+Zdroj:: CZDAX-PMT0203
+Popis chyby:: Uveden neplatný atribut mets/metsHdr/@LASTMODDATE.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs09]]
+== obs09
+
+[horizontal]
+
+Pravidlo:: Musí být uveden typ balíčku AIP v atributu: mets/metsHdr/@csip:OAISPACKAGETYPE.
+Kód:: obs09
+Zdroj:: CZDAX-PMT0204
+Popis chyby:: Není uveden platný typ balíčku.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs10]]
+== obs10
+
+[horizontal]
+
+Pravidlo:: Musí být uveden agent odpovídající za vznik balíčku.
+Kód:: obs10
+Zdroj:: CZDAX-PMT0205, CZDAX-PMT0206, CZDAX-PMT0207, CZDAX-PMT0208, CZDAX-PMT0209, CZDAX-PMT0210, CZDAX-PMT0211
+Popis chyby:: Není správně uveden agent v elementu mets/metsHdr/agent.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs11]]
+== obs11
+
+[horizontal]
+
+Pravidlo:: Popisná metadata v elementu mets/dmdSec mají uveden atribut ID.
+Kód:: obs11
+Zdroj:: CZDAX-PMT0302
+Popis chyby:: U popisných metadat v elementu mets/dmdSec není uveden atribut ID.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs12]]
+== obs12
+
+[horizontal]
+
+Pravidlo:: Popisná metadata v elementu mets/dmdSec mají uveden atribut CREATED.
+Kód:: obs12
+Zdroj:: CZDAX-PMT0303
+Popis chyby:: U popisných metadat v elementu mets/dmdSec není uveden atribut CREATED.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs13]]
+== obs13
+
+[horizontal]
+
+Pravidlo:: Popisná metadata v elementu mets/dmdSec mají uveden atribut STATUS.
+Kód:: obs13
+Zdroj:: CZDAX-PMT0304
+Popis chyby:: U popisných metadat v elementu mets/dmdSec není uveden atribut STATUS.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs14]]
+== obs14
+
+[horizontal]
+
+Pravidlo:: Popisná metadata v elementu mets/dmdSec mají uveden atribut GROUPID.
+Kód:: obs14
+Zdroj:: CZDAX-PMT0305
+Popis chyby:: U popisných metadat v elementu mets/dmdSec není uveden atribut GROUPID.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs15]]
+== obs15
+
+[horizontal]
+
+Pravidlo:: Chybně uvedená reference na soubor s popisnými metadaty v elementu mets/dmdSec.
+Kód:: obs15
+Zdroj:: CZDAX-PMT0306, CZDAX-PMT0307, CZDAX-PMT0308, CZDAX-PMT0309
+Popis chyby:: Reference z elementu mets/dmdSec na fyzický soubor je správně zapsána v elementu mdRef.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs16]]
+== obs16
+
+[horizontal]
+
+Pravidlo:: Reference z elementu mets/dmdSec/mdRef na fyzický soubor má správně uvedeny všechny atributy.
+Kód:: obs16
+Zdroj:: Neúplná reference na soubor s popisnými metadaty v elementu mets/dmdSec/mdRef.
+Popis chyby:: CZDAX-PMT0310, CZDAX-PMT0311, CZDAX-PMT0312, CZDAX-PMT0313, CZDAX-PMT0314, CZDAX-PMT0315
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs17]]
+== obs17
+
+[horizontal]
+
+Pravidlo:: Popisná metadata jsou uvedena ve složce descriptive.
+Kód:: obs17
+Zdroj:: CZDAX-PSP0107
+Popis chyby:: Popisná metadata jsou uvedena v chybném umístění.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs18]]
+== obs18
+
+[horizontal]
+
+Pravidlo:: Administrativní metadata jsou uvedena v elementu mets/amdSec/digiprovMD.
+Kód:: obs18
+Zdroj:: CZDAX-PMT0403, CZDAX-PMT0418
+Popis chyby:: Administrativní metadata jsou uvedena chybně.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs19]]
+== obs19
+
+[horizontal]
+
+Pravidlo:: Administrativní metadata v elementu mets/amdSec/digiprovMD mají uveden atribut ID.
+Kód:: obs19
+Zdroj:: CZDAX-PMT0404
+Popis chyby:: Administrativní metadata v elementu mets/amdSec/digiprovMD nemají uveden atribut ID.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs20]]
+== obs20
+
+[horizontal]
+
+Pravidlo:: Administrativní metadata v elementu mets/amdSec/digiprovMD mají uveden atribut STATUS s očekávanou hodnotou.
+Kód:: obs20
+Zdroj:: CZDAX-PMT0405
+Popis chyby:: Administrativní metadata v elementu mets/amdSec/digiprovMD nemají správně uveden atribut STATUS.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs21]]
+== obs21
+
+[horizontal]
+
+Pravidlo:: Administrativní metadata v elementu mets/amdSec/digiprovMD mají uveden atribut GROUPID s očekávanou hodnotou.
+Kód:: obs21
+Zdroj:: CZDAX-PMT0406
+Popis chyby:: Administrativní metadata v elementu mets/amdSec/digiprovMD nemají správně uveden atribut GROUPID.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs22]]
+== obs22
+
+[horizontal]
+
+Pravidlo:: Reference z elementu mets/amdSec/digiprovMD na fyzický soubor je správně zapsána v elementu mdRef.
+Kód:: obs22
+Zdroj:: CZDAX-PMT0407, CZDAX-PMT0408, CZDAX-PMT0409, CZDAX-PMT0410
+Popis chyby:: Chybně zapsaná reference na fyzický soubor s administrativními metadaty.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs23]]
+== obs23
+
+[horizontal]
+
+Pravidlo:: Metadata popisující uchovávání (preservation) MUSÍ být uložena v podsložce preservation.
+Kód:: obs23
+Zdroj:: CZDAX-PSP0106
+Popis chyby:: Metadata popisující uchování jsou v neočekávaném místě.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs24]]
+== obs24
+
+[horizontal]
+
+Pravidlo:: Element mets/amdSec/digiprovMD/mdRef má uvedeny všechny povinné atributy.
+Kód:: obs24
+Zdroj:: CZDAX-PMT0411, CZDAX-PMT0412, CZDAX-PMT0413, CZDAX-PMT0414, CZDAX-PMT0415, CZDAX-PMT0416
+Popis chyby:: Element mets/amdSec/digiprovMD/mdRef není správně uveden.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs25]]
+== obs25
+
+[horizontal]
+
+Pravidlo:: Předání metadat v elementu mets/amdSec/rightsMD není možné.
+Kód:: obs25
+Zdroj:: CZDAX-PMT0417
+Popis chyby:: Uveden neočekávaný element rightsMD.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs26]]
+== obs26
+
+[horizontal]
+
+Pravidlo:: Existuje nanejvýš jeden element mets/fileSec.
+Kód:: obs26
+Zdroj:: CZDAX-PMT0505
+Popis chyby:: Chybně uvedeno více elementů mets/fileSec.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs27]]
+== obs27
+
+[horizontal]
+
+Pravidlo:: Element mets/fileSec má uveden atribut ID.
+Kód:: obs27
+Zdroj:: CZDAX-PMT0506
+Popis chyby:: Element mets/fileSec nemá uveden atribut ID.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs28]]
+== obs28
+
+[horizontal]
+
+Pravidlo:: Předaná dokumentace je uvedena v elementu mets/fileSec/fileGrp[@USE='Documentation'].
+Kód:: obs28
+Zdroj:: CZDAX-PMT0507, CZDAX-PMT0513
+Popis chyby:: Chybně odkazované soubory dokumentace.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs29]]
+== obs29
+
+[horizontal]
+
+Pravidlo:: Předaná schémata jsou uvedena v elementu mets/fileSec/fileGrp[@USE='Schemas'].
+Kód:: obs29
+Zdroj:: CZDAX-PMT0508, CZDAX-PMT0513
+Popis chyby:: Chybně odkazované soubory schémat.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs30]]
+== obs30
+
+[horizontal]
+
+Pravidlo:: Uvedení odkazů na reprezentace v elementu mets/fileSec/fileGrp[@USE=[starts-with('Representations')]]
+Kód:: obs30
+Zdroj:: CZDAX-PMT0509, CZDAX-PMT0513
+Popis chyby:: Chybně odkazované soubory reprezentací.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs31]]
+== obs31
+
+[horizontal]
+
+Pravidlo:: Správný zápis elementu reprezentace.
+Kód:: obs31
+Zdroj:: CZDAX-PMT0511, CZDAX-PMT0512
+Popis chyby:: Chybně uveden typ reprezentace.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs32]]
+== obs32
+
+[horizontal]
+
+Pravidlo:: Existuje identifikátor ID skupiny souborů v elementu mets/fileSec/fileGrp.
+Kód:: obs32
+Zdroj:: CZDAX-PMT0514
+Popis chyby:: Skupina souborů nemá uveden identifikátor.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs33]]
+== obs33
+
+[horizontal]
+
+Pravidlo:: Správně uveden odkaz na soubor v elementu mets/fileSec/fileGrp/file.
+Kód:: obs33
+Zdroj:: CZDAX-PMT0515, CZDAX-PMT0516, CZDAX-PMT0517, CZDAX-PMT0518, CZDAX-PMT0519, CZDAX-PMT0520, CZDAX-PMT0521, CZDAX-PMT0522, CZDAX-PMT0524
+Popis chyby:: Odkaz na soubor v elementu mets/fileSec/fileGrp/file není úplný a správně vyplněný.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs34]]
+== obs34
+
+[horizontal]
+
+Pravidlo:: Správné uvedení odkazu na umístění souboru v elementu mets/fileSec/fileGrp/file/FLocat.
+Kód:: obs34
+Zdroj:: CZDAX-PMT0525, CZDAX-PMT0526, CZDAX-PMT0527, CZDAX-PMT0528
+Popis chyby:: Chybně uveden odkaz na soubor.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs35]]
+== obs35
+
+[horizontal]
+
+Pravidlo:: Balíček obsahuje fyzickou nebo logickou strukturální mapu.
+Kód:: obs35
+Zdroj:: CZDAX-PMT0601, CZDAX-PMT0602, CZDAX-PMT0704
+Popis chyby:: Uvedena strukturální mapa neznámého typu.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs36]]
+== obs36
+
+[horizontal]
+
+Pravidlo:: Balíček obsahuje fyzickou strukturální mapu.
+Kód:: obs36
+Zdroj:: CZDAX-PMT0603, CZDAX-PMT0604, CZDAX-PMT0605
+Popis chyby:: Není uvedena fyzická strukturální mapa nebo je chybně popsána.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs37]]
+== obs37
+
+[horizontal]
+
+Pravidlo:: Správná podoba fyzické strukturální mapy.
+Kód:: obs37
+Zdroj:: CZDAX-PMT0607, CZDAX-PMT0608, CZDAX-PMT0609, CZDAX-PMT0610, CZDAX-PMT0611, CZDAX-PMT0612, CZDAX-PMT0613, CZDAX-PMT0614, CZDAX-PMT0615, CZDAX-PMT0616, CZDAX-PMT0617, CZDAX-PMT0618, CZDAX-PMT0619, CZDAX-PMT0620, CZDAX-PMT0621, CZDAX-PMT0622, CZDAX-PMT0623, CZDAX-PMT0624, CZDAX-PMT0625, CZDAX-PMT0626, CZDAX-PMT0627
+Popis chyby:: Fyzická strukturální mapa obsahuje chybné záznamy.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs38]]
+== obs38
+
+[horizontal]
+
+Pravidlo:: Správná podoba logické strukturální mapy.
+Kód:: obs38
+Zdroj:: CZDAX-PMT0704, CZDAX-PMT0705, CZDAX-PMT0706, CZDAX-PMT0707, CZDAX-PMT0708, CZDAX-PMT0709, CZDAX-PMT0710, CZDAX-PMT0711, CZDAX-PMT0712
+Popis chyby:: Logická strukturální mapa obsahuje chybné záznamy.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_obs39]]
+== obs39
+
+[horizontal]
+
+Pravidlo:: Existuje soubor se PACKAGE-INFO.xml se souhrnnými informacemi o balíčku.
+Kód:: obs39
+Zdroj:: CZDAX-PKG0001
+Popis chyby:: Soubor PACKAGE-INFO.xml neexistuje.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+= Kontroly souborů
+
+[[DAAIP2024_fls01]]
+== fls01
+
+[horizontal]
+
+Pravidlo:: V balíčku jsou k dispozici všechny soubory uvedené v METS.xml.
+Kód:: fls01
+Zdroj:: CZDAX-PPR0307
+Popis chyby:: Chybí deklarovaný soubor.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_fls02]]
+== fls02
+
+[horizontal]
+
+Pravidlo:: V balíčku neexistují soubory, které nejsou uvedené v METS.xml.
+Kód:: fls02
+Zdroj:: CZDAX-PPR0307
+Popis chyby:: V balíčku jsou nedeklarované soubory.
+Aktivní:: AIP, metadatový DIP, úplný DIP, změnový SIP
+
+[[DAAIP2024_fls03]]
+== fls03
+
+[horizontal]
+
+Pravidlo:: Lze zahájit kontroly správnosti souborů ve formátu PREMIS.
+Kód:: fls03
+Zdroj:: CZDAX-PMD0201
+Popis chyby:: Nepodařilo se připravit kontrolu souborů ve formátu PREMIS.
+Aktivní:: AIP, metadatový DIP, úplný DIP
+
+[[DAAIP2024_fls04]]
+== fls04
+
+[horizontal]
+
+Pravidlo:: Lze zahájit kontroly správnosti souborů ve formátu PREMIS ve změnovém balíčku.
+Kód:: fls04
+Zdroj:: CZDAX-PMD0201, CZDAP-IPF0201
+Popis chyby:: Nepodařilo se připravit kontrolu souborů ve formátu PREMIS.
+Aktivní:: změnový SIP
+
+
+:leveloffset: -1

@@ -9,6 +9,8 @@ import cz.zaf.earkvalidator.ValidationLayers;
 import cz.zaf.earkvalidator.layers.fls.fls00_09.Rule01;
 import cz.zaf.earkvalidator.layers.fls.fls00_09.Rule02;
 import cz.zaf.earkvalidator.layers.fls.fls00_09.Rule03;
+import cz.zaf.earkvalidator.layers.fls.fls00_09.Rule04;
+import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 
 public class FilesValidationLayer extends BaseValidationLayer<AipValidationContext, AipValidationContext> {
 
@@ -18,18 +20,36 @@ public class FilesValidationLayer extends BaseValidationLayer<AipValidationConte
 			Rule03.class
 			);
 	
+	private static final List<Class<? extends BaseRule<AipValidationContext>>> sipChangeRuleClasses = List.of(
+			Rule01.class,
+			Rule02.class,
+			Rule04.class
+			);
+
 	private List<Class<? extends BaseRule<AipValidationContext>>> ruleClasses;
 	
-	public FilesValidationLayer() {
+	public FilesValidationLayer(DAAIP2024Profile daaip2024Profile) {
 		super(ValidationLayers.FILES);
+		
+		switch(daaip2024Profile) {
+		case AIP:
+		case DIP_METADATA:
+		case DIP_CONTENT:
+			ruleClasses = aipRuleClasses;
+			break;
+		case SIP_CHANGE:
+			ruleClasses = sipChangeRuleClasses;
+			break;
+		}
 	}
 	
 	@Override
-	protected void validateImpl() {
-		ruleClasses = aipRuleClasses;
-		
-		List<? extends BaseRule<AipValidationContext> > rules = createRules(ruleClasses);		
-		this.provedKontrolu(ctx, rules);		
+	protected void validateImpl() {		
+		this.provedKontrolu(ctx, createRules());		
+	}
+
+	public List<? extends BaseRule<AipValidationContext>> createRules() {
+		return createRules(ruleClasses);
 	}
 
 }

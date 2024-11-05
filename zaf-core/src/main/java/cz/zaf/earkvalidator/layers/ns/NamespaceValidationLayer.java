@@ -26,7 +26,10 @@ public class NamespaceValidationLayer extends BaseValidationLayer<AipValidationC
 
 	@Override
 	protected void validateImpl() {
-		var rules = createRules(ruleClasses);		
-		this.provedKontrolu(ctx, rules);		
+		this.provedKontrolu(ctx, createRules());		
+	}
+
+	public List<? extends BaseRule<AipValidationContext>> createRules() {
+		return createRules(ruleClasses);
 	}
 }

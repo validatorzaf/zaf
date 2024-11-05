@@ -4,13 +4,13 @@ import java.util.List;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.earkvalidator.eark.PremisConstants;
 import cz.zaf.earkvalidator.eark.ValidatorId;
 import cz.zaf.premisvalidator.PremisRule;
 import cz.zaf.schema.premis3.AgentComplexType;
 import cz.zaf.schema.premis3.AgentIdentifierComplexType;
 import cz.zaf.schema.premis3.PremisComplexType;
 import cz.zaf.schema.premis3.StringPlusAuthority;
-import cz.zaf.schemas.premis.PremisNS;
 
 public class Rule04 extends PremisRule {
 
@@ -35,7 +35,7 @@ public class Rule04 extends PremisRule {
 			boolean localIdentFound = false;
 			for(AgentIdentifierComplexType ident: agentIdents) {
 				StringPlusAuthority identType = ident.getAgentIdentifierType();
-				if (!PremisNS.IDENT_TYPE_LOCAL.equals(identType.getValue())) {
+				if (!PremisConstants.IDENT_TYPE_LOCAL.equals(identType.getValue())) {
 					continue;
 				}
 				

@@ -20,9 +20,14 @@ public class WellFormedLayer extends BaseValidationLayer<AipValidationContext, A
 		super(ValidationLayers.WELL_FORMED);
 	}
 	
+	
+	public List<? extends BaseRule<AipValidationContext> > createRules() {
+		return createRules(ruleClasses);
+	}
+	
 	@Override
 	protected void validateImpl() {
-		var rules = createRules(ruleClasses);
+		var rules = createRules();
 		
 		provedKontrolu(ctx, rules);		
 	}

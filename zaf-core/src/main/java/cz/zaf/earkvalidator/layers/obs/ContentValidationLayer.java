@@ -1,5 +1,6 @@
 package cz.zaf.earkvalidator.layers.obs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cz.zaf.common.validation.BaseRule;
@@ -10,6 +11,7 @@ import cz.zaf.earkvalidator.layers.obs.obs00_09.Rule01;
 import cz.zaf.earkvalidator.layers.obs.obs00_09.Rule02;
 import cz.zaf.earkvalidator.layers.obs.obs00_09.Rule03;
 import cz.zaf.earkvalidator.layers.obs.obs00_09.Rule04;
+import cz.zaf.earkvalidator.layers.obs.obs00_09.Rule04a;
 import cz.zaf.earkvalidator.layers.obs.obs00_09.Rule05;
 import cz.zaf.earkvalidator.layers.obs.obs00_09.Rule06;
 import cz.zaf.earkvalidator.layers.obs.obs00_09.Rule07;
@@ -45,6 +47,7 @@ import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule36;
 import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule37;
 import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule38;
 import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule39;
+import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 
 public class ContentValidationLayer extends BaseValidationLayer<AipValidationContext, AipValidationContext> {
 
@@ -90,17 +93,35 @@ public class ContentValidationLayer extends BaseValidationLayer<AipValidationCon
 			Rule39.class
 		);
 	
+	private static final List<Class<? extends BaseRule<AipValidationContext>>> sipChangeRuleClasses = new ArrayList<>(aipRuleClasses);
+	static {
+		sipChangeRuleClasses.set(sipChangeRuleClasses.indexOf(Rule04.class), Rule04a.class);
+	}
+	
 	private List<Class<? extends BaseRule<AipValidationContext>>> ruleClasses;
 	
 	public ContentValidationLayer() {
 		super(ValidationLayers.OBSAH);
 	}
 	
+	public ContentValidationLayer(DAAIP2024Profile daaip2024Profile) {
+		super(ValidationLayers.OBSAH);
+		switch(daaip2024Profile) {
+		case SIP_CHANGE:
+			ruleClasses = sipChangeRuleClasses;
+			break;
+		default:
+			ruleClasses = aipRuleClasses;
+			break;
+		}
+	}
+
 	@Override
 	protected void validateImpl() {
-		ruleClasses = aipRuleClasses;
-		
-		List<? extends BaseRule<AipValidationContext> > rules = createRules(ruleClasses);		
-		this.provedKontrolu(ctx, rules);		
+		this.provedKontrolu(ctx, createRules());
+	}
+
+	public List<? extends BaseRule<AipValidationContext>> createRules() {
+		return createRules(ruleClasses);
 	}
 }

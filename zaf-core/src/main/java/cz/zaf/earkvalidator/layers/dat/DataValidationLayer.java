@@ -37,6 +37,16 @@ public class DataValidationLayer extends BaseValidationLayer<AipValidationContex
 			// Rule07.class,
 	);
 	
+	private static final List<Class<? extends BaseRule<AipValidationContext>>> sipChangeRuleClasses = List.of(
+			Rule01.class,
+			Rule02.class,
+			Rule03.class,
+			Rule04.class,
+			// Rule05.class,
+			Rule06.class,
+			Rule07.class
+	);
+
 	List<Class<? extends BaseRule<AipValidationContext>>> ruleClasses;
 
 	public DataValidationLayer(DAAIP2024Profile daaip2024Profile) {
@@ -51,14 +61,23 @@ public class DataValidationLayer extends BaseValidationLayer<AipValidationContex
 		case DIP_CONTENT:
 			ruleClasses = dipRuleClasses;
 			break;
+		case SIP_CHANGE:
+			ruleClasses = sipChangeRuleClasses;
+			break;
+		default:
+			throw new IllegalStateException("Unexpected value: " + daaip2024Profile);
 		}
 	}
 
 	@Override
 	protected void validateImpl() {	
-		var rules = createRules(ruleClasses);
+		var rules = createRules();
 		
 		provedKontrolu(ctx, rules);
+	}
+
+	public List<? extends BaseRule<AipValidationContext>> createRules() {
+		return createRules(ruleClasses);
 	}
 
 }

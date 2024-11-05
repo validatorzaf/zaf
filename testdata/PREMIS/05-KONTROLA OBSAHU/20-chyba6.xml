@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<premis xmlns="http://www.loc.gov/premis/v3"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.loc.gov/premis/v3 http://www.loc.gov/standards/premis/premis.xsd"
+        version="3.0">
+    <!-- Tento balicek -->
+    <object xsi:type="intellectualEntity">
+        <objectIdentifier>
+            <objectIdentifierType>local</objectIdentifierType>
+            <objectIdentifierValue>_THIS</objectIdentifierValue>
+        </objectIdentifier>
+    </object>
+    <!-- Meneny balicek -->
+    <object xsi:type="intellectualEntity">
+        <objectIdentifier>
+            <objectIdentifierType>local</objectIdentifierType>
+            <objectIdentifierValue>uuid-2e377b06-7749-456e-82f2-a068308463bc</objectIdentifierValue>
+        </objectIdentifier>
+        <objectIdentifier>
+            <objectIdentifierType>AIP_ID</objectIdentifierType>
+            <objectIdentifierValue>04ccc520-c5a9-4c9f-a83f-28d91fd37aa7</objectIdentifierValue>
+        </objectIdentifier>
+        <significantProperties>
+            <significantPropertiesType>AIP_VERSION</significantPropertiesType>
+            <significantPropertiesValue>1</significantPropertiesValue>
+        </significantProperties>
+    </object>
+  <event>
+    <eventIdentifier>
+      <eventIdentifierType>local</eventIdentifierType>
+      <eventIdentifierValue>uuid-80c4a386-cde6-48c9-90e7-b85c0aa8900d</eventIdentifierValue>
+    </eventIdentifier>
+    <!-- Určení, že se jedná o uložení do DA -->
+    <eventType>ing</eventType>
+    <eventDateTime>2021-10-12T00:00:00+01:00</eventDateTime>
+ <linkingAgentIdentifier>
+    <linkingAgentIdentifierType>local</linkingAgentIdentifierType>
+    <linkingAgentIdentifierValue>uuid-d94c6d7f-63d9-46d2-8b76-af2de414ad7b</linkingAgentIdentifierValue>
+    <!-- předávající -->
+    <linkingAgentRole>SUBMITTER</linkingAgentRole>
+  </linkingAgentIdentifier>
+  <!-- software tvořící balíček -->
+  <linkingAgentIdentifier>
+    <linkingAgentIdentifierType>local</linkingAgentIdentifierType>
+    <linkingAgentIdentifierValue>uuid-18074e4a-05e5-492b-9a21-a650baca17c8</linkingAgentIdentifierValue>
+    <linkingAgentRole>imp</linkingAgentRole>
+  </linkingAgentIdentifier>
+
+    <linkingObjectIdentifier>
+      <!-- Event outcome - tento balíček -->
+      <linkingObjectIdentifierType>local</linkingObjectIdentifierType>
+      <linkingObjectIdentifierValue>_THIS</linkingObjectIdentifierValue>
+      <linkingObjectRole>out</linkingObjectRole>
+    </linkingObjectIdentifier>
+
+  </event>
+
+  <agent>
+    <agentIdentifier>
+      <agentIdentifierType>local</agentIdentifierType>
+      <agentIdentifierValue>uuid-18074e4a-05e5-492b-9a21-a650baca17c8</agentIdentifierValue>
+    </agentIdentifier>
+    <agentName>Elza</agentName>
+    <agentType>sof</agentType>
+    <agentVersion>3.0</agentVersion>    
+  </agent>
+    <agent>
+        <agentIdentifier>
+            <agentIdentifierType>local</agentIdentifierType>
+            <agentIdentifierValue>uuid-d94c6d7f-63d9-46d2-8b76-af2de414ad7b</agentIdentifierValue>
+        </agentIdentifier>
+        <agentName>Abraham, Jan (WHOIS_CISLO_UK: 45218052)</agentName>
+        <agentType>org</agentType>
+    </agent>
+</premis>
+

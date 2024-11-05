@@ -5,6 +5,8 @@
  */
 package cz.zaf.sipvalidator.nsesss2017;
 
+import java.util.List;
+
 import cz.zaf.common.validation.SimpleRuleContext;
 import cz.zaf.sipvalidator.nsesss2017.pravidla03.wf00_09.Pravidlo1;
 
@@ -26,11 +28,11 @@ public class K03_Spravnosti
 
         SimpleRuleContext<KontrolaNsess2017Context> wfCheckContext = new SimpleRuleContext<>(ctx);
 
-        PravidloBase rules[] = {
-                new Pravidlo1(),
-        };
-
-        this.provedKontrolu(wfCheckContext, rules);
+        this.provedKontrolu(wfCheckContext, getRules());
         
     }
+
+	public static List<? extends PravidloBase> getRules() {
+		return List.of( new Pravidlo1() );
+	}
 }

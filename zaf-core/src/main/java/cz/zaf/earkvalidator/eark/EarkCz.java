@@ -6,10 +6,13 @@ package cz.zaf.earkvalidator.eark;
 public class EarkCz {
 	public static final String CONTENT_TYPE_NSESSS = "NSESSS";
 	public static final String CONTENT_TYPE_VOLNE_SOUBORY = "Volné soubory";
+	public static final String CONTENT_TYPE_CHANGE_REQUEST = "change_request_v1_0";
 	
 	public static final String GROUPID_INHERENT = "INHERENT";
 	public static final String GROUPID_CONTEXTUAL = "CONTEXTUAL";
 	public static final String GROUPID_PRESERVATION = "PRESERVATION";
+	
+	public static final String REPRESENTATION_SUBMISSION = "submission";
 	
 	public static final String STRUCTMAP_TYPE_LOGICAL = "LOGICAL";
 	public static final String STRUCTMAP_LOGICAL_NAME = "CZDAX-LOGICAL-STRUCTURE";	
@@ -18,6 +21,11 @@ public class EarkCz {
 	
 	// Odkaz na aktuální balíček. Používá se ve spojení s lokálním identifikátorem (local).
 	public static final String OBJECT_IDENTIFIER_ITSELF = "_THIS";
+	public static final String OBJECT_IDENTIFIER_AIP_ID = "AIP_ID";
+	public static final String OBJECT_IDENTIFIER_FONDS_ID = "FONDS_ID";
+	
+	public static final String SIGNIFICANT_PROPS_INSTITUTION_ID = "INSTITUTION_ID";
+	public static final String SIGNIFICANT_PROPS_AIP_VERSION = "AIP_VERSION";
 	
 	// CZDAX-PMS0304
 	public static final String EVENT_DATETIME_NA = "NA";

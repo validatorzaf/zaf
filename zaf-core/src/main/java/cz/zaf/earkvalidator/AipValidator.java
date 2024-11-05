@@ -7,6 +7,7 @@ import java.util.Objects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cz.zaf.common.validation.BaseValidationLayer;
 import cz.zaf.common.validation.BaseValidator;
 import cz.zaf.common.validation.InnerFileValidator;
 import cz.zaf.common.validation.ValidationLayer;
@@ -33,16 +34,16 @@ public class AipValidator implements ValidatorListener<AipValidationContext> {
 
 		validations = prepareValidations(daaip2024Profile);
 	}
-
-	private List<ValidationLayer<AipValidationContext>> prepareValidations(DAAIP2024Profile daaip2024Profile) {
+	
+	public static List<ValidationLayer<AipValidationContext>> prepareValidations(DAAIP2024Profile daaip2024Profile) {
 		List<ValidationLayer<AipValidationContext>> validations = new ArrayList<>();
 		validations.add(new DataValidationLayer(daaip2024Profile));
 		validations.add(new EncodingValidationLayer());
 		validations.add(new WellFormedLayer());
 		validations.add(new NamespaceValidationLayer());
 		validations.add(new SchemaValidationLayer());
-		validations.add(new ContentValidationLayer());
-		validations.add(new FilesValidationLayer());
+		validations.add(new ContentValidationLayer(daaip2024Profile));
+		validations.add(new FilesValidationLayer(daaip2024Profile));
 		return validations; 
 	}
 

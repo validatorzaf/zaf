@@ -5,4 +5,21 @@
 	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
 	xmlns:inheritance="urn:jaxb.jvnet.org:plugin:inheritance"
 	jxb:extensionBindingPrefixes="xjc">
+  <jxb:bindings schemaLocation="premis-v3-0.xsd">
+	<jxb:bindings node="//xs:complexType[@name='significantPropertiesComplexType']//xs:sequence[1]/xs:element[@ref='significantPropertiesType']">
+      <jxb:property name="significantPropertiesType1" />
+    </jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='significantPropertiesComplexType']//xs:sequence[1]/xs:element[@ref='significantPropertiesValue']">
+      <jxb:property name="significantPropertiesValue1" />
+    </jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='significantPropertiesComplexType']//xs:sequence[2]/xs:element[@ref='significantPropertiesValue']">
+      <jxb:property name="significantPropertiesValue2" />
+    </jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='significantPropertiesComplexType']//xs:sequence[1]/xs:element[@ref='significantPropertiesExtension']">
+      <jxb:property name="significantPropertiesExtension1" />
+    </jxb:bindings>
+	<jxb:bindings node="//xs:complexType[@name='significantPropertiesComplexType']//xs:sequence[2]/xs:element[@ref='significantPropertiesExtension']">
+      <jxb:property name="significantPropertiesExtension2" />
+    </jxb:bindings>
+  </jxb:bindings>
 </jxb:bindings>

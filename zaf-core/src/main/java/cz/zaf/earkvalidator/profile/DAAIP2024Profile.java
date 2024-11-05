@@ -24,5 +24,11 @@ public enum DAAIP2024Profile implements ValidationSubprofile {
 		public String getName() {
 			return "úplný DIP";
 		}		
+	},
+	SIP_CHANGE {
+		@Override
+		public String getName() {
+			return "změnový SIP";
+		}				
 	};
 }

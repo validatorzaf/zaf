@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.earkvalidator.eark.PremisConstants;
 import cz.zaf.earkvalidator.eark.ValidatorId;
 import cz.zaf.premisvalidator.PremisRule;
 import cz.zaf.premisvalidator.RepresentationInfo;
@@ -15,7 +16,6 @@ import cz.zaf.schema.premis3.ObjectIdentifierComplexType;
 import cz.zaf.schema.premis3.OriginalNameComplexType;
 import cz.zaf.schema.premis3.PremisComplexType;
 import cz.zaf.schema.premis3.Representation;
-import cz.zaf.schemas.premis.PremisNS;
 
 public class Rule06 extends PremisRule {
 
@@ -41,7 +41,7 @@ public class Rule06 extends PremisRule {
 				}
 				boolean localIdentFound = false;
 				for(ObjectIdentifierComplexType objIdent: objIdents) {
-					if(PremisNS.IDENT_TYPE_LOCAL.equals(objIdent.getObjectIdentifierType().getValue())) {
+					if(PremisConstants.IDENT_TYPE_LOCAL.equals(objIdent.getObjectIdentifierType().getValue())) {
 						localIdentFound = true;
 					} else {
 						throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Chybný odkaz na reprezentaci, typ: "+objIdent.getObjectIdentifierType().getValue()+".", ctx.formatPosition(rep));

@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.earkvalidator.eark.PremisConstants;
 import cz.zaf.premisvalidator.PremisRule;
 import cz.zaf.schema.premis3.EventComplexType;
 import cz.zaf.schema.premis3.PremisComplexType;
@@ -22,15 +23,15 @@ public class Rule01 extends PremisRule {
 	// Set of allowed event types
 	public static final Set<String> eventTypes = Set.of(
 			// CZDAX-PKG0501 - vznik
-			"cre",
+			PremisConstants.EVENT_TYPE_CRE,
 			// CZDAX-PKG0601 - Vložení do digitálního archivu
-			"ing",
+			PremisConstants.EVENT_TYPE_ING,
 			// CZDAX-PKG0701 - přesun
-			"tra",
+			PremisConstants.EVENT_TYPE_TRA,
 			// CZDAX-PKG0801 - export
-			"exp",
+			PremisConstants.EVENT_TYPE_EXP,
 			// CZDAX-PKG0901 - vznik balíčku
-			"ipc"
+			PremisConstants.EVENT_TYPE_IPC
 			);
 
 	public Rule01() {

@@ -105,7 +105,7 @@ public abstract class BaseValidationLayer<T extends ValidationLayerContext, RCtx
 		}
 		return rules;
 	}
-    
+	    
     
     /**
      * Create rules from classes.
@@ -126,7 +126,6 @@ public abstract class BaseValidationLayer<T extends ValidationLayerContext, RCtx
 		}
 		return rules;
 	}
-
 
     // this method is not used and probably could be removed
     // or refactor to be usable (problem is generic collection of rules

@@ -20,8 +20,10 @@ public class EncodingValidationLayer extends BaseValidationLayer<AipValidationCo
 
 	@Override
 	protected void validateImpl() {
-		var rules = createRules(ruleClasses);
-		
-		provedKontrolu(ctx, rules);		
+		provedKontrolu(ctx, createRules());		
+	}
+
+	public List<? extends BaseRule<AipValidationContext>> createRules() {
+		return createRules(ruleClasses);
 	}
 }
