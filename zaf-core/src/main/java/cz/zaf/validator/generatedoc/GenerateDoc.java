@@ -111,6 +111,9 @@ public class GenerateDoc {
     		case "DAAIP2024":
     			validationProfile = ValidationProfile.DAAIP2024;
     			break;
+    		case "DAAIP2024_PREMIS":
+    			validationProfile = ValidationProfile.DAAIP2024_PREMIS;
+    			break;
     		}
     	}
     	

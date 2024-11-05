@@ -8,6 +8,8 @@ na základě sestavených xref:DAAIP2024_pravidla[pravidel].
 
 include::DAAIP2024/pravidla.adoc[]
 
+include::DAAIP2024/pravidla_premis.adoc[]
+
 include::DAAIP2024/zmeny.adoc[]
 
 :leveloffset: -1

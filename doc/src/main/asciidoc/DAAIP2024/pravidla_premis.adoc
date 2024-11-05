@@ -1,0 +1,325 @@
+﻿[[DAAIP2024_PREMIS_pravidla]]
+= Pravidla pro Premis
+
+:leveloffset: +1
+
+= Kódování
+
+[[DAAIP2024_PREMIS_kod01]]
+== kod01
+
+[horizontal]
+
+Pravidlo:: Znakovou sadou souboru je Unicode/UCS v kódování UTF-8 bez BOM (Byte Order Mark).
+Kód:: kod01
+Zdroj:: CZDAX-PSP020
+Popis chyby:: Znaková sada souboru není Unicode/UCS v kódování UTF-8 bez BOM (Byte order mark).
+Aktivní:: Balíček, Změnový balíček, Metadata
+
+= Správnost formátu
+
+[[DAAIP2024_PREMIS_wf01]]
+== wf01
+
+[horizontal]
+
+Pravidlo:: Soubor je dle standardu XML v 1.0.
+Kód:: wf01
+Zdroj:: CZDAX-PSP020
+Popis chyby:: Kontrolovaný soubor nedodržuje syntaxi jazyka XML.
+Aktivní:: Balíček, Změnový balíček, Metadata
+
+[[DAAIP2024_PREMIS_komp_wf02]]
+== komp_wf02
+
+[horizontal]
+
+Pravidlo:: Soubor má předpokládanou velikost.
+Kód:: komp_wf02
+Zdroj:: CZDAX-PPR0303
+Popis chyby:: Metadatový soubor je příliš velký.
+Aktivní:: Balíček, Změnový balíček, Metadata
+
+= Jmenné prostory
+
+[[DAAIP2024_PREMIS_ns01]]
+== ns01
+
+[horizontal]
+
+Pravidlo:: Soubor obsahuje právě jeden kořenový element <premis>.
+Kód:: ns01
+Zdroj:: CZDAX-PMT0002
+Popis chyby:: Chybí kořenový element <premis>.
+Aktivní:: Balíček, Změnový balíček, Metadata
+
+[[DAAIP2024_PREMIS_ns02]]
+== ns02
+
+[horizontal]
+
+Pravidlo:: Kořenový element obsahuje schéma xmlns="http://www.loc.gov/premis/v3".
+Kód:: ns02
+Zdroj:: CZDAX-PSP0202
+Popis chyby:: Není použito výchozí schéma: xmlns="http://www.loc.gov/premis/v3".
+Aktivní:: Balíček, Změnový balíček, Metadata
+
+[[DAAIP2024_PREMIS_ns03]]
+== ns03
+
+[horizontal]
+
+Pravidlo:: Kořenový element obsahuje doplňující schémata: xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance".
+Kód:: ns03
+Zdroj:: CZDAX-PMT0101
+Popis chyby:: Chybí odkaz na některé z povinných schémat: xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance".
+Aktivní:: Balíček, Změnový balíček, Metadata
+
+[[DAAIP2024_PREMIS_ns04]]
+== ns04
+
+[horizontal]
+
+Pravidlo:: Kořenový element obsahuje atribut xsi:schemaLocation s hodnotou "http://www.loc.gov/premis/v3 http://www.loc.gov/standards/premis/premis.xsd".
+Kód:: ns04
+Zdroj:: CZDAX-PMT0101
+Popis chyby:: Chybí informace o umístění pro některé ze schémat.
+Aktivní:: Balíček, Změnový balíček, Metadata
+
+= Soulad se schématem
+
+[[DAAIP2024_PREMIS_val01]]
+== val01
+
+[horizontal]
+
+Pravidlo:: Soubor MUSÍ odpovídat oficiálnímu schématu PREMIS, verze 3.0.
+Kód:: val01
+Zdroj:: CZDAX-PMS0101
+Popis chyby:: Soubor neodpovídá schématu PREMIS.
+Aktivní:: Balíček, Změnový balíček, Metadata
+
+= Obsahové kontroly
+
+[[DAAIP2024_PREMIS_obs01]]
+== obs01
+
+[horizontal]
+
+Pravidlo:: Každá událost je popsána typem dle řízeného slovníku. Jiné typy událostí se nesmí používat.
+Kód:: obs01
+Zdroj:: CZDAX-PMS0103, CZDAX-PMS0502
+Popis chyby:: Událost je nepovoleného typu.
+Aktivní:: Balíček, Změnový balíček
+
+[[DAAIP2024_PREMIS_obs02]]
+== obs02
+
+[horizontal]
+
+Pravidlo:: Každá událost je popsána typem dle řízeného slovníku. Jiné typy událostí se nesmí používat.
+Kód:: obs02
+Zdroj:: CZDAX-PMS0103, CZDAX-PMS0502
+Popis chyby:: Událost je nepovoleného typu.
+Aktivní:: Metadata
+
+[[DAAIP2024_PREMIS_obs03]]
+== obs03
+
+[horizontal]
+
+Pravidlo:: Každá událost má uveden platný identifikátor dle specifikace.
+Kód:: obs03
+Zdroj:: CZDAX-PMS0201, CZDAX-PMS0501
+Popis chyby:: Událost má uveden chybný identifikátor.
+Aktivní:: Balíček, Změnový balíček, Metadata
+
+[[DAAIP2024_PREMIS_obs04]]
+== obs04
+
+[horizontal]
+
+Pravidlo:: Každý agent má uveden svůj identifikátor dle specifikace.
+Kód:: obs04
+Zdroj:: CZDAX-PMS0201, CZDAX-PMS0601
+Popis chyby:: Agent má uveden chybný identifikátor.
+Aktivní:: Balíček, Změnový balíček, Metadata
+
+[[DAAIP2024_PREMIS_obs05]]
+== obs05
+
+[horizontal]
+
+Pravidlo:: Software (speciální agent) má uveden správně popis.
+Kód:: obs05
+Zdroj:: CZDAX-PMS0603, CZDAX-PMS0604, CZDAX-PMS0606
+Popis chyby:: Chybný popis agenta reprezentující software.
+Aktivní:: Balíček, Změnový balíček, Metadata
+
+[[DAAIP2024_PREMIS_obs06]]
+== obs06
+
+[horizontal]
+
+Pravidlo:: Odkazovaná reprezentace má platný identifikátor a název.
+Kód:: obs06
+Zdroj:: CZDAX-PMS0201, CZDAX-PMS0401, CZDAX-PMS0402, CZDAX-PMS0403
+Popis chyby:: Chybný odkaz na reprezentaci.
+Aktivní:: Balíček, Změnový balíček, Metadata
+
+[[DAAIP2024_PREMIS_obs07]]
+== obs07
+
+[horizontal]
+
+Pravidlo:: Každý objekt typu soubor má uveden svůj lokální identifikátor dle specifikace.
+Kód:: obs07
+Zdroj:: CZDAX-PMS0201, CZDAX-PMS0202
+Popis chyby:: Chybný odkaz na soubor či balíček.
+Aktivní:: Balíček, Změnový balíček, Metadata
+
+[[DAAIP2024_PREMIS_obs08]]
+== obs08
+
+[horizontal]
+
+Pravidlo:: Každá intelektuální entita má uveden svůj lokální identifikátor dle specifikace.
+Kód:: obs08
+Zdroj:: CZDAX-PMS0201
+Popis chyby:: Chybný identifikátor intelektuální entity.
+Aktivní:: Balíček, Změnový balíček, Metadata
+
+[[DAAIP2024_PREMIS_obs09]]
+== obs09
+
+[horizontal]
+
+Pravidlo:: Datace je uvedena správně.
+Kód:: obs09
+Zdroj:: CZDAX-PMS0301, CZDAX-PMS0302, CZDAX-PMS0304
+Popis chyby:: Chybný způsob zápisu datace.
+Aktivní:: Balíček, Změnový balíček, Metadata
+
+[[DAAIP2024_PREMIS_obs10]]
+== obs10
+
+[horizontal]
+
+Pravidlo:: Každá intelektuální entita je buď odkaz na archivní fond, sám balíček nebo jiný archivní balíček.
+Kód:: obs10
+Zdroj:: CZDAX-PKG0101, CZDAX-PKG0301
+Popis chyby:: Nerozpoznaný druh intelektuální entity.
+Aktivní:: Balíček, Změnový balíček
+
+[[DAAIP2024_PREMIS_obs11]]
+== obs11
+
+[horizontal]
+
+Pravidlo:: Archivní soubor má uvedenu příslušnost k archivu.
+Kód:: obs11
+Zdroj:: CZDAX-PKG0104
+Popis chyby:: Archivní soubor nemá správně uveden pečující archiv.
+Aktivní:: Balíček, Změnový balíček
+
+[[DAAIP2024_PREMIS_obs12]]
+== obs12
+
+[horizontal]
+
+Pravidlo:: Souhrnné informace odkazují na data z původní přejímky.
+Kód:: obs12
+Zdroj:: CZDAX-PKG0201
+Popis chyby:: Informace o přejímce neobsahují samotný objekt dat přejímky.
+Aktivní:: Balíček
+
+[[DAAIP2024_PREMIS_obs13]]
+== obs13
+
+[horizontal]
+
+Pravidlo:: Balíček má správně uvedenu hodnotu identifikátoru.
+Kód:: obs13
+Zdroj:: CZDAX-PKG0301, CZDAX-PKG0302, CZDAX-PKG0303, CZDAX-PKG0304
+Popis chyby:: Chybně uvedena hodnota identifikátoru balíčku.
+Aktivní:: Balíček
+
+[[DAAIP2024_PREMIS_obs14]]
+== obs14
+
+[horizontal]
+
+Pravidlo:: Archivní entita zachycená prostřednictvím agenta je správně uvedena.
+Kód:: obs14
+Zdroj:: CZDAX-PKG0401, CZDAX-PKG0402, CZDAX-PKG0403
+Popis chyby:: Agent je chybně zapsán.
+Aktivní:: Balíček
+
+[[DAAIP2024_PREMIS_obs15]]
+== obs15
+
+[horizontal]
+
+Pravidlo:: Je uveden vznik archiválií zachycených v balíčku.
+Kód:: obs15
+Zdroj:: CZDAX-PKG0501, CZDAX-PKG0502, CZDAX-PKG0503, CZDAX-PKG0504
+Popis chyby:: Chybně zachycen vznik archiválií v balíčku.
+Aktivní:: Balíček
+
+[[DAAIP2024_PREMIS_obs16]]
+== obs16
+
+[horizontal]
+
+Pravidlo:: Vložení do digitálního archivu je správně uvedeno.
+Kód:: obs16
+Zdroj:: CZDAX-PKG0601, CZDAX-PKG0602, CZDAX-PKG0603, CZDAX-PKG0604, CZDAX-PKG0605, CZDAX-PKG0606, CZDAX-PKG0607, CZDAX-PKG0608, CZDAX-PKG0609, CZDAX-PKG0610, CZDAX-PKG0611
+Popis chyby:: Chybně uvedena informace o vložení do digitálního archivu.
+Aktivní:: Balíček
+
+[[DAAIP2024_PREMIS_obs17]]
+== obs17
+
+[horizontal]
+
+Pravidlo:: Přesun/delimitace balíčku je správně zapsána.
+Kód:: obs17
+Zdroj:: CZDAX-PKG0701, CZDAX-PKG0702, CZDAX-PKG0703, CZDAX-PKG0704, CZDAX-PKG0705, CZDAX-PKG0706
+Popis chyby:: Chybně zachycena událost přesun/delimitace archiválií.
+Aktivní:: Balíček
+
+[[DAAIP2024_PREMIS_obs18]]
+== obs18
+
+[horizontal]
+
+Pravidlo:: Export balíčku je správně zapsán.
+Kód:: obs18
+Zdroj:: CZDAX-PKG0801, CZDAX-PKG0802, CZDAX-PKG0803, CZDAX-PKG0804, CZDAX-PKG0805
+Popis chyby:: Chybně zapsána informace o exportu balíčku.
+Aktivní:: Balíček
+
+[[DAAIP2024_PREMIS_obs19]]
+== obs19
+
+[horizontal]
+
+Pravidlo:: Správné uvedení doplňujících informací ke vzniku balíčku.
+Kód:: obs19
+Zdroj:: CZDAX-PKG0901, CZDAX-PKG0902, CZDAX-PKG0903
+Popis chyby:: Nesprávně uvedené informace v souvislosti se zvnikem balíčku.
+Aktivní:: Balíček
+
+[[DAAIP2024_PREMIS_obs20]]
+== obs20
+
+[horizontal]
+
+Pravidlo:: Je správně uvedena vazba na měněný AIP.
+Kód:: obs20
+Zdroj:: CZDAP-IPF0201
+Popis chyby:: Chybně uvedena vazba na měněný AIP.
+Aktivní:: Změnový balíček
+
+
+:leveloffset: -1

@@ -23,6 +23,10 @@ import cz.zaf.earkvalidator.layers.obs.ContentValidationLayer;
 import cz.zaf.earkvalidator.layers.val.SchemaValidationLayer;
 import cz.zaf.earkvalidator.layers.wf.WellFormedLayer;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
+import cz.zaf.premisvalidator.PremisValidationContext;
+import cz.zaf.premisvalidator.PremisValidationLayer;
+import cz.zaf.premisvalidator.layers.enc.Encoding;
+import cz.zaf.premisvalidator.profile.PremisProfile;
 import cz.zaf.validator.profiles.ValidationProfile;
 
 public class ValidatorDAAIP2024 implements Validator {
@@ -138,6 +142,65 @@ public class ValidatorDAAIP2024 implements Validator {
 				List<Rule<? extends RuleEvaluationContext>> result = new ArrayList<>();
 				if(rules!=null) {
 					for(BaseRule<AipValidationContext> rule: rules) {
+						result.add(rule);
+					}
+				}
+					
+				return result;
+			}
+			
+		};
+		return vi;
+	}
+
+	public static ValidatorInfo getPremisValidatorInfo() {
+		ValidatorInfo vi = new ValidatorInfo() {
+
+			@Override
+			public List<? extends ValidationLayerType> getValidationLayers() {
+				return List.of(cz.zaf.premisvalidator.ValidationLayers.values());
+			}
+
+			@Override
+			public List<? extends ValidationSubprofile> getValidationSubprofiles() {
+				return List.of(PremisProfile.values());
+			}
+
+			@Override
+			public List<Rule<? extends RuleEvaluationContext>> getRules(ValidationLayerType layerType,
+					ValidationSubprofile subProfile) {
+				if(!(layerType instanceof cz.zaf.premisvalidator.ValidationLayers)) {
+					throw new IllegalStateException("Unexpected layer type: "+layerType);
+				}
+				if(!(subProfile instanceof PremisProfile)) {
+					throw new IllegalStateException("Unexpected subprofile type: "+subProfile);
+				}
+				cz.zaf.premisvalidator.ValidationLayers layer = (cz.zaf.premisvalidator.ValidationLayers) layerType;
+				PremisProfile profile = (PremisProfile) subProfile;
+
+				List<? extends BaseRule<PremisValidationContext>> rules = null;
+				switch(layer) {
+				case ENCODING:
+					rules = PremisValidationLayer.createPremisRules(cz.zaf.premisvalidator.layers.enc.Encoding.ruleClasses);
+					break;
+				case WELL_FORMED:
+					rules = PremisValidationLayer.createPremisRules(cz.zaf.premisvalidator.layers.wf.WellFormed.ruleClasses);
+					break;
+				case NAMESPACE:
+					rules = PremisValidationLayer.createPremisRules(cz.zaf.premisvalidator.layers.ns.Namespace.ruleClasses);
+					break;
+				case VALIDATION:
+					rules = PremisValidationLayer.createPremisRules(cz.zaf.premisvalidator.layers.val.SchemaVal.ruleClasses);
+					break;
+				case OBSAH:
+					rules = PremisValidationLayer.createPremisRules(cz.zaf.premisvalidator.layers.obs.ContentVal.getRuleClasses(profile));
+					break;
+				default:
+					throw new IllegalStateException("Unrecognized layer: " + layer);
+				}
+				List<Rule<? extends RuleEvaluationContext>> result = new ArrayList<>();
+				if(rules!=null) {
+					for(BaseRule<PremisValidationContext> rule: rules) {
 						result.add(rule);
 					}
 				}
