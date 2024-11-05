@@ -16,9 +16,9 @@ import cz.zaf.schemas.mets.MetsNS;
 
 public class Rule04 extends AipRule {
 	public static final String CODE = "ns04";
-	public static final String RULE_TEXT = "\"Kořenový element obsahuje atribut xsi:schemaLocation s hodnotou \"\"http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd\r\n"
+	public static final String RULE_TEXT = "Kořenový element obsahuje atribut xsi:schemaLocation s hodnotou \"http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd\r\n"
 			+ "                          http://www.w3.org/1999/xlink http://www.loc.gov/standards/mets/xlink.xsd\r\n"
-			+ "                          https://DILCIS.eu/XML/METS/CSIPExtensionMETS https://earkcsip.dilcis.eu/schema/DILCISExtensionMETS.xsd\"\"\"";
+			+ "                          https://DILCIS.eu/XML/METS/CSIPExtensionMETS https://earkcsip.dilcis.eu/schema/DILCISExtensionMETS.xsd\"";
 	public static final String RULE_ERROR = "Chybí informace o umístění pro některé ze schémat.";
 	public static final String RULE_SOURCE = "CZDAX-PMT0101";
 	

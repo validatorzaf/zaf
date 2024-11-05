@@ -117,9 +117,11 @@ public class ContentValidationLayer extends BaseValidationLayer<AipValidationCon
 	}
 
 	@Override
-	protected void validateImpl() {		
-		
-		List<? extends BaseRule<AipValidationContext> > rules = createRules(ruleClasses);		
-		this.provedKontrolu(ctx, rules);		
+	protected void validateImpl() {
+		this.provedKontrolu(ctx, createRules());
+	}
+
+	public List<? extends BaseRule<AipValidationContext>> createRules() {
+		return createRules(ruleClasses);
 	}
 }

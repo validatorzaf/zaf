@@ -5,9 +5,13 @@
  */
 package cz.zaf.sipvalidator.nsesss2017;
 
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
+import cz.zaf.common.validation.Rule;
+import cz.zaf.common.validation.RuleEvaluationContext;
 import cz.zaf.common.validation.SimpleRuleContext;
 import cz.zaf.sipvalidator.nsesss2017.pravidla00.vir00_09.Pravidlo1;
 
@@ -50,12 +54,14 @@ public class K00_SkodlivehoKodu
 
 	@Override
     public void validateImpl() {
-        SimpleRuleContext<KontrolaNsess2017Context> virtCheckContext = new SimpleRuleContext<>(ctx);
-        
-        PravidloBase rules[] = {
-                new Pravidlo1(kontrolaOk, errorDescr)
-        };
-
-        provedKontrolu(virtCheckContext, rules);
+        SimpleRuleContext<KontrolaNsess2017Context> virtCheckContext = new SimpleRuleContext<>(ctx);        
+        provedKontrolu(virtCheckContext, getRules());
 	}
+
+	public List<? extends PravidloBase> getRules() {
+		return List.of(
+				new Pravidlo1(kontrolaOk, errorDescr)
+				);
+	}
+		
 }

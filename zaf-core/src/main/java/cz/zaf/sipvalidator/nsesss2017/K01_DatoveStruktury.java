@@ -6,6 +6,8 @@
 package cz.zaf.sipvalidator.nsesss2017;
 
 
+import java.util.List;
+
 import cz.zaf.common.validation.SimpleRuleContext;
 import cz.zaf.sipvalidator.nsesss2017.pravidla01.dat00_09.Pravidlo1;
 import cz.zaf.sipvalidator.nsesss2017.pravidla01.dat00_09.Pravidlo2;
@@ -31,13 +33,15 @@ public class K01_DatoveStruktury
     public void validateImpl() {
 
         SimpleRuleContext<KontrolaNsess2017Context> datCheckContext = new SimpleRuleContext<>(ctx);
+        this.provedKontrolu(datCheckContext, getRules());
+	}
 
-        PravidloBase rules[] = {
+
+	public static List<? extends PravidloBase> getRules() {
+		return List.of(
                 new Pravidlo1(),
                 new Pravidlo2(),
-                new Pravidlo3(),
-        };
-
-        this.provedKontrolu(datCheckContext, rules);
+                new Pravidlo3()
+				);
 	}
 }

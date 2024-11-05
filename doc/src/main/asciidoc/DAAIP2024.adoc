@@ -2,7 +2,7 @@
 
 Kontrola informačních balíčků AIP probíhá podle 
 https://frnk.lightcomp.cz/download/tacrda/nmet1/[standardu výměnného formátu digitálních archiválií verze 1.0 mezi digitálními archivy v České republice] 
-na základě sestavených xref:pravidla[pravidel].
+na základě sestavených xref:DAAIP2024_pravidla[pravidel].
 
 :leveloffset: +1
 

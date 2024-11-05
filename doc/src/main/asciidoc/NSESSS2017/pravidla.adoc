@@ -1,4 +1,4 @@
-﻿[[pravidla]]
+﻿[[NSESSS2017_pravidla]]
 = Pravidla
 
 Validátor má definovánu sadu pravidel, která se při kontrole uplatní. Sada pravidel se dělí na oblasti kontroly. 

@@ -5,6 +5,8 @@
  */
 package cz.zaf.sipvalidator.nsesss2017;
 
+import java.util.List;
+
 import cz.zaf.common.validation.SimpleRuleContext;
 import cz.zaf.sipvalidator.nsesss2017.pravidla02.kod00_09.Pravidlo1;
 
@@ -28,11 +30,11 @@ public class K02_ZnakoveSady
 
         SimpleRuleContext<KontrolaNsess2017Context> kodCheckContext = new SimpleRuleContext<>(ctx);
 
-        PravidloBase rules[] = {
-                new Pravidlo1(),
-        };
-
-        this.provedKontrolu(kodCheckContext, rules);
+        this.provedKontrolu(kodCheckContext, getRules());
 
     }
+
+	public static List<? extends PravidloBase> getRules() {
+		return List.of(new Pravidlo1());
+	}
 }

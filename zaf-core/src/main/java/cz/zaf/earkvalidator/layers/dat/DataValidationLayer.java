@@ -71,9 +71,13 @@ public class DataValidationLayer extends BaseValidationLayer<AipValidationContex
 
 	@Override
 	protected void validateImpl() {	
-		var rules = createRules(ruleClasses);
+		var rules = createRules();
 		
 		provedKontrolu(ctx, rules);
+	}
+
+	public List<? extends BaseRule<AipValidationContext>> createRules() {
+		return createRules(ruleClasses);
 	}
 
 }
