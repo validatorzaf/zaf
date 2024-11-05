@@ -71,7 +71,7 @@ Validátor ZAF lze volat prostřednictvím příkazového řádku:
 *-f|--format=*::
   Výstupní formát (1 - výchozí)
   
- * 1 = obecné schéma (validace_v1.xsd)
+ * 1 = obecné schéma (link:validace_v1.xsd[validace_v1.xsd])
  * 2 = schéma pouze pro kontrolu NSESSS
  
 
@@ -139,7 +139,9 @@ Validace SIPů uložených v adresáři s využitím jiné verze VeraPDF:
 
 [[pouziti_schema_xsd]]
 == Výsledek validace
-Výsledkem validace je XML dokument. Ten je vytvořen dle XSD schématu link:validace.xsd[validace.xsd].
+Výsledkem validace je XML dokument. Ten je vytvořen dle XSD schématu link:validace_v1.xsd[validace_v1.xsd].
+
+Z důvodu kompatibility je možné výsledky zapisovat i dle staršího schématu link:validaceSIP.xsd[validaceSIP.xsd].
 
 Výsledný dokument obsahuje:
 
