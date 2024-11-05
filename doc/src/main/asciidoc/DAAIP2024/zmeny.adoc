@@ -1,0 +1,6 @@
+﻿[[novezmeny]]
+= Změny v pravidlech
+
+== v1, 1.11.2024
+První verze pravidel
+

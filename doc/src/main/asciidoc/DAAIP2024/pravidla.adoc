@@ -1,0 +1,16 @@
+[[pravidla]]
+= Pravidla
+
+Validátor má definovánu sadu pravidel, která se při kontrole uplatní. Sada pravidel se dělí na oblasti kontroly. 
+U každého pravidla je vždy uvedeno:
+
+* znění pravidla
+* kód pravidla - jednoznačný identifikátor
+* zdroj - informace o zdroji pravidla, obvykle odkaz na závazný dokument (vyhláška, standard, metodický pokyn)
+* popis chyby - zobrazená informace uživateli v případě porušení pravidla
+* aktivita pravidla - kdy se pravidlo uplatní, například jen při předávání úplných AIPů; 
+  pokud není uvedeno pravidlo se uplatní vždy
+
+:leveloffset: +1
+
+:leveloffset: -1

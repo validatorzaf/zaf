@@ -1,0 +1,13 @@
+﻿= DAAIP2024
+
+Kontrola informačních balíčků AIP probíhá podle 
+https://frnk.lightcomp.cz/download/tacrda/nmet1/[standardu výměnného formátu digitálních archiválií verze 1.0 mezi digitálními archivy v České republice] 
+na základě sestavených xref:pravidla[pravidel].
+
+:leveloffset: +1
+
+include::DAAIP2024/pravidla.adoc[]
+
+include::DAAIP2024/zmeny.adoc[]
+
+:leveloffset: -1
