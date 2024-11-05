@@ -25,6 +25,7 @@ public class EarkCz {
 	public static final String OBJECT_IDENTIFIER_FONDS_ID = "FONDS_ID";
 	
 	public static final String SIGNIFICANT_PROPS_INSTITUTION_ID = "INSTITUTION_ID";
+	public static final String SIGNIFICANT_PROPS_AIP_VERSION = "AIP_VERSION";
 	
 	// CZDAX-PMS0304
 	public static final String EVENT_DATETIME_NA = "NA";

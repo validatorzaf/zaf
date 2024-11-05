@@ -33,7 +33,7 @@ public class Rule16 extends PremisRule {
 		for(EventComplexType event: premis.getEvent()) {
 			if(PremisConstants.EVENT_TYPE_ING.equals(event.getEventType().getValue())) {
 				if(eventIngest!=null) {
-					throw new ZafException(BaseCode.CHYBNA_KOMPONENTA, "Vnějde dva vznik archiválií v balíčku.", ctx.formatPosition(premis));
+					throw new ZafException(BaseCode.CHYBNA_KOMPONENTA, "Duplicitní událost ING.", ctx.formatPosition(premis));
 				}
 				checkEventIngest(event);
 				eventIngest = event;

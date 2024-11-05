@@ -31,7 +31,7 @@ public class Rule19 extends PremisRule {
 				checkEventIpc(event);
 			}
 		}
-}
+	}
 
 	private void checkEventIpc(EventComplexType event) {
 		
