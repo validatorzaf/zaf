@@ -18,7 +18,6 @@ import cz.zaf.schema.premis3.IntellectualEntity;
 import cz.zaf.schema.premis3.ObjectComplexType;
 import cz.zaf.schema.premis3.ObjectIdentifierComplexType;
 import cz.zaf.schema.premis3.PremisComplexType;
-import cz.zaf.schema.premis3.Representation;
 import jakarta.xml.bind.annotation.XmlType;
 
 public class PremisValidationContext implements RuleEvaluationContext {

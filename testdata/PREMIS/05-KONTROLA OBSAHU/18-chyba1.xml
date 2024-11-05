@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<premis xmlns="http://www.loc.gov/premis/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.loc.gov/premis/v3 http://www.loc.gov/standards/premis/premis.xsd"
+        version="3.0">
+<!-- Zachycené objekty
+  Object/IntelEntita: Fond 425 (signifcantProp: archiv 100000010)
+  Object/Representation: Submission (name: submission) - předaná data v rámci přejímky
+  Object/IntelEntita 2: Tento balíček (volitelné AIP_IP)
+
+  Agent 1: Česká tisková kancelář (Agent, může být předávající, původce...)
+  Agent 2: Národní archiv (Agent, může být přejímající)
+  
+  Event: Creation (Datum, 
+                 původce: Agent 1, 
+                 výsledek: Object/Representation 1 (submission)
+                 )
+  Event: Ingest (Datum, 
+                 předávající: Agent 1, 
+                 přejímající: Agent 2, 
+                 zdroj: Object/Representation 1 (submission),
+                 výsledek: Tento balíček,
+                 linkingObject: role: superior record, PREJIMKA_ID / INGESTION_ID : Přejímka 5589,
+                 linkingObject: role: superior record, CISLO_JEDNACI / REFERENCE_NUMBER : NA 210823/1258,
+                 linkingObject: role: superior record, CZ_NAD_VNEZ,
+                 linkingObject: role: superior record, CZ_NAD_VNEZ_ID,
+                 linkingObject: role: superior record, CZ_NAD_VNIZ,
+                 linkingObject: role: superior record, CZ_NAD_VNIZ_ID,
+                 linkingObject, role: funds: Object/IntelEntita 1
+                 )
+
+  !! Není součástí ukázky níže, pouze ukázka možností:
+  Event: Transfer (Datum, 
+                   předávající: Agent X
+                   přejímající: Agent 2, 
+                   Zdroj: Vnez 1, Balíček
+                   výsledek: Vnez 2, Balíček
+                   linkingObject: role: superior record, CZ_NAD_VNEZ
+                   linkingObject: role: superior record, CZ_NAD_VNEZ_ID
+                   linkingObject: role: superior record, CZ_NAD_VNIZ
+                   linkingObject: role: superior record, CZ_NAD_VNIZ_ID
+                   linkingObject, role: funds: Object/IntelEntita 1
+                   ) 
+-->
+
+
+  <!-- Objekt fondu
+
+       Uvádí se obvykle jako samostatný objekt. Pokud není pochybnost 
+       o příslušnosti fondu k archivu, lze odkazovat z míst užití přímo na identifikátor fondu.
+       Vhodnější je však reprezentace jako samostatný objekt, který umožňuje zachytit
+       další doplňkové hodnoty, jako je například název fondu.
+              
+       Povinně musí mít uvedeny tyto hodnoty:
+       - lokální identifikátor pro odkazování
+       - identifikátor typu FONDS_ID - číslo fondu
+       - pro uložení vazby na fond MUSÍ být vytvořena significantProperties 
+         s typem INSTITUTION_ID. Jako hodnota se uvede identifikátor archivu.
+    -->
+  <object xsi:type="intellectualEntity">
+    <objectIdentifier>
+      <objectIdentifierType>local</objectIdentifierType>
+      <objectIdentifierValue>uuid-c1e39569-6ff5-415d-a752-903988080c03</objectIdentifierValue>
+    </objectIdentifier>
+    <objectIdentifier>
+      <objectIdentifierType>FONDS_ID</objectIdentifierType>
+      <objectIdentifierValue>425</objectIdentifierValue>
+    </objectIdentifier>
+   <!-- Příslušnost fondu k archivu -->
+   <significantProperties>
+      <significantPropertiesType>INSTITUTION_ID</significantPropertiesType>
+      <significantPropertiesValue>100000010</significantPropertiesValue>
+    </significantProperties>
+    <originalName>Veselý Hubert, JUDr.</originalName>
+  </object>
+
+  <!-- Objekt reprezentace pro předané archiválie.
+
+       Umožňuje napojení v budoucnu dalších informací. 
+       Musí se uvádět v samotném elementu pokud PACKAGE-INFO.xml 
+       je použit samostatně bez hlavního METS.xml. V případě 
+       použití s METS.xml není element nutný a informaci o reprezentaci 
+       lze převzít z tohoto souboru.
+    -->
+  <object xsi:type="representation">
+    <objectIdentifier>
+      <objectIdentifierType>local</objectIdentifierType>
+      <objectIdentifierValue>uuid-a13c7fb3-caad-4505-8a3e-144fc6dca744</objectIdentifierValue>
+    </objectIdentifier>
+    <originalName>submission</originalName>
+  </object>
+
+
+  <!-- Objekt balíčku 
+
+      Balíček je objektem typu intelektuální entita.  Může se jednat 
+      o samotný aktuální balíček nebo o objekt reprezentující 
+      identifikátor balíčku, který mohl být předchůdcem aktuálního.
+
+      V kontextu užití souboru může obsahovat navíc:
+       - informaci o velikosti uložených dat
+       - aktuální verze balíčku
+       - identifikátor balíčku
+      -->
+  <object xsi:type="intellectualEntity">
+    <!-- Definice vlastního balíčku -->
+    <objectIdentifier>
+      <objectIdentifierType>local</objectIdentifierType>
+      <objectIdentifierValue>_THIS</objectIdentifierValue>
+    </objectIdentifier>
+
+    <!-- Volitelné vyjádření aktuálního ID balíčku v DA.
+         Pokud není uvedena kombinace local/_THIS, tak se uvede jiný 
+         lokální identifikátor balíčku umožňující jeho použití
+         v rámci událostí.
+       -->
+    <objectIdentifier>
+      <objectIdentifierType>AIP_ID</objectIdentifierType>
+      <objectIdentifierValue>83552</objectIdentifierValue>
+    </objectIdentifier>
+
+    <!-- Volitelné uvedení verze balíčku, povinně se uvádí při poskytnutí 
+         samotného PACKAGE-INFO.xml pro zpracování.
+         -->
+    <significantProperties>
+      <significantPropertiesType>AIP_VERSION</significantPropertiesType>
+      <significantPropertiesValue>verze balíčku</significantPropertiesValue>
+    </significantProperties>
+
+    <!-- Volitelné vyjádření velikosti balíčku -->
+    <significantProperties>
+      <significantPropertiesType>AIP_SIZE</significantPropertiesType>
+      <significantPropertiesValue>velikost v bytech</significantPropertiesValue>
+    </significantProperties>
+
+  </object>
+
+  <!-- Vznik dokumentu/objektu z nějž se stala archiválie-->
+  <event>
+    <eventIdentifier>
+      <eventIdentifierType>local</eventIdentifierType>
+      <eventIdentifierValue>uuid-27c8a259-7cf5-47e2-9bce-3b3da7f7c063</eventIdentifierValue>
+    </eventIdentifier>
+    <!-- Určení, že se jedná o vznik -->
+    <eventType>cre</eventType>
+    <!-- Datace archiválie uložené v balíčku -->
+    <eventDateTime>2020-10-12/2023-05-16</eventDateTime>
+
+    <linkingAgentIdentifier>
+      <linkingAgentIdentifierType>local</linkingAgentIdentifierType>
+      <linkingAgentIdentifierValue>uuid-916d7dc2-b19e-43d4-ba28-4c87b5d7c697</linkingAgentIdentifierValue>
+      <!-- původce -->
+      <linkingAgentRole>ORIGINATOR</linkingAgentRole>
+    </linkingAgentIdentifier>
+    <!-- odkaz na submission -->
+    <linkingObjectIdentifier>
+      <linkingObjectIdentifierType>local</linkingObjectIdentifierType>
+      <linkingObjectIdentifierValue>uuid-a13c7fb3-caad-4505-8a3e-144fc6dca744</linkingObjectIdentifierValue>
+      <linkingObjectRole>out</linkingObjectRole>
+    </linkingObjectIdentifier>
+  </event>
+
+  <!-- Vložení archiválií do digitálního archivu
+
+       Jako součást události vložení archiválií se uvádí:
+       - předávající 
+       - přejímající
+       - výsledný balíček
+       - identifikátory souvisejících externích objektů (přejímka, číslo jednací, vnější či vnitřní změna)
+    -->
+  <event>
+    <eventIdentifier>
+      <eventIdentifierType>local</eventIdentifierType>
+      <eventIdentifierValue>uuid-27c8a259-7cf5-47e2-9bce-3b3da7f7c063</eventIdentifierValue>
+    </eventIdentifier>
+    <!-- Určení, že se jedná o uložení do DA -->
+    <eventType>ing</eventType>
+    <eventDateTime>2021-10-12T00:00:00+01:00</eventDateTime>
+
+    <linkingAgentIdentifier>
+      <linkingAgentIdentifierType>local</linkingAgentIdentifierType>
+      <linkingAgentIdentifierValue>uuid-916d7dc2-b19e-43d4-ba28-4c87b5d7c697</linkingAgentIdentifierValue>
+      <!-- předávající -->
+      <linkingAgentRole>SUBMITTER</linkingAgentRole>
+    </linkingAgentIdentifier>
+  
+    <!-- přejímající archiv, bylo by možné i odkazovat přímo bez uvedení jména -->
+    <linkingAgentIdentifier>
+      <linkingAgentIdentifierType>local</linkingAgentIdentifierType>
+      <linkingAgentIdentifierValue>uuid-65863862-b2a7-4e83-8de9-62130a305b22</linkingAgentIdentifierValue>
+      <linkingAgentRole>CURATOR</linkingAgentRole>
+    </linkingAgentIdentifier>
+
+    <!-- Zdrojem jsou archiválie ze submission. -->
+    <linkingObjectIdentifier>
+      <linkingObjectIdentifierType>local</linkingObjectIdentifierType>
+      <linkingObjectIdentifierValue>uuid-a13c7fb3-caad-4505-8a3e-144fc6dca744</linkingObjectIdentifierValue>
+      <linkingObjectRole>sou</linkingObjectRole>
+    </linkingObjectIdentifier>
+
+    <linkingObjectIdentifier>
+      <!-- Event outcome - tento balíček -->
+      <linkingObjectIdentifierType>local</linkingObjectIdentifierType>
+      <linkingObjectIdentifierValue>_THIS</linkingObjectIdentifierValue>
+      <linkingObjectRole>out</linkingObjectRole>
+    </linkingObjectIdentifier>
+
+    <!-- Odkaz na přejímku -->
+    <linkingObjectIdentifier>
+      <linkingObjectIdentifierType>INGESTION_ID</linkingObjectIdentifierType>
+      <linkingObjectIdentifierValue>5589</linkingObjectIdentifierValue>
+      <linkingObjectRole>out</linkingObjectRole>
+    </linkingObjectIdentifier>
+
+    <!-- Číslo jednací -->
+    <linkingObjectIdentifier>
+      <linkingObjectIdentifierType>REFERENCE_NUMBER</linkingObjectIdentifierType>
+      <linkingObjectIdentifierValue>NA 210823/1258</linkingObjectIdentifierValue>
+      <linkingObjectRole>out</linkingObjectRole>
+    </linkingObjectIdentifier>
+
+    <!-- Event outcome - vnější změna -->
+    <linkingObjectIdentifier>
+      <linkingObjectIdentifierType>CZ_NAD_VNEZ</linkingObjectIdentifierType>
+      <linkingObjectIdentifierValue>100/2023</linkingObjectIdentifierValue>
+      <linkingObjectRole>out</linkingObjectRole>
+    </linkingObjectIdentifier>
+
+    <!-- Cílový archivní fond -->
+    <linkingObjectIdentifier>
+      <linkingObjectIdentifierType>local</linkingObjectIdentifierType>
+      <linkingObjectIdentifierValue>uuid-c1e39569-6ff5-415d-a752-903988080c03</linkingObjectIdentifierValue>
+      <linkingObjectRole>out</linkingObjectRole>
+    </linkingObjectIdentifier>
+  </event>
+
+  <!-- Pokud dojde k přenosu do jiného archivu vytvoří se událost typu transfer -->
+  <event>
+    <eventIdentifier>
+      <eventIdentifierType>local</eventIdentifierType>
+      <eventIdentifierValue>uuid-27c8a259-7cf5-47e2-9bce-3b3da7f7c063</eventIdentifierValue>
+    </eventIdentifier>
+    <!-- Určení, že se jedná o přenos -->
+    <eventType>tra</eventType>
+    <eventDateTime>2023-10-12T00:00:00+01:00</eventDateTime>
+    <!--  Přejímající archiv -->
+    <linkingAgentIdentifier>
+      <linkingAgentIdentifierType>local</linkingAgentIdentifierType>
+      <linkingAgentIdentifierValue>uuid-65863862-b2a7-4e83-8de9-62130a305b22</linkingAgentIdentifierValue>
+      <linkingAgentRole>CURATOR</linkingAgentRole>
+    </linkingAgentIdentifier>
+    <!-- Uvedeni zdrojoveho balicku -->
+    <linkingObjectIdentifier>
+      <linkingObjectIdentifierType>local</linkingObjectIdentifierType>
+      <linkingObjectIdentifierValue>_THIS</linkingObjectIdentifierValue>
+      <linkingObjectRole>sou</linkingObjectRole>
+    </linkingObjectIdentifier>
+    <!-- Uvedeni vnitrni/vnejsi zmeny -->
+    <linkingObjectIdentifier>
+      <linkingObjectIdentifierType>CZ_NAD_VNIZ</linkingObjectIdentifierType>
+      <linkingObjectIdentifierValue>100/2023</linkingObjectIdentifierValue>
+      <linkingObjectRole>out</linkingObjectRole>
+    </linkingObjectIdentifier>
+    <!--  Cílový archivní fond -->
+    <linkingObjectIdentifier>
+      <linkingObjectIdentifierType>local</linkingObjectIdentifierType>
+      <linkingObjectIdentifierValue>uuid-c1e39569-6ff5-415d-a752-903988080c03</linkingObjectIdentifierValue>
+      <linkingObjectRole>out</linkingObjectRole>
+    </linkingObjectIdentifier>
+  </event>
+
+  <!-- Pokud dojde k přenosu do jiného digitálního archivu vytvoří se událost typu export -->
+  <event>
+    <eventIdentifier>
+      <eventIdentifierType>local</eventIdentifierType>
+      <eventIdentifierValue>uuid-306cf919-3adc-4b8f-8a07-674433fc0a30</eventIdentifierValue>
+    </eventIdentifier>
+    <!-- Určení, že se jedná o přenos -->
+    <eventType>exp</eventType>
+    <eventDateTime>2024-10-12T00:00:00+01:00</eventDateTime>
+    <!-- Uvedeni zdrojoveho balicku -->
+    <linkingObjectIdentifier>
+      <linkingObjectIdentifierType>local</linkingObjectIdentifierType>
+      <linkingObjectIdentifierValue>_THIS</linkingObjectIdentifierValue>
+      <linkingObjectRole>sou</linkingObjectRole>
+    </linkingObjectIdentifier>
+    <!-- Uvedeni vnitrni/vnejsi zmeny -->
+    <linkingObjectIdentifier>
+      <linkingObjectIdentifierType>CZ_NAD_VNEZ</linkingObjectIdentifierType>
+      <linkingObjectIdentifierValue>100/2024</linkingObjectIdentifierValue>
+      <linkingObjectRole>out</linkingObjectRole>
+    </linkingObjectIdentifier>
+  </event>
+  <!-- Informace o technickém vzniku balíčku -->
+  <event>
+    <eventIdentifier>
+      <eventIdentifierType>local</eventIdentifierType>
+      <eventIdentifierValue>uuid-943df74c-2e09-4d77-9799-2267249fd676</eventIdentifierValue>
+    </eventIdentifier>
+    <!-- Určení, že se jedná o přenos -->
+    <eventType>ipc</eventType>
+    <eventDateTime>2023-10-12T00:00:00+01:00</eventDateTime>
+    <!-- software tvořící balíček -->
+    <linkingAgentIdentifier>
+      <linkingAgentIdentifierType>local</linkingAgentIdentifierType>
+      <linkingAgentIdentifierValue>uuid-18074e4a-05e5-492b-9a21-a650baca17c8</linkingAgentIdentifierValue>
+      <linkingAgentRole>imp</linkingAgentRole>
+    </linkingAgentIdentifier>
+    <!-- Uvedeni cílového balicku -->
+    <linkingObjectIdentifier>
+      <linkingObjectIdentifierType>local</linkingObjectIdentifierType>
+      <linkingObjectIdentifierValue>_THIS</linkingObjectIdentifierValue>
+      <linkingObjectRole>out</linkingObjectRole>
+    </linkingObjectIdentifier>
+  </event>
+  <!-- Osoba: předávající, původce,... -->
+  <agent>
+    <agentIdentifier>
+      <agentIdentifierType>local</agentIdentifierType>
+      <agentIdentifierValue>uuid-916d7dc2-b19e-43d4-ba28-4c87b5d7c697</agentIdentifierValue>
+    </agentIdentifier>
+    <!-- Volitelný identifikátor v CAM 
+         Lze uvádět i jiné typy identifikátorů, viz dále INSTITUTION_ID
+      -->
+    <agentIdentifier>
+      <agentIdentifierType>CAM_ID</agentIdentifierType>
+      <agentIdentifierValue>120348</agentIdentifierValue>
+    </agentIdentifier>
+    <!-- Musí obsahovat pref. označení -->
+    <agentName>Česká tisková kancelář</agentName>
+    <agentType>org</agentType>
+  </agent>
+
+  <!-- Archiv -->
+  <agent>
+    <agentIdentifier>
+      <agentIdentifierType>local</agentIdentifierType>
+      <agentIdentifierValue>uuid-65863862-b2a7-4e83-8de9-62130a305b22</agentIdentifierValue>
+    </agentIdentifier>
+    <agentIdentifier>
+      <agentIdentifierType>INSTITUTION_ID</agentIdentifierType>
+      <agentIdentifierValue>100000010</agentIdentifierValue>
+    </agentIdentifier>
+    <agentName>Národní archiv</agentName>
+    <agentType>org</agentType>
+  </agent>
+
+  <!-- Software -->
+<agent>
+  <agentIdentifier>
+    <agentIdentifierType>local</agentIdentifierType>
+    <agentIdentifierValue>uuid-18074e4a-05e5-492b-9a21-a650baca17c8</agentIdentifierValue>
+  </agentIdentifier>
+  <agentName>Amadeus</agentName>
+  <agentType>sof</agentType>
+  <agentVersion>1.22</agentVersion>
+</agent>
+</premis>
