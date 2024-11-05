@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:validacesip="http://www.ahmp.cz/schema/validacesip/v1" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" targetNamespace="http://www.ahmp.cz/schema/validacesip/v1" elementFormDefault="qualified" attributeFormDefault="unqualified" id="validaceSIP" version="1">
+    <xs:annotation>
+        <xs:documentation xml:lang="cs">Schéma XML pro zaznamenání výsledku validace datového balíčku SIP</xs:documentation>
+        <xs:appinfo>
+            <rdf:RDF>
+                <rdf:Description>
+                    <dc:Creator>ZAF</dc:Creator>
+                    <dc:Description>Schéma XML pro zaznamenání výsledku validace datového balíčku SIP</dc:Description>
+                    <dc:Publisher>Archiv hlavního města Prahy</dc:Publisher>
+                    <dc:Date>2022-02-04</dc:Date>
+                    <dc:Type>XML Schema</dc:Type>
+                    <dc:Format>text/xml</dc:Format>
+                    <dc:Language>cs-CZ</dc:Language>
+                </rdf:Description>
+            </rdf:RDF>
+        </xs:appinfo>
+    </xs:annotation>
+    
+    <!-- definice kořenových elementů -->
+    <xs:element name="validaceSIP">
+        <xs:annotation>
+            <xs:documentation xml:lang="cs">Prvek pro popis provedené validace a zaznamenání jejího výsledku.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="sip" type="validacesip:tSip" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="validaceID" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation xml:lang="cs">Jednoznačný identifikátor provedené validace.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="datumValidace" type="xs:dateTime" use="required">
+                <xs:annotation>
+                    <xs:documentation xml:lang="cs">Prvek pro zaznamenání časového údaje provedení validace. Datum je zaznamenáno ve formátu UTC (ve tvaru "yyyy-MM-dd'T'HH:mm:ssXXX").</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="nazevAplikace" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation xml:lang="cs">Název aplikace, která provádí validaci.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="verzeAplikace" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation xml:lang="cs">Verze aplikace, která provádí validaci.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="druhValidace" type="validacesip:tDruhValidace" use="required" />
+            <xs:attribute name="druhValidaceJine" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation xml:lang="cs">Prvek pro zaznamenání jiného druhu validace než těch uvedených v atributu druhValidace.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="verzePravidel" type="xs:positiveInteger" use="required">
+                <xs:annotation>
+                    <xs:documentation xml:lang="cs">Verze pravidel, podle kterých se provádí validace.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <!-- konec definice kořenových elementů -->
+    
+    <!-- definice jednoduchých typů -->
+    <xs:simpleType name="tDruhValidace">
+        <xs:annotation>
+            <xs:documentation xml:lang="cs">Prvek pro zaznamenání účelu validace datových balíčků SIP. Podle tohoto účelu je zvolena příslušná kontrola s určitými pravidly.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="skartační řízení (jen metadata)" />
+            <xs:enumeration value="skartační řízení (s komponentami)" />
+            <xs:enumeration value="přejímka" />
+            <xs:enumeration value="jiné" />
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="tTypEntity">
+        <xs:annotation>
+            <xs:documentation xml:lang="cs">Prvek pro zaznamenání typu entity.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Díl" />
+            <xs:enumeration value="Dokument" />
+            <xs:enumeration value="Součást" />
+            <xs:enumeration value="Spis" />
+            <xs:enumeration value="Spisový plán" />
+            <xs:enumeration value="Věcná skupina" />
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="tVysledekKontroly">
+        <xs:annotation>
+            <xs:documentation xml:lang="cs">Prvek pro zaznamenání výsledku kontroly.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ok" />
+            <xs:enumeration value="chyba" />
+            <xs:enumeration value="nespustena" />
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- konec definice jednoduchých typů -->
+    
+    <!-- definice složených typů -->
+    <xs:complexType name="tSip">
+        <xs:annotation>
+            <xs:documentation xml:lang="cs">Prvek pro popis datového balíčku SIP.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="kontrola" type="validacesip:tKontrola" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="nazevSouboru" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation xml:lang="cs">Název souboru/složky datového balíčku SIP.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="OBJID" type="xs:string">
+            <xs:annotation>
+                <xs:documentation xml:lang="cs">Jednoznačný identifikátor datového balíčku SIP převzatý z hodnoty atributu OBJID kořenového elementu &lt;mets:mets&gt;.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    
+    <xs:complexType name="tKontrola">
+        <xs:annotation>
+            <xs:documentation xml:lang="cs">Prvek pro popis kontroly podle skupiny pravidel.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="pravidlo" type="validacesip:tPravidlo" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="nazev" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation xml:lang="cs">Název kontroly.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="stav" type="validacesip:tVysledekKontroly" use="required" />
+    </xs:complexType>
+    
+    <xs:complexType name="tPravidlo">
+        <xs:annotation>
+            <xs:documentation xml:lang="cs">Prvek pro popis konkrétního pravidla, podle kterého se kontrola provádí.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="kod" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation xml:lang="cs">Jednoznačné označení pravidla.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="zneni" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation xml:lang="cs">Znění pravidla.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="zdroj" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation xml:lang="cs">Odkaz na normu, která implikuje definici pravidla.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="kodChyby" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation xml:lang="cs">Kód chyby umožňující její strojovou interpretaci.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="popisChyby" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation xml:lang="cs">Lidsky srozumitelný popis v případě porušení pravidla.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="vypisChyby" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation xml:lang="cs">Chybový stav s podrobnostmi dané nalezené chyby.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="mistoChyby" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation xml:lang="cs">Odkaz na řádek a sloupec v datovém balíčku SIP, kde byla nalezena chyba.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="entity" type="validacesip:tEntity" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="tEntity">
+        <xs:annotation>
+            <xs:documentation xml:lang="cs">Prvek pro popis entit, kterých se chyba týká.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="identifikator" type="validacesip:tIdentifikator" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tIdentifikator">
+        <xs:annotation>
+            <xs:documentation xml:lang="cs">Hodnota identifikátoru.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="typ" type="validacesip:tTypEntity" use="required">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="cs">Typ entity.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="zdroj" type="xs:string" use="required">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="cs">Zdroj identifikátoru.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <!-- konec definice složených typů -->
+    
+</xs:schema>

@@ -30,6 +30,15 @@ Výdána verze 1.1.1
 Jednotlivé verze jsou dostupné na [GitHub Releases](https://github.com/validatorzaf/zaf/releases) a 
 v repozitáři pro Maven [https://www.lightcomp.cz/releases/repository/lc-public-release/](https://www.lightcomp.cz/releases/repository/lc-public-release/).
 
+### Připravovaná verze
+
+Verze 2.0.0-RC-2
+
+[Dokumentace 2.0](doc-2.0)
+
+Ke stažení v repozitáři pro Maven [https://pkgs.lightcomp.cz/maven/public-release/cz/zaf/zaf-cmd/](https://pkgs.lightcomp.cz/maven/public-release/cz/zaf/zaf-cmd/).
+
+
 ### Starší verze
 
 Verze 1.0.3
