@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.xml.namespace.QName;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import cz.zaf.common.exceptions.ZafException;
@@ -34,7 +35,7 @@ public class Rule10 extends AipRule {
 					ctx.formatMetsPosition(ctx.getMets()));
 		}
 		List<Agent> agents = metsHdr.getAgent();
-		if (agents == null) {
+		if (CollectionUtils.isEmpty(agents)) {
 			throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element mets/metsHdr/agent.", 
 					ctx.formatMetsPosition(metsHdr));
 		}
