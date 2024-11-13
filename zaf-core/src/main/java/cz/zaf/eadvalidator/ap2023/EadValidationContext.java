@@ -9,9 +9,7 @@ import org.w3c.dom.Element;
 
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.validation.BaseValidationContext;
-import cz.zaf.common.validation.BaseValidator;
 import cz.zaf.common.validation.RuleEvaluationContext;
-import cz.zaf.common.validation.ValidationLayerContext;
 import cz.zaf.schema.ead3.Ead;
 import jakarta.xml.bind.annotation.XmlType;
 
@@ -92,5 +90,9 @@ public class EadValidationContext
 			sb.append(object.getClass().getSimpleName());
 		}
 		return sb.toString();
+	}
+
+	public EadLevelIterator getEadLevelIterator() {		
+		return new EadLevelIterator(eadLoader.getEad());
 	}
 }

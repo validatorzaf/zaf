@@ -1,7 +1,12 @@
 package cz.zaf.eadvalidator.ap2023.layers.val.val00_09;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+
+import javax.xml.transform.Source;
 import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamSource;
 
 import org.xml.sax.SAXException;
 
@@ -29,9 +34,10 @@ public class Rule01 extends EadRule {
 		var schema = SchemaResourceLoader.getCombined(EadNS.SCHEMA_RESOURCE, CamNS.SCHEMA_RESOURCE);
 		var validator = schema.newValidator();
 		validator.setErrorHandler(new ValidationRuleErrorHandler());
-		
-		DOMSource source = new DOMSource(ctx.getRootElement());
-		try {        		
+				
+		// DOMSource source = new DOMSource(ctx.getRootElement());
+		try(InputStream is = Files.newInputStream(ctx.getLoader().getFilePath())) {
+			Source source = new StreamSource(is);
 			validator.validate(source);
 		} catch (SAXException e) {
 			throw new ZafException(BaseCode.CHYBA, "Chyba SAX", e);			

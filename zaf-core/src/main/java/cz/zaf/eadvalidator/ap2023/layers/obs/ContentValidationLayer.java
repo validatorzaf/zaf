@@ -19,6 +19,7 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule08;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule09;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs10_19.Rule11;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs10_19.Rule12;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule36;
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
 
 public class ContentValidationLayer extends BaseValidationLayer<EadValidationContext, EadValidationContext> {
@@ -30,6 +31,8 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 			Rule03.class,
 			Rule04.class,
 			Rule04a.class,
+			
+			Rule36.class,
 	};
 	
 	Class<?> findingAidRules[] = {
@@ -45,6 +48,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 			Rule09.class,
 			Rule11.class,
 			Rule12.class,
+			Rule36.class,
 	};
 
 	public ContentValidationLayer(ValidationSubprofile profilValidace) {
