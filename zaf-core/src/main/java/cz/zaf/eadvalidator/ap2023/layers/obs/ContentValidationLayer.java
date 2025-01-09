@@ -19,7 +19,21 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule08;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule09;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs10_19.Rule11;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs10_19.Rule12;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs10_19.Rule15;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs10_19.Rule19;
+
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule20;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule22; 
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule23; 
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule24; 
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule25; 
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule26; 
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule27; 
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule28; 
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule29; 
+
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule36;
+
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
 
 public class ContentValidationLayer extends BaseValidationLayer<EadValidationContext, EadValidationContext> {
@@ -32,6 +46,11 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 			Rule04.class,
 			Rule04a.class,
 			
+                        Rule19.class,
+                        
+                        Rule20.class,
+                        Rule22.class,
+                        
 			Rule36.class,
 	};
 	
@@ -48,6 +67,17 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 			Rule09.class,
 			Rule11.class,
 			Rule12.class,
+                        Rule15.class,
+                        Rule19.class,
+                        Rule20.class,
+                        Rule22.class,
+                        Rule23.class,
+                        Rule24.class,
+                        Rule25.class,
+                        Rule26.class,
+                        Rule27.class,
+                        Rule28.class,
+                        Rule29.class,
 			Rule36.class,
 	};
 
