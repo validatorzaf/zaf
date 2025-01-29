@@ -33,7 +33,7 @@ public class Rule20 extends EadRule {
             throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí nebo je prázdný atribut localtype.", ctx.formatEadPosition(agencycode));
         }
 
-        if (EadNS.LOCALTYPE_INSTITUTION_ID.equals(value)) {
+        if (!EadNS.LOCALTYPE_INSTITUTION_ID.equals(value)) {
             throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut localtype má chybnou hodnotu: " + value, ctx.formatEadPosition(agencycode));
         }
     }
