@@ -8,6 +8,7 @@ import cz.zaf.schema.ead3.Ead;
 import cz.zaf.schema.ead3.Localcontrol;
 import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
+import cz.zaf.schemas.ead.EadNS;
 
 public class Rule25 extends EadRule {
 
@@ -34,7 +35,7 @@ public class Rule25 extends EadRule {
         Localcontrol found = null;
         if (!CollectionUtils.isEmpty(loccontrol)) {
             for (Localcontrol otherLoccontrol : loccontrol) {
-                if ("CZ_FINDING_AID_EAD_PROFILE".equals(otherLoccontrol.getLocaltype())) {
+                if (EadNS.LOCALTYPE_FINDING_AID_EAD_PROFILE.equals(otherLoccontrol.getLocaltype())) {
                     if (found != null) {
                         throw new ZafException(BaseCode.DUPLICITA, "Hodnota uvedena vícekrát", ctx.formatEadPosition(otherLoccontrol));
                     }

@@ -8,6 +8,7 @@ import cz.zaf.schema.ead3.Ead;
 import cz.zaf.schema.ead3.Localcontrol;
 import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
+import cz.zaf.schemas.ead.EadNS;
 
 public class Rule24 extends EadRule {
 
@@ -32,14 +33,12 @@ public class Rule24 extends EadRule {
         }
 
         Localcontrol found = null;
-        if (!CollectionUtils.isEmpty(loccontrol)) {
-            for (Localcontrol otherLoccontrol : loccontrol) {
-                if ("RULES".equals(otherLoccontrol.getLocaltype())) {
-                    if (found != null) {
-                        throw new ZafException(BaseCode.DUPLICITA, "Hodnota uvedena vícekrát", ctx.formatEadPosition(otherLoccontrol));
-                    }
-                    found = otherLoccontrol;
+        for (Localcontrol otherLoccontrol : loccontrol) {
+            if (EadNS.LOCALTYPE_RULES.equals(otherLoccontrol.getLocaltype())) {
+                if (found != null) {
+                    throw new ZafException(BaseCode.DUPLICITA, "Hodnota uvedena vícekrát", ctx.formatEadPosition(otherLoccontrol));
                 }
+                found = otherLoccontrol;
             }
         }
         if (found == null) {

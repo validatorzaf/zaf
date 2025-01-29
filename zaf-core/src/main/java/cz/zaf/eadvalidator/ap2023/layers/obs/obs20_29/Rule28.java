@@ -10,6 +10,7 @@ import cz.zaf.schema.ead3.Term;
 import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import cz.zaf.schemas.ead.EadNS;
 
 public class Rule28 extends EadRule {
 
@@ -37,14 +38,14 @@ public class Rule28 extends EadRule {
         Localcontrol parent = null;
         if (!CollectionUtils.isEmpty(loccontrol)) {
             for (Localcontrol localcontrol : loccontrol) {
-                if ("RULES".equals(localcontrol.getLocaltype())) {
+                if (EadNS.LOCALTYPE_RULES.equals(localcontrol.getLocaltype())) {
                     Term term = localcontrol.getTerm();
                     String termIdent = term.getIdentifier();
-                    if ("CZ_ZP2013".equals(termIdent)) {
+                    if (EadNS.IDENTIFIER_CZ_ZP2013.equals(termIdent)) {
                         termCondition1 = term;
                     }
                 }
-                if ("FINDING_AID_TYPE".equals(localcontrol.getLocaltype())) {
+                if (EadNS.LOCALTYPE_FINDING_AID_TYPE.equals(localcontrol.getLocaltype())) {
                     parent = localcontrol;
                     termCondition2 = localcontrol.getTerm();
                 }
@@ -61,7 +62,7 @@ public class Rule28 extends EadRule {
                 if (StringUtils.isEmpty(identifier)) {
                     throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí nebo je prázdný atribut identifier", ctx.formatEadPosition(termCondition2));
                 }
-                if (!("MANIP_SEZNAM".equals(identifier) || "INVENTAR".equals(identifier) || "KATALOG".equals(identifier))) {
+                if (!(EadNS.IDENTIFIER_MANIP_SEZNAM.equals(identifier) || EadNS.IDENTIFIER_INVENTAR.equals(identifier) || EadNS.IDENTIFIER_KATALOG.equals(identifier))) {
                     throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut identifier obsahuje nesprávnou hodnotu " + identifier, ctx.formatEadPosition(termCondition2));
                 }
             }

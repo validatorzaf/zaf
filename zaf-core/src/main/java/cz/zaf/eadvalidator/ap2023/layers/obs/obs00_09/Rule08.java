@@ -14,6 +14,7 @@ import cz.zaf.schema.ead3.Date;
 import cz.zaf.schema.ead3.Ead;
 import cz.zaf.schema.ead3.Filedesc;
 import cz.zaf.schema.ead3.Publicationstmt;
+import cz.zaf.schemas.ead.EadNS;
 
 public class Rule08 extends EadRule {
 	
@@ -43,7 +44,7 @@ public class Rule08 extends EadRule {
 		for(Object pda: pdas) {
 			if(pda instanceof Date) {
 				Date date = (Date)pda;
-				if("DESCRIPTION_DATE".equals(date.getLocaltype())) {
+				if(EadNS.LOCALTYPE_DESCRIPTION_DATE.equals(date.getLocaltype())) {
 					if(found!=null) {
 						throw new ZafException(BaseCode.DUPLICITA, "Duplicitní element.", ctx.formatEadPosition(date));
 					}

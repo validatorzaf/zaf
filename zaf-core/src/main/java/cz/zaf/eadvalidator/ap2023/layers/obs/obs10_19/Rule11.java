@@ -17,6 +17,7 @@ import cz.zaf.schema.ead3.P;
 import cz.zaf.schema.ead3.Part;
 import cz.zaf.schema.ead3.Publicationstmt;
 import jakarta.xml.bind.JAXBElement;
+import cz.zaf.schemas.ead.EadNS;
 
 public class Rule11 extends EadRule {
 	
@@ -60,7 +61,7 @@ public class Rule11 extends EadRule {
 					
 					if(pCont instanceof Name) {
 						Name name = (Name)pCont;
-						if("FINDING_AID_APPROVED_BY".equals(name.getLocaltype())) {
+						if(EadNS.LOCALTYPE_FINDING_AID_APPROVED_BY.equals(name.getLocaltype())) {
 							if(found!=null) {
 								throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt.", ctx.formatEadPosition(name));
 							}

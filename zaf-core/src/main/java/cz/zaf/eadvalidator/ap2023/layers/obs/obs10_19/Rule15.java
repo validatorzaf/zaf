@@ -12,6 +12,7 @@ import jakarta.xml.bind.JAXBElement;
 import java.io.Serializable;
 import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
+import cz.zaf.schemas.ead.EadNS;
 
 public class Rule15 extends EadRule {
 
@@ -56,7 +57,7 @@ public class Rule15 extends EadRule {
 
                     if (pCont instanceof Name) {
                         Name name = (Name) pCont;
-                        if ("ARRANGER".equals(name.getLocaltype())) {
+                        if (EadNS.LOCALTYPE_ARRANGER.equals(name.getLocaltype())) {
                             if (found != null) {
                                 throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt.", ctx.formatEadPosition(name));
                             }

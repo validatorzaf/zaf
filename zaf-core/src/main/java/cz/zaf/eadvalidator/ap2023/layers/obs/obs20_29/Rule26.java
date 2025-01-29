@@ -9,6 +9,7 @@ import cz.zaf.schema.ead3.Localcontrol;
 import cz.zaf.schema.ead3.Term;
 import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
+import cz.zaf.schemas.ead.EadNS;
 
 public class Rule26 extends EadRule {
 
@@ -34,7 +35,7 @@ public class Rule26 extends EadRule {
 
         if (!CollectionUtils.isEmpty(loccontrol)) {
             for (Localcontrol localcontrol : loccontrol) {
-                if ("FINDING_AID_TYPE".equals(localcontrol.getLocaltype()) || "RULES".equals(localcontrol.getLocaltype()) || "CZ_FINDING_AID_EAD_PROFILE".equals(localcontrol.getLocaltype())) {
+                if (EadNS.LOCALTYPE_FINDING_AID_TYPE.equals(localcontrol.getLocaltype()) || EadNS.LOCALTYPE_RULES.equals(localcontrol.getLocaltype()) || EadNS.LOCALTYPE_FINDING_AID_EAD_PROFILE.equals(localcontrol.getLocaltype())) {
                     Term term = localcontrol.getTerm();
                     if (term == null) {
                         throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybí element term.", ctx.formatEadPosition(localcontrol));

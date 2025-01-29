@@ -10,6 +10,7 @@ import cz.zaf.schema.ead3.Term;
 import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import cz.zaf.schemas.ead.EadNS;
 
 public class Rule27 extends EadRule {
 
@@ -35,7 +36,7 @@ public class Rule27 extends EadRule {
 
         if (!CollectionUtils.isEmpty(loccontrol)) {
             for (Localcontrol localcontrol : loccontrol) {
-                if ("RULES".equals(localcontrol.getLocaltype())) {
+                if (EadNS.LOCALTYPE_RULES.equals(localcontrol.getLocaltype())) {
                     Term term = localcontrol.getTerm();
                     if (term == null) {
                         throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybí element term.", ctx.formatEadPosition(localcontrol));
@@ -44,7 +45,7 @@ public class Rule27 extends EadRule {
                     if (StringUtils.isEmpty(identifier)) {
                         throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Chybí nebo je prázdný atribut identifier", ctx.formatEadPosition(term));
                     }
-                    if (!("CZ_ZP2013".equals(identifier) || "CZ_ZP1958".equals(identifier))) {
+                    if (!(EadNS.IDENTIFIER_CZ_ZP1958.equals(identifier) || EadNS.IDENTIFIER_CZ_ZP2013.equals(identifier))) {
                         throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut identifier obsahuje nesprávnou hodnotu " + identifier, ctx.formatEadPosition(term));
                     }
                 }
