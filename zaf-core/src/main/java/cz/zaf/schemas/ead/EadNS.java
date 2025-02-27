@@ -15,7 +15,7 @@ public final class EadNS {
     public static final String IDENTIFIER_KATALOG = "KATALOG";
     public static final String IDENTIFIER_MANIP_SEZNAM = "MANIP_SEZNAM";
     public static final String IDENTIFIER_PROZ_INV_SEZNAM = "PROZ_INV_SEZNAM";
-
+    public static final String IDENTIFIER_EAD3_PROFILE_20240301 = "CZ_EAD3_PROFILE_20240301";
     static final public String LEVEL_FONDS = "fonds";
     public static final String LEVEL_SUBFONDS = "subfonds";
     public static final String LEVEL_SERIES = "series";
