@@ -1,0 +1,882 @@
+<!--####################################################################-->
+<!--####################################################################-->
+<!-- 
+    DTD pro XML vystupy archivnich pomucek typu 02, 03
+    AUTOR: J. Hora, OAS MV (arch@mvcr.cz)
+    VERZE: 1.0 (08/06/2006)
+                                                                        -->
+<!--####################################################################-->
+<!-- OBSAH:
+    I.   Korenovy element ("dokumentArchPomucky")
+    II.  Definice opakovane vyuzivanych elementu
+    III. Popis dokumentu (element "metaData")
+    IV.  Struktura ulozeni vlastni archivni pomucky (element "pomucka")
+    V.   Ulozeni uvodu (elementy "uvodZjed" a "uvod")
+    VI.  Ulozeni inventarniho seznamu (element "inventSeznam")
+    VII. Ulozeni rejstriku (element "rejstrik")
+                                                                        -->
+<!--####################################################################-->
+
+<!--####################################################################-->
+<!-- 
+    I. KORENOVY ELEMENT DOKUMENTU (ARCHIVNI POMUCKY)
+                                                                        -->
+
+<!ELEMENT dokumentArchPomucky
+    (metaData, pomucka)
+                                                                          >
+<!ATTLIST dokumentArchPomucky
+    xmlns CDATA #FIXED "http://www.mvcr.cz/archivy/evidence-nad/ap"
+    xmlns:nad CDATA #FIXED "http://www.mvcr.cz/archivy/evidence-nad/nad"
+    xmlns:xlink CDATA #FIXED "http://www.w3.org/1999/xlink"
+    aDruhVerzeDTD NMTOKEN #FIXED "03-1.0"
+    aPopis CDATA #IMPLIED
+                                                                          >
+<!--####################################################################-->
+
+<!--####################################################################-->
+<!-- II. DEFINICE OPAKOVANE VYUZIVANYCH ELEMENTU
+    Deklarace zakladnich (obecnych) elementu vyuzivanych ve vetsine
+    dalsich elementu.
+                                                                        -->
+<!--####################################################################-->
+
+<!--====================================================================-->
+<!-- Definice elementarnich datovych typu
+                                                                        -->
+<!ELEMENT text
+    (#PCDATA | refID | refSimple | refExtended)*
+                                                                          >
+<!ATTLIST text
+    aID ID #IMPLIED
+    aRez (tucne | kurziva | tucnakurziva | horniindex | dolniindex) #IMPLIED
+    aPodtrzeni (jednoduche | dvojite | prerusovane) #IMPLIED
+    xml:lang CDATA #IMPLIED
+    xml:space (preserve | default) "default"
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!ELEMENT datum
+    (#PCDATA | refID | refSimple | refExtended)*
+                                                                          >
+<!ATTLIST datum
+    aID ID #IMPLIED
+    aRez (tucne | kurziva | tucnakurziva | horniindex | dolniindex) #IMPLIED
+    aPodtrzeni (jednoduche | dvojite | prerusovane) #IMPLIED
+    aNormDat CDATA #IMPLIED
+    aTypDat (vlastni | priorum | posteriorum) "vlastni"
+    aOdhadDat (ne | ano | ano-ne | ne-ano) "ne"
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!ELEMENT cislo
+    (#PCDATA | refID | refSimple | refExtended)*
+                                                                          >
+<!ATTLIST cislo
+    aID ID #IMPLIED
+    aRez (tucne | kurziva | tucnakurziva | horniindex | dolniindex) #IMPLIED
+    aPodtrzeni (jednoduche | dvojite | prerusovane) #IMPLIED
+    aNormCis NMTOKEN #IMPLIED
+    aTypCis (standard) "standard"
+    aVelicina CDATA #IMPLIED
+    aJednotka NMTOKEN #IMPLIED
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!--====================================================================-->
+<!-- Definice odkazovych typu
+     A. Internich v ramci dokumentu - predpoklada se jednoduche odkazovani
+     pomoci atributu typu IDREF.
+     B. Internich a externich pomoci technologie XLink, XPointer.
+                                                                        -->
+<!-- A Odkaz pomoci atributu typu IDREF
+                                                                        -->
+
+<!ELEMENT refID
+    (#PCDATA)
+                                                                          >
+<!ATTLIST refID
+    aIDRef IDREF #REQUIRED
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!-- B.1 Jednoduchy odkaz (simple) pomoci Xlink
+     Lze predpokladat i realizaci internich odkazu pomoci XLink a XPointer.
+                                                                        -->
+
+<!ELEMENT refSimple
+    (#PCDATA)
+                                                                          >
+<!ATTLIST refSimple
+    aPopis CDATA #IMPLIED
+    xlink:type (simple) #FIXED "simple"
+    xlink:href CDATA #IMPLIED
+    xlink:role CDATA  #IMPLIED
+    xlink:arcrole CDATA  #IMPLIED
+    xlink:title CDATA  #IMPLIED
+    xlink:show (new |replace |embed |other |none) #IMPLIED
+    xlink:actuate (onLoad |onRequest |other |none) #IMPLIED
+                                                                          >
+
+<!-- B.2 Rozsireny odkaz (extended) pomoci Xlink
+                                                                        -->
+<!ELEMENT refExtended ((refTitle|refResource|refLocator|refArc)*)>
+<!ATTLIST refExtended
+    aPopis CDATA #IMPLIED
+    xlink:type (extended) #FIXED "extended"
+    xlink:role CDATA  #IMPLIED
+    xlink:title CDATA  #IMPLIED
+                                                                          >
+
+<!ELEMENT refTitle
+    (#PCDATA)
+                                                                          >
+<!ATTLIST refTitle
+    aPopis CDATA #IMPLIED
+    xlink:type (title) #FIXED "title"
+    xml:lang NMTOKEN #IMPLIED
+                                                                          >
+
+<!ELEMENT refResource
+    (#PCDATA)
+                                                                          >
+<!ATTLIST refResource
+    aPopis CDATA #IMPLIED
+    xlink:type (resource) #FIXED "resource"
+    xlink:role CDATA  #IMPLIED
+    xlink:title CDATA  #IMPLIED
+    xlink:label NMTOKEN #IMPLIED
+                                                                          >
+
+<!ELEMENT refLocator 
+    (refTitle*)
+                                                                          >
+<!ATTLIST refLocator
+    aPopis CDATA #IMPLIED
+    xlink:type (locator) #FIXED "locator"
+    xlink:href CDATA  #REQUIRED
+    xlink:role CDATA  #IMPLIED
+    xlink:title CDATA  #IMPLIED
+    xlink:label NMTOKEN #IMPLIED
+                                                                          >
+
+<!ELEMENT refArc 
+    (refTitle*)
+                                                                          >
+<!ATTLIST refArc
+    aPopis CDATA #IMPLIED
+    xlink:type (arc) #FIXED "arc"
+    xlink:arcrole CDATA  #IMPLIED
+    xlink:title CDATA  #IMPLIED
+    xlink:show (new |replace |embed |other |none) #IMPLIED
+    xlink:actuate (onLoad |onRequest |other |none) #IMPLIED
+    xlink:from NMTOKEN #IMPLIED
+    xlink:to NMTOKEN #IMPLIED
+                                                                          >
+
+
+<!--====================================================================-->
+<!-- Definice jednoduchych odvozenych datovych typu
+                                                                        -->
+
+<!ELEMENT odst
+    (#PCDATA | text | datum | cislo | refID | refSimple | refExtended)*
+                                                                          >
+<!ATTLIST odst
+    aID ID #IMPLIED
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!ELEMENT nadpis
+    (#PCDATA | text | datum | cislo | refID | refSimple | refExtended)*
+                                                                          >
+<!ATTLIST nadpis
+    aID ID #IMPLIED
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!ELEMENT datace
+    (#PCDATA | datum | refID | refSimple | refExtended)*
+                                                                          >
+<!ATTLIST datace
+    aID ID #IMPLIED
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!--====================================================================-->
+<!-- Definice strukturovanych odvozenych datovych typu.
+                                                                        -->
+
+<!-- Struktura tabulky o x sloupcich (atribut aPocetSl) 
+     a o y radcich (atribut aPocetRad).
+     Data se ukladaji po radcich.
+                                                                        -->
+<!ELEMENT tabulka
+    (nadpis?, zahlavi?, teloTabulky)
+                                                                          >
+<!ATTLIST tabulka
+    aID ID #IMPLIED
+    aPopis CDATA #IMPLIED
+    aPocetSl  NMTOKEN #IMPLIED
+    aPocetRad NMTOKEN #IMPLIED
+                                                                          >
+
+<!-- Popis sloupcu tabulky
+                                                                        -->
+<!ELEMENT zahlavi
+    (radek)+
+                                                                          >
+<!ATTLIST zahlavi
+    aID ID #IMPLIED
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!-- Telo tabulky
+                                                                        -->
+<!ELEMENT teloTabulky
+    (radek)+
+                                                                          >
+<!ATTLIST teloTabulky
+    aID ID #IMPLIED
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!-- Jeden radek tabulky
+     Obsahuje alespon jednu bunku (tabulka ma alespon jeden sloupec).
+                                                                        -->
+<!ELEMENT radek
+    (bunka)+
+                                                                          >
+<!ATTLIST radek
+    aID ID #IMPLIED
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!-- Bunka tabulky
+                                                                        -->
+<!ELEMENT bunka
+    (#PCDATA | odst | text | datum | cislo | refSimple | refExtended)*
+                                                                          >
+<!ATTLIST bunka
+    aID ID #IMPLIED
+    aPopis CDATA #IMPLIED
+    aDruh CDATA #IMPLIED
+                                                                          >
+<!--####################################################################-->
+<!-- 
+    III. POPIS ARCHIVNI POMUCKY - metaData
+                                                                        -->
+<!--####################################################################-->
+<!--====================================================================-->
+<!ELEMENT metaData
+    (rdf:RDF, oPomucce, oArchivaliich)
+                                                                          >
+  <!ATTLIST metaData
+    aID ID #IMPLIED
+    aPopis CDATA #IMPLIED
+                                                                          >
+<!--====================================================================-->
+<!--====================================================================-->
+<!-- 
+    Popis pomoci RDF (Resource Description Framework)
+    http://www.w3.org/RDF
+    a pomoci Dublin Core (http://purl.org/dc).
+                                                                        -->
+<!--====================================================================-->
+<!ELEMENT rdf:RDF
+    (rdf:Description)
+                                                                          >
+<!ATTLIST rdf:RDF
+    xmlns:rdf CDATA #FIXED "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:dc CDATA #FIXED "http://purl.org/dc/elements/1.1/"
+                                                                          >
+
+<!ELEMENT rdf:Description
+    (dc:Title+, dc:Creator+, dc:Subject*, dc:Description+, dc:Publisher, 
+    dc:Date, dc:Type, dc:Format, dc:Identifier+, 
+    dc:Source+, dc:Language, dc:Relation*, dc:Rights*)
+                                                                          >
+<!ATTLIST rdf:Description
+    rdf:about CDATA #REQUIRED
+                                                                          >
+<!--====================================================================-->
+<!-- Popis jednotlivych prvku "Dublin Core" lze najit napr. 
+     http://www.ics.muni.cz/dublin_core/DC-czech-1.1.html
+                                                                        -->
+
+<!ELEMENT dc:Title
+    (#PCDATA)
+                                                                          >
+<!ELEMENT dc:Creator
+    (#PCDATA)
+                                                                          >
+<!ELEMENT dc:Subject
+    (#PCDATA)
+                                                                          >
+<!ELEMENT dc:Description
+    (#PCDATA)
+                                                                          >
+<!ELEMENT dc:Publisher
+    (#PCDATA)
+                                                                          >
+<!ELEMENT dc:Date
+    (#PCDATA)
+                                                                          >
+<!ELEMENT dc:Type
+    (#PCDATA)
+                                                                          >
+<!ELEMENT dc:Format
+    (#PCDATA)
+                                                                          >
+<!ELEMENT dc:Identifier
+    (#PCDATA)
+                                                                          >
+<!ATTLIST dc:Identifier 
+    nad:verCisNAD CDATA #FIXED "499/2004"
+                                                                          >
+<!ELEMENT dc:Source
+    (#PCDATA)
+                                                                          >
+<!ATTLIST dc:Source 
+    nad:verCisNAD CDATA #FIXED "499/2004"
+                                                                          >
+<!ELEMENT dc:Language
+    (#PCDATA)
+                                                                          >
+<!ELEMENT dc:Relation
+    (#PCDATA)
+                                                                          >
+<!ELEMENT dc:Rights
+    (#PCDATA)
+                                                                          >
+
+
+<!--====================================================================-->
+<!-- 
+     Element "oPomucce" = popis archivni pomucky jako specialni 
+     archivni publikace.
+                                                                        -->
+<!--====================================================================-->
+
+<!ELEMENT oPomucce
+    (instituce, nazevPomucky+, datace, druhPomucky, 
+    evidencePomucky, zpracovatel+, pomuckuSestavil*,
+    mistoVzniku+, rokVzniku, stranCelkem, stranUvodu, schvaleni)
+                                                                          >
+<!ATTLIST oPomucce
+    aID ID #IMPLIED
+    aPopis CDATA #IMPLIED
+                                                                          >
+<!--====================================================================-->
+<!ELEMENT instituce
+    (#PCDATA | refSimple | refExtended)*
+                                                                          >
+<!ATTLIST instituce 
+    nad:verCisNAD CDATA #FIXED "499/2004"
+    aInstituce CDATA #REQUIRED
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!ELEMENT nazevPomucky
+    (#PCDATA | text| refSimple | refExtended)*
+                                                                          >
+<!ATTLIST nazevPomucky
+    aTyp (nazev|podnazev) "nazev"
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+
+<!ELEMENT druhPomucky
+    (#PCDATA | refSimple | refExtended)*
+                                                                          >
+<!ATTLIST druhPomucky 
+    nad:verCisNAD CDATA #FIXED "499/2004"
+    nad:c_druh (03|02) #REQUIRED 
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!--ELEMENT evidencePomucky
+    Identifikace archivnich pomucky obsazene v dokumentu.
+                                                                        -->
+<!ELEMENT evidencePomucky
+    (cisloPomuckyNAD, signatura?)
+                                                                          >
+<!ATTLIST evidencePomucky
+    aPopis CDATA #IMPLIED
+                                                                          >
+<!--ELEMENT cisloPomuckyNAD
+    Vazba na zakladni (!) evidenci Narodniho archivniho dedictvi (NAD).
+                                                                        -->
+<!ELEMENT cisloPomuckyNAD
+    (#PCDATA | refSimple | refExtended)*
+                                                                          >
+<!ATTLIST cisloPomuckyNAD
+    nad:verCisNAD CDATA #FIXED "499/2004"
+    aPomucka CDATA #REQUIRED
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!-- Jmeno zpracovatele archivni pomucky
+                                                                        -->
+<!ELEMENT zpracovatel
+    (#PCDATA | refSimple | refExtended)*
+                                                                          >
+<!ATTLIST zpracovatel
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!-- Udaje o tom, kdo pomucku sestavil (popr. udaj o autorovi uvodu, 
+     byl-li jiny nez vyse uvadeni zpracovatele).
+                                                                        -->
+<!ELEMENT pomuckuSestavil
+    (#PCDATA | refSimple | refExtended)*
+                                                                          >
+<!ATTLIST pomuckuSestavil
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!-- Misto vzniku archivni pomucky
+                                                                        -->
+<!ELEMENT mistoVzniku
+    (#PCDATA | refSimple | refExtended)*
+                                                                          >
+<!ATTLIST mistoVzniku
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!-- Rok vzniku (napsani) archivni pomucky
+                                                                        -->
+<!ELEMENT rokVzniku
+    (#PCDATA)
+                                                                          >
+<!ATTLIST rokVzniku
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!-- Celkem stran pomucky
+                                                                        -->
+<!ELEMENT stranCelkem
+    (#PCDATA)
+                                                                          >
+<!ATTLIST stranCelkem
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!-- Pocet stran uvodu
+                                                                        -->
+<!ELEMENT stranUvodu
+    (#PCDATA)
+                                                                          >
+<!ATTLIST stranUvodu
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!-- Element obsahujici informace o schvaleni pomucky
+                                                                        -->
+<!ELEMENT schvaleni
+    (jmenoSchvalovatele, datum, cisloJednaci?)
+                                                                          >
+<!ATTLIST schvaleni
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!-- Jmeno schvalovatele pomucky
+                                                                        -->
+<!ELEMENT jmenoSchvalovatele
+    (#PCDATA | refSimple | refExtended)*
+                                                                          >
+<!ATTLIST jmenoSchvalovatele
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!-- Cislo jednaci
+                                                                        -->
+<!ELEMENT cisloJednaci
+    (#PCDATA | refSimple | refExtended)*
+                                                                          >
+<!ATTLIST cisloJednaci
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+
+<!--====================================================================-->
+<!-- 
+     Element "oArchivaliich" = popis archivalii (archivnich souboru)
+     popsanych archivni pomuckou.
+                                                                        -->
+<!--====================================================================-->
+<!ELEMENT oArchivaliich
+    (archivniSoubor+, celkemInvJed, celkemMetraz, stavKeDni)
+                                                                          >
+<!ATTLIST oArchivaliich
+    aID ID #IMPLIED
+    aPopis CDATA #IMPLIED
+                                                                          >
+<!--====================================================================-->
+
+<!--Identifikace archivnich souboru popsanych v archivni pomucce
+                                                                        -->
+<!ELEMENT archivniSoubor
+    (cisloListuNAD, znacka?, signatura?, evidencniJednotky)
+                                                                          >
+<!ATTLIST archivniSoubor
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!--Vazba na evidenci Narodniho archivniho dedictvi (NAD)
+                                                                        -->
+<!ELEMENT cisloListuNAD
+    (#PCDATA | refSimple | refExtended)*
+                                                                          >
+<!ATTLIST cisloListuNAD
+    nad:verCisNAD CDATA #FIXED "499/2004"
+    aArchSoubor CDATA #REQUIRED
+    aPopis CDATA #IMPLIED
+                                                                          >
+<!ELEMENT znacka
+    (#PCDATA)
+                                                                          >
+<!ATTLIST znacka
+    aPopis CDATA #IMPLIED
+                                                                          >
+<!ELEMENT signatura
+    (#PCDATA)
+                                                                          >
+<!ATTLIST signatura
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!-- Evidencni jednotky archivniho souboru popsane archivni pomuckou
+                                                                        -->
+<!ELEMENT evidencniJednotky
+    (celkemEVJ, (druhEVJ, pocetEVJ)+)
+                                                                          >
+<!ATTLIST evidencniJednotky
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!-- Celkovy pocet evidencnich jednotek popsanych pomuckou
+                                                                        -->
+<!ELEMENT celkemEVJ
+    (#PCDATA)
+                                                                          >
+
+<!-- Druh evidencni jednotky
+                                                                        -->
+<!ELEMENT druhEVJ
+    (#PCDATA)
+                                                                          >
+
+<!-- Pocet evidencnich jednotek uvedeneho druhu
+                                                                        -->
+<!ELEMENT pocetEVJ
+    (#PCDATA)
+                                                                          >
+
+<!-- Pocet inventarnich jednotek popsanych v pomucce
+                                                                        -->
+<!ELEMENT celkemInvJed
+    (#PCDATA)
+                                                                          >
+<!ATTLIST celkemInvJed
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!-- Metraz archivalii popsanych pomuckou
+                                                                        -->
+<!ELEMENT celkemMetraz
+    (#PCDATA)
+                                                                          >
+<!ATTLIST celkemMetraz
+    aPopis CDATA #IMPLIED
+    aNormCis NMTOKEN #IMPLIED
+    aTypCis (standard) "standard"
+                                                                          >
+
+<!-- Stav ke dni
+                                                                        -->
+<!ELEMENT stavKeDni
+    (#PCDATA)
+                                                                          >
+<!ATTLIST stavKeDni
+    aPopis CDATA #IMPLIED
+    aNormDat CDATA #IMPLIED
+                                                                          >
+<!--####################################################################-->
+<!-- 
+    IV. ZPUSOB ULOZENI VLASTNI ARCHIVNI POMUCKY
+                                                                        -->
+<!ELEMENT pomucka
+    ((uvodZjed|uvod), inventSeznam, rejstrik*)
+                                                                          >
+<!ATTLIST pomucka
+    aID ID #IMPLIED
+    aPopis CDATA #IMPLIED
+                                                                          >
+<!--####################################################################-->
+
+<!--####################################################################-->
+<!-- 
+    V. UVOD ARCHIVNI POMUCKY
+                                                                        -->
+<!--####################################################################-->
+
+<!--====================================================================-->
+<!-- element 'uvodZjed'
+    Pro zapis uvodu neni predepsana zadna pevne dana struktura.
+    Je mozne cely uvod ulozit do elementu 'uvodZjed', a to bez jakekoliv 
+    znackovane struktury. Veskere informace o formatovani tedy nesou 
+    tzv. bile znaky.
+                                                                        -->
+<!ELEMENT uvodZjed
+    (#PCDATA)
+                                                                          >
+<!ATTLIST uvodZjed
+    aID ID #IMPLIED
+    aIDRef IDREF #IMPLIED
+    aPopis CDATA #IMPLIED
+    xml:space (preserve | default) "preserve"
+                                                                          >
+
+<!--====================================================================-->
+<!--element 'uvod'
+    
+                                                                        -->
+<!ELEMENT uvod
+    (uvodKapitola+, uvodPozn?)
+                                                                          >
+<!ATTLIST uvod
+    aID ID #REQUIRED
+    aIDRef IDREF #IMPLIED
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!ELEMENT uvodKapitola
+(nadpis, (odst | tabulka | castIS)*, uvodKapitola*)
+                                                                          >
+<!ATTLIST uvodKapitola 
+    aID ID #REQUIRED
+    aIDRef IDREF #REQUIRED
+    aSpecifikace (obecna |
+                   obsah |
+                   vyvojPuvodce |
+                   vyvojSouboru |
+                   charakterSouboru |
+                   rozborSouboru |
+                   usporadaniSouboru |
+                   uvodPrilohy) "obecna"
+    aUrovenVn (1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9) #REQUIRED
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!ELEMENT uvodPozn
+    (nadpis, poznamka+)
+                                                                          >
+<!ATTLIST uvodPozn
+    aID ID #REQUIRED
+    aIDRef IDREF #REQUIRED
+    aUrovenVn (1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9) #FIXED "1"
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!ELEMENT poznamka
+    (cislo, odst+)
+                                                                          >
+<!ATTLIST poznamka
+    aID ID #REQUIRED
+    aPopis CDATA #IMPLIED
+                                                                          >
+<!--####################################################################-->
+<!-- 
+    VI. INVENTARNI SEZNAM
+                                                                        -->
+<!--####################################################################-->
+
+<!--====================================================================-->
+<!-- Inventarni seznam archivni pomucky.
+                                                                        -->
+<!ELEMENT inventSeznam
+    (castIS+)
+                                                                          >
+<!ATTLIST inventSeznam
+    aID ID #REQUIRED
+    aIDRef IDREF #IMPLIED
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!ELEMENT castIS
+    ((nadpisIS, castIS+) | (radekIS, castIS*))
+                                                                          >
+<!ATTLIST castIS
+    aID ID #REQUIRED
+    aIDRef IDREF #REQUIRED
+    aUrovenVn (1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9) #REQUIRED
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!ELEMENT nadpisIS
+    (puvZnaceni?, obsah, bunkaIS*, datace?, eviJednotka?)
+                                                                          >
+<!ATTLIST nadpisIS
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+
+<!ELEMENT radekIS
+    (invCislo, puvZnaceni?, obsah, bunkaIS*, datace, uklCislo?, eviJednotka)
+                                                                          >
+<!ATTLIST radekIS
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+
+<!ELEMENT bunkaIS
+    (#PCDATA | odst | text | datum | cislo)*
+                                                                          >
+<!ATTLIST bunkaIS
+    aPopis CDATA #IMPLIED
+    aDruh CDATA #REQUIRED
+                                                                          >
+
+
+<!-- Inventarni cislo
+                                                                        -->
+<!ELEMENT invCislo
+    (#PCDATA | text)*
+                                                                          >
+<!ATTLIST invCislo
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!-- Puvodni znaceni inventarni jednotky (volitelne)
+                                                                        -->
+<!ELEMENT puvZnaceni
+    (#PCDATA | text)*
+                                                                          >
+<!ATTLIST puvZnaceni
+    aPopis CDATA #IMPLIED
+    aDruh CDATA "signatura"
+                                                                          >
+
+<!-- Obsah inventarni jednotky
+                                                                        -->
+<!ELEMENT obsah
+    (#PCDATA | odst)*
+                                                                          >
+<!ATTLIST obsah
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!ELEMENT eviJednotka
+    (druhEVJ, cisloEVJ)
+                                                                          >
+<!ATTLIST eviJednotka
+    aPopis CDATA #IMPLIED
+    aDruh CDATA #IMPLIED
+                                                                          >
+
+<!-- Cislo evidencni jednotky
+                                                                        -->
+<!ELEMENT cisloEVJ
+    (#PCDATA | text)*
+                                                                          >
+<!ATTLIST cisloEVJ
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!ELEMENT uklCislo
+    (#PCDATA | text)*
+                                                                          >
+<!ATTLIST uklCislo
+    aPopis CDATA #IMPLIED
+    aDruh CDATA #IMPLIED
+                                                                          >
+<!--####################################################################-->
+<!-- 
+    VII. REJSTRIKY ARCHIVNI POMUCKY
+                                                                        -->
+<!--####################################################################-->
+
+<!--====================================================================-->
+<!ELEMENT rejstrik
+    (nadpis, hesloRej, hesloRej+)
+                                                                          >
+<!ATTLIST rejstrik
+    aID ID #REQUIRED
+    aIDRef IDREF #IMPLIED
+    aPopis CDATA #IMPLIED
+    aTypRej (vseobecny | jmenny | predmetovy | zemepisny | nazvovy | ciselKodu | autorsky) #REQUIRED
+    aRazeni (abecedni | systematicke) "abecedni"
+    aTypRejUpr CDATA #IMPLIED
+                                                                          >
+
+<!-- Heslo (nebo take zaznam, polozka, radek) rejstriku
+                                                                        -->
+<!ELEMENT hesloRej
+    (zahlaviR, kvalifikatorR?, poznamkaR?, 
+        (vylucOdkazR+ | 
+        (lokatorR+ , pridruzOdkazR*, hesloRej*) | 
+        (pridruzOdkazR+, hesloRej*) | 
+        hesloRej+
+        )
+     )
+                                                                          >
+<!ATTLIST hesloRej 
+    aID ID #REQUIRED
+    aIDRef IDREF #REQUIRED
+    aUrovenVn (1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9) #REQUIRED
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+
+<!ELEMENT zahlaviR
+    (#PCDATA | text | datum | cislo)*
+                                                                          >
+<!ATTLIST zahlaviR
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+
+<!ELEMENT kvalifikatorR
+    (#PCDATA | text | datum | cislo)*
+                                                                          >
+<!ATTLIST kvalifikatorR
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+
+<!ELEMENT poznamkaR
+    (#PCDATA | text | datum | cislo)*
+                                                                          >
+<!ATTLIST poznamkaR
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+
+<!ELEMENT vylucOdkazR
+    (zahlaviR, kvalifikatorR?)
+                                                                          >
+<!ATTLIST vylucOdkazR
+    aIDRef IDREF #REQUIRED
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!ELEMENT pridruzOdkazR
+    (zahlaviR, kvalifikatorR?)
+                                                                          >
+<!ATTLIST pridruzOdkazR
+    aIDRef IDREF #REQUIRED
+    aPopis CDATA #IMPLIED
+                                                                          >
+
+<!ELEMENT lokatorR
+    (#PCDATA | text)*
+                                                                          >
+<!ATTLIST lokatorR
+    aIDRef IDREF #REQUIRED
+    aZdurazneni (ano | ne) "ne"
+    aPopis CDATA #IMPLIED
+                                                                          >
+<!-- Konec DTD pro archivni pomucky typu 02,03
+                                                                        -->
+<!--####################################################################-->
