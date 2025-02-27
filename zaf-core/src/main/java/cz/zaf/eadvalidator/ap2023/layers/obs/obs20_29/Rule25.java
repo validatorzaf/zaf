@@ -6,15 +6,15 @@ import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.schema.ead3.Control;
 import cz.zaf.schema.ead3.Ead;
 import cz.zaf.schema.ead3.Localcontrol;
+import cz.zaf.schema.ead3.Term;
 import java.util.List;
-import org.apache.commons.collections4.CollectionUtils;
 import cz.zaf.schemas.ead.EadNS;
 
 public class Rule25 extends EadRule {
 
     static final public String CODE = "obs25";
-    static final public String RULE_TEXT = "Element <ead:control> obsahuje právě jeden element <ead:localcontrol>, který má atribut \"localtype\" o hodnotě \"CZ_FINDING_AID_EAD_PROFILE\".";
-    static final public String RULE_ERROR = "Element <ead:control> neobsahuje právě jeden element <ead:localcontrol> s atributem \"localtype\" o hodnotě \"CZ_FINDING_AID_EAD_PROFILE\".";
+    static final public String RULE_TEXT = "Element <ead:term>, který je obsažen v elementu <ead:localcontrol> s atributem \"localtype\" o hodnotě \"CZ_FINDING_AID_EAD_PROFILE\", má atribut \"identifier\" s hodotou: CZ_EAD3_PROFILE_20240301";
+    static final public String RULE_ERROR = "Element <ead:control> neobsahuje právě jeden element <ead:localcontrol> s atributem \"localtype\" s očekávanou hodnotou.";
     static final public String RULE_SOURCE = "Část 2.6.2 profilu EAD3 MV ČR";
 
     public Rule25() {
@@ -23,28 +23,25 @@ public class Rule25 extends EadRule {
 
     @Override
     protected void evalImpl() {
+        Localcontrol localControl = getRequiredLocalControl();
+        Term term = localControl.getTerm();
+        String identifier = term.getIdentifier();
+
+        if (!EadNS.IDENTIFIER_EAD3_PROFILE_20240301.equals(identifier)) {
+            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut identifier obsahuje nesprávnou hodnotu " + identifier + ".", ctx.formatEadPosition(term));
+        }
+    }
+
+    private Localcontrol getRequiredLocalControl() {
         Ead ead = ctx.getEad();
-        // must exist / ze schematu
         Control control = ead.getControl();
 
         List<Localcontrol> loccontrol = control.getLocalcontrol();
-        if (CollectionUtils.isEmpty(loccontrol)) {
-            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybi element localcontrol.", ctx.formatEadPosition(control));
-        }
-
-        Localcontrol found = null;
-        if (!CollectionUtils.isEmpty(loccontrol)) {
-            for (Localcontrol otherLoccontrol : loccontrol) {
-                if (EadNS.LOCALTYPE_FINDING_AID_EAD_PROFILE.equals(otherLoccontrol.getLocaltype())) {
-                    if (found != null) {
-                        throw new ZafException(BaseCode.DUPLICITA, "Hodnota uvedena vícekrát", ctx.formatEadPosition(otherLoccontrol));
-                    }
-                    found = otherLoccontrol;
-                }
+        for (Localcontrol otherLoccontrol : loccontrol) {
+            if (EadNS.LOCALTYPE_FINDING_AID_EAD_PROFILE.equals(otherLoccontrol.getLocaltype())) {
+                return otherLoccontrol;
             }
         }
-        if (found == null) {
-            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Hodnota nenalezena", ctx.formatEadPosition(control));
-        }
+        return null;
     }
 }
