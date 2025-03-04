@@ -10,6 +10,7 @@ import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.schema.ead3.Ead;
 import cz.zaf.schema.ead3.Otherrecordid;
+import cz.zaf.schemas.ead.EadNS;
 
 public class Rule02 extends EadRule {
 	
@@ -30,7 +31,7 @@ public class Rule02 extends EadRule {
 		Otherrecordid found = null;
 		if(!CollectionUtils.isEmpty(otherIds)) {
 			for (Otherrecordid otherId : otherIds) {
-				if ("CZ_MVCR_FINDING_AID_ID".equals(otherId.getLocaltype())) {
+				if (EadNS.LOCALTYPE_FINDING_AID_ID.equals(otherId.getLocaltype())) {
 					if (found != null) {
 						throw new ZafException(BaseCode.DUPLICITA, "Hodnota uvedena vícekrát",
 								ctx.formatEadPosition(otherId));

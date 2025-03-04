@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ead:ead xmlns:ead="http://ead3.archivists.org/schema/" xmlns:cam="http://cam.tacr.cz/2019">
+	<ead:control>
+		<ead:recordid>d0f7e14f-a655-4902-a6fd-e141bbe6ca6b</ead:recordid> <!-- obs1 -->
+		<ead:otherrecordid localtype="CZ_MVCR_FINDING_AID_ID">5</ead:otherrecordid> <!-- obs2 -->
+		<ead:otherrecordid localtype="INTERNAL_REV_ID"></ead:otherrecordid> <!-- obs3 -->
+		
+		<ead:filedesc encodinganalog="123"> <!-- obs4 -->
+			<ead:titlestmt>
+				<ead:titleproper></ead:titleproper>
+				<ead:subtitle>Název hotové pomůcky</ead:subtitle> <!-- obs5 -->
+			</ead:titlestmt>
+			
+			<ead:publicationstmt> <!-- obs6 -->
+				<ead:date localtype="RELEASE_DATE_PLACE">Datum a místo vydání</ead:date> <!-- obs7, obs10 -->
+				<ead:date localtype="DESCRIPTION_DATE">Datum, data popisu</ead:date> <!-- obs8, obs10 -->
+				<ead:date localtype="FINDING_AID_DATE">Stav archivní pomůcky</ead:date> <!-- obs9, obs10 -->
+				<ead:p> <!-- obs11 -->
+					<ead:name localtype="FINDING_AID_APPROVED_BY"><ead:part>Jméno schvalovatele pomůcky</ead:part></ead:name>
+				</ead:p>
+				<ead:p> <!-- obs12 -->
+					<ead:name localtype="FINDING_AID_EDITOR"><ead:part>Jméno, kdo sestavil pomůcku</ead:part></ead:name>
+				</ead:p>
+				<ead:p> <!-- obs13 -->
+					<ead:name localtype="ORIGINATOR"><ead:part> <!-- obs14 -->
+						<ead:ref target="ap7523">Původce</ead:ref>
+					</ead:part></ead:name>
+				</ead:p>
+				<ead:p> <!-- obs15 -->
+					<ead:name localtype="ARRANGER"><ead:part>Zpracovatel 1</ead:part></ead:name>
+					<ead:name localtype="ARRANGER"><ead:part>Zpracovatel 2</ead:part></ead:name>
+				</ead:p>
+			</ead:publicationstmt>
+		</ead:filedesc>
+		
+		<ead:maintenancestatus value="new"></ead:maintenancestatus>
+		<ead:maintenanceagency>
+			<ead:agencycode></ead:agencycode>
+			<ead:agencyname></ead:agencyname>
+		</ead:maintenanceagency>
+		
+		<ead:maintenancehistory>
+			<ead:maintenanceevent>
+				<ead:eventtype value="created"></ead:eventtype>
+				<ead:eventdatetime></ead:eventdatetime>
+				<ead:agenttype value="human"></ead:agenttype>
+				<ead:agent></ead:agent>
+			</ead:maintenanceevent>
+		</ead:maintenancehistory>
+		
+		<!-- část s odkazy, aby se validovalo správně (= fungovaly id u přístupových bodů) -->
+		<ead:sources>
+			<ead:source id="ap7523"></ead:source>
+		</ead:sources>
+	</ead:control>
+	<ead:archdesc level="fonds">
+		<ead:did>
+			<ead:physdescstructured physdescstructuredtype="spaceoccupied" coverage="whole">
+				<ead:quantity></ead:quantity>
+				<ead:unittype></ead:unittype>
+			</ead:physdescstructured>
+		</ead:did>
+		
+		<ead:dsc>
+			<ead:c level="series">
+				<ead:did>
+					<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole">
+						<ead:quantity></ead:quantity>
+						<ead:unittype></ead:unittype>
+					</ead:physdescstructured>
+				</ead:did>
+				
+				<ead:c level="item">
+					<ead:did>
+						<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole">
+							<ead:quantity></ead:quantity>
+							<ead:unittype></ead:unittype>
+						</ead:physdescstructured>
+					</ead:did>
+				</ead:c>
+			</ead:c>
+		</ead:dsc>
+	</ead:archdesc>
+</ead:ead>
