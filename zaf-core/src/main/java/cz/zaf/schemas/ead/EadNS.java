@@ -9,8 +9,6 @@ public final class EadNS {
 
     static final public String SCHEMA_RESOURCE = "/schema/ead3.xsd";
 
-    public static final String IDENTIFIER_CZ_ZP1958 = "CZ_ZP1958";
-    public static final String IDENTIFIER_CZ_ZP2013 = "CZ_ZP2013";
     public static final String IDENTIFIER_INVENTAR = "INVENTAR";
     public static final String IDENTIFIER_KATALOG = "KATALOG";
     public static final String IDENTIFIER_MANIP_SEZNAM = "MANIP_SEZNAM";

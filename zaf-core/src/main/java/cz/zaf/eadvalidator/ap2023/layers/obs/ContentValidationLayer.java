@@ -41,12 +41,11 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 			Rule03.class,
 			Rule04.class,
 			Rule04a.class,
-			
-                        Rule19.class,
-                        
-                        Rule20.class,
-                        Rule22.class,
-                        
+			Rule19.class,
+            Rule20.class,
+            Rule22.class,
+            Rule25.class,
+            Rule27.class,
 			Rule36.class,
 	};
 	
@@ -63,13 +62,13 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 			Rule09.class,
 			Rule11.class,
 			Rule12.class,
-                        Rule15.class,
-                        Rule19.class,
-                        Rule20.class,
-                        Rule22.class,
-                        Rule23.class,
-                        Rule25.class,
-                        Rule27.class,
+            Rule15.class,
+            Rule19.class,
+            Rule20.class,
+            Rule22.class,
+            Rule23.class,
+            Rule25.class,
+            Rule27.class,
 			Rule36.class,
 	};
 

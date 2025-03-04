@@ -3,6 +3,7 @@ package cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29;
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.eadvalidator.ap2023.EadRule;
+import cz.zaf.eadvalidator.ap2023.profile.ProfileRevision;
 import cz.zaf.schema.ead3.Control;
 import cz.zaf.schema.ead3.Ead;
 import cz.zaf.schema.ead3.Localcontrol;
@@ -13,8 +14,8 @@ import cz.zaf.schemas.ead.EadNS;
 public class Rule25 extends EadRule {
 
     static final public String CODE = "obs25";
-    static final public String RULE_TEXT = "Element <ead:term>, který je obsažen v elementu <ead:localcontrol> s atributem \"localtype\" o hodnotě \"CZ_FINDING_AID_EAD_PROFILE\", má atribut \"identifier\" s hodotou: CZ_EAD3_PROFILE_20240301";
-    static final public String RULE_ERROR = "Element <ead:control> neobsahuje právě jeden element <ead:localcontrol> s atributem \"localtype\" s očekávanou hodnotou.";
+    static final public String RULE_TEXT = "Soubor dle profilu musí mít uvedenu verzi profilu v elementu <localcontrol localtype=\"CZ_FINDING_AID_EAD_PROFILE\">.";
+    static final public String RULE_ERROR = "Element <ead:control> neobsahuje právě jeden element <ead:localcontrol> s atributem localtype=\"CZ_FINDING_AID_EAD_PROFILE\" s očekávanou hodnotou.";
     static final public String RULE_SOURCE = "Část 2.6.2 profilu EAD3 MV ČR";
 
     public Rule25() {
@@ -23,25 +24,41 @@ public class Rule25 extends EadRule {
 
     @Override
     protected void evalImpl() {
-        Localcontrol localControl = getRequiredLocalControl();
+        Localcontrol localControl = getSingleLocalControl(EadNS.LOCALTYPE_FINDING_AID_EAD_PROFILE);
+        if(localControl==null) {
+            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nenalezen element <localControl localType=\""+EadNS.LOCALTYPE_FINDING_AID_EAD_PROFILE+"\">.",
+            		ctx.formatEadPosition(ctx.getEad().getControl()));        	
+        }
         Term term = localControl.getTerm();
+        if(term==null) {
+            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Element <ead:localcontrol> neobsahuje element <ead:term>.", ctx.formatEadPosition(localControl));	        
+        }
         String identifier = term.getIdentifier();
-
-        if (!EadNS.IDENTIFIER_EAD3_PROFILE_20240301.equals(identifier)) {
-            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut identifier obsahuje nesprávnou hodnotu " + identifier + ".", ctx.formatEadPosition(term));
+        if (EadNS.IDENTIFIER_EAD3_PROFILE_20240301.equals(identifier)) {
+        	ctx.setProfileRevision(ProfileRevision.CZ_EAD3_PROFILE_20240301);
+        	// TODO: check value of element
+        } else {
+        	throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nerozponavá revize profilu, atribut identifier obsahuje hodnotu: " + identifier + ".", ctx.formatEadPosition(term));
         }
     }
 
-    private Localcontrol getRequiredLocalControl() {
+    private Localcontrol getSingleLocalControl(String localTypeValue) {
         Ead ead = ctx.getEad();
         Control control = ead.getControl();
 
+        Localcontrol found = null;
+        
         List<Localcontrol> loccontrol = control.getLocalcontrol();
         for (Localcontrol otherLoccontrol : loccontrol) {
-            if (EadNS.LOCALTYPE_FINDING_AID_EAD_PROFILE.equals(otherLoccontrol.getLocaltype())) {
-                return otherLoccontrol;
+            if (localTypeValue.equals(otherLoccontrol.getLocaltype())) {
+            	if(found!=null) {
+            		throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, 
+            				"Duplicitní element <localControl localType=\""+localTypeValue+"\">.",
+            				ctx.formatEadPosition(otherLoccontrol));
+            	}
+                found = otherLoccontrol;
             }
         }
-        return null;
+        return found;
     }
 }

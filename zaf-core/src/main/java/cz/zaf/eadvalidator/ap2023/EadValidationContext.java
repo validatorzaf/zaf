@@ -10,6 +10,9 @@ import org.w3c.dom.Element;
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.validation.BaseValidationContext;
 import cz.zaf.common.validation.RuleEvaluationContext;
+import cz.zaf.eadvalidator.ap2023.profile.DescriptionRules;
+import cz.zaf.eadvalidator.ap2023.profile.FindingAidType;
+import cz.zaf.eadvalidator.ap2023.profile.ProfileRevision;
 import cz.zaf.schema.ead3.Ead;
 import jakarta.xml.bind.annotation.XmlType;
 
@@ -20,6 +23,15 @@ public class EadValidationContext
     private EadLoader eadLoader;
 	private Element rootElement;
 	private boolean useEadPrefix = true;
+	
+	/**
+	 * Aktualni verze profilu
+	 * 
+	 * Vyplňuje se při zpracování pravidla ob25
+	 */
+	private ProfileRevision profileRevision;
+	private DescriptionRules descriptionRules;
+	private FindingAidType findingAidType;
 
     EadValidationContext(final EadLoader eadLoader, final List<String> excludeChecks) {
     	super(excludeChecks);
@@ -94,5 +106,29 @@ public class EadValidationContext
 
 	public EadLevelIterator getEadLevelIterator() {		
 		return new EadLevelIterator(eadLoader.getEad());
+	}
+
+	public void setProfileRevision(final ProfileRevision profileRevision) {
+		this.profileRevision = profileRevision;		
+	}
+	
+	ProfileRevision getProfileRevision() {
+		return profileRevision;
+	}
+
+	public void setDescriptionRules(final DescriptionRules descRules) {
+		this.descriptionRules = descRules;		
+	}
+	
+	DescriptionRules getDescriptionRules() {
+		return descriptionRules;
+	}
+
+	public FindingAidType getFindingAidType() {
+		return findingAidType;		
+	}
+
+	public void setFindingAidType(final FindingAidType findingAidType) {
+		this.findingAidType = findingAidType;		
 	}
 }

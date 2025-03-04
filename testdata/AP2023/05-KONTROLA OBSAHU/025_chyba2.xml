@@ -3,11 +3,11 @@
 	<ead:control>
 		<ead:recordid>d0f7e14f-a655-4902-a6fd-e141bbe6ca6b</ead:recordid> <!-- obs1 -->
 		<ead:otherrecordid localtype="CZ_MVCR_FINDING_AID_ID">5</ead:otherrecordid> <!-- obs2 -->
-		<ead:otherrecordid localtype="INTERNAL_REV_ID"></ead:otherrecordid> <!-- obs3 -->
+		<ead:otherrecordid localtype="INTERNAL_REV_ID">rev1</ead:otherrecordid> <!-- obs3 -->
 		
 		<ead:filedesc encodinganalog="123"> <!-- obs4 -->
 			<ead:titlestmt>
-				<ead:titleproper></ead:titleproper>
+				<ead:titleproper>Jméno AS</ead:titleproper>
 				<ead:subtitle>Název hotové pomůcky</ead:subtitle> <!-- obs5 -->
 			</ead:titlestmt>
 			
@@ -44,14 +44,14 @@
 		</ead:maintenanceagency>
 		
 		<ead:localcontrol localtype="FINDING_AID_TYPE"> <!-- obs23 -->
-			
+			<ead:term identifier="INVENTAR">inventář</ead:term> <!-- obs26, obs28, obs29 -->
 		</ead:localcontrol>
 		
 		<ead:localcontrol localtype="RULES"> <!-- obs24 -->
-			
+			<ead:term identifier="CZ_ZP2013">základní pravidla od roku 2013</ead:term> <!-- obs26, obs27 -->
 		</ead:localcontrol>
 		
-		<ead:localcontrol localtype="HLOUPOST"> <!-- obs25 -->
+		<ead:localcontrol localtype="CZ_FINDING_AID_EAD_PROFILE"> <!-- obs25 - prazdny obsah -->
 			
 		</ead:localcontrol>
 		
