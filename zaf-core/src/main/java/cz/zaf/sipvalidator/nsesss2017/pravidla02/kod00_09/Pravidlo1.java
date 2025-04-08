@@ -1,17 +1,5 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla02.kod00_09;
 
-import java.io.BufferedInputStream;
-import java.io.InputStream;
-import java.nio.file.Files;
-
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamReader;
-
-import org.apache.commons.io.input.BOMInputStream; // lib commons-io-2.4
-
-import com.ibm.icu.text.CharsetDetector; // lib ucu4j-56.jar
-import com.ibm.icu.text.CharsetMatch; // lib ucu4j-56.jar
-
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.common.xml.EncodingDetector;

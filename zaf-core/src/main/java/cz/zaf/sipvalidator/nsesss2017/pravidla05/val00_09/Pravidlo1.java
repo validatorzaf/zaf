@@ -1,6 +1,5 @@
 package cz.zaf.sipvalidator.nsesss2017.pravidla05.val00_09;
 
-import cz.zaf.sipvalidator.nsesss2017.PravidloBase;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -17,7 +16,12 @@ import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.common.exceptions.codes.XmlCode;
 import cz.zaf.common.result.RuleValidationError;
 import cz.zaf.common.xml.ValidationRuleErrorHandler;
+import cz.zaf.schemas.cam.CamNS;
+import cz.zaf.schemas.ead.EadNS;
+import cz.zaf.schemas.mets.MetsNS;
+import cz.zaf.schemas.mets.XLinkNS;
 import cz.zaf.common.xml.SchemaResourceLoader;
+import cz.zaf.sipvalidator.nsesss2017.PravidloBase;
 import cz.zaf.sipvalidator.sip.SipInfo;
 
 public class Pravidlo1 extends PravidloBase {
@@ -35,7 +39,14 @@ public class Pravidlo1 extends PravidloBase {
 
 	@Override
 	protected void kontrola() {
-		Schema schema = SchemaResourceLoader.get("/schema/sip2017.xsd");
+		var schema = SchemaResourceLoader.getCombined(
+				XLinkNS.SCHEMA_RESOURCE,
+				MetsNS.SCHEMA_RESOURCE_V_1_11,
+				"/schema/nsesss/2017/dmBaseTypes.xsd",
+				"/schema/nsesss/2017/nsesss.xsd",
+				"/schema/nsesss/2017/ess_ns.xsd",
+				"/schema/nsesss/2017/TransakcniProtokolNavrh_verze17.xsd"
+				);
 		Validator nasValidator = schema.newValidator();
 		nasValidator.setErrorHandler(new ValidationRuleErrorHandler());
 		

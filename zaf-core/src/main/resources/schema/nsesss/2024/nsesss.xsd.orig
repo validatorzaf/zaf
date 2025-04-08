@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://www.mvcr.cz/nsesss/v4" 
+  xmlns="http://www.mvcr.cz/nsesss/v4"
+  elementFormDefault="qualified" 
+  version="4.0" id="nsesss" xml:lang="cs">
+  <xs:annotation>
+    <xs:documentation>Schéma XML pro zaznamenání popisných metadat uvnitř datového balíčku SIP podle národního standardu pro elektronické systémy spisové služby</xs:documentation>
+  </xs:annotation>
+
+  <xs:include schemaLocation="nsesss-common.xsd"/>
+
+  <xs:element name="Dil" type="tDil">
+    <xs:annotation>
+      <xs:documentation>Sada elementů pro popis základní entity "díl" (mechanická část součásti typového spisu). Tato sada se využije jako výchozí v případě přejímky určité části typového spisu (resp. uzavřeného dílu v rámci součásti typového spisu).</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Dokument" type="tDokument">
+    <xs:annotation>
+      <xs:documentation>Sada elementů pro popis základní entity "dokument". Tato sada se využije jako výchozí v případě přejímky vyřízeného dokumentu zatříděného do věcné skupiny. Dokument zatříděný do spisu (nikoli do typového spisu) se předává v rámci entity "spis". Dokument zatříděný do typového spisu (resp. dílu příslušné součásti typového spisu) se předává v rámci entity "díl".</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Spis" type="tSpis">
+    <xs:annotation>
+      <xs:documentation>Sada elementů pro popis základní entity "spis". Tato sada se využije jako výchozí v případě přejímky celého uzavřeného spisu (nikoli typového spisu). V případě přejímky určité části typového spisu (resp. uzavřeného dílu v rámci součásti typového spisu) se využije jako základní entita "díl".</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+</xs:schema>

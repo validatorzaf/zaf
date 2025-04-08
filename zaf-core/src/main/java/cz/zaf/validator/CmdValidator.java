@@ -22,6 +22,7 @@ import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 import cz.zaf.sipvalidator.formats.MimetypeDetectorFactory;
 import cz.zaf.sipvalidator.formats.VystupniFormat;
 import cz.zaf.sipvalidator.nsesss2017.ValidatorNsesss2017;
+import cz.zaf.sipvalidator.nsesss2024.ValidatorNsesss2024;
 import cz.zaf.sipvalidator.pdfa.VeraValidatorProxy;
 import cz.zaf.validator.profiles.ValidationProfile;
 
@@ -160,6 +161,9 @@ public class CmdValidator {
 	    			cmdParams.validationProfile = ValidationProfile.DAAIP2024;
 	    			// Detect subprofile
 	    			cmdParams.da2024Profile = detectSubProfileDAAIP2024(metsData);
+	    		} else
+	    		if(metsData.contains("=\"http://www.mvcr.cz/nsesss/v4\"")) {
+	    			cmdParams.validationProfile = ValidationProfile.NSESSS2024;
 	    		}
 	    		
     		} catch (IOException e) {
@@ -183,6 +187,10 @@ public class CmdValidator {
         	}
         	return new ValidatorDAAIP2024(cmdParams.getDa2024Profile(), cmdParams.getExcludeChecks(),
         			cmdParams.getWorkDir(), cmdParams.isKeepFiles());
+        case NSESSS2024:
+			return new ValidatorNsesss2024(cmdParams.getHrozba(), 
+					cmdParams.getWorkDir(), cmdParams.isKeepFiles(),
+                    cmdParams.getProfilValidace2024(), cmdParams.getExcludeChecks());
         case NSESSS2017:
         default:
             return new ValidatorNsesss2017(cmdParams.getHrozba(),

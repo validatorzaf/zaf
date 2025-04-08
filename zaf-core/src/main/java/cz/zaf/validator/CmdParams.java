@@ -77,6 +77,8 @@ public class CmdParams {
      * Aktivni profil validace
      */
     ProfilValidace nsesssProfile = ZakladniProfilValidace.SKARTACE_METADATA;
+    
+    cz.zaf.sipvalidator.nsesss2024.profily.ProfilValidace nsesss2024Profile = cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.SKARTACE_METADATA;
 
     /**
      * Profile pro AP2023
@@ -168,6 +170,10 @@ public class CmdParams {
 
     public ProfilValidace getProfilValidace() {
         return nsesssProfile;
+    }
+
+    public cz.zaf.sipvalidator.nsesss2024.profily.ProfilValidace getProfilValidace2024() {
+        return nsesss2024Profile;
     }
 
     public VystupniFormat getVystupniFormat() {
@@ -398,15 +404,19 @@ public class CmdParams {
             switch (druh) {
             case 0:
                 nsesssProfile = ZakladniProfilValidace.DEVEL;
+                nsesss2024Profile = cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.DEVEL;
                 break;                
             case 1:
                 nsesssProfile = ZakladniProfilValidace.SKARTACE_METADATA;
+                nsesss2024Profile = cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.SKARTACE_METADATA;
                 break;
             case 2:
                 nsesssProfile = ZakladniProfilValidace.SKARTACE_UPLNY;
+                nsesss2024Profile = cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.SKARTACE_UPLNY;
                 break;
             case 3:
                 nsesssProfile = ZakladniProfilValidace.PREJIMKA;
+                nsesss2024Profile = cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.PREJIMKA;
                 break;
             default:
                 System.out.println("Chybný druh validace: " + arg);
@@ -456,8 +466,8 @@ public class CmdParams {
             case "NSESSS2017":
             	validationProfile = ValidationProfile.NSESSS2017;
                 break;
-            case "NSESSS2023":
-            	validationProfile = ValidationProfile.NSESSS2023;
+            case "NSESSS2024":
+            	validationProfile = ValidationProfile.NSESSS2024;
                 break;                
             case "AP2023":
             	validationProfile = ValidationProfile.AP2023;

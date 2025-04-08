@@ -15,7 +15,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla05.val00_09.Pravidlo1;
  * 
  */
 public class K05_ProtiSchematu
-        extends KontrolaBase<SimpleRuleContext<KontrolaNsess2017Context>> {
+        extends KontrolaBase<SimpleRuleContext<KontrolaNsessContext>> {
     static final public String NAME = "proti schématu";
 
     public K05_ProtiSchematu() {
@@ -25,7 +25,7 @@ public class K05_ProtiSchematu
     @Override
     public void validateImpl() {
     	
-    	SimpleRuleContext<KontrolaNsess2017Context> schemaCheckContext = new SimpleRuleContext<>(ctx);
+    	SimpleRuleContext<KontrolaNsessContext> schemaCheckContext = new SimpleRuleContext<>(ctx);
     	
     	this.provedKontrolu(schemaCheckContext, getRules());
     }
