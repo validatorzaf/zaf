@@ -30,9 +30,9 @@ public class CmdParams {
         output.println(" -k|--keep Zachování rozbalených souborů na disku");
         output.println(" -d|--druh= Druh kontroly pro danou validaci (AUTO - výchozí), stačí uvést druh:");
         output.println("        AUTO = výběr základní kontroly pro daný typ kontroly");
-        output.println("        1 = pro provedení skartačního řízení (jen metadata bez přiložených komponent)");
-        output.println("        2 = pro provedení skartačního řízení (s přiloženými komponentami)");
-        output.println("        3 = pro předávání dokumentů a jejich metadat do archivu");
+        output.println("        SIP_METADATA = pro provedení skartačního řízení, jen metadata bez přiložených komponent (pro NSESSS2017 a NSESSS2024)");
+        output.println("        SIP_PREVIEW = pro provedení skartačního řízení s přiloženými komponentami (pro NSESSS2017 a NSESSS2024)");
+        output.println("        SIP = pro předávání dokumentů a jejich metadat do archivu (pro NSESSS2017 a NSESSS2024)");
         output.println("        AD = archivní popis (pro AP2023)");
         output.println("        FA = archivní pomůcka (pro AP2023)");
         output.println("        AIP = výměnný AIP (pro DAAIP2024)");
@@ -47,7 +47,7 @@ public class CmdParams {
         output.println(" -t|--type= Typ validace (AUTO - výchozí)");
         output.println(" 		AUTO - automatická detekce formátu vstupu");
         output.println(" 		NSESSS2017");
-        output.println("        NSESSS2023");
+        output.println("        NSESSS2024");
         output.println(" 		AP2023");
         output.println(" 		DAAIP2024");
         output.println(" -f|--format= Výstupní formát (1 - výchozí)");
@@ -380,6 +380,28 @@ public class CmdParams {
             switch (arg) {
             case "AUTO":
                 return true;
+            case "0":            
+                nsesssProfile = ZakladniProfilValidace.DEVEL;
+                nsesss2024Profile = cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.DEVEL;
+                break;                
+            case "1":
+            case "METADATA":
+            case "SIP_METADATA":
+                nsesssProfile = ZakladniProfilValidace.SKARTACE_METADATA;
+                nsesss2024Profile = cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.SKARTACE_METADATA;
+                break;
+            case "2":
+            case "KOMPLET":       
+            case "SIP_PREVIEW":
+                nsesssProfile = ZakladniProfilValidace.SKARTACE_UPLNY;
+                nsesss2024Profile = cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.SKARTACE_UPLNY;
+                break;
+            case "3":
+            case "PREJIMKA":
+            case "SIP":
+                nsesssProfile = ZakladniProfilValidace.PREJIMKA;
+                nsesss2024Profile = cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.PREJIMKA;
+                break;                
             case "FA":
                 ap2023Profile = AP2023Profile.FINDING_AID;
                 return true;
@@ -398,28 +420,6 @@ public class CmdParams {
             case "SIP_CHANGE":
             	da2024Profile = DAAIP2024Profile.SIP_CHANGE;
             	return true;
-            }
-
-            int druh = Integer.parseInt(arg);
-            switch (druh) {
-            case 0:
-                nsesssProfile = ZakladniProfilValidace.DEVEL;
-                nsesss2024Profile = cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.DEVEL;
-                break;                
-            case 1:
-                nsesssProfile = ZakladniProfilValidace.SKARTACE_METADATA;
-                nsesss2024Profile = cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.SKARTACE_METADATA;
-                break;
-            case 2:
-                nsesssProfile = ZakladniProfilValidace.SKARTACE_UPLNY;
-                nsesss2024Profile = cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.SKARTACE_UPLNY;
-                break;
-            case 3:
-                nsesssProfile = ZakladniProfilValidace.PREJIMKA;
-                nsesss2024Profile = cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.PREJIMKA;
-                break;
-            default:
-                System.out.println("Chybný druh validace: " + arg);
             }
         } catch (NumberFormatException nfe) {
             System.out.println("Není číslo: " + arg);

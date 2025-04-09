@@ -7,6 +7,7 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,8 +24,14 @@ import cz.zaf.sipvalidator.formats.MimetypeDetectorFactory;
 import cz.zaf.sipvalidator.formats.VystupniFormat;
 import cz.zaf.sipvalidator.nsesss2017.ValidatorNsesss2017;
 import cz.zaf.sipvalidator.nsesss2024.ValidatorNsesss2024;
+import cz.zaf.sipvalidator.nsesss2024.profily.ProfilValidace;
+import cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace;
 import cz.zaf.sipvalidator.pdfa.VeraValidatorProxy;
 import cz.zaf.validator.profiles.ValidationProfile;
+import net.lingala.zip4j.ZipFile;
+import net.lingala.zip4j.exception.ZipException;
+import net.lingala.zip4j.io.inputstream.ZipInputStream;
+import net.lingala.zip4j.model.FileHeader;
 
 /**
  * Command line validator
@@ -145,9 +152,14 @@ public class CmdValidator {
     
     private ValidationProfile identifikujTypBalicku() {
     	Path inputPath = Paths.get(cmdParams.getInputPath());
-    	if(Files.isRegularFile(inputPath)) {
+    	if(Files.isRegularFile(inputPath)) {    		
     		// pokud je soubor, tak musí být pomůcka
-    		cmdParams.validationProfile = ValidationProfile.AP2023; 
+    		String inputFileName = inputPath.getFileName().toString().toLowerCase();
+    		if(inputFileName.endsWith(".zip")) {
+    			detectPkgTypeZip(inputPath);
+    		} else {
+    			cmdParams.validationProfile = ValidationProfile.AP2023;
+    		}
     	} else
     	// we have to detect file type
     	// check if input path is a directory
@@ -173,7 +185,97 @@ public class CmdValidator {
     	return cmdParams.validationProfile;
     }
     
-    private Validator createValidator() {
+    private boolean detectPkgTypeZip(Path inputPath) {
+    	try(ZipFile zipFile = new ZipFile(inputPath.toFile())) {
+            // zipFile.setCharset(Charset.forName(zipEncoding)); // extrakce českých znaků
+            boolean isvalidZipFile = zipFile.isValidZipFile();
+            if (!isvalidZipFile) {
+             	return false;
+            }
+            
+            List<FileHeader> fileHeaders = zipFile.getFileHeaders();
+            if(fileHeaders==null || fileHeaders.isEmpty()) {
+	            return false;
+            }
+            // vyhledani korenove slozky a nebo mets.xml
+            for(FileHeader fileHeader: fileHeaders) {
+            	if(fileHeader.isDirectory()) {
+	            	continue;
+            	}
+            	// TODO: consider case sensitive detection
+            	String fileName = fileHeader.getFileName().toLowerCase();
+            	if(fileName.endsWith("/mets.xml")) {
+            		// mets found
+            		// extract mets.xml to the memory
+					try ( ZipInputStream is = zipFile.getInputStream(fileHeader); ) {
+						// read from InputStream at most 65536 bytes
+						byte[] buffer = new byte[65536];
+						int bytesRead;
+						StringBuilder sb = new StringBuilder();
+						while ((bytesRead = is.read(buffer)) != -1) {
+							sb.append(new String(buffer, 0, bytesRead));
+						}
+						String metsData = sb.toString();
+						if(metsData.contains("PROFILE=\"https://stands.nacr.cz/da/2023/aip.xml\"")) {
+							cmdParams.validationProfile = ValidationProfile.DAAIP2024;
+							// Detect subprofile
+							cmdParams.da2024Profile = detectSubProfileDAAIP2024(metsData);
+							return true;
+						}
+						if(metsData.contains("=\"http://www.mvcr.cz/nsesss/v4\"")) {
+							cmdParams.validationProfile = ValidationProfile.NSESSS2024;
+							cmdParams.nsesss2024Profile = detectSubProfileNSESSS2024(metsData);
+							return true;
+						}
+						if(metsData.contains("=\"http://www.mvcr.cz/nsesss/v3\"")) {
+							cmdParams.validationProfile = ValidationProfile.NSESSS2017;
+							cmdParams.nsesssProfile = detectSubProfileNSESSS2017(metsData);
+							return true;
+						}
+					}
+            		
+            	}
+            }
+    	} catch (ZipException e) {
+        	log.error("Failed to extract zip file", e);
+			return false;
+		} catch (IOException e) {
+        	log.error("Failed to extract zip file", e);
+			return false;
+		}
+
+    	return true;
+    }
+
+	private cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace detectSubProfileNSESSS2017(String metsData) {
+		// Detect subprofile
+		if(metsData.contains("Datový balíček pro předávání dokumentů a jejich metadat do archivu")) {
+			return cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace.PREJIMKA;
+		}
+		
+		// TODO: improve detection according existence of representations
+		if(metsData.contains("fileSec>")) {
+			return cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace.SKARTACE_UPLNY;
+		}
+		
+		return cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace.SKARTACE_METADATA;
+	}
+
+	private ProfilValidace detectSubProfileNSESSS2024(String metsData) {
+		// Detect subprofile
+		if(metsData.contains("Datový balíček pro předávání dokumentů a jejich metadat do archivu")) {
+			return ZakladniProfilValidace.PREJIMKA;
+		}
+		
+		// TODO: improve detection according existence of representations
+		if(metsData.contains("fileSec>")) {
+			return ZakladniProfilValidace.SKARTACE_UPLNY;
+		}
+		
+		return ZakladniProfilValidace.SKARTACE_METADATA;
+	}
+
+	private Validator createValidator() {
     	ValidationProfile skutecnyTyp = cmdParams.validationProfile;
     	if (cmdParams.validationProfile == null) {
         	skutecnyTyp = identifikujTypBalicku();
