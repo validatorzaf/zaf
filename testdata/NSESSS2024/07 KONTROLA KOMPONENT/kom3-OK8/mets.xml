@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:nsesss="http://www.mvcr.cz/nsesss/v4" xmlns:tp="http://www.mvcr.cz/nsesss/2023/log" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="GS_01cf142e-9652-42ce-87d8-714aa5100276" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu" OBJID="GS_01cf142e-9652-42ce-87d8-714aa5100276" TYPE="dokument" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v3 http://www.mvcr.cz/nsesss/v3/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 TransakcniProtokolNavrh_verze1.7.xsd">
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:nsesss="http://www.mvcr.cz/nsesss/v4" xmlns:tp="http://www.mvcr.cz/nsesss/2023/log" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="GS_007b5fd0-581a-42a0-a1f2-272ed2ca5d4f" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu" OBJID="GS_007b5fd0-581a-42a0-a1f2-272ed2ca5d4f" TYPE="dokument" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v4 http://www.mvcr.cz/nsesss/v4/nsesss.xsd http://www.mvcr.cz/nsesss/2023/log https://www.mvcr.cz/nsesss/v4/nsesss-TrP.xsd">
   <mets:metsHdr CREATEDATE="2018-06-22T12:05:05.0994266Z" ID="G_377d32e6-bdd0-4efd-920b-74a05b30aba0" LASTMODDATE="2018-06-22T12:05:05.0994266Z" RECORDSTATUS="Mets-1.9_Nsesss-3.0_Generator-2018.05.24">
     <mets:agent ID="MHMPSE009Q14" ROLE="CREATOR" TYPE="ORGANIZATION">
       <mets:name>GDPR anonymizováno</mets:name>
@@ -677,7 +677,7 @@
   <mets:fileSec>
     <mets:fileGrp USE="Original">
       <mets:file CHECKSUM="7B487FA9FEAD9E78C631B058C1718638FDF8C4BC3C8E5EB594AE9D9B637750FE2F18FEB64D88536F40C2C11B73AD52903DEA3703E1DA523FC9FA4B965F783229" CHECKSUMTYPE="SHA-512" CREATED="2011-06-17T13:55:17" DMDID="MHMPXOUXJ0V4_MHMP0C0IGBSZ_MHMP0B0NUQ9X" ID="MHMP0B0NUQ9X" MIMETYPE="application/vnd.software602.filler.form-xml-zip" OWNERID="MHMPXOUXJ0V4" SIZE="2517981" USE="Original">
-        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\MHMP0B0NUQ9X" xlink:type="simple"/>
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty/MHMP0B0NUQ9X" xlink:type="simple"/>
       </mets:file>
     </mets:fileGrp>
   </mets:fileSec>
