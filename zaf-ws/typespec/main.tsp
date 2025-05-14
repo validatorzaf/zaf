@@ -232,7 +232,7 @@ model ValidationLevel {
   /**
    * Název souboru jehož se kontrola týká
    */
-  filaName?: string;
+  fileName?: string;
 
   /**
    * Pravidla validace

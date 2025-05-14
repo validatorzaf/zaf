@@ -1,6 +1,7 @@
 package cz.zaf.validator.ws.service;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -20,10 +21,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import cz.zaf.api.rest.model.RequestProcessState;
 import cz.zaf.api.rest.model.ValidationType;
+import cz.zaf.schema.validace_v1.Validace;
 import cz.zaf.validator.CmdParams;
 import cz.zaf.validator.CmdValidator;
 import cz.zaf.validator.profiles.ValidationProfile;
 import jakarta.validation.Valid;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Unmarshaller;
 
 @Service
 public class ValidationService {
@@ -42,7 +47,17 @@ public class ValidationService {
 	
 	Map<String, ValidationJob> jobsMap = new HashMap<>();
 	
-	class ValidationJob implements Runnable {
+    static JAXBContext jaxbContext;
+    {        
+        try {
+            jaxbContext = JAXBContext.newInstance(Validace.class);
+        } catch (JAXBException e) {
+            log.error("Failed to initialize JAXBContext", e);
+            throw new IllegalStateException("Failed to initialize JAXBContext", e);
+        }
+    }
+
+    class ValidationJob implements Runnable {
 		private Path requestPath;
 		
 		/**
@@ -202,22 +217,43 @@ public class ValidationService {
 		}
 		return null;
 	}
+	
+	synchronized private Path getResultPath(String validationRequestId) {
+		ValidationJob vj = jobsMap.get(validationRequestId);
+		if(vj==null) {
+			throw new RuntimeException("Unknown request id: " + validationRequestId);
+		}
+		if(!vj.futureResult.isDone()) {
+			throw new RuntimeException("Request is not finished, request id: " + validationRequestId);
+		}
+		return vj.getOutputPath();
+	}
 
-	public byte[] getResult(String validationRequestId) {
-		synchronized(this) {
-			ValidationJob vj = jobsMap.get(validationRequestId);
-			if(vj==null) {
-				throw new RuntimeException("Unknown request id: " + validationRequestId);
-			}
-			if(!vj.futureResult.isDone()) {
-				throw new RuntimeException("Request is not finished, request id: " + validationRequestId);
-			}
-			// job is finished -> return result
-			try {
-				return Files.readAllBytes(vj.getDataPath());
-			} catch (Exception e) {
-				return null;
-			}
+	public byte[] getResultAsBytes(String validationRequestId) {		
+		// job is finished -> return result
+		try {
+			Path resultPath = getResultPath(validationRequestId);
+			return Files.readAllBytes(resultPath);
+		} catch (IOException e) {
+			throw new RuntimeException("Failed to read result, request id: " + validationRequestId,
+					e);
+		}
+	}
+
+	public Validace getResult(String validationRequestId) {
+		Path resultPath = getResultPath(validationRequestId);
+		
+		// load xml using jaxbContext from resultPath
+        try (InputStream is = Files.newInputStream(resultPath)) {
+        	Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        	Object resultObj = unmarshaller.unmarshal(is);
+        	return (Validace)resultObj;
+        } catch (IOException e) {
+			throw new RuntimeException("Failed to read result, request id: " + validationRequestId,
+					e);
+		} catch (JAXBException e) {
+			throw new RuntimeException("Failed to read result, request id: " + validationRequestId,
+					e);
 		}
 	}
 

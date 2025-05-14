@@ -338,7 +338,7 @@ components:
           allOf:
             - $ref: '#/components/schemas/ValidationLevelStatus'
           description: Výsledek kontroly
-        filaName:
+        fileName:
           type: string
           description: Název souboru jehož se kontrola týká
         rules:
