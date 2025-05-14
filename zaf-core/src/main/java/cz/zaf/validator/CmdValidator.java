@@ -18,6 +18,7 @@ import cz.zaf.common.result.XmlProtokolWriter;
 import cz.zaf.common.result.XmlProtokolWriterOld;
 import cz.zaf.common.validation.Validator;
 import cz.zaf.eadvalidator.ap2023.ValidatorAp2023;
+import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
 import cz.zaf.earkvalidator.ValidatorDAAIP2024;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 import cz.zaf.sipvalidator.formats.MimetypeDetectorFactory;
@@ -44,23 +45,32 @@ public class CmdValidator {
 
     final static Logger log = LoggerFactory.getLogger(CmdValidator.class);
 
-    private CmdParams cmdParams;
+    // Předané parametry
+    private final Params params;
+    
+    // Skutečné parametry validátoru
+    private ValidationProfile validationProfile;
+	private DAAIP2024Profile da2024Profile;
+    private cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace nsesss2017Profile;    
+    private cz.zaf.sipvalidator.nsesss2024.profily.ProfilValidace nsesss2024Profile;
+    
     private Validator validator = null;
+	private AP2023Profile ap2023Profile;
 
-    public CmdValidator(final CmdParams cmdParams) {
-        this.cmdParams = cmdParams;
+    public CmdValidator(final Params params) {
+        this.params = params;
         this.validator = createValidator();
     }
 
     public static void main(String[] args) {
-        CmdParams cmdParams = new CmdParams();
-        if (!cmdParams.read(args)) {
-            CmdParams.printUsage();
+        CmdParamsReader cmdParamsReader = new CmdParamsReader();
+        if (!cmdParamsReader.read(args)) {
+            CmdParamsReader.printUsage();
             System.exit(ERR_WRONG_PARAMS);
             return;
         }
 
-        CmdValidator cmdValidator = new CmdValidator(cmdParams);
+        CmdValidator cmdValidator = new CmdValidator(cmdParamsReader.getParams());
         try {
             cmdValidator.validate();
         } catch (Exception e) {
@@ -77,14 +87,14 @@ public class CmdValidator {
     
     private ProtokolWriter createWriter() throws Exception {
         ProtokolWriter protokolWriter = null;
-        if (cmdParams.vystupniFormat == VystupniFormat.VALIDACE_V1) {
+        if (params.getVystupniFormat() == VystupniFormat.VALIDACE_V1) {
 
-    		protokolWriter = new XmlProtokolWriter(cmdParams.getOutput(), 
-                    cmdParams.getIdKontroly(), validator.getProfileInfo());
+    		protokolWriter = new XmlProtokolWriter(params.getOutput(), 
+                    params.getIdKontroly(), validator.getProfileInfo());
     	}
     	else {
-    		protokolWriter = new XmlProtokolWriterOld(cmdParams.getOutput(), 
-                    cmdParams.getIdKontroly(), validator.getProfileInfo());
+    		protokolWriter = new XmlProtokolWriterOld(params.getOutput(), 
+                    params.getIdKontroly(), validator.getProfileInfo());
     	}
     	return protokolWriter;
     }
@@ -92,7 +102,7 @@ public class CmdValidator {
     public void validate() throws Exception {
         try(ProtokolWriter protokolWriter = createWriter();) {
             int repeatCnt = 1;
-            if (cmdParams.isMemTest()) {
+            if (params.isMemTest()) {
                 repeatCnt = 10000;
             } 
 
@@ -101,7 +111,7 @@ public class CmdValidator {
                     gc();
                     log.debug("Run count: " + i);
                 }
-                if (cmdParams.isDavkovyRezim()) {
+                if (params.isBatchMode()) {
                     validateDavka(protokolWriter);
                 } else {
                     validatePackage(protokolWriter);
@@ -124,16 +134,16 @@ public class CmdValidator {
 
     public void validatePackage(ProtokolWriter protokolWriter) throws Exception {
 
-        Path path = Paths.get(cmdParams.getInputPath());
+        Path path = Paths.get(params.getInputPath());
 
         ValidationResult result = validator.validate(path);
         
         protokolWriter.writeVysledek(result);
     }
-    
-    private DAAIP2024Profile detectSubProfileDAAIP2024(String metsData) {
+          
+    private DAAIP2024Profile detectSubProfileDAAIP2024(String metsData) {    	
 		if(metsData==null) {
-			Path inputPath = Paths.get(cmdParams.getInputPath());
+			Path inputPath = Paths.get(params.getInputPath());
 			try {
 				metsData = Files.readString(inputPath.resolve("METS.xml"), StandardCharsets.UTF_8);
 			} catch (IOException e) {
@@ -150,39 +160,39 @@ public class CmdValidator {
 		return DAAIP2024Profile.AIP;
 	}
     
-    private ValidationProfile identifikujTypBalicku() {
-    	Path inputPath = Paths.get(cmdParams.getInputPath());
+    private void identifikujTypBalicku() {
+    	Path inputPath = Paths.get(params.getInputPath());
     	if(Files.isRegularFile(inputPath)) {    		
     		// pokud je soubor, tak musí být pomůcka
+
     		String inputFileName = inputPath.getFileName().toString().toLowerCase();
     		if(inputFileName.endsWith(".zip")) {
     			detectPkgTypeZip(inputPath);
     		} else {
-    			cmdParams.validationProfile = ValidationProfile.AP2023;
+    			validationProfile = ValidationProfile.AP2023;
     		}
     	} else
     	// we have to detect file type
     	// check if input path is a directory
     	if (Files.isDirectory(inputPath)) {
     		// Default choice is:
-    		cmdParams.validationProfile = ValidationProfile.NSESSS2017;
+    		validationProfile = ValidationProfile.NSESSS2017;
 	    	// read fist 100 characters from METS.xml if exists
 	    	try {
 	    		String metsData = Files.readString(inputPath.resolve("METS.xml"), StandardCharsets.UTF_8);
 	    		if(metsData.contains("PROFILE=\"https://stands.nacr.cz/da/2023/aip.xml\"")) {
-	    			cmdParams.validationProfile = ValidationProfile.DAAIP2024;
+	    			validationProfile = ValidationProfile.DAAIP2024;
 	    			// Detect subprofile
-	    			cmdParams.da2024Profile = detectSubProfileDAAIP2024(metsData);
+	    			da2024Profile = detectSubProfileDAAIP2024(metsData);
 	    		} else
 	    		if(metsData.contains("=\"http://www.mvcr.cz/nsesss/v4\"")) {
-	    			cmdParams.validationProfile = ValidationProfile.NSESSS2024;
+	    			validationProfile = ValidationProfile.NSESSS2024;
 	    		}
 	    		
     		} catch (IOException e) {
 	    		// ignore
 	    	}	    	
     	}
-    	return cmdParams.validationProfile;
     }
     
     private boolean detectPkgTypeZip(Path inputPath) {
@@ -217,19 +227,19 @@ public class CmdValidator {
 						}
 						String metsData = sb.toString();
 						if(metsData.contains("PROFILE=\"https://stands.nacr.cz/da/2023/aip.xml\"")) {
-							cmdParams.validationProfile = ValidationProfile.DAAIP2024;
+							validationProfile = ValidationProfile.DAAIP2024;
 							// Detect subprofile
-							cmdParams.da2024Profile = detectSubProfileDAAIP2024(metsData);
+							da2024Profile = detectSubProfileDAAIP2024(metsData);
 							return true;
 						}
 						if(metsData.contains("=\"http://www.mvcr.cz/nsesss/v4\"")) {
-							cmdParams.validationProfile = ValidationProfile.NSESSS2024;
-							cmdParams.nsesss2024Profile = detectSubProfileNSESSS2024(metsData);
+							validationProfile = ValidationProfile.NSESSS2024;
+							nsesss2024Profile = detectSubProfileNSESSS2024(metsData);
 							return true;
 						}
 						if(metsData.contains("=\"http://www.mvcr.cz/nsesss/v3\"")) {
-							cmdParams.validationProfile = ValidationProfile.NSESSS2017;
-							cmdParams.nsesssProfile = detectSubProfileNSESSS2017(metsData);
+							validationProfile = ValidationProfile.NSESSS2017;
+							nsesss2017Profile = detectSubProfileNSESSS2017(metsData);
 							return true;
 						}
 					}
@@ -276,35 +286,42 @@ public class CmdValidator {
 	}
 
 	private Validator createValidator() {
-    	ValidationProfile skutecnyTyp = cmdParams.validationProfile;
-    	if (cmdParams.validationProfile == null) {
-        	skutecnyTyp = identifikujTypBalicku();
+		validationProfile = params.getValidationProfile();
+		da2024Profile = params.getDa2024Profile();
+		nsesss2017Profile = params.getNsesss2017Profile();
+		nsesss2024Profile = params.getNsesss2024Profile();
+		ap2023Profile = params.getAp2023Profile();
+    	if (validationProfile == null) {
+        	identifikujTypBalicku();
         }
-    	switch (skutecnyTyp) {
+    	if(validationProfile==null) {
+    		throw new IllegalArgumentException("Unknown validation profile");
+    	}
+    	switch (validationProfile) {
         case AP2023:
-            return new ValidatorAp2023(cmdParams.getAp2023Profile(), cmdParams.getExcludeChecks());
+            return new ValidatorAp2023(ap2023Profile, params.getExcludeChecks());
         case DAAIP2024:
-        	if(cmdParams.getDa2024Profile()==null) {
-        		cmdParams.da2024Profile = detectSubProfileDAAIP2024(null);
+        	if(da2024Profile==null) {
+        		da2024Profile = detectSubProfileDAAIP2024(null);
         	}
-        	return new ValidatorDAAIP2024(cmdParams.getDa2024Profile(), cmdParams.getExcludeChecks(),
-        			cmdParams.getWorkDir(), cmdParams.isKeepFiles());
+        	return new ValidatorDAAIP2024(params.getDa2024Profile(), params.getExcludeChecks(),
+        			params.getWorkDir(), params.isKeepFiles());
         case NSESSS2024:
-			return new ValidatorNsesss2024(cmdParams.getHrozba(), 
-					cmdParams.getWorkDir(), cmdParams.isKeepFiles(),
-                    cmdParams.getProfilValidace2024(), cmdParams.getExcludeChecks());
+			return new ValidatorNsesss2024(params.getHrozba(), 
+					params.getWorkDir(), params.isKeepFiles(),
+					nsesss2024Profile, params.getExcludeChecks());
         case NSESSS2017:
         default:
-            return new ValidatorNsesss2017(cmdParams.getHrozba(),
-                    cmdParams.getWorkDir(), cmdParams.isKeepFiles(),
-                    cmdParams.getProfilValidace(), cmdParams.getExcludeChecks());
+            return new ValidatorNsesss2017(params.getHrozba(),
+                    params.getWorkDir(), params.isKeepFiles(),
+                    nsesss2017Profile, params.getExcludeChecks());
     	}
     }
 
     public void validateDavka(ProtokolWriter protokolWriter) throws Exception {
-        Path inputDir = Paths.get(cmdParams.getInputPath());
+        Path inputDir = Paths.get(params.getInputPath());
         if (!Files.isDirectory(inputDir)) {
-            throw new IllegalArgumentException("Input path is not directory: " + cmdParams.getInputPath());
+            throw new IllegalArgumentException("Input path is not directory: " + params.getInputPath());
         }
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(inputDir)) {
             for (final Path path : stream) {

@@ -1,14 +1,10 @@
 package cz.zaf.validator;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 import cz.zaf.sipvalidator.formats.VystupniFormat;
-import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
-import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 import cz.zaf.validator.profiles.ValidationProfile;
 
 /**
@@ -16,7 +12,7 @@ import cz.zaf.validator.profiles.ValidationProfile;
  * 
  *
  */
-public class CmdParams {
+public class CmdParamsReader {
 
     protected static void printUsage() {
         PrintStream output = System.out;
@@ -55,141 +51,17 @@ public class CmdParams {
         output.println(" 		2 = schéma pouze pro kontrolu NSESSS");
     }
 
-    String inputPath = System.getProperty("user.dir");
-
-    String workDir = null;
-
-    /**
-     * Priznak davkoveho rezimu
-     * 
-     * V davkovem rezimu se kontroluje sada SIPu
-     */
-    boolean davkovyRezim = false;
-
-    /**
-     * Priznak testu pameti
-     * 
-     * V pripade testu pameti dojde k opakovani testu
-     */
-    boolean memTest = false;
-
-    /**
-     * Aktivni profil validace
-     */
-    ProfilValidace nsesssProfile = ZakladniProfilValidace.SKARTACE_METADATA;
-    
-    cz.zaf.sipvalidator.nsesss2024.profily.ProfilValidace nsesss2024Profile = cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.SKARTACE_METADATA;
-
-    /**
-     * Profile pro AP2023
-     */
-    AP2023Profile ap2023Profile = AP2023Profile.ARCH_DESC;
-    
-    /**
-     * Profile pro DAAIP2024
-     */
-    DAAIP2024Profile da2024Profile = null;
-
-    public AP2023Profile getAp2023Profile() {
-        return ap2023Profile;
-    }
-
-    /**
-     * Výstupní formát
-     */
-    VystupniFormat vystupniFormat = VystupniFormat.VALIDACE_V1;
-    
-    /**
-     * Validation profile
-     */
-    ValidationProfile validationProfile = null;
-    
-    /**
-     * Popis hrozby
-     */
-    private String hrozba;
-
-    /**
-     * Cesta k vystupu
-     */
-    private String output;
-
     /**
      * Pozice pri cteni vstupnich parametru
      */
     int pos = 0;
 
-    /**
-     * Identifikátor prováděné kontroly
-     */
-    private String idKontroly;
-
-    /**
-     * Příznak pro zachování rozbalených SIPů
-     */
-    boolean keepFiles = false;
-
-    /**
-     * Seznam kontrol, ktere se nemaji provadet
-     */
-    final private List<String> excludeChecks = new ArrayList<>();
-
-    public String getIdKontroly() {
-        return idKontroly;
-    }
-
     String args[];
-
-    public String getInputPath() {
-        return inputPath;
-    }
-
-    public String getWorkDir() {
-        return workDir;
-    }
-
-    public boolean isDavkovyRezim() {
-        return davkovyRezim;
-    }
-
-    public boolean isMemTest() {
-        return memTest;
-    }
-
-    public void setMemTest(boolean memTest) {
-        this.memTest = memTest;
-    }
-
-    public boolean isKeepFiles() {
-        return keepFiles;
-    }
-
-    public void setKeepFiles(boolean keepFiles) {
-        this.keepFiles = keepFiles;
-    }
-
-    public ProfilValidace getProfilValidace() {
-        return nsesssProfile;
-    }
-
-    public cz.zaf.sipvalidator.nsesss2024.profily.ProfilValidace getProfilValidace2024() {
-        return nsesss2024Profile;
-    }
-
-    public VystupniFormat getVystupniFormat() {
-		return vystupniFormat;
-	}
-
-	public List<String> getExcludeChecks() {
-        return excludeChecks;
-    }
-
-    public String getHrozba() {
-        return hrozba;
-    }
-
-    public String getOutput() {
-        return output;
+    
+    Params params = new Params();
+    
+    CmdParamsReader() {
+    	
     }
 
     /**
@@ -206,9 +78,9 @@ public class CmdParams {
         while (pos < args.length) {
             String arg = args[pos];
             if (arg.equals("-b") || arg.equals("--batch")) {
-                davkovyRezim = true;
+            	params.setBatchMode(true);
             } else if (arg.equals("-k") || arg.equals("--keep")) {
-                keepFiles = true;
+            	params.setKeepFiles(true);
             } else if (arg.equals("-w")) {
                 if (!readW()) {
                     return false;
@@ -274,9 +146,9 @@ public class CmdParams {
                     return false;
                 }
             } else if (arg.equals("--memTest")) {
-                this.memTest = true;
+                params.setMemTest(true);
             } else {
-                inputPath = arg;
+                params.setInputPath(arg);
             }
             pos++;
         }
@@ -288,7 +160,7 @@ public class CmdParams {
             System.out.println("Missing id detail");
             return false;
         }
-        this.idKontroly = arg;
+        params.setIdKontroly(arg);
         return true;
     }
 
@@ -307,7 +179,7 @@ public class CmdParams {
             System.out.println("Missing output detail");
             return false;
         }
-        this.output = arg;
+        params.setOutputPath(arg);
         return true;
     }
 
@@ -330,7 +202,7 @@ public class CmdParams {
         for (String e : excluded) {
             e = e.trim();
             if (e.length() > 0) {
-                excludeChecks.add(e);
+                params.addExcludeCheck(e);
             }
         }
         return true;
@@ -361,7 +233,7 @@ public class CmdParams {
             System.out.println("Missing hrozba detail");
             return false;
         }
-        this.hrozba = arg;
+        params.setHrozba(arg);
         return true;
     }
 
@@ -380,45 +252,45 @@ public class CmdParams {
             switch (arg) {
             case "AUTO":
                 return true;
-            case "0":            
-                nsesssProfile = ZakladniProfilValidace.DEVEL;
-                nsesss2024Profile = cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.DEVEL;
+            case "0":
+            	params.setNsesss2017Profile(cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace.DEVEL);
+            	params.setNsesss2024Profile(cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.DEVEL);
                 break;                
             case "1":
             case "METADATA":
             case "SIP_METADATA":
-                nsesssProfile = ZakladniProfilValidace.SKARTACE_METADATA;
-                nsesss2024Profile = cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.SKARTACE_METADATA;
+            	params.setNsesss2017Profile(cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace.SKARTACE_METADATA);
+            	params.setNsesss2024Profile(cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.SKARTACE_METADATA);
                 break;
             case "2":
             case "KOMPLET":       
             case "SIP_PREVIEW":
-                nsesssProfile = ZakladniProfilValidace.SKARTACE_UPLNY;
-                nsesss2024Profile = cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.SKARTACE_UPLNY;
+            	params.setNsesss2017Profile(cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace.SKARTACE_UPLNY);
+            	params.setNsesss2024Profile(cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.SKARTACE_UPLNY);
                 break;
             case "3":
             case "PREJIMKA":
             case "SIP":
-                nsesssProfile = ZakladniProfilValidace.PREJIMKA;
-                nsesss2024Profile = cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.PREJIMKA;
+            	params.setNsesss2017Profile(cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace.PREJIMKA);
+            	params.setNsesss2024Profile(cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.PREJIMKA);
                 break;                
             case "FA":
-                ap2023Profile = AP2023Profile.FINDING_AID;
+                params.setAp2023Profile(AP2023Profile.FINDING_AID);
                 return true;
             case "AD":
-                ap2023Profile = AP2023Profile.ARCH_DESC;
+            	params.setAp2023Profile(AP2023Profile.ARCH_DESC);
                 return true;
             case "AIP":
-            	da2024Profile = DAAIP2024Profile.AIP;
+            	params.setDa2024Profile(DAAIP2024Profile.AIP);
             	return true;
             case "DIP_METADATA":
-            	da2024Profile = DAAIP2024Profile.DIP_METADATA;
+            	params.setDa2024Profile(DAAIP2024Profile.DIP_METADATA);
             	return true;
             case "DIP_CONTENT":
-            	da2024Profile = DAAIP2024Profile.DIP_CONTENT;
+            	params.setDa2024Profile(DAAIP2024Profile.DIP_CONTENT);
             	return true;
             case "SIP_CHANGE":
-            	da2024Profile = DAAIP2024Profile.SIP_CHANGE;
+            	params.setDa2024Profile(DAAIP2024Profile.SIP_CHANGE);
             	return true;
             }
         } catch (NumberFormatException nfe) {
@@ -428,12 +300,12 @@ public class CmdParams {
         return true;
     }
 
-    private boolean readWorkDir(String substring) {
-        if (substring.length() == 0) {
+    private boolean readWorkDir(String arg) {
+        if (arg.length() == 0) {
             System.out.println("Missing work directory");
             return false;
         }
-        workDir = substring;
+        params.setWorkDir(arg);
         return true;
     }
 
@@ -443,7 +315,7 @@ public class CmdParams {
             System.out.println("Missing work directory");
             return false;
         }
-        workDir = args[pos];
+        params.setWorkDir(args[pos]);
         return true;
     }
     
@@ -461,19 +333,19 @@ public class CmdParams {
         try {
             switch (arg) {
             case "AUTO":
-                validationProfile = null;
+            	params.setValidationProfile(null);
                 break;                
             case "NSESSS2017":
-            	validationProfile = ValidationProfile.NSESSS2017;
+            	params.setValidationProfile(ValidationProfile.NSESSS2017);
                 break;
             case "NSESSS2024":
-            	validationProfile = ValidationProfile.NSESSS2024;
+            	params.setValidationProfile(ValidationProfile.NSESSS2024);
                 break;                
             case "AP2023":
-            	validationProfile = ValidationProfile.AP2023;
+            	params.setValidationProfile(ValidationProfile.AP2023);
                 break;                
             case "DAAIP2024":
-            	validationProfile = ValidationProfile.DAAIP2024;
+            	params.setValidationProfile(ValidationProfile.DAAIP2024);
                 break;                
             default:
                 System.out.println("Chybný typ balíčku: " + arg);
@@ -500,10 +372,10 @@ public class CmdParams {
             int outputFormat = Integer.parseInt(arg);
             switch (outputFormat) {
             case 1:
-                vystupniFormat = VystupniFormat.VALIDACE_V1;
+                params.setVystupniFormat(VystupniFormat.VALIDACE_V1);
                 break;                
             case 2:
-            	vystupniFormat = VystupniFormat.VALIDACE_SIP;
+            	params.setVystupniFormat(VystupniFormat.VALIDACE_SIP);
                 break;
             default:
                 System.out.println("Chybný typ výstupního formátu: " + arg);
@@ -515,7 +387,8 @@ public class CmdParams {
         return true;
     }
 
-	public DAAIP2024Profile getDa2024Profile() {
-		return da2024Profile;
+	public Params getParams() {
+		return params;
 	}
+
 }

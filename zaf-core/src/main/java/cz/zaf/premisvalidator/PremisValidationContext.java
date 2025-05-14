@@ -7,7 +7,7 @@ import java.util.function.Function;
 
 import javax.xml.stream.Location;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
