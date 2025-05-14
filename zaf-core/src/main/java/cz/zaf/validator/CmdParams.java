@@ -64,7 +64,7 @@ public class CmdParams {
      * 
      * V davkovem rezimu se kontroluje sada SIPu
      */
-    boolean davkovyRezim = false;
+    boolean batchMode = false;
 
     /**
      * Priznak testu pameti
@@ -100,7 +100,7 @@ public class CmdParams {
     /**
      * Validation profile
      */
-    ValidationProfile validationProfile = null;
+    private ValidationProfile validationProfile = null;
     
     /**
      * Popis hrozby
@@ -153,11 +153,16 @@ public class CmdParams {
 	public void setWorkDir(String workDir) {
 		this.workDir = workDir;		
 	}
-    public boolean isDavkovyRezim() {
-        return davkovyRezim;
+    public boolean isBatchMode() {
+        return batchMode;
     }
 
-    public boolean isMemTest() {
+	public void setBatchMode(boolean batchMode) {
+		this.batchMode = batchMode;
+		
+	}
+	
+	public boolean isMemTest() {
         return memTest;
     }
 
@@ -172,6 +177,15 @@ public class CmdParams {
     public void setKeepFiles(boolean keepFiles) {
         this.keepFiles = keepFiles;
     }
+    
+
+	public void setValidationProfile(final ValidationProfile validationProfile) {
+		this.validationProfile = validationProfile;		
+	}
+	
+	public ValidationProfile getValidationProfile() {
+		return validationProfile;
+	}
 
     public ProfilValidace getProfilValidace() {
         return nsesssProfile;
@@ -211,7 +225,7 @@ public class CmdParams {
         while (pos < args.length) {
             String arg = args[pos];
             if (arg.equals("-b") || arg.equals("--batch")) {
-                davkovyRezim = true;
+                batchMode = true;
             } else if (arg.equals("-k") || arg.equals("--keep")) {
                 keepFiles = true;
             } else if (arg.equals("-w")) {

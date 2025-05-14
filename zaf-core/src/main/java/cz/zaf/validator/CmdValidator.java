@@ -93,7 +93,7 @@ public class CmdValidator {
                     gc();
                     log.debug("Run count: " + i);
                 }
-                if (cmdParams.isDavkovyRezim()) {
+                if (cmdParams.isBatchMode()) {
                     validateDavka(protokolWriter);
                 } else {
                     validatePackage(protokolWriter);
@@ -143,21 +143,22 @@ public class CmdValidator {
 	}
     
     private ValidationProfile identifikujTypBalicku() {
+    	ValidationProfile result = null;
     	Path inputPath = Paths.get(cmdParams.getInputPath());
     	if(Files.isRegularFile(inputPath)) {
     		// pokud je soubor, tak musí být pomůcka
-    		cmdParams.validationProfile = ValidationProfile.AP2023; 
+    		result = ValidationProfile.AP2023; 
     	} else
     	// we have to detect file type
     	// check if input path is a directory
     	if (Files.isDirectory(inputPath)) {
     		// Default choice is:
-    		cmdParams.validationProfile = ValidationProfile.NSESSS2017;
+    		result = ValidationProfile.NSESSS2017;
 	    	// read fist 100 characters from METS.xml if exists
 	    	try {
 	    		String metsData = Files.readString(inputPath.resolve("METS.xml"), StandardCharsets.UTF_8);
 	    		if(metsData.contains("PROFILE=\"https://stands.nacr.cz/da/2023/aip.xml\"")) {
-	    			cmdParams.validationProfile = ValidationProfile.DAAIP2024;
+	    			result = ValidationProfile.DAAIP2024;
 	    			// Detect subprofile
 	    			cmdParams.da2024Profile = detectSubProfileDAAIP2024(metsData);
 	    		}
@@ -166,12 +167,12 @@ public class CmdValidator {
 	    		// ignore
 	    	}	    	
     	}
-    	return cmdParams.validationProfile;
+    	return result;
     }
     
     private Validator createValidator() {
-    	ValidationProfile skutecnyTyp = cmdParams.validationProfile;
-    	if (cmdParams.validationProfile == null) {
+    	ValidationProfile skutecnyTyp = cmdParams.getValidationProfile();
+    	if (skutecnyTyp == null) {
         	skutecnyTyp = identifikujTypBalicku();
         }
     	if(skutecnyTyp==null) {

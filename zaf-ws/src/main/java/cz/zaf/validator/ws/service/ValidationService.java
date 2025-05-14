@@ -22,6 +22,7 @@ import cz.zaf.api.rest.model.RequestProcessState;
 import cz.zaf.api.rest.model.ValidationType;
 import cz.zaf.validator.CmdParams;
 import cz.zaf.validator.CmdValidator;
+import cz.zaf.validator.profiles.ValidationProfile;
 import jakarta.validation.Valid;
 
 @Service
@@ -62,9 +63,17 @@ public class ValidationService {
 
 		private String originalFilename;
 
-		public ValidationJob(Path requestPath, String originalFilename) throws IOException {
+		private boolean batchMode;
+
+		private ValidationProfile validationProfile;
+
+		public ValidationJob(Path requestPath, String originalFilename,
+				final boolean batchMode, 
+				final ValidationProfile validationProfile) throws IOException {
 			this.requestPath = requestPath;
 			this.inputDirPath = requestPath.resolve(INPUT_DIR_NAME);
+			this.batchMode = batchMode;
+			this.validationProfile = validationProfile;
 			Files.createDirectory(inputDirPath);
 			if(originalFilename!=null) {
 				this.originalFilename = originalFilename.trim();
@@ -92,6 +101,8 @@ public class ValidationService {
 				cmdParams.setInputPath(getDataPath().toString());
 				cmdParams.setWorkDir(requestPath.toString());
 				cmdParams.setOutputPath(getOutputPath().toString());
+				cmdParams.setBatchMode(batchMode);
+				cmdParams.setValidationProfile(validationProfile);
 
 				CmdValidator cmdValidator = new CmdValidator(cmdParams);
 				cmdValidator.validate();
@@ -133,8 +144,28 @@ public class ValidationService {
 		try {
 			Files.createDirectories(requestPath);
 			log.debug("Storing file to the working folder: {}", requestPath);
-						
-			ValidationJob job = new ValidationJob(requestPath, data.getOriginalFilename());
+			
+			ValidationProfile validationProfile = null;
+			if(validationType!=null) {
+				switch(validationType) {
+				case AP2023: 
+					validationProfile = ValidationProfile.AP2023;
+					break;
+				case DAAIP2024: 
+					validationProfile = ValidationProfile.DAAIP2024;
+					break;
+				case NSESSS2017:
+					validationProfile = ValidationProfile.NSESSS2017;
+					break;
+				case NSESSS2024:
+					validationProfile = ValidationProfile.NSESSS2023;
+					break;
+				}
+			}
+			
+			ValidationJob job = new ValidationJob(requestPath, data.getOriginalFilename(),
+					batchMode!=null && batchMode,
+					validationProfile);
 			// copy input stream to the file
 			Files.copy(data.getInputStream(), job.getDataPath());
 			
