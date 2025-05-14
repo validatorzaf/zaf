@@ -359,11 +359,10 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.4.0</version>
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>cz.zaf.sipvalidator.CmdValidator</mainClass>
+							<mainClass>cz.zaf.validator.CmdValidator</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

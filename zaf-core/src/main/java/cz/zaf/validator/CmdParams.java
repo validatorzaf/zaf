@@ -142,10 +142,17 @@ public class CmdParams {
         return inputPath;
     }
 
+    public void setInputPath(String inputPath) {
+        this.inputPath = inputPath;
+    }
+
     public String getWorkDir() {
         return workDir;
     }
 
+	public void setWorkDir(String workDir) {
+		this.workDir = workDir;		
+	}
     public boolean isDavkovyRezim() {
         return davkovyRezim;
     }
@@ -185,6 +192,10 @@ public class CmdParams {
     public String getOutput() {
         return output;
     }
+    
+    public void setOutputPath(String output) {
+		this.output = output;
+	}
 
     /**
      * Nacte vstupni parametry
@@ -508,4 +519,5 @@ public class CmdParams {
 	public DAAIP2024Profile getDa2024Profile() {
 		return da2024Profile;
 	}
+
 }

@@ -174,6 +174,9 @@ public class CmdValidator {
     	if (cmdParams.validationProfile == null) {
         	skutecnyTyp = identifikujTypBalicku();
         }
+    	if(skutecnyTyp==null) {
+    		throw new IllegalArgumentException("Unknown validation profile");
+    	}
     	switch (skutecnyTyp) {
         case AP2023:
             return new ValidatorAp2023(cmdParams.getAp2023Profile(), cmdParams.getExcludeChecks());

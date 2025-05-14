@@ -51,28 +51,28 @@ enum ValidationType {
  * Požadavek na validaci
  */
 model ValidationRequest {
-
+  
   /**
    * Příznak spuštění v dávkovém režimu
    */
-  batchMode?: boolean;
+  batchMode?: HttpPart<boolean>;
 
   /**
    * Druh validace, pokud není nastaven, použije se režim 
    * s automatickou detekcí typu požadavku.
    */
-  validationType?: ValidationType;
+  validationType?: HttpPart<ValidationType>;
 
   /**
    * Identifikátor požadavku
    */
-  requestId?: string;
+  requestId?: HttpPart<string>;
 
   /**
    * Binární data
    */
-  data: bytes;
-}
+  data: HttpPart<File>;
+};
 
 /**
  * Stav požadavku
@@ -124,13 +124,30 @@ model ValidationXmlResult {
 }
 
 /**
+ * Typ entity
+ */
+enum RelatedEntityType {
+  ARCHIVNI_SOUBOR,
+  CAST_JEDNOTLIVOSTI,
+  DIL,
+  DOKUMENT,
+  JEDNOTLIVOST,
+  SERIE,
+  SLOZKA,
+  SOUCAST,
+  SPIS,
+  SPISOVY_PLAN,
+  VECNA_SKUPINA
+};
+
+/**
  * Související entita
  */
 model RelatedEntity {
   /**
    * Typ entity
    */
-  type: string;
+  type: RelatedEntityType;
 
   /**
    * Identifikátor entity
@@ -325,18 +342,20 @@ model NotFound extends Error {
   @statusCode statusCode: 404;
 }
 
-@route("/documents")
+@route("/validation")
 @tag("Validation")
 interface Validations {
-
+  
   /** 
    * Vložení validačního požadavku
    * 
    */
   @route("validate")
-  @post validate(@body body: ValidationRequest, @header(#{name: "X-Correlation-Id"}) xCorrelationId?: HeaderCorrelationId)
-  : ReceivedValidationRequest | 
-    Unauthotized | Forbidden;
+  op validate(
+    @header(#{name: "X-Correlation-Id"}) xCorrelationId?: HeaderCorrelationId,
+    @header contentType: "multipart/form-data", 
+    @multipartBody body: ValidationRequest )
+  : ReceivedValidationRequest | Unauthotized | Forbidden;
 
   /**
    * Zjištění stavu validačního požadavku
@@ -349,6 +368,9 @@ interface Validations {
    * Získání výsledku validačního požadavku
    */
   @route("result/{validationRequestId}")
-  @get result(@path validationRequestId: ValidationRequestId, @header(#{name: "X-Correlation-Id"}) xCorrelationId?: HeaderCorrelationId)
-    : ValidationXmlResult | NotFound | Unauthotized | Forbidden;
+  @get result(@path validationRequestId: ValidationRequestId, 
+    @header("Accept") accept: string, //"application/json" | "application/xml",
+    @header(#{name: "X-Correlation-Id"}) xCorrelationId?: HeaderCorrelationId
+     )
+    : ValidationXmlResult | ValidationJsonResult | NotFound | Unauthotized | Forbidden;
 }
