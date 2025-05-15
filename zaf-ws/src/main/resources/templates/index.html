@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>File Upload</title>
+    <title>ZAF Validátor</title>
 </head>
 <body>
-    <h2>Upload a File</h2>
+    <h1>ZAF Validátor</h1>
+    <p>...o ZAFu...</p>
+    <h2>Validace balíčků a souborů</h2>
     <form method="post" enctype="multipart/form-data" th:action="@{/upload}">
         <input type="file" name="file" />
-        <button type="submit">Upload</button>
+        <button type="submit">Nahrát</button>
     </form>
 </body>
 </html>

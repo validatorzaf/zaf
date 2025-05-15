@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Upload Result</title>
+    <title>Výsledek kontroly ([[${requestId}]])</title>
 </head>
 <body>
-    <h2>Result</h2>
-    <p>Request ID: [[${requestId}]]</p>
+    <h1>Výsledek kontroly</h1>
+    <p>Požadavek ID: [[${requestId}]]</p>
     <table>
 	  <tr>
 		<th>Parametr</th>
@@ -26,7 +26,7 @@
     </table>
     
     <th:block th:each="dataPackage : ${dataPackages}" >
-      <h3>Výsledek: [[${dataPackage.nazevSouboru}]]</h3>
+      <h2>Výsledek pro soubor: [[${dataPackage.nazevSouboru}]]</h2>
     <table>
 	  <tr>
 		<th>Kontrola</th>
@@ -69,6 +69,6 @@
 		<td th:text="${file.contentType}"></td>
 		<td th:text="${file.size}"></td>
 	  </tr>-->
-    <a th:href="@{/upload}">Upload another file</a>
+    <a th:href="@{/}">Nahrát nový soubor</a>
 </body>
 </html>

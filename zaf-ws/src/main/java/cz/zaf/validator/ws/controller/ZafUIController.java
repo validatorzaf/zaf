@@ -5,32 +5,53 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
 import cz.zaf.api.rest.model.RequestProcessState;
 import cz.zaf.schema.validace_v1.Validace;
 import cz.zaf.validator.ws.service.ValidationService;
 
+/**
+ * Kontroller pro jednoduché webové rozhraní UI
+ * 
+ * Webové rozhraní se aktivuje v konfiguraci pomocí volby "zaf.ui.enabled"
+ */
 @Controller
 public class ZafUIController {
+	
+	 @Value("${zaf.ui.enabled:false}") // Default to false if property is missing
+	 private boolean uiEnabled;
 
 	@Autowired
 	private ValidationService validationService;
 
-	@GetMapping("/upload")
+	@GetMapping("/")
 	public String showUploadForm() {
-		return "upload";
+		if(uiEnabled) {
+			return "index";
+		} else {
+            // This ensures nothing is served for the root path.
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ZAF UI is disabled.");
+            // Alternatively, you could return a specific "service unavailable" page:
+            // return "service-unavailable"; // (You'd need templates/service-unavailable.html)
+		}
 	}
 
 
 	@PostMapping("/upload")
 	public String handleFileUpload(@RequestParam("file") MultipartFile file, Model model) {
+		if(!uiEnabled) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ZAF UI is disabled.");
+		}
 		try {
 			// Convert file to byte array
 			byte[] fileBytes = file.getBytes();
