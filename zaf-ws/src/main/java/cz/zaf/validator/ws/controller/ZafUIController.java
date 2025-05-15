@@ -1,5 +1,7 @@
 package cz.zaf.validator.ws.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import cz.zaf.api.rest.model.RequestProcessState;
+import cz.zaf.schema.validace_v1.Validace;
 import cz.zaf.validator.ws.service.ValidationService;
 
 @Controller
@@ -48,16 +51,19 @@ public class ZafUIController {
 			} while(counter<1000);
 			
 			// read result
-
-			// Call API endpoint to check if request was fulfilled
-			/*
-			RestTemplate restTemplate = new RestTemplate();
-			ResponseEntity<String> response = restTemplate.postForEntity("http://api-endpoint-url/check", fileBytes,
-					String.class);
-					*/
+			Validace result = validationService.getResult(valRequestId);
 
 			// Read back final response
-			//model.addAttribute("response", response.getBody());
+			model.addAttribute("requestId", valRequestId);
+			model.addAttribute("druhValidace", result.getDruhValidace());
+			model.addAttribute("profilPravidel", result.getProfilPravidel());
+			model.addAttribute("verzePravidel", result.getVerzePravidel().intValue());
+			model.addAttribute("dataPackages", result.getBalicek());
+			// seznam chyb
+			// List<TPravidlo> chyby = new ArrayList<>();
+			
+			
+			// model.
 			return "result";
 		} catch (Exception e) {
 			model.addAttribute("message", "File upload failed!");

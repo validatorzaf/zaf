@@ -162,7 +162,7 @@ public class CmdValidator {
     
     private void identifikujTypBalicku() {
     	Path inputPath = Paths.get(params.getInputPath());
-    	if(Files.isRegularFile(inputPath)) {    		
+    	if(Files.isRegularFile(inputPath)) {
     		// pokud je soubor, tak musí být pomůcka
 
     		String inputFileName = inputPath.getFileName().toString().toLowerCase();

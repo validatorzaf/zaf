@@ -4,8 +4,71 @@
     <title>Upload Result</title>
 </head>
 <body>
-    <h2>Upload Result</h2>
-    <p th:text="${response}"></p>
+    <h2>Result</h2>
+    <p>Request ID: [[${requestId}]]</p>
+    <table>
+	  <tr>
+		<th>Parametr</th>
+		<th>Hodnota</th>
+	  </tr>
+	  <tr>
+		<td>Typ validace</td>
+		<td th:text="${druhValidace}"></td>
+	  </tr>
+	  <tr>
+		<td>Profil pravidel</td>
+		<td th:text="${profilPravidel}"></td>
+	  </tr>
+	  <tr>
+		<td>Verze pravidel</td>
+		<td th:text="${verzePravidel}"></td>
+	  </tr>
+    </table>
+    
+    <th:block th:each="dataPackage : ${dataPackages}" >
+      <h3>Výsledek: [[${dataPackage.nazevSouboru}]]</h3>
+    <table>
+	  <tr>
+		<th>Kontrola</th>
+		<th>Výsledek</th>
+	  </tr>
+	  <tr th:each="kontrola : ${dataPackage.kontrola}">
+	    <td th:text="${kontrola.nazev}"></td>
+	    <td th:text="${kontrola.stav}"></td>
+	  </tr>
+    </table>
+
+    <th:block th:with="errorCount = ${#lists.size(dataPackage.kontrola.?[stav.value == 'chyba'])}">
+    <table th:if="${errorCount > 0}">
+      <tr><th>Kod</th>
+        <th>Pravidlo</th>
+        <th>Chyba</th>
+        <th>Pozice</th>
+      </tr>
+      <th:block th:each="kontrola : ${dataPackage.kontrola}">
+        <th:block th:if="${kontrola.stav.value == 'chyba'}">
+	       <tr th:each="pravidlo : ${kontrola.pravidlo}">
+	        <td th:text="${pravidlo.kod}"></td>
+	        <td th:text="${pravidlo.zneni}"></td>
+	        <td>
+	          <p th:if="${pravidlo.popisChyby}" th:text="${pravidlo.popisChyby}"></p>
+	          <p th:if="${pravidlo.vypisChyby}" th:text="${pravidlo.vypisChyby}"></p>
+	        </td>
+	        <td th:text="${pravidlo.mistoChyby}"></td>
+	       </tr>
+        </th:block>
+      </th:block>
+    </table>    
+	</th:block>
+	
+    </th:block>
+      <!-- <li th:each="file : ${files}">[[${file}]]</li>-->
+<!-- 
+	  <tr th:each="file : ${files}">
+		<td th:text="${file.name}"></td>
+		<td th:text="${file.contentType}"></td>
+		<td th:text="${file.size}"></td>
+	  </tr>-->
     <a th:href="@{/upload}">Upload another file</a>
 </body>
 </html>
