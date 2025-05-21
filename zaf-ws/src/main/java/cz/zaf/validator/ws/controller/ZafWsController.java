@@ -24,6 +24,7 @@ import cz.zaf.api.rest.model.ReceivedValidationRequest;
 import cz.zaf.api.rest.model.RelatedEntity;
 import cz.zaf.api.rest.model.RelatedEntityType;
 import cz.zaf.api.rest.model.RequestProcessState;
+import cz.zaf.api.rest.model.RuleProfile;
 import cz.zaf.api.rest.model.ValidationJsonResult;
 import cz.zaf.api.rest.model.ValidationLevel;
 import cz.zaf.api.rest.model.ValidationLevelStatus;
@@ -200,11 +201,13 @@ public class ZafWsController implements ValidationApi {
 	@Override
 	public ResponseEntity<ReceivedValidationRequest> validationsValidate(MultipartFile data,
 			@Size(min = 1, max = 36) String xCorrelationId, @Valid Boolean batchMode,
-			@Valid ValidationType validationType, @Valid String requestId) {
+			@Valid ValidationType validationType,
+			@Valid RuleProfile ruleProfile,
+			@Valid String requestId) {
 
 		ReceivedValidationRequest rvr = new ReceivedValidationRequest(); 
 		rvr.setValidationRequestId(this.validationService.validate(data, batchMode, 
-				validationType, requestId, null)
+				validationType, requestId, ruleProfile!=null?ruleProfile.name():null)
 				);
 				
 		return ResponseEntity.ok(rvr);

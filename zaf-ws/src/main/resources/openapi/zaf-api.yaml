@@ -177,6 +177,8 @@ paths:
                 contentType: text/plain
               validationType:
                 contentType: application/json
+              ruleProfile:
+                contentType: application/json
               data:
                 contentType: '*/*'
 components:
@@ -287,6 +289,19 @@ components:
         - FINISHED
         - ERROR
       description: Stav požadavku
+    RuleProfile:
+      type: string
+      enum:
+        - SIP_METADATA
+        - SIP_PREVIEW
+        - SIP
+        - AD
+        - FA
+        - AIP
+        - DIP_METADATA
+        - DIP_CONTENT
+        - SIP_CHANGE
+      description: Profil uplatnněných pravidel dle typu validace
     Unauthotized:
       type: object
       allOf:
@@ -380,6 +395,10 @@ components:
           description: |-
             Druh validace, pokud není nastaven, použije se režim 
             s automatickou detekcí typu požadavku.
+        ruleProfile:
+          allOf:
+            - $ref: '#/components/schemas/RuleProfile'
+          description: Profil uplatněných pravidel dle typu validace
         requestId:
           type: string
           description: Identifikátor požadavku

@@ -46,6 +46,29 @@ enum ValidationType {
   DAAIP2024
 }
 
+/**
+ * Profil uplatnněných pravidel dle typu validace
+ */
+enum RuleProfile {
+  // pro provedení skartačního řízení, jen metadata bez přiložených komponent (pro NSESSS2017 a NSESSS2024)
+  SIP_METADATA,
+  // pro provedení skartačního řízení s přiloženými komponentami (pro NSESSS2017 a NSESSS2024)
+  SIP_PREVIEW,
+  // pro předávání dokumentů a jejich metadat do archivu (pro NSESSS2017 a NSESSS2024)
+  SIP,
+  // archivní popis (pro AP2023)
+  AD,
+  // archivní pomůcka (pro AP2023)
+  FA,
+  // výměnný AIP (pro DAAIP2024)
+  AIP,
+  // metadatový DIP (pro DAAIP2024)
+  DIP_METADATA,
+  // úplný DIP (pro DAAIP2024)
+  DIP_CONTENT,
+  // změnový SIP (pro DAAIP2024)
+  SIP_CHANGE
+}
 
 /**
  * Požadavek na validaci
@@ -62,6 +85,11 @@ model ValidationRequest {
    * s automatickou detekcí typu požadavku.
    */
   validationType?: HttpPart<ValidationType>;
+
+  /**
+   * Profil uplatněných pravidel dle typu validace
+   */
+  ruleProfile?: HttpPart<RuleProfile>;
 
   /**
    * Identifikátor požadavku
