@@ -21,7 +21,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import cz.zaf.api.rest.model.RequestProcessState;
 import cz.zaf.api.rest.model.ValidationType;
+import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
+import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 import cz.zaf.schema.validace_v1.Validace;
+import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 import cz.zaf.validator.CmdValidator;
 import cz.zaf.validator.Params;
 import cz.zaf.validator.profiles.ValidationProfile;
@@ -82,6 +85,14 @@ public class ValidationService {
 
 		private ValidationProfile validationProfile;
 
+		private AP2023Profile ap2023Profile;
+
+		private DAAIP2024Profile daaip2024Profile;
+
+		private ZakladniProfilValidace nsesss2017Profile;
+
+		private cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace nsesss2024Profile;
+
 		public ValidationJob(Path requestPath, String originalFilename,
 				final boolean batchMode, 
 				final ValidationProfile validationProfile) throws IOException {
@@ -106,6 +117,56 @@ public class ValidationService {
 				this.originalFilename = "data.bin";
 			} 
 		}
+		
+		
+
+		public AP2023Profile getAp2023Profile() {
+			return ap2023Profile;
+		}
+
+
+
+		public void setAp2023Profile(AP2023Profile ap2023Profile) {
+			this.ap2023Profile = ap2023Profile;
+		}
+
+
+
+		public DAAIP2024Profile getDaaip2024Profile() {
+			return daaip2024Profile;
+		}
+
+
+
+		public void setDaaip2024Profile(DAAIP2024Profile daaip2024Profile) {
+			this.daaip2024Profile = daaip2024Profile;
+		}
+
+
+
+		public ZakladniProfilValidace getNsesss2017Profile() {
+			return nsesss2017Profile;
+		}
+
+
+
+		public void setNsesss2017Profile(ZakladniProfilValidace nsesss2017Profile) {
+			this.nsesss2017Profile = nsesss2017Profile;
+		}
+
+
+
+		public cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace getNsesss2024Profile() {
+			return nsesss2024Profile;
+		}
+
+
+
+		public void setNsesss2024Profile(cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace nsesss2024Profile) {
+			this.nsesss2024Profile = nsesss2024Profile;
+		}
+
+
 
 		@Override
 		public void run() {
@@ -117,7 +178,32 @@ public class ValidationService {
 				params.setWorkDir(requestPath.toString());
 				params.setOutputPath(getOutputPath().toString());
 				params.setBatchMode(batchMode);
-				params.setValidationProfile(validationProfile);
+				
+				if(validationProfile!=null) {
+					params.setValidationProfile(validationProfile);
+					switch(validationProfile) {
+					case AP2023:
+						if(ap2023Profile!=null) {
+							params.setAp2023Profile(ap2023Profile);
+						}
+						break;
+					case DAAIP2024:
+						if(daaip2024Profile!=null) {
+							params.setDa2024Profile(daaip2024Profile);
+						}
+						break;
+					case NSESSS2017:
+						if(nsesss2017Profile!=null) {
+							params.setNsesss2017Profile(nsesss2017Profile);
+						}
+						break;
+					case NSESSS2024:
+						if(nsesss2024Profile!=null) {
+							params.setNsesss2024Profile(nsesss2024Profile);
+						}
+						break;
+					}
+				}
 
 				CmdValidator cmdValidator = new CmdValidator(params);
 				cmdValidator.validate();
@@ -147,7 +233,9 @@ public class ValidationService {
 	}
 
 	public String validate(MultipartFile data, @Valid Boolean batchMode,
-			@Valid ValidationType validationType, @Valid String requestId) {
+			@Valid ValidationType validationType, 
+			@Valid String requestId,
+			String paramValidationProfile) {
 		// Store file to the working folder
 		if(workingFolder==null) {
 			workingFolder = "";
@@ -161,19 +249,56 @@ public class ValidationService {
 			log.debug("Storing file to the working folder: {}", requestPath);
 			
 			ValidationProfile validationProfile = null;
+			java.util.function.Consumer<ValidationJob> jobCustomizer = null;
 			if(validationType!=null) {
 				switch(validationType) {
-				case AP2023: 
+				case AP2023:
 					validationProfile = ValidationProfile.AP2023;
+					jobCustomizer = vj -> {
+						if ("FA".equals(paramValidationProfile)) {
+							vj.setAp2023Profile(AP2023Profile.FINDING_AID);
+						} else if ("DA".equals(paramValidationProfile)) {
+							vj.setAp2023Profile(AP2023Profile.ARCH_DESC);
+						}
+					};
 					break;
 				case DAAIP2024: 
 					validationProfile = ValidationProfile.DAAIP2024;
+					if(paramValidationProfile!=null&&!"AUTO".equals(paramValidationProfile)) {
+						jobCustomizer = vj -> vj.setDaaip2024Profile(DAAIP2024Profile.valueOf(paramValidationProfile));						
+					}
 					break;
 				case NSESSS2017:
 					validationProfile = ValidationProfile.NSESSS2017;
+					if(paramValidationProfile!=null) {
+						jobCustomizer = vj -> {
+							if("SIP_METADATA".equals(paramValidationProfile)) {
+								vj.setNsesss2017Profile(ZakladniProfilValidace.SKARTACE_METADATA);
+							} else 
+							if("SIP_PREVIEW".equals(paramValidationProfile)) {
+								vj.setNsesss2017Profile(ZakladniProfilValidace.SKARTACE_UPLNY);
+							} else
+							if("SIP".equals(paramValidationProfile)) {
+								vj.setNsesss2017Profile(ZakladniProfilValidace.PREJIMKA);
+							}
+						};
+					}
 					break;
 				case NSESSS2024:
 					validationProfile = ValidationProfile.NSESSS2024;
+					if(paramValidationProfile!=null) {
+						jobCustomizer = vj -> {
+							if("SIP_METADATA".equals(paramValidationProfile)) {
+								vj.setNsesss2024Profile(cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.SKARTACE_METADATA);
+							} else 
+							if("SIP_PREVIEW".equals(paramValidationProfile)) {
+								vj.setNsesss2024Profile(cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.SKARTACE_UPLNY);
+							} else
+							if("SIP".equals(paramValidationProfile)) {
+								vj.setNsesss2024Profile(cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.PREJIMKA);
+							}
+						};
+					}
 					break;
 				}
 			}
@@ -181,6 +306,9 @@ public class ValidationService {
 			ValidationJob job = new ValidationJob(requestPath, data.getOriginalFilename(),
 					batchMode!=null && batchMode,
 					validationProfile);
+			if(jobCustomizer!=null) {
+				jobCustomizer.accept(job);
+			}
 			// copy input stream to the file
 			Files.copy(data.getInputStream(), job.getDataPath());
 			

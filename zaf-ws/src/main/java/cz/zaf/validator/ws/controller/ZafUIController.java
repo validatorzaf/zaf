@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import cz.zaf.api.rest.model.RequestProcessState;
+import cz.zaf.api.rest.model.ValidationType;
 import cz.zaf.schema.validace_v1.Validace;
 import cz.zaf.validator.ws.service.ValidationService;
 
@@ -47,16 +49,30 @@ public class ZafUIController {
 	}
 
 
-	@PostMapping("/upload")
-	public String handleFileUpload(@RequestParam("file") MultipartFile file, Model model) {
+	@PostMapping(path = "/upload", 
+			consumes = MediaType.MULTIPART_FORM_DATA_VALUE //"multipart/form-data"
+			)
+	public String handleFileUpload(@RequestParam("file") MultipartFile file,
+			@RequestParam(value = "validationType", required = false) String paramValidationType,
+			@RequestParam(value = "batch", required = false) Boolean batchMode,
+			@RequestParam(value = "validationProfile", required = false) String validationProfile,
+			Model model) {
 		if(!uiEnabled) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ZAF UI is disabled.");
-		}
+		}		
 		try {
 			// Convert file to byte array
 			byte[] fileBytes = file.getBytes();
 			
-			String valRequestId = validationService.validate(file, false, null, UUID.randomUUID().toString());
+			boolean batch = (batchMode!=null && batchMode);
+			ValidationType validationType = null;
+			if(paramValidationType!=null&&!"AUTO".equals(paramValidationType)) {
+				validationType = ValidationType.valueOf(paramValidationType);
+			}
+			
+			
+			String valRequestId = validationService.validate(file, batch, validationType, UUID.randomUUID().toString(),
+					validationProfile);
 			int counter = 0;
 			do {
 				RequestProcessState rps = validationService.getStatus(valRequestId);

@@ -37,12 +37,12 @@ public class ValidatorDAAIP2024 implements Validator {
 	private final String workDir;
 	private final boolean keepExtactedFiles;
 
-	public ValidatorDAAIP2024(final DAAIP2024Profile daaip2024Profile, 
+	public ValidatorDAAIP2024(final DAAIP2024Profile paramProfile, 
 			final List<String> excludeChecks, 
 			final String workDir, 
 			final boolean keepExtactedFiles) {
 		this.excludeChecks = excludeChecks;
-		this.daaip2024Profile = daaip2024Profile;
+		this.daaip2024Profile = paramProfile!=null?paramProfile:DAAIP2024Profile.AIP;
 		this.workDir = workDir;
 		this.keepExtactedFiles = keepExtactedFiles;
 		this.validationProfileInfo = new ValidationProfileInfo() {
