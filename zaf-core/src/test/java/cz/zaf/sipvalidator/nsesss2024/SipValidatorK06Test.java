@@ -214,7 +214,6 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
                        new String[] {});
     }
 
-    /*
     @Test
     void testK06_09_01() {
         testPackageK06("obs9-chyba1", ValidationStatus.ERROR,
@@ -235,9 +234,9 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     void testK06_09_OK01() {
         testPackageK06("obs9-OK", null,
                        ZakladniProfilValidace.PREJIMKA,
-                       new String[] { Pravidlo9.OBS9 },
+                       new String[] { Pravidlo1.OBS1, Pravidlo2.OBS2, Pravidlo3.OBS3, Pravidlo9.OBS9 },
                        new String[] {});
-    }*/
+    }
 
     @Test
     void testK06_10_01() {
