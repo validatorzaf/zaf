@@ -35,9 +35,9 @@ Validátor ZAF lze volat prostřednictvím příkazového řádku:
   Druh kontroly pro danou validaci (AUTO - výchozí), stačí uvést druh:
 
  * AUTO = výběr základní kontroly pro daný typ kontroly
- * 1 = pro provedení skartačního řízení (jen metadata bez přiložených komponent)
- * 2 = pro provedení skartačního řízení (s přiloženými komponentami)
- * 3 = pro předávání dokumentů a jejich metadat do archivu
+ * SIP_METADATA = pro provedení skartačního řízení, jen metadata bez přiložených komponent (pro NSESSS2017 a NSESSS2024)
+ * SIP_PREVIEW = pro provedení skartačního řízení s přiloženými komponentami (pro NSESSS2017 a NSESSS2024)
+ * SIP = pro předávání dokumentů a jejich metadat do archivu (pro NSESSS2017 a NSESSS2024)
  * AD = archivní popis (pro AP2023)
  * FA = archivní pomůcka (pro AP2023)
  * AIP = výměnný AIP (pro DAAIP2024)
@@ -64,7 +64,7 @@ Validátor ZAF lze volat prostřednictvím příkazového řádku:
   
  * AUTO - automatická detekce formátu vstupu
  * NSESSS2017
- * NSESSS2023
+ * NSESSS2024
  * AP2023
  * DAAIP2024
  

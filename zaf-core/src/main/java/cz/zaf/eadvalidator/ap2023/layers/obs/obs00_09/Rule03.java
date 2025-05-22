@@ -10,6 +10,7 @@ import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.schema.ead3.Ead;
 import cz.zaf.schema.ead3.Otherrecordid;
+import cz.zaf.schemas.ead.EadNS;
 
 public class Rule03 extends EadRule {
 	
@@ -38,10 +39,10 @@ public class Rule03 extends EadRule {
 						ctx.formatEadPosition(otherId));
 			}
 			// ignorujeme
-			if ("CZ_MVCR_FINDING_AID_ID".equals(otherId.getLocaltype())) {
+			if (EadNS.LOCALTYPE_FINDING_AID_ID.equals(otherId.getLocaltype())) {
 				continue;
 			}
-			if ("INTERNAL_REV_ID".equals(otherId.getLocaltype())) {
+			if (EadNS.LOCALTYPE_INTERNAL_REV_ID.equals(otherId.getLocaltype())) {
 
 				// kontrola hodnoty
 				String content = otherId.getContent();

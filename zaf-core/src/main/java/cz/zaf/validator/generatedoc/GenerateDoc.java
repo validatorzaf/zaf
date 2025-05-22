@@ -103,7 +103,7 @@ public class GenerateDoc {
     			validationProfile = ValidationProfile.NSESSS2017;
     			break;
     		case "NSESSS2023":
-    			validationProfile = ValidationProfile.NSESSS2023;
+    			validationProfile = ValidationProfile.NSESSS2024;
     			break;
     		case "AP2023":
     			validationProfile = ValidationProfile.AP2023;

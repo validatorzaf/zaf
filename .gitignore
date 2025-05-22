@@ -1,2 +1,5 @@
 /doc/target/
 /zaf-core/target/
+/zaf-cmd/target/
+node_modules
+tsp-output

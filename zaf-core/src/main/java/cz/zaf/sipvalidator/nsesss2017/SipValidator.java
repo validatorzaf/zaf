@@ -3,35 +3,21 @@ package cz.zaf.sipvalidator.nsesss2017;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import cz.zaf.common.validation.BaseValidator;
 import cz.zaf.common.validation.ValidationLayer;
-import cz.zaf.common.validation.ValidatorListener;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
-import cz.zaf.sipvalidator.sip.SipInfo;
-import cz.zaf.sipvalidator.sip.SipLoader;
 
 /**
  * SIP validator dle NSESSS 2017
  *
  */
-public class SipValidator implements ValidatorListener<KontrolaNsess2017Context> {
+public class SipValidator extends SipValidatorBase {
 
     K00_SkodlivehoKodu ksk;
 
-    final List<ValidationLayer<KontrolaNsess2017Context>> kontroly;
-
-    /**
-     * Seznam kontrol k vynechani
-     */
-    private List<String> excludeChecks;
-
     public SipValidator(final ProfilValidace profilValidace,
                         final List<String> excludeChecks) {
-        this.kontroly = pripravKontroly(profilValidace);
-        this.excludeChecks = excludeChecks;
+    	super(pripravKontroly(profilValidace), excludeChecks);
+    	ksk = (K00_SkodlivehoKodu)kontroly.get(0);
     }
 
     /**
@@ -41,11 +27,10 @@ public class SipValidator implements ValidatorListener<KontrolaNsess2017Context>
      *            validační profil
      * @return Seznam připravených úrovní kontroly
      */
-    private List<ValidationLayer<KontrolaNsess2017Context>> pripravKontroly(ProfilValidace profilValidace) {
-        List<ValidationLayer<KontrolaNsess2017Context>> kontroly = new ArrayList<>(7);
-
-        ksk = new K00_SkodlivehoKodu();
-        kontroly.add(ksk);
+    static protected List<ValidationLayer<KontrolaNsessContext>> pripravKontroly(ProfilValidace profilValidace) {
+        List<ValidationLayer<KontrolaNsessContext>> kontroly = new ArrayList<>(7);
+        
+        kontroly.add(new K00_SkodlivehoKodu());
         
         K01_DatoveStruktury kds = new K01_DatoveStruktury();
         kontroly.add(kds);
@@ -80,20 +65,9 @@ public class SipValidator implements ValidatorListener<KontrolaNsess2017Context>
         ksk.setHrozba(hrozba);
     }
 
-    public void validate(SipLoader sipLoader) {
-
-        SipInfo sip = sipLoader.getSip();
-        
-        // provedeni kontrol
-        KontrolaNsess2017Context ctx = new KontrolaNsess2017Context(sip, excludeChecks);
-        BaseValidator<KontrolaNsess2017Context> validator = new BaseValidator<>(kontroly);
-        validator.registerListener(this);
-        validator.validate(ctx);
-    }
-
     @Override
-    public void layerValidationStarted(KontrolaNsess2017Context context,
-                                       ValidationLayer<KontrolaNsess2017Context> layer) {
+    public void layerValidationStarted(KontrolaNsessContext context,
+                                       ValidationLayer<KontrolaNsessContext> layer) {
         if (layer.getClass() == K03_Spravnosti.class) {
             // nacteni dokumentu pokud zaciname kontrolovat jeho spravnost a jedna se o XML
             MetsParser metsParser = new MetsParser();
@@ -104,7 +78,7 @@ public class SipValidator implements ValidatorListener<KontrolaNsess2017Context>
     }
 
     @Override
-    public void layerValidationFinished(KontrolaNsess2017Context context,
-                                        ValidationLayer<KontrolaNsess2017Context> layer) {
+    public void layerValidationFinished(KontrolaNsessContext context,
+                                        ValidationLayer<KontrolaNsessContext> layer) {
     }
 }

@@ -1,0 +1,472 @@
+openapi: 3.0.0
+info:
+  title: ZAF API
+  version: 1.0.0
+  contact:
+    name: Petr Pytelka
+    email: petr.pytelka@lightcomp.cz
+  description: ZAF API
+tags:
+  - name: Validation
+paths:
+  /validation/result/{validationRequestId}:
+    get:
+      operationId: Validations_result
+      description: Získání výsledku validačního požadavku
+      parameters:
+        - name: validationRequestId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/ValidationRequestId'
+        - name: Accept
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Correlation-Id
+          in: header
+          required: false
+          schema:
+            $ref: '#/components/schemas/HeaderCorrelationId'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ValidationXmlResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationJsonResult'
+        '401':
+          description: User is not authorized
+          headers:
+            X-Correlation-Id:
+              required: true
+              description: Unikátní korelační identifikátor, který protéká celou atomickou byznys operací (procesem) Pro účely trasování všech (REST,WS) požadavků, DB operací, logovaných událostí, chyb, apod. Doporučený formát je UUID.
+              schema:
+                $ref: '#/components/schemas/HeaderCorrelationId'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Unauthotized'
+        '403':
+          description: Operation was fobidden
+          headers:
+            X-Correlation-Id:
+              required: true
+              description: Unikátní korelační identifikátor, který protéká celou atomickou byznys operací (procesem) Pro účely trasování všech (REST,WS) požadavků, DB operací, logovaných událostí, chyb, apod. Doporučený formát je UUID.
+              schema:
+                $ref: '#/components/schemas/HeaderCorrelationId'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+        '404':
+          description: Request wsas not found
+          headers:
+            X-Correlation-Id:
+              required: true
+              description: Unikátní korelační identifikátor, který protéká celou atomickou byznys operací (procesem) Pro účely trasování všech (REST,WS) požadavků, DB operací, logovaných událostí, chyb, apod. Doporučený formát je UUID.
+              schema:
+                $ref: '#/components/schemas/HeaderCorrelationId'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+      tags:
+        - Validation
+  /validation/status/{validationRequestId}:
+    get:
+      operationId: Validations_status
+      description: Zjištění stavu validačního požadavku
+      parameters:
+        - name: validationRequestId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/ValidationRequestId'
+        - name: X-Correlation-Id
+          in: header
+          required: false
+          schema:
+            $ref: '#/components/schemas/HeaderCorrelationId'
+      responses:
+        '200':
+          description: The request has succeeded.
+          headers:
+            X-Correlation-Id:
+              required: false
+              schema:
+                $ref: '#/components/schemas/HeaderCorrelationId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationRequestStatus'
+        '404':
+          description: Request wsas not found
+          headers:
+            X-Correlation-Id:
+              required: true
+              description: Unikátní korelační identifikátor, který protéká celou atomickou byznys operací (procesem) Pro účely trasování všech (REST,WS) požadavků, DB operací, logovaných událostí, chyb, apod. Doporučený formát je UUID.
+              schema:
+                $ref: '#/components/schemas/HeaderCorrelationId'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+      tags:
+        - Validation
+  /validation/validate:
+    post:
+      operationId: Validations_validate
+      description: Vložení validačního požadavku
+      parameters:
+        - name: X-Correlation-Id
+          in: header
+          required: false
+          schema:
+            $ref: '#/components/schemas/HeaderCorrelationId'
+      responses:
+        '200':
+          description: Odpověď na přijetí validačního požadavku
+          headers:
+            X-Correlation-Id:
+              required: false
+              schema:
+                $ref: '#/components/schemas/HeaderCorrelationId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReceivedValidationRequest'
+        '401':
+          description: User is not authorized
+          headers:
+            X-Correlation-Id:
+              required: true
+              description: Unikátní korelační identifikátor, který protéká celou atomickou byznys operací (procesem) Pro účely trasování všech (REST,WS) požadavků, DB operací, logovaných událostí, chyb, apod. Doporučený formát je UUID.
+              schema:
+                $ref: '#/components/schemas/HeaderCorrelationId'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Unauthotized'
+        '403':
+          description: Operation was fobidden
+          headers:
+            X-Correlation-Id:
+              required: true
+              description: Unikátní korelační identifikátor, který protéká celou atomickou byznys operací (procesem) Pro účely trasování všech (REST,WS) požadavků, DB operací, logovaných událostí, chyb, apod. Doporučený formát je UUID.
+              schema:
+                $ref: '#/components/schemas/HeaderCorrelationId'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+      tags:
+        - Validation
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ValidationRequest'
+            encoding:
+              batchMode:
+                contentType: text/plain
+              validationType:
+                contentType: application/json
+              ruleProfile:
+                contentType: application/json
+              data:
+                contentType: '*/*'
+components:
+  schemas:
+    DataPackageValidationResult:
+      type: object
+      required:
+        - levels
+      properties:
+        name:
+          type: string
+          description: Název balíčku/souboru
+        id:
+          type: string
+          description: Identifikátor balíčku/souboru
+        levels:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationLevel'
+          description: Úrovně validace
+      description: Výsledek validace jednotlivého balíčku/souboru
+    Forbidden:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ProblemDetail'
+      description: Operation was fobidden
+    HeaderCorrelationId:
+      type: string
+      minLength: 1
+      maxLength: 36
+      description: |-
+        Unikátní korelační identifikátor, Pro účely trasování všech (REST,WS) požadavků, DB operací, 
+        logovaných událostí, chyb, apod. 
+
+        Doporučený formát je UUID.
+    NotFound:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ProblemDetail'
+      description: Request wsas not found
+    ProblemDetail:
+      type: object
+      properties:
+        type:
+          type: string
+          description: URI popisující chybu
+        title:
+          type: string
+          description: Krátký popis chyby
+        status:
+          type: integer
+          description: The HTTP status code generated by the origin server for this occurrence of the problem.
+        detail:
+          type: string
+          description: Podrobný popis chyby
+        instance:
+          type: string
+          description: |-
+            A URI reference that identifies the specific occurrence of the problem. 
+            It may or may not yield further information if dereferenced.
+      description: Informace o chybě dle RFC 9457
+    ReceivedValidationRequest:
+      type: object
+      required:
+        - validationRequestId
+      properties:
+        validationRequestId:
+          allOf:
+            - $ref: '#/components/schemas/ValidationRequestId'
+          description: Identifikátor validačního požadavku
+      description: Odpověď na přijetí validačního požadavku
+    RelatedEntity:
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          allOf:
+            - $ref: '#/components/schemas/RelatedEntityType'
+          description: Typ entity
+        id:
+          type: string
+          description: Identifikátor entity
+        source:
+          type: string
+          description: Popis entity
+      description: Související entita
+    RelatedEntityType:
+      type: string
+      enum:
+        - ARCHIVNI_SOUBOR
+        - CAST_JEDNOTLIVOSTI
+        - DIL
+        - DOKUMENT
+        - JEDNOTLIVOST
+        - SERIE
+        - SLOZKA
+        - SOUCAST
+        - SPIS
+        - SPISOVY_PLAN
+        - VECNA_SKUPINA
+      description: Typ entity
+    RequestProcessState:
+      type: string
+      enum:
+        - PENDING
+        - PROCESSING
+        - FINISHED
+        - ERROR
+      description: Stav požadavku
+    RuleProfile:
+      type: string
+      enum:
+        - SIP_METADATA
+        - SIP_PREVIEW
+        - SIP
+        - AD
+        - FA
+        - AIP
+        - DIP_METADATA
+        - DIP_CONTENT
+        - SIP_CHANGE
+      description: Profil uplatnněných pravidel dle typu validace
+    Unauthotized:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ProblemDetail'
+      description: User is not authorized
+    Uuid:
+      type: string
+      minLength: 36
+      maxLength: 36
+      format: uuid
+      description: Type for UUID
+    ValidationJsonResult:
+      type: object
+      required:
+        - appName
+        - appVersion
+        - validationDate
+        - validationType
+        - ruleVersion
+        - dataPackages
+      properties:
+        requestId:
+          type: string
+          description: Identifikátor validačního požadavku
+        appName:
+          type: string
+          description: Název aplikace, která validaci provedla
+        appVersion:
+          type: string
+          description: Verze aplikace, která validaci provedla
+        validationDate:
+          type: string
+          format: date-time
+          description: Čas provedení validace
+        validationType:
+          allOf:
+            - $ref: '#/components/schemas/ValidationType'
+          description: Druh validace
+        ruleVersion:
+          type: integer
+          format: int32
+          description: Verze pravidel, která byla použita pro validaci
+        profile:
+          type: string
+          description: Název profilu, který byl použit pro validaci
+        dataPackages:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataPackageValidationResult'
+          description: Jednotlivé balíčky/soubory, které byly validovány
+      description: Výsledek validace v JSON formátu
+    ValidationLevel:
+      type: object
+      required:
+        - name
+        - status
+        - rules
+      properties:
+        name:
+          type: string
+          description: Název typu kontroly
+        status:
+          allOf:
+            - $ref: '#/components/schemas/ValidationLevelStatus'
+          description: Výsledek kontroly
+        fileName:
+          type: string
+          description: Název souboru jehož se kontrola týká
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationRule'
+          description: Pravidla validace
+      description: Úroveň validace
+    ValidationLevelStatus:
+      type: string
+      enum:
+        - OK
+        - ERROR
+        - NOT_VALIDATED
+      description: Výsledek validace úrovně kontrol
+    ValidationRequest:
+      type: object
+      properties:
+        batchMode:
+          type: boolean
+          description: Příznak spuštění v dávkovém režimu
+        validationType:
+          allOf:
+            - $ref: '#/components/schemas/ValidationType'
+          description: |-
+            Druh validace, pokud není nastaven, použije se režim 
+            s automatickou detekcí typu požadavku.
+        ruleProfile:
+          allOf:
+            - $ref: '#/components/schemas/RuleProfile'
+          description: Profil uplatněných pravidel dle typu validace
+        requestId:
+          type: string
+          description: Identifikátor požadavku
+        data:
+          type: string
+          format: binary
+          description: Binární data
+      required:
+        - data
+    ValidationRequestId:
+      type: string
+      description: Identifikátor validačního požadavku
+    ValidationRequestStatus:
+      type: object
+      required:
+        - state
+      properties:
+        state:
+          $ref: '#/components/schemas/RequestProcessState'
+        progress:
+          type: integer
+      description: Stav validačního požadavku
+    ValidationRule:
+      type: object
+      required:
+        - code
+        - rule
+      properties:
+        code:
+          type: string
+          description: Jednoznačný identifikátor pravidla
+        rule:
+          type: string
+          description: Znění pravidla
+        source:
+          type: string
+          description: Zdroj pravidla
+        errorCode:
+          type: string
+          description: Kód chyby
+        description:
+          type: string
+          description: Popis chyby
+        detail:
+          type: string
+          description: Detailní popis chyby
+        location:
+          type: string
+          description: Místo chyby v XML dokumentu
+        relatedEntities:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelatedEntity'
+          description: Související entity
+      description: Pravidlo validace
+    ValidationType:
+      type: string
+      enum:
+        - NSESSS2017
+        - NSESSS2024
+        - AP2023
+        - DAAIP2024
+      description: Druh validace
+    ValidationXmlResult:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: string
+          format: byte

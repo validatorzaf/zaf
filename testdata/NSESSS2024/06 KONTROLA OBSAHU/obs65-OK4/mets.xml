@@ -1,0 +1,1038 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:ns3="info:lc/xmlns/premis-v2" xmlns:ns5="http://desa.i.cz/nsext/v3" xmlns:nsesss="http://www.mvcr.cz/nsesss/v4" xmlns:tp="http://www.mvcr.cz/nsesss/2023/log" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" LABEL="Datový balíček pro provedení skartačního řízení" OBJID="0aca96d3-045e-4f93-ac88-4bef35cecc65" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v4 http://www.mvcr.cz/nsesss/v4/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 TransakcniProtokolNavrh_verze1.7.xsd">
+   <mets:metsHdr CREATEDATE="2018-12-04T04:12:30.607+01:00" LASTMODDATE="2018-12-04T04:12:30.607+01:00">
+      <mets:agent ID="agent_001" ROLE="CREATOR" TYPE="ORGANIZATION">
+         <mets:name>GDPR anonymizováno</mets:name>
+         <mets:note>prod</mets:note>
+      </mets:agent>
+      <mets:agent ID="agent_002" ROLE="CREATOR" TYPE="INDIVIDUAL">
+         <mets:name>GDPR anonymizováno</mets:name>
+         <mets:note>superAdmin</mets:note>
+      </mets:agent>
+   </mets:metsHdr>
+   <mets:dmdSec ID="DM_0001">
+      <mets:mdWrap LABEL="Schéma XML pro předávání dokumentů a jejich metadat do archivu" MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="NSESSS">
+         <mets:xmlData>
+            <nsesss:Spis ID="FILE_mp10es4a83292c_0aca96d3-045e-4f93-ac88-4bef35cecc65">
+               <nsesss:EvidencniUdaje>
+                  <nsesss:Identifikace>
+                     <nsesss:Identifikator zdroj="ERMS">mp10es4a83292c</nsesss:Identifikator>
+                  </nsesss:Identifikace>
+                  <nsesss:Popis>
+                     <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  </nsesss:Popis>
+                  <nsesss:Evidence>
+                     <nsesss:EvidencniCislo>SZ P10-124115/2012</nsesss:EvidencniCislo>
+                     <nsesss:PoradoveCislo>1</nsesss:PoradoveCislo>
+                     <nsesss:UrceneCasoveObdobi>
+                        <nsesss:Rok>2012</nsesss:Rok>
+                     </nsesss:UrceneCasoveObdobi>
+                     <nsesss:NazevEvidenceDokumentu>ERMS</nsesss:NazevEvidenceDokumentu>
+                  </nsesss:Evidence>
+                  <nsesss:Puvod>
+                     <nsesss:DatumVytvoreni>2012-12-03</nsesss:DatumVytvoreni>
+                  </nsesss:Puvod>
+                  <nsesss:Trideni>
+                     <nsesss:JednoduchySpisovyZnak>207.</nsesss:JednoduchySpisovyZnak>
+                     <nsesss:PlneUrcenySpisovyZnak>207.</nsesss:PlneUrcenySpisovyZnak>
+                     <nsesss:MaterskaEntita>
+                        <nsesss:VecnaSkupina ID="ID-b2c78e39-8f72-4ff3-b5e1-4a92085140cf">
+                           <nsesss:EvidencniUdaje>
+                              <nsesss:Identifikace>
+                                 <nsesss:Identifikator zdroj="ERMS">12822</nsesss:Identifikator>
+                              </nsesss:Identifikace>
+                              <nsesss:Popis>
+                                 <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                              </nsesss:Popis>
+                              <nsesss:Puvod>
+                                 <nsesss:DatumVytvoreni>2007-01-21+01:00</nsesss:DatumVytvoreni>
+                              </nsesss:Puvod>
+                              <nsesss:Trideni>
+                                 <nsesss:JednoduchySpisovyZnak>207.</nsesss:JednoduchySpisovyZnak>
+                                 <nsesss:PlneUrcenySpisovyZnak>207.</nsesss:PlneUrcenySpisovyZnak>
+                                 <nsesss:SpisovyPlan ID="ID-35331f8d-15f3-4760-adf7-e729fe17ec02">
+                                    <nsesss:Identifikator zdroj="ERMS">31</nsesss:Identifikator>
+                                    <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                                    <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                                    <nsesss:Manipulace>
+                                       <nsesss:DatumOtevreni>2007-01-21+01:00</nsesss:DatumOtevreni>
+                                       <nsesss:DatumUzavreni>2017-01-01+01:00</nsesss:DatumUzavreni>
+                                    </nsesss:Manipulace>
+                                    <nsesss:Vydavatel>
+                                       <nsesss:Subjekt>
+                                          <nsesss:IdentifikatorOrganizace zdroj="ERMS">prod</nsesss:IdentifikatorOrganizace>
+                                          <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                                          <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                                       </nsesss:Subjekt>
+                                    </nsesss:Vydavatel>
+                                 </nsesss:SpisovyPlan>
+                              </nsesss:Trideni>
+                              <nsesss:Vyrazovani>
+                                 <nsesss:SkartacniRezim>
+                                    <nsesss:Identifikator zdroj="ERMS">8043</nsesss:Identifikator>
+                                    <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                                    <nsesss:Oduvodneni>-</nsesss:Oduvodneni>
+                                    <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+                                    <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+                                    <nsesss:SpousteciUdalost>AFTER_EXTERNAL_EVENT</nsesss:SpousteciUdalost>
+                                 </nsesss:SkartacniRezim>
+                              </nsesss:Vyrazovani>
+                              <nsesss:Manipulace>
+                                 <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                                 <nsesss:DatumOtevreni>2007-01-21+01:00</nsesss:DatumOtevreni>
+                                 <nsesss:DatumUzavreni>2017-01-01+01:00</nsesss:DatumUzavreni>
+                              </nsesss:Manipulace>
+                           </nsesss:EvidencniUdaje>
+                        </nsesss:VecnaSkupina>
+                     </nsesss:MaterskaEntita>
+                  </nsesss:Trideni>
+                  <nsesss:VyrizeniUzavreni>
+                     <nsesss:Datum>2012-12-05</nsesss:Datum>
+                     <nsesss:Zpusob>jiný způsob</nsesss:Zpusob>
+                     <nsesss:ObsahVyrizeni>Výsledek vyřízení nebyl zpracovatelem zaznamenán</nsesss:ObsahVyrizeni>
+                     <nsesss:Oduvodneni>Způsob vyřízení nebyl zpracovatelem zaznamenán</nsesss:Oduvodneni>
+                     <nsesss:Zpracovatel>
+                        <nsesss:Subjekt>
+                           <nsesss:IdentifikatorOrganizace zdroj="IČ">00063941</nsesss:IdentifikatorOrganizace>
+                           <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                           <nsesss:IdentifikatorFyzickeOsoby zdroj="ERMS">3465</nsesss:IdentifikatorFyzickeOsoby>
+                           <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+                           <nsesss:OrganizacniUtvar>referát ochrany ovzduší a krajiny</nsesss:OrganizacniUtvar>
+                           <nsesss:PracovniPozice>referent ref. ochrany ovzduší a krajiny</nsesss:PracovniPozice>
+                           <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                        </nsesss:Subjekt>
+                     </nsesss:Zpracovatel>
+                  </nsesss:VyrizeniUzavreni>
+                  <nsesss:Vyrazovani>
+                     <nsesss:SkartacniRezim>
+                        <nsesss:Identifikator zdroj="ERMS">S5</nsesss:Identifikator>
+                        <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                        
+                        <nsesss:Oduvodneni>Instrukce MVČR ze dne 25. 5. 1992 čj. VSC/1-793/92</nsesss:Oduvodneni>
+                        <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+                        <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+                        <nsesss:SpousteciUdalost>AFTER_ENTITY_CLOSED</nsesss:SpousteciUdalost>
+                     </nsesss:SkartacniRezim>
+                     <nsesss:DataceVyrazeni>
+                        <nsesss:RokSpousteciUdalosti>2012</nsesss:RokSpousteciUdalosti>
+                        <nsesss:RokSkartacniOperace>2018</nsesss:RokSkartacniOperace>
+                     </nsesss:DataceVyrazeni>
+                  </nsesss:Vyrazovani>
+                  <nsesss:Manipulace>
+                     <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                     <nsesss:DatumOtevreni>2012-12-03</nsesss:DatumOtevreni>
+                     <nsesss:DatumUzavreni>2012-12-05</nsesss:DatumUzavreni>
+                  </nsesss:Manipulace>
+               </nsesss:EvidencniUdaje>
+               <nsesss:Dokumenty>
+                  <nsesss:Dokument ID="RECORD_mp10es4a832929_adda3efb-f9c0-45eb-b77c-062dc3f71947">
+                     <nsesss:EvidencniUdaje>
+                        <nsesss:Identifikace>
+                           <nsesss:Identifikator zdroj="ERMS">mp10es4a832929</nsesss:Identifikator>
+                        </nsesss:Identifikace>
+                        <nsesss:Popis>
+                           <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                        </nsesss:Popis>
+                        <nsesss:Evidence>
+                           <nsesss:EvidencniCislo>P10-124115/2012</nsesss:EvidencniCislo>
+                           <nsesss:PoradoveCislo>124115</nsesss:PoradoveCislo>
+                           <nsesss:UrceneCasoveObdobi>
+                              <nsesss:Rok>2012</nsesss:Rok>
+                           </nsesss:UrceneCasoveObdobi>
+                           <nsesss:NazevEvidenceDokumentu>ERMS</nsesss:NazevEvidenceDokumentu>
+                        </nsesss:Evidence>
+                        <nsesss:Puvod>
+                           <nsesss:DorucenyDokument>
+                              <nsesss:DatumVytvoreni>2012-12-03</nsesss:DatumVytvoreni>
+                              <nsesss:DatumDoruceni>2012-12-03</nsesss:DatumDoruceni>
+                              <nsesss:OdesilatelovoEvidencniCislo/>
+                              <nsesss:DoruceneMnozstvi>30</nsesss:DoruceneMnozstvi>
+                              <nsesss:Odesilatel>
+                                 <nsesss:Subjekt>
+                                    <nsesss:IdentifikatorFyzickeOsoby zdroj="ERMS">51882805</nsesss:IdentifikatorFyzickeOsoby>
+                                    <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+                                    <nsesss:PostovniAdresa>GDPR anonymizováno</nsesss:PostovniAdresa>
+                                    <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
+                                 </nsesss:Subjekt>
+                              </nsesss:Odesilatel>
+                           </nsesss:DorucenyDokument>
+                        </nsesss:Puvod>
+                        <nsesss:Trideni>
+                           <nsesss:JednoduchySpisovyZnak>207.</nsesss:JednoduchySpisovyZnak>
+                           <nsesss:PlneUrcenySpisovyZnak>207.</nsesss:PlneUrcenySpisovyZnak>
+                           <nsesss:DruhDokumentu>
+                              <nsesss:Identifikator zdroj="ERMS">DD</nsesss:Identifikator>
+                              <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                           </nsesss:DruhDokumentu>
+                        </nsesss:Trideni>
+                        <nsesss:Vyrizeni>
+                           <nsesss:Datum>2012-12-05</nsesss:Datum>
+                           <nsesss:Zpusob>jiný způsob</nsesss:Zpusob>
+                           <nsesss:ObsahVyrizeni>Výsledek vyřízení nebyl zpracovatelem zaznamenán</nsesss:ObsahVyrizeni>
+                           <nsesss:Oduvodneni>Vyřízeno</nsesss:Oduvodneni>
+                           <nsesss:Zpracovatel>
+                              <nsesss:Subjekt>
+                                 <nsesss:IdentifikatorOrganizace zdroj="IČ">00063941</nsesss:IdentifikatorOrganizace>
+                                 <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                                 <nsesss:IdentifikatorFyzickeOsoby zdroj="ERMS">3465</nsesss:IdentifikatorFyzickeOsoby>
+                                 <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+                                 <nsesss:OrganizacniUtvar>referát ochrany ovzduší a krajiny</nsesss:OrganizacniUtvar>
+                                 <nsesss:PracovniPozice>referent ref. ochrany ovzduší a krajiny</nsesss:PracovniPozice>
+                                 <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                              </nsesss:Subjekt>
+                           </nsesss:Zpracovatel>
+                           <nsesss:OdkazVyrizovanyDokument>
+                              <nsesss:PlneUrcenySpisovyZnak>207..</nsesss:PlneUrcenySpisovyZnak>
+                              <nsesss:Identifikator zdroj="ERMS">mp10es4a83292b</nsesss:Identifikator>
+                           </nsesss:OdkazVyrizovanyDokument>
+                        </nsesss:Vyrizeni>
+                        <nsesss:Vyrazovani>
+                           <nsesss:SkartacniRezim>
+                              <nsesss:Identifikator zdroj="ERMS">S5_EX</nsesss:Identifikator>
+                              <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                              
+                              <nsesss:Oduvodneni/>
+                              <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+                              <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+                              <nsesss:SpousteciUdalost>AFTER_EXTERNAL_EVENT</nsesss:SpousteciUdalost>
+                           </nsesss:SkartacniRezim>
+                           <nsesss:DataceVyrazeni>
+                              <nsesss:RokSpousteciUdalosti>3000</nsesss:RokSpousteciUdalosti>
+                              <nsesss:RokSkartacniOperace>3000</nsesss:RokSkartacniOperace>
+                           </nsesss:DataceVyrazeni>
+                        </nsesss:Vyrazovani>
+                        <nsesss:Manipulace>
+                           <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                           <nsesss:UkladaciJednotka>P10-007577/2012</nsesss:UkladaciJednotka>
+                        </nsesss:Manipulace>
+                     </nsesss:EvidencniUdaje>
+                  </nsesss:Dokument>
+                  <nsesss:Dokument ID="RECORD_mp10es4a83292b_5ee2a366-6583-4fc9-ad27-5f20a1316ad6">
+                     <nsesss:EvidencniUdaje>
+                        <nsesss:Identifikace>
+                           <nsesss:Identifikator zdroj="ERMS">mp10es4a83292b</nsesss:Identifikator>
+                        </nsesss:Identifikace>
+                        <nsesss:Popis>
+                           <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                        </nsesss:Popis>
+                        <nsesss:Evidence>
+                           <nsesss:EvidencniCislo>P10-124115/2012</nsesss:EvidencniCislo>
+                           <nsesss:PoradoveCislo>124115</nsesss:PoradoveCislo>
+                           <nsesss:UrceneCasoveObdobi>
+                              <nsesss:Rok>2012</nsesss:Rok>
+                           </nsesss:UrceneCasoveObdobi>
+                           <nsesss:NazevEvidenceDokumentu>ERMS</nsesss:NazevEvidenceDokumentu>
+                        </nsesss:Evidence>
+                        <nsesss:Puvod>
+                           <nsesss:VlastniDokument>
+                              <nsesss:DatumVytvoreni>2012-12-03</nsesss:DatumVytvoreni>
+                              <nsesss:VytvoreneMnozstvi>30</nsesss:VytvoreneMnozstvi>
+                              <nsesss:Autor>
+                                 <nsesss:Subjekt>
+                                    <nsesss:IdentifikatorOrganizace zdroj="IČ">00063941</nsesss:IdentifikatorOrganizace>
+                                    <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                                    <nsesss:IdentifikatorFyzickeOsoby zdroj="ERMS">3465</nsesss:IdentifikatorFyzickeOsoby>
+                                    <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+                                    <nsesss:OrganizacniUtvar>referát ochrany ovzduší a krajiny</nsesss:OrganizacniUtvar>
+                                    <nsesss:PracovniPozice>referent ref. ochrany ovzduší a krajiny</nsesss:PracovniPozice>
+                                    <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                                 </nsesss:Subjekt>
+                              </nsesss:Autor>
+                           </nsesss:VlastniDokument>
+                        </nsesss:Puvod>
+                        <nsesss:Trideni>
+                           <nsesss:JednoduchySpisovyZnak>207.</nsesss:JednoduchySpisovyZnak>
+                           <nsesss:PlneUrcenySpisovyZnak>207.</nsesss:PlneUrcenySpisovyZnak>
+                           <nsesss:DruhDokumentu>
+                              <nsesss:Identifikator zdroj="ERMS">DD</nsesss:Identifikator>
+                              <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                           </nsesss:DruhDokumentu>
+                        </nsesss:Trideni>
+                        <nsesss:Vyrizeni>
+                           <nsesss:Datum>2012-12-05</nsesss:Datum>
+                           <nsesss:Zpusob>jiný způsob</nsesss:Zpusob>
+                           <nsesss:ObsahVyrizeni>Výsledek vyřízení nebyl zpracovatelem zaznamenán</nsesss:ObsahVyrizeni>
+                           <nsesss:Oduvodneni>Vyřízeno</nsesss:Oduvodneni>
+                           <nsesss:Zpracovatel>
+                              <nsesss:Subjekt>
+                                 <nsesss:IdentifikatorOrganizace zdroj="IČ">00063941</nsesss:IdentifikatorOrganizace>
+                                 <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                                 <nsesss:IdentifikatorFyzickeOsoby zdroj="ERMS">3465</nsesss:IdentifikatorFyzickeOsoby>
+                                 <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+                                 <nsesss:OrganizacniUtvar>referát ochrany ovzduší a krajiny</nsesss:OrganizacniUtvar>
+                                 <nsesss:PracovniPozice>referent ref. ochrany ovzduší a krajiny</nsesss:PracovniPozice>
+                                 <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                              </nsesss:Subjekt>
+                           </nsesss:Zpracovatel>
+                           <nsesss:OdkazVyrizujiciDokument>
+                              <nsesss:PlneUrcenySpisovyZnak>207.</nsesss:PlneUrcenySpisovyZnak>
+                              <nsesss:Identifikator zdroj="ERMS">mp10es4a832929</nsesss:Identifikator>
+                           </nsesss:OdkazVyrizujiciDokument>
+                           <nsesss:DatumOdeslani>2012-12-05</nsesss:DatumOdeslani>
+                           <nsesss:OdeslaneMnozstvi>1/0/0</nsesss:OdeslaneMnozstvi>
+                           <nsesss:Prijemce>
+                              <nsesss:Subjekt>
+                                 <nsesss:IdentifikatorFyzickeOsoby zdroj="ERMS">51882810</nsesss:IdentifikatorFyzickeOsoby>
+                                 <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+                                 <nsesss:PostovniAdresa>GDPR anonymizováno</nsesss:PostovniAdresa>
+                                 <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
+                              </nsesss:Subjekt>
+                           </nsesss:Prijemce>
+                        </nsesss:Vyrizeni>
+                        <nsesss:Vyrazovani>
+                           <nsesss:SkartacniRezim>
+                              <nsesss:Identifikator zdroj="ERMS">S5_EX</nsesss:Identifikator>
+                              <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                              
+                              <nsesss:Oduvodneni/>
+                              <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+                              <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+                              <nsesss:SpousteciUdalost>AFTER_EXTERNAL_EVENT</nsesss:SpousteciUdalost>
+                           </nsesss:SkartacniRezim>
+                           <nsesss:DataceVyrazeni>
+                              <nsesss:RokSpousteciUdalosti>3000</nsesss:RokSpousteciUdalosti>
+                              <nsesss:RokSkartacniOperace>3000</nsesss:RokSkartacniOperace>
+                           </nsesss:DataceVyrazeni>
+                        </nsesss:Vyrazovani>
+                        <nsesss:Manipulace>
+                           <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                           <nsesss:UkladaciJednotka>P10-007577/2012</nsesss:UkladaciJednotka>
+                        </nsesss:Manipulace>
+                     </nsesss:EvidencniUdaje>
+                  </nsesss:Dokument>
+               </nsesss:Dokumenty>
+            </nsesss:Spis>
+         </mets:xmlData>
+      </mets:mdWrap>
+   </mets:dmdSec>
+   <mets:amdSec ID="LOG_0001">
+      <mets:digiprovMD ID="ID-b0b6de4c-cf60-4cb5-9804-f17de220b034">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tp:HodnotaID>98ee27e8-65f9-4031-baf9-fc6fce471083</tp:HodnotaID>
+                        <tp:ZdrojID>UUID</tp:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2018-12-04T04:12:55.512+01:00</tp:DatumVzniku>
+                     <tp:DatumCasOd>2012-12-03T00:00:00.000+01:00</tp:DatumCasOd>
+                     <tp:DatumCasDo>2018-12-04T04:12:55.512+01:00</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.14.1.0</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>VecnaSkupina</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tp:HodnotaID>12822</tp:HodnotaID>
+                           <tp:ZdrojID>ERMS</tp:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti>
+                     <tp:Udalost>
+                        <tp:Poradi>1</tp:Poradi>
+                        <tp:DatumVzniku>2012-12-03T00:00:00.000+01:00</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>Otevreni</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>2</tp:Poradi>
+                        <tp:DatumVzniku>2017-01-01T00:00:00.000+01:00</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>Uzavreni</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                     </tp:Udalost>
+                  </tp:Udalosti>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="LOG_0002">
+      <mets:digiprovMD ID="ID-badec7cf-2410-46b1-a7f5-54eba1d0d28c">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tp:HodnotaID>a0f0d49a-1c3c-4948-acde-c1681d6e5d01</tp:HodnotaID>
+                        <tp:ZdrojID>UUID</tp:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2018-12-04T04:12:55.512+01:00</tp:DatumVzniku>
+                     <tp:DatumCasOd>2007-01-21T00:00:00.000+01:00</tp:DatumCasOd>
+                     <tp:DatumCasDo>2018-12-04T04:12:55.512+01:00</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.14.1.0</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>SpisovyPlan</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tp:HodnotaID>31</tp:HodnotaID>
+                           <tp:ZdrojID>ERMS</tp:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti>
+                     <tp:Udalost>
+                        <tp:Poradi>3</tp:Poradi>
+                        <tp:DatumVzniku>2007-01-21T00:00:00.000+01:00</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>Otevreni</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>4</tp:Poradi>
+                        <tp:DatumVzniku>2017-01-01T00:00:00.000+01:00</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>Uzavreni</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                     </tp:Udalost>
+                  </tp:Udalosti>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="LOG_0003">
+      <mets:digiprovMD ID="ID-44e48a8a-b315-4db4-b264-6b31d488777b">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tp:HodnotaID>75e5fe03-fc10-4ed9-83d9-068fdc3d854c</tp:HodnotaID>
+                        <tp:ZdrojID>UUID</tp:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2018-12-04T03:12:55.676Z</tp:DatumVzniku>
+                     <tp:DatumCasOd>2015-02-04T11:14:21.673Z</tp:DatumCasOd>
+                     <tp:DatumCasDo>2018-10-25T09:35:56.897Z</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.14.1.0</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>Spis</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tp:HodnotaID>mp10es4a83292c</tp:HodnotaID>
+                           <tp:ZdrojID>ERMS</tp:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti>
+                     <tp:Udalost>
+                        <tp:Poradi>2709734</tp:Poradi>
+                        <tp:DatumVzniku>2015-02-04T11:14:21.673Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_QA_102</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>003db193-8a16-46a5-8878-6bc44e698d78</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>0aca96d3-045e-4f93-ac88-4bef35cecc65</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>2709735</tp:Poradi>
+                        <tp:DatumVzniku>2015-02-04T11:14:21.753Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_QA_101</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>003db193-8a16-46a5-8878-6bc44e698d78</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>0aca96d3-045e-4f93-ac88-4bef35cecc65</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>2709963</tp:Poradi>
+                        <tp:DatumVzniku>2015-02-04T11:15:10.017Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_IC_114</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>003db193-8a16-46a5-8878-6bc44e698d78</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>0aca96d3-045e-4f93-ac88-4bef35cecc65</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>2709964</tp:Poradi>
+                        <tp:DatumVzniku>2015-02-04T11:15:10.157Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_IC_102</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>003db193-8a16-46a5-8878-6bc44e698d78</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>0aca96d3-045e-4f93-ac88-4bef35cecc65</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>2709965</tp:Poradi>
+                        <tp:DatumVzniku>2015-02-04T11:15:10.173Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_IC_105</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>003db193-8a16-46a5-8878-6bc44e698d78</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>0aca96d3-045e-4f93-ac88-4bef35cecc65</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>2710410</tp:Poradi>
+                        <tp:DatumVzniku>2015-02-04T11:16:15.953Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_AC_100</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>003db193-8a16-46a5-8878-6bc44e698d78</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>0aca96d3-045e-4f93-ac88-4bef35cecc65</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>207999615</tp:Poradi>
+                        <tp:DatumVzniku>2018-09-24T11:47:39.980Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>VlozeniDoSkartacnihoNavrhu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_RD_131</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>0aca96d3-045e-4f93-ac88-4bef35cecc65</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>208297548</tp:Poradi>
+                        <tp:DatumVzniku>2018-10-25T09:35:56.897Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>VlozeniDoSkartacnihoNavrhu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_RD_131</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>0aca96d3-045e-4f93-ac88-4bef35cecc65</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                  </tp:Udalosti>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="LOG_0004">
+      <mets:digiprovMD ID="ID-433f2b4f-9bbf-4565-b31f-73979eb3aa97">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tp:HodnotaID>59071f70-f6e9-47dd-a389-2df2d76de39d</tp:HodnotaID>
+                        <tp:ZdrojID>UUID</tp:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2018-12-04T03:12:55.744Z</tp:DatumVzniku>
+                     <tp:DatumCasOd>2015-02-04T11:07:25.587Z</tp:DatumCasOd>
+                     <tp:DatumCasDo>2018-10-25T09:35:52.727Z</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.14.1.0</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>Dokument</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tp:HodnotaID>mp10es4a832929</tp:HodnotaID>
+                           <tp:ZdrojID>ERMS</tp:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti>
+                     <tp:Udalost>
+                        <tp:Poradi>2707360</tp:Poradi>
+                        <tp:DatumVzniku>2015-02-04T11:07:25.587Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_QA_102</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>4307082d-dcbd-49d1-906c-dfc00eac358b</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>adda3efb-f9c0-45eb-b77c-062dc3f71947</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>2707361</tp:Poradi>
+                        <tp:DatumVzniku>2015-02-04T11:07:25.647Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_QA_101</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>4307082d-dcbd-49d1-906c-dfc00eac358b</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>adda3efb-f9c0-45eb-b77c-062dc3f71947</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>2707617</tp:Poradi>
+                        <tp:DatumVzniku>2015-02-04T11:08:17.397Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_IC_112</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>4307082d-dcbd-49d1-906c-dfc00eac358b</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>adda3efb-f9c0-45eb-b77c-062dc3f71947</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>2707618</tp:Poradi>
+                        <tp:DatumVzniku>2015-02-04T11:08:17.430Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_IC_102</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>4307082d-dcbd-49d1-906c-dfc00eac358b</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>adda3efb-f9c0-45eb-b77c-062dc3f71947</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>2707619</tp:Poradi>
+                        <tp:DatumVzniku>2015-02-04T11:08:17.477Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_IC_105</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>4307082d-dcbd-49d1-906c-dfc00eac358b</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>adda3efb-f9c0-45eb-b77c-062dc3f71947</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>2708025</tp:Poradi>
+                        <tp:DatumVzniku>2015-02-04T11:09:16.990Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_AC_100</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>4307082d-dcbd-49d1-906c-dfc00eac358b</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>adda3efb-f9c0-45eb-b77c-062dc3f71947</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>207999326</tp:Poradi>
+                        <tp:DatumVzniku>2018-09-24T11:47:34.160Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>VlozeniDoSkartacnihoNavrhu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_RD_131</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>adda3efb-f9c0-45eb-b77c-062dc3f71947</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>208297340</tp:Poradi>
+                        <tp:DatumVzniku>2018-10-25T09:35:52.727Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>VlozeniDoSkartacnihoNavrhu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_RD_131</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>adda3efb-f9c0-45eb-b77c-062dc3f71947</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                  </tp:Udalosti>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:amdSec ID="LOG_0005">
+      <mets:digiprovMD ID="ID-d98cfb22-6a7f-4055-abf1-1c7f0a4daac7">
+         <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+            <mets:xmlData>
+               <tp:TransakcniLogObjektu>
+                  <tp:TransLogInfo>
+                     <tp:Identifikator>
+                        <tp:HodnotaID>8565dd09-469c-4f57-a58e-d055a156a57a</tp:HodnotaID>
+                        <tp:ZdrojID>UUID</tp:ZdrojID>
+                     </tp:Identifikator>
+                     <tp:DatumVzniku>2018-12-04T03:12:55.789Z</tp:DatumVzniku>
+                     <tp:DatumCasOd>2015-02-04T11:07:25.727Z</tp:DatumCasOd>
+                     <tp:DatumCasDo>2018-10-25T09:35:52.713Z</tp:DatumCasDo>
+                     <tp:Software>ICZ DESA</tp:Software>
+                     <tp:VerzeSoftware>2.14.1.0</tp:VerzeSoftware>
+                     <tp:Objekt>
+                        <tp:TypObjektu>
+                           <tp:TypObjektuId>Dokument</tp:TypObjektuId>
+                        </tp:TypObjektu>
+                        <tp:Identifikator>
+                           <tp:HodnotaID>mp10es4a83292b</tp:HodnotaID>
+                           <tp:ZdrojID>ERMS</tp:ZdrojID>
+                        </tp:Identifikator>
+                     </tp:Objekt>
+                  </tp:TransLogInfo>
+                  <tp:Udalosti>
+                     <tp:Udalost>
+                        <tp:Poradi>2707362</tp:Poradi>
+                        <tp:DatumVzniku>2015-02-04T11:07:25.727Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_QA_102</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>1c453556-1f04-4858-ae76-ef81e6b9cde9</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>5ee2a366-6583-4fc9-ad27-5f20a1316ad6</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>2707363</tp:Poradi>
+                        <tp:DatumVzniku>2015-02-04T11:07:25.790Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_QA_101</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>1c453556-1f04-4858-ae76-ef81e6b9cde9</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>5ee2a366-6583-4fc9-ad27-5f20a1316ad6</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>2707620</tp:Poradi>
+                        <tp:DatumVzniku>2015-02-04T11:08:17.633Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_IC_112</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>1c453556-1f04-4858-ae76-ef81e6b9cde9</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>5ee2a366-6583-4fc9-ad27-5f20a1316ad6</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>2707621</tp:Poradi>
+                        <tp:DatumVzniku>2015-02-04T11:08:17.647Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_IC_102</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>1c453556-1f04-4858-ae76-ef81e6b9cde9</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>5ee2a366-6583-4fc9-ad27-5f20a1316ad6</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>2707622</tp:Poradi>
+                        <tp:DatumVzniku>2015-02-04T11:08:17.663Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_IC_105</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>1c453556-1f04-4858-ae76-ef81e6b9cde9</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>5ee2a366-6583-4fc9-ad27-5f20a1316ad6</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>2708026</tp:Poradi>
+                        <tp:DatumVzniku>2015-02-04T11:09:17.350Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_AC_100</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdVerzeAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>1c453556-1f04-4858-ae76-ef81e6b9cde9</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>5ee2a366-6583-4fc9-ad27-5f20a1316ad6</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>207999325</tp:Poradi>
+                        <tp:DatumVzniku>2018-09-24T11:47:34.150Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>VlozeniDoSkartacnihoNavrhu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_RD_131</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>5ee2a366-6583-4fc9-ad27-5f20a1316ad6</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                     <tp:Udalost>
+                        <tp:Poradi>208297339</tp:Poradi>
+                        <tp:DatumVzniku>2018-10-25T09:35:52.713Z</tp:DatumVzniku>
+                        <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                        <tp:TypUdalosti>
+                           <tp:TypUdalostiId>VlozeniDoSkartacnihoNavrhu</tp:TypUdalostiId>
+                        </tp:TypUdalosti>
+                        <tp:ParametryUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>KodUdalosti</tp:NazevParametru>
+                              <tp:HodnotaParametru>INF_RD_131</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                           <tp:ParametrUdalosti>
+                              <tp:NazevParametru>IdAIP</tp:NazevParametru>
+                              <tp:HodnotaParametru>5ee2a366-6583-4fc9-ad27-5f20a1316ad6</tp:HodnotaParametru>
+                           </tp:ParametrUdalosti>
+                        </tp:ParametryUdalosti>
+                        <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+                     </tp:Udalost>
+                  </tp:Udalosti>
+               </tp:TransakcniLogObjektu>
+            </mets:xmlData>
+         </mets:mdWrap>
+      </mets:digiprovMD>
+   </mets:amdSec>
+   <mets:structMap TYPE="LOGICAL">
+      <mets:div ADMID="LOG_0002" DMDID="ID-35331f8d-15f3-4760-adf7-e729fe17ec02" TYPE="spisový plán">
+         <mets:div ADMID="LOG_0001" DMDID="ID-b2c78e39-8f72-4ff3-b5e1-4a92085140cf" TYPE="věcná skupina">
+            <mets:div ADMID="LOG_0003" DMDID="FILE_mp10es4a83292c_0aca96d3-045e-4f93-ac88-4bef35cecc65" TYPE="spis">
+               <mets:div ADMID="LOG_0004" DMDID="RECORD_mp10es4a832929_adda3efb-f9c0-45eb-b77c-062dc3f71947" LABEL="žádost - rybářský lístek" ORDER="1" TYPE="dokument"/>
+               <mets:div ADMID="LOG_0005" DMDID="RECORD_mp10es4a83292b_5ee2a366-6583-4fc9-ad27-5f20a1316ad6" LABEL="vydán - rybářský lístek" ORDER="2" TYPE="dokument"/>
+            </mets:div>
+         </mets:div>
+      </mets:div>
+   </mets:structMap>
+</mets:mets>

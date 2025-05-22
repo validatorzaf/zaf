@@ -35,6 +35,9 @@ public enum BaseCode implements ErrorCode {
     
     CHYBNY_ELEMENT("Chybný element"),
     
+    // Atribut vůbec neměl být uveden
+    CHYBNY_ATRIBUT("Chybný atribut"),
+    
     CHYBI_KOMPONENTA("Chybí soubor odpovídající komponentě"),
 
     /**

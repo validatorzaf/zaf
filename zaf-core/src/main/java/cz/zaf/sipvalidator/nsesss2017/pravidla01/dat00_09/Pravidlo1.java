@@ -24,41 +24,32 @@ public class Pravidlo1 extends PravidloBase {
         SipInfo sipInfo = this.ctx.getContext().getSip();
         LoadType loadtype = sipInfo.getLoadType();
 
-        boolean stav = false;
-        String vypisChyby;
         switch (loadtype) {
         case LT_XML:
-            vypisChyby = "Nejedná se o SIP balíček, ale nahrán jako samostatný soubor typu xml.";
-            break;
+        	throw new ZafException(BaseCode.CHYBA, "Nejedná se o SIP balíček, ale nahrán jako samostatný soubor typu xml.");
         case LT_DIR:
-            stav = true;
-            vypisChyby = "SIP balíček byl nahrán jako složka.";
             break;
         case LT_ZIP:
             switch (sipInfo.getLoadStatus()) {
             case ERR_ZIP_INCORRECT_STRUCTURE:
-                stav = true;
-                vypisChyby = "SIP balíček rozbalen, chybná struktura v ZIP souboru.";
-                break;
+            	// SIP balíček rozbalen, chybná struktura v ZIP souboru
+            	// zde vsak neni chybou
+            	break;
             case OK:
-                stav = true;
-                vypisChyby = "SIP balíček nahrán ze souboru typu zip.";
                 break;
             case ERR_UNKNOWN:
             case ERR_UNZIP_FAILED:
             default:
-                vypisChyby = "Datový balíček SIP není soubor v datovém formátu ZIP (jeho MIME Content-type není application/zip).";
-                break;
+            	throw new ZafException(BaseCode.CHYBA, 
+            			"Datový balíček SIP není soubor v datovém formátu ZIP (jeho MIME Content-type není application/zip)."
+            			);
             }
             break;
         case LT_UNKNOWN:
         default:
-            vypisChyby = "Datový balíček SIP není soubor v povoleném datovém formátu.";
-            break;
-        }
-
-        if (!stav) {
-            throw new ZafException(BaseCode.CHYBA, vypisChyby);
+        	throw new ZafException(BaseCode.CHYBA, 
+        			"Datový balíček SIP není soubor v povoleném datovém formátu."
+        			);
         }
     }
 

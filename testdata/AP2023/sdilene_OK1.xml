@@ -44,11 +44,11 @@
 		</ead:maintenanceagency>
 		
 		<ead:localcontrol localtype="FINDING_AID_TYPE"> <!-- obs23 -->
-			<ead:term identifier="INVENTAR">inventář</ead:term> <!-- obs26, obs28, obs29 -->
+			<ead:term identifier="INVENTAR">inventář</ead:term>
 		</ead:localcontrol>
 		
-		<ead:localcontrol localtype="RULES"> <!-- obs24 -->
-			<ead:term identifier="CZ_ZP2013">základní pravidla od roku 2013</ead:term> <!-- obs26, obs27 -->
+		<ead:localcontrol localtype="RULES"> <!-- obs27 -->
+			<ead:term identifier="CZ_ZP2013">základní pravidla od roku 2013</ead:term>
 		</ead:localcontrol>
 		
 		<ead:localcontrol localtype="CZ_FINDING_AID_EAD_PROFILE"> <!-- obs25 -->

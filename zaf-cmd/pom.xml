@@ -37,17 +37,18 @@
 			<plugin>
 			    <groupId>org.springframework.boot</groupId>
 			    <artifactId>spring-boot-maven-plugin</artifactId>
-			    <executions>
+			    <!-- We are using spring-boot-starter-parent, such execution is already pre-configured 
+			         with a repackage execution ID so that only the plugin definition should be added. -->
+			    <!--<executions>
 			        <execution>
 			            <goals>
 			                <goal>repackage</goal>
 			            </goals>
-			            <configuration>
-			                <!--<classifier>spring-boot</classifier>-->
-			                <mainClass>cz.zaf.validator.CmdValidator</mainClass>
-			            </configuration>
 			        </execution>
-			    </executions>
+			    </executions>-->
+				<configuration>
+					<mainClass>cz.zaf.validator.CmdValidator</mainClass>
+				</configuration>
 			</plugin>
 		</plugins>
 		<resources>

@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:nsesss="http://www.mvcr.cz/nsesss/v4" xmlns:tp="http://www.mvcr.cz/nsesss/2023/log" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="METS_MUJESS00040003" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu" OBJID="METS_MUJESS00040003" PROFILE="mets.xsd" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v4 http://www.mvcr.cz/nsesss/v4/nsesss.xsd http://www.mvcr.cz/nsesss/2023/log https://www.mvcr.cz/nsesss/v4/nsesss-TrP.xsd">
+  <mets:metsHdr CREATEDATE="2019-05-13T08:41:06.1210384+02:00" LASTMODDATE="2019-05-13T08:41:06.1210384+02:00">
+    <mets:agent ID="IC15049248" ROLE="CREATOR" TYPE="ORGANIZATION">
+      <mets:name>GDPR anonymizováno</mets:name>
+    </mets:agent>
+    <mets:agent ID="FM119" ROLE="CREATOR" TYPE="INDIVIDUAL">
+      <mets:name>GDPR anonymizováno</mets:name>
+      <mets:note>Poštovní oddelení - podatelna + referent</mets:note>
+    </mets:agent>
+    <mets:metsDocumentID/>
+  </mets:metsHdr>
+  <mets:dmdSec ID="DM_MUJESS00040003">
+    <mets:mdRef LOCTYPE="ARK" MDTYPE="MARC" xlink:type="simple"/>
+    <mets:mdWrap LABEL="Schéma XML pro předávání dokumentů a jejich metadat do archivu" MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="NSESSS">
+      <mets:xmlData>
+        <nsesss:Spis ID="MUJESS00040003">
+          <nsesss:EvidencniUdaje>
+            <nsesss:Identifikace>
+              <nsesss:Identifikator zdroj="MUJESS">00040003</nsesss:Identifikator>
+            </nsesss:Identifikace>
+            <nsesss:Popis>
+              <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+              <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+            </nsesss:Popis>
+            <nsesss:Evidence>
+              <nsesss:EvidencniCislo>MJ/00065/2012</nsesss:EvidencniCislo>
+              <nsesss:UrceneCasoveObdobi>
+                <nsesss:Rok>2012</nsesss:Rok>
+              </nsesss:UrceneCasoveObdobi>
+              <nsesss:NazevEvidenceDokumentu>MUJESS</nsesss:NazevEvidenceDokumentu>
+            </nsesss:Evidence>
+            <nsesss:Puvod>
+              <nsesss:DatumVytvoreni datum="2012-07-10T12:21:13.713">2012-07-10</nsesss:DatumVytvoreni>
+            </nsesss:Puvod>
+            <nsesss:Trideni>
+              <nsesss:JednoduchySpisovyZnak>0-53.1</nsesss:JednoduchySpisovyZnak>
+              <nsesss:PlneUrcenySpisovyZnak>0-53.1</nsesss:PlneUrcenySpisovyZnak>
+              <nsesss:MaterskaEntita>
+                <nsesss:VecnaSkupina ID="MUJESS00040003.MUJESS.0-53.1">
+                  <nsesss:EvidencniUdaje>
+                    <nsesss:Identifikace>
+                      <nsesss:Identifikator zdroj="MUJESS.SPZ">0-53.1</nsesss:Identifikator>
+                    </nsesss:Identifikace>
+                    <nsesss:Popis>
+                      <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                    </nsesss:Popis>
+                    <nsesss:Puvod>
+                      <nsesss:DatumVytvoreni datum="2006-07-28T09:14:46.313">2006-07-28</nsesss:DatumVytvoreni>
+                    </nsesss:Puvod>
+                    <nsesss:Trideni>
+                      <nsesss:JednoduchySpisovyZnak>0-53.1</nsesss:JednoduchySpisovyZnak>
+                      <nsesss:PlneUrcenySpisovyZnak>0-53.1</nsesss:PlneUrcenySpisovyZnak>
+                      <nsesss:SpisovyPlan ID="MUJESS00040003.MUJESS.0">
+                        <nsesss:Identifikator zdroj="MUJESS.SPL">0</nsesss:Identifikator>
+                        <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                        <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                        <nsesss:Manipulace>
+                          <nsesss:DatumOtevreni datum="2006-07-28T09:09:37.133">2006-07-28</nsesss:DatumOtevreni>
+                          <nsesss:DatumUzavreni datum="2099-12-31T00:00:00">2099-12-31</nsesss:DatumUzavreni>
+                        </nsesss:Manipulace>
+                        <nsesss:Vydavatel>
+                          <nsesss:Subjekt>
+                            <nsesss:IdentifikatorOrganizace zdroj="MUJESS.SS">MUJESS</nsesss:IdentifikatorOrganizace>
+                            <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                            <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                            <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
+                          </nsesss:Subjekt>
+                        </nsesss:Vydavatel>
+                      </nsesss:SpisovyPlan>
+                    </nsesss:Trideni>
+                    <nsesss:Vyrazovani>
+                      <nsesss:SkartacniRezim>
+                        <nsesss:Identifikator zdroj="MUJESS.SR">MUJESS-53.1</nsesss:Identifikator>
+                        <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                        <nsesss:Oduvodneni>Dle spisového řádu organizace</nsesss:Oduvodneni>
+                        <nsesss:SkartacniZnak>A</nsesss:SkartacniZnak>
+                        <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+                        <nsesss:SpousteciUdalost>Datum uzavření</nsesss:SpousteciUdalost>
+                      </nsesss:SkartacniRezim>
+                    </nsesss:Vyrazovani>
+                    <nsesss:Manipulace>
+                      <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                      <nsesss:DatumOtevreni datum="2006-07-28T09:14:46.313">2006-07-28</nsesss:DatumOtevreni>
+                    </nsesss:Manipulace>
+                  </nsesss:EvidencniUdaje>
+                </nsesss:VecnaSkupina>
+              </nsesss:MaterskaEntita>
+            </nsesss:Trideni>
+            <nsesss:VyrizeniUzavreni>
+              <nsesss:Datum datum="2012-09-06T00:00:00">2012-09-06</nsesss:Datum>
+              <nsesss:Zpusob>jiný způsob</nsesss:Zpusob>
+              <nsesss:ObsahVyrizeni>vyřízeno</nsesss:ObsahVyrizeni>
+              <nsesss:Oduvodneni>vyřízeno</nsesss:Oduvodneni>
+              <nsesss:Zpracovatel>
+                <nsesss:Subjekt>
+                  <nsesss:IdentifikatorOrganizace zdroj="IČ">15049248</nsesss:IdentifikatorOrganizace>
+                  <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                  <nsesss:IdentifikatorFyzickeOsoby zdroj="MUJESS">119</nsesss:IdentifikatorFyzickeOsoby>
+                  <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+                  <nsesss:OrganizacniUtvar>ÚT-VS-Pod - podatelna - poštovní oddělení</nsesss:OrganizacniUtvar>
+                  <nsesss:PracovniPozice>Poštovní oddelení - podatelna + referent</nsesss:PracovniPozice>
+                  <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                </nsesss:Subjekt>
+              </nsesss:Zpracovatel>
+            </nsesss:VyrizeniUzavreni>
+            <nsesss:Vyrazovani>
+              <nsesss:SkartacniRezim>
+                <nsesss:Identifikator zdroj="MUJESS">0/53.1</nsesss:Identifikator>
+                <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                <nsesss:Oduvodneni>Instrukce MVČR ze dne 25. 5. 1992 čj. VSC/1-793/92</nsesss:Oduvodneni>
+                <nsesss:SkartacniZnak>A</nsesss:SkartacniZnak>
+                <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+                <nsesss:SpousteciUdalost>AFTER_ENTITY_CLOSED</nsesss:SpousteciUdalost>
+              </nsesss:SkartacniRezim>
+              <nsesss:DataceVyrazeni>
+                <nsesss:RokSpousteciUdalosti>2012</nsesss:RokSpousteciUdalosti>
+                <nsesss:RokSkartacniOperace>2018</nsesss:RokSkartacniOperace>
+              </nsesss:DataceVyrazeni>
+              <nsesss:SkartacniRizeni>
+                <nsesss:Datum datum="2019-05-13T08:41:06.12">2019-05-13</nsesss:Datum>
+                <nsesss:Mnozstvi/>
+                <nsesss:SkartacniOperace>trvalé uložení</nsesss:SkartacniOperace>
+                <nsesss:Oduvodneni>-</nsesss:Oduvodneni>
+                <nsesss:Posuzovatel>
+                  <nsesss:Subjekt>
+                    <nsesss:IdentifikatorOrganizace zdroj="-">-</nsesss:IdentifikatorOrganizace>
+                    <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                    <nsesss:IdentifikatorFyzickeOsoby zdroj="-">-</nsesss:IdentifikatorFyzickeOsoby>
+                    <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+                    <nsesss:OrganizacniUtvar>-</nsesss:OrganizacniUtvar>
+                    <nsesss:PracovniPozice>-</nsesss:PracovniPozice>
+                    <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                  </nsesss:Subjekt>
+                </nsesss:Posuzovatel>
+              </nsesss:SkartacniRizeni>
+            </nsesss:Vyrazovani>
+            <nsesss:Manipulace>
+              <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+              <nsesss:DatumOtevreni datum="2012-07-10T12:21:13.713">2012-07-10</nsesss:DatumOtevreni>
+              <nsesss:DatumUzavreni datum="2012-09-06T00:00:00">2012-09-06</nsesss:DatumUzavreni>
+            </nsesss:Manipulace>
+          </nsesss:EvidencniUdaje>
+          <nsesss:Dokumenty>
+            <nsesss:Dokument ID="MUJESS00039950">
+              <nsesss:EvidencniUdaje>
+                <nsesss:Identifikace>
+                  <nsesss:Identifikator zdroj="MUJESS">00039950</nsesss:Identifikator>
+                </nsesss:Identifikace>
+                <nsesss:Popis>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                </nsesss:Popis>
+                <nsesss:Evidence>
+                  <nsesss:EvidencniCislo>MJ/00065/2012</nsesss:EvidencniCislo>
+                  <nsesss:UrceneCasoveObdobi>
+                    <nsesss:Rok>2012</nsesss:Rok>
+                  </nsesss:UrceneCasoveObdobi>
+                  <nsesss:NazevEvidenceDokumentu>MUJESS</nsesss:NazevEvidenceDokumentu>
+                </nsesss:Evidence>
+                <nsesss:Jazyky>
+                  <nsesss:Jazyk>cze</nsesss:Jazyk>
+                </nsesss:Jazyky>
+                <nsesss:Puvod>
+                  <nsesss:DorucenyDokument>
+                    <nsesss:DatumVytvoreni datum="2012-07-10T08:35:37.47">2012-07-10</nsesss:DatumVytvoreni>
+                    <nsesss:Autor>
+                      <nsesss:Subjekt>
+                        <nsesss:IdentifikatorOrganizace zdroj="MUJESS">00039949</nsesss:IdentifikatorOrganizace>
+                        <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                        <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                      </nsesss:Subjekt>
+                    </nsesss:Autor>
+                    <nsesss:DatumDoruceni datum="2012-07-10T00:00:00">2012-07-10</nsesss:DatumDoruceni>
+                    <nsesss:DoruceneMnozstvi>1/0</nsesss:DoruceneMnozstvi>
+                    <nsesss:Odesilatel>
+                      <nsesss:Subjekt>
+                        <nsesss:IdentifikatorOrganizace zdroj="MUJESS">00039949</nsesss:IdentifikatorOrganizace>
+                        <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                        <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                      </nsesss:Subjekt>
+                    </nsesss:Odesilatel>
+                  </nsesss:DorucenyDokument>
+                </nsesss:Puvod>
+                <nsesss:Trideni>
+                  <nsesss:JednoduchySpisovyZnak>0-53.1</nsesss:JednoduchySpisovyZnak>
+                  <nsesss:PlneUrcenySpisovyZnak>0-53.1</nsesss:PlneUrcenySpisovyZnak>
+                  <nsesss:DruhDokumentu>
+                    <nsesss:Identifikator zdroj="MUJESS">0</nsesss:Identifikator>
+                    <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                    <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                  </nsesss:DruhDokumentu>
+                </nsesss:Trideni>
+                <nsesss:Vyrizeni>
+                  <nsesss:Datum datum="2012-07-10T00:00:00">2012-07-10</nsesss:Datum>
+                  <nsesss:Zpusob>jiný způsob</nsesss:Zpusob>
+                  <nsesss:ObsahVyrizeni>17</nsesss:ObsahVyrizeni>
+                  <nsesss:Oduvodneni>žádost o informace</nsesss:Oduvodneni>
+                  <nsesss:Zpracovatel>
+                    <nsesss:Subjekt>
+                      <nsesss:IdentifikatorOrganizace zdroj="IČ">15049248</nsesss:IdentifikatorOrganizace>
+                      <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                      <nsesss:IdentifikatorFyzickeOsoby zdroj="MUJESS">119</nsesss:IdentifikatorFyzickeOsoby>
+                      <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+                      <nsesss:OrganizacniUtvar>ÚT-VS-Pod - podatelna - poštovní oddělení</nsesss:OrganizacniUtvar>
+                      <nsesss:PracovniPozice>Poštovní oddelení - podatelna + referent</nsesss:PracovniPozice>
+                      <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                    </nsesss:Subjekt>
+                  </nsesss:Zpracovatel>
+                </nsesss:Vyrizeni>
+                <nsesss:Vyrazovani>
+                  <nsesss:SkartacniRezim>
+                    <nsesss:Identifikator zdroj="MUJESS">39950/53.1</nsesss:Identifikator>
+                    <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                    <nsesss:Oduvodneni>Instrukce MVČR ze dne 25. 5. 1992 čj. VSC/1-793/92</nsesss:Oduvodneni>
+                    <nsesss:SkartacniZnak>A</nsesss:SkartacniZnak>
+                    <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+                    <nsesss:SpousteciUdalost>AFTER_ENTITY_CLOSED</nsesss:SpousteciUdalost>
+                  </nsesss:SkartacniRezim>
+                  <nsesss:DataceVyrazeni>
+                    <nsesss:RokSpousteciUdalosti>2012</nsesss:RokSpousteciUdalosti>
+                    <nsesss:RokSkartacniOperace>2018</nsesss:RokSkartacniOperace>
+                  </nsesss:DataceVyrazeni>
+                </nsesss:Vyrazovani>
+                <nsesss:Manipulace>
+                  <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                  <nsesss:UkladaciJednotka>39950</nsesss:UkladaciJednotka>
+                </nsesss:Manipulace>
+              </nsesss:EvidencniUdaje>
+            </nsesss:Dokument>
+            <nsesss:Dokument ID="MUJESS00040002">
+              <nsesss:EvidencniUdaje>
+                <nsesss:Identifikace>
+                  <nsesss:Identifikator zdroj="MUJESS">00040002</nsesss:Identifikator>
+                </nsesss:Identifikace>
+                <nsesss:Popis>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                </nsesss:Popis>
+                <nsesss:Evidence>
+                  <nsesss:EvidencniCislo>MJ/00065/2012</nsesss:EvidencniCislo>
+                  <nsesss:UrceneCasoveObdobi>
+                    <nsesss:Rok>2012</nsesss:Rok>
+                  </nsesss:UrceneCasoveObdobi>
+                  <nsesss:NazevEvidenceDokumentu>MUJESS</nsesss:NazevEvidenceDokumentu>
+                </nsesss:Evidence>
+                <nsesss:Jazyky>
+                  <nsesss:Jazyk>cze</nsesss:Jazyk>
+                </nsesss:Jazyky>
+                <nsesss:Puvod>
+                  <nsesss:VlastniDokument>
+                    <nsesss:DatumVytvoreni datum="2012-07-10T12:21:13.61">2012-07-10</nsesss:DatumVytvoreni>
+                    <nsesss:Autor>
+                      <nsesss:Subjekt>
+                        <nsesss:IdentifikatorOrganizace zdroj="IČ">15049248</nsesss:IdentifikatorOrganizace>
+                        <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                        <nsesss:IdentifikatorFyzickeOsoby zdroj="MUJESS">119</nsesss:IdentifikatorFyzickeOsoby>
+                        <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+                        <nsesss:OrganizacniUtvar>ÚT-VS-Pod - podatelna - poštovní oddělení</nsesss:OrganizacniUtvar>
+                        <nsesss:PracovniPozice>Poštovní oddelení - podatelna + referent</nsesss:PracovniPozice>
+                        <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                      </nsesss:Subjekt>
+                    </nsesss:Autor>
+                  </nsesss:VlastniDokument>
+                </nsesss:Puvod>
+                <nsesss:Trideni>
+                  <nsesss:JednoduchySpisovyZnak>0-53.1</nsesss:JednoduchySpisovyZnak>
+                  <nsesss:PlneUrcenySpisovyZnak>0-53.1</nsesss:PlneUrcenySpisovyZnak>
+                  <nsesss:DruhDokumentu>
+                    <nsesss:Identifikator zdroj="MUJESS">0</nsesss:Identifikator>
+                    <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                    <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                  </nsesss:DruhDokumentu>
+                </nsesss:Trideni>
+                <nsesss:Vyrizeni>
+                  <nsesss:Datum datum="2012-09-06T00:00:00">2012-09-06</nsesss:Datum>
+                  <nsesss:Zpusob>jiný způsob</nsesss:Zpusob>
+                  <nsesss:ObsahVyrizeni>17</nsesss:ObsahVyrizeni>
+                  <nsesss:Oduvodneni>vyřízeno</nsesss:Oduvodneni>
+                  <nsesss:Zpracovatel>
+                    <nsesss:Subjekt>
+                      <nsesss:IdentifikatorOrganizace zdroj="IČ">15049248</nsesss:IdentifikatorOrganizace>
+                      <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                      <nsesss:IdentifikatorFyzickeOsoby zdroj="MUJESS">119</nsesss:IdentifikatorFyzickeOsoby>
+                      <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+                      <nsesss:OrganizacniUtvar>ÚT-VS-Pod - podatelna - poštovní oddělení</nsesss:OrganizacniUtvar>
+                      <nsesss:PracovniPozice>Poštovní oddelení - podatelna + referent</nsesss:PracovniPozice>
+                      <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                    </nsesss:Subjekt>
+                  </nsesss:Zpracovatel>
+                </nsesss:Vyrizeni>
+                <nsesss:Vyrazovani>
+                  <nsesss:SkartacniRezim>
+                    <nsesss:Identifikator zdroj="MUJESS">40002/53.1</nsesss:Identifikator>
+                    <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                    <nsesss:Oduvodneni>Instrukce MVČR ze dne 25. 5. 1992 čj. VSC/1-793/92</nsesss:Oduvodneni>
+                    <nsesss:SkartacniZnak>A</nsesss:SkartacniZnak>
+                    <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+                    <nsesss:SpousteciUdalost>AFTER_ENTITY_CLOSED</nsesss:SpousteciUdalost>
+                  </nsesss:SkartacniRezim>
+                  <nsesss:DataceVyrazeni>
+                    <nsesss:RokSpousteciUdalosti>2012</nsesss:RokSpousteciUdalosti>
+                    <nsesss:RokSkartacniOperace>2018</nsesss:RokSkartacniOperace>
+                  </nsesss:DataceVyrazeni>
+                </nsesss:Vyrazovani>
+                <nsesss:Manipulace>
+                  <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+                  <nsesss:UkladaciJednotka>40002</nsesss:UkladaciJednotka>
+                </nsesss:Manipulace>
+              </nsesss:EvidencniUdaje>
+              <nsesss:Komponenty>
+                <nsesss:Komponenta ID="Komp_MUJESS00046028" druh="hlavní dokument" forma_uchovani="originál" poradi="1" verze="2">
+                  <nsesss:EvidencniUdaje>
+                    <nsesss:Identifikace>
+                      <nsesss:Identifikator zdroj="MUJESS">00046028</nsesss:Identifikator>
+                    </nsesss:Identifikace>
+                    <nsesss:Popis>
+                      <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                    </nsesss:Popis>
+                    <nsesss:Trideni>
+                      <nsesss:JednoduchySpisovyZnak>53.1</nsesss:JednoduchySpisovyZnak>
+                      <nsesss:PlneUrcenySpisovyZnak>0-53.1</nsesss:PlneUrcenySpisovyZnak>
+                    </nsesss:Trideni>
+                    <nsesss:Prevod/>
+                  </nsesss:EvidencniUdaje>
+                </nsesss:Komponenta>
+              </nsesss:Komponenty>
+            </nsesss:Dokument>
+          </nsesss:Dokumenty>
+        </nsesss:Spis>
+      </mets:xmlData>
+    </mets:mdWrap>
+  </mets:dmdSec>
+  <mets:amdSec ID="S_MUJESSTP10308220.MUJESS00040003">
+    <mets:digiprovMD ID="AMD_S_MUJESSTP10308220.MUJESS00040003">
+      <mets:mdRef LOCTYPE="ARK" MDTYPE="MARC" xlink:type="simple"/>
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+        <mets:xmlData>
+          <TransakcniLogObjektu xmlns="http://nsess.public.cz/erms_trans/v_01_01">
+            <TransLogInfo>
+              <Identifikator>
+                <HodnotaID xmlns="http://mvcr.cz/ess/v_1.0.0.0">TP10308220</HodnotaID>
+                <ZdrojID xmlns="http://mvcr.cz/ess/v_1.0.0.0">MUJESS</ZdrojID>
+              </Identifikator>
+              <DatumVzniku>2019-05-13T08:41:06</DatumVzniku>
+              <DatumCasOd>2012-07-10T12:21:13</DatumCasOd>
+              <DatumCasDo>2019-05-13T08:36:24</DatumCasDo>
+              <Software>Spisová služba, GEOVAP Pardubice</Software>
+              <VerzeSoftware>3.95</VerzeSoftware>
+              <Objekt>
+                <TypObjektu>
+                  <TypObjektuText>Spis</TypObjektuText>
+                </TypObjektu>
+                <Identifikator>
+                  <HodnotaID xmlns="http://mvcr.cz/ess/v_1.0.0.0">00040003</HodnotaID>
+                  <ZdrojID xmlns="http://mvcr.cz/ess/v_1.0.0.0">MUJESS</ZdrojID>
+                </Identifikator>
+              </Objekt>
+            </TransLogInfo>
+            <Udalosti>
+              <Udalost>
+                <Poradi>10308220</Poradi>
+                <DatumVzniku>2012-07-10T12:21:13</DatumVzniku>
+                <provedlKdo>ÚT-VS-Pod - Otáhalová Lenka</provedlKdo>
+                <TypUdalosti>
+                  <TypUdalostiText>Zalozeni</TypUdalostiText>
+                </TypUdalosti>
+                <PopisUdalosti>založení</PopisUdalosti>
+                <ZdrojID>MUJESS</ZdrojID>
+              </Udalost>
+              <Udalost>
+                <Poradi>10308221</Poradi>
+                <DatumVzniku>2012-07-10T12:21:13</DatumVzniku>
+                <provedlKdo>ÚT-VS-Pod - Otáhalová Lenka</provedlKdo>
+                <TypUdalosti>
+                  <TypUdalostiText>Uprava</TypUdalostiText>
+                </TypUdalosti>
+                <PopisUdalosti>vložení objektu: vložen objekt č.j. MJ/00065/2012, sp. zn. po vložení: MJ/00065/2012/01</PopisUdalosti>
+                <ZdrojID>MUJESS</ZdrojID>
+              </Udalost>
+              <Udalost>
+                <Poradi>10308223</Poradi>
+                <DatumVzniku>2012-07-10T12:21:14</DatumVzniku>
+                <provedlKdo>ÚT-VS-Pod - Otáhalová Lenka</provedlKdo>
+                <TypUdalosti>
+                  <TypUdalostiText>Uprava</TypUdalostiText>
+                </TypUdalosti>
+                <PopisUdalosti>vložení objektu: vložen objekt č.j. MJ/00065/2012, sp. zn. po vložení: MJ/00065/2012/02</PopisUdalosti>
+                <ZdrojID>MUJESS</ZdrojID>
+              </Udalost>
+              <Udalost>
+                <Poradi>10308222</Poradi>
+                <DatumVzniku>2012-09-06T09:14:46</DatumVzniku>
+                <provedlKdo>ÚT-VS-Pod - Otáhalová Lenka</provedlKdo>
+                <TypUdalosti>
+                  <TypUdalostiText>Vyrizeni</TypUdalostiText>
+                </TypUdalosti>
+                <PopisUdalosti>změna stavu: nový stav: vyřízený, datum: 6.9.2012, způsob: VY, komentář: vyřízeno</PopisUdalosti>
+                <ZdrojID>MUJESS</ZdrojID>
+              </Udalost>
+              <Udalost>
+                <Poradi>10322843</Poradi>
+                <DatumVzniku>2019-04-03T07:36:56</DatumVzniku>
+                <provedlKdo>ÚT-VS-Pod - Otáhalová Lenka</provedlKdo>
+                <TypUdalosti>
+                  <TypUdalostiText>Uzavreni</TypUdalostiText>
+                </TypUdalosti>
+                <PopisUdalosti>změna stavu: nový stav: uzavřený</PopisUdalosti>
+                <ZdrojID>MUJESS</ZdrojID>
+              </Udalost>
+              <Udalost>
+                <Poradi>10323016</Poradi>
+                <DatumVzniku>2019-04-03T12:01:42</DatumVzniku>
+                <provedlKdo>ÚT-VS-Pod - Otáhalová Lenka</provedlKdo>
+                <TypUdalosti>
+                  <TypUdalostiText>Uprava</TypUdalostiText>
+                </TypUdalosti>
+                <PopisUdalosti>změna detailu: změna data uzavření</PopisUdalosti>
+                <ZdrojID>MUJESS</ZdrojID>
+              </Udalost>
+              <Udalost>
+                <Poradi>10323017</Poradi>
+                <DatumVzniku>2019-04-03T12:02:15</DatumVzniku>
+                <provedlKdo>ÚT-VS-Pod - Otáhalová Lenka</provedlKdo>
+                <TypUdalosti>
+                  <TypUdalostiText>Uprava</TypUdalostiText>
+                </TypUdalosti>
+                <PopisUdalosti>změna detailu: změna data uzavření</PopisUdalosti>
+                <ZdrojID>MUJESS</ZdrojID>
+              </Udalost>
+              <Udalost>
+                <Poradi>10323588</Poradi>
+                <DatumVzniku>2019-05-13T08:29:57</DatumVzniku>
+                <provedlKdo>ÚT-VS-Pod - Otáhalová Lenka</provedlKdo>
+                <TypUdalosti>
+                  <TypUdalostiText>VlozeniDoUkladaciJednotky</TypUdalostiText>
+                </TypUdalosti>
+                <PopisUdalosti>vložení do ukládací jednotky: vloženo do ukládací jednotky UJ MJ/19/0041</PopisUdalosti>
+                <ZdrojID>MUJESS</ZdrojID>
+              </Udalost>
+              <Udalost>
+                <Poradi>10323593</Poradi>
+                <DatumVzniku>2019-05-13T08:30:10</DatumVzniku>
+                <provedlKdo>ÚT-VS-Pod - Otáhalová Lenka</provedlKdo>
+                <TypUdalosti>
+                  <TypUdalostiText>PredaniNaSpisovnu</TypUdalostiText>
+                </TypUdalosti>
+                <PopisUdalosti>nastavení předání do spisovny: předání do spisovny "centrální spisovna"</PopisUdalosti>
+                <ZdrojID>MUJESS</ZdrojID>
+              </Udalost>
+              <Udalost>
+                <Poradi>10323597</Poradi>
+                <DatumVzniku>2019-05-13T08:30:33</DatumVzniku>
+                <provedlKdo>ÚT-VS-Pod - Otáhalová Lenka</provedlKdo>
+                <TypUdalosti>
+                  <TypUdalostiText>PrevzetiNaSpisovnu</TypUdalostiText>
+                </TypUdalosti>
+                <PopisUdalosti>převzetí do spisovny: převzetí do spisovny "centrální spisovna"</PopisUdalosti>
+                <ZdrojID>MUJESS</ZdrojID>
+              </Udalost>
+              <Udalost>
+                <Poradi>10323606</Poradi>
+                <DatumVzniku>2019-05-13T08:36:24</DatumVzniku>
+                <provedlKdo>ÚT-VS-Pod - Otáhalová Lenka</provedlKdo>
+                <TypUdalosti>
+                  <TypUdalostiText>Uprava</TypUdalostiText>
+                </TypUdalosti>
+                <PopisUdalosti>změna detailu: doplnění metadat objektu v rámci přípravy ESŘ: ZdrojID/HodnotaID/AktRok</PopisUdalosti>
+                <ZdrojID>MUJESS</ZdrojID>
+              </Udalost>
+            </Udalosti>
+          </TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="D_MUJESSTP10308220.MUJESS00039950">
+    <mets:digiprovMD ID="AMD_D_MUJESSTP10308220.MUJESS00039950">
+      <mets:mdRef LOCTYPE="ARK" MDTYPE="MARC" xlink:type="simple"/>
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+        <mets:xmlData>
+          <TransakcniLogObjektu xmlns="http://nsess.public.cz/erms_trans/v_01_01">
+            <TransLogInfo>
+              <Identifikator>
+                <HodnotaID xmlns="http://mvcr.cz/ess/v_1.0.0.0">TP10308220</HodnotaID>
+                <ZdrojID xmlns="http://mvcr.cz/ess/v_1.0.0.0">MUJESS</ZdrojID>
+              </Identifikator>
+              <DatumVzniku>2019-05-13T08:41:06</DatumVzniku>
+              <DatumCasOd>2012-07-10T12:21:13</DatumCasOd>
+              <DatumCasDo>2019-05-13T08:36:24</DatumCasDo>
+              <Software>Spisová služba, GEOVAP Pardubice</Software>
+              <VerzeSoftware>3.95</VerzeSoftware>
+              <Objekt>
+                <TypObjektu>
+                  <TypObjektuText>Spis</TypObjektuText>
+                </TypObjektu>
+                <Identifikator>
+                  <HodnotaID xmlns="http://mvcr.cz/ess/v_1.0.0.0">00040003</HodnotaID>
+                  <ZdrojID xmlns="http://mvcr.cz/ess/v_1.0.0.0">MUJESS</ZdrojID>
+                </Identifikator>
+              </Objekt>
+            </TransLogInfo>
+            <Udalosti/>
+          </TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="D_MUJESSTP10308220.MUJESS00040002">
+    <mets:digiprovMD ID="AMD_D_MUJESSTP10308220.MUJESS00040002">
+      <mets:mdRef LOCTYPE="ARK" MDTYPE="MARC" xlink:type="simple"/>
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+        <mets:xmlData>
+          <TransakcniLogObjektu xmlns="http://nsess.public.cz/erms_trans/v_01_01">
+            <TransLogInfo>
+              <Identifikator>
+                <HodnotaID xmlns="http://mvcr.cz/ess/v_1.0.0.0">TP10308220</HodnotaID>
+                <ZdrojID xmlns="http://mvcr.cz/ess/v_1.0.0.0">MUJESS</ZdrojID>
+              </Identifikator>
+              <DatumVzniku>2019-05-13T08:41:06</DatumVzniku>
+              <DatumCasOd>2012-07-10T12:21:13</DatumCasOd>
+              <DatumCasDo>2019-05-13T08:36:24</DatumCasDo>
+              <Software>Spisová služba, GEOVAP Pardubice</Software>
+              <VerzeSoftware>3.95</VerzeSoftware>
+              <Objekt>
+                <TypObjektu>
+                  <TypObjektuText>Spis</TypObjektuText>
+                </TypObjektu>
+                <Identifikator>
+                  <HodnotaID xmlns="http://mvcr.cz/ess/v_1.0.0.0">00040003</HodnotaID>
+                  <ZdrojID xmlns="http://mvcr.cz/ess/v_1.0.0.0">MUJESS</ZdrojID>
+                </Identifikator>
+              </Objekt>
+            </TransLogInfo>
+            <Udalosti/>
+          </TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="Komp_MUJESSTP10308220.MUJESS00046028">
+    <mets:digiprovMD ID="ADM_Komp_MUJESSTP10308220.MUJESS00046028">
+      <mets:mdRef LOCTYPE="ARK" MDTYPE="MARC" xlink:type="simple"/>
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+        <mets:xmlData>
+          <TransakcniLogObjektu xmlns="http://nsess.public.cz/erms_trans/v_01_01">
+            <TransLogInfo>
+              <Identifikator>
+                <HodnotaID xmlns="http://mvcr.cz/ess/v_1.0.0.0">TP10308220</HodnotaID>
+                <ZdrojID xmlns="http://mvcr.cz/ess/v_1.0.0.0">MUJESS</ZdrojID>
+              </Identifikator>
+              <DatumVzniku>2019-05-13T08:41:06</DatumVzniku>
+              <DatumCasOd>2012-07-10T12:21:13</DatumCasOd>
+              <DatumCasDo>2019-05-13T08:36:24</DatumCasDo>
+              <Software>Spisová služba, GEOVAP Pardubice</Software>
+              <VerzeSoftware>3.95</VerzeSoftware>
+              <Objekt>
+                <TypObjektu>
+                  <TypObjektuText>Spis</TypObjektuText>
+                </TypObjektu>
+                <Identifikator>
+                  <HodnotaID xmlns="http://mvcr.cz/ess/v_1.0.0.0">00040003</HodnotaID>
+                  <ZdrojID xmlns="http://mvcr.cz/ess/v_1.0.0.0">MUJESS</ZdrojID>
+                </Identifikator>
+              </Objekt>
+            </TransLogInfo>
+            <Udalosti/>
+          </TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="VS_MUJESSTP10308220">
+    <mets:digiprovMD ID="ADM_VS_MUJESSTP10308220">
+      <mets:mdRef LOCTYPE="ARK" MDTYPE="MARC" xlink:type="simple"/>
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+        <mets:xmlData>
+          <TransakcniLogObjektu xmlns="http://nsess.public.cz/erms_trans/v_01_01">
+            <TransLogInfo>
+              <Identifikator>
+                <HodnotaID xmlns="http://mvcr.cz/ess/v_1.0.0.0">TP10308220</HodnotaID>
+                <ZdrojID xmlns="http://mvcr.cz/ess/v_1.0.0.0">MUJESS</ZdrojID>
+              </Identifikator>
+              <DatumVzniku>2019-05-13T08:41:06</DatumVzniku>
+              <DatumCasOd>2012-07-10T12:21:13</DatumCasOd>
+              <DatumCasDo>2019-05-13T08:36:24</DatumCasDo>
+              <Software>Spisová služba, GEOVAP Pardubice</Software>
+              <VerzeSoftware>3.95</VerzeSoftware>
+              <Objekt>
+                <TypObjektu>
+                  <TypObjektuText>Spis</TypObjektuText>
+                </TypObjektu>
+                <Identifikator>
+                  <HodnotaID xmlns="http://mvcr.cz/ess/v_1.0.0.0">00040003</HodnotaID>
+                  <ZdrojID xmlns="http://mvcr.cz/ess/v_1.0.0.0">MUJESS</ZdrojID>
+                </Identifikator>
+              </Objekt>
+            </TransLogInfo>
+            <Udalosti/>
+          </TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="SP_MUJESSTP10308220">
+    <mets:digiprovMD ID="ADM_SP_MUJESSTP10308220">
+      <mets:mdRef LOCTYPE="ARK" MDTYPE="MARC" xlink:type="simple"/>
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+        <mets:xmlData>
+          <TransakcniLogObjektu xmlns="http://nsess.public.cz/erms_trans/v_01_01">
+            <TransLogInfo>
+              <Identifikator>
+                <HodnotaID xmlns="http://mvcr.cz/ess/v_1.0.0.0">TP10308220</HodnotaID>
+                <ZdrojID xmlns="http://mvcr.cz/ess/v_1.0.0.0">MUJESS</ZdrojID>
+              </Identifikator>
+              <DatumVzniku>2019-05-13T08:41:06</DatumVzniku>
+              <DatumCasOd>2012-07-10T12:21:13</DatumCasOd>
+              <DatumCasDo>2019-05-13T08:36:24</DatumCasDo>
+              <Software>Spisová služba, GEOVAP Pardubice</Software>
+              <VerzeSoftware>3.95</VerzeSoftware>
+              <Objekt>
+                <TypObjektu>
+                  <TypObjektuText>Spis</TypObjektuText>
+                </TypObjektu>
+                <Identifikator>
+                  <HodnotaID xmlns="http://mvcr.cz/ess/v_1.0.0.0">00040003</HodnotaID>
+                  <ZdrojID xmlns="http://mvcr.cz/ess/v_1.0.0.0">MUJESS</ZdrojID>
+                </Identifikator>
+              </Objekt>
+            </TransLogInfo>
+            <Udalosti/>
+          </TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:fileSec>
+    <mets:fileGrp ID="fileGrp_1" USE="Original">
+      <mets:file ADMID="Komp_MUJESSTP10308220.MUJESS00046028" CHECKSUM="D6529609EE374E8F71FF10E7638D04EAB1004041227C9665A2D872503BDC4C4B04B2F28FA43842E6304A3F6DA5B8965DC1496315FE46B33C00871BF91928636B" CHECKSUMTYPE="SHA-512" CREATED="2019-05-13T08:29:12.78" DMDID="Komp_MUJESS00046028" ID="MUJESS00046028" MIMETYPE="application/pdf" SIZE="185858">
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\00046028_Zkouška.pdf" xlink:type="simple"/>
+      </mets:file>
+    </mets:fileGrp>
+  </mets:fileSec>
+  <mets:structMap TYPE="LOGICAL">
+    <mets:div ADMID="SP_MUJESSTP10308220" CONTENTIDS="" DMDID="MUJESS00040003.MUJESS.0" TYPE="spisový plán">
+      <mets:div ADMID="VS_MUJESSTP10308220" CONTENTIDS="" DMDID="MUJESS00040003.MUJESS.0-53.1" TYPE="věcná skupina">
+        <mets:div ADMID="S_MUJESSTP10308220.MUJESS00040003" CONTENTIDS="" DMDID="MUJESS00040003" LABEL="spis ESS-NDA" TYPE="spis">
+          <mets:div ADMID="D_MUJESSTP10308220.MUJESS00039950" CONTENTIDS="" DMDID="MUJESS00039950" LABEL="žádost o informace" ORDER="1" TYPE="dokument"/>
+          <mets:div ADMID="D_MUJESSTP10308220.MUJESS00040002" CONTENTIDS="" DMDID="MUJESS00040002" LABEL="žádost o informace" ORDER="2" TYPE="dokument">
+            <mets:div ADMID="Komp_MUJESSTP10308220.MUJESS00046028" CONTENTIDS="" DMDID="Komp_MUJESS00046028" LABEL="Zkouška.pdf" ORDER="1" TYPE="komponenta">
+              <mets:fptr CONTENTIDS="" FILEID="MUJESS00046028"/>
+            </mets:div>
+          </mets:div>
+        </mets:div>
+      </mets:div>
+    </mets:div>
+  </mets:structMap>
+</mets:mets>
