@@ -33,7 +33,8 @@
 		<th>Výsledek</th>
 	  </tr>
 	  <tr th:each="kontrola : ${dataPackage.kontrola}">
-	    <td th:text="${kontrola.nazev}"></td>
+	    <td th:if="${kontrola.vnitrniSoubor == null}" th:text="${kontrola.nazev}"></td>
+	    <td th:if="${kontrola.vnitrniSoubor != null}" th:text="${kontrola.vnitrniSoubor + ': ' + kontrola.nazev}"></td>
 	    <td th:text="${kontrola.stav}"></td>
 	  </tr>
     </table>

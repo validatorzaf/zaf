@@ -108,6 +108,8 @@ public class ZafWsController implements ValidationApi {
 		case "archivní popis":
 			vt = ValidationType.AP2023;
 			break;
+		case "skartační řízení (s komponentami)":
+			vt = ValidationType.NSESSS2024;
 		default:
 			throw new RuntimeException("Unknown validation type: " + validace.getDruhValidace());
 		}
