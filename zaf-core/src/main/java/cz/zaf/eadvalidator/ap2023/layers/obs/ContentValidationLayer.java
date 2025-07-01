@@ -72,8 +72,16 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 			Rule36.class,
 	};
 
-	public ContentValidationLayer(ValidationSubprofile profilValidace) {
-		super(ValidationLayers.OBSAH);
+	Class<?> inherentDescRules[] = {
+			// TODO
+	};
+
+	Class<?> contextDescRules[] = {
+			// TODO			
+	};
+
+	public ContentValidationLayer(ValidationSubprofile profilValidace, String innerFileName) {
+		super(ValidationLayers.OBSAH, innerFileName);
 		this.profilValidace = profilValidace;
 	}
 
@@ -85,6 +93,10 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 			ruleClasses = archDescRules;
 		} else if(profilValidace==AP2023Profile.FINDING_AID) {
 			ruleClasses = findingAidRules;
+		} else if(profilValidace==AP2023Profile.EARK_INHERENT_DESC) {
+			ruleClasses = inherentDescRules; 
+		} else if(profilValidace==AP2023Profile.EARK_CONTEXTUAL_DESC) {
+			ruleClasses = contextDescRules;
 		} else {
 			throw new IllegalStateException("Neznámý profil: " + profilValidace);
 		}

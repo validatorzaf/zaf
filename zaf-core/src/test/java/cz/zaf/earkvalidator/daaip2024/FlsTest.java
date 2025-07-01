@@ -8,6 +8,7 @@ import cz.zaf.earkvalidator.layers.fls.fls00_09.Rule01;
 import cz.zaf.earkvalidator.layers.fls.fls00_09.Rule02;
 import cz.zaf.earkvalidator.layers.fls.fls00_09.Rule03;
 import cz.zaf.earkvalidator.layers.fls.fls00_09.Rule04;
+import cz.zaf.earkvalidator.layers.fls.fls00_09.Rule05;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 
 public class FlsTest extends AipValidatorTestBase  {
@@ -17,7 +18,7 @@ public class FlsTest extends AipValidatorTestBase  {
     void testFls_01_OK01() {
     	testFls("OK1/8b58672e-7893-45c3-ab37-2b133389329d",
                 ValidationStatus.OK,
-                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE },
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule05.CODE },
                 new String[] {});
     }	
 
@@ -25,7 +26,7 @@ public class FlsTest extends AipValidatorTestBase  {
     void testFls_01_OK02() {
     	testFls("OK2/8b58672e-7893-45c3-ab37-2b133389329d",
                 ValidationStatus.OK,
-                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE },
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule05.CODE },
                 new String[] {});
     }	
 

@@ -32,10 +32,18 @@ public class EadValidationContext
 	private ProfileRevision profileRevision;
 	private DescriptionRules descriptionRules;
 	private FindingAidType findingAidType;
+	
+	/**
+	 * Prefix pro EAD
+	 * 
+	 * Prefix is set by active profile
+	 */
+	private String prefixNsEad;
 
-    EadValidationContext(final EadLoader eadLoader, final List<String> excludeChecks) {
+    public EadValidationContext(final EadLoader eadLoader, final List<String> excludeChecks, final String prefixNsEad) {
     	super(excludeChecks);
         this.eadLoader = eadLoader;
+        this.prefixNsEad = prefixNsEad;
     }
 
     public EadLoader getLoader() {
@@ -130,5 +138,21 @@ public class EadValidationContext
 
 	public void setFindingAidType(final FindingAidType findingAidType) {
 		this.findingAidType = findingAidType;		
+	}
+
+	public String getPrefixNsEad() {
+		return this.prefixNsEad;
+	}
+	
+	/**
+	 * Return EAD element name with prefix (if defined)
+	 * @param elementName
+	 * @return
+	 */
+	public String getEadElementName(String elementName) {
+		if(prefixNsEad==null || prefixNsEad.length()==0) {
+			return elementName;
+		}
+		return prefixNsEad+":"+elementName;
 	}
 }

@@ -10,6 +10,7 @@ import cz.zaf.earkvalidator.layers.fls.fls00_09.Rule01;
 import cz.zaf.earkvalidator.layers.fls.fls00_09.Rule02;
 import cz.zaf.earkvalidator.layers.fls.fls00_09.Rule03;
 import cz.zaf.earkvalidator.layers.fls.fls00_09.Rule04;
+import cz.zaf.earkvalidator.layers.fls.fls00_09.Rule05;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 
 public class FilesValidationLayer extends BaseValidationLayer<AipValidationContext, AipValidationContext> {
@@ -17,7 +18,8 @@ public class FilesValidationLayer extends BaseValidationLayer<AipValidationConte
 	private static final List<Class<? extends BaseRule<AipValidationContext>>> aipRuleClasses = List.of(
 			Rule01.class,
 			Rule02.class,
-			Rule03.class
+			Rule03.class,
+			Rule05.class
 			);
 	
 	private static final List<Class<? extends BaseRule<AipValidationContext>>> sipChangeRuleClasses = List.of(

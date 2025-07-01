@@ -1,7 +1,5 @@
 package cz.zaf.common.validation;
 
-import cz.zaf.common.result.ValidationResult;
-
 /**
  * Validator for inner files inside another validator.
  * 
@@ -11,7 +9,8 @@ public interface InnerFileValidator<T extends ValidationLayerContext> {
 
 	/**
 	 * Call inner validation
-	 * @param innerFileName
+	 * @param innerFileName Name of inner file. This is used to display information for user 
+	 * and not to load file from disk.
 	 * @param result
 	 * @throws Exception
 	 */
