@@ -73,11 +73,27 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 	};
 
 	Class<?> inherentDescRules[] = {
-			// TODO
+			Rule01.class,
+			Rule03.class,
+			Rule04.class,
+			Rule04a.class,
+			Rule19.class,
+			Rule20.class,
+            Rule22.class,
+            Rule25.class,
+            Rule27.class,
 	};
 
 	Class<?> contextDescRules[] = {
-			// TODO			
+			Rule01.class,
+			Rule03.class,
+			Rule04.class,
+			Rule04a.class,
+			Rule19.class,
+			Rule20.class,
+            Rule22.class,
+            Rule25.class,
+            Rule27.class,
 	};
 
 	public ContentValidationLayer(ValidationSubprofile profilValidace, String innerFileName) {

@@ -13,6 +13,12 @@
             <agencycode localtype="CZ_MVCR_INSTITUTION_ID">100000010</agencycode>
             <agencyname>Národní archiv</agencyname>
         </maintenanceagency>
+        <localcontrol localtype="RULES">
+            <term identifier="CZ_ZP2013">základní pravidla od roku 2013</term>
+        </localcontrol>
+        <localcontrol localtype="CZ_FINDING_AID_EAD_PROFILE">
+            <term identifier="CZ_EAD3_PROFILE_20240301">profil platný od března 2024</term>
+        </localcontrol>
         <maintenancehistory>
             <maintenanceevent>
                 <eventtype value="created"/>
