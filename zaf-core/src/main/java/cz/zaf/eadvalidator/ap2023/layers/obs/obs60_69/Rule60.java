@@ -29,42 +29,32 @@ public class Rule60 extends EadRule {
 
         Archdesc archDesc = ctx.getEad().getArchdesc();
         List<Object> archDescChildList = archDesc.getAccessrestrictOrAccrualsOrAcqinfo();
-        for (Object archDescChild : archDescChildList) {
-            if (archDescChild instanceof Custodhist) {
-                validateMainElement(archDescChild);
-            }
-        }
+        validateNew(archDescChildList);
 
         ctx.getEadLevelIterator().iterate((c, parent) -> {
             List<Object> cChildList = c.getMDescBase();
-            for (Object cChild : cChildList) {
-                if (cChild instanceof Custodhist) {
-                    validateMainElement(cChild);
-                }
-            }
+            validateNew(cChildList);
         });
-
     }
 
-    private void validateMainElement(Object instanceOfObject) {
-        Custodhist elementObject = (Custodhist) instanceOfObject;
-        List<Object> childList = elementObject.getChronlistOrListOrTable();
-        P p = null;
+    private void validateNew(List<Object> childList) {
         for (Object child : childList) {
-            if (child instanceof P) {
+            if (child instanceof Custodhist mainElement) {
+                List<Object> cHistChilds = mainElement.getChronlistOrListOrTable();
+                P p = null;
+                for (Object cHistChild : cHistChilds) {
+                    if (cHistChild instanceof P) {
+                        if (p == null) {
+                            p = validateP(cHistChild);
+                        } else {
+                            throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt elementu.", ctx.formatEadPosition(p));
+                        }
+                    }
+                }
                 if (p == null) {
-                    p = validateP(child);
-                } else {
-                    throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt elementu.", ctx.formatEadPosition(p));
+                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element <ead:p>.", ctx.formatEadPosition(mainElement));
                 }
             }
-            //ead:custodhist
-            if (child instanceof Custodhist) {
-                validateMainElement(child);
-            }
-        }
-        if (p == null) {
-            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Element <ead:custodhist> neobsahuje element <ead:p>.", ctx.formatEadPosition(elementObject));
         }
     }
 
@@ -76,8 +66,7 @@ public class Rule60 extends EadRule {
             throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybná hodnota v elementu.", ctx.formatEadPosition(p));
         }
         Serializable partContent = pContentList.get(0);
-        if (partContent instanceof String) {
-            String str = (String) partContent;
+        if (partContent instanceof String str) {
             if (StringUtils.isEmpty(str)) {
                 throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Prázdná hodnota elementu.", ctx.formatEadPosition(p));
             }
@@ -86,5 +75,4 @@ public class Rule60 extends EadRule {
         }
         return p;
     }
-
 }

@@ -10,7 +10,6 @@ import cz.zaf.schema.ead3.Archdesc;
 import cz.zaf.schema.ead3.P;
 import java.io.Serializable;
 import java.util.List;
-import org.apache.commons.collections4.CollectionUtils;
 
 public class Rule65 extends EadRule {
 
@@ -26,44 +25,35 @@ public class Rule65 extends EadRule {
     @Override
     protected void evalImpl() {
         //May occur within:accessrestrict, archdesc, c, c01, c02, c03, c04, c05, c06, c07, c08, c09, c10, c11, c12
-        //ead:archdesc
+        
         Archdesc archDesc = ctx.getEad().getArchdesc();
         List<Object> archDescChildList = archDesc.getAccessrestrictOrAccrualsOrAcqinfo();
-        for (Object archDescChild : archDescChildList) {
-            if (archDescChild instanceof Accessrestrict) {
-                validateMainElement(archDescChild);
-            }
-        }
+        validateNew(archDescChildList);
 
         ctx.getEadLevelIterator().iterate((c, parent) -> {
             List<Object> cChildList = c.getMDescBase();
-            for (Object cChild : cChildList) {
-                if (cChild instanceof Accessrestrict) {
-                    validateMainElement(cChild);
-                }
-            }
+            validateNew(cChildList);
         });
     }
 
-    private void validateMainElement(Object instanceOfObject) {
-        Accessrestrict elementObject = (Accessrestrict) instanceOfObject;
-        List<Object> childList = elementObject.getChronlistOrListOrTable();
-        P p = null;
+    private void validateNew(List<Object> childList) {
         for (Object child : childList) {
-            if (child instanceof P) {
+            if (child instanceof Accessrestrict mainElement) {
+                List<Object> cHistChilds = mainElement.getChronlistOrListOrTable();
+                P p = null;
+                for (Object cHistChild : cHistChilds) {
+                    if (cHistChild instanceof P) {
+                        if (p == null) {
+                            p = validateP(cHistChild);
+                        } else {
+                            throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt elementu.", ctx.formatEadPosition(p));
+                        }
+                    }
+                }
                 if (p == null) {
-                    p = validateP(child);
-                } else {
-                    throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt elementu.", ctx.formatEadPosition(p));
+                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element <ead:p>.", ctx.formatEadPosition(mainElement));
                 }
             }
-            //ead:custodhist
-            if (child instanceof Accessrestrict) {
-                validateMainElement(child);
-            }
-        }
-        if (p == null) {
-            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Element <ead:accessrestrict> neobsahuje element <ead:p>.", ctx.formatEadPosition(elementObject));
         }
     }
 
@@ -75,9 +65,8 @@ public class Rule65 extends EadRule {
             throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybná hodnota v elementu.", ctx.formatEadPosition(p));
         }
         Serializable partContent = pContentList.get(0);
-        if (partContent instanceof String) {
-            String str = (String) partContent;
-            if (StringUtils.isBlank(str)) {
+        if (partContent instanceof String str) {
+            if (StringUtils.isEmpty(str)) {
                 throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Prázdná hodnota elementu.", ctx.formatEadPosition(p));
             }
         } else {
@@ -85,5 +74,4 @@ public class Rule65 extends EadRule {
         }
         return p;
     }
-
 }

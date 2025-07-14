@@ -120,7 +120,7 @@
 					<ead:unittitle>Text</ead:unittitle> <!-- obs53 -->
 				</ead:did>
 				
-			<ead:c level="item" base="http://archdesc.nacr.cz/dids/f73a2216-d32c-442b-a206-40c4aac70a49"> <!-- obs37 -->
+				<ead:c level="item" base="http://archdesc.nacr.cz/dids/f73a2216-d32c-442b-a206-40c4aac70a49"> <!-- obs37 -->
 					<ead:did>
 						<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole"> <!-- obs43 -->
 							<ead:quantity>1</ead:quantity>
@@ -162,19 +162,19 @@
 						</ead:origination>
 					</ead:did>
 					<!-- obs60 chybí element ead:p -->
-					<ead:custodhist><ead:p>Text</ead:p></ead:custodhist> <!-- obs60 -->
-					<ead:arrangement><ead:p>Text</ead:p></ead:arrangement> <!-- obs61 -->
+					<ead:custodhist><ead:p></ead:p></ead:custodhist> <!-- obs60 -->
+					<ead:arrangement><ead:p></ead:p></ead:arrangement> <!-- obs61 -->
 					<!-- obs62 -->
-					<ead:acqinfo><ead:p>Text</ead:p></ead:acqinfo> <!-- obs63 -->
-					<ead:accruals><ead:p>Text</ead:p></ead:accruals> <!-- obs42, obs64 -->
-					<ead:accruals audience="internal"><ead:p>Text</ead:p></ead:accruals> <!-- obs42, obs64 -->
-					<ead:accessrestrict><ead:p>Text</ead:p></ead:accessrestrict> <!-- obs65 -->
-					<ead:phystech><ead:p>Text</ead:p></ead:phystech> <!-- obs66 -->
-					<ead:originalsloc><ead:p>Text</ead:p></ead:originalsloc> <!-- obs67 -->
-					<ead:relatedmaterial><ead:p>Text</ead:p></ead:relatedmaterial> <!-- obs68 -->
-					<ead:altformavail><ead:p>Text</ead:p></ead:altformavail> <!-- obs69 -->
+					<ead:acqinfo><ead:p></ead:p></ead:acqinfo> <!-- obs63 -->
+					<ead:accruals><ead:p></ead:p></ead:accruals> <!-- obs42, obs64 -->
+					<ead:accruals audience="internal"><ead:p></ead:p></ead:accruals> <!-- obs42, obs64 -->
+					<ead:accessrestrict><ead:p></ead:p></ead:accessrestrict> <!-- obs65 -->
+					<ead:phystech><ead:p></ead:p></ead:phystech> <!-- obs66 -->
+					<ead:originalsloc><ead:p></ead:p></ead:originalsloc> <!-- obs67 -->
+					<ead:relatedmaterial><ead:p></ead:p></ead:relatedmaterial> <!-- obs68 -->
+					<ead:altformavail><ead:p></ead:p></ead:altformavail> <!-- obs69 -->
 					
-					<ead:processinfo localtype="RULES"><ead:p>Text</ead:p></ead:processinfo> <!-- obs71, obs72 -->
+					<ead:processinfo localtype="RULES"><ead:p></ead:p></ead:processinfo> <!-- obs71, obs72 -->
 					
 					<!-- obs93 -->
 					
