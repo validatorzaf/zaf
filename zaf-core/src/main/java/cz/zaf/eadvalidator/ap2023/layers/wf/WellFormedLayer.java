@@ -9,8 +9,8 @@ import cz.zaf.eadvalidator.ap2023.layers.wf.wf00_09.Rule01;
 public class WellFormedLayer
 	extends BaseValidationLayer<EadValidationContext, EadValidationContext>
 {
-    public WellFormedLayer() {
-		super(ValidationLayers.WELL_FORMED);
+    public WellFormedLayer(String innerFileName) {
+		super(ValidationLayers.WELL_FORMED, innerFileName);
 	}
 
     @Override

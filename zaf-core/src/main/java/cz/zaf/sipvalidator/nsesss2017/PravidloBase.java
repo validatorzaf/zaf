@@ -6,9 +6,9 @@ import cz.zaf.common.validation.SimpleRuleContext;
 /**
  * Vychozi trida pro jednoducha pravidla
  */
-public abstract class PravidloBase extends BaseRule<SimpleRuleContext<KontrolaNsess2017Context>> {
+public abstract class PravidloBase extends BaseRule<SimpleRuleContext<KontrolaNsessContext>> {
 
-    protected SimpleRuleContext<KontrolaNsess2017Context> ctx;
+    protected SimpleRuleContext<KontrolaNsessContext> ctx;
 
     public PravidloBase(final String kodPravidla,
                             final String textPravidla,
@@ -18,7 +18,7 @@ public abstract class PravidloBase extends BaseRule<SimpleRuleContext<KontrolaNs
     }
 
     @Override
-    public void eval(SimpleRuleContext<KontrolaNsess2017Context> ctx) {
+    public void eval(SimpleRuleContext<KontrolaNsessContext> ctx) {
         this.ctx = ctx;
         kontrola();
         this.ctx = null;

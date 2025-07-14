@@ -6,7 +6,7 @@ import org.w3c.dom.Element;
 
 import cz.zaf.common.validation.RuleEvaluationContext;
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.KontrolaNsess2017Context;
+import cz.zaf.sipvalidator.nsesss2017.KontrolaNsessContext;
 import cz.zaf.sipvalidator.nsesss2017.MetsParser;
 import cz.zaf.sipvalidator.sip.SipInfo;
 
@@ -17,9 +17,9 @@ public class K07KontrolaContext implements RuleEvaluationContext {
 
     private final List<Element> nodeListMetsFile;
     private final MetsParser metsParser;
-    private KontrolaNsess2017Context kontrolaCtx;
+    private KontrolaNsessContext kontrolaCtx;
 
-    public K07KontrolaContext(final MetsParser metsParser, KontrolaNsess2017Context kontrolaCtx) {
+    public K07KontrolaContext(final MetsParser metsParser, KontrolaNsessContext kontrolaCtx) {
         this.kontrolaCtx = kontrolaCtx;
         this.metsParser = metsParser;
         this.nodeListMetsFile = metsParser.getNodes(MetsElements.FILE);
@@ -42,7 +42,7 @@ public class K07KontrolaContext implements RuleEvaluationContext {
         return kontrolaCtx.getSip();
     }
 
-    public KontrolaNsess2017Context getContext() {
+    public KontrolaNsessContext getContext() {
         return kontrolaCtx;
     }
 }

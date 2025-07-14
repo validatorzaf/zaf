@@ -17,7 +17,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla02.kod00_09.Pravidlo1;
  * 
  */
 public class K02_ZnakoveSady
-        extends KontrolaBase<SimpleRuleContext<KontrolaNsess2017Context>> {
+        extends KontrolaBase<SimpleRuleContext<KontrolaNsessContext>> {
 
     static final public String NAME = "znakové sady";
     
@@ -28,7 +28,7 @@ public class K02_ZnakoveSady
     @Override
     public void validateImpl() {
 
-        SimpleRuleContext<KontrolaNsess2017Context> kodCheckContext = new SimpleRuleContext<>(ctx);
+        SimpleRuleContext<KontrolaNsessContext> kodCheckContext = new SimpleRuleContext<>(ctx);
 
         this.provedKontrolu(kodCheckContext, getRules());
 

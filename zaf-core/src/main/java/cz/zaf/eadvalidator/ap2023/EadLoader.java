@@ -65,13 +65,17 @@ public class EadLoader implements Closeable, ValidationInput {
 	private Map<Object, Location> eadToLocationMap;
 
     public EadLoader(final Path filePath) {
+        this(filePath, new ValidationResultImpl(null, filePath.getFileName().toString()));
+    }
+
+    public EadLoader(Path filePath, ValidationResult validationResult) {
         Objects.requireNonNull(filePath);
 
         this.filePath = filePath;
-        this.validationResult = new ValidationResultImpl(null, filePath.getFileName().toString());
-    }
+        this.validationResult = validationResult;
+	}
 
-    public Path getFilePath() {
+	public Path getFilePath() {
         return filePath;
     }
 

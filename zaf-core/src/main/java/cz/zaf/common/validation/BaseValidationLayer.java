@@ -4,6 +4,7 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,6 +14,7 @@ import cz.zaf.common.exceptions.codes.ErrorCode;
 import cz.zaf.common.result.EntityId;
 import cz.zaf.common.result.RuleValidationError;
 import cz.zaf.common.result.ValidationLayerResult;
+import cz.zaf.common.result.ValidationStatus;
 
 public abstract class BaseValidationLayer<T extends ValidationLayerContext, RCtx extends RuleEvaluationContext>
         implements ValidationLayer<T> {
@@ -60,15 +62,33 @@ public abstract class BaseValidationLayer<T extends ValidationLayerContext, RCtx
         this.ctx = context;
         this.validationResult = result;
 
-        log.debug("Zahajena kontrola: {}", validationType.getDescription());
+        if(innerFileName != null) {
+        	log.debug("Zahajena kontrola {}: {}", innerFileName, validationType.getDescription());
+        } else {
+        	log.debug("Zahajena kontrola: {}", validationType.getDescription());
+        }
+        
 
         long startTime = System.currentTimeMillis();
         validateImpl();
 
         long finishTime = System.currentTimeMillis();
 
-        log.debug("Dokoncena kontrola: {}, doba trvani: {}ms, stav: {}", validationType.getDescription(),
-                  finishTime - startTime, result.getValidationStatus());
+
+        if(log.isDebugEnabled()) {
+        	StringBuilder errorMessage = new StringBuilder();        	
+        	String msgInnerFileName = (innerFileName != null)?" [" + innerFileName + "]":StringUtils.EMPTY;
+        	errorMessage.append("Dokoncena kontrola").append(msgInnerFileName).append(": ");
+        	
+        	String stav = result.getValidationStatus().toString(); 
+            if(result.getValidationStatus() == ValidationStatus.ERROR) {
+            	// collect error messages
+    	        stav = stav + ", chyby: " + result.getPravidla().toString();
+            }
+   			
+            log.debug(errorMessage.toString()+"{}, doba trvani: {}ms, stav: {}", 
+   					validationType.getDescription(), finishTime - startTime, stav);	        
+        }
 
         this.validationResult = null;
         this.ctx = null;

@@ -30,7 +30,7 @@ public class ValidatorAp2023 implements Validator, ValidationProfileInfo {
 		// nahrani eadu
         try (EadLoader eadLoader = new EadLoader(path);) {
         	
-            EadValidator eadValidator = new EadValidator(profilValidace, excludeChecks);
+            EadValidator eadValidator = new EadValidator(profilValidace, excludeChecks, null);
 
             //eadValidator.setHrozba(hrozba);
             eadValidator.validate(eadLoader);

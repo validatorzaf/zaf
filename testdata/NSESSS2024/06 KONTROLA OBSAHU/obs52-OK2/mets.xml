@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:nsesss="http://www.mvcr.cz/nsesss/v4" xmlns:tp="http://www.mvcr.cz/nsesss/2023/log" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" OBJID="NA_01" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v4 http://www.mvcr.cz/nsesss/v4/nsesss.xsd http://www.mvcr.cz/nsesss/2023/log https://www.mvcr.cz/nsesss/v4/nsesss-TrP.xsd">
+
+
+  <mets:metsHdr CREATEDATE="2022-09-20T11:40:13" LASTMODDATE="2022-09-20T11:40:13">
+  	<mets:agent ID="IDa1" ROLE="CREATOR" TYPE="ORGANIZATION">
+    	<mets:name>Univerzita Karlova</mets:name>
+  	</mets:agent>
+    <mets:agent ID="UKRUK14897044" ROLE="CREATOR" TYPE="INDIVIDUAL">
+      <mets:name>Ondřej Malý</mets:name>
+    </mets:agent>
+  </mets:metsHdr>
+  <mets:dmdSec ID="dmd_001">
+    <mets:mdWrap MIMETYPE="text/xml" MDTYPE="OTHER" OTHERMDTYPE="NSESSS" MDTYPEVERSION="3.0" LABEL="Schéma XML pro předávání dokumentů a jejich metadat do archivu">
+      <mets:xmlData>
+
+
+<nsesss:Dokument xmlns="nsesss" ID="ESS_1003678778"><nsesss:EvidencniUdaje><nsesss:Identifikace><nsesss:Identifikator zdroj="ESSS UK">UKPVF1003678778</nsesss:Identifikator></nsesss:Identifikace><nsesss:Popis><nsesss:Nazev>UK PřF, I. kat. a II. kat. potvrzení o přijetí oznámení</nsesss:Nazev></nsesss:Popis><nsesss:Evidence><nsesss:EvidencniCislo>UKPRF/467179/2022</nsesss:EvidencniCislo><nsesss:PoradoveCislo>467179</nsesss:PoradoveCislo><nsesss:UrceneCasoveObdobi><nsesss:Rok>2022</nsesss:Rok></nsesss:UrceneCasoveObdobi><nsesss:NazevEvidenceDokumentu>TESS - T-WIST elektronická spisová služba</nsesss:NazevEvidenceDokumentu></nsesss:Evidence><nsesss:Puvod><nsesss:DorucenyDokument><nsesss:DatumDoruceni>2016-09-13</nsesss:DatumDoruceni><nsesss:OdesilatelovoEvidencniCislo>MZP/2022/750/3011, SPIS:ZN/MZP/2022/750/386</nsesss:OdesilatelovoEvidencniCislo><nsesss:Odesilatel><nsesss:Subjekt><nsesss:IdentifikatorOrganizace zdroj="jiné"></nsesss:IdentifikatorOrganizace><nsesss:NazevOrganizace>Ministerstvo životního prostředí</nsesss:NazevOrganizace><nsesss:OrganizacniUtvar/><nsesss:SidloOrganizace>Praha 10</nsesss:SidloOrganizace><nsesss:ElektronickyKontakt/></nsesss:Subjekt></nsesss:Odesilatel></nsesss:DorucenyDokument></nsesss:Puvod><nsesss:Trideni><nsesss:JednoduchySpisovyZnak >1</nsesss:JednoduchySpisovyZnak ><nsesss:PlneUrcenySpisovyZnak>E/III/1</nsesss:PlneUrcenySpisovyZnak><nsesss:DruhDokumentu><nsesss:Identifikator zdroj="ESSS UK">2</nsesss:Identifikator><nsesss:Nazev>null</nsesss:Nazev><nsesss:Komentar></nsesss:Komentar></nsesss:DruhDokumentu><nsesss:MaterskeEntity><nsesss:VecnaSkupina ID="ESSVS_13050"><nsesss:EvidencniUdaje><nsesss:Identifikace><nsesss:Identifikator zdroj="ESSS UK">VS13050</nsesss:Identifikator></nsesss:Identifikace><nsesss:Popis><nsesss:Nazev>Spolupráce v ČR – smlouvy, dohody a další zásadní dokumenty</nsesss:Nazev></nsesss:Popis><nsesss:Puvod><nsesss:DatumVytvoreni>1970-01-01</nsesss:DatumVytvoreni></nsesss:Puvod><nsesss:Trideni><nsesss:JednoduchySpisovyZnak >1</nsesss:JednoduchySpisovyZnak ><nsesss:PlneUrcenySpisovyZnak>E/III/1</nsesss:PlneUrcenySpisovyZnak><nsesss:MaterskaEntita><nsesss:VecnaSkupina ID="ESSVS_13049"><nsesss:EvidencniUdaje><nsesss:Identifikace><nsesss:Identifikator zdroj="ESSS UK">VS13049</nsesss:Identifikator></nsesss:Identifikace><nsesss:Popis><nsesss:Nazev>Spolupráce s VŠ, úřady a ostatními institucemi v ČR  (mimo vědu a výzkum)</nsesss:Nazev></nsesss:Popis><nsesss:Puvod><nsesss:DatumVytvoreni>1970-01-01</nsesss:DatumVytvoreni></nsesss:Puvod><nsesss:Trideni><nsesss:JednoduchySpisovyZnak >III</nsesss:JednoduchySpisovyZnak ><nsesss:PlneUrcenySpisovyZnak>E/III</nsesss:PlneUrcenySpisovyZnak><nsesss:MaterskaEntita><nsesss:VecnaSkupina ID="ESSVS_12624"><nsesss:EvidencniUdaje><nsesss:Identifikace><nsesss:Identifikator zdroj="ESSS UK">VS12624</nsesss:Identifikator></nsesss:Identifikace><nsesss:Popis><nsesss:Nazev>Vnější vztahy</nsesss:Nazev></nsesss:Popis><nsesss:Puvod><nsesss:DatumVytvoreni>1970-01-01</nsesss:DatumVytvoreni></nsesss:Puvod><nsesss:Trideni><nsesss:JednoduchySpisovyZnak >E</nsesss:JednoduchySpisovyZnak ><nsesss:PlneUrcenySpisovyZnak>E</nsesss:PlneUrcenySpisovyZnak><nsesss:SpisovyPlan ID="ESSSP_12624"><nsesss:Identifikator zdroj="ESSS UK">SPISPLAN10</nsesss:Identifikator><nsesss:Nazev>Spisový plán 2019</nsesss:Nazev><nsesss:Manipulace><nsesss:DatumOtevreni>2019-02-01</nsesss:DatumOtevreni></nsesss:Manipulace><nsesss:Vydavatel><nsesss:Subjekt><nsesss:IdentifikatorOrganizace zdroj="IČ">00216208</nsesss:IdentifikatorOrganizace><nsesss:NazevOrganizace>Univerzita Karlova</nsesss:NazevOrganizace><nsesss:IdentifikatorFyzickeOsoby zdroj="WHOIS"/><nsesss:NazevFyzickeOsoby/><nsesss:OrganizacniUtvar>:, </nsesss:OrganizacniUtvar><nsesss:PracovniPozice>referent</nsesss:PracovniPozice><nsesss:SidloOrganizace>Praha 1</nsesss:SidloOrganizace></nsesss:Subjekt></nsesss:Vydavatel></nsesss:SpisovyPlan></nsesss:Trideni><nsesss:Vyrazovani><nsesss:SkartacniRezim><nsesss:Identifikator zdroj="ESSS UK">ESSSRA5</nsesss:Identifikator><nsesss:Nazev>archivace</nsesss:Nazev><nsesss:Oduvodneni>Podle platného spisového a skartačního plánu UK</nsesss:Oduvodneni><nsesss:SkartacniZnak>A</nsesss:SkartacniZnak><nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta><nsesss:SpousteciUdalost>uzavření spisu</nsesss:SpousteciUdalost></nsesss:SkartacniRezim></nsesss:Vyrazovani><nsesss:Manipulace><nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument><nsesss:DatumOtevreni>2016-01-01</nsesss:DatumOtevreni></nsesss:Manipulace></nsesss:EvidencniUdaje></nsesss:VecnaSkupina></nsesss:MaterskaEntita></nsesss:Trideni><nsesss:Vyrazovani><nsesss:SkartacniRezim><nsesss:Identifikator zdroj="ESSS UK">ESSSRA5</nsesss:Identifikator><nsesss:Nazev>archivace</nsesss:Nazev><nsesss:Oduvodneni>Podle platného spisového a skartačního plánu UK</nsesss:Oduvodneni><nsesss:SkartacniZnak>A</nsesss:SkartacniZnak><nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta><nsesss:SpousteciUdalost>uzavření spisu</nsesss:SpousteciUdalost></nsesss:SkartacniRezim></nsesss:Vyrazovani><nsesss:Manipulace><nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument><nsesss:DatumOtevreni>2016-01-01</nsesss:DatumOtevreni></nsesss:Manipulace></nsesss:EvidencniUdaje></nsesss:VecnaSkupina></nsesss:MaterskaEntita></nsesss:Trideni><nsesss:Vyrazovani><nsesss:SkartacniRezim><nsesss:Identifikator zdroj="ESSS UK">ESSSRA5</nsesss:Identifikator><nsesss:Nazev>archivace</nsesss:Nazev><nsesss:Oduvodneni>Podle platného spisového a skartačního plánu UK</nsesss:Oduvodneni><nsesss:SkartacniZnak>A</nsesss:SkartacniZnak><nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta><nsesss:SpousteciUdalost>uzavření spisu</nsesss:SpousteciUdalost></nsesss:SkartacniRezim></nsesss:Vyrazovani><nsesss:Manipulace><nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument><nsesss:DatumOtevreni>2016-01-01</nsesss:DatumOtevreni></nsesss:Manipulace></nsesss:EvidencniUdaje></nsesss:VecnaSkupina></nsesss:MaterskeEntity></nsesss:Trideni><nsesss:Vyrizeni><nsesss:Datum xmlns="" datum="2016-09-13T12:47:45">2016-09-13</nsesss:Datum><nsesss:Zpusob>jiný způsob</nsesss:Zpusob><nsesss:ObsahVyrizeni>vzato na vědomí</nsesss:ObsahVyrizeni><nsesss:Oduvodneni>vzato na vědomí</nsesss:Oduvodneni><nsesss:Zpracovatel><nsesss:Subjekt><nsesss:IdentifikatorOrganizace zdroj="IČ">00216208</nsesss:IdentifikatorOrganizace><nsesss:NazevOrganizace>Univerzita Karlova</nsesss:NazevOrganizace><nsesss:IdentifikatorFyzickeOsoby zdroj="WHOIS">33195472</nsesss:IdentifikatorFyzickeOsoby><nsesss:NazevFyzickeOsoby>Kateřina Mlynářová</nsesss:NazevFyzickeOsoby><nsesss:OrganizacniUtvar>1021:Děkanát, (6010) Sekretariát děkana a tajemníka</nsesss:OrganizacniUtvar><nsesss:PracovniPozice>referent</nsesss:PracovniPozice><nsesss:SidloOrganizace>Praha 1</nsesss:SidloOrganizace></nsesss:Subjekt><nsesss:Subjekt><nsesss:IdentifikatorOrganizace zdroj="IČ">00216208</nsesss:IdentifikatorOrganizace><nsesss:NazevOrganizace>Univerzita Karlova</nsesss:NazevOrganizace><nsesss:IdentifikatorFyzickeOsoby zdroj="WHOIS">37555488</nsesss:IdentifikatorFyzickeOsoby><nsesss:NazevFyzickeOsoby>Jitka Zelenková</nsesss:NazevFyzickeOsoby><nsesss:OrganizacniUtvar>1021:Přírodovědecká fakulta, (6010) Sekretariát děkana a tajemníka</nsesss:OrganizacniUtvar><nsesss:PracovniPozice>referent</nsesss:PracovniPozice><nsesss:SidloOrganizace>Praha 1</nsesss:SidloOrganizace></nsesss:Subjekt><nsesss:Subjekt><nsesss:IdentifikatorOrganizace zdroj="IČ">00216208</nsesss:IdentifikatorOrganizace><nsesss:NazevOrganizace>Univerzita Karlova</nsesss:NazevOrganizace><nsesss:IdentifikatorFyzickeOsoby zdroj="WHOIS"/><nsesss:NazevFyzickeOsoby/><nsesss:OrganizacniUtvar>:, </nsesss:OrganizacniUtvar><nsesss:PracovniPozice>referent</nsesss:PracovniPozice><nsesss:SidloOrganizace>Praha 1</nsesss:SidloOrganizace></nsesss:Subjekt></nsesss:Zpracovatel></nsesss:Vyrizeni><nsesss:Vyrazovani><nsesss:SkartacniRezim><nsesss:Identifikator zdroj="ESSS UK">ESSSRA5</nsesss:Identifikator><nsesss:Nazev>archivace</nsesss:Nazev><nsesss:Oduvodneni>Podle platného spisového a skartačního plánu UK</nsesss:Oduvodneni><nsesss:SkartacniZnak>A</nsesss:SkartacniZnak><nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta><nsesss:SpousteciUdalost>uzavření spisu</nsesss:SpousteciUdalost></nsesss:SkartacniRezim><nsesss:DataceVyrazeni><nsesss:RokSpousteciUdalosti>2016</nsesss:RokSpousteciUdalosti><nsesss:RokSkartacniOperace>2022</nsesss:RokSkartacniOperace></nsesss:DataceVyrazeni><nsesss:SkartacniRizeni><nsesss:Datum>2022-09-20</nsesss:Datum><nsesss:SkartacniOperace>trvalé uložení</nsesss:SkartacniOperace><nsesss:Posuzovatel><nsesss:Subjekt><nsesss:IdentifikatorOrganizace zdroj="IČ">00216208</nsesss:IdentifikatorOrganizace><nsesss:NazevOrganizace>Univerzita Karlova</nsesss:NazevOrganizace><nsesss:IdentifikatorFyzickeOsoby zdroj="WHOIS">33195472</nsesss:IdentifikatorFyzickeOsoby><nsesss:NazevFyzickeOsoby>Kateřina Mlynářová</nsesss:NazevFyzickeOsoby><nsesss:OrganizacniUtvar>115:Přírodovědecká fakulta, Přírodovědecká fakulta</nsesss:OrganizacniUtvar><nsesss:PracovniPozice>referent</nsesss:PracovniPozice><nsesss:SidloOrganizace>Praha 1</nsesss:SidloOrganizace></nsesss:Subjekt></nsesss:Posuzovatel></nsesss:SkartacniRizeni></nsesss:Vyrazovani><nsesss:Manipulace><nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument></nsesss:Manipulace></nsesss:EvidencniUdaje><nsesss:Komponenty><nsesss:Komponenta ID="f6278981" poradi="1" druh="průvodní dopis" verze="1" forma_uchovani="originál"><nsesss:EvidencniUdaje><nsesss:Identifikace><nsesss:Identifikator zdroj="ESSS UK">fid6278981</nsesss:Identifikator></nsesss:Identifikace><nsesss:Popis><nsesss:Nazev >UK_PřF_I+IIkat_potvrzení o přijetí oznámení_MŽP-2022-750-3002.pdf</nsesss:Nazev ></nsesss:Popis><nsesss:Trideni><nsesss:JednoduchySpisovyZnak >1</nsesss:JednoduchySpisovyZnak ><nsesss:PlneUrcenySpisovyZnak>E/III/1</nsesss:PlneUrcenySpisovyZnak></nsesss:Trideni></nsesss:EvidencniUdaje></nsesss:Komponenta><nsesss:Komponenta ID="f6278980" poradi="2" druh="kontejner" verze="1" forma_uchovani="originál"><nsesss:EvidencniUdaje><nsesss:Identifikace><nsesss:Identifikator zdroj="ESSS UK">fid6278980</nsesss:Identifikator></nsesss:Identifikace><nsesss:Popis><nsesss:Nazev >prichozi_datova_zprava_1082060634.zfo</nsesss:Nazev ></nsesss:Popis><nsesss:Trideni><nsesss:JednoduchySpisovyZnak >1</nsesss:JednoduchySpisovyZnak ><nsesss:PlneUrcenySpisovyZnak>E/III/1</nsesss:PlneUrcenySpisovyZnak></nsesss:Trideni></nsesss:EvidencniUdaje></nsesss:Komponenta></nsesss:Komponenty></nsesss:Dokument>
+
+      </mets:xmlData>
+    </mets:mdWrap>
+  </mets:dmdSec>
+  
+<mets:amdSec ID="hESSSP_12624">
+  <mets:digiprovMD ID="digiProv63298a7dbc1f0">
+    <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" OTHERMDTYPE="TP" MIMETYPE="text/xml">
+      <mets:xmlData>
+<tp:TransakcniLogObjektu><tp:TransLogInfo><tp:Identifikator><tp:HodnotaID>1003678778</tp:HodnotaID><tp:ZdrojID>ESSS UK</tp:ZdrojID></tp:Identifikator><tp:DatumVzniku>2022-09-20T11:40:13</tp:DatumVzniku><tp:DatumCasOd>2022-09-13T11:25:12.229222</tp:DatumCasOd><tp:DatumCasDo>2022-09-20T11:23:20.929103</tp:DatumCasDo><tp:Objekt><tp:TypObjektu><tp:TypObjektuId>SpisovyPlan</tp:TypObjektuId></tp:TypObjektu><tp:Identifikator><tp:HodnotaID>SPISPLAN10</tp:HodnotaID><tp:ZdrojID>ESSS UK</tp:ZdrojID></tp:Identifikator></tp:Objekt></tp:TransLogInfo><tp:Udalosti/></tp:TransakcniLogObjektu>
+
+      </mets:xmlData>
+    </mets:mdWrap>
+  </mets:digiprovMD>
+</mets:amdSec>
+
+  <mets:amdSec ID="hESSVS_13050">
+    <mets:digiprovMD ID="digiProv63298a7dbc407">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" OTHERMDTYPE="TP" MIMETYPE="text/xml">
+        <mets:xmlData>
+<tp:TransakcniLogObjektu><tp:TransLogInfo><tp:Identifikator><tp:HodnotaID>13050</tp:HodnotaID><tp:ZdrojID>ESSS UK</tp:ZdrojID></tp:Identifikator><tp:DatumVzniku>2022-09-20T11:40:13</tp:DatumVzniku><tp:DatumCasOd>1970-01-01T10:00:00</tp:DatumCasOd><tp:DatumCasDo>2028-01-01T10:00:00</tp:DatumCasDo><tp:Objekt><tp:TypObjektu><tp:TypObjektuId>VecnaSkupina</tp:TypObjektuId></tp:TypObjektu><tp:Identifikator><tp:HodnotaID>VS13050</tp:HodnotaID><tp:ZdrojID>ESSS UK</tp:ZdrojID></tp:Identifikator></tp:Objekt></tp:TransLogInfo><tp:Udalosti/></tp:TransakcniLogObjektu>
+
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  
+  <mets:amdSec ID="hESSVS_13049">
+    <mets:digiprovMD ID="digiProv63298a7dbc5fa">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" OTHERMDTYPE="TP" MIMETYPE="text/xml">
+        <mets:xmlData>
+<tp:TransakcniLogObjektu><tp:TransLogInfo><tp:Identifikator><tp:HodnotaID>13049</tp:HodnotaID><tp:ZdrojID>ESSS UK</tp:ZdrojID></tp:Identifikator><tp:DatumVzniku>2022-09-20T11:40:13</tp:DatumVzniku><tp:DatumCasOd>1970-01-01T10:00:00</tp:DatumCasOd><tp:DatumCasDo>2028-01-01T10:00:00</tp:DatumCasDo><tp:Objekt><tp:TypObjektu><tp:TypObjektuId>VecnaSkupina</tp:TypObjektuId></tp:TypObjektu><tp:Identifikator><tp:HodnotaID>VS13049</tp:HodnotaID><tp:ZdrojID>ESSS UK</tp:ZdrojID></tp:Identifikator></tp:Objekt></tp:TransLogInfo><tp:Udalosti/></tp:TransakcniLogObjektu>
+
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  
+  <mets:amdSec ID="hESSVS_12624">
+    <mets:digiprovMD ID="digiProv63298a7dbc826">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" OTHERMDTYPE="TP" MIMETYPE="text/xml">
+        <mets:xmlData>
+<tp:TransakcniLogObjektu><tp:TransLogInfo><tp:Identifikator><tp:HodnotaID>12624</tp:HodnotaID><tp:ZdrojID>ESSS UK</tp:ZdrojID></tp:Identifikator><tp:DatumVzniku>2022-09-20T11:40:13</tp:DatumVzniku><tp:DatumCasOd>1970-01-01T10:00:00</tp:DatumCasOd><tp:DatumCasDo>2028-01-01T10:00:00</tp:DatumCasDo><tp:Objekt><tp:TypObjektu><tp:TypObjektuId>VecnaSkupina</tp:TypObjektuId></tp:TypObjektu><tp:Identifikator><tp:HodnotaID>VS12624</tp:HodnotaID><tp:ZdrojID>ESSS UK</tp:ZdrojID></tp:Identifikator></tp:Objekt></tp:TransLogInfo><tp:Udalosti/></tp:TransakcniLogObjektu>
+
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  
+<mets:amdSec ID="h1003678778">
+  <mets:digiprovMD ID="digiProv63298a7dbd1fe">
+    <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" OTHERMDTYPE="TP" MIMETYPE="text/xml">
+      <mets:xmlData>
+<tp:TransakcniLogObjektu><tp:TransLogInfo><tp:Identifikator><tp:HodnotaID>1003678778</tp:HodnotaID><tp:ZdrojID>ESSS UK</tp:ZdrojID></tp:Identifikator><tp:DatumVzniku>2022-09-20T11:40:13</tp:DatumVzniku><tp:DatumCasOd>2022-09-13T11:25:12.229222</tp:DatumCasOd><tp:DatumCasDo>2022-09-20T11:23:20.929103</tp:DatumCasDo><tp:Objekt><tp:TypObjektu><tp:TypObjektuId>Dokument</tp:TypObjektuId></tp:TypObjektu><tp:Identifikator><tp:HodnotaID>UKPVF1003678778</tp:HodnotaID><tp:ZdrojID>ESSS UK</tp:ZdrojID></tp:Identifikator></tp:Objekt></tp:TransLogInfo><tp:Udalosti/></tp:TransakcniLogObjektu>
+
+      </mets:xmlData>
+    </mets:mdWrap>
+  </mets:digiprovMD>
+</mets:amdSec>
+
+  <mets:amdSec ID="ff6278980">
+    <mets:digiprovMD ID="digiProv63298a7dc39dd">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" OTHERMDTYPE="TP" MIMETYPE="text/xml">
+        <mets:xmlData>
+<tp:TransakcniLogObjektu><tp:TransLogInfo><tp:Identifikator><tp:HodnotaID>1003678778</tp:HodnotaID><tp:ZdrojID>ESSS UK</tp:ZdrojID></tp:Identifikator><tp:DatumVzniku>2022-09-20T11:40:13</tp:DatumVzniku><tp:DatumCasOd>2022-09-13T11:25:12.229222</tp:DatumCasOd><tp:DatumCasDo>2022-09-20T11:23:20.929103</tp:DatumCasDo><tp:Objekt><tp:TypObjektu><tp:TypObjektuId>Komponenta</tp:TypObjektuId></tp:TypObjektu><tp:Identifikator><tp:HodnotaID>fid6278980</tp:HodnotaID><tp:ZdrojID>ESSS UK</tp:ZdrojID></tp:Identifikator></tp:Objekt></tp:TransLogInfo><tp:Udalosti/></tp:TransakcniLogObjektu>
+
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  
+  <mets:amdSec ID="ff6278981">
+    <mets:digiprovMD ID="digiProv63298a7dc3c02">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" OTHERMDTYPE="TP" MIMETYPE="text/xml">
+        <mets:xmlData>
+<tp:TransakcniLogObjektu><tp:TransLogInfo><tp:Identifikator><tp:HodnotaID>1003678778</tp:HodnotaID><tp:ZdrojID>ESSS UK</tp:ZdrojID></tp:Identifikator><tp:DatumVzniku>2022-09-20T11:40:13</tp:DatumVzniku><tp:DatumCasOd>2022-09-13T11:25:12.229222</tp:DatumCasOd><tp:DatumCasDo>2022-09-20T11:23:20.929103</tp:DatumCasDo><tp:Objekt><tp:TypObjektu><tp:TypObjektuId>Komponenta</tp:TypObjektuId></tp:TypObjektu><tp:Identifikator><tp:HodnotaID>fid6278981</tp:HodnotaID><tp:ZdrojID>ESSS UK</tp:ZdrojID></tp:Identifikator></tp:Objekt></tp:TransLogInfo><tp:Udalosti/></tp:TransakcniLogObjektu>
+
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  
+  <mets:fileSec><mets:fileGrp><mets:file ID="dm6278980" DMDID="f6278980" MIMETYPE="application/vnd.software602.filler.form-xml-zip" SIZE="235334" CHECKSUM="ae5f9634724fd913a46d825c76757b77f6309805c14c006a60b6a045d9461704" CHECKSUMTYPE="SHA-256" CREATED="2022-09-20T08:55:46"><mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="komponenty/1003678778-000-prichozi_datova_zprava_1082060634.zfo"/></mets:file><mets:file ID="dm6278981" DMDID="f6278981" MIMETYPE="application/pdf" SIZE="194555" CHECKSUM="aceae6e6a154ca1c6e5039b520df2db7d8cf45f0cacdfeeb464adcdf0bd42254" CHECKSUMTYPE="SHA-256" CREATED="2022-09-20T08:55:47"><mets:FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="komponenty/Toto je krásné PDF žžž.pdf"/></mets:file></mets:fileGrp></mets:fileSec>
+  <mets:structMap>
+    <mets:div TYPE="spisový plán" DMDID="ESSSP_12624" ADMID="hESSSP_12624">
+        <mets:div TYPE="věcná skupina" DMDID="ESSVS_12624" ADMID="hESSVS_12624">
+<mets:div TYPE="věcná skupina" DMDID="ESSVS_13049" ADMID="hESSVS_13049">
+<mets:div TYPE="věcná skupina" DMDID="ESSVS_13050" ADMID="hESSVS_13050">
+          
+                <mets:div TYPE="dokument" DMDID="ESS_1003678778" ADMID="h1003678778"><mets:div TYPE="komponenta" DMDID="f6278980" ADMID="ff6278980"><mets:fptr FILEID="dm6278980"/></mets:div>
+        <mets:div TYPE="komponenta" DMDID="f6278981" ADMID="ff6278981"><mets:fptr FILEID="dm6278981"/></mets:div>
+        </mets:div>
+         
+      </mets:div>
+</mets:div>
+</mets:div>
+    </mets:div>
+  </mets:structMap>
+</mets:mets>

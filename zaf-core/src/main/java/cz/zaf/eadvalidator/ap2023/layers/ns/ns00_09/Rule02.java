@@ -27,13 +27,19 @@ public class Rule02 extends EadRule {
 		
 		@SuppressWarnings("unchecked")
 		Map<String, String> nsMapping = (Map<String, String>) eadRoot.getUserData(PositionalXMLReader.NS_MAPPING);
-		String value = (nsMapping!=null)?nsMapping.get("ead"):null;		
+		
+		String ns = ctx.getPrefixNsEad()!=null?ctx.getPrefixNsEad():"";
+		String value = (nsMapping!=null)?nsMapping.get(ns):null;
+				
 		if(StringUtils.isEmpty(value)) {
-			throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Nenalezen platný atribut xmlns:ead");
+			throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Nenalezen platný atribut "+getXmlnsEad()+".");
 		}
 		if(!EadNS.NS_EADS.equals(value)) {
-			throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Chybná hodnota xmlns:ead: "+value); 
+			throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Chybná hodnota atributu "+getXmlnsEad()+": "+value+"."); 
 		}
-		
+	}
+	
+	String getXmlnsEad() {
+		return StringUtils.isEmpty(ctx.getPrefixNsEad())?"xmlns":"xmlns:"+ctx.getPrefixNsEad();
 	}
 }

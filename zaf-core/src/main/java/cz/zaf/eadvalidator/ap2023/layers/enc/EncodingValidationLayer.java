@@ -8,8 +8,8 @@ import cz.zaf.eadvalidator.ap2023.layers.enc.enc00_09.Rule01;
 
 public class EncodingValidationLayer extends BaseValidationLayer<EadValidationContext, EadValidationContext> {
 
-    public EncodingValidationLayer() {
-        super(ValidationLayers.ENCODING);
+    public EncodingValidationLayer(String innerFileName) {
+        super(ValidationLayers.ENCODING, innerFileName);
     }
 
     @Override

@@ -39,7 +39,7 @@ public abstract class SipValidatorTestBase {
 
     // set fixed date for all tests
     static {
-        System.setProperty(KontrolaNsess2017Context.ZAF_VALIDATION_DATE, "2022-06-01");
+        System.setProperty(KontrolaNsessContext.ZAF_VALIDATION_DATE, "2022-06-01");
     }
 
     /**

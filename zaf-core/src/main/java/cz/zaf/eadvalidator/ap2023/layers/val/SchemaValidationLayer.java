@@ -8,8 +8,8 @@ import cz.zaf.eadvalidator.ap2023.layers.val.val00_09.Rule01;
 
 public class SchemaValidationLayer extends BaseValidationLayer<EadValidationContext, EadValidationContext> {
 
-	public SchemaValidationLayer() {
-		super(ValidationLayers.VALIDATION);
+	public SchemaValidationLayer(String innerFileName) {
+		super(ValidationLayers.VALIDATION, innerFileName);
 	}
 
 	@Override
