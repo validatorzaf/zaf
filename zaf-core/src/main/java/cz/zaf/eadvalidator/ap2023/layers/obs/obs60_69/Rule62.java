@@ -138,7 +138,7 @@ public class Rule62 extends EadRule {
                 scopeContentListWithUniqueAtrLangSize++;
             }
         }
-        //bez atr lang musí být stejně jako s unikatnim atr lang
+        //bez atr lang musí být stejně jako s unikatnim atr lang"
         if(scopeContentListNoAtrLangSize != scopeContentListWithUniqueAtrLangSize){
             throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezeny nepovolené elementy <ead:scopecontent>.", ctx.formatEadPosition(scopeContentListNoAtrLang));
         }
