@@ -36,13 +36,13 @@ public class Rule64 extends EadRule {
     }
 
     private void validate(List<Object> childList) {
-        int mainElementCOunt = 0;
+//        int mainElementCOunt = 0;
         for (Object child : childList) {
             if (child instanceof Accruals mainElement) {
-                mainElementCOunt++;
-                if (mainElementCOunt > 1) {
-                    throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt elementu.", ctx.formatEadPosition(mainElement));
-                }
+//                mainElementCOunt++;
+//                if (mainElementCOunt > 1) {
+//                    throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt elementu.", ctx.formatEadPosition(mainElement));
+//                }
                 List<Object> cHistChilds = mainElement.getChronlistOrListOrTable();
                 P p = null;
                 for (Object cHistChild : cHistChilds) {
