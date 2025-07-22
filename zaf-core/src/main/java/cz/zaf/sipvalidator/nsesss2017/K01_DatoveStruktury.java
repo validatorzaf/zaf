@@ -19,7 +19,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla01.dat00_09.Pravidlo3;
  * 
  */
 public class K01_DatoveStruktury
-        extends KontrolaBase<SimpleRuleContext<KontrolaNsess2017Context>>
+        extends KontrolaBase<SimpleRuleContext<KontrolaNsessContext>>
 {
 	
     static final public String NAME = "datové struktury";
@@ -32,7 +32,7 @@ public class K01_DatoveStruktury
 	@Override
     public void validateImpl() {
 
-        SimpleRuleContext<KontrolaNsess2017Context> datCheckContext = new SimpleRuleContext<>(ctx);
+        SimpleRuleContext<KontrolaNsessContext> datCheckContext = new SimpleRuleContext<>(ctx);
         this.provedKontrolu(datCheckContext, getRules());
 	}
 

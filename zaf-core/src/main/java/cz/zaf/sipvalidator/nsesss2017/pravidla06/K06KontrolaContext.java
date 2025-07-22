@@ -7,14 +7,14 @@ import org.w3c.dom.Element;
 import cz.zaf.common.result.EntityId;
 import cz.zaf.common.validation.RuleEvaluationContext;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
-import cz.zaf.sipvalidator.nsesss2017.KontrolaNsess2017Context;
+import cz.zaf.sipvalidator.nsesss2017.KontrolaNsessContext;
 import cz.zaf.sipvalidator.nsesss2017.MetsParser;
 
 public class K06KontrolaContext implements RuleEvaluationContext {
     private final MetsParser metsParser;
-    private KontrolaNsess2017Context kontrolaCtx;
+    private KontrolaNsessContext kontrolaCtx;
 
-    public K06KontrolaContext(final MetsParser metsParser, KontrolaNsess2017Context kontrolaCtx) {
+    public K06KontrolaContext(final MetsParser metsParser, KontrolaNsessContext kontrolaCtx) {
         this.kontrolaCtx = kontrolaCtx;
         this.metsParser = metsParser;
     }
@@ -23,7 +23,7 @@ public class K06KontrolaContext implements RuleEvaluationContext {
         return metsParser;
     }
 
-    public KontrolaNsess2017Context getContext() {
+    public KontrolaNsessContext getContext() {
         return kontrolaCtx;
     }
 

@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+v admSec jsou dvě entity se stejným identifikátorem (<tp:HodnotaID> = MHMPAW20UP6Z)
+-->
+<mets:mets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:nsesss="http://www.mvcr.cz/nsesss/v4" xmlns:tp="http://www.mvcr.cz/nsesss/2023/log" xmlns:mets="http://www.loc.gov/METS/" ID="GS_MHMPAWZ1AWOG_MHMPAW20UP6Z_e28acbab-4bc4-4695-94c3-036d8785ae47" OBJID="GS_MHMPAWZ1AWOG_MHMPAW20UP6Z_e28acbab-4bc4-4695-94c3-036d8785ae47" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu" TYPE="spis" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v4 http://www.mvcr.cz/nsesss/v4/nsesss.xsd http://www.mvcr.cz/nsesss/2023/log https://www.mvcr.cz/nsesss/v4/nsesss-TrP.xsd">
+  <mets:metsHdr ID="G_18a6daa6-6efa-4f55-94e4-2795c541cd13" CREATEDATE="2022-06-17T07:46:43.9778329Z" LASTMODDATE="2022-06-17T07:46:43.9778329Z" RECORDSTATUS="Mets-1.9_Generator-2018.05.24_DB-388.2.94_Module-GSAESR01#488.4.40ESR0148804X12">
+    <mets:agent ID="MHMPSE009Q14" ROLE="CREATOR" TYPE="ORGANIZATION">
+      <mets:name>Hlavní město PRAHA,  Mariánské nám. 2,  11000 PRAHA 1</mets:name>
+      <mets:note>GINIS</mets:note>
+    </mets:agent>
+    <mets:agent ID="MHMPSR00DBV4" ROLE="CREATOR" TYPE="INDIVIDUAL">
+      <mets:name>Neradová Martina Mgr. </mets:name>
+      <mets:note>GINIS</mets:note>
+    </mets:agent>
+  </mets:metsHdr>
+  <mets:dmdSec ID="dmd001">
+    <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="NSESSS" MDTYPEVERSION="4.0" MIMETYPE="text/xml" LABEL="Schéma XML pro předávání dokumentů a jejich metadat do archivu">
+      <mets:xmlData>
+        <nsesss:Spis ID="MHMPAW20UP6Z">
+          <nsesss:EvidencniUdaje>
+            <nsesss:Identifikace>
+              <nsesss:Identifikator zdroj="GINIS">MHMPAW20UP6Z</nsesss:Identifikator>
+            </nsesss:Identifikace>
+            <nsesss:Popis>
+              <nsesss:Nazev>ÚSP Palata</nsesss:Nazev>
+              <nsesss:Komentar>ÚSP Palata</nsesss:Komentar>
+            </nsesss:Popis>
+            <nsesss:Pristupnost>
+              <nsesss:BezpecnostniKategorie>
+                <nsesss:Identifikator zdroj="GINIS">0</nsesss:Identifikator>
+                <nsesss:Nazev>Dokument ke zveřejnění</nsesss:Nazev>
+                <nsesss:BezpecnostniStupen>Dokument ke zveřejnění</nsesss:BezpecnostniStupen>
+              </nsesss:BezpecnostniKategorie>
+            </nsesss:Pristupnost>
+            <nsesss:Evidence>
+              <nsesss:EvidencniCislo>
+              </nsesss:EvidencniCislo>
+              <nsesss:UrceneCasoveObdobi>
+                <nsesss:Rok>2022</nsesss:Rok>
+              </nsesss:UrceneCasoveObdobi>
+              <nsesss:NazevEvidenceDokumentu>Neevidovaný spis v systému GINIS</nsesss:NazevEvidenceDokumentu>
+            </nsesss:Evidence>
+            <nsesss:Puvod>
+              <nsesss:DatumVytvoreni datum="2009-01-01T00:00:00.0001">2009-01-01</nsesss:DatumVytvoreni>
+            </nsesss:Puvod>
+            <nsesss:Trideni>
+              <nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
+              <nsesss:PlneUrcenySpisovyZnak>553.2.3</nsesss:PlneUrcenySpisovyZnak>
+              <nsesss:MaterskaEntita>
+                <nsesss:VecnaSkupina ID="MHMP0200CSNP">
+                  <nsesss:EvidencniUdaje>
+                    <nsesss:Identifikace>
+                      <nsesss:Identifikator zdroj="GINIS">MHMP0200CSNP</nsesss:Identifikator>
+                    </nsesss:Identifikace>
+                    <nsesss:Popis>
+                      <nsesss:Nazev>Organizační a provozní záležitosti, metodika</nsesss:Nazev>
+                      <nsesss:Komentar>Organizační a provozní záležitosti, metodika</nsesss:Komentar>
+                    </nsesss:Popis>
+                    <nsesss:Puvod>
+                      <nsesss:DatumVytvoreni datum="2005-12-21T10:39:49.0001">2005-12-21</nsesss:DatumVytvoreni>
+                    </nsesss:Puvod>
+                    <nsesss:Trideni>
+                      <nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
+                      <nsesss:PlneUrcenySpisovyZnak>553.2.3</nsesss:PlneUrcenySpisovyZnak>
+                      <nsesss:MaterskaEntita>
+                        <nsesss:VecnaSkupina ID="MHMP0200CSK4">
+                          <nsesss:EvidencniUdaje>
+                            <nsesss:Identifikace>
+                              <nsesss:Identifikator zdroj="GINIS">MHMP0200CSK4</nsesss:Identifikator>
+                            </nsesss:Identifikace>
+                            <nsesss:Popis>
+                              <nsesss:Nazev>Zařízení sociálních služeb</nsesss:Nazev>
+                              <nsesss:Komentar>Zařízení sociálních služeb</nsesss:Komentar>
+                            </nsesss:Popis>
+                            <nsesss:Puvod>
+                              <nsesss:DatumVytvoreni datum="2005-12-21T10:39:49.0001">2005-12-21</nsesss:DatumVytvoreni>
+                            </nsesss:Puvod>
+                            <nsesss:Trideni>
+                              <nsesss:JednoduchySpisovyZnak>2</nsesss:JednoduchySpisovyZnak>
+                              <nsesss:PlneUrcenySpisovyZnak>553.2</nsesss:PlneUrcenySpisovyZnak>
+                              <nsesss:MaterskaEntita>
+                                <nsesss:VecnaSkupina ID="MHMP0200CSIE">
+                                  <nsesss:EvidencniUdaje>
+                                    <nsesss:Identifikace>
+                                      <nsesss:Identifikator zdroj="GINIS">MHMP0200CSIE</nsesss:Identifikator>
+                                    </nsesss:Identifikace>
+                                    <nsesss:Popis>
+                                      <nsesss:Nazev>Sociální služby</nsesss:Nazev>
+                                      <nsesss:Komentar>Sociální služby</nsesss:Komentar>
+                                    </nsesss:Popis>
+                                    <nsesss:Puvod>
+                                      <nsesss:DatumVytvoreni datum="2005-12-21T10:39:49.0001">2005-12-21</nsesss:DatumVytvoreni>
+                                    </nsesss:Puvod>
+                                    <nsesss:Trideni>
+                                      <nsesss:JednoduchySpisovyZnak>553</nsesss:JednoduchySpisovyZnak>
+                                      <nsesss:PlneUrcenySpisovyZnak>553</nsesss:PlneUrcenySpisovyZnak>
+                                      <nsesss:SpisovyPlan ID="MHMPAW20UP6Z_Gordic.Ginis.V.S.2006">
+                                        <nsesss:Identifikator zdroj="GINIS">2006</nsesss:Identifikator>
+                                        <nsesss:Nazev>2006</nsesss:Nazev>
+                                        <nsesss:Komentar>-</nsesss:Komentar>
+                                        <nsesss:Manipulace>
+                                          <nsesss:DatumOtevreni datum="2005-12-21T00:00:00.0001">2005-12-21</nsesss:DatumOtevreni>
+                                          <nsesss:DatumUzavreni datum="2014-12-31T00:00:00.0001">2014-12-31</nsesss:DatumUzavreni>
+                                        </nsesss:Manipulace>
+                                        <nsesss:Vydavatel>
+                                          <nsesss:Subjekt>
+                                            <nsesss:IdentifikatorOrganizace zdroj="GINIS">MHMPSE009Q14</nsesss:IdentifikatorOrganizace>
+                                            <nsesss:NazevOrganizace>Hlavní město PRAHA</nsesss:NazevOrganizace>
+                                            <nsesss:SidloOrganizace>Hlavní město PRAHA,  Mariánské nám. 2,  11000 PRAHA 1</nsesss:SidloOrganizace>
+                                            <nsesss:ElektronickyKontakt>e-mail:;tel:236001111;DS:48ia97h</nsesss:ElektronickyKontakt>
+                                          </nsesss:Subjekt>
+                                        </nsesss:Vydavatel>
+                                      </nsesss:SpisovyPlan>
+                                    </nsesss:Trideni>
+                                    <nsesss:Vyrazovani/>
+                                    <nsesss:Manipulace>
+                                      <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                                      <nsesss:DatumOtevreni datum="2005-12-21T10:39:49.0001">2005-12-21</nsesss:DatumOtevreni>
+                                    </nsesss:Manipulace>
+                                  </nsesss:EvidencniUdaje>
+                                </nsesss:VecnaSkupina>
+                              </nsesss:MaterskaEntita>
+                            </nsesss:Trideni>
+                            <nsesss:Vyrazovani/>
+                            <nsesss:Manipulace>
+                              <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                              <nsesss:DatumOtevreni datum="2005-12-21T10:39:49.0001">2005-12-21</nsesss:DatumOtevreni>
+                            </nsesss:Manipulace>
+                          </nsesss:EvidencniUdaje>
+                        </nsesss:VecnaSkupina>
+                      </nsesss:MaterskaEntita>
+                    </nsesss:Trideni>
+                    <nsesss:Vyrazovani>
+                      <nsesss:SkartacniRezim>
+                        <nsesss:Identifikator zdroj="GINIS">MHMPAW90A0QL</nsesss:Identifikator>
+                        <nsesss:Nazev>S 5</nsesss:Nazev>
+                        
+                        <nsesss:Oduvodneni>Vyplývá ze spisového plánu organizace</nsesss:Oduvodneni>
+                        <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+                        <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+                        <nsesss:SpousteciUdalost>Uzavření entity</nsesss:SpousteciUdalost>
+                      </nsesss:SkartacniRezim>
+                    </nsesss:Vyrazovani>
+                    <nsesss:Manipulace>
+                      <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                      <nsesss:DatumOtevreni datum="2005-12-21T10:39:49.0001">2005-12-21</nsesss:DatumOtevreni>
+                    </nsesss:Manipulace>
+                  </nsesss:EvidencniUdaje>
+                </nsesss:VecnaSkupina>
+              </nsesss:MaterskaEntita>
+            </nsesss:Trideni>
+            <nsesss:VyrizeniUzavreni>
+              <nsesss:Datum datum="2009-12-22T00:00:00.0001">2009-12-22</nsesss:Datum>
+              <nsesss:Zpusob>jiný způsob</nsesss:Zpusob>
+              <nsesss:ObsahVyrizeni>,</nsesss:ObsahVyrizeni>
+              <nsesss:Oduvodneni>Nevyřízeno</nsesss:Oduvodneni>
+              <nsesss:Zpracovatel>
+                <nsesss:Subjekt>
+                  <nsesss:IdentifikatorOrganizace zdroj="GINIS">MHMPSE009Q14</nsesss:IdentifikatorOrganizace>
+                  <nsesss:NazevOrganizace>Hlavní město PRAHA</nsesss:NazevOrganizace>
+                  <nsesss:IdentifikatorFyzickeOsoby zdroj="GINIS">MHMPSZ01Z8IZ</nsesss:IdentifikatorFyzickeOsoby>
+                  <nsesss:NazevFyzickeOsoby>Bendlová Yvonna</nsesss:NazevFyzickeOsoby>
+                  <nsesss:OrganizacniUtvar>odd. sekretariátu (SOV)</nsesss:OrganizacniUtvar>
+                  <nsesss:PracovniPozice>práce v uzlu SCZ</nsesss:PracovniPozice>
+                  <nsesss:SidloOrganizace>Hlavní město PRAHA,  Mariánské nám. 2,  11000 PRAHA 1</nsesss:SidloOrganizace>
+                </nsesss:Subjekt>
+              </nsesss:Zpracovatel>
+            </nsesss:VyrizeniUzavreni>
+            <nsesss:Vyrazovani>
+              <nsesss:SkartacniRezim>
+                <nsesss:Identifikator zdroj="GINIS">MHMPAW90A0QL</nsesss:Identifikator>
+                <nsesss:Nazev>S 5</nsesss:Nazev>
+                
+                <nsesss:Oduvodneni>Vyplývá ze spisového plánu organizace</nsesss:Oduvodneni>
+                <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+                <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+                <nsesss:SpousteciUdalost>Uzavření entity</nsesss:SpousteciUdalost>
+              </nsesss:SkartacniRezim>
+              <nsesss:DataceVyrazeni>
+                <nsesss:RokSpousteciUdalosti>2009</nsesss:RokSpousteciUdalosti>
+                <nsesss:RokSkartacniOperace>2015</nsesss:RokSkartacniOperace>
+              </nsesss:DataceVyrazeni>
+              <nsesss:SkartacniRizeni>
+                <nsesss:Datum datum="2015-12-31T00:00:00.0001">2015-12-31</nsesss:Datum>
+                <nsesss:Mnozstvi>1-1/0/0-0</nsesss:Mnozstvi>
+                <nsesss:SkartacniOperace>trvalé uložení</nsesss:SkartacniOperace>
+                <nsesss:Posuzovatel>
+                  <nsesss:Subjekt>
+                    <nsesss:IdentifikatorOrganizace zdroj="GINIS">MHMPSE009Q14</nsesss:IdentifikatorOrganizace>
+                    <nsesss:NazevOrganizace>Hlavní město PRAHA</nsesss:NazevOrganizace>
+                    <nsesss:IdentifikatorFyzickeOsoby zdroj="GINIS">MHMPSZ024UWH</nsesss:IdentifikatorFyzickeOsoby>
+                    <nsesss:NazevFyzickeOsoby>Neradová Martina Mgr.</nsesss:NazevFyzickeOsoby>
+                    <nsesss:OrganizacniUtvar>odd. hl. spisovny</nsesss:OrganizacniUtvar>
+                    <nsesss:PracovniPozice>Specialista správ.archivu</nsesss:PracovniPozice>
+                    <nsesss:SidloOrganizace>Hlavní město PRAHA,  Mariánské nám. 2,  11000 PRAHA 1</nsesss:SidloOrganizace>
+                  </nsesss:Subjekt>
+                </nsesss:Posuzovatel>
+              </nsesss:SkartacniRizeni>
+            </nsesss:Vyrazovani>
+            <nsesss:Manipulace>
+              <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+              <nsesss:DatumOtevreni datum="2009-01-01T00:00:00.0001">2009-01-01</nsesss:DatumOtevreni>
+              <nsesss:DatumUzavreni datum="2009-12-22T00:00:00.0001">2009-12-22</nsesss:DatumUzavreni>
+            </nsesss:Manipulace>
+          </nsesss:EvidencniUdaje>
+          <nsesss:Dokumenty>
+            <nsesss:Dokument ID="MHMPAW20UP6Z_1">
+              <nsesss:EvidencniUdaje>
+                <nsesss:Identifikace>
+                  <nsesss:Identifikator zdroj="GINIS">MHMPAW20UP6Z_1</nsesss:Identifikator>
+                </nsesss:Identifikace>
+                <nsesss:Popis>
+                  <nsesss:Nazev>Neevidovaný dokument jako obsah neevidovaného spisu</nsesss:Nazev>
+                  <nsesss:Komentar>Neevidovaný dokument jako obsah neevidovaného spisu</nsesss:Komentar>
+                </nsesss:Popis>
+                <nsesss:Pristupnost>
+                  <nsesss:BezpecnostniKategorie>
+                    <nsesss:Identifikator zdroj="GINIS">0</nsesss:Identifikator>
+                    <nsesss:Nazev>Dokument ke zveřejnění</nsesss:Nazev>
+                    <nsesss:BezpecnostniStupen>Dokument ke zveřejnění</nsesss:BezpecnostniStupen>
+                  </nsesss:BezpecnostniKategorie>
+                </nsesss:Pristupnost>
+                <nsesss:Neevidence>
+                  <nsesss:Oduvodneni>Dokument není evidován v systému.</nsesss:Oduvodneni>
+                </nsesss:Neevidence>
+                <nsesss:Jazyky>
+                  <nsesss:Jazyk>cze</nsesss:Jazyk>
+                </nsesss:Jazyky>
+                <nsesss:Puvod>
+                  <nsesss:VlastniDokument>
+                    <nsesss:DatumVytvoreni datum="2009-01-01T00:00:00.0001">2009-01-01</nsesss:DatumVytvoreni>
+                    <nsesss:VytvoreneMnozstvi>nezadáno</nsesss:VytvoreneMnozstvi>
+                    <nsesss:Autor>
+                      <nsesss:Subjekt>
+                        <nsesss:IdentifikatorOrganizace zdroj="GINIS">MHMPSE009Q14</nsesss:IdentifikatorOrganizace>
+                        <nsesss:NazevOrganizace>Hlavní město PRAHA</nsesss:NazevOrganizace>
+                        <nsesss:IdentifikatorFyzickeOsoby zdroj="GINIS">MHMPSZ01Z8IZ</nsesss:IdentifikatorFyzickeOsoby>
+                        <nsesss:NazevFyzickeOsoby>Bendlová Yvonna</nsesss:NazevFyzickeOsoby>
+                        <nsesss:OrganizacniUtvar>odd. sekretariátu (SOV)</nsesss:OrganizacniUtvar>
+                        <nsesss:PracovniPozice>práce v uzlu SCZ</nsesss:PracovniPozice>
+                        <nsesss:SidloOrganizace>Hlavní město PRAHA,  Mariánské nám. 2,  11000 PRAHA 1</nsesss:SidloOrganizace>
+                      </nsesss:Subjekt>
+                    </nsesss:Autor>
+                  </nsesss:VlastniDokument>
+                </nsesss:Puvod>
+                <nsesss:Trideni>
+                  <nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
+                  <nsesss:PlneUrcenySpisovyZnak>553.2.3</nsesss:PlneUrcenySpisovyZnak>
+                  <nsesss:DruhDokumentu>
+                    <nsesss:Identifikator zdroj="GINIS">00000400000G</nsesss:Identifikator>
+                    <nsesss:Nazev>neurčen</nsesss:Nazev>
+                    <nsesss:Komentar>neurčen</nsesss:Komentar>
+                  </nsesss:DruhDokumentu>
+                </nsesss:Trideni>
+                <nsesss:Vyrizeni>
+                  <nsesss:Datum datum="2009-12-22T00:00:00.0001">2009-12-22</nsesss:Datum>
+                  <nsesss:Zpusob>vzetí na vědomí</nsesss:Zpusob>
+                  <nsesss:ObsahVyrizeni>Vyřízeno vzetím na vědomí</nsesss:ObsahVyrizeni>
+                  <nsesss:Oduvodneni>Vyřízeno vzetím na vědomí</nsesss:Oduvodneni>
+                  <nsesss:Zpracovatel>
+                    <nsesss:Subjekt>
+                      <nsesss:IdentifikatorOrganizace zdroj="GINIS">MHMPSE009Q14</nsesss:IdentifikatorOrganizace>
+                      <nsesss:NazevOrganizace>Hlavní město PRAHA</nsesss:NazevOrganizace>
+                      <nsesss:IdentifikatorFyzickeOsoby zdroj="GINIS">MHMPSZ01Z8IZ</nsesss:IdentifikatorFyzickeOsoby>
+                      <nsesss:NazevFyzickeOsoby>Bendlová Yvonna</nsesss:NazevFyzickeOsoby>
+                      <nsesss:OrganizacniUtvar>odd. sekretariátu (SOV)</nsesss:OrganizacniUtvar>
+                      <nsesss:PracovniPozice>práce v uzlu SCZ</nsesss:PracovniPozice>
+                      <nsesss:SidloOrganizace>Hlavní město PRAHA,  Mariánské nám. 2,  11000 PRAHA 1</nsesss:SidloOrganizace>
+                    </nsesss:Subjekt>
+                  </nsesss:Zpracovatel>
+                </nsesss:Vyrizeni>
+                <nsesss:Vyrazovani>
+                  <nsesss:SkartacniRezim>
+                    <nsesss:Identifikator zdroj="GINIS">MHMPAW90A0QL</nsesss:Identifikator>
+                    <nsesss:Nazev>S 5</nsesss:Nazev>
+                    
+                    <nsesss:Oduvodneni>Vyplývá ze spisového plánu organizace</nsesss:Oduvodneni>
+                    <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+                    <nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+                    <nsesss:SpousteciUdalost>Uzavření entity</nsesss:SpousteciUdalost>
+                  </nsesss:SkartacniRezim>
+                </nsesss:Vyrazovani>
+                <nsesss:Manipulace>
+                  <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                  <nsesss:SpravceSpisovny>
+                    <nsesss:Subjekt>
+                      <nsesss:IdentifikatorOrganizace zdroj="GINIS">MHMPSE009Q14</nsesss:IdentifikatorOrganizace>
+                      <nsesss:NazevOrganizace>Hlavní město PRAHA</nsesss:NazevOrganizace>
+                      <nsesss:SidloOrganizace>Hlavní město PRAHA,  Mariánské nám. 2,  11000 PRAHA 1</nsesss:SidloOrganizace>
+                      <nsesss:ElektronickyKontakt>e-mail:;tel:236001111;DS:48ia97h</nsesss:ElektronickyKontakt>
+                    </nsesss:Subjekt>
+                  </nsesss:SpravceSpisovny>
+                  <nsesss:UkladaciJednotka>C.s.   1650/2016</nsesss:UkladaciJednotka>
+                </nsesss:Manipulace>
+              </nsesss:EvidencniUdaje>
+            </nsesss:Dokument>
+          </nsesss:Dokumenty>
+        </nsesss:Spis>
+      </mets:xmlData>
+    </mets:mdWrap>
+  </mets:dmdSec>
+  <mets:amdSec ID="amd_spl_MHMPAW20UP6Z_Gordic.Ginis.V.S.2006">
+    <mets:digiprovMD ID="dp_amd_spl_MHMPAW20UP6Z_Gordic.Ginis.V.S.2006">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="4.0" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tp:HodnotaID>2006</tp:HodnotaID>
+                <tp:ZdrojID>GINIS</tp:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>0001-01-01T00:00:00</tp:DatumVzniku>
+              <tp:DatumCasOd>0001-01-01T00:00:00</tp:DatumCasOd>
+              <tp:DatumCasDo>0001-01-01T00:00:00</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>SpisovyPlan</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tp:HodnotaID>2006</tp:HodnotaID>
+                  <tp:ZdrojID>GINIS</tp:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti/>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd_vs_MHMP0200CSIE">
+    <mets:digiprovMD ID="dp_amd_vs_MHMP0200CSIE">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="4.0" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tp:HodnotaID>MHMP0200CSIE</tp:HodnotaID>
+                <tp:ZdrojID>GINIS</tp:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>0001-01-01T00:00:00</tp:DatumVzniku>
+              <tp:DatumCasOd>0001-01-01T00:00:00</tp:DatumCasOd>
+              <tp:DatumCasDo>0001-01-01T00:00:00</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>VecnaSkupina</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tp:HodnotaID>MHMP0200CSIE</tp:HodnotaID>
+                  <tp:ZdrojID>GINIS</tp:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti/>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd_vs_MHMP0200CSK4">
+    <mets:digiprovMD ID="dp_amd_vs_MHMP0200CSK4">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="4.0" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tp:HodnotaID>MHMP0200CSK4</tp:HodnotaID>
+                <tp:ZdrojID>GINIS</tp:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>0001-01-01T00:00:00</tp:DatumVzniku>
+              <tp:DatumCasOd>0001-01-01T00:00:00</tp:DatumCasOd>
+              <tp:DatumCasDo>0001-01-01T00:00:00</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>VecnaSkupina</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tp:HodnotaID>MHMP0200CSK4</tp:HodnotaID>
+                  <tp:ZdrojID>GINIS</tp:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti/>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd_vs_MHMP0200CSNP">
+    <mets:digiprovMD ID="dp_amd_vs_MHMP0200CSNP">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="4.0" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tp:HodnotaID>MHMP0200CSNP</tp:HodnotaID>
+                <tp:ZdrojID>GINIS</tp:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>0001-01-01T00:00:00</tp:DatumVzniku>
+              <tp:DatumCasOd>0001-01-01T00:00:00</tp:DatumCasOd>
+              <tp:DatumCasDo>0001-01-01T00:00:00</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>VecnaSkupina</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tp:HodnotaID>MHMP0200CSNP</tp:HodnotaID>
+                  <tp:ZdrojID>GINIS</tp:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti/>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd_sp_MHMPAW20UP6Z">
+    <mets:digiprovMD ID="dp_amd_sp_MHMPAW20UP6Z">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="4.0" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tp:HodnotaID>MHMPAW20UP6Z</tp:HodnotaID>
+                <tp:ZdrojID>GINIS</tp:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2022-06-17T09:46:43.9778329+02:00</tp:DatumVzniku>
+              <tp:DatumCasOd>2009-01-01T00:00:00</tp:DatumCasOd>
+              <tp:DatumCasDo>2022-06-17T09:46:43.9778329+02:00</tp:DatumCasDo>
+              <tp:Software>GINIS - GSAESR01</tp:Software>
+              <tp:VerzeSoftware>488.4.40ESR0148804X12_388.2</tp:VerzeSoftware>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Spis</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tp:HodnotaID>MHMPAW20UP6Z</tp:HodnotaID>
+                  <tp:ZdrojID>GINIS</tp:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti>
+              <tp:Udalost>
+                <tp:Poradi>506988283</tp:Poradi>
+                <tp:DatumVzniku>2019-06-11T14:51:09</tp:DatumVzniku>
+                <tp:provedlKdo>Neradová Martina Mgr., Specialista správ.archivu</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Entita byla připravena pro skartační řízení.</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>595743405</tp:Poradi>
+                <tp:DatumVzniku>2020-10-02T15:45:22</tp:DatumVzniku>
+                <tp:provedlKdo>Neradová Martina Mgr., Specialista správ.archivu</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>Uprava</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Změna evidenčního profilu písemnosti v SSL</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>715100406</tp:Poradi>
+                <tp:DatumVzniku>2022-04-19T09:55:17</tp:DatumVzniku>
+                <tp:provedlKdo>Neradová Martina Mgr., Specialista správ.archivu</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Entita byla připravena pro skartační řízení.</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>716812265</tp:Poradi>
+                <tp:DatumVzniku>2022-04-26T13:37:39</tp:DatumVzniku>
+                <tp:provedlKdo>Neradová Martina Mgr., Specialista správ.archivu</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Entita byla připravena pro skartační řízení.</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>716816934</tp:Poradi>
+                <tp:DatumVzniku>2022-04-26T13:49:43</tp:DatumVzniku>
+                <tp:provedlKdo>Neradová Martina Mgr., Specialista správ.archivu</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Entita byla připravena pro skartační řízení.</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>716869772</tp:Poradi>
+                <tp:DatumVzniku>2022-04-26T15:17:45</tp:DatumVzniku>
+                <tp:provedlKdo>Neradová Martina Mgr., Specialista správ.archivu</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Entita byla připravena pro skartační řízení.</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>722706335</tp:Poradi>
+                <tp:DatumVzniku>2022-05-20T07:40:14</tp:DatumVzniku>
+                <tp:provedlKdo>Neradová Martina Mgr., Specialista správ.archivu</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>GenerovaniSIP</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Vygenerování SIP</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>730233771</tp:Poradi>
+                <tp:DatumVzniku>2022-06-17T09:41:31</tp:DatumVzniku>
+                <tp:provedlKdo>Neradová Martina Mgr., Specialista správ.archivu</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Entita byla připravena pro skartační řízení.</tp:PopisUdalosti>
+              </tp:Udalost>
+            </tp:Udalosti>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd_dok_MHMPAW20UP6Z_1">
+    <mets:digiprovMD ID="dp_amd_dok_MHMPAW20UP6Z_1">
+      <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="TP" MDTYPEVERSION="4.0" MIMETYPE="text/xml">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tp:HodnotaID>MHMPAW20UP6Z</tp:HodnotaID>
+                <tp:ZdrojID>GINIS</tp:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2022-06-17T09:46:43.9934554+02:00</tp:DatumVzniku>
+              <tp:DatumCasOd>2009-01-01T00:00:00</tp:DatumCasOd>
+              <tp:DatumCasDo>2022-06-17T09:46:43.9934554+02:00</tp:DatumCasDo>
+              <tp:Software>GINIS - GSAESR01</tp:Software>
+              <tp:VerzeSoftware>488.4.40ESR0148804X12_388.2</tp:VerzeSoftware>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Dokument</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tp:HodnotaID>MHMPAW20UP6Z</tp:HodnotaID>
+                  <tp:ZdrojID>GINIS</tp:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti>
+              <tp:Udalost>
+                <tp:Poradi>506988283</tp:Poradi>
+                <tp:DatumVzniku>2019-06-11T14:51:09</tp:DatumVzniku>
+                <tp:provedlKdo>Neradová Martina Mgr., Specialista správ.archivu</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Entita byla připravena pro skartační řízení.</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>595743405</tp:Poradi>
+                <tp:DatumVzniku>2020-10-02T15:45:22</tp:DatumVzniku>
+                <tp:provedlKdo>Neradová Martina Mgr., Specialista správ.archivu</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>Uprava</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Změna evidenčního profilu písemnosti v SSL</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>715100406</tp:Poradi>
+                <tp:DatumVzniku>2022-04-19T09:55:17</tp:DatumVzniku>
+                <tp:provedlKdo>Neradová Martina Mgr., Specialista správ.archivu</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Entita byla připravena pro skartační řízení.</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>716812265</tp:Poradi>
+                <tp:DatumVzniku>2022-04-26T13:37:39</tp:DatumVzniku>
+                <tp:provedlKdo>Neradová Martina Mgr., Specialista správ.archivu</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Entita byla připravena pro skartační řízení.</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>716816934</tp:Poradi>
+                <tp:DatumVzniku>2022-04-26T13:49:43</tp:DatumVzniku>
+                <tp:provedlKdo>Neradová Martina Mgr., Specialista správ.archivu</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Entita byla připravena pro skartační řízení.</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>716869772</tp:Poradi>
+                <tp:DatumVzniku>2022-04-26T15:17:45</tp:DatumVzniku>
+                <tp:provedlKdo>Neradová Martina Mgr., Specialista správ.archivu</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Entita byla připravena pro skartační řízení.</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>722706335</tp:Poradi>
+                <tp:DatumVzniku>2022-05-20T07:40:14</tp:DatumVzniku>
+                <tp:provedlKdo>Neradová Martina Mgr., Specialista správ.archivu</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>GenerovaniSIP</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Vygenerování SIP</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>730233771</tp:Poradi>
+                <tp:DatumVzniku>2022-06-17T09:41:31</tp:DatumVzniku>
+                <tp:provedlKdo>Neradová Martina Mgr., Specialista správ.archivu</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>Entita byla připravena pro skartační řízení.</tp:PopisUdalosti>
+              </tp:Udalost>
+            </tp:Udalosti>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:structMap>
+    <mets:div DMDID="MHMPAW20UP6Z_Gordic.Ginis.V.S.2006" ADMID="amd_spl_MHMPAW20UP6Z_Gordic.Ginis.V.S.2006" TYPE="spisový plán">
+      <mets:div DMDID="MHMP0200CSIE" ADMID="amd_vs_MHMP0200CSIE" TYPE="věcná skupina">
+        <mets:div DMDID="MHMP0200CSK4" ADMID="amd_vs_MHMP0200CSK4" TYPE="věcná skupina">
+          <mets:div DMDID="MHMP0200CSNP" ADMID="amd_vs_MHMP0200CSNP" TYPE="věcná skupina">
+            <mets:div DMDID="MHMPAW20UP6Z" ADMID="amd_sp_MHMPAW20UP6Z" TYPE="spis">
+              <mets:div DMDID="MHMPAW20UP6Z_1" ADMID="amd_dok_MHMPAW20UP6Z_1" TYPE="dokument"/>
+            </mets:div>
+          </mets:div>
+        </mets:div>
+      </mets:div>
+    </mets:div>
+  </mets:structMap>
+</mets:mets>

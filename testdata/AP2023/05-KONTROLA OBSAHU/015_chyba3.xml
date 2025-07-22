@@ -7,7 +7,7 @@
 		
 		<ead:filedesc encodinganalog="123"> <!-- obs4 -->
 			<ead:titlestmt>
-				<ead:titleproper></ead:titleproper>
+				<ead:titleproper>Jméno AS</ead:titleproper>
 				<ead:subtitle>Název hotové pomůcky</ead:subtitle> <!-- obs5 -->
 			</ead:titlestmt>
 			

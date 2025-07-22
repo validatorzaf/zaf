@@ -1,0 +1,1362 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:nsesss="http://www.mvcr.cz/nsesss/v4" xmlns:tp="http://www.mvcr.cz/nsesss/2023/log" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu" OBJID="NA_01" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v4 http://www.mvcr.cz/nsesss/v4/nsesss.xsd http://www.mvcr.cz/nsesss/2023/log https://www.mvcr.cz/nsesss/v4/nsesss-TrP.xsd">
+	<mets:metsHdr CREATEDATE="2018-01-22T08:23:50" LASTMODDATE="2018-01-22T08:23:50">
+		<mets:agent ID="IDa1" ROLE="CREATOR" TYPE="ORGANIZATION">
+			<mets:name>GDPR anonymizováno</mets:name>
+		</mets:agent>
+		<mets:agent ID="IDa2" ROLE="CREATOR" TYPE="INDIVIDUAL">
+		<mets:name>GDPR anonymizováno</mets:name>
+		</mets:agent>
+	</mets:metsHdr>
+	<mets:dmdSec ID="IDa5">
+		<mets:mdWrap LABEL="Schéma XML pro předávání dokumentů a jejich metadat do archivu" MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="NSESSS">
+			<mets:xmlData>
+			
+<nsesss:Dil ID="ID7">
+	<nsesss:EvidencniUdaje>
+		<nsesss:Identifikace>
+			<nsesss:Identifikator zdroj="ERMS">MZUR7S4T8S5G6TRT</nsesss:Identifikator>
+		</nsesss:Identifikace>
+		<nsesss:Popis>
+			<nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+		</nsesss:Popis>
+		<nsesss:Puvod>
+			<nsesss:DatumVytvoreni>2010-02-03</nsesss:DatumVytvoreni>
+		</nsesss:Puvod>
+		<nsesss:Trideni>
+			<nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
+			<nsesss:PlneUrcenySpisovyZnak>2.4.3.3</nsesss:PlneUrcenySpisovyZnak>
+			<nsesss:MaterskaEntita>
+				<nsesss:Soucast ID="ID8">
+					<nsesss:EvidencniUdaje>
+						<nsesss:Identifikace>
+							<nsesss:Identifikator zdroj="ERMS">MZUR7S4T875G6WER</nsesss:Identifikator>
+						</nsesss:Identifikace>
+						<nsesss:Popis>
+							<nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+						</nsesss:Popis>
+						<nsesss:Puvod>
+							<nsesss:DatumVytvoreni>2009-01-01</nsesss:DatumVytvoreni>
+						</nsesss:Puvod>
+						<nsesss:Trideni>
+							<nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
+							<nsesss:PlneUrcenySpisovyZnak>2.4.3</nsesss:PlneUrcenySpisovyZnak>
+							<nsesss:MaterskaEntita>
+								<nsesss:TypovySpis ID="ID9">
+									<nsesss:EvidencniUdaje>
+										<nsesss:Identifikace>
+											<nsesss:Identifikator zdroj="ERMS">MZUR7S4T8S5G6T78</nsesss:Identifikator>
+										</nsesss:Identifikace>
+										<nsesss:Popis>
+											<nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+										</nsesss:Popis>
+										<nsesss:Puvod>
+											<nsesss:DatumVytvoreni>2009-01-01</nsesss:DatumVytvoreni>
+										</nsesss:Puvod>
+										<nsesss:Trideni>
+											<nsesss:JednoduchySpisovyZnak>4</nsesss:JednoduchySpisovyZnak>
+											<nsesss:PlneUrcenySpisovyZnak>2.4</nsesss:PlneUrcenySpisovyZnak>
+			<nsesss:MaterskaEntita>
+				<nsesss:VecnaSkupina ID="ID2">
+					<nsesss:EvidencniUdaje>
+						<nsesss:Identifikace>
+							<nsesss:Identifikator zdroj="ERMS">MZUR7S4T8QQG6T78</nsesss:Identifikator>
+						</nsesss:Identifikace>
+						<nsesss:Popis>
+							<nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+						</nsesss:Popis>
+						<nsesss:Puvod>
+							<nsesss:DatumVytvoreni>2008-12-21</nsesss:DatumVytvoreni>
+						</nsesss:Puvod>
+						<nsesss:Trideni>
+							<nsesss:JednoduchySpisovyZnak>4</nsesss:JednoduchySpisovyZnak>
+							<nsesss:PlneUrcenySpisovyZnak>2.4</nsesss:PlneUrcenySpisovyZnak>
+				<nsesss:MaterskaEntita>
+				<nsesss:VecnaSkupina ID="ID3">
+					<nsesss:EvidencniUdaje>
+						<nsesss:Identifikace>
+							<nsesss:Identifikator zdroj="ERMS">MZUR7S4T8QQGV478</nsesss:Identifikator>
+						</nsesss:Identifikace>
+						<nsesss:Popis>
+							<nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+						</nsesss:Popis>
+								<nsesss:Puvod>
+							<nsesss:DatumVytvoreni>2008-12-21</nsesss:DatumVytvoreni>
+						</nsesss:Puvod>
+						<nsesss:Trideni>
+							<nsesss:JednoduchySpisovyZnak>2</nsesss:JednoduchySpisovyZnak>
+							<nsesss:PlneUrcenySpisovyZnak>2</nsesss:PlneUrcenySpisovyZnak>
+							<nsesss:SpisovyPlan ID="ID4">
+								<nsesss:Identifikator zdroj="ERMS">MZUR7S4T8ZZQG6T78</nsesss:Identifikator>
+								<nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+								<nsesss:Manipulace>
+									<nsesss:DatumOtevreni>2008-01-01</nsesss:DatumOtevreni>
+								</nsesss:Manipulace>
+								<nsesss:Vydavatel>
+									<nsesss:Subjekt>
+										<nsesss:IdentifikatorOrganizace zdroj="IČ">00020478</nsesss:IdentifikatorOrganizace>
+										<nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+										<nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+										<nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
+									</nsesss:Subjekt>
+								</nsesss:Vydavatel>
+							</nsesss:SpisovyPlan>
+						</nsesss:Trideni>
+						<nsesss:Vyrazovani/>
+						<nsesss:Manipulace>
+							<nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+							<nsesss:DatumOtevreni>2009-01-01</nsesss:DatumOtevreni>
+						</nsesss:Manipulace>
+					</nsesss:EvidencniUdaje>
+					</nsesss:VecnaSkupina>
+					</nsesss:MaterskaEntita>
+					</nsesss:Trideni>
+					<nsesss:Vyrazovani>
+						<nsesss:SkartacniRezim>
+								<nsesss:Identifikator zdroj="ERMS">MZUR7S4R8YZQG6T99</nsesss:Identifikator>
+								<nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+								<nsesss:Oduvodneni>Bezcenné účetní přílohy ke skartu</nsesss:Oduvodneni>
+								<nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+								<nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+								<nsesss:SpousteciUdalost>vyřízení/uzavření</nsesss:SpousteciUdalost>
+							</nsesss:SkartacniRezim>
+						</nsesss:Vyrazovani>
+					<nsesss:Manipulace> 
+<nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+<nsesss:DatumOtevreni>2009-01-01</nsesss:DatumOtevreni>
+</nsesss:Manipulace>
+</nsesss:EvidencniUdaje>	
+				</nsesss:VecnaSkupina>
+			</nsesss:MaterskaEntita>
+										</nsesss:Trideni>
+										<nsesss:Manipulace>
+											<nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+											<nsesss:DatumOtevreni>2009-01-01</nsesss:DatumOtevreni>
+										</nsesss:Manipulace>
+									</nsesss:EvidencniUdaje>
+								</nsesss:TypovySpis>
+							</nsesss:MaterskaEntita>
+						</nsesss:Trideni>
+						<nsesss:Vyrazovani>
+							<nsesss:SkartacniRezim>
+								<nsesss:Identifikator zdroj="ERMS">MZUR7S4T8ZZQG6T99</nsesss:Identifikator>
+								<nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+								<nsesss:Oduvodneni>Bezcenné účetní přílohy ke skartu</nsesss:Oduvodneni>
+								<nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+								<nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+								<nsesss:SpousteciUdalost>vyřízení/uzavření</nsesss:SpousteciUdalost>
+							</nsesss:SkartacniRezim>
+						</nsesss:Vyrazovani>
+						<nsesss:Manipulace>
+							<nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+							<nsesss:DatumOtevreni>2009-01-01</nsesss:DatumOtevreni>
+						</nsesss:Manipulace>
+					</nsesss:EvidencniUdaje>
+				</nsesss:Soucast>
+			</nsesss:MaterskaEntita>
+		</nsesss:Trideni>
+		<nsesss:Uzavreni>
+			<nsesss:Datum>2010-12-29</nsesss:Datum>
+			<nsesss:Zpracovatel>
+				<nsesss:Subjekt>
+					<nsesss:IdentifikatorOrganizace zdroj="ERMS">MZUR7S4T8ZZQG6T41</nsesss:IdentifikatorOrganizace>
+					<nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+					<nsesss:IdentifikatorFyzickeOsoby zdroj="ERMS">MZZ489</nsesss:IdentifikatorFyzickeOsoby>
+					<nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+					<nsesss:OrganizacniUtvar>Dotační odbor</nsesss:OrganizacniUtvar>
+					<nsesss:PracovniPozice>Referent</nsesss:PracovniPozice>
+					<nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+				</nsesss:Subjekt>
+			</nsesss:Zpracovatel>
+		</nsesss:Uzavreni>
+		<nsesss:Vyrazovani>
+			<nsesss:SkartacniRezim>
+				<nsesss:Identifikator zdroj="ERMS">MZUR7S4T8ZZQG6TP1</nsesss:Identifikator>
+				<nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+				<nsesss:Oduvodneni>Bezcenné účetní přílohy ke skartu</nsesss:Oduvodneni>
+				<nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+				<nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+				<nsesss:SpousteciUdalost>vyřízení/uzavření</nsesss:SpousteciUdalost>				
+			</nsesss:SkartacniRezim>
+			<nsesss:DataceVyrazeni>
+				<nsesss:RokSpousteciUdalosti>2011</nsesss:RokSpousteciUdalosti>
+				<nsesss:RokSkartacniOperace>2017</nsesss:RokSkartacniOperace>
+			</nsesss:DataceVyrazeni>
+			<nsesss:SkartacniRizeni>
+				<nsesss:Datum>2017-01-10</nsesss:Datum>
+				<nsesss:SkartacniOperace>trvalé uložení</nsesss:SkartacniOperace>
+				<nsesss:Posuzovatel>
+					<nsesss:Subjekt>
+						<nsesss:IdentifikatorOrganizace zdroj="">NDAIIRS4TUUZQG6TP1</nsesss:IdentifikatorOrganizace>
+						<nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+						<nsesss:IdentifikatorFyzickeOsoby zdroj="ERMS">NACR525ZP</nsesss:IdentifikatorFyzickeOsoby>
+						<nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+						<nsesss:OrganizacniUtvar>5. oddělení</nsesss:OrganizacniUtvar>
+						<nsesss:PracovniPozice>Inspektor</nsesss:PracovniPozice>
+						<nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+					</nsesss:Subjekt>
+				</nsesss:Posuzovatel>
+			</nsesss:SkartacniRizeni>
+		</nsesss:Vyrazovani>
+		<nsesss:Manipulace>
+			<nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+			<nsesss:DatumOtevreni>2010-01-10</nsesss:DatumOtevreni>
+		</nsesss:Manipulace>
+	</nsesss:EvidencniUdaje>
+	<nsesss:Dokumenty>
+<nsesss:Dokument ID="ID1">
+	<nsesss:EvidencniUdaje>
+		<nsesss:Identifikace>
+			<nsesss:Identifikator zdroj="ERMS">MZUR7S4T875G6TRT</nsesss:Identifikator>
+		</nsesss:Identifikace>
+		<nsesss:Popis>
+			<nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+		</nsesss:Popis>
+		<nsesss:Evidence>
+			<nsesss:EvidencniCislo>MZCR/2157/2010</nsesss:EvidencniCislo>
+			<nsesss:PoradoveCislo>2157</nsesss:PoradoveCislo>
+			<nsesss:UrceneCasoveObdobi>
+				<nsesss:DatumOd>2010-02-03</nsesss:DatumOd>
+				<nsesss:DatumDo>2010-02-05</nsesss:DatumDo>
+			</nsesss:UrceneCasoveObdobi>
+			<nsesss:NazevEvidenceDokumentu>ERMS</nsesss:NazevEvidenceDokumentu>
+		</nsesss:Evidence>
+		<nsesss:Puvod>
+			<nsesss:DorucenyDokument>
+				<nsesss:DatumDoruceni>2010-02-03</nsesss:DatumDoruceni>
+				<nsesss:OdesilatelovoEvidencniCislo>MZCR/URLB/297/2009</nsesss:OdesilatelovoEvidencniCislo>
+				<nsesss:Odesilatel>
+					<nsesss:Subjekt>
+						<nsesss:IdentifikatorOrganizace zdroj="IČ">00020478</nsesss:IdentifikatorOrganizace>
+						<nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+						<nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+						<nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>				
+					</nsesss:Subjekt>
+				</nsesss:Odesilatel>
+			</nsesss:DorucenyDokument>
+		</nsesss:Puvod>
+		<nsesss:Trideni>
+			<nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
+			<nsesss:PlneUrcenySpisovyZnak>2.4.3.3</nsesss:PlneUrcenySpisovyZnak>
+			</nsesss:Trideni>
+		<nsesss:Vyrizeni>
+			<nsesss:Datum>2010-12-29</nsesss:Datum>
+			<nsesss:Zpusob>vzetí na vědomí</nsesss:Zpusob>
+			<nsesss:Zpracovatel>
+				<nsesss:Subjekt>
+					<nsesss:IdentifikatorOrganizace zdroj="IČ">00020478</nsesss:IdentifikatorOrganizace>
+					<nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+					<nsesss:IdentifikatorFyzickeOsoby zdroj="ERMS">MZZ489</nsesss:IdentifikatorFyzickeOsoby>
+					<nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+					<nsesss:OrganizacniUtvar>Dotační odbor</nsesss:OrganizacniUtvar>
+					<nsesss:PracovniPozice>referent</nsesss:PracovniPozice>
+					<nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+				</nsesss:Subjekt>
+			</nsesss:Zpracovatel>
+		</nsesss:Vyrizeni>
+		<nsesss:Vyrazovani>
+							<nsesss:SkartacniRezim>
+								<nsesss:Identifikator zdroj="ERMS">MZUR7S4R8YDFG6T99</nsesss:Identifikator>
+								<nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+								<nsesss:Oduvodneni>Bezcenné účetní přílohy ke skartu</nsesss:Oduvodneni>
+								<nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+								<nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+								<nsesss:SpousteciUdalost>vyřízení/uzavření</nsesss:SpousteciUdalost>
+							</nsesss:SkartacniRezim>
+							<nsesss:DataceVyrazeni>
+								<nsesss:RokSpousteciUdalosti>2010</nsesss:RokSpousteciUdalosti>
+								<nsesss:RokSkartacniOperace>2016</nsesss:RokSkartacniOperace>
+							</nsesss:DataceVyrazeni>
+		</nsesss:Vyrazovani>
+		<nsesss:Manipulace>
+			<nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+		</nsesss:Manipulace>
+	</nsesss:EvidencniUdaje>
+	<nsesss:Komponenty>
+					<nsesss:Komponenta ID="ID5" druh="průvodní dopis" forma_uchovani="originál ve výstupním datovém formátu" poradi="1" verze="1">
+					<nsesss:EvidencniUdaje>
+					<nsesss:Identifikace>
+						<nsesss:Identifikator zdroj="ERMS">MZUR7S4R8YEEG6T99</nsesss:Identifikator>
+					</nsesss:Identifikace>
+					<nsesss:Popis>
+						<nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+						<nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+					</nsesss:Popis>
+					<nsesss:Trideni>
+						<nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
+						<nsesss:PlneUrcenySpisovyZnak>2.4.3.3</nsesss:PlneUrcenySpisovyZnak>
+					</nsesss:Trideni>
+					</nsesss:EvidencniUdaje>
+					</nsesss:Komponenta>
+					<nsesss:Komponenta ID="ID6" druh="příloha" forma_uchovani="originál" poradi="2" verze="1">
+					<nsesss:EvidencniUdaje>
+					<nsesss:Identifikace>
+						<nsesss:Identifikator zdroj="ERMS">MZUR7S4R8YEHR6T99</nsesss:Identifikator>
+					</nsesss:Identifikace>
+					<nsesss:Popis>
+						<nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+						<nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+					</nsesss:Popis>
+					<nsesss:Trideni>
+						<nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
+						<nsesss:PlneUrcenySpisovyZnak>2.4.3.3</nsesss:PlneUrcenySpisovyZnak>
+					</nsesss:Trideni>
+					</nsesss:EvidencniUdaje>
+					</nsesss:Komponenta>
+	</nsesss:Komponenty>
+</nsesss:Dokument>
+<nsesss:Dokument ID="ID10">
+	<nsesss:EvidencniUdaje>
+		<nsesss:Identifikace>
+			<nsesss:Identifikator zdroj="ERMS">MZUR7S4TUUZQG6TP1</nsesss:Identifikator>
+		</nsesss:Identifikace>
+		<nsesss:Popis>
+			<nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+		</nsesss:Popis>
+		<nsesss:Evidence>
+			<nsesss:EvidencniCislo>MZCR/2259/2010</nsesss:EvidencniCislo>
+			<nsesss:PoradoveCislo>2259</nsesss:PoradoveCislo>
+			<nsesss:UrceneCasoveObdobi>
+				<nsesss:DatumOd>2010-02-06</nsesss:DatumOd>
+				<nsesss:DatumDo>2010-12-29</nsesss:DatumDo>
+			</nsesss:UrceneCasoveObdobi>
+			<nsesss:NazevEvidenceDokumentu>ERMS</nsesss:NazevEvidenceDokumentu>
+		</nsesss:Evidence>
+		<nsesss:Puvod>
+			<nsesss:DorucenyDokument>
+				<nsesss:DatumDoruceni>2010-02-06</nsesss:DatumDoruceni>
+				<nsesss:OdesilatelovoEvidencniCislo>MZCR/URHK/459/2009</nsesss:OdesilatelovoEvidencniCislo>
+				<nsesss:Odesilatel>
+					<nsesss:Subjekt>
+						<nsesss:IdentifikatorOrganizace zdroj="IČ">00020478</nsesss:IdentifikatorOrganizace>
+						<nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+						<nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+						<nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>				
+					</nsesss:Subjekt>
+				</nsesss:Odesilatel>
+			</nsesss:DorucenyDokument>
+		</nsesss:Puvod>
+		<nsesss:Trideni>
+			<nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
+			<nsesss:PlneUrcenySpisovyZnak>2.4.3.3</nsesss:PlneUrcenySpisovyZnak>
+			</nsesss:Trideni>
+		<nsesss:Vyrizeni>
+			<nsesss:Datum>2010-12-29</nsesss:Datum>
+			<nsesss:Zpusob>vzetí na vědomí</nsesss:Zpusob>
+			<nsesss:Zpracovatel>
+				<nsesss:Subjekt>
+					<nsesss:IdentifikatorOrganizace zdroj="IČ">00020478</nsesss:IdentifikatorOrganizace>
+					<nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+					<nsesss:IdentifikatorFyzickeOsoby zdroj="ERMS">MZZ489</nsesss:IdentifikatorFyzickeOsoby>
+					<nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+					<nsesss:OrganizacniUtvar>Dotační odbor</nsesss:OrganizacniUtvar>
+					<nsesss:PracovniPozice>referent</nsesss:PracovniPozice>
+					<nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+				</nsesss:Subjekt>
+			</nsesss:Zpracovatel>
+		</nsesss:Vyrizeni>
+		<nsesss:Vyrazovani>
+							<nsesss:SkartacniRezim>
+								<nsesss:Identifikator zdroj="ERMS">MZUR7S4R8YDFG6T99</nsesss:Identifikator>
+								<nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+								<nsesss:Oduvodneni>Bezcenné účetní přílohy ke skartu</nsesss:Oduvodneni>
+								<nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+								<nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+								<nsesss:SpousteciUdalost>vyřízení/uzavření</nsesss:SpousteciUdalost>
+							</nsesss:SkartacniRezim>
+							<nsesss:DataceVyrazeni>
+								<nsesss:RokSpousteciUdalosti>2010</nsesss:RokSpousteciUdalosti>
+								<nsesss:RokSkartacniOperace>2016</nsesss:RokSkartacniOperace>
+							</nsesss:DataceVyrazeni>
+		</nsesss:Vyrazovani>
+		<nsesss:Manipulace>
+			<nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+		</nsesss:Manipulace>
+	</nsesss:EvidencniUdaje>
+	<nsesss:Komponenty>
+					<nsesss:Komponenta ID="ID11" druh="průvodní dopis" forma_uchovani="originál ve výstupním datovém formátu" poradi="1" verze="1">
+					<nsesss:EvidencniUdaje>
+					<nsesss:Identifikace>
+						<nsesss:Identifikator zdroj="ERMS">MZUR7S4R8YRRG6T99</nsesss:Identifikator>
+					</nsesss:Identifikace>
+					<nsesss:Popis>
+						<nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+						<nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+					</nsesss:Popis>
+					<nsesss:Trideni>
+						<nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
+						<nsesss:PlneUrcenySpisovyZnak>2.4.3.3</nsesss:PlneUrcenySpisovyZnak>
+					</nsesss:Trideni>
+					</nsesss:EvidencniUdaje>
+					</nsesss:Komponenta>
+					<nsesss:Komponenta ID="ID12" druh="příloha" forma_uchovani="originál" poradi="2" verze="1">
+					<nsesss:EvidencniUdaje>
+					<nsesss:Identifikace>
+						<nsesss:Identifikator zdroj="ERMS">MZUR7S4NMYEHR6T99</nsesss:Identifikator>
+					</nsesss:Identifikace>
+					<nsesss:Popis>
+						<nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+						<nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+					</nsesss:Popis>
+					<nsesss:Trideni>
+						<nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
+						<nsesss:PlneUrcenySpisovyZnak>2.4.3.3</nsesss:PlneUrcenySpisovyZnak>
+					</nsesss:Trideni>
+					</nsesss:EvidencniUdaje>
+					</nsesss:Komponenta>
+				</nsesss:Komponenty>
+	</nsesss:Dokument>
+<nsesss:Dokument ID="ID13">
+	<nsesss:EvidencniUdaje>
+		<nsesss:Identifikace>
+			<nsesss:Identifikator zdroj="ERMS">MZUR7S4TRRWQG6TP1</nsesss:Identifikator>
+		</nsesss:Identifikace>
+		<nsesss:Popis>
+			<nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+		</nsesss:Popis>
+		<nsesss:Evidence>
+			<nsesss:EvidencniCislo>MZCR/2489/2010</nsesss:EvidencniCislo>
+			<nsesss:PoradoveCislo>2489</nsesss:PoradoveCislo>
+			<nsesss:UrceneCasoveObdobi>
+				<nsesss:DatumOd>2010-02-13</nsesss:DatumOd>
+				<nsesss:DatumDo>2010-12-29</nsesss:DatumDo>
+			</nsesss:UrceneCasoveObdobi>
+			<nsesss:NazevEvidenceDokumentu>ERMS</nsesss:NazevEvidenceDokumentu>
+		</nsesss:Evidence>
+		<nsesss:Puvod>
+			<nsesss:DorucenyDokument>
+				<nsesss:DatumDoruceni>2010-02-12</nsesss:DatumDoruceni>
+				<nsesss:OdesilatelovoEvidencniCislo>MZCR/URJI/298/2009</nsesss:OdesilatelovoEvidencniCislo>
+				<nsesss:Odesilatel>
+					<nsesss:Subjekt>
+						<nsesss:IdentifikatorOrganizace zdroj="IČ">00020478</nsesss:IdentifikatorOrganizace>
+						<nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+						<nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+						<nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>				
+					</nsesss:Subjekt>
+				</nsesss:Odesilatel>
+			</nsesss:DorucenyDokument>
+		</nsesss:Puvod>
+		<nsesss:Trideni>
+			<nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
+			<nsesss:PlneUrcenySpisovyZnak>2.4.3.3</nsesss:PlneUrcenySpisovyZnak>
+			</nsesss:Trideni>
+		<nsesss:Vyrizeni>
+			<nsesss:Datum>2010-12-29</nsesss:Datum>
+			<nsesss:Zpusob>vzetí na vědomí</nsesss:Zpusob>
+			<nsesss:Zpracovatel>
+				<nsesss:Subjekt>
+					<nsesss:IdentifikatorOrganizace zdroj="IČ">00020478</nsesss:IdentifikatorOrganizace>
+					<nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+					<nsesss:IdentifikatorFyzickeOsoby zdroj="ERMS">MZZ489</nsesss:IdentifikatorFyzickeOsoby>
+					<nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+					<nsesss:OrganizacniUtvar>Dotační odbor</nsesss:OrganizacniUtvar>
+					<nsesss:PracovniPozice>referent</nsesss:PracovniPozice>
+					<nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+				</nsesss:Subjekt>
+			</nsesss:Zpracovatel>
+		</nsesss:Vyrizeni>
+		<nsesss:Vyrazovani>
+							<nsesss:SkartacniRezim>
+								<nsesss:Identifikator zdroj="ERMS">MZUR7S4R8YDFG6T99</nsesss:Identifikator>
+								<nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+								<nsesss:Oduvodneni>Bezcenné účetní přílohy ke skartu</nsesss:Oduvodneni>
+								<nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+								<nsesss:SkartacniLhuta>5</nsesss:SkartacniLhuta>
+								<nsesss:SpousteciUdalost>vyřízení/uzavření</nsesss:SpousteciUdalost>
+							</nsesss:SkartacniRezim>
+							<nsesss:DataceVyrazeni>
+								<nsesss:RokSpousteciUdalosti>2010</nsesss:RokSpousteciUdalosti>
+								<nsesss:RokSkartacniOperace>2016</nsesss:RokSkartacniOperace>
+							</nsesss:DataceVyrazeni>
+		</nsesss:Vyrazovani>
+		<nsesss:Manipulace>
+			<nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+		</nsesss:Manipulace>
+	</nsesss:EvidencniUdaje>
+	<nsesss:Komponenty>
+					<nsesss:Komponenta ID="ID14" druh="průvodní dopis" forma_uchovani="originál ve výstupním datovém formátu" poradi="1" verze="1">
+					<nsesss:EvidencniUdaje>
+					<nsesss:Identifikace>
+						<nsesss:Identifikator zdroj="ERMS">MZUR7S4R8YTBG6T99</nsesss:Identifikator>
+					</nsesss:Identifikace>
+					<nsesss:Popis>
+						<nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+						<nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+					</nsesss:Popis>
+					<nsesss:Trideni>
+						<nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
+						<nsesss:PlneUrcenySpisovyZnak>2.4.3.3</nsesss:PlneUrcenySpisovyZnak>
+					</nsesss:Trideni>
+					</nsesss:EvidencniUdaje>
+					</nsesss:Komponenta>
+					<nsesss:Komponenta ID="ID15" druh="příloha" forma_uchovani="originál" poradi="2" verze="1">
+					<nsesss:EvidencniUdaje>
+					<nsesss:Identifikace>
+						<nsesss:Identifikator zdroj="ERMS">MZURO14R8YEHR6T99</nsesss:Identifikator>
+					</nsesss:Identifikace>
+					<nsesss:Popis>
+						<nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+						<nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+					</nsesss:Popis>
+					<nsesss:Trideni>
+						<nsesss:JednoduchySpisovyZnak>3</nsesss:JednoduchySpisovyZnak>
+						<nsesss:PlneUrcenySpisovyZnak>2.4.3.3</nsesss:PlneUrcenySpisovyZnak>
+					</nsesss:Trideni>
+					</nsesss:EvidencniUdaje>
+					</nsesss:Komponenta>
+				</nsesss:Komponenty>
+	</nsesss:Dokument>	
+		</nsesss:Dokumenty>
+</nsesss:Dil>
+			
+			</mets:xmlData>
+		</mets:mdWrap>
+	</mets:dmdSec>
+	<mets:amdSec ID="amd01">
+		<mets:digiprovMD ID="digiProv01">
+			<mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+				<mets:xmlData>
+					<tp:TransakcniLogObjektu>
+						<tp:TransLogInfo>
+							<tp:Identifikator>
+								<tp:HodnotaID>TPMZUR7S4T875G6TRT</tp:HodnotaID>
+								<tp:ZdrojID>ERMS</tp:ZdrojID>
+							</tp:Identifikator>
+							<tp:DatumVzniku>2010-01-02T08:12:45</tp:DatumVzniku>
+							<tp:DatumCasOd>2010-01-02T08:12:45</tp:DatumCasOd>
+							<tp:DatumCasDo>2010-12-29T08:12:45</tp:DatumCasDo>
+							<tp:Objekt>
+								<tp:TypObjektu>
+									<tp:TypObjektuId>Dokument</tp:TypObjektuId>
+								</tp:TypObjektu>
+								<tp:Identifikator>
+									<tp:HodnotaID>MZUR7S4T875G6TRT</tp:HodnotaID>
+									<tp:ZdrojID>ERMS</tp:ZdrojID>
+								</tp:Identifikator>
+							</tp:Objekt>
+						</tp:TransLogInfo>
+						<tp:Udalosti>
+							<tp:Udalost>
+								<tp:Poradi>1</tp:Poradi>
+								<tp:DatumVzniku>2010-01-02T08:12:45</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>Doruceno</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>2</tp:Poradi>
+								<tp:DatumVzniku>2010-01-02T08:48:47</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>PripojeniCJ</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>3</tp:Poradi>
+								<tp:DatumVzniku>2010-01-02T08:55:10</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>ZmenaZpracovatele</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+								<tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>4</tp:Poradi>
+								<tp:DatumVzniku>2010-02-02T12:12:45</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>ZmenaZpracovatele</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+								<tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>5</tp:Poradi>
+								<tp:DatumVzniku>2010-02-02T15:14:45</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>VlozeniDoSpisu</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+						</tp:Udalosti>
+					</tp:TransakcniLogObjektu>
+				</mets:xmlData>
+			</mets:mdWrap>
+		</mets:digiprovMD>
+	</mets:amdSec>
+	<mets:amdSec ID="amd02">
+		<mets:digiprovMD ID="digiProv02">
+			<mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+				<mets:xmlData>
+					<tp:TransakcniLogObjektu>
+						<tp:TransLogInfo>
+							<tp:Identifikator>
+								<tp:HodnotaID>TPMZUR7S4R8YEEG6T99</tp:HodnotaID>
+								<tp:ZdrojID>ERMS</tp:ZdrojID>
+							</tp:Identifikator>
+							<tp:DatumVzniku>2010-01-02T08:12:45</tp:DatumVzniku>
+							<tp:DatumCasOd>2010-01-02T08:12:45</tp:DatumCasOd>
+							<tp:DatumCasDo>2010-02-28T08:14:54</tp:DatumCasDo>
+							<tp:Objekt>
+								<tp:TypObjektu>
+									<tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+								</tp:TypObjektu>
+								<tp:Identifikator>
+									<tp:HodnotaID>MZUR7S4R8YEEG6T99</tp:HodnotaID>
+									<tp:ZdrojID>ERMS</tp:ZdrojID>
+								</tp:Identifikator>
+							</tp:Objekt>
+						</tp:TransLogInfo>
+						<tp:Udalosti>
+							<tp:Udalost>
+								<tp:Poradi>1</tp:Poradi>
+								<tp:DatumVzniku>2010-01-02T08:12:45</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>Doruceno</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>2</tp:Poradi>
+								<tp:DatumVzniku>2010-01-02T08:50:47</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>VlozeniKDokumentu</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+						</tp:Udalosti>
+					</tp:TransakcniLogObjektu>
+				</mets:xmlData>
+			</mets:mdWrap>
+		</mets:digiprovMD>
+	</mets:amdSec>
+	<mets:amdSec ID="amd03">
+		<mets:digiprovMD ID="digiProv03">
+			<mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+				<mets:xmlData>
+					<tp:TransakcniLogObjektu>
+						<tp:TransLogInfo>
+							<tp:Identifikator>
+								<tp:HodnotaID>TPMZUR7S4R8YEHR6T99</tp:HodnotaID>
+								<tp:ZdrojID>ERMS</tp:ZdrojID>
+							</tp:Identifikator>
+							<tp:DatumVzniku>2009-02-27T08:12:45</tp:DatumVzniku>
+							<tp:DatumCasOd>2009-02-27T08:12:45</tp:DatumCasOd>
+							<tp:DatumCasDo>2010-02-28T08:14:54</tp:DatumCasDo>
+							<tp:Objekt>
+								<tp:TypObjektu>
+									<tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+								</tp:TypObjektu>
+								<tp:Identifikator>
+									<tp:HodnotaID>MZUR7S4R8YEHR6T99</tp:HodnotaID>
+									<tp:ZdrojID>ERMS</tp:ZdrojID>
+								</tp:Identifikator>
+							</tp:Objekt>
+						</tp:TransLogInfo>
+						<tp:Udalosti>
+							<tp:Udalost>
+								<tp:Poradi>1</tp:Poradi>
+								<tp:DatumVzniku>2010-01-02T08:12:45</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>Doruceno</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>2</tp:Poradi>
+								<tp:DatumVzniku>2010-01-02T08:51:47</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>VlozeniKDokumentu</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>	
+						</tp:Udalosti>
+					</tp:TransakcniLogObjektu>
+				</mets:xmlData>
+			</mets:mdWrap>
+		</mets:digiprovMD>
+	</mets:amdSec>
+	<mets:amdSec ID="amd04">
+		<mets:digiprovMD ID="digiProv04">
+			<mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+				<mets:xmlData>
+					<tp:TransakcniLogObjektu>
+						<tp:TransLogInfo>
+							<tp:Identifikator>
+								<tp:HodnotaID>TPMZURSPSK8YEHR6T99</tp:HodnotaID>
+								<tp:ZdrojID>ERMS</tp:ZdrojID>
+							</tp:Identifikator>
+							<tp:DatumVzniku>2007-12-28T08:51:47</tp:DatumVzniku>
+							<tp:DatumCasOd>2008-01-01T00:00:00</tp:DatumCasOd>
+							<tp:DatumCasDo>2010-02-28T08:14:54</tp:DatumCasDo>
+							<tp:Objekt>
+								<tp:TypObjektu>
+									<tp:TypObjektuId>SpisovyPlan</tp:TypObjektuId>
+								</tp:TypObjektu>
+								<tp:Identifikator>
+									<tp:HodnotaID>MZUR7S4T8ZZQG6T78</tp:HodnotaID>
+									<tp:ZdrojID>ERMS</tp:ZdrojID>
+								</tp:Identifikator>
+							</tp:Objekt>
+						</tp:TransLogInfo>
+						<tp:Udalosti>
+							<tp:Udalost>
+								<tp:Poradi>1</tp:Poradi>
+								<tp:DatumVzniku>2007-12-28T08:51:47</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>Zalozeni</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>2</tp:Poradi>
+								<tp:DatumVzniku>2008-01-01T00:00:00</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>Otevreni</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+						</tp:Udalosti>
+					</tp:TransakcniLogObjektu>
+				</mets:xmlData>
+			</mets:mdWrap>
+		</mets:digiprovMD>
+	</mets:amdSec>
+	<mets:amdSec ID="amd05">
+		<mets:digiprovMD ID="digiProv05">
+			<mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+				<mets:xmlData>
+					<tp:TransakcniLogObjektu>
+						<tp:TransLogInfo>
+							<tp:Identifikator>
+								<tp:HodnotaID>TPMZURSPSK8YEHRRE99</tp:HodnotaID>
+								<tp:ZdrojID>ERMS</tp:ZdrojID>
+							</tp:Identifikator>
+							<tp:DatumVzniku>2008-12-21T15:15:15</tp:DatumVzniku>
+							<tp:DatumCasOd>2009-01-01T00:00:00</tp:DatumCasOd>
+							<tp:DatumCasDo>2010-02-28T08:14:54</tp:DatumCasDo>
+							<tp:Objekt>
+								<tp:TypObjektu>
+									<tp:TypObjektuId>VecnaSkupina</tp:TypObjektuId>
+								</tp:TypObjektu>
+								<tp:Identifikator>
+									<tp:HodnotaID>TPMZURSPSK87THRRE99</tp:HodnotaID>
+									<tp:ZdrojID>ERMS</tp:ZdrojID>
+								</tp:Identifikator>
+							</tp:Objekt>
+						</tp:TransLogInfo>
+						<tp:Udalosti>
+							<tp:Udalost>
+								<tp:Poradi>1</tp:Poradi>
+								<tp:DatumVzniku>2007-12-28T08:51:47</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>Zalozeni</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>2</tp:Poradi>
+								<tp:DatumVzniku>2008-01-01T00:00:00</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>Otevreni</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+						</tp:Udalosti>
+					</tp:TransakcniLogObjektu>
+				</mets:xmlData>
+			</mets:mdWrap>
+		</mets:digiprovMD>
+	</mets:amdSec>
+	<mets:amdSec ID="amd06">
+		<mets:digiprovMD ID="digiProv06">
+			<mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+				<mets:xmlData>
+					<tp:TransakcniLogObjektu>
+						<tp:TransLogInfo>
+							<tp:Identifikator>
+								<tp:HodnotaID>TPMZUR7S4T8QQG6T78</tp:HodnotaID>
+								<tp:ZdrojID>ERMS</tp:ZdrojID>
+							</tp:Identifikator>
+							<tp:DatumVzniku>2008-12-21T15:15:15</tp:DatumVzniku>
+							<tp:DatumCasOd>2009-01-01T00:00:00</tp:DatumCasOd>
+							<tp:DatumCasDo>2010-02-28T08:14:54</tp:DatumCasDo>
+							<tp:Objekt>
+								<tp:TypObjektu>
+									<tp:TypObjektuId>VecnaSkupina</tp:TypObjektuId>
+								</tp:TypObjektu>
+								<tp:Identifikator>
+									<tp:HodnotaID>MZUR7S4T8QQG6T78</tp:HodnotaID>
+									<tp:ZdrojID>ERMS</tp:ZdrojID>
+								</tp:Identifikator>
+							</tp:Objekt>
+						</tp:TransLogInfo>
+						<tp:Udalosti>
+							<tp:Udalost>
+								<tp:Poradi>1</tp:Poradi>
+								<tp:DatumVzniku>2007-12-28T08:51:47</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>Zalozeni</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>2</tp:Poradi>
+								<tp:DatumVzniku>2008-01-01T00:00:00</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>Otevreni</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+						</tp:Udalosti>
+					</tp:TransakcniLogObjektu>
+				</mets:xmlData>
+			</mets:mdWrap>
+		</mets:digiprovMD>
+	</mets:amdSec>
+	<mets:amdSec ID="amd07">
+		<mets:digiprovMD ID="digiProv07">
+			<mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+				<mets:xmlData>
+					<tp:TransakcniLogObjektu>
+						<tp:TransLogInfo>
+							<tp:Identifikator>
+								<tp:HodnotaID>TPMZUR7S4T8S5G6TRT</tp:HodnotaID>
+								<tp:ZdrojID>ERMS</tp:ZdrojID>
+							</tp:Identifikator>
+							<tp:DatumVzniku>2009-01-01T00:00:00</tp:DatumVzniku>
+							<tp:DatumCasOd>2009-01-01T00:00:00</tp:DatumCasOd>
+							<tp:DatumCasDo>2010-02-28T08:14:54</tp:DatumCasDo>
+							<tp:Objekt>
+								<tp:TypObjektu>
+									<tp:TypObjektuId>Dil</tp:TypObjektuId>
+								</tp:TypObjektu>
+								<tp:Identifikator>
+									<tp:HodnotaID>MZUR7S4T8S5G6TRT</tp:HodnotaID>
+									<tp:ZdrojID>ERMS</tp:ZdrojID>
+								</tp:Identifikator>
+							</tp:Objekt>
+						</tp:TransLogInfo>
+						<tp:Udalosti>
+							<tp:Udalost>
+								<tp:Poradi>1</tp:Poradi>
+								<tp:DatumVzniku>2010-02-01T08:12:45</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>Zalozeni</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>2</tp:Poradi>
+								<tp:DatumVzniku>2010-02-02T10:14:48</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>Uprava</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+								<tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>3</tp:Poradi>
+								<tp:DatumVzniku>2010-12-28T08:10:54</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>Vyrizeni</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+								<tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+							</tp:Udalost>
+						</tp:Udalosti>
+					</tp:TransakcniLogObjektu>
+				</mets:xmlData>
+			</mets:mdWrap>
+		</mets:digiprovMD>
+	</mets:amdSec>
+	<mets:amdSec ID="amd08">
+		<mets:digiprovMD ID="digiProv08">
+			<mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+				<mets:xmlData>
+					<tp:TransakcniLogObjektu>
+						<tp:TransLogInfo>
+							<tp:Identifikator>
+								<tp:HodnotaID>TPMZUR7S4T875G6WER</tp:HodnotaID>
+								<tp:ZdrojID>ERMS</tp:ZdrojID>
+							</tp:Identifikator>
+							<tp:DatumVzniku>2009-01-01T00:00:00</tp:DatumVzniku>
+							<tp:DatumCasOd>2009-01-01T00:00:00</tp:DatumCasOd>
+							<tp:DatumCasDo>2010-02-28T08:14:54</tp:DatumCasDo>
+							<tp:Objekt>
+								<tp:TypObjektu>
+									<tp:TypObjektuId>Soucast</tp:TypObjektuId>
+								</tp:TypObjektu>
+								<tp:Identifikator>
+									<tp:HodnotaID>MZUR7S4T875G6WER</tp:HodnotaID>
+									<tp:ZdrojID>ERMS</tp:ZdrojID>
+								</tp:Identifikator>
+							</tp:Objekt>
+						</tp:TransLogInfo>
+						<tp:Udalosti>
+							<tp:Udalost>
+								<tp:Poradi>1</tp:Poradi>
+								<tp:DatumVzniku>2010-02-01T08:01:45</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>Zalozeni</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>2</tp:Poradi>
+								<tp:DatumVzniku>2012-12-30T16:01:45</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>Uzavreni</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>3</tp:Poradi>
+								<tp:DatumVzniku>2010-12-28T08:14:54</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>PredaniNaSpisovnu</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>4</tp:Poradi>
+								<tp:DatumVzniku>2010-12-29T10:14:54</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>PrevzetiNaSpisovnu</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>						
+						</tp:Udalosti>
+					</tp:TransakcniLogObjektu>
+				</mets:xmlData>
+			</mets:mdWrap>
+		</mets:digiprovMD>
+	</mets:amdSec>
+	<mets:amdSec ID="amd09">
+		<mets:digiprovMD ID="digiProv09">
+			<mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+				<mets:xmlData>
+					<tp:TransakcniLogObjektu>
+						<tp:TransLogInfo>
+							<tp:Identifikator>
+								<tp:HodnotaID>TPMZUR7S4T8S5G6T78</tp:HodnotaID>
+								<tp:ZdrojID>ERMS</tp:ZdrojID>
+							</tp:Identifikator>
+							<tp:DatumVzniku>2010-01-03T08:12:45</tp:DatumVzniku>
+							<tp:DatumCasOd>2010-01-03T08:12:45</tp:DatumCasOd>
+							<tp:DatumCasDo>2015-12-31T23:59:59</tp:DatumCasDo>
+							<tp:Objekt>
+								<tp:TypObjektu>
+									<tp:TypObjektuId>TypovySpis</tp:TypObjektuId>
+								</tp:TypObjektu>
+								<tp:Identifikator>
+									<tp:HodnotaID>MZUR7S4T8S5G6T78</tp:HodnotaID>
+									<tp:ZdrojID>ERMS</tp:ZdrojID>
+								</tp:Identifikator>
+							</tp:Objekt>
+						</tp:TransLogInfo>
+						<tp:Udalosti>
+							<tp:Udalost>
+								<tp:Poradi>1</tp:Poradi>
+								<tp:DatumVzniku>2010-01-03T08:12:45</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>Zalozeni</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+						</tp:Udalosti>
+					</tp:TransakcniLogObjektu>
+				</mets:xmlData>
+			</mets:mdWrap>
+		</mets:digiprovMD>
+	</mets:amdSec>
+	<mets:amdSec ID="amd10">
+		<mets:digiprovMD ID="digiProv10">
+			<mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+				<mets:xmlData>
+					<tp:TransakcniLogObjektu>
+						<tp:TransLogInfo>
+							<tp:Identifikator>
+								<tp:HodnotaID>TPMZUR7S4TUUZQG6TP1</tp:HodnotaID>
+								<tp:ZdrojID>ERMS</tp:ZdrojID>
+							</tp:Identifikator>
+							<tp:DatumVzniku>2010-02-01T08:12:45</tp:DatumVzniku>
+							<tp:DatumCasOd>2010-02-01T08:12:45</tp:DatumCasOd>
+							<tp:DatumCasDo>2015-12-31T23:59:59</tp:DatumCasDo>
+							<tp:Objekt>
+								<tp:TypObjektu>
+									<tp:TypObjektuId>Dokument</tp:TypObjektuId>
+								</tp:TypObjektu>
+								<tp:Identifikator>
+									<tp:HodnotaID>MZUR7S4TUUZQG6TP1</tp:HodnotaID>
+									<tp:ZdrojID>ERMS</tp:ZdrojID>
+								</tp:Identifikator>
+							</tp:Objekt>
+						</tp:TransLogInfo>
+						<tp:Udalosti>
+							<tp:Udalost>
+								<tp:Poradi>1</tp:Poradi>
+								<tp:DatumVzniku>2010-02-06T08:12:45</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>Doruceno</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>2</tp:Poradi>
+								<tp:DatumVzniku>2010-02-06T08:48:47</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>PripojeniCJ</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>3</tp:Poradi>
+								<tp:DatumVzniku>2010-02-06T08:55:10</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>ZmenaZpracovatele</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+								<tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>4</tp:Poradi>
+								<tp:DatumVzniku>2010-02-07T12:12:45</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>ZmenaZpracovatele</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+								<tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>5</tp:Poradi>
+								<tp:DatumVzniku>2010-02-08T10:14:45</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>VlozeniDoSpisu</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+						</tp:Udalosti>
+					</tp:TransakcniLogObjektu>
+				</mets:xmlData>
+			</mets:mdWrap>
+		</mets:digiprovMD>
+	</mets:amdSec>
+	<mets:amdSec ID="amd11">
+		<mets:digiprovMD ID="digiProv11">
+			<mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+				<mets:xmlData>
+					<tp:TransakcniLogObjektu>
+						<tp:TransLogInfo>
+							<tp:Identifikator>
+								<tp:HodnotaID>TPMZUR7S4R8YRRG6T99</tp:HodnotaID>
+								<tp:ZdrojID>ERMS</tp:ZdrojID>
+							</tp:Identifikator>
+							<tp:DatumVzniku>2010-02-06T08:12:45</tp:DatumVzniku>
+							<tp:DatumCasOd>2010-02-06T08:12:45</tp:DatumCasOd>
+							<tp:DatumCasDo>2015-12-31T23:59:59</tp:DatumCasDo>
+							<tp:Objekt>
+								<tp:TypObjektu>
+									<tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+								</tp:TypObjektu>
+								<tp:Identifikator>
+									<tp:HodnotaID>MZUR7S4R8YRRG6T99</tp:HodnotaID>
+									<tp:ZdrojID>ERMS</tp:ZdrojID>
+								</tp:Identifikator>
+							</tp:Objekt>
+						</tp:TransLogInfo>
+						<tp:Udalosti>
+							<tp:Udalost>
+								<tp:Poradi>1</tp:Poradi>
+								<tp:DatumVzniku>2010-01-02T08:12:45</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>Doruceno</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>2</tp:Poradi>
+								<tp:DatumVzniku>2010-01-02T08:50:47</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>VlozeniKDokumentu</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+						</tp:Udalosti>
+					</tp:TransakcniLogObjektu>
+				</mets:xmlData>
+			</mets:mdWrap>
+		</mets:digiprovMD>
+	</mets:amdSec>
+	<mets:amdSec ID="amd12">
+		<mets:digiprovMD ID="digiProv12">
+			<mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+				<mets:xmlData>
+					<tp:TransakcniLogObjektu>
+						<tp:TransLogInfo>
+							<tp:Identifikator>
+								<tp:HodnotaID>TPMZUR7S4NMYEHR6T99</tp:HodnotaID>
+								<tp:ZdrojID>ERMS</tp:ZdrojID>
+							</tp:Identifikator>
+							<tp:DatumVzniku>2010-02-06T08:12:45</tp:DatumVzniku>
+							<tp:DatumCasOd>2010-02-06T08:12:45</tp:DatumCasOd>
+							<tp:DatumCasDo>2015-12-31T23:59:59</tp:DatumCasDo>
+							<tp:Objekt>
+								<tp:TypObjektu>
+									<tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+								</tp:TypObjektu>
+								<tp:Identifikator>
+									<tp:HodnotaID>MZUR7S4NMYEHR6T99</tp:HodnotaID>
+									<tp:ZdrojID>ERMS</tp:ZdrojID>
+								</tp:Identifikator>
+							</tp:Objekt>
+						</tp:TransLogInfo>
+						<tp:Udalosti>
+							<tp:Udalost>
+								<tp:Poradi>1</tp:Poradi>
+								<tp:DatumVzniku>2010-01-02T08:12:45</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>Doruceno</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>2</tp:Poradi>
+								<tp:DatumVzniku>2010-01-02T08:50:47</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>VlozeniKDokumentu</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+						</tp:Udalosti>
+					</tp:TransakcniLogObjektu>
+				</mets:xmlData>
+			</mets:mdWrap>
+		</mets:digiprovMD>
+	</mets:amdSec>
+	<mets:amdSec ID="amd13">
+		<mets:digiprovMD ID="digiProv13">
+			<mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+				<mets:xmlData>
+					<tp:TransakcniLogObjektu>
+						<tp:TransLogInfo>
+							<tp:Identifikator>
+								<tp:HodnotaID>TPMZUR7S4TRRWQG6TP1</tp:HodnotaID>
+								<tp:ZdrojID>ERMS</tp:ZdrojID>
+							</tp:Identifikator>
+							<tp:DatumVzniku>2010-02-12T08:12:45</tp:DatumVzniku>
+							<tp:DatumCasOd>2010-02-12T08:12:45</tp:DatumCasOd>
+							<tp:DatumCasDo>2015-12-31T23:59:59</tp:DatumCasDo>
+							<tp:Objekt>
+								<tp:TypObjektu>
+									<tp:TypObjektuId>TypovySpis</tp:TypObjektuId>
+								</tp:TypObjektu>
+								<tp:Identifikator>
+									<tp:HodnotaID>MZUR7S4TRRWQG6TP1</tp:HodnotaID>
+									<tp:ZdrojID>ERMS</tp:ZdrojID>
+								</tp:Identifikator>
+							</tp:Objekt>
+						</tp:TransLogInfo>
+						<tp:Udalosti>
+							<tp:Udalost>
+								<tp:Poradi>1</tp:Poradi>
+								<tp:DatumVzniku>2010-02-12T08:12:45</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>Doruceno</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>2</tp:Poradi>
+								<tp:DatumVzniku>2010-02-12T08:48:47</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>PripojeniCJ</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>3</tp:Poradi>
+								<tp:DatumVzniku>2010-02-12T08:55:10</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>ZmenaZpracovatele</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+								<tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>4</tp:Poradi>
+								<tp:DatumVzniku>2010-02-13T12:12:45</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>ZmenaZpracovatele</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+								<tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>5</tp:Poradi>
+								<tp:DatumVzniku>2010-02-14T10:14:45</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>VlozeniDoSpisu</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+						</tp:Udalosti>
+					</tp:TransakcniLogObjektu>
+				</mets:xmlData>
+			</mets:mdWrap>
+		</mets:digiprovMD>
+	</mets:amdSec>
+	<mets:amdSec ID="amd14">
+		<mets:digiprovMD ID="digiProv14">
+			<mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+				<mets:xmlData>
+					<tp:TransakcniLogObjektu>
+						<tp:TransLogInfo>
+							<tp:Identifikator>
+								<tp:HodnotaID>TPMZUR7S4R8YTBG6T99</tp:HodnotaID>
+								<tp:ZdrojID>ERMS</tp:ZdrojID>
+							</tp:Identifikator>
+							<tp:DatumVzniku>2010-02-12T08:12:45</tp:DatumVzniku>
+							<tp:DatumCasOd>2010-02-12T08:12:45</tp:DatumCasOd>
+							<tp:DatumCasDo>2015-12-31T23:59:59</tp:DatumCasDo>
+							<tp:Objekt>
+								<tp:TypObjektu>
+									<tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+								</tp:TypObjektu>
+								<tp:Identifikator>
+									<tp:HodnotaID>MZURMZUR7S4R8YTBG6T99</tp:HodnotaID>
+									<tp:ZdrojID>ERMS</tp:ZdrojID>
+								</tp:Identifikator>
+							</tp:Objekt>
+						</tp:TransLogInfo>
+						<tp:Udalosti>
+							<tp:Udalost>
+								<tp:Poradi>1</tp:Poradi>
+								<tp:DatumVzniku>2010-02-12T08:12:45</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>Doruceno</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>2</tp:Poradi>
+								<tp:DatumVzniku>2010-02-12T08:50:47</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>VlozeniKDokumentu</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+						</tp:Udalosti>
+					</tp:TransakcniLogObjektu>
+				</mets:xmlData>
+			</mets:mdWrap>
+		</mets:digiprovMD>
+	</mets:amdSec>
+	<mets:amdSec ID="amd15">
+		<mets:digiprovMD ID="digiProv15">
+			<mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+				<mets:xmlData>
+					<tp:TransakcniLogObjektu>
+						<tp:TransLogInfo>
+							<tp:Identifikator>
+								<tp:HodnotaID>TPMZURO14R8YEHR6T99</tp:HodnotaID>
+								<tp:ZdrojID>ERMS</tp:ZdrojID>
+							</tp:Identifikator>
+							<tp:DatumVzniku>2010-02-01T08:12:45</tp:DatumVzniku>
+							<tp:DatumCasOd>2010-02-01T08:12:45</tp:DatumCasOd>
+							<tp:DatumCasDo>2015-12-31T23:59:59</tp:DatumCasDo>
+							<tp:Objekt>
+								<tp:TypObjektu>
+									<tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+								</tp:TypObjektu>
+								<tp:Identifikator>
+									<tp:HodnotaID>MZURO14R8YEHR6T99</tp:HodnotaID>
+									<tp:ZdrojID>ERMS</tp:ZdrojID>
+								</tp:Identifikator>
+							</tp:Objekt>
+						</tp:TransLogInfo>
+						<tp:Udalosti>
+						<tp:Udalost>
+								<tp:Poradi>1</tp:Poradi>
+								<tp:DatumVzniku>2010-02-12T08:12:45</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>Doruceno</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+							<tp:Udalost>
+								<tp:Poradi>2</tp:Poradi>
+								<tp:DatumVzniku>2010-02-12T08:50:47</tp:DatumVzniku>
+								<tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+								<tp:TypUdalosti>
+									<tp:TypUdalostiId>VlozeniKDokumentu</tp:TypUdalostiId>
+								</tp:TypUdalosti>
+							</tp:Udalost>
+						</tp:Udalosti>
+					</tp:TransakcniLogObjektu>
+				</mets:xmlData>
+			</mets:mdWrap>
+		</mets:digiprovMD>
+	</mets:amdSec>
+	<mets:fileSec>
+		<mets:fileGrp>
+			<mets:file CHECKSUM="FC1DDA79C943A9D1D4E929B31DB1DECA747AA86B93F13C6A7E63BBD490107BBF" CHECKSUMTYPE="SHA-256" CREATED="2018-01-26T10:54:12" DMDID="ID5" ID="IDf1" MIMETYPE="application/pdf" SIZE="44056">
+				<mets:FLocat LOCTYPE="URL" xlink:href="komponenty/pruvodka_lb.pdf" xlink:type="simple"/>
+			</mets:file>
+			<mets:file CHECKSUM="2C22D79F110BFC5D2A0CA44D770C459B7BE66A8151F0E628368D037922237B5D" CHECKSUMTYPE="SHA-256" CREATED="2018-01-26T10:54:12" DMDID="ID6" ID="IDf2" MIMETYPE="image/jpeg" SIZE="152246">
+				<mets:FLocat LOCTYPE="URL" xlink:href="komponenty/dotacni_prehled_lb.jpg" xlink:type="simple"/>
+			</mets:file>
+			<mets:file CHECKSUM="FC1DDA79C943A9D1D4E929B31DB1DECA747AA86B93F13C6A7E63BBD490107BBF" CHECKSUMTYPE="SHA-256" CREATED="2018-01-26T10:54:12" DMDID="ID11" ID="IDf3" MIMETYPE="application/pdf" SIZE="44056">
+				<mets:FLocat LOCTYPE="URL" xlink:href="komponenty/pruvodka_hk.pdf" xlink:type="simple"/>
+			</mets:file>
+			<mets:file CHECKSUM="2C22D79F110BFC5D2A0CA44D770C459B7BE66A8151F0E628368D037922237B5D" CHECKSUMTYPE="SHA-256" CREATED="2018-01-26T10:54:12" DMDID="ID12" ID="IDf4" MIMETYPE="image/jpeg" SIZE="152246">
+				<mets:FLocat LOCTYPE="URL" xlink:href="komponenty/dotacni_prehled_hk.jpg" xlink:type="simple"/>
+			</mets:file>
+			<mets:file CHECKSUM="FC1DDA79C943A9D1D4E929B31DB1DECA747AA86B93F13C6A7E63BBD490107BBF" CHECKSUMTYPE="SHA-256" CREATED="2018-01-26T10:54:12" DMDID="ID14" ID="IDf5" MIMETYPE="application/pdf" SIZE="44056">
+				<mets:FLocat LOCTYPE="URL" xlink:href="komponenty/pruvodka_ji.pdf" xlink:type="simple"/>
+			</mets:file>
+			<mets:file CHECKSUM="2C22D79F110BFC5D2A0CA44D770C459B7BE66A8151F0E628368D037922237B5D" CHECKSUMTYPE="SHA-256" CREATED="2018-01-26T10:54:12" DMDID="ID15" ID="IDf6" MIMETYPE="image/jpeg" SIZE="152246">
+				<mets:FLocat LOCTYPE="URL" xlink:href="komponenty/dotacni_prehled_ji.jpg" xlink:type="simple"/>
+			</mets:file>
+		</mets:fileGrp>
+	</mets:fileSec>
+	<mets:structMap>
+		<mets:div ADMID="amd04" DMDID="ID4" TYPE="spisový plán">
+			<mets:div ADMID="amd05" DMDID="ID3" TYPE="věcná skupina">
+				<mets:div ADMID="amd06" DMDID="ID2" TYPE="věcná skupina">
+					<mets:div ADMID="amd09" DMDID="ID9" TYPE="typový spis">
+						<mets:div ADMID="amd08" DMDID="ID8" TYPE="součást">
+							<mets:div ADMID="amd07" DMDID="ID7" TYPE="díl">
+								<mets:div ADMID="amd01" DMDID="ID1" TYPE="dokument">
+									<mets:div ADMID="amd02" DMDID="ID5" TYPE="komponenta">
+										<mets:fptr FILEID="IDf1"/>
+									</mets:div>
+									<mets:div ADMID="amd03" DMDID="ID6" TYPE="komponenta">
+										<mets:fptr FILEID="IDf2"/>
+									</mets:div>
+								</mets:div>
+								<mets:div ADMID="amd10" DMDID="ID10" TYPE="dokument">
+									<mets:div ADMID="amd11" DMDID="ID11" TYPE="komponenta">
+										<mets:fptr FILEID="IDf3"/>
+									</mets:div>
+									<mets:div ADMID="amd12" DMDID="ID12" TYPE="komponenta">
+										<mets:fptr FILEID="IDf4"/>
+									</mets:div>
+								</mets:div>
+								<mets:div ADMID="amd13" DMDID="ID13" TYPE="dokument">
+									<mets:div ADMID="amd14" DMDID="ID14" TYPE="komponenta">
+										<mets:fptr FILEID="IDf5"/>
+									</mets:div>
+									<mets:div ADMID="amd15" DMDID="ID15" TYPE="komponenta">
+										<mets:fptr FILEID="IDf6"/>
+									</mets:div>
+								</mets:div>
+							</mets:div>
+						</mets:div>
+					</mets:div>
+				</mets:div>
+			</mets:div>
+		</mets:div>
+	</mets:structMap>
+</mets:mets>

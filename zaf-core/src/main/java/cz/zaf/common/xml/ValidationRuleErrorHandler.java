@@ -52,7 +52,7 @@ public class ValidationRuleErrorHandler implements ErrorHandler {
                 break;    
         }
         String mistoChyby = "Řádek: " + e.getLineNumber() + ". Sloupec: " + e.getColumnNumber() + ".";
-        String textChyby = textPriorita;          
+        String textChyby = textPriorita;
             
         String celaChybovaHlaska = e.getMessage();
            

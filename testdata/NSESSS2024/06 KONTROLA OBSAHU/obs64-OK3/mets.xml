@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:nsesss="http://www.mvcr.cz/nsesss/v4" xmlns:tp="http://www.mvcr.cz/nsesss/2023/log" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="GS_0008e8a5-253d-4a36-adc5-990dcf95614e" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu" OBJID="GS_0008e8a5-253d-4a36-adc5-990dcf95614e" TYPE="dokument" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v4 http://www.mvcr.cz/nsesss/v4/nsesss.xsd http://nsess.public.cz/erms_trans/v_01_01 TransakcniProtokolNavrh_verze1.7.xsd">
+  <mets:metsHdr CREATEDATE="2018-06-26T00:11:56.2581368Z" ID="G_5acd9862-01ec-4248-a536-1c0a68bf23cb" LASTMODDATE="2018-06-26T00:11:56.2581368Z" RECORDSTATUS="Mets-1.9_Nsesss-3.0_Generator-2018.05.24">
+    <mets:agent ID="MHMPSE009Q14" ROLE="CREATOR" TYPE="ORGANIZATION">
+      <mets:name>GDPR anonymizováno</mets:name>
+      <mets:note>GINIS</mets:note>
+    </mets:agent>
+    <mets:agent ID="MHMPSR00A3FZ" ROLE="CREATOR" TYPE="INDIVIDUAL">
+      <mets:name>GDPR anonymizováno</mets:name>
+      <mets:note>GINIS</mets:note>
+    </mets:agent>
+  </mets:metsHdr>
+  <mets:dmdSec ID="dmd001">
+    <mets:mdWrap LABEL="Schéma XML pro předávání dokumentů a jejich metadat do archivu" MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="NSESSS">
+      <mets:xmlData>
+        <nsesss:Dokument ID="MHMPXOQ8ZDUV">
+          <nsesss:EvidencniUdaje>
+            <nsesss:Identifikace>
+              <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.X">MHMPXOQ8ZDUV</nsesss:Identifikator>
+            </nsesss:Identifikace>
+            <nsesss:Popis>
+              <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+              <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+            </nsesss:Popis>
+            <nsesss:Souvislosti>
+              <nsesss:KrizovyOdkaz pevny="ne">
+                <nsesss:PlneUrcenySpisovyZnak>181.</nsesss:PlneUrcenySpisovyZnak>
+                <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.X">MHMPP02IZAPZ</nsesss:Identifikator>
+                <nsesss:Specifikace>Sekundární vazba - Vazba účetních dokladů</nsesss:Specifikace>
+              </nsesss:KrizovyOdkaz>
+            </nsesss:Souvislosti>
+            <nsesss:Pristupnost>
+              <nsesss:BezpecnostniKategorie>
+                <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.BK">10</nsesss:Identifikator>
+                <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                <nsesss:BezpecnostniStupen>Dokument ke zveřejnění</nsesss:BezpecnostniStupen>
+              </nsesss:BezpecnostniKategorie>
+            </nsesss:Pristupnost>
+            <nsesss:Neevidence>
+              <nsesss:Oduvodneni>Dokumentu nebylo přiděleno evidenční číslo</nsesss:Oduvodneni>
+            </nsesss:Neevidence>
+            <nsesss:Jazyky>
+              <nsesss:Jazyk>cze</nsesss:Jazyk>
+            </nsesss:Jazyky>
+            <nsesss:Puvod>
+              <nsesss:VlastniDokument>
+                <nsesss:DatumVytvoreni datum="2005-03-30T00:00:00.000+01:00">2005-03-30</nsesss:DatumVytvoreni>
+                <nsesss:VytvoreneMnozstvi>nez.-//-</nsesss:VytvoreneMnozstvi>
+                <nsesss:Autor>
+                  <nsesss:Subjekt>
+                    <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MHMP.ISU">MHMPSE009Q14</nsesss:IdentifikatorOrganizace>
+                    <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                    <nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MHMP.SZ">MHMPSZ01QKN7</nsesss:IdentifikatorFyzickeOsoby>
+                    <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+                    <nsesss:OrganizacniUtvar>odd. sekretariátu (UCT)</nsesss:OrganizacniUtvar>
+                    <nsesss:PracovniPozice>finanční ref., sekretářka</nsesss:PracovniPozice>
+                    <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                  </nsesss:Subjekt>
+                </nsesss:Autor>
+              </nsesss:VlastniDokument>
+            </nsesss:Puvod>
+            <nsesss:Trideni>
+              <nsesss:JednoduchySpisovyZnak>181.</nsesss:JednoduchySpisovyZnak>
+              <nsesss:PlneUrcenySpisovyZnak>181.</nsesss:PlneUrcenySpisovyZnak>
+              <nsesss:DruhDokumentu>
+                <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.ITD">MHMP0400A0FP</nsesss:Identifikator>
+                <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+              </nsesss:DruhDokumentu>
+              <nsesss:MaterskeEntity>
+                <nsesss:VecnaSkupina ID="MHMP0200BF6Y">
+                  <nsesss:EvidencniUdaje>
+                    <nsesss:Identifikace>
+                      <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.SPZ">MHMP0200BF6Y</nsesss:Identifikator>
+                    </nsesss:Identifikace>
+                    <nsesss:Popis>
+                      <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                      <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                    </nsesss:Popis>
+                    <nsesss:Puvod>
+                      <nsesss:DatumVytvoreni datum="2004-12-27T09:59:28.000+01:00">2004-12-27</nsesss:DatumVytvoreni>
+                    </nsesss:Puvod>
+                    <nsesss:Trideni>
+                      <nsesss:JednoduchySpisovyZnak>181.</nsesss:JednoduchySpisovyZnak>
+                      <nsesss:PlneUrcenySpisovyZnak>181.</nsesss:PlneUrcenySpisovyZnak>
+                      <nsesss:SpisovyPlan ID="MHMPXOQ8ZDUV_Gordic.Ginis.V.S.2005">
+                        <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.SPL">2005</nsesss:Identifikator>
+                        <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                        <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                        <nsesss:Manipulace>
+                          <nsesss:DatumOtevreni datum="2005-01-01T00:00:00.000+01:00">2005-01-01</nsesss:DatumOtevreni>
+                          <nsesss:DatumUzavreni datum="2005-12-20T00:00:00.000+01:00">2005-12-20</nsesss:DatumUzavreni>
+                        </nsesss:Manipulace>
+                        <nsesss:Vydavatel>
+                          <nsesss:Subjekt>
+                            <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MHMP.SE">MHMPSE009Q14</nsesss:IdentifikatorOrganizace>
+                            <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                            <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                            <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
+                          </nsesss:Subjekt>
+                        </nsesss:Vydavatel>
+                      </nsesss:SpisovyPlan>
+                    </nsesss:Trideni>
+                    <nsesss:Vyrazovani>
+                      <nsesss:SkartacniRezim>
+                        <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.ISR">MHMPAW90A0M5</nsesss:Identifikator>
+                        <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                        
+                        <nsesss:Oduvodneni>Vyplývá ze spisového plánu organizace</nsesss:Oduvodneni>
+                        <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+                        <nsesss:SkartacniLhuta>10</nsesss:SkartacniLhuta>
+                        <nsesss:SpousteciUdalost>Uzavření entity</nsesss:SpousteciUdalost>
+                      </nsesss:SkartacniRezim>
+                    </nsesss:Vyrazovani>
+                    <nsesss:Manipulace>
+                      <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                      <nsesss:DatumOtevreni datum="2004-12-27T09:59:28.000+01:00">2004-12-27</nsesss:DatumOtevreni>
+                    </nsesss:Manipulace>
+                  </nsesss:EvidencniUdaje>
+                </nsesss:VecnaSkupina>
+              </nsesss:MaterskeEntity>
+            </nsesss:Trideni>
+            <nsesss:Vyrizeni>
+              <nsesss:Datum datum="2006-02-20T15:51:38.000+01:00">2006-02-20</nsesss:Datum>
+              <nsesss:Zpusob>vzetí na vědomí</nsesss:Zpusob>
+              <nsesss:ObsahVyrizeni>,</nsesss:ObsahVyrizeni>
+              <nsesss:Oduvodneni>Vyřízeno vzetím na vědomí</nsesss:Oduvodneni>
+              <nsesss:Zpracovatel>
+                <nsesss:Subjekt>
+                  <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MHMP.ISU">MHMPSE009Q14</nsesss:IdentifikatorOrganizace>
+                  <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                  <nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MHMP.SZ">MHMPSZ01QKN7</nsesss:IdentifikatorFyzickeOsoby>
+                  <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+                  <nsesss:OrganizacniUtvar>odd. sekretariátu (UCT)</nsesss:OrganizacniUtvar>
+                  <nsesss:PracovniPozice>finanční ref., sekretářka</nsesss:PracovniPozice>
+                  <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                </nsesss:Subjekt>
+              </nsesss:Zpracovatel>
+            </nsesss:Vyrizeni>
+            <nsesss:Vyrazovani>
+              <nsesss:SkartacniRezim>
+                <nsesss:Identifikator zdroj="Gordic.Ginis.MHMP.ISR">MHMPAW90A0M6</nsesss:Identifikator>
+                <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                
+                <nsesss:Oduvodneni>Vyplývá ze spisového plánu organizace</nsesss:Oduvodneni>
+                <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
+                <nsesss:SkartacniLhuta>7</nsesss:SkartacniLhuta>
+                <nsesss:SpousteciUdalost>Uzavření entity</nsesss:SpousteciUdalost>
+              </nsesss:SkartacniRezim>
+              <nsesss:DataceVyrazeni>
+                <nsesss:RokSpousteciUdalosti>2014</nsesss:RokSpousteciUdalosti>
+                <nsesss:RokSkartacniOperace>2016</nsesss:RokSkartacniOperace>
+              </nsesss:DataceVyrazeni>
+              <nsesss:SkartacniRizeni>
+                <nsesss:Datum datum="2018-12-31T00:00:00.000+01:00">2018-12-31</nsesss:Datum>
+                <nsesss:Mnozstvi>nez.-//-</nsesss:Mnozstvi>
+                <nsesss:SkartacniOperace>trvalé uložení</nsesss:SkartacniOperace>
+                <nsesss:Posuzovatel>
+                  <nsesss:Subjekt>
+                    <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MHMP.ISU">MHMPSE009Q14</nsesss:IdentifikatorOrganizace>
+                    <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                    <nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MHMP.SZ">MHMPSZ01QKN7</nsesss:IdentifikatorFyzickeOsoby>
+                    <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+                    <nsesss:OrganizacniUtvar>odd. sekretariátu (UCT)</nsesss:OrganizacniUtvar>
+                    <nsesss:PracovniPozice>finanční ref., sekretářka</nsesss:PracovniPozice>
+                    <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                  </nsesss:Subjekt>
+                </nsesss:Posuzovatel>
+              </nsesss:SkartacniRizeni>
+            </nsesss:Vyrazovani>
+            <nsesss:Manipulace>
+              <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+              <nsesss:SpravceSpisovny>
+                <nsesss:Subjekt>
+                  <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MHMP.SE">MHMPSE009Q14</nsesss:IdentifikatorOrganizace>
+                  <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                  <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                  <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
+                </nsesss:Subjekt>
+              </nsesss:SpravceSpisovny>
+              <nsesss:UkladaciJednotka>UCT     20/2017</nsesss:UkladaciJednotka>
+            </nsesss:Manipulace>
+          </nsesss:EvidencniUdaje>
+        </nsesss:Dokument>
+      </mets:xmlData>
+    </mets:mdWrap>
+  </mets:dmdSec>
+  <mets:amdSec ID="amd_spl_MHMPXOQ8ZDUV_Gordic.Ginis.V.S.2005">
+    <mets:digiprovMD ID="dp_amd_spl_MHMPXOQ8ZDUV_Gordic.Ginis.V.S.2005">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tp:HodnotaID>MHMPXOQ8ZDUV_Gordic.Ginis.V.S.2005</tp:HodnotaID>
+                <tp:ZdrojID>GINIS</tp:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>0001-01-01T00:00:00</tp:DatumVzniku>
+              <tp:DatumCasOd>0001-01-01T00:00:00</tp:DatumCasOd>
+              <tp:DatumCasDo>0001-01-01T00:00:00</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>SpisovyPlan</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tp:HodnotaID>2005</tp:HodnotaID>
+                  <tp:ZdrojID>Gordic.Ginis.MHMP.SPL</tp:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti/>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd_vs_MHMP0200BF6Y">
+    <mets:digiprovMD ID="dp_amd_vs_MHMP0200BF6Y">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tp:HodnotaID>MHMP0200BF6Y</tp:HodnotaID>
+                <tp:ZdrojID>GINIS</tp:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>0001-01-01T00:00:00</tp:DatumVzniku>
+              <tp:DatumCasOd>0001-01-01T00:00:00</tp:DatumCasOd>
+              <tp:DatumCasDo>0001-01-01T00:00:00</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>VecnaSkupina</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tp:HodnotaID>MHMP0200BF6Y</tp:HodnotaID>
+                  <tp:ZdrojID>Gordic.Ginis.MHMP.SPZ</tp:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti/>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:amdSec ID="amd_dok_MHMPXOQ8ZDUV">
+    <mets:digiprovMD ID="dp_amd_dok_MHMPXOQ8ZDUV">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tp:HodnotaID>MHMPXOQ8ZDUV</tp:HodnotaID>
+                <tp:ZdrojID>GINIS</tp:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2018-06-26T02:11:56.6169368+02:00</tp:DatumVzniku>
+              <tp:DatumCasOd>2005-03-30T00:00:00</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-06-26T02:11:56.6169368+02:00</tp:DatumCasDo>
+              <tp:Software>GINIS - GSASPI01</tp:Software>
+              <tp:VerzeSoftware>480.6.40SPI0148006X05_380.4</tp:VerzeSoftware>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Dokument</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tp:HodnotaID>MHMPXOQ8ZDUV</tp:HodnotaID>
+                  <tp:ZdrojID>Gordic.Ginis.MHMP.X</tp:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti>
+              <tp:Udalost>
+                <tp:Poradi>46091034</tp:Poradi>
+                <tp:DatumVzniku>2005-03-30T13:05:19</tp:DatumVzniku>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>Zalozeni</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>46091036</tp:Poradi>
+                <tp:DatumVzniku>2005-03-30T13:05:19</tp:DatumVzniku>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>Uprava</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>46091220</tp:Poradi>
+                <tp:DatumVzniku>2005-03-30T13:07:02</tp:DatumVzniku>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>Uprava</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>46091274</tp:Poradi>
+                <tp:DatumVzniku>2005-03-30T13:07:46</tp:DatumVzniku>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>Schvaleni</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>46091278</tp:Poradi>
+                <tp:DatumVzniku>2005-03-30T13:07:47</tp:DatumVzniku>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>Uctovani</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>370621643</tp:Poradi>
+                <tp:DatumVzniku>2017-04-12T14:49:35</tp:DatumVzniku>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>Uprava</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>372804588</tp:Poradi>
+                <tp:DatumVzniku>2017-04-20T21:43:03</tp:DatumVzniku>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>373683710</tp:Poradi>
+                <tp:DatumVzniku>2017-04-26T15:34:25</tp:DatumVzniku>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>Uprava</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>379005669</tp:Poradi>
+                <tp:DatumVzniku>2017-05-29T13:59:19</tp:DatumVzniku>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>Uprava</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>380951373</tp:Poradi>
+                <tp:DatumVzniku>2017-06-02T13:28:43</tp:DatumVzniku>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>PrevzetiNaSpisovnu</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>408687408</tp:Poradi>
+                <tp:DatumVzniku>2017-11-28T10:03:08</tp:DatumVzniku>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>408823046</tp:Poradi>
+                <tp:DatumVzniku>2017-11-28T15:17:44</tp:DatumVzniku>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>443075827</tp:Poradi>
+                <tp:DatumVzniku>2018-06-20T15:48:46</tp:DatumVzniku>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+              </tp:Udalost>
+              <tp:Udalost>
+                <tp:Poradi>443655537</tp:Poradi>
+                <tp:DatumVzniku>2018-06-22T13:04:38</tp:DatumVzniku>
+                <tp:provedlKdo>GDPR anonymizováno</tp:provedlKdo>
+                <tp:TypUdalosti>
+                  <tp:TypUdalostiText>UzivatelskyZaznam</tp:TypUdalostiText>
+                </tp:TypUdalosti>
+                <tp:PopisUdalosti>GDPR anonymizováno</tp:PopisUdalosti>
+              </tp:Udalost>
+            </tp:Udalosti>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:structMap>
+    <mets:div ADMID="amd_spl_MHMPXOQ8ZDUV_Gordic.Ginis.V.S.2005" DMDID="MHMPXOQ8ZDUV_Gordic.Ginis.V.S.2005" TYPE="spisový plán">
+      <mets:div ADMID="amd_vs_MHMP0200BF6Y" DMDID="MHMP0200BF6Y" TYPE="věcná skupina">
+        <mets:div ADMID="amd_dok_MHMPXOQ8ZDUV" DMDID="MHMPXOQ8ZDUV" TYPE="dokument"/>
+      </mets:div>
+    </mets:div>
+  </mets:structMap>
+</mets:mets>
