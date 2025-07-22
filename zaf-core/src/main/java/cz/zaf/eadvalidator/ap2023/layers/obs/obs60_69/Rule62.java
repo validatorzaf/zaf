@@ -134,11 +134,10 @@ public class Rule62 extends EadRule {
                     throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nalezeny nepovolené hodnoty atributu audience elementu <ead:scopecontent>.", ctx.formatEadPosition(scopecontentList));
                 }
             }
-            if(scopecontentList.size() == 1){
+            if(scopecontentList.size() == 1 && !atrLang.isEmpty()){
                 scopeContentListWithUniqueAtrLangSize++;
             }
         }
-        
         //bez atr lang musí být stejně jako s unikatnim atr lang
         if(scopeContentListNoAtrLangSize != scopeContentListWithUniqueAtrLangSize){
             throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezeny nepovolené elementy <ead:scopecontent>.", ctx.formatEadPosition(scopeContentListNoAtrLang));

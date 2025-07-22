@@ -27,17 +27,22 @@ public class Rule66 extends EadRule {
         //May occur within:archdesc, c, c01, c02, c03, c04, c05, c06, c07, c08, c09, c10, c11, c12, phystech
         Archdesc archDesc = ctx.getEad().getArchdesc();
         List<Object> archDescChildList = archDesc.getAccessrestrictOrAccrualsOrAcqinfo();
-        validateNew(archDescChildList);
+        validate(archDescChildList);
 
         ctx.getEadLevelIterator().iterate((c, parent) -> {
             List<Object> cChildList = c.getMDescBase();
-            validateNew(cChildList);
+            validate(cChildList);
         });
     }
 
-    private void validateNew(List<Object> childList) {
+    private void validate(List<Object> childList) {
+        int mainElementCOunt = 0;
         for (Object child : childList) {
             if (child instanceof Phystech mainElement) {
+                mainElementCOunt++;
+                if (mainElementCOunt > 1) {
+                    throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt elementu.", ctx.formatEadPosition(mainElement));
+                }
                 List<Object> cHistChilds = mainElement.getChronlistOrListOrTable();
                 P p = null;
                 for (Object cHistChild : cHistChilds) {

@@ -703,6 +703,14 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
     }
 
     @Test
+    void testObs_62_chyba03() {
+        testPomucka("05-KONTROLA OBSAHU/060_chyba4.xml",
+                ValidationStatus.ERROR,
+                new String[]{},
+                new String[]{Rule62.CODE});
+    }
+
+    @Test
     void testObs_63_chyba01() {
         testPomucka("05-KONTROLA OBSAHU/060_chyba1.xml",
                 ValidationStatus.ERROR,
@@ -825,6 +833,14 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
     @Test
     void testObs_72_chyba02() {
         testPomucka("05-KONTROLA OBSAHU/060_chyba2.xml",
+                ValidationStatus.ERROR,
+                new String[]{},
+                new String[]{Rule72.CODE});
+    }
+
+    @Test
+    void testObs_72_chyba03() {
+        testPomucka("05-KONTROLA OBSAHU/060_chyba3.xml",
                 ValidationStatus.ERROR,
                 new String[]{},
                 new String[]{Rule72.CODE});
