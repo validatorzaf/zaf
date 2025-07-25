@@ -704,7 +704,7 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
 
     @Test
     void testObs_62_chyba03() {
-        testPomucka("05-KONTROLA OBSAHU/060_chyba4.xml",
+        testPomucka("05-KONTROLA OBSAHU/060_chyba3.xml",
                 ValidationStatus.ERROR,
                 new String[]{},
                 new String[]{Rule62.CODE});

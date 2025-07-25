@@ -10,6 +10,7 @@ import cz.zaf.schema.ead3.P;
 import cz.zaf.schema.ead3.Scopecontent;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,15 +42,19 @@ public class Rule62 extends EadRule {
     }
 
     private void validate(List<Object> childList) {
-//        List<Scopecontent> scopeContenetList = new ArrayList<>();
-        Map<String, List<Scopecontent>> scopeContentMap;
-        scopeContentMap = new HashMap<>();
-        int scopeContentCount = 0;
+
+        //pro elementy co mají atr lang
+        Map<String, List<Scopecontent>> scopeContentWithLangMap;
+        //pro elementy co nemaji element lang
+        Map<String, List<Scopecontent>> scopeContentSimpleMap;
+        scopeContentWithLangMap = new HashMap<>();
+        scopeContentSimpleMap = new HashMap<>();
+
         for (Object child : childList) {
             if (child instanceof Scopecontent mainElement) {
-//                scopeContenetList.add(mainElement);
-                addScopecontent(scopeContentMap, mainElement);
-                scopeContentCount++;
+                //zjistí jeslti má lang a podle toho ho přidá do jednoho ze seznamů
+                addScopecontent(scopeContentWithLangMap, scopeContentSimpleMap, mainElement);
+
                 List<Object> cHistChilds = mainElement.getChronlistOrListOrTable();
                 P p = null;
                 for (Object cHistChild : cHistChilds) {
@@ -68,10 +73,9 @@ public class Rule62 extends EadRule {
         }
 
         //validování elementu dle pravidel EADCZ
-        if (!scopeContentMap.isEmpty()) {
-            validateScopeContentMap(scopeContentMap, scopeContentCount);
+        if (!scopeContentSimpleMap.isEmpty() || !scopeContentWithLangMap.isEmpty()) {
+            validateScopeContentEadCz(scopeContentWithLangMap, scopeContentSimpleMap);
         }
-
     }
 
     private P validateP(Object instanceOfP) {
@@ -92,65 +96,53 @@ public class Rule62 extends EadRule {
         return p;
     }
 
-    private void validateScopeContentMap(Map<String, List<Scopecontent>> scopeContentMap, int scopeContentCount) {
-        //pokud je pouze jeden - nesmí mít atribut "lang"
-        if (scopeContentCount == 1) {
-            String langAtr = scopeContentMap.keySet().iterator().next();
-            if (!StringUtils.isEmpty(langAtr)) {
-                Scopecontent sc = scopeContentMap.values().iterator().next().get(0);
-                throw new ZafException(BaseCode.CHYBNY_ATRIBUT, "Element <ead:scopecontent> obsahuje nepovolený atribut lang.", ctx.formatEadPosition(sc));
+    private void validateScopeContentEadCz(Map<String, List<Scopecontent>> scopeContentWithLangMap, Map<String, List<Scopecontent>> scopeContentWithoutLangMap) {
+        //pokud neexistuje Scopecontent s atr lang = platí jedinečnost elementu
+        //pokud existuje s lang muze byt bez lang jen jeden (předpoklad že to je cze) a lang by tak neměl mít cze
+        int scopecontentWithoutLangCount = 0;
+        if (!scopeContentWithoutLangMap.isEmpty()) {
+            List<Scopecontent> scopecontentWithoutLangList = scopeContentWithoutLangMap.get("");
+            scopecontentWithoutLangCount = scopecontentWithoutLangList.size();
+            if (scopecontentWithoutLangCount > 1) {
+                throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt elementu.", ctx.formatEadPosition(scopecontentWithoutLangList));
             }
-            return;
         }
-        
-        //počet elementů nesmí být lichý
-        if (scopeContentCount % 2 != 0) {
-            throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepovolený element <ead:scopecontent>.", ctx.formatEadPosition(scopeContentMap.values()));
-        }
-
-        //pokud je počet sudý, musí být vždy jeden s atributem lang s hodnotou jazyka (hodnotu jazyka by mělo hlídat schéma)
-        //a druhý bez atributu lang
-        //pokud má stejnou hodnotu v lang, tak musí mát atribut audience s hodnotami external a internal
-        List<Scopecontent> scopeContentListNoAtrLang = scopeContentMap.getOrDefault("", List.of());
-        int scopeContentListNoAtrLangSize = scopeContentListNoAtrLang.size();
-        int scopeContentListWithUniqueAtrLangSize = 0;
-        
-        for (Map.Entry<String, List<Scopecontent>> entry : scopeContentMap.entrySet()) {
-            String atrLang = entry.getKey();
-            List<Scopecontent> scopecontentList = entry.getValue();
-            //pokud je key prázdný = těch může být více než 2
-            if (scopecontentList.size() > 2 && !atrLang.isEmpty()) {
-                throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezeny nepovolené elementy <ead:scopecontent>.", ctx.formatEadPosition(scopecontentList));
+        //když je jeden bez lang - nemůže být potom s lang s hodnotou cze
+        if (scopecontentWithoutLangCount == 1 && !scopeContentWithLangMap.isEmpty()) {
+            List<Scopecontent> scopeContentLangCzeList = scopeContentWithLangMap.get("cze");
+            if (!scopeContentLangCzeList.isEmpty()) {
+                throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepovolený element <ead:scopecontent>.", ctx.formatEadPosition(scopeContentLangCzeList));
             }
-            //když jsou dva tak audience external internal
-            if (scopecontentList.size() == 2 && !atrLang.isEmpty()) {
-                Scopecontent sc1 = scopecontentList.get(0);
-                Scopecontent sc2 = scopecontentList.get(1);
-                String sc1Audience = sc1.getAudience();
-                String sc2Audience = sc2.getAudience();
-                Set<String> hodnoty = Set.of(sc1Audience, sc2Audience);
-                boolean isCondition = hodnoty.contains("internal") && hodnoty.contains("external");
-                if (!isCondition) {
-                    throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nalezeny nepovolené hodnoty atributu audience elementu <ead:scopecontent>.", ctx.formatEadPosition(scopecontentList));
+        }
+        //ted už řeším jen s lang - nesmí být dva klíče stejné pokud nemají internal a external
+        if (!scopeContentWithLangMap.isEmpty()) {
+            for (Map.Entry<String, List<Scopecontent>> entry : scopeContentWithLangMap.entrySet()) {
+                List<Scopecontent> withLangList = entry.getValue();
+                int withLangListCount = withLangList.size();
+                if(withLangListCount > 2){
+                    throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepovolený element <ead:scopecontent>.", ctx.formatEadPosition(withLangList));
+                }
+                if(withLangListCount == 2){
+                    Scopecontent scFirst = withLangList.get(0);
+                    String audienceFirst = scFirst.getAudience();
+                    Scopecontent scSecond = withLangList.get(1);
+                    String audienceSecond = scSecond.getAudience();
+                    if(audienceFirst == null || audienceSecond == null){
+                        throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepovolený element <ead:scopecontent>.", ctx.formatEadPosition(withLangList));
+                    }
+                    if("internal".equals(audienceFirst) && "external".equals(audienceSecond)|| "external".equals(audienceFirst) && "internal".equals(audienceSecond)){
+                        throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepovolený element <ead:scopecontent>.", ctx.formatEadPosition(withLangList));
+                    }
                 }
             }
-            if(scopecontentList.size() == 1 && !atrLang.isEmpty()){
-                scopeContentListWithUniqueAtrLangSize++;
-            }
         }
-        //bez atr lang musí být stejně jako s unikatnim atr lang"
-        if(scopeContentListNoAtrLangSize != scopeContentListWithUniqueAtrLangSize){
-            throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezeny nepovolené elementy <ead:scopecontent>.", ctx.formatEadPosition(scopeContentListNoAtrLang));
-        }
-
     }
 
-    private void addScopecontent(Map<String, List<Scopecontent>> scopeContentMap, Scopecontent sc) {
+    private void addScopecontent(Map<String, List<Scopecontent>> scopeContentWithLangMap, Map<String, List<Scopecontent>> scopeContentSimpleMap, Scopecontent sc) {
         String atrLang = sc.getLang();
         if (atrLang == null) {
             atrLang = "";
-        }
-        scopeContentMap.computeIfAbsent(atrLang, k -> new ArrayList<>()).add(sc);
-
+        } 
+        scopeContentWithLangMap.computeIfAbsent(atrLang, k -> new ArrayList<>()).add(sc);
     }
 }
