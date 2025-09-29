@@ -37,13 +37,8 @@ public class Rule72 extends EadRule {
     }
 
     private void validate(List<Object> childList) {
-        int mainElementCOunt = 0;
         for (Object child : childList) {
             if (child instanceof Processinfo mainElement) {
-                mainElementCOunt++;
-                if (mainElementCOunt > 1) {
-                    throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt elementu.", ctx.formatEadPosition(mainElement));
-                }
                 List<Object> cHistChilds = mainElement.getChronlistOrListOrTable();
                 P p = null;
                 for (Object cHistChild : cHistChilds) {

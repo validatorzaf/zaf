@@ -10,11 +10,9 @@ import cz.zaf.schema.ead3.P;
 import cz.zaf.schema.ead3.Scopecontent;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class Rule62 extends EadRule {
 
@@ -119,18 +117,18 @@ public class Rule62 extends EadRule {
             for (Map.Entry<String, List<Scopecontent>> entry : scopeContentWithLangMap.entrySet()) {
                 List<Scopecontent> withLangList = entry.getValue();
                 int withLangListCount = withLangList.size();
-                if(withLangListCount > 2){
+                if (withLangListCount > 2) {
                     throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepovolený element <ead:scopecontent>.", ctx.formatEadPosition(withLangList));
                 }
-                if(withLangListCount == 2){
+                if (withLangListCount == 2) {
                     Scopecontent scFirst = withLangList.get(0);
                     String audienceFirst = scFirst.getAudience();
                     Scopecontent scSecond = withLangList.get(1);
                     String audienceSecond = scSecond.getAudience();
-                    if(audienceFirst == null || audienceSecond == null){
+                    if (audienceFirst == null || audienceSecond == null) {
                         throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepovolený element <ead:scopecontent>.", ctx.formatEadPosition(withLangList));
                     }
-                    if("internal".equals(audienceFirst) && "external".equals(audienceSecond)|| "external".equals(audienceFirst) && "internal".equals(audienceSecond)){
+                    if ("internal".equals(audienceFirst) && "external".equals(audienceSecond) || "external".equals(audienceFirst) && "internal".equals(audienceSecond)) {
                         throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepovolený element <ead:scopecontent>.", ctx.formatEadPosition(withLangList));
                     }
                 }
@@ -142,7 +140,8 @@ public class Rule62 extends EadRule {
         String atrLang = sc.getLang();
         if (atrLang == null) {
             atrLang = "";
-        } 
+        }
         scopeContentWithLangMap.computeIfAbsent(atrLang, k -> new ArrayList<>()).add(sc);
     }
+
 }

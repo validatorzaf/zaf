@@ -9,7 +9,10 @@ import cz.zaf.schema.ead3.Accruals;
 import cz.zaf.schema.ead3.Archdesc;
 import cz.zaf.schema.ead3.P;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Rule64 extends EadRule {
 
@@ -36,13 +39,8 @@ public class Rule64 extends EadRule {
     }
 
     private void validate(List<Object> childList) {
-//        int mainElementCOunt = 0;
         for (Object child : childList) {
             if (child instanceof Accruals mainElement) {
-//                mainElementCOunt++;
-//                if (mainElementCOunt > 1) {
-//                    throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt elementu.", ctx.formatEadPosition(mainElement));
-//                }
                 List<Object> cHistChilds = mainElement.getChronlistOrListOrTable();
                 P p = null;
                 for (Object cHistChild : cHistChilds) {
@@ -78,4 +76,5 @@ public class Rule64 extends EadRule {
         }
         return p;
     }
+
 }

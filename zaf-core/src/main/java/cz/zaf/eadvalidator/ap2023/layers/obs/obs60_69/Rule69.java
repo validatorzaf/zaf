@@ -14,7 +14,7 @@ import java.util.List;
 public class Rule69 extends EadRule {
 
     static final public String CODE = "obs69";
-    static final public String RULE_TEXT = "Každý element <ead:altformavail> obsahuje právě jeden neprázdný element <ead:p>.";
+    static final public String RULE_TEXT = "Element <ead:altformavail> se může vykytovat pouze jednou a obsahuje právě jeden neprázdný element <ead:p>.";
     static final public String RULE_ERROR = "Některý element <ead:altformavail> neobsahuje právě jeden element <ead:p>. Případně je element <ead:p> prázdný.";
     static final public String RULE_SOURCE = "Část 5.20 profilu EAD3 MV ČR";
 
