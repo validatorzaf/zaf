@@ -319,6 +319,7 @@ public class ValidationService {
 			job.setResult(execService.submit(job));
 						
 		} catch(Exception e) {
+			log.error("Failed to store request, path: " + requestPath, e);
 			throw new RuntimeException("Failed to store request, path: " + requestPath, e);
 		}
 		return requestValidationId;

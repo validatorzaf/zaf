@@ -1,45 +1,92 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>ZAF Validátor</title>
-</head>
-<body>
-    <h1>ZAF Validátor</h1>
-    <p>...o ZAFu...</p>
-    <h2>Validace balíčků a souborů</h2>
-    <form method="post" enctype="multipart/form-data" th:action="@{upload}">
-      <table>
-        <tr><td><label for="file">Soubor:</label></td>
-        <td><input id="file" type="file" name="file" /></td></tr>
-        
-		<tr><td><label for="validationType">Druh validace:</label></td>
-        <td><select id="validationType" name="validationType">
-			<option value="AUTO">AUTO</option>
-			<option value="NSESSS2017">NSESSS2017</option>
-			<option value="NSESSS2024">NSESSS2024</option>
-			<option value="AP2023">AP2023</option>
-			<option value="DAAIP2024">DAAIP2024</option>
-		</select></td></tr>
-		
-		<tr><td><label for="validationProfile">Profil validace:</label></td>
-        <td><select id="validationProfile" name="validationProfile">
-			<option value="AUTO">AUTO</option>
-			<option value="SIP_METADATA">SIP pro provedení skartačního řízení (NSESSS2017, NSESSS2024)</option>
-			<option value="SIP_PREVIEW">SIP pro provedení skartačního řízení s komponentami (NSESSS2017, NSESSS2024)</option>
-			<option value="SIP">SIP pro předání (NSESSS2017, NSESSS2024)</option>
-			<option value="AD">archivní popis (pro AP2023)</option>
-			<option value="FA">archivní pomůcka (pro AP2023)</option>
-			<option value="AIP">výměnný AIP (pro DAAIP2024)</option>
-			<option value="DIP_METADATA">metadatový DIP (pro DAAIP2024)</option>
-			<option value="DIP_CONTENT">úplný DIP (pro DAAIP2024)</option>
-			<option value="SIP_CHANGE">změnový SIP (pro DAAIP2024)</option>
-		</select></td></tr>
+<html xmlns:th="http://www.thymeleaf.org" lang="cs">
 
-		<tr><td><label for="batch">Dávka:</label></td>		
-        <td><input id="batch" type="checkbox" name="batch" value="true" title="Dávka" /></td></tr>
-        
-        <tr><td></td><td><button type="submit">Nahrát</button></td></tr>
-      </table>
-    </form>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Validátor ZAF</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css; charset=utf-8">
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@100;300&display=swap&subset=latin,latin-ext">
+	<script src="js/scripts.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<h1>Validátor ZAF</h1>
+		<p>Validátor ZAF je knihovna pro kontrolu datových balíčků SIP, AIP a DIP ve výměnném formátu a archivního
+			popisu ve formátu EAD dle českého profilu. Aplikace provádí načtení balíčků, kontrolu a zobrazení výsledků
+			kontroly. Pokud je v rámci jednoho z typů kontrol nalezena chyba, další typy kontrol se neprovádí.</p>
+		<form method="post" enctype="multipart/form-data" th:action="@{upload}">
+			<table>
+				<tr>
+					<td>
+						<label for="file">Soubor:</label>
+					</td>
+					<td>
+						<input id="file" type="file" name="file" required />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="validationType">Typ validace:</label>
+					</td>
+					<td>
+						<select id="validationType" name="validationType">
+							<option value="AUTO">AUTO</option>
+							<option value="NSESSS2017">NSESSS2017</option>
+							<option value="NSESSS2024">NSESSS2024</option>
+							<option value="AP2023">AP2023</option>
+							<option value="DAAIP2024">DAAIP2024</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td class="w10rem">
+						<label for="validationProfile">Druh (profil) validace:</label>
+					</td>
+					<td>
+						<select id="validationProfile" name="validationProfile">
+							<option value="AUTO">AUTO</option>
+							<option value="SIP_METADATA">SIP pro provedení skartačního řízení (NSESSS2017, NSESSS2024)
+							</option>
+							<option value="SIP_PREVIEW">SIP pro provedení skartačního řízení s komponentami (NSESSS2017,
+								NSESSS2024)</option>
+							<option value="SIP">SIP pro předání (NSESSS2017, NSESSS2024)</option>
+							<option value="AD">archivní popis (pro AP2023)</option>
+							<option value="FA">archivní pomůcka (pro AP2023)</option>
+							<option value="AIP">výměnný AIP (pro DAAIP2024)</option>
+							<option value="DIP_METADATA">metadatový DIP (pro DAAIP2024)</option>
+							<option value="DIP_CONTENT">úplný DIP (pro DAAIP2024)</option>
+							<option value="SIP_CHANGE">změnový SIP (pro DAAIP2024)</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="batch">Dávka:</label><!-- Co tento checkbox dělá? Nezdá si mi, že by šlo o přepínač
+							batch, protože formulář neumožňuje nahrát adresář. Přesto zaškrtnutí checkboxu dává jiné
+							výsledky (chybné), než bez něj. -->
+					</td>
+					<td>
+						<input id="batch" type="checkbox" name="batch" value="true" title="Dávka" />
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<button type="submit">Provést validaci</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<div id="footer">
+			<p><a href="https://validatorzaf.github.io/zaf/">O projektu</a><br><a
+					th:href="@{https://github.com/validatorzaf/zaf/releases}" th:text="${verzeAplikace}"><!-- Nový
+						parametr verzeAplikace pro rychlou orientaci verze a odkaz na changelog. --></a>
+			</p>
+		</div>
+	</div>
 </body>
+
 </html>
