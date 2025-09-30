@@ -8,10 +8,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.UUID;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cz.zaf.common.FileOps;
 import cz.zaf.common.result.ProtokolWriter;
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.result.XmlProtokolWriter;
@@ -320,8 +323,22 @@ public class CmdValidator {
 
     public void validateDavka(ProtokolWriter protokolWriter) throws Exception {
         Path inputDir = Paths.get(params.getInputPath());
+        Path workdirPath = null;        
         if (!Files.isDirectory(inputDir)) {
-            throw new IllegalArgumentException("Input path is not directory: " + params.getInputPath());
+        	// try to unpack zip file
+            if (params.getWorkDir() == null) {
+                workdirPath = Paths.get("rozbaleno");
+            } else {
+                workdirPath = Paths.get(params.getWorkDir());
+            }
+            workdirPath = workdirPath.resolve("davka-"+UUID.randomUUID().toString());
+            try {
+                Files.createDirectories(workdirPath);
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to prepare working dir: " + workdirPath.normalize().toString());
+            }
+        	FileOps.unzip(inputDir, workdirPath);
+			inputDir = workdirPath;
         }
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(inputDir)) {
             for (final Path path : stream) {
@@ -331,5 +348,9 @@ public class CmdValidator {
                 protokolWriter.writeVysledek(sipInfo);
             }
         }
+        
+        if (workdirPath != null) {
+			FileUtils.deleteDirectory(workdirPath.toFile());
+		}
     }
 }

@@ -33,17 +33,22 @@
 			</tr>
 		</table>
     
-    <th:block th:each="dataPackage, iterStat : ${dataPackages}" th:with="errorCount=${#lists.size(dataPackage.kontrola.?[stav.value == 'chyba'])}">
+    <th:block th:each="dataPackage, iterStat : ${dataPackages}" 
+              th:with="errorCount=${#aggregates.sum(dataPackage.kontrola.?[stav.value == 'chyba'].![#lists.size(pravidlo)])}">
     
       <h2>Soubor: [[${dataPackage.nazevSouboru}]]</h2>
-  	  <th:block th:if="${errorCount==0}">
+  	  <th:block th:if="${errorCount==null or errorCount==0}">
 	     <div class="status ok" aria-live="polite">Soubor je v pořádku.</div>
       </th:block>
   	  <th:block th:if="${errorCount>0}">
 	     <div class="status chyba" aria-live="polite">Soubor není v pořádku.</div>
 	     <h3>Zjištěné nesrovnalosti ([[${errorCount}]]):</h3>
-        <th:block th:each="kontrola : ${dataPackage.kontrola.?[stav.value == 'chyba']}">
+        <th:block th:each="kontrola, stat: ${dataPackage.kontrola.?[stav.value == 'chyba']}"
+                  th:with="prevFile=${stat.index > 0 ? dataPackage.kontrola.?[stav.value == 'chyba'][stat.index-1].vnitrniSoubor : null}">
 
+        <th:block th:if="${kontrola.vnitrniSoubor != null and kontrola.vnitrniSoubor != prevFile}">
+          <h4>Vnitřní soubor: <span th:text="${kontrola.vnitrniSoubor}"></span></h4>
+        </th:block>			  
         <div class="table">
 		  <div th:each="pravidlo : ${kontrola.pravidlo}" class="row">
 		    <div class="cell valign-top img-cell">
