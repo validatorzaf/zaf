@@ -18,7 +18,7 @@
 			popisu ve formátu EAD dle českého profilu. Aplikace provádí načtení balíčků, kontrolu a zobrazení výsledků
 			kontroly. Pokud je v rámci jednoho z typů kontrol nalezena chyba, další typy kontrol se neprovádí.</p>
 		<form method="post" enctype="multipart/form-data" th:action="@{upload}">
-			<table>
+			<table class="package-form">
 				<tr>
 					<td>
 						<label for="file">Soubor:</label>
@@ -64,9 +64,7 @@
 				</tr>
 				<tr>
 					<td>
-						<label for="batch">Dávka:</label><!-- Co tento checkbox dělá? Nezdá si mi, že by šlo o přepínač
-							batch, protože formulář neumožňuje nahrát adresář. Přesto zaškrtnutí checkboxu dává jiné
-							výsledky (chybné), než bez něj. -->
+						<label for="batch">Dávka:</label>
 					</td>
 					<td>
 						<input id="batch" type="checkbox" name="batch" value="true" title="Dávka" />
