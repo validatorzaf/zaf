@@ -22,12 +22,10 @@
 			<tr>
 				<td>Typ validace:</td>
 				<td th:text="${profilPravidel}"></td>
-				<!-- Rozchází se nám terminologie - jde o typ validace, v předchozí stránce validationType. -->
 			</tr>
 			<tr>
 				<td class="w10rem">Druh (profil) validace:</td>
 				<td th:text="${druhValidace}"></td>
-				<!-- Rozchází se nám terminologie - jde o druh validace, v předchozí stránce validationProfile. Používám i pojem profil. -->
 			</tr>
 			<tr>
 				<td>Verze pravidel:</td>
@@ -43,8 +41,9 @@
       </th:block>
   	  <th:block th:if="${errorCount>0}">
 	     <div class="status chyba" aria-live="polite">Soubor není v pořádku.</div>
-	     <h3>Zjištěné nesrovnalosti ([[${errorCount}]]):</h3>	     
-        <th:block th:each="kontrola : ${dataPackage.kontrola}" th:if="${kontrola.stav.value == 'chyba'}">
+	     <h3>Zjištěné nesrovnalosti ([[${errorCount}]]):</h3>
+        <th:block th:each="kontrola : ${dataPackage.kontrola.?[stav.value == 'chyba']}">
+
         <div class="table">
 		  <div th:each="pravidlo : ${kontrola.pravidlo}" class="row">
 		    <div class="cell valign-top img-cell">
@@ -55,8 +54,8 @@
 				<span th:if="${pravidlo.vypisChyby}">Výpis chyby: <span th:text="${pravidlo.vypisChyby}"></span><br /></span>
                 <span th:if="${pravidlo.mistoChyby}">Místo chyby: <span th:text="${pravidlo.mistoChyby}"></span><br /></span>
 				<div class="pravidlo">Pravidlo <span th:text="${pravidlo.kod}"></span>:
-				 <span th:text="${pravidlo.zneni}"></span>
-				 <span th:if="${pravidlo.zdroj}"> (<span th:text="${pravidlo.zdroj}"></span>)</span>
+				  <span th:text="${pravidlo.zneni}"></span>
+				  <span th:if="${pravidlo.zdroj}"> (<span th:text="${pravidlo.zdroj}"></span>)</span>
 				</div>
 			</div>
 		  </div> <!-- for each pravidlo -->

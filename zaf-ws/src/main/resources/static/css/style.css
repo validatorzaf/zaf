@@ -103,6 +103,13 @@ strong.kontrola {
     display: table-cell;
 }
 
+.package-form td {
+    padding-top: 0.3rem;
+}
+
+.package-form select {
+    height: 1.5rem;
+}
 
 .img-cell {
     width: 3.5rem;
