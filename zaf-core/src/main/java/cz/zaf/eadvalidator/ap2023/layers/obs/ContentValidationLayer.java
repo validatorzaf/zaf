@@ -23,11 +23,12 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs10_19.Rule15;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs10_19.Rule19;
 
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule20;
-import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule22; 
-import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule23;  
-import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule25; 
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule22;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule23;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule25;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule27; 
 
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule31;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule36;
 
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
@@ -36,6 +37,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 
 	private ValidationSubprofile profilValidace;
 	
+        //archivní popis (dva archivy si něco předají a nemusí to mít podobu pomůcky nemusí to být úplné
 	Class<?> archDescRules[] = {
 			Rule01.class,
 			Rule03.class,
@@ -46,9 +48,11 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule22.class,
             Rule25.class,
             Rule27.class,
+                        Rule31.class,
 			Rule36.class,
 	};
 	
+        //finální pomůcka = archivní pomůcka (vyhláška má náležitosti odpovídající záhlaví atd)
 	Class<?> findingAidRules[] = {
 			Rule01.class,
 			Rule02.class,
@@ -69,11 +73,40 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule23.class,
             Rule25.class,
             Rule27.class,
+                        Rule31.class,
 			Rule36.class,
 	};
 
-	public ContentValidationLayer(ValidationSubprofile profilValidace) {
-		super(ValidationLayers.OBSAH);
+        //inherentní arch. popis v aipu popis od puvodce(obecne) -  např co se vyteží ze SIP podle NS
+	Class<?> inherentDescRules[] = {
+			Rule01.class,
+			Rule03.class,
+			Rule04.class,
+			Rule04a.class,
+			Rule19.class,
+			Rule20.class,
+            Rule22.class,
+            Rule25.class,
+            Rule27.class,
+                        Rule31.class,
+	};
+        
+        //contextování tím popíše arrchiválii a je to uloženo v AIP
+	Class<?> contextDescRules[] = {
+			Rule01.class,
+			Rule03.class,
+			Rule04.class,
+			Rule04a.class,
+			Rule19.class,
+			Rule20.class,
+            Rule22.class,
+            Rule25.class,
+            Rule27.class,
+                        Rule31.class,
+	};
+
+	public ContentValidationLayer(ValidationSubprofile profilValidace, String innerFileName) {
+		super(ValidationLayers.OBSAH, innerFileName);
 		this.profilValidace = profilValidace;
 	}
 

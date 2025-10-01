@@ -26,6 +26,7 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule27;
 
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule36;
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
+import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule31;
 
 public class EadValidatorL05Test extends EadValidatorTestBase {
 
@@ -38,7 +39,8 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
                 new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule04a.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
                     Rule11.CODE, Rule12.CODE, Rule15.CODE, Rule19.CODE,
                     Rule20.CODE, Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
-                    Rule36.CODE},
+                    Rule31.CODE, Rule36.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE, Rule72.CODE},
                 new String[]{});
     }
 
@@ -49,7 +51,8 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
                 new String[]{Rule01.CODE, Rule03.CODE, Rule04.CODE, Rule04a.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
                     Rule11.CODE, Rule12.CODE, Rule15.CODE, Rule19.CODE,
                     Rule20.CODE, Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
-                    Rule36.CODE},
+                    Rule31.CODE, Rule36.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE, Rule72.CODE},
                 new String[]{});
     }
 
@@ -551,6 +554,50 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
 						Rule11.CODE, Rule12.CODE,
 						Rule22.CODE, Rule23.CODE, Rule25.CODE},
                 new String[]{Rule27.CODE});
+    }
+    
+    @Test
+    void testObs_31_chyba01() {
+        testPomucka("05-KONTROLA OBSAHU/031_chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE,
+                    Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE, Rule72.CODE},
+                new String[]{Rule31.CODE});
+    }
+    
+    @Test
+    void testObs_31_chyba02() {
+        testPomucka("05-KONTROLA OBSAHU/031_chyba2.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE,
+                    Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE, Rule72.CODE},
+                new String[]{Rule31.CODE});
+    }
+    
+    @Test
+    void testObs_31_chyba03() {
+        testPomucka("05-KONTROLA OBSAHU/031_chyba3.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE,
+                    Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE, Rule72.CODE},
+                new String[]{Rule31.CODE});
+    }
+    
+    @Test
+    void testObs_31_chyba04() {
+        testPomucka("05-KONTROLA OBSAHU/031_chyba4.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE,
+                    Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE, Rule72.CODE},
+                new String[]{Rule31.CODE});
     }
 
     @Test

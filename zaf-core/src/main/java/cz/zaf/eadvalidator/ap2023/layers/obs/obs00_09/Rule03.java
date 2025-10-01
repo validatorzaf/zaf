@@ -13,49 +13,49 @@ import cz.zaf.schema.ead3.Otherrecordid;
 import cz.zaf.schemas.ead.EadNS;
 
 public class Rule03 extends EadRule {
-	
-	static final public String CODE = "obs3";
-	static final public String RULE_TEXT = "Každý element <ead:otherrecordid>, který nemá atribut \"localtype\" o hodnotě \"CZ_MVCR_FINDING_AID\", má atribut \"localtype\" o hodnotě \"INTERNAL_REV_ID\" a tento není tento prázdný.";
-	static final public String RULE_ERROR = "Element <ead:otherrecordid>, který nemá atribut \"localtype\" o hodnotě \"CZ_MVCR_FINDING_AID\", nemá atribut \"localtype\" o hodnotě \"INTERNAL_REV_ID\" a  nebo je prázdný.";
-	static final public String RULE_SOURCE = "Část 2.2 profilu EAD3 MV ČR"; 
-	
-	public Rule03() {
-		super(CODE, RULE_TEXT, RULE_ERROR, RULE_SOURCE);
-	}
 
-	@Override
-	protected void evalImpl() {
-		Ead ead = ctx.getEad();
-		// must exist / ze schematu
-		List<Otherrecordid> otherIds = ead.getControl().getOtherrecordid();
+    static final public String CODE = "obs3";
+    static final public String RULE_TEXT = "Každý element <ead:otherrecordid>, který nemá atribut \"localtype\" o hodnotě \"CZ_MVCR_FINDING_AID\", má atribut \"localtype\" o hodnotě \"INTERNAL_REV_ID\" a tento není tento prázdný.";
+    static final public String RULE_ERROR = "Element <ead:otherrecordid>, který nemá atribut \"localtype\" o hodnotě \"CZ_MVCR_FINDING_AID\", nemá atribut \"localtype\" o hodnotě \"INTERNAL_REV_ID\" a  nebo je prázdný.";
+    static final public String RULE_SOURCE = "Část 2.2 profilu EAD3 MV ČR";
 
-		if(CollectionUtils.isEmpty(otherIds)) {
-			return;
-		}
-			
-		for (Otherrecordid otherId : otherIds) {
-			if (StringUtils.isBlank(otherId.getLocaltype())) {
-				throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybi atribut localType.",
-						ctx.formatEadPosition(otherId));
-			}
-			// ignorujeme
-			if (EadNS.LOCALTYPE_FINDING_AID_ID.equals(otherId.getLocaltype())) {
-				continue;
-			}
-			if (EadNS.LOCALTYPE_INTERNAL_REV_ID.equals(otherId.getLocaltype())) {
+    public Rule03() {
+        super(CODE, RULE_TEXT, RULE_ERROR, RULE_SOURCE);
+    }
 
-				// kontrola hodnoty
-				String content = otherId.getContent();
-				if (StringUtils.isBlank(content)) {
-					throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Prázdná hodnota",
-							ctx.formatEadPosition(otherId));
-				}
-			} else {
-				throw new ZafException(BaseCode.CHYBNY_ELEMENT,
-						"Nerozponaný typ, localType=\"" + otherId.getLocaltype() + "\"",
-						ctx.formatEadPosition(otherId));
-			}
-		}
+    @Override
+    protected void evalImpl() {
+        Ead ead = ctx.getEad();
+        // must exist / ze schematu
+        List<Otherrecordid> otherIds = ead.getControl().getOtherrecordid();
 
-	}
+        if (CollectionUtils.isEmpty(otherIds)) {
+            return;
+        }
+
+        for (Otherrecordid otherId : otherIds) {
+            if (StringUtils.isBlank(otherId.getLocaltype())) {
+                throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybi atribut localType.",
+                        ctx.formatEadPosition(otherId));
+            }
+            // ignorujeme
+            if (EadNS.LOCALTYPE_FINDING_AID_ID.equals(otherId.getLocaltype())) {
+                continue;
+            }
+            if (EadNS.LOCALTYPE_INTERNAL_REV_ID.equals(otherId.getLocaltype())) {
+
+                // kontrola hodnoty
+                String content = otherId.getContent();
+                if (StringUtils.isBlank(content)) {
+                    throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Prázdná hodnota",
+                            ctx.formatEadPosition(otherId));
+                }
+            } else {
+                throw new ZafException(BaseCode.CHYBNY_ELEMENT,
+                        "Nerozponaný typ, localType=\"" + otherId.getLocaltype() + "\"",
+                        ctx.formatEadPosition(otherId));
+            }
+        }
+
+    }
 }

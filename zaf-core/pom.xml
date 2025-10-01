@@ -1,456 +1,462 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<artifactId>zaf</artifactId>
-		<groupId>cz.zaf</groupId>
-		<version>2.0.0-SNAPSHOT</version>
-	</parent>
-	<artifactId>zaf-core</artifactId>
-	<name>ZAF Core</name>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>zaf</artifactId>
+        <groupId>cz.zaf</groupId>
+        <version>2.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>zaf-core</artifactId>
+    <name>ZAF Core</name>
 
-	<properties>
-		<xjcDirectory>${project.build.directory}/generated-sources/xjc</xjcDirectory>
-	</properties>
+    <properties>
+        <xjcDirectory>${project.build.directory}/generated-sources/xjc</xjcDirectory>
+        <geotools.version>29.1</geotools.version>
+    </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>commons-codec</groupId>
-			<artifactId>commons-codec</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-collections4</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-		</dependency>
-		<!--<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-		</dependency>-->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jul-to-slf4j</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<!-- com.ctc.wstx.api.WstxInputProperties -->
-		<dependency>
-			<groupId>com.fasterxml.woodstox</groupId>
-			<artifactId>woodstox-core</artifactId>
-			<version>6.7.0</version>
-		</dependency>		
-		<!-- Pridano kvuli tride com.sun.xml.txw2.output.IndentingXMLStreamWriter v exportu
-             Asi lepe zvazit jeji nahradu vlastni impl a odstraneni dependency -->
+    <dependencies>
         <dependency>
-	        <groupId>org.glassfish.jaxb</groupId>
-        	<artifactId>txw2</artifactId>        	
-		</dependency>		
-		<dependency>
-			<groupId>org.apache.pdfbox</groupId>
-			<artifactId>pdfbox</artifactId>
-			<version>3.0.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tika</groupId>
-			<artifactId>tika-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tika</groupId>
-			<artifactId>tika-parsers-standard-package</artifactId>
-		</dependency>
-		<!-- Tika depdendecies to eliminate warnings -->
-		<dependency>
-			<groupId>org.apache.pdfbox</groupId>
-			<artifactId>jbig2-imageio</artifactId>
-			<version>3.0.4</version>
-		</dependency>
-		<dependency>
-			<groupId>com.github.jai-imageio</groupId>
-			<artifactId>jai-imageio-core</artifactId>
-			<version>1.4.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.github.jai-imageio</groupId>
-			<artifactId>jai-imageio-jpeg2000</artifactId>
-			<version>1.4.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.xerial</groupId>
-			<artifactId>sqlite-jdbc</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.ibm.icu</groupId>
-			<artifactId>icu4j</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>net.lingala.zip4j</groupId>
-			<artifactId>zip4j</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>xerces</groupId>
-			<artifactId>xercesImpl</artifactId>
-			<version>2.12.2</version>
-			<exclusions>
-		        <exclusion>
-		            <groupId>xml-apis</groupId>
-		            <artifactId>xml-apis</artifactId>
-		        </exclusion>				
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.httpcomponents.client5</groupId>
-			<artifactId>httpclient5</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.yaml</groupId>
-			<artifactId>snakeyaml</artifactId>
-		</dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <!--<dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+        </dependency>-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- com.ctc.wstx.api.WstxInputProperties -->
+        <dependency>
+            <groupId>com.fasterxml.woodstox</groupId>
+            <artifactId>woodstox-core</artifactId>
+            <version>6.7.0</version>
+        </dependency>		
+        <!-- Pridano kvuli tride com.sun.xml.txw2.output.IndentingXMLStreamWriter v exportu
+        Asi lepe zvazit jeji nahradu vlastni impl a odstraneni dependency -->
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>txw2</artifactId>        	
+        </dependency>		
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>3.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-parsers-standard-package</artifactId>
+        </dependency>
+        <!-- Tika depdendecies to eliminate warnings -->
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>jbig2-imageio</artifactId>
+            <version>3.0.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.jai-imageio</groupId>
+            <artifactId>jai-imageio-core</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.jai-imageio</groupId>
+            <artifactId>jai-imageio-jpeg2000</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm.icu</groupId>
+            <artifactId>icu4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.lingala.zip4j</groupId>
+            <artifactId>zip4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>xerces</groupId>
+            <artifactId>xercesImpl</artifactId>
+            <version>2.12.2</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>xml-apis</groupId>
+                    <artifactId>xml-apis</artifactId>
+                </exclusion>				
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents.client5</groupId>
+            <artifactId>httpclient5</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+        </dependency>
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
         </dependency>
         <dependency>
-		    <groupId>jakarta.activation</groupId>
-		    <artifactId>jakarta.activation-api</artifactId>
-		</dependency>
-         <dependency>
+            <groupId>jakarta.activation</groupId>
+            <artifactId>jakarta.activation-api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
             <scope>runtime</scope>
         </dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-geojson</artifactId>
+            <version>${geotools.version}</version>
+        </dependency>
+    </dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>add-gen-sources</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>add-source</goal>
-						</goals>
-						<configuration>
-							<sources>
-								<source>${project.build.directory}/generated-sources/validacesip</source>
-								<source>${project.build.directory}/generated-sources/validace_v1</source>
-								<source>${project.build.directory}/generated-sources/ead3</source>
-								<source>${project.build.directory}/generated-sources/mets_1_12_1</source>
-								<source>${project.build.directory}/generated-sources/premis3</source>
-							</sources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.jvnet.jaxb</groupId>
-				<artifactId>jaxb-maven-plugin</artifactId>
-				<version>4.0.8</version>			
-				<executions>
-					<execution>
-						<id>jaxb2-validacexsd</id>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<phase>generate-sources</phase>
-						<configuration>
-							<generateDirectory>${project.build.directory}/generated-sources/validacesip</generateDirectory>
-							<schemaDirectory>src/main/resources/schema</schemaDirectory>
-							<schemaIncludes>
-								<include>validaceSIP.xsd</include>
-							</schemaIncludes>
-							<generatePackage>cz.zaf.schema.validacesip</generatePackage>							
-						</configuration>
-					</execution>
-					<execution>
-						<id>jaxb2-generate-validace-v1-xsd</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<schemaDirectory>src/main/resources/schema</schemaDirectory>
-							<schemaIncludes>
-								<include>validace_v1.xsd</include>
-							</schemaIncludes>
-							<generatePackage>cz.zaf.schema.validace_v1</generatePackage>
-							<generateDirectory>${project.build.directory}/generated-sources/validace_v1</generateDirectory>
-						</configuration>
-					</execution>
-					<execution>
-						<id>jaxb-generate-ead3-xsd</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<schemaDirectory>src/main/resources/schema</schemaDirectory>
-							<schemaIncludes>
-								<include>ead3.xsd</include>
-							</schemaIncludes>
-							<generatePackage>cz.zaf.schema.ead3</generatePackage>
-							<generateDirectory>${project.build.directory}/generated-sources/ead3</generateDirectory>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-gen-sources</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.build.directory}/generated-sources/validacesip</source>
+                                <source>${project.build.directory}/generated-sources/validace_v1</source>
+                                <source>${project.build.directory}/generated-sources/ead3</source>
+                                <source>${project.build.directory}/generated-sources/mets_1_12_1</source>
+                                <source>${project.build.directory}/generated-sources/premis3</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jvnet.jaxb</groupId>
+                <artifactId>jaxb-maven-plugin</artifactId>
+                <version>4.0.8</version>			
+                <executions>
+                    <execution>
+                        <id>jaxb2-validacexsd</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <generateDirectory>${project.build.directory}/generated-sources/validacesip</generateDirectory>
+                            <schemaDirectory>src/main/resources/schema</schemaDirectory>
+                            <schemaIncludes>
+                                <include>validaceSIP.xsd</include>
+                            </schemaIncludes>
+                            <generatePackage>cz.zaf.schema.validacesip</generatePackage>							
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>jaxb2-generate-validace-v1-xsd</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <schemaDirectory>src/main/resources/schema</schemaDirectory>
+                            <schemaIncludes>
+                                <include>validace_v1.xsd</include>
+                            </schemaIncludes>
+                            <generatePackage>cz.zaf.schema.validace_v1</generatePackage>
+                            <generateDirectory>${project.build.directory}/generated-sources/validace_v1</generateDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>jaxb-generate-ead3-xsd</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <schemaDirectory>src/main/resources/schema</schemaDirectory>
+                            <schemaIncludes>
+                                <include>ead3.xsd</include>
+                            </schemaIncludes>
+                            <generatePackage>cz.zaf.schema.ead3</generatePackage>
+                            <generateDirectory>${project.build.directory}/generated-sources/ead3</generateDirectory>
                             <bindingDirectory>${project.basedir}/src/main/resources/schema</bindingDirectory>
                             <bindingIncludes>
                                 <include>ead3-bindings.xml</include>
-							</bindingIncludes>
+                            </bindingIncludes>
                             <plugins>
                                 <plugin>
                                     <groupId>org.jvnet.jaxb</groupId>
                                     <artifactId>jaxb-plugins</artifactId>
                                     <version>4.0.8</version>
-								</plugin>
-							</plugins>
+                                </plugin>
+                            </plugins>
 
-						</configuration>
-					</execution>
-					<execution>
-						<id>jaxb-generate-mets-1-12-1-xsd</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<schemaDirectory>src/main/resources/schema/mets/v1.12.1</schemaDirectory>
-							<schemaIncludes>
-								<include>mets.xsd</include>
-							</schemaIncludes>
-							<generatePackage>cz.zaf.schema.mets_1_12_1</generatePackage>
-							<generateDirectory>${project.build.directory}/generated-sources/mets_1_12_1</generateDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>jaxb-generate-mets-1-12-1-xsd</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <schemaDirectory>src/main/resources/schema/mets/v1.12.1</schemaDirectory>
+                            <schemaIncludes>
+                                <include>mets.xsd</include>
+                            </schemaIncludes>
+                            <generatePackage>cz.zaf.schema.mets_1_12_1</generatePackage>
+                            <generateDirectory>${project.build.directory}/generated-sources/mets_1_12_1</generateDirectory>
                             <bindingDirectory>${project.basedir}/src/main/resources/schema/mets/v1.12.1</bindingDirectory>
                             <bindingIncludes>
                                 <include>mets-bindings.xml</include>
-							</bindingIncludes>
+                            </bindingIncludes>
                             <plugins>
                                 <plugin>
                                     <groupId>org.jvnet.jaxb</groupId>
                                     <artifactId>jaxb-plugins</artifactId>
                                     <version>4.0.8</version>
-								</plugin>
-							</plugins>
+                                </plugin>
+                            </plugins>
 
-						</configuration>
-					</execution>
-					<execution>
-						<id>jaxb-generate-premis3-xsd</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<schemaDirectory>src/main/resources/schema/premis</schemaDirectory>
-							<schemaIncludes>
-								<include>premis-v3-0.xsd</include>
-							</schemaIncludes>
-							<generatePackage>cz.zaf.schema.premis3</generatePackage>
-							<generateDirectory>${project.build.directory}/generated-sources/premis3</generateDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>jaxb-generate-premis3-xsd</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <schemaDirectory>src/main/resources/schema/premis</schemaDirectory>
+                            <schemaIncludes>
+                                <include>premis-v3-0.xsd</include>
+                            </schemaIncludes>
+                            <generatePackage>cz.zaf.schema.premis3</generatePackage>
+                            <generateDirectory>${project.build.directory}/generated-sources/premis3</generateDirectory>
                             <bindingDirectory>${project.basedir}/src/main/resources/schema/premis</bindingDirectory>
                             <bindingIncludes>
                                 <include>premis3-bindings.xml</include>
-							</bindingIncludes>
+                            </bindingIncludes>
                             <plugins>
                                 <plugin>
                                     <groupId>org.jvnet.jaxb</groupId>
                                     <artifactId>jaxb-plugins</artifactId>
                                     <version>4.0.8</version>
-								</plugin>
-							</plugins>
+                                </plugin>
+                            </plugins>
 
-						</configuration>
-					</execution>
-				</executions>
-            	<dependencies>
-            	<!-- Following dependency fixes the problem: 
-            	     DTD factory class org.apache.xerces.impl.dv.dtd.DTDDVFactoryImpl does not extend from DTDDVFactory.
-            	     This is cauesed by newer xerces used for library.
-            	 -->
-                <dependency>
-                    <groupId>xerces</groupId>
-                    <artifactId>xercesImpl</artifactId>
-                    <version>2.12.0</version>
-                    <exclusions>
-                        <exclusion>
-                            <groupId>xerces</groupId>
-                            <artifactId>xercesImpl</artifactId>
-                        </exclusion>
-                    </exclusions>
-                </dependency>
-            </dependencies>				
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<version>3.1.2</version>
-				<executions>
-					<execution>
-						<id>include-verapdf-app</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>copy</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<artifactItems>
-						<artifactItem>
-							<groupId>org.verapdf.apps</groupId>
-							<artifactId>greenfield-apps</artifactId>
-							<version>1.24.3</version>
-							<type>jar</type>
-							<destFileName>greenfield-apps.jar</destFileName>
-						</artifactItem>
-					</artifactItems>
-					<outputDirectory>${project.build.directory}/verapdf</outputDirectory>
-					<overWriteReleases>false</overWriteReleases>
-					<overWriteSnapshots>true</overWriteSnapshots>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>3.3.1</version>
-				<configuration>
-					<includeEmptyDirs>true</includeEmptyDirs>
-				</configuration>
-				<executions>
-					<execution>
-						<id>copy-test-resource</id>
-						<!--<phase>package</phase> -->
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>testResources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${project.build.testOutputDirectory}/testdata</outputDirectory>
-							<resources>
-								<resource>
-									<directory>${project.basedir}/../testdata</directory>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<release>17</release>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<archive>
-						<manifest>
-							<mainClass>cz.zaf.validator.CmdValidator</mainClass>
-						</manifest>
-					</archive>
-				</configuration>
-			</plugin>
-		</plugins>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-				<includes>
-					<include>**/*.yaml</include>
-					<include>zaf-core.properties</include>
-				</includes>
-			</resource>
-			<resource>
-				<directory>target</directory>
-				<includes>
-					<include>verapdf/*.jar</include>
-				</includes>
-			</resource>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>false</filtering>
-				<excludes>
-					<exclude>**/*.yaml</exclude>
-					<exclude>zaf-core.properties</exclude>
-				</excludes>
-			</resource>
-		</resources>
-		<testResources>
-			<!-- Copy default test resources -->
-			<!-- <testResource> <directory>src/test/resources</directory> <filtering>true</filtering> 
-				<includes> <include>**/*.yaml</include> </includes> </testResource> <testResource> 
-				<directory>src/test/resources</directory> <filtering>false</filtering> <excludes> 
-				<exclude>**/*.yaml</exclude> </excludes> </testResource> -->
-			<!-- Add test folder with source files for packages -->
-			<!-- <testResource> <directory>${basedir}/target/test-resources</directory> 
-				<includes /> </testResource> -->
-			<!-- <testResource> <directory>${project.basedir}/../testdata</directory> 
-				<targetPath>${project.basedir}/target/test-classes/testdata</targetPath> 
-				</testResource> -->
-			<!-- <testResource> <directory>${project.basedir}/../rules-simple-dev/src</directory> 
-				<targetPath>${project.basedir}/target/test-classes/rules-simple-dev</targetPath> 
-				</testResource> -->
-		</testResources>
-	</build>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <!-- Following dependency fixes the problem: 
+                        DTD factory class org.apache.xerces.impl.dv.dtd.DTDDVFactoryImpl does not extend from DTDDVFactory.
+                        This is cauesed by newer xerces used for library.
+                    -->
+                    <dependency>
+                        <groupId>xerces</groupId>
+                        <artifactId>xercesImpl</artifactId>
+                        <version>2.12.0</version>
+                        <exclusions>
+                            <exclusion>
+                                <groupId>xerces</groupId>
+                                <artifactId>xercesImpl</artifactId>
+                            </exclusion>
+                        </exclusions>
+                    </dependency>
+                </dependencies>				
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.2</version>
+                <executions>
+                    <execution>
+                        <id>include-verapdf-app</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <artifactItems>
+                        <artifactItem>
+                            <groupId>org.verapdf.apps</groupId>
+                            <artifactId>greenfield-apps</artifactId>
+                            <version>1.24.3</version>
+                            <type>jar</type>
+                            <destFileName>greenfield-apps.jar</destFileName>
+                        </artifactItem>
+                    </artifactItems>
+                    <outputDirectory>${project.build.directory}/verapdf</outputDirectory>
+                    <overWriteReleases>false</overWriteReleases>
+                    <overWriteSnapshots>true</overWriteSnapshots>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <includeEmptyDirs>true</includeEmptyDirs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>copy-test-resource</id>
+                        <!--<phase>package</phase> -->
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>testResources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.testOutputDirectory}/testdata</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/../testdata</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <release>17</release>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>cz.zaf.validator.CmdValidator</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.yaml</include>
+                    <include>zaf-core.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>target</directory>
+                <includes>
+                    <include>verapdf/*.jar</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>**/*.yaml</exclude>
+                    <exclude>zaf-core.properties</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        <testResources>
+            <!-- Copy default test resources -->
+            <!-- <testResource> <directory>src/test/resources</directory> <filtering>true</filtering> 
+            <includes> <include>**/*.yaml</include> </includes> </testResource> <testResource> 
+            <directory>src/test/resources</directory> <filtering>false</filtering> <excludes> 
+            <exclude>**/*.yaml</exclude> </excludes> </testResource> -->
+            <!-- Add test folder with source files for packages -->
+            <!-- <testResource> <directory>${basedir}/target/test-resources</directory> 
+            <includes /> </testResource> -->
+            <!-- <testResource> <directory>${project.basedir}/../testdata</directory> 
+            <targetPath>${project.basedir}/target/test-classes/testdata</targetPath> 
+            </testResource> -->
+            <!-- <testResource> <directory>${project.basedir}/../rules-simple-dev/src</directory> 
+            <targetPath>${project.basedir}/target/test-classes/rules-simple-dev</targetPath> 
+            </testResource> -->
+        </testResources>
+    </build>
 
-	<profiles>
+    <profiles>
 
-		<profile>
-			<id>javadoc</id>
-			<build>
-				<plugins>
-  			        <plugin>
-        			    <groupId>org.apache.maven.plugins</groupId>
-        			    <artifactId>maven-javadoc-plugin</artifactId>
-        			    <version>3.6.3</version>
-        			    <configuration>
+        <profile>
+            <id>javadoc</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.6.3</version>
+                        <configuration>
                             <skip>false</skip>
                             <excludePackageNames>cz.zaf.schema.*</excludePackageNames>
                             <sourcepath>${project.basedir}/src/main/java:${project.build.directory}/generated-sources/validacesip:${project.build.directory}/generated-sources/validace_v1</sourcepath>
-        			    </configuration>
-        			</plugin>			
-  				</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>jacoco-report</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.jacoco</groupId>
-						<artifactId>jacoco-maven-plugin</artifactId>
-						<configuration>
-							<excludes>org.drools.compiler.lang.*</excludes>
-						</configuration>
-						<executions>
-							<execution>
-								<id>default-prepare-agent</id>
-								<goals>
-									<goal>prepare-agent</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+                        </configuration>
+                    </plugin>			
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>jacoco-report</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <configuration>
+                            <excludes>org.drools.compiler.lang.*</excludes>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>default-prepare-agent</id>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
