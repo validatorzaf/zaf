@@ -32,7 +32,8 @@
 						<label for="validationType">Typ validace:</label>
 					</td>
 					<td>
-						<select id="validationType" name="validationType">
+						<select id="validationType" name="validationType" required>
+                            <option value="" disabled selected>–– vyberte ––</option>
 							<option value="AUTO">AUTO</option>
 							<option value="NSESSS2017">NSESSS2017</option>
 							<option value="NSESSS2024">NSESSS2024</option>
@@ -46,7 +47,8 @@
 						<label for="validationProfile">Druh (profil) validace:</label>
 					</td>
 					<td>
-						<select id="validationProfile" name="validationProfile">
+						<select id="validationProfile" name="validationProfile" required>
+                            <option value="" disabled selected>–– vyberte ––</option>
 							<option value="AUTO">AUTO</option>
 							<option value="SIP_METADATA">SIP pro provedení skartačního řízení (NSESSS2017, NSESSS2024)
 							</option>
