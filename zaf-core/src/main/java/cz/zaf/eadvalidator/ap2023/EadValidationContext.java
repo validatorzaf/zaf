@@ -128,7 +128,7 @@ public class EadValidationContext
 		this.descriptionRules = descRules;		
 	}
 	
-	DescriptionRules getDescriptionRules() {
+	public DescriptionRules getDescriptionRules() {
 		return descriptionRules;
 	}
 

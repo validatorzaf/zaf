@@ -157,6 +157,10 @@ public class EadLoader implements Closeable, ValidationInput {
 	public Ead getEad() {
 		return ead;
 	}
+        
+        public JAXBContext getAXBContext(){
+            return ead3Context;
+        }
 	
 	public Location getEadLocation(Object obj) {
 		Objects.requireNonNull(this.eadToLocationMap);

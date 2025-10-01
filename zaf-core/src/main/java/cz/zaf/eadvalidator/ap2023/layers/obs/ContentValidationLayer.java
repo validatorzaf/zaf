@@ -30,12 +30,25 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule27;
 
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule36;
 
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule60;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule61;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule62;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule63;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule64;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule65;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule66;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule67;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule68;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule69;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs70_79.Rule72;
+
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
 
 public class ContentValidationLayer extends BaseValidationLayer<EadValidationContext, EadValidationContext> {
 
 	private ValidationSubprofile profilValidace;
 	
+        //archivní popis
 	Class<?> archDescRules[] = {
 			Rule01.class,
 			Rule03.class,
@@ -47,8 +60,20 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule25.class,
             Rule27.class,
 			Rule36.class,
+            Rule60.class, 
+            Rule61.class,
+            Rule62.class,
+            Rule63.class,
+            Rule64.class,
+            Rule65.class,
+            Rule66.class,
+            Rule67.class,
+            Rule68.class,
+            Rule69.class,
+            Rule72.class,
 	};
 	
+        //finální pomůcka
 	Class<?> findingAidRules[] = {
 			Rule01.class,
 			Rule02.class,
@@ -70,6 +95,17 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule25.class,
             Rule27.class,
 			Rule36.class,
+            Rule60.class, 
+            Rule61.class,
+            Rule62.class,
+            Rule63.class,
+            Rule64.class,
+            Rule65.class,
+            Rule66.class,
+            Rule67.class,
+            Rule68.class,
+            Rule69.class,
+            Rule72.class,
 	};
 
 	Class<?> inherentDescRules[] = {
