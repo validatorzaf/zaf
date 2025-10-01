@@ -78,7 +78,7 @@ public class ZafUIController {
 				RequestProcessState rps = validationService.getStatus(valRequestId);
 				if(rps==RequestProcessState.ERROR) {
 					model.addAttribute("message", "File upload failed!");
-					return "upload";					
+					return "index";					
 				} else 
 				if(rps==RequestProcessState.FINISHED) {
 					break;
@@ -104,7 +104,7 @@ public class ZafUIController {
 			return "result";
 		} catch (Exception e) {
 			model.addAttribute("message", "File upload failed!");
-			return "upload";
+			return "index";
 		}
 	}
 }

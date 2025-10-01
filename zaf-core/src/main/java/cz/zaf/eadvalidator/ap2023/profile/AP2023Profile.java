@@ -21,5 +21,20 @@ public enum AP2023Profile implements ValidationSubprofile {
 
     },
     
+    EARK_INHERENT_DESC {
+        @Override
+        public String getName() {
+            return "inherentní popis v balíčku";
+        }
+    	
+    },
+    
+    EARK_CONTEXTUAL_DESC {
+        @Override
+        public String getName() {
+            return "kontextový popis v balíčku";
+        }
+    	
+    },
     
 }

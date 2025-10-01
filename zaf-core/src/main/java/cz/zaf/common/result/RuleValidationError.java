@@ -169,4 +169,18 @@ public class RuleValidationError {
             }
         }
     }
+    
+    @Override
+	public String toString() {
+		return "RuleValidationError{" +
+				"id='" + id + '\'' +
+				", textPravidla='" + textPravidla + '\'' +
+				", vypisChyby='" + vypisChyby + '\'' +
+				", popisChybyObecny='" + popisChybyObecny + '\'' +
+				", mistoChyby='" + mistoChyby + '\'' +
+				", zdroj='" + zdroj + '\'' +
+				", errorCode=" + errorCode +
+				", entityIds=" + entityIds +
+				'}';
+	}
 }

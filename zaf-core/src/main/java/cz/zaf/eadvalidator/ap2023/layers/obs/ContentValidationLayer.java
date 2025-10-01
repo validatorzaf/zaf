@@ -31,6 +31,18 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule27;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule31;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule36;
 
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule60;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule61;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule62;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule63;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule64;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule65;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule66;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule67;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule68;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule69;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs70_79.Rule72;
+
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
 
 public class ContentValidationLayer extends BaseValidationLayer<EadValidationContext, EadValidationContext> {
@@ -50,6 +62,17 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule27.class,
                         Rule31.class,
 			Rule36.class,
+            Rule60.class, 
+            Rule61.class,
+            Rule62.class,
+            Rule63.class,
+            Rule64.class,
+            Rule65.class,
+            Rule66.class,
+            Rule67.class,
+            Rule68.class,
+            Rule69.class,
+            Rule72.class,
 	};
 	
         //finální pomůcka = archivní pomůcka (vyhláška má náležitosti odpovídající záhlaví atd)
@@ -75,6 +98,17 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule27.class,
                         Rule31.class,
 			Rule36.class,
+            Rule60.class, 
+            Rule61.class,
+            Rule62.class,
+            Rule63.class,
+            Rule64.class,
+            Rule65.class,
+            Rule66.class,
+            Rule67.class,
+            Rule68.class,
+            Rule69.class,
+            Rule72.class,
 	};
 
         //inherentní arch. popis v aipu popis od puvodce(obecne) -  např co se vyteží ze SIP podle NS
@@ -118,6 +152,10 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 			ruleClasses = archDescRules;
 		} else if(profilValidace==AP2023Profile.FINDING_AID) {
 			ruleClasses = findingAidRules;
+		} else if(profilValidace==AP2023Profile.EARK_INHERENT_DESC) {
+			ruleClasses = inherentDescRules; 
+		} else if(profilValidace==AP2023Profile.EARK_CONTEXTUAL_DESC) {
+			ruleClasses = contextDescRules;
 		} else {
 			throw new IllegalStateException("Neznámý profil: " + profilValidace);
 		}
