@@ -1,4 +1,3 @@
-
 package cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69;
 
 import org.apache.commons.lang3.StringUtils;
@@ -45,38 +44,8 @@ public class Rule63 extends EadRule {
                     throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt elementu.", ctx.formatEadPosition(mainElement));
                 }
                 List<Object> cHistChilds = mainElement.getChronlistOrListOrTable();
-                P p = null;
-                for (Object cHistChild : cHistChilds) {
-                    if (cHistChild instanceof P) {
-                        if (p == null) {
-                            p = validateP(cHistChild);
-                        } else {
-                            throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt elementu.", ctx.formatEadPosition(p));
-                        }
-                    }
-                }
-                if (p == null) {
-                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element <ead:p>.", ctx.formatEadPosition(mainElement));
-                }
+                checkSingleElementP(cHistChilds, mainElement);
             }
         }
-    }
-
-    private P validateP(Object instanceOfP) {
-        P p = (P) instanceOfP;
-        // Kontrola obsahu p
-        List<Serializable> pContentList = p.getContent();
-        if (pContentList.size() != 1) {
-            throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybná hodnota v elementu.", ctx.formatEadPosition(p));
-        }
-        Serializable partContent = pContentList.get(0);
-        if (partContent instanceof String str) {
-            if (StringUtils.isEmpty(str)) {
-                throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Prázdná hodnota elementu.", ctx.formatEadPosition(p));
-            }
-        } else {
-            throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybný typ hodnoty v elementu.", ctx.formatEadPosition(p));
-        }
-        return p;
     }
 }

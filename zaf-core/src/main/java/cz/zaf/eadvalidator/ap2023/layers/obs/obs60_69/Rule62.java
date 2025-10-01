@@ -54,19 +54,7 @@ public class Rule62 extends EadRule {
                 addScopecontent(scopeContentWithLangMap, scopeContentSimpleMap, mainElement);
 
                 List<Object> cHistChilds = mainElement.getChronlistOrListOrTable();
-                P p = null;
-                for (Object cHistChild : cHistChilds) {
-                    if (cHistChild instanceof P) {
-                        if (p == null) {
-                            p = validateP(cHistChild);
-                        } else {
-                            throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt elementu.", ctx.formatEadPosition(p));
-                        }
-                    }
-                }
-                if (p == null) {
-                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element <ead:p>.", ctx.formatEadPosition(mainElement));
-                }
+                checkSingleElementP(cHistChilds, mainElement);
             }
         }
 
@@ -74,24 +62,6 @@ public class Rule62 extends EadRule {
         if (!scopeContentSimpleMap.isEmpty() || !scopeContentWithLangMap.isEmpty()) {
             validateScopeContentEadCz(scopeContentWithLangMap, scopeContentSimpleMap);
         }
-    }
-
-    private P validateP(Object instanceOfP) {
-        P p = (P) instanceOfP;
-        // Kontrola obsahu p
-        List<Serializable> pContentList = p.getContent();
-        if (pContentList.size() != 1) {
-            throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybná hodnota v elementu.", ctx.formatEadPosition(p));
-        }
-        Serializable partContent = pContentList.get(0);
-        if (partContent instanceof String str) {
-            if (StringUtils.isEmpty(str)) {
-                throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Prázdná hodnota elementu.", ctx.formatEadPosition(p));
-            }
-        } else {
-            throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybný typ hodnoty v elementu.", ctx.formatEadPosition(p));
-        }
-        return p;
     }
 
     private void validateScopeContentEadCz(Map<String, List<Scopecontent>> scopeContentWithLangMap, Map<String, List<Scopecontent>> scopeContentWithoutLangMap) {
@@ -128,7 +98,8 @@ public class Rule62 extends EadRule {
                     if (audienceFirst == null || audienceSecond == null) {
                         throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepovolený element <ead:scopecontent>.", ctx.formatEadPosition(withLangList));
                     }
-                    if ("internal".equals(audienceFirst) && "external".equals(audienceSecond) || "external".equals(audienceFirst) && "internal".equals(audienceSecond)) {
+                    //$ tady upravena podmínka  - prošlo když to vlastně splňovalo
+                    if (!("internal".equals(audienceFirst) && "external".equals(audienceSecond) || "external".equals(audienceFirst) && "internal".equals(audienceSecond))) {
                         throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepovolený element <ead:scopecontent>.", ctx.formatEadPosition(withLangList));
                     }
                 }
