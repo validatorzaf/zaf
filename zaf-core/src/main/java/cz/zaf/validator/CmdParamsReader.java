@@ -24,7 +24,7 @@ public class CmdParamsReader {
         output.println(" -b|--batch Dávkový režim, cesta je adresář obsahující SIPy");
         output.println(" -w|--workdir= Umístění pracovního adresáře, zde budou SIPy rozbaleny");
         output.println(" -k|--keep Zachování rozbalených souborů na disku");
-        output.println(" -d|--druh= Druh kontroly pro danou validaci (AUTO - výchozí), stačí uvést druh:");
+        output.println(" -p|--profile= Profil kontroly (AUTO - výchozí):");
         output.println("        AUTO = výběr základní kontroly pro daný typ kontroly");
         output.println("        SIP_METADATA = pro provedení skartačního řízení, jen metadata bez přiložených komponent (pro NSESSS2017 a NSESSS2024)");
         output.println("        SIP_PREVIEW = pro provedení skartačního řízení s přiloženými komponentami (pro NSESSS2017 a NSESSS2024)");
@@ -39,7 +39,7 @@ public class CmdParamsReader {
         output.println(" -i|--id= Identifikátor prováděné kontroly");
         output.println(" -z|--hrozba= Podrobnosti v případě nalezení hrozby (pro předání z antivirového programu)");
         output.println(" -o|--output= Jméno souboru nebo adresáře pro uložení výsledků");
-        output.println(" -p|--ports= Rozsah portů pro vnitřní procesy (standardně 10000-32000)");
+        output.println(" -P|--ports= Rozsah portů pro vnitřní procesy (standardně 10000-32000)");
         output.println(" -t|--type= Typ validace (AUTO - výchozí)");
         output.println(" 		AUTO - automatická detekce formátu vstupu");
         output.println(" 		NSESSS2017");
@@ -89,12 +89,12 @@ public class CmdParamsReader {
                 if (!readWorkDir(arg.substring(10))) {
                     return false;
                 }
-            } else if (arg.equals("-d")) {
+            } else if (arg.equals("-p")) {
                 if (!readD()) {
                     return false;
                 }
-            } else if (arg.startsWith("--druh=")) {
-                if (!readDruh(arg.substring("--druh=".length()))) {
+            } else if (arg.startsWith("--profile=")) {
+                if (!readDruh(arg.substring("--profile=".length()))) {
                     return false;
                 }
             } else if (arg.equals("-i")) {
