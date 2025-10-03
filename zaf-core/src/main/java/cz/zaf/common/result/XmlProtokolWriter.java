@@ -9,7 +9,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Instant;
 import java.util.List;
-import java.util.Properties;
 import java.util.UUID;
 
 import javax.xml.XMLConstants;
@@ -33,6 +32,8 @@ import org.xml.sax.SAXException;
 import com.ctc.wstx.api.WstxInputProperties;
 import com.sun.xml.txw2.output.IndentingXMLStreamWriter;
 
+import cz.zaf.common.Properties;
+import cz.zaf.common.ZafInfo;
 import cz.zaf.schema.validace_v1.ObjectFactory;
 import cz.zaf.schema.validace_v1.TBalicek;
 import cz.zaf.schema.validace_v1.TKontrola;
@@ -60,25 +61,7 @@ public class XmlProtokolWriter implements ProtokolWriter
     private XMLStreamWriter xmlStreamWriter;
 
     private IndentingXMLStreamWriter indentingStreamWriter;
-    
-	/**
-	 * Version of the conversion utility
-	 */
-	private static String appVersion = "_UNKNOWN_VERSION_";
-	static {
-		try (InputStream input = XmlProtokolWriter.class.getClassLoader()
-				.getResourceAsStream("META-INF/maven/cz.zaf/zaf-core/pom.properties")) {
-			Properties prop = new Properties();
-			if (input == null) {
-				logger.error("File not found: META-INF/maven/cz.zaf/zaf-core/pom.properties");
-			}
-			prop.load(input);
-			appVersion = prop.getProperty("version");
-		} catch (IOException ex) {
-			logger.error("Failed to read pom.properties", ex);
-		}
-	}    
-    
+        
     static JAXBContext jaxbContext;
     static Schema schema;
     
@@ -176,8 +159,8 @@ public class XmlProtokolWriter implements ProtokolWriter
         String artifactId = properties.getProperty("artifactId");
         */
 
-        indentingStreamWriter.writeAttribute("nazevAplikace", "ZAF");
-        indentingStreamWriter.writeAttribute("verzeAplikace", appVersion);
+        indentingStreamWriter.writeAttribute("nazevAplikace", ZafInfo.getAppName());
+        indentingStreamWriter.writeAttribute("verzeAplikace", ZafInfo.getAppVersion());
         indentingStreamWriter.writeAttribute("typValidace", profileInfo.getValidationType());
         indentingStreamWriter.writeAttribute("profilValidace", profileInfo.getProfileName());
         indentingStreamWriter.writeAttribute("verzePravidel", profileInfo.getRuleVersion());        

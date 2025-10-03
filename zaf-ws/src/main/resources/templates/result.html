@@ -85,8 +85,12 @@
     </table>
 		</th:block>
 		<div id="footer">
-			<p><a href="https://validatorzaf.github.io/zaf/">O projektu</a><br><a
-					th:href="@{https://github.com/validatorzaf/zaf/releases}" th:text="${verzeAplikace}"></a></p>
+		  <!-- Left side -->
+		  <div>
+		    <a href="https://validatorzaf.github.io/zaf/">O projektu</a>
+		  </div>
+		   <!-- Right side -->
+           <div>Verze: <a th:href="@{https://github.com/validatorzaf/zaf/releases}" th:text="${appVersion}"></a></div>
 		</div>
 	</div>
 </body>

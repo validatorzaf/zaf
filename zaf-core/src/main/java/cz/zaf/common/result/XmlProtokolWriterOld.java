@@ -33,6 +33,7 @@ import org.xml.sax.SAXException;
 import com.ctc.wstx.api.WstxInputProperties;
 import com.sun.xml.txw2.output.IndentingXMLStreamWriter;
 
+import cz.zaf.common.ZafInfo;
 import cz.zaf.schema.validacesip.ObjectFactory;
 import cz.zaf.schema.validacesip.TEntity;
 import cz.zaf.schema.validacesip.TIdentifikator;
@@ -145,16 +146,8 @@ public class XmlProtokolWriterOld implements ProtokolWriter
     }
 
     private void pripravAppInfo() throws IOException, XMLStreamException {
-        // read default version from app
-        final Properties properties = new Properties();
-        try (InputStream r = getClass().getClassLoader().getResourceAsStream("zaf-core.properties")) {
-            properties.load(r);
-        }
-        String verzeApp = properties.getProperty("version");
-        String artifactId = properties.getProperty("artifactId");
-
-        indentingStreamWriter.writeAttribute("nazevAplikace", artifactId);
-        indentingStreamWriter.writeAttribute("verzeAplikace", verzeApp);
+        indentingStreamWriter.writeAttribute("nazevAplikace", ZafInfo.getAppName());
+        indentingStreamWriter.writeAttribute("verzeAplikace", ZafInfo.getAppVersion());
         indentingStreamWriter.writeAttribute("verzePravidel", NsesssV3.ZAF_RULE_VERSION);
     }
     

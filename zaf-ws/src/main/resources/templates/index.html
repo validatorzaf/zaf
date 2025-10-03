@@ -17,6 +17,9 @@
 		<p>Validátor ZAF je knihovna pro kontrolu datových balíčků SIP, AIP a DIP ve výměnném formátu a archivního
 			popisu ve formátu EAD dle českého profilu. Aplikace provádí načtení balíčků, kontrolu a zobrazení výsledků
 			kontroly. Pokud je v rámci jednoho z typů kontrol nalezena chyba, další typy kontrol se neprovádí.</p>
+		<th:block th:if="${errorMessage != null}">
+			<p class="status chyba" th:text="${errorMessage}"></p>
+		</th:block>
 		<form method="post" enctype="multipart/form-data" th:action="@{upload}">
 			<table class="package-form">
 				<tr>
@@ -81,10 +84,12 @@
 			</table>
 		</form>
 		<div id="footer">
-			<p><a href="https://validatorzaf.github.io/zaf/">O projektu</a><br><a
-					th:href="@{https://github.com/validatorzaf/zaf/releases}" th:text="${verzeAplikace}"><!-- Nový
-						parametr verzeAplikace pro rychlou orientaci verze a odkaz na changelog. --></a>
-			</p>
+		  <!-- Left side -->
+		  <div>
+		    <a href="https://validatorzaf.github.io/zaf/">O projektu</a>
+		  </div>
+		   <!-- Right side -->
+           <div>Verze: <a th:href="@{https://github.com/validatorzaf/zaf/releases}" th:text="${appVersion}"></a></div>
 		</div>
 	</div>
 </body>

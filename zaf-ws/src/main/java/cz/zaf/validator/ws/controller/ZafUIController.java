@@ -19,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import cz.zaf.api.rest.model.RequestProcessState;
 import cz.zaf.api.rest.model.ValidationType;
+import cz.zaf.common.ZafInfo;
 import cz.zaf.schema.validace_v1.Validace;
 import cz.zaf.validator.ws.service.ValidationService;
 
@@ -37,8 +38,9 @@ public class ZafUIController {
 	private ValidationService validationService;
 
 	@GetMapping("/")
-	public String showUploadForm() {
+	public String showUploadForm(Model model) {
 		if(uiEnabled) {
+			model.addAttribute("appVersion", ZafInfo.getAppVersion());
 			return "index";
 		} else {
             // This ensures nothing is served for the root path.
@@ -59,7 +61,8 @@ public class ZafUIController {
 			Model model) {
 		if(!uiEnabled) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ZAF UI is disabled.");
-		}		
+		}
+		model.addAttribute("appVersion", ZafInfo.getAppVersion());
 		try {
 			// Convert file to byte array
 			byte[] fileBytes = file.getBytes();
@@ -77,8 +80,7 @@ public class ZafUIController {
 			do {
 				RequestProcessState rps = validationService.getStatus(valRequestId);
 				if(rps==RequestProcessState.ERROR) {
-					model.addAttribute("message", "File upload failed!");
-					return "index";					
+					throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Validation error.");					
 				} else 
 				if(rps==RequestProcessState.FINISHED) {
 					break;
@@ -91,7 +93,7 @@ public class ZafUIController {
 			Validace result = validationService.getResult(valRequestId);
 
 			// Read back final response
-			model.addAttribute("requestId", valRequestId);
+			model.addAttribute("requestId", valRequestId);			
 			model.addAttribute("validationType", result.getTypValidace());
 			model.addAttribute("validationProfile", result.getProfilValidace());			
 			model.addAttribute("verzePravidel", result.getVerzePravidel().intValue());
@@ -103,7 +105,7 @@ public class ZafUIController {
 			// model.
 			return "result";
 		} catch (Exception e) {
-			model.addAttribute("message", "File upload failed!");
+			model.addAttribute("errorMessage", e.getMessage());
 			return "index";
 		}
 	}
