@@ -7,10 +7,8 @@ import java.util.List;
 import cz.zaf.common.result.ValidationProfileInfo;
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.validation.BaseRule;
-import cz.zaf.common.validation.BaseValidationLayer;
 import cz.zaf.common.validation.Rule;
 import cz.zaf.common.validation.RuleEvaluationContext;
-import cz.zaf.common.validation.ValidationLayer;
 import cz.zaf.common.validation.ValidationLayerType;
 import cz.zaf.common.validation.ValidationSubprofile;
 import cz.zaf.common.validation.Validator;
@@ -25,9 +23,8 @@ import cz.zaf.earkvalidator.layers.wf.WellFormedLayer;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 import cz.zaf.premisvalidator.PremisValidationContext;
 import cz.zaf.premisvalidator.PremisValidationLayer;
-import cz.zaf.premisvalidator.layers.enc.Encoding;
 import cz.zaf.premisvalidator.profile.PremisProfile;
-import cz.zaf.validator.profiles.ValidationProfile;
+import cz.zaf.validator.profiles.ValidatorType;
 
 public class ValidatorDAAIP2024 implements Validator {
 	
@@ -48,17 +45,17 @@ public class ValidatorDAAIP2024 implements Validator {
 		this.validationProfileInfo = new ValidationProfileInfo() {
 
 			@Override
-			public String getProfileName() {
-				return ValidationProfile.DAAIP2024.toString();
-			}
-
-			@Override
 			public String getValidationType() {
-				return daaip2024Profile.getName();
+				return ValidatorType.DAAIP2024.toString();
 			}
 
 			@Override
-			public String getProfileVersion() {
+			public String getProfileName() {
+				return daaip2024Profile.getName();				
+			}
+
+			@Override
+			public String getRuleVersion() {
 				return "1";
 			}		
 		}; 

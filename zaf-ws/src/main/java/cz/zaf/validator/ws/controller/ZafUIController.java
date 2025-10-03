@@ -92,8 +92,8 @@ public class ZafUIController {
 
 			// Read back final response
 			model.addAttribute("requestId", valRequestId);
-			model.addAttribute("druhValidace", result.getDruhValidace());
-			model.addAttribute("profilPravidel", result.getProfilPravidel());
+			model.addAttribute("validationType", result.getTypValidace());
+			model.addAttribute("validationProfile", result.getProfilValidace());			
 			model.addAttribute("verzePravidel", result.getVerzePravidel().intValue());
 			model.addAttribute("dataPackages", result.getBalicek());
 			// seznam chyb

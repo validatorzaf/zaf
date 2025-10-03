@@ -8,7 +8,7 @@ import cz.zaf.sipvalidator.nsesss2024.ValidatorNsesss2024;
 /**
  * Profil validace
  */
-public enum ValidationProfile {
+public enum ValidatorType {
 	NSESSS2017(ValidatorNsesss2017.getValidatorInfo()),
     NSESSS2024(ValidatorNsesss2024.getValidatorInfo()),
     AP2023(null),
@@ -17,7 +17,7 @@ public enum ValidationProfile {
 	
 	private ValidatorInfo validatorInfo;
 
-	ValidationProfile(final ValidatorInfo validatorInfo) {
+	ValidatorType(final ValidatorInfo validatorInfo) {
 		this.validatorInfo = validatorInfo;
 	}
 

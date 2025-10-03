@@ -7,11 +7,7 @@ import cz.zaf.common.result.ValidationProfileInfo;
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.validation.ValidationSubprofile;
 import cz.zaf.common.validation.Validator;
-import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
-// import cz.zaf.validator.ap2023.profily.ProfilValidaceEad;
-// import cz.zaf.sipvalidator.ead.EadInfo;
-// import cz.zaf.sipvalidator.ead.EadLoader;
-import cz.zaf.validator.profiles.ValidationProfile;
+import cz.zaf.validator.profiles.ValidatorType;
 
 public class ValidatorAp2023 implements Validator, ValidationProfileInfo {
 	
@@ -46,16 +42,16 @@ public class ValidatorAp2023 implements Validator, ValidationProfileInfo {
 
     @Override
     public String getProfileName() {
-        return ValidationProfile.AP2023.toString();
+    	return profilValidace.getName();
     }
 
     @Override
     public String getValidationType() {
-        return profilValidace.getName();
+    	return ValidatorType.AP2023.toString();        
     }
 
     @Override
-    public String getProfileVersion() {
+    public String getRuleVersion() {
         return "1";
     }
 }

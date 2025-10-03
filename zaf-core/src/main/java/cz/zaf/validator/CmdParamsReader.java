@@ -5,7 +5,7 @@ import java.io.PrintStream;
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 import cz.zaf.sipvalidator.formats.VystupniFormat;
-import cz.zaf.validator.profiles.ValidationProfile;
+import cz.zaf.validator.profiles.ValidatorType;
 
 /**
  * Třída pro načtení vstupních parametrů
@@ -336,16 +336,16 @@ public class CmdParamsReader {
             	params.setValidationProfile(null);
                 break;                
             case "NSESSS2017":
-            	params.setValidationProfile(ValidationProfile.NSESSS2017);
+            	params.setValidationProfile(ValidatorType.NSESSS2017);
                 break;
             case "NSESSS2024":
-            	params.setValidationProfile(ValidationProfile.NSESSS2024);
+            	params.setValidationProfile(ValidatorType.NSESSS2024);
                 break;                
             case "AP2023":
-            	params.setValidationProfile(ValidationProfile.AP2023);
+            	params.setValidationProfile(ValidatorType.AP2023);
                 break;                
             case "DAAIP2024":
-            	params.setValidationProfile(ValidationProfile.DAAIP2024);
+            	params.setValidationProfile(ValidatorType.DAAIP2024);
                 break;                
             default:
                 System.out.println("Chybný typ balíčku: " + arg);

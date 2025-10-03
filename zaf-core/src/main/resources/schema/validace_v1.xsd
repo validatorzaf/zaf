@@ -33,7 +33,7 @@
                     <xs:documentation>Verze aplikace, která provádí validaci.</xs:documentation>
                 </xs:annotation>
             </xs:attribute>
-            <xs:attribute name="TypValidace" type="validace_zaf:tTypValidace" use="required" />
+            <xs:attribute name="typValidace" type="validace_zaf:tTypValidace" use="required" />
             <xs:attribute name="verzePravidel" type="xs:positiveInteger" use="required">
                 <xs:annotation>
                     <xs:documentation>Verze pravidel, podle kterých se provádí validace.</xs:documentation>

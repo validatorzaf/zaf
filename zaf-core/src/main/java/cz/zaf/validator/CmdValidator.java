@@ -31,7 +31,7 @@ import cz.zaf.sipvalidator.nsesss2024.ValidatorNsesss2024;
 import cz.zaf.sipvalidator.nsesss2024.profily.ProfilValidace;
 import cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace;
 import cz.zaf.sipvalidator.pdfa.VeraValidatorProxy;
-import cz.zaf.validator.profiles.ValidationProfile;
+import cz.zaf.validator.profiles.ValidatorType;
 import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.io.inputstream.ZipInputStream;
@@ -52,7 +52,7 @@ public class CmdValidator {
     private final Params params;
     
     // Skutečné parametry validátoru
-    private ValidationProfile validationProfile;
+    private ValidatorType validationProfile;
 	private DAAIP2024Profile da2024Profile;
     private cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace nsesss2017Profile;    
     private cz.zaf.sipvalidator.nsesss2024.profily.ProfilValidace nsesss2024Profile;
@@ -172,24 +172,24 @@ public class CmdValidator {
     		if(inputFileName.endsWith(".zip")) {
     			detectPkgTypeZip(inputPath);
     		} else {
-    			validationProfile = ValidationProfile.AP2023;
+    			validationProfile = ValidatorType.AP2023;
     		}
     	} else
     	// we have to detect file type
     	// check if input path is a directory
     	if (Files.isDirectory(inputPath)) {
     		// Default choice is:
-    		validationProfile = ValidationProfile.NSESSS2017;
+    		validationProfile = ValidatorType.NSESSS2017;
 	    	// read fist 100 characters from METS.xml if exists
 	    	try {
 	    		String metsData = Files.readString(inputPath.resolve("METS.xml"), StandardCharsets.UTF_8);
 	    		if(metsData.contains("PROFILE=\"https://stands.nacr.cz/da/2023/aip.xml\"")) {
-	    			validationProfile = ValidationProfile.DAAIP2024;
+	    			validationProfile = ValidatorType.DAAIP2024;
 	    			// Detect subprofile
 	    			da2024Profile = detectSubProfileDAAIP2024(metsData);
 	    		} else
 	    		if(metsData.contains("=\"http://www.mvcr.cz/nsesss/v4\"")) {
-	    			validationProfile = ValidationProfile.NSESSS2024;
+	    			validationProfile = ValidatorType.NSESSS2024;
 	    		}
 	    		
     		} catch (IOException e) {
@@ -230,18 +230,18 @@ public class CmdValidator {
 						}
 						String metsData = sb.toString();
 						if(metsData.contains("PROFILE=\"https://stands.nacr.cz/da/2023/aip.xml\"")) {
-							validationProfile = ValidationProfile.DAAIP2024;
+							validationProfile = ValidatorType.DAAIP2024;
 							// Detect subprofile
 							da2024Profile = detectSubProfileDAAIP2024(metsData);
 							return true;
 						}
 						if(metsData.contains("=\"http://www.mvcr.cz/nsesss/v4\"")) {
-							validationProfile = ValidationProfile.NSESSS2024;
+							validationProfile = ValidatorType.NSESSS2024;
 							nsesss2024Profile = detectSubProfileNSESSS2024(metsData);
 							return true;
 						}
 						if(metsData.contains("=\"http://www.mvcr.cz/nsesss/v3\"")) {
-							validationProfile = ValidationProfile.NSESSS2017;
+							validationProfile = ValidatorType.NSESSS2017;
 							nsesss2017Profile = detectSubProfileNSESSS2017(metsData);
 							return true;
 						}

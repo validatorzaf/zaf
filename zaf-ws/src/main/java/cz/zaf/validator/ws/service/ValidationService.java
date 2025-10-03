@@ -21,13 +21,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import cz.zaf.api.rest.model.RequestProcessState;
 import cz.zaf.api.rest.model.ValidationType;
+import cz.zaf.common.xml.SchemaResourceLoader;
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 import cz.zaf.schema.validace_v1.Validace;
+import cz.zaf.schemas.validace_v1.ValidaceV1NS;
 import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 import cz.zaf.validator.CmdValidator;
 import cz.zaf.validator.Params;
-import cz.zaf.validator.profiles.ValidationProfile;
+import cz.zaf.validator.profiles.ValidatorType;
 import jakarta.validation.Valid;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
@@ -83,7 +85,7 @@ public class ValidationService {
 
 		private boolean batchMode;
 
-		private ValidationProfile validationProfile;
+		private ValidatorType validationProfile;
 
 		private AP2023Profile ap2023Profile;
 
@@ -95,7 +97,7 @@ public class ValidationService {
 
 		public ValidationJob(Path requestPath, String originalFilename,
 				final boolean batchMode, 
-				final ValidationProfile validationProfile) throws IOException {
+				final ValidatorType validationProfile) throws IOException {
 			this.requestPath = requestPath;
 			this.inputDirPath = requestPath.resolve(INPUT_DIR_NAME);
 			this.batchMode = batchMode;
@@ -248,12 +250,12 @@ public class ValidationService {
 			Files.createDirectories(requestPath);
 			log.debug("Storing file to the working folder: {}", requestPath);
 			
-			ValidationProfile validationProfile = null;
+			ValidatorType validationProfile = null;
 			java.util.function.Consumer<ValidationJob> jobCustomizer = null;
 			if(validationType!=null) {
 				switch(validationType) {
 				case AP2023:
-					validationProfile = ValidationProfile.AP2023;
+					validationProfile = ValidatorType.AP2023;
 					jobCustomizer = vj -> {
 						if ("FA".equals(paramValidationProfile)) {
 							vj.setAp2023Profile(AP2023Profile.FINDING_AID);
@@ -263,13 +265,13 @@ public class ValidationService {
 					};
 					break;
 				case DAAIP2024: 
-					validationProfile = ValidationProfile.DAAIP2024;
+					validationProfile = ValidatorType.DAAIP2024;
 					if(paramValidationProfile!=null&&!"AUTO".equals(paramValidationProfile)) {
 						jobCustomizer = vj -> vj.setDaaip2024Profile(DAAIP2024Profile.valueOf(paramValidationProfile));						
 					}
 					break;
 				case NSESSS2017:
-					validationProfile = ValidationProfile.NSESSS2017;
+					validationProfile = ValidatorType.NSESSS2017;
 					if(paramValidationProfile!=null) {
 						jobCustomizer = vj -> {
 							if("SIP_METADATA".equals(paramValidationProfile)) {
@@ -285,7 +287,7 @@ public class ValidationService {
 					}
 					break;
 				case NSESSS2024:
-					validationProfile = ValidationProfile.NSESSS2024;
+					validationProfile = ValidatorType.NSESSS2024;
 					if(paramValidationProfile!=null) {
 						jobCustomizer = vj -> {
 							if("SIP_METADATA".equals(paramValidationProfile)) {
@@ -375,6 +377,7 @@ public class ValidationService {
 		// load xml using jaxbContext from resultPath
         try (InputStream is = Files.newInputStream(resultPath)) {
         	Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        	unmarshaller.setSchema(SchemaResourceLoader.get(ValidaceV1NS.SCHEMA_RESOURCE));
         	Object resultObj = unmarshaller.unmarshal(is);
         	return (Validace)resultObj;
         } catch (IOException e) {

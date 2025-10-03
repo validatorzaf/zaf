@@ -6,7 +6,7 @@ import java.util.List;
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 import cz.zaf.sipvalidator.formats.VystupniFormat;
-import cz.zaf.validator.profiles.ValidationProfile;
+import cz.zaf.validator.profiles.ValidatorType;
 
 /**
  * Parametry validátoru
@@ -55,7 +55,7 @@ public class Params {
     /**
      * Validation profile
      */
-    private ValidationProfile validationProfile = null;
+    private ValidatorType validationProfile = null;
     
     /**
      * Popis hrozby
@@ -131,11 +131,11 @@ public class Params {
     }
     
 
-	public void setValidationProfile(final ValidationProfile validationProfile) {
+	public void setValidationProfile(final ValidatorType validationProfile) {
 		this.validationProfile = validationProfile;		
 	}
 	
-	public ValidationProfile getValidationProfile() {
+	public ValidatorType getValidationProfile() {
 		return validationProfile;
 	}
 
