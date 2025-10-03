@@ -6,6 +6,12 @@ import java.io.InputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Information about the application and its version.
+ * 
+ * It is possible to override the application name and version.
+ * These values are stored in final XML file as a name of validating application.
+ */
 public final class ZafInfo {
 	
 	private static Logger logger = LoggerFactory.getLogger(ZafInfo.class);
@@ -14,6 +20,11 @@ public final class ZafInfo {
 	 * Name of the application
 	 */
 	public static final String ZAF_NAME = "ZAF";
+	
+	/**
+	 * Name of the application
+	 */
+	private static String appName = ZAF_NAME;
 		
 	
 	/**
@@ -35,11 +46,18 @@ public final class ZafInfo {
 	}
 	
 	public static String getAppName() {
-		return ZAF_NAME;
+		return appName;
+	}
+	
+	public static void setAppName(final String appName) {
+		ZafInfo.appName = appName;
 	}
 	
 	public static String getAppVersion() {
 		return appVersion;
 	}
-
+	
+	public static void setAppVersion(final String appVersion) {
+		ZafInfo.appVersion = appVersion;
+	}
 }

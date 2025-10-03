@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function refreshSelect(select, allowedValues, allOptions, batchDisallowAuto, autoDefault) {
     // Keep placeholder (first option)
     const placeholder = select.options[0];
+	const prevValue = select.value;
 
     // Remove other options
     select.length = 1;
@@ -41,13 +42,18 @@ document.addEventListener('DOMContentLoaded', () => {
       newOption.textContent = opt.text;
       select.appendChild(newOption);
     });
-
-    // Set default selection
-    if (autoDefault) {
+    
+	// Select value
+	// try to select previous value
+	if (prevValue && allowedValues.includes(prevValue) && !(batchDisallowAuto && prevValue === 'AUTO')) {
+	  // pokud dřívější hodnota stále dává smysl, vyber ji
+	  select.value = prevValue;
+	} else if (autoDefault) { // Set default selection
       const autoOpt = select.querySelector('option[value="AUTO"]');
       if (autoOpt) autoOpt.selected = true;
     } else {
-      select.selectedIndex = 0; // placeholder
+	  // if nothing else select first value
+      select.selectedIndex = 0; 
     }
   }
 
