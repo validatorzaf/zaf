@@ -11,10 +11,10 @@
 	<script src="js/common.js"></script>
 </head>
 <body>
-	<div class="container">
-		<h1>Validátor ZAF</h1>
-		<p class="mt2rem"><a th:href="@{./}">Nahrát nový soubor</a></p>
-		<table class="mt2rem">
+  <div class="container">
+    <h1>Validátor ZAF</h1>
+    <p class="mt2rem"><a th:href="@{./}">Nahrát nový soubor</a> <a style="padding-left: 1rem" th:href="@{'/download/' + ${requestId}}" class="btn-download" download>Stáhnout výsledek</a></p>
+   		<table class="mt2rem">
 			<tr>
 				<td>Požadavek ID:</td>
 				<td th:text="${requestId}"></td>

@@ -1,17 +1,18 @@
 package cz.zaf.validator.ws.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -109,4 +110,32 @@ public class ZafUIController {
 			return "index";
 		}
 	}
+	
+	@GetMapping("/download/{requestId}")
+	public ResponseEntity<ByteArrayResource> downloadResult(@PathVariable("requestId") String requestId) {
+	    if (!uiEnabled) {
+	        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ZAF UI is disabled.");
+	    }
+	    try {
+	        // Let validationService give you the serialized result
+	        // (adjust if your service returns a File, String, XML etc.)
+	        byte[] fileBytes = validationService.getResultAsBytes(requestId);
+
+	        if (fileBytes == null) {
+	            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Result not found for requestId: " + requestId);
+	        }
+
+	        ByteArrayResource resource = new ByteArrayResource(fileBytes);
+
+	        return ResponseEntity.ok()
+	                .header(HttpHeaders.CONTENT_DISPOSITION,
+	                        "attachment; filename=\"validation-" + requestId + ".xml\"")
+	                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+	                .contentLength(fileBytes.length)
+	                .body(resource);
+
+	    } catch (Exception e) {
+	        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error retrieving result.", e);
+	    }
+	}	
 }
