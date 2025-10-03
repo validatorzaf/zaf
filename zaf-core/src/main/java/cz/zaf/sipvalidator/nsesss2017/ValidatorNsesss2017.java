@@ -17,7 +17,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla07.K07PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 import cz.zaf.sipvalidator.sip.SipLoader;
-import cz.zaf.validator.profiles.ValidationProfile;
+import cz.zaf.validator.profiles.ValidatorType;
 
 public class ValidatorNsesss2017 implements Validator, ValidationProfileInfo {
 	
@@ -56,17 +56,17 @@ public class ValidatorNsesss2017 implements Validator, ValidationProfileInfo {
     }
 
     @Override
-    public String getProfileName() {
-        return ValidationProfile.NSESSS2017.toString();
-    }
-
-    @Override
     public String getValidationType() {
-        return profilValidace.getName();
+    	return ValidatorType.NSESSS2017.toString();
     }
 
     @Override
-    public String getProfileVersion() {
+    public String getProfileName() {
+    	return profilValidace.getName();
+    }
+
+    @Override
+    public String getRuleVersion() {
         return NsesssV3.ZAF_RULE_VERSION;
     }
     

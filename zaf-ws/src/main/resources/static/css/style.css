@@ -59,6 +59,8 @@ strong.kontrola {
     margin-bottom: 4rem;
     font-size: 0.9rem;
     color: #808080;
+    display: flex;
+    justify-content: space-between;    
 }
 
 #footer a {

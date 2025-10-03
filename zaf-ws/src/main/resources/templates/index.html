@@ -17,6 +17,9 @@
 		<p>Validátor ZAF je knihovna pro kontrolu datových balíčků SIP, AIP a DIP ve výměnném formátu a archivního
 			popisu ve formátu EAD dle českého profilu. Aplikace provádí načtení balíčků, kontrolu a zobrazení výsledků
 			kontroly. Pokud je v rámci jednoho z typů kontrol nalezena chyba, další typy kontrol se neprovádí.</p>
+		<th:block th:if="${errorMessage != null}">
+			<p class="status chyba" th:text="${errorMessage}"></p>
+		</th:block>
 		<form method="post" enctype="multipart/form-data" th:action="@{upload}">
 			<table class="package-form">
 				<tr>
@@ -32,7 +35,8 @@
 						<label for="validationType">Typ validace:</label>
 					</td>
 					<td>
-						<select id="validationType" name="validationType">
+						<select id="validationType" name="validationType" required>
+                            <option value="" disabled selected>–– vyberte ––</option>
 							<option value="AUTO">AUTO</option>
 							<option value="NSESSS2017">NSESSS2017</option>
 							<option value="NSESSS2024">NSESSS2024</option>
@@ -43,10 +47,11 @@
 				</tr>
 				<tr>
 					<td class="w10rem">
-						<label for="validationProfile">Druh (profil) validace:</label>
+						<label for="validationProfile">Profil validace:</label>
 					</td>
 					<td>
-						<select id="validationProfile" name="validationProfile">
+						<select id="validationProfile" name="validationProfile" required>
+                            <option value="" disabled selected>–– vyberte ––</option>
 							<option value="AUTO">AUTO</option>
 							<option value="SIP_METADATA">SIP pro provedení skartačního řízení (NSESSS2017, NSESSS2024)
 							</option>
@@ -79,10 +84,12 @@
 			</table>
 		</form>
 		<div id="footer">
-			<p><a href="https://validatorzaf.github.io/zaf/">O projektu</a><br><a
-					th:href="@{https://github.com/validatorzaf/zaf/releases}" th:text="${verzeAplikace}"><!-- Nový
-						parametr verzeAplikace pro rychlou orientaci verze a odkaz na changelog. --></a>
-			</p>
+		  <!-- Left side -->
+		  <div>
+		    <a href="https://validatorzaf.github.io/zaf/">O projektu</a>
+		  </div>
+		   <!-- Right side -->
+           <div>Verze: <a th:href="@{https://github.com/validatorzaf/zaf/releases}" th:text="${appVersion}"></a></div>
 		</div>
 	</div>
 </body>

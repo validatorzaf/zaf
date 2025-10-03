@@ -103,17 +103,9 @@ public class ZafWsController implements ValidationApi {
 		ValidationJsonResult vjr = new ValidationJsonResult();
 		vjr.setAppName(validace.getNazevAplikace());
 		vjr.setAppVersion(validace.getVerzeAplikace());
-		ValidationType vt = null;
-		switch(validace.getDruhValidace()) {
-		case "archivní popis":
-			vt = ValidationType.AP2023;
-			break;
-		case "skartační řízení (s komponentami)":
-			vt = ValidationType.NSESSS2024;
-		default:
-			throw new RuntimeException("Unknown validation type: " + validace.getDruhValidace());
-		}
-		vjr.setProfile(validace.getProfilPravidel());
+		ValidationType vt = ValidationType.fromValue(validace.getTypValidace());
+
+		vjr.setProfile(validace.getProfilValidace());
 		vjr.setValidationType(vt);
 		vjr.setValidationDate(
 				validace.getDatumValidace()

@@ -11,21 +11,21 @@
 	<script src="js/common.js"></script>
 </head>
 <body>
-	<div class="container">
-		<h1>Validátor ZAF</h1>
-		<p class="mt2rem"><a th:href="@{./}">Nahrát nový soubor</a></p>
-		<table class="mt2rem">
+  <div class="container">
+    <h1>Validátor ZAF</h1>
+    <p class="mt2rem"><a th:href="@{./}">Nahrát nový soubor</a> <a style="padding-left: 1rem" th:href="@{'/download/' + ${requestId}}" class="btn-download" download>Stáhnout výsledek</a></p>
+   		<table class="mt2rem">
 			<tr>
 				<td>Požadavek ID:</td>
 				<td th:text="${requestId}"></td>
 			</tr>
 			<tr>
 				<td>Typ validace:</td>
-				<td th:text="${profilPravidel}"></td>
+				<td th:text="${validationType}"></td>
 			</tr>
 			<tr>
-				<td class="w10rem">Druh (profil) validace:</td>
-				<td th:text="${druhValidace}"></td>
+				<td class="w10rem">Profil validace:</td>
+				<td th:text="${validationProfile}"></td>
 			</tr>
 			<tr>
 				<td>Verze pravidel:</td>
@@ -85,8 +85,12 @@
     </table>
 		</th:block>
 		<div id="footer">
-			<p><a href="https://validatorzaf.github.io/zaf/">O projektu</a><br><a
-					th:href="@{https://github.com/validatorzaf/zaf/releases}" th:text="${verzeAplikace}"></a></p>
+		  <!-- Left side -->
+		  <div>
+		    <a href="https://validatorzaf.github.io/zaf/">O projektu</a>
+		  </div>
+		   <!-- Right side -->
+           <div>Verze: <a th:href="@{https://github.com/validatorzaf/zaf/releases}" th:text="${appVersion}"></a></div>
 		</div>
 	</div>
 </body>
