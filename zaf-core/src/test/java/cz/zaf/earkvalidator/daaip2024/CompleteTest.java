@@ -2,9 +2,7 @@ package cz.zaf.earkvalidator.daaip2024;
 
 import org.junit.jupiter.api.Test;
 
-import cz.zaf.common.result.ValidationStatus;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
-import cz.zaf.premisvalidator.layers.enc.enc00_09.Rule01;
 
 public class CompleteTest extends AipValidatorTestBase {
 	

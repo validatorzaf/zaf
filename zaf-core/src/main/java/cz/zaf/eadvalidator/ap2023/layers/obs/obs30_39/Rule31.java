@@ -58,9 +58,11 @@ public class Rule31 extends EadRule {
             if (!isDateValid) {
                 throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut eventdatetime neobsahuje hodnotu v očekávaném formátu.", ctx.formatEadPosition(maintenanceevent));
             }
-
-            if (!StringUtils.equals(content, standarddatetime)) {
-                throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Odlišná hodnota atributu a elementu eventdatetime.", ctx.formatEadPosition(eventdatetime));
+            
+            if (StringUtils.isNotEmpty(content) && !StringUtils.equals(content, standarddatetime)) {
+                throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "V elementu eventdatetime je uvedena odlišná hodnota atributu standarddatetime("+standarddatetime
+                		+") od jeho obsahu ("+content+").", 
+                		ctx.formatEadPosition(eventdatetime));
             }
 
             //33 Agenttype
