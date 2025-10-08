@@ -1,14 +1,10 @@
 package cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69;
 
-import org.apache.commons.lang3.StringUtils;
-
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.schema.ead3.Archdesc;
 import cz.zaf.schema.ead3.Originalsloc;
-import cz.zaf.schema.ead3.P;
-import java.io.Serializable;
 import java.util.List;
 
 public class Rule67 extends EadRule {

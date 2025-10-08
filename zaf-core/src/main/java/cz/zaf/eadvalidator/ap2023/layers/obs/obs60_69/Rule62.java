@@ -1,18 +1,15 @@
 package cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69;
 
-import org.apache.commons.lang3.StringUtils;
-
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.schema.ead3.Archdesc;
-import cz.zaf.schema.ead3.P;
 import cz.zaf.schema.ead3.Scopecontent;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.apache.commons.lang3.StringUtils;
 
 public class Rule62 extends EadRule {
 
@@ -78,9 +75,11 @@ public class Rule62 extends EadRule {
         //když je jeden bez lang - nemůže být potom s lang s hodnotou cze
         if (scopecontentWithoutLangCount == 1 && !scopeContentWithLangMap.isEmpty()) {
             List<Scopecontent> scopeContentLangCzeList = scopeContentWithLangMap.get("cze");
-            if (!scopeContentLangCzeList.isEmpty()) {
+            if (scopeContentLangCzeList != null) {
+                System.out.println("");
                 throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepovolený element <ead:scopecontent>.", ctx.formatEadPosition(scopeContentLangCzeList));
             }
+            System.err.println("");
         }
         //ted už řeším jen s lang - nesmí být dva klíče stejné pokud nemají internal a external
         if (!scopeContentWithLangMap.isEmpty()) {
@@ -98,7 +97,6 @@ public class Rule62 extends EadRule {
                     if (audienceFirst == null || audienceSecond == null) {
                         throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepovolený element <ead:scopecontent>.", ctx.formatEadPosition(withLangList));
                     }
-                    //$ tady upravena podmínka  - prošlo když to vlastně splňovalo
                     if (!("internal".equals(audienceFirst) && "external".equals(audienceSecond) || "external".equals(audienceFirst) && "internal".equals(audienceSecond))) {
                         throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepovolený element <ead:scopecontent>.", ctx.formatEadPosition(withLangList));
                     }
@@ -109,10 +107,12 @@ public class Rule62 extends EadRule {
 
     private void addScopecontent(Map<String, List<Scopecontent>> scopeContentWithLangMap, Map<String, List<Scopecontent>> scopeContentSimpleMap, Scopecontent sc) {
         String atrLang = sc.getLang();
-        if (atrLang == null) {
+        if (StringUtils.isEmpty(atrLang)) {
             atrLang = "";
+        scopeContentSimpleMap.computeIfAbsent(atrLang, k -> new ArrayList<>()).add(sc);
+        }else{
+            scopeContentWithLangMap.computeIfAbsent(atrLang, k -> new ArrayList<>()).add(sc);
         }
-        scopeContentWithLangMap.computeIfAbsent(atrLang, k -> new ArrayList<>()).add(sc);
     }
 
 }

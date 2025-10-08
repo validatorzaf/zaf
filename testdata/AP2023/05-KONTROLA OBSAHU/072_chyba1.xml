@@ -161,8 +161,9 @@
 							</ead:famname> 
 						</ead:origination>
 					</ead:did>
-					<!-- obs60 chyba1 prázdný element ead:p -->
-					<ead:custodhist><ead:p></ead:p></ead:custodhist> <!-- obs60 -->						
+					<!-- obs72 chyba1 prázdný element ead:p -->
+					<ead:processinfo><ead:p></ead:p></ead:processinfo> <!-- obs61 -->
+					
 					<!-- obs93 -->
 					
 					<ead:relations>
@@ -177,6 +178,6 @@
 				</ead:c>	
 			</ead:c>
 		</ead:dsc>
-		<ead:custodhist><ead:p>neprazdny element</ead:p></ead:custodhist> <!-- obs60 -->
+		<ead:processinfo><ead:p>neprazdny element</ead:p></ead:processinfo> <!-- obs61 -->
 	</ead:archdesc>
 </ead:ead>

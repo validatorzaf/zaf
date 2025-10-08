@@ -1,14 +1,10 @@
 package cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69;
 
-import org.apache.commons.lang3.StringUtils;
-
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.schema.ead3.Archdesc;
 import cz.zaf.schema.ead3.Custodhist;
-import cz.zaf.schema.ead3.P;
-import java.io.Serializable;
 import java.util.List;
 
 public class Rule60 extends EadRule {
@@ -43,9 +39,11 @@ public class Rule60 extends EadRule {
             if (child instanceof Custodhist mainElement) {
                 mainElementCOunt++;
                 if (mainElementCOunt > 1) {
+                    //hlídá schéma
                     throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt elementu.", ctx.formatEadPosition(mainElement));
                 }
                 List<Object> cHistChilds = mainElement.getChronlistOrListOrTable();
+                //když chybí p = hlídá schéma
                 checkSingleElementP(cHistChilds, mainElement);
             }
         }

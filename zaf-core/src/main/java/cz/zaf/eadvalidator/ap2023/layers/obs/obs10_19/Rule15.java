@@ -32,44 +32,48 @@ public class Rule15 extends EadRule {
         Filedesc fileDesc = ead.getControl().getFiledesc();
         Publicationstmt publStmt = fileDesc.getPublicationstmt();
         if (publStmt == null) {
-            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybí element.", ctx.formatEadPosition(fileDesc));
+            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybí element ead:publicationstmt.", ctx.formatEadPosition(fileDesc));
         }
 
         List<Object> pdas = publStmt.getPublisherOrDateOrAddress();
         if (CollectionUtils.isEmpty(pdas)) {
-            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybí element.", ctx.formatEadPosition(pdas));
+            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Element ead:publicationstmt neobsahuje žádné elementy.", ctx.formatEadPosition(publStmt));
         }
-
-        Name found = null;
+        //hledám elementy P
+        boolean foundP = false;
         for (Object pda : pdas) {
-            if (pda instanceof P) {
-                P p = (P) pda;
+            if (pda instanceof P p) {
                 List<Serializable> pConts = p.getContent();
+                Name foundName = null;
                 for (Object pCont : pConts) {
                     // unpack jaxb
                     if (pCont instanceof JAXBElement<?>) {
                         JAXBElement<?> jaxbElem = (JAXBElement<?>) pCont;
                         Object obj = jaxbElem.getValue();
-                        if (obj instanceof Name) {
-                            pCont = (Name) obj;
-                        }
-                    }
-
-                    if (pCont instanceof Name) {
-                        Name name = (Name) pCont;
-                        if (EadNS.LOCALTYPE_ARRANGER.equals(name.getLocaltype())) {
-                            if (found != null) {
-                                throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt.", ctx.formatEadPosition(name));
+                        //hleadám elementy Name
+                        if (obj instanceof Name name) {
+                            if (foundName != null) {
+                                throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt elementu ead:name.", ctx.formatEadPosition(name));
                             }
-                            found = name;
+                            foundName = name;
+                            if (isWantedElementP(name)) {
+                                foundP = true;
+                            }
                         }
                     }
-
+                }
+                if (foundName == null) {
+                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybi element name.", ctx.formatEadPosition(p));
                 }
             }
         }
-        if (found == null) {
-            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybi element.", ctx.formatEadPosition(publStmt));
+        if (!foundP) {
+            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybi hledaný element p.", ctx.formatEadPosition(publStmt));
         }
     }
+
+    private boolean isWantedElementP(Name name) {
+        return EadNS.LOCALTYPE_ARRANGER.equals(name.getLocaltype());
+    }
+
 }

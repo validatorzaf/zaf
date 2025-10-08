@@ -161,10 +161,12 @@
 							</ead:famname> 
 						</ead:origination>
 					</ead:did>
-					<!-- obs60 chyba1 prázdný element ead:p -->
-					<ead:custodhist><ead:p></ead:p></ead:custodhist> <!-- obs60 -->						
+					<!-- obs69 chyba2 duplicitní element ead:p -->
+					<ead:altformavail>
+						<ead:p>neprazdny duplicitní element</ead:p>
+						<ead:p>neprazdny duplicitníelement</ead:p>
+					</ead:altformavail> <!-- obs60 -->						
 					<!-- obs93 -->
-					
 					<ead:relations>
 						<ead:relation relationtype="resourcerelation" linkrole="ARTWORK" linktitle="autorské dílo" altrender="inherited"> <!-- obs101, obs102, obs103 -->
 							<ead:relationentry>Text</ead:relationentry> <!-- obs104 -->
@@ -177,6 +179,8 @@
 				</ead:c>	
 			</ead:c>
 		</ead:dsc>
-		<ead:custodhist><ead:p>neprazdny element</ead:p></ead:custodhist> <!-- obs60 -->
+		<ead:altformavail>
+			<ead:p>neprazdny element</ead:p>
+		</ead:altformavail> <!-- obs60 -->
 	</ead:archdesc>
 </ead:ead>
