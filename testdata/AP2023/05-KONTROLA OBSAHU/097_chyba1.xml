@@ -23,22 +23,12 @@
 				</ead:p>
 				<ead:p> <!-- obs13 -->
 					<ead:name localtype="ORIGINATOR"><ead:part> <!-- obs14 -->
-						<ead:ref target="ap7523">Původce 1</ead:ref>
-					</ead:part></ead:name>
-				</ead:p>
-				<ead:p> <!-- obs13 -->
-					<ead:name localtype="ORIGINATOR"><ead:part> <!-- obs14 -->
-						<ead:ref target="ap84921">Původce 2</ead:ref>
+						<ead:ref target="ap7523">Původce</ead:ref>
 					</ead:part></ead:name>
 				</ead:p>
 				<ead:p> <!-- obs15 -->
 					<ead:name localtype="ARRANGER"><ead:part> <!-- obs16 -->
-						<ead:ref target="ap7523">Zpracovatel 1</ead:ref>
-					</ead:part></ead:name>
-				</ead:p>
-				<ead:p> <!-- obs15 -->
-					<ead:name localtype="ARRANGER"><ead:part> <!-- obs16 -->
-						<ead:ref target="ap84921">Zpracovatel 2</ead:ref>
+						<ead:ref target="ap7523">Zpracovatel</ead:ref>
 					</ead:part></ead:name>
 				</ead:p>
 				<ead:p> <!-- obs17 -->
@@ -54,11 +44,11 @@
 		</ead:maintenanceagency>
 		
 		<ead:localcontrol localtype="FINDING_AID_TYPE"> <!-- obs23 -->
-			<ead:term identifier="INVENTAR">inventář</ead:term> <!-- obs26, obs28, obs29 -->
+			<ead:term identifier="INVENTAR">inventář</ead:term>
 		</ead:localcontrol>
 		
-		<ead:localcontrol localtype="RULES"> <!-- obs24 -->
-			<ead:term identifier="CZ_ZP1958">základní pravidla z roku 1958</ead:term> <!-- obs26, obs27 -->
+		<ead:localcontrol localtype="RULES"> <!-- obs27 -->
+			<ead:term identifier="CZ_ZP2013">základní pravidla od roku 2013</ead:term>
 		</ead:localcontrol>
 		
 		<ead:localcontrol localtype="CZ_FINDING_AID_EAD_PROFILE"> <!-- obs25 -->
@@ -93,84 +83,117 @@
                     </cam:ent> <!-- cam1 -->
 				</ead:objectxmlwrap>
 			</ead:source>
-			<ead:source id="ap84921"></ead:source>
 		</ead:sources>
 	</ead:control>
-	<ead:archdesc level="fonds" base="http://archdesc.nacr.cz/dids/80bb604a-052e-4e49-b86e-e4a91b95bf59"> <!-- obs35, obs37 -->
+	<ead:archdesc level="fonds" base="http://archiv.cz/dids/80bb604a-052e-4e49-b86e-e4a91b95bf59"> <!-- obs35, obs37 -->
 		<ead:did>
 			<ead:physdescstructured physdescstructuredtype="spaceoccupied" coverage="whole"> <!-- obs47 -->
 				<ead:quantity>1</ead:quantity>
-				<ead:unittype>byte</ead:unittype> <!-- obs48, obs81 -->
+				<ead:unittype>bm</ead:unittype> <!-- obs48, obs81 -->
 			</ead:physdescstructured>
 			
 			<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part"> <!-- obs40 -->
 				<ead:quantity>1</ead:quantity>
-				<ead:unittype>lip</ead:unittype>
+				<ead:unittype>lio</ead:unittype>
 			</ead:physdescstructured>
-			
 		</ead:did>
+		
 		<ead:dsc>
-			<ead:c level="series" base="http://archdesc.nacr.cz/dids/69106f67-3592-4713-926e-4dab4159ddde"> <!-- obs36, obs37 -->
+			<ead:c level="series" base="http://archiv.cz/dids/69106f67-3592-4713-926e-4dab4159ddde"> <!-- obs36, obs37 -->
 				<ead:did>
 					<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole">
 						<ead:quantity>1</ead:quantity>
-						<ead:unittype>lip</ead:unittype> <!-- obs39 -->
+						<ead:unittype>lio</ead:unittype> <!-- obs39 -->
 					</ead:physdescstructured>
-					
-					<ead:unittitle>Text</ead:unittitle> <!-- obs53 -->
 				</ead:did>
 				
-				<ead:c level="item" base="http://archdesc.nacr.cz/dids/f73a2216-d32c-442b-a206-40c4aac70a49"> <!-- obs37 -->
+			<ead:c level="item" base="http://archiv.cz/dids/f73a2216-d32c-442b-a206-40c4aac70a49"> <!-- obs37 -->
 					<ead:did>
 						<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole"> <!-- obs43 -->
 							<ead:quantity>1</ead:quantity>
-							<ead:unittype>lip</ead:unittype> <!-- obs39 -->
+							<ead:unittype>lio</ead:unittype> <!-- obs39 -->
 							
-							<ead:physfacet localtype="CORROBORATIO">Text</ead:physfacet> <!-- obs74 -->
+							<ead:physfacet localtype="IMPRINT_IMAGE">Text</ead:physfacet> <!-- obs74 -->
 							
 							<ead:dimensions>
-								<ead:dimensions unit="mm" localtype="HEIGHT">123.45</ead:dimensions> <!-- obs75, obs76 -->
+								<ead:dimensions unit="mm" localtype="WIDTH">123.45</ead:dimensions> <!-- obs75, obs76 -->
 							</ead:dimensions>
 						</ead:physdescstructured>
 						
-						<ead:unitid localtype="PORADOVE_CISLO" label="pořadové číslo">123</ead:unitid> <!-- obs50, obs51 -->
+						<ead:unittitle>Něco veřejného</ead:unittitle> <!-- obs41, obs42 -->
+						<ead:unittitle audience="internal">Něco skrytého</ead:unittitle> <!-- obs41, obs42 -->
+						<ead:container>Uložení</ead:container> <!-- obs49 -->
+						<ead:unitid localtype="REFERENCNI_OZNACENI" label="referenční označení">CZ620100//153//1/4//1</ead:unitid> <!-- obs50, obs51 -->
 						<ead:unittitle>Text</ead:unittitle> <!-- obs53 -->
-						<ead:unittitle lang="hun">Text maďarsky</ead:unittitle> <!-- obs43 -->
-						
-						<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="quantity" coverage="whole"> <!-- obs79 -->
-							<ead:quantity>1</ead:quantity>
-							<ead:unittype>pieces</ead:unittype> <!-- obs80 -->
-						</ead:physdescstructured>
 						
 						<ead:unitdatestructured>
-							<ead:daterange localtype="DECLARED" altrender="Y-Y"> <!-- obs55 -->
-								<ead:fromdate notbefore="2001-10-01T00:00:00">1. října 2001</ead:fromdate> <!-- obs57 -->
-								<ead:todate notafter="2002-10-01T00:00:00">1. října 2002</ead:todate> <!-- obs58, obs59 -->
+							<ead:daterange localtype="CONTENT" altrender="C"> <!-- obs55 -->
+								<ead:fromdate standarddate="2001-10-01T00:00:00">1. října 2001</ead:fromdate> <!-- obs57 -->
+								<ead:todate standarddate="2001-10-02T00:00:00">2. října 2001</ead:todate> <!-- obs58, obs59 -->
 							</ead:daterange>
 						</ead:unitdatestructured>
 						
-						<ead:dao daotype="borndigital" identifier="id123"> <!-- obs95, obs96 -->
-							
+						<ead:didnote localtype="INTERNAL" audience="internal">Text</ead:didnote> <!-- obs70 -->
+						
+						<ead:physdesc>Text</ead:physdesc> <!-- obs73 -->
+						
+						<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="weight" coverage="whole"> <!-- obs77 -->
+							<ead:quantity>1</ead:quantity>
+							<ead:unittype>g</ead:unittype> <!-- obs78 -->
+						</ead:physdescstructured>
+						
+						<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="quantity" coverage="whole"> <!-- obs79 -->
+							<ead:quantity>1</ead:quantity>
+							<ead:unittype>byte</ead:unittype> <!-- obs80 -->
+						</ead:physdescstructured>
+						
+						<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="duration" coverage="whole"> <!-- obs82 -->
+							<ead:quantity>1</ead:quantity>	
+							<ead:unittype>s</ead:unittype> <!-- obs83 -->
+						</ead:physdescstructured>
+						
+						<ead:materialspec localtype="SCALE">1:200</ead:materialspec> <!-- obs84 -->
+						<ead:materialspec localtype="ORIENTATION">na sever</ead:materialspec> <!-- obs89 -->
+						<ead:materialspec localtype="VOLUME">Ročník XVI, číslo 2</ead:materialspec> <!-- obs90 -->
+						
+						<ead:langmaterial>
+							<ead:language langcode="esx">blíže neurčený eskymácko-aleutský jazyk</ead:language> <!-- obs91 -->
+						</ead:langmaterial>
+						
+						<ead:dao daotype="derived" identifier="id123"> <!-- obs95, obs96 -->
+							<ead:descriptivenote>
+								<ead:p>Text</ead:p>
+								<ead:p>Text</ead:p>
+							</ead:descriptivenote> <!-- obs97 -->
 						</ead:dao>
 						
 						<ead:origination altrender="inherited"> <!-- obs98 -->
-							<ead:famname localtype="ORIGINATOR"> <!-- obs99 -->
+							<ead:persname localtype="ORIGINATOR"> <!-- obs99 -->
 								<ead:part>
 									<ead:ref target="ap7523">Odkaz na původce</ead:ref> <!-- obs100 -->
 								</ead:part>
-							</ead:famname> 
+							</ead:persname> 
 						</ead:origination>
 					</ead:did>
-					<!-- obs72 chyba2 duplicitní element ead:p -->
-					<ead:processinfo localtype="ARCHIVIST_NOTE">
-						<ead:p>neprazdny duplicitní element</ead:p>
-						<ead:p>neprazdny duplicitníelement</ead:p>
-					</ead:processinfo> <!-- obs60 -->						
-					<!-- obs93 -->
+					
+					<ead:scopecontent><ead:p>Něco</ead:p></ead:scopecontent> <!-- obs62 -->
+					<ead:scopecontent lang="hun"><ead:p>Něco maďarsky</ead:p></ead:scopecontent> <!-- obs43 -->
+					<ead:processinfo localtype="ARCHIVIST_NOTE"><ead:p>Text</ead:p></ead:processinfo> <!-- obs71, obs72 -->
+					
+					<ead:bibliography> <!-- obs93 -->
+						<ead:p>Text</ead:p>
+					</ead:bibliography>
+					
 					<ead:relations>
-						<ead:relation relationtype="resourcerelation" linkrole="ARTWORK" linktitle="autorské dílo" altrender="inherited"> <!-- obs101, obs102, obs103 -->
+						<ead:relation relationtype="otherrelationtype" otherrelationtype="COORDINATES"> <!-- obs85 -->
+							<ead:geogname> <!-- obs86 -->
+								<ead:part>5.2.6 Souřadnice</ead:part> <!-- obs87 -->
+								<ead:geographiccoordinates coordinatesystem="WGS84">AQEAAABwf4nTpNssQMV3vY/+B0lA</ead:geographiccoordinates> <!-- obs88 -->
+							</ead:geogname>
+						</ead:relation>
+					
+						<ead:relation relationtype="cpfrelation" linkrole="AUTHOR" linktitle="autor" altrender="inherited"> <!-- obs101, obs102, obs103 -->
 							<ead:relationentry>Text</ead:relationentry> <!-- obs104 -->
-							<ead:relationentry>Text 2</ead:relationentry> <!-- obs104 -->
 							<ead:descriptivenote><ead:p> <!-- obs105-->
 								<ead:ptr target="ap7523"></ead:ptr>
 							</ead:p></ead:descriptivenote>
@@ -179,8 +202,5 @@
 				</ead:c>	
 			</ead:c>
 		</ead:dsc>
-		<ead:processinfo localtype="ARCHIVIST_NOTE">
-			<ead:p>neprazdny element</ead:p>
-		</ead:processinfo> <!-- obs60 -->
 	</ead:archdesc>
 </ead:ead>

@@ -23,8 +23,10 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule22;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule23;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule25;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule27;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule31;
 
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule36;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs40_49.Rule49;
 
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule60;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule61;
@@ -36,10 +38,23 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule66;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule67;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule68;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule69;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs70_79.Rule70;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs70_79.Rule71;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs70_79.Rule72;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs70_79.Rule73;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs70_79.Rule75;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule84;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule85;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule86;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule87;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule89;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule90;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule93;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule94;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule95;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule97;
 
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
-import cz.zaf.earkvalidator.layers.obs.obs30_39.Rule31;
 
 public class EadValidatorL05Test extends EadValidatorTestBase {
 
@@ -54,7 +69,12 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
                     Rule12.CODE, Rule15.CODE, Rule19.CODE,
                     Rule20.CODE, Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
                     Rule31.CODE, Rule36.CODE,
-                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE, Rule72.CODE},
+                    Rule49.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+                    Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule75.CODE,
+                    Rule84.CODE, Rule85.CODE, Rule86.CODE, Rule87.CODE, Rule89.CODE,
+                    Rule90.CODE, Rule93.CODE, Rule94.CODE, Rule95.CODE, Rule97.CODE
+                },
                 new String[]{});
     }
 
@@ -67,7 +87,12 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
                     Rule12.CODE, Rule15.CODE, Rule19.CODE,
                     Rule20.CODE, Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
                     Rule31.CODE, Rule36.CODE,
-                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE, Rule72.CODE},
+                    Rule49.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+                    Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule75.CODE,
+                    Rule84.CODE, Rule85.CODE, Rule86.CODE, Rule87.CODE, Rule89.CODE,
+                    Rule90.CODE, Rule93.CODE, Rule94.CODE, Rule95.CODE, Rule97.CODE
+                },
                 new String[]{});
     }
 
@@ -700,6 +725,18 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
     }
 
     @Test
+    void testObs_49_chyba01() {
+        testPomucka("05-KONTROLA OBSAHU/049_chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE, Rule15.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
+                    Rule31.CODE, Rule36.CODE,
+                },
+                new String[]{Rule49.CODE});
+    }
+
+    @Test
     void testObs_60_chyba01() {
         testPomucka("05-KONTROLA OBSAHU/060_chyba1.xml",
                 ValidationStatus.ERROR,
@@ -950,6 +987,34 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
     }
 
     @Test
+    void testObs_70_chyba01() {
+        testPomucka("05-KONTROLA OBSAHU/070_chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE, Rule15.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
+                    Rule31.CODE, Rule36.CODE,
+                    Rule49.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE},
+                new String[]{Rule70.CODE});
+    }
+
+    @Test
+    void testObs_71_chyba01() {
+        testPomucka("05-KONTROLA OBSAHU/071_chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE, Rule15.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
+                    Rule31.CODE, Rule36.CODE,
+                    Rule49.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+                    Rule70.CODE
+                },
+                new String[]{Rule71.CODE});
+    }
+
+    @Test
     void testObs_72_chyba01() {
         testPomucka("05-KONTROLA OBSAHU/072_chyba1.xml",
                 ValidationStatus.ERROR,
@@ -957,7 +1022,9 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
                     Rule12.CODE, Rule15.CODE, Rule19.CODE,
                     Rule20.CODE, Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
                     Rule31.CODE, Rule36.CODE,
-                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE},
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+                    Rule70.CODE, Rule71.CODE
+                },
                 new String[]{Rule72.CODE});
     }
 
@@ -969,8 +1036,233 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
                     Rule12.CODE, Rule15.CODE, Rule19.CODE,
                     Rule20.CODE, Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
                     Rule31.CODE, Rule36.CODE,
-                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE},
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+                    Rule70.CODE, Rule71.CODE
+                },
                 new String[]{Rule72.CODE});
+    }
+
+    @Test
+    void testObs_73_chyba01() {
+        testPomucka("05-KONTROLA OBSAHU/073_chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE, Rule15.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
+                    Rule31.CODE, Rule36.CODE,
+                    Rule49.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+                    Rule70.CODE, Rule71.CODE, Rule72.CODE
+                },
+                new String[]{Rule73.CODE});
+    }
+
+    @Test
+    void testObs_75_chyba01() {
+        testPomucka("05-KONTROLA OBSAHU/075_chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE, Rule15.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
+                    Rule31.CODE, Rule36.CODE,
+                    Rule49.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+                    Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE
+                },
+                new String[]{Rule75.CODE});
+    }
+
+    @Test
+    void testObs_75_chyba02() {
+        testPomucka("05-KONTROLA OBSAHU/075_chyba2.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE, Rule15.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
+                    Rule31.CODE, Rule36.CODE,
+                    Rule49.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+                    Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE
+                },
+                new String[]{Rule75.CODE});
+    }
+
+    @Test
+    void testObs_84_chyba01() {
+        testPomucka("05-KONTROLA OBSAHU/084_chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE, Rule15.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
+                    Rule31.CODE, Rule36.CODE,
+                    Rule49.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+                    Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule75.CODE
+                },
+                new String[]{Rule84.CODE});
+    }
+
+    @Test
+    void testObs_85_chyba01() {
+        testPomucka("05-KONTROLA OBSAHU/085_chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE, Rule15.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
+                    Rule31.CODE, Rule36.CODE,
+                    Rule49.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+                    Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule75.CODE,
+                    Rule84.CODE
+                },
+                new String[]{Rule85.CODE});
+    }
+
+    @Test
+    void testObs_86_chyba01() {
+        testPomucka("05-KONTROLA OBSAHU/086_chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE, Rule15.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
+                    Rule31.CODE, Rule36.CODE,
+                    Rule49.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+                    Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule75.CODE,
+                    Rule84.CODE, Rule85.CODE,},
+                new String[]{Rule86.CODE});
+    }
+
+    @Test
+    void testObs_87_chyba01() {
+        testPomucka("05-KONTROLA OBSAHU/087_chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE, Rule15.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
+                    Rule31.CODE, Rule36.CODE,
+                    Rule49.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+                    Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule75.CODE,
+                    Rule84.CODE, Rule85.CODE, Rule86.CODE,},
+                new String[]{Rule87.CODE});
+    }
+
+    @Test
+    void testObs_89_chyba01() {
+        testPomucka("05-KONTROLA OBSAHU/089_chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE, Rule15.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
+                    Rule31.CODE, Rule36.CODE,
+                    Rule49.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+                    Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule75.CODE,
+                    Rule84.CODE, Rule85.CODE, Rule86.CODE, Rule87.CODE
+                },
+                new String[]{Rule89.CODE});
+    }
+
+    @Test
+    void testObs_90_chyba01() {
+        testPomucka("05-KONTROLA OBSAHU/090_chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE, Rule15.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
+                    Rule31.CODE, Rule36.CODE,
+                    Rule49.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+                    Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule75.CODE,
+                    Rule84.CODE, Rule85.CODE, Rule86.CODE, Rule87.CODE, Rule87.CODE, Rule89.CODE
+                },
+                new String[]{Rule90.CODE});
+    }
+
+    @Test
+    void testObs_93_chyba01() {
+        testPomucka("05-KONTROLA OBSAHU/093_chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE, Rule15.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
+                    Rule31.CODE, Rule36.CODE,
+                    Rule49.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+                    Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule75.CODE,
+                    Rule84.CODE, Rule85.CODE, Rule86.CODE, Rule87.CODE, Rule87.CODE, Rule89.CODE,
+                    Rule90.CODE
+                },
+                new String[]{Rule93.CODE});
+    }
+
+    @Test
+    void testObs_94_chyba01() {
+        testPomucka("05-KONTROLA OBSAHU/094_chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE, Rule15.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
+                    Rule31.CODE, Rule36.CODE,
+                    Rule49.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+                    Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule75.CODE,
+                    Rule84.CODE, Rule85.CODE, Rule86.CODE, Rule87.CODE, Rule87.CODE, Rule89.CODE,
+                    Rule90.CODE, Rule93.CODE
+                },
+                new String[]{Rule94.CODE});
+    }
+
+    @Test
+    void testObs_95_chyba01() {
+        testPomucka("05-KONTROLA OBSAHU/095_chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE, Rule15.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
+                    Rule31.CODE, Rule36.CODE,
+                    Rule49.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+                    Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule75.CODE,
+                    Rule84.CODE, Rule85.CODE, Rule86.CODE, Rule87.CODE, Rule87.CODE, Rule89.CODE,
+                    Rule90.CODE, Rule93.CODE, Rule94.CODE
+                },
+                new String[]{Rule95.CODE});
+    }
+
+    @Test
+    void testObs_97_chyba01() {
+        testPomucka("05-KONTROLA OBSAHU/097_chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE, Rule15.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
+                    Rule31.CODE, Rule36.CODE,
+                    Rule49.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+                    Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule75.CODE,
+                    Rule84.CODE, Rule85.CODE, Rule86.CODE, Rule87.CODE, Rule87.CODE, Rule89.CODE,
+                    Rule90.CODE, Rule93.CODE, Rule94.CODE, Rule95.CODE
+                },
+                new String[]{Rule97.CODE});
+    }
+
+    @Test
+    void testObs_97_chyba02() {
+        testPomucka("05-KONTROLA OBSAHU/097_chyba2.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE, Rule15.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule22.CODE, Rule23.CODE, Rule25.CODE, Rule27.CODE,
+                    Rule31.CODE, Rule36.CODE,
+                    Rule49.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+                    Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule75.CODE,
+                    Rule84.CODE, Rule85.CODE, Rule86.CODE, Rule87.CODE, Rule87.CODE, Rule89.CODE,
+                    Rule90.CODE, Rule93.CODE, Rule94.CODE, Rule95.CODE
+                },
+                new String[]{Rule97.CODE});
     }
 
     private void testPopis(String path,
