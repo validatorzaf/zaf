@@ -1,0 +1,13 @@
+= AP2023
+
+Kontrola archivního popisu podle 
+https://stands.nacr.cz/ead/[profilu standardu EAD3 pro archivní pomůcky v České republice] 
+na základě sady xref:AP2023_pravidla[pravidel].
+
+:leveloffset: +1
+
+include::AP2023/pravidla.adoc[]
+
+include::AP2023/zmeny.adoc[]
+
+:leveloffset: -1
