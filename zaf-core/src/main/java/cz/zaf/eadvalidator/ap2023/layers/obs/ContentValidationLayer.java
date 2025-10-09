@@ -30,6 +30,7 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule27;
 
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule31;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule36;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs40_49.Rule49;
 
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule60;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule61;
@@ -41,7 +42,21 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule66;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule67;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule68;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule69;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs70_79.Rule70;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs70_79.Rule71;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs70_79.Rule72;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs70_79.Rule73;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs70_79.Rule75;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule84;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule85;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule86;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule87;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule89;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule90;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule93;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule94;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule95;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule97;
 
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
 
@@ -62,6 +77,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule27.class,
                         Rule31.class,
 			Rule36.class,
+            Rule49.class,
             Rule60.class, 
             Rule61.class,
             Rule62.class,
@@ -72,7 +88,21 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule67.class,
             Rule68.class,
             Rule69.class,
-            Rule72.class,
+                        Rule70.class,
+                        Rule71.class,
+                        Rule72.class,
+                        Rule73.class,
+                        Rule75.class,
+            Rule84.class,
+            Rule85.class,
+            Rule86.class,
+            Rule87.class,
+            Rule89.class,
+                        Rule90.class,
+                        Rule93.class,
+                        Rule94.class,
+                        Rule95.class,
+                        Rule97.class,
 	};
 	
         //finální pomůcka = archivní pomůcka (vyhláška má náležitosti odpovídající záhlaví atd)
@@ -98,6 +128,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule27.class,
                         Rule31.class,
 			Rule36.class,
+            Rule49.class,
             Rule60.class, 
             Rule61.class,
             Rule62.class,
@@ -108,7 +139,21 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule67.class,
             Rule68.class,
             Rule69.class,
-            Rule72.class,
+                        Rule70.class,
+                        Rule71.class,
+                        Rule72.class,
+                        Rule73.class,
+                        Rule75.class,
+            Rule84.class,
+            Rule85.class,
+            Rule86.class,
+            Rule87.class,
+            Rule89.class,
+                        Rule90.class,
+                        Rule93.class,
+                        Rule94.class,
+                        Rule95.class,
+                        Rule97.class,
 	};
 
         //inherentní arch. popis v aipu popis od puvodce(obecne) -  např co se vyteží ze SIP podle NS
@@ -123,6 +168,32 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule25.class,
             Rule27.class,
                         Rule31.class,
+            Rule49.class,
+            Rule60.class, 
+            Rule61.class,
+            Rule62.class,
+            Rule63.class,
+            Rule64.class,
+            Rule65.class,
+            Rule66.class,
+            Rule67.class,
+            Rule68.class,
+            Rule69.class,
+                        Rule70.class,
+                        Rule71.class,
+                        Rule72.class,
+                        Rule73.class,
+                        Rule75.class,
+            Rule84.class,
+            Rule85.class,
+            Rule86.class,
+            Rule87.class,
+            Rule89.class,
+                        Rule90.class,
+                        Rule93.class,
+                        Rule94.class,
+                        Rule95.class,
+                        Rule97.class,
 	};
         
         //contextování tím popíše arrchiválii a je to uloženo v AIP
@@ -137,6 +208,32 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule25.class,
             Rule27.class,
                         Rule31.class,
+            Rule49.class,
+            Rule60.class, 
+            Rule61.class,
+            Rule62.class,
+            Rule63.class,
+            Rule64.class,
+            Rule65.class,
+            Rule66.class,
+            Rule67.class,
+            Rule68.class,
+            Rule69.class,
+                        Rule70.class,
+                        Rule71.class,
+                        Rule72.class,
+                        Rule73.class,
+                        Rule75.class,
+            Rule84.class,
+            Rule85.class,
+            Rule86.class,
+            Rule87.class,
+            Rule89.class,
+                        Rule90.class,
+                        Rule93.class,
+                        Rule94.class,
+                        Rule95.class,
+                        Rule97.class,                     
 	};
 
 	public ContentValidationLayer(ValidationSubprofile profilValidace, String innerFileName) {

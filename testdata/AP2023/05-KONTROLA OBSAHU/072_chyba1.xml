@@ -162,7 +162,7 @@
 						</ead:origination>
 					</ead:did>
 					<!-- obs72 chyba1 prázdný element ead:p -->
-					<ead:processinfo><ead:p></ead:p></ead:processinfo> <!-- obs61 -->
+					<ead:processinfo localtype="ARCHIVIST_NOTE"><ead:p></ead:p></ead:processinfo> <!-- obs61 -->
 					
 					<!-- obs93 -->
 					
@@ -178,6 +178,6 @@
 				</ead:c>	
 			</ead:c>
 		</ead:dsc>
-		<ead:processinfo><ead:p>neprazdny element</ead:p></ead:processinfo> <!-- obs61 -->
+		<ead:processinfo localtype="ARCHIVIST_NOTE"><ead:p>neprazdny element</ead:p></ead:processinfo> <!-- obs61 -->
 	</ead:archdesc>
 </ead:ead>

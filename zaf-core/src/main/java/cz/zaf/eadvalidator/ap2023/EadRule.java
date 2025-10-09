@@ -42,7 +42,7 @@ public abstract class EadRule extends BaseRule<EadValidationContext> {
 
     }
 
-    private P validateP(P p) {
+    public P validateP(P p) {
         // Kontrola obsahu p
         List<Serializable> pContentList = p.getContent();
         if (pContentList.size() != 1) {
@@ -50,7 +50,7 @@ public abstract class EadRule extends BaseRule<EadValidationContext> {
         }
         Serializable partContent = pContentList.get(0);
         if (partContent instanceof String str) {
-            if (StringUtils.isEmpty(str)) {
+            if (StringUtils.isBlank(str)) {
                 throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Prázdná hodnota elementu.", ctx.formatEadPosition(p));
             }
         } else {
