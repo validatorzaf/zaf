@@ -2,6 +2,7 @@ package cz.zaf.validator;
 
 import java.io.PrintStream;
 
+import cz.zaf.common.MessageProvider;
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 import cz.zaf.sipvalidator.formats.VystupniFormat;
@@ -13,43 +14,10 @@ import cz.zaf.validator.profiles.ValidatorType;
  *
  */
 public class CmdParamsReader {
-
-    protected static void printUsage() {
-        PrintStream output = System.out;
-        output.println("CmdValidator [přepínače] [<path>]");
-        output.println("");
-        output.println("path - cesta k SIPu/AIPu/XML, v případě dávkového režimu ke složce daty");
-        output.println("");
-        output.println("Přepínače:");
-        output.println(" -b|--batch Dávkový režim, cesta je adresář obsahující SIPy");
-        output.println(" -w|--workdir= Umístění pracovního adresáře, zde budou SIPy rozbaleny");
-        output.println(" -k|--keep Zachování rozbalených souborů na disku");
-        output.println(" -p|--profile= Profil kontroly (AUTO - výchozí):");
-        output.println("        AUTO = výběr základní kontroly pro daný typ kontroly");
-        output.println("        SIP_METADATA = pro provedení skartačního řízení, jen metadata bez přiložených komponent (pro NSESSS2017 a NSESSS2024)");
-        output.println("        SIP_PREVIEW = pro provedení skartačního řízení s přiloženými komponentami (pro NSESSS2017 a NSESSS2024)");
-        output.println("        SIP = pro předávání dokumentů a jejich metadat do archivu (pro NSESSS2017 a NSESSS2024)");
-        output.println("        AD = archivní popis (pro AP2023)");
-        output.println("        FA = archivní pomůcka (pro AP2023)");
-        output.println("        AIP = výměnný AIP (pro DAAIP2024)");
-        output.println("        DIP_METADATA = metadatový DIP (pro DAAIP2024)");
-        output.println("        DIP_CONTENT = úplný DIP (pro DAAIP2024)");
-        output.println("        SIP_CHANGE = změnový SIP (pro DAAIP2024)");
-        output.println(" -e|--exclude= Seznam kontrol oddělených čárkou, které se nemají provádět");
-        output.println(" -i|--id= Identifikátor prováděné kontroly");
-        output.println(" -z|--hrozba= Podrobnosti v případě nalezení hrozby (pro předání z antivirového programu)");
-        output.println(" -o|--output= Jméno souboru nebo adresáře pro uložení výsledků");
-        output.println(" -P|--ports= Rozsah portů pro vnitřní procesy (standardně 10000-32000)");
-        output.println(" -t|--type= Typ validace (AUTO - výchozí)");
-        output.println(" 		AUTO - automatická detekce formátu vstupu");
-        output.println(" 		NSESSS2017");
-        output.println("        NSESSS2024");
-        output.println(" 		AP2023");
-        output.println(" 		DAAIP2024");
-        output.println(" -f|--format= Výstupní formát (1 - výchozí)");
-        output.println(" 		1 = obecné schéma (validace_v1.xsd)");
-        output.println(" 		2 = schéma pouze pro kontrolu NSESSS");
-    }
+	
+	final PrintStream output;
+	final PrintStream error;
+	final MessageProvider messages;
 
     /**
      * Pozice pri cteni vstupnich parametru
@@ -60,8 +28,12 @@ public class CmdParamsReader {
     
     Params params = new Params();
     
-    CmdParamsReader() {
-    	
+    public CmdParamsReader(final PrintStream output, 
+    		final PrintStream error, 
+    		final MessageProvider messages) {
+    	this.output = output;
+    	this.error = error;
+    	this.messages = messages;
     }
 
     /**
@@ -90,11 +62,11 @@ public class CmdParamsReader {
                     return false;
                 }
             } else if (arg.equals("-p")) {
-                if (!readD()) {
+                if (!readProfileP()) {
                     return false;
                 }
             } else if (arg.startsWith("--profile=")) {
-                if (!readDruh(arg.substring("--profile=".length()))) {
+                if (!readProfile(arg.substring("--profile=".length()))) {
                     return false;
                 }
             } else if (arg.equals("-i")) {
@@ -105,13 +77,24 @@ public class CmdParamsReader {
                 if (!readIdKontroly(arg.substring(5))) {
                     return false;
                 }
-            } else if (arg.equals("-z")) {
-                if (!readZ()) {
+                
+            } else
+            // for compatibility we keep undocumented parameter -z (replaced by -T)
+            // will be dropped in later release
+            if (arg.equals("-z")||arg.equals("-T")) {
+                if (!readThreatT()) {
                     return false;
                 }
-            } else if (arg.startsWith("--hrozba=")) {
-                if (!readHrozba(arg.substring(9))) {
+            } else
+            // for compatibility we keep undocumented parameter --hrozba= (replaced by --threat)
+            // will be dropped in later release            	
+            if (arg.startsWith("--hrozba=")) {
+                if (!readThreat(arg.substring(9))) {
                     return false;
+                }
+            } else if (arg.startsWith("--threat=")) {
+                if (!readThreat(arg.substring(9))) {
+                	return false;
                 }
             } else if (arg.equals("-o")) {
                 if (!readO()) {
@@ -130,11 +113,11 @@ public class CmdParamsReader {
                     return false;
                 }
             } else if (arg.equals("-t")) {
-                if (!readT()) {
+                if (!readTypeT()) {
                     return false;
                 }
             } else if (arg.startsWith("--type=")) {
-                if (!readTyp(arg.substring("--type=".length()))) {
+                if (!readType(arg.substring("--type=".length()))) {
                     return false;
                 }
             } else if (arg.equals("-f")) {
@@ -147,6 +130,9 @@ public class CmdParamsReader {
                 }
             } else if (arg.equals("--memTest")) {
                 params.setMemTest(true);
+            } else if (arg.startsWith("-")) {
+            	error.println(messages.getOrDefault("cmd.error.unknown_param", "Unrecognized parameter: {0}", arg));
+            	return false;
             } else {
                 params.setInputPath(arg);
             }
@@ -157,7 +143,7 @@ public class CmdParamsReader {
 
     private boolean readIdKontroly(String arg) {
         if (arg.length() == 0) {
-            System.out.println("Missing id detail");
+            error.println(messages.getOrDefault("cmd.error.param_id", "Missing id value."));
             return false;
         }
         params.setIdKontroly(arg);
@@ -167,7 +153,7 @@ public class CmdParamsReader {
     private boolean readIdKontroly() {
         pos++;
         if (pos == args.length) {
-            System.out.println("Missing id");
+        	error.println(messages.getOrDefault("cmd.error.param_id", "Missing id value."));
             return false;
         }
         String arg = args[pos];
@@ -176,7 +162,7 @@ public class CmdParamsReader {
 
     private boolean readOutput(String arg) {
         if (arg.length() == 0) {
-            System.out.println("Missing output detail");
+        	error.println(messages.getOrDefault("cmd.error.param_output", "Missing output path."));
             return false;
         }
         params.setOutputPath(arg);
@@ -186,7 +172,7 @@ public class CmdParamsReader {
     private boolean readO() {
         pos++;
         if (pos == args.length) {
-            System.out.println("Missing output");
+        	error.println(messages.getOrDefault("cmd.error.param_output", "Missing output path."));
             return false;
         }
         String arg = args[pos];
@@ -195,7 +181,7 @@ public class CmdParamsReader {
 
     private boolean readExclude(String arg) {
         if (arg.length() == 0) {
-            System.out.println("Missing excluded rules");
+        	error.println(messages.getOrDefault("cmd.error.param_exclude", "Missing list of excluded checks."));
             return false;
         }
         String[] excluded = arg.split(",");
@@ -211,98 +197,98 @@ public class CmdParamsReader {
     private boolean readE() {
         pos++;
         if (pos == args.length) {
-            System.out.println("Missing excluded rules");
+        	error.println(messages.getOrDefault("cmd.error.param_exclude", "Missing list of excluded checks."));
             return false;
         }
         String arg = args[pos];
         return readExclude(arg);
     }
 
-    private boolean readZ() {
+    private boolean readThreatT() {
         pos++;
         if (pos == args.length) {
-            System.out.println("Missing hrozba");
+        	error.println(messages.getOrDefault("cmd.error.param_threat", "Missing threat description."));
             return false;
         }
         String arg = args[pos];
-        return readHrozba(arg);
+        return readThreat(arg);
     }
 
-    private boolean readHrozba(String arg) {
+    private boolean readThreat(String arg) {
         if (arg.length() == 0) {
-            System.out.println("Missing hrozba detail");
+        	error.println(messages.getOrDefault("cmd.error.param_threat", "Missing threat description."));
             return false;
         }
         params.setHrozba(arg);
         return true;
     }
 
-    private boolean readD() {
+    private boolean readProfileP() {
         pos++;
         if (pos == args.length) {
-            System.out.println("Missing druh validace");
+        	error.println(messages.getOrDefault("cmd.error.param_profile", "Missing validation profile."));
             return false;
         }
         String arg = args[pos];
-        return readDruh(arg);
+        return readProfile(arg);
     }
 
-    private boolean readDruh(String arg) {
-        try {
-            switch (arg) {
-            case "AUTO":
-                return true;
-            case "0":
-            	params.setNsesss2017Profile(cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace.DEVEL);
-            	params.setNsesss2024Profile(cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.DEVEL);
-                break;                
-            case "1":
-            case "METADATA":
-            case "SIP_METADATA":
-            	params.setNsesss2017Profile(cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace.SKARTACE_METADATA);
-            	params.setNsesss2024Profile(cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.SKARTACE_METADATA);
-                break;
-            case "2":
-            case "KOMPLET":       
-            case "SIP_PREVIEW":
-            	params.setNsesss2017Profile(cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace.SKARTACE_UPLNY);
-            	params.setNsesss2024Profile(cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.SKARTACE_UPLNY);
-                break;
-            case "3":
-            case "PREJIMKA":
-            case "SIP":
-            	params.setNsesss2017Profile(cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace.PREJIMKA);
-            	params.setNsesss2024Profile(cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.PREJIMKA);
-                break;                
-            case "FA":
-                params.setAp2023Profile(AP2023Profile.FINDING_AID);
-                return true;
-            case "AD":
-            	params.setAp2023Profile(AP2023Profile.ARCH_DESC);
-                return true;
-            case "AIP":
-            	params.setDa2024Profile(DAAIP2024Profile.AIP);
-            	return true;
-            case "DIP_METADATA":
-            	params.setDa2024Profile(DAAIP2024Profile.DIP_METADATA);
-            	return true;
-            case "DIP_CONTENT":
-            	params.setDa2024Profile(DAAIP2024Profile.DIP_CONTENT);
-            	return true;
-            case "SIP_CHANGE":
-            	params.setDa2024Profile(DAAIP2024Profile.SIP_CHANGE);
-            	return true;
-            }
-        } catch (NumberFormatException nfe) {
-            System.out.println("Není číslo: " + arg);
-            return false;
-        }
+    private boolean readProfile(String arg) {
+		switch (arg) {
+		case "AUTO":
+			return true;
+		case "0":
+			params.setNsesss2017Profile(cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace.DEVEL);
+			params.setNsesss2024Profile(cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.DEVEL);
+			break;
+		case "1":
+		case "METADATA":
+		case "SIP_METADATA":
+			params.setNsesss2017Profile(
+					cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace.SKARTACE_METADATA);
+			params.setNsesss2024Profile(
+					cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.SKARTACE_METADATA);
+			break;
+		case "2":
+		case "KOMPLET":
+		case "SIP_PREVIEW":
+			params.setNsesss2017Profile(cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace.SKARTACE_UPLNY);
+			params.setNsesss2024Profile(cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.SKARTACE_UPLNY);
+			break;
+		case "3":
+		case "PREJIMKA":
+		case "SIP":
+			params.setNsesss2017Profile(cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace.PREJIMKA);
+			params.setNsesss2024Profile(cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.PREJIMKA);
+			break;
+		case "FA":
+			params.setAp2023Profile(AP2023Profile.FINDING_AID);
+			return true;
+		case "AD":
+			params.setAp2023Profile(AP2023Profile.ARCH_DESC);
+			return true;
+		case "AIP":
+			params.setDa2024Profile(DAAIP2024Profile.AIP);
+			return true;
+		case "DIP_METADATA":
+			params.setDa2024Profile(DAAIP2024Profile.DIP_METADATA);
+			return true;
+		case "DIP_CONTENT":
+			params.setDa2024Profile(DAAIP2024Profile.DIP_CONTENT);
+			return true;
+		case "SIP_CHANGE":
+			params.setDa2024Profile(DAAIP2024Profile.SIP_CHANGE);
+			return true;
+		default:
+			error.println(messages.getOrDefault("cmd.error.param_profile_unrecog", "Unknown validation profile: {0}", arg));
+			return false;
+		}
         return true;
     }
 
     private boolean readWorkDir(String arg) {
         if (arg.length() == 0) {
-            System.out.println("Missing work directory");
+        	error.println(messages.getOrDefault("cmd.error.param_workdir", "Missing working directory parameter."));
             return false;
         }
         params.setWorkDir(arg);
@@ -312,55 +298,51 @@ public class CmdParamsReader {
     private boolean readW() {
         pos++;
         if (pos == args.length) {
-            System.out.println("Missing work directory");
+        	error.println(messages.getOrDefault("cmd.error.param_workdir", "Missing working directory parameter."));
             return false;
         }
         params.setWorkDir(args[pos]);
         return true;
     }
     
-    private boolean readT() {
+    private boolean readTypeT() {
         pos++;
         if (pos == args.length) {
-            System.out.println("Missing typ balíčku");
+        	error.println(messages.getOrDefault("cmd.error.param_type", "Missing validation type."));
             return false;
         }
         String arg = args[pos];
-        return readTyp(arg);
+        return readType(arg);
     }
 
-    private boolean readTyp(String arg) {
-        try {
-            switch (arg) {
-            case "AUTO":
-            	params.setValidationProfile(null);
-                break;                
-            case "NSESSS2017":
-            	params.setValidationProfile(ValidatorType.NSESSS2017);
-                break;
-            case "NSESSS2024":
-            	params.setValidationProfile(ValidatorType.NSESSS2024);
-                break;                
-            case "AP2023":
-            	params.setValidationProfile(ValidatorType.AP2023);
-                break;                
-            case "DAAIP2024":
-            	params.setValidationProfile(ValidatorType.DAAIP2024);
-                break;                
-            default:
-                System.out.println("Chybný typ balíčku: " + arg);
-            }
-        } catch (NumberFormatException nfe) {
-            System.out.println("Není číslo: " + arg);
-            return false;
-        }
+    private boolean readType(String arg) {
+		switch (arg) {
+		case "AUTO":
+			params.setValidationProfile(null);
+			break;
+		case "NSESSS2017":
+			params.setValidationProfile(ValidatorType.NSESSS2017);
+			break;
+		case "NSESSS2024":
+			params.setValidationProfile(ValidatorType.NSESSS2024);
+			break;
+		case "AP2023":
+			params.setValidationProfile(ValidatorType.AP2023);
+			break;
+		case "DAAIP2024":
+			params.setValidationProfile(ValidatorType.DAAIP2024);
+			break;
+		default:
+			error.println(messages.getOrDefault("cmd.error.param_type_unknown", "Unknown validation type: {0}", arg));
+			return false;
+		}
         return true;
     }
     
     private boolean readF() {
         pos++;
         if (pos == args.length) {
-            System.out.println("Missing typ vystupniho formatu");
+        	error.println(messages.getOrDefault("cmd.error.param_format", "Missing parameter output format."));
             return false;
         }
         String arg = args[pos];
@@ -368,22 +350,17 @@ public class CmdParamsReader {
     }
 
     private boolean readOutputFormat(String arg) {
-        try {
-            int outputFormat = Integer.parseInt(arg);
-            switch (outputFormat) {
-            case 1:
-                params.setVystupniFormat(VystupniFormat.VALIDACE_V1);
-                break;                
-            case 2:
-            	params.setVystupniFormat(VystupniFormat.VALIDACE_SIP);
-                break;
-            default:
-                System.out.println("Chybný typ výstupního formátu: " + arg);
-            }
-        } catch (NumberFormatException nfe) {
-            System.out.println("Není číslo: " + arg);
-            return false;
-        }
+		switch (arg) {
+		case "1":
+			params.setVystupniFormat(VystupniFormat.VALIDACE_V1);
+			break;
+		case "2":
+			params.setVystupniFormat(VystupniFormat.VALIDACE_SIP);
+			break;
+		default:
+			error.println(messages.getOrDefault("cmd.error.param_format_unknown", "Unknown output format: {0}", arg));
+			return false;
+		}
         return true;
     }
 
@@ -391,4 +368,43 @@ public class CmdParamsReader {
 		return params;
 	}
 
+	/**
+	 * Static method to print help
+	 * 
+	 * @param output Output stream to print help.
+	 */
+    protected void printUsage() {    	
+        output.println(messages.getOrDefault("cmd.help.command", "CmdValidator [switches] <path>"));
+        output.println("");
+        output.println(messages.getOrDefault("cmd.help.path", "path - path to the SIP/AIP/XML, in case of batch mode to the batch"));
+        output.println("");
+        output.println(messages.getOrDefault("cmd.help.switches", "Switches:"));
+        output.println(" -b|--batch "+messages.getOrDefault("cmd.help.params.batch", "batch mode, path has to be directory with packages."));
+        output.println(" -w|--workdir= "+messages.getOrDefault("cmd.help.params.workdir", "Batch mode, path has to be directory with packages."));
+        output.println(" -k|--keep "+messages.getOrDefault("cmd.help.params.keep", "keep extracted data on disk for debugging."));
+        output.println(" -t|--type="+messages.getOrDefault("cmd.help.params.type", "validation type (AUTO - default)"));
+        output.println("      AUTO - "+messages.getOrDefault("cmd.help.params.type_auto", "automatic validation type detection"));
+        output.println("      NSESSS2017");
+        output.println("      NSESSS2024");
+        output.println("      AP2023");
+        output.println("      DAAIP2024");
+        output.println(" -p|--profile= "+messages.getOrDefault("cmd.help.params.profile", "validation profile (AUTO - default):"));
+        output.println("      AUTO - "+messages.getOrDefault("cmd.help.params.profile_auto", "select base checks for given validation type"));
+        output.println("      AD - "+messages.getOrDefault("cmd.help.params.profile_ad", "archival description (for AP2023)"));
+        output.println("      AIP - "+messages.getOrDefault("cmd.help.params.profile_aip", "interchange AIP format (for DAAIP2024)"));
+        output.println("      DIP_CONTENT - "+messages.getOrDefault("cmd.help.params.profile_dip_content", "complete DIP (for DAAIP2024)"));
+        output.println("      DIP_METADATA - "+messages.getOrDefault("cmd.help.params.profile_dip_metadata", "DIP with metadata only (for DAAIP2024)"));
+        output.println("      FA - "+messages.getOrDefault("cmd.help.params.profile_fa", "finding aid (for AP2023)"));
+        output.println("      SIP - "+messages.getOrDefault("cmd.help.params.profile_sip", "complete SIP for ingest (for NSESSS2017 and NSESSS2024)"));
+        output.println("      SIP_CHANGE - "+messages.getOrDefault("cmd.help.params.profile_sip_change", "modifying SIP (for DAAIP2024)"));
+        output.println("      SIP_METADATA - "+messages.getOrDefault("cmd.help.params.profile_sip_metadata", "SIP with metadata only used for selection of data (for NSESSS2017 and NSESSS2024)"));
+        output.println("      SIP_PREVIEW - "+messages.getOrDefault("cmd.help.params.profile_sip_preview", "complete SIP used for selection only (for NSESSS2017 and NSESSS2024)"));
+        output.println(" -e|--exclude= "+messages.getOrDefault("cmd.help.params.exclude", "comma separated list of disabled checks"));
+        output.println(" -i|--id= "+messages.getOrDefault("cmd.help.params.id", "ID of the running validation"));
+        output.println(" -T|--threat= "+messages.getOrDefault("cmd.help.params.threat", "optional description of detected threat (result of antivirus, malware scanner)"));
+        output.println(" -o|--output= "+messages.getOrDefault("cmd.help.params.output","name of file or directory where to store validation result"));
+        output.println(" -f|--format= "+messages.getOrDefault("cmd.help.params.output_format","output format (default: 1)"));
+        output.println("      1 = "+messages.getOrDefault("cmd.help.params.output_format_1","XML with generic structure (validace_v1.xsd)"));
+        output.println("      2 = "+messages.getOrDefault("cmd.help.params.output_format_2","older XML schema usable only for NSESSS2017, NSESSS2024)"));
+    }
 }

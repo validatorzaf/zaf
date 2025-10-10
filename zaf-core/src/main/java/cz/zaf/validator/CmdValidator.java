@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import cz.zaf.common.FileOps;
+import cz.zaf.common.MessageProvider;
 import cz.zaf.common.result.ProtokolWriter;
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.result.XmlProtokolWriter;
@@ -66,9 +67,11 @@ public class CmdValidator {
     }
 
     public static void main(String[] args) {
-        CmdParamsReader cmdParamsReader = new CmdParamsReader();
+    	var messages = MessageProvider.getProvider();
+    	
+        CmdParamsReader cmdParamsReader = new CmdParamsReader(System.out, System.err, messages);
         if (!cmdParamsReader.read(args)) {
-            CmdParamsReader.printUsage();
+        	cmdParamsReader.printUsage();
             System.exit(ERR_WRONG_PARAMS);
             return;
         }
