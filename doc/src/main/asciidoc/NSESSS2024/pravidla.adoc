@@ -10,3 +10,501 @@ U každého pravidla je vždy uvedeno:
 * popis chyby - zobrazená informace uživateli v případě porušení pravidla
 * aktivita pravidla - kdy se pravidlo uplatní, například jen při předávání finálních SIPů (přejímka); 
   pokud není uvedeno pravidlo se uplatní vždy
+
+:leveloffset: +1
+
+= škodlivého kódu
+
+[[NSESSS2024_vir1]]
+== vir1
+
+[horizontal]
+
+Pravidlo:: Datový balíček SIP neobsahuje hrozbu.
+Kód:: vir1
+Zdroj:: § 21 odst. 6 vyhlášky č. 259/2012 Sb.
+Popis chyby:: Datový balíček SIP obsahuje hrozbu.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+
+= datové struktury
+
+[[NSESSS2024_dat1a]]
+== dat1a
+
+[horizontal]
+
+Pravidlo:: Název souboru v datovém formátu ZIP obsahuje pouze písmena latinské abecedy bez diakritiky, čísla a znaky „_“ (podtržítko) a „–“ (pomlčka) a jeho délka nepřekračuje 64 znaků.
+Kód:: dat1a
+Zdroj:: Požadavek 9.2.12 NSESSS.
+Popis chyby:: Uvedeno je chybně označení datového balíčku SIP.
+Aktivní:: vývojářská validace, vývojářská validace, skartační řízení (jen metadata), skartační řízení (jen metadata), skartační řízení (s komponentami), skartační řízení (s komponentami), přejímka, přejímka
+
+[[NSESSS2024_dat2]]
+== dat2
+
+[horizontal]
+
+Pravidlo:: Soubor v datovém formátu ZIP po rozbalení obsahuje právě jednu složku. Ta má stejný název jako je název souboru v datovém formátu ZIP.
+Kód:: dat2
+Zdroj:: Požadavek 9.2.11 NSESSS.
+Popis chyby:: Uvedeno je chybně označení datového balíčku SIP.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_dat3]]
+== dat3
+
+[horizontal]
+
+Pravidlo:: Složka obsahuje právě jeden soubor pojmenovaný mets.xml nebo právě jeden soubor pojmenovaný mets.xml a složku pojmenovanou komponenty.
+Kód:: dat3
+Zdroj:: Požadavek 9.2.5, 9.2.6 a 9.2.10 NSESSS.
+Popis chyby:: Uvedena jsou chybně metadata a komponenty (počítačové soubory) v datovém balíčku SIP.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+
+= znakové sady
+
+[[NSESSS2024_kod1]]
+== kod1
+
+[horizontal]
+
+Pravidlo:: Znakovou sadou souboru je Unicode/UCS v kódování UTF-8 bez BOM (Byte order mark).
+Kód:: kod1
+Zdroj:: Požadavek 9.2.9 NSESSS.
+Popis chyby:: Znaková sada datového balíčku SIP není Unicode/UCS v kódování UTF-8 bez BOM (Byte order mark).
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+
+= správnosti XML
+
+[[NSESSS2024_wf1]]
+== wf1
+
+[horizontal]
+
+Pravidlo:: Soubor je well-formed.
+Kód:: wf1
+Zdroj:: Požadavek 9.2.5 NSESSS.
+Popis chyby:: Datový balíček SIP nedodržuje syntaxi jazyka XML.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+
+= jmenných prostorů
+
+[[NSESSS2024_ns1]]
+== ns1
+
+[horizontal]
+
+Pravidlo:: Soubor obsahuje právě jeden kořenový element <mets:mets>.
+Kód:: ns1
+Zdroj:: Bod 1.1 přílohy č. 2 NSESSS.
+Popis chyby:: Chybí kořenový element datového balíčku SIP.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_ns2]]
+== ns2
+
+[horizontal]
+
+Pravidlo:: Element <mets:mets> obsahuje atribut xsi:schemaLocation s hodnotou http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v4 http://www.mvcr.cz/nsesss/v4/nsesss.xsd http://www.mvcr.cz/nsesss/2023/log https://www.mvcr.cz/nsesss/v4/nsesss-TrP.xsd.
+Kód:: ns2
+Zdroj:: Bod 1.1 přílohy č. 2 NSESSS.
+Popis chyby:: Popsáno je chybně umístění příslušných schémat XML.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+= proti schématu
+
+[[NSESSS2024_val1]]
+== val1
+
+[horizontal]
+
+Pravidlo:: Soubor je validní proti schématům mets.xsd (v1.12), xlink.xsd (v2), nsesss.xsd (v4), nsesss-TrP.xsd.
+Kód:: val1
+Zdroj:: Požadavek 9.2.8 NSESSS; bod 1.1 přílohy č. 2 NSESSS.
+Popis chyby:: Datový balíček SIP není validní proti schématům http://www.loc.gov/standards/mets/mets.xsd, http://www.loc.gov/standards/mets/xlink.xsd, http://www.mvcr.cz/nsesss/v4/nsesss.xsd a https://www.mvcr.cz/nsesss/v4/nsesss-TrP.xsd.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+
+= kontrola obsahu
+
+[[NSESSS2024_obs1]]
+== obs1
+
+[horizontal]
+
+Pravidlo:: Element <mets:mets> obsahuje atribut OBJID s neprázdnou hodnotou.
+Kód:: obs1
+Zdroj:: Bod 1.1 přílohy č. 2 NSESSS.
+Popis chyby:: Chybí identifikátor datového balíčku SIP.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs2]]
+== obs2
+
+[horizontal]
+
+Pravidlo:: Element <mets:mets> obsahuje atribut LABEL s hodnotou Datový balíček pro provedení skartačního řízení nebo Datový balíček pro předávání dokumentů a jejich metadat do archivu.
+Kód:: obs2
+Zdroj:: Požadavek 9.2.1 NSESSS; bod 1.1 přílohy č. 2 NSESSS.
+Popis chyby:: Uveden je chybně popis datového balíčku SIP.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami)
+
+[[NSESSS2024_obs3]]
+== obs3
+
+[horizontal]
+
+Pravidlo:: Element <mets:mets> obsahuje atribut LABEL s hodnotou Datový balíček pro předávání dokumentů a jejich metadat do archivu.
+Kód:: obs3
+Zdroj:: Bod 1.1 přílohy č. 2 NSESSS.
+Popis chyby:: Uveden je chybně popis datového balíčku SIP.
+Aktivní:: vývojářská validace, přejímka
+
+[[NSESSS2024_obs9]]
+== obs9
+
+[horizontal]
+
+Pravidlo:: Element <mets:mets> obsahuje atribut xmlns:xlink s hodnotou http://www.w3.org/1999/xlink.
+Kód:: obs9
+Zdroj:: Bod 1.1 přílohy č. 2 NSESSS.
+Popis chyby:: Uvedena je chybně adresa jmenného prostoru schématu XML.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs10]]
+== obs10
+
+[horizontal]
+
+Pravidlo:: Element <mets:mets> obsahuje dětský element <mets:metsHdr>.
+Kód:: obs10
+Zdroj:: Bod 1.2 přílohy č. 2 NSESSS.
+Popis chyby:: Chybí povinná část (záhlaví) struktury datového balíčku SIP.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs11]]
+== obs11
+
+[horizontal]
+
+Pravidlo:: Element <mets:mets> obsahuje právě jeden dětský element <mets:dmdSec>.
+Kód:: obs11
+Zdroj:: Bod 1.6 přílohy č. 2 NSESSS.
+Popis chyby:: Chybí povinná (popisná) část struktury datového balíčku SIP.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs12]]
+== obs12
+
+[horizontal]
+
+Pravidlo:: Element <mets:mets> obsahuje alespoň jeden element <mets:amdSec>.
+Kód:: obs12
+Zdroj:: Bod 1.9 přílohy č. 2 NSESSS.
+Popis chyby:: Chybí povinná část (transakční protokol) struktury datového balíčku SIP.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs13]]
+== obs13
+
+[horizontal]
+
+Pravidlo:: Element <mets:mets> obsahuje právě jeden dětský element <mets:structMap>.
+Kód:: obs13
+Zdroj:: Bod 1.17 přílohy č. 2 NSESSS.
+Popis chyby:: Chybí povinná část (strukturální mapa) struktury datového balíčku SIP.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs14]]
+== obs14
+
+[horizontal]
+
+Pravidlo:: Element <mets:metsHdr> obsahuje atribut LASTMODDATE.
+Kód:: obs14
+Zdroj:: Bod 1.2 přílohy č. 2 NSESSS.
+Popis chyby:: Chybí datum poslední úpravy datového balíčku SIP.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs15]]
+== obs15
+
+[horizontal]
+
+Pravidlo:: Element <mets:metsHdr> obsahuje atribut CREATEDATE.
+Kód:: obs15
+Zdroj:: Bod 1.2 přílohy č. 2 NSESSS.
+Popis chyby:: Chybí datum vytvoření datového balíčku SIP.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs16]]
+== obs16
+
+[horizontal]
+
+Pravidlo:: Element <mets:metsHdr> obsahuje právě jeden element <mets:agent> s atributem TYPE s hodnotou ORGANIZATION.
+Kód:: obs16
+Zdroj:: Bod 1.3 přílohy č. 2 NSESSS.
+Popis chyby:: Uveden je chybně popis původce.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs17]]
+== obs17
+
+[horizontal]
+
+Pravidlo:: Element <mets:metsHdr> obsahuje alespoň jeden element <mets:agent> s atributem TYPE s hodnotou INDIVIDUAL.
+Kód:: obs17
+Zdroj:: Bod 1.3 přílohy č. 2 NSESSS.
+Popis chyby:: Uveden je chybně popis původce.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs18]]
+== obs18
+
+[horizontal]
+
+Pravidlo:: Každý element <mets:agent> obsahuje atribut ROLE s hodnotou CREATOR.
+Kód:: obs18
+Zdroj:: Bod 1.3 přílohy č. 2 NSESSS.
+Popis chyby:: Uveden je chybně popis původce.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs19]]
+== obs19
+
+[horizontal]
+
+Pravidlo:: Každý element <mets:agent> obsahuje atribut ID.
+Kód:: obs19
+Zdroj:: Bod 1.3 přílohy č. 2 NSESSS.
+Popis chyby:: Uveden je chybně popis původce.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs20]]
+== obs20
+
+[horizontal]
+
+Pravidlo:: Každý element <mets:agent> obsahuje právě jeden dětský element <mets:name> s neprázdnou hodnotou.
+Kód:: obs20
+Zdroj:: Bod 1.4 přílohy č. 2 NSESSS.
+Popis chyby:: Chybí informace o původci.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs22]]
+== obs22
+
+[horizontal]
+
+Pravidlo:: Element <mets:dmdSec> obsahuje právě jeden dětský element <mets:mdWrap>.
+Kód:: obs22
+Zdroj:: Bod 1.7 přílohy č. 2 NSESSS.
+Popis chyby:: Chybí povinná (popisná) část struktury datového balíčku SIP.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs23]]
+== obs23
+
+[horizontal]
+
+Pravidlo:: Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MDTYPEVERSION s hodnotou 4.0.
+Kód:: obs23
+Zdroj:: Bod 1.7 přílohy č. 2 NSESSS.
+Popis chyby:: Uveden je chybně popis schématu XML.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs24]]
+== obs24
+
+[horizontal]
+
+Pravidlo:: Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut OTHERMDTYPE s hodnotou NSESSS.
+Kód:: obs24
+Zdroj:: Bod 1.7 přílohy č. 2 NSESSS.
+Popis chyby:: Uveden je chybně popis schématu XML.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs25]]
+== obs25
+
+[horizontal]
+
+Pravidlo:: Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MDTYPE s hodnotou OTHER.
+Kód:: obs25
+Zdroj:: Bod 1.7 přílohy č. 2 NSESSS.
+Popis chyby:: Uveden je chybně popis schématu XML.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs26]]
+== obs26
+
+[horizontal]
+
+Pravidlo:: Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MIMETYPE s hodnotou text/xml.
+Kód:: obs26
+Zdroj:: Bod 1.7 přílohy č. 2 NSESSS.
+Popis chyby:: Uveden je chybně popis schématu XML.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs27]]
+== obs27
+
+[horizontal]
+
+Pravidlo:: Element <mets:dmdSec> obsahuje v hierarchii dětských elementů <mets:mdWrap> právě jeden dětský element <mets:xmlData>.
+Kód:: obs27
+Zdroj:: Bod 1.8 přílohy č. 2 NSESSS.
+Popis chyby:: Chybí povinná (popisná) část struktury datového balíčku SIP.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs30]]
+== obs30
+
+[horizontal]
+
+Pravidlo:: Každý element <mets:amdSec> obsahuje atribut ID.
+Kód:: obs30
+Zdroj:: Bod 1.9 přílohy č. 2 NSESSS.
+Popis chyby:: Chybí povinná část (transakční protokol) struktury datového balíčku SIP.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs31]]
+== obs31
+
+[horizontal]
+
+Pravidlo:: Každý element <mets:amdSec> obsahuje právě jeden dětský element <mets:digiprovMD>.
+Kód:: obs31
+Zdroj:: Bod 1.11 přílohy č. 2 NSESSS.
+Popis chyby:: Chybí povinná část (transakční protokol) struktury datového balíčku SIP.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs33]]
+== obs33
+
+[horizontal]
+
+Pravidlo:: Každý element <mets:digiprovMD> obsahuje právě jeden dětský element <mets:mdWrap>.
+Kód:: obs33
+Zdroj:: Bod 1.11 přílohy č. 2 NSESSS.
+Popis chyby:: Chybí povinná část (transakční protokol) struktury datového balíčku SIP.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs34]]
+== obs34
+
+[horizontal]
+
+Pravidlo:: Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MDTYPEVERSION s hodnotou 4.0.
+Kód:: obs34
+Zdroj:: Bod 1.11 přílohy č. 2 NSESSS.
+Popis chyby:: Uveden je chybně popis schématu XML.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs35]]
+== obs35
+
+[horizontal]
+
+Pravidlo:: Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut OTHERMDTYPE s hodnotou TP.
+Kód:: obs35
+Zdroj:: Bod 1.11 přílohy č. 2 NSESSS.
+Popis chyby:: Uveden je chybně popis schématu XML.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs36]]
+== obs36
+
+[horizontal]
+
+Pravidlo:: Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MDTYPE s hodnotou OTHER.
+Kód:: obs36
+Zdroj:: Bod 1.11 přílohy č. 2 NSESSS.
+Popis chyby:: Uveden je chybně popis schématu XML.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs37]]
+== obs37
+
+[horizontal]
+
+Pravidlo:: Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap> atribut MIMETYPE s hodnotou text/xml.
+Kód:: obs37
+Zdroj:: Bod 1.11 přílohy č. 2 NSESSS.
+Popis chyby:: Uveden je chybně popis schématu XML.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs38]]
+== obs38
+
+[horizontal]
+
+Pravidlo:: Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap> právě jeden dětský element <mets:xmlData>.
+Kód:: obs38
+Zdroj:: Bod 1.12 přílohy č. 2 NSESSS.
+Popis chyby:: Chybí povinná část (transakční protokol) struktury datového balíčku SIP.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs39]]
+== obs39
+
+[horizontal]
+
+Pravidlo:: Každý element <mets:digiprovMD> obsahuje v hierarchii dětských elementů <mets:mdWrap>, <mets:xmlData> právě jeden dětský element <tp:TransakcniLogObjektu>.
+Kód:: obs39
+Zdroj:: Bod 1.12 přílohy č. 2 NSESSS.
+Popis chyby:: Datový balíček SIP neobsahuje transakční protokol.
+Aktivní:: vývojářská validace, skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+= kontrola komponent
+
+[[NSESSS2024_kom1]]
+== kom1
+
+[horizontal]
+
+Pravidlo:: Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut SIZE s hodnotou velikosti příslušné komponenty v bytech.
+Kód:: kom1
+Zdroj:: Bod 2.15. přílohy č. 3 NSESSS.
+Popis chyby:: Chybí velikost komponenty (počítačového souboru) nebo je uvedena chybně.
+Aktivní:: vývojářská validace, skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_kom2]]
+== kom2
+
+[horizontal]
+
+Pravidlo:: Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut CHECKSUM s hodnotou kontrolního součtu příslušné komponenty podle kryptografického algoritmu uvedeného v atributu CHECKSUMTYPE.
+Kód:: kom2
+Zdroj:: Bod 2.15. přílohy č. 3 NSESSS.
+Popis chyby:: Celistvost komponenty (počítačového souboru) je narušena nebo chybí možnost jejího ověření.
+Aktivní:: vývojářská validace, skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_kom3]]
+== kom3
+
+[horizontal]
+
+Pravidlo:: Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut MIMETYPE s hodnotou identifikace souborového formátu příslušné komponenty.
+Kód:: kom3
+Zdroj:: Bod 2.15. přílohy č. 3 NSESSS.
+Popis chyby:: Komponenta (počítačový soubor) má uvedený chybný datový formát.
+Aktivní:: vývojářská validace, skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_kom4]]
+== kom4
+
+[horizontal]
+
+Pravidlo:: Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ne a zároveň obsahuje element <nsesss:Komponenty>, ze všech dětských elementů <nsesss:Komponenta>, který obsahuje atribut forma_uchovani s hodnotou originál nebo originál ve výstupním datovém formátu a současně atribut verze s hodnotou nejvyššího čísla verze, potom jakýkoli element <mets:file>, který obsahuje atribut DMDID s hodnotou uvedenou v atributu ID jakéhokoli elementu <nsesss:Komponenta> příslušné komponenty a dále obsahuje atribut MIMETYPE s hodnotou application/pdf, reprezentuje příslušnou komponentu ve shodě s normou PDF/A. Kontrola se neprovádí, pokud byla základní entita vyřízena/uzavřena do 31. 7. 2012 včetně.
+Kód:: kom4
+Zdroj:: § 23 odst. 2 vyhlášky č. 259/2012 Sb.; Informační list NA, čá. 6/2020, č. 3/2020.
+Popis chyby:: Komponenta (počítačový soubor) v datovém formátu PDF není ve výstupním datovém formátu.
+Aktivní:: vývojářská validace, skartační řízení (s komponentami), přejímka
+
+:leveloffset: -1

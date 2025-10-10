@@ -1,12 +1,18 @@
 package cz.zaf.eadvalidator.ap2023.layers.val;
 
+import java.util.List;
+
+import cz.zaf.common.validation.BaseRule;
 import cz.zaf.common.validation.BaseValidationLayer;
-import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.eadvalidator.ap2023.EadValidationContext;
 import cz.zaf.eadvalidator.ap2023.ValidationLayers;
 import cz.zaf.eadvalidator.ap2023.layers.val.val00_09.Rule01;
 
 public class SchemaValidationLayer extends BaseValidationLayer<EadValidationContext, EadValidationContext> {
+
+	private List<Class<? extends BaseRule<EadValidationContext>>> ruleClasses = List.of(
+			Rule01.class
+	);
 
 	public SchemaValidationLayer(String innerFileName) {
 		super(ValidationLayers.VALIDATION, innerFileName);
@@ -14,13 +20,11 @@ public class SchemaValidationLayer extends BaseValidationLayer<EadValidationCont
 
 	@Override
 	protected void validateImpl() {
-		EadRule rules[] = {
-                new Rule01(),
-        };
+        this.provedKontrolu(ctx, createRules());				
+	}
 
-        this.provedKontrolu(ctx, rules);
-		
-		
+	public List<? extends BaseRule<EadValidationContext>> createRules() {
+		return createRules(ruleClasses);
 	}
 
 }
