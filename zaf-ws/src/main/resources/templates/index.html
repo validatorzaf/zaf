@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Validátor ZAF</title>
+	<title th:text="#{app.title}">ZAF Validator</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css; charset=utf-8">
 	<link rel="stylesheet"
 		href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@100;300&display=swap&subset=latin,latin-ext">
@@ -13,7 +13,7 @@
 
 <body>
 	<div class="container">
-		<h1>Validátor ZAF</h1>
+		<h1 th:text="#{app.title}">ZAF Validator</h1>
 		<p>Validátor ZAF je knihovna pro kontrolu datových balíčků SIP, AIP a DIP ve výměnném formátu a archivního
 			popisu ve formátu EAD dle českého profilu. Aplikace provádí načtení balíčků, kontrolu a zobrazení výsledků
 			kontroly. Pokud je v rámci jednoho z typů kontrol nalezena chyba, další typy kontrol se neprovádí.</p>

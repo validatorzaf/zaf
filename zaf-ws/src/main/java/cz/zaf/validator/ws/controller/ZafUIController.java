@@ -1,5 +1,6 @@
 package cz.zaf.validator.ws.controller;
 
+import java.util.Locale;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.LocaleResolver;
 
 import cz.zaf.api.rest.model.RequestProcessState;
 import cz.zaf.api.rest.model.ValidationType;
 import cz.zaf.common.ZafInfo;
 import cz.zaf.schema.validace_v1.Validace;
 import cz.zaf.validator.ws.service.ValidationService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * Kontroller pro jednoduché webové rozhraní UI
@@ -37,6 +41,9 @@ public class ZafUIController {
 
 	@Autowired
 	private ValidationService validationService;
+	
+	@Autowired
+	private LocaleResolver localeResolver;
 
 	@GetMapping("/")
 	public String showUploadForm(Model model) {
@@ -138,4 +145,15 @@ public class ZafUIController {
 	        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error retrieving result.", e);
 	    }
 	}	
+
+    @GetMapping("/lang")
+    public String switchLang(HttpServletRequest request, HttpServletResponse response, String lang) {
+        Locale newLocale = new Locale(lang != null ? lang : "en");
+        localeResolver.setLocale(request, response, newLocale);
+        String referer = request.getHeader("Referer");
+        if(referer==null) {
+        	referer = ".";
+        }
+        return "redirect:" + referer;
+    }
 }

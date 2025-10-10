@@ -15,7 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import cz.zaf.common.FileOps;
-import cz.zaf.common.MessageProvider;
+import cz.zaf.common.MessageProviders;
 import cz.zaf.common.result.ProtokolWriter;
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.result.XmlProtokolWriter;
@@ -43,6 +43,11 @@ import net.lingala.zip4j.model.FileHeader;
  *
  */
 public class CmdValidator {
+	
+	/**
+	 * Name of resource with messages
+	 */
+	public static final String MESSAGES = "messages";
 
     public static final int ERR_WRONG_PARAMS = 1;
     public static final int ERR_FAILED = 2;
@@ -65,9 +70,9 @@ public class CmdValidator {
         this.params = params;
         this.validator = createValidator();
     }
-
+    
     public static void main(String[] args) {
-    	var messages = MessageProvider.getProvider();
+    	var messages = MessageProviders.getProvider(MESSAGES, MessageProviders.detectLocale());
     	
         CmdParamsReader cmdParamsReader = new CmdParamsReader(System.out, System.err, messages);
         if (!cmdParamsReader.read(args)) {
