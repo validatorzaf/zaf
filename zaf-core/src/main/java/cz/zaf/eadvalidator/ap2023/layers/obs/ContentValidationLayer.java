@@ -29,7 +29,10 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule25;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule27; 
 
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule31;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule35;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule36;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule37;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs40_49.Rule43;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs40_49.Rule49;
 
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule60;
@@ -51,8 +54,6 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule84;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule85;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule86;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule87;
-import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule89;
-import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule90;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule93;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule94;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule95;
@@ -76,7 +77,10 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule25.class,
             Rule27.class,
                         Rule31.class,
+                        Rule35.class,
 			Rule36.class,
+                        Rule37.class,
+            Rule43.class,           
             Rule49.class,
             Rule60.class, 
             Rule61.class,
@@ -97,8 +101,6 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule85.class,
             Rule86.class,
             Rule87.class,
-            Rule89.class,
-                        Rule90.class,
                         Rule93.class,
                         Rule94.class,
                         Rule95.class,
@@ -127,7 +129,10 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule25.class,
             Rule27.class,
                         Rule31.class,
+                        Rule35.class,
 			Rule36.class,
+                        Rule37.class,
+            Rule43.class,            
             Rule49.class,
             Rule60.class, 
             Rule61.class,
@@ -148,8 +153,6 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule85.class,
             Rule86.class,
             Rule87.class,
-            Rule89.class,
-                        Rule90.class,
                         Rule93.class,
                         Rule94.class,
                         Rule95.class,
@@ -168,6 +171,9 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule25.class,
             Rule27.class,
                         Rule31.class,
+//                        Rule35.class,
+//                        Rule37.class,
+            Rule43.class,            
             Rule49.class,
             Rule60.class, 
             Rule61.class,
@@ -188,8 +194,6 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule85.class,
             Rule86.class,
             Rule87.class,
-            Rule89.class,
-                        Rule90.class,
                         Rule93.class,
                         Rule94.class,
                         Rule95.class,
@@ -208,6 +212,9 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule25.class,
             Rule27.class,
                         Rule31.class,
+                        Rule35.class,
+                        Rule37.class,
+            Rule43.class,            
             Rule49.class,
             Rule60.class, 
             Rule61.class,
@@ -228,8 +235,6 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule85.class,
             Rule86.class,
             Rule87.class,
-            Rule89.class,
-                        Rule90.class,
                         Rule93.class,
                         Rule94.class,
                         Rule95.class,

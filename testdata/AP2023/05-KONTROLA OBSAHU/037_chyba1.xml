@@ -85,7 +85,7 @@
 			</ead:source>
 		</ead:sources>
 	</ead:control>
-	<ead:archdesc level="fonds" base="http://archiv.cz/dids/80bb604a-052e-4e49-b86e-e4a91b95bf59"> <!-- obs35, obs37 -->
+	<ead:archdesc level="fonds" base="//archiv.cz/dids/80bb604a-052e-4e49-b86e-e4a91b95bf59"> <!-- obs35, obs37 -->
 		<ead:did>
 			<ead:physdescstructured physdescstructuredtype="spaceoccupied" coverage="whole"> <!-- obs47 -->
 				<ead:quantity>1</ead:quantity>
