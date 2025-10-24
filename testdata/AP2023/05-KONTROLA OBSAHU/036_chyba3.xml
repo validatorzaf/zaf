@@ -69,7 +69,7 @@
 			<ead:source id="ap7523"></ead:source>
 		</ead:sources>
 	</ead:control>
-	<ead:archdesc level="fonds"> <!-- obs35 -->
+	<ead:archdesc level="fonds" base="http://archiv.cz/dids/80bb604a-052e-4e49-b86e-e4a91b95bf59"> <!-- obs35 -->
 		<ead:did>
 			<ead:physdescstructured physdescstructuredtype="spaceoccupied" coverage="whole">
 				<ead:quantity></ead:quantity>
@@ -78,7 +78,7 @@
 		</ead:did>
 		
 		<ead:dsc>
-			<ead:c level="item"> <!-- obs36 -->
+			<ead:c level="item" base="http://archiv.cz/dids/80bb604a-052e-4e49-b86e-e4a91b95bf59"> <!-- obs36 -->
 				<ead:did>
 					<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole">
 						<ead:quantity></ead:quantity>

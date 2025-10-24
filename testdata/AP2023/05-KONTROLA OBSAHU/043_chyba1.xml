@@ -153,11 +153,11 @@
 						</ead:physdescstructured>
 						
 						<ead:materialspec localtype="SCALE">1:200</ead:materialspec> <!-- obs84 -->
-						<ead:materialspec localtype="ORIENTATION"> </ead:materialspec> <!-- obs89 -->
+						<ead:materialspec localtype="ORIENTATION">na sever</ead:materialspec> <!-- obs89 -->
 						<ead:materialspec localtype="VOLUME">Ročník XVI, číslo 2</ead:materialspec> <!-- obs90 -->
 						
 						<ead:langmaterial>
-							<ead:language langcode="esx">blíže neurčený eskymácko-aleutský jazyk</ead:language> <!-- obs91 -->
+							<ead:language langcode="esx">Error blíže neurčený eskymácko-aleutský jazyk</ead:language> <!-- obs91 -->
 						</ead:langmaterial>
 						
 						<ead:dao daotype="derived" identifier="id123"> <!-- obs95, obs96 -->
@@ -191,9 +191,11 @@
 					
 						<ead:relation relationtype="cpfrelation" linkrole="AUTHOR" linktitle="autor" altrender="inherited"> <!-- obs101, obs102, obs103 -->
 							<ead:relationentry>Text</ead:relationentry> <!-- obs104 -->
-							<ead:descriptivenote><ead:p> <!-- obs105-->
-								<ead:ptr target="ap7523"></ead:ptr>
-							</ead:p></ead:descriptivenote>
+							<ead:descriptivenote>
+								<ead:p> <!-- obs105-->
+									<ead:ptr target="ap7523"></ead:ptr>
+								</ead:p>
+							</ead:descriptivenote>
 						</ead:relation>
 					</ead:relations>
 				</ead:c>	

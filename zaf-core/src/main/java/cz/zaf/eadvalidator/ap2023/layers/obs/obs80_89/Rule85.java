@@ -42,7 +42,7 @@ public class Rule85 extends EadRule {
                     String relationtype = relation.getRelationtype();
                     String otherrelationtype = relation.getOtherrelationtype();
                     if (StringUtils.equals("otherrelationtype", relationtype) && StringUtils.equals("COORDINATES", otherrelationtype)) {
-                        Geogname geogname = relation.getGeogname();
+                        Geogname geogname = relation.getGeogname(); //geogname je jeden
                         if (geogname == null) {
                             throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element geogname.", ctx.formatEadPosition(relation));
                         }

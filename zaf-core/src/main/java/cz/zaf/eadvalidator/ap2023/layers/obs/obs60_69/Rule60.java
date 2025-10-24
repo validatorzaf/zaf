@@ -22,7 +22,6 @@ public class Rule60 extends EadRule {
     protected void evalImpl() {
         //<ead:custodhist>
         //May occur within:archdesc, c, c01, c02, c03, c04, c05, c06, c07, c08, c09, c10, c11, c12, custodhist
-
         Archdesc archDesc = ctx.getEad().getArchdesc();
         List<Object> archDescChildList = archDesc.getAccessrestrictOrAccrualsOrAcqinfo();
         validate(archDescChildList);
