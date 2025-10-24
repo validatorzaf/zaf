@@ -282,11 +282,22 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Existuje právě jeden element <ead:maintenanceevent>, který obsahuje povinné části dle specifikace. Kontroluje se existence podřízených elementů: eventtype, eventdatetime, agenttype a agent a jejich správné uvedení.
+Pravidlo:: Element <ead:archdesc> a každý element <ead:c> obsahuje atribut "base", jehož hodnota má podobu URI odpovídající standardu LinkedData.
 Kód:: obs31
-Zdroj:: Část 2.7 profilu EAD3 MV ČR
-Popis chyby:: Neexistuje element <ead:maintenanceevent>, který neobsahuje všechny povinné části dle specifikace.
-Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
+Zdroj:: Část 3.2 profilu EAD3 MV ČR
+Popis chyby:: Element <ead:archdesc> nebo některý element <ead:c> nemá atribut "base" nebo tento atribut neobsahuje hodnotu v požadovaném formátu.
+Aktivní:: archivní pomůcka, archivní pomůcka, archivní popis, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku, kontextový popis v balíčku
+
+[[AP2023_obs35]]
+== obs35
+
+[horizontal]
+
+Pravidlo:: Element <ead:archdesc> má atribut "level" o hodnotě "fonds".
+Kód:: obs35
+Zdroj:: Část 3.1 profilu EAD3 MV ČR
+Popis chyby:: Elementu <ead:archdesc> chybí atribut "level" nebo tento atribut neobsahuje hodnotu "fonds".
+Aktivní:: archivní pomůcka, archivní popis, kontextový popis v balíčku
 
 [[AP2023_obs36]]
 == obs36
@@ -304,6 +315,17 @@ Kód:: obs36
 Zdroj:: Část 3.1 profilu EAD3 MV ČR
 Popis chyby:: Některý z elementů <ead:c> nemá atribut "level" nebo tento atribut obsahuje nepovolenou hodnotu.
 Aktivní:: archivní pomůcka, archivní popis
+
+[[AP2023_obs43]]
+== obs43
+
+[horizontal]
+
+Pravidlo:: Každý element <ead:language> má atribut "langcode". Hodnota tohoto atributu stejně jako hodnota atributu "lang" u elementů <ead:unittitle> a <ead:scopecontent> odpovídá rozšířené podobě tří písmenného ISO kódu zapsaného malými písmeny. Hodnota elementu <ead:language> odpovídá hodnotě podle číselníku atributu "langcode" tohoto elementu.
+Kód:: obs43
+Zdroj:: Část 3.7 a 6.14 profilu EAD3 MV ČR
+Popis chyby:: Element <ead:language> nemá atribut "langcode" a/nebo hodnota tohoto atributu nebo atributu "lang" u elementů <ead:unittitle> nebo <ead:scopecontent> neodpovídá  rozšířené podobě tří písmenného ISO kódu zapsaného malými písmeny a/nebo hodnota elementu <ead:language> neodpovídá podle číselníku hodnotě atributu "langcode" tohoto elementu.
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs49]]
 == obs49
@@ -486,10 +508,10 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Každý element <ead:materialspec> s atributem "localtype" o hodnotě "SCALE" obsahuje prostou textovou hodnotu.
+Pravidlo:: Každý element <ead:materialspec> s atributem "localtype" o hodnotě "SCALE", nebo "ORIENTATION", nebo "VOLUME" obsahuje prostou textovou hodnotu.
 Kód:: obs84
-Zdroj:: Část 6.9 profilu EAD3 MV ČR
-Popis chyby:: Některý element <ead:materialspec> s atributem "localtype" o hodnotě "SCALE" neobsahuje prostou textovou hodnotu.
+Zdroj:: Část 6.9, 6.11 a 6.13 profilu EAD3 MV ČR
+Popis chyby:: Některý element <ead:materialspec> s atributem "localtype" o hodnotě "SCALE", nebo "ORIENTATION", nebo "VOLUME" neobsahuje prostou textovou hodnotu.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs85]]
@@ -523,28 +545,6 @@ Pravidlo:: Element <ead:part>, který je obsažen v elementu <ead:geogname>, obs
 Kód:: obs87
 Zdroj:: Část 6.10 profilu EAD3 MV ČR
 Popis chyby:: Elementu <ead:part>, který je obsažen v elementu <ead:relation> s atributem "otherrelationtype" o hodnotě "COORDINATES", neobsahuje hodnotu "5.2.6 Souřadnice".
-Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
-
-[[AP2023_obs89]]
-== obs89
-
-[horizontal]
-
-Pravidlo:: Každý element <ead:materialspec> s atributem "localtype" o hodnotě "ORIENTATION" obsahuje prostou textovou hodnotu.
-Kód:: obs89
-Zdroj:: Část 6.11 profilu EAD3 MV ČR
-Popis chyby:: Některý element <ead:materialspec> s atributem "localtype" o hodnotě "ORIENTATION" neobsahuje prostou textovou hodnotu.
-Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
-
-[[AP2023_obs90]]
-== obs90
-
-[horizontal]
-
-Pravidlo:: Každý element <ead:materialspec> s atributem "localtype"o hodnotě "VOLUME" obsahuje prostou textovou hodnotu.
-Kód:: obs90
-Zdroj:: Část 6.13 profilu EAD3 MV ČR
-Popis chyby:: Některý element <ead:materialspec> s atributem "localtype" o hodnotě "VOLUME" neobsahuje prostou textovou hodnotu.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs93]]
@@ -590,5 +590,6 @@ Kód:: obs97
 Zdroj:: Část 7.1 profilu EAD3 MV ČR
 Popis chyby:: V elementu <ead:dao> je víc než jeden element <ead:descriptivenote>. Nebo element <ead:descriptivenote> neobsahuje právě jeden element <ead:p>.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
+
 
 :leveloffset: -1
