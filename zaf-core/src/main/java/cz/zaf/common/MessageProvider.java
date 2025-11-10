@@ -6,21 +6,16 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 public class MessageProvider {
-    private static final String BUNDLE_NAME = "messages";
-    private static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
+    // private static final String BUNDLE_NAME = "messages";
+    public static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
 
     private final ResourceBundle mainBundle;
     private final ResourceBundle fallbackBundle;
 
-    /**
-     * cached first created message provider
-     */
-    private static MessageProvider messageProvider = null;
-
-    public MessageProvider(Locale locale) {
+    public MessageProvider(Locale locale, String bundleName) {
         Locale effectiveLocale = (locale != null) ? locale : DEFAULT_LOCALE;
-        this.mainBundle = ResourceBundle.getBundle(BUNDLE_NAME, effectiveLocale);
-        this.fallbackBundle = ResourceBundle.getBundle(BUNDLE_NAME, DEFAULT_LOCALE);
+        this.mainBundle = ResourceBundle.getBundle(bundleName, effectiveLocale);
+        this.fallbackBundle = ResourceBundle.getBundle(bundleName, DEFAULT_LOCALE);
     }
 
     /**
@@ -57,20 +52,4 @@ public class MessageProvider {
             return (defaultText != null) ? defaultText : "!" + key + "!";
         }
     }
-
-    public static Locale detectLocale() {
-        Locale systemLocale = Locale.getDefault();
-        if ("cs".equalsIgnoreCase(systemLocale.getLanguage())) {
-        	return new Locale.Builder().setLanguage("cs").build();
-        }
-        return DEFAULT_LOCALE;
-    }
-
-	public static MessageProvider getProvider() {
-		if(messageProvider==null) {
-			var locale = detectLocale();
-			messageProvider = new MessageProvider(locale);			
-		}
-		return messageProvider;
-	}
 }

@@ -2,7 +2,12 @@ package cz.zaf.earkvalidator;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import org.apache.commons.collections4.CollectionUtils;
 
 import cz.zaf.common.result.ValidationProfileInfo;
 import cz.zaf.common.result.ValidationResult;
@@ -136,14 +141,10 @@ public class ValidatorDAAIP2024 implements Validator {
 					throw new IllegalStateException("Unrecognized layer: " + layer);
 				}
 				
-				List<Rule<? extends RuleEvaluationContext>> result = new ArrayList<>();
-				if(rules!=null) {
-					for(BaseRule<AipValidationContext> rule: rules) {
-						result.add(rule);
-					}
+				if(rules==null) {
+					return Collections.emptyList();
 				}
-					
-				return result;
+				return rules.stream().map(Function.identity()).collect(Collectors.toList());
 			}
 			
 		};

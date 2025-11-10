@@ -92,3 +92,12 @@ document.addEventListener('DOMContentLoaded', () => {
   refreshTypes();
   refreshProfiles();
 });
+
+// redirecto to change language
+function changeLanguage(select) {
+  const lang = select.value;
+  const currentUrl = new URL(window.location.href);
+  currentUrl.pathname += "lang";
+  currentUrl.searchParams.set('lang', lang);
+  window.location.href = currentUrl.toString();
+}

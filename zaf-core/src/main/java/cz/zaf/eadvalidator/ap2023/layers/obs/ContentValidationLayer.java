@@ -2,6 +2,7 @@ package cz.zaf.eadvalidator.ap2023.layers.obs;
 
 import java.util.List;
 
+import cz.zaf.common.validation.BaseRule;
 import cz.zaf.common.validation.BaseValidationLayer;
 import cz.zaf.common.validation.Rule;
 import cz.zaf.common.validation.ValidationSubprofile;
@@ -72,7 +73,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 	private ValidationSubprofile profilValidace;
 	
         //archivní popis (dva archivy si něco předají a nemusí to mít podobu pomůcky nemusí to být úplné
-	Class<?> archDescRules[] = {
+	List<Class<? extends BaseRule<EadValidationContext>>> archDescRules = List.of(
 			Rule01.class,
 			Rule03.class,
 			Rule04.class,
@@ -120,7 +121,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 	};
 	
         //finální pomůcka = archivní pomůcka (vyhláška má náležitosti odpovídající záhlaví atd)
-	Class<?> findingAidRules[] = {
+	List<Class<? extends BaseRule<EadValidationContext>>> findingAidRules = List.of(
 			Rule01.class,
 			Rule02.class,
 			Rule03.class,
@@ -177,8 +178,8 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule105.class   
 	};
 
-        //inherentní arch. popis v aipu popis od puvodce(obecne) -  např co se vyteží ze SIP podle NS
-	Class<?> inherentDescRules[] = {
+	//inherentní arch. popis v aipu popis od puvodce(obecne) -  např co se vyteží ze SIP podle NS
+	List<Class<? extends BaseRule<EadValidationContext>>> inherentDescRules = List.of(
 			Rule01.class,
 			Rule03.class,
 			Rule04.class,
@@ -224,7 +225,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 	};
         
         //contextování tím popíše arrchiválii a je to uloženo v AIP
-	Class<?> contextDescRules[] = {
+	List<Class<? extends BaseRule<EadValidationContext>>> contextDescRules = List.of(
 			Rule01.class,
 			Rule03.class,
 			Rule04.class,
@@ -276,8 +277,15 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 
 	@Override
 	protected void validateImpl() {
+
+		this.provedKontrolu(ctx, createRules());
 		
-		Class<?> ruleClasses[];
+		
+	}
+
+	public List<? extends BaseRule<EadValidationContext>> createRules() {
+		
+		List<Class<? extends BaseRule<EadValidationContext>>> ruleClasses;
 		if(profilValidace==AP2023Profile.ARCH_DESC) {
 			ruleClasses = archDescRules;
 		} else if(profilValidace==AP2023Profile.FINDING_AID) {
@@ -290,10 +298,6 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 			throw new IllegalStateException("Neznámý profil: " + profilValidace);
 		}
 		
-		List<Rule<EadValidationContext>> rules = createRules(ruleClasses);
-
-		this.provedKontrolu(ctx, rules);
-		
-		
+		return createRules(ruleClasses);
 	}
 }
