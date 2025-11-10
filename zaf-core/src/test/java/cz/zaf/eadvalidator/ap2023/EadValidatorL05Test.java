@@ -1324,7 +1324,8 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
                     Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
                     Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule75.CODE,
                     Rule84.CODE, Rule85.CODE, Rule86.CODE, Rule87.CODE, Rule87.CODE,
-                    Rule93.CODE, Rule94.CODE, Rule95.CODE, Rule97.CODE, Rule98.CODE,},
+                    Rule93.CODE, Rule94.CODE, Rule95.CODE, Rule97.CODE
+                },
                 new String[]{Rule98.CODE});
     }
 
