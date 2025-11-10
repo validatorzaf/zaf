@@ -17,6 +17,12 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule06;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule07;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule08;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule09;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs100_109.Rule100;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs100_109.Rule101;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs100_109.Rule102;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs100_109.Rule103;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs100_109.Rule104;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs100_109.Rule105;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs10_19.Rule11;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs10_19.Rule12;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs10_19.Rule15;
@@ -105,6 +111,12 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
                         Rule94.class,
                         Rule95.class,
                         Rule97.class,
+            Rule100.class,
+            Rule101.class,
+            Rule102.class,
+            Rule103.class,
+            Rule104.class,
+            Rule105.class
 	};
 	
         //finální pomůcka = archivní pomůcka (vyhláška má náležitosti odpovídající záhlaví atd)
@@ -157,6 +169,12 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
                         Rule94.class,
                         Rule95.class,
                         Rule97.class,
+            Rule100.class,
+            Rule101.class,
+            Rule102.class,
+            Rule103.class,
+            Rule104.class,
+            Rule105.class   
 	};
 
         //inherentní arch. popis v aipu popis od puvodce(obecne) -  např co se vyteží ze SIP podle NS
@@ -198,6 +216,11 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
                         Rule94.class,
                         Rule95.class,
                         Rule97.class,
+//            Rule100.class,
+//            Rule101.class,
+//            Rule102.class,
+//            Rule103.class,  
+//            Rule104.class,  
 	};
         
         //contextování tím popíše arrchiválii a je to uloženo v AIP
@@ -238,7 +261,12 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
                         Rule93.class,
                         Rule94.class,
                         Rule95.class,
-                        Rule97.class,                     
+                        Rule97.class,   
+//            Rule100.class,
+//            Rule101.class,
+//            Rule102.class,
+//            Rule103.class,      
+//            Rule104.class,                         
 	};
 
 	public ContentValidationLayer(ValidationSubprofile profilValidace, String innerFileName) {
