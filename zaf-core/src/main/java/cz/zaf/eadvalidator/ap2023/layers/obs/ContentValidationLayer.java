@@ -118,7 +118,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule103.class,
             Rule104.class,
             Rule105.class
-	};
+);
 	
         //finální pomůcka = archivní pomůcka (vyhláška má náležitosti odpovídající záhlaví atd)
 	List<Class<? extends BaseRule<EadValidationContext>>> findingAidRules = List.of(
@@ -175,8 +175,8 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule102.class,
             Rule103.class,
             Rule104.class,
-            Rule105.class   
-	};
+            Rule105.class 
+);
 
 	//inherentní arch. popis v aipu popis od puvodce(obecne) -  např co se vyteží ze SIP podle NS
 	List<Class<? extends BaseRule<EadValidationContext>>> inherentDescRules = List.of(
@@ -216,13 +216,13 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
                         Rule93.class,
                         Rule94.class,
                         Rule95.class,
-                        Rule97.class,
+                        Rule97.class
 //            Rule100.class,
 //            Rule101.class,
 //            Rule102.class,
 //            Rule103.class,  
 //            Rule104.class,  
-	};
+);
         
         //contextování tím popíše arrchiválii a je to uloženo v AIP
 	List<Class<? extends BaseRule<EadValidationContext>>> contextDescRules = List.of(
@@ -262,13 +262,13 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
                         Rule93.class,
                         Rule94.class,
                         Rule95.class,
-                        Rule97.class,   
+                        Rule97.class  
 //            Rule100.class,
 //            Rule101.class,
 //            Rule102.class,
 //            Rule103.class,      
 //            Rule104.class,                         
-	};
+                        );
 
 	public ContentValidationLayer(ValidationSubprofile profilValidace, String innerFileName) {
 		super(ValidationLayers.OBSAH, innerFileName);
