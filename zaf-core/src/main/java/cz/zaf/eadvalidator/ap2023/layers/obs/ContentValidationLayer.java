@@ -41,6 +41,7 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule36;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule37;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs40_49.Rule43;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs40_49.Rule49;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs50_59.Rule53;
 
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule60;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule61;
@@ -91,6 +92,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
                         Rule37.class,
             Rule43.class,           
             Rule49.class,
+                        Rule53.class,
             Rule60.class, 
             Rule61.class,
             Rule62.class,
@@ -151,6 +153,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
                         Rule37.class,
             Rule43.class,            
             Rule49.class,
+                        Rule53.class,
             Rule60.class, 
             Rule61.class,
             Rule62.class,
@@ -198,7 +201,8 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
                         Rule31.class,
 //                        Rule35.class,
 //                        Rule37.class,
-            Rule43.class,            
+            Rule43.class, 
+                        Rule53.class,
             Rule49.class,
             Rule60.class, 
             Rule61.class,
@@ -243,7 +247,8 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
                         Rule31.class,
                         Rule35.class,
                         Rule37.class,
-            Rule43.class,            
+            Rule43.class, 
+                        Rule53.class,
             Rule49.class,
             Rule60.class, 
             Rule61.class,
