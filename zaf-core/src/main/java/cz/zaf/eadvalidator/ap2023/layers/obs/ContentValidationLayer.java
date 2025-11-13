@@ -58,9 +58,7 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs70_79.Rule72;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs70_79.Rule73;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs70_79.Rule75;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule84;
-import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule85;
-import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule86;
-import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule87;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule89;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule93;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule94;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule95;
@@ -108,9 +106,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
                         Rule73.class,
                         Rule75.class,
             Rule84.class,
-            Rule85.class,
-            Rule86.class,
-            Rule87.class,
+            Rule89.class,
                         Rule93.class,
                         Rule94.class,
                         Rule95.class,
@@ -169,9 +165,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
                         Rule73.class,
                         Rule75.class,
             Rule84.class,
-            Rule85.class,
-            Rule86.class,
-            Rule87.class,
+            Rule89.class,
                         Rule93.class,
                         Rule94.class,
                         Rule95.class,
@@ -219,9 +213,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
                         Rule73.class,
                         Rule75.class,
             Rule84.class,
-            Rule85.class,
-            Rule86.class,
-            Rule87.class,
+            Rule89.class,
                         Rule93.class,
                         Rule94.class,
                         Rule95.class,
@@ -265,9 +257,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
                         Rule73.class,
                         Rule75.class,
             Rule84.class,
-            Rule85.class,
-            Rule86.class,
-            Rule87.class,
+            Rule89.class,
                         Rule93.class,
                         Rule94.class,
                         Rule95.class,
