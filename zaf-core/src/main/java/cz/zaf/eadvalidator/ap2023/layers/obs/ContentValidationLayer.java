@@ -41,6 +41,7 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule36;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule37;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs40_49.Rule43;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs40_49.Rule49;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs50_59.Rule50;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs50_59.Rule53;
 
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule60;
@@ -92,6 +93,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
                         Rule37.class,
             Rule43.class,           
             Rule49.class,
+                        Rule50.class,
                         Rule53.class,
             Rule60.class, 
             Rule61.class,
@@ -126,7 +128,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule105.class
 );
 	
-        //finální pomůcka = archivní pomůcka (vyhláška má náležitosti odpovídající záhlaví atd)
+        //pomůcka = archivní pomůcka (vyhláška má náležitosti odpovídající záhlaví atd)
 	List<Class<? extends BaseRule<EadValidationContext>>> findingAidRules = List.of(
 			Rule01.class,
 			Rule02.class,
@@ -153,6 +155,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
                         Rule37.class,
             Rule43.class,            
             Rule49.class,
+                        Rule50.class,
                         Rule53.class,
             Rule60.class, 
             Rule61.class,
@@ -202,7 +205,8 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 //                        Rule35.class,
 //                        Rule37.class,
             Rule43.class, 
-                        Rule53.class,
+//                        Rule50.class,
+//                        Rule53.class,
             Rule49.class,
             Rule60.class, 
             Rule61.class,
@@ -247,8 +251,9 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
                         Rule31.class,
                         Rule35.class,
                         Rule37.class,
-            Rule43.class, 
-                        Rule53.class,
+            Rule43.class,
+//                        Rule50.class,
+//                        Rule53.class,
             Rule49.class,
             Rule60.class, 
             Rule61.class,
