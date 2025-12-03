@@ -19,9 +19,9 @@ public class Rule103 extends EadRule {
     static final public String RULE_ERROR = "Atributy \"linkrole\" a \"linktitle\" elementu <ead:relation>, který má atribut \"relationtype\" o hodnotě \"cpfrelation\" nebo \"resourcerelation\", obsahují nepovolené hodnoty. Případně si jejich hodnoty vzájemně neodpovídají.";
     static final public String RULE_SOURCE = "Část 8.2 a 8.2.3 profilu EAD3 MV ČR";
 
-    static private final Map<String, String> allowed = new HashMap<>();
+    private static final Map<String, String> allowed = new HashMap<>();
 
-    {
+    static {
         allowed.put("AUTHOR", " autor");
         allowed.put("AUTHOR_DIALOGS", "	autor dialogu");
         allowed.put("AUTHOR_ACCOMP_TEXT", "autor doprovodného textu");

@@ -116,7 +116,7 @@
 							<ead:physfacet localtype="IMPRINT_IMAGE">Text</ead:physfacet> <!-- obs74 -->
 							
 							<ead:dimensions>
-								<ead:dimensions unit="mm" localtype="WIDTH">12345</ead:dimensions> <!-- obs75, obs76 -->
+								<ead:dimensions unit="mm" localtype="WIDTH">12345,2222</ead:dimensions> <!-- obs75, obs76 -->
 							</ead:dimensions>
 						</ead:physdescstructured>
 						

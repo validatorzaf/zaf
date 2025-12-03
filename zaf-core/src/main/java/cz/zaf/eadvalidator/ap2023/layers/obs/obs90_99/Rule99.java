@@ -11,14 +11,19 @@ import cz.zaf.schema.ead3.Did;
 import cz.zaf.schema.ead3.Famname;
 import cz.zaf.schema.ead3.Name;
 import cz.zaf.schema.ead3.Origination;
+import cz.zaf.schema.ead3.Part;
 import cz.zaf.schema.ead3.Persname;
+import cz.zaf.schema.ead3.Ref;
+import cz.zaf.schema.ead3.Source;
+import jakarta.xml.bind.JAXBElement;
+import java.io.Serializable;
 import java.util.List;
 
 public class Rule99 extends EadRule {
 
     static final public String CODE = "obs99";
-    static final public String RULE_TEXT = "Každý element <ead:origination> obsahuje alespoň jeden element z následujících elementů: - <ead:persname> - <ead:famname> - <ead:corpname> - <ead:name> přičemž každý tento element má atribut \"localtype\" o hodnotě \"ORIGINATOR\".";
-    static final public String RULE_ERROR = "Některý element <ead:origination> obsahuje nesprávný element. Případně vnořený element nemá atribut \"localtype\" nebo tento atribut neobsahuje hodnotu \"ORIGINATOR\".";
+    static final public String RULE_TEXT = "Každý element ead:origination obsahuje právě jeden podřízený element a to jeden z následujících elementů: - ead:persname - ead:famname - ead:corpname - ead:name přičemž tento element má atribut \"localtype\" o hodnotě \"ORIGINATOR\" a obsahuje právě jeden element <ead:part>, který obsahuje právě jeden element <ead:ref>. Element <ead:ref> má atribut \"target\" o hodnotě, která odkazuje na element <control>/<sources>/<source>.";
+    static final public String RULE_ERROR = "Některý element <ead:origination> obsahuje nesprávný element. Případně vnořený element nemá atribut \"localtype\" nebo tento atribut neobsahuje hodnotu \"ORIGINATOR\", nemá správný obsah.";
     static final public String RULE_SOURCE = "Část 8.1 profilu EAD3 MV ČR";
     private static boolean found = false;
 
@@ -46,21 +51,25 @@ public class Rule99 extends EadRule {
                 for (Object originationChild : originationChildList) {
                     if (originationChild instanceof Persname persname) {
                         String localtype = persname.getLocaltype();
-                        validate(persname, localtype);
+                        List<Part> partList = persname.getPart();
+                        validate(persname, localtype, partList);
                     }
                     if (originationChild instanceof Corpname corpname) {
                         String localtype = corpname.getLocaltype();
-                        validate(corpname, localtype);
+                        List<Part> partList = corpname.getPart();
+                        validate(corpname, localtype, partList);
                     }
 
                     if (originationChild instanceof Famname famname) {
                         String localtype = famname.getLocaltype();
-                        validate(famname, localtype);
+                        List<Part> partList = famname.getPart();
+                        validate(famname, localtype, partList);
                     }
 
                     if (originationChild instanceof Name name) {
                         String localtype = name.getLocaltype();
-                        validate(name, localtype);
+                        List<Part> partList = name.getPart();
+                        validate(name, localtype, partList);
                     }
                 }
                 if (!found) {
@@ -70,10 +79,37 @@ public class Rule99 extends EadRule {
         }
     }
 
-    private void validate(Object element, String localType) {
+    private void validate(Object element, String localType, List<Part> partList) {
         found = true;
         if (!StringUtils.equals("ORIGINATOR", localType)) {
             throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut localtype nemá očekávanou hodnotu.", ctx.formatEadPosition(element));
+        }
+        validatePart(partList);
+    }
+
+    private void validatePart(List<Part> partList) {
+        Ref foundRef = null;
+        for (Part part : partList) {
+            List<Serializable> content = part.getContent();
+            for (Serializable item : content) {
+                if (item instanceof JAXBElement) {
+                    JAXBElement<?> inner = (JAXBElement<?>) item;
+                    Object value = inner.getValue();
+                    if (value instanceof Ref ref) {
+                        if (foundRef != null) {
+                            throw new ZafException(BaseCode.DUPLICITA, "Nalezen duplicitní element ref.", ctx.formatEadPosition(ref));
+                        }
+                        foundRef = ref;
+                        Object target = ref.getTarget();
+                        if (!(target instanceof Source source)) {
+                            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nenalezena očkávaná hodnota atributu target.", ctx.formatEadPosition(ref));
+                        }
+                    }
+                }
+            }
+        }
+        if (foundRef == null) {
+            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element ref.", ctx.formatEadPosition(partList));
         }
     }
 

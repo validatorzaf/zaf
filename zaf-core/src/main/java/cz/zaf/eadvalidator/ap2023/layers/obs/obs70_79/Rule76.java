@@ -80,7 +80,7 @@ public class Rule76 extends EadRule {
             if (StringUtils.isBlank(str)) {
                 throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Prázdná hodnota elementu.", ctx.formatEadPosition(dimensions));
             }
-            if (!NumberUtils.isCreatable(str)|| !str.contains(".")) {
+            if (!NumberUtils.isCreatable(str)) {
                 throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybný typ hodnoty v elementu.", ctx.formatEadPosition(dimensions));
             }
         } else {
