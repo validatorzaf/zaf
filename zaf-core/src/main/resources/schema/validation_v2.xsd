@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:validationZaf="https://stands.nacr.cz/validation_zaf/v2" targetNamespace="https://stands.nacr.cz/validation_zaf/v2" elementFormDefault="qualified" attributeFormDefault="unqualified" id="validationZaf" version="2" xml:lang="en">
+    <xs:annotation>
+        <xs:documentation>XML schema for the result of data package validation.</xs:documentation>
+    </xs:annotation>
+    
+    <!-- Root element -->
+    <xs:element name="validation">
+        <xs:annotation>
+            <xs:documentation>Element for describing the performed validation and its result.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="package" type="validationZaf:tPackage" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="validationIdentifier" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>Unique identifier of the performed validation.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="validationTimestamp" type="xs:dateTime" use="required">
+                <xs:annotation>
+                    <xs:documentation>Attribute for recording the timestamp of the validation. The date is recorded in UTC format ("yyyy-MM-dd'T'HH:mm:ssXXX").</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="applicationName" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>Name of the application performing the validation.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="applicationVersion" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>Version of the application performing the validation.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="validationType" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>Element for recording validation for a specific data package type.</xs:documentation>
+                </xs:annotation>            
+            </xs:attribute>
+            <xs:attribute name="rulesVersion" type="xs:positiveInteger" use="required">
+                <xs:annotation>
+                    <xs:documentation>Version of the rules according to which the validation is performed.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="validationProfile" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>Element for recording the purpose of data package validation within the validation type. Based on this purpose, the appropriate check with specific rules is selected.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <!-- End of root element -->
+    
+    <!-- Simple types -->
+    <xs:simpleType name="tCheckResult">
+        <xs:annotation>
+            <xs:documentation>Element for recording the result of the check.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="OK" />
+            <xs:enumeration value="ERROR" />
+            <xs:enumeration value="NOT_EXECUTED" />
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- End of simple types -->
+    
+    <!-- Complex types -->
+    <xs:complexType name="tPackage">
+        <xs:annotation>
+            <xs:documentation>Element for describing the data package.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="check" type="validationZaf:tCheck" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="fileName" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>Name of the data package file or folder.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="identifier" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Unique identifier of the data package.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    
+    <xs:complexType name="tEntity">
+        <xs:annotation>
+            <xs:documentation>Element for describing the entities affected by the error.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="identifier" type="validationZaf:tIdentifier" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tIdentifier">
+        <xs:annotation>
+            <xs:documentation>Identifier value.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="typ" type="xs:string" use="required">
+                    <xs:annotation>
+                        <xs:documentation>Entity type.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="source" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Source of the identifier.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    
+    <xs:complexType name="tCheck">
+        <xs:annotation>
+            <xs:documentation>Element for describing the check according to a rule group.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="rule" type="validationZaf:tRule" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>Name of the check.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="status" type="validationZaf:tCheckResult" use="required" />
+        <xs:attribute name="internalFile" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Relative path of the internal file to the file/folder of the entire data package.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    
+    <xs:complexType name="tRule">
+        <xs:annotation>
+            <xs:documentation>Element for describing the specific rule according to which the check is performed.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="code" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Unique identifier of the rule.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="text" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Text of the rule.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="source" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Reference to the source defining the rule.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="errorCode" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Error code enabling its machine-readable interpretation.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="errorDescription" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Human-readable description in case of rule violation.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="errorReport" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Error state with details of the detected issue.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="errorLocation" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Reference to the line and column in the file where the error was found.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="entity" type="validationZaf:tEntity" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+    <!-- End of complex types -->
+    
+</xs:schema>
