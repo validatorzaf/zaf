@@ -69,7 +69,7 @@ public class Rule84 extends EadRule {
         }
         Serializable partContent = content.get(0);
         if (partContent instanceof String str) {
-            if (!StringUtils.isNotBlank(str)) {
+            if (StringUtils.isBlank(str)) {
                 throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Prázdná hodnota elementu.", ctx.formatEadPosition(materialspec));
             }
         } else {
