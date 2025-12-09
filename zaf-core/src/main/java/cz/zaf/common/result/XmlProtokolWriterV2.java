@@ -33,22 +33,22 @@ import com.ctc.wstx.api.WstxInputProperties;
 import com.sun.xml.txw2.output.IndentingXMLStreamWriter;
 
 import cz.zaf.common.ZafInfo;
-import cz.zaf.schema.validace_v1.ObjectFactory;
-import cz.zaf.schema.validace_v1.TBalicek;
-import cz.zaf.schema.validace_v1.TKontrola;
-import cz.zaf.schema.validace_v1.TPravidlo;
-import cz.zaf.schema.validace_v1.TVysledekKontroly;
+import cz.zaf.schema.validation_v2.ObjectFactory;
+import cz.zaf.schema.validation_v2.TCheck;
+import cz.zaf.schema.validation_v2.TCheckResult;
+import cz.zaf.schema.validation_v2.TPackage;
+import cz.zaf.schema.validation_v2.TRule;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBElement;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
 
-public class XmlProtokolWriter implements ProtokolWriter
+public class XmlProtokolWriterV2 implements ProtokolWriter
  {
     
-    public static final String SCHEMA_URL = "https://stands.nacr.cz/validace_zaf/v1";
+    public static final String SCHEMA_URL = "https://stands.nacr.cz/validation_zaf/v2";
     
-    private static Logger logger = LoggerFactory.getLogger(XmlProtokolWriter.class);
+    private static Logger logger = LoggerFactory.getLogger(XmlProtokolWriterV2.class);
     
     public static final ObjectFactory objectFactory = new ObjectFactory();
 
@@ -66,7 +66,7 @@ public class XmlProtokolWriter implements ProtokolWriter
     
     {
         SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        try (InputStream is = XmlProtokolWriter.class.getClassLoader()
+        try (InputStream is = XmlProtokolWriterV2.class.getClassLoader()
                 .getResourceAsStream("schema/validace_v1.xsd")) {
             schema = sf.newSchema(new StreamSource(is));
         } catch (IOException | SAXException e) {
@@ -74,7 +74,7 @@ public class XmlProtokolWriter implements ProtokolWriter
         }
         
         try {
-            jaxbContext = JAXBContext.newInstance(TBalicek.class);
+            jaxbContext = JAXBContext.newInstance(TPackage.class);
         } catch (JAXBException e) {
             logger.error("Failed to initialize JAXBContext", e);
             throw new IllegalStateException("Failed to initialize JAXBContext", e);
@@ -83,7 +83,7 @@ public class XmlProtokolWriter implements ProtokolWriter
     
     private final ValidationProfileInfo profileInfo;
     
-    public XmlProtokolWriter(final String outputPath,
+    public XmlProtokolWriterV2(final String outputPath,
                              final String kontrolaId,
                              final ValidationProfileInfo profileInfo) throws IOException, JAXBException,
             XMLStreamException,
@@ -169,46 +169,46 @@ public class XmlProtokolWriter implements ProtokolWriter
     @Override
     public void writeVysledek(ValidationResult sipInfo) throws JAXBException {
         
-        TBalicek balicek = convert(sipInfo);
+        var balicek = convert(sipInfo);
         
-        JAXBElement<TBalicek> jaxbElement = new JAXBElement<>(new QName(SCHEMA_URL, "balicek"), TBalicek.class, balicek);
+        var jaxbElement = new JAXBElement<>(new QName(SCHEMA_URL, "package"), TPackage.class, balicek);
         marshaller.marshal(jaxbElement, indentingStreamWriter);
 
     }
     
-    private static void writeBalicekInfo(TBalicek balicekNode,
+    private static void writeBalicekInfo(TPackage balicekNode,
                                          ValidationResult sipInfo) {
         String metsObjId = sipInfo.getValidatedObjectId();
         if (StringUtils.isNotEmpty(metsObjId)) {
-            balicekNode.setIdentifikator(metsObjId);
+            balicekNode.setIdentifier(metsObjId);
         }
 
-        balicekNode.setNazevSouboru(sipInfo.getValidatedObjectName());
+        balicekNode.setFileName(sipInfo.getValidatedObjectName());
 
     }
 
-    private TBalicek convert(ValidationResult sipInfo) {
-        TBalicek balicek = objectFactory.createTBalicek();
+    private TPackage convert(ValidationResult sipInfo) {
+        var balicek = objectFactory.createTPackage();
         writeBalicekInfo(balicek, sipInfo);
         
         List<ValidationLayerResult> kontroly = sipInfo.getValidationLayerResults();
         for (ValidationLayerResult vysl : kontroly) {
-            TKontrola kontrolaXml = convert(vysl);
-            balicek.getKontrola().add(kontrolaXml);
+            var kontrolaXml = convert(vysl);
+            balicek.getCheck().add(kontrolaXml);
         }        
         return balicek;
     }
     
-    private static TKontrola convert(ValidationLayerResult vysl) {
-        TKontrola kontrolaXml = objectFactory.createTKontrola();
-        kontrolaXml.setNazev(vysl.getValidationName());
-        kontrolaXml.setStav(convert(vysl.getValidationStatus()));
-        kontrolaXml.setVnitrniSoubor(vysl.getInnerFileName());
+    private static TCheck convert(ValidationLayerResult vysl) {
+        var kontrolaXml = objectFactory.createTCheck();
+        kontrolaXml.setName(vysl.getValidationName());
+        kontrolaXml.setStatus(convert(vysl.getValidationStatus()));
+        kontrolaXml.setEmbeddedFile(vysl.getInnerFileName());
 
         // prevod pravidel
         for (RuleValidationError pravidlo : vysl.getPravidla()) {
-            TPravidlo pravNode = convert(pravidlo);
-            kontrolaXml.getPravidlo().add(pravNode);
+            var pravNode = convert(pravidlo);
+            kontrolaXml.getRule().add(pravNode);
         }
         return kontrolaXml;
     }
@@ -220,28 +220,28 @@ public class XmlProtokolWriter implements ProtokolWriter
      *            vysledek pravidla
      * @return Prevedene pravidlo
      */
-    private static TPravidlo convert(RuleValidationError pravidlo) {
-        TPravidlo pravNode = objectFactory.createTPravidlo();
-        pravNode.setKod(pravidlo.getId());
-        pravNode.setZneni(pravidlo.getTextPravidla());
-        pravNode.setZdroj(pravidlo.getZdroj());
-        pravNode.setPopisChyby(pravidlo.getPopisChybyObecny());
-        pravNode.setVypisChyby(pravidlo.getVypisChyby());
-        pravNode.setMistoChyby(pravidlo.getMistoChyby());
-        pravNode.setKodChyby(pravidlo.getKodChyby().getErrorCode());
+    private static TRule convert(RuleValidationError pravidlo) {
+        var pravNode = objectFactory.createTRule();
+        pravNode.setCode(pravidlo.getId());
+        pravNode.setText(pravidlo.getTextPravidla());
+        pravNode.setSource(pravidlo.getZdroj());
+        pravNode.setErrorDescription(pravidlo.getPopisChybyObecny());
+        pravNode.setErrorReport(pravidlo.getVypisChyby());
+        pravNode.setErrorLocation(pravidlo.getMistoChyby());
+        pravNode.setErrorCode(pravidlo.getKodChyby().getErrorCode());
 
-        pravidlo.zapisDetail(pravNode);
+        pravidlo.writeDetail(pravNode);
         return pravNode;
     }
 
-    private static TVysledekKontroly convert(ValidationStatus stavKontroly) {
+    private static TCheckResult convert(ValidationStatus stavKontroly) {
         switch (stavKontroly) {
         case ERROR:
-            return TVysledekKontroly.CHYBA;
+            return TCheckResult.ERROR;
         case NOT_EXCECUTED:
-            return TVysledekKontroly.NESPUSTENA;
+            return TCheckResult.NOT_EXECUTED;
         case OK:
-            return TVysledekKontroly.OK;
+            return TCheckResult.OK;
         }
         throw new IllegalStateException("Failed to convert :" + stavKontroly);
     }

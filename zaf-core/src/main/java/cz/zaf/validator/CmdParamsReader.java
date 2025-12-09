@@ -351,10 +351,13 @@ public class CmdParamsReader {
 
     private boolean readOutputFormat(String arg) {
 		switch (arg) {
-		case "1":
+		case "XML_V2":
+			params.setVystupniFormat(VystupniFormat.VALIDACE_V2);
+			break;
+		case "XML_V1":
 			params.setVystupniFormat(VystupniFormat.VALIDACE_V1);
 			break;
-		case "2":
+		case "XML_OLD":
 			params.setVystupniFormat(VystupniFormat.VALIDACE_SIP);
 			break;
 		default:
@@ -404,7 +407,8 @@ public class CmdParamsReader {
         output.println(" -T|--threat= "+messages.getOrDefault("cmd.help.params.threat", "optional description of detected threat (result of antivirus, malware scanner)"));
         output.println(" -o|--output= "+messages.getOrDefault("cmd.help.params.output","name of file or directory where to store validation result"));
         output.println(" -f|--format= "+messages.getOrDefault("cmd.help.params.output_format","output format (default: 1)"));
-        output.println("      1 = "+messages.getOrDefault("cmd.help.params.output_format_1","XML with generic structure (validace_v1.xsd)"));
-        output.println("      2 = "+messages.getOrDefault("cmd.help.params.output_format_2","older XML schema usable only for NSESSS2017, NSESSS2024)"));
+        output.println("      XML_V2 = "+messages.getOrDefault("cmd.help.params.output_format_v2","XML with generic structure (validation_v2.xsd)"));
+        output.println("      XML_V1 = "+messages.getOrDefault("cmd.help.params.output_format_v1","XML with generic structure (validace_v1.xsd)"));
+        output.println("      XML_OLD = "+messages.getOrDefault("cmd.help.params.output_format_old","older XML schema usable only for NSESSS2017, NSESSS2024)"));
     }
 }

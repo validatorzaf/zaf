@@ -50,7 +50,7 @@ public class Params {
     /**
      * Výstupní formát
      */
-    private VystupniFormat vystupniFormat = VystupniFormat.VALIDACE_V1;
+    private VystupniFormat vystupniFormat = VystupniFormat.VALIDACE_V2;
     
     /**
      * Validation profile

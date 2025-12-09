@@ -158,6 +158,7 @@
                             <sources>
                                 <source>${project.build.directory}/generated-sources/validacesip</source>
                                 <source>${project.build.directory}/generated-sources/validace_v1</source>
+                                <source>${project.build.directory}/generated-sources/validation_v2</source>
                                 <source>${project.build.directory}/generated-sources/ead3</source>
                                 <source>${project.build.directory}/generated-sources/mets_1_12_1</source>
                                 <source>${project.build.directory}/generated-sources/premis3</source>
@@ -199,6 +200,21 @@
                             </schemaIncludes>
                             <generatePackage>cz.zaf.schema.validace_v1</generatePackage>
                             <generateDirectory>${project.build.directory}/generated-sources/validace_v1</generateDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>jaxb2-generate-validation-v2-xsd</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <schemaDirectory>src/main/resources/schema</schemaDirectory>
+                            <schemaIncludes>
+                                <include>validation_v2.xsd</include>
+                            </schemaIncludes>
+                            <generatePackage>cz.zaf.schema.validation_v2</generatePackage>
+                            <generateDirectory>${project.build.directory}/generated-sources/validation_v2</generateDirectory>
                         </configuration>
                     </execution>
                     <execution>

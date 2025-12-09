@@ -67,10 +67,11 @@ Validátor ZAF lze volat prostřednictvím příkazového řádku:
  * DAAIP2024
  
 *-f|--format=*::
-  Výstupní formát (1 - výchozí)
+  Výstupní formát (XML_V2 - výchozí)
   
- * 1 = obecné schéma (link:validace_v1.xsd[validace_v1.xsd])
- * 2 = schéma pouze pro kontrolu NSESSS
+ * XML_V2 = obecné schéma (link:validation_v2.xsd[validation_v2.xsd])
+ * XML_V1 = obecné české schéma (link:validace_v1.xsd[validace_v1.xsd])
+ * XML_OLD = schéma pouze pro kontrolu NSESSS
  
 
 [[ZafSystParametry]]

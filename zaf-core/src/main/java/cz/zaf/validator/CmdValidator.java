@@ -20,6 +20,7 @@ import cz.zaf.common.result.ProtokolWriter;
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.result.XmlProtokolWriter;
 import cz.zaf.common.result.XmlProtokolWriterOld;
+import cz.zaf.common.result.XmlProtokolWriterV2;
 import cz.zaf.common.validation.Validator;
 import cz.zaf.eadvalidator.ap2023.ValidatorAp2023;
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
@@ -97,17 +98,20 @@ public class CmdValidator {
     }
     
     private ProtokolWriter createWriter() throws Exception {
-        ProtokolWriter protokolWriter = null;
-        if (params.getVystupniFormat() == VystupniFormat.VALIDACE_V1) {
-
-    		protokolWriter = new XmlProtokolWriter(params.getOutput(), 
+        switch(params.getVystupniFormat())
+        {
+        case VALIDACE_V2:
+    		return new XmlProtokolWriterV2(params.getOutput(), 
                     params.getIdKontroly(), validator.getProfileInfo());
-    	}
-    	else {
-    		protokolWriter = new XmlProtokolWriterOld(params.getOutput(), 
+        case VALIDACE_V1:
+    		return new XmlProtokolWriter(params.getOutput(), 
                     params.getIdKontroly(), validator.getProfileInfo());
+        case VALIDACE_SIP:
+    		return new XmlProtokolWriterOld(params.getOutput(), 
+                    params.getIdKontroly(), validator.getProfileInfo());
+        default:
+        	throw new IllegalStateException("Unknown output format");
     	}
-    	return protokolWriter;
     }
 
     public void validate() throws Exception {
