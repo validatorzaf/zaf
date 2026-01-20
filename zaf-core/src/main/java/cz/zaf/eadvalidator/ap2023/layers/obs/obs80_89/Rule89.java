@@ -21,8 +21,8 @@ import org.locationtech.jts.io.WKBReader;
 public class Rule89 extends EadRule {
 
     static final public String CODE = "obs89";
-    static final public String RULE_TEXT = "Každý element <ead:relation> s atributem \"relationtype\" o hodnotě \"otherrelationtype\" a zároveň s atributem \"otherrelationtype\" o hodnotě \"COORDINATES\" obsahuje právě jeden element <ead:geogname>. Element <ead:geogname> obsahuje právě jeden element <ead:part> a právě jeden element <ead:geographiccoordinates>. Element <ead:part>, který je obsažen v elementu <ead:geogname>, obsahuje hodnotu \"5.2.6 Souřadnice\". Element <ead:geographiccoordinates> má atribut \"coordinatesystem\" o hodnotě \"WGS84\" a obsahuje hodnotu ve formátu WKB (ISO/IEC 13249-3:2016) převedeném do BASE64, varianta little-endian.";
-    static final public String RULE_ERROR = "Element <ead:relation> s atributem \"relationtype\" o hodnotě \"otherrelationtype\" a zároveň s atributem \"otherrelationtype\" o hodnotě \"COORDINATES\" neobsahuje právě jeden element <ead:geogname>. Nebo element <ead:geogname> neobsahuje právě jeden element <ead:part> a/nebo právě jeden element <ead:geographiccoordinates>. Nebo element <ead:part> neobsahuje hodnotu \"5.2.6 Souřadnice\". Nebo element <ead:geographiccoordinates> nemá atribut \"coordinatesystem\" nebo tento atribut neobsahuje hodnotu \"WGS84\". Případně některý element <ead:geographiccoordinates> neobsahuje hodnotu v požadovaném formátu.";
+    static final public String RULE_TEXT = "Každý element <relation> s atributem \"relationtype\" o hodnotě \"otherrelationtype\" a zároveň s atributem \"otherrelationtype\" o hodnotě \"COORDINATES\" obsahuje právě jeden element <geogname>. Element <geogname> obsahuje právě jeden element <part> a právě jeden element <geographiccoordinates>. Element <part>, který je obsažen v elementu <geogname>, obsahuje hodnotu \"5.2.6 Souřadnice\". Element <geographiccoordinates> má atribut \"coordinatesystem\" o hodnotě \"WGS84\" a obsahuje hodnotu ve formátu WKB (ISO/IEC 13249-3:2016) převedeném do BASE64, varianta little-endian.";
+    static final public String RULE_ERROR = "Element <relation> s atributem \"relationtype\" o hodnotě \"otherrelationtype\" a zároveň s atributem \"otherrelationtype\" o hodnotě \"COORDINATES\" neobsahuje právě jeden element <geogname>. Nebo element <geogname> neobsahuje právě jeden element <part> a/nebo právě jeden element <geographiccoordinates>. Nebo element <part> neobsahuje hodnotu \"5.2.6 Souřadnice\". Nebo element <geographiccoordinates> nemá atribut \"coordinatesystem\" nebo tento atribut neobsahuje hodnotu \"WGS84\". Případně některý element <geographiccoordinates> neobsahuje hodnotu v požadovaném formátu.";
     static final public String RULE_SOURCE = "Část 6.10 a 6.10.1 profilu EAD3 MV ČR";
 
     public Rule89() {
@@ -41,7 +41,6 @@ public class Rule89 extends EadRule {
         });
     }
 
-    //relation má 1x geogname
     private void validateRelation(List<Object> childrenList) {
         for (Object child : childrenList) {
             if (child instanceof Relations relations) {
@@ -50,7 +49,7 @@ public class Rule89 extends EadRule {
                     String relationtype = relation.getRelationtype();
                     String otherrelationtype = relation.getOtherrelationtype();
                     if (StringUtils.equals("otherrelationtype", relationtype) && StringUtils.equals("COORDINATES", otherrelationtype)) {
-                        Geogname geogname = relation.getGeogname(); //geogname je jeden
+                        Geogname geogname = relation.getGeogname();
                         if (geogname == null) {
                             throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element geogname.", ctx.formatEadPosition(relation));
                         }
@@ -61,12 +60,11 @@ public class Rule89 extends EadRule {
         }
     }
 
-    //geogname má 1x part a 1x geographiccoordinates
     private void validateGeogname(Geogname geogname) {
         List<Part> part = geogname.getPart();
         List<Geographiccoordinates> geographiccoordinates = geogname.getGeographiccoordinates();
         if (part.isEmpty() || geographiccoordinates.isEmpty()) {
-            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Element neobsahuje po6adované element part a geographiccoordinates.", ctx.formatEadPosition(geogname));
+            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Element neobsahuje požadované elementy part a geographiccoordinates.", ctx.formatEadPosition(geogname));
         }
         if (part.size() != 1) {
             throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element part.", ctx.formatEadPosition(geogname));
@@ -102,7 +100,7 @@ public class Rule89 extends EadRule {
     private void validateGeographiccoordinatesContent(Geographiccoordinates geographiccoordinates) {
         String coordinatesystem = geographiccoordinates.getCoordinatesystem();
         if (!StringUtils.equals("WGS84", coordinatesystem)) {
-            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Chybná hodnota elementu geographiccoordinates.", ctx.formatEadPosition(geographiccoordinates));
+            throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Chybná hodnota elementu geographiccoordinates.", ctx.formatEadPosition(geographiccoordinates));
         }
         String content = geographiccoordinates.getContent();
         boolean validWkbBase64LittleEndian = isValidWkbBase64LittleEndian(content);

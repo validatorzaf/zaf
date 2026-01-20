@@ -8,8 +8,8 @@ import java.util.List;
 public class Rule93 extends EadRule {
 
     static final public String CODE = "obs93";
-    static final public String RULE_TEXT = "Každý element <ead:bibliography> obsahuje právě jeden neprázdný element <ead:p>.";
-    static final public String RULE_ERROR = "Některý element <ead:bibliography> neobsahuje právě jeden element <ead:p>. Případně element <ead:p> je prázdný.";
+    static final public String RULE_TEXT = "Každý element <bibliography> obsahuje právě jeden neprázdný element <p>.";
+    static final public String RULE_ERROR = "Některý element <bibliography> neobsahuje právě jeden element <p>. Případně element <p> je prázdný.";
     static final public String RULE_SOURCE = "Část 6.16 profilu EAD3 MV ČR";
 
     public Rule93() {

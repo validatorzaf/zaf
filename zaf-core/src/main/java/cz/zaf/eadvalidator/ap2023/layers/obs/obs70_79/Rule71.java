@@ -12,8 +12,8 @@ import java.util.List;
 public class Rule71 extends EadRule {
 
     static final public String CODE = "obs71";
-    static final public String RULE_TEXT = "Každý element <ead:processinfo> má atribut \"localtype\" o hodnotě \"ARCHIVIST_NOTE\", nebo \"RULES\", nebo \"DESCRIPTION_DATE\".";
-    static final public String RULE_ERROR = "Některý element <ead:processinfo> nemá atribut \"localtype\" nebo jej má špatně vyplněný.";
+    static final public String RULE_TEXT = "Každý element <processinfo> má atribut \"localtype\" o hodnotě \"ARCHIVIST_NOTE\", nebo \"RULES\", nebo \"DESCRIPTION_DATE\".";
+    static final public String RULE_ERROR = "Některý element <processinfo> nemá atribut \"localtype\" nebo jej má špatně vyplněný.";
     static final public String RULE_SOURCE = "Část 5.23, 5.24 a 5.25 profilu EAD3 MV ČR";
 
     public Rule71() {
@@ -23,7 +23,7 @@ public class Rule71 extends EadRule {
     @Override
     protected void evalImpl() {
         //May occur within:archdesc, c
-        //ead:archdesc
+        //archdesc
 
         Archdesc archDesc = ctx.getEad().getArchdesc();
         List<Object> childListA = archDesc.getAccessrestrictOrAccrualsOrAcqinfo();

@@ -14,8 +14,8 @@ import java.util.List;
 public class Rule49 extends EadRule {
 
     static final public String CODE = "obs49";
-    static final public String RULE_TEXT = "Každý element <ead:container> obsahuje prostou textovou hodnotu.";
-    static final public String RULE_ERROR = "Některý element <ead:container> neobsahuje prostou textovou hodnotu.";
+    static final public String RULE_TEXT = "Každý element <container> obsahuje prostou textovou hodnotu.";
+    static final public String RULE_ERROR = "Některý element <container> neobsahuje prostou textovou hodnotu.";
     static final public String RULE_SOURCE = "Část 5.3 profilu EAD3 MV ČR";
 
     public Rule49() {

@@ -3,11 +3,11 @@
 	<ead:control>
 		<ead:recordid>d0f7e14f-a655-4902-a6fd-e141bbe6ca6b</ead:recordid> <!-- obs1 -->
 		<ead:otherrecordid localtype="CZ_MVCR_FINDING_AID_ID">5</ead:otherrecordid> <!-- obs2 -->
-		<ead:otherrecordid localtype="INTERNAL_REV_ID"></ead:otherrecordid> <!-- obs3 -->
+		<ead:otherrecordid localtype="INTERNAL_REV_ID">rev1</ead:otherrecordid> <!-- obs3 -->
 		
 		<ead:filedesc encodinganalog="123"> <!-- obs4 -->
 			<ead:titlestmt>
-				<ead:titleproper></ead:titleproper>
+				<ead:titleproper>Jméno AS</ead:titleproper>
 				<ead:subtitle>Název hotové pomůcky</ead:subtitle> <!-- obs5 -->
 			</ead:titlestmt>
 			
@@ -27,9 +27,9 @@
 					</ead:part></ead:name>
 				</ead:p>
 				<ead:p> <!-- obs15 -->
-					<ead:name localtype="ARRANGER"><ead:part> <!-- obs16 -->
+					<ead:persname localtype="ARRANGER"><ead:part> <!-- obs16 -->
 						<ead:ref target="ap7523">Zpracovatel</ead:ref>
-					</ead:part></ead:name>
+					</ead:part></ead:persname>
 				</ead:p>
 				<ead:p> <!-- obs17 -->
 					<ead:name localtype="ARRANGER_BRIEF"><ead:part>Zpracovatel bez odkazu</ead:part></ead:name>

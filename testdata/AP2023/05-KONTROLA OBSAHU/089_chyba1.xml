@@ -27,9 +27,9 @@
 					</ead:part></ead:name>
 				</ead:p>
 				<ead:p> <!-- obs15 -->
-					<ead:name localtype="ARRANGER"><ead:part> <!-- obs16 -->
+					<ead:persname localtype="ARRANGER"><ead:part> <!-- obs16 -->
 						<ead:ref target="ap7523">Zpracovatel</ead:ref>
-					</ead:part></ead:name>
+					</ead:part></ead:persname>
 				</ead:p>
 				<ead:p> <!-- obs17 -->
 					<ead:name localtype="ARRANGER_BRIEF"><ead:part>Zpracovatel bez odkazu</ead:part></ead:name>
@@ -104,7 +104,14 @@
 					<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole">
 						<ead:quantity>1</ead:quantity>
 						<ead:unittype>lio</ead:unittype> <!-- obs39 -->
+						<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet> <!-- obs74 -->
+						<ead:physfacet localtype="WRITTING">paper</ead:physfacet> <!-- obs74 -->
+						<ead:physfacet localtype="EXTRA_PART">ANALOG</ead:physfacet> <!-- obs74 -->
 					</ead:physdescstructured>
+					<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part"> <!-- obs40 -->
+				<ead:quantity>1</ead:quantity>
+				<ead:unittype>lio</ead:unittype>
+			</ead:physdescstructured>
 				</ead:did>
 				
 			<ead:c level="item" base="http://archiv.cz/dids/f73a2216-d32c-442b-a206-40c4aac70a49"> <!-- obs37 -->
@@ -112,13 +119,18 @@
 						<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole"> <!-- obs43 -->
 							<ead:quantity>1</ead:quantity>
 							<ead:unittype>lio</ead:unittype> <!-- obs39 -->
-							
-							<ead:physfacet localtype="IMPRINT_IMAGE">Text</ead:physfacet> <!-- obs74 -->
+							<ead:physfacet localtype="WRITTING">paper</ead:physfacet> <!-- obs74 -->
+							<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet> <!-- obs74 -->
+							<ead:physfacet localtype="EXTRA_PART">ANALOG</ead:physfacet> <!-- obs74 -->
 							
 							<ead:dimensions>
 								<ead:dimensions unit="mm" localtype="WIDTH">123.45</ead:dimensions> <!-- obs75, obs76 -->
 							</ead:dimensions>
 						</ead:physdescstructured>
+						<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part"> <!-- obs40 -->
+				<ead:quantity>1</ead:quantity>
+				<ead:unittype>lio</ead:unittype>
+			</ead:physdescstructured>
 						
 						<ead:unittitle>Něco veřejného</ead:unittitle> <!-- obs41, obs42 -->
 						<ead:unittitle audience="internal">Něco skrytého</ead:unittitle> <!-- obs41, obs42 -->

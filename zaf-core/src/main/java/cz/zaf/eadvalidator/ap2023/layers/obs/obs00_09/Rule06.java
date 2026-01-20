@@ -11,8 +11,8 @@ import cz.zaf.schema.ead3.Publicationstmt;
 public class Rule06 extends EadRule {
 	
 	static final public String CODE = "obs6";
-	static final public String RULE_TEXT = "Element <ead:filedesc> obsahuje element <ead:publicationstmt>.";
-	static final public String RULE_ERROR = "Element <ead:filedesc> neobsahuje element <ead:publicationstmt>.";
+	static final public String RULE_TEXT = "Element <filedesc> obsahuje element <publicationstmt>.";
+	static final public String RULE_ERROR = "Element <filedesc> neobsahuje element <publicationstmt>.";
 	static final public String RULE_SOURCE = "Část 4.1 profilu EAD3 MV ČR"; 
 	
 	public Rule06() {

@@ -15,8 +15,8 @@ import cz.zaf.schemas.ead.EadNS;
 public class Rule02 extends EadRule {
 	
 	static final public String CODE = "obs2";
-	static final public String RULE_TEXT = "Element <ead:control> obsahuje právě jeden element <ead:otherrecordid> s atributem \"localtype\" o hodnotě \"CZ_MVCR_FINDING_AID_ID\", jehož hodnota je kladné celé číslo.";
-	static final public String RULE_ERROR = "Element <ead:control> neobsahuje právě jeden element <ead:otherrecordid> s atributem \"localtype\" o hodnotě \"CZ_MVCR_FINDING_AID_ID\". Případně tento element neobsahuje kladné celé číslo.";
+	static final public String RULE_TEXT = "Element <control> obsahuje právě jeden element <otherrecordid> s atributem \"localtype\" o hodnotě \"CZ_MVCR_FINDING_AID_ID\", jehož hodnota je kladné celé číslo.";
+	static final public String RULE_ERROR = "Element <control> neobsahuje právě jeden element <otherrecordid> s atributem \"localtype\" o hodnotě \"CZ_MVCR_FINDING_AID_ID\". Případně tento element neobsahuje kladné celé číslo.";
 	static final public String RULE_SOURCE = "Část 2.2 profilu EAD3 MV ČR"; 
 	
 	public Rule02() {

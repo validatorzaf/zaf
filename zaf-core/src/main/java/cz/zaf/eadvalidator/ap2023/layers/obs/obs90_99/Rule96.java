@@ -13,8 +13,8 @@ import java.util.List;
 public class Rule96 extends EadRule {
 
     static final public String CODE = "obs96";
-    static final public String RULE_TEXT = "Každý element <ead:dao> má neprázdný atribut \"identifier\".";
-    static final public String RULE_ERROR = "Některý element <ead:dao> nemá atribut \"identifier\" nebo je tento atribut prázdný.";
+    static final public String RULE_TEXT = "Každý element <dao> má neprázdný atribut \"identifier\".";
+    static final public String RULE_ERROR = "Některý element <dao> nemá atribut \"identifier\" nebo je tento atribut prázdný.";
     static final public String RULE_SOURCE = "Část 7.1 profilu EAD3 MV ČR";
 
     public Rule96() {

@@ -27,8 +27,8 @@ public class Rule43 extends EadRule {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Rule43.class);
 
     static final public String CODE = "obs43";
-    static final public String RULE_TEXT = "Každý element <ead:language> má atribut \"langcode\". Hodnota tohoto atributu stejně jako hodnota atributu \"lang\" u elementů <ead:unittitle> a <ead:scopecontent> odpovídá rozšířené podobě tří písmenného ISO kódu zapsaného malými písmeny. Hodnota elementu <ead:language> odpovídá hodnotě podle číselníku atributu \"langcode\" tohoto elementu.";
-    static final public String RULE_ERROR = "Element <ead:language> nemá atribut \"langcode\" a/nebo hodnota tohoto atributu nebo atributu \"lang\" u elementů <ead:unittitle> nebo <ead:scopecontent> neodpovídá  rozšířené podobě tří písmenného ISO kódu zapsaného malými písmeny a/nebo hodnota elementu <ead:language> neodpovídá podle číselníku hodnotě atributu \"langcode\" tohoto elementu.";
+    static final public String RULE_TEXT = "Každý element <language> má atribut \"langcode\". Hodnota tohoto atributu stejně jako hodnota atributu \"lang\" u elementů <unittitle> a <scopecontent> odpovídá rozšířené podobě tří písmenného ISO kódu zapsaného malými písmeny. Hodnota elementu <language> odpovídá hodnotě podle číselníku atributu \"langcode\" tohoto elementu.";
+    static final public String RULE_ERROR = "Element <language> nemá atribut \"langcode\" a/nebo hodnota tohoto atributu nebo atributu \"lang\" u elementů <unittitle> nebo <scopecontent> neodpovídá  rozšířené podobě tří písmenného ISO kódu zapsaného malými písmeny a/nebo hodnota elementu <language> neodpovídá podle číselníku hodnotě atributu \"langcode\" tohoto elementu.";
     static final public String RULE_SOURCE = "Část 3.7 a 6.14 profilu EAD3 MV ČR";
     
     static private Map<String, String> languageMap = new HashMap<>();

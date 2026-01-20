@@ -16,13 +16,13 @@ import java.util.List;
 public class Rule50 extends EadRule {
 
     static final public String CODE = "obs50";
-    static final public String RULE_TEXT = "Element <unitid> obsažený v elementu <ead:did> má atributy \"localtype\" a \"label\" o povolených hodnotách z tabulky (viz karta Typy označení), přičemž hodnoty obou atributů si odpovídají. Pokud má atribut \"localtype\" hodnotu \"JINE\", hodnota atributu \"label\" není prázdná.";
-    static final public String RULE_ERROR = "Některý element <ead:unitid> nemá \"localtype\" a/nebo \"label\" nebo tyto atributy neobsahují povolenou hodnotu, případně si hodnoty neodpovídají.";
+    static final public String RULE_TEXT = "Element <unitid> obsažený v elementu <did> má atributy \"localtype\" a \"label\" s povolenými typy označení (dle specifikace 5.5.1), přičemž hodnoty obou atributů si odpovídají. Pokud má atribut \"localtype\" hodnotu \"JINE\", hodnota atributu \"label\" není prázdná.";
+    static final public String RULE_ERROR = "Některý element <unitid> nemá \"localtype\" a/nebo \"label\" nebo tyto atributy neobsahují povolenou hodnotu, případně si hodnoty neodpovídají.";
     static final public String RULE_SOURCE = "Část 5.4 a 5.5 profilu EAD3 MV ČR";
 
     static private final Map<String, String> allowedlevelTypes = new HashMap<>();
 
-    {
+    static {
         allowedlevelTypes.put("REFERENCNI_OZNACENI", "referenční označení");
         allowedlevelTypes.put("PORADOVE_CISLO", "pořadové číslo");
         allowedlevelTypes.put("INV_CISLO", "inventární číslo");
@@ -79,7 +79,7 @@ public class Rule50 extends EadRule {
                 if (allowedlevelTypes.containsKey(localtype)) {
                     String value = allowedlevelTypes.get(localtype);
                     if (!label.equals(value)) {
-                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut label neobsahuje očekávanou hodnotu: " + allowedlevelTypes.get(label) + ", ale hodnotu: " + label + ".", ctx.formatEadPosition(unitid));
+                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut label neobsahuje očekávanou hodnotu, ale hodnotu: " + label + ".", ctx.formatEadPosition(unitid));
                     }
                 } else {
                     if (!localtype.equals("JINE")) {

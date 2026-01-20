@@ -15,7 +15,7 @@ public class Rule23 extends EadRule {
 
     static final public String CODE = "obs23";
     static final public String RULE_TEXT = "Druh archivní pomůcky se uvádí v elementu <localcontrol> s uvedením atributu localtype=\"FINDING_AID_TYPE\".";
-    static final public String RULE_ERROR = "Element <ead:control> neobsahuje element <ead:localcontrol> s atributem \"localtype\" s očekávanou hodnotou a elementem <ead:term>.";
+    static final public String RULE_ERROR = "Element <control> neobsahuje element <localcontrol> s atributem \"localtype\" s očekávanou hodnotou a elementem <term>.";
     static final public String RULE_SOURCE = "Část 2.6 profilu EAD3 MV ČR. EAD TLV heslo <term>";
 
     public Rule23() {
@@ -31,11 +31,11 @@ public class Rule23 extends EadRule {
         }
         Term term = localControl.getTerm();
         if(term==null) {
-            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Element <ead:localcontrol> neobsahuje element <ead:term>.", ctx.formatEadPosition(localControl));	        
+            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Element <localcontrol> neobsahuje element <term>.", ctx.formatEadPosition(localControl));	        
         }
         String identifier = term.getIdentifier();
         if(identifier==null) {
-        	throw new ZafException(BaseCode.CHYBI_ELEMENT, "Element <ead:localcontrol> neobsahuje element <ead:term> s atributem identifier.", ctx.formatEadPosition(localControl));
+        	throw new ZafException(BaseCode.CHYBI_ELEMENT, "Element <localcontrol> neobsahuje element <term> s atributem identifier.", ctx.formatEadPosition(localControl));
         }
         FindingAidType findingAidType;
         try {

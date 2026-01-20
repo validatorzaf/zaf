@@ -27,9 +27,9 @@
 					</ead:part></ead:name>
 				</ead:p>
 				<ead:p> <!-- obs15 -->
-					<ead:name localtype="ARRANGER"><ead:part> <!-- obs16 -->
+					<ead:persname localtype="ARRANGER"><ead:part> <!-- obs16 -->
 						<ead:ref target="ap7523">Zpracovatel</ead:ref>
-					</ead:part></ead:name>
+					</ead:part></ead:persname>
 				</ead:p>
 				<ead:p> <!-- obs17 -->
 					<ead:name localtype="ARRANGER_BRIEF"><ead:part>Zpracovatel bez odkazu</ead:part></ead:name>
@@ -85,7 +85,7 @@
 			</ead:source>
 		</ead:sources>
 	</ead:control>
-	<ead:archdesc level="fonds" base="http://archiv.cz/dids/80bb604a-052e-4e49-b86e-e4a91b95bf59"> <!-- obs35, obs37 -->
+	<ead:archdesc id="uuid-f47ac10b-58cc-4372-a567-0e02b2c3d479" level="fonds" base="http://archiv.cz/dids/80bb604a-052e-4e49-b86e-e4a91b95bf59"> <!-- obs35, obs37 -->
 		<ead:did>
 			<ead:physdescstructured physdescstructuredtype="spaceoccupied" coverage="whole"> <!-- obs47 -->
 				<ead:quantity>1</ead:quantity>
@@ -96,16 +96,10 @@
 				<ead:quantity>1</ead:quantity>
 				<ead:unittype>lio</ead:unittype>
 			</ead:physdescstructured>
-			<ead:unitdatestructured>
-					<ead:daterange localtype="CONTENT">
-						<ead:fromdate standarddate="1980-12-31T00:00:00">31. prosince 1980</ead:fromdate>
-						<ead:todate standarddate="1980-12-31T23:59:59">31. prosince 1980</ead:todate>
-					</ead:daterange>
-			</ead:unitdatestructured>
 		</ead:did>
 		
 		<ead:dsc>
-			<ead:c level="series" base="http://archiv.cz/dids/69106f67-3592-4713-926e-4dab4159ddde"> <!-- obs36, obs37 -->
+			<ead:c id="uuid-c1d5a9f4-3b2e-4c7d-8e91-0f2a6b3d5c4e" level="series" base="http://archiv.cz/dids/69106f67-3592-4713-926e-4dab4159ddde"> <!-- obs36, obs37 -->
 				<ead:did>
 					<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole">
 						<ead:quantity>1</ead:quantity>
@@ -113,7 +107,7 @@
 					</ead:physdescstructured>
 				</ead:did>
 				
-			<ead:c level="item" base="http://archiv.cz/dids/f73a2216-d32c-442b-a206-40c4aac70a49"> <!-- obs37 -->
+			<ead:c id="uuid-9a1c3b7e-2f44-4d3e-8c5a-1b2f4e7d9a6c" level="item" base="http://archiv.cz/dids/f73a2216-d32c-442b-a206-40c4aac70a49"> <!-- obs37 -->
 					<ead:did>
 						<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole"> <!-- obs43 -->
 							<ead:quantity>1</ead:quantity>
@@ -125,18 +119,25 @@
 								<ead:dimensions unit="mm" localtype="WIDTH">123.45</ead:dimensions> <!-- obs75, obs76 -->
 							</ead:dimensions>
 						</ead:physdescstructured>
-						
-						<ead:unittitle>Něco veřejného</ead:unittitle> <!-- obs41, obs42 -->
+
 						<ead:unittitle audience="internal">Něco skrytého</ead:unittitle> <!-- obs41, obs42 -->
 						<ead:container>Uložení</ead:container> <!-- obs49 -->
 						<ead:unitid localtype="REFERENCNI_OZNACENI" label="referenční označení">CZ620100//153//1/4//1</ead:unitid> <!-- obs50, obs51 -->
 						<ead:unittitle>Text</ead:unittitle> <!-- obs53 -->
+						
 						<ead:unitdatestructured>
-							<ead:daterange localtype="CONTENT" altrender="C"> <!-- obs55 -->
-								<ead:fromdate standarddate="2001-10-01T00:00:00">1. října 2001</ead:fromdate> <!-- obs57 -->
-								<ead:todate standarddate="2001-10-02T00:00:00">2. října 2001</ead:todate> <!-- obs58, obs59 -->
-							</ead:daterange>
-						</ead:unitdatestructured>					
+							<ead:dateset>
+								<ead:daterange>
+									<ead:fromdate standarddate="2001-10-01T00:00:00">1. října 2001</ead:fromdate>
+									<ead:todate standarddate="2001-10-01T23:59:59">1. října 2001</ead:todate>
+								</ead:daterange>
+								<ead:daterange localtype="ERROR">
+									<ead:fromdate standarddate="1980-12-31T00:00:00">31. prosince 1980</ead:fromdate>
+									<ead:todate standarddate="1980-12-31T23:59:59">31. prosince 1980</ead:todate>
+								</ead:daterange>
+							  <ead:dateset>
+						</ead:unitdatestructured>
+						
 						<ead:didnote localtype="INTERNAL" audience="internal">Text</ead:didnote> <!-- obs70 -->
 						
 						<ead:physdesc>Text</ead:physdesc> <!-- obs73 -->
@@ -195,9 +196,11 @@
 					
 						<ead:relation relationtype="cpfrelation" linkrole="AUTHOR" linktitle="autor" altrender="inherited"> <!-- obs101, obs102, obs103 -->
 							<ead:relationentry>Text</ead:relationentry> <!-- obs104 -->
-							<ead:descriptivenote><ead:p> <!-- obs105-->
-								<ead:ptr target="ap7523"></ead:ptr>
-							</ead:p></ead:descriptivenote>
+							<ead:descriptivenote>
+								<ead:p> <!-- obs105-->
+									<ead:ptr target="ap7523"></ead:ptr>
+								</ead:p>
+							</ead:descriptivenote>
 						</ead:relation>
 					</ead:relations>
 				</ead:c>	

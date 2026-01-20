@@ -20,8 +20,8 @@ import java.util.List;
 public class Rule31 extends EadRule {
 
     static final public String CODE = "obs31";
-    static final public String RULE_TEXT = "Existuje právě jeden element <ead:maintenanceevent>, který obsahuje povinné části dle specifikace. Kontroluje se existence podřízených elementů: eventtype, eventdatetime, agenttype a agent a jejich správné uvedení.";
-    static final public String RULE_ERROR = "Neexistuje element <ead:maintenanceevent>, který neobsahuje všechny povinné části dle specifikace.";
+    static final public String RULE_TEXT = "Existuje právě jeden element <maintenanceevent>, který obsahuje povinné části dle specifikace. Kontroluje se existence podřízených elementů: eventtype, eventdatetime, agenttype a agent a jejich správné uvedení.";
+    static final public String RULE_ERROR = "Neexistuje element <maintenanceevent>, který neobsahuje všechny povinné části dle specifikace.";
     static final public String RULE_SOURCE = "Část 2.7 profilu EAD3 MV ČR";
 
     public Rule31() {

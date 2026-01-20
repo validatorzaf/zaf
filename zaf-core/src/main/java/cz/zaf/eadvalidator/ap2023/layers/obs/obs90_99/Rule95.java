@@ -13,8 +13,8 @@ import java.util.List;
 public class Rule95 extends EadRule {
 
     static final public String CODE = "obs95";
-    static final public String RULE_TEXT = "Každý element <ead:dao> má atribut \"daotype\" o hodnotě \"derived\" nebo \"borndigital\".";
-    static final public String RULE_ERROR = "Některý element <ead:dao> nemá atribut \"daotype\" nebo tento atribut obsahuje nepovolenou hodnotu.";
+    static final public String RULE_TEXT = "Každý element <dao> má atribut \"daotype\" o hodnotě \"derived\" nebo \"borndigital\".";
+    static final public String RULE_ERROR = "Některý element <dao> nemá atribut \"daotype\" nebo tento atribut obsahuje nepovolenou hodnotu.";
     static final public String RULE_SOURCE = "Část 7 profilu EAD3 MV ČR";
 
     public Rule95() {

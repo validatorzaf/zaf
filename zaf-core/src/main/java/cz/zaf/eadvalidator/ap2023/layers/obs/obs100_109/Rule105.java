@@ -19,10 +19,9 @@ import java.util.Map;
 public class Rule105 extends EadRule {
 
     static final public String CODE = "obs105";
-    static final public String RULE_TEXT = "Element <ead:descriptivenote> obsahuje právě jeden element <ead:p>, který obsahuje právě jeden element <ead:ptr>. Ten má atribut \"target\" o hodnotě, která odkazuje na element <control>/<sources>/<source>.";
-    static final public String RULE_ERROR = "Element <ead:descriptivenote> neobsahuje právě jeden element <ead:p> nebo element <ead:p> neobsahuje právě jeden element <ead:ptr>. Případně element <ead:ptr> nemá atribut \"target\" nebo tento atribut neobsahuje požadovanou hodnotu.";
+    static final public String RULE_TEXT = "Element <descriptivenote> obsahuje právě jeden element <p>, který obsahuje právě jeden element <ptr>. Ten má atribut \"target\" o hodnotě, která odkazuje na element <control>/<sources>/<source>.";
+    static final public String RULE_ERROR = "Element <descriptivenote> neobsahuje právě jeden element <p> nebo element <p> neobsahuje právě jeden element <ptr>. Případně element <ptr> nemá atribut \"target\" nebo tento atribut neobsahuje požadovanou hodnotu.";
     static final public String RULE_SOURCE = "Část 8.2.1 a 8.2.2 profilu EAD3 MV ČR";
-    private final Map<String, Source> mapSource = new HashMap();
 
     public Rule105() {
         super(CODE, RULE_TEXT, RULE_ERROR, RULE_SOURCE);

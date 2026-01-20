@@ -12,8 +12,8 @@ import cz.zaf.schemas.ead.EadNS;
 public class Rule20 extends EadRule {
 
     static final public String CODE = "obs20";
-    static final public String RULE_TEXT = "Element <ead:maintenanceagency> obsahuje právě jeden element <ead:agencycode>.Ten má atribut \"localtype\" o hodnotě \"CZ_MVCR_INSTITUTION_ID\".";
-    static final public String RULE_ERROR = "Element <ead:maintenanceagency> neobsahuje element <ead:agencycode>. Případně tento element nemá atribut \"localtype\" nebo tento atribut neobsahuje hodnotu \"CZ_MVCR_INSTITUTION_ID\".";
+    static final public String RULE_TEXT = "Element <maintenanceagency> obsahuje právě jeden element <agencycode>.Ten má atribut \"localtype\" o hodnotě \"CZ_MVCR_INSTITUTION_ID\".";
+    static final public String RULE_ERROR = "Element <maintenanceagency> neobsahuje element <agencycode>. Případně tento element nemá atribut \"localtype\" nebo tento atribut neobsahuje hodnotu \"CZ_MVCR_INSTITUTION_ID\".";
     static final public String RULE_SOURCE = "Část 2.5 profilu EAD3 MV ČR";
 
     public Rule20() {

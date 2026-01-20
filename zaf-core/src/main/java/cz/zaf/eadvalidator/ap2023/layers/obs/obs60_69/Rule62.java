@@ -14,8 +14,8 @@ import org.apache.commons.lang3.StringUtils;
 public class Rule62 extends EadRule {
 
     static final public String CODE = "obs62";
-    static final public String RULE_TEXT = "Každý element <ead:scopecontent> odpovídá pravidlům ead cz a obsahuje právě jeden neprázdný element <ead:p>.";
-    static final public String RULE_ERROR = "Některý element <ead:scopecontent> neobsahuje právě jeden element <ead:p>. Případně je element <ead:p> prázdný.";
+    static final public String RULE_TEXT = "Každý element <scopecontent> odpovídá pravidlům ead cz a obsahuje právě jeden neprázdný element <p>.";
+    static final public String RULE_ERROR = "Některý element <scopecontent> neobsahuje právě jeden element <p>. Případně je element <p> prázdný.";
     static final public String RULE_SOURCE = "Část 5.13 profilu EAD3 MV ČR";
 
     public Rule62() {
@@ -77,7 +77,7 @@ public class Rule62 extends EadRule {
             List<Scopecontent> scopeContentLangCzeList = scopeContentWithLangMap.get("cze");
             if (scopeContentLangCzeList != null) {
                 System.out.println("");
-                throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepovolený element <ead:scopecontent>.", ctx.formatEadPosition(scopeContentLangCzeList));
+                throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepovolený element <scopecontent>.", ctx.formatEadPosition(scopeContentLangCzeList));
             }
             System.err.println("");
         }
@@ -87,7 +87,7 @@ public class Rule62 extends EadRule {
                 List<Scopecontent> withLangList = entry.getValue();
                 int withLangListCount = withLangList.size();
                 if (withLangListCount > 2) {
-                    throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepovolený element <ead:scopecontent>.", ctx.formatEadPosition(withLangList));
+                    throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepovolený element <scopecontent>.", ctx.formatEadPosition(withLangList));
                 }
                 if (withLangListCount == 2) {
                     Scopecontent scFirst = withLangList.get(0);
@@ -95,10 +95,10 @@ public class Rule62 extends EadRule {
                     Scopecontent scSecond = withLangList.get(1);
                     String audienceSecond = scSecond.getAudience();
                     if (audienceFirst == null || audienceSecond == null) {
-                        throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepovolený element <ead:scopecontent>.", ctx.formatEadPosition(withLangList));
+                        throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepovolený element <scopecontent>.", ctx.formatEadPosition(withLangList));
                     }
                     if (!("internal".equals(audienceFirst) && "external".equals(audienceSecond) || "external".equals(audienceFirst) && "internal".equals(audienceSecond))) {
-                        throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepovolený element <ead:scopecontent>.", ctx.formatEadPosition(withLangList));
+                        throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepovolený element <scopecontent>.", ctx.formatEadPosition(withLangList));
                     }
                 }
             }

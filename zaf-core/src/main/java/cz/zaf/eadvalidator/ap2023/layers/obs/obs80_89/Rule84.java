@@ -14,8 +14,8 @@ import java.util.List;
 public class Rule84 extends EadRule {
 
     static final public String CODE = "obs84";
-    static final public String RULE_TEXT = "Každý element <ead:materialspec> s atributem \"localtype\" o hodnotě \"SCALE\", nebo \"ORIENTATION\", nebo \"VOLUME\" obsahuje prostou textovou hodnotu.";
-    static final public String RULE_ERROR = "Některý element <ead:materialspec> s atributem \"localtype\" o hodnotě \"SCALE\", nebo \"ORIENTATION\", nebo \"VOLUME\" neobsahuje prostou textovou hodnotu.";
+    static final public String RULE_TEXT = "Každý element <materialspec> s atributem \"localtype\" o hodnotě \"SCALE\", nebo \"ORIENTATION\", nebo \"VOLUME\" obsahuje prostou textovou hodnotu.";
+    static final public String RULE_ERROR = "Některý element <materialspec> s atributem \"localtype\" o hodnotě \"SCALE\", nebo \"ORIENTATION\", nebo \"VOLUME\" neobsahuje prostou textovou hodnotu.";
     static final public String RULE_SOURCE = "Část 6.9, 6.11 a 6.13 profilu EAD3 MV ČR";
 
     public Rule84() {

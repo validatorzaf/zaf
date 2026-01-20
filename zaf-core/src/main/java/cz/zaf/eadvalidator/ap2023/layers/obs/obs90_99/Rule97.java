@@ -13,8 +13,8 @@ import java.util.List;
 public class Rule97 extends EadRule {
 
     static final public String CODE = "obs97";
-    static final public String RULE_TEXT = "V elementu <ead:dao> je nejvýš jeden element <ead:descriptivenote>. Ten obsahuje právě jeden neprázdný element <ead:p>.";
-    static final public String RULE_ERROR = "V elementu <ead:dao> je víc než jeden element <ead:descriptivenote>. Nebo element <ead:descriptivenote> neobsahuje právě jeden element <ead:p>.";
+    static final public String RULE_TEXT = "V elementu <dao> je nejvýš jeden element <descriptivenote>. Ten obsahuje právě jeden neprázdný element <p>.";
+    static final public String RULE_ERROR = "V elementu <dao> je víc než jeden element <descriptivenote>. Nebo element <descriptivenote> neobsahuje právě jeden element <p>.";
     static final public String RULE_SOURCE = "Část 7.1 profilu EAD3 MV ČR";
 
     public Rule97() {
