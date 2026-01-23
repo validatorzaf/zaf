@@ -30,6 +30,9 @@ public class Rule13 extends EadRule {
 
         Filedesc filedesc = ctx.getEad().getControl().getFiledesc();
         Publicationstmt publicationstmt = filedesc.getPublicationstmt();
+        if (publicationstmt == null) {
+			throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element <publicationstmt>.", ctx.formatEadPosition(filedesc));
+		}
         List<Object> publisherOrDateOrAddress = publicationstmt.getPublisherOrDateOrAddress();
         P found = null;
         for (Object obj : publisherOrDateOrAddress) {

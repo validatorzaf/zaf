@@ -36,6 +36,10 @@ public class Rule14 extends EadRule {
 
         Filedesc filedesc = ctx.getEad().getControl().getFiledesc();
         Publicationstmt publicationstmt = filedesc.getPublicationstmt();
+        if (publicationstmt == null) {
+			return;
+		}
+        
         List<Object> publisherOrDateOrAddress = publicationstmt.getPublisherOrDateOrAddress();
         for (Object pobj : publisherOrDateOrAddress) {
             if (pobj instanceof P p) {
@@ -48,19 +52,19 @@ public class Rule14 extends EadRule {
                             if (StringUtils.equals("ORIGINATOR", localtype)) {
                                 validate(persname, persname.getPart());
                             }
-                        }
+                        } else
                         if (contentObj instanceof Famname famname) {
                             String localtype = famname.getLocaltype();
                             if (StringUtils.equals("ORIGINATOR", localtype)) {
                                 validate(famname, famname.getPart());
                             }
-                        }
+                        } else
                         if (contentObj instanceof Corpname corpname) {
                             String localtype = corpname.getLocaltype();
                             if (StringUtils.equals("ORIGINATOR", localtype)) {
                                 validate(corpname, corpname.getPart());
                             }
-                        }
+                        } else
                         if (contentObj instanceof Name name) {
                             String localtype = name.getLocaltype();
                             if (StringUtils.equals("ORIGINATOR", localtype)) {
