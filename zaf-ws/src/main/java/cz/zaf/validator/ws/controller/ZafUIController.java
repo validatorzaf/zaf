@@ -3,6 +3,8 @@ package cz.zaf.validator.ws.controller;
 import java.util.Locale;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
@@ -35,6 +37,8 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 @Controller
 public class ZafUIController {
+	
+	private static final Logger log = LoggerFactory.getLogger(ZafUIController.class);
 	
 	 @Value("${zaf.ui.enabled:false}") // Default to false if property is missing
 	 private boolean uiEnabled;
@@ -142,6 +146,7 @@ public class ZafUIController {
 	                .body(resource);
 
 	    } catch (Exception e) {
+	    	log.error("Error retrieving result, request id: " + requestId, e);
 	        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error retrieving result.", e);
 	    }
 	}	
