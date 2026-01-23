@@ -20,30 +20,33 @@ public class Rule50 extends EadRule {
     static final public String RULE_ERROR = "Některý element <unitid> nemá \"localtype\" a/nebo \"label\" nebo tyto atributy neobsahují povolenou hodnotu, případně si hodnoty neodpovídají.";
     static final public String RULE_SOURCE = "Část 5.4 a 5.5 profilu EAD3 MV ČR";
 
-    static private final Map<String, String> allowedlevelTypes = new HashMap<>();
+    static private final Map<String, String> allowedTypes = new HashMap<>();
 
     static {
-        allowedlevelTypes.put("REFERENCNI_OZNACENI", "referenční označení");
-        allowedlevelTypes.put("PORADOVE_CISLO", "pořadové číslo");
-        allowedlevelTypes.put("INV_CISLO", "inventární číslo");
-        allowedlevelTypes.put("SIGNATURA_PUVODNI", "signatura přidělená původcem");
-        allowedlevelTypes.put("SIGNATURA_ZPRACOVANI", "signatura přidělená při zpracování archiválie");
-        allowedlevelTypes.put("UKLADACI_ZNAK", "ukládací znak / spisový znak");
-        allowedlevelTypes.put("CISLO_JEDNACI", "číslo jednací");
-        allowedlevelTypes.put("SPISOVA_ZNACKA", "spisová značka");
-        allowedlevelTypes.put("CISLO_VLOZKY", "číslo vložky úřední knihy");
-        allowedlevelTypes.put("CISLO_PRIRUSTKOVE", "přírůstkové číslo");
-        allowedlevelTypes.put("NEPL_PORADOVE_CISLO", "neplatné pořadové číslo manipulačního seznamu");
-        allowedlevelTypes.put("NEPL_INV_CISLO", "neplatné inventární číslo");
-        allowedlevelTypes.put("NEPL_SIGNATURA_ZPRACOVANI", "signatura přidělená při předchozím zpracování");
-        allowedlevelTypes.put("NEPL_REFERENCNI_OZNACENI", "neplatné referenční označení");
-        allowedlevelTypes.put("NAKL_CISLO", "číslo pohlednice nakladatelství Orbis");
-        allowedlevelTypes.put("CISLO_NEGATIVU", "číslo negativu");
-        allowedlevelTypes.put("CISLO_PRODUKCE", "číslo produkce CD");
-        allowedlevelTypes.put("KOD_ISBN", "kód ISBN");
-        allowedlevelTypes.put("KOD_ISSN", "kód ISSN");
-        allowedlevelTypes.put("KOD_ISMN", "kód ISMN");
-        allowedlevelTypes.put("MATRICNI_CISLO", "matriční číslo (propůjčeného vyznamenání)");
+        allowedTypes.put("REFERENCNI_OZNACENI", "referenční označení");
+        allowedTypes.put("PORADOVE_CISLO", "pořadové číslo");
+        allowedTypes.put("INV_CISLO", "inventární číslo");
+        allowedTypes.put("SIGNATURA_PUVODNI", "signatura přidělená původcem");
+        allowedTypes.put("SIGNATURA_ZPRACOVANI", "signatura přidělená při zpracování archiválie");
+        allowedTypes.put("UKLADACI_ZNAK", "ukládací znak / spisový znak");
+        allowedTypes.put("CISLO_JEDNACI", "číslo jednací");
+        allowedTypes.put("SPISOVA_ZNACKA", "spisová značka");
+        allowedTypes.put("CISLO_VLOZKY", "číslo vložky úřední knihy");
+        allowedTypes.put("CISLO_PRIRUSTKOVE", "přírůstkové číslo");
+        allowedTypes.put("NEPL_PORADOVE_CISLO", "neplatné pořadové číslo manipulačního seznamu");
+        allowedTypes.put("NEPL_INV_CISLO", "neplatné inventární číslo");
+        allowedTypes.put("NEPL_SIGNATURA_ZPRACOVANI", "signatura přidělená při předchozím zpracování");
+        allowedTypes.put("NEPL_REFERENCNI_OZNACENI", "neplatné referenční označení");
+        allowedTypes.put("NAKL_CISLO", "číslo pohlednice nakladatelství Orbis");
+        allowedTypes.put("CISLO_NEGATIVU", "číslo negativu");
+        allowedTypes.put("CISLO_PRODUKCE", "číslo produkce CD");
+        allowedTypes.put("KOD_ISBN", "kód ISBN");
+        allowedTypes.put("KOD_ISSN", "kód ISSN");
+        allowedTypes.put("KOD_ISMN", "kód ISMN");
+        allowedTypes.put("MATRICNI_CISLO", "matriční číslo (propůjčeného vyznamenání)");
+        allowedTypes.put("ZDROJ_ID", "identifikátor ve zdrojovém systému");
+        allowedTypes.put("PORADOVE_CISLO_PUVODNI", "původní pořadové číslo");
+        allowedTypes.put("PUVODNI_NAZEV", "původní název");
 //        allowedlevelTypes.put("JINE", "neprázdná hodnota");
     }
 
@@ -74,10 +77,10 @@ public class Rule50 extends EadRule {
                 }
                 String label = unitid.getLabel();
                 if (StringUtils.isEmpty(label)) {
-                    throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí nebo je prázdný atribut label.", ctx.formatEadPosition(unitid));
+                    throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí nebo je prázdný atribut label, localtype: " + localtype + ".", ctx.formatEadPosition(unitid));
                 }
-                if (allowedlevelTypes.containsKey(localtype)) {
-                    String value = allowedlevelTypes.get(localtype);
+                if (allowedTypes.containsKey(localtype)) {
+                    String value = allowedTypes.get(localtype);
                     if (!label.equals(value)) {
                         throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut label neobsahuje očekávanou hodnotu, ale hodnotu: " + label + ".", ctx.formatEadPosition(unitid));
                     }
