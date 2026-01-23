@@ -50,7 +50,23 @@ public class AipValidatorTestBase {
 		
         if(expectedSuccess) {
         	if(result.isFailed()) {
-        		throw new ZafException(BaseCode.CHYBA, "Očekáváno OK, ale nastala chyba.");
+        		StringBuilder sb = new StringBuilder();
+        		sb.append("Očekáváno OK, ale nastala chyba.");
+        		var layers = result.getValidationLayerResults();
+        		for(var layer: layers) {
+	        		if(layer.getValidationStatus()==ValidationStatus.ERROR) {
+		        		sb.append("Error in layer:").append(layer.getValidationType());
+		        		if(layer.getInnerFileName()!=null) {
+			        		sb.append(", file: ").append(layer.getInnerFileName());
+		        		}
+		        		sb.append(".\n");
+		        		for(var rule: layer.getPravidla()) {
+		        			sb.append(rule.toString()).append("\n");
+		        		}
+	        		}
+        		}
+        		
+        		throw new ZafException(BaseCode.CHYBA, sb.toString());
         	}
         } else {
         	if(!result.isFailed()) {
