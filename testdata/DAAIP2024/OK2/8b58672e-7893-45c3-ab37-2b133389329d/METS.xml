@@ -25,8 +25,8 @@
   <!-- Odpovídá pruvodka.xml, musí povinně být předána pokud existuje -->
   <dmdSec ID="uuid-98564a30-1a03-4819-bea7-a8ffb56c0618" CREATED="2023-09-06T11:21:10+01:00" STATUS="CURRENT" GROUPID="INHERENT">
     <mdRef LOCTYPE="URL" MDTYPE="EAD" MIMETYPE="application/xml" 
-           SIZE="6326"
-           CHECKSUM="39f757fa016cefaae1709b02540050abf6713308d191e210b1dfc4314aff370bed4d8ca0570d3c8af2185b50d94334c004f75569adef4501545726541ac52413"
+           SIZE="6330"
+           CHECKSUM="664c169beaaed5ade995d13e385d5272e3f670ca7b37a1ba562f0af787fb23a6865cb687e1d4d2af7367c5cc67dfdf811e5e015b5e6f9169a3fcfb104974cc80"
            CHECKSUMTYPE="SHA-512"
            CREATED="2023-09-06T10:03:39+01:00"
            xlink:type="simple" xlink:href="metadata/descriptive/pruvodka.xml" />

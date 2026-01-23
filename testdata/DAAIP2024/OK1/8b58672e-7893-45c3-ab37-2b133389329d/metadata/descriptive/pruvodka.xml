@@ -7,7 +7,7 @@
                 <titleproper>Název AS</titleproper>
             </titlestmt>
         </filedesc>
-        <maintenancestatus value="new"/>
+        <maintenancestatus value="derived"/>
         <publicationstatus value="inprocess"/>
         <maintenanceagency countrycode="CZ">
             <agencycode localtype="CZ_MVCR_INSTITUTION_ID">100000010</agencycode>
