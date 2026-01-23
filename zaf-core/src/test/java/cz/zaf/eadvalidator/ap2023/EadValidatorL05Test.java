@@ -1471,6 +1471,21 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
     }
 
     @Test
+    void testObs_80_chyba02() {
+        testPomucka("05-KONTROLA OBSAHU/080_chyba2.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule04a.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule18.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE,
+                    Rule31.CODE, Rule35.CODE, Rule36.CODE, Rule36a.CODE, Rule36b.CODE, Rule37.CODE,
+                    Rule43.CODE, Rule44.CODE, Rule49.CODE,
+                    Rule50.CODE, Rule52.CODE, Rule53.CODE, Rule54.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+                    Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule74.CODE, Rule74a.CODE, Rule74b.CODE, Rule74c.CODE, Rule74d.CODE, Rule74d.CODE, Rule75.CODE, Rule77.CODE, Rule78.CODE, Rule79.CODE},
+                new String[]{Rule80.CODE});
+    }
+
+    @Test
     void testObs_81_chyba01() {
         testPomucka("05-KONTROLA OBSAHU/081_chyba1.xml",
                 ValidationStatus.ERROR,

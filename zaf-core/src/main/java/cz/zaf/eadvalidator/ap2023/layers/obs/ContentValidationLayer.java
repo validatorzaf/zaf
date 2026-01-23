@@ -279,7 +279,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule44.class,
             Rule49.class,
             Rule50.class,
-//                        Rule52.class, NEPROJDE
+            Rule52.class,
                         Rule53.class,
                         Rule54.class,
 //                        Rule55.class, NEPROJDE
@@ -294,20 +294,20 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule67.class,
             Rule68.class,
             Rule69.class,
-                        Rule70.class,
-                        Rule71.class,
-                        Rule72.class,
-                        Rule73.class,
-                        Rule74.class,
-                        Rule74a.class,
+            Rule70.class,
+            Rule71.class,
+            Rule72.class,
+            Rule73.class,
+            Rule74.class,
+            Rule74a.class,
 //                        Rule74b.class, NEPROJDE
-                        Rule74c.class,
-                        Rule74d.class,
-                        Rule75.class,
-                        Rule77.class,
-                        Rule78.class,
+            Rule74c.class,
+            Rule74d.class,
+            Rule75.class,
+            Rule77.class,
+            Rule78.class,
 //                        Rule79.class, NEPROJDE
-//                        Rule80.class, NEPROJDE
+            Rule80.class,
 //                        Rule83.class, NEPROJDE
             Rule84.class,
             Rule89.class,

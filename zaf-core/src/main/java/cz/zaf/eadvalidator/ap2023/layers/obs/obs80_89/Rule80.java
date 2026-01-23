@@ -18,15 +18,16 @@ import org.apache.commons.lang3.math.NumberUtils;
 public class Rule80 extends EadRule {
 
     static final public String CODE = "obs80";
-    static final public String RULE_TEXT = "Pokud element <physdescstructured> má atribut \"physdescstructuredtype\" o hodnotě \"spaceoccupied\", má atribut \"coverage\" o hodnotě \"whole\". Podřízený element <unittype> obsahuje hodnotu \"bm\" nebo \"byte\". Pokud element <unittype> obsahuje hodnotu \"bm\", obsahuje podřízený element <quantity> kladné číslo zarovnané na dvě desetinná místa. Pokud element <unittype> obsahuje hodnotu \"byte\", obsahuje podřízený element <quantity> kladné celé číslo.\n"
+    static final public String RULE_TEXT = "Pokud se na kořeni archivního popisu nenachází element <physdescstructured> má atribut \"physdescstructuredtype\" o hodnotě \"spaceoccupied\", má atribut \"coverage\" o hodnotě \"whole\". Podřízený element <unittype> obsahuje hodnotu \"bm\" nebo \"byte\". Pokud element <unittype> obsahuje hodnotu \"bm\", obsahuje podřízený element <quantity> kladné číslo zarovnané na dvě desetinná místa. Pokud element <unittype> obsahuje hodnotu \"byte\", obsahuje podřízený element <quantity> kladné celé číslo.\n"
             + " Element <physdescstructured> s atributem \"physdescstructured\" o hodnotě \"spaceoccupied\" není opakovatelný, vyjma možnosti současného uvedení hodnot pro \"byte\" a \"bm\", kdy bude uveden dvakrát.\n"
             + " Množství \"bm\" je možné uvést jen pokud existuje alespoň jedna analogová archiválie, tj. existuje alespoň jedna ukládací jednotka zapsaná pomocí elementu <container>. Množství \"byte\" je možné uvést jen pokud existuje alespoň jedna digitální archiválie, tj. existuje alespoň jeden element <dao> s atributem \"daotype\" o hodnotě \"borndigital\".";
     static final public String RULE_ERROR = "Element <physdescstructured> s atributem \"physdescstructured\" o hodnotě \"spaceoccupied\" má špatně nastavený atribut \"coverage\" a/nebo v něm obsažené elementy <unittype> a/nebo <quantity> obsahují nepovolenou hodnotu.";
     static final public String RULE_SOURCE = "Část 4.3 profilu EAD3 MV ČR";
-    static boolean isBM, isByte;
-    static boolean isAnalog, isDigital;
-    static Container analogContainer = null;
-    static Dao digitalDao = null;
+    
+    boolean isBM, isByte;
+    boolean isAnalog, isDigital;
+    Container analogContainer = null;
+    Dao digitalDao = null;
 
     public Rule80() {
         super(CODE, RULE_TEXT, RULE_ERROR, RULE_SOURCE);
@@ -36,28 +37,31 @@ public class Rule80 extends EadRule {
     protected void evalImpl() {
         Archdesc archDesc = ctx.getEad().getArchdesc();
         Did didA = archDesc.getDid();
-        validate(didA);
+        
+        // check if has spaceoccupied
+        readSpaceoccupied(didA);
+        if(!isBM && !isByte) {
+        	return;
+        }
+        
+        findAnalogAndDigital(didA);
 
         ctx.getEadLevelIterator().iterate((c, parent) -> {
             Did didC = c.getDid();
-            validate(didC);
+            findAnalogAndDigital(didC);
         });
 
-        if (isAnalog && !isBM) {
-            throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Analogová archiválie není zohledněna v popisu množstí.", ctx.formatEadPosition(analogContainer));
+        if (isBM && !isAnalog) {
+            throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Uvedeno množství BM, ale nebyla zjištěna analogová archiválie.", ctx.formatEadPosition(analogContainer));
         }
-        if (isDigital && !isByte) {
-            throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Digitální archiválie není zohledněna v popisu množstí.", ctx.formatEadPosition(digitalDao));
-        }
-        if ((!isAnalog && isBM) || (!isDigital && isByte)) {
-            throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nenalezen záznam pro archiválii uvedenou v množství.", ctx.formatEadPosition(archDesc));
+        if (isByte && !isDigital) {
+            throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Uvedeno množství byte, ale nebyla zjištěna digitální archiválie.", ctx.formatEadPosition(digitalDao));
         }
     }
 
-    private void validate(Did did) {
-        List<Object> childList = did.getMDid();
+    private void readSpaceoccupied(Did did) {
         Unittype foundBM = null, foundByte = null;
-        for (Object child : childList) {
+        for (Object child : did.getMDid()) {
             if (child instanceof Physdescstructured physdescstructured) {
                 String physdescstructuredtype = physdescstructured.getPhysdescstructuredtype();
                 String coverage = physdescstructured.getCoverage();
@@ -108,7 +112,13 @@ public class Rule80 extends EadRule {
                     }
                 }
             }
+        }
+	}
 
+    // find analog and digital
+	private void findAnalogAndDigital(Did did) {
+        List<Object> childList = did.getMDid();        
+        for (Object child : childList) {
             if (child instanceof Container container) {
                 analogContainer = container;
                 isAnalog = true;
