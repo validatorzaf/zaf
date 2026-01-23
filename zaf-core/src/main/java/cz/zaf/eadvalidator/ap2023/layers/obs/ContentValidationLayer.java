@@ -263,7 +263,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 			Rule04.class,
 			Rule04a.class,
 			Rule14.class,
-//                        Rule16.class, NEPROJDE
+			Rule16.class,
             Rule18.class,
 			Rule19.class,
 	    Rule20.class,

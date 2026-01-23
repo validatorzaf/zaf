@@ -30,6 +30,9 @@ public class Rule16 extends EadRule {
 
         Filedesc filedesc = ctx.getEad().getControl().getFiledesc();
         Publicationstmt publicationstmt = filedesc.getPublicationstmt();
+        if(publicationstmt==null){
+	        return;
+        }
         List<Object> publisherOrDateOrAddress = publicationstmt.getPublisherOrDateOrAddress();
         for (Object pobj : publisherOrDateOrAddress) {
             if (pobj instanceof P p) {
