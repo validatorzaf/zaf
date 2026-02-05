@@ -113,7 +113,7 @@
 							<ead:quantity>1</ead:quantity>
 							<ead:unittype>lio</ead:unittype> <!-- obs39 -->
 							<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet> <!-- obs74 -->
-							<ead:physfacet localtype="IMPRINT_IMAGE">Text</ead:physfacet> <!-- obs74 -->
+							<ead:physfacet localtype="CORROBORATIO"> </ead:physfacet> <!-- obs74 -->
 							
 							<ead:dimensions>
 								<ead:dimensions unit="mm" localtype="WIDTH">123.45</ead:dimensions> <!-- obs75, obs76 -->

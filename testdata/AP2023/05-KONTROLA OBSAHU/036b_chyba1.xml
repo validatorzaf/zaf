@@ -106,7 +106,11 @@
 						<ead:unittype>lio</ead:unittype> <!-- obs39 -->
 						<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet> <!-- obs74 -->
 						<ead:physfacet localtype="MATERIAL">paper</ead:physfacet> <!-- obs74 -->
-						
+						<ead:physfacet localtype="EXTRA_PART">ANALOG</ead:physfacet> <!-- obs74 -->
+					</ead:physdescstructured>
+					<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part"> <!-- obs40 -->
+						<ead:quantity>1</ead:quantity>
+						<ead:unittype>lio</ead:unittype>
 					</ead:physdescstructured>
 				</ead:did>
 				
@@ -117,10 +121,14 @@
 							<ead:unittype>lio</ead:unittype> <!-- obs39 -->
 							<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet> <!-- obs74 -->
 							<ead:physfacet localtype="MATERIAL">paper</ead:physfacet> <!-- obs74 -->
-							<ead:physfacet localtype="EXTRA_PART"> </ead:physfacet> <!-- obs74 -->
+							<ead:physfacet localtype="EXTRA_PART">DIGITAL</ead:physfacet> <!-- obs74 -->
 							<ead:dimensions>
 								<ead:dimensions unit="mm" localtype="WIDTH">123.45</ead:dimensions> <!-- obs75, obs76 -->
 							</ead:dimensions>
+						</ead:physdescstructured>
+						<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part"> <!-- obs40 -->
+							<ead:quantity>1</ead:quantity>
+							<ead:unittype>lio</ead:unittype>
 						</ead:physdescstructured>
 
 						<ead:unittitle audience="internal">Něco skrytého</ead:unittitle> <!-- obs41, obs42 -->
@@ -203,5 +211,19 @@
 				</ead:c>	
 			</ead:c>
 		</ead:dsc>
+		
+		<ead:fileplan encodinganalog="PLAN1">
+			<ead:head>Spisový plán nemocnice XY</ead:head>
+			<ead:p>Doplňující informace k spis. plánu.</ead:p>
+			<ead:chronlist>
+				<ead:chronitem>
+					<ead:daterange>
+						<ead:fromdate standarddate="1971-06-01" />
+						<ead:todate standarddate="1974-04-30" />
+					</ead:daterange>
+					<ead:event></ead:event>
+				</ead:chronitem>
+			</ead:chronlist>
+		</ead:fileplan>
 	</ead:archdesc>
 </ead:ead>

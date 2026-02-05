@@ -10,21 +10,28 @@ import cz.zaf.schema.ead3.Did;
 import cz.zaf.schema.ead3.Physdescstructured;
 import cz.zaf.schema.ead3.Physfacet;
 import cz.zaf.schema.ead3.Unittype;
+import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Rule74a extends EadRule {
 
     static final public String CODE = "obs74a";
-    static final public String RULE_TEXT = "Každý element <physdescstructured> s atributem \"physdescstructuredtype\" o hodnotě \"materialtype\" a zároveň atributem \"coverage\" o hodnotě \"whole\", který obsahuje element <unittype> s některou z následujících hodnot:\n"
-            + "- lio\n"
-            + "- lip,\n"
-            + "současně obsahuje element <physfacet> s atributem \"localtype\" o některé z následujících hodnot:\n"
-            + "- CORROBORATIO\n"
-            + "- IMPRINT_COUNT\n"
-            + "- IMPRINT_ORDER.\n"
-            + "Element <physfacet> se s IMPRINT_COUNT vyskytuje právě jednou. V ostatních případech se může vyskytovat nejvýše jednou.";
+    static final public String RULE_TEXT = """
+    Každý element <physdescstructured> s atributem "physdescstructuredtype" o hodnotě "materialtype" a zároveň atributem "coverage" o hodnotě "whole", 
+    který obsahuje element <unittype> s některou z následujících hodnot:
+    - lio
+    - lip,
+    může obsahovat element <physfacet> s atributem "localtype" o některé z následujících hodnot:
+    - CORROBORATIO
+    - IMPRINT_COUNT
+    - IMPRINT_ORDER.
+    Element <physfacet> obsahuje pouze prostý text a s vybranou hodnotou atributu se může vyskytovat nejvýše jednou.
+    """;
     static final public String RULE_ERROR = "Některý element <physfacet>, který je obsažen v elementu <physdescstructured> s atributem \"physdescstructuredtype\" o hodnotě \"materialtype\" a zároveň atributem \"coverage\" o hodnotě \"whole\", nemá atribut \"localtype\", obsahuje nepovolenou hodnotu anebo má nepovolený výskyt.";
     static final public String RULE_SOURCE = "Část 6.4, 6.5 a 6.6 profilu EAD3 MV ČR";
+    private final Set<String> allowedPhysfacet = Set.of("CORROBORATIO", "IMPRINT_COUNT", "IMPRINT_ORDER");
 
     public Rule74a() {
         super(CODE, RULE_TEXT, RULE_ERROR, RULE_SOURCE);
@@ -50,35 +57,38 @@ public class Rule74a extends EadRule {
             if (child instanceof Physdescstructured physdescstructured) {
                 boolean conditions = isPhysdescstructured(physdescstructured);
                 if (conditions) {
+                    Set<String> founded = new HashSet<>();
                     List<Object> physfacetOrDimensions = physdescstructured.getPhysfacetOrDimensions();
-                    int pfImprintCount = 0;
-                    int pfImprintOrder = 0;
-                    int pfCorrobo = 0;
-
                     for (Object object : physfacetOrDimensions) {
                         if (object instanceof Physfacet physfacet) {
-                            String localtype = physfacet.getLocaltype();
-                            if (StringUtils.equals("CORROBORATIO", localtype)) {
-                                pfCorrobo++;
-                            }
-                            if (StringUtils.equals("IMPRINT_COUNT", localtype)) {
-                                pfImprintCount++;
-                            }
-                            if (StringUtils.equals("IMPRINT_ORDER", localtype)) {
-                                pfImprintOrder++;
+                            boolean isWanted = isWantedPhysfacet(physfacet);
+                            if (isWanted) {
+                                String localtype = physfacet.getLocaltype();
+                                if (!founded.add(localtype)) {
+                                    throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element physfacet.", ctx.formatEadPosition(physfacet));
+                                }
+                                chceckContent(physfacet);
                             }
                         }
                     }
-
-                    if (pfImprintCount == 0) {
-                        throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nelezen element physfacet s atributem localtype s hodnotou IMPRINT_COUNT.", ctx.formatEadPosition(physdescstructured));
-                    }
-
-                    if (pfImprintOrder > 1 || pfCorrobo > 1 || pfImprintCount != 1) {
-                        throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepovolený element physfacet", ctx.formatEadPosition(physdescstructured));
-                    }
                 }
             }
+        }
+    }
+
+    private void chceckContent(Physfacet physfacet) {
+        List<Serializable> content = physfacet.getContent();
+        if (content.size() != 1) {
+            throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybná hodnota v elementu.", ctx.formatEadPosition(physfacet));
+        }
+        Serializable partContent = content.get(0);
+        if (partContent instanceof String str) {
+            if (StringUtils.isBlank(str)) {
+                throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Prázdná hodnota elementu.", ctx.formatEadPosition(physfacet));
+            }
+
+        } else {
+            throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybný typ hodnoty v elementu.", ctx.formatEadPosition(physfacet));
         }
     }
 
@@ -99,6 +109,16 @@ public class Rule74a extends EadRule {
         }
         String content = unittype.getContent();
         return StringUtils.equalsAny(content, "lio", "lip");
+    }
+
+    private boolean isWantedPhysfacet(Physfacet physfacet) {
+        String localtype = physfacet.getLocaltype();
+        if (!StringUtils.isEmpty(localtype)) {
+            if (allowedPhysfacet.contains(localtype)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

@@ -104,17 +104,16 @@
 					<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole">
 						<ead:quantity>1</ead:quantity>
 						<ead:unittype>pec</ead:unittype> <!-- obs39 -->
+						<ead:physfacet localtype="IMPRINT_IMAGE"> </ead:physfacet> <!-- obs74 -->
 					</ead:physdescstructured>
 				</ead:did>
 				
-			<ead:c id="uuid-9a1c3b7e-2f44-4d3e-8c5a-1b2f4e7d9a6c" level="item" base="http://archiv.cz/dids/f73a2216-d32c-442b-a206-40c4aac70a49"> <!-- obs37 -->
+				<ead:c id="uuid-9a1c3b7e-2f44-4d3e-8c5a-1b2f4e7d9a6c" level="item" base="http://archiv.cz/dids/f73a2216-d32c-442b-a206-40c4aac70a49"> <!-- obs37 -->
 					<ead:did>
 						<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole"> <!-- obs43 -->
 							<ead:quantity>1</ead:quantity>
 							<ead:unittype>lio</ead:unittype> <!-- obs39 -->
-							
-							<ead:physfacet localtype="IMPRINT_IMAGE">Text</ead:physfacet> <!-- obs74 -->
-							
+							<ead:physfacet localtype="IMPRINT_IMAGE">TEXT</ead:physfacet> <!-- obs74 -->
 							<ead:dimensions>
 								<ead:dimensions unit="mm" localtype="WIDTH">123.45</ead:dimensions> <!-- obs75, obs76 -->
 							</ead:dimensions>

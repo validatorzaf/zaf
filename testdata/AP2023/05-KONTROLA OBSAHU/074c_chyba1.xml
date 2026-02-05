@@ -105,7 +105,7 @@
 						<ead:quantity>1</ead:quantity>
 						<ead:unittype>gli</ead:unittype> <!-- obs39 -->
 						<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet> <!-- obs74 -->
-						<ead:physfacet localtype="WRITTING">100</ead:physfacet> <!-- obs74 -->
+						<ead:physfacet localtype="LEGEND"> </ead:physfacet> <!-- obs74 -->
 					</ead:physdescstructured>
 				</ead:did>
 				
@@ -115,7 +115,7 @@
 							<ead:quantity>1</ead:quantity>
 							<ead:unittype>lio</ead:unittype> <!-- obs39 -->
 							<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet> <!-- obs74 -->
-							<ead:physfacet localtype="MATERIAL">paper</ead:physfacet> <!-- obs74 -->
+							<ead:physfacet localtype="LEGEND"> </ead:physfacet> <!-- obs74 -->
 							<ead:dimensions>
 								<ead:dimensions unit="mm" localtype="WIDTH">123.45</ead:dimensions> <!-- obs75, obs76 -->
 							</ead:dimensions>

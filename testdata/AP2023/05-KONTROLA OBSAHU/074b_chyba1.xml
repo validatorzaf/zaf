@@ -104,7 +104,8 @@
 					<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole">
 						<ead:quantity>1</ead:quantity>
 						<ead:unittype>lio</ead:unittype> <!-- obs39 -->
-						<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet> <!-- obs74 -->
+						<ead:physfacet localtype="TECHNIQUE_DETAIL">100</ead:physfacet> <!-- obs74 -->
+						<ead:physfacet localtype="TECHNIQUE_DETAIL">100</ead:physfacet> <!-- obs74 -->
 					</ead:physdescstructured>
 				</ead:did>
 				

@@ -35,6 +35,7 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule24;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule25;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule31;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule35;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule35a;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule36;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule36a;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule36b;
@@ -100,7 +101,7 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
                     Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule04a.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
                     Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule18.CODE, Rule19.CODE,
                     Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE,
-                    Rule31.CODE, Rule35.CODE, Rule36.CODE, Rule36a.CODE, Rule36b.CODE, Rule36b.CODE, Rule37.CODE, Rule37a.CODE,
+                    Rule31.CODE, Rule35.CODE, Rule35a.CODE, Rule36.CODE, Rule36a.CODE, Rule36b.CODE, Rule36b.CODE, Rule37.CODE, Rule37a.CODE,
                     Rule42.CODE, Rule43.CODE, Rule44.CODE, Rule49.CODE,
                     Rule50.CODE, Rule52.CODE, Rule53.CODE, Rule54.CODE, Rule55.CODE, Rule56.CODE,
                     Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
@@ -120,7 +121,7 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
                     Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule04a.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
                     Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule18.CODE, Rule19.CODE,
                     Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE,
-                    Rule31.CODE, Rule35.CODE, Rule36.CODE, Rule36a.CODE, Rule36b.CODE, Rule37.CODE, Rule37a.CODE,
+                    Rule31.CODE, Rule35.CODE, Rule35a.CODE, Rule36.CODE, Rule36a.CODE, Rule36b.CODE, Rule37.CODE, Rule37a.CODE,
                     Rule42.CODE, Rule43.CODE, Rule44.CODE, Rule49.CODE,
                     Rule50.CODE, Rule52.CODE, Rule53.CODE, Rule54.CODE, Rule55.CODE, Rule56.CODE,
                     Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
@@ -737,6 +738,18 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
     }
 
     @Test
+    void testObs_35a_chyba01() {
+        testPomucka("05-KONTROLA OBSAHU/035a_chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule04a.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule18.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE,
+                    Rule31.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE, Rule72.CODE},
+                new String[]{Rule35a.CODE});
+    }
+
+    @Test
     void testObs_36_chyba01() {
         testPomucka("05-KONTROLA OBSAHU/036_chyba1.xml",
                 ValidationStatus.ERROR,
@@ -782,6 +795,18 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
                     Rule31.CODE, Rule35.CODE,
                     Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE, Rule72.CODE},
                 new String[]{Rule36a.CODE});
+    }
+    
+        @Test
+    void testObs_36b_chyba01() {
+        testPomucka("05-KONTROLA OBSAHU/036b_chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule04a.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule18.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE,
+                    Rule31.CODE, Rule35.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE, Rule72.CODE},
+                new String[]{Rule36b.CODE});
     }
 
     @Test
@@ -1455,6 +1480,7 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
 //                    Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule74.CODE, Rule74a.CODE, Rule74b.CODE, Rule74c.CODE, Rule74d.CODE, Rule74d.CODE, Rule75.CODE, Rule77.CODE, Rule78.CODE},
 //                new String[]{Rule79.CODE});
 //    }
+    
     @Test
     void testObs_80_chyba01() {
         testPomucka("05-KONTROLA OBSAHU/080_chyba1.xml",
@@ -1767,8 +1793,8 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
                 },
                 new String[]{Rule104.CODE});
     }
-    
-        @Test
+
+    @Test
     void testObs_104a_chyba01() {
         testPomucka("05-KONTROLA OBSAHU/104a_chyba1.xml",
                 ValidationStatus.ERROR,

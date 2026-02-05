@@ -10,17 +10,20 @@ import cz.zaf.schema.ead3.Did;
 import cz.zaf.schema.ead3.Physdescstructured;
 import cz.zaf.schema.ead3.Physfacet;
 import cz.zaf.schema.ead3.Unittype;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
 public class Rule74c extends EadRule {
 
     static final public String CODE = "obs74c";
-    static final public String RULE_TEXT = "Každý element <physdescstructured> s atributem \"physdescstructuredtype\" o hodnotě \"materialtype\" a zároveň atributem \"coverage\" o hodnotě \"whole\", který obsahuje element <unittype> s některou z následujících hodnot:\n"
-            + "- gli\n"
-            + "- kre,\n"
-            + "současně obsahuje element <physfacet> s atributem \"localtype\" s hodnotou LEGEND.\n"
-            + "Element <physfacet> se s vybranou hodnotou atributu může vyskytovat nejvýše jednou.";
+    static final public String RULE_TEXT = """
+    Každý element <physdescstructured> s atributem "physdescstructuredtype" o hodnotě "materialtype" a zároveň atributem "coverage" o hodnotě "whole", který obsahuje element <unittype> s některou z následujících hodnot:
+    - gli
+    - kre,
+    může obsahovat element <physfacet> s atributem "localtype" s hodnotou LEGEND.
+    Element <physfacet> obsahuje pouze prostý text a s vybranou hodnotou atributu se může vyskytovat nejvýše jednou.
+    """;
     static final public String RULE_ERROR = "Některý element <physfacet>, který je obsažen v elementu <physdescstructured> s atributem \"physdescstructuredtype\" o hodnotě \"materialtype\" a zároveň atributem \"coverage\" o hodnotě \"whole\", nemá atribut \"localtype\", obsahuje nepovolenou hodnotu anebo má nepovolený výskyt.";
     static final public String RULE_SOURCE = "Část 6.17 profilu EAD3 MV ČR";
 
@@ -82,12 +85,26 @@ public class Rule74c extends EadRule {
                             throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element physfacet.", ctx.formatEadPosition(physfacet));
                         }
                         found = physfacet;
+                        chceckContent(found);
                     }
                 }
             }
         }
-        if (found == null) {
-            throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nenalezen element physfacet.", ctx.formatEadPosition(physdescstructured));
+    }
+
+    private void chceckContent(Physfacet physfacet) {
+        List<Serializable> content = physfacet.getContent();
+        if (content.size() != 1) {
+            throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybná hodnota v elementu.", ctx.formatEadPosition(physfacet));
+        }
+        Serializable partContent = content.get(0);
+        if (partContent instanceof String str) {
+            if (StringUtils.isBlank(str)) {
+                throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Prázdná hodnota elementu.", ctx.formatEadPosition(physfacet));
+            }
+
+        } else {
+            throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybný typ hodnoty v elementu.", ctx.formatEadPosition(physfacet));
         }
     }
 

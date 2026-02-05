@@ -15,8 +15,11 @@ import java.util.List;
 public class Rule74d extends EadRule {
 
     static final public String CODE = "obs74d";
-    static final public String RULE_TEXT = "Každý element <physdescstructured> s atributem \"physdescstructuredtype\" o hodnotě \"materialtype\" a zároveň atributem \"coverage\" o hodnotě \"whole\", obsahuje element <physfacet> s atributem \"localtype\" s hodnotou EXTRA_PART a hodnotou elementu \"ANALOG\" nebo \"DIGITAL\".\n"
-            + "Element <physfacet> se s vybranou hodnotou atributu může vyskytovat nejvýše jednou.";
+    static final public String RULE_TEXT = """
+    Každý element <physdescstructured> s atributem "physdescstructuredtype" o hodnotě "materialtype" a zároveň atributem "coverage" o hodnotě "whole", 
+    může obsahovat element <physfacet> s atributem "localtype" s hodnotou EXTRA_PART a hodnotou elementu "ANALOG" nebo "DIGITAL".
+    Element <physfacet> obsahuje pouze prostý text a s vybranou hodnotou atributu se může vyskytovat nejvýše jednou.
+    """;
     static final public String RULE_ERROR = "Některý element <physfacet>, který je obsažen v elementu <physdescstructured> s atributem \"physdescstructuredtype\" o hodnotě \"materialtype\" a zároveň atributem \"coverage\" o hodnotě \"whole\", nemá atribut \"localtype\", obsahuje nepovolenou hodnotu anebo má nepovolený výskyt.";
     static final public String RULE_SOURCE = "Část 6.2.1 profilu EAD3 MV ČR";
 
@@ -71,9 +74,6 @@ public class Rule74d extends EadRule {
                     }
                 }
             }
-        }
-        if (found == null) {
-            throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nenalezen element physfacet s atributem localtype s hodnotou EXTRA_PART.", ctx.formatEadPosition(physdescstructured));
         }
     }
 
