@@ -1393,7 +1393,7 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
 
     @Test
     void testObs_74d_chyba01() {
-        testPomucka("05-KONTROLA OBSAHU/074d_chyba1.xml",
+    		testInherent("05-KONTROLA OBSAHU/074d_chyba1.xml",
                 ValidationStatus.ERROR,
                 new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule04a.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
                     Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule18.CODE, Rule19.CODE,
@@ -1841,6 +1841,13 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
             String[] oks,
             String[] fails) {
         testObs(path, AP2023Profile.FINDING_AID, status, oks, fails);
+    }
+
+    private void testInherent(String path,
+            ValidationStatus status,
+            String[] oks,
+            String[] fails) {
+        testObs(path, AP2023Profile.EARK_INHERENT_DESC, status, oks, fails);
     }
 
     private void testObs(String path,

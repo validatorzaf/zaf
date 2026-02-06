@@ -42,17 +42,20 @@ public class EadValidatorTestBase {
             throw new ZafException(BaseCode.CHYBA, "Error to run validate", e);
         }
 
+        ValidationLayerResult lastTestLayerResult = null;
         for (ValidationLayerResult vlr : result.getValidationLayerResults()) {
+        	lastTestLayerResult = vlr;
             if (vlr.getValidationType() == validationType) {
-                testEad(inputPath, vlr, stavKontroly, pravidlaOk, pravidlaChybna);
+            	testEadResults(inputPath, vlr, stavKontroly, pravidlaOk, pravidlaChybna);
                 return;
             }
         }
 
-        fail("Validation results not found, name: " + validationType);
+        fail("Validation results not found, name: " + validationType + ", last layer: " 
+        		+ ((lastTestLayerResult != null)?lastTestLayerResult.getValidationName():"null"));
     }
 
-    protected void testEad(String inputPath,
+    protected void testEadResults(String inputPath,
                            ValidationLayerResult validationResult,
                            ValidationStatus stavKontroly,
                            String[] pravidlaOk, String[] pravidlaChybna) {

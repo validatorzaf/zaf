@@ -233,7 +233,6 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule74a.class,
             Rule74b.class,
             Rule74c.class,
-            Rule74d.class, //odstranit po přidání testovacího layeru 
             Rule75.class,
             Rule77.class,
             Rule78.class,
