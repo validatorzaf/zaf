@@ -4,7 +4,6 @@ import java.util.List;
 
 import cz.zaf.common.validation.BaseRule;
 import cz.zaf.common.validation.BaseValidationLayer;
-import cz.zaf.common.validation.Rule;
 import cz.zaf.common.validation.ValidationSubprofile;
 import cz.zaf.eadvalidator.ap2023.EadValidationContext;
 import cz.zaf.eadvalidator.ap2023.ValidationLayers;
@@ -81,7 +80,6 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs70_79.Rule74d;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs70_79.Rule75;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs70_79.Rule77;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs70_79.Rule78;
-//import cz.zaf.eadvalidator.ap2023.layers.obs.obs70_79.Rule79;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule80;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule81;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule82;
@@ -153,7 +151,6 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule75.class,
             Rule77.class,
             Rule78.class,
-//            Rule79.class,
             Rule80.class,
             Rule83.class,
             Rule84.class,
@@ -199,12 +196,8 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule25.class,
             Rule31.class,
             Rule35.class,
-            Rule35a.class, //odstranit po přidání testovacího layeru 
             Rule36.class,
-            Rule36a.class, //odstranit po přidání testovacího layeru 
-            Rule36b.class, //odstranit po přidání testovacího layeru 
             Rule37.class,
-            Rule37a.class, //odstranit po přidání testovacího layeru 
             Rule42.class,
             Rule43.class, 
             Rule44.class,
@@ -236,7 +229,6 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule75.class,
             Rule77.class,
             Rule78.class,
-//            Rule79.class,
             Rule80.class,
             Rule81.class,  
             Rule82.class,
@@ -252,7 +244,6 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule101.class,
             Rule103.class,
             Rule104.class,
-            Rule104a.class, //odstranit po přidání testovacího layeru 
             Rule105.class 
 );
         
@@ -273,7 +264,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule31.class,
             Rule35a.class,
             Rule36a.class,
-//                        Rule36b.class, ne
+            Rule36b.class,
             Rule37a.class,
             Rule42.class,    
             Rule43.class, 
@@ -283,7 +274,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule52.class,
             Rule53.class,
             Rule54.class,
-//                        Rule55.class, ne
+            Rule55.class,
             Rule56.class,
             Rule60.class, 
             Rule61.class,
@@ -301,15 +292,14 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule73.class,
             Rule74.class,
             Rule74a.class,
-//                        Rule74b.class, ne
+            Rule74b.class,
             Rule74c.class,
             Rule74d.class,
             Rule75.class,
             Rule77.class,
             Rule78.class,
-//                        Rule79.class, Ne
             Rule80.class,
-//                        Rule83.class, NEPROJDE
+            Rule83.class,
             Rule84.class,
             Rule89.class,
             Rule93.class,
@@ -317,7 +307,6 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule95.class,
             Rule97.class,
             Rule101.class,
-//            Rule102.class,
             Rule103.class,
             Rule104a.class 
 );
@@ -371,7 +360,6 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule75.class,
             Rule77.class,
             Rule78.class,
-//            Rule79.class,
             Rule80.class,
             Rule83.class,
             Rule84.class,
@@ -382,7 +370,6 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule97.class,
             Rule99.class,
             Rule101.class,
-////            Rule102.class,
             Rule103.class, 
             Rule104.class,
             Rule105.class

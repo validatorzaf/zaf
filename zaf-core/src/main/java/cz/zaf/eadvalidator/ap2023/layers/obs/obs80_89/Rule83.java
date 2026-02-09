@@ -62,13 +62,19 @@ public class Rule83 extends EadRule {
 
                     if (StringUtils.equals("file", contentUnitType) || StringUtils.equals("item", contentUnitType) || StringUtils.equals("itempart", contentUnitType)) {
                         if (!levelC.equals(contentUnitType)) {
-                            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element unittype neobsajuje očekávanou hodnotu :" + levelC + ", ale hodnotu: " + contentUnitType + ".", ctx.formatEadPosition(unittype));
+                            if (!levelC.equals("otherlevel")) {
+                                throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element unittype neobsajuje očekávanou hodnotu: " + levelC + ", ale hodnotu: " + contentUnitType + ".", ctx.formatEadPosition(unittype));
+                            }
                         }
                     }
 
                     if (!StringUtils.isEmpty(contentQuantity)) {
                         if (!NumberUtils.isCreatable(contentQuantity)) {
                             throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity neobsajuje očekávanou hodnotu.", ctx.formatEadPosition(quantity));
+                        }
+                        Integer createInteger = NumberUtils.createInteger(contentQuantity);
+                        if (createInteger < 0) {
+                            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity obsahuje nepovolenou hodnotu: " + createInteger + ".", ctx.formatEadPosition(quantity));
                         }
                     }
                     if (isCondition(parent)) {

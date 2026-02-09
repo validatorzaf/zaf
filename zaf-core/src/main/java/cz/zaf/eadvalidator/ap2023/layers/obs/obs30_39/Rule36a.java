@@ -13,12 +13,15 @@ import cz.zaf.schemas.ead.EadNS;
 public class Rule36a extends EadRule {
 
     static final public String CODE = "obs36a";
-    static final public String RULE_TEXT = "\"Každý element <c> má atribut \"\"level\"\" o některé z následujících hodnot:\r\n"
-            + "- subfonds\r\n"
-            + "- series\r\n"
-            + "- file\r\n"
-            + "- item\r\n"
-            + "- otherlevel\r\n";
+    static final public String RULE_TEXT = """
+    Každý element <c> má atribut "level" o některé z následujících hodnot:
+    - subfonds
+    - series
+    - file
+    - item
+    - otherlevel
+    Pokud má hodnotu "otherlevel", má element <c> dále atribut "otherlevel" o hodnotě "itempart". Současně platí, že rodič je stejného nebo vyššího typu dle pravidel hierarchického popisu.
+    """;
     static final public String RULE_ERROR = "Některý z elementů <c> nemá atribut \"level\" nebo tento atribut obsahuje nepovolenou hodnotu.";
     static final public String RULE_SOURCE = "Část 3.1 profilu EAD3 MV ČR";
 

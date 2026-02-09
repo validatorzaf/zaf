@@ -117,7 +117,7 @@
 							<unittype>lio</unittype> <!-- obs39 -->
 							<physfacet localtype="IMPRINT_COUNT">100</physfacet> <!-- obs74 -->
 							<physfacet localtype="MATERIAL">paper</physfacet> <!-- obs74 -->
-							<physfacet localtype="EXTRA_PART">text</physfacet> <!-- obs74 -->
+							<physfacet localtype="EXTRA_PART">ANALOG</physfacet> <!-- obs74 -->
 							<dimensions>
 								<dimensions unit="mm" localtype="WIDTH">123.45</dimensions> <!-- obs75, obs76 -->
 							</dimensions>
@@ -129,7 +129,7 @@
 						<unittitle>Text</unittitle> <!-- obs53 -->
 						
 						<unitdatestructured>
-							<daterange localtype="CONTENT" altrender="-C"> <!-- obs55 -->
+							<daterange localtype="CONTENT" altrender="C"> <!-- obs55 -->
 								<fromdate standarddate="2001-10-01T00:00:00">1. října 2001</fromdate> <!-- obs57 -->
 								<todate standarddate="2001-10-02T00:00:00">2. října 2001</todate> <!-- obs58, obs59 -->
 							</daterange>

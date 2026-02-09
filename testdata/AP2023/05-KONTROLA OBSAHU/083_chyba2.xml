@@ -102,7 +102,7 @@
 			<c id="uuid-c1d5a9f4-3b2e-4c7d-8e91-0f2a6b3d5c4e" level="series" base="http://archiv.cz/dids/69106f67-3592-4713-926e-4dab4159ddde"> <!-- obs36, obs37 -->
 				<did>
 					<physdescstructured physdescstructuredtype="materialtype" coverage="whole">
-						<quantity>1</quantity>
+						<quantity>-1</quantity>
 						<unittype>lio</unittype> <!-- obs39 -->
 						<physfacet localtype="IMPRINT_COUNT">100</physfacet> <!-- obs74 -->
 						<physfacet localtype="MATERIAL">paper</physfacet> <!-- obs74 -->
@@ -129,7 +129,7 @@
 						<unittitle>Text</unittitle> <!-- obs53 -->
 						
 						<unitdatestructured>
-							<daterange localtype="CONTENT" altrender="-C"> <!-- obs55 -->
+							<daterange localtype="CONTENT" altrender="C"> <!-- obs55 -->
 								<fromdate standarddate="2001-10-01T00:00:00">1. října 2001</fromdate> <!-- obs57 -->
 								<todate standarddate="2001-10-02T00:00:00">2. října 2001</todate> <!-- obs58, obs59 -->
 							</daterange>

@@ -50,9 +50,9 @@
                             <unittitle>Název dokumentu, věc-doručený dokument</unittitle>
                             <unitid localtype="CISLO_JEDNACI" label="číslo jednací">č.j.DDFN-101/2009</unitid>
                             <unitdatestructured>
-                                <daterange>
-                                    <fromdate standarddate="2009-08-13"/>
-                                    <todate standarddate="2009-12-13"/>
+                                <daterange altrender="Y">
+                                    <fromdate standarddate="2009-08-13">2009</fromdate>
+                                    <todate standarddate="2009-12-13">2009</todate>
                                 </daterange>
                             </unitdatestructured>
                             <physdescstructured physdescstructuredtype="materialtype" coverage="whole">
@@ -98,7 +98,16 @@
             </c>
         </dsc>
         <fileplan encodinganalog="ERMS:identifikátor_spisovy_plan_01" id="uuid-82f42018-e998-4878-bc48-c951251cf454">
-            <p>Spisový plán_název</p>
+            <head>Spisový plán_název</head>
+            <chronlist>
+                <chronitem>
+                    <daterange>
+                            <fromdate standarddate="1971-06-01" />
+                            <todate standarddate="2010-04-30" />
+                    </daterange>
+                    <event>Platnost spisového plánu</event>
+                </chronitem>
+            </chronlist>
         </fileplan>
     </archdesc>
 </ead>

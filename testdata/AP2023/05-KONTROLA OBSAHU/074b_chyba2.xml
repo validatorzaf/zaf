@@ -104,8 +104,8 @@
 					<physdescstructured physdescstructuredtype="materialtype" coverage="whole">
 						<quantity>1</quantity>
 						<unittype>lio</unittype> <!-- obs39 -->
-						<physfacet localtype="IMPRINT_COUNT">100</physfacet> <!-- obs74 -->
-						<physfacet localtype="MATERIAL">paper</physfacet> <!-- obs74 -->
+						<physfacet localtype="TECHNIQUE_DETAIL">100</physfacet> <!-- obs74 -->
+						<physfacet localtype="TECHNIQUE_DETAIL">100</physfacet> <!-- obs74 -->
 						
 					</physdescstructured>
 				</did>
@@ -129,7 +129,7 @@
 						<unittitle>Text</unittitle> <!-- obs53 -->
 						
 						<unitdatestructured>
-							<daterange localtype="CONTENT" altrender="-C"> <!-- obs55 -->
+							<daterange localtype="CONTENT" altrender="C"> <!-- obs55 -->
 								<fromdate standarddate="2001-10-01T00:00:00">1. října 2001</fromdate> <!-- obs57 -->
 								<todate standarddate="2001-10-02T00:00:00">2. října 2001</todate> <!-- obs58, obs59 -->
 							</daterange>

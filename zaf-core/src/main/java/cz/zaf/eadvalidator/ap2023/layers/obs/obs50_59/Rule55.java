@@ -43,12 +43,21 @@ public class Rule55 extends EadRule {
             if (object instanceof Unitdatestructured unitDateStructured) {
                 Daterange daterange = unitDateStructured.getDaterange();
                 String altrender = daterange.getAltrender();
+                if(StringUtils.isEmpty(altrender)){
+                    throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Chybí hodnota atributu altrender.", ctx.formatEadPosition(daterange));
+                }
                 String regex = "^(?!.*([CYDT])\\1)(?!.*YM[^-])(?!.*T(?!D))([CYDT-]*)$";
                 if (altrender.startsWith("-") || altrender.endsWith("-") || !altrender.matches(regex)) {
                     throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut altrender obsahuje nepovolenou hodnotu: " + altrender + ".", ctx.formatEadPosition(daterange));
                 }
                 Fromdate fromdate = daterange.getFromdate();
+                if(fromdate == null){
+                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element fromdate.", ctx.formatEadPosition(daterange));
+                }
                 Todate todate = daterange.getTodate();
+                if(todate == null){
+                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element todate.", ctx.formatEadPosition(daterange));
+                }
                 validateDate(fromdate.getContent(), fromdate);
                 validateDate(todate.getContent(), todate);
             }
