@@ -10,8 +10,8 @@ import java.util.List;
 public class Rule60 extends EadRule {
 
     static final public String CODE = "obs60";
-    static final public String RULE_TEXT = "Element <ead:custodhist> se může vykytovat pouze jednou a obsahuje právě jeden neprázdný element <ead:p>.";
-    static final public String RULE_ERROR = "Některý element <ead:custodhist> neobsahuje právě jeden element <ead:p>. Případně je element <ead:p> prázdný.";
+    static final public String RULE_TEXT = "Element <custodhist> se může vykytovat pouze jednou a obsahuje právě jeden neprázdný element <p>.";
+    static final public String RULE_ERROR = "Některý element <custodhist> neobsahuje právě jeden element <p>. Případně je element <p> prázdný.";
     static final public String RULE_SOURCE = "Část 5.11 profilu EAD3 MV ČR";
 
     public Rule60() {
@@ -20,7 +20,7 @@ public class Rule60 extends EadRule {
 
     @Override
     protected void evalImpl() {
-        //<ead:custodhist>
+        //<custodhist>
         //May occur within:archdesc, c, c01, c02, c03, c04, c05, c06, c07, c08, c09, c10, c11, c12, custodhist
         Archdesc archDesc = ctx.getEad().getArchdesc();
         List<Object> archDescChildList = archDesc.getAccessrestrictOrAccrualsOrAcqinfo();

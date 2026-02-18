@@ -27,9 +27,9 @@
 					</ead:part></ead:name>
 				</ead:p>
 				<ead:p> <!-- obs15 -->
-					<ead:name localtype="ARRANGER"><ead:part> <!-- obs16 -->
+					<ead:persname localtype="ARRANGER"><ead:part> <!-- obs16 -->
 						<ead:ref target="ap7523">Zpracovatel</ead:ref>
-					</ead:part></ead:name>
+					</ead:part></ead:persname>
 				</ead:p>
 				<ead:p> <!-- obs17 -->
 					<ead:name localtype="ARRANGER_BRIEF"><ead:part>Zpracovatel bez odkazu</ead:part></ead:name>

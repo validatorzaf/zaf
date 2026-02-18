@@ -22,8 +22,8 @@ import java.util.List;
 public class Rule99 extends EadRule {
 
     static final public String CODE = "obs99";
-    static final public String RULE_TEXT = "Každý element ead:origination obsahuje právě jeden podřízený element a to jeden z následujících elementů: - ead:persname - ead:famname - ead:corpname - ead:name přičemž tento element má atribut \"localtype\" o hodnotě \"ORIGINATOR\" a obsahuje právě jeden element <ead:part>, který obsahuje právě jeden element <ead:ref>. Element <ead:ref> má atribut \"target\" o hodnotě, která odkazuje na element <control>/<sources>/<source>.";
-    static final public String RULE_ERROR = "Některý element <ead:origination> obsahuje nesprávný element. Případně vnořený element nemá atribut \"localtype\" nebo tento atribut neobsahuje hodnotu \"ORIGINATOR\", nemá správný obsah.";
+    static final public String RULE_TEXT = "Každý element origination obsahuje právě jeden podřízený element a to jeden z následujících elementů: - persname - famname - corpname - name přičemž tento element má atribut \"localtype\" o hodnotě \"ORIGINATOR\" a obsahuje právě jeden element <part>, který obsahuje právě jeden element <ref>. Element <ref> má atribut \"target\" o hodnotě, která odkazuje na element <control>/<sources>/<source>.";
+    static final public String RULE_ERROR = "Některý element <origination> obsahuje nesprávný element. Případně vnořený element nemá atribut \"localtype\" nebo tento atribut neobsahuje hodnotu \"ORIGINATOR\", nemá správný obsah.";
     static final public String RULE_SOURCE = "Část 8.1 profilu EAD3 MV ČR";
     private static boolean found = false;
 

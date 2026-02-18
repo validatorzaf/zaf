@@ -15,7 +15,7 @@ public class Rule25 extends EadRule {
 
     static final public String CODE = "obs25";
     static final public String RULE_TEXT = "Soubor dle profilu musí mít uvedenu verzi profilu v elementu <localcontrol localtype=\"CZ_FINDING_AID_EAD_PROFILE\">.";
-    static final public String RULE_ERROR = "Element <ead:control> neobsahuje právě jeden element <ead:localcontrol> s atributem localtype=\"CZ_FINDING_AID_EAD_PROFILE\" s očekávanou hodnotou.";
+    static final public String RULE_ERROR = "Element <control> neobsahuje právě jeden element <localcontrol> s atributem localtype=\"CZ_FINDING_AID_EAD_PROFILE\" s očekávanou hodnotou.";
     static final public String RULE_SOURCE = "Část 2.6.2 profilu EAD3 MV ČR";
 
     public Rule25() {
@@ -31,7 +31,7 @@ public class Rule25 extends EadRule {
         }
         Term term = localControl.getTerm();
         if(term==null) {
-            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Element <ead:localcontrol> neobsahuje element <ead:term>.", ctx.formatEadPosition(localControl));	        
+            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Element <localcontrol> neobsahuje element <term>.", ctx.formatEadPosition(localControl));	        
         }
         String identifier = term.getIdentifier();
         if (EadNS.IDENTIFIER_EAD3_PROFILE_20240301.equals(identifier)) {

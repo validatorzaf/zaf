@@ -10,8 +10,8 @@ import cz.zaf.schema.ead3.Archdesc;
 public class Rule35 extends EadRule {
 
     static final public String CODE = "obs35";
-    static final public String RULE_TEXT = "Element <ead:archdesc> má atribut \"level\" o hodnotě \"fonds\".";
-    static final public String RULE_ERROR = "Elementu <ead:archdesc> chybí atribut \"level\" nebo tento atribut neobsahuje hodnotu \"fonds\".";
+    static final public String RULE_TEXT = "Element <archdesc> má atribut \"level\" o hodnotě \"fonds\".";
+    static final public String RULE_ERROR = "Elementu <archdesc> chybí atribut \"level\" nebo tento atribut neobsahuje hodnotu \"fonds\".";
     static final public String RULE_SOURCE = "Část 3.1 profilu EAD3 MV ČR";
 
     public Rule35() {

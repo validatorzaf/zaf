@@ -13,8 +13,8 @@ import org.apache.commons.lang3.StringUtils;
 public class Rule53 extends EadRule {
 
     static final public String CODE = "obs53";
-    static final public String RULE_TEXT = "Každý element <ead:unittitle>, který nemá atribut \"localtype\", obsažený v elementu <ead:did> obsahuje prostou textovou hodnotu.";
-    static final public String RULE_ERROR = "Některý element <ead:unittile>, který nemá atribut \"localtype\", neobsahuje prostou textovou hodnotu.";
+    static final public String RULE_TEXT = "Každý element <unittitle>, který nemá atribut \"localtype\", obsažený v elementu <did> obsahuje prostou textovou hodnotu.";
+    static final public String RULE_ERROR = "Některý element <unittile>, který nemá atribut \"localtype\", neobsahuje prostou textovou hodnotu.";
     static final public String RULE_SOURCE = "Část 5.6 a 5.7 profilu EAD3 MV ČR";
 
     public Rule53() {

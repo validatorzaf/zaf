@@ -10,8 +10,8 @@ import java.util.List;
 public class Rule66 extends EadRule {
 
     static final public String CODE = "obs66";
-    static final public String RULE_TEXT = "Element <ead:phystech> se může vykytovat pouze jednou a obsahuje právě jeden neprázdný element <ead:p>.";
-    static final public String RULE_ERROR = "Některý element <ead:phystech> neobsahuje právě jeden element <ead:p>. Případně je element <ead:p> prázdný.";
+    static final public String RULE_TEXT = "Element <phystech> se může vykytovat pouze jednou a obsahuje právě jeden neprázdný element <p>.";
+    static final public String RULE_ERROR = "Některý element <phystech> neobsahuje právě jeden element <p>. Případně je element <p> prázdný.";
     static final public String RULE_SOURCE = "Část 5.17 profilu EAD3 MV ČR";
 
     public Rule66() {

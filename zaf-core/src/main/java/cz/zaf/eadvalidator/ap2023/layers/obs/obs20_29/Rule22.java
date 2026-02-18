@@ -13,8 +13,8 @@ import org.apache.commons.lang3.StringUtils;
 public class Rule22 extends EadRule {
 
     static final public String CODE = "obs22";
-    static final public String RULE_TEXT = "Element <ead:maintenanceagency> obsahuje právě jeden element <ead:agencyname>. Ten má neprázdnou hodnotu.";
-    static final public String RULE_ERROR = "Element <ead:maintenanceagency> neobsahuje právě jeden element <ead:agencyname>. Případně je tento element prázdný.";
+    static final public String RULE_TEXT = "Element <maintenanceagency> obsahuje právě jeden element <agencyname>. Ten má neprázdnou hodnotu.";
+    static final public String RULE_ERROR = "Element <maintenanceagency> neobsahuje právě jeden element <agencyname>. Případně je tento element prázdný.";
     static final public String RULE_SOURCE = "Část 2.5 profilu EAD3 MV ČR, EAD TLV heslo <agencyname>";
 
     public Rule22() {

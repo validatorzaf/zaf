@@ -10,8 +10,8 @@ import java.util.List;
 public class Rule65 extends EadRule {
 
     static final public String CODE = "obs65";
-    static final public String RULE_TEXT = "Element <ead:accessrestrict> se může vykytovat pouze jednou a obsahuje právě jeden neprázdný element <ead:p>.";
-    static final public String RULE_ERROR = "Některý element <ead:accessrestrict> neobsahuje právě jeden element <ead:p>. Případně je element <ead:p> prázdný.";
+    static final public String RULE_TEXT = "Element <accessrestrict> se může vykytovat pouze jednou a obsahuje právě jeden neprázdný element <p>.";
+    static final public String RULE_ERROR = "Některý element <accessrestrict> neobsahuje právě jeden element <p>. Případně je element <p> prázdný.";
     static final public String RULE_SOURCE = "Část 5.16 profilu EAD3 MV ČR";
 
     public Rule65() {

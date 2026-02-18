@@ -22,8 +22,8 @@ import cz.zaf.schemas.ead.EadNS;
 public class Rule11 extends EadRule {
 	
 	static final public String CODE = "obs11";
-	static final public String RULE_TEXT = "Element <ead:publicationstmt> obsahuje právě jeden takový element <ead:p>, který obsahuje právě jeden element <ead:name> s atributem \"localtype\" o hodnotě \"FINDING_AID_APPROVED_BY\", který obsahuje právě jeden neprázdný element <ead:part>.";
-	static final public String RULE_ERROR = "Struktura elementu <ead:publicationstmt> neobsahuje správně vyplněný element <ead:name> s atributem \"localtype\" o hodnotě \"FINDING_AID_APPROVED_BY\" vnořený do elementu <ead:p>.";
+	static final public String RULE_TEXT = "Element <publicationstmt> obsahuje právě jeden takový element <p>, který obsahuje právě jeden element <name> s atributem \"localtype\" o hodnotě \"FINDING_AID_APPROVED_BY\", který obsahuje právě jeden neprázdný element <part>.";
+	static final public String RULE_ERROR = "Struktura elementu <publicationstmt> neobsahuje správně vyplněný element <name> s atributem \"localtype\" o hodnotě \"FINDING_AID_APPROVED_BY\" vnořený do elementu <p>.";
 	static final public String RULE_SOURCE = "Část 4.1.1 profilu EAD3 MV ČR, EAD TLV heslo <part>"; 
 	
 	public Rule11() {

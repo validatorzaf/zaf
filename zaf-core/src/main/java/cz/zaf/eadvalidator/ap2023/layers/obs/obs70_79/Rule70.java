@@ -13,8 +13,8 @@ import java.util.List;
 public class Rule70 extends EadRule {
 
     static final public String CODE = "obs70";
-    static final public String RULE_TEXT = "Každý element <ead:didnote> s atributem \"localtype\" o hodnotě \"INTERNAL\" má atribut \"audience\" o hodnotě \"internal\".";
-    static final public String RULE_ERROR = "Některý element <ead:didnote> s atributem \"localtype\" o hodnotě \"INTERNAL\" nemá atribut \"audience\" nebo tento atribut neobsahuje hodnotu \"internal\".";
+    static final public String RULE_TEXT = "Každý element <didnote> s atributem \"localtype\" o hodnotě \"INTERNAL\" má atribut \"audience\" o hodnotě \"internal\".";
+    static final public String RULE_ERROR = "Některý element <didnote> s atributem \"localtype\" o hodnotě \"INTERNAL\" nemá atribut \"audience\" nebo tento atribut neobsahuje hodnotu \"internal\".";
     static final public String RULE_SOURCE = "Část 5.21 profilu EAD3 MV ČR";
 
     public Rule70() {
@@ -24,7 +24,7 @@ public class Rule70 extends EadRule {
     @Override
     protected void evalImpl() {
         //May occur within:archdesc, c
-        //ead:archdesc
+        //archdesc
 
         Archdesc archDesc = ctx.getEad().getArchdesc();
         Did didA = archDesc.getDid();

@@ -15,8 +15,8 @@ import cz.zaf.schemas.ead.EadNS;
 public class Rule03 extends EadRule {
 
     static final public String CODE = "obs3";
-    static final public String RULE_TEXT = "Každý element <ead:otherrecordid>, který nemá atribut \"localtype\" o hodnotě \"CZ_MVCR_FINDING_AID\", má atribut \"localtype\" o hodnotě \"INTERNAL_REV_ID\" a tento není tento prázdný.";
-    static final public String RULE_ERROR = "Element <ead:otherrecordid>, který nemá atribut \"localtype\" o hodnotě \"CZ_MVCR_FINDING_AID\", nemá atribut \"localtype\" o hodnotě \"INTERNAL_REV_ID\" a  nebo je prázdný.";
+    static final public String RULE_TEXT = "Každý element <otherrecordid>, který nemá atribut \"localtype\" o hodnotě \"CZ_MVCR_FINDING_AID_ID\", má atribut \"localtype\" o hodnotě \"INTERNAL_REV_ID\" a tento není prázdný.";
+    static final public String RULE_ERROR = "Element <otherrecordid>, který nemá atribut \"localtype\" o hodnotě \"CZ_MVCR_FINDING_AID_ID\", nemá atribut \"localtype\" o hodnotě \"INTERNAL_REV_ID\" a nebo je prázdný.";
     static final public String RULE_SOURCE = "Část 2.2 profilu EAD3 MV ČR";
 
     public Rule03() {
@@ -43,7 +43,6 @@ public class Rule03 extends EadRule {
                 continue;
             }
             if (EadNS.LOCALTYPE_INTERNAL_REV_ID.equals(otherId.getLocaltype())) {
-
                 // kontrola hodnoty
                 String content = otherId.getContent();
                 if (StringUtils.isBlank(content)) {
@@ -56,6 +55,5 @@ public class Rule03 extends EadRule {
                         ctx.formatEadPosition(otherId));
             }
         }
-
     }
 }

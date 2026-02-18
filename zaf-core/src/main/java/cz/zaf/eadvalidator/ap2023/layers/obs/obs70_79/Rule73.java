@@ -14,8 +14,8 @@ import java.util.List;
 public class Rule73 extends EadRule {
 
     static final public String CODE = "obs73";
-    static final public String RULE_TEXT = "Každý element <ead:physdesc> obsahuje prostou textovou hodnotu.";
-    static final public String RULE_ERROR = "Některý element <ead:physdesc> neobsahuje prostou textovou hodnotu.";
+    static final public String RULE_TEXT = "Každý element <physdesc> obsahuje prostou textovou hodnotu.";
+    static final public String RULE_ERROR = "Některý element <physdesc> neobsahuje prostou textovou hodnotu.";
     static final public String RULE_SOURCE = "Část 6.2 profilu EAD3 MV ČR";
 
     public Rule73() {
@@ -25,7 +25,7 @@ public class Rule73 extends EadRule {
     @Override
     protected void evalImpl() {
         //May occur within:archdesc, c
-        //ead:archdesc
+        //archdesc
 
         Archdesc archDesc = ctx.getEad().getArchdesc();
         Did didA = archDesc.getDid();

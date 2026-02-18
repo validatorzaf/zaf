@@ -27,9 +27,9 @@
 					</ead:part></ead:name>
 				</ead:p>
 				<ead:p> <!-- obs15 -->
-					<ead:name localtype="ARRANGER"><ead:part> <!-- obs16 -->
+					<ead:persname localtype="ARRANGER"><ead:part> <!-- obs16 -->
 						<ead:ref target="ap7523">Zpracovatel</ead:ref>
-					</ead:part></ead:name>
+					</ead:part></ead:persname>
 				</ead:p>
 				<ead:p> <!-- obs17 -->
 					<ead:name localtype="ARRANGER_BRIEF"><ead:part>Zpracovatel bez odkazu</ead:part></ead:name>
@@ -85,7 +85,7 @@
 			</ead:source>
 		</ead:sources>
 	</ead:control>
-	<ead:archdesc level="fonds" base="http://archiv.cz/dids/80bb604a-052e-4e49-b86e-e4a91b95bf59"> <!-- obs35, obs37 -->
+	<ead:archdesc id="uuid-f47ac10b-58cc-4372-a567-0e02b2c3d479" level="fonds" base="http://archiv.cz/dids/80bb604a-052e-4e49-b86e-e4a91b95bf59"> <!-- obs35, obs37 -->
 		<ead:did>
 			<ead:physdescstructured physdescstructuredtype="spaceoccupied" coverage="whole"> <!-- obs47 -->
 				<ead:quantity>1</ead:quantity>
@@ -99,7 +99,7 @@
 		</ead:did>
 		
 		<ead:dsc>
-			<ead:c level="series" base="http://archiv.cz/dids/69106f67-3592-4713-926e-4dab4159ddde"> <!-- obs36, obs37 -->
+			<ead:c id="uuid-c1d5a9f4-3b2e-4c7d-8e91-0f2a6b3d5c4e" level="series" base="http://archiv.cz/dids/69106f67-3592-4713-926e-4dab4159ddde"> <!-- obs36, obs37 -->
 				<ead:did>
 					<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole">
 						<ead:quantity>1</ead:quantity>
@@ -107,20 +107,19 @@
 					</ead:physdescstructured>
 				</ead:did>
 				
-			<ead:c level="item" base="http://archiv.cz/dids/f73a2216-d32c-442b-a206-40c4aac70a49"> <!-- obs37 -->
+			<ead:c id="uuid-9a1c3b7e-2f44-4d3e-8c5a-1b2f4e7d9a6c" level="item" base="http://archiv.cz/dids/f73a2216-d32c-442b-a206-40c4aac70a49"> <!-- obs37 -->
 					<ead:did>
 						<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole"> <!-- obs43 -->
 							<ead:quantity>1</ead:quantity>
 							<ead:unittype>lio</ead:unittype> <!-- obs39 -->
-							
-							<ead:physfacet localtype="IMPRINT_IMAGE">Text</ead:physfacet> <!-- obs74 -->
+							<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet> <!-- obs74 -->
+							<ead:physfacet localtype="CORROBORATIO"> </ead:physfacet> <!-- obs74 -->
 							
 							<ead:dimensions>
 								<ead:dimensions unit="mm" localtype="WIDTH">123.45</ead:dimensions> <!-- obs75, obs76 -->
 							</ead:dimensions>
 						</ead:physdescstructured>
-						
-						<ead:unittitle>Něco veřejného</ead:unittitle> <!-- obs41, obs42 -->
+
 						<ead:unittitle audience="internal">Něco skrytého</ead:unittitle> <!-- obs41, obs42 -->
 						<ead:container>Uložení</ead:container> <!-- obs49 -->
 						<ead:unitid localtype="REFERENCNI_OZNACENI" label="referenční označení">CZ620100//153//1/4//1</ead:unitid> <!-- obs50, obs51 -->
@@ -184,16 +183,18 @@
 					<ead:relations>
 						<ead:relation relationtype="otherrelationtype" otherrelationtype="COORDINATES"> <!-- obs85 -->
 							<ead:geogname> <!-- obs86 -->
-								<ead:part>5.2.6</ead:part> <!-- obs87 -->
+								<ead:part>5.2.6 Souřadnice</ead:part> <!-- obs87 -->
 								<ead:geographiccoordinates coordinatesystem="WGS84">AQEAAABwf4nTpNssQMV3vY/+B0lA</ead:geographiccoordinates> <!-- obs88 -->
 							</ead:geogname>
 						</ead:relation>
 					
 						<ead:relation relationtype="cpfrelation" linkrole="AUTHOR" linktitle="autor" altrender="inherited"> <!-- obs101, obs102, obs103 -->
 							<ead:relationentry>Text</ead:relationentry> <!-- obs104 -->
-							<ead:descriptivenote><ead:p> <!-- obs105-->
-								<ead:ptr target="ap7523"></ead:ptr>
-							</ead:p></ead:descriptivenote>
+							<ead:descriptivenote>
+								<ead:p> <!-- obs105-->
+									<ead:ptr target="ap7523"></ead:ptr>
+								</ead:p>
+							</ead:descriptivenote>
 						</ead:relation>
 					</ead:relations>
 				</ead:c>	

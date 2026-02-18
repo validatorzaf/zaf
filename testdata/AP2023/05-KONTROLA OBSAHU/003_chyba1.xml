@@ -3,7 +3,7 @@
 	<ead:control>
 		<ead:recordid>d0f7e14f-a655-4902-a6fd-e141bbe6ca6b</ead:recordid> <!-- obs1 -->
 		<ead:otherrecordid localtype="CZ_MVCR_FINDING_AID_ID">5</ead:otherrecordid> <!-- obs2 -->
-		<ead:otherrecordid localtype="HLOUPOST"></ead:otherrecordid> <!-- obs3 -->
+		<ead:otherrecordid localtype="HLOUPOST">hloupost</ead:otherrecordid> <!-- obs3 -->
 		
 		<ead:filedesc>
 			<ead:titlestmt>

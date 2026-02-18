@@ -15,8 +15,8 @@ import java.util.Map;
 public class Rule103 extends EadRule {
 
     static final public String CODE = "obs103";
-    static final public String RULE_TEXT = "Atributy \"linkrole\" a \"linktitle\" elementu <ead:relation>, který má atribut \"relationtype\" o hodnotě \"cpfrelation\" nebo \"resourcerelation\", obsahují povolené hodnoty (viz karta Tabulka rolí), které si vzájemně odpovídají. Atribut \"linktitle\" může obsahovat jinou hodnotu než povoluje Tabulka rolí.";
-    static final public String RULE_ERROR = "Atributy \"linkrole\" a \"linktitle\" elementu <ead:relation>, který má atribut \"relationtype\" o hodnotě \"cpfrelation\" nebo \"resourcerelation\", obsahují nepovolené hodnoty. Případně si jejich hodnoty vzájemně neodpovídají.";
+    static final public String RULE_TEXT = "Atributy \"linkrole\" a \"linktitle\" elementu <relation>, který má atribut \"relationtype\" o hodnotě \"cpfrelation\" nebo \"resourcerelation\", obsahují povolené hodnoty (viz karta Tabulka rolí), které si vzájemně odpovídají. Atribut \"linktitle\" může obsahovat jinou hodnotu než povoluje Tabulka rolí.";
+    static final public String RULE_ERROR = "Atributy \"linkrole\" a \"linktitle\" elementu <relation>, který má atribut \"relationtype\" o hodnotě \"cpfrelation\" nebo \"resourcerelation\", obsahují nepovolené hodnoty. Případně si jejich hodnoty vzájemně neodpovídají.";
     static final public String RULE_SOURCE = "Část 8.2 a 8.2.3 profilu EAD3 MV ČR";
 
     private static final Map<String, String> allowed = new HashMap<>();

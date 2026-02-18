@@ -10,8 +10,8 @@ import org.apache.commons.lang3.StringUtils;
 public class Rule19 extends EadRule {
 
     static final public String CODE = "obs19";
-    static final public String RULE_TEXT = "Element <ead:maintenanceagency> má atribut \"countrycode\" o hodnotě \"CZ\".";
-    static final public String RULE_ERROR = "Element <ead:maintenanceagency> nemá atribut \"countrycode\" nebo tento atribut neobsahuje hodnotu \"CZ\".";
+    static final public String RULE_TEXT = "Element <maintenanceagency> má atribut \"countrycode\" o hodnotě \"CZ\".";
+    static final public String RULE_ERROR = "Element <maintenanceagency> nemá atribut \"countrycode\" nebo tento atribut neobsahuje hodnotu \"CZ\".";
     static final public String RULE_SOURCE = "Část 2.5 profilu EAD3 MV ČR";
 
     public Rule19() {

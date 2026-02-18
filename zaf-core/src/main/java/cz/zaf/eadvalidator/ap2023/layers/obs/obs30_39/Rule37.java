@@ -11,9 +11,9 @@ import java.net.URISyntaxException;
 
 public class Rule37 extends EadRule {
 
-    static final public String CODE = "obs31";
-    static final public String RULE_TEXT = "Element <ead:archdesc> a každý element <ead:c> obsahuje atribut \"base\", jehož hodnota má podobu URI odpovídající standardu LinkedData.";
-    static final public String RULE_ERROR = "Element <ead:archdesc> nebo některý element <ead:c> nemá atribut \"base\" nebo tento atribut neobsahuje hodnotu v požadovaném formátu.";
+    static final public String CODE = "obs37";
+    static final public String RULE_TEXT = "Element <archdesc> a každý element <c> obsahuje atribut \"base\", jehož hodnota má podobu URI odpovídající standardu LinkedData.";
+    static final public String RULE_ERROR = "Element <archdesc> nebo některý element <c> nemá atribut \"base\" nebo tento atribut neobsahuje hodnotu v požadovaném formátu.";
     static final public String RULE_SOURCE = "Část 3.2 profilu EAD3 MV ČR";
 
     public Rule37() {
