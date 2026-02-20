@@ -8,14 +8,19 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.UUID;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cz.zaf.common.FileOps;
+import cz.zaf.common.MessageProviders;
 import cz.zaf.common.result.ProtokolWriter;
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.result.XmlProtokolWriter;
 import cz.zaf.common.result.XmlProtokolWriterOld;
+import cz.zaf.common.result.XmlProtokolWriterV2;
 import cz.zaf.common.validation.Validator;
 import cz.zaf.eadvalidator.ap2023.ValidatorAp2023;
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
@@ -28,7 +33,7 @@ import cz.zaf.sipvalidator.nsesss2024.ValidatorNsesss2024;
 import cz.zaf.sipvalidator.nsesss2024.profily.ProfilValidace;
 import cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace;
 import cz.zaf.sipvalidator.pdfa.VeraValidatorProxy;
-import cz.zaf.validator.profiles.ValidationProfile;
+import cz.zaf.validator.profiles.ValidatorType;
 import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.io.inputstream.ZipInputStream;
@@ -39,6 +44,11 @@ import net.lingala.zip4j.model.FileHeader;
  *
  */
 public class CmdValidator {
+	
+	/**
+	 * Name of resource with messages
+	 */
+	public static final String MESSAGES = "messages";
 
     public static final int ERR_WRONG_PARAMS = 1;
     public static final int ERR_FAILED = 2;
@@ -49,7 +59,7 @@ public class CmdValidator {
     private final Params params;
     
     // Skutečné parametry validátoru
-    private ValidationProfile validationProfile;
+    private ValidatorType validationProfile;
 	private DAAIP2024Profile da2024Profile;
     private cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace nsesss2017Profile;    
     private cz.zaf.sipvalidator.nsesss2024.profily.ProfilValidace nsesss2024Profile;
@@ -61,11 +71,13 @@ public class CmdValidator {
         this.params = params;
         this.validator = createValidator();
     }
-
+    
     public static void main(String[] args) {
-        CmdParamsReader cmdParamsReader = new CmdParamsReader();
+    	var messages = MessageProviders.getProvider(MESSAGES, MessageProviders.detectLocale());
+    	
+        CmdParamsReader cmdParamsReader = new CmdParamsReader(System.out, System.err, messages);
         if (!cmdParamsReader.read(args)) {
-            CmdParamsReader.printUsage();
+        	cmdParamsReader.printUsage();
             System.exit(ERR_WRONG_PARAMS);
             return;
         }
@@ -86,17 +98,20 @@ public class CmdValidator {
     }
     
     private ProtokolWriter createWriter() throws Exception {
-        ProtokolWriter protokolWriter = null;
-        if (params.getVystupniFormat() == VystupniFormat.VALIDACE_V1) {
-
-    		protokolWriter = new XmlProtokolWriter(params.getOutput(), 
+        switch(params.getVystupniFormat())
+        {
+        case VALIDACE_V2:
+    		return new XmlProtokolWriterV2(params.getOutput(), 
                     params.getIdKontroly(), validator.getProfileInfo());
-    	}
-    	else {
-    		protokolWriter = new XmlProtokolWriterOld(params.getOutput(), 
+        case VALIDACE_V1:
+    		return new XmlProtokolWriter(params.getOutput(), 
                     params.getIdKontroly(), validator.getProfileInfo());
+        case VALIDACE_SIP:
+    		return new XmlProtokolWriterOld(params.getOutput(), 
+                    params.getIdKontroly(), validator.getProfileInfo());
+        default:
+        	throw new IllegalStateException("Unknown output format");
     	}
-    	return protokolWriter;
     }
 
     public void validate() throws Exception {
@@ -169,24 +184,24 @@ public class CmdValidator {
     		if(inputFileName.endsWith(".zip")) {
     			detectPkgTypeZip(inputPath);
     		} else {
-    			validationProfile = ValidationProfile.AP2023;
+    			validationProfile = ValidatorType.AP2023;
     		}
     	} else
     	// we have to detect file type
     	// check if input path is a directory
     	if (Files.isDirectory(inputPath)) {
     		// Default choice is:
-    		validationProfile = ValidationProfile.NSESSS2017;
+    		validationProfile = ValidatorType.NSESSS2017;
 	    	// read fist 100 characters from METS.xml if exists
 	    	try {
 	    		String metsData = Files.readString(inputPath.resolve("METS.xml"), StandardCharsets.UTF_8);
 	    		if(metsData.contains("PROFILE=\"https://stands.nacr.cz/da/2023/aip.xml\"")) {
-	    			validationProfile = ValidationProfile.DAAIP2024;
+	    			validationProfile = ValidatorType.DAAIP2024;
 	    			// Detect subprofile
 	    			da2024Profile = detectSubProfileDAAIP2024(metsData);
 	    		} else
 	    		if(metsData.contains("=\"http://www.mvcr.cz/nsesss/v4\"")) {
-	    			validationProfile = ValidationProfile.NSESSS2024;
+	    			validationProfile = ValidatorType.NSESSS2024;
 	    		}
 	    		
     		} catch (IOException e) {
@@ -227,18 +242,18 @@ public class CmdValidator {
 						}
 						String metsData = sb.toString();
 						if(metsData.contains("PROFILE=\"https://stands.nacr.cz/da/2023/aip.xml\"")) {
-							validationProfile = ValidationProfile.DAAIP2024;
+							validationProfile = ValidatorType.DAAIP2024;
 							// Detect subprofile
 							da2024Profile = detectSubProfileDAAIP2024(metsData);
 							return true;
 						}
 						if(metsData.contains("=\"http://www.mvcr.cz/nsesss/v4\"")) {
-							validationProfile = ValidationProfile.NSESSS2024;
+							validationProfile = ValidatorType.NSESSS2024;
 							nsesss2024Profile = detectSubProfileNSESSS2024(metsData);
 							return true;
 						}
 						if(metsData.contains("=\"http://www.mvcr.cz/nsesss/v3\"")) {
-							validationProfile = ValidationProfile.NSESSS2017;
+							validationProfile = ValidatorType.NSESSS2017;
 							nsesss2017Profile = detectSubProfileNSESSS2017(metsData);
 							return true;
 						}
@@ -320,8 +335,22 @@ public class CmdValidator {
 
     public void validateDavka(ProtokolWriter protokolWriter) throws Exception {
         Path inputDir = Paths.get(params.getInputPath());
+        Path workdirPath = null;        
         if (!Files.isDirectory(inputDir)) {
-            throw new IllegalArgumentException("Input path is not directory: " + params.getInputPath());
+        	// try to unpack zip file
+            if (params.getWorkDir() == null) {
+                workdirPath = Paths.get("rozbaleno");
+            } else {
+                workdirPath = Paths.get(params.getWorkDir());
+            }
+            workdirPath = workdirPath.resolve("davka-"+UUID.randomUUID().toString());
+            try {
+                Files.createDirectories(workdirPath);
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to prepare working dir: " + workdirPath.normalize().toString());
+            }
+        	FileOps.unzip(inputDir, workdirPath);
+			inputDir = workdirPath;
         }
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(inputDir)) {
             for (final Path path : stream) {
@@ -331,5 +360,9 @@ public class CmdValidator {
                 protokolWriter.writeVysledek(sipInfo);
             }
         }
+        
+        if (workdirPath != null) {
+			FileUtils.deleteDirectory(workdirPath.toFile());
+		}
     }
 }

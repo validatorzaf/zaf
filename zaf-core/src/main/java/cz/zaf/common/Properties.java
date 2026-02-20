@@ -29,4 +29,5 @@ public final class Properties {
 	 * If not set, default limit is 10 MB.
 	 */
 	public static final String ZAF_METS_MAX_SIZE = "zaf.mets.max.size";
+	
 }

@@ -13,14 +13,14 @@ import cz.zaf.common.validation.RuleEvaluationContext;
 import cz.zaf.common.validation.ValidationLayerType;
 import cz.zaf.common.validation.ValidationSubprofile;
 import cz.zaf.common.validation.ValidatorInfo;
-import cz.zaf.validator.profiles.ValidationProfile;
+import cz.zaf.validator.profiles.ValidatorType;
 
 public class GenerateDoc {
     
 	private final ValidatorInfo validatorInfo;
-	private final ValidationProfile validationProfile;
+	private final ValidatorType validationProfile;
 
-    public GenerateDoc(final ValidationProfile validationProfile) {
+    public GenerateDoc(final ValidatorType validationProfile) {
     	this.validationProfile = validationProfile;
     	this.validatorInfo = validationProfile.getValidatorInfo();
     }
@@ -94,25 +94,25 @@ public class GenerateDoc {
 	}
 
     public static void main(String[] args) {
-    	ValidationProfile validationProfile = ValidationProfile.NSESSS2017;
+    	ValidatorType validationProfile = ValidatorType.NSESSS2017;
     	
     	for(int pos = 0; pos < args.length; pos++) {
     		String arg = args[pos];
     		switch(arg) {
     		case "NSESSS2017":
-    			validationProfile = ValidationProfile.NSESSS2017;
+    			validationProfile = ValidatorType.NSESSS2017;
     			break;
-    		case "NSESSS2023":
-    			validationProfile = ValidationProfile.NSESSS2024;
+    		case "NSESSS2024":
+    			validationProfile = ValidatorType.NSESSS2024;
     			break;
     		case "AP2023":
-    			validationProfile = ValidationProfile.AP2023;
+    			validationProfile = ValidatorType.AP2023;
     			break;
     		case "DAAIP2024":
-    			validationProfile = ValidationProfile.DAAIP2024;
+    			validationProfile = ValidatorType.DAAIP2024;
     			break;
     		case "DAAIP2024_PREMIS":
-    			validationProfile = ValidationProfile.DAAIP2024_PREMIS;
+    			validationProfile = ValidatorType.DAAIP2024_PREMIS;
     			break;
     		}
     	}

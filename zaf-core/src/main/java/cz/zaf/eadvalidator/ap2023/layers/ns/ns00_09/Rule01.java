@@ -21,8 +21,8 @@ public class Rule01 extends EadRule {
 	protected void evalImpl() {
         Element eadRoot = ctx.getRootElement();
 
-        if (eadRoot == null || !eadRoot.getNodeName().equals("ead:ead")) {
-        	String detailChyby = "Soubor neobsahuje kořenový element <ead:ead>.";
+        if (eadRoot == null || !eadRoot.getNodeName().equals(ctx.getEadElementName("ead"))) {
+        	String detailChyby = "Soubor neobsahuje kořenový element <"+ctx.getEadElementName("ead")+">.";
             throw new ZafException(BaseCode.CHYBI_ELEMENT, detailChyby);
         }
 

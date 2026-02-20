@@ -13,8 +13,8 @@ import cz.zaf.schema.ead3.Recordid;
 public class Rule01 extends EadRule {
 	
 	static final public String CODE = "obs1";
-	static final public String RULE_TEXT = "Element <ead:recordid> obsahuje neprázdnou hodnotu, která splňuje syntaxi pro tvorbu UUID.";
-	static final public String RULE_ERROR = "Element <ead:recordid> neobsahuje hodnotu v požadovaném formátu.";
+	static final public String RULE_TEXT = "Element <recordid> obsahuje neprázdnou hodnotu, která splňuje syntaxi pro tvorbu UUID.";
+	static final public String RULE_ERROR = "Element <recordid> neobsahuje hodnotu v požadovaném formátu.";
 	static final public String RULE_SOURCE = "Část 2.1 profilu EAD3 MV ČR"; 
 	
 	public Rule01() {

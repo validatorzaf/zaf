@@ -43,7 +43,7 @@ public class Rule30 extends AipRule {
 			// check all pathes are schemas/...
 			List<FileType> files = filegrp.getFile();
 			if(CollectionUtils.isEmpty(files)) {
-				throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Předaná reprezentact bez souborů v mets/fileSec/fileGrp[@USE='"+use+"'].", ctx.formatMetsPosition(filesec));
+				throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Předaná reprezentace bez souborů v mets/fileSec/fileGrp[@USE='"+use+"'].", ctx.formatMetsPosition(filesec));
 			}
 			for(FileType file: files) {
 				FContent fileContent = file.getFContent();

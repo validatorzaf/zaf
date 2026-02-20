@@ -55,7 +55,7 @@ public class Rule11 extends PremisRule {
 		SignificantPropertiesComplexType instIdObj = null;
 		for(SignificantPropertiesComplexType signProp: intEnt.getSignificantProperties()) {
 			if(signProp.getSignificantPropertiesType1()==null) {
-				throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Chybí typ signifikátních vlastnosti.", ctx.formatPosition(signProp));
+				throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Chybí typ signifikantní vlastnosti.", ctx.formatPosition(signProp));
 			}
 			if(EarkCz.SIGNIFICANT_PROPS_INSTITUTION_ID.equals(signProp.getSignificantPropertiesType1().getValue())) {
 				if(instIdObj!=null) {
@@ -64,7 +64,7 @@ public class Rule11 extends PremisRule {
 				instIdObj = signProp;
 				continue;
 			}
-			throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Uveden neznámý typ signifikátních vlastnosti: "+signProp.getSignificantPropertiesType1().getValue()+".", ctx.formatPosition(signProp));
+			throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Uveden neznámý typ signifikantní vlastnosti: "+signProp.getSignificantPropertiesType1().getValue()+".", ctx.formatPosition(signProp));
 		}
 		if(instIdObj==null) {
 			throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybí instituce.", ctx.formatPosition(intEnt));

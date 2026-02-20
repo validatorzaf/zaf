@@ -31,7 +31,7 @@ Validátor ZAF lze volat prostřednictvím příkazového řádku:
 *-k|--keep*::
   Zachování rozbalených souborů na disku, jinak jsou odstraněny
   
-*-d|--druh=*::
+*-p|--profile=*::
   Druh kontroly pro danou validaci (AUTO - výchozí), stačí uvést druh:
 
  * AUTO = výběr základní kontroly pro daný typ kontroly
@@ -43,6 +43,7 @@ Validátor ZAF lze volat prostřednictvím příkazového řádku:
  * AIP = výměnný AIP (pro DAAIP2024)
  * DIP_METADATA = metadatový DIP (pro DAAIP2024)
  * DIP_CONTENT = úplný DIP (pro DAAIP2024)
+ * SIP_CHANGE = změnový SIP (pro DAAIP2024)
 
 *-e|--exclude=*::
   Seznam kontrol oddělených čárkou, které se nemají provádět
@@ -50,14 +51,11 @@ Validátor ZAF lze volat prostřednictvím příkazového řádku:
 *-i|--id=*::
   Identifikátor prováděné kontroly
   
-*-z|--hrozba=*::
+*-T|--threat=*::
   Podrobnosti v případě nalezení hrozby (pro předání z antivirového programu)
   
 *-o|--output=*::
   Jméno souboru nebo adresáře pro uložení výsledků
-
-*-p|--ports=*::
-  Rozsah portů pro vnitřní procesy (standardně 10000-32000)
   
 *-t|--type=*::
   Typ validace (AUTO - výchozí)
@@ -69,10 +67,11 @@ Validátor ZAF lze volat prostřednictvím příkazového řádku:
  * DAAIP2024
  
 *-f|--format=*::
-  Výstupní formát (1 - výchozí)
+  Výstupní formát (XML_V2 - výchozí)
   
- * 1 = obecné schéma (link:validace_v1.xsd[validace_v1.xsd])
- * 2 = schéma pouze pro kontrolu NSESSS
+ * XML_V2 = obecné schéma (link:validation_v2.xsd[validation_v2.xsd])
+ * XML_V1 = obecné české schéma (link:validace_v1.xsd[validace_v1.xsd])
+ * XML_OLD = schéma pouze pro kontrolu NSESSS
  
 
 [[ZafSystParametry]]
@@ -236,7 +235,7 @@ Ty jsou také dostupné v repozitáři pro Maven a je možné je přímo použí
 === Repozitář s připravenými balíčky
 
 Validátor ZAF je možné přímo využívat pomocí připravených balíčků 
-dostupných v repozitáři: https://www.lightcomp.cz/releases/repository/lc-public-release/.
+dostupných v repozitáři: https://pkgs.lightcomp.com/maven/public-release/.
 
 Nastavení pro Maven (pom.xml):
 
@@ -245,7 +244,7 @@ Nastavení pro Maven (pom.xml):
   <repositories>
     <repository>
       <id>lc-public-release</id>
-      <url>https://www.lightcomp.cz/releases/repository/lc-public-release/</url>
+      <url>https://pkgs.lightcomp.com/maven/public-release/</url>
     </repository>
   </repositories>
 ----

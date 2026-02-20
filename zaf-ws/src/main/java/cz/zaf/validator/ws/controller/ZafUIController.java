@@ -1,26 +1,34 @@
 package cz.zaf.validator.ws.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.LocaleResolver;
 
 import cz.zaf.api.rest.model.RequestProcessState;
 import cz.zaf.api.rest.model.ValidationType;
+import cz.zaf.common.ZafInfo;
 import cz.zaf.schema.validace_v1.Validace;
 import cz.zaf.validator.ws.service.ValidationService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * Kontroller pro jednoduché webové rozhraní UI
@@ -30,15 +38,21 @@ import cz.zaf.validator.ws.service.ValidationService;
 @Controller
 public class ZafUIController {
 	
+	private static final Logger log = LoggerFactory.getLogger(ZafUIController.class);
+	
 	 @Value("${zaf.ui.enabled:false}") // Default to false if property is missing
 	 private boolean uiEnabled;
 
 	@Autowired
 	private ValidationService validationService;
+	
+	@Autowired
+	private LocaleResolver localeResolver;
 
 	@GetMapping("/")
-	public String showUploadForm() {
+	public String showUploadForm(Model model) {
 		if(uiEnabled) {
+			model.addAttribute("appVersion", ZafInfo.getAppVersion());
 			return "index";
 		} else {
             // This ensures nothing is served for the root path.
@@ -59,7 +73,8 @@ public class ZafUIController {
 			Model model) {
 		if(!uiEnabled) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ZAF UI is disabled.");
-		}		
+		}
+		model.addAttribute("appVersion", ZafInfo.getAppVersion());
 		try {
 			// Convert file to byte array
 			byte[] fileBytes = file.getBytes();
@@ -77,8 +92,7 @@ public class ZafUIController {
 			do {
 				RequestProcessState rps = validationService.getStatus(valRequestId);
 				if(rps==RequestProcessState.ERROR) {
-					model.addAttribute("message", "File upload failed!");
-					return "upload";					
+					throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Validation error.");					
 				} else 
 				if(rps==RequestProcessState.FINISHED) {
 					break;
@@ -91,9 +105,9 @@ public class ZafUIController {
 			Validace result = validationService.getResult(valRequestId);
 
 			// Read back final response
-			model.addAttribute("requestId", valRequestId);
-			model.addAttribute("druhValidace", result.getDruhValidace());
-			model.addAttribute("profilPravidel", result.getProfilPravidel());
+			model.addAttribute("requestId", valRequestId);			
+			model.addAttribute("validationType", result.getTypValidace());
+			model.addAttribute("validationProfile", result.getProfilValidace());			
 			model.addAttribute("verzePravidel", result.getVerzePravidel().intValue());
 			model.addAttribute("dataPackages", result.getBalicek());
 			// seznam chyb
@@ -103,8 +117,48 @@ public class ZafUIController {
 			// model.
 			return "result";
 		} catch (Exception e) {
-			model.addAttribute("message", "File upload failed!");
-			return "upload";
+			model.addAttribute("errorMessage", e.getMessage());
+			return "index";
 		}
 	}
+	
+	@GetMapping("/download/{requestId}")
+	public ResponseEntity<ByteArrayResource> downloadResult(@PathVariable("requestId") String requestId) {
+	    if (!uiEnabled) {
+	        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ZAF UI is disabled.");
+	    }
+	    try {
+	        // Let validationService give you the serialized result
+	        // (adjust if your service returns a File, String, XML etc.)
+	        byte[] fileBytes = validationService.getResultAsBytes(requestId);
+
+	        if (fileBytes == null) {
+	            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Result not found for requestId: " + requestId);
+	        }
+
+	        ByteArrayResource resource = new ByteArrayResource(fileBytes);
+
+	        return ResponseEntity.ok()
+	                .header(HttpHeaders.CONTENT_DISPOSITION,
+	                        "attachment; filename=\"validation-" + requestId + ".xml\"")
+	                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+	                .contentLength(fileBytes.length)
+	                .body(resource);
+
+	    } catch (Exception e) {
+	    	log.error("Error retrieving result, request id: " + requestId, e);
+	        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error retrieving result.", e);
+	    }
+	}	
+
+    @GetMapping("/lang")
+    public String switchLang(HttpServletRequest request, HttpServletResponse response, String lang) {
+        Locale newLocale = new Locale(lang != null ? lang : "en");
+        localeResolver.setLocale(request, response, newLocale);
+        String referer = request.getHeader("Referer");
+        if(referer==null) {
+        	referer = ".";
+        }
+        return "redirect:" + referer;
+    }
 }

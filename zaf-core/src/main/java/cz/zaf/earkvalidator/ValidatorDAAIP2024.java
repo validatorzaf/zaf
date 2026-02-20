@@ -2,15 +2,18 @@ package cz.zaf.earkvalidator;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import org.apache.commons.collections4.CollectionUtils;
 
 import cz.zaf.common.result.ValidationProfileInfo;
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.validation.BaseRule;
-import cz.zaf.common.validation.BaseValidationLayer;
 import cz.zaf.common.validation.Rule;
 import cz.zaf.common.validation.RuleEvaluationContext;
-import cz.zaf.common.validation.ValidationLayer;
 import cz.zaf.common.validation.ValidationLayerType;
 import cz.zaf.common.validation.ValidationSubprofile;
 import cz.zaf.common.validation.Validator;
@@ -25,9 +28,8 @@ import cz.zaf.earkvalidator.layers.wf.WellFormedLayer;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
 import cz.zaf.premisvalidator.PremisValidationContext;
 import cz.zaf.premisvalidator.PremisValidationLayer;
-import cz.zaf.premisvalidator.layers.enc.Encoding;
 import cz.zaf.premisvalidator.profile.PremisProfile;
-import cz.zaf.validator.profiles.ValidationProfile;
+import cz.zaf.validator.profiles.ValidatorType;
 
 public class ValidatorDAAIP2024 implements Validator {
 	
@@ -48,17 +50,17 @@ public class ValidatorDAAIP2024 implements Validator {
 		this.validationProfileInfo = new ValidationProfileInfo() {
 
 			@Override
-			public String getProfileName() {
-				return ValidationProfile.DAAIP2024.toString();
-			}
-
-			@Override
 			public String getValidationType() {
-				return daaip2024Profile.getName();
+				return ValidatorType.DAAIP2024.toString();
 			}
 
 			@Override
-			public String getProfileVersion() {
+			public String getProfileName() {
+				return daaip2024Profile.getName();				
+			}
+
+			@Override
+			public String getRuleVersion() {
 				return "1";
 			}		
 		}; 
@@ -139,14 +141,10 @@ public class ValidatorDAAIP2024 implements Validator {
 					throw new IllegalStateException("Unrecognized layer: " + layer);
 				}
 				
-				List<Rule<? extends RuleEvaluationContext>> result = new ArrayList<>();
-				if(rules!=null) {
-					for(BaseRule<AipValidationContext> rule: rules) {
-						result.add(rule);
-					}
+				if(rules==null) {
+					return Collections.emptyList();
 				}
-					
-				return result;
+				return rules.stream().map(Function.identity()).collect(Collectors.toList());
 			}
 			
 		};

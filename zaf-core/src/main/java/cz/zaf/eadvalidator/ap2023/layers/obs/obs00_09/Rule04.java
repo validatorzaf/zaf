@@ -11,8 +11,8 @@ import cz.zaf.schema.ead3.Filedesc;
 public class Rule04 extends EadRule {
 	
 	static final public String CODE = "obs4";
-	static final public String RULE_TEXT = "Element <ead:filedesc> má atribut \"encodinganalog\" o hodnotě kladného celého čísla.";
-	static final public String RULE_ERROR = "Element <ead:filedesc> nemá atribut \"encodinganalog\" nebo tento atribut neobsahuje kladné celé číslo.";
+	static final public String RULE_TEXT = "Element <filedesc> má atribut \"encodinganalog\" o hodnotě kladného celého čísla.";
+	static final public String RULE_ERROR = "Element <filedesc> nemá atribut \"encodinganalog\" nebo tento atribut neobsahuje kladné celé číslo.";
 	static final public String RULE_SOURCE = "Část 2.3 profilu EAD3 MV ČR"; 
 	
 	public Rule04() {

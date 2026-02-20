@@ -1,5 +1,5 @@
-﻿<?xml version='1.0' encoding='UTF-8'?>
-<ead relatedencoding="nacr.cz/2018" xmlns="http://ead3.archivists.org/schema/">
+<?xml version='1.0' encoding='UTF-8'?>
+<ead relatedencoding="nacr.cz/2018" xmlns="http://ead3.archivists.org/schema/" xmlns:cam="http://cam.tacr.cz/2019">
     <control>
         <recordid>07b3c504-6659-40af-8b72-78bacb62ebe2</recordid>
         <filedesc encodinganalog="843">
@@ -7,12 +7,18 @@
                 <titleproper>Název AS</titleproper>
             </titlestmt>
         </filedesc>
-        <maintenancestatus value="new"/>
+        <maintenancestatus value="derived"/>
         <publicationstatus value="inprocess"/>
-        <maintenanceagency>
-            <agencycode>100000010</agencycode>
+        <maintenanceagency countrycode="CZ">
+            <agencycode localtype="CZ_MVCR_INSTITUTION_ID">100000010</agencycode>
             <agencyname>Národní archiv</agencyname>
         </maintenanceagency>
+        <localcontrol localtype="RULES">
+            <term identifier="CZ_ZP2013">základní pravidla od roku 2013</term>
+        </localcontrol>
+        <localcontrol localtype="CZ_FINDING_AID_EAD_PROFILE">
+            <term identifier="CZ_EAD3_PROFILE_20240301">profil platný od března 2024</term>
+        </localcontrol>
         <maintenancehistory>
             <maintenanceevent>
                 <eventtype value="created"/>
@@ -24,37 +30,39 @@
     </control>
     <archdesc level="otherlevel" otherlevel="balicek" id="uuid-07b3c504-6659-40af-8b72-78bacb62ebe2">
         <did>
-            <unitid>07b3c504-6659-40af-8b72-78bacb62ebe2</unitid>
+            <unitid localtype="JINE" label="uuid">07b3c504-6659-40af-8b72-78bacb62ebe2</unitid>
         </did>
         <dsc>
             <c level="otherlevel" otherlevel="vecnaskp" id="uuid-ac73f202-a2a0-4309-9ce7-6c1e426be654">
                 <did>
                     <unittitle>Název věcné skupiny 44 - např. HOSPODÁŘSKÉ PROVOZY, SLUŽBY</unittitle>
-                    <unitid localtype="UKLADACI_ZNAK">44</unitid>
-                    <unitid localtype="ZDROJ_ID">ERMS:identifikátor_vecna_skupina_44</unitid>
+                    <unitid localtype="UKLADACI_ZNAK" label="ukládací znak / spisový znak">44</unitid>
+                    <unitid localtype="ZDROJ_ID" label="identifikátor ve zdrojovém systému">ERMS:identifikátor_vecna_skupina_44</unitid>
                 </did>
                 <c level="otherlevel" otherlevel="vecnaskp" id="uuid-89a2ecb1-6951-4f97-b1ad-beff25e6cf2d">
                     <did>
                         <unittitle>Název věcné skupiny 44_4 - např. Dokumentace o převzetí a výdeji věcí a finančních hotovostí do úschovy</unittitle>
-                        <unitid localtype="UKLADACI_ZNAK">44.4</unitid>
-                        <unitid localtype="ZDROJ_ID">ERMS:vecna_skupina_44_4</unitid>
+                        <unitid localtype="UKLADACI_ZNAK" label="ukládací znak / spisový znak">44.4</unitid>
+                        <unitid localtype="ZDROJ_ID" label="identifikátor ve zdrojovém systému">ERMS:vecna_skupina_44_4</unitid>
                     </did>
                     <c level="otherlevel" otherlevel="dokument" id="uuid-082a283c-0731-4160-9490-32921f2f88d2">
                         <did>
                             <unittitle>Název dokumentu, věc-doručený dokument</unittitle>
-                            <unitid localtype="CISLO_JEDNACI">č.j.DDFN-101/2009</unitid>
+                            <unitid localtype="CISLO_JEDNACI" label="číslo jednací">č.j.DDFN-101/2009</unitid>
                             <unitdatestructured>
-                                <daterange>
-                                    <fromdate standarddate="2009-08-13"/>
-                                    <todate standarddate="2009-12-13"/>
+                                <daterange altrender="Y">
+                                    <fromdate standarddate="2009-08-13">2009</fromdate>
+                                    <todate standarddate="2009-12-13">2009</todate>
                                 </daterange>
                             </unitdatestructured>
                             <physdescstructured physdescstructuredtype="materialtype" coverage="whole">
                               <quantity>1</quantity>
                               <unittype>item</unittype>
-                              <physfacet localType="EXTRA_PART">ANALOG</physfacet>
+                              <physfacet localtype="EXTRA_PART">ANALOG</physfacet>
                             </physdescstructured>
-                            <unitid localtype="PORADOVE_CISLO_PUVODNI">101</unitid>
+                            <unitid localtype="PORADOVE_CISLO_PUVODNI" label="původní pořadové číslo">101</unitid>
+                        </did>
+                        <relations>
                             <relation relationtype="cpfrelation" linkrole="SENDER" linktitle="Odesílatel">
                                 <relationentry>Krajský úřad Pardubice(IČ: 888888888)</relationentry>
                             </relation>
@@ -66,14 +74,13 @@
                             <relation relationtype="cpfrelation" linkrole="ENTITY" linktitle="Zpracovatel">
                                 <relationentry>Fyzická Osoba - jméno - referent, Název organizace - Fakulní nemocnice, organizační útvar - Odbor XY</relationentry>
                             </relation>
-                            <unitid localtype="Puvodce">ERMS:identifikator_dokumentu_01</unitid>
-                        </did>
+                        </relations>
                         <c level="otherlevel" otherlevel="komponenta" id="uuid-2163b9ff-15d6-426f-ab7a-81daf22a97ce">
                             <did>
                                 <unittitle>priloha.pdf</unittitle>
                                 <physdesc>original</physdesc>
-                                <unitid localtype="ZDROJ_ID">ERMS:identifikátor komponenty6</unitid>
-                                <dao daotype="borndigital" entityref="uuid-8e78c90f-21e6-4799-a77a-2700c34bc9b2"/>
+                                <unitid localtype="ZDROJ_ID" label="identifikátor ve zdrojovém systému">ERMS:identifikátor komponenty6</unitid>
+                                <dao daotype="borndigital" identifier="uuid-8e78c90f-21e6-4799-a77a-2700c34bc9b2"/>
                             </did>
                         </c>
                         <!-- Odkazuje na komponentu v logické strukturální mapě -->
@@ -81,9 +88,9 @@
                             <did>
                                 <unittitle>pruvodnidopis.pdf</unittitle>
                                 <physdesc>original_ve_vystupnim_formatu</physdesc>
-                                <unitid localtype="ZDROJ_ID">ERMS:identifikátor komponenty5</unitid>
+                                <unitid localtype="ZDROJ_ID" label="identifikátor ve zdrojovém systému">ERMS:identifikátor komponenty5</unitid>
                                 <!-- Odkazuje nyni na filesec, tj odkaz fyz struct mapu -->
-                                <dao daotype="borndigital" entityref="uuid-e7b6beea-1006-4ed0-9424-33d3491c2bc5"/>
+                                <dao daotype="borndigital" identifier="uuid-e7b6beea-1006-4ed0-9424-33d3491c2bc5"/>
                             </did>
                         </c>
                     </c>
@@ -91,7 +98,16 @@
             </c>
         </dsc>
         <fileplan encodinganalog="ERMS:identifikátor_spisovy_plan_01" id="uuid-82f42018-e998-4878-bc48-c951251cf454">
-            <p>Spisový plán_název</p>
+            <head>Spisový plán_název</head>
+            <chronlist>
+                <chronitem>
+                    <daterange>
+                            <fromdate standarddate="1971-06-01" />
+                            <todate standarddate="2010-04-30" />
+                    </daterange>
+                    <event>Platnost spisového plánu</event>
+                </chronitem>
+            </chronlist>
         </fileplan>
     </archdesc>
 </ead>

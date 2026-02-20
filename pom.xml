@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.5</version>
-		<relativePath /> <!-- lookup parent from repository -->
-	</parent>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.5</version>
+        <relativePath /> <!-- lookup parent from repository -->
+    </parent>
 
 	<groupId>cz.zaf</groupId>
 	<artifactId>zaf</artifactId>
@@ -15,102 +15,102 @@
 	<packaging>pom</packaging>
 	<name>ZAF</name>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<gpg.skip>true</gpg.skip>
-		<maven.javadoc.skip>true</maven.javadoc.skip>
-		<enforcer.skip>true</enforcer.skip>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <gpg.skip>true</gpg.skip>
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+        <enforcer.skip>true</enforcer.skip>
 
-		<!-- Configuration for maven-surefire-plugin, has to be configured separately 
-			because of JaCoCo -->
-		<argLine>-Dfile.encoding=UTF-8</argLine>
+        <!-- Configuration for maven-surefire-plugin, has to be configured separately 
+        because of JaCoCo -->
+        <argLine>-Dfile.encoding=UTF-8</argLine>
 
-		<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
-		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-		<sonar.junit.reportPaths>target/surefire-reports</sonar.junit.reportPaths>
-		<sonar.jacoco.reportPaths>target/jacoco.exec</sonar.jacoco.reportPaths>
+        <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
+        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+        <sonar.junit.reportPaths>target/surefire-reports</sonar.junit.reportPaths>
+        <sonar.jacoco.reportPaths>target/jacoco.exec</sonar.jacoco.reportPaths>
         <spring.boot.version>3.4.5</spring.boot.version>
-	</properties>
+    </properties>
 
-	<modules>
-		<module>doc</module>
-		<module>zaf-core</module>
-		<module>zaf-cmd</module>
-		<module>zaf-ws</module>
-		<!--<module>zaf-ui</module>-->
-	</modules>
+    <modules>
+        <module>doc</module>
+        <module>zaf-core</module>
+        <module>zaf-cmd</module>
+        <module>zaf-ws</module>
+        <!--<module>zaf-ui</module>-->
+    </modules>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-web</artifactId>
-					<version>${spring.boot.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-collections4</artifactId>
-				<version>4.5.0</version>
-			</dependency>
-			<dependency>
-				<groupId>commons-io</groupId>
-				<artifactId>commons-io</artifactId>
-				<version>2.19.0</version>
-			</dependency>
-			<!-- org.slf4j -->
-			<!--<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>2.0.17</version>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-simple</artifactId>
-				<version>2.0.17</version>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>jul-to-slf4j</artifactId>
-				<version>2.0.17</version>
-			</dependency>-->
-			<!--
-			<dependency>
-				<groupId>ch.qos.logback</groupId>
-				<artifactId>logback-classic</artifactId>
-				<version>1.5.5</version>
-			</dependency>-->
-			<dependency>
-				<groupId>net.lingala.zip4j</groupId>
-				<artifactId>zip4j</artifactId>
-				<version>2.11.5</version>
-			</dependency>
-			<dependency>
-				<groupId>commons-codec</groupId>
-				<artifactId>commons-codec</artifactId>
-				<version>1.16.1</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.tika</groupId>
-				<artifactId>tika-core</artifactId>
-				<version>2.9.2</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.tika</groupId>
-				<artifactId>tika-parsers-standard-package</artifactId>
-				<version>2.9.2</version>
-			</dependency>
-			<dependency>
-				<groupId>com.ibm.icu</groupId>
-				<artifactId>icu4j</artifactId>
-				<version>74.2</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>3.3.1</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>4.5.0</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.19.0</version>
+            </dependency>
+            <!-- org.slf4j -->
+            <!--<dependency>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                    <version>2.0.17</version>
+            </dependency>
+            <dependency>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
+                    <version>2.0.17</version>
+            </dependency>
+            <dependency>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>jul-to-slf4j</artifactId>
+                    <version>2.0.17</version>
+            </dependency>-->
+            <!--
+            <dependency>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                    <version>1.5.5</version>
+            </dependency>-->
+            <dependency>
+                <groupId>net.lingala.zip4j</groupId>
+                <artifactId>zip4j</artifactId>
+                <version>2.11.5</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>1.16.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tika</groupId>
+                <artifactId>tika-core</artifactId>
+                <version>2.9.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tika</groupId>
+                <artifactId>tika-parsers-standard-package</artifactId>
+                <version>2.9.2</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ibm.icu</groupId>
+                <artifactId>icu4j</artifactId>
+                <version>74.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 	<build>
 		<plugins>
@@ -125,98 +125,106 @@
             <version>2.17.1</version>
         </plugin>
 		</plugins>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.13.0</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-deploy-plugin</artifactId>
-					<version>3.1.4</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.13.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>3.1.4</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.2.5</version>
-				</plugin>
-				<plugin>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-maven-plugin</artifactId>
-					<version>${spring.boot.version}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.asciidoctor</groupId>
+                </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring.boot.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.asciidoctor</groupId>
                     <artifactId>asciidoctor-maven-plugin</artifactId>
-					<version>3.0.0</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
-	<profiles>
-		<!-- Use this profile to build release version of the application -->
-		<profile>
-			<id>release</id>
-		</profile>
-		<!-- Use this profile to skip tests during build -->
-		<profile>
-			<id>skiptest</id>
-			<properties>
-				<maven.test.skip>true</maven.test.skip>
-			</properties>
-		</profile>
+                    <version>3.0.0</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+    <profiles>
+        <!-- Use this profile to build release version of the application -->
+        <profile>
+            <id>release</id>
+        </profile>
+        <!-- Use this profile to skip tests during build -->
+        <profile>
+            <id>skiptest</id>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
+        </profile>
 
-		<profile>
-			<!-- Profile for automated builds with Jenkins + SonarQube -->
-			<id>jacoco-report</id>
-			<build>
-				<pluginManagement>
-					<plugins>
-						<plugin>
-							<groupId>org.jacoco</groupId>
-							<artifactId>jacoco-maven-plugin</artifactId>
-							<version>0.8.12</version>
-						</plugin>
-					</plugins>
-				</pluginManagement>
-				<plugins>
-					<plugin>
-						<groupId>org.jacoco</groupId>
-						<artifactId>jacoco-maven-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>default-prepare-agent</id>
-								<goals>
-									<goal>prepare-agent</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
+        <profile>
+            <!-- Profile for automated builds with Jenkins + SonarQube -->
+            <id>jacoco-report</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.jacoco</groupId>
+                            <artifactId>jacoco-maven-plugin</artifactId>
+                            <version>0.8.12</version>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>default-prepare-agent</id>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 
-	</profiles>
-
-	
+    </profiles>
+    <repositories>
+        <repository>
+            <id>OSGeo</id>
+            <url>https://repo.osgeo.org/repository/release/</url>
+        </repository>
+        <repository>
+            <id>Geo solutions</id>
+            <url>http://maven.geo-solutions.it</url>
+        </repository>
+    </repositories>
     <scm>
         <connection>scm:git:ssh://gitlab.lightcomp.cz/zaf/zaf.git</connection>
         <developerConnection>scm:git:ssh://git@gitlab.lightcomp.cz/zaf/zaf.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
-	<distributionManagement>
-		<repository>
-			<id>LightCompReleaseRepository</id>
-			<url>http://artifactory.lightcomp.cz:8081/artifactory/distributions</url>
-		</repository>
-		<snapshotRepository>
-			<id>frnkRepo</id>
-			<url>http://artifactory.lightcomp.cz:8081/artifactory/libs-snapshot-local</url>
-		</snapshotRepository>
+    <distributionManagement>
+        <repository>
+            <id>LightCompReleaseRepository</id>
+            <url>http://artifactory.lightcomp.cz:8081/artifactory/distributions</url>
+        </repository>
+        <snapshotRepository>
+            <id>frnkRepo</id>
+            <url>http://artifactory.lightcomp.cz:8081/artifactory/libs-snapshot-local</url>
+        </snapshotRepository>
 
-	</distributionManagement>
+    </distributionManagement>
 
 
 </project>

@@ -1,0 +1,6 @@
+[[AP2023_novezmeny]]
+= Změny v pravidlech
+
+== v1, 9.10.2025
+
+* Přidána základní sada pravidel pro archivní pomůcky

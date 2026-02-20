@@ -19,7 +19,7 @@
         </agent>
     </metsHdr>
     <dmdSec ID="uuid-d309181f-4c0c-4b9f-9106-6dd0dcfbea66" GROUPID="CONTEXTUAL" CREATED="2024-10-08T10:41:45+02:00" STATUS="CURRENT">
-        <mdRef xlink:type="simple" xlink:href="metadata/descriptive/EAD-CONTEXT.xml" MDTYPE="EAD" LOCTYPE="URL" MIMETYPE="application/xml" SIZE="6481" CHECKSUM="1d6b29a9e1dfec734be61b05c3f5349e142f5ab03785fd68f3f8d45015830d78279e2caef79bc77802728b54323eba90ab271a0e7c32f2e7000f0f1a43fa82d" CHECKSUMTYPE="SHA-512" CREATED="2024-10-08T10:41:45+02:00"/>
+        <mdRef xlink:type="simple" xlink:href="metadata/descriptive/EAD-CONTEXT.xml" MDTYPE="EAD" LOCTYPE="URL" MIMETYPE="application/xml" SIZE="6485" CHECKSUM="1d6b29a9e1dfec734be61b05c3f5349e142f5ab03785fd68f3f8d45015830d78279e2caef79bc77802728b54323eba90ab271a0e7c32f2e7000f0f1a43fa82d" CHECKSUMTYPE="SHA-512" CREATED="2024-10-08T10:41:45+02:00"/>
     </dmdSec>
     <amdSec>
         <digiprovMD ID="uuid-072714bb-17a2-4aca-a83e-6c7d547f955e" GROUPID="PRESERVATION" STATUS="CURRENT">

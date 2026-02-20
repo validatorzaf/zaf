@@ -13,6 +13,7 @@ import cz.zaf.schema.validace_v1.TEntity;
 import cz.zaf.schema.validace_v1.TIdentifikator;
 import cz.zaf.schema.validace_v1.TPravidlo;
 import cz.zaf.schema.validace_v1.TTypEntity;
+import cz.zaf.schema.validation_v2.TRule;
 
 /**
  * Vysledek kontroly jednoho pravidla
@@ -143,6 +144,28 @@ public class RuleValidationError {
         return entityIds;
     }
     
+	public void writeDetail(TRule pravNode) {
+        List<EntityId> entityIds = this.getEntityIds();
+        if (CollectionUtils.isNotEmpty(entityIds)) {
+            var entityNode = XmlProtokolWriterV2.objectFactory.createTEntity();
+            var idents = entityNode.getIdentifier();
+            for (EntityId entityId : entityIds) {
+                var ident = XmlProtokolWriterV2.objectFactory.createTIdentifier();
+                ident.setSource(entityId.getId().getSource());
+                ident.setValue(entityId.getId().getIdentifier());
+                EntityType entityType = entityId.getEntityType();
+                if(entityType==null || entityType.getTypEntity()==null){
+	                continue;
+                }
+                ident.setType(entityType.getTypEntity().toString());
+                idents.add(ident);
+            }
+            if (idents.size() > 0) {
+                pravNode.setEntity(entityNode);
+            }
+        }		
+	}
+	
     public void zapisDetail(TPravidlo pravNode) {
         List<EntityId> entityIds = this.getEntityIds();
         if (CollectionUtils.isNotEmpty(entityIds)) {
@@ -169,4 +192,19 @@ public class RuleValidationError {
             }
         }
     }
+    
+    @Override
+	public String toString() {
+		return "RuleValidationError{" +
+				"id='" + id + '\'' +
+				", textPravidla='" + textPravidla + '\'' +
+				", vypisChyby='" + vypisChyby + '\'' +
+				", popisChybyObecny='" + popisChybyObecny + '\'' +
+				", mistoChyby='" + mistoChyby + '\'' +
+				", zdroj='" + zdroj + '\'' +
+				", errorCode=" + errorCode +
+				", entityIds=" + entityIds +
+				'}';
+	}
+
 }

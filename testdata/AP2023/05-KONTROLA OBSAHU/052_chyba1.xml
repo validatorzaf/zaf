@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ead:ead xmlns:ead="http://ead3.archivists.org/schema/" xmlns:cam="http://cam.tacr.cz/2019">
+	<ead:control>
+		<ead:recordid>d0f7e14f-a655-4902-a6fd-e141bbe6ca6b</ead:recordid> <!-- obs1 -->
+		<ead:otherrecordid localtype="CZ_MVCR_FINDING_AID_ID">5</ead:otherrecordid> <!-- obs2 -->
+		<ead:otherrecordid localtype="INTERNAL_REV_ID">rev1</ead:otherrecordid> <!-- obs3 -->
+		
+		<ead:filedesc encodinganalog="123"> <!-- obs4 -->
+			<ead:titlestmt>
+				<ead:titleproper>Jméno AS</ead:titleproper>
+				<ead:subtitle>Název hotové pomůcky</ead:subtitle> <!-- obs5 -->
+			</ead:titlestmt>
+			
+			<ead:publicationstmt> <!-- obs6 -->
+				<ead:date localtype="RELEASE_DATE_PLACE">Datum a místo vydání</ead:date> <!-- obs7, obs10 -->
+				<ead:date localtype="DESCRIPTION_DATE">Datum, data popisu</ead:date> <!-- obs8, obs10 -->
+				<ead:date localtype="FINDING_AID_DATE">Stav archivní pomůcky</ead:date> <!-- obs9, obs10 -->
+				<ead:p> <!-- obs11 -->
+					<ead:name localtype="FINDING_AID_APPROVED_BY"><ead:part>Jméno schvalovatele pomůcky</ead:part></ead:name>
+				</ead:p>
+				<ead:p> <!-- obs12 -->
+					<ead:name localtype="FINDING_AID_EDITOR"><ead:part>Jméno, kdo sestavil pomůcku</ead:part></ead:name>
+				</ead:p>
+				<ead:p> <!-- obs13 -->
+					<ead:name localtype="ORIGINATOR"><ead:part> <!-- obs14 -->
+						<ead:ref target="ap7523">Původce</ead:ref>
+					</ead:part></ead:name>
+				</ead:p>
+				<ead:p> <!-- obs15 -->
+					<ead:persname localtype="ARRANGER"><ead:part> <!-- obs16 -->
+						<ead:ref target="ap7523">Zpracovatel</ead:ref>
+					</ead:part></ead:persname>
+				</ead:p>
+				<ead:p> <!-- obs17 -->
+					<ead:name localtype="ARRANGER_BRIEF"><ead:part>Zpracovatel bez odkazu</ead:part></ead:name>
+				</ead:p>
+			</ead:publicationstmt>
+		</ead:filedesc>
+		
+		<ead:maintenancestatus value="derived"></ead:maintenancestatus> <!-- obs18; CHYBA V HODNOTĚ: "DERIVED"/"derived" -->
+		<ead:maintenanceagency countrycode="CZ"> <!-- obs19 -->
+			<ead:agencycode localtype="CZ_MVCR_INSTITUTION_ID">100000010</ead:agencycode> <!-- obs20; obs21 -->
+			<ead:agencyname>Národní archiv</ead:agencyname> <!-- obs22 -->
+		</ead:maintenanceagency>
+		
+		<ead:localcontrol localtype="FINDING_AID_TYPE"> <!-- obs23 -->
+			<ead:term identifier="INVENTAR">inventář</ead:term>
+		</ead:localcontrol>
+		
+		<ead:localcontrol localtype="RULES"> <!-- obs27 -->
+			<ead:term identifier="CZ_ZP2013">základní pravidla od roku 2013</ead:term>
+		</ead:localcontrol>
+		
+		<ead:localcontrol localtype="CZ_FINDING_AID_EAD_PROFILE"> <!-- obs25 -->
+			<ead:term identifier="CZ_EAD3_PROFILE_20240301">profil platný od března 2024</ead:term> <!-- obs26, obs30 -->
+		</ead:localcontrol>
+		
+		<ead:maintenancehistory>
+			<ead:maintenanceevent> <!-- obs31 -->
+				<ead:eventtype value="created"></ead:eventtype>
+				<ead:eventdatetime standarddatetime="2024-01-01T01:23:45.678+01:00">2024-01-01T01:23:45.678+01:00</ead:eventdatetime> <!-- obs32 -->
+				<ead:agenttype value="machine"></ead:agenttype> <!-- obs33 -->
+				<ead:agent>Agent 1.0</ead:agent> <!-- obs34 -->
+			</ead:maintenanceevent>
+		</ead:maintenancehistory>
+		
+		<ead:sources>
+			<ead:source id="ap7523"> <!-- obs106 -->
+				<ead:objectxmlwrap>
+					<cam:ent eid="100000" euid="fb15d8ee-724e-4bd4-b08e-a0d7e4038ac8" ens="ERS_APPROVED" ent="PERSON_INDIVIDUAL">
+					  <cam:revi>
+					    <cam:rid>55c98631-03ea-4981-9abf-e3f8eb451d25</cam:rid>
+					    <cam:usr>Irena</cam:usr>
+					    <cam:modt>2023-08-30T08:49:09.14</cam:modt>
+					  </cam:revi>
+                      <cam:prts>
+                        <cam:p pid="5147942d-00cd-46d4-9a57-909f7b253f4c" t="PT_NAME">
+                          <cam:itms>
+                            <cam:si t="NM_MAIN" uuid="3881889c-49b0-4c79-8264-e92ca3700650">z Eichendorffu</cam:si>
+                          </cam:itms>
+                        </cam:p>
+                      </cam:prts>
+                    </cam:ent> <!-- cam1 -->
+				</ead:objectxmlwrap>
+			</ead:source>
+		</ead:sources>
+	</ead:control>
+	<ead:archdesc id="uuid-f47ac10b-58cc-4372-a567-0e02b2c3d479" level="fonds" base="http://archiv.cz/dids/80bb604a-052e-4e49-b86e-e4a91b95bf59"> <!-- obs35, obs37 -->
+		<ead:did>
+			<ead:physdescstructured physdescstructuredtype="spaceoccupied" coverage="whole"> <!-- obs47 -->
+				<ead:quantity>1</ead:quantity>
+				<ead:unittype>bm</ead:unittype> <!-- obs48, obs81 -->
+			</ead:physdescstructured>
+			
+			<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part"> <!-- obs40 -->
+				<ead:quantity>1</ead:quantity>
+				<ead:unittype>lio</ead:unittype>
+			</ead:physdescstructured>
+		</ead:did>
+		
+		<ead:dsc>
+			<ead:c id="uuid-c1d5a9f4-3b2e-4c7d-8e91-0f2a6b3d5c4e" level="series" base="http://archiv.cz/dids/69106f67-3592-4713-926e-4dab4159ddde"> <!-- obs36, obs37 -->
+				<ead:did>
+					<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole">
+						<ead:quantity>1</ead:quantity>
+						<ead:unittype>lio</ead:unittype> <!-- obs39 -->
+					</ead:physdescstructured>
+				</ead:did>
+				
+			<ead:c id="uuid-9a1c3b7e-2f44-4d3e-8c5a-1b2f4e7d9a6c" level="item" base="http://archiv.cz/dids/f73a2216-d32c-442b-a206-40c4aac70a49"> <!-- obs37 -->
+					<ead:did>
+						<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole"> <!-- obs43 -->
+							<ead:quantity>1</ead:quantity>
+							<ead:unittype>lio</ead:unittype> <!-- obs39 -->
+							
+							<ead:physfacet localtype="IMPRINT_IMAGE">Text</ead:physfacet> <!-- obs74 -->
+							
+							<ead:dimensions>
+								<ead:dimensions unit="mm" localtype="WIDTH">123.45</ead:dimensions> <!-- obs75, obs76 -->
+							</ead:dimensions>
+						</ead:physdescstructured>
+
+						<ead:unittitle audience="internal">Něco skrytého</ead:unittitle> <!-- obs41, obs42 -->
+						<ead:container>Uložení</ead:container> <!-- obs49 -->
+						<ead:unitid localtype="INV_CISLO" label="inventární číslo">CZ620100//153//1/4//1</ead:unitid> <!-- obs50, obs51 -->
+						<ead:unittitle>Text</ead:unittitle> <!-- obs53 -->
+						
+						<ead:unitdatestructured>
+							<ead:daterange localtype="CONTENT" altrender="C"> <!-- obs55 -->
+								<ead:fromdate standarddate="2001-10-01T00:00:00">1. října 2001</ead:fromdate> <!-- obs57 -->
+								<ead:todate standarddate="2001-10-02T00:00:00">2. října 2001</ead:todate> <!-- obs58, obs59 -->
+							</ead:daterange>
+						</ead:unitdatestructured>
+						
+						<ead:didnote localtype="INTERNAL" audience="internal">Text</ead:didnote> <!-- obs70 -->
+						
+						<ead:physdesc>Text</ead:physdesc> <!-- obs73 -->
+						
+						<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="weight" coverage="whole"> <!-- obs77 -->
+							<ead:quantity>1</ead:quantity>
+							<ead:unittype>g</ead:unittype> <!-- obs78 -->
+						</ead:physdescstructured>
+						
+						<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="quantity" coverage="whole"> <!-- obs79 -->
+							<ead:quantity>1</ead:quantity>
+							<ead:unittype>byte</ead:unittype> <!-- obs80 -->
+						</ead:physdescstructured>
+						
+						<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="duration" coverage="whole"> <!-- obs82 -->
+							<ead:quantity>1</ead:quantity>	
+							<ead:unittype>s</ead:unittype> <!-- obs83 -->
+						</ead:physdescstructured>
+						
+						<ead:materialspec localtype="SCALE">1:200</ead:materialspec> <!-- obs84 -->
+						<ead:materialspec localtype="ORIENTATION">na sever</ead:materialspec> <!-- obs89 -->
+						<ead:materialspec localtype="VOLUME">Ročník XVI, číslo 2</ead:materialspec> <!-- obs90 -->
+						
+						<ead:langmaterial>
+							<ead:language langcode="esx">blíže neurčený eskymácko-aleutský jazyk</ead:language> <!-- obs91 -->
+						</ead:langmaterial>
+						
+						<ead:dao daotype="derived" identifier="id123"> <!-- obs95, obs96 -->
+							<ead:descriptivenote><ead:p>Text</ead:p></ead:descriptivenote> <!-- obs97 -->
+						</ead:dao>
+						
+						<ead:origination altrender="inherited"> <!-- obs98 -->
+							<ead:persname localtype="ORIGINATOR"> <!-- obs99 -->
+								<ead:part>
+									<ead:ref target="ap7523">Odkaz na původce</ead:ref> <!-- obs100 -->
+								</ead:part>
+							</ead:persname> 
+						</ead:origination>
+					</ead:did>
+					
+					<ead:scopecontent><ead:p>Něco</ead:p></ead:scopecontent> <!-- obs62 -->
+					<ead:scopecontent lang="hun"><ead:p>Něco maďarsky</ead:p></ead:scopecontent> <!-- obs43 -->
+					<ead:processinfo localtype="ARCHIVIST_NOTE"><ead:p>Text</ead:p></ead:processinfo> <!-- obs71, obs72 -->
+					
+					<ead:bibliography> <!-- obs93 -->
+						<ead:p>Text</ead:p>
+					</ead:bibliography>
+					
+					<ead:relations>
+						<ead:relation relationtype="otherrelationtype" otherrelationtype="COORDINATES"> <!-- obs85 -->
+							<ead:geogname> <!-- obs86 -->
+								<ead:part>5.2.6 Souřadnice</ead:part> <!-- obs87 -->
+								<ead:geographiccoordinates coordinatesystem="WGS84">AQEAAABwf4nTpNssQMV3vY/+B0lA</ead:geographiccoordinates> <!-- obs88 -->
+							</ead:geogname>
+						</ead:relation>
+					
+						<ead:relation relationtype="cpfrelation" linkrole="AUTHOR" linktitle="autor" altrender="inherited"> <!-- obs101, obs102, obs103 -->
+							<ead:relationentry>Text</ead:relationentry> <!-- obs104 -->
+							<ead:descriptivenote>
+								<ead:p> <!-- obs105-->
+									<ead:ptr target="ap7523"></ead:ptr>
+								</ead:p>
+							</ead:descriptivenote>
+						</ead:relation>
+					</ead:relations>
+				</ead:c>	
+			</ead:c>
+		</ead:dsc>
+	</ead:archdesc>
+</ead:ead>

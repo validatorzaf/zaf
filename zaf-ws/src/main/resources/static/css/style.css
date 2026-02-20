@@ -1,0 +1,168 @@
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    margin: 0.625rem;
+}
+
+h1 {
+    font-family: Roboto;
+    font-weight: 100;
+    margin-bottom: 4rem;
+}
+
+h2 {
+    font-family: Roboto;
+    font-weight: 100;
+}
+
+h3 {
+    font-family: Roboto;
+    font-weight: 100;
+}
+
+p {
+    font-size: 0.9rem;
+}
+
+a {
+    color: #000000;
+}
+
+table {
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.9rem;
+}
+
+form {
+    font-size: 0.9rem;
+    margin-top: 2rem;
+}
+
+input {
+    font-size: 0.9rem;
+}
+
+button {
+    height: 2rem;
+    font-size: 0.9rem;
+}
+
+strong.kontrola {
+    display: block;
+    font-size: 1rem;
+    margin: 0.3125rem 0 1.25rem 0;
+}
+
+#footer {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    font-size: 0.9rem;
+    color: #808080;
+    display: flex;
+    justify-content: space-between;    
+}
+
+#footer a {
+    color: #808080;
+}
+
+#footer a:hover {
+    color: #000000;
+}
+
+.container {
+    max-width: 60rem;
+    margin: 2rem auto;
+    padding-left: 2rem;
+}
+
+.w10rem {
+    width: 10rem;
+}
+
+.mt4rem {
+    margin-top: 4rem;
+}
+
+.mt2rem {
+    margin-top: 2rem;
+}
+
+.table {
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.9rem;
+}
+
+.row {
+    display: table-row;
+    border-bottom: solid transparent 1.875rem;
+}
+
+.cell {
+    display: table-cell;
+}
+
+.package-form td {
+    padding-top: 0.3rem;
+}
+
+.package-form select {
+    height: 1.5rem;
+}
+
+.img-cell {
+    width: 3.5rem;
+}
+
+.img-error {
+    margin: 0.3125rem 0.625rem 0 0.625rem;
+}
+
+.valign-top {
+    vertical-align: top;
+}
+
+.status {
+    color: #ffffff;
+    text-align: center;
+    font-family: Roboto;
+    font-weight: 100;
+    font-size: 1.35rem;
+    margin: 1.25rem 0 0 0;
+    padding: 0.3125rem;
+}
+
+.ok {
+    background-color: #55B05A;
+}
+
+.chyba {
+    background-color: #E8360B;
+}
+
+.pravidlo {
+    font-size: 0.9rem;
+    margin-top: 0.625rem;
+}
+
+@media screen and (min-width: 501px) {
+    body {
+        margin: 1.25rem;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    body {
+        margin: 2.5rem;
+    }
+}
+
+@media screen and (min-width: 1281px) {
+    #page {
+        width: 75rem;
+        margin: auto;
+    }
+}

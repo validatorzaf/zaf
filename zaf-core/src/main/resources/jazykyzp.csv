@@ -1,0 +1,167 @@
+Jméno,Kód,Description,Kategorie
+(novo)hebrejština,LNG_heb,AFROASIJSKÉ/semitské/(novo)hebrejština,AFROASIJSKÉ/semitské
+akkadština,LNG_akk,AFROASIJSKÉ/semitské/akkadština,AFROASIJSKÉ/semitské
+amharština,LNG_amh,AFROASIJSKÉ/semitské/amharština,AFROASIJSKÉ/semitské
+arabština,LNG_ara,AFROASIJSKÉ/semitské/arabština,AFROASIJSKÉ/semitské
+aramejština,LNG_arc,AFROASIJSKÉ/semitské/aramejština,AFROASIJSKÉ/semitské
+assyrština,LNG_0as,AFROASIJSKÉ/semitské/assyrština,AFROASIJSKÉ/semitské
+babylonština,LNG_0ba,AFROASIJSKÉ/semitské/babylonština,AFROASIJSKÉ/semitské
+blíže neurčený semitský jazyk,LNG_sem,AFROASIJSKÉ/semitské/blíže neurčený semitský jazyk,AFROASIJSKÉ/semitské
+hauština,LNG_hau,AFROASIJSKÉ/semitské/hauština,AFROASIJSKÉ/semitské
+chetitština,LNG_hit,AFROASIJSKÉ/semitské/chetitština,AFROASIJSKÉ/semitské
+maltština,LNG_mlt,AFROASIJSKÉ/semitské/maltština,AFROASIJSKÉ/semitské
+stará hebrejština,LNG_hbo,AFROASIJSKÉ/semitské/stará hebrejština,AFROASIJSKÉ/semitské
+sumerština,LNG_sux,AFROASIJSKÉ/semitské/sumerština,AFROASIJSKÉ/semitské
+blíže neurčený afroasijský jazyk,LNG_afa,AFROASIJSKÉ/blíže neurčený afroasijský jazyk,AFROASIJSKÉ
+egyptština,LNG_egy,AFROASIJSKÉ/egyptština,AFROASIJSKÉ
+koptština,LNG_cop,AFROASIJSKÉ/koptština,AFROASIJSKÉ
+blíže neurčený mongolský jazyk,LNG_xgn,ALTAJSKÉ/mongolské/blíže neurčený mongolský jazyk,ALTAJSKÉ/mongolské
+mongolština,LNG_mon,ALTAJSKÉ/mongolské/mongolština,ALTAJSKÉ/mongolské
+azerbajdžánština,LNG_aze,ALTAJSKÉ/turkické/azerbajdžánština,ALTAJSKÉ/turkické
+baškirština,LNG_bak,ALTAJSKÉ/turkické/baškirština,ALTAJSKÉ/turkické
+blíže neurčený turkický jazyk,LNG_trk,ALTAJSKÉ/turkické/blíže neurčený turkický jazyk,ALTAJSKÉ/turkické
+gagauzština,LNG_gag,ALTAJSKÉ/turkické/gagauzština,ALTAJSKÉ/turkické
+hazarština,LNG_zkz,ALTAJSKÉ/turkické/hazarština,ALTAJSKÉ/turkické
+krymská tatarština,LNG_crh,ALTAJSKÉ/turkické/krymská tatarština,ALTAJSKÉ/turkické
+kyrgyzština,LNG_kir,ALTAJSKÉ/turkické/kyrgyzština,ALTAJSKÉ/turkické
+tatarština,LNG_tat,ALTAJSKÉ/turkické/tatarština,ALTAJSKÉ/turkické
+turečtina,LNG_tur,ALTAJSKÉ/turkické/turečtina,ALTAJSKÉ/turkické
+turkménština,LNG_tuk,ALTAJSKÉ/turkické/turkménština,ALTAJSKÉ/turkické
+ujgurština,LNG_uig,ALTAJSKÉ/turkické/ujgurština,ALTAJSKÉ/turkické
+uzbečtina,LNG_uzb,ALTAJSKÉ/turkické/uzbečtina,ALTAJSKÉ/turkické
+kazaština,LNG_kaz,ALTAJSKÉ/turkické/kazaština,ALTAJSKÉ/turkické
+blíže neurčený altajský jazyk,LNG_tut,ALTAJSKÉ/blíže neurčený altajský jazyk,ALTAJSKÉ
+japonština,LNG_jpn,ALTAJSKÉ/japonština,ALTAJSKÉ
+korejština,LNG_kor,ALTAJSKÉ/korejština,ALTAJSKÉ
+blíže neurčený mundský jazyk,LNG_mun,AUSTROASIJSKÉ/mundské/blíže neurčený mundský jazyk,AUSTROASIJSKÉ/mundské
+santalština,LNG_sat,AUSTROASIJSKÉ/mundské/santalština,AUSTROASIJSKÉ/mundské
+blíže neurčený austroasijský jazyk,LNG_aav,AUSTROASIJSKÉ/blíže neurčený austroasijský jazyk,AUSTROASIJSKÉ
+khmérština,LNG_khm,AUSTROASIJSKÉ/khmérština,AUSTROASIJSKÉ
+vietnamština,LNG_vie,AUSTROASIJSKÉ/vietnamština,AUSTROASIJSKÉ
+blíže neurčený austronéský jazyk,LNG_map,AUSTRONÉSKÉ/blíže neurčený austronéský jazyk,AUSTRONÉSKÉ
+indonéština,LNG_ind,AUSTRONÉSKÉ/indonéština,AUSTRONÉSKÉ
+malajština,LNG_may,AUSTRONÉSKÉ/malajština,AUSTRONÉSKÉ
+blíže neurčený drávidský jazyk,LNG_dra,DRÁVIDSKÉ/blíže neurčený drávidský jazyk,DRÁVIDSKÉ
+kannadština (též kannarština),LNG_kan,DRÁVIDSKÉ/kannadština (též kannarština),DRÁVIDSKÉ
+malajalámština,LNG_mal,DRÁVIDSKÉ/malajalámština,DRÁVIDSKÉ
+tamilština,LNG_tam,DRÁVIDSKÉ/tamilština,DRÁVIDSKÉ
+telugština,LNG_tel,DRÁVIDSKÉ/telugština,DRÁVIDSKÉ
+blíže neurčený eskymácko-aleutský jazyk,LNG_esx,ESKYMÁCKO-ALEUTSKÉ/blíže neurčený eskymácko-aleutský jazyk,ESKYMÁCKO-ALEUTSKÉ
+grónština,LNG_kal,ESKYMÁCKO-ALEUTSKÉ/grónština,ESKYMÁCKO-ALEUTSKÉ
+blíže neurčený indiánský jazyk,LNG_0ni,INDIÁNSKÉ/blíže neurčený indiánský jazyk,INDIÁNSKÉ
+blíže neurčený baltský jazyk,LNG_bat,INDOEVROPSKÉ/baltské/blíže neurčený baltský jazyk,INDOEVROPSKÉ/baltské
+litevština,LNG_lit,INDOEVROPSKÉ/baltské/litevština,INDOEVROPSKÉ/baltské
+lotyština,LNG_lav,INDOEVROPSKÉ/baltské/lotyština,INDOEVROPSKÉ/baltské
+afrikánština,LNG_afr,INDOEVROPSKÉ/germánské/afrikánština,INDOEVROPSKÉ/germánské
+alsaština,LNG_gsw,INDOEVROPSKÉ/germánské/alsaština,INDOEVROPSKÉ/germánské
+angličtina,LNG_eng,INDOEVROPSKÉ/germánské/angličtina,INDOEVROPSKÉ/germánské
+blíže neurčený germánský jazyk,LNG_gem,INDOEVROPSKÉ/germánské/blíže neurčený germánský jazyk,INDOEVROPSKÉ/germánské
+dánština,LNG_dan,INDOEVROPSKÉ/germánské/dánština,INDOEVROPSKÉ/germánské
+dolnoněmčina,LNG_nds,INDOEVROPSKÉ/germánské/dolnoněmčina,INDOEVROPSKÉ/germánské
+faerština,LNG_fao,INDOEVROPSKÉ/germánské/faerština,INDOEVROPSKÉ/germánské
+fríština,LNG_fry,INDOEVROPSKÉ/germánské/fríština,INDOEVROPSKÉ/germánské
+holandština (nizozemština),LNG_dut,INDOEVROPSKÉ/germánské/holandština (nizozemština),INDOEVROPSKÉ/germánské
+islandština,LNG_ice,INDOEVROPSKÉ/germánské/islandština,INDOEVROPSKÉ/germánské
+jidiš,LNG_yid,INDOEVROPSKÉ/germánské/jidiš,INDOEVROPSKÉ/germánské
+judendeutsch,LNG_0jd,INDOEVROPSKÉ/germánské/judendeutsch,INDOEVROPSKÉ/germánské
+lucemburština,LNG_ltz,INDOEVROPSKÉ/germánské/lucemburština,INDOEVROPSKÉ/germánské
+němčina,LNG_ger,INDOEVROPSKÉ/germánské/němčina,INDOEVROPSKÉ/germánské
+norština,LNG_nor,INDOEVROPSKÉ/germánské/norština,INDOEVROPSKÉ/germánské
+švédština,LNG_swe,INDOEVROPSKÉ/germánské/švédština,INDOEVROPSKÉ/germánské
+asámština,LNG_asm,INDOEVROPSKÉ/indoárijské/asámština,INDOEVROPSKÉ/indoárijské
+bengálština,LNG_ben,INDOEVROPSKÉ/indoárijské/bengálština,INDOEVROPSKÉ/indoárijské
+Bihárštiina (maithilština),LNG_bih,INDOEVROPSKÉ/indoárijské/Bihárštiina (maithilština),INDOEVROPSKÉ/indoárijské
+blíže neurčený indoárijský jazyk,LNG_inc,INDOEVROPSKÉ/indoárijské/blíže neurčený indoárijský jazyk,INDOEVROPSKÉ/indoárijské
+dógrí,LNG_doi,INDOEVROPSKÉ/indoárijské/dógrí,INDOEVROPSKÉ/indoárijské
+gudžarátština,LNG_guj,INDOEVROPSKÉ/indoárijské/gudžarátština,INDOEVROPSKÉ/indoárijské
+hindština,LNG_hin,INDOEVROPSKÉ/indoárijské/hindština,INDOEVROPSKÉ/indoárijské
+kašmírština,LNG_kas,INDOEVROPSKÉ/indoárijské/kašmírština,INDOEVROPSKÉ/indoárijské
+maráthština,LNG_mar,INDOEVROPSKÉ/indoárijské/maráthština,INDOEVROPSKÉ/indoárijské
+pahárské jazyky (nepálština),LNG_nep,INDOEVROPSKÉ/indoárijské/pahárské jazyky (nepálština),INDOEVROPSKÉ/indoárijské
+pandžábština,LNG_pan,INDOEVROPSKÉ/indoárijské/pandžábština,INDOEVROPSKÉ/indoárijské
+romština,LNG_rom,INDOEVROPSKÉ/indoárijské/romština,INDOEVROPSKÉ/indoárijské
+sanskrt,LNG_san,INDOEVROPSKÉ/indoárijské/sanskrt,INDOEVROPSKÉ/indoárijské
+sindština,LNG_snd,INDOEVROPSKÉ/indoárijské/sindština,INDOEVROPSKÉ/indoárijské
+sinhálština,LNG_sin,INDOEVROPSKÉ/indoárijské/sinhálština,INDOEVROPSKÉ/indoárijské
+urdština,LNG_urd,INDOEVROPSKÉ/indoárijské/urdština,INDOEVROPSKÉ/indoárijské
+urijština,LNG_ori,INDOEVROPSKÉ/indoárijské/urijština,INDOEVROPSKÉ/indoárijské
+(novo)perština,LNG_per,INDOEVROPSKÉ/indoíránské/(novo)perština,INDOEVROPSKÉ/indoíránské
+blíže neurčený indoíránský jazyk,LNG_iir,INDOEVROPSKÉ/indoíránské/blíže neurčený indoíránský jazyk,INDOEVROPSKÉ/indoíránské
+konkánština,LNG_kok,INDOEVROPSKÉ/indoíránské/konkánština,INDOEVROPSKÉ/indoíránské
+kurdština,LNG_kur,INDOEVROPSKÉ/indoíránské/kurdština,INDOEVROPSKÉ/indoíránské
+paštština,LNG_pus,INDOEVROPSKÉ/indoíránské/paštština,INDOEVROPSKÉ/indoíránské
+stará perština,LNG_peo,INDOEVROPSKÉ/indoíránské/stará perština,INDOEVROPSKÉ/indoíránské
+střední perština,LNG_pal,INDOEVROPSKÉ/indoíránské/střední perština,INDOEVROPSKÉ/indoíránské
+tádžičtina,LNG_tgk,INDOEVROPSKÉ/indoíránské/tádžičtina,INDOEVROPSKÉ/indoíránské
+blíže neurčený keltský jazyk,LNG_cel,INDOEVROPSKÉ/keltské/blíže neurčený keltský jazyk,INDOEVROPSKÉ/keltské
+bretonština,LNG_bre,INDOEVROPSKÉ/keltské/bretonština,INDOEVROPSKÉ/keltské
+irština,LNG_gle,INDOEVROPSKÉ/keltské/irština,INDOEVROPSKÉ/keltské
+skotská gaelština,LNG_gla,INDOEVROPSKÉ/keltské/skotská gaelština,INDOEVROPSKÉ/keltské
+velština,LNG_wel,INDOEVROPSKÉ/keltské/velština,INDOEVROPSKÉ/keltské
+albánština,LNG_alb,INDOEVROPSKÉ/ostatní/albánština,INDOEVROPSKÉ/ostatní
+arménština,LNG_arm,INDOEVROPSKÉ/ostatní/arménština,INDOEVROPSKÉ/ostatní
+řečtina,LNG_gre,INDOEVROPSKÉ/ostatní/řečtina,INDOEVROPSKÉ/ostatní
+blíže neurčený románský jazyk,LNG_roa,INDOEVROPSKÉ/románské/blíže neurčený románský jazyk,INDOEVROPSKÉ/románské
+francouzština,LNG_fre,INDOEVROPSKÉ/románské/francouzština,INDOEVROPSKÉ/románské
+galicijština,LNG_glg,INDOEVROPSKÉ/románské/galicijština,INDOEVROPSKÉ/románské
+italština,LNG_ita,INDOEVROPSKÉ/románské/italština,INDOEVROPSKÉ/románské
+katalánština,LNG_cat,INDOEVROPSKÉ/románské/katalánština,INDOEVROPSKÉ/románské
+korsičtina,LNG_cos,INDOEVROPSKÉ/románské/korsičtina,INDOEVROPSKÉ/románské
+latina,LNG_lat,INDOEVROPSKÉ/románské/latina,INDOEVROPSKÉ/románské
+moldavština,LNG_mol,INDOEVROPSKÉ/románské/moldavština,INDOEVROPSKÉ/románské
+okcitánština,LNG_oci,INDOEVROPSKÉ/románské/okcitánština,INDOEVROPSKÉ/románské
+portugalština,LNG_por,INDOEVROPSKÉ/románské/portugalština,INDOEVROPSKÉ/románské
+rétorománština,LNG_roh,INDOEVROPSKÉ/románské/rétorománština,INDOEVROPSKÉ/románské
+rumunština,LNG_rum,INDOEVROPSKÉ/románské/rumunština,INDOEVROPSKÉ/románské
+španělština,LNG_spa,INDOEVROPSKÉ/románské/španělština,INDOEVROPSKÉ/románské
+běloruština,LNG_bel,INDOEVROPSKÉ/slovanské/běloruština,INDOEVROPSKÉ/slovanské
+blíže neurčený slovanský jazyk,LNG_sla,INDOEVROPSKÉ/slovanské/blíže neurčený slovanský jazyk,INDOEVROPSKÉ/slovanské
+bosenština,LNG_bos,INDOEVROPSKÉ/slovanské/bosenština,INDOEVROPSKÉ/slovanské
+bulharština,LNG_bul,INDOEVROPSKÉ/slovanské/bulharština,INDOEVROPSKÉ/slovanské
+čeština,LNG_cze,INDOEVROPSKÉ/slovanské/čeština,INDOEVROPSKÉ/slovanské
+chorvatština,LNG_hrv,INDOEVROPSKÉ/slovanské/chorvatština,INDOEVROPSKÉ/slovanské
+kašubština,LNG_csb,INDOEVROPSKÉ/slovanské/kašubština,INDOEVROPSKÉ/slovanské
+lužická srbština dolní (dolnolužičtina),LNG_dsb,INDOEVROPSKÉ/slovanské/lužická srbština dolní (dolnolužičtina),INDOEVROPSKÉ/slovanské
+lužická srbština horní (hornolužičtina),LNG_hsb,INDOEVROPSKÉ/slovanské/lužická srbština horní (hornolužičtina),INDOEVROPSKÉ/slovanské
+makedonština,LNG_mac,INDOEVROPSKÉ/slovanské/makedonština,INDOEVROPSKÉ/slovanské
+polština,LNG_pol,INDOEVROPSKÉ/slovanské/polština,INDOEVROPSKÉ/slovanské
+rusínština,LNG_0ru,INDOEVROPSKÉ/slovanské/rusínština,INDOEVROPSKÉ/slovanské
+ruština,LNG_rus,INDOEVROPSKÉ/slovanské/ruština,INDOEVROPSKÉ/slovanské
+slovenština,LNG_slo,INDOEVROPSKÉ/slovanské/slovenština,INDOEVROPSKÉ/slovanské
+slovinština,LNG_slv,INDOEVROPSKÉ/slovanské/slovinština,INDOEVROPSKÉ/slovanské
+srbochorvatština,LNG_0sc,INDOEVROPSKÉ/slovanské/srbochorvatština,INDOEVROPSKÉ/slovanské
+srbština,LNG_srp,INDOEVROPSKÉ/slovanské/srbština,INDOEVROPSKÉ/slovanské
+"staroslověnština, církevní slovanština",LNG_chu,"INDOEVROPSKÉ/slovanské/staroslověnština, církevní slovanština",INDOEVROPSKÉ/slovanské
+ukrajinština,LNG_ukr,INDOEVROPSKÉ/slovanské/ukrajinština,INDOEVROPSKÉ/slovanské
+blíže neurčený indoevropský jazyk,LNG_ine,INDOEVROPSKÉ/blíže neurčený indoevropský jazyk,INDOEVROPSKÉ
+baskičtina,LNG_baq,IZOLOVANÉ/baskičtina,IZOLOVANÉ
+blíže neurčený izolovaný jazyk,LNG_0nz,IZOLOVANÉ/blíže neurčený izolovaný jazyk,IZOLOVANÉ
+blíže neurčený kartvelský jazyk,LNG_ccs,KARTVELSKÉ/blíže neurčený kartvelský jazyk,KARTVELSKÉ
+gruzínština,LNG_geo,KARTVELSKÉ/gruzínština,KARTVELSKÉ
+blíže neurčený kreolský jazyk,LNG_crs,KREOLSKÉ/blíže neurčený kreolský jazyk,KREOLSKÉ
+blíže neurčený nigerokonžský jazyk,LNG_nic,NIGEROKONŽSKÉ/blíže neurčený nigerokonžský jazyk,NIGEROKONŽSKÉ
+svahilština,LNG_swa,NIGEROKONŽSKÉ/svahilština,NIGEROKONŽSKÉ
+abcházština,LNG_abk,SEVEROKAVKAZSKÉ/abcházština,SEVEROKAVKAZSKÉ
+blíže neurčený severokavkazský jazyk,LNG_ccn,SEVEROKAVKAZSKÉ/blíže neurčený severokavkazský jazyk,SEVEROKAVKAZSKÉ
+blíže neurčený tajsko-kadajský jazyk,LNG_tai,TAJSKO-KADAJSKÉ/blíže neurčený tajsko-kadajský jazyk,TAJSKO-KADAJSKÉ
+laoština,LNG_lao,TAJSKO-KADAJSKÉ/laoština,TAJSKO-KADAJSKÉ
+thajština,LNG_tha,TAJSKO-KADAJSKÉ/thajština,TAJSKO-KADAJSKÉ
+barmština,LNG_bur,TIBETSKOČÍNSKÉ/barmština,TIBETSKOČÍNSKÉ
+bhútánština,LNG_dzo,TIBETSKOČÍNSKÉ/bhútánština,TIBETSKOČÍNSKÉ
+blíže neurčený tibetskočínský jazyk,LNG_sit,TIBETSKOČÍNSKÉ/blíže neurčený tibetskočínský jazyk,TIBETSKOČÍNSKÉ
+bodo,LNG_brx,TIBETSKOČÍNSKÉ/bodo,TIBETSKOČÍNSKÉ
+čínština,LNG_chi,TIBETSKOČÍNSKÉ/čínština,TIBETSKOČÍNSKÉ
+manípurština,LNG_mni,TIBETSKOČÍNSKÉ/manípurština,TIBETSKOČÍNSKÉ
+tibetština,LNG_tib,TIBETSKOČÍNSKÉ/tibetština,TIBETSKOČÍNSKÉ
+blíže neurčený umělý jazyk,LNG_0uj,UMĚLÉ/blíže neurčený umělý jazyk,UMĚLÉ
+esperanto,LNG_epo,UMĚLÉ/esperanto,UMĚLÉ
+ido,LNG_ido,UMĚLÉ/ido,UMĚLÉ
+interlingua,LNG_ina,UMĚLÉ/interlingua,UMĚLÉ
+interlingue,LNG_ile,UMĚLÉ/interlingue,UMĚLÉ
+slovio,LNG_0sl,UMĚLÉ/slovio,UMĚLÉ
+volapük,LNG_vol,UMĚLÉ/volapük,UMĚLÉ
+blíže neurčený uralský jazyk,LNG_urj,URALSKÉ/blíže neurčený uralský jazyk,URALSKÉ
+estonština,LNG_est,URALSKÉ/estonština,URALSKÉ
+finština,LNG_fin,URALSKÉ/finština,URALSKÉ
+livština,LNG_liv,URALSKÉ/livština,URALSKÉ
+maďarština,LNG_hun,URALSKÉ/maďarština,URALSKÉ

@@ -16,8 +16,8 @@ import cz.zaf.schema.ead3.Titlestmt;
 public class Rule04a extends EadRule {
 
 	static final public String CODE = "obs4a";
-	static final public String RULE_TEXT = "Element <ead:titlestmt> obsahuje právě jeden element <ead:titleproper>. Ten obsahuje prostou textovou hodnotu.";
-	static final public String RULE_ERROR = "Element <ead:titlestmt> neobsahuje právě jeden element <ead:titleproper>, případně element <ead:titleproper> neobsahuje prostou textovou hodnotu.";
+	static final public String RULE_TEXT = "Element <titlestmt> obsahuje právě jeden element <titleproper>. Ten obsahuje prostou textovou hodnotu.";
+	static final public String RULE_ERROR = "Element <titlestmt> neobsahuje právě jeden element <titleproper>, případně element <titleproper> neobsahuje prostou textovou hodnotu.";
 	static final public String RULE_SOURCE = "Část 2.3 profilu EAD3 MV ČR"; 
 	
 	public Rule04a() {

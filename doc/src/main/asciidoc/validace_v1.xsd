@@ -33,46 +33,36 @@
                     <xs:documentation>Verze aplikace, která provádí validaci.</xs:documentation>
                 </xs:annotation>
             </xs:attribute>
-            <xs:attribute name="profilPravidel" type="validace_zaf:tProfilPravidel" use="required" />
+            <xs:attribute name="typValidace" type="validace_zaf:tTypValidace" use="required" />
             <xs:attribute name="verzePravidel" type="xs:positiveInteger" use="required">
                 <xs:annotation>
                     <xs:documentation>Verze pravidel, podle kterých se provádí validace.</xs:documentation>
                 </xs:annotation>
             </xs:attribute>
-            <xs:attribute name="druhValidace" type="validace_zaf:tDruhValidace" use="required" />
+            <xs:attribute name="profilValidace" type="validace_zaf:tProfilValidace" use="required" />
         </xs:complexType>
     </xs:element>
     <!-- konec definice kořenových elementů -->
     
     <!-- definice jednoduchých typů -->
-    <xs:simpleType name="tDruhValidace">
+    <xs:simpleType name="tProfilValidace">
         <xs:annotation>
-            <xs:documentation>Prvek pro zaznamenání účelu validace datových balíčků v rámci profilu. Podle tohoto účelu je zvolena příslušná kontrola s určitými pravidly.</xs:documentation>
+            <xs:documentation>Prvek pro zaznamenání účelu validace datových balíčků v rámci typu validace. Podle tohoto účelu je zvolena příslušná kontrola s určitými pravidly.</xs:documentation>
         </xs:annotation>
-        <xs:union memberTypes="validace_zaf:tDruhValidaceCiselnik xs:string" />
+        <xs:union memberTypes="validace_zaf:tProfilValidaceCiselnik xs:string" />
     </xs:simpleType>
     
-    <xs:simpleType name="tDruhValidaceCiselnik">
+    <xs:simpleType name="tProfilValidaceCiselnik">
         <xs:restriction base="xs:string">
-            <xs:enumeration value="skartační řízení (jen metadata)" />
-            <xs:enumeration value="skartační řízení (s komponentami)" />
-            <xs:enumeration value="přejímka" />
-        </xs:restriction>
-    </xs:simpleType>
-       
-    <xs:simpleType name="tProfilPravidel">
-        <xs:annotation>
-            <xs:documentation>Název pravidel určených pro konkrétní typ datového balíčku, podle kterých se provádí validace.</xs:documentation>
-        </xs:annotation>
-        <xs:union memberTypes="validace_zaf:tProfilPravidelCiselnik xs:string" />
-    </xs:simpleType>
-    
-    <xs:simpleType name="tProfilPravidelCiselnik">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="NSESSS2017" />
-            <xs:enumeration value="NSESSS2023" />
-            <xs:enumeration value="AP2023" />
-            <xs:enumeration value="DAAIP2024" />
+            <xs:enumeration value="SIP_METADATA" />
+            <xs:enumeration value="SIP_PREVIEW" />
+            <xs:enumeration value="SIP" />
+            <xs:enumeration value="AD" />
+            <xs:enumeration value="FA" />
+            <xs:enumeration value="AIP" />
+            <xs:enumeration value="DIP_METADATA" />
+            <xs:enumeration value="DIP_CONTENT" />
+            <xs:enumeration value="SIP_CHANGE" />
         </xs:restriction>
     </xs:simpleType>
     
@@ -92,6 +82,23 @@
             <xs:enumeration value="Spis" />
             <xs:enumeration value="Spisový plán" />
             <xs:enumeration value="Věcná skupina" />
+        </xs:restriction>
+    </xs:simpleType>
+    
+       
+    <xs:simpleType name="tTypValidace">
+        <xs:annotation>
+            <xs:documentation>Prvek pro zaznamenání validace pro konkrétní typ datového balíčku.</xs:documentation>
+        </xs:annotation>
+        <xs:union memberTypes="validace_zaf:tTypValidaceCiselnik xs:string" />
+    </xs:simpleType>
+    
+    <xs:simpleType name="tTypValidaceCiselnik">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NSESSS2017" />
+            <xs:enumeration value="NSESSS2023" />
+            <xs:enumeration value="AP2023" />
+            <xs:enumeration value="DAAIP2024" />
         </xs:restriction>
     </xs:simpleType>
     

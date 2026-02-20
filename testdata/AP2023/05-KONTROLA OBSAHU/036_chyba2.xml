@@ -27,9 +27,9 @@
 					</ead:part></ead:name>
 				</ead:p>
 				<ead:p> <!-- obs15 -->
-					<ead:name localtype="ARRANGER"><ead:part> <!-- obs16 -->
+					<ead:persname localtype="ARRANGER"><ead:part> <!-- obs16 -->
 						<ead:ref target="ap7523">Zpracovatel</ead:ref>
-					</ead:part></ead:name>
+					</ead:part></ead:persname>
 				</ead:p>
 				<ead:p> <!-- obs17 -->
 					<ead:name localtype="ARRANGER_BRIEF"><ead:part>Zpracovatel bez odkazu</ead:part></ead:name>
@@ -66,10 +66,27 @@
 		
 		<!-- část s odkazy, aby se validovalo správně (= fungovaly id u přístupových bodů) -->
 		<ead:sources>
-			<ead:source id="ap7523"></ead:source>
+			<ead:source id="ap7523">
+			<ead:objectxmlwrap>
+					<cam:ent eid="100000" euid="fb15d8ee-724e-4bd4-b08e-a0d7e4038ac8" ens="ERS_APPROVED" ent="PERSON_INDIVIDUAL">
+					  <cam:revi>
+					    <cam:rid>55c98631-03ea-4981-9abf-e3f8eb451d25</cam:rid>
+					    <cam:usr>Irena</cam:usr>
+					    <cam:modt>2023-08-30T08:49:09.14</cam:modt>
+					  </cam:revi>
+                      <cam:prts>
+                        <cam:p pid="5147942d-00cd-46d4-9a57-909f7b253f4c" t="PT_NAME">
+                          <cam:itms>
+                            <cam:si t="NM_MAIN" uuid="3881889c-49b0-4c79-8264-e92ca3700650">z Eichendorffu</cam:si>
+                          </cam:itms>
+                        </cam:p>
+                      </cam:prts>
+                    </cam:ent> <!-- cam1 -->
+				</ead:objectxmlwrap>
+			</ead:source>
 		</ead:sources>
 	</ead:control>
-	<ead:archdesc level="fonds"> <!-- obs35 -->
+	<ead:archdesc level="fonds" base="http://archiv.cz/dids/80bb604a-052e-4e49-b86e-e4a91b95bf59"> <!-- obs35 -->
 		<ead:did>
 			<ead:physdescstructured physdescstructuredtype="spaceoccupied" coverage="whole">
 				<ead:quantity></ead:quantity>
@@ -78,7 +95,7 @@
 		</ead:did>
 		
 		<ead:dsc>
-			<ead:c level="recordgrp"> <!-- obs36 -->
+			<ead:c level="recordgrp" base="http://archiv.cz/dids/80bb604a-052e-4e49-b86e-e4a91b95bf59"> <!-- obs36 -->
 				<ead:did>
 					<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole">
 						<ead:quantity></ead:quantity>

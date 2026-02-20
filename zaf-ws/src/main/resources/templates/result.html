@@ -1,74 +1,97 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="cs">
+
 <head>
-    <title>Výsledek kontroly ([[${requestId}]])</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>[[#{result.title}]] ([[${requestId}]])</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css; charset=utf-8">
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@100;300&display=swap&subset=latin,latin-ext">
+	<script src="js/common.js"></script>
 </head>
 <body>
-    <h1>Výsledek kontroly</h1>
-    <p>Požadavek ID: [[${requestId}]]</p>
-    <table>
-	  <tr>
-		<th>Parametr</th>
-		<th>Hodnota</th>
-	  </tr>
-	  <tr>
-		<td>Typ validace</td>
-		<td th:text="${druhValidace}"></td>
-	  </tr>
-	  <tr>
-		<td>Profil pravidel</td>
-		<td th:text="${profilPravidel}"></td>
-	  </tr>
-	  <tr>
-		<td>Verze pravidel</td>
-		<td th:text="${verzePravidel}"></td>
-	  </tr>
-    </table>
+  <div class="container">
+    <h1 th:text="#{app.title}">ZAF Validator</h1>
+    <p class="mt2rem"><a th:href="@{./}" th:text="#{result.newFile}">Upload new file</a> <a style="padding-left: 1rem" th:href="@{'/download/' + ${requestId}}" class="btn-download" download th:text="#{result.downloadResult}">Download result</a></p>
+   		<table class="mt2rem">
+			<tr>
+				<td th:text="#{result.requestId}">Request ID:</td>
+				<td th:text="${requestId}"></td>
+			</tr>
+			<tr>
+				<td th:text="#{validationForm.type}">Validation type:</td>
+				<td th:text="${validationType}"></td>
+			</tr>
+			<tr>
+				<td class="w10rem" th:text="#{validationForm.profile}">Profile:</td>
+				<td th:text="${validationProfile}"></td>
+			</tr>
+			<tr>
+				<td th:text="#{result.ruleVersion}">Rule version:</td>
+				<td th:text="${verzePravidel}"></td>
+			</tr>
+		</table>
     
-    <th:block th:each="dataPackage : ${dataPackages}" >
-      <h2>Výsledek pro soubor: [[${dataPackage.nazevSouboru}]]</h2>
-    <table>
+    <th:block th:each="dataPackage, iterStat : ${dataPackages}" 
+              th:with="errorCount=${#aggregates.sum(dataPackage.kontrola.?[stav.value == 'chyba'].![#lists.size(pravidlo)])}">
+    
+      <h2>[[#{result.file}]] [[${dataPackage.nazevSouboru}]]</h2>
+  	  <th:block th:if="${errorCount==null or errorCount==0}">
+	     <div class="status ok" aria-live="polite" th:text="#{result.validationSuccess}">File is valid.</div>
+      </th:block>
+  	  <th:block th:if="${errorCount>0}">
+	     <div class="status chyba" aria-live="polite" th:text="#{result.validationFailure}">File is not valid.</div>
+	     <h3>[[#{result.identifiedDiscrepancies}]] ([[${errorCount}]]):</h3>
+        <th:block th:each="kontrola, stat: ${dataPackage.kontrola.?[stav.value == 'chyba']}"
+                  th:with="prevFile=${stat.index > 0 ? dataPackage.kontrola.?[stav.value == 'chyba'][stat.index-1].vnitrniSoubor : null}">
+
+        <th:block th:if="${kontrola.vnitrniSoubor != null and kontrola.vnitrniSoubor != prevFile}">
+          <h4>[[#{result.innerFile}]] <span th:text="${kontrola.vnitrniSoubor}"></span></h4>
+        </th:block>			  
+        <div class="table">
+		  <div th:each="pravidlo : ${kontrola.pravidlo}" class="row">
+		    <div class="cell valign-top img-cell">
+		      <img src="img/error.jpg" alt="" th:attr="title=#{result.detail.img_error}" class="img-error" />
+		    </div>
+			<div class="cell valign-top">
+			  <strong th:text="${pravidlo.popisChyby}"></strong><br />
+				<span th:if="${pravidlo.vypisChyby}">[[#{result.detail.error}]]: <span th:text="${pravidlo.vypisChyby}"></span><br /></span>
+                <span th:if="${pravidlo.mistoChyby}">[[#{result.detail.location}]]: <span th:text="${pravidlo.mistoChyby}"></span><br /></span>
+				<div class="pravidlo">[[#{result.detail.rule}]] <span th:text="${pravidlo.kod}"></span>:
+				  <span th:text="${pravidlo.zneni}"></span>
+				  <span th:if="${pravidlo.zdroj}"> (<span th:text="${pravidlo.zdroj}"></span>)</span>
+				</div>
+			</div>
+		  </div> <!-- for each pravidlo -->
+        </div>
+        </th:block><!-- for each kontrola -->
+      </th:block>
+	
+    <!-- Create conditional block to display text: Provedené kontroly. When user click on "Provedené kontroly" it will display following table -->
+	<h3 style="cursor: pointer;" th:with="tableId='checklist' + ${iterStat.index}, iconId='icon' + ${iterStat.index}" th:attr="onclick=|toggleContent('${tableId}','${iconId}')|">
+		<span th:id="${iconId}">&#x2b;</span>
+		[[#{result.completedChecks}]]</h3>
+    <table style="display: none;" th:attr="id='checklist' + ${iterStat.index}">
 	  <tr>
-		<th>Kontrola</th>
-		<th>Výsledek</th>
+		<th th:text="#{result.detail.check}">Check</th>
+		<th th:text="#{result.detail.result}">Result</th>
 	  </tr>
 	  <tr th:each="kontrola : ${dataPackage.kontrola}">
-	    <td th:text="${kontrola.nazev}"></td>
+	    <td th:if="${kontrola.vnitrniSoubor == null}" th:text="${kontrola.nazev}"></td>
+	    <td th:if="${kontrola.vnitrniSoubor != null}" th:text="${kontrola.vnitrniSoubor + ': ' + kontrola.nazev}"></td>
 	    <td th:text="${kontrola.stav}"></td>
 	  </tr>
     </table>
-
-    <th:block th:with="errorCount = ${#lists.size(dataPackage.kontrola.?[stav.value == 'chyba'])}">
-    <table th:if="${errorCount > 0}">
-      <tr><th>Kod</th>
-        <th>Pravidlo</th>
-        <th>Chyba</th>
-        <th>Pozice</th>
-      </tr>
-      <th:block th:each="kontrola : ${dataPackage.kontrola}">
-        <th:block th:if="${kontrola.stav.value == 'chyba'}">
-	       <tr th:each="pravidlo : ${kontrola.pravidlo}">
-	        <td th:text="${pravidlo.kod}"></td>
-	        <td th:text="${pravidlo.zneni}"></td>
-	        <td>
-	          <p th:if="${pravidlo.popisChyby}" th:text="${pravidlo.popisChyby}"></p>
-	          <p th:if="${pravidlo.vypisChyby}" th:text="${pravidlo.vypisChyby}"></p>
-	        </td>
-	        <td th:text="${pravidlo.mistoChyby}"></td>
-	       </tr>
-        </th:block>
-      </th:block>
-    </table>    
-	</th:block>
-	
-    </th:block>
-      <!-- <li th:each="file : ${files}">[[${file}]]</li>-->
-<!-- 
-	  <tr th:each="file : ${files}">
-		<td th:text="${file.name}"></td>
-		<td th:text="${file.contentType}"></td>
-		<td th:text="${file.size}"></td>
-	  </tr>-->
-    <a th:href="@{./}">Nahrát nový soubor</a>
+		</th:block>
+		<div id="footer">
+		  <!-- Left side -->
+		  <div>
+		    <a href="https://validatorzaf.github.io/zaf/" th:text="#{app.about}">About</a>
+		  </div>
+		   <!-- Right side -->
+           <div>[[#{app.version}]]: <a th:href="@{https://github.com/validatorzaf/zaf/releases}" th:text="${appVersion}"></a></div>
+		</div>
+	</div>
 </body>
 </html>

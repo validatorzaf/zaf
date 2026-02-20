@@ -10,6 +10,7 @@ import cz.zaf.common.validation.ValidationLayer;
 import cz.zaf.common.validation.ValidatorListener;
 import cz.zaf.eadvalidator.ap2023.layers.enc.EncodingValidationLayer;
 import cz.zaf.eadvalidator.ap2023.layers.wf.WellFormedLayer;
+import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
 import cz.zaf.eadvalidator.ap2023.layers.ns.NamespaceValidationLayer;
 import cz.zaf.eadvalidator.ap2023.layers.val.SchemaValidationLayer;
 import cz.zaf.eadvalidator.ap2023.layers.obs.ContentValidationLayer;
@@ -22,25 +23,38 @@ public class EadValidator implements ValidatorListener<EadValidationContext> {
      * List of excluded checks
      */
 	private List<String> excludeChecks;
+	
+	final String innerFileName;
 
-    public EadValidator(ValidationSubprofile profilValidace, List<String> excludeChecks) {
+	private ValidationSubprofile validationProfile;
+
+    public EadValidator(ValidationSubprofile profilValidace, List<String> excludeChecks, final String innerFileName) {
     	this.excludeChecks = excludeChecks;
-        this.validations = prepareValidations(profilValidace);
+    	this.innerFileName = innerFileName;
+    	this.validationProfile = profilValidace;
+        this.validations = prepareValidations(profilValidace);        
     }
 
     private List<ValidationLayer<EadValidationContext>> prepareValidations(ValidationSubprofile profilValidace) {
         List<ValidationLayer<EadValidationContext>> validations = new ArrayList<>(5);
-        validations.add(new EncodingValidationLayer());
-        validations.add(new WellFormedLayer());
-        validations.add(new NamespaceValidationLayer());
-        validations.add(new SchemaValidationLayer());
-        validations.add(new ContentValidationLayer(profilValidace));
+        validations.add(new EncodingValidationLayer(innerFileName));
+        validations.add(new WellFormedLayer(innerFileName));
+        validations.add(new NamespaceValidationLayer(innerFileName));
+        validations.add(new SchemaValidationLayer(innerFileName));
+        validations.add(new ContentValidationLayer(profilValidace, innerFileName));
         return validations;
     }
 
     public void validate(EadLoader eadLoader) {
+    	
+    	// set default profix based on profile
+    	String eadNsPrefix = null;
+    	if(AP2023Profile.ARCH_DESC==validationProfile||
+    			AP2023Profile.FINDING_AID==validationProfile) {
+    		eadNsPrefix = "ead";
+    	}
 
-        EadValidationContext context = new EadValidationContext(eadLoader, excludeChecks);
+        EadValidationContext context = new EadValidationContext(eadLoader, excludeChecks, eadNsPrefix);
 
         BaseValidator<EadValidationContext> validator = new BaseValidator<>(validations);
         validator.registerListener(this);

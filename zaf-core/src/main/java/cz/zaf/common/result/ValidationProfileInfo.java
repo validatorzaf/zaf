@@ -6,25 +6,26 @@ package cz.zaf.common.result;
 public interface ValidationProfileInfo {
 
     /**
-     * Return name of validation profile
+     * Return name of validation type
      * 
-     * @return
-     */
-    String getProfileName();
-
-    /**
-     * Return name of applied validation
-     * 
-     * Each Profile has one or more set of rules (validation types).
      * 
      * @return
      */
     String getValidationType();
 
     /**
+     * Return name of validation profile
+     * 
+     * Each validation type has one or more set of rules (validation profiles).
+     * 
+     * @return
+     */
+    String getProfileName();
+
+    /**
      * Return version of applied rule set
      * 
      * @return
      */
-    String getProfileVersion();
+    String getRuleVersion();
 }

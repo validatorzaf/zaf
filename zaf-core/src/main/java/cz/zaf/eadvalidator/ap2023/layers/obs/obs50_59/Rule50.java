@@ -1,0 +1,96 @@
+package cz.zaf.eadvalidator.ap2023.layers.obs.obs50_59;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
+
+import cz.zaf.common.exceptions.ZafException;
+import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.eadvalidator.ap2023.EadRule;
+import cz.zaf.schema.ead3.Archdesc;
+import cz.zaf.schema.ead3.Did;
+import cz.zaf.schema.ead3.Unitid;
+import java.util.List;
+
+public class Rule50 extends EadRule {
+
+    static final public String CODE = "obs50";
+    static final public String RULE_TEXT = "Element <unitid> obsažený v elementu <did> má atributy \"localtype\" a \"label\" s povolenými typy označení (dle specifikace 5.5.1), přičemž hodnoty obou atributů si odpovídají. Pokud má atribut \"localtype\" hodnotu \"JINE\", hodnota atributu \"label\" není prázdná.";
+    static final public String RULE_ERROR = "Některý element <unitid> nemá \"localtype\" a/nebo \"label\" nebo tyto atributy neobsahují povolenou hodnotu, případně si hodnoty neodpovídají.";
+    static final public String RULE_SOURCE = "Část 5.4 a 5.5 profilu EAD3 MV ČR";
+
+    static private final Map<String, String> allowedTypes = new HashMap<>();
+
+    static {
+        allowedTypes.put("REFERENCNI_OZNACENI", "referenční označení");
+        allowedTypes.put("PORADOVE_CISLO", "pořadové číslo");
+        allowedTypes.put("INV_CISLO", "inventární číslo");
+        allowedTypes.put("SIGNATURA_PUVODNI", "signatura přidělená původcem");
+        allowedTypes.put("SIGNATURA_ZPRACOVANI", "signatura přidělená při zpracování archiválie");
+        allowedTypes.put("UKLADACI_ZNAK", "ukládací znak / spisový znak");
+        allowedTypes.put("CISLO_JEDNACI", "číslo jednací");
+        allowedTypes.put("SPISOVA_ZNACKA", "spisová značka");
+        allowedTypes.put("CISLO_VLOZKY", "číslo vložky úřední knihy");
+        allowedTypes.put("CISLO_PRIRUSTKOVE", "přírůstkové číslo");
+        allowedTypes.put("NEPL_PORADOVE_CISLO", "neplatné pořadové číslo manipulačního seznamu");
+        allowedTypes.put("NEPL_INV_CISLO", "neplatné inventární číslo");
+        allowedTypes.put("NEPL_SIGNATURA_ZPRACOVANI", "signatura přidělená při předchozím zpracování");
+        allowedTypes.put("NEPL_REFERENCNI_OZNACENI", "neplatné referenční označení");
+        allowedTypes.put("NAKL_CISLO", "číslo pohlednice nakladatelství Orbis");
+        allowedTypes.put("CISLO_NEGATIVU", "číslo negativu");
+        allowedTypes.put("CISLO_PRODUKCE", "číslo produkce CD");
+        allowedTypes.put("KOD_ISBN", "kód ISBN");
+        allowedTypes.put("KOD_ISSN", "kód ISSN");
+        allowedTypes.put("KOD_ISMN", "kód ISMN");
+        allowedTypes.put("MATRICNI_CISLO", "matriční číslo (propůjčeného vyznamenání)");
+        allowedTypes.put("ZDROJ_ID", "identifikátor ve zdrojovém systému");
+        allowedTypes.put("PORADOVE_CISLO_PUVODNI", "původní pořadové číslo");
+        allowedTypes.put("PUVODNI_NAZEV", "původní název");
+//        allowedlevelTypes.put("JINE", "neprázdná hodnota");
+    }
+
+    public Rule50() {
+        super(CODE, RULE_TEXT, RULE_ERROR, RULE_SOURCE);
+    }
+
+    @Override
+    protected void evalImpl() {
+        Archdesc archDesc = ctx.getEad().getArchdesc();
+        Did didA = archDesc.getDid();
+        List<Object> mDidDidA = didA.getMDid();
+        validate(mDidDidA);
+
+        ctx.getEadLevelIterator().iterate((c, parent) -> {
+            Did didC = c.getDid();
+            List<Object> mDidDidC = didC.getMDid();
+            validate(mDidDidC);
+        });
+    }
+
+    private void validate(List<Object> mDidDid) {
+        for (Object obj : mDidDid) {
+            if (obj instanceof Unitid unitid) {
+                String localtype = unitid.getLocaltype();
+                if (StringUtils.isEmpty(localtype)) {
+                    throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí nebo je prázdný atribut localtype.", ctx.formatEadPosition(unitid));
+                }
+                String label = unitid.getLabel();
+                if (StringUtils.isEmpty(label)) {
+                    throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí nebo je prázdný atribut label, localtype: " + localtype + ".", ctx.formatEadPosition(unitid));
+                }
+                if (allowedTypes.containsKey(localtype)) {
+                    String value = allowedTypes.get(localtype);
+                    if (!label.equals(value)) {
+                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut label neobsahuje očekávanou hodnotu, ale hodnotu: " + label + ".", ctx.formatEadPosition(unitid));
+                    }
+                } else {
+                    if (!localtype.equals("JINE")) {
+                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut localtype obsahuje nepovolenou hodnotu: " + localtype + ".", ctx.formatEadPosition(unitid));
+                    }
+                }
+            }
+        }
+    }
+
+}
