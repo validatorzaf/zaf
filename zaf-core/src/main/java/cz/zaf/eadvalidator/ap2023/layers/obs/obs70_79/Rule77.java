@@ -16,8 +16,8 @@ import org.apache.commons.lang3.math.NumberUtils;
 public class Rule77 extends EadRule {
 
     static final public String CODE = "obs77";
-    static final public String RULE_TEXT = "Pokud element <physdescstructured> má atribut \"physdescstructuredtype\" o hodnotě \"otherphysdescstructuredtype\" a zároveň atribut \"otherphysdescstructured\" o hodnotě \"weight\", má atribut \"coverage\" o hodnotě \"whole\". Podřízený element <unittype> obsahuje hodnotu \"g\" a podřízený element <quantity> obsahuje kladné celé číslo.";
-    static final public String RULE_ERROR = "Element <physdescstructured> s atributem \"physdescstructured\" o hodnotě \"otherphysdescstructured\" a zároveň s atributem \"otherphysdescstructured\" o hodnotě \"weight\" má špatně nastavený atribut \"coverage\" a/nebo v něm obsažené elementy <unittype> a/nebo <quantity> obsahují nepovolenou hodnotu.";
+    static final public String RULE_TEXT = "Pokud element <physdescstructured> má atribut \"physdescstructured\" o hodnotě \"otherphysdescstructuredtype\" a zároveň atribut \"otherphysdescstructuredtype\" o hodnotě \"weight\", má atribut \"coverage\" o hodnotě \"whole\". Podřízený element <unittype> obsahuje hodnotu \"g\" a podřízený element <quantity> obsahuje kladné celé číslo.";
+    static final public String RULE_ERROR = "Element <physdescstructured> s atributem \"physdescstructured\" o hodnotě \"otherphysdescstructuredtype\" a zároveň s atributem \"otherphysdescstructuredtype\" o hodnotě \"weight\" má špatně nastavený atribut \"coverage\" a/nebo v něm obsažené elementy <unittype> a/nebo <quantity> obsahují nepovolenou hodnotu.";
     static final public String RULE_SOURCE = "Část 6.7.3 profilu EAD3 MV ČR";
 
     public Rule77() {
