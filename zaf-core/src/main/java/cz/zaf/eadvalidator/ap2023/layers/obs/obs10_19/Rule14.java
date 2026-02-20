@@ -12,11 +12,13 @@ import cz.zaf.schema.ead3.Corpname;
 import cz.zaf.schema.ead3.Famname;
 import cz.zaf.schema.ead3.Filedesc;
 import cz.zaf.schema.ead3.Name;
+import cz.zaf.schema.ead3.Objectxmlwrap;
 import cz.zaf.schema.ead3.P;
 import cz.zaf.schema.ead3.Part;
 import cz.zaf.schema.ead3.Persname;
 import cz.zaf.schema.ead3.Publicationstmt;
 import cz.zaf.schema.ead3.Ref;
+import cz.zaf.schema.ead3.Source;
 import jakarta.xml.bind.JAXBElement;
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -81,6 +83,9 @@ public class Rule14 extends EadRule {
         if (CollectionUtils.isEmpty(listPart)) {
             throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nenalezen element Part.", ctx.formatEadPosition(parent));
         }
+        if(listPart.size() != 1){
+            throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nenalezeno více elementů Part.", ctx.formatEadPosition(listPart));
+        }
         for (Part part : listPart) {
             List<Serializable> content = part.getContent();
             Ref found = null;
@@ -96,6 +101,7 @@ public class Rule14 extends EadRule {
                         if (target == null) {
                             throw new ZafException(BaseCode.CHYBNY_ATRIBUT, "Chybí odkaz atributu target.", ctx.formatEadPosition(ref));
                         }
+                        checkTarget(target);
                         validateContent(ref);
                     }
                 }
@@ -119,5 +125,17 @@ public class Rule14 extends EadRule {
         } else {
             throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybný typ hodnoty v elementu.", ctx.formatEadPosition(ref));
         }
+    }
+    
+    private void checkTarget(Object target){
+        if(target instanceof Source source){
+            Objectxmlwrap objectxmlwrap = source.getObjectxmlwrap();
+            if(objectxmlwrap == null){
+                throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Chybný odkaz na element. Chybí element objectxmlwrap.", ctx.formatEadPosition(target));
+            }
+        }else{
+            throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Chybný odkaz na element. Nenalezen element source.", ctx.formatEadPosition(target));
+        }
+                
     }
 }
