@@ -6,9 +6,9 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
+import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 //
 // OBSAHOVÁ č.70 Jakýkoli element <nsesss:Identifikator> není opakovatelný,
@@ -23,7 +23,7 @@ public class Pravidlo70 extends K06PravidloBase {
         super(OBS70,
                 "Jakýkoli element <nsesss:Identifikator> není opakovatelný, pokud se nenachází v hierarchii elementů <nsesss:Komponenta>, <nsesss:EvidencniUdaje> a <nsesss:Identifikace>.",
                 "Uveden je chybně identifikátor věcné skupiny, typového spisu, součásti, dílu, spisu nebo dokumentu.",
-                "Příloha č. 2 NSESSS, ř. 497.");
+                "Příloha č. 2 NSESSS, nsesss-common.xsd, ř. 558.");
     }
 
     @Override
@@ -38,12 +38,12 @@ public class Pravidlo70 extends K06PravidloBase {
         for (int i = 0; i < size; i++) {
             Element identifikator = identifikatory.get(i);
             Element rodic = (Element) identifikator.getParentNode();
-            if (ValuesGetter.getChildNodes(rodic, NsesssV3.IDENTIFIKATOR).size() > 1) {
-                Element komponenta = ValuesGetter.getXParent(identifikator, NsesssV3.IDENTIFIKACE,
-                        NsesssV3.EVIDENCNI_UDAJE, NsesssV3.KOMPONENTA);
+            if (ValuesGetter.getChildNodes(rodic, NsesssV4.IDENTIFIKATOR).size() > 1) {
+                Element komponenta = ValuesGetter.getXParent(identifikator, NsesssV4.IDENTIFIKACE,
+                        NsesssV4.EVIDENCNI_UDAJE, NsesssV4.KOMPONENTA);
                 if (komponenta == null) {
-                    Element entita = (Element) ValuesGetter.getXParent(identifikator, NsesssV3.IDENTIFIKACE,
-                            NsesssV3.EVIDENCNI_UDAJE).getParentNode();
+                    Element entita = (Element) ValuesGetter.getXParent(identifikator, NsesssV4.IDENTIFIKACE,
+                            NsesssV4.EVIDENCNI_UDAJE).getParentNode();
                     
                     nastavChybu(BaseCode.NEPOVOLENY_ELEMENT, "Element <nsesss:Identifikator> se opakuje přes nesplnění podmínky pravidla. "
                             + getJmenoIdentifikator(entita), identifikator, kontrola.getEntityId(entita));

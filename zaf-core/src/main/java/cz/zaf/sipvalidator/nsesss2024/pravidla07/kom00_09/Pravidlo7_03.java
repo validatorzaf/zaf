@@ -12,7 +12,7 @@ import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.formats.MimeTypeResult;
 import cz.zaf.sipvalidator.formats.MimeTypeResult.DetectionStatus;
 import cz.zaf.sipvalidator.formats.MimetypeDetectorFactory;
-import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
+import cz.zaf.sipvalidator.nsesss2024.JmenaElementu;
 import cz.zaf.sipvalidator.nsesss2024.pravidla07.K07PravidloEachFile;
 
 /*

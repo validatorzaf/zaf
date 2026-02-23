@@ -18,31 +18,19 @@ import cz.zaf.common.result.EntityId;
 import cz.zaf.common.result.EntityType;
 import cz.zaf.common.result.IndetifierWithSource;
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.DruhEntity;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
-import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.DruhEntity;
+import cz.zaf.sipvalidator.nsesss2024.K06_Obsahova;
+import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
+import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 //
-// OBSAHOVÁ č.54: Každý element mets:div obsahuje dětský element podle struktury
-// entit/objektů (od spisového plánu po komponentu)
-// v sekci dmdSec s atributem TYPE s hodnotou příslušné entity/objektu a s atributem DMDID s hodnotou příslušné entity/objektu 
-// v atributu ID a s atributem ADMID s hodnotou, která odpovídá hodnotě atributu
-// ID příslušné entity/objektu v sekci amdSec
-// (entita/objekt v hierarchii dětských elementů mets:digiprovMD, mets:mdWrap,
-// mets:xmlData, tp:TransakcniLogObjektu, tp:TransLogInfo,
-// tp:Objekt, tp:Identifikator, tns:HodnotaID a tns:ZdrojID odpovídá v hodnotách
-// hodnotám elementu nsesss:Identifikator a
-// jeho atributu zdroj příslušné entity/objektu v sekci dmdSec). Uvedená
-// entita/objekt je v sekci dmdSec, amdSec a structMap
-// uvedena právě jednou. Pokud existuje jakýkoli element nsesss:KrizovyOdkaz a
-// obsahuje atribut pevny s hodnotou ano, potom
-// je entita/objekt typu součást, typový spis, věcná skupina nebo spisový plán v
-// sekci dmdSec uvedená multiplicitně. V takovém případě je stejná entita/objekt
-// uvedena v sekci structMap právě jednou
-// (atribut DMDID obsahuje ID libovolného výskytu příslušné
-// entity/objektu).
+// OBSAHOVÁ č.54: Pokud neexistuje žádný element <nsesss:KrizovyOdkaz> s atributem pevny s hodnotou ano, 
+// potom každý element <mets:div> obsahuje dětský element podle struktury entit/objektů (od spisového plánu po komponentu) 
+// v sekci dmdSec s atributem TYPE s hodnotou příslušné entity/objektu a s atributem DMDID s hodnotou příslušné entity/objektu v atributu ID a s atributem ADMID s hodnotou, 
+// která odpovídá hodnotě atributu ID příslušné entity/objektu v sekci amdSec (entita/objekt v hierarchii dětských elementů <mets:digiprovMD>, <mets:mdWrap>, 
+// <mets:xmlData>, <tp:TransakcniLogObjektu>, <tp:TransLogInfo>, <tp:Objekt>, <tp:Identifikator>, <tp:HodnotaID> a <tp:ZdrojID> 
+// odpovídá v hodnotách hodnotám elementu <nsesss:Identifikator> a jeho atributu zdroj příslušné entity/objektu v sekci dmdSec).
 //
 public class Pravidlo54 extends K06PravidloBase {
 
@@ -67,9 +55,9 @@ public class Pravidlo54 extends K06PravidloBase {
 
     public Pravidlo54() {
         super(OBS54,
-                "Každý element mets:div obsahuje dětský element podle struktury entit/objektů (od spisového plánu po komponentu) v sekci dmdSec s atributem TYPE s hodnotou příslušné entity/objektu a s atributem DMDID s hodnotou příslušné entity/objektu v atributu ID a s atributem ADMID s hodnotou, která odpovídá hodnotě atributu ID příslušné entity/objektu v sekci amdSec (entita/objekt v hierarchii dětských elementů mets:digiprovMD, mets:mdWrap, mets:xmlData, tp:TransakcniLogObjektu, tp:TransLogInfo, tp:Objekt, tp:Identifikator, tns:HodnotaID a tns:ZdrojID odpovídá v hodnotách hodnotám elementu nsesss:Identifikator a jeho atributu zdroj příslušné entity/objektu v sekci dmdSec). Uvedená entita/objekt je v sekci dmdSec, amdSec a structMap uvedena právě jednou. Pokud existuje jakýkoli element nsesss:KrizovyOdkaz a obsahuje atribut pevny s hodnotou ano, potom je entita/objekt typu součást, typový spis, věcná skupina nebo spisový plán v sekci dmdSec uvedená multiplicitně. V takovém případě je stejná entita/objekt uvedena v sekci structMap právě jednou (atribut DMDID obsahuje ID libovolného výskytu příslušné entity/objektu).",
+                "Pokud neexistuje žádný element <nsesss:KrizovyOdkaz> s atributem pevny s hodnotou ano, potom každý element <mets:div> obsahuje dětský element podle struktury entit/objektů (od spisového plánu po komponentu) v sekci dmdSec s atributem TYPE s hodnotou příslušné entity/objektu a s atributem DMDID s hodnotou příslušné entity/objektu v atributu ID a s atributem ADMID s hodnotou, která odpovídá hodnotě atributu ID příslušné entity/objektu v sekci amdSec (entita/objekt v hierarchii dětských elementů <mets:digiprovMD>, <mets:mdWrap>, <mets:xmlData>, <tp:TransakcniLogObjektu>, <tp:TransLogInfo>, <tp:Objekt>, <tp:Identifikator>, <tp:HodnotaID> a <tp:ZdrojID> odpovídá v hodnotách hodnotám elementu <nsesss:Identifikator> a jeho atributu zdroj příslušné entity/objektu v sekci dmdSec).",
                 "Chybí spisový plán, věcná skupina, typový spis, součást, díl, spis, dokument nebo komponenta ve strukturální mapě a jejich provázání na transakční protokol.",
-                "Bod 2.17 a 2.18. přílohy č. 3 NSESSS; Informační list NA, roč. 2018, čá. 2, příloha k č. 20/2018 (20.3).");
+                "Bod 1.17 a 1.18 přílohy č. 2 NSESSS; Informační list NA, čá. 2/2018, příloha k č. 20/2018 (20.3).");
 
     }
 
@@ -112,8 +100,8 @@ public class Pravidlo54 extends K06PravidloBase {
     }
 
     private void zpracujElementyDmdSec() {
-        String[] listNsesssEntit = {NsesssV3.SPISOVY_PLAN, NsesssV3.VECNA_SKUPINA, NsesssV3.SOUCAST, NsesssV3.TYPOVY_SPIS,
-            NsesssV3.DIL, NsesssV3.SPIS, NsesssV3.DOKUMENT, NsesssV3.KOMPONENTA};
+        String[] listNsesssEntit = {NsesssV4.SPISOVY_PLAN, NsesssV4.VECNA_SKUPINA, NsesssV4.SOUCAST, NsesssV4.TYPOVY_SPIS,
+            NsesssV4.DIL, NsesssV4.SPIS, NsesssV4.DOKUMENT, NsesssV4.KOMPONENTA};
         for (String jmenoNsesssEntity : listNsesssEntit) {
             List<Element> listHledanychEntit = metsParser.getNodes(jmenoNsesssEntity);
             // 
@@ -417,42 +405,42 @@ public class Pravidlo54 extends K06PravidloBase {
             switch ((DruhEntity) druhEntity) {
             case VECNA_SKUPINA:
                 if (DruhEntity.SPISOVY_PLAN.equals(parentDruhEntity)) {
-                    parentElement = ValuesGetter.getXChild(elOdkazu, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
-                                                           NsesssV3.SPISOVY_PLAN);
+                    parentElement = ValuesGetter.getXChild(elOdkazu, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI,
+                                                           NsesssV4.SPISOVY_PLAN);
                 } else
                 if (DruhEntity.VECNA_SKUPINA.equals(parentDruhEntity)) {
-                    parentElement = ValuesGetter.getXChild(elOdkazu, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
-                                                           NsesssV3.MATERSKA_ENTITA, NsesssV3.VECNA_SKUPINA);
+                    parentElement = ValuesGetter.getXChild(elOdkazu, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI,
+                                                           NsesssV4.MATERSKA_ENTITA, NsesssV4.VECNA_SKUPINA);
                 }
                 break;
             case TYPOVY_SPIS:
-                parentElement = ValuesGetter.getXChild(elOdkazu, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
-                                                       NsesssV3.MATERSKA_ENTITA, NsesssV3.VECNA_SKUPINA);
+                parentElement = ValuesGetter.getXChild(elOdkazu, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI,
+                                                       NsesssV4.MATERSKA_ENTITA, NsesssV4.VECNA_SKUPINA);
                 break;
             case SOUCAST:
-                parentElement = ValuesGetter.getXChild(elOdkazu, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
-                                                       NsesssV3.MATERSKA_ENTITA, NsesssV3.TYPOVY_SPIS);
+                parentElement = ValuesGetter.getXChild(elOdkazu, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI,
+                                                       NsesssV4.MATERSKA_ENTITA, NsesssV4.TYPOVY_SPIS);
                 break;
             case SPIS:
-                parentElement = ValuesGetter.getXChild(elOdkazu, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
-                                                       NsesssV3.MATERSKA_ENTITA, NsesssV3.VECNA_SKUPINA);
+                parentElement = ValuesGetter.getXChild(elOdkazu, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI,
+                                                       NsesssV4.MATERSKA_ENTITA, NsesssV4.VECNA_SKUPINA);
                 break;
             case DIL:
-                parentElement = ValuesGetter.getXChild(elOdkazu, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
-                                                       NsesssV3.MATERSKA_ENTITA, NsesssV3.SOUCAST);
+                parentElement = ValuesGetter.getXChild(elOdkazu, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI,
+                                                       NsesssV4.MATERSKA_ENTITA, NsesssV4.SOUCAST);
                 break;
             case DOKUMENT:
                 if (DruhEntity.VECNA_SKUPINA.equals(parentDruhEntity)) {
-                    parentElement = ValuesGetter.getXChild(elOdkazu, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
-                                                           NsesssV3.MATERSKE_ENTITY, NsesssV3.VECNA_SKUPINA);
+                    parentElement = ValuesGetter.getXChild(elOdkazu, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI,
+                                                           NsesssV4.MATERSKE_ENTITY, NsesssV4.VECNA_SKUPINA);
                 } else if (DruhEntity.SPIS.equals(parentDruhEntity)) {
-                    parentElement = ValuesGetter.getXParent(elOdkazu, NsesssV3.DOKUMENTY, NsesssV3.SPIS);
+                    parentElement = ValuesGetter.getXParent(elOdkazu, NsesssV4.DOKUMENTY, NsesssV4.SPIS);
                 } else if (DruhEntity.DIL.equals(parentDruhEntity)) {
-                    parentElement = ValuesGetter.getXParent(elOdkazu, NsesssV3.DOKUMENTY, NsesssV3.DIL);
+                    parentElement = ValuesGetter.getXParent(elOdkazu, NsesssV4.DOKUMENTY, NsesssV4.DIL);
                 }
                 break;
             case KOMPONENTA:
-                parentElement = ValuesGetter.getXParent(elOdkazu, NsesssV3.KOMPONENTY, NsesssV3.DOKUMENT);
+                parentElement = ValuesGetter.getXParent(elOdkazu, NsesssV4.KOMPONENTY, NsesssV4.DOKUMENT);
                 break;
             default:
                 // nop
@@ -558,13 +546,13 @@ public class Pravidlo54 extends K06PravidloBase {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <tp:Identifikator>.", elAmdSec);
         }
 
-        Element elHodnotaID = ValuesGetter.getXChild(elIdentifikator, "tns:HodnotaID");
+        Element elHodnotaID = ValuesGetter.getXChild(elIdentifikator, "tp:HodnotaID");
         if (elHodnotaID == null) {
-            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <tns:HodnotaID>.", elIdentifikator);
+            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <tp:HodnotaID>.", elIdentifikator);
         }
-        Element elZdroj = ValuesGetter.getXChild(elIdentifikator, "tns:ZdrojID");
+        Element elZdroj = ValuesGetter.getXChild(elIdentifikator, "tp:ZdrojID");
         if (elZdroj == null) {
-            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <tns:ZdrojID>.", elIdentifikator);
+            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <tp:ZdrojID>.", elIdentifikator);
         }
 
         String id = hodnotaAtributu(elAmdSec, "ID");

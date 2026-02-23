@@ -13,18 +13,20 @@ import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 import java.util.ArrayList;
 
-//OBSAHOVÁ č.29 Pokud existuje element <nsesss:KrizovyOdkaz> a obsahuje atribut pevny s hodnotou ano, potom pro každý jeho výskyt
-// obsahuje element <mets:dmdSec> v hierarchii dětských elementů <mets:mdWrap>, <mets:xmlData> dětský element <nsesss:Dil> nebo 
-// <nsesss:Dokument> nebo <nsesss:Spis> se stejnou hodnotou v dětském elementu <nsesss:Identifikator> a v jeho atributu zdroj.",
+//OBSAHOVÁ č.29 Pokud existuje jakýkoli element <nsesss:KrizovyOdkaz> a obsahuje atribut pevny s hodnotou ano, 
+// potom pro každý jeho výskyt obsahuje element <mets:dmdSec> v hierarchii dětských elementů <mets:mdWrap>, <mets:xmlData> dětský element <nsesss:Spis>, 
+// který se nenachází v rodičovském dílu (<nsesss:Dil>), se stejnou hodnotou v dětském elementu <nsesss:Identifikator> a v jeho atributu zdroj. 
+// Anebo stejným způsobem dětský element <nsesss:Dil> nebo <nsesss:Spis> nebo <nsesss:Dokument>, pokud byl vyřízen/uzavřen do 31. 12. 2026 včetně.
+
 public class Pravidlo29 extends K06PravidloBase {
 
     static final public String OBS29 = "obs29";
 
     public Pravidlo29() {
         super(OBS29,
-                "Pokud existuje jakýkoli element <nsesss:KrizovyOdkaz> a obsahuje atribut pevny s hodnotou ano, potom pro každý jeho výskyt obsahuje element <mets:dmdSec> v hierarchii dětských elementů <mets:mdWrap>, <mets:xmlData> dětský element <nsesss:Dil> nebo <nsesss:Dokument> nebo <nsesss:Spis> se stejnou hodnotou v dětském elementu <nsesss:Identifikator> a v jeho atributu zdroj.",
+                "Pokud existuje jakýkoli element <nsesss:KrizovyOdkaz> a obsahuje atribut pevny s hodnotou ano, potom pro každý jeho výskyt obsahuje element <mets:dmdSec> v hierarchii dětských elementů <mets:mdWrap>, <mets:xmlData> dětský element <nsesss:Spis>, který se nenachází v rodičovském dílu (<nsesss:Dil>), se stejnou hodnotou v dětském elementu <nsesss:Identifikator> a v jeho atributu zdroj. Anebo stejným způsobem dětský element <nsesss:Dil> nebo <nsesss:Spis> nebo <nsesss:Dokument>, pokud byl vyřízen/uzavřen do 31. 12. 2026 včetně.",
                 "Chybí popis dílu, spisu nebo dokumentu, který je v datovém balíčku SIP připojen pevným křížovým odkazem.",
-                "Bod 2.7. přílohy č. 3 NSESSS; příloha č. 2 NSESSS, ř. 20.");
+                "Požadavek 4.1.2, 4.1.3 a 4.1.4 NSESSS; bod 1.8 přílohy č. 2 NSESSS; příloha č. 2 NSESSS, nsesss.xsd, ř. 14.");
     }
 
     @Override

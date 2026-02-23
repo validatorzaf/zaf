@@ -5,9 +5,9 @@ import java.util.List;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
+import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 public class Pravidlo72 extends K06PravidloBase {
 
@@ -23,7 +23,7 @@ public class Pravidlo72 extends K06PravidloBase {
     //OBSAHOVÁ č.72 Každý element <nsesss:CasPouziti> obsahuje atribut datum.",
     @Override
     protected void kontrola() {
-        List<Element> casy = metsParser.getNodes(NsesssV3.CAS_POUZITI);
+        List<Element> casy = metsParser.getNodes(NsesssV4.CAS_POUZITI);
         for (Element cas : casy) {
             boolean maDatum = ValuesGetter.hasAttribut(cas, "datum");
             if (!maDatum) {

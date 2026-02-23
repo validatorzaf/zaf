@@ -28,6 +28,7 @@ public class NsesssV4 {
     public final static String DORUCENE_MNOZSTVI = "nsesss:DoruceneMnozstvi";
     public final static String DORUCENY_DOKUMENT = "nsesss:DorucenyDokument";
     public final static String DIL = "nsesss:Dil";
+    public final static String DRUH_DOKUMENTU = "nsesss:DruhDokumentu";
     public final static String ELEKTRONICKY_KONTAKT = "nsesss:ElektronickyKontakt";
     public final static String EVIDENCE = "nsesss:Evidence";
     public final static String EVIDENCNI_CISLO = "nsesss:EvidencniCislo";
@@ -82,6 +83,7 @@ public class NsesssV4 {
     public final static String ROK_OD = "nsesss:RokOd";
     public final static String ROK_SPOUSTECI_UDALOSTI = "nsesss:RokSpousteciUdalosti";
     public final static String ROK_SKARTACNI_OPERACE = "nsesss:RokSkartacniOperace";
+    public final static String ROK_VYRAZENI =  "nsesss:RokVyrazeni";
     public final static String SIDLO_ORGANIZACE = "nsesss:SidloOrganizace";
     public final static String SKARTACNI_LHUTA = "nsesss:SkartacniLhuta";
     public final static String SKARTACNI_REZIM = "nsesss:SkartacniRezim";

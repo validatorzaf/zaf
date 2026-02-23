@@ -276,6 +276,10 @@ public class MetsParser {
         return nodes;
         
     }
+    
+    public List<Element> getElements(String elementName) {
+        return getNodes(elementName);
+    }
 
     public List<Element> getDokumenty() {
         return getNodes(NsesssV3.DOKUMENT);

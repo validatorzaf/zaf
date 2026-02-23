@@ -19,10 +19,8 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 
 //
-// Pokud existuje jakýkoli element <nsesss:Komponenty>, všechny dětské elementy
-// <nsesss:Komponenta> se stejnou hodnotou atributu poradi obsahují v atributu
-// verze hodnotu, která společně tvoří vzestupnou řadu přirozených čísel
-// počínaje 1, přičemž čísla se neopakují a úvodní nuly se ignorují.
+// Pokud existuje jakýkoli element <nsesss:Komponenty>, všechny dětské elementy <nsesss:Komponenta> se stejnou hodnotou atributu poradi 
+// obsahují v atributu verze hodnotu, která společně tvoří vzestupnou řadu přirozených čísel, přičemž čísla se neopakují a úvodní nuly se ignorují.
 //
 public class Pravidlo102 extends K06PravidloBase {
     
@@ -32,7 +30,7 @@ public class Pravidlo102 extends K06PravidloBase {
     
     public Pravidlo102() {
         super(OBS102,
-                "Pokud existuje jakýkoli element <nsesss:Komponenty>, všechny dětské elementy <nsesss:Komponenta> se stejnou hodnotou atributu poradi obsahují v atributu verze hodnotu, která společně tvoří vzestupnou řadu přirozených čísel počínaje 1, přičemž čísla se neopakují a úvodní nuly se ignorují.",
+                "Pokud existuje jakýkoli element <nsesss:Komponenty>, všechny dětské elementy <nsesss:Komponenta> se stejnou hodnotou atributu poradi obsahují v atributu verze hodnotu, která společně tvoří vzestupnou řadu přirozených čísel, přičemž čísla se neopakují a úvodní nuly se ignorují.",
                 "Uvedena je chybně verze komponent (počítačových souborů).",
                 "Informační list NA, čá. 6/2020, č. 3/2020.");
     }
@@ -81,10 +79,15 @@ public class Pravidlo102 extends K06PravidloBase {
             Integer poradi = entry.getKey();
             Map<Integer, Element> mapaVerzi = entry.getValue();
             // kontrola seznamu verzi
-            int expectedVerze = 1;
+            int expectedVerze = -1;
             for (Entry<Integer, Element> zaznamVerze : mapaVerzi.entrySet()) {
                 Integer verze = zaznamVerze.getKey();
-                if (expectedVerze != verze.intValue()) {
+                int intVerze = verze.intValue();
+                if(expectedVerze == -1){
+                    expectedVerze = intVerze;
+                }
+                
+                if (expectedVerze != intVerze) {
                     Element elKomponenta = zaznamVerze.getValue();
                     nastavChybu(BaseCode.CHYBNA_KOMPONENTA, "Nalezeno neočekávané číslo verze. Pořadí komponenty: " + poradi
                             + ", verze: " + verze + ", očekávané číslo verze: " + expectedVerze,

@@ -7,9 +7,9 @@ import java.util.List;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
+import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 import java.util.ArrayList;
 
@@ -27,15 +27,15 @@ public class Pravidlo75 extends K06PravidloBase {
     //OBSAHOVÁ č.75 Pokud existuje jakýkoli element <nsesss:Platnost>, v každém obsahuje jeho dětský element <nsesss:PlatnostOd> stejnou nebo menší hodnotu, než je hodnota elementu <nsesss:PlatnostDo>.",
     @Override
     protected void kontrola() {
-        List<Element> posuzovanyOkamzik = metsParser.getNodes(NsesssV3.PLATNOST);
+        List<Element> posuzovanyOkamzik = metsParser.getNodes(NsesssV4.PLATNOST);
         for (Element platnost : posuzovanyOkamzik) {
             Element elEntita = kontrola.getEntity(platnost);
-            Element nodeOd = ValuesGetter.findFirstChild(platnost, NsesssV3.PLATNOST_OD);
+            Element nodeOd = ValuesGetter.findFirstChild(platnost, NsesssV4.PLATNOST_OD);
             if (nodeOd == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:PlatnostOd>.", platnost,
                         kontrola.getEntityId(elEntita));
             }
-            Element nodeDo = ValuesGetter.findFirstChild(platnost, NsesssV3.PLATNOST_DO);
+            Element nodeDo = ValuesGetter.findFirstChild(platnost, NsesssV4.PLATNOST_DO);
             if (nodeDo == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:PlatnostDo>.", platnost,
                         kontrola.getEntityId(elEntita));

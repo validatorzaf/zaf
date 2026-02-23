@@ -10,8 +10,8 @@ import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 //
 // OBSAHOVÁ č.44
@@ -27,7 +27,7 @@ public class Pravidlo44 extends K06PravidloBase {
         super(OBS44,
                 "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut DMDID s hodnotou uvedenou v atributu ID jakéhokoli elementu <nsesss:Komponenta>, přičemž právě jedna hodnota atributu DMDID odpovídá právě jedné hodnotě atributu ID.",
                 "Chybí provázání komponenty (počítačového souboru) s popisnou částí.",
-                "Bod 2.15. přílohy č. 3 NSESSS.");
+                "Bod 1.15 přílohy č. 2 NSESSS.");
     }
 
     @Override
@@ -38,7 +38,7 @@ public class Pravidlo44 extends K06PravidloBase {
             // dalsi kontrola je jen pokud existuje File
             return;
         }
-        List<Element> nodeListKomponenty = metsParser.getNodes(NsesssV3.KOMPONENTA);
+        List<Element> nodeListKomponenty = metsParser.getNodes(NsesssV4.KOMPONENTA);
         if (nodeListKomponenty.size() != nodeListMetsFile.size()) {
             nastavChybu(BaseCode.CHYBI_ELEMENT,
                         "Nenalezen shodný počet <nsesss:Komponenta> a <mets:file>." + "Komponenty ("

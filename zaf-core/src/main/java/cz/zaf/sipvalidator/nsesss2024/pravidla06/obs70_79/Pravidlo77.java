@@ -6,9 +6,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
+import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 public class Pravidlo77 extends K06PravidloBase {
 
@@ -18,7 +18,7 @@ public class Pravidlo77 extends K06PravidloBase {
         super(OBS77,
                 "Pokud základní entita obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano, potom obsahuje v hierarchii dětských elementů <nsesss:Vyrazovani> a <nsesss:SkartacniRizeni> element <nsesss:Mnozstvi> s neprázdnou hodnotou.",
                 "Chybí množství dílu, spisu nebo dokumentu v analogové podobě.",
-                "Příloha č. 2 NSESSS, ř. 1006.");
+                "Příloha č. 2 NSESSS, nsesss-common.xsd, ř. 1091.");
     }
 
     //OBSAHOVÁ č.77 Pokud základní entita obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, 
@@ -33,13 +33,13 @@ public class Pravidlo77 extends K06PravidloBase {
 
         for (int i = 0; i < zakladniEntity.size(); i++) {
             Element zakladnientita = zakladniEntity.get(i);
-            Element analogovy = ValuesGetter.getXChild(zakladnientita, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.MANIPULACE,
-                    NsesssV3.ANALOGOVY_DOKUMENT);
+            Element analogovy = ValuesGetter.getXChild(zakladnientita, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.MANIPULACE,
+                    NsesssV4.ANALOGOVY_DOKUMENT);
             if (analogovy != null) {
                 String analogovyZakladni = analogovy.getTextContent();
                 if (analogovyZakladni.equals("ano")) {
-                    Element mnozstvi = ValuesGetter.getXChild(zakladnientita, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.VYRAZOVANI,
-                            NsesssV3.SKARTACNI_RIZENI, NsesssV3.MNOZSTVI);
+                    Element mnozstvi = ValuesGetter.getXChild(zakladnientita, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.VYRAZOVANI,
+                            NsesssV4.SKARTACNI_RIZENI, NsesssV4.MNOZSTVI);
                     if (mnozstvi == null) {
                         nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Mnozstvi> základní entity. "
                                 + getJmenoIdentifikator(zakladnientita),

@@ -6,10 +6,10 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
-import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.K06_Obsahova;
+import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
+import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 // OBSAHOVÁ č.40 Pokud jakýkoli element <nsesss:Dokument> obsahuje
 // v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace>
@@ -23,7 +23,7 @@ public class Pravidlo40 extends K06PravidloBase {
 		super(OBS40,
 				"Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ne, obsahuje element <mets:mets> právě jeden dětský element <mets:fileSec>.",
 				"Chybí připojení komponent (počítačových souborů).",
-				"Bod 2.13. přílohy č. 3 NSESSS.");
+				"Bod 1.13 přílohy č. 2 NSESSS.");
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class Pravidlo40 extends K06PravidloBase {
         }
         
         for (Element dokument : dokumenty) {
-            Element analogovyDokument = ValuesGetter.getXChild(dokument, NsesssV3.EVIDENCNI_UDAJE,
+            Element analogovyDokument = ValuesGetter.getXChild(dokument, NsesssV4.EVIDENCNI_UDAJE,
                                                             "nsesss:Manipulace", "nsesss:AnalogovyDokument");
             // TODO: Je toto nutne? mozna musi existovat jiz ze souladu se schematem
             if (analogovyDokument == null) {

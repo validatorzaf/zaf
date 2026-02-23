@@ -6,9 +6,9 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
+import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 public class Pravidlo94 extends K06PravidloBase {
 
@@ -18,7 +18,7 @@ public class Pravidlo94 extends K06PravidloBase {
         super(OBS94,
                 "Každá entita vyjma jakéhokoli spisového plánu (<nsesss:SpisovyPlan>) obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> element <nsesss:PlneUrcenySpisovyZnak> s hodnotou, jejíž poslední část je stejná jako hodnota elementu <nsesss:JednoduchySpisovyZnak>.",
                 "Chybně jsou uvedeny spisové znaky.",
-                "Požadavek 3.1.30 NSESSS.");
+                "Požadavek 3.1.12 NSESSS.");
     }
 
     //OBSAHOVÁ č.94 "Každá entita vyjma jakéhokoli spisového plánu (<nsesss:SpisovyPlan>) obsahuje v hierarchii dětských elementů 
@@ -26,18 +26,18 @@ public class Pravidlo94 extends K06PravidloBase {
     // jejíž poslední část je stejná jako hodnota elementu <nsesss:JednoduchySpisovyZnak>.",
     @Override
     protected void kontrola() {
-        List<Element> plneurcenySpisovyZnak = metsParser.getNodes(NsesssV3.PLNE_URCENY_SPISOVY_ZNAK);
+        List<Element> plneurcenySpisovyZnak = metsParser.getNodes(NsesssV4.PLNE_URCENY_SPISOVY_ZNAK);
         if (CollectionUtils.isEmpty(plneurcenySpisovyZnak)) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:PlneUrcenySpisovyZnak>.");
         }
         for (Element puzNode : plneurcenySpisovyZnak) {
             // kontrola jen pokud je rodic nsesss:Trideni
-            Element trideni = ValuesGetter.getParent(puzNode, NsesssV3.TRIDENI);
+            Element trideni = ValuesGetter.getParent(puzNode, NsesssV4.TRIDENI);
             if (trideni == null) {
                 continue;
             }
 
-            Element jzNode = ValuesGetter.getSourozencePrvnihoSeJmenem(puzNode, NsesssV3.JEDNODUCHY_SPISOVY_ZNAK);
+            Element jzNode = ValuesGetter.getSourozencePrvnihoSeJmenem(puzNode, NsesssV4.JEDNODUCHY_SPISOVY_ZNAK);
             Element entita = kontrola.getEntity(jzNode);
             if (jzNode == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak>. "
