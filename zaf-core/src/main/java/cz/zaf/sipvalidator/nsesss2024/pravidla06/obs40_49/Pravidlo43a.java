@@ -6,8 +6,8 @@ import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 //
 // OBSAHOVÁ č.43a
@@ -24,7 +24,7 @@ public class Pravidlo43a extends K06PravidloBase
         super(OBS43A,
                 "Pokud existuje element <mets:fileSec>, obsahuje právě jeden dětský element <mets:fileGrp>.",
                 "Chybí připojení komponent (počítačových souborů) nebo je špatně strukturováno.",
-                "Bod 2.14. přílohy č. 3 NSESSS.");
+                "Bod 1.14 přílohy č. 2 NSESSS.");
     }
 
     @Override

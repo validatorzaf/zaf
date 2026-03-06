@@ -7,7 +7,7 @@ import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.helper.HelperString;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 public class Pravidlo57 extends K06PravidloBase {
 
@@ -17,7 +17,7 @@ public class Pravidlo57 extends K06PravidloBase {
         super(OBS57,
                 "Jakýkoli element <nsesss:Identifikator> obsahuje neprázdnou hodnotu.",
                 "Není uveden identifikátor.",
-                "Příloha č. 2 NSESSS, ř. 123.");
+                "Příloha č. 2 NSESSS, nsesss-common.xsd, ř. 127.");
     }
 
     //OBSAHOVÁ č.57 Jakýkoli element <nsesss:Identifikator> obsahuje neprázdnou hodnotu.",

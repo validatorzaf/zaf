@@ -5,9 +5,9 @@ import java.util.List;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
+import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 // OBSAHOVÁ č.97
 // Pokud existuje více než jedna základní entita, všechny obsahují
@@ -24,7 +24,7 @@ public class Pravidlo97 extends K06PravidloBase {
                 + "<nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> "
                 + "se stejnými hodnotami.",
                 "Chybně jsou uvedeny spisové znaky.",
-                "Požadavek 3.1.34 NSESSS.");
+                "Požadavek 4.1.4 a 4.1.5 NSESSS.");
     }
     
     @Override
@@ -35,10 +35,10 @@ public class Pravidlo97 extends K06PravidloBase {
         }
         
         Element zakladniEntitaPrvni = zakladniEntity.get(0);
-        Element n0_j = ValuesGetter.getXChild(zakladniEntitaPrvni, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
-                NsesssV3.JEDNODUCHY_SPISOVY_ZNAK);
-        Element n0_p = ValuesGetter.getXChild(zakladniEntitaPrvni, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
-                NsesssV3.PLNE_URCENY_SPISOVY_ZNAK);
+        Element n0_j = ValuesGetter.getXChild(zakladniEntitaPrvni, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI,
+                NsesssV4.JEDNODUCHY_SPISOVY_ZNAK);
+        Element n0_p = ValuesGetter.getXChild(zakladniEntitaPrvni, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI,
+                NsesssV4.PLNE_URCENY_SPISOVY_ZNAK);
         if (n0_j == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak> základní entity. "
                     + getJmenoIdentifikator(zakladniEntitaPrvni), getMistoChyby(zakladniEntitaPrvni),
@@ -54,10 +54,10 @@ public class Pravidlo97 extends K06PravidloBase {
         String plneUrceny = n0_p.getTextContent();
         for (int i = 1; i < zakladniEntity.size(); i++) {
             Element zakladniEntita = zakladniEntity.get(i);
-            Element n_j = ValuesGetter.getXChild(zakladniEntita, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
-                    NsesssV3.JEDNODUCHY_SPISOVY_ZNAK);
-            Element n_p = ValuesGetter.getXChild(zakladniEntita, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
-                    NsesssV3.PLNE_URCENY_SPISOVY_ZNAK);
+            Element n_j = ValuesGetter.getXChild(zakladniEntita, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI,
+                    NsesssV4.JEDNODUCHY_SPISOVY_ZNAK);
+            Element n_p = ValuesGetter.getXChild(zakladniEntita, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI,
+                    NsesssV4.PLNE_URCENY_SPISOVY_ZNAK);
             if (n_j == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak> základní entity. "
                         + getJmenoIdentifikator(zakladniEntita), getMistoChyby(zakladniEntita),

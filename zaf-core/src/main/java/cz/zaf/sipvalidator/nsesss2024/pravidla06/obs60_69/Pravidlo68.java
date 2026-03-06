@@ -5,9 +5,9 @@ import java.util.List;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
+import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 public class Pravidlo68 extends K06PravidloBase {
 
@@ -17,7 +17,7 @@ public class Pravidlo68 extends K06PravidloBase {
         super(OBS68,
                 "Každá entita věcná skupina (<nsesss:VecnaSkupina>), která je rodičovskou entitou spisu (<nsesss:Spis>) nebo dokumentu (<nsesss:Dokument>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani> element <nsesss:SkartacniRezim>.",
                 "Chybí skartační režim věcné skupiny.",
-                "§ 15 odst. 2 vyhlášky č. 259/2012 Sb.; příloha č. 2 NSESSS, ř. 1250.");
+                "§ 15 odst. 1 vyhlášky č. 259/2012 Sb.; příloha č. 2 NSESSS, nsesss-common.xsd, ř. 1306.");
     }
 
     //OBSAHOVÁ č.68 Každá entita věcná skupina (<nsesss:VecnaSkupina>), která je rodičovskou entitou spisu (<nsesss:Spis>) nebo dokumentu (<nsesss:Dokument>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani> element <nsesss:SkartacniRezim>.
@@ -31,23 +31,23 @@ public class Pravidlo68 extends K06PravidloBase {
         for (Element zakladnientita : zakladniEntity) {
             String nazevZakladniEntity = zakladnientita.getNodeName();
             Element vecnaskupina = null;
-            if (nazevZakladniEntity.equals(NsesssV3.SPIS) || nazevZakladniEntity.equals(NsesssV3.DOKUMENT)) {
-                if (nazevZakladniEntity.equals(NsesssV3.DOKUMENT)) {
-                    vecnaskupina = ValuesGetter.getXChild(zakladnientita, NsesssV3.EVIDENCNI_UDAJE,
-                            NsesssV3.TRIDENI, NsesssV3.MATERSKE_ENTITY,
-                            NsesssV3.VECNA_SKUPINA);
+            if (nazevZakladniEntity.equals(NsesssV4.SPIS) || nazevZakladniEntity.equals(NsesssV4.DOKUMENT)) {
+                if (nazevZakladniEntity.equals(NsesssV4.DOKUMENT)) {
+                    vecnaskupina = ValuesGetter.getXChild(zakladnientita, NsesssV4.EVIDENCNI_UDAJE,
+                            NsesssV4.TRIDENI, NsesssV4.MATERSKE_ENTITY,
+                            NsesssV4.VECNA_SKUPINA);
                 } else {
-                    vecnaskupina = ValuesGetter.getXChild(zakladnientita, NsesssV3.EVIDENCNI_UDAJE,
-                            NsesssV3.TRIDENI, NsesssV3.MATERSKA_ENTITA,
-                            NsesssV3.VECNA_SKUPINA);
+                    vecnaskupina = ValuesGetter.getXChild(zakladnientita, NsesssV4.EVIDENCNI_UDAJE,
+                            NsesssV4.TRIDENI, NsesssV4.MATERSKA_ENTITA,
+                            NsesssV4.VECNA_SKUPINA);
                 }
 
                 if (vecnaskupina == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezena rodičovská entita věcná skupina základní entity. "
                             + getJmenoIdentifikator(zakladnientita), zakladnientita, kontrola.getEntityId(zakladnientita));
                 }
-                Element sr = ValuesGetter.getXChild(vecnaskupina, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.VYRAZOVANI,
-                        NsesssV3.SKARTACNI_REZIM);
+                Element sr = ValuesGetter.getXChild(vecnaskupina, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.VYRAZOVANI,
+                        NsesssV4.SKARTACNI_REZIM);
                 if (sr == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:SkartacniRezim>. " + getJmenoIdentifikator(vecnaskupina),
                             vecnaskupina, kontrola.getEntityId(zakladnientita));

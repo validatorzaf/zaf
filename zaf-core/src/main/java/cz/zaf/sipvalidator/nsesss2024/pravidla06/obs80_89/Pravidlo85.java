@@ -6,9 +6,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
+import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 public class Pravidlo85 extends K06PravidloBase {
     
@@ -18,7 +18,7 @@ public class Pravidlo85 extends K06PravidloBase {
         super(OBS85,
                 "Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano, potom element <nsesss:Manipulace> obsahuje dětský element <nsesss:UkladaciJednotka> s neprázdnou hodnotou.",
                 "Chybí ukládací jednotka dokumentu v analogové podobě.",
-                "Příloha č. 2 NSESSS, ř. 1352.");
+                "Příloha č. 2 NSESSS, nsesss-common.xsd, ř. 1440.");
     }
 
     //OBSAHOVÁ č.85 Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských elementů 
@@ -32,13 +32,13 @@ public class Pravidlo85 extends K06PravidloBase {
         } else {
             for (int i = 0; i < dokumenty.size(); i++) {
                 Element dokument = dokumenty.get(i);
-                Element analog = ValuesGetter.getXChild(dokument, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.MANIPULACE,
-                        NsesssV3.ANALOGOVY_DOKUMENT);
+                Element analog = ValuesGetter.getXChild(dokument, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.MANIPULACE,
+                        NsesssV4.ANALOGOVY_DOKUMENT);
                 if (analog != null) {
                     String hodnota = analog.getTextContent();
                     if (hodnota.equals("ano")) {
                         Element uklalaciJednotka = ValuesGetter.getSourozencePrvnihoSeJmenem(analog,
-                                NsesssV3.UKLADACI_JEDNOTKA);
+                                NsesssV4.UKLADACI_JEDNOTKA);
                         if (uklalaciJednotka == null) {
                             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:UkladaciJednotka>. " + getJmenoIdentifikator(
                                     dokument),

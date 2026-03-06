@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.mets.MetsElements;

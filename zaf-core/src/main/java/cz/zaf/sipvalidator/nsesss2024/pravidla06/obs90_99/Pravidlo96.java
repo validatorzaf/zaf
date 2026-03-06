@@ -6,9 +6,9 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
+import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 import java.util.Arrays;
 
@@ -29,7 +29,7 @@ public class Pravidlo96 extends K06PravidloBase {
         super(OBS96,
                 "Každá základní entita a každá entita typový spis (<nsesss:TypovySpis>) obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> se stejnými hodnotami, jaké obsahují v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> rodičovské entity věcná skupina (<nsesss:VecnaSkupina>) nebo součást (<nsesss:Soucast>).",
                 "Chybně jsou uvedeny spisové znaky.",
-                "§ 14 odst. 4 vyhlášky č. 259/2012 Sb.");
+                "§ 12 odst. 3 a 4 vyhlášky č. 259/2012 Sb.");
     }
 
     @Override
@@ -40,10 +40,10 @@ public class Pravidlo96 extends K06PravidloBase {
         }
 
         for (Element zakladniEntita : zakladniEntity) {
-            Element n_zakl_jsz = ValuesGetter.getXChild(zakladniEntita, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
-                    NsesssV3.JEDNODUCHY_SPISOVY_ZNAK);
-            Element n_zakl_pusz = ValuesGetter.getXChild(zakladniEntita, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
-                    NsesssV3.PLNE_URCENY_SPISOVY_ZNAK);
+            Element n_zakl_jsz = ValuesGetter.getXChild(zakladniEntita, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI,
+                    NsesssV4.JEDNODUCHY_SPISOVY_ZNAK);
+            Element n_zakl_pusz = ValuesGetter.getXChild(zakladniEntita, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI,
+                    NsesssV4.PLNE_URCENY_SPISOVY_ZNAK);
             if (n_zakl_jsz == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak> základní entity. "
                         + getJmenoIdentifikator(zakladniEntita),
@@ -55,24 +55,24 @@ public class Pravidlo96 extends K06PravidloBase {
                         zakladniEntita, kontrola.getEntityId(zakladniEntita));
             }
 
-            if (zakladniEntita.getNodeName().equals(NsesssV3.DIL)) {
+            if (zakladniEntita.getNodeName().equals(NsesssV4.DIL)) {
                 kontrolaDilu(zakladniEntita, n_zakl_jsz, n_zakl_pusz);
             } else {
                 String jednoduchySpZnZaklEnt = n_zakl_jsz.getTextContent();
                 String plneUrcenySpZnZaklEnt = n_zakl_pusz.getTextContent();
 
                 String jednoduchy, plneUrceny;
-                List<Element> vsechnyVecneSkupiny = metsParser.getNodes(NsesssV3.VECNA_SKUPINA);
+                List<Element> vsechnyVecneSkupiny = metsParser.getNodes(NsesssV4.VECNA_SKUPINA);
                 List<Element> vecneSkupiny = ValuesGetter.getAllChildNodes(zakladniEntita, vsechnyVecneSkupiny);
                 if (CollectionUtils.isEmpty(vecneSkupiny)) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:VecnaSkupina> základní entity.",
                             zakladniEntita, kontrola.getEntityId(zakladniEntita));
                 }
                 Element prvniVecnaSkupina = vecneSkupiny.get(0);
-                Element n_j = ValuesGetter.getXChild(prvniVecnaSkupina, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
-                        NsesssV3.JEDNODUCHY_SPISOVY_ZNAK);
-                Element n_p = ValuesGetter.getXChild(prvniVecnaSkupina, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
-                        NsesssV3.PLNE_URCENY_SPISOVY_ZNAK);
+                Element n_j = ValuesGetter.getXChild(prvniVecnaSkupina, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI,
+                        NsesssV4.JEDNODUCHY_SPISOVY_ZNAK);
+                Element n_p = ValuesGetter.getXChild(prvniVecnaSkupina, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI,
+                        NsesssV4.PLNE_URCENY_SPISOVY_ZNAK);
                 if (n_j == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(zakladniEntita),
                             prvniVecnaSkupina, kontrola.getEntityId(zakladniEntita));
@@ -100,43 +100,43 @@ public class Pravidlo96 extends K06PravidloBase {
         String jednoduchySpZnZaklEnt = n_zakl_jsz.getTextContent();
         String plneUrcenySpZnZaklEnt = n_zakl_pusz.getTextContent();
 
-        Element elSoucast = ValuesGetter.getXChild(dil, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
-                NsesssV3.MATERSKA_ENTITA, NsesssV3.SOUCAST);
+        Element elSoucast = ValuesGetter.getXChild(dil, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI,
+                NsesssV4.MATERSKA_ENTITA, NsesssV4.SOUCAST);
         if (elSoucast == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Soucast>. " + getJmenoIdentifikator(dil),
                     dil, kontrola.getEntityId(dil));
         }
-        Element trideniSoucasti = ValuesGetter.getXChild(elSoucast, NsesssV3.EVIDENCNI_UDAJE,
-                NsesssV3.TRIDENI);
+        Element trideniSoucasti = ValuesGetter.getXChild(elSoucast, NsesssV4.EVIDENCNI_UDAJE,
+                NsesssV4.TRIDENI);
         if (trideniSoucasti == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Trideni>. " + getJmenoIdentifikator(elSoucast),
                     elSoucast, kontrola.getEntityId(elSoucast));
         }
 
-        Element elJednSpisZnakSoucasti = ValuesGetter.getXChild(trideniSoucasti, NsesssV3.JEDNODUCHY_SPISOVY_ZNAK);
+        Element elJednSpisZnakSoucasti = ValuesGetter.getXChild(trideniSoucasti, NsesssV4.JEDNODUCHY_SPISOVY_ZNAK);
         if (elJednSpisZnakSoucasti == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(elSoucast),
                     elSoucast, kontrola.getEntityId(elSoucast));
         }
-        Element elPlneUrcSpisZnakSoucasti = ValuesGetter.getXChild(trideniSoucasti, NsesssV3.PLNE_URCENY_SPISOVY_ZNAK);
+        Element elPlneUrcSpisZnakSoucasti = ValuesGetter.getXChild(trideniSoucasti, NsesssV4.PLNE_URCENY_SPISOVY_ZNAK);
         if (elPlneUrcSpisZnakSoucasti == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(elSoucast),
                     elSoucast, kontrola.getEntityId(elSoucast));
         }
 
-        Element elTypovySpis = ValuesGetter.getXChild(trideniSoucasti, NsesssV3.MATERSKA_ENTITA, NsesssV3.TYPOVY_SPIS);
+        Element elTypovySpis = ValuesGetter.getXChild(trideniSoucasti, NsesssV4.MATERSKA_ENTITA, NsesssV4.TYPOVY_SPIS);
         if (elTypovySpis == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:TypovySpis>. " + getJmenoIdentifikator(dil),
                     dil, kontrola.getEntityId(dil));
         }
-        Element elJednSpisZnakTypovehoSpisu = ValuesGetter.getXChild(elTypovySpis, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
-                NsesssV3.JEDNODUCHY_SPISOVY_ZNAK);
+        Element elJednSpisZnakTypovehoSpisu = ValuesGetter.getXChild(elTypovySpis, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI,
+                NsesssV4.JEDNODUCHY_SPISOVY_ZNAK);
         if (elJednSpisZnakTypovehoSpisu == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(elTypovySpis),
                     elTypovySpis, kontrola.getEntityId(elTypovySpis));
         }
-        Element elPlneUrcSpisZnakTypovehoSpisu = ValuesGetter.getXChild(elTypovySpis, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
-                NsesssV3.PLNE_URCENY_SPISOVY_ZNAK);
+        Element elPlneUrcSpisZnakTypovehoSpisu = ValuesGetter.getXChild(elTypovySpis, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI,
+                NsesssV4.PLNE_URCENY_SPISOVY_ZNAK);
         if (elPlneUrcSpisZnakTypovehoSpisu == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(elTypovySpis),
                     elTypovySpis, kontrola.getEntityId(elTypovySpis));
@@ -160,7 +160,7 @@ public class Pravidlo96 extends K06PravidloBase {
                     kontrola.getEntityId(dilPlusSoucast));
         }
 
-        List<Element> vsechnyVecneSkupiny = metsParser.getNodes(NsesssV3.VECNA_SKUPINA);
+        List<Element> vsechnyVecneSkupiny = metsParser.getNodes(NsesssV4.VECNA_SKUPINA);
         List<Element> vecneSkupiny = ValuesGetter.getAllChildNodes(dil, vsechnyVecneSkupiny);
         if (vecneSkupiny == null || vecneSkupiny.isEmpty()) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:VecnaSkupina> základní entity. "
@@ -168,10 +168,10 @@ public class Pravidlo96 extends K06PravidloBase {
                     kontrola.getEntityId(dil));
         }
         Element elVecnaSkupinaDilu = vecneSkupiny.get(vecneSkupiny.size() - 1);
-        Element elJednSpisZnakVecneSkupiny = ValuesGetter.getXChild(elVecnaSkupinaDilu, NsesssV3.EVIDENCNI_UDAJE,
-                NsesssV3.TRIDENI, NsesssV3.JEDNODUCHY_SPISOVY_ZNAK);
-        Element elPlneUrcSpisZnakVecneSkupiny = ValuesGetter.getXChild(elVecnaSkupinaDilu, NsesssV3.EVIDENCNI_UDAJE,
-                NsesssV3.TRIDENI, NsesssV3.PLNE_URCENY_SPISOVY_ZNAK);
+        Element elJednSpisZnakVecneSkupiny = ValuesGetter.getXChild(elVecnaSkupinaDilu, NsesssV4.EVIDENCNI_UDAJE,
+                NsesssV4.TRIDENI, NsesssV4.JEDNODUCHY_SPISOVY_ZNAK);
+        Element elPlneUrcSpisZnakVecneSkupiny = ValuesGetter.getXChild(elVecnaSkupinaDilu, NsesssV4.EVIDENCNI_UDAJE,
+                NsesssV4.TRIDENI, NsesssV4.PLNE_URCENY_SPISOVY_ZNAK);
         if (elJednSpisZnakVecneSkupiny == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(elVecnaSkupinaDilu),
                     elVecnaSkupinaDilu, kontrola.getEntityId(elVecnaSkupinaDilu));

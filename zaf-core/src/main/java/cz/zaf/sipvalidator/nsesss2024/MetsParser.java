@@ -31,11 +31,11 @@ import cz.zaf.sipvalidator.sip.SipInfo.SipType;
 
 /**
  * METS parser
- * 
- * provede nacteni METS.xml a pripravi jeho zakladni
- * prehled
+ *
+ * provede nacteni METS.xml a pripravi jeho zakladni prehled
  */
 public class MetsParser {
+
     public static final String PEVNY_KRIZOVY_ODKAZ = "nsesss:KrizovyOdkaz[pevny=ano]";
 
     /**
@@ -44,15 +44,15 @@ public class MetsParser {
     protected Document document;
 
     protected Element metsMets, metsDmdSec, metsMdWrap, xmlData, metsHdr;
-    
+
     /**
      * Seznam zakladnich entit pod elementem xmldata.
      */
     protected List<Element> zakladniEntity;
-    
+
     /**
      * Seznam chybnych zakladnich entit
-     * 
+     *
      * Obsahuje seznam uzlu s nerozponanou zakladni entitou
      */
     private List<Element> zakladniEntityChybne;
@@ -61,7 +61,7 @@ public class MetsParser {
      * Chyba vzniklá při parsování
      */
     public String parserError;
-    
+
     /**
      * Mapa dotazu na uzly
      */
@@ -74,11 +74,10 @@ public class MetsParser {
     public MetsParser(SipInfo sip) throws ParserConfigurationException, SAXException {
     
     }
-    */
-
+     */
     public void parse(SipInfo sipInfo) {
         Path cestaMets = sipInfo.getCestaMets();
-        if(cestaMets==null) {
+        if (cestaMets == null) {
             parserError = "Není definována cesta k mets.xml";
             return;
         }
@@ -98,7 +97,7 @@ public class MetsParser {
 
     /**
      * Nacteni zakladnich elementu z metsu
-     * 
+     *
      * @param sipInfo
      */
     private void readDocument(SipInfo sipInfo) {
@@ -123,7 +122,7 @@ public class MetsParser {
             }
         }
 
-        readNsesssData(sipInfo);                        
+        readNsesssData(sipInfo);
         // konec        
     }
 
@@ -141,9 +140,9 @@ public class MetsParser {
         dw.addAggregator(new NamedNodeAggregator(MetsElements.FILE, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(MetsElements.FILE_GRP, nodeQueryCache));
         dw.addAggregator(new NamedNodeAggregator(MetsElements.FLOCAT, nodeQueryCache));
-        dw.addAggregator(new NamedNodeAggregator(MetsElements.FPTR, nodeQueryCache));        
-        
-        if(xmlData!=null) {
+        dw.addAggregator(new NamedNodeAggregator(MetsElements.FPTR, nodeQueryCache));
+
+        if (xmlData != null) {
             NodeList zakladniEntityNodes = xmlData.getChildNodes();
             SipType sipType = null;
             for (int i = 0; i < zakladniEntityNodes.getLength(); i++) {
@@ -153,26 +152,26 @@ public class MetsParser {
                 }
                 Element elem = (Element) node;
                 switch (node.getNodeName()) {
-                case NsesssV4.DOKUMENT:
-                    zakladniEntity.add(elem);
-                    if (sipType == null) {
-                        sipType = SipType.DOKUMENT;
-                    }
-                    break;
-                case NsesssV4.SPIS:
-                    zakladniEntity.add(elem);
-                    if (sipType == null) {
-                        sipType = SipType.SPIS;
-                    }
-                    break;
-                case NsesssV4.DIL:
-                    zakladniEntity.add(elem);
-                    if (sipType == SipType.DIL) {
-                        sipType = SipType.DIL;
-                    }
-                    break;
-                default:
-                    zakladniEntityChybne.add(elem);
+                    case NsesssV4.DOKUMENT:
+                        zakladniEntity.add(elem);
+                        if (sipType == null) {
+                            sipType = SipType.DOKUMENT;
+                        }
+                        break;
+                    case NsesssV4.SPIS:
+                        zakladniEntity.add(elem);
+                        if (sipType == null) {
+                            sipType = SipType.SPIS;
+                        }
+                        break;
+                    case NsesssV4.DIL:
+                        zakladniEntity.add(elem);
+                        if (sipType == SipType.DIL) {
+                            sipType = SipType.DIL;
+                        }
+                        break;
+                    default:
+                        zakladniEntityChybne.add(elem);
                 }
             }
             sipInfo.setType(sipType);
@@ -189,7 +188,7 @@ public class MetsParser {
             dw.addAggregator(new NamedNodeAggregator(NsesssV4.CAS_OVERENI, nodeQueryCache));
             dw.addAggregator(new NamedNodeAggregator(NsesssV4.CAS_POUZITI, nodeQueryCache));
             dw.addAggregator(new NamedNodeAggregator(NsesssV4.POSUZOVANY_OKAMZIK, nodeQueryCache));
-            dw.addAggregator(new NamedNodeAggregator(NsesssV4.PLATNOST, nodeQueryCache));        
+            dw.addAggregator(new NamedNodeAggregator(NsesssV4.PLATNOST, nodeQueryCache));
             dw.addAggregator(new NamedNodeAggregator(NsesssV4.NAZEV, nodeQueryCache));
             dw.addAggregator(new NamedNodeAggregator(NsesssV4.VYRIZENI, nodeQueryCache));
             dw.addAggregator(new NamedNodeAggregator(NsesssV4.VYRIZENI_UZAVRENI, nodeQueryCache));
@@ -218,16 +217,17 @@ public class MetsParser {
 
                 @Override
                 public void onFinished() {
-                    nodeQueryCache.put(PEVNY_KRIZOVY_ODKAZ, nodes);                
+                    nodeQueryCache.put(PEVNY_KRIZOVY_ODKAZ, nodes);
                 }
-                
+
             });
         }
 
         dw.walk(document);
-                
-        if (zakladniEntity != null && zakladniEntity.isEmpty())
+
+        if (zakladniEntity != null && zakladniEntity.isEmpty()) {
             zakladniEntity = null; // kvůli pravidlům
+        }
     }
 
     public Document getDocument() {
@@ -236,9 +236,9 @@ public class MetsParser {
 
     /**
      * Vraci korenovy element metsu
-     * 
+     *
      * Po kontrole schématu vrací platný uzel.
-     * 
+     *
      * @return kořenový uzel
      */
     public Element getMetsRootNode() {
@@ -268,14 +268,18 @@ public class MetsParser {
     public List<Element> getZakladniEntityChybne() {
         return zakladniEntityChybne;
     }
-    
+
     public List<Element> getNodes(String nodeName) {
         List<Element> nodes = this.nodeQueryCache.get(nodeName);
-        if(nodes==null) {
-            throw new RuntimeException("Element pro vyhodnocení pravidla není načten z důvodu jiné chyby, název elementu: "+nodeName);
+        if (nodes == null) {
+            throw new RuntimeException("Element pro vyhodnocení pravidla není načten z důvodu jiné chyby, název elementu: " + nodeName);
         }
         return nodes;
-        
+
+    }
+
+    public List<Element> getElements(String elementName) {
+        return getNodes(elementName);
     }
 
     public List<Element> getDokumenty() {

@@ -10,19 +10,16 @@ import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
-// Pokud existuje jakýkoli element mets:file, každý obsahuje atribut MIMETYPE,
-// jeho hodnota musí odpovídat pravidlům pro tvorbu označení MIMETYPE
-// uvedených na https://www.iana.org/assignments/media-types/media-types.xhtml a
-// musí odpovídat typu referencovaného souboru.
+//Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut MIMETYPE, jeho hodnota musí odpovídat pravidlům pro tvorbu 
+//označení MIMETYPE uvedených na https://www.iana.org/assignments/media-types/media-types.xhtml 
+//a musí odpovídat typu referencovaného souboru.
 //
 //
 // Rozšířená kontrola souladu s:
 //
-//
-//
-//
+
 public class Pravidlo41 extends K06PravidloBase {
 
     static final public String OBS41 = "obs41";
@@ -43,9 +40,9 @@ public class Pravidlo41 extends K06PravidloBase {
 
     public Pravidlo41() {
         super(OBS41,
-                "Pokud existuje jakýkoli element mets:file, každý obsahuje atribut MIMETYPE, jeho hodnota musí odpovídat pravidlům pro tvorbu označení MIMETYPE uvedených na https://www.iana.org/assignments/media-types/media-types.xhtml a musí odpovídat typu referencovaného souboru.",
+                "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut MIMETYPE, jeho hodnota musí odpovídat pravidlům pro tvorbu označení MIMETYPE uvedených na https://www.iana.org/assignments/media-types/media-types.xhtml a musí odpovídat typu referencovaného souboru.",
                 "Atribut MIMETYPE elementu mets:file neobsahuje správnou hodnotu nebo je prázdný.",
-                "Bod 2.15. přílohy č. 3 NSESSS.");
+                "Bod 1.15 přílohy č. 2 NSESSS.");
     }
     
     @Override
