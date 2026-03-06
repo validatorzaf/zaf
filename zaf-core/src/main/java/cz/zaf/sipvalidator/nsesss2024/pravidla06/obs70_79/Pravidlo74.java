@@ -5,9 +5,9 @@ import java.util.List;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
+import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 public class Pravidlo74 extends K06PravidloBase {
 
@@ -24,7 +24,7 @@ public class Pravidlo74 extends K06PravidloBase {
     //OBSAHOVÁ č.74 Každý element <nsesss:PosuzovanyOkamzik> obsahuje atribut datum.",
     @Override
     protected void kontrola() {
-        List<Element> nodes = metsParser.getNodes(NsesssV3.POSUZOVANY_OKAMZIK);
+        List<Element> nodes = metsParser.getNodes(NsesssV4.POSUZOVANY_OKAMZIK);
         for (Element cas : nodes) {
             boolean maDatum = ValuesGetter.hasAttribut(cas, "datum");
             if (!maDatum) {

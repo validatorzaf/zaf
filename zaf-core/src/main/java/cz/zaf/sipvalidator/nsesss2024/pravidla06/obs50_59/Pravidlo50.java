@@ -3,12 +3,11 @@ package cz.zaf.sipvalidator.nsesss2024.pravidla06.obs50_59;
 import java.util.List;
 
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.mets.MetsElements;
-import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 public class Pravidlo50 extends K06PravidloBase {
 
@@ -18,7 +17,7 @@ public class Pravidlo50 extends K06PravidloBase {
         super(OBS50,
                 "Pokud existuje jakýkoli element <mets:file>, každý obsahuje právě jeden dětský element <mets:FLocat>.",
                 "Chybí připojení komponenty (počítačového souboru) do datového balíčku SIP nebo je provedeno chybně.",
-                "Bod 2.16. přílohy č. 3 NSESSS.");
+                "Bod 1.16 přílohy č. 2 NSESSS.");
     }
 
     //OBSAHOVÁ č.50 Pokud existuje jakýkoli element <mets:file>, každý obsahuje právě jeden dětský element <mets:FLocat>.",

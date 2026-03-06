@@ -6,9 +6,9 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
+import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 public class Pravidlo80 extends K06PravidloBase {
 
@@ -25,7 +25,7 @@ public class Pravidlo80 extends K06PravidloBase {
     // která je menší nebo rovna aktuálnímu roku.
     @Override
     protected void kontrola() {
-        List<Element> skartacniRizeni = metsParser.getNodes(NsesssV3.SKARTACNI_RIZENI);
+        List<Element> skartacniRizeni = metsParser.getNodes(NsesssV4.SKARTACNI_RIZENI);
         if (CollectionUtils.isEmpty(skartacniRizeni)) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:SkartacniRizeni>.");
         }

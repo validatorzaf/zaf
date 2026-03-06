@@ -12,10 +12,10 @@ import org.w3c.dom.Node;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.common.result.IndetifierWithSource;
-import cz.zaf.sipvalidator.nsesss2017.CompareNodes;
-import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.CompareNodes;
+import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
 
 public class Pravidlo59 extends K06PravidloBase {
 
@@ -23,16 +23,16 @@ public class Pravidlo59 extends K06PravidloBase {
 
     public Pravidlo59() {
         super(OBS59,
-                "Žádná entita (od spisového plánu po dokument) nebo objekt <nsesss:Komponenta>, <nsesss:BezpecnostniKategorie>, <nsesss:SkartacniRezim> nebo <nsesss:TypDokumentu> neobsahuje stejné hodnoty elementu <nsesss:Identifikator> a jeho atributu zdroj a současně odlišné hodnoty v ostatních elementech, jako má jiná entita nebo objekt uvedeného typu, kromě atributu ID uvedené entity.",
+                "Žádná entita (od spisového plánu po dokument) nebo objekt <nsesss:Komponenta>, <nsesss:BezpecnostniKategorie>, <nsesss:SkartacniRezim> nebo <nsesss:DruhDokumentu> neobsahuje stejné hodnoty elementu <nsesss:Identifikator> a jeho atributu zdroj a současně odlišné hodnoty v ostatních elementech, jako má jiná entita nebo objekt uvedeného typu, kromě atributu ID uvedené entity.",
                 "Uveden je vícekrát stejný spisový plán, věcná skupina, typový spis, součást, díl, spis, dokument, komponenta, bezpečnostní kategorie, skartační režim nebo typ dokumentu nebo je vícekrát použit stejný identifikátor.",
-                "Příloha č. 2 NSESSS, ř. 123.");
+                "Příloha č. 2 NSESSS, nsesss-common.xsd, ř. 127.");
     }
 
-    //OBSAHOVÁ č.59 Žádná entita (od spisového plánu po dokument) nebo objekt <nsesss:Komponenta>, <nsesss:BezpecnostniKategorie>, <nsesss:SkartacniRezim> nebo <nsesss:TypDokumentu> neobsahuje stejné hodnoty elementu <nsesss:Identifikator> a jeho atributu zdroj a současně odlišné hodnoty v ostatních elementech, jako má jiná entita nebo objekt uvedeného typu, kromě atributu ID uvedené entity.
+    //OBSAHOVÁ č.59 Žádná entita (od spisového plánu po dokument) nebo objekt <nsesss:Komponenta>, <nsesss:BezpecnostniKategorie>, <nsesss:SkartacniRezim> nebo <nsesss:DruhDokumentu> neobsahuje stejné hodnoty elementu <nsesss:Identifikator> a jeho atributu zdroj a současně odlišné hodnoty v ostatních elementech, jako má jiná entita nebo objekt uvedeného typu, kromě atributu ID uvedené entity.
     @Override
     protected void kontrola() {
         Map<IndetifierWithSource, List<Element>> identMap = new HashMap<>();
-        List<Element> identList = metsParser.getNodes(NsesssV3.IDENTIFIKATOR);
+        List<Element> identList = metsParser.getNodes(NsesssV4.IDENTIFIKATOR);
         for (Element ident : identList) {
             // get parent entity
             Element parentNode = getEntityWithIdentifikator(ident);
@@ -71,27 +71,27 @@ public class Pravidlo59 extends K06PravidloBase {
 
     public static boolean shouldBeChecked(Node node) {
         switch (node.getNodeName()) {
-            case NsesssV3.SPISOVY_PLAN:
+            case NsesssV4.SPISOVY_PLAN:
                 return true;
-            case NsesssV3.VECNA_SKUPINA:
+            case NsesssV4.VECNA_SKUPINA:
                 return true;
-            case NsesssV3.TYPOVY_SPIS:
+            case NsesssV4.TYPOVY_SPIS:
                 return true;
-            case NsesssV3.SOUCAST:
+            case NsesssV4.SOUCAST:
                 return true;
-            case NsesssV3.SPIS:
+            case NsesssV4.SPIS:
                 return true;
-            case NsesssV3.DIL:
+            case NsesssV4.DIL:
                 return true;
-            case NsesssV3.DOKUMENT:
+            case NsesssV4.DOKUMENT:
                 return true;
-            case NsesssV3.KOMPONENTA:
+            case NsesssV4.KOMPONENTA:
                 return true;
-            case NsesssV3.BEZPECNOSTNI_KATEGORIE:
+            case NsesssV4.BEZPECNOSTNI_KATEGORIE:
                 return true;
-            case NsesssV3.SKARTACNI_REZIM:
+            case NsesssV4.SKARTACNI_REZIM:
                 return true;
-            case NsesssV3.TYP_DOKUMENTU:
+            case NsesssV4.DRUH_DOKUMENTU:
                 return true;
         }
         return false;
@@ -100,10 +100,10 @@ public class Pravidlo59 extends K06PravidloBase {
     public static Element getEntityWithIdentifikator(Element identifikator) {
         Element parentNode = (Element) identifikator.getParentNode();
         String parentName = parentNode.getNodeName();
-        if (parentName.equals(NsesssV3.IDENTIFIKACE)) {
+        if (parentName.equals(NsesssV4.IDENTIFIKACE)) {
             parentNode = (Element) parentNode.getParentNode();
             parentName = parentNode.getNodeName();
-            if (parentName.equals(NsesssV3.EVIDENCNI_UDAJE)) {
+            if (parentName.equals(NsesssV4.EVIDENCNI_UDAJE)) {
                 return (Element) parentNode.getParentNode();
             } else {
                 return parentNode;

@@ -6,9 +6,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
+import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 public class Pravidlo84 extends K06PravidloBase {
 
@@ -18,7 +18,7 @@ public class Pravidlo84 extends K06PravidloBase {
         super(OBS84,
                 "Pokud existuje jakýkoli element <nsesss:Vyrizeni> a obsahuje element <nsesss:Zpusob> s hodnotou jiný způsob, potom je na stejné úrovni posledního uvedeného elementu uveden dětský element <nsesss:ObsahVyrizeni> s neprázdnou hodnotou.",
                 "Chybí obsah vyřízení jiným způsobem.",
-                "Příloha č. 2 NSESSS, ř. 1265.");
+                "Příloha č. 2 NSESSS, nsesss-common.xsd, ř. 1355.");
     }
 
     //OBSAHOVÁ č.84 Pokud existuje jakýkoli element <nsesss:Vyrizeni> a obsahuje element <nsesss:Zpusob> 
@@ -26,13 +26,13 @@ public class Pravidlo84 extends K06PravidloBase {
     // element <nsesss:ObsahVyrizeni> s neprázdnou hodnotou.",
     @Override
     protected void kontrola() {
-        List<Element> vyrizenis = metsParser.getNodes(NsesssV3.VYRIZENI);
+        List<Element> vyrizenis = metsParser.getNodes(NsesssV4.VYRIZENI);
         for (Element elVyrizeni : vyrizenis) {
-            boolean maZpusobSHodnotou = ValuesGetter.getObsahujeRodicElementSHodnotou(elVyrizeni, NsesssV3.ZPUSOB,
+            boolean maZpusobSHodnotou = ValuesGetter.getObsahujeRodicElementSHodnotou(elVyrizeni, NsesssV4.ZPUSOB,
                     "jiný způsob");
             if (maZpusobSHodnotou) {
                 Element entita = kontrola.getEntity(elVyrizeni);
-                Element obs_vyr = ValuesGetter.getXChild(elVyrizeni, NsesssV3.OBSAH_VYRIZENI);
+                Element obs_vyr = ValuesGetter.getXChild(elVyrizeni, NsesssV4.OBSAH_VYRIZENI);
                 if (obs_vyr == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:ObsahVyrizeni>. " + getJmenoIdentifikator(elVyrizeni),
                             elVyrizeni, kontrola.getEntityId(entita));

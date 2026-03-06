@@ -2,12 +2,11 @@ package cz.zaf.sipvalidator.nsesss2024.pravidla06.obs90_99;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.helper.HelperString;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 import java.util.List;
 
 import org.w3c.dom.Element;
-import org.apache.commons.lang3.StringUtils;
 
 public class Pravidlo93 extends K06PravidloBase {
 
@@ -17,7 +16,7 @@ public class Pravidlo93 extends K06PravidloBase {
         super(OBS93,
                 "Jakýkoli element <nsesss:Nazev> obsahuje neprázdnou hodnotu.",
                 "Není uveden název.",
-                "Příloha č. 2 NSESSS, ř. 167.");
+                "Příloha č. 2 NSESSS, nsesss-common.xsd, ř. 172.");
     }
 
     //OBSAHOVÁ č.93 Jakýkoli element <nsesss:Nazev> obsahuje neprázdnou hodnotu.",

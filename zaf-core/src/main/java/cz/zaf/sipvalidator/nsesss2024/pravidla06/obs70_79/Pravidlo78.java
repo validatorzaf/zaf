@@ -8,9 +8,9 @@ import java.util.Set;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
+import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 public class Pravidlo78 extends K06PravidloBase {
 
@@ -20,7 +20,7 @@ public class Pravidlo78 extends K06PravidloBase {
         super(OBS78,
                 "Element <nsesss:SkartacniRizeni> je uveden pouze v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani> základní entity.",
                 "Chybí informace o skartačním řízení.",
-                "Příloha č. 2 NSESSS, ř. 1228.");
+                "Příloha č. 2 NSESSS, nsesss-common.xsd, ř. 1314.");
     }
 
     //OBSAHOVÁ č.78 Element <nsesss:SkartacniRizeni> je uveden pouze v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani> základní entity.",
@@ -30,12 +30,12 @@ public class Pravidlo78 extends K06PravidloBase {
         if (zakladniEntity == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezena žádná základní entita.");
         }
-        List<Element> skartacniRizeni = metsParser.getNodes(NsesssV3.SKARTACNI_RIZENI);
+        List<Element> skartacniRizeni = metsParser.getNodes(NsesssV4.SKARTACNI_RIZENI);
         Set<Element> skartacniRizeniSet = new HashSet<>(skartacniRizeni);
 
         for (Element zakladnientita : zakladniEntity) {
-            Element node = ValuesGetter.getXChild(zakladnientita, NsesssV3.EVIDENCNI_UDAJE,
-                    NsesssV3.VYRAZOVANI, NsesssV3.SKARTACNI_RIZENI);
+            Element node = ValuesGetter.getXChild(zakladnientita, NsesssV4.EVIDENCNI_UDAJE,
+                    NsesssV4.VYRAZOVANI, NsesssV4.SKARTACNI_RIZENI);
             if (node == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Element <nsesss:SkartacniRizeni> není správně zatříděn. " + getJmenoIdentifikator(zakladnientita),
                         zakladnientita, kontrola.getEntityId(zakladnientita));

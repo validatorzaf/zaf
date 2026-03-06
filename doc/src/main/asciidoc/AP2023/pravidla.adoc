@@ -84,10 +84,10 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Element <ead:recordid> obsahuje neprázdnou hodnotu, která splňuje syntaxi pro tvorbu UUID.
+Pravidlo:: Element <recordid> obsahuje neprázdnou hodnotu, která splňuje syntaxi pro tvorbu UUID.
 Kód:: obs1
 Zdroj:: Část 2.1 profilu EAD3 MV ČR
-Popis chyby:: Element <ead:recordid> neobsahuje hodnotu v požadovaném formátu.
+Popis chyby:: Element <recordid> neobsahuje hodnotu v požadovaném formátu.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs2]]
@@ -95,10 +95,10 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Element <ead:control> obsahuje právě jeden element <ead:otherrecordid> s atributem "localtype" o hodnotě "CZ_MVCR_FINDING_AID_ID", jehož hodnota je kladné celé číslo.
+Pravidlo:: Element <control> obsahuje právě jeden element <otherrecordid> s atributem "localtype" o hodnotě "CZ_MVCR_FINDING_AID_ID", jehož hodnota je kladné celé číslo.
 Kód:: obs2
 Zdroj:: Část 2.2 profilu EAD3 MV ČR
-Popis chyby:: Element <ead:control> neobsahuje právě jeden element <ead:otherrecordid> s atributem "localtype" o hodnotě "CZ_MVCR_FINDING_AID_ID". Případně tento element neobsahuje kladné celé číslo.
+Popis chyby:: Element <control> neobsahuje právě jeden element <otherrecordid> s atributem "localtype" o hodnotě "CZ_MVCR_FINDING_AID_ID". Případně tento element neobsahuje kladné celé číslo.
 Aktivní:: archivní pomůcka
 
 [[AP2023_obs3]]
@@ -106,10 +106,10 @@ Aktivní:: archivní pomůcka
 
 [horizontal]
 
-Pravidlo:: Každý element <ead:otherrecordid>, který nemá atribut "localtype" o hodnotě "CZ_MVCR_FINDING_AID", má atribut "localtype" o hodnotě "INTERNAL_REV_ID" a tento není tento prázdný.
+Pravidlo:: Každý element <otherrecordid>, který nemá atribut "localtype" o hodnotě "CZ_MVCR_FINDING_AID_ID", má atribut "localtype" o hodnotě "INTERNAL_REV_ID" a tento není prázdný.
 Kód:: obs3
 Zdroj:: Část 2.2 profilu EAD3 MV ČR
-Popis chyby:: Element <ead:otherrecordid>, který nemá atribut "localtype" o hodnotě "CZ_MVCR_FINDING_AID", nemá atribut "localtype" o hodnotě "INTERNAL_REV_ID" a  nebo je prázdný.
+Popis chyby:: Element <otherrecordid>, který nemá atribut "localtype" o hodnotě "CZ_MVCR_FINDING_AID_ID", nemá atribut "localtype" o hodnotě "INTERNAL_REV_ID" a nebo je prázdný.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs4a]]
@@ -117,10 +117,10 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Element <ead:titlestmt> obsahuje právě jeden element <ead:titleproper>. Ten obsahuje prostou textovou hodnotu.
+Pravidlo:: Element <titlestmt> obsahuje právě jeden element <titleproper>. Ten obsahuje prostou textovou hodnotu.
 Kód:: obs4a
 Zdroj:: Část 2.3 profilu EAD3 MV ČR
-Popis chyby:: Element <ead:titlestmt> neobsahuje právě jeden element <ead:titleproper>, případně element <ead:titleproper> neobsahuje prostou textovou hodnotu.
+Popis chyby:: Element <titlestmt> neobsahuje právě jeden element <titleproper>, případně element <titleproper> neobsahuje prostou textovou hodnotu.
 Aktivní:: archivní pomůcka, archivní pomůcka, archivní popis, archivní popis, inherentní popis v balíčku, inherentní popis v balíčku, kontextový popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs5]]
@@ -128,10 +128,10 @@ Aktivní:: archivní pomůcka, archivní pomůcka, archivní popis, archivní po
 
 [horizontal]
 
-Pravidlo:: Element <ead:titlestmt> obsahuje právě jeden element <ead:subtitle>. Ten obsahuje prostou textovou hodnotu.
+Pravidlo:: Element <titlestmt> obsahuje právě jeden element <subtitle>. Ten obsahuje prostou textovou hodnotu.
 Kód:: obs5
 Zdroj:: Část 2.3 profilu EAD3 MV ČR
-Popis chyby:: Element <ead:titlestmt> neobsahuje právě jeden element <ead:subtitle>. Případně element <ead:subtitle> neobsahuje prostou textovou hodnotu.
+Popis chyby:: Element <titlestmt> neobsahuje právě jeden element <subtitle>. Případně element <subtitle> neobsahuje prostou textovou hodnotu.
 Aktivní:: archivní pomůcka
 
 [[AP2023_obs6]]
@@ -139,10 +139,10 @@ Aktivní:: archivní pomůcka
 
 [horizontal]
 
-Pravidlo:: Element <ead:filedesc> obsahuje element <ead:publicationstmt>.
+Pravidlo:: Element <filedesc> obsahuje element <publicationstmt>.
 Kód:: obs6
 Zdroj:: Část 4.1 profilu EAD3 MV ČR
-Popis chyby:: Element <ead:filedesc> neobsahuje element <ead:publicationstmt>.
+Popis chyby:: Element <filedesc> neobsahuje element <publicationstmt>.
 Aktivní:: archivní pomůcka
 
 [[AP2023_obs7]]
@@ -150,10 +150,10 @@ Aktivní:: archivní pomůcka
 
 [horizontal]
 
-Pravidlo:: Element <ead:publicationstmt> obsahuje právě jeden element <ead:date> s atributem "localtype" o hodnotě "RELEASE_DATE_PLACE". Tento element <ead:date> obsahuje neprázdnou hodnotu.
+Pravidlo:: Element <publicationstmt> obsahuje právě jeden element <date> s atributem "localtype" o hodnotě "RELEASE_DATE_PLACE". Tento element <date> obsahuje neprázdnou hodnotu.
 Kód:: obs7
 Zdroj:: Část 4.1.2 profilu EAD3 MV ČR
-Popis chyby:: Element <ead:publicationstmt> neobsahuje právě jeden element <ead:date> s atributem "localtype" o hodnotě "RELEASE_DATE_PLACE". Případně je tento element <ead:date> prázdný.
+Popis chyby:: Element <publicationstmt> neobsahuje právě jeden element <date> s atributem "localtype" o hodnotě "RELEASE_DATE_PLACE". Případně je tento element <date> prázdný.
 Aktivní:: archivní pomůcka
 
 [[AP2023_obs8]]
@@ -161,10 +161,10 @@ Aktivní:: archivní pomůcka
 
 [horizontal]
 
-Pravidlo:: Element <ead:publicationstmt> obsahuje právě jeden element <ead:date> s atributem "localtype" o hodnotě "DESCRIPTION_DATE". Tento element <ead:date> obsahuje neprázdnou hodnotu.
+Pravidlo:: Element <publicationstmt> obsahuje právě jeden element <date> s atributem "localtype" o hodnotě "DESCRIPTION_DATE". Tento element <date> obsahuje neprázdnou hodnotu.
 Kód:: obs8
 Zdroj:: Část 4.1.3 profilu EAD3 MV ČR
-Popis chyby:: Element <ead:publicationstmt> neobsahuje právě jeden element <ead:date> s atributem "localtype" o hodnotě "DESCRIPTION_DATE". Případně je tento element <ead:date> prázdný.
+Popis chyby:: Element <publicationstmt> neobsahuje právě jeden element <date> s atributem "localtype" o hodnotě "DESCRIPTION_DATE". Případně je tento element <date> prázdný.
 Aktivní:: archivní pomůcka
 
 [[AP2023_obs9]]
@@ -172,10 +172,10 @@ Aktivní:: archivní pomůcka
 
 [horizontal]
 
-Pravidlo:: Element <ead:publicationstmt> obsahuje právě jeden element <ead:date> s atributem "localtype" o hodnotě "FINDING_AID_DATE". Tento element <ead:date> obsahuje neprázdnou hodnotu.
+Pravidlo:: Element <publicationstmt> obsahuje právě jeden element <date> s atributem "localtype" o hodnotě "FINDING_AID_DATE". Tento element <date> obsahuje neprázdnou hodnotu.
 Kód:: obs9
 Zdroj:: Část 4.1.4 profilu EAD3 MV ČR
-Popis chyby:: Element <ead:publicationstmt> neobsahuje právě jeden element <ead:date> s atributem "localtype" o hodnotě "FINDING_AID_DATE". Případně je tento element <ead:date> prázdný.
+Popis chyby:: Element <publicationstmt> neobsahuje právě jeden element <date> s atributem "localtype" o hodnotě "FINDING_AID_DATE". Případně je tento element <date> prázdný.
 Aktivní:: archivní pomůcka
 
 [[AP2023_obs11]]
@@ -183,10 +183,10 @@ Aktivní:: archivní pomůcka
 
 [horizontal]
 
-Pravidlo:: Element <ead:publicationstmt> obsahuje právě jeden takový element <ead:p>, který obsahuje právě jeden element <ead:name> s atributem "localtype" o hodnotě "FINDING_AID_APPROVED_BY", který obsahuje právě jeden neprázdný element <ead:part>.
+Pravidlo:: Element <publicationstmt> obsahuje právě jeden takový element <p>, který obsahuje právě jeden element <name> s atributem "localtype" o hodnotě "FINDING_AID_APPROVED_BY", který obsahuje právě jeden neprázdný element <part>.
 Kód:: obs11
 Zdroj:: Část 4.1.1 profilu EAD3 MV ČR, EAD TLV heslo <part>
-Popis chyby:: Struktura elementu <ead:publicationstmt> neobsahuje správně vyplněný element <ead:name> s atributem "localtype" o hodnotě "FINDING_AID_APPROVED_BY" vnořený do elementu <ead:p>.
+Popis chyby:: Struktura elementu <publicationstmt> neobsahuje správně vyplněný element <name> s atributem "localtype" o hodnotě "FINDING_AID_APPROVED_BY" vnořený do elementu <p>.
 Aktivní:: archivní pomůcka
 
 [[AP2023_obs12]]
@@ -194,32 +194,87 @@ Aktivní:: archivní pomůcka
 
 [horizontal]
 
-Pravidlo:: Element <ead:publicationstmt> obsahuje právě jeden takový element <ead:p>, který obsahuje právě jeden element <ead:name> s atributem "localtype" o hodnotě "FINDING_AID_EDITOR", který obsahuje alespoň jeden neprázdný element <ead:part>.
+Pravidlo:: Element <publicationstmt> obsahuje právě jeden takový element <p>, který obsahuje právě jeden element <name> s atributem "localtype" o hodnotě "FINDING_AID_EDITOR", který obsahuje alespoň jeden neprázdný element <part>.
 Kód:: obs12
 Zdroj:: Část 4.1.5 profilu EAD3 MV ČR, EAD TLV heslo <part>
-Popis chyby:: Struktura elementu <ead:publicationstmt> neobsahuje správně vyplněný element <ead:name> s atributem "localtype" o hodnotě "FINDING_AID_EDITOR" vnořený do elementu <ead:p>.
+Popis chyby:: Struktura elementu <publicationstmt> neobsahuje správně vyplněný element <name> s atributem "localtype" o hodnotě "FINDING_AID_EDITOR" vnořený do elementu <p>.
 Aktivní:: archivní pomůcka
+
+[[AP2023_obs13]]
+== obs13
+
+[horizontal]
+
+Pravidlo:: Element <publicationstmt> obsahuje alespoň jeden takový element <p>, který obsahuje právě jeden element <name> s atributem "localtype" o hodnotě "ORIGINATOR".
+Kód:: obs13
+Zdroj:: Část 4.1.6 profilu EAD3 MV ČR
+Popis chyby:: Struktura elementu <publicationstmt> neobsahuje správně vyplněný element <name> s atributem "localtype" o hodnotě "ORIGINATOR" vnořený do elementu <p>.
+Aktivní:: archivní pomůcka
+
+[[AP2023_obs14]]
+== obs14
+
+[horizontal]
+
+Pravidlo:: Element <persname>, <famname>, <corpname> nebo <name>, který je obsažen ve struktuře elementu <publicationstmt>, s atributem "localtype" o hodnotě "ORIGINATOR", obsahuje právě jeden neprázdný element <ref>, který je obsažen v elementu <part>, s atributem "target" o hodnotě, která odkazuje na element <control>/<sources>/<source>.
+Kód:: obs14
+Zdroj:: Část 4.1.6 profilu EAD3 MV ČR
+Popis chyby:: Element <name>, který je obsažen ve struktuře <publicationstmt>, s atributem "localtype" o hodnotě "ORIGINATOR" neobsahuje správně vyplněný element <ref>.
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs15]]
 == obs15
 
 [horizontal]
 
-Pravidlo:: Element <ead:publicationstmt> obsahuje alespoň jeden takový element <ead:p>, který obsahuje právě jeden element <ead:name> s atributem "localtype" o hodnotě "ARRANGER".
+Pravidlo:: Element <publicationstmt> obsahuje alespoň jednoho zpracovatele, tj. jeden element <p>, který obsahuje právě jeden element <persname> s atributem "localtype" o hodnotě "ARRANGER".
 Kód:: obs15
 Zdroj:: Část 4.1.7 profilu EAD3 MV ČR
-Popis chyby:: Struktura elementu <ead:publicationstmt> neobsahuje právě jeden element <ead:name> s atributem "localtype" o hodnotě "ARRANGER" vnořený do elementu <ead:p>.
+Popis chyby:: Struktura elementu <publicationstmt> neobsahuje právě jeden element <persname> s atributem "localtype" o hodnotě "ARRANGER" vnořený do elementu <p>.
 Aktivní:: archivní pomůcka
+
+[[AP2023_obs16]]
+== obs16
+
+[horizontal]
+
+Pravidlo:: Element <persname>, který je obsažen ve struktuře elementu <publicationstmt>, s atributem "localtype" o hodnotě "ARRANGER" obsahuje právě jeden neprázdný element <ref>, který je obsažen v elementu <part>, s atributem "target" o hodnotě, která odkazuje na element <control>/<sources>/<source>.
+Kód:: obs16
+Zdroj:: Část 4.1.7 profilu EAD3 MV ČR
+Popis chyby:: Element <persname>, který je obsažen ve struktuře <publicationstmt>, s atributem "localtype" o hodnotě "ARRANGER" neobsahuje správně vyplněný element <ref>.
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
+
+[[AP2023_obs17]]
+== obs17
+
+[horizontal]
+
+Pravidlo:: Element <publicationstmt> obsahuje právě jeden element <p>, který obsahuje právě jeden element <name> s atributem "localtype" o hodnotě "ARRANGER_BRIEF", obsahuje právě jeden element <part>.
+Kód:: obs17
+Zdroj:: Část 4.1.7 profilu EAD3 MV ČR
+Popis chyby:: Struktura elementu <publicationstmt> neobsahuje právě jeden element <name> s atributem "localtype" o hodnotě "ARRANGER_BRIEF" vnořený do elementu <p>. Případně je element <name> špatně vyplněný.
+Aktivní:: archivní pomůcka
+
+[[AP2023_obs18]]
+== obs18
+
+[horizontal]
+
+Pravidlo:: Element <maintenancestatus> má atribut "value" o hodnotě "derived".
+Kód:: obs18
+Zdroj:: Část 2.4 profilu EAD3 MV ČR
+Popis chyby:: Element <maintenancestatus> nemá atribut "value" nebo tento atribut neobsahuje hodnotu "derived".
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs19]]
 == obs19
 
 [horizontal]
 
-Pravidlo:: Element <ead:maintenanceagency> má atribut "countrycode" o hodnotě "CZ".
+Pravidlo:: Element <maintenanceagency> má atribut "countrycode" o hodnotě "CZ".
 Kód:: obs19
 Zdroj:: Část 2.5 profilu EAD3 MV ČR
-Popis chyby:: Element <ead:maintenanceagency> nemá atribut "countrycode" nebo tento atribut neobsahuje hodnotu "CZ".
+Popis chyby:: Element <maintenanceagency> nemá atribut "countrycode" nebo tento atribut neobsahuje hodnotu "CZ".
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs20]]
@@ -227,10 +282,21 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Element <ead:maintenanceagency> obsahuje právě jeden element <ead:agencycode>.Ten má atribut "localtype" o hodnotě "CZ_MVCR_INSTITUTION_ID".
+Pravidlo:: Element <maintenanceagency> obsahuje právě jeden element <agencycode>.Ten má atribut "localtype" o hodnotě "CZ_MVCR_INSTITUTION_ID".
 Kód:: obs20
 Zdroj:: Část 2.5 profilu EAD3 MV ČR
-Popis chyby:: Element <ead:maintenanceagency> neobsahuje element <ead:agencycode>. Případně tento element nemá atribut "localtype" nebo tento atribut neobsahuje hodnotu "CZ_MVCR_INSTITUTION_ID".
+Popis chyby:: Element <maintenanceagency> neobsahuje element <agencycode>. Případně tento element nemá atribut "localtype" nebo tento atribut neobsahuje hodnotu "CZ_MVCR_INSTITUTION_ID".
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
+
+[[AP2023_obs21]]
+== obs21
+
+[horizontal]
+
+Pravidlo:: Element <agencycode> má atribut "localtype" o hodnotě "CZ_MVCR_INSTITUTION_ID" a obsahuje neprázdnou hodnotu, která odpovídá konstrukci tvorby čísla archivu, tj. 9 číslic.
+Kód:: obs21
+Zdroj:: Část 2.5 profilu EAD3 MV ČR
+Popis chyby:: Element <agencycode> nemá atribut "localtype" nebo tento atribut obsahuje nepovolenou hodnotu. Případně element obsahuje hodnotu, která neodpovídá konstrukci tvorby čísla archivu, tj. 9 číslic.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs22]]
@@ -238,10 +304,10 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Element <ead:maintenanceagency> obsahuje právě jeden element <ead:agencyname>. Ten má neprázdnou hodnotu.
+Pravidlo:: Element <maintenanceagency> obsahuje právě jeden element <agencyname>. Ten má neprázdnou hodnotu.
 Kód:: obs22
 Zdroj:: Část 2.5 profilu EAD3 MV ČR, EAD TLV heslo <agencyname>
-Popis chyby:: Element <ead:maintenanceagency> neobsahuje právě jeden element <ead:agencyname>. Případně je tento element prázdný.
+Popis chyby:: Element <maintenanceagency> neobsahuje právě jeden element <agencyname>. Případně je tento element prázdný.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs23]]
@@ -252,8 +318,19 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 Pravidlo:: Druh archivní pomůcky se uvádí v elementu <localcontrol> s uvedením atributu localtype="FINDING_AID_TYPE".
 Kód:: obs23
 Zdroj:: Část 2.6 profilu EAD3 MV ČR. EAD TLV heslo <term>
-Popis chyby:: Element <ead:control> neobsahuje element <ead:localcontrol> s atributem "localtype" s očekávanou hodnotou a elementem <ead:term>.
-Aktivní:: archivní pomůcka
+Popis chyby:: Element <control> neobsahuje element <localcontrol> s atributem "localtype" s očekávanou hodnotou a elementem <term>.
+Aktivní:: archivní pomůcka, archivní popis
+
+[[AP2023_obs24]]
+== obs24
+
+[horizontal]
+
+Pravidlo:: Element <localcontrol> s atributem "localtype" o hodnotě "RULES" obsahuje element <term>, který má atribut "identifier" o některé z následujících hodnot profilu CZ_ZP1958, CZ_ZP2013. A element <localcontrol> s atributem "localtype" o hodnotě "FINDING_AID_TYPE" obsahuje element <term>, který má atribut "identifier" s hodnotou odpovídající profilu (PROZ_INV_SEZNAM, MANIP_SEZNAM, INVENTAR, KATALOG).
+Kód:: obs24
+Zdroj:: Část 2.6, 2.6.1 profilu EAD3 MV ČR
+Popis chyby:: Element <term>, který je obsažen v elementu <localcontrol> s atributem "localtype" o hodnotě "RULES", nemá atribut "identifier" nebo tento atribut obsahuje nepovolenou hodnotu. Nebo element <term>, který je obsažen v elementu <localcontrol> s atributem "localtype" o hodnotě "FINDING_AID_TYPE", nemá atribut "identifier" nebo tento atribut obsahuje nepovolenou hodnotu.
+Aktivní:: archivní pomůcka, archivní popis
 
 [[AP2023_obs25]]
 == obs25
@@ -263,68 +340,90 @@ Aktivní:: archivní pomůcka
 Pravidlo:: Soubor dle profilu musí mít uvedenu verzi profilu v elementu <localcontrol localtype="CZ_FINDING_AID_EAD_PROFILE">.
 Kód:: obs25
 Zdroj:: Část 2.6.2 profilu EAD3 MV ČR
-Popis chyby:: Element <ead:control> neobsahuje právě jeden element <ead:localcontrol> s atributem localtype="CZ_FINDING_AID_EAD_PROFILE" s očekávanou hodnotou.
-Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
-
-[[AP2023_obs27]]
-== obs27
-
-[horizontal]
-
-Pravidlo:: Jsou uvedena pravidla tvorby archivního popisu v elementu <ead:localcontrol localtype="RULES">. Pokud je uveden typ pomůcky, je v souladu s těmito pravidly.
-Kód:: obs27
-Zdroj:: Část 2.6, 2.6.1 profilu EAD3 MV ČR
-Popis chyby:: Element <ead:term>, který je obsažen v elementu <ead:localcontrol> s atributem "localtype" o hodnotě "RULES", nemá atribut "identifier" nebo tento atribut obsahuje nepovolenou hodnotu.
-Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
+Popis chyby:: Element <control> neobsahuje právě jeden element <localcontrol> s atributem localtype="CZ_FINDING_AID_EAD_PROFILE" s očekávanou hodnotou.
+Aktivní:: archivní pomůcka, archivní popis
 
 [[AP2023_obs31]]
 == obs31
 
 [horizontal]
 
-Pravidlo:: Element <ead:archdesc> a každý element <ead:c> obsahuje atribut "base", jehož hodnota má podobu URI odpovídající standardu LinkedData.
+Pravidlo:: Existuje právě jeden element <maintenanceevent>, který obsahuje povinné části dle specifikace. Kontroluje se existence podřízených elementů: eventtype, eventdatetime, agenttype a agent a jejich správné uvedení.
 Kód:: obs31
-Zdroj:: Část 3.2 profilu EAD3 MV ČR
-Popis chyby:: Element <ead:archdesc> nebo některý element <ead:c> nemá atribut "base" nebo tento atribut neobsahuje hodnotu v požadovaném formátu.
-Aktivní:: archivní pomůcka, archivní pomůcka, archivní popis, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku, kontextový popis v balíčku
+Zdroj:: Část 2.7 profilu EAD3 MV ČR
+Popis chyby:: Neexistuje element <maintenanceevent>, který neobsahuje všechny povinné části dle specifikace.
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs35]]
 == obs35
 
 [horizontal]
 
-Pravidlo:: Element <ead:archdesc> má atribut "level" o hodnotě "fonds".
+Pravidlo:: Element <archdesc> má atribut "level" o hodnotě "fonds".
 Kód:: obs35
 Zdroj:: Část 3.1 profilu EAD3 MV ČR
-Popis chyby:: Elementu <ead:archdesc> chybí atribut "level" nebo tento atribut neobsahuje hodnotu "fonds".
-Aktivní:: archivní pomůcka, archivní popis, kontextový popis v balíčku
+Popis chyby:: Elementu <archdesc> chybí atribut "level" nebo tento atribut neobsahuje hodnotu "fonds".
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs36]]
 == obs36
 
 [horizontal]
 
-Pravidlo:: "Každý element <ead:c> má atribut ""level"" o některé z následujících hodnot:
+Pravidlo:: "Každý element <c> má atribut ""level"" o některé z následujících hodnot:
 * subfonds
 * series
 * file
 * item
 * otherlevel
-Pokud má hodnotu ""otherlevel"", má element <ead:c> dále atribut ""otherlevel"" o hodnotě ""itempart""."
+Pokud má hodnotu ""otherlevel"", má element <c> dále atribut ""otherlevel"" o hodnotě ""itempart""."
 Kód:: obs36
 Zdroj:: Část 3.1 profilu EAD3 MV ČR
-Popis chyby:: Některý z elementů <ead:c> nemá atribut "level" nebo tento atribut obsahuje nepovolenou hodnotu.
-Aktivní:: archivní pomůcka, archivní popis
+Popis chyby:: Některý z elementů <c> nemá atribut "level" nebo tento atribut obsahuje nepovolenou hodnotu.
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, inherentní popis v balíčku, kontextový popis v balíčku
+
+[[AP2023_obs37a]]
+== obs37a
+
+[horizontal]
+
+Pravidlo:: Element <archdesc> a každý element <c> obsahuje atribut "id", který je ve formátu "uuid-" a UUID verze 4.
+Kód:: obs37a
+Zdroj:: Část 3.2.1 profilu EAD3 MV ČR
+Popis chyby:: Element <archdesc> nebo některý element <c> nemá atribut "id" nebo tento atribut neobsahuje hodnotu v požadovaném formátu.
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
+
+[[AP2023_obs42]]
+== obs42
+
+[horizontal]
+
+Pravidlo:: Elementy <unittitle>, <scopecontent>, <accruals> nebo <didnote> se mohou vyskytovat vícekrát v rámci rodičovského elementu, pokud se liší hodnotou atributu "lang", existencí atributu "audience" nebo hodnotou atributu "audience".
+Kód:: obs42
+Zdroj:: Část 3.6 profilu EAD3 MV ČR
+Popis chyby:: Dvojice elementů  <unittitle>, <scopecontent>, <relation>, <accruals> nebo <didnote> na stejné úrovni má špatně uvedené nebo vyplněné atributy "audience".
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs43]]
 == obs43
 
 [horizontal]
 
-Pravidlo:: Každý element <ead:language> má atribut "langcode". Hodnota tohoto atributu stejně jako hodnota atributu "lang" u elementů <ead:unittitle> a <ead:scopecontent> odpovídá rozšířené podobě tří písmenného ISO kódu zapsaného malými písmeny. Hodnota elementu <ead:language> odpovídá hodnotě podle číselníku atributu "langcode" tohoto elementu.
+Pravidlo:: Každý element <language> má atribut "langcode". Hodnota tohoto atributu stejně jako hodnota atributu "lang" u elementů <unittitle> a <scopecontent> odpovídá rozšířené podobě tří písmenného ISO kódu zapsaného malými písmeny. Hodnota elementu <language> odpovídá hodnotě podle číselníku atributu "langcode" tohoto elementu.
 Kód:: obs43
 Zdroj:: Část 3.7 a 6.14 profilu EAD3 MV ČR
-Popis chyby:: Element <ead:language> nemá atribut "langcode" a/nebo hodnota tohoto atributu nebo atributu "lang" u elementů <ead:unittitle> nebo <ead:scopecontent> neodpovídá  rozšířené podobě tří písmenného ISO kódu zapsaného malými písmeny a/nebo hodnota elementu <ead:language> neodpovídá podle číselníku hodnotě atributu "langcode" tohoto elementu.
+Popis chyby:: Element <language> nemá atribut "langcode" a/nebo hodnota tohoto atributu nebo atributu "lang" u elementů <unittitle> nebo <scopecontent> neodpovídá  rozšířené podobě tří písmenného ISO kódu zapsaného malými písmeny a/nebo hodnota elementu <language> neodpovídá podle číselníku hodnotě atributu "langcode" tohoto elementu.
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
+
+[[AP2023_obs44]]
+== obs44
+
+[horizontal]
+
+Pravidlo:: Pokud element <archdesc> obsahuje element <odd>, musí mít atribut "localtype" o hodnotě "FINDING_AID_INTRO", musí se vyskytovat pouze jednou a musí obsahovat právě jeden neprázdný element <p> a zároveň element <term>, který je obsažen v elementu <localcontrol> s atributem "localtype" o hodnotě "RULES", musí obsahovat atribut "identifier" o hodnotě "CZ_ZP1958".
+Kód:: obs44
+Zdroj:: Část 3.8 profilu EAD3 MV ČR
+Popis chyby:: Element <odd> nemá atribut "localtype" nebo tento atribut "localtype" obsahuje nepovolenou hodnotu, případně element <odd> neobsahuje právě jeden element <p>. Nebo se element <odd> vyskytuje, ačkoli element <term>, který je obsažen v elementu <localcontrol> s atributem "localtype" o hodnotě "RULES", neobsahuje atribut "identifier" o hodnotě "CZ_ZP1958".
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs49]]
@@ -332,10 +431,76 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Každý element <ead:container> obsahuje prostou textovou hodnotu.
+Pravidlo:: Každý element <container> obsahuje prostou textovou hodnotu.
 Kód:: obs49
 Zdroj:: Část 5.3 profilu EAD3 MV ČR
-Popis chyby:: Některý element <ead:container> neobsahuje prostou textovou hodnotu.
+Popis chyby:: Některý element <container> neobsahuje prostou textovou hodnotu.
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
+
+[[AP2023_obs50]]
+== obs50
+
+[horizontal]
+
+Pravidlo:: Element <unitid> obsažený v elementu <did> má atributy "localtype" a "label" s povolenými typy označení (dle specifikace 5.5.1), přičemž hodnoty obou atributů si odpovídají. Pokud má atribut "localtype" hodnotu "JINE", hodnota atributu "label" není prázdná.
+Kód:: obs50
+Zdroj:: Část 5.4 a 5.5 profilu EAD3 MV ČR
+Popis chyby:: Některý element <unitid> nemá "localtype" a/nebo "label" nebo tyto atributy neobsahují povolenou hodnotu, případně si hodnoty neodpovídají.
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
+
+[[AP2023_obs52]]
+== obs52
+
+[horizontal]
+
+Pravidlo:: Pokud některý element <unitid> obsažený v elementu <did> má atribut "localtype" o hodnotě "INV_CISLO", musí mít element <term>, který je obsažen v elementu <localcontrol> s atributem "localtype" o hodnotě "RULES", atribut "identifier" o hodnotě "CZ_ZP1958".
+Kód:: obs52
+Zdroj:: Část 5.4 profilu EAD3 MV ČR
+Popis chyby:: Některý element <unitid> má atribut "localtype"o hodnotě "INV_CISLO" navzdory tomu, že nebyla deklarována stará pravidla.
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
+
+[[AP2023_obs53]]
+== obs53
+
+[horizontal]
+
+Pravidlo:: Každý element <unittitle>, který nemá atribut "localtype", obsažený v elementu <did> obsahuje prostou textovou hodnotu.
+Kód:: obs53
+Zdroj:: Část 5.6 a 5.7 profilu EAD3 MV ČR
+Popis chyby:: Některý element <unittile>, který nemá atribut "localtype", neobsahuje prostou textovou hodnotu.
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
+
+[[AP2023_obs54]]
+== obs54
+
+[horizontal]
+
+Pravidlo:: Každý element <unittitle> s atributem "localtype" o hodnotě "FORMAL_TITLE", obsahuje prostou textovou hodnotu nebo element <title> s elementem <part> s prostou textovou hodnotou.
+Kód:: obs54
+Zdroj:: Část 5.6 a 5.7 profilu EAD3 MV ČR
+Popis chyby:: Některý element <title>, který je obsažen v elementu <unittitle> s atributem "localtype" o hodnotě "FORMAL_TITLE", neobsahuje <part> s prostou textovou hodnotu.
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
+
+[[AP2023_obs55]]
+== obs55
+
+[horizontal]
+
+Pravidlo:: Každý element <daterange>, který je obsažen v hierarchii elementů <did><unitdatestructured>, má atribut "altrender" o hodnotě, která odpovídá způsobu konstrukce formátu datace (tj. obsahuje pouze C/Y/YM/D/DT/-, přičemž znak "-" nesmí být na začátku nebo na konci řetězce), a obsahuje právě jeden neprázdný element <fromdate> a právě jeden neprázdný element <todate>.
+Kód:: obs55
+Zdroj:: Část 5.8 profilu EAD3 MV ČR
+Popis chyby:: Některý element <daterange> nemá atribut "altrender" nebo tento atribut obsahuje nepovolenou hodnotu. Případně element <daterange> neobsahuje právě jen element <fromdate> a/nebo právě jeden <todate>. Případně je element <fromdate> a/nebo <todate> prázdný.
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
+
+[[AP2023_obs56]]
+== obs56
+
+[horizontal]
+
+Pravidlo:: Hodnota atributu "localtype" elementu <daterange>, který je obsažený v elementu <dateset> odpovídá některé z následujících hodnot:  CONTENT DECLARED ORIGIN COPY SEALING ACT_PUBLISHING INSERT MOLD_CREATION USAGE PUBLISHING MAP_UPDATE CAPTURING RECORDING AWARDING AWARD_CER WITHDRAWAL LEGALLY_EFFECTIVE_FROM VALID_FROM LEGALLY_EFFECTIVE_TO VALID_TO
+Kód:: obs56
+Zdroj:: Část 5.8 a 6.1 profilu EAD3 MV ČR
+Popis chyby:: Atribut "localtype" některého elementu <daterange>, který je obsažen v elementu <dateset> a má atribut "localtype", obsahuje nepovolenou hodnotu.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs60]]
@@ -343,10 +508,10 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Element <ead:custodhist> se může vykytovat pouze jednou a obsahuje právě jeden neprázdný element <ead:p>.
+Pravidlo:: Element <custodhist> se může vykytovat pouze jednou a obsahuje právě jeden neprázdný element <p>.
 Kód:: obs60
 Zdroj:: Část 5.11 profilu EAD3 MV ČR
-Popis chyby:: Některý element <ead:custodhist> neobsahuje právě jeden element <ead:p>. Případně je element <ead:p> prázdný.
+Popis chyby:: Některý element <custodhist> neobsahuje právě jeden element <p>. Případně je element <p> prázdný.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs61]]
@@ -354,10 +519,10 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Element <ead:arrangement> se může vykytovat pouze jednou a obsahuje právě jeden neprázdný element <ead:p>.
+Pravidlo:: Element <arrangement> se může vykytovat pouze jednou a obsahuje právě jeden neprázdný element <p>.
 Kód:: obs61
 Zdroj:: Část 5.12 profilu EAD3 MV ČR
-Popis chyby:: Některý element <ead:arrangement> neobsahuje právě jeden element <ead:p>. Případně je element <ead:p> prázdný.
+Popis chyby:: Některý element <arrangement> neobsahuje právě jeden element <p>. Případně je element <p> prázdný.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs62]]
@@ -365,10 +530,10 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Každý element <ead:scopecontent> odpovídá pravidlům ead cz a obsahuje právě jeden neprázdný element <ead:p>.
+Pravidlo:: Každý element <scopecontent> odpovídá pravidlům ead cz a obsahuje právě jeden neprázdný element <p>.
 Kód:: obs62
 Zdroj:: Část 5.13 profilu EAD3 MV ČR
-Popis chyby:: Některý element <ead:scopecontent> neobsahuje právě jeden element <ead:p>. Případně je element <ead:p> prázdný.
+Popis chyby:: Některý element <scopecontent> neobsahuje právě jeden element <p>. Případně je element <p> prázdný.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs63]]
@@ -376,10 +541,10 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Element <ead:acqinfo> se může vykytovat pouze jednou a obsahuje právě jeden neprázdný element <ead:p>.
+Pravidlo:: Element <acqinfo> se může vykytovat pouze jednou a obsahuje právě jeden neprázdný element <p>.
 Kód:: obs63
 Zdroj:: Část 5.14 profilu EAD3 MV ČR
-Popis chyby:: Některý element <ead:acqinfo> neobsahuje právě jeden element <ead:p>. Případně je element <ead:p> prázdný.
+Popis chyby:: Některý element <acqinfo> neobsahuje právě jeden element <p>. Případně je element <p> prázdný.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs64]]
@@ -387,10 +552,10 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Každý element <ead:accruals> obsahuje právě jeden neprázdný element <ead:p>.
+Pravidlo:: Každý element <accruals> obsahuje právě jeden neprázdný element <p>.
 Kód:: obs64
 Zdroj:: Část 5.15 profilu EAD3 MV ČR
-Popis chyby:: Některý element <ead:accruals> neobsahuje právě jeden element <ead:p>. Případně je element <ead:p> prázdný.
+Popis chyby:: Některý element <accruals> neobsahuje právě jeden element <p>. Případně je element <p> prázdný.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs65]]
@@ -398,10 +563,10 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Element <ead:accessrestrict> se může vykytovat pouze jednou a obsahuje právě jeden neprázdný element <ead:p>.
+Pravidlo:: Element <accessrestrict> se může vykytovat pouze jednou a obsahuje právě jeden neprázdný element <p>.
 Kód:: obs65
 Zdroj:: Část 5.16 profilu EAD3 MV ČR
-Popis chyby:: Některý element <ead:accessrestrict> neobsahuje právě jeden element <ead:p>. Případně je element <ead:p> prázdný.
+Popis chyby:: Některý element <accessrestrict> neobsahuje právě jeden element <p>. Případně je element <p> prázdný.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs66]]
@@ -409,10 +574,10 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Element <ead:phystech> se může vykytovat pouze jednou a obsahuje právě jeden neprázdný element <ead:p>.
+Pravidlo:: Element <phystech> se může vykytovat pouze jednou a obsahuje právě jeden neprázdný element <p>.
 Kód:: obs66
 Zdroj:: Část 5.17 profilu EAD3 MV ČR
-Popis chyby:: Některý element <ead:phystech> neobsahuje právě jeden element <ead:p>. Případně je element <ead:p> prázdný.
+Popis chyby:: Některý element <phystech> neobsahuje právě jeden element <p>. Případně je element <p> prázdný.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs67]]
@@ -420,10 +585,10 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Element <ead:originalsloc> se může vykytovat pouze jednou a obsahuje právě jeden neprázdný element <ead:p>.
+Pravidlo:: Element <originalsloc> se může vykytovat pouze jednou a obsahuje právě jeden neprázdný element <p>.
 Kód:: obs67
 Zdroj:: Část 5.18 profilu EAD3 MV ČR
-Popis chyby:: Některý element <ead:originalsloc> neobsahuje právě jeden element <ead:p>. Případně je element <ead:p> prázdný.
+Popis chyby:: Některý element <originalsloc> neobsahuje právě jeden element <p>. Případně je element <p> prázdný.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs68]]
@@ -431,10 +596,10 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Element <ead:relatedmaterial> se může vykytovat pouze jednou a obsahuje právě jeden neprázdný element <ead:p>.
+Pravidlo:: Element <relatedmaterial> se může vykytovat pouze jednou a obsahuje právě jeden neprázdný element <p>.
 Kód:: obs68
 Zdroj:: Část 5.19 profilu EAD3 MV ČR
-Popis chyby:: Některý element <ead:relatedmaterial> neobsahuje právě jeden element <ead:p>. Případně je element <ead:p> prázdný.
+Popis chyby:: Některý element <relatedmaterial> neobsahuje právě jeden element <p>. Případně je element <p> prázdný.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs69]]
@@ -442,10 +607,10 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Element <ead:altformavail> se může vykytovat pouze jednou a obsahuje právě jeden neprázdný element <ead:p>.
+Pravidlo:: Element <altformavail> se může vykytovat pouze jednou a obsahuje právě jeden neprázdný element <p>.
 Kód:: obs69
 Zdroj:: Část 5.20 profilu EAD3 MV ČR
-Popis chyby:: Některý element <ead:altformavail> neobsahuje právě jeden element <ead:p>. Případně je element <ead:p> prázdný.
+Popis chyby:: Některý element <altformavail> neobsahuje právě jeden element <p>. Případně je element <p> prázdný.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs70]]
@@ -453,10 +618,10 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Každý element <ead:didnote> s atributem "localtype" o hodnotě "INTERNAL" má atribut "audience" o hodnotě "internal".
+Pravidlo:: Každý element <didnote> s atributem "localtype" o hodnotě "INTERNAL" má atribut "audience" o hodnotě "internal".
 Kód:: obs70
 Zdroj:: Část 5.21 profilu EAD3 MV ČR
-Popis chyby:: Některý element <ead:didnote> s atributem "localtype" o hodnotě "INTERNAL" nemá atribut "audience" nebo tento atribut neobsahuje hodnotu "internal".
+Popis chyby:: Některý element <didnote> s atributem "localtype" o hodnotě "INTERNAL" nemá atribut "audience" nebo tento atribut neobsahuje hodnotu "internal".
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs71]]
@@ -464,10 +629,10 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Každý element <ead:processinfo> má atribut "localtype" o hodnotě "ARCHIVIST_NOTE", nebo "RULES", nebo "DESCRIPTION_DATE".
+Pravidlo:: Každý element <processinfo> má atribut "localtype" o hodnotě "ARCHIVIST_NOTE", nebo "RULES", nebo "DESCRIPTION_DATE".
 Kód:: obs71
 Zdroj:: Část 5.23, 5.24 a 5.25 profilu EAD3 MV ČR
-Popis chyby:: Některý element <ead:processinfo> nemá atribut "localtype" nebo jej má špatně vyplněný.
+Popis chyby:: Některý element <processinfo> nemá atribut "localtype" nebo jej má špatně vyplněný.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs72]]
@@ -475,10 +640,10 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Každý element <ead:processinfo> obsahuje právě jeden element <ead:p>.
+Pravidlo:: Každý element <processinfo> obsahuje právě jeden element <p>.
 Kód:: obs72
 Zdroj:: Část 5.23, 5.24 a 5.25 profilu EAD3 MV ČR
-Popis chyby:: Některý element <ead:processinfo> neobsahuje právě jeden <ead:p>.
+Popis chyby:: Některý element <processinfo> neobsahuje právě jeden <p>.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs73]]
@@ -486,21 +651,109 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Každý element <ead:physdesc> obsahuje prostou textovou hodnotu.
+Pravidlo:: Každý element <physdesc> obsahuje prostou textovou hodnotu.
 Kód:: obs73
 Zdroj:: Část 6.2 profilu EAD3 MV ČR
-Popis chyby:: Některý element <ead:physdesc> neobsahuje prostou textovou hodnotu.
+Popis chyby:: Některý element <physdesc> neobsahuje prostou textovou hodnotu.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
+
+[[AP2023_obs74c]]
+== obs74c
+
+[horizontal]
+
+Pravidlo:: Každý element <physdescstructured> s atributem "physdescstructuredtype" o hodnotě "materialtype" a zároveň atributem "coverage" o hodnotě "whole", který obsahuje element <unittype> s některou z následujících hodnot:
+* gli
+* kre,
+může obsahovat element <physfacet> s atributem "localtype" s hodnotou LEGEND.
+Element <physfacet> obsahuje pouze prostý text a s vybranou hodnotou atributu se může vyskytovat nejvýše jednou.
+
+Kód:: obs74c
+Zdroj:: Část 6.17 profilu EAD3 MV ČR
+Popis chyby:: Některý element <physfacet>, který je obsažen v elementu <physdescstructured> s atributem "physdescstructuredtype" o hodnotě "materialtype" a zároveň atributem "coverage" o hodnotě "whole", nemá atribut "localtype", obsahuje nepovolenou hodnotu anebo má nepovolený výskyt.
+Aktivní:: archivní pomůcka, archivní pomůcka, archivní pomůcka, archivní pomůcka, archivní popis, archivní popis, archivní popis, archivní popis, inherentní popis v balíčku, inherentní popis v balíčku, inherentní popis v balíčku, inherentní popis v balíčku, inherentní popis v balíčku, kontextový popis v balíčku, kontextový popis v balíčku, kontextový popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs75]]
 == obs75
 
 [horizontal]
 
-Pravidlo:: Každý element <ead:dimensions>, který je obsažen v elementu <ead:dimensions>, má atribut "unit" o hodnotě "mm" a zároveň atribut "localtype" o některé z následujících hodnot: - WIDTH - HEIGHT - DEPTH
+Pravidlo:: Každý element <dimensions>, který je obsažen v elementu <dimensions>, má atribut "localtype" o některé z následujících hodnot:
+ - WIDTH
+ - HEIGHT
+ - DEPTH
+ a zároveň obsahuje číselnou hodnotu bez mezer a s tečkou pro oddělení desetinných míst a má atribut "unit" o hodnotě "mm". Element <dimensions> s danou hodnotou atributu "localtype" není opakovatelný.
 Kód:: obs75
 Zdroj:: Část 6.7.2 profilu EAD3 MV ČR
-Popis chyby:: Element <ead:dimensions>, který je obsažen v elementu <ead:dimensions>, nemá atribut "localtype" a/nebo "unit". Případně atribut "localtype" obsahuje nepovolenou hodnotu nebo atribut "unit" neobsahuje hodnotu "mm".
+Popis chyby:: Element <dimensions>, který je obsažen v elementu <dimensions>, nemá atribut "localtype" a/nebo "unit". Případně atribut "localtype" obsahuje nepovolenou hodnotu nebo atribut "unit" neobsahuje hodnotu "mm". A/nebo se element <dimensions> s danou hodnotou atributu "localtype" opakuje.
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
+
+[[AP2023_obs77]]
+== obs77
+
+[horizontal]
+
+Pravidlo:: Pokud element <physdescstructured> má atribut "physdescstructured" o hodnotě "otherphysdescstructuredtype" a zároveň atribut "otherphysdescstructuredtype" o hodnotě "weight", má atribut "coverage" o hodnotě "whole". Podřízený element <unittype> obsahuje hodnotu "g" a podřízený element <quantity> obsahuje kladné celé číslo.
+Kód:: obs77
+Zdroj:: Část 6.7.3 profilu EAD3 MV ČR
+Popis chyby:: Element <physdescstructured> s atributem "physdescstructured" o hodnotě "otherphysdescstructuredtype" a zároveň s atributem "otherphysdescstructuredtype" o hodnotě "weight" má špatně nastavený atribut "coverage" a/nebo v něm obsažené elementy <unittype> a/nebo <quantity> obsahují nepovolenou hodnotu.
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
+
+[[AP2023_obs78]]
+== obs78
+
+[horizontal]
+
+Pravidlo:: Pokud element <physdescstructured> má atribut "physdescstructuredtype" o hodnotě "otherphysdescstructuredtype" a zároveň atribut "otherphysdescstructuredtype" o hodnotě "quantity", má atribut "coverage" o hodnotě "whole". Pokud se element nachází na kořeni archivního popisu, podřízený element <unittype> obsahuje hodnotu "desc_units". V ostatních případech obsahuje podřízený element <unittype> některou z hodnot "byte", "pieces", "pages" nebo "sheets". Pokud se element nachází na kořeni archivního popisu, podřízený element <quantity> obsahuje součet všech jednotek popisu včetně jednotky popisu, v níž se sám nachází. V ostatních případech obsahuje podřízený element <quantity> kladné celé číslo.
+Kód:: obs78
+Zdroj:: Část 6.8.2 profilu EAD3 MV ČR
+Popis chyby:: Element <physdescstructured> s atributem "physdescstructured" o hodnotě "otherphysdescstructuredtype" a zároveň s atributem "otherphysdescstructuredtype" o hodnotě "quantity" má špatně nastavený atribut "coverage" a/nebo v něm obsažené elementy element <unittype> a/nebo <quantity> obsahují nepovolenou hodnotu, příp. je použita hodnota "unit_desc" na jiné úrovni než na kořeni archivního popisu nebo není správně proveden součet jednotek popisu na kořeni archivního souboru.
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
+
+[[AP2023_obs80]]
+== obs80
+
+[horizontal]
+
+Pravidlo:: Pokud se na kořeni archivního popisu nenachází element <physdescstructured> má atribut "physdescstructuredtype" o hodnotě "spaceoccupied", má atribut "coverage" o hodnotě "whole". Podřízený element <unittype> obsahuje hodnotu "bm" nebo "byte". Pokud element <unittype> obsahuje hodnotu "bm", obsahuje podřízený element <quantity> kladné číslo zarovnané na dvě desetinná místa. Pokud element <unittype> obsahuje hodnotu "byte", obsahuje podřízený element <quantity> kladné celé číslo.
+ Element <physdescstructured> s atributem "physdescstructured" o hodnotě "spaceoccupied" není opakovatelný, vyjma možnosti současného uvedení hodnot pro "byte" a "bm", kdy bude uveden dvakrát.
+ Množství "bm" je možné uvést jen pokud existuje alespoň jedna analogová archiválie, tj. existuje alespoň jedna ukládací jednotka zapsaná pomocí elementu <container>. Množství "byte" je možné uvést jen pokud existuje alespoň jedna digitální archiválie, tj. existuje alespoň jeden element <dao> s atributem "daotype" o hodnotě "borndigital".
+Kód:: obs80
+Zdroj:: Část 4.3 profilu EAD3 MV ČR
+Popis chyby:: Element <physdescstructured> s atributem "physdescstructured" o hodnotě "spaceoccupied" má špatně nastavený atribut "coverage" a/nebo v něm obsažené elementy <unittype> a/nebo <quantity> obsahují nepovolenou hodnotu.
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
+
+[[AP2023_obs81]]
+== obs81
+
+[horizontal]
+
+Pravidlo:: Na kořeni archivního popisu se nachází právě jeden element <physdescstructured> s atributem "physdescstructuredtype" o hodnotě "otherphysdescstructuredtype" a zároveň s atributem "otherphysdescstructuredtype" o hodnotě "quantity" a zároveň s atributem "coverage" o hodnotě "whole" (týká se povinnosti uvedení "desc_units"). Na koření archivního popisu se dále nachází jeden nebo dva elementy <physdescstructured> s atributem "physdescstructuredtype" o hodnotě "spaceoccupied" a atributem "coverage" o hodnotě "whole" (týká se povinnosti uvedení "bm" nebo "byte").
+Kód:: obs81
+Zdroj:: Část 6.7.4 profilu EAD3 MV ČR
+Popis chyby:: Na kořeni archivního popisu se nenachází právě jeden element <physdescstructured> s atributem "physdescstructuredtype" o hodnotě "otherphysdescstructuredtype" a zároveň s atributem "otherphysdescstructuredtype" o hodnotě "quantity" a zároveň s atributem "coverage" o hodnotě "whole" a/nebo právě jeden element <physdescstructured> s atributem "physdescstructuredtype" o hodnotě "spaceoccupied" a atributem "coverage" o hodnotě "whole".
+Aktivní:: archivní pomůcka
+
+[[AP2023_obs82]]
+== obs82
+
+[horizontal]
+
+Pravidlo:: Na kořeni archivního popisu se nachází element <physdescstructured> s atributem "physdescstructuredtype" o hodnotě "otherphysdescstructuredtype" a zároveň má atribut "otherphysdescstructuredtype" o hodnotě "UNIT_TYPE" a má atribut "coverage" o hodnotě "part". Pro každý druh archiválie, který se v archivním popisu vyskytuje, je použit právě jeden takovýto blok <physdescstructured>. Podřízený element <unittype> obsahuje některou zkratku zpracovaného druhu archiválie (dle ZP a specifikace v 5.9) a podřízený element <quantity> obsahuje číslo, které je menší nebo rovno součtu hodnot elementů <quantity> všech podřízených jednotek popisu se stejnou hodnotou elementu <unittype>.
+Kód:: obs82
+Zdroj:: Část 3.5 a 4.2 profilu EAD3 MV ČR, část 2.9.3 Základních pravidel
+Popis chyby:: Element <physdescstructured> s atributem "physdescstructured" o hodnotě "otherphysdescstructuredtype" a zároveň s atributem "otherphysdescstructuredtype" o hodnotě "UNIT_TYPE", nemá atribut "coverage" o hodnotě "part" a/nebo se nenachází na kořeni archivního popisu a/nebo pro každý druh archiválie, který se v popisu vyskytuje, není použit právě jeden takovýto blok <physdescstructured> a/nebo podřízený element <unittype> neobsahuje zkratku příslušného druhu archiválie a/nebo podřízený element <quantity> neobsahuje číslo, které je menší nebo rovno součtu příslušných druhů archiválie.
+Aktivní:: archivní pomůcka
+
+[[AP2023_obs83]]
+== obs83
+
+[horizontal]
+
+Pravidlo:: Pokud element <physdescstructured> má atribut "physdescstructured" o hodnotě "materialtype", má atribut "coverage" o hodnotě "whole". Podřízený element <unittype> obsahuje některou zkratku zpracovaného druhu archiválie (dle ZP a specifikace v 5.9), přičemž hodnota "file" je použita jen na úrovni složky, hodnota "item" jen na úrovni jednotlivosti a "itempart" jen na úrovni části jednotlivosti. Podřízený element <quantity> obsahuje kladné celé číslo nebo je prázdný. Pokud tento element <physdescstructured> popisuje jednotku popisu na úrovni jednotlivosti (přímo nadřízený element <c> má atribut "level" o hodnotě "item"), obsahuje element <quantity> hodnotu 1.
+Kód:: obs83
+Zdroj:: Část 3.3, 5.9 a 5.10 profilu EAD3 MV ČR
+Popis chyby:: Element <physdescstructured> s atributem "physdescstructured" o hodnotě "materialtype", nemá atribut "coverage" o hodnotě "whole" a/nebo podřízený element <unittype> neobsahuje některou ze zkratek evidenčních jednotek a/nebo podřízený element <quantity> neobsahuje kladné celé číslo nebo není prázdný. Případně pokud element <physdescstructured> popisuje jednotku popisu na úrovni jednotlivosti, neobsahuje element <quantity> hodnotu 1.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs84]]
@@ -508,43 +761,21 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Každý element <ead:materialspec> s atributem "localtype" o hodnotě "SCALE", nebo "ORIENTATION", nebo "VOLUME" obsahuje prostou textovou hodnotu.
+Pravidlo:: Každý element <materialspec> s atributem "localtype" o hodnotě "SCALE", nebo "ORIENTATION", nebo "VOLUME" obsahuje prostou textovou hodnotu.
 Kód:: obs84
 Zdroj:: Část 6.9, 6.11 a 6.13 profilu EAD3 MV ČR
-Popis chyby:: Některý element <ead:materialspec> s atributem "localtype" o hodnotě "SCALE", nebo "ORIENTATION", nebo "VOLUME" neobsahuje prostou textovou hodnotu.
+Popis chyby:: Některý element <materialspec> s atributem "localtype" o hodnotě "SCALE", nebo "ORIENTATION", nebo "VOLUME" neobsahuje prostou textovou hodnotu.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
-[[AP2023_obs85]]
-== obs85
+[[AP2023_obs89]]
+== obs89
 
 [horizontal]
 
-Pravidlo:: Každý element <ead:relation> s atributem "relationtype" o hodnotě "otherrelationtype" a zároveň s atributem "otherrelationtype" o hodnotě "COORDINATES" obsahuje právě jeden element <ead:geogname>.
-Kód:: obs85
-Zdroj:: Část 6.10 profilu EAD3 MV ČR
-Popis chyby:: Element <ead:relation> s atributem "relationtype" o hodnotě "otherrelationtype" a zároveň s atributem "otherrelationtype" o hodnotě "COORDINATES" neobsahuje právě jeden element <ead:geogname>.
-Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
-
-[[AP2023_obs86]]
-== obs86
-
-[horizontal]
-
-Pravidlo:: Každý element <ead:geogname> obsahuje právě jeden element <ead:part> a právě jeden element <ead:geographiccoordinates>.
-Kód:: obs86
-Zdroj:: Část 6.10 profilu EAD3 MV ČR
-Popis chyby:: Některý element <ead:geogname> neobsahuje právě jeden element <ead:part> a/nebo právě jeden element <ead:geographiccoordinates>.
-Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
-
-[[AP2023_obs87]]
-== obs87
-
-[horizontal]
-
-Pravidlo:: Element <ead:part>, který je obsažen v elementu <ead:geogname>, obsahuje hodnotu "5.2.6 Souřadnice".
-Kód:: obs87
-Zdroj:: Část 6.10 profilu EAD3 MV ČR
-Popis chyby:: Elementu <ead:part>, který je obsažen v elementu <ead:relation> s atributem "otherrelationtype" o hodnotě "COORDINATES", neobsahuje hodnotu "5.2.6 Souřadnice".
+Pravidlo:: Každý element <relation> s atributem "relationtype" o hodnotě "otherrelationtype" a zároveň s atributem "otherrelationtype" o hodnotě "COORDINATES" obsahuje právě jeden element <geogname>. Element <geogname> obsahuje právě jeden element <part> a právě jeden element <geographiccoordinates>. Element <part>, který je obsažen v elementu <geogname>, obsahuje hodnotu "5.2.6 Souřadnice". Element <geographiccoordinates> má atribut "coordinatesystem" o hodnotě "WGS84" a obsahuje hodnotu ve formátu WKB (ISO/IEC 13249-3:2016) převedeném do BASE64, varianta little-endian.
+Kód:: obs89
+Zdroj:: Část 6.10 a 6.10.1 profilu EAD3 MV ČR
+Popis chyby:: Element <relation> s atributem "relationtype" o hodnotě "otherrelationtype" a zároveň s atributem "otherrelationtype" o hodnotě "COORDINATES" neobsahuje právě jeden element <geogname>. Nebo element <geogname> neobsahuje právě jeden element <part> a/nebo právě jeden element <geographiccoordinates>. Nebo element <part> neobsahuje hodnotu "5.2.6 Souřadnice". Nebo element <geographiccoordinates> nemá atribut "coordinatesystem" nebo tento atribut neobsahuje hodnotu "WGS84". Případně některý element <geographiccoordinates> neobsahuje hodnotu v požadovaném formátu.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs93]]
@@ -552,10 +783,10 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Každý element <ead:bibliography> obsahuje právě jeden neprázdný element <ead:p>.
+Pravidlo:: Každý element <bibliography> obsahuje právě jeden neprázdný element <p>.
 Kód:: obs93
 Zdroj:: Část 6.16 profilu EAD3 MV ČR
-Popis chyby:: Některý element <ead:bibliography> neobsahuje právě jeden element <ead:p>. Případně element <ead:p> je prázdný.
+Popis chyby:: Některý element <bibliography> neobsahuje právě jeden element <p>. Případně element <p> je prázdný.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs94]]
@@ -563,10 +794,10 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: V elementu <ead:did>, který je přímo obsažen v elementu <ead:archdesc>, není přímo obsažen žádný element <ead:dao>.
+Pravidlo:: V elementu <did>, který je přímo obsažen v elementu <archdesc>, není přímo obsažen žádný element <dao>.
 Kód:: obs94
 Zdroj:: Část 7 profilu EAD3 MV ČR
-Popis chyby:: V elementu <ead:did>, který je přímo obsažen v elementu <ead:archdesc>, je přímo obsažen element <ead:dao>.
+Popis chyby:: V elementu <did>, který je přímo obsažen v elementu <archdesc>, je přímo obsažen element <dao>.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs95]]
@@ -574,22 +805,87 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Každý element <ead:dao> má atribut "daotype" o hodnotě "derived" nebo "borndigital".
+Pravidlo:: Každý element <dao> má atribut "daotype" o hodnotě "derived" nebo "borndigital".
 Kód:: obs95
 Zdroj:: Část 7 profilu EAD3 MV ČR
-Popis chyby:: Některý element <ead:dao> nemá atribut "daotype" nebo tento atribut obsahuje nepovolenou hodnotu.
+Popis chyby:: Některý element <dao> nemá atribut "daotype" nebo tento atribut obsahuje nepovolenou hodnotu.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
+
+[[AP2023_obs96]]
+== obs96
+
+[horizontal]
+
+Pravidlo:: Každý element <dao> má neprázdný atribut "identifier".
+Kód:: obs96
+Zdroj:: Část 7.1 profilu EAD3 MV ČR
+Popis chyby:: Některý element <dao> nemá atribut "identifier" nebo je tento atribut prázdný.
+Aktivní:: archivní pomůcka, archivní popis
 
 [[AP2023_obs97]]
 == obs97
 
 [horizontal]
 
-Pravidlo:: V elementu <ead:dao> je nejvýš jeden element <ead:descriptivenote>. Ten obsahuje právě jeden neprázdný element <ead:p>.
+Pravidlo:: V elementu <dao> je nejvýš jeden element <descriptivenote>. Ten obsahuje právě jeden neprázdný element <p>.
 Kód:: obs97
 Zdroj:: Část 7.1 profilu EAD3 MV ČR
-Popis chyby:: V elementu <ead:dao> je víc než jeden element <ead:descriptivenote>. Nebo element <ead:descriptivenote> neobsahuje právě jeden element <ead:p>.
+Popis chyby:: V elementu <dao> je víc než jeden element <descriptivenote>. Nebo element <descriptivenote> neobsahuje právě jeden element <p>.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
+[[AP2023_obs99]]
+== obs99
+
+[horizontal]
+
+Pravidlo:: Každý element origination obsahuje právě jeden podřízený element a to jeden z následujících elementů: - persname - famname - corpname - name přičemž tento element má atribut "localtype" o hodnotě "ORIGINATOR" a obsahuje právě jeden element <part>, který obsahuje právě jeden element <ref>. Element <ref> má atribut "target" o hodnotě, která odkazuje na element <control>/<sources>/<source>.
+Kód:: obs99
+Zdroj:: Část 8.1 profilu EAD3 MV ČR
+Popis chyby:: Některý element <origination> obsahuje nesprávný element. Případně vnořený element nemá atribut "localtype" nebo tento atribut neobsahuje hodnotu "ORIGINATOR", nemá správný obsah.
+Aktivní:: archivní pomůcka, archivní popis, kontextový popis v balíčku
+
+[[AP2023_obs101]]
+== obs101
+
+[horizontal]
+
+Pravidlo:: Každý element <relation>, který má atribut "relationtype" o hodnotě "cpfrelation" nebo "resourcerelation", má atributy "linktitle" a zároveň "linkrole".
+Kód:: obs101
+Zdroj:: Část 8.2 profilu EAD3 MV ČR
+Popis chyby:: Některý element <relation>, který má atribut "relationtype" o hodnotě "cpfrelation" nebo "resourcerelation", nemá atribut "linktitle" a/nebo "linkrole" a/nebo "altrender".
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
+
+[[AP2023_obs103]]
+== obs103
+
+[horizontal]
+
+Pravidlo:: Atributy "linkrole" a "linktitle" elementu <relation>, který má atribut "relationtype" o hodnotě "cpfrelation" nebo "resourcerelation", obsahují povolené hodnoty (viz karta Tabulka rolí), které si vzájemně odpovídají. Atribut "linktitle" může obsahovat jinou hodnotu než povoluje Tabulka rolí.
+Kód:: obs103
+Zdroj:: Část 8.2 a 8.2.3 profilu EAD3 MV ČR
+Popis chyby:: Atributy "linkrole" a "linktitle" elementu <relation>, který má atribut "relationtype" o hodnotě "cpfrelation" nebo "resourcerelation", obsahují nepovolené hodnoty. Případně si jejich hodnoty vzájemně neodpovídají.
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
+
+[[AP2023_obs104]]
+== obs104
+
+[horizontal]
+
+Pravidlo:: Element <relation>, který má atribut "relationtype" o hodnotě "cpfrelation" nebo "resourcerelation", obsahuje právě jeden neprázdný element <relationentry> a element <descriptivenote>.
+Kód:: obs104
+Zdroj:: Část 8.2.1 a 8.2.2 profilu EAD3 MV ČR
+Popis chyby:: Element <relation>, který má atribut "relationtype" o hodnotě "cpfrelation" nebo "resourcerelation", neobsahuje element <relationentry> a/nebo element <descriptivenote>. Případně je element <relationentry> prázdný.
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
+
+[[AP2023_obs105]]
+== obs105
+
+[horizontal]
+
+Pravidlo:: Element <descriptivenote> obsahuje právě jeden element <p>, který obsahuje právě jeden element <ptr>. Ten má atribut "target" o hodnotě, která odkazuje na element <control>/<sources>/<source>.
+Kód:: obs105
+Zdroj:: Část 8.2.1 a 8.2.2 profilu EAD3 MV ČR
+Popis chyby:: Element <descriptivenote> neobsahuje právě jeden element <p> nebo element <p> neobsahuje právě jeden element <ptr>. Případně element <ptr> nemá atribut "target" nebo tento atribut neobsahuje požadovanou hodnotu.
+Aktivní:: archivní pomůcka, archivní popis, kontextový popis v balíčku
 
 :leveloffset: -1

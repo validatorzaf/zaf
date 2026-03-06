@@ -10,24 +10,23 @@ import java.util.Set;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
+import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
-// OBSAHOVÁ č.67 Pokud je základní entitou díl (<nsesss:Dil>) nebo 
-// spis (<nsesss:Spis>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, 
-// <nsesss:Vyrazovani>, <nsesss:SkartacniRezim> obsahuje element <nsesss:SkartacniZnak> hodnotu, 
-// která je rovna nejvyššímu skartačnímu znaku dětské entity dokument (<nsesss:Dokument>), 
-// přičemž priorita skartačních znaků od nejvyšší po nejnižší je v pořadí A, V, S.",
+// OBSAHOVÁ č.67 Pokud je základní entitou díl (<nsesss:Dil>) nebo spis (<nsesss:Spis>), potom v hierarchii dětských elementů 
+// <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:SkartacniRezim> obsahuje element <nsesss:SkartacniZnak> hodnotu, 
+// která je rovna nejvyššímu skartačnímu znaku dětské entity spis (<nsesss:Spis>) nebo dokument (<nsesss:Dokument>), 
+// přičemž priorita skartačních znaků od nejvyšší po nejnižší je v pořadí A, V, S.
 public class Pravidlo67 extends K06PravidloBase {
     
     static final public String OBS67 = "obs67";
     
     public Pravidlo67() {
         super(OBS67,
-                "Pokud je základní entitou díl (<nsesss:Dil>) nebo spis (<nsesss:Spis>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:SkartacniRezim> obsahuje element <nsesss:SkartacniZnak> hodnotu, která je rovna nejvyššímu skartačnímu znaku dětské entity dokument (<nsesss:Dokument>), přičemž priorita skartačních znaků od nejvyšší po nejnižší je v pořadí A, V, S.",
+                "Pokud je základní entitou díl (<nsesss:Dil>) nebo spis (<nsesss:Spis>), potom v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:SkartacniRezim> obsahuje element <nsesss:SkartacniZnak> hodnotu, která je rovna nejvyššímu skartačnímu znaku dětské entity spis (<nsesss:Spis>) nebo dokument (<nsesss:Dokument>), přičemž priorita skartačních znaků od nejvyšší po nejnižší je v pořadí A, V, S.",
                 "Uveden je chybně skartační znak u dílu nebo spisu (stanovuje se podle nejvyššího skartačního znaku dokumentu).",
-                "§ 15 odst. 5 vyhlášky č. 259/2012 Sb.");
+                "Požadavek 6.1.8 NSESSS.");
     }
     
     @Override
@@ -41,9 +40,9 @@ public class Pravidlo67 extends K06PravidloBase {
         List<Element> spisyDily = new ArrayList<>();
         for (Element zakladnientita : zakladniEntity) {
             String zeName = zakladnientita.getNodeName();
-            if (NsesssV3.SPIS.equals(zeName) || NsesssV3.DIL.equals(zeName)) {
+            if (NsesssV4.SPIS.equals(zeName) || NsesssV4.DIL.equals(zeName)) {
                 spisyDily.add(zakladnientita);
-            } else if (NsesssV3.DOKUMENT.equals(zeName)) {
+            } else if (NsesssV4.DOKUMENT.equals(zeName)) {
                 zakladniDokumenty.add(zakladnientita);
             }
         }
@@ -62,7 +61,7 @@ public class Pravidlo67 extends K06PravidloBase {
                 }
 
                 // nalezeni rodicovske zakl. entity
-                Element dokumentyNode = ValuesGetter.getXParent(dokument, NsesssV3.DOKUMENTY);
+                Element dokumentyNode = ValuesGetter.getXParent(dokument, NsesssV4.DOKUMENTY);
                 if (dokumentyNode == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen rodičovský element <nsesss:Dokumenty> elementu <nsesss:Dokument>. "
                             + getJmenoIdentifikator(dokument),
@@ -76,8 +75,8 @@ public class Pravidlo67 extends K06PravidloBase {
                 }
                 Set<String> skZnakyDokumentu = skZnaky.computeIfAbsent(rodicNode, n -> new HashSet<>());
                 
-                Element elSkartacniZnak = ValuesGetter.getXChild(dokument, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.VYRAZOVANI,
-                        NsesssV3.SKARTACNI_REZIM, NsesssV3.SKARTACNI_ZNAK);
+                Element elSkartacniZnak = ValuesGetter.getXChild(dokument, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.VYRAZOVANI,
+                        NsesssV4.SKARTACNI_REZIM, NsesssV4.SKARTACNI_ZNAK);
                 if (elSkartacniZnak == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen dětský element <nsesss:SkartacniZnak> elementu <nsesss:Dokument>. "
                             + getJmenoIdentifikator(dokument),
@@ -100,9 +99,9 @@ public class Pravidlo67 extends K06PravidloBase {
     }
     
     private void kontrola(Element zakladnientita, Set<String> skZnakyDokumentu) {
-        Element n = ValuesGetter.getXChild(zakladnientita, NsesssV3.EVIDENCNI_UDAJE,
-                NsesssV3.VYRAZOVANI,
-                NsesssV3.SKARTACNI_REZIM, NsesssV3.SKARTACNI_ZNAK);
+        Element n = ValuesGetter.getXChild(zakladnientita, NsesssV4.EVIDENCNI_UDAJE,
+                NsesssV4.VYRAZOVANI,
+                NsesssV4.SKARTACNI_REZIM, NsesssV4.SKARTACNI_ZNAK);
         if (n == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen dětský element <nsesss:SkartacniZnak> základní entity. "
                     + getJmenoIdentifikator(zakladnientita),

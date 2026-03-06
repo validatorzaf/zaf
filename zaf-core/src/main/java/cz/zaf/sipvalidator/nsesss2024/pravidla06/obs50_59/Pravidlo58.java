@@ -7,8 +7,8 @@ import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.helper.HelperString;
-import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 public class Pravidlo58 extends K06PravidloBase {
 
@@ -18,7 +18,7 @@ public class Pravidlo58 extends K06PravidloBase {
         super(OBS58,
                 "Jakýkoli element <nsesss:Identifikator> obsahuje atribut zdroj s neprázdnou hodnotu.",
                 "Není uveden zdroj identifikátoru.",
-                "Příloha č. 2 NSESSS, ř. 288.");
+                "Příloha č. 2 NSESSS, nsesss-common.xsd, ř. 313.");
     }
 
     //OBSAHOVÁ č.58 Jakýkoli element <nsesss:Identifikator> obsahuje atribut zdroj s neprázdnou hodnotu.",

@@ -7,9 +7,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
+import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 public class Pravidlo88 extends K06PravidloBase {
 
@@ -19,7 +19,7 @@ public class Pravidlo88 extends K06PravidloBase {
         super(OBS88,
                 "Pokud element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Manipulace> element <nsesss:AnalogovyDokument> s hodnotou ano a současně element <nsesss:Vyrizeni> obsahuje dětský element <nsesss:DatumOdeslani>, pak element <nsesss:Vyrizeni> obsahuje element <nsesss:OdeslaneMnozstvi> s neprázdnou hodnotou.",
                 "Chybí množství odeslaného dokumentu v analogové podobě.",
-                "Příloha č. 2 NSESSS, ř. 1476.");
+                "Příloha č. 2 NSESSS, nsesss-common.xsd, ř. 1573.");
     }
 
     //OBSAHOVÁ č.88 Pokud element <nsesss:Dokument> obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, 
@@ -36,19 +36,19 @@ public class Pravidlo88 extends K06PravidloBase {
         for (int i = 0; i < dokumenty.size(); i++) {
             Element dokument = dokumenty.get(i);
 
-            Element evidUdaje = ValuesGetter.getXChild(dokument, NsesssV3.EVIDENCNI_UDAJE);
+            Element evidUdaje = ValuesGetter.getXChild(dokument, NsesssV4.EVIDENCNI_UDAJE);
             if (evidUdaje == null) {
                 continue;
             }
-            Element analog = ValuesGetter.getXChild(evidUdaje, NsesssV3.MANIPULACE, NsesssV3.ANALOGOVY_DOKUMENT);
+            Element analog = ValuesGetter.getXChild(evidUdaje, NsesssV4.MANIPULACE, NsesssV4.ANALOGOVY_DOKUMENT);
             if (analog != null) {
                 String hodnota = analog.getTextContent();
                 if (hodnota.equals("ano")) {
-                    Element datumOdeslani = ValuesGetter.getXChild(evidUdaje, NsesssV3.VYRIZENI,
-                            NsesssV3.DATUM_ODESLANI);
+                    Element datumOdeslani = ValuesGetter.getXChild(evidUdaje, NsesssV4.VYRIZENI,
+                            NsesssV4.DATUM_ODESLANI);
                     if (datumOdeslani != null) {
-                        Element elOdeslaneMnozstvi = ValuesGetter.getXChild(evidUdaje, NsesssV3.VYRIZENI,
-                                NsesssV3.ODESLANE_MNOZSTVI);
+                        Element elOdeslaneMnozstvi = ValuesGetter.getXChild(evidUdaje, NsesssV4.VYRIZENI,
+                                NsesssV4.ODESLANE_MNOZSTVI);
                         if (elOdeslaneMnozstvi == null) {
                             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:OdeslaneMnozstvi>. "
                                     + getJmenoIdentifikator(dokument), getMistoChyby(dokument), kontrola.getEntityId(dokument));

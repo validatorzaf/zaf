@@ -48,7 +48,7 @@ public class Pravidlo52 extends K06PravidloBase {
                 String href = ValuesGetter.getValueOfAttribut(elFlocat, "xlink:href");
                 if (!href.startsWith("komponenty")) {
                     nastavChybu(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Špatně uvedená relativní cesta ke komponentě.", elFlocat);
-                }
+                }       
                 href = HelperString.replaceSeparators(href);
 
                 Path kompPath = kontrola.getContext().getKomponentaPath(href);
