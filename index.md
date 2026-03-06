@@ -22,23 +22,15 @@ validátory digitálních archivů.
 
 ### Dokumentace
 
-Dokumentace k validátoru je součástí jednotlivých sestavení. Aktuální dokumentace je dostupná [zde](doc-1.1)
+Dokumentace k validátoru je součástí jednotlivých sestavení. Aktuální dokumentace je dostupná [zde](doc-2.0)
+
 
 ### Aktuální verze
 
-Výdána verze 1.1.1
+Výdána verze 2.0.0
 
 Jednotlivé verze jsou dostupné na [GitHub Releases](https://github.com/validatorzaf/zaf/releases) a 
-v repozitáři pro Maven [https://www.lightcomp.cz/releases/repository/lc-public-release/](https://www.lightcomp.cz/releases/repository/lc-public-release/).
-
-### Připravovaná verze
-
-Verze 2.0.0-RC-2
-
-[Dokumentace 2.0](doc-2.0)
-
-Ke stažení v repozitáři pro Maven [https://pkgs.lightcomp.cz/maven/public-release/cz/zaf/zaf-cmd/](https://pkgs.lightcomp.cz/maven/public-release/cz/zaf/zaf-cmd/).
-
+v repozitáři pro Maven [https://pkgs.lightcomp.cz/maven/public-release/cz/zaf/zaf-cmd/](https://pkgs.lightcomp.cz/maven/public-release/cz/zaf/zaf-cmd/).
 
 ### Starší verze
 
@@ -46,11 +38,13 @@ Verze 1.0.3
 
 [Dokumentace 1.0.3](doc)
 
+Verze 1.1.1
+
+[Dokumentace k 1.1](doc-1.1)
+
 
 ### Komunikace
 
 Zjištěné chyby lze hlásit pomocí nástroje [Issues na GitHubu](https://github.com/validatorzaf/zaf/issues).
 
 Pro jiné požadavky můžete zaslat email na adresu: mailto:petr.pytelka@lightcomp.cz
-
-
