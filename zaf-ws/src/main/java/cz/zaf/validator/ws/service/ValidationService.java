@@ -24,8 +24,8 @@ import cz.zaf.api.rest.model.ValidationType;
 import cz.zaf.common.xml.SchemaResourceLoader;
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
-import cz.zaf.schema.validace_v1.Validace;
-import cz.zaf.schemas.validace_v1.ValidaceV1NS;
+import cz.zaf.schema.validation_v2.Validation;
+import cz.zaf.schemas.validation_v2.ValidationV2NS;
 import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 import cz.zaf.validator.CmdValidator;
 import cz.zaf.validator.Params;
@@ -55,7 +55,7 @@ public class ValidationService {
     static JAXBContext jaxbContext;
     {        
         try {
-            jaxbContext = JAXBContext.newInstance(Validace.class);
+            jaxbContext = JAXBContext.newInstance(Validation.class);
         } catch (JAXBException e) {
             log.error("Failed to initialize JAXBContext", e);
             throw new IllegalStateException("Failed to initialize JAXBContext", e);
@@ -371,15 +371,15 @@ public class ValidationService {
 		}
 	}
 
-	public Validace getResult(String validationRequestId) {
+	public Validation getResult(String validationRequestId) {
 		Path resultPath = getResultPath(validationRequestId);
 		
 		// load xml using jaxbContext from resultPath
         try (InputStream is = Files.newInputStream(resultPath)) {
         	Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        	unmarshaller.setSchema(SchemaResourceLoader.get(ValidaceV1NS.SCHEMA_RESOURCE));
+        	unmarshaller.setSchema(SchemaResourceLoader.get(ValidationV2NS.SCHEMA_RESOURCE));
         	Object resultObj = unmarshaller.unmarshal(is);
-        	return (Validace)resultObj;
+        	return (Validation)resultObj;
         } catch (IOException e) {
 			throw new RuntimeException("Failed to read result, request id: " + validationRequestId,
 					e);
