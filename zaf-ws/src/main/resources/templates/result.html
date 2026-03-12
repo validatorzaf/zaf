@@ -34,33 +34,33 @@
 		</table>
     
     <th:block th:each="dataPackage, iterStat : ${dataPackages}" 
-              th:with="errorCount=${#aggregates.sum(dataPackage.kontrola.?[stav.value == 'chyba'].![#lists.size(pravidlo)])}">
+              th:with="errorCount=${#aggregates.sum(dataPackage.check.?[status.value == 'ERROR'].![#lists.size(rule)])}">
     
-      <h2>[[#{result.file}]] [[${dataPackage.nazevSouboru}]]</h2>
+      <h2>[[#{result.file}]] [[${dataPackage.fileName}]]</h2>
   	  <th:block th:if="${errorCount==null or errorCount==0}">
 	     <div class="status ok" aria-live="polite" th:text="#{result.validationSuccess}">File is valid.</div>
       </th:block>
   	  <th:block th:if="${errorCount>0}">
 	     <div class="status chyba" aria-live="polite" th:text="#{result.validationFailure}">File is not valid.</div>
 	     <h3>[[#{result.identifiedDiscrepancies}]] ([[${errorCount}]]):</h3>
-        <th:block th:each="kontrola, stat: ${dataPackage.kontrola.?[stav.value == 'chyba']}"
-                  th:with="prevFile=${stat.index > 0 ? dataPackage.kontrola.?[stav.value == 'chyba'][stat.index-1].vnitrniSoubor : null}">
+        <th:block th:each="kontrola, stat: ${dataPackage.check.?[status.value == 'ERROR']}"
+                  th:with="prevFile=${stat.index > 0 ? dataPackage.check.?[status.value == 'ERROR'][stat.index-1].embeddedFile : null}">
 
-        <th:block th:if="${kontrola.vnitrniSoubor != null and kontrola.vnitrniSoubor != prevFile}">
-          <h4>[[#{result.innerFile}]] <span th:text="${kontrola.vnitrniSoubor}"></span></h4>
+        <th:block th:if="${kontrola.embeddedFile != null and kontrola.embeddedFile != prevFile}">
+          <h4>[[#{result.innerFile}]] <span th:text="${kontrola.embeddedFile}"></span></h4>
         </th:block>			  
         <div class="table">
-		  <div th:each="pravidlo : ${kontrola.pravidlo}" class="row">
+		  <div th:each="pravidlo : ${kontrola.rule}" class="row">
 		    <div class="cell valign-top img-cell">
 		      <img src="img/error.jpg" alt="" th:attr="title=#{result.detail.img_error}" class="img-error" />
 		    </div>
 			<div class="cell valign-top">
-			  <strong th:text="${pravidlo.popisChyby}"></strong><br />
-				<span th:if="${pravidlo.vypisChyby}">[[#{result.detail.error}]]: <span th:text="${pravidlo.vypisChyby}"></span><br /></span>
-                <span th:if="${pravidlo.mistoChyby}">[[#{result.detail.location}]]: <span th:text="${pravidlo.mistoChyby}"></span><br /></span>
-				<div class="pravidlo">[[#{result.detail.rule}]] <span th:text="${pravidlo.kod}"></span>:
-				  <span th:text="${pravidlo.zneni}"></span>
-				  <span th:if="${pravidlo.zdroj}"> (<span th:text="${pravidlo.zdroj}"></span>)</span>
+			  <strong th:text="${pravidlo.errorDescription}"></strong><br />
+				<span th:if="${pravidlo.errorReport}">[[#{result.detail.error}]]: <span th:text="${pravidlo.errorReport}"></span><br /></span>
+                <span th:if="${pravidlo.errorLocation}">[[#{result.detail.location}]]: <span th:text="${pravidlo.errorLocation}"></span><br /></span>
+				<div class="pravidlo">[[#{result.detail.rule}]] <span th:text="${pravidlo.code}"></span>:
+				  <span th:text="${pravidlo.text}"></span>
+				  <span th:if="${pravidlo.source}"> (<span th:text="${pravidlo.source}"></span>)</span>
 				</div>
 			</div>
 		  </div> <!-- for each pravidlo -->
@@ -77,10 +77,10 @@
 		<th th:text="#{result.detail.check}">Check</th>
 		<th th:text="#{result.detail.result}">Result</th>
 	  </tr>
-	  <tr th:each="kontrola : ${dataPackage.kontrola}">
-	    <td th:if="${kontrola.vnitrniSoubor == null}" th:text="${kontrola.nazev}"></td>
-	    <td th:if="${kontrola.vnitrniSoubor != null}" th:text="${kontrola.vnitrniSoubor + ': ' + kontrola.nazev}"></td>
-	    <td th:text="${kontrola.stav}"></td>
+	  <tr th:each="kontrola : ${dataPackage.check}">
+	    <td th:if="${kontrola.embeddedFile == null}" th:text="${kontrola.name}"></td>
+	    <td th:if="${kontrola.embeddedFile != null}" th:text="${kontrola.embeddedFile + ': ' + kontrola.name}"></td>
+	    <td th:text="${kontrola.status}"></td>
 	  </tr>
     </table>
 		</th:block>

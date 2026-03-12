@@ -26,6 +26,7 @@ import cz.zaf.api.rest.model.RequestProcessState;
 import cz.zaf.api.rest.model.ValidationType;
 import cz.zaf.common.ZafInfo;
 import cz.zaf.schema.validace_v1.Validace;
+import cz.zaf.schema.validation_v2.Validation;
 import cz.zaf.validator.ws.service.ValidationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -102,14 +103,14 @@ public class ZafUIController {
 			} while(counter<1000);
 			
 			// read result
-			Validace result = validationService.getResult(valRequestId);
+			Validation result = validationService.getResult(valRequestId);
 
 			// Read back final response
 			model.addAttribute("requestId", valRequestId);			
-			model.addAttribute("validationType", result.getTypValidace());
-			model.addAttribute("validationProfile", result.getProfilValidace());			
-			model.addAttribute("verzePravidel", result.getVerzePravidel().intValue());
-			model.addAttribute("dataPackages", result.getBalicek());
+			model.addAttribute("validationType", result.getValidationType());
+			model.addAttribute("validationProfile", result.getValidationProfile());			
+			model.addAttribute("verzePravidel", result.getRulesVersion().intValue());
+			model.addAttribute("dataPackages", result.getPackage());
 			// seznam chyb
 			// List<TPravidlo> chyby = new ArrayList<>();
 			

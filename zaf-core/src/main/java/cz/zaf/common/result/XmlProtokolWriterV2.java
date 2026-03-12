@@ -67,7 +67,7 @@ public class XmlProtokolWriterV2 implements ProtokolWriter
     {
         SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         try (InputStream is = XmlProtokolWriterV2.class.getClassLoader()
-                .getResourceAsStream("schema/validace_v1.xsd")) {
+                .getResourceAsStream("schema/validation_v2.xsd")) {
             schema = sf.newSchema(new StreamSource(is));
         } catch (IOException | SAXException e) {
             throw new RuntimeException("Failed to load internal XSD", e);
@@ -114,17 +114,17 @@ public class XmlProtokolWriterV2 implements ProtokolWriter
         indentingStreamWriter.setIndentStep("    ");
         
         indentingStreamWriter.writeStartDocument();
-        indentingStreamWriter.writeStartElement("validace");
+        indentingStreamWriter.writeStartElement("validation");
         indentingStreamWriter.setDefaultNamespace(SCHEMA_URL);
         indentingStreamWriter.setPrefix("xsi", "http://www.w3.org/2001/XMLSchema-instance");
-         indentingStreamWriter.writeAttribute("xmlns", SCHEMA_URL);
+        indentingStreamWriter.writeAttribute("xmlns", SCHEMA_URL);
         indentingStreamWriter.writeAttribute("xmlns", null,
                                              "xsi", "http://www.w3.org/2001/XMLSchema-instance");
         indentingStreamWriter.writeAttribute("http://www.w3.org/2001/XMLSchema-instance", "schemaLocation", 
-                                             "https://stands.nacr.cz/validace_zaf/v1 https://stands.nacr.cz/validace_zaf/v1/validace_v1.xsd");
+                                             "https://stands.nacr.cz/validation_zaf/v2 https://stands.nacr.cz/validation_zaf/v2/validation_v2.xsd");
 
         // write attributes to root element
-        indentingStreamWriter.writeAttribute("identifikatorValidace",
+        indentingStreamWriter.writeAttribute("validationIdentifier",
                                              kontrolaId == null ? UUID.randomUUID().toString() : kontrolaId);
     
         pripravAppInfo();
@@ -145,7 +145,7 @@ public class XmlProtokolWriterV2 implements ProtokolWriter
         String dateTimeString = now.toString();
         XMLGregorianCalendar datumKontroly = DatatypeFactory.newInstance().newXMLGregorianCalendar(dateTimeString);
         
-        indentingStreamWriter.writeAttribute("datumValidace", datumKontroly.toXMLFormat());
+        indentingStreamWriter.writeAttribute("validationTimestamp", datumKontroly.toXMLFormat());
     }
 
     private void pripravAppInfo() throws IOException, XMLStreamException {
@@ -158,11 +158,11 @@ public class XmlProtokolWriterV2 implements ProtokolWriter
         String artifactId = properties.getProperty("artifactId");
         */
 
-        indentingStreamWriter.writeAttribute("nazevAplikace", ZafInfo.getAppName());
-        indentingStreamWriter.writeAttribute("verzeAplikace", ZafInfo.getAppVersion());
-        indentingStreamWriter.writeAttribute("typValidace", profileInfo.getValidationType());
-        indentingStreamWriter.writeAttribute("profilValidace", profileInfo.getProfileName());
-        indentingStreamWriter.writeAttribute("verzePravidel", profileInfo.getRuleVersion());        
+        indentingStreamWriter.writeAttribute("applicationName", ZafInfo.getAppName());
+        indentingStreamWriter.writeAttribute("applicationVersion", ZafInfo.getAppVersion());
+        indentingStreamWriter.writeAttribute("validationType", profileInfo.getValidationType());
+        indentingStreamWriter.writeAttribute("validationProfile", profileInfo.getProfileName());
+        indentingStreamWriter.writeAttribute("rulesVersion", profileInfo.getRuleVersion());        
     }
     
 
@@ -264,7 +264,10 @@ public class XmlProtokolWriterV2 implements ProtokolWriter
             try (InputStream in = Files.newInputStream(outputPath)) {
                 Validator validator = schema.newValidator();
                 validator.validate(new StreamSource(in));
-            }
+            } catch (IOException | SAXException e) {
+				logger.error("Output XML validation failed", e);
+				throw new RuntimeException("Output XML validation failed", e);
+			}
         }
     }
 

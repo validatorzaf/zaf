@@ -34,6 +34,8 @@ import cz.zaf.api.rest.model.ValidationType;
 import cz.zaf.schema.validace_v1.TBalicek;
 import cz.zaf.schema.validace_v1.TTypEntity;
 import cz.zaf.schema.validace_v1.Validace;
+import cz.zaf.schema.validation_v2.TPackage;
+import cz.zaf.schema.validation_v2.Validation;
 import cz.zaf.validator.ws.service.ValidationService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -46,22 +48,7 @@ public class ZafWsController implements ValidationApi {
 		
 	@Autowired
 	private ValidationService validationService;
-	
-	static private Map<TTypEntity, RelatedEntityType> entityTypeMap = new HashMap<>();
-	static {
-		entityTypeMap.put(TTypEntity.ARCHIVNÍ_SOUBOR, RelatedEntityType.ARCHIVNI_SOUBOR);
-		entityTypeMap.put(TTypEntity.DOKUMENT, RelatedEntityType.DOKUMENT);
-		entityTypeMap.put(TTypEntity.DÍL, RelatedEntityType.DIL);
-		entityTypeMap.put(TTypEntity.JEDNOTLIVOST, RelatedEntityType.JEDNOTLIVOST);		
-		entityTypeMap.put(TTypEntity.SLOŽKA, RelatedEntityType.SLOZKA);
-		entityTypeMap.put(TTypEntity.SOUČÁST, RelatedEntityType.SOUCAST);
-		entityTypeMap.put(TTypEntity.SPIS, RelatedEntityType.SPIS);
-		entityTypeMap.put(TTypEntity.SPISOVÝ_PLÁN, RelatedEntityType.SPISOVY_PLAN);
-		entityTypeMap.put(TTypEntity.SÉRIE, RelatedEntityType.SERIE);
-		entityTypeMap.put(TTypEntity.VĚCNÁ_SKUPINA, RelatedEntityType.VECNA_SKUPINA);
-		entityTypeMap.put(TTypEntity.ČÁST_JEDNOTLIVOSTI, RelatedEntityType.CAST_JEDNOTLIVOSTI);		
-	}
-	
+		
 	ObjectMapper objectMapper = new ObjectMapper();
 	{
 		objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
@@ -98,24 +85,24 @@ public class ZafWsController implements ValidationApi {
 	}
 
 	private byte[] convertXmlToJson(String validationRequestId) {
-		Validace validace = this.validationService.getResult(validationRequestId);
+		Validation validace = this.validationService.getResult(validationRequestId);
 		
 		ValidationJsonResult vjr = new ValidationJsonResult();
-		vjr.setAppName(validace.getNazevAplikace());
-		vjr.setAppVersion(validace.getVerzeAplikace());
-		ValidationType vt = ValidationType.fromValue(validace.getTypValidace());
+		vjr.setAppName(validace.getApplicationName());
+		vjr.setAppVersion(validace.getApplicationVersion());
+		ValidationType vt = ValidationType.fromValue(validace.getValidationType());
 
-		vjr.setProfile(validace.getProfilValidace());
+		vjr.setProfile(validace.getValidationProfile());
 		vjr.setValidationType(vt);
 		vjr.setValidationDate(
-				validace.getDatumValidace()
+				validace.getValidationTimestamp()
 					.toGregorianCalendar()
 					.toZonedDateTime()
 					.toOffsetDateTime());
-		vjr.setRuleVersion(validace.getVerzePravidel().intValue());
-		vjr.setRequestId(validace.getIdentifikatorValidace());
+		vjr.setRuleVersion(validace.getRulesVersion().intValue());
+		vjr.setRequestId(validace.getValidationIdentifier());
 		
-		for(TBalicek balicek: validace.getBalicek()) {
+		for(var balicek: validace.getPackage()) {
 			convertBalicek(balicek, vjr);
 		}
 		
@@ -131,47 +118,47 @@ public class ZafWsController implements ValidationApi {
 		}		
 	}
 
-	private void convertBalicek(TBalicek balicek, ValidationJsonResult vjr) {
+	private void convertBalicek(TPackage balicek, ValidationJsonResult vjr) {
 		DataPackageValidationResult dpr = new DataPackageValidationResult();
-		dpr.setId(balicek.getIdentifikator());
-		dpr.setName(balicek.getNazevSouboru());
+		dpr.setId(balicek.getIdentifier());
+		dpr.setName(balicek.getFileName());
 		vjr.addDataPackagesItem(dpr);
 		
-		balicek.getKontrola().forEach(kontrola -> {
+		balicek.getCheck().forEach(kontrola -> {
 			ValidationLevel vl = new ValidationLevel();
-			vl.setName(kontrola.getNazev());
-			vl.setFileName(kontrola.getVnitrniSoubor());
-			if(kontrola.getStav() != null) {
-				switch(kontrola.getStav()) {
+			vl.setName(kontrola.getName());
+			vl.setFileName(kontrola.getEmbeddedFile());
+			if(kontrola.getStatus() != null) {
+				switch(kontrola.getStatus()) {
 				case OK:
 					vl.setStatus(ValidationLevelStatus.OK);
 					break;
-				case NESPUSTENA:
+				case NOT_EXECUTED:
 					vl.setStatus(ValidationLevelStatus.NOT_VALIDATED);
 					break;
-				case CHYBA:
+				case ERROR:
 					vl.setStatus(ValidationLevelStatus.ERROR);
 					break;
 				}
 			}
 			dpr.addLevelsItem(vl);
 			
-			kontrola.getPravidlo().forEach(pravidlo -> {
+			kontrola.getRule().forEach(pravidlo -> {
 				ValidationRule vr = new ValidationRule();
-				vr.setCode(pravidlo.getKod());
-				vr.setDescription(pravidlo.getPopisChyby());
-				vr.setDetail(pravidlo.getVypisChyby());
-				vr.setErrorCode(pravidlo.getKodChyby());
-				vr.setLocation(pravidlo.getMistoChyby());
-				vr.setRule(pravidlo.getZneni());
-				vr.setSource(pravidlo.getZdroj());
+				vr.setCode(pravidlo.getCode());
+				vr.setDescription(pravidlo.getErrorDescription());
+				vr.setDetail(pravidlo.getErrorReport());
+				vr.setErrorCode(pravidlo.getErrorCode());
+				vr.setLocation(pravidlo.getErrorLocation());
+				vr.setRule(pravidlo.getText());
+				vr.setSource(pravidlo.getSource());
 				if(pravidlo.getEntity()!=null) {
-					pravidlo.getEntity().getIdentifikator().forEach(identEntity -> {
+					pravidlo.getEntity().getIdentifier().forEach(identEntity -> {
 						RelatedEntity rei = new RelatedEntity();
 						rei.setId(identEntity.getValue());
-						rei.setSource(identEntity.getZdroj());
-						if(identEntity.getTyp()!=null) {
-							RelatedEntityType ret  = entityTypeMap.get(identEntity.getTyp());
+						rei.setSource(identEntity.getSource());
+						if(identEntity.getType()!=null) {
+							RelatedEntityType ret  = RelatedEntityType.fromValue(identEntity.getType());
 							rei.setType(ret);
 						}						
 						
