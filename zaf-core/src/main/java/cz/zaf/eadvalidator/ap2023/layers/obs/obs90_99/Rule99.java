@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.eadvalidator.ap2023.Ap2023Constants;
 import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.schema.ead3.Archdesc;
 import cz.zaf.schema.ead3.Corpname;
@@ -81,7 +82,7 @@ public class Rule99 extends EadRule {
 
     private void validate(Object element, String localType, List<Part> partList) {
         found = true;
-        if (!StringUtils.equals("ORIGINATOR", localType)) {
+        if (!Ap2023Constants.ORIGINATOR.equals(localType)) {
             throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut localtype nemá očekávanou hodnotu.", ctx.formatEadPosition(element));
         }
         validatePart(partList);

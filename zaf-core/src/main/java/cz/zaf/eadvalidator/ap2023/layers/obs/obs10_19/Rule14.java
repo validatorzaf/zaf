@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.eadvalidator.ap2023.Ap2023Constants;
 import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.schema.ead3.Corpname;
 import cz.zaf.schema.ead3.Famname;
@@ -51,25 +52,25 @@ public class Rule14 extends EadRule {
                         Object contentObj = jaxbElem.getValue();
                         if (contentObj instanceof Persname persname) {
                             String localtype = persname.getLocaltype();
-                            if (StringUtils.equals("ORIGINATOR", localtype)) {
+                            if (Ap2023Constants.ORIGINATOR.equals(localtype)) {
                                 validate(persname, persname.getPart());
                             }
                         } else
                         if (contentObj instanceof Famname famname) {
                             String localtype = famname.getLocaltype();
-                            if (StringUtils.equals("ORIGINATOR", localtype)) {
+                            if (Ap2023Constants.ORIGINATOR.equals(localtype)) {
                                 validate(famname, famname.getPart());
                             }
                         } else
                         if (contentObj instanceof Corpname corpname) {
                             String localtype = corpname.getLocaltype();
-                            if (StringUtils.equals("ORIGINATOR", localtype)) {
+                            if (Ap2023Constants.ORIGINATOR.equals(localtype)) {
                                 validate(corpname, corpname.getPart());
                             }
                         } else
                         if (contentObj instanceof Name name) {
                             String localtype = name.getLocaltype();
-                            if (StringUtils.equals("ORIGINATOR", localtype)) {
+                            if (Ap2023Constants.ORIGINATOR.equals(localtype)) {
                                 validate(name, name.getPart());
                             }
                         }
