@@ -9,12 +9,12 @@ import org.apache.commons.lang3.StringUtils;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.eadvalidator.ap2023.Ap2023Constants;
 import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.schema.ead3.Date;
 import cz.zaf.schema.ead3.Ead;
 import cz.zaf.schema.ead3.Filedesc;
 import cz.zaf.schema.ead3.Publicationstmt;
-import cz.zaf.schemas.ead.EadNS;
 
 public class Rule09 extends EadRule {
 	
@@ -44,7 +44,7 @@ public class Rule09 extends EadRule {
 		for(Object pda: pdas) {
 			if(pda instanceof Date) {
 				Date date = (Date)pda;
-				if(EadNS.LOCALTYPE_FINDING_AID_DATE.equals(date.getLocaltype())) {
+				if(Ap2023Constants.LOCALTYPE_FINDING_AID_DATE.equals(date.getLocaltype())) {
 					if(found!=null) {
 						throw new ZafException(BaseCode.DUPLICITA, "Duplicitní element.", ctx.formatEadPosition(date));
 					}

@@ -2,12 +2,12 @@ package cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.eadvalidator.ap2023.Ap2023Constants;
 import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.schema.ead3.Agencycode;
 import cz.zaf.schema.ead3.Ead;
 import cz.zaf.schema.ead3.Maintenanceagency;
 import org.apache.commons.lang3.StringUtils;
-import cz.zaf.schemas.ead.EadNS;
 
 public class Rule20 extends EadRule {
 
@@ -33,7 +33,7 @@ public class Rule20 extends EadRule {
             throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí nebo je prázdný atribut localtype.", ctx.formatEadPosition(agencycode));
         }
 
-        if (!EadNS.LOCALTYPE_INSTITUTION_ID.equals(value)) {
+        if (!Ap2023Constants.LOCALTYPE_INSTITUTION_ID.equals(value)) {
             throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut localtype má chybnou hodnotu: " + value, ctx.formatEadPosition(agencycode));
         }
     }

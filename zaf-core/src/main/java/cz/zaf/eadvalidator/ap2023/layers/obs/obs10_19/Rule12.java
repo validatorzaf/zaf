@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.eadvalidator.ap2023.Ap2023Constants;
 import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.schema.ead3.Ead;
 import cz.zaf.schema.ead3.Filedesc;
@@ -16,7 +17,6 @@ import cz.zaf.schema.ead3.P;
 import cz.zaf.schema.ead3.Part;
 import cz.zaf.schema.ead3.Publicationstmt;
 import jakarta.xml.bind.JAXBElement;
-import cz.zaf.schemas.ead.EadNS;
 
 public class Rule12 extends EadRule {
 
@@ -60,7 +60,7 @@ public class Rule12 extends EadRule {
 					
 					if(pCont instanceof Name) {
 						Name name = (Name)pCont;
-						if(EadNS.LOCALTYPE_FINDING_AID_EDITOR.equals(name.getLocaltype())) {
+						if(Ap2023Constants.LOCALTYPE_FINDING_AID_EDITOR.equals(name.getLocaltype())) {
 							if(found!=null) {
 								throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt.", ctx.formatEadPosition(name));
 							}

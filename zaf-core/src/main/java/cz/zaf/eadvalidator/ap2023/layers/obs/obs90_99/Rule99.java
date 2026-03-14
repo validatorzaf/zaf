@@ -82,7 +82,7 @@ public class Rule99 extends EadRule {
 
     private void validate(Object element, String localType, List<Part> partList) {
         found = true;
-        if (!Ap2023Constants.ORIGINATOR.equals(localType)) {
+        if (!Ap2023Constants.LOCALTYPE_ORIGINATOR.equals(localType)) {
             throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut localtype nemá očekávanou hodnotu.", ctx.formatEadPosition(element));
         }
         validatePart(partList);

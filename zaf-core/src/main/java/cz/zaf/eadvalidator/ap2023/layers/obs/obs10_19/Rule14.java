@@ -52,25 +52,25 @@ public class Rule14 extends EadRule {
                         Object contentObj = jaxbElem.getValue();
                         if (contentObj instanceof Persname persname) {
                             String localtype = persname.getLocaltype();
-                            if (Ap2023Constants.ORIGINATOR.equals(localtype)) {
+                            if (Ap2023Constants.LOCALTYPE_ORIGINATOR.equals(localtype)) {
                                 validate(persname, persname.getPart());
                             }
                         } else
                         if (contentObj instanceof Famname famname) {
                             String localtype = famname.getLocaltype();
-                            if (Ap2023Constants.ORIGINATOR.equals(localtype)) {
+                            if (Ap2023Constants.LOCALTYPE_ORIGINATOR.equals(localtype)) {
                                 validate(famname, famname.getPart());
                             }
                         } else
                         if (contentObj instanceof Corpname corpname) {
                             String localtype = corpname.getLocaltype();
-                            if (Ap2023Constants.ORIGINATOR.equals(localtype)) {
+                            if (Ap2023Constants.LOCALTYPE_ORIGINATOR.equals(localtype)) {
                                 validate(corpname, corpname.getPart());
                             }
                         } else
                         if (contentObj instanceof Name name) {
                             String localtype = name.getLocaltype();
-                            if (Ap2023Constants.ORIGINATOR.equals(localtype)) {
+                            if (Ap2023Constants.LOCALTYPE_ORIGINATOR.equals(localtype)) {
                                 validate(name, name.getPart());
                             }
                         }
