@@ -5,8 +5,6 @@ package cz.zaf.eadvalidator.ap2023;
  */
 public class Ap2023Constants {
 	
-	public static final String IDENTIFIER_EAD3_PROFILE_20240301 = "CZ_EAD3_PROFILE_20240301";
-
 	public static final String IDENTIFIER_INVENTAR = "INVENTAR";
 	public static final String IDENTIFIER_KATALOG = "KATALOG";
 	public static final String IDENTIFIER_MANIP_SEZNAM = "MANIP_SEZNAM";

@@ -34,12 +34,14 @@ public class Rule25 extends EadRule {
             throw new ZafException(BaseCode.CHYBI_ELEMENT, "Element <localcontrol> neobsahuje element <term>.", ctx.formatEadPosition(localControl));	        
         }
         String identifier = term.getIdentifier();
-        if (Ap2023Constants.IDENTIFIER_EAD3_PROFILE_20240301.equals(identifier)) {
-        	ctx.setProfileRevision(ProfileRevision.CZ_EAD3_PROFILE_20240301);
-        	// TODO: check value of element
-        } else {
-        	throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nerozponavá revize profilu, atribut identifier obsahuje hodnotu: " + identifier + ".", ctx.formatEadPosition(term));
+        // Try to recognize valid profile base on constants values in ProfileRevision
+        for(ProfileRevision value: ProfileRevision.values()) {
+        	if(value.name().equals(identifier)) {
+				ctx.setProfileRevision(value);
+				return;
+			}
         }
+       	throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nerozponavá revize profilu, atribut identifier obsahuje hodnotu: " + identifier + ".", ctx.formatEadPosition(term));
     }
 
     private Localcontrol getSingleLocalControl(String localTypeValue) {
