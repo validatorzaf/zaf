@@ -44,6 +44,10 @@ public class Rule31 extends EadRule {
             //Eventtype 31 - povinný ze schématu
             Eventtype eventtype = maintenanceevent.getEventtype();
             if (!"created".equals(eventtype.getValue())) {
+                throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nalezen duplicitní element maintenanceevent.", ctx.formatEadPosition(maintenanceevent));
+            }
+
+            if (found != null) {
                 throw new ZafException(BaseCode.DUPLICITA, "Nalezen duplicitní element maintenanceevent.", ctx.formatEadPosition(maintenanceevent));
             }
 

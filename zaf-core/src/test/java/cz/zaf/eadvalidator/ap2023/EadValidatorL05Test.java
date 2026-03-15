@@ -765,6 +765,17 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
     }
 
     @Test
+    void testObs_31_chyba05() {
+        testPomucka("05-KONTROLA OBSAHU/031_chyba5.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule04a.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule18.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE, Rule72.CODE},
+                new String[]{Rule31.CODE});
+    }
+
+    @Test
     void testObs_35_chyba01() {
         testPomucka("05-KONTROLA OBSAHU/035_chyba1.xml",
                 ValidationStatus.ERROR,
