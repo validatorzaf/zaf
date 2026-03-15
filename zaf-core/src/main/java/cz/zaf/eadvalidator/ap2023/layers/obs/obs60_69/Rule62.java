@@ -76,10 +76,8 @@ public class Rule62 extends EadRule {
         if (scopecontentWithoutLangCount == 1 && !scopeContentWithLangMap.isEmpty()) {
             List<Scopecontent> scopeContentLangCzeList = scopeContentWithLangMap.get("cze");
             if (scopeContentLangCzeList != null) {
-                System.out.println("");
                 throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepovolený element <scopecontent>.", ctx.formatEadPosition(scopeContentLangCzeList));
             }
-            System.err.println("");
         }
         //ted už řeším jen s lang - nesmí být dva klíče stejné pokud nemají internal a external
         if (!scopeContentWithLangMap.isEmpty()) {

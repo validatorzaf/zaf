@@ -35,7 +35,7 @@ public class Rule22 extends EadRule {
         for (Agencyname otherAgencyName : agnames) {
             String value = otherAgencyName.getContent();
             if (StringUtils.isEmpty(value)) {
-                throw new ZafException(BaseCode.CHYBI_ELEMENT, "Element agencyname má prázdnou hodnotu.", ctx.formatEadPosition(otherAgencyName));
+                throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element agencyname má prázdnou hodnotu.", ctx.formatEadPosition(otherAgencyName));
             }
         }
     }

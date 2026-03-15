@@ -26,7 +26,7 @@ public class Rule94 extends EadRule {
         List<Object> didAChildren = didA.getMDid();
         for (Object didAChild : didAChildren) {
             if (didAChild instanceof Dao dao) {
-                throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nenalezen nepovolený element <dao>.", ctx.formatEadPosition(dao));
+                throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element <dao>.", ctx.formatEadPosition(dao));
             }
         }
     }

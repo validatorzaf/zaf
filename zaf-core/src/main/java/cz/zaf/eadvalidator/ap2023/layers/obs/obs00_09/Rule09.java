@@ -38,7 +38,7 @@ public class Rule09 extends EadRule {
 		}
 		List<Object> pdas = publStmt.getPublisherOrDateOrAddress();
 		if(CollectionUtils.isEmpty(pdas)) {
-			throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybi element.", ctx.formatEadPosition(pdas));
+			throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybi element.", ctx.formatEadPosition(publStmt));
 		}
 		Date found = null;
 		for(Object pda: pdas) {
@@ -66,7 +66,7 @@ public class Rule09 extends EadRule {
 			}
 		}
 		if(found==null) {
-			throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybi element.", ctx.formatEadPosition(pdas));
+			throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybi element.", ctx.formatEadPosition(publStmt));
 		}
 	}
 }

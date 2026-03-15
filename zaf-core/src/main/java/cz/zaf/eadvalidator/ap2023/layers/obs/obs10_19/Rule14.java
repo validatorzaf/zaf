@@ -85,7 +85,7 @@ public class Rule14 extends EadRule {
             throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nenalezen element Part.", ctx.formatEadPosition(parent));
         }
         if(listPart.size() != 1){
-            throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nenalezeno více elementů Part.", ctx.formatEadPosition(listPart));
+            throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nenalezeno více elementů Part.", ctx.formatEadPosition(parent));
         }
         for (Part part : listPart) {
             List<Serializable> content = part.getContent();
@@ -95,7 +95,7 @@ public class Rule14 extends EadRule {
                     Object obj = jaxbElem.getValue();
                     if (obj instanceof Ref ref) {
                         if (found != null) {
-                            throw new ZafException(BaseCode.DUPLICITA, "Nenalezen nepovolený element ref.", ctx.formatEadPosition(ref));
+                            throw new ZafException(BaseCode.DUPLICITA, " ref.", ctx.formatEadPosition(ref));
                         }
                         found = ref;
                         Object target = ref.getTarget();
@@ -120,7 +120,7 @@ public class Rule14 extends EadRule {
         }
         Serializable partContent = content.get(0);
         if (partContent instanceof String str) {
-            if (!StringUtils.isNotBlank(str)) {
+            if (StringUtils.isBlank(str)) {
                 throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Prázdná hodnota elementu.", ctx.formatEadPosition(ref));
             }
         } else {

@@ -40,7 +40,7 @@ public class Rule81 extends EadRule {
                 if (StringUtils.equals("otherphysdescstructuredtype", physdescstructuredtype) && StringUtils.equals("quantity", otherphysdescstructuredtype) && StringUtils.equals("whole", coverage)) {
                     if (found != null) {
                         List<Physdescstructured> list = List.of(found, physdescstructured);
-                        throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nenalezen nepovolený element physdescstructured.", ctx.formatEadPosition(list));
+                        throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element physdescstructured.", ctx.formatEadPosition(list));
                     }
                     found = physdescstructured;
                 }

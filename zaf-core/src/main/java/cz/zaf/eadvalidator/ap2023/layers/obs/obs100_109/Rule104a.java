@@ -47,7 +47,7 @@ public class Rule104a extends EadRule {
                             throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element relationentry.", ctx.formatEadPosition(relation));
                         }
                         if (relationentry.size() != 1) {
-                            throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nenalezen nepovolený element relationentry.", ctx.formatEadPosition(relationentry));
+                            throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element relationentry.", ctx.formatEadPosition(relationentry));
                         }
                         Relationentry re = relationentry.get(0);
                         String content = re.getContent();

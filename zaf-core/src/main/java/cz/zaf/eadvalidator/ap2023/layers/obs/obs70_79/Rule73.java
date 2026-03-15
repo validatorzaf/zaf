@@ -48,7 +48,7 @@ public class Rule73 extends EadRule {
                 }
                 Serializable partContent = physdescContentList.get(0);
                 if (partContent instanceof String str) {
-                    if (!StringUtils.isNotBlank(str)) {
+                    if (StringUtils.isBlank(str)) {
                         throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Prázdná hodnota elementu.", ctx.formatEadPosition(physdesc));
                     }
                 } else {
