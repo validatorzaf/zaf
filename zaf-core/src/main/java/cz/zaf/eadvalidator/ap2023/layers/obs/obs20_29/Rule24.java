@@ -29,6 +29,9 @@ public class Rule24 extends EadRule {
             String localtype = localcontrol.getLocaltype();
             if (StringUtils.equals("RULES", localtype)) {
                 Term term = localcontrol.getTerm();
+                if(term == null) {
+                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element term.", ctx.formatEadPosition(localcontrol));
+                }
                 String identifier = term.getIdentifier();
                 if (!(StringUtils.equals("CZ_ZP1958", identifier) || StringUtils.equals("CZ_ZP2013", identifier))) {
                     throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut identifier obsahuje nepovolenou hodnotu: " + identifier + ".", ctx.formatEadPosition(term));

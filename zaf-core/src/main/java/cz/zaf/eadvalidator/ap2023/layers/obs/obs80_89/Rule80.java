@@ -52,10 +52,10 @@ public class Rule80 extends EadRule {
         });
 
         if (isBM && !isAnalog) {
-            throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Uvedeno množství BM, ale nebyla zjištěna analogová archiválie.", ctx.formatEadPosition(analogContainer));
+            throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Uvedeno množství BM, ale nebyla zjištěna analogová archiválie.", ctx.formatEadPosition(didA));
         }
         if (isByte && !isDigital) {
-            throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Uvedeno množství byte, ale nebyla zjištěna digitální archiválie.", ctx.formatEadPosition(digitalDao));
+            throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Uvedeno množství byte, ale nebyla zjištěna digitální archiválie.", ctx.formatEadPosition(didA));
         }
     }
 

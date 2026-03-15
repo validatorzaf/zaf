@@ -21,6 +21,7 @@ public class Rule79 extends EadRule {
     static final public String RULE_ERROR = "Element <physdescstructured> s atributem \"physdescstructured\" o hodnotě \"otherphysdescstructuredtype\" a zároveň s atributem \"otherphysdescstructured\" o hodnotě \"quantity\" má špatně nastavený atribut \"coverage\" a/nebo v něm obsažené elementy element <unittype> a/nebo <quantity> obsahují nepovolenou hodnotu, příp. je použita hodnota \"unit_desc\" na jiné úrovni než na kořeni archivního popisu nebo není správně proveden součet jednotek popisu na kořeni archivního souboru.";
     static final public String RULE_SOURCE = "Část 6.7.4 profilu EAD3 MV ČR";
     private final Set<String> allowed = Set.of("byte", "pieces", "pages", "sheets", "desc_units");
+
     int rootValue = 0;
     int countedValue = 0;
 
@@ -30,6 +31,9 @@ public class Rule79 extends EadRule {
 
     @Override
     protected void evalImpl() {
+        rootValue = 0;
+        countedValue = 0;
+        
         //did, physdescstructured
         Archdesc archDesc = ctx.getEad().getArchdesc();
         Did didA = archDesc.getDid();

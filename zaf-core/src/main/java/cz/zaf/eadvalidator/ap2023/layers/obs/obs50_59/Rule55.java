@@ -57,6 +57,9 @@ public class Rule55 extends EadRule {
         for (Object object : mDid) {
             if (object instanceof Unitdatestructured unitDateStructured) {
                 Daterange daterange = unitDateStructured.getDaterange();
+                if(daterange == null) {
+                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element daterange.", ctx.formatEadPosition(unitDateStructured));
+                }
                 String altrender = daterange.getAltrender();
                 if(StringUtils.isEmpty(altrender)){
                     throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Chybí hodnota atributu altrender.", ctx.formatEadPosition(daterange));
@@ -77,7 +80,7 @@ public class Rule55 extends EadRule {
     }
 
     private void validateAltrender(String altrender, Daterange daterange) {
-    	var formats = altrender.split("-");
+    	var formats = altrender.split("-", -1);
     	if(formats.length > 2) {
     		throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut altrender obsahuje nepovolenou hodnotu: " + altrender + ". Atribut altrender může obsahovat nejvýše jeden znak '-'.", ctx.formatEadPosition(daterange));
     	}

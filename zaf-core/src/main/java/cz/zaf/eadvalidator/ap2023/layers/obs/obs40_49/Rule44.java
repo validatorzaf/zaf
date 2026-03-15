@@ -77,10 +77,10 @@ public class Rule44 extends EadRule {
         List<Localcontrol> localcontrols = control.getLocalcontrol();
         for (Localcontrol localcontrol : localcontrols) {
             String localtype = localcontrol.getLocaltype();
-            if (localtype.equals("RULES")) {
+            if ("RULES".equals(localtype)) {
                 Term term = localcontrol.getTerm();
                 String identifier = term.getIdentifier();
-                if (!StringUtils.equals("CZ_ZP1958", identifier)) {
+                if (!"CZ_ZP1958".equals(identifier)) {
                     throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut identifier obsahuje nepovolenou hodnotu: " + identifier + ".", ctx.formatEadPosition(term));
                 }
             }

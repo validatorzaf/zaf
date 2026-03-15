@@ -101,7 +101,7 @@ public class Rule82 extends EadRule {
 
         Set<String> onlyInMap2 = new HashSet<>(componentValues.keySet());
         onlyInMap2.removeAll(rootValues.keySet());
-        if (!onlyInMap1.isEmpty()) {
+        if (!onlyInMap2.isEmpty()) {
             String result = String.join(", ", onlyInMap2);
             throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Nalezena archiválie používající element unittype s hodnotou, která není na kořeni archivního popisu: " + result + ".", ctx.formatEadPosition(archDesc));
         }
