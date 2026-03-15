@@ -168,9 +168,9 @@
 							<ead:unittype>byte</ead:unittype> <!-- obs80 -->
 						</ead:physdescstructured>
 						
-						<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="duration" coverage="whole"> <!-- obs82 -->
+						<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="duration" coverage="whole"> <!-- obs78 -->
 							<ead:quantity>1</ead:quantity>	
-							<ead:unittype>s</ead:unittype> <!-- obs83 -->
+							<ead:unittype>s</ead:unittype>
 						</ead:physdescstructured>
 						
 						<ead:materialspec localtype="SCALE">1:200</ead:materialspec> <!-- obs84 -->
