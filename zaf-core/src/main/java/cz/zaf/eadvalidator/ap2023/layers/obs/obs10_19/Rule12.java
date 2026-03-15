@@ -21,7 +21,7 @@ import jakarta.xml.bind.JAXBElement;
 public class Rule12 extends EadRule {
 
 	static final public String CODE = "obs12";
-	static final public String RULE_TEXT = "Element <publicationstmt> obsahuje právě jeden takový element <p>, který obsahuje právě jeden element <name> s atributem \"localtype\" o hodnotě \"FINDING_AID_EDITOR\", který obsahuje alespoň jeden neprázdný element <part>.";
+	static final public String RULE_TEXT = "Element <publicationstmt> obsahuje právě jeden takový element <p>, který obsahuje právě jeden element <name> s atributem \"localtype\" o hodnotě \"FINDING_AID_EDITOR\", který obsahuje jeden neprázdný element <part>.";
 	static final public String RULE_ERROR = "Struktura elementu <publicationstmt> neobsahuje správně vyplněný element <name> s atributem \"localtype\" o hodnotě \"FINDING_AID_EDITOR\" vnořený do elementu <p>.";
 	static final public String RULE_SOURCE = "Část 4.1.5 profilu EAD3 MV ČR, EAD TLV heslo <part>"; 
 	
