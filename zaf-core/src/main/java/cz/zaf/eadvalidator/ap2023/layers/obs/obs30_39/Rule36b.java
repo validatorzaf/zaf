@@ -70,6 +70,10 @@ public class Rule36b extends EadRule {
                     }
                 }
 
+                if(oneChronlist==null) {
+                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element chronlist.", ctx.formatEadPosition(fileplan));
+                }
+
             }
         }
     }

@@ -112,6 +112,7 @@ public class Rule82 extends EadRule {
             String key = entry.getKey();
             Integer value = entry.getValue();
             Integer componentCount = componentValues.get(key);
+            // TODO: componentCount might be null - not finished yet
             if (!(value <= componentCount)) {
                 throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Nesedí počet archiválií s unittype: " + key + ". Počet uvedený na kořeni archivního popisu: " + value + ", součet hodnot archiválií: " + componentCount + ".", ctx.formatEadPosition(archDesc));
             }

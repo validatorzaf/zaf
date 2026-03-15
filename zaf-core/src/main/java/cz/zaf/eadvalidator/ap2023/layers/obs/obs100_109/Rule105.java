@@ -12,9 +12,7 @@ import cz.zaf.schema.ead3.Relations;
 import cz.zaf.schema.ead3.Source;
 import jakarta.xml.bind.JAXBElement;
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Rule105 extends EadRule {
 
@@ -88,6 +86,10 @@ public class Rule105 extends EadRule {
                     }
                 }
             }
+        }
+
+        if(found == null) {
+            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen požadovaný element ptr.", ctx.formatEadPosition(p));
         }
     }
 
