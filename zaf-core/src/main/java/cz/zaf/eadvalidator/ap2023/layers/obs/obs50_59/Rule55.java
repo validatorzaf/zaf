@@ -20,6 +20,20 @@ public class Rule55 extends EadRule {
     static final public String RULE_TEXT = "Každý element <daterange>, který je obsažen v hierarchii elementů <did><unitdatestructured>, má atribut \"altrender\" o hodnotě, která odpovídá způsobu konstrukce formátu datace (tj. obsahuje pouze C/Y/YM/D/DT/-, přičemž znak \"-\" nesmí být na začátku nebo na konci řetězce), a obsahuje právě jeden neprázdný element <fromdate> a právě jeden neprázdný element <todate>.";
     static final public String RULE_ERROR = "Některý element <daterange> nemá atribut \"altrender\" nebo tento atribut obsahuje nepovolenou hodnotu. Případně element <daterange> neobsahuje právě jen element <fromdate> a/nebo právě jeden <todate>. Případně je element <fromdate> a/nebo <todate> prázdný.";
     static final public String RULE_SOURCE = "Část 5.8 profilu EAD3 MV ČR";
+    
+    public static enum UnitdateFormatType {
+		C("C"), Y("Y"), YM("YM"), D("D"), DT("DT");
+		
+		private final String value;
+		
+		UnitdateFormatType(String value) {
+			this.value = value;
+		}
+		
+		public String getValue() {
+			return value;
+		}
+	}
 
     public Rule55() {
         super(CODE, RULE_TEXT, RULE_ERROR, RULE_SOURCE);
@@ -28,6 +42,7 @@ public class Rule55 extends EadRule {
     @Override
     protected void evalImpl() {
         Archdesc archDesc = ctx.getEad().getArchdesc();
+        
         Did didA = archDesc.getDid();
         validate(didA);
 
@@ -46,10 +61,7 @@ public class Rule55 extends EadRule {
                 if(StringUtils.isEmpty(altrender)){
                     throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Chybí hodnota atributu altrender.", ctx.formatEadPosition(daterange));
                 }
-                String regex = "^(?!.*([CYDT])\\1)(?!.*YM[^-])(?!.*T(?!D))([CYDT-]*)$";
-                if (altrender.startsWith("-") || altrender.endsWith("-") || !altrender.matches(regex)) {
-                    throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut altrender obsahuje nepovolenou hodnotu: " + altrender + ".", ctx.formatEadPosition(daterange));
-                }
+                validateAltrender(altrender, daterange);
                 Fromdate fromdate = daterange.getFromdate();
                 if(fromdate == null){
                     throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element fromdate.", ctx.formatEadPosition(daterange));
@@ -64,7 +76,26 @@ public class Rule55 extends EadRule {
         }
     }
 
-    private void validateDate(List<Serializable> content, Object object) {
+    private void validateAltrender(String altrender, Daterange daterange) {
+    	var formats = altrender.split("-");
+    	if(formats.length > 2) {
+    		throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut altrender obsahuje nepovolenou hodnotu: " + altrender + ". Atribut altrender může obsahovat nejvýše jeden znak '-'.", ctx.formatEadPosition(daterange));
+    	}
+    	for(String format: formats) {
+    		boolean validFormat = false;
+			for(UnitdateFormatType type: UnitdateFormatType.values()) {
+				if(type.getValue().equals(format)) {
+					validFormat = true;
+					break;
+				}
+			}
+			if(!validFormat) {
+				throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut altrender obsahuje nepovolenou hodnotu: " + altrender + ". Neznámý formát datace: " + format, ctx.formatEadPosition(daterange));
+			}
+    	}
+	}
+
+	private void validateDate(List<Serializable> content, Object object) {
         if (content.size() != 1) {
             throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybná hodnota v elementu.", ctx.formatEadPosition(object));
         }

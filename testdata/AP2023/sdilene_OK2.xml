@@ -62,7 +62,7 @@
 		</ead:localcontrol>
 		
 		<ead:localcontrol localtype="CZ_FINDING_AID_EAD_PROFILE"> <!-- obs25 -->
-			<ead:term identifier="CZ_EAD3_PROFILE_20240301">profil platný od března 2024</ead:term> <!-- obs26, obs30 -->
+			<ead:term identifier="CZ_EAD3_PROFILE_20240301">profil platný od března 2024</ead:term>
 		</ead:localcontrol>
 		
 		<ead:maintenancehistory>
@@ -164,9 +164,9 @@
 						</ead:physdescstructured>
 						
 						<ead:unitdatestructured>
-							<ead:daterange localtype="DECLARED" altrender="Y-Y"> <!-- obs55 -->
+							<ead:daterange localtype="DECLARED" altrender="D-D"> <!-- obs55 -->
 								<ead:fromdate notbefore="2001-10-01T00:00:00">1. října 2001</ead:fromdate> <!-- obs57 -->
-								<ead:todate notafter="2002-10-01T00:00:00">1. října 2002</ead:todate> <!-- obs58, obs59 -->
+								<ead:todate notafter="2002-10-01T23:59:59">1. října 2002</ead:todate> <!-- obs58, obs59 -->
 							</ead:daterange>
 						</ead:unitdatestructured>
 						

@@ -52,7 +52,7 @@
 		</localcontrol>
 		
 		<localcontrol localtype="CZ_FINDING_AID_EAD_PROFILE"> <!-- obs25 -->
-			<term identifier="CZ_EAD3_PROFILE_20240301">profil platný od března 2024</term> <!-- obs26, obs30 -->
+			<term identifier="CZ_EAD3_PROFILE_20240301">profil platný od března 2024</term>
 		</localcontrol>
 		
 		<maintenancehistory>
@@ -129,9 +129,9 @@
 						<unittitle>Text</unittitle> <!-- obs53 -->
 						
 						<unitdatestructured>
-							<daterange localtype="CONTENT" altrender="C"> <!-- obs55 -->
+							<daterange localtype="CONTENT" altrender="D"> <!-- obs55 -->
 								<fromdate standarddate="2001-10-01T00:00:00">1. října 2001</fromdate> <!-- obs57 -->
-								<todate standarddate="2001-10-02T00:00:00">2. října 2001</todate> <!-- obs58, obs59 -->
+								<todate standarddate="2001-10-01T23:59:59">1. října 2001</todate> <!-- obs58, obs59 -->
 							</daterange>
 						</unitdatestructured>
 						

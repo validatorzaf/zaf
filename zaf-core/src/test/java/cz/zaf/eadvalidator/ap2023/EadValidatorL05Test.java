@@ -153,6 +153,26 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
     }
 
     @Test
+    void testObs_OK04() {
+        testPomucka("sdilene_OK4.xml",
+                ValidationStatus.OK,
+                new String[]{
+                    Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule04a.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule18.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE,
+                    Rule31.CODE, Rule35.CODE, Rule35a.CODE, Rule36.CODE, Rule36a.CODE, Rule36b.CODE, Rule37.CODE, Rule37a.CODE,
+                    Rule42.CODE, Rule43.CODE, Rule44.CODE, Rule49.CODE,
+                    Rule50.CODE, Rule52.CODE, Rule53.CODE, Rule54.CODE, Rule55.CODE, Rule56.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+                    Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule74.CODE, Rule74a.CODE, Rule74b.CODE, Rule74c.CODE, Rule74d.CODE, Rule75.CODE, Rule77.CODE, Rule78.CODE, Rule79.CODE,
+                    Rule80.CODE, Rule81.CODE, Rule82.CODE, Rule83.CODE, Rule84.CODE, Rule89.CODE,
+                    Rule93.CODE, Rule94.CODE, Rule95.CODE, Rule96.CODE, Rule97.CODE, Rule99.CODE,
+                    Rule101.CODE, Rule103.CODE, Rule104.CODE, Rule104a.CODE, Rule105.CODE
+                },
+                new String[]{});
+    }
+
+    @Test
     void testObs_01_chyba01() {
         testPopis("05-KONTROLA OBSAHU/001_chyba1.xml",
                 ValidationStatus.ERROR,
@@ -936,7 +956,7 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
                     Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE,
                     Rule31.CODE, Rule35.CODE, Rule36.CODE, Rule36a.CODE, Rule36b.CODE, Rule37.CODE,
                     Rule43.CODE, Rule44.CODE, Rule49.CODE,
-                    Rule50.CODE, Rule52.CODE, Rule53.CODE,
+                    Rule50.CODE, Rule52.CODE, Rule53.CODE, Rule55.CODE,
                     Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE, Rule72.CODE},
                 new String[]{Rule54.CODE});
     }
@@ -945,7 +965,13 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
     void testObs_55_chyba01() {
         testInherent("05-KONTROLA OBSAHU/055_chyba1.xml",
                 ValidationStatus.ERROR,
-                new String[]{},
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule04a.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                        Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule18.CODE, Rule19.CODE,
+                        Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE,
+                        Rule31.CODE, Rule35.CODE, Rule36.CODE, Rule36a.CODE, Rule36b.CODE, Rule37.CODE,
+                        Rule43.CODE, Rule44.CODE, Rule49.CODE,
+                        Rule50.CODE, Rule52.CODE, Rule53.CODE, Rule54.CODE,
+                        Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE, Rule72.CODE},
                 new String[]{Rule55.CODE});
     }
 

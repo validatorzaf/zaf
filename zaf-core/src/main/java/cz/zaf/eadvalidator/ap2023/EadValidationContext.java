@@ -120,7 +120,7 @@ public class EadValidationContext
 		this.profileRevision = profileRevision;		
 	}
 	
-	ProfileRevision getProfileRevision() {
+	public ProfileRevision getProfileRevision() {
 		return profileRevision;
 	}
 

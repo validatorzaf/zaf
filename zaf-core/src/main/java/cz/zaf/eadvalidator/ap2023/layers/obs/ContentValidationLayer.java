@@ -99,8 +99,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 
 	private ValidationSubprofile profilValidace;
 	
-        //pomůcka
-        //archivní popis (dva archivy si něco předají a nemusí to mít podobu pomůcky nemusí to být úplné
+    //archivní popis (dva archivy si něco předají a nemusí to mít podobu pomůcky nemusí to být úplné
 	List<Class<? extends BaseRule<EadValidationContext>>> archDescRules = List.of(
             Rule01.class,
             Rule03.class,
@@ -165,9 +164,9 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule103.class,
             Rule104.class,
             Rule105.class
-);
-	//finální pomůcka
-        //pomůcka = archivní pomůcka (vyhláška má náležitosti odpovídající záhlaví atd)
+    );
+
+    // pomůcka = archivní pomůcka (vyhláška má náležitosti odpovídající záhlaví atd)
 	List<Class<? extends BaseRule<EadValidationContext>>> findingAidRules = List.of(
             Rule01.class,
             Rule02.class,
@@ -245,9 +244,8 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule103.class,
             Rule104.class,
             Rule105.class 
-);
+    );
         
-        //inherentní popis
 	//inherentní arch. popis v aipu popis od puvodce(obecne) -  např co se vyteží ze SIP podle NS
 	List<Class<? extends BaseRule<EadValidationContext>>> inherentDescRules = List.of(
             Rule01.class,
@@ -261,6 +259,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule20.class,
             Rule21.class, 
             Rule22.class,
+            Rule25.class,
             Rule31.class,
             Rule35a.class,
             Rule36a.class,
@@ -309,10 +308,9 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule101.class,
             Rule103.class,
             Rule104a.class 
-);
+   );
         
-        //kontextuální popis
-        //contextování tím popíše arrchiválii a je to uloženo v AIP
+    //kontextuální popis - tím popíše arrchiválii a je to uloženo v AIP
 	List<Class<? extends BaseRule<EadValidationContext>>> contextDescRules = List.of(
             Rule01.class,
             Rule03.class,
@@ -325,6 +323,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule20.class,
             Rule21.class,
             Rule22.class,
+            Rule25.class,
             Rule31.class,
             Rule35.class,
             Rule36.class,
@@ -382,10 +381,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 
 	@Override
 	protected void validateImpl() {
-
 		this.provedKontrolu(ctx, createRules());
-		
-		
 	}
 
 	public List<? extends BaseRule<EadValidationContext>> createRules() {

@@ -52,7 +52,7 @@
 		</ead:localcontrol>
 		
 		<ead:localcontrol localtype="CZ_FINDING_AID_EAD_PROFILE"> <!-- obs25 -->
-			<ead:term identifier="CZ_EAD3_PROFILE_20240301">profil platný od března 2024</ead:term>
+			<ead:term identifier="CZ_EAD3_PROFILE_20260501">profil platný od května 2026</ead:term>
 		</ead:localcontrol>
 		
 		<ead:maintenancehistory>
