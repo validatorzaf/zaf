@@ -122,7 +122,7 @@ public class Rule43 extends EadRule {
         }
         String languageName = languageMap.get(lang);
         if (languageName == null) {
-            throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Chybná hodnota atributu lang: " + lang + ".", ctx.formatEadPosition(object));
+            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Chybná hodnota atributu lang: " + lang + ".", ctx.formatEadPosition(object));
         }
     }
 

@@ -95,10 +95,11 @@ public class Rule75 extends EadRule {
             if (StringUtils.isEmpty(str)) {
                 throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Prázdná hodnota elementu.", ctx.formatEadPosition(dimensions));
             }
-            if (!NumberUtils.isCreatable(str)) {
+            try {
+            	Float.valueOf(str);
+            } catch (NumberFormatException nfe) {
                 throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element dimensions obsahuje nepovolenou hodnotu: " + str + ".", ctx.formatEadPosition(dimensions));
             }
-
         } else {
             throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybný typ hodnoty v elementu.", ctx.formatEadPosition(dimensions));
         }

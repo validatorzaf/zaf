@@ -48,7 +48,7 @@ public class Rule13 extends EadRule {
             }
         }
 
-        throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nenalezen element požadovaný element.", ctx.formatEadPosition(publicationstmt));
+        throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nenalezen požadovaný element.", ctx.formatEadPosition(publicationstmt));
     }
 
     private boolean isWanted(P p) {

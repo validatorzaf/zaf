@@ -84,7 +84,7 @@ public class Rule74d extends EadRule {
         }
         Serializable partContent = content.get(0);
         if (partContent instanceof String str) {
-            if (StringUtils.isEmpty(str)) {
+            if (StringUtils.isBlank(str)) {
                 throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Prázdná hodnota elementu.", ctx.formatEadPosition(physfacet));
             }
             if (!("ANALOG".equals(str) || "DIGITAL".equals(str))) {

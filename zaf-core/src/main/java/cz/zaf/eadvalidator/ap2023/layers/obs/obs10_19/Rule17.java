@@ -42,13 +42,16 @@ public class Rule17 extends EadRule {
                         Object contentObj = jaxbElem.getValue();
                         if (contentObj instanceof Name name) {
                             String localtype = name.getLocaltype();
-                            if (StringUtils.equals("ARRANGER_BRIEF", localtype)) {
-                                List<Part> listPart = name.getPart();
-                                if (listPart.isEmpty() || listPart.size() != 1) {
-                                    throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element part.", ctx.formatEadPosition(name));
-                                }
+                            if ("ARRANGER_BRIEF".equals(localtype)) {
                                 if (found != null) {
-                                    throw new ZafException(BaseCode.DUPLICITA, "Nalezen nepovolený element p.", ctx.formatEadPosition(publicationstmt));
+                                    throw new ZafException(BaseCode.DUPLICITA, "Nalezen nepovolený element p.", ctx.formatEadPosition(name));
+                                }
+                                List<Part> listPart = name.getPart();
+                                if (listPart.isEmpty()) {
+                                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybí element part.", ctx.formatEadPosition(name));
+                                }
+                                if (listPart.size() > 1) {
+                                    throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element part.", ctx.formatEadPosition(listPart.get(1)));
                                 }
                                 found = p;
                             }

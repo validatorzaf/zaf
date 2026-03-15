@@ -82,7 +82,7 @@ public class Rule105 extends EadRule {
                     //objekt je přímo ten source (element) - ověřit že je to source
                     Object target = ptr.getTarget();
                     if (!(target instanceof Source source)) {
-                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nenalezena očkávaná hodnota atributu target.", ctx.formatEadPosition(ptr));
+                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nenalezena očekávaná hodnota atributu target.", ctx.formatEadPosition(ptr));
                     }
                 }
             }

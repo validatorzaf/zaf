@@ -41,7 +41,7 @@ public class Rule12 extends EadRule {
 		
 		List<Object> pdas = publStmt.getPublisherOrDateOrAddress();
 		if(CollectionUtils.isEmpty(pdas)) {
-			throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybi element.", ctx.formatEadPosition(pdas));
+			throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybi element.", ctx.formatEadPosition(publStmt));
 		}
 		Name found=null;
 		for(Object pda: pdas) {
