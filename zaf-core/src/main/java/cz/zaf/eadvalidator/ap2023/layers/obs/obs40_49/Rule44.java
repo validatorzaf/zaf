@@ -79,6 +79,9 @@ public class Rule44 extends EadRule {
             String localtype = localcontrol.getLocaltype();
             if ("RULES".equals(localtype)) {
                 Term term = localcontrol.getTerm();
+                if(term==null) {
+                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybí element term.", ctx.formatEadPosition(localcontrol));
+                }
                 String identifier = term.getIdentifier();
                 if (!"CZ_ZP1958".equals(identifier)) {
                     throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut identifier obsahuje nepovolenou hodnotu: " + identifier + ".", ctx.formatEadPosition(term));

@@ -30,7 +30,7 @@ public class Rule36 extends EadRule {
 	 * Mapa povolenych typu urovne a jejich moznych rodicovskych urovni
 	 */
 	static private final Map<String, Set<String>> allowedlevelTypes = new HashMap<>();
-	{
+	static {
 		allowedlevelTypes.put(EadNS.LEVEL_SUBFONDS, Set.of(EadNS.LEVEL_FONDS));
 		allowedlevelTypes.put(EadNS.LEVEL_SERIES, Set.of(EadNS.LEVEL_SERIES, EadNS.LEVEL_SUBFONDS, EadNS.LEVEL_FONDS));
 		allowedlevelTypes.put(EadNS.LEVEL_FILE, Set.of(EadNS.LEVEL_SERIES, EadNS.LEVEL_FILE));

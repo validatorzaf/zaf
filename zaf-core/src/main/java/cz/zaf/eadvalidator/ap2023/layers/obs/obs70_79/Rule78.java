@@ -63,7 +63,7 @@ public class Rule78 extends EadRule {
                     }
                     try {
                         var value = Integer.parseInt(contentQuantity);
-                        if (value < 0) {
+                        if (value <= 0) {
                             throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity neobsajuje kladné celé číslo.", ctx.formatEadPosition(quantity));
                         }
                     } catch (NumberFormatException nfe) {

@@ -27,19 +27,21 @@ public class Rule24 extends EadRule {
         String profile = "", type = "";
         for (Localcontrol localcontrol : localcontrols) {
             String localtype = localcontrol.getLocaltype();
+            Term term = localcontrol.getTerm();
             if (StringUtils.equals("RULES", localtype)) {
-                Term term = localcontrol.getTerm();
                 if(term == null) {
-                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element term.", ctx.formatEadPosition(localcontrol));
+                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybí element term.", ctx.formatEadPosition(localcontrol));
                 }
                 String identifier = term.getIdentifier();
-                if (!(StringUtils.equals("CZ_ZP1958", identifier) || StringUtils.equals("CZ_ZP2013", identifier))) {
+                if (!("CZ_ZP1958".equals(identifier) || "CZ_ZP2013".equals(identifier))) {
                     throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut identifier obsahuje nepovolenou hodnotu: " + identifier + ".", ctx.formatEadPosition(term));
                 }
                 profile = identifier;
             }
-            if (StringUtils.equals("FINDING_AID_TYPE", localtype)) {
-                Term term = localcontrol.getTerm();
+            if ("FINDING_AID_TYPE".equals(localtype)) {
+                if(term==null) {
+                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element <term>.", ctx.formatEadPosition(localcontrol));
+                }
                 String identifier = term.getIdentifier();
                 if (!(StringUtils.equals("PROZ_INV_SEZNAM", identifier) || StringUtils.equals("MANIP_SEZNAM", identifier) || StringUtils.equals("INVENTAR", identifier) || StringUtils.equals("KATALOG", identifier))) {
                     throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut identifier obsahuje nepovolenou hodnotu: " + identifier + ".", ctx.formatEadPosition(term));

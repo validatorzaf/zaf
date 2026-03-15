@@ -69,11 +69,11 @@ public class Rule83 extends EadRule {
                     }
 
                     if (!StringUtils.isEmpty(contentQuantity)) {
-                        if (!NumberUtils.isCreatable(contentQuantity)) {
+                        if (!NumberUtils.isDigits(contentQuantity)) {
                             throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity neobsajuje očekávanou hodnotu.", ctx.formatEadPosition(quantity));
                         }
                         Integer createInteger = NumberUtils.createInteger(contentQuantity);
-                        if (createInteger < 0) {
+                        if (createInteger <= 0) {
                             throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity obsahuje nepovolenou hodnotu: " + createInteger + ".", ctx.formatEadPosition(quantity));
                         }
                     }

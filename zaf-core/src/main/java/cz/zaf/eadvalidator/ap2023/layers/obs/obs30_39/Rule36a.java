@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.eadvalidator.ap2023.Ap2023Constants;
 import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.schemas.ead.EadNS;
 
@@ -20,12 +21,11 @@ public class Rule36a extends EadRule {
     - file
     - item
     - otherlevel
-    Pokud má hodnotu "otherlevel", má element <c> dále atribut "otherlevel" o hodnotě "itempart". Současně platí, že rodič je stejného nebo vyššího typu dle pravidel hierarchického popisu.
     """;
     static final public String RULE_ERROR = "Některý z elementů <c> nemá atribut \"level\" nebo tento atribut obsahuje nepovolenou hodnotu.";
     static final public String RULE_SOURCE = "Část 3.1 profilu EAD3 MV ČR";
 
-    private final Set<String> allowed = Set.of(EadNS.LEVEL_SUBFONDS, EadNS.LEVEL_SERIES, EadNS.LEVEL_FILE, EadNS.LEVEL_ITEM, EadNS.LEVEL_OTHERLEVEL);
+    private static final Set<String> allowed = Set.of(EadNS.LEVEL_SUBFONDS, EadNS.LEVEL_SERIES, EadNS.LEVEL_FILE, EadNS.LEVEL_ITEM, EadNS.LEVEL_OTHERLEVEL);
 
     public Rule36a() {
         super(CODE, RULE_TEXT, RULE_ERROR, RULE_SOURCE);
@@ -35,11 +35,22 @@ public class Rule36a extends EadRule {
     protected void evalImpl() {
         ctx.getEadLevelIterator().iterate((c, parent) -> {
             String level = c.getLevel();
+            String otherLevel = c.getOtherlevel();
             if (StringUtils.isEmpty(level)) {
                 throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí hodnota atributu level.", ctx.formatEadPosition(c));
             }
             if (!allowed.contains(level)) {
                 throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Chybná hodnota atributu level: " + level + ".", ctx.formatEadPosition(c));
+            }
+            if(EadNS.LEVEL_OTHERLEVEL.equals(level) ) {
+                // check itempart
+                if(otherLevel==null) {
+                    throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Atribut otherlevel nesmí být prázdný pro typ úrovně otherLevel.", ctx.formatEadPosition(c));
+                }
+            } else {
+                if(otherLevel!=null) {
+                    throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut otherlevel musí být prázdný pro typ úrovně " + level + ".", ctx.formatEadPosition(c));
+                }
             }
         });
     }

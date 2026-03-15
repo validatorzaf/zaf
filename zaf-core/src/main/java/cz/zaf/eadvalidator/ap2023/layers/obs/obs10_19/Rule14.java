@@ -85,7 +85,7 @@ public class Rule14 extends EadRule {
             throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nenalezen element Part.", ctx.formatEadPosition(parent));
         }
         if(listPart.size() != 1){
-            throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nenalezeno více elementů Part.", ctx.formatEadPosition(parent));
+            throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezeno více elementů Part.", ctx.formatEadPosition(parent));
         }
         for (Part part : listPart) {
             List<Serializable> content = part.getContent();

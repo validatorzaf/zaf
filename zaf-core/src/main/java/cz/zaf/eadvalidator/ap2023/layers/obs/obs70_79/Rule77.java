@@ -61,7 +61,7 @@ public class Rule77 extends EadRule {
                     if (!StringUtils.equals("g", contentUnitType)) {
                         throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element unittype neobsajuje očekávanou hodnotu.", ctx.formatEadPosition(unittype));
                     }
-                    if (!NumberUtils.isCreatable(contentQuantity)) {
+                    if (!NumberUtils.isDigits(contentQuantity)) {
                         throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity neobsajuje očekávanou hodnotu.", ctx.formatEadPosition(quantity));
                     } else {
                         if (Integer.parseInt(contentQuantity) < 0) {
