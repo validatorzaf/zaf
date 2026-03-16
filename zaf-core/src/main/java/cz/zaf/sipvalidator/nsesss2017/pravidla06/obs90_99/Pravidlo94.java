@@ -38,11 +38,12 @@ public class Pravidlo94 extends K06PravidloBase {
             }
 
             Element jzNode = ValuesGetter.getSourozencePrvnihoSeJmenem(puzNode, NsesssV3.JEDNODUCHY_SPISOVY_ZNAK);
-            Element entita = kontrola.getEntity(jzNode);
             if (jzNode == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak>. "
-                        + getJmenoIdentifikator(puzNode), puzNode, kontrola.getEntityId(entita));
+                        + getJmenoIdentifikator(puzNode), puzNode);
             }
+            Element entita = kontrola.getEntity(jzNode);
+
             String jednoduchy = jzNode.getTextContent();
             String plneUrceny = puzNode.getTextContent();
             if (!jednoduchy.equals(plneUrceny)) {
