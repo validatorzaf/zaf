@@ -10,6 +10,7 @@ import org.w3c.dom.Element;
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.validation.BaseValidationContext;
 import cz.zaf.common.validation.RuleEvaluationContext;
+import cz.zaf.common.validation.ValidationSubprofile;
 import cz.zaf.eadvalidator.ap2023.profile.DescriptionRules;
 import cz.zaf.eadvalidator.ap2023.profile.FindingAidType;
 import cz.zaf.eadvalidator.ap2023.profile.ProfileRevision;
@@ -33,6 +34,9 @@ public class EadValidationContext
 	private DescriptionRules descriptionRules;
 	private FindingAidType findingAidType;
 	
+	// Consider moving to the BaseValidationContext
+	private final ValidationSubprofile validationProfile;
+	
 	/**
 	 * Prefix pro EAD
 	 * 
@@ -40,10 +44,16 @@ public class EadValidationContext
 	 */
 	private String prefixNsEad;
 
-    public EadValidationContext(final EadLoader eadLoader, final List<String> excludeChecks, final String prefixNsEad) {
+    public EadValidationContext(final EadLoader eadLoader, final List<String> excludeChecks, 
+    		final String prefixNsEad, final ValidationSubprofile validationProfile) {
     	super(excludeChecks);
         this.eadLoader = eadLoader;
         this.prefixNsEad = prefixNsEad;
+        this.validationProfile = validationProfile;
+    }
+    
+    public ValidationSubprofile getValidationProfile() {
+    	return validationProfile;
     }
 
     public EadLoader getLoader() {

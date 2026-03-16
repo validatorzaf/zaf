@@ -9,16 +9,21 @@ public final class EadNS {
 
     static final public String SCHEMA_RESOURCE = "/schema/ead3.xsd";
 
-    // Constants for level attribute values
-	static final public String LEVEL_FONDS = "fonds";
-	public static final String LEVEL_SUBFONDS = "subfonds";
-	public static final String LEVEL_SERIES = "series";
-	public static final String LEVEL_FILE = "file";
-	public static final String LEVEL_ITEM = "item";
-	static final public String LEVEL_OTHERLEVEL = "otherlevel";
-
 	// Constants for audience
 	public static final String AUDIENCE_EXTERNAL = "external";
 	public static final String AUDIENCE_INTERNAL = "internal";
 
+	// Constants for level attribute values
+	public static final String LEVEL_FONDS = "fonds";
+	public static final String LEVEL_SUBFONDS = "subfonds";
+	public static final String LEVEL_SERIES = "series";
+	public static final String LEVEL_FILE = "file";
+	public static final String LEVEL_ITEM = "item";
+	public static final String LEVEL_OTHERLEVEL = "otherlevel";
+
+	// Constants for physdescstructuredtype
+	public static final String PHYSDESCSTRUCTURED_TYPE_CARRIER = "carrier";
+	public static final String PHYSDESCSTRUCTURED_TYPE_MATERIALTYPE = "materialtype";
+	public static final String PHYSDESCSTRUCTURED_TYPE_OTHERTYPE = "otherphysdescstructuredtype";
+	public static final String PHYSDESCSTRUCTURED_TYPE_SPACEOCUPIED = "spaceoccupied";
 }

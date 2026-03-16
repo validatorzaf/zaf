@@ -54,7 +54,7 @@ public class EadValidator implements ValidatorListener<EadValidationContext> {
     		eadNsPrefix = "ead";
     	}
 
-        EadValidationContext context = new EadValidationContext(eadLoader, excludeChecks, eadNsPrefix);
+        EadValidationContext context = new EadValidationContext(eadLoader, excludeChecks, eadNsPrefix, validationProfile);
 
         BaseValidator<EadValidationContext> validator = new BaseValidator<>(validations);
         validator.registerListener(this);

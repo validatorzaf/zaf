@@ -10,8 +10,9 @@ import cz.zaf.schema.ead3.Did;
 import cz.zaf.schema.ead3.Physdescstructured;
 import cz.zaf.schema.ead3.Quantity;
 import cz.zaf.schema.ead3.Unittype;
+import cz.zaf.schemas.ead.EadNS;
+
 import java.util.List;
-import org.apache.commons.lang3.math.NumberUtils;
 
 public class Rule77 extends EadRule {
 
@@ -43,11 +44,13 @@ public class Rule77 extends EadRule {
             if (child instanceof Physdescstructured physdescstructured) {
                 String physdescstructuredtype = physdescstructured.getPhysdescstructuredtype();
                 String otherphysdescstructuredtype = physdescstructured.getOtherphysdescstructuredtype();
-                String coverage = physdescstructured.getCoverage();
 
-                if (StringUtils.equals("otherphysdescstructuredtype", physdescstructuredtype)
-                        && StringUtils.equals("weight", otherphysdescstructuredtype)
-                        && StringUtils.equals("whole", coverage)) {
+                if (EadNS.PHYSDESCSTRUCTURED_TYPE_OTHERTYPE.equals(physdescstructuredtype) &&
+                      "weight".equals(otherphysdescstructuredtype)) {
+                    String coverage = physdescstructured.getCoverage();
+                    if(!"whole".equals(coverage)) {
+                    	throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut coverage musí mít hodnotu whole.", ctx.formatEadPosition(physdescstructured));
+                    }
                     Unittype unittype = physdescstructured.getUnittype();
                     Quantity quantity = physdescstructured.getQuantity();
                     if (unittype == null) {
@@ -61,12 +64,13 @@ public class Rule77 extends EadRule {
                     if (!StringUtils.equals("g", contentUnitType)) {
                         throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element unittype neobsajuje očekávanou hodnotu.", ctx.formatEadPosition(unittype));
                     }
-                    if (!NumberUtils.isDigits(contentQuantity)) {
-                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity neobsajuje očekávanou hodnotu.", ctx.formatEadPosition(quantity));
-                    } else {
-                        if (Integer.parseInt(contentQuantity) <= 0) {
+                    try {
+                        var value = Integer.parseInt(contentQuantity);
+                        if (value <= 0) {
                             throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity neobsajuje kladné celé číslo.", ctx.formatEadPosition(quantity));
                         }
+                    } catch (NumberFormatException nfe) {
+                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity neobsajuje očekávanou hodnotu.", ctx.formatEadPosition(quantity));
                     }
                 }
             }
