@@ -44,7 +44,7 @@ public class Pravidlo20 extends K06PravidloBase {
                         "Element <mets:agent> neobsahuje právě jeden dětský element <mets:name>.", elMetsAgent);
             }
 
-            String hodnotaElMetsName = elMetsAgent.getTextContent();
+            String hodnotaElMetsName = listElMetsName.get(0).getTextContent();
             if (StringUtils.isBlank(hodnotaElMetsName)) {
                 nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU,
                         "Element <mets:agent> má nevyplněnou hodnotu u dětského elementu <mets:name>.", elMetsAgent);
