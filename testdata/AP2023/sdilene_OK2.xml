@@ -126,7 +126,6 @@
 			</ead:physdescstructured>
 			
 		</ead:did>
-		
 		<ead:dsc>
 			<ead:c id="uuid-c1d5a9f4-3b2e-4c7d-8e91-0f2a6b3d5c4e" level="series" base="http://archdesc.nacr.cz/dids/69106f67-3592-4713-926e-4dab4159ddde"> <!-- obs36, obs37 -->
 				<ead:did>

@@ -64,7 +64,7 @@ public class Rule77 extends EadRule {
                     if (!NumberUtils.isDigits(contentQuantity)) {
                         throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity neobsajuje očekávanou hodnotu.", ctx.formatEadPosition(quantity));
                     } else {
-                        if (Integer.parseInt(contentQuantity) < 0) {
+                        if (Integer.parseInt(contentQuantity) <= 0) {
                             throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity neobsajuje kladné celé číslo.", ctx.formatEadPosition(quantity));
                         }
                     }

@@ -17,4 +17,8 @@ public final class EadNS {
 	public static final String LEVEL_ITEM = "item";
 	static final public String LEVEL_OTHERLEVEL = "otherlevel";
 
+	// Constants for audience
+	public static final String AUDIENCE_EXTERNAL = "external";
+	public static final String AUDIENCE_INTERNAL = "internal";
+
 }
