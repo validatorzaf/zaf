@@ -14,7 +14,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import org.apache.commons.lang3.math.NumberUtils;
 
 public class Rule75 extends EadRule {
 
@@ -103,10 +102,6 @@ public class Rule75 extends EadRule {
         } else {
             throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybný typ hodnoty v elementu.", ctx.formatEadPosition(dimensions));
         }
-    }
-
-    private void duplicityError(String localtype, Dimensions dimensions) {
-        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Hodnota atributu localtype: " + localtype + " elementu dimensions uvedena vícekrát.", ctx.formatEadPosition(dimensions));
     }
 
 }

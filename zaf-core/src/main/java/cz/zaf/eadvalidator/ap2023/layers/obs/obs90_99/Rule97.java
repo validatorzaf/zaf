@@ -46,7 +46,7 @@ public class Rule97 extends EadRule {
                         throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element p.", ctx.formatEadPosition(descriptivenote));
                     }
                     if (pList.size() > 1) {
-                        throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element p.", ctx.formatEadPosition(pList));
+                        throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element p.", ctx.formatEadPosition(pList.get(1)));
                     }
                     validateP(pList.get(0));
                 }

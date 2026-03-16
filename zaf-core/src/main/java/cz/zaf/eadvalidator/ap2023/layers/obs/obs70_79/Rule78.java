@@ -10,6 +10,8 @@ import cz.zaf.schema.ead3.Did;
 import cz.zaf.schema.ead3.Physdescstructured;
 import cz.zaf.schema.ead3.Quantity;
 import cz.zaf.schema.ead3.Unittype;
+import cz.zaf.schemas.ead.EadNS;
+
 import java.util.List;
 import org.apache.commons.lang3.math.NumberUtils;
 
@@ -43,11 +45,13 @@ public class Rule78 extends EadRule {
             if (child instanceof Physdescstructured physdescstructured) {
                 String physdescstructuredtype = physdescstructured.getPhysdescstructuredtype();
                 String otherphysdescstructuredtype = physdescstructured.getOtherphysdescstructuredtype();
-                String coverage = physdescstructured.getCoverage();
 
-                if (StringUtils.equals("otherphysdescstructuredtype", physdescstructuredtype)
-                        && StringUtils.equals("duration", otherphysdescstructuredtype)
-                        && StringUtils.equals("whole", coverage)) {
+                if (EadNS.PHYSDESCSTRUCTURED_TYPE_OTHERTYPE.equals(physdescstructuredtype) &&
+                        "duration".equals(otherphysdescstructuredtype)) {
+                    String coverage = physdescstructured.getCoverage();
+                    if(!"whole".equals(coverage)) {
+                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut coverage nemá hodnotu whole", ctx.formatEadPosition(physdescstructured));
+                    }
                     Unittype unittype = physdescstructured.getUnittype();
                     Quantity quantity = physdescstructured.getQuantity();
                     if (unittype == null) {

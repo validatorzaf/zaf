@@ -44,10 +44,12 @@ public class Rule83 extends EadRule {
         String levelC = c.getLevel();
         for (Object child : childList) {
             if (child instanceof Physdescstructured physdescstructured) {
-                String physdescstructuredtype = physdescstructured.getPhysdescstructuredtype();
-                String coverage = physdescstructured.getCoverage();
-                if (EadNS.PHYSDESCSTRUCTURED_TYPE_MATERIALTYPE.equals(physdescstructuredtype) && 
-                    "whole".equals(coverage)) {
+                String physdescstructuredtype = physdescstructured.getPhysdescstructuredtype();                
+                if (EadNS.PHYSDESCSTRUCTURED_TYPE_MATERIALTYPE.equals(physdescstructuredtype)) {
+                    String coverage = physdescstructured.getCoverage();
+                    if(!"whole".equals(coverage)) {
+                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut coverage nemá hodnotu whole.", ctx.formatEadPosition(physdescstructured));
+                    }
                     Unittype unittype = physdescstructured.getUnittype();
                     if (unittype == null) {
                         throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element unittype.", ctx.formatEadPosition(physdescstructured));
