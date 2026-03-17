@@ -133,7 +133,7 @@
 
 						<ead:unittitle audience="internal">Něco skrytého</ead:unittitle> <!-- obs41, obs42 -->
 						<ead:container>Uložení</ead:container> <!-- obs49 -->
-						<ead:unitid localtype="REFERENCNI_OZNACENI" label="referenční označení">CZ620100//153//1/4//1</ead:unitid> <!-- obs50, obs51 -->
+						<ead:unitid localtype="REFERENCNI_OZNACENI" label="referenční označení">CZ100000010//153//1/4//1</ead:unitid> <!-- obs50, obs51 -->
 						<ead:unittitle>Text</ead:unittitle> <!-- obs53 -->
 						
 						<ead:unitdatestructured>

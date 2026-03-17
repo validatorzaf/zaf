@@ -125,7 +125,7 @@
 
 						<unittitle audience="internal">Něco skrytého</unittitle> <!-- obs41, obs42 -->
 						<container>Uložení</container> <!-- obs49 -->
-						<unitid localtype="REFERENCNI_OZNACENI" label="referenční označení">CZ620100//153//1/4//1</unitid> <!-- obs50, obs51 -->
+						<unitid localtype="REFERENCNI_OZNACENI" label="referenční označení">CZ100000010//153//1/4//1</unitid> <!-- obs50, obs51 -->
 						<unittitle>Text</unittitle> <!-- obs53 -->
 						
 						<unitdatestructured>

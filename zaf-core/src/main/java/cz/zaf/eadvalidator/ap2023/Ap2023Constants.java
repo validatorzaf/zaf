@@ -26,5 +26,6 @@ public class Ap2023Constants {
 	public static final String LOCALTYPE_ORIGINATOR = "ORIGINATOR";
 	public static final String LOCALTYPE_RELEASE_DATE_PLACE = "RELEASE_DATE_PLACE";
 	public static final String LOCALTYPE_RULES = "RULES";
+	public static final String LOCALTYPE_REF_OZNACENI = "REFERENCNI_OZNACENI";
 
 }

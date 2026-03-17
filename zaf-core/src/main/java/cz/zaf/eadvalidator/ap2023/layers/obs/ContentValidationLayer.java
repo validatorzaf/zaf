@@ -52,6 +52,7 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs40_49.Rule43;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs40_49.Rule44;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs40_49.Rule49;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs50_59.Rule50;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs50_59.Rule51;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs50_59.Rule52;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs50_59.Rule53;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs50_59.Rule54;
@@ -124,6 +125,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule44.class,
             Rule49.class,
             Rule50.class,
+            Rule51.class,
             Rule52.class,
             Rule53.class,
             Rule54.class,
@@ -202,12 +204,13 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule44.class,
             Rule49.class,
             Rule50.class,
+            Rule51.class,
             Rule52.class,
             Rule53.class,
             Rule54.class,
             Rule55.class,
             Rule56.class,
-            Rule60.class, 
+            Rule60.class,
             Rule61.class,
             Rule62.class,
             Rule63.class,
@@ -229,7 +232,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule77.class,
             Rule78.class,
             Rule80.class,
-            Rule81.class,  
+            Rule81.class,
             Rule82.class,
             Rule83.class,
             Rule84.class,
@@ -243,9 +246,9 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule101.class,
             Rule103.class,
             Rule104.class,
-            Rule105.class 
+            Rule105.class
     );
-        
+
 	//inherentní arch. popis v aipu popis od puvodce(obecne) -  např co se vyteží ze SIP podle NS
 	List<Class<? extends BaseRule<EadValidationContext>>> inherentDescRules = List.of(
             Rule01.class,
@@ -270,12 +273,13 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule44.class,
             Rule49.class,
             Rule50.class,
+            Rule51.class,
             Rule52.class,
             Rule53.class,
             Rule54.class,
             Rule55.class,
             Rule56.class,
-            Rule60.class, 
+            Rule60.class,
             Rule61.class,
             Rule62.class,
             Rule63.class,
@@ -307,7 +311,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule97.class,
             Rule101.class,
             Rule103.class,
-            Rule104a.class 
+            Rule104a.class
    );
         
     //kontextuální popis - tím popíše arrchiválii a je to uloženo v AIP
@@ -333,6 +337,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule44.class,
             Rule49.class,
             Rule50.class,
+            Rule51.class,
             Rule52.class,
             Rule53.class,
             Rule54.class,
