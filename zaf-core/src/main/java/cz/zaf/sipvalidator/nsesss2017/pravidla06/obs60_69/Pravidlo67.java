@@ -121,7 +121,7 @@ public class Pravidlo67 extends K06PravidloBase {
             case "V":
                 if (skZnakyDokumentu.contains("A")) {
                     nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Spis se skartačním znakem V obsahuje dokument se skartačním znakem A. "
-                            + getJmenoIdentifikator(zakladnientita) + " " + getJmenoIdentifikator(zakladnientita),
+                            + getJmenoIdentifikator(zakladnientita),
                             zakladnientita, kontrola.getEntityId(zakladnientita));
                 }
                 if (!skZnakyDokumentu.contains("V")) {

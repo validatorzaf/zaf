@@ -51,7 +51,7 @@ public class Pravidlo56 extends K06PravidloBase {
                 }
                 Node fptrNode = fptrFileIdMap.get(idFile);
                 if (fptrNode == null) {
-                    nastavChybu(BaseCode.CHYBI_ELEMENT, "K elementu <mets:file> nenalezen odpovídající element <mets:FLocat>.", metsFile);
+                    nastavChybu(BaseCode.CHYBI_ELEMENT, "K elementu <mets:file> nenalezen odpovídající element <mets:fptr>.", metsFile);
                 }
             }
         }
