@@ -62,6 +62,22 @@ public class EadValidatorL03Test extends EadValidatorTestBase {
     }
 
     @Test
+    void testNS_03_OK01() {
+    	testNs("03-KONTROLA JMENNYCH PROSTORU XML/03_OK1.xml",
+                ValidationStatus.OK,
+                new String[] { Rule01.CODE, Rule02.CODE, Rule03.CODE },
+                new String[] {});
+    }
+
+    @Test
+    void testNS_03_chyba03() {
+    	testNs("03-KONTROLA JMENNYCH PROSTORU XML/03_chyba3.xml",
+                ValidationStatus.ERROR,
+                new String[] { Rule01.CODE, Rule02.CODE },
+                new String[] { Rule03.CODE });
+    }
+
+    @Test
     void testNS_02a_chyba01() {
     	testNsEark("03-KONTROLA JMENNYCH PROSTORU XML/02a_chyba1.xml",
                 ValidationStatus.ERROR,

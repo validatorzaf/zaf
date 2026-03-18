@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ead:ead xmlns:ead="http://ead3.archivists.org/schema/" xmlns:cam="http://cam.tacr.cz/2025">
+	<ead:control>
+		<ead:localcontrol localtype="CZ_FINDING_AID_EAD_PROFILE">
+			<ead:term identifier="CZ_EAD3_PROFILE_20240301">profil platný od března 2024</ead:term>
+		</ead:localcontrol>
+	</ead:control>
+</ead:ead>
