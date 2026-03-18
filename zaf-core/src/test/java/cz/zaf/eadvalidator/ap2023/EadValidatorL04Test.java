@@ -34,6 +34,14 @@ public class EadValidatorL04Test extends EadValidatorTestBase {
                 new String[] {Rule01.CODE });
     }
 
+    @Test
+    void testVal_01_chyba03() {
+    	testVal("04-KONTROLA PROTI SCHEMATU/01_chyba3.xml",
+                ValidationStatus.ERROR,
+                new String[] { },
+                new String[] {Rule01.CODE });
+    }
+
     private void testVal(String path,
             ValidationStatus status,
             String[] oks,
