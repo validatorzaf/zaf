@@ -103,7 +103,7 @@ public class ValidatorAp2023 implements Validator, ValidationProfileInfo {
 					rules = new WellFormedLayer(null).createRules();
 					break;
 				case NAMESPACE:
-					rules = new NamespaceValidationLayer(null).createRules();
+					rules = new NamespaceValidationLayer(profile, null).createRules();
 					break;
 				case VALIDATION:
 					rules = new SchemaValidationLayer(null).createRules();

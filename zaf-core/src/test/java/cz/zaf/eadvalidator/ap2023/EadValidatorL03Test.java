@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import cz.zaf.common.result.ValidationStatus;
 import cz.zaf.eadvalidator.ap2023.layers.ns.ns00_09.Rule01;
 import cz.zaf.eadvalidator.ap2023.layers.ns.ns00_09.Rule02;
+import cz.zaf.eadvalidator.ap2023.layers.ns.ns00_09.Rule02a;
 import cz.zaf.eadvalidator.ap2023.layers.ns.ns00_09.Rule03;
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
 
@@ -60,6 +61,14 @@ public class EadValidatorL03Test extends EadValidatorTestBase {
                 new String[] { Rule03.CODE });
     }
 
+    @Test
+    void testNS_02a_chyba01() {
+    	testNsEark("03-KONTROLA JMENNYCH PROSTORU XML/02a_chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[] { Rule01.CODE, Rule03.CODE },
+                new String[] { Rule02a.CODE });
+    }
+
     private void testNs(String path,
                          ValidationStatus status,
                          String[] oks,
@@ -69,7 +78,17 @@ public class EadValidatorL03Test extends EadValidatorTestBase {
                 ValidationLayers.NAMESPACE,
                 status,
                 oks, fails);
+    }
 
+    private void testNsEark(String path,
+                         ValidationStatus status,
+                         String[] oks,
+                         String[] fails) {
+        testEad(PATH_TESTDATA + "/" + path,
+                AP2023Profile.EARK_INHERENT_DESC,
+                ValidationLayers.NAMESPACE,
+                status,
+                oks, fails);
     }
 
 }

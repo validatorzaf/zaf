@@ -11,12 +11,12 @@ import cz.zaf.common.xml.PositionalXMLReader;
 import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.schemas.ead.EadNS;
 
-public class Rule02 extends EadRule {
-	static final public String CODE = "ns2";
+public class Rule02a extends EadRule {
+	static final public String CODE = "ns2a";
 
-	public Rule02() {
+	public Rule02a() {
         super(CODE,
-                "Element <ead:ead> má atribut \"xmlns:ead\" o hodnotě \"http://ead3.archivists.org/schema/\".",
+                "Element <ead> má atribut \"xmlns\" o hodnotě \"http://ead3.archivists.org/schema/\".",
                 "Umístění schématu standardu EAD je popsáno chybně.",
                 "Část 1.4 profilu EAD3 MV ČR");		
 	}
@@ -28,7 +28,11 @@ public class Rule02 extends EadRule {
 		@SuppressWarnings("unchecked")
 		Map<String, String> nsMapping = (Map<String, String>) eadRoot.getUserData(PositionalXMLReader.NS_MAPPING);
 		
-		String ns = ctx.getPrefixNsEad();
+		if(ctx.getPrefixNsEad()!=null) {
+			throw new ZafException(BaseCode.CHYBA, "Prefix pro EAD by měl být prázdný, hodnota: "+ctx.getPrefixNsEad()+".");
+		}
+		
+		String ns = "";
 		String value = (nsMapping!=null)?nsMapping.get(ns):null;
 				
 		if(StringUtils.isEmpty(value)) {
@@ -40,6 +44,6 @@ public class Rule02 extends EadRule {
 	}
 	
 	String getXmlnsEad() {
-		return "xmlns:"+ctx.getPrefixNsEad();
+		return StringUtils.isEmpty(ctx.getPrefixNsEad())?"xmlns":"xmlns:"+ctx.getPrefixNsEad();
 	}
 }
