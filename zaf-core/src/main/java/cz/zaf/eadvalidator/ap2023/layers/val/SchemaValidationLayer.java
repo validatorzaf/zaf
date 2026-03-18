@@ -7,11 +7,13 @@ import cz.zaf.common.validation.BaseValidationLayer;
 import cz.zaf.eadvalidator.ap2023.EadValidationContext;
 import cz.zaf.eadvalidator.ap2023.ValidationLayers;
 import cz.zaf.eadvalidator.ap2023.layers.val.val00_09.Rule01;
+import cz.zaf.eadvalidator.ap2023.layers.val.val00_09.Rule02;
 
 public class SchemaValidationLayer extends BaseValidationLayer<EadValidationContext, EadValidationContext> {
 
 	private List<Class<? extends BaseRule<EadValidationContext>>> ruleClasses = List.of(
-			Rule01.class
+			Rule01.class,
+			Rule02.class
 	);
 
 	public SchemaValidationLayer(String innerFileName) {
