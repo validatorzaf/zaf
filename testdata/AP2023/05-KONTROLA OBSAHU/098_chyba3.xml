@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ead:ead xmlns:ead="http://ead3.archivists.org/schema/" xmlns:cam="http://cam.tacr.cz/2025">
+<ead:ead xmlns:ead="http://ead3.archivists.org/schema/" xmlns:cam="http://cam.tacr.cz/2019">
 	<ead:control>
 		<ead:recordid>d0f7e14f-a655-4902-a6fd-e141bbe6ca6b</ead:recordid> <!-- obs1 -->
 		<ead:otherrecordid localtype="CZ_MVCR_FINDING_AID_ID">5</ead:otherrecordid> <!-- obs2 -->
@@ -52,7 +52,7 @@
 		</ead:localcontrol>
 		
 		<ead:localcontrol localtype="CZ_FINDING_AID_EAD_PROFILE"> <!-- obs25 -->
-			<ead:term identifier="CZ_EAD3_PROFILE_20260501">profil platný od května 2026</ead:term>
+			<ead:term identifier="CZ_EAD3_PROFILE_20240301">profil platný od března 2024</ead:term>
 		</ead:localcontrol>
 		
 		<ead:maintenancehistory>
@@ -67,24 +67,20 @@
 		<ead:sources>
 			<ead:source id="ap7523"> <!-- obs106 -->
 				<ead:objectxmlwrap>
-					<cam:entity entityId="100000" entityUuid="fb15d8ee-724e-4bd4-b08e-a0d7e4038ac8" state="ERS_APPROVED" entityType="PERSON_INDIVIDUAL">
-					  <cam:revision>
-					    <cam:rev>55c98631-03ea-4981-9abf-e3f8eb451d25</cam:rev>
-					    <cam:metadataRev>55c98631-03ea-4981-9abf-e3f8eb451d26</cam:metadataRev>
-					    <cam:user>
-					      <cam:id>user1</cam:id>
-					      <cam:name>Irena</cam:name>
-					    </cam:user>
-					    <cam:createdAt>2023-08-30T08:49:09.14</cam:createdAt>
-					  </cam:revision>
-                      <cam:parts>
-                        <cam:part partUuid="5147942d-00cd-46d4-9a57-909f7b253f4c" type="PT_NAME">
-                          <cam:items>
-                            <cam:string type="NM_MAIN" uuid="3881889c-49b0-4c79-8264-e92ca3700650">z Eichendorffu</cam:string>
-                          </cam:items>
-                        </cam:part>
-                      </cam:parts>
-                    </cam:entity> <!-- cam1 -->
+					<cam:ent eid="100000" euid="fb15d8ee-724e-4bd4-b08e-a0d7e4038ac8" ens="ERS_APPROVED" ent="PERSON_INDIVIDUAL">
+					  <cam:revi>
+					    <cam:rid>55c98631-03ea-4981-9abf-e3f8eb451d25</cam:rid>
+					    <cam:usr>Irena</cam:usr>
+					    <cam:modt>2023-08-30T08:49:09.14</cam:modt>
+					  </cam:revi>
+                      <cam:prts>
+                        <cam:p pid="5147942d-00cd-46d4-9a57-909f7b253f4c" t="PT_NAME">
+                          <cam:itms>
+                            <cam:si t="NM_MAIN" uuid="3881889c-49b0-4c79-8264-e92ca3700650">z Eichendorffu</cam:si>
+                          </cam:itms>
+                        </cam:p>
+                      </cam:prts>
+                    </cam:ent> <!-- cam1 -->
 				</ead:objectxmlwrap>
 			</ead:source>
 		</ead:sources>
@@ -121,10 +117,11 @@
 						<ead:quantity>1</ead:quantity>
 						<ead:unittype>lio</ead:unittype>
 					</ead:physdescstructured>
+					<!-- obs98 error: parent origination has different ref target than child's inherited origination -->
 					<ead:origination>
 						<ead:persname localtype="ORIGINATOR">
 							<ead:part>
-								<ead:ref target="ap7523">Odkaz na původce</ead:ref>
+								<ead:ref target="ap7523">Jiný původce</ead:ref>
 							</ead:part>
 						</ead:persname>
 					</ead:origination>
@@ -133,14 +130,6 @@
 				<ead:relations>
 					<ead:relation relationtype="cpfrelation" linkrole="AUTHOR" linktitle="autor">
 						<ead:relationentry>Text</ead:relationentry>
-						<ead:descriptivenote>
-							<ead:p>
-								<ead:ptr target="ap7523"></ead:ptr>
-							</ead:p>
-						</ead:descriptivenote>
-					</ead:relation>
-					<ead:relation relationtype="cpfrelation" linkrole="APPLICANT" linktitle="žadatel">
-						<ead:relationentry>Text 2</ead:relationentry>
 						<ead:descriptivenote>
 							<ead:p>
 								<ead:ptr target="ap7523"></ead:ptr>
@@ -242,14 +231,6 @@
 					
 						<ead:relation relationtype="cpfrelation" linkrole="AUTHOR" linktitle="autor" altrender="inherited"> <!-- obs101, obs102, obs103 -->
 							<ead:relationentry>Text</ead:relationentry> <!-- obs104 -->
-							<ead:descriptivenote>
-								<ead:p> <!-- obs105-->
-									<ead:ptr target="ap7523"></ead:ptr>
-								</ead:p>
-							</ead:descriptivenote>
-						</ead:relation>
-						<ead:relation relationtype="cpfrelation" linkrole="APPLICANT" linktitle="žadatel" altrender="inherited"> <!-- obs101, obs102, obs103 -->
-							<ead:relationentry>Text 2</ead:relationentry> <!-- obs104 -->
 							<ead:descriptivenote>
 								<ead:p> <!-- obs105-->
 									<ead:ptr target="ap7523"></ead:ptr>

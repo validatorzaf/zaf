@@ -1,24 +1,20 @@
 package cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99;
 
-import cz.zaf.common.exceptions.ZafException;
-import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.eadvalidator.ap2023.EadRule;
-import cz.zaf.schema.ead3.Altformavail;
-import cz.zaf.schema.ead3.Archdesc;
-import cz.zaf.schema.ead3.C;
-import cz.zaf.schema.ead3.Container;
-import cz.zaf.schema.ead3.Did;
-import cz.zaf.schema.ead3.Langmaterial;
-import cz.zaf.schema.ead3.Language;
-import cz.zaf.schema.ead3.Languageset;
-import cz.zaf.schema.ead3.Origination;
-import cz.zaf.schema.ead3.Relation;
-import cz.zaf.schema.ead3.Relations;
-import cz.zaf.schema.ead3.Unitdatestructured;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
+import java.util.Set;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import cz.zaf.common.exceptions.ZafException;
+import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.common.xml.PositionalXMLReader;
+import cz.zaf.eadvalidator.ap2023.EadRule;
+import cz.zaf.schemas.ead.EadNS;
 
 public class Rule98 extends EadRule {
 
@@ -27,196 +23,241 @@ public class Rule98 extends EadRule {
     static final public String RULE_ERROR = "Element <unitdatestructured>, <origination> v elementu <did>, <language>, <container>, <altformavail> nebo <relation> má atribut \"altrender\" neobsahující hodnotu \"inherited\". Nebo v nadřazené jednotce popisu neexistuje element se shodnou strukturou jako má element s atributem \"altrender\", tj. se shodnými atributy včetně všech podřízených elementů, jejich atributů a hodnot.";
     static final public String RULE_SOURCE = "Část 5.2 profilu EAD3 MV ČR";
 
+    private static final String XMLNS_URI = "http://www.w3.org/2000/xmlns/";
+
+    /**
+     * Element types that support altrender="inherited" inheritance checking.
+     */
+    private static final Set<String> INHERITABLE_ELEMENTS = Set.of(
+            "unitdatestructured", "origination", "language", "container", "altformavail", "relation");
+
     public Rule98() {
         super(CODE, RULE_TEXT, RULE_ERROR, RULE_SOURCE);
     }
 
     @Override
     protected void evalImpl() {
-        Archdesc archDesc = ctx.getEad().getArchdesc();
+        Document doc = ctx.getDocument();
 
         ctx.getEadLevelIterator().iterate((c, parent) -> {
-            List<Unitdatestructured> unitList = getUnitdatestructured(c);
-            if (!CollectionUtils.isEmpty(unitList)) {
-                for (Unitdatestructured unit : unitList) {
-                    boolean hasAltender = hasAltender(unit);
-                    if(hasAltender){
-                        List<Unitdatestructured> parentUnitList = getUnitdatestructured(parent);
-                        
+            String cId = c.getId();
+            if (cId == null) {
+                return;
+            }
+            Element cDom = findCElement(doc, cId);
+            if (cDom == null) {
+                return;
+            }
+
+            Element parentDom;
+            if (parent != null) {
+                String parentId = parent.getId();
+                if (parentId == null) {
+                    return;
+                }
+                parentDom = findCElement(doc, parentId);
+            } else {
+                parentDom = findArchdescElement(doc);
+            }
+            if (parentDom == null) {
+                return;
+            }
+
+            // Find elements with altrender attribute in this C (not descending into nested C elements)
+            List<Element> inheritedElements = findInheritableElementsWithAltrender(cDom);
+
+            for (Element elem : inheritedElements) {
+                String altrender = elem.getAttribute("altrender");
+                if (!"inherited".equals(altrender)) {
+                    throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
+                            "Atribut altrender obsahuje nepovolenou hodnotu: " + altrender + ".",
+                            formatDomPosition(elem));
+                }
+
+                // Find candidate elements with the same local name in the parent
+                List<Element> candidates = findInheritableElements(parentDom, elem.getLocalName());
+
+                boolean found = false;
+                for (Element candidate : candidates) {
+                    if (elementsMatchIgnoringAltrender(elem, candidate)) {
+                        found = true;
+                        break;
                     }
+                }
+
+                if (!found) {
+                    throw new ZafException(BaseCode.CHYBI_ELEMENT,
+                            "V nadřazené jednotce popisu neexistuje element <"
+                                    + ctx.getEadElementName(elem.getLocalName())
+                                    + "> se shodnou strukturou jako element s atributem altrender=\"inherited\".",
+                            formatDomPosition(elem));
                 }
             }
         });
     }
 
-    private boolean hasAltender(Object object) {
-        if (object instanceof Unitdatestructured uni) {
-            String altrender = uni.getAltrender();
-            return checkAltrender(object, altrender);
-        } else if (object instanceof Origination ori) {
-            String altrender = ori.getAltrender();
-            return checkAltrender(object, altrender);
-        } else if (object instanceof Language lan) {
-            String altrender = lan.getAltrender();
-            return checkAltrender(object, altrender);
-        } else if (object instanceof Container con) {
-            String altrender = con.getAltrender();
-            return checkAltrender(object, altrender);
-        } else if (object instanceof Altformavail alt) {
-            String altrender = alt.getAltrender();
-            return checkAltrender(object, altrender);
-        } else if (object instanceof Relation rel) {
-            String altrender = rel.getAltrender();
-            return checkAltrender(object, altrender);
-        } else {
-            return false;
+    /**
+     * Find a C element in the DOM by its id attribute.
+     */
+    private Element findCElement(Document doc, String id) {
+        NodeList elements = doc.getDocumentElement().getElementsByTagNameNS(EadNS.NS_EADS, "c");
+        for (int i = 0; i < elements.getLength(); i++) {
+            Element elem = (Element) elements.item(i);
+            if (id.equals(elem.getAttribute("id"))) {
+                return elem;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Find the archdesc element in the DOM.
+     */
+    private Element findArchdescElement(Document doc) {
+        NodeList elements = doc.getDocumentElement().getElementsByTagNameNS(EadNS.NS_EADS, "archdesc");
+        if (elements.getLength() > 0) {
+            return (Element) elements.item(0);
+        }
+        return null;
+    }
+
+    /**
+     * Find elements of inheritable types that have the altrender attribute,
+     * within the given C/archdesc element. Does not descend into nested C elements.
+     */
+    private List<Element> findInheritableElementsWithAltrender(Element root) {
+        List<Element> result = new ArrayList<>();
+        collectInheritableElementsWithAltrender(root, result);
+        return result;
+    }
+
+    private void collectInheritableElementsWithAltrender(Element element, List<Element> result) {
+        NodeList children = element.getChildNodes();
+        for (int i = 0; i < children.getLength(); i++) {
+            Node child = children.item(i);
+            if (!(child instanceof Element childElem)) {
+                continue;
+            }
+            // Do not descend into nested C elements
+            if ("c".equals(childElem.getLocalName()) && EadNS.NS_EADS.equals(childElem.getNamespaceURI())) {
+                continue;
+            }
+            if (INHERITABLE_ELEMENTS.contains(childElem.getLocalName())
+                    && EadNS.NS_EADS.equals(childElem.getNamespaceURI())
+                    && childElem.hasAttribute("altrender")) {
+                result.add(childElem);
+            }
+            collectInheritableElementsWithAltrender(childElem, result);
         }
     }
 
-    private boolean checkAltrender(Object element, String altrender) {
-        if (altrender != null) {
-            if (!StringUtils.equals("inherited", altrender)) {
-                throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut altrender obsahuje nepovolenou hodnotu: " + altrender + ".", ctx.formatEadPosition(element));
-            }
-            return true;
-        }
-        return false;
+    /**
+     * Find all elements with the given local name (in EAD namespace) within the
+     * given C/archdesc element. Does not descend into nested C elements.
+     */
+    private List<Element> findInheritableElements(Element root, String localName) {
+        List<Element> result = new ArrayList<>();
+        collectInheritableElements(root, localName, result);
+        return result;
     }
 
-    private List<Unitdatestructured> getUnitdatestructured(Object element) {
-        List<Unitdatestructured> list = new ArrayList();
-        Did did = null;
-        if (element instanceof C c) {
-            did = c.getDid();
-        }
-        if (element instanceof Archdesc archdesc) {
-            did = archdesc.getDid();
-        }
-        if (did != null) {
-            List<Object> mDid = did.getMDid();
-            if (!CollectionUtils.isEmpty(mDid)) {
-                for (Object md : mDid) {
-                    if (md instanceof Unitdatestructured unitdatestructured) {
-                        list.add(unitdatestructured);
-                    }
-                }
+    private void collectInheritableElements(Element element, String localName, List<Element> result) {
+        NodeList children = element.getChildNodes();
+        for (int i = 0; i < children.getLength(); i++) {
+            Node child = children.item(i);
+            if (!(child instanceof Element childElem)) {
+                continue;
             }
+            // Do not descend into nested C elements
+            if ("c".equals(childElem.getLocalName()) && EadNS.NS_EADS.equals(childElem.getNamespaceURI())) {
+                continue;
+            }
+            if (localName.equals(childElem.getLocalName()) && EadNS.NS_EADS.equals(childElem.getNamespaceURI())) {
+                result.add(childElem);
+            }
+            collectInheritableElements(childElem, localName, result);
         }
-        return list;
     }
 
-    private List<Origination> getOrigination(Object element) {
-        List<Origination> list = new ArrayList();
-        Did did = null;
-        if (element instanceof C c) {
-            did = c.getDid();
-        }
-        if (element instanceof Archdesc archdesc) {
-            did = archdesc.getDid();
-        }
-        if (did != null) {
-            List<Object> mDid = did.getMDid();
-            if (!CollectionUtils.isEmpty(mDid)) {
-                for (Object md : mDid) {
-                    if (md instanceof Origination origination) {
-                        list.add(origination);
-                    }
-                }
-            }
-        }
-        return list;
+    /**
+     * Compare two elements ignoring the altrender attribute, whitespace-only
+     * text nodes, and XML comments. Uses deep DOM comparison via isEqualNode().
+     */
+    private boolean elementsMatchIgnoringAltrender(Element inherited, Element candidate) {
+        Element inheritedClone = (Element) inherited.cloneNode(true);
+        Element candidateClone = (Element) candidate.cloneNode(true);
+
+        // Remove altrender attribute from both clones
+        inheritedClone.removeAttribute("altrender");
+        candidateClone.removeAttribute("altrender");
+
+        // Remove namespace declarations (may differ based on tree position)
+        removeNamespaceDeclarations(inheritedClone);
+        removeNamespaceDeclarations(candidateClone);
+
+        // Strip whitespace-only text nodes and comments (formatting differs between levels)
+        stripWhitespaceAndComments(inheritedClone);
+        stripWhitespaceAndComments(candidateClone);
+
+        return inheritedClone.isEqualNode(candidateClone);
     }
 
-    private List<Language> getLanguage(Object element) {
-        List<Language> list = new ArrayList();
-        Did did = null;
-        if (element instanceof C c) {
-            did = c.getDid();
-        }
-        if (element instanceof Archdesc archdesc) {
-            did = archdesc.getDid();
-        }
-        if (did != null) {
-            List<Object> mDid = did.getMDid();
-            if (!CollectionUtils.isEmpty(mDid)) {
-                for (Object md : mDid) {
-                    if (md instanceof Langmaterial langmaterial) {
-                        List<Object> languageOrLanguageset = langmaterial.getLanguageOrLanguageset();
-                        for (Object lOrl : languageOrLanguageset) {
-                            if (lOrl instanceof Languageset languageset) {
-                                List<Language> languageList = languageset.getLanguage();
-                                list.addAll(languageList);
-                                return list;
-                            }
-                            if (lOrl instanceof Language language) {
-                                list.add(language);
-                            }
-                        }
-                    }
-                }
+    /**
+     * Remove all xmlns:* namespace declaration attributes from an element and its descendants.
+     */
+    private void removeNamespaceDeclarations(Element element) {
+        NamedNodeMap attrs = element.getAttributes();
+        List<String> toRemove = new ArrayList<>();
+        for (int i = 0; i < attrs.getLength(); i++) {
+            Node attr = attrs.item(i);
+            if (XMLNS_URI.equals(attr.getNamespaceURI())) {
+                toRemove.add(attr.getNodeName());
             }
         }
-        return list;
+        for (String name : toRemove) {
+            element.removeAttribute(name);
+        }
+        NodeList children = element.getChildNodes();
+        for (int i = 0; i < children.getLength(); i++) {
+            Node child = children.item(i);
+            if (child instanceof Element childElem) {
+                removeNamespaceDeclarations(childElem);
+            }
+        }
     }
 
-    private List<Container> getContainer(Object element) {
-        List<Container> list = new ArrayList();
-        Did did = null;
-        if (element instanceof C c) {
-            did = c.getDid();
-        }
-        if (element instanceof Archdesc archdesc) {
-            did = archdesc.getDid();
-        }
-        if (did != null) {
-            List<Object> mDid = did.getMDid();
-            if (!CollectionUtils.isEmpty(mDid)) {
-                for (Object md : mDid) {
-                    if (md instanceof Container container) {
-                        list.add(container);
-                    }
-                }
+    /**
+     * Remove whitespace-only text nodes and XML comments from a node and its descendants.
+     */
+    private void stripWhitespaceAndComments(Node node) {
+        NodeList children = node.getChildNodes();
+        for (int i = children.getLength() - 1; i >= 0; i--) {
+            Node child = children.item(i);
+            if (child.getNodeType() == Node.TEXT_NODE && child.getTextContent().trim().isEmpty()) {
+                node.removeChild(child);
+            } else if (child.getNodeType() == Node.COMMENT_NODE) {
+                node.removeChild(child);
+            } else if (child.getNodeType() == Node.ELEMENT_NODE) {
+                stripWhitespaceAndComments(child);
             }
         }
-        return list;
     }
 
-    private List<Altformavail> getAltformavail(Object element) {
-        List<Altformavail> list = new ArrayList();
-        List<Object> children = null;
-        if (element instanceof C c) {
-            children = c.getTheadAndC();
-        }
-        if (element instanceof Archdesc archdesc) {
-            children = archdesc.getAccessrestrictOrAccrualsOrAcqinfo();
-        }
-        if (!CollectionUtils.isEmpty(children)) {
-            for (Object child : children) {
-                if (child instanceof Altformavail altformavail) {
-                    list.add(altformavail);
-                }
+    /**
+     * Format a DOM element position for error messages.
+     */
+    private String formatDomPosition(Element element) {
+        StringBuilder sb = new StringBuilder();
+        Object lineNumber = element.getUserData(PositionalXMLReader.LINE_NUMBER_KEY_NAME);
+        Object colNumber = element.getUserData(PositionalXMLReader.COLUMN_NUMBER);
+        if (lineNumber != null) {
+            sb.append("Řádek ").append(lineNumber);
+            if (colNumber != null) {
+                sb.append(":").append(colNumber);
             }
+            sb.append(", ");
         }
-        return list;
-    }
-
-    private List<Relation> getRelation(Object element) {
-        List<Relation> list = new ArrayList();
-        List<Object> children = null;
-        if (element instanceof C c) {
-            children = c.getTheadAndC();
-        }
-        if (element instanceof Archdesc archdesc) {
-            children = archdesc.getAccessrestrictOrAccrualsOrAcqinfo();
-        }
-        if (!CollectionUtils.isEmpty(children)) {
-            for (Object child : children) {
-                if (child instanceof Relations relations) {
-                    List<Relation> relationList = relations.getRelation();
-                    list.addAll(relationList);
-                }
-            }
-        }
-        return list;
+        sb.append("element: <").append(ctx.getEadElementName(element.getLocalName())).append(">");
+        return sb.toString();
     }
 }

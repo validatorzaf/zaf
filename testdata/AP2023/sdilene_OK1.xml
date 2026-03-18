@@ -117,8 +117,26 @@
 						<ead:quantity>1</ead:quantity>
 						<ead:unittype>lio</ead:unittype>
 					</ead:physdescstructured>
+					<ead:origination>
+						<ead:persname localtype="ORIGINATOR">
+							<ead:part>
+								<ead:ref target="ap7523">Odkaz na původce</ead:ref>
+							</ead:part>
+						</ead:persname>
+					</ead:origination>
 				</ead:did>
-				
+
+				<ead:relations>
+					<ead:relation relationtype="cpfrelation" linkrole="AUTHOR" linktitle="autor">
+						<ead:relationentry>Text</ead:relationentry>
+						<ead:descriptivenote>
+							<ead:p>
+								<ead:ptr target="ap7523"></ead:ptr>
+							</ead:p>
+						</ead:descriptivenote>
+					</ead:relation>
+				</ead:relations>
+
 			<ead:c id="uuid-9a1c3b7e-2f44-4d3e-8c5a-1b2f4e7d9a6c" level="item" base="http://archiv.cz/dids/f73a2216-d32c-442b-a206-40c4aac70a49"> <!-- obs37 -->
 					<ead:did>
 						<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole"> <!-- obs43 -->
