@@ -36,12 +36,12 @@ public class Rule82 extends EadRule {
     protected void evalImpl() {
         Archdesc archDesc = ctx.getEad().getArchdesc();
         Did didA = archDesc.getDid();
-        rootValues = new HashMap();
+        rootValues = new HashMap<>();
+        componentValues = new HashMap<>();
         getPhysdescstructured(didA, true);
 
         ctx.getEadLevelIterator().iterate((c, parent) -> {
             Did didC = c.getDid();
-            componentValues = new HashMap();
             getPhysdescstructured(didC, false);
         });
 
@@ -71,16 +71,16 @@ public class Rule82 extends EadRule {
                         throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element unittype neobsahuje žádnou hodnotu.", ctx.formatEadPosition(unittype));
                     }
                     if (!NumberUtils.isCreatable(contentQuantity)) {
-                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity neobsajuje očekávanou hodnotu.", ctx.formatEadPosition(quantity));
+                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity neobsahuje očekávanou hodnotu.", ctx.formatEadPosition(quantity));
                     }
 
                     if (!allowed.contains(contentUnitType)) {
-                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element unittype obsajuje nepovolenou hodnotu: " + contentUnitType + ".", ctx.formatEadPosition(unittype));
+                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element unittype obsahuje nepovolenou hodnotu: " + contentUnitType + ".", ctx.formatEadPosition(unittype));
                     }
 
                     if (root) {
                         if (rootValues.containsKey(contentUnitType)) {
-                            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element unittype obsajuje již zaznamenanou hodnotu.", ctx.formatEadPosition(unittype));
+                            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element unittype obsahuje již zaznamenanou hodnotu.", ctx.formatEadPosition(unittype));
                         }
                         rootValues.put(contentUnitType, NumberUtils.createInteger(contentQuantity));
                     } else {
@@ -112,7 +112,6 @@ public class Rule82 extends EadRule {
             String key = entry.getKey();
             Integer value = entry.getValue();
             Integer componentCount = componentValues.get(key);
-            // TODO: componentCount might be null - not finished yet
             if (!(value <= componentCount)) {
                 throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Nesedí počet archiválií s unittype: " + key + ". Počet uvedený na kořeni archivního popisu: " + value + ", součet hodnot archiválií: " + componentCount + ".", ctx.formatEadPosition(archDesc));
             }
