@@ -92,7 +92,7 @@
 				<ead:unittype>bm</ead:unittype>
 			</ead:physdescstructured>
 			<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="quantity" coverage="whole">
-				<ead:quantity>6</ead:quantity>
+				<ead:quantity>8</ead:quantity>
 				<ead:unittype>desc_units</ead:unittype>
 			</ead:physdescstructured>
 			<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part">

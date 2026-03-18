@@ -92,8 +92,8 @@
 				<ead:unittype>bm</ead:unittype> <!-- obs48, obs81 -->
 			</ead:physdescstructured>
 			
-			<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="quantity" coverage="whole"> <!-- obs81 -->
-				<ead:quantity>1</ead:quantity>
+			<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="quantity" coverage="whole"> <!-- obs79, obs81 -->
+				<ead:quantity>3</ead:quantity>
 				<ead:unittype>desc_units</ead:unittype>
 			</ead:physdescstructured>
 
