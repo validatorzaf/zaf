@@ -111,10 +111,6 @@
 						<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet>
 						<ead:physfacet localtype="MATERIAL">paper</ead:physfacet>
 					</ead:physdescstructured>
-					<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part">
-						<ead:quantity>1</ead:quantity>
-						<ead:unittype>lio</ead:unittype>
-					</ead:physdescstructured>
 					<ead:unitid localtype="REFERENCNI_OZNACENI" label="referenční označení">CZ100000010//153//1</ead:unitid>
 				</ead:did>
 
@@ -129,10 +125,6 @@
 						<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet>
 						<ead:physfacet localtype="MATERIAL">paper</ead:physfacet>
 					</ead:physdescstructured>
-					<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part">
-						<ead:quantity>1</ead:quantity>
-						<ead:unittype>lio</ead:unittype>
-					</ead:physdescstructured>
 					<ead:unitid localtype="REFERENCNI_OZNACENI" label="referenční označení">CZ100000010//153//1/1-1</ead:unitid>
 				</ead:did>
 
@@ -143,10 +135,6 @@
 							<ead:unittype>lio</ead:unittype>
 							<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet>
 							<ead:physfacet localtype="MATERIAL">paper</ead:physfacet>
-						</ead:physdescstructured>
-						<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part">
-							<ead:quantity>1</ead:quantity>
-							<ead:unittype>lio</ead:unittype>
 						</ead:physdescstructured>
 						<ead:unittitle>Text 1</ead:unittitle>
 						<ead:container>Uložení</ead:container>
@@ -172,10 +160,6 @@
 						<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet>
 						<ead:physfacet localtype="MATERIAL">paper</ead:physfacet>
 					</ead:physdescstructured>
-					<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part">
-						<ead:quantity>1</ead:quantity>
-						<ead:unittype>lio</ead:unittype>
-					</ead:physdescstructured>
 					<ead:unitid localtype="REFERENCNI_OZNACENI" label="referenční označení">CZ100000010//153//1/1</ead:unitid>
 				</ead:did>
 
@@ -186,10 +170,6 @@
 							<ead:unittype>lio</ead:unittype>
 							<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet>
 							<ead:physfacet localtype="MATERIAL">paper</ead:physfacet>
-						</ead:physdescstructured>
-						<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part">
-							<ead:quantity>1</ead:quantity>
-							<ead:unittype>lio</ead:unittype>
 						</ead:physdescstructured>
 						<ead:unittitle>Text 2</ead:unittitle>
 						<ead:container>Uložení</ead:container>
@@ -215,10 +195,6 @@
 						<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet>
 						<ead:physfacet localtype="MATERIAL">paper</ead:physfacet>
 					</ead:physdescstructured>
-					<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part">
-						<ead:quantity>1</ead:quantity>
-						<ead:unittype>lio</ead:unittype>
-					</ead:physdescstructured>
 					<ead:unitid localtype="REFERENCNI_OZNACENI" label="referenční označení">CZ100000010//153//1/1+1</ead:unitid>
 				</ead:did>
 
@@ -229,10 +205,6 @@
 							<ead:unittype>lio</ead:unittype>
 							<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet>
 							<ead:physfacet localtype="MATERIAL">paper</ead:physfacet>
-						</ead:physdescstructured>
-						<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part">
-							<ead:quantity>1</ead:quantity>
-							<ead:unittype>lio</ead:unittype>
 						</ead:physdescstructured>
 						<ead:unittitle>Text 3</ead:unittitle>
 						<ead:container>Uložení</ead:container>
@@ -258,10 +230,6 @@
 						<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet>
 						<ead:physfacet localtype="MATERIAL">paper</ead:physfacet>
 					</ead:physdescstructured>
-					<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part">
-						<ead:quantity>1</ead:quantity>
-						<ead:unittype>lio</ead:unittype>
-					</ead:physdescstructured>
 					<ead:unitid localtype="REFERENCNI_OZNACENI" label="referenční označení">CZ100000010//153//1/2</ead:unitid>
 				</ead:did>
 
@@ -272,10 +240,6 @@
 							<ead:unittype>lio</ead:unittype>
 							<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet>
 							<ead:physfacet localtype="MATERIAL">paper</ead:physfacet>
-						</ead:physdescstructured>
-						<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part">
-							<ead:quantity>1</ead:quantity>
-							<ead:unittype>lio</ead:unittype>
 						</ead:physdescstructured>
 						<ead:unittitle>Text 4</ead:unittitle>
 						<ead:container>Uložení</ead:container>

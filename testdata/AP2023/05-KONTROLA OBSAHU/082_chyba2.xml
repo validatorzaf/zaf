@@ -99,11 +99,7 @@
 
 			<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part"> <!-- obs40 -->
 				<ead:quantity>1</ead:quantity>
-				<ead:unittype>lio</ead:unittype>
-			</ead:physdescstructured>
-			<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part">
-				<ead:quantity>1</ead:quantity>
-				<ead:unittype>kar</ead:unittype>
+				<ead:unittype>lip</ead:unittype>
 			</ead:physdescstructured>
 		</ead:did>
 		

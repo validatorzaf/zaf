@@ -10,6 +10,8 @@ import cz.zaf.schema.ead3.Did;
 import cz.zaf.schema.ead3.Physdescstructured;
 import cz.zaf.schema.ead3.Quantity;
 import cz.zaf.schema.ead3.Unittype;
+import cz.zaf.schemas.ead.EadNS;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -24,7 +26,9 @@ public class Rule82 extends EadRule {
     static final public String RULE_ERROR = "Element <physdescstructured> s atributem \"physdescstructured\" o hodnotě \"otherphysdescstructuredtype\" a zároveň s atributem \"otherphysdescstructuredtype\" o hodnotě \"UNIT_TYPE\", nemá atribut \"coverage\" o hodnotě \"part\" a/nebo se nenachází na kořeni archivního popisu a/nebo pro každý druh archiválie, který se v popisu vyskytuje, není použit právě jeden takovýto blok <physdescstructured> a/nebo podřízený element <unittype> neobsahuje zkratku příslušného druhu archiválie a/nebo podřízený element <quantity> neobsahuje číslo, které je menší nebo rovno součtu příslušných druhů archiválie.";
     static final public String RULE_SOURCE = "Část 3.5 a 4.2 profilu EAD3 MV ČR, část 2.9.3 Základních pravidel";
 
-    private final Set<String> allowed = Set.of("lio", "lip", "ukn", "rkp", "ppr", "ind", "ele", "rep", "ktt", "pec", "raz", "otd", "map", "atl", "tvy", "gli", "kre", "fsn", "fsd", "lfi", "sfi", "kin", "mf", "mfis", "fal", "dfo", "kza", "zza", "tio", "tip", "poh", "pkt", "cpa", "sto", "pnp", "pfp", "jin", "file", "item", "itempart");
+    private final Set<String> allowed = Set.of("lio", "lip", "ukn", "rkp", "ppr", "ind", "ele", "rep", "ktt", "pec", "raz", "otd", "map", "atl", "tvy", "gli", "kre", "fsn", "fsd", "lfi", "sfi", "kin", "mf", "mfis", "fal", "dfo", "kza", "zza", "tio", "tip", "poh", "pkt", "cpa", "sto", "pnp", "pfp", "jin");
+    private final Set<String> allowedRootUncounted = Set.of("kar", "fas");
+    private final Set<String> allowedCUncounted = Set.of("file", "item", "itempart");
     private Map<String, Integer> rootValues;
     private Map<String, Integer> componentValues;
 
@@ -38,25 +42,27 @@ public class Rule82 extends EadRule {
         Did didA = archDesc.getDid();
         rootValues = new HashMap<>();
         componentValues = new HashMap<>();
-        getPhysdescstructured(didA, true);
+        readPhysdescstructuredRoot(didA);
 
         ctx.getEadLevelIterator().iterate((c, parent) -> {
             Did didC = c.getDid();
-            getPhysdescstructured(didC, false);
+            readPhysdescstructured(didC);
         });
 
         compareMaps(archDesc);
         countMaps(archDesc);
     }
 
-    private void getPhysdescstructured(Did did, boolean root) {
+    private void readPhysdescstructuredRoot(Did did) {
         List<Object> childList = did.getMDid();
         for (Object child : childList) {
             if (child instanceof Physdescstructured physdescstructured) {
                 String physdescstructuredtype = physdescstructured.getPhysdescstructuredtype();
                 String otherphysdescstructuredtype = physdescstructured.getOtherphysdescstructuredtype();
                 String coverage = physdescstructured.getCoverage();
-                if (StringUtils.equals("otherphysdescstructuredtype", physdescstructuredtype) && StringUtils.equals("UNIT_TYPE", otherphysdescstructuredtype) && StringUtils.equals("part", coverage)) {
+                if (StringUtils.equals("otherphysdescstructuredtype", physdescstructuredtype) &&
+                		StringUtils.equals("UNIT_TYPE", otherphysdescstructuredtype) && 
+                		StringUtils.equals("part", coverage)) {
                     Unittype unittype = physdescstructured.getUnittype();
                     Quantity quantity = physdescstructured.getQuantity();
                     if (unittype == null) {
@@ -70,12 +76,21 @@ public class Rule82 extends EadRule {
                     if (StringUtils.isEmpty(contentUnitType)) {
                         throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element unittype neobsahuje žádnou hodnotu.", ctx.formatEadPosition(unittype));
                     }
-                    if (!NumberUtils.isCreatable(contentQuantity)) {
+                    
+                    Integer count;
+                    try {
+                    	count = Integer.valueOf(contentQuantity);
+                    } catch(NumberFormatException nfe) {
                         throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity neobsahuje očekávanou hodnotu.", ctx.formatEadPosition(quantity));
                     }
 
+                    boolean counted = true;
                     if (!allowed.contains(contentUnitType)) {
-                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element unittype obsahuje nepovolenou hodnotu: " + contentUnitType + ".", ctx.formatEadPosition(unittype));
+                    	if(allowedRootUncounted.contains(contentUnitType)) {
+                    		counted = false;
+                    	} else {
+                    		throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element unittype obsahuje nepovolenou hodnotu: " + contentUnitType + ".", ctx.formatEadPosition(unittype));
+                    	}
                     }
 
                     ctx.markValidatedAttribute(physdescstructured, "physdescstructuredtype");
@@ -85,14 +100,68 @@ public class Rule82 extends EadRule {
                     ctx.markValidatedContent(unittype);
                     ctx.markValidatedElement(quantity);
                     ctx.markValidatedContent(quantity);
-                    if (root) {
+
+                    if(counted) {
                         if (rootValues.containsKey(contentUnitType)) {
                             throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element unittype obsahuje již zaznamenanou hodnotu.", ctx.formatEadPosition(unittype));
                         }
-                        rootValues.put(contentUnitType, NumberUtils.createInteger(contentQuantity));
-                    } else {
-                        componentValues.merge(contentUnitType, NumberUtils.createInteger(contentQuantity), Integer::sum);
+                        rootValues.put(contentUnitType, count);
                     }
+                }
+            }
+        }
+    }
+
+    private void readPhysdescstructured(Did did) {
+        List<Object> childList = did.getMDid();
+        for (Object child : childList) {
+            if (child instanceof Physdescstructured physdescstructured) {
+                String physdescstructuredtype = physdescstructured.getPhysdescstructuredtype();
+                String coverage = physdescstructured.getCoverage();
+                if (EadNS.PHYSDESCSTRUCTURED_TYPE_MATERIALTYPE.equals(physdescstructuredtype) && 
+                		"whole".equals(coverage)) {
+                    Unittype unittype = physdescstructured.getUnittype();
+                    Quantity quantity = physdescstructured.getQuantity();
+                    if (unittype == null) {
+                        throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element unittype.", ctx.formatEadPosition(physdescstructured));
+                    }
+                    if (quantity == null) {
+                        throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element quantity.", ctx.formatEadPosition(physdescstructured));
+                    }
+                    String contentUnitType = unittype.getContent();
+                    if (StringUtils.isEmpty(contentUnitType)) {
+                        throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element unittype neobsahuje žádnou hodnotu.", ctx.formatEadPosition(unittype));
+                    }
+                    String contentQuantity = quantity.getContent();
+                    if(StringUtils.isEmpty(contentQuantity)) {
+                    	// počet nelze určit -> preskoci se
+                    	continue;
+                    }
+                    
+                    ctx.markValidatedAttribute(physdescstructured, "physdescstructuredtype");
+                    ctx.markValidatedAttributeOnly(physdescstructured, "coverage");
+                    ctx.markValidatedElement(unittype);
+                    ctx.markValidatedContent(unittype);
+                    ctx.markValidatedElement(quantity);
+                    ctx.markValidatedContent(quantity);
+                    
+                    if (!allowed.contains(contentUnitType)) {
+                    	if(allowedCUncounted.contains(contentUnitType)) {
+                        	// nepocitany typ - lze pokracovat
+                        	continue;                    		
+                    	} else {
+                    		throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Nerozponaný typ archiválie, hodnota: "+contentUnitType+".", contentQuantity);
+                    	}
+                    }
+                    
+                    Integer count;
+                    try {
+                    	count = Integer.valueOf(contentQuantity);
+                    } catch(NumberFormatException nfe) {
+                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity neobsahuje očekávanou hodnotu.", ctx.formatEadPosition(quantity));
+                    }
+
+                    componentValues.merge(contentUnitType, count, Integer::sum);
                 }
             }
         }
@@ -119,7 +188,7 @@ public class Rule82 extends EadRule {
             String key = entry.getKey();
             Integer value = entry.getValue();
             Integer componentCount = componentValues.get(key);
-            if (!(value <= componentCount)) {
+            if (value > componentCount) {
                 throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Nesedí počet archiválií s unittype: " + key + ". Počet uvedený na kořeni archivního popisu: " + value + ", součet hodnot archiválií: " + componentCount + ".", ctx.formatEadPosition(archDesc));
             }
         }
