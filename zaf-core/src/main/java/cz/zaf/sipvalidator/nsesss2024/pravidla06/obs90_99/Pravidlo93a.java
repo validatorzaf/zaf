@@ -2,62 +2,44 @@ package cz.zaf.sipvalidator.nsesss2024.pravidla06.obs90_99;
 
 import java.util.List;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
 import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
+import org.apache.commons.lang3.StringUtils;
 
 /**
- * OBSAHOVÁ 93a. Každá entita věcná skupina (&lt;nsesss:VecnaSkupina&gt;), jejíž
- * rodičovská entita je spisový plán (&lt;nsesss:SpisovyPlan&gt;), obsahuje v
- * hierarchii dětských elementů &lt;nsesss:EvidencniUdaje&gt;,
- * &lt;nsesss:Trideni&gt; elementy &lt;nsesss:JednoduchySpisovyZnak&gt; a
- * &lt;nsesss:PlneUrcenySpisovyZnak&gt; se stejnými hodnotami.
+ * OBSAHOVÁ 93a. Každá entita obsahuje element <JednoduchySpisovyZnak> s
+ * neprázdnou hodnotou.
  *
  */
 public class Pravidlo93a extends K06PravidloBase {
-    
+
     static final public String OBS93A = "obs93a";
-    
+
     public Pravidlo93a() {
         super(OBS93A,
-                "Každá entita věcná skupina (<nsesss:VecnaSkupina>), jejíž rodičovská entita je spisový plán (<nsesss:SpisovyPlan>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> se stejnými hodnotami.",
-                "Chybně jsou uvedeny spisové znaky.",
-                "Požadavek 3.1.30 NSESSS.");
+                "Každá entita obsahuje element <JednoduchySpisovyZnak> s neprázdnou hodnotou.",
+                "Není uveden jednoduchý spisový znak.",
+                "Příloha č. 2 NSESSS, nsesss-common.xsd, ř. 146.");
     }
-    
+
     @Override
     protected void kontrola() {
-        List<Element> vsList = metsParser.getNodes(NsesssV4.VECNA_SKUPINA);
-        if (CollectionUtils.isEmpty(vsList)) {
-            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen žádný element <nsesss:VecnaSkupina>");
-        }
-        for (Element vs : vsList) {
-            Element spl = ValuesGetter.getXChild(vs, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI, NsesssV4.SPISOVY_PLAN);
-            if (spl != null) {
-                Element jsz = ValuesGetter.getXChild(vs, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI,
-                        NsesssV4.JEDNODUCHY_SPISOVY_ZNAK);
-                if (jsz == null) {
-                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(vs),
-                            vs,
-                            kontrola.getEntityId(vs));
-                }
-                Element pusz = ValuesGetter.getXChild(vs, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI,
-                        NsesssV4.PLNE_URCENY_SPISOVY_ZNAK);
-                if (pusz == null) {
-                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(vs),
-                            vs, kontrola.getEntityId(vs));
-                }
-                if (!jsz.getTextContent().equals(pusz.getTextContent())) {
-                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Elementy neobsahují stejné hodnoty. " + getJmenoIdentifikator(vs),
-                            getMistoChyby(jsz) + " " + getMistoChyby(pusz),
-                            kontrola.getEntityId(vs));
-                }
+        List<Element> listEntit = metsParser.getEntity(NsesssV4.DIL, NsesssV4.SPIS, NsesssV4.DOKUMENT, NsesssV4.VECNA_SKUPINA, NsesssV4.SOUCAST, NsesssV4.TYPOVY_SPIS);
+        for (Element elentita : listEntit) {
+            Element elJsZ = ValuesGetter.getXChild(elentita, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI, NsesssV4.JEDNODUCHY_SPISOVY_ZNAK);
+            if (elJsZ == null) {
+                nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak>.", getMistoChyby(elentita), kontrola.getEntityId(elentita));
+            }
+            String jsz = elJsZ.getTextContent();
+            if (StringUtils.isBlank(jsz)) {
+                nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element <nsesss:JednoduchySpisovyZnak> je prázdný.", getMistoChyby(elentita), kontrola.getEntityId(elentita));
             }
         }
+
     }
-    
+
 }

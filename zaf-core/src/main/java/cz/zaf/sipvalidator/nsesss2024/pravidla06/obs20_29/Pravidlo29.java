@@ -10,14 +10,16 @@ import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
 import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
+import java.text.ParseException;
 
 import java.util.ArrayList;
+import java.util.Date;
+import org.apache.commons.lang3.time.DateUtils;
 
 //OBSAHOVÁ č.29 Pokud existuje jakýkoli element <nsesss:KrizovyOdkaz> a obsahuje atribut pevny s hodnotou ano, 
 // potom pro každý jeho výskyt obsahuje element <mets:dmdSec> v hierarchii dětských elementů <mets:mdWrap>, <mets:xmlData> dětský element <nsesss:Spis>, 
 // který se nenachází v rodičovském dílu (<nsesss:Dil>), se stejnou hodnotou v dětském elementu <nsesss:Identifikator> a v jeho atributu zdroj. 
 // Anebo stejným způsobem dětský element <nsesss:Dil> nebo <nsesss:Spis> nebo <nsesss:Dokument>, pokud byl vyřízen/uzavřen do 31. 12. 2026 včetně.
-
 public class Pravidlo29 extends K06PravidloBase {
 
     static final public String OBS29 = "obs29";
@@ -121,7 +123,42 @@ public class Pravidlo29 extends K06PravidloBase {
                             "Element <nsesss:KrizovyOdkaz> s id: " + ident_ko + " a zdrojem: " + zdroj_ko + " odkazuje na více základních entit.",
                             listElChybnych);
                 }
+
+                if (pocitadlo == 1) {
+                    Element elZakladnientita = listElChybnych.get(0);
+                    Element elDatum = getDatum(elZakladnientita);
+                    String datumVyrizeni = elDatum.getTextContent();
+                    jePredVcetne(elZakladnientita, datumVyrizeni);
+                }
             }
         }
+    }
+
+    private static void jePredVcetne(Element elDatum, String dateStr) {
+        try {
+            Date date = DateUtils.parseDate(dateStr, "yyyy-MM-dd");
+            Date limit = DateUtils.parseDate("2026-12-31", "yyyy-MM-dd");
+            boolean valid = !date.after(limit);
+            if (!valid) {
+                nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
+                        "Datum vyřízení Dokumentu je po 31. 12. 2026. Datum vyřízení: " + dateStr + ".", elDatum);
+            }
+
+        } catch (ParseException e) {
+            nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
+                    "Datum vyřízení je v nesprávném formátu: " + dateStr + ".", elDatum);
+        }
+    }
+    
+    private Element getDatum(Element elZakladniEntita){
+        Element elDatum = ValuesGetter.getXChild(elZakladniEntita, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.VYRIZENI, NsesssV4.DATUM);
+        if(elDatum == null){
+            elDatum = ValuesGetter.getXChild(elZakladniEntita, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.VYRIZENI_UZAVRENI, NsesssV4.DATUM);
+        }
+        if(elDatum == null){
+            elDatum = ValuesGetter.getXChild(elZakladniEntita, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.UZAVRENI, NsesssV4.DATUM);
+        }
+        
+        return elDatum;
     }
 }

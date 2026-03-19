@@ -139,6 +139,7 @@
               <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
               <nsesss:DatumOtevreni datum="2012-07-10T12:21:13.713">2012-07-10</nsesss:DatumOtevreni>
               <nsesss:DatumUzavreni datum="2012-09-06T00:00:00">2012-09-06</nsesss:DatumUzavreni>
+              <nsesss:Umisteni>umisteno</nsesss:Umisteni>
             </nsesss:Manipulace>
           </nsesss:EvidencniUdaje>
           <nsesss:Dokumenty>
@@ -637,7 +638,7 @@
   <mets:fileSec>
     <mets:fileGrp ID="fileGrp_1" USE="Original">
       <mets:file ADMID="Komp_MUJESSTP10308220.MUJESS00046028" CHECKSUM="D6529609EE374E8F71FF10E7638D04EAB1004041227C9665A2D872503BDC4C4B04B2F28FA43842E6304A3F6DA5B8965DC1496315FE46B33C00871BF91928636B" CHECKSUMTYPE="SHA-512" CREATED="2019-05-13T08:29:12.78" DMDID="Komp_MUJESS00046028" ID="MUJESS00046028" MIMETYPE="application/pdf" SIZE="185858">
-        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\00046028_Zkouška.pdf" xlink:type="simple"/>
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty/00046028_Zkouška.pdf" xlink:type="simple"/>
       </mets:file>
     </mets:fileGrp>
   </mets:fileSec>

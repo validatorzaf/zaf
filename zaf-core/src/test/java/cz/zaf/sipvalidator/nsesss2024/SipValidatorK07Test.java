@@ -182,14 +182,15 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
                     new String[] { Pravidlo7_03.KOD },
                     new String[] {});
     }
-
-    @Test
-    void testK07_03_OK04() {
-        testPackage("kom3-OK4", null,
-                    ZakladniProfilValidace.PREJIMKA,
-                    new String[] { Pravidlo7_03.KOD },
-                    new String[] {});
-    }
+    
+//komponenta originál a přitom musí být i kontejner
+//    @Test
+//    void testK07_03_OK04() {
+//        testPackage("kom3-OK4", null,
+//                    ZakladniProfilValidace.PREJIMKA,
+//                    new String[] { Pravidlo7_03.KOD },
+//                    new String[] {});
+//    }
 
     @Test
     void testK07_03_OK05() {

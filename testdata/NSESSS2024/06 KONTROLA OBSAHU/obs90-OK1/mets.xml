@@ -116,7 +116,7 @@
                                       <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
                                       <nsesss:DatumOtevreni datum="2008-03-20T00:00:00.000+01:00">2008-03-20</nsesss:DatumOtevreni>
                                     </nsesss:Manipulace>
-									<nsesss:UrcenoProTypoveSpisy>ano</nsesss:UrcenoProTypoveSpisy>
+                                    <nsesss:UrcenoProTypoveSpisy>ano</nsesss:UrcenoProTypoveSpisy>
                                   </nsesss:EvidencniUdaje>
                                 </nsesss:VecnaSkupina>
                               </nsesss:MaterskaEntita>

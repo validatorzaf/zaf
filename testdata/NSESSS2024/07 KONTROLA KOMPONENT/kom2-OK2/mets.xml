@@ -116,7 +116,7 @@
               </nsesss:MaterskeEntity>
             </nsesss:Trideni>
             <nsesss:Vyrizeni>
-              <nsesss:Datum datum="2012-10-10T00:00:00.000+01:00">2012-10-10</nsesss:Datum>
+              <nsesss:Datum datum="2011-10-10T00:00:00.000+01:00">2011-10-10</nsesss:Datum>
               <nsesss:Zpusob>vzetí na vědomí</nsesss:Zpusob>
               <nsesss:ObsahVyrizeni>, Vyřízeno vzetím na vědomí.</nsesss:ObsahVyrizeni>
               <nsesss:Oduvodneni>Vyřízeno vzetím na vědomí</nsesss:Oduvodneni>
@@ -384,10 +384,10 @@
   <mets:fileSec>
     <mets:fileGrp>
       <mets:file CHECKSUM="b9a6111074193733ed2a2e873d17b43f4191d92be59e0918d1b9c230bbccc86d" CHECKSUMTYPE="SHA-256" CREATED="2015-11-09T17:02:33" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" ID="MP120B04D1FC" MIMETYPE="application/pdf" OWNERID="MP120B04D1FC" SIZE="489060">
-        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\soubor1.pdf" xlink:type="simple"/>
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty/soubor1.pdf" xlink:type="simple"/>
       </mets:file>
       <mets:file CHECKSUM="9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08" CHECKSUMTYPE="SHA-256" CREATED="2015-11-09T17:02:33" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FD" ID="MP120B04D1FD" MIMETYPE="text/plain" OWNERID="MP120B04D1FC" SIZE="4">
-        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\soubor2.txt" xlink:type="simple"/>
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty/soubor2.txt" xlink:type="simple"/>
       </mets:file>
     </mets:fileGrp>
   </mets:fileSec>

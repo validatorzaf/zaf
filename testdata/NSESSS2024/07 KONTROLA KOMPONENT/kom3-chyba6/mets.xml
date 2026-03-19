@@ -116,7 +116,7 @@
               </nsesss:MaterskeEntity>
             </nsesss:Trideni>
             <nsesss:Vyrizeni>
-              <nsesss:Datum datum="2012-10-10T00:00:00.000+01:00">2012-10-10</nsesss:Datum>
+              <nsesss:Datum datum="2011-10-10T00:00:00.000+01:00">2011-10-10</nsesss:Datum>
               <nsesss:Zpusob>vzetí na vědomí</nsesss:Zpusob>
               <nsesss:ObsahVyrizeni>, Vyřízeno vzetím na vědomí.</nsesss:ObsahVyrizeni>
               <nsesss:Oduvodneni>Vyřízeno vzetím na vědomí</nsesss:Oduvodneni>
@@ -340,7 +340,7 @@
   <mets:fileSec>
     <mets:fileGrp>
       <mets:file CHECKSUM="ec89fe54df25be6103ab4cbec16fd5400c377628b5df08eb0742a13c1bd8849d" CHECKSUMTYPE="SHA-256" CREATED="2015-11-09T17:02:33" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" ID="MP120B04D1FC" MIMETYPE="application/pdf" OWNERID="MP120B04D1FC" SIZE="22016">
-        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\soubor.doc" xlink:type="simple"/>
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty/soubor.doc" xlink:type="simple"/>
       </mets:file>
     </mets:fileGrp>
   </mets:fileSec>

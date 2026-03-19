@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!--
-ve structMap chybí komponenta (Identifikator: MP120B04D1FC, zdroj: Gordic.Ginis.MP12.E) s DMDID: MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC a ADMID: amd004
--->
 <mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:nsesss="http://www.mvcr.cz/nsesss/v4" xmlns:tp="http://www.mvcr.cz/nsesss/2023/log" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu" OBJID="GS_ea183e38-a932-4a68-bb16-4a7871ab56a7" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v4 http://www.mvcr.cz/nsesss/v4/nsesss.xsd http://www.mvcr.cz/nsesss/2023/log https://www.mvcr.cz/nsesss/v4/nsesss-TrP.xsd">
   <mets:metsHdr CREATEDATE="2015-06-29T23:33:05.0195493Z" LASTMODDATE="2015-06-29T23:33:05.0195493Z">
     <mets:agent ID="id1" ROLE="CREATOR" TYPE="ORGANIZATION">
@@ -102,7 +99,6 @@ ve structMap chybí komponenta (Identifikator: MP120B04D1FC, zdroj: Gordic.Ginis
                       <nsesss:SkartacniRezim>
                         <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.ISR">2005/087.1</nsesss:Identifikator>
                         <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
-                        
                         <nsesss:Oduvodneni>Vyplývá ze spisového plánu organizace</nsesss:Oduvodneni>
                         <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
                         <nsesss:SkartacniLhuta>1</nsesss:SkartacniLhuta>
@@ -110,7 +106,7 @@ ve structMap chybí komponenta (Identifikator: MP120B04D1FC, zdroj: Gordic.Ginis
                       </nsesss:SkartacniRezim>
                     </nsesss:Vyrazovani>
                     <nsesss:Manipulace>
-                      <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                      <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
                       <nsesss:DatumOtevreni datum="2008-03-20T00:00:00.000+01:00">2008-03-20</nsesss:DatumOtevreni>
                       <nsesss:DatumUzavreni datum="2999-01-01T00:00:00.000+01:00">2999-01-01</nsesss:DatumUzavreni>
                     </nsesss:Manipulace>
@@ -151,7 +147,6 @@ ve structMap chybí komponenta (Identifikator: MP120B04D1FC, zdroj: Gordic.Ginis
                 </nsesss:Schvaleni>
               </nsesss:Schvalovani>
               <nsesss:DatumOdeslani datum="2012-01-25T09:51:20.000+01:00">2012-01-25</nsesss:DatumOdeslani>
-              <nsesss:OdeslaneMnozstvi>2 listy</nsesss:OdeslaneMnozstvi>
               <nsesss:Prijemce>
                 <nsesss:Subjekt>
                   <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.SE">MP12SE03079T</nsesss:IdentifikatorOrganizace>
@@ -165,7 +160,6 @@ ve structMap chybí komponenta (Identifikator: MP120B04D1FC, zdroj: Gordic.Ginis
               <nsesss:SkartacniRezim>
                 <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.ISR">2005/087.1</nsesss:Identifikator>
                 <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
-                
                 <nsesss:Oduvodneni>Vyplývá ze spisového plánu organizace</nsesss:Oduvodneni>
                 <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
                 <nsesss:SkartacniLhuta>1</nsesss:SkartacniLhuta>
@@ -193,7 +187,7 @@ ve structMap chybí komponenta (Identifikator: MP120B04D1FC, zdroj: Gordic.Ginis
               </nsesss:SkartacniRizeni>
             </nsesss:Vyrazovani>
             <nsesss:Manipulace>
-              <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+              <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
               <nsesss:SpravceSpisovny>
                 <nsesss:Subjekt>
                   <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.SE">MP12SE00A013</nsesss:IdentifikatorOrganizace>
@@ -202,7 +196,6 @@ ve structMap chybí komponenta (Identifikator: MP120B04D1FC, zdroj: Gordic.Ginis
                   <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
                 </nsesss:Subjekt>
               </nsesss:SpravceSpisovny>
-              <nsesss:UkladaciJednotka>karton č. 5</nsesss:UkladaciJednotka>
             </nsesss:Manipulace>
           </nsesss:EvidencniUdaje>
           <nsesss:Komponenty>
@@ -227,7 +220,7 @@ ve structMap chybí komponenta (Identifikator: MP120B04D1FC, zdroj: Gordic.Ginis
     </mets:mdWrap>
   </mets:dmdSec>
   <mets:amdSec ID="amd001">
-    <mets:digiprovMD ID="bla1">
+    <mets:digiprovMD ID="id_bla1">
       <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
@@ -256,7 +249,7 @@ ve structMap chybí komponenta (Identifikator: MP120B04D1FC, zdroj: Gordic.Ginis
     </mets:digiprovMD>
   </mets:amdSec>
   <mets:amdSec ID="amd002">
-    <mets:digiprovMD ID="bla2">
+    <mets:digiprovMD ID="id_bla2">
       <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
@@ -285,7 +278,7 @@ ve structMap chybí komponenta (Identifikator: MP120B04D1FC, zdroj: Gordic.Ginis
     </mets:digiprovMD>
   </mets:amdSec>
   <mets:amdSec ID="amd003">
-    <mets:digiprovMD ID="bla3">
+    <mets:digiprovMD ID="id_bla3">
       <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
@@ -314,7 +307,7 @@ ve structMap chybí komponenta (Identifikator: MP120B04D1FC, zdroj: Gordic.Ginis
     </mets:digiprovMD>
   </mets:amdSec>
   <mets:amdSec ID="amd004">
-    <mets:digiprovMD ID="bla4">
+    <mets:digiprovMD ID="id_bla4">
       <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
         <mets:xmlData>
           <tp:TransakcniLogObjektu>
@@ -342,11 +335,21 @@ ve structMap chybí komponenta (Identifikator: MP120B04D1FC, zdroj: Gordic.Ginis
       </mets:mdWrap>
     </mets:digiprovMD>
   </mets:amdSec>
+  <mets:fileSec>
+    <mets:fileGrp>
+      <mets:file CHECKSUM="b9a6111074193733ed2a2e873d17b43f4191d92be59e0918d1b9c230bbccc86d" CHECKSUMTYPE="SHA-256" CREATED="2015-11-09T17:02:33" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" ID="MP120B04D1FC" MIMETYPE="application/pdf" OWNERID="MP120B04D1FC" SIZE="489060">
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty/soubor1.pdf" xlink:type="simple"/>
+      </mets:file>
+    </mets:fileGrp>
+  </mets:fileSec>
   <mets:structMap>
     <mets:div ADMID="amd001" DMDID="MP12P00BTZ3Z_Gordic.Ginis.V.S.2005" TYPE="spisový plán">
       <mets:div ADMID="amd002" DMDID="MP12P00BTZ3Z_Gordic.Ginis.V.S.2005-087.1" TYPE="věcná skupina">
         <mets:div ADMID="amd003" DMDID="MP12P00BTZ3Z" TYPE="dokument">
-				</mets:div>
+          <mets:div ADMID="amd004" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" TYPE="komponenta">
+            <mets:fptr FILEID="MP120B04D1FC"/>
+          </mets:div>
+        </mets:div>
       </mets:div>
     </mets:div>
   </mets:structMap>

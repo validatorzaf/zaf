@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!--
-ve structMap jsou všechny komponenty bez ADMID, navíc tam chybí komponenta (Identifikator: MP120B04D1FC, zdroj: Gordic.Ginis.MP12.E), amdSec chybí věcná skupina (Identifikator: 87, zdroj: Gordic.Ginis.MP12.SPZ)
--->
 <mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:nsesss="http://www.mvcr.cz/nsesss/v4" xmlns:tp="http://www.mvcr.cz/nsesss/2023/log" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu" OBJID="GS_ea183e38-a932-4a68-bb16-4a7871ab56a7" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v4 http://www.mvcr.cz/nsesss/v4/nsesss.xsd http://www.mvcr.cz/nsesss/2023/log https://www.mvcr.cz/nsesss/v4/nsesss-TrP.xsd">
   <mets:metsHdr CREATEDATE="2015-06-29T23:33:05.0195493Z" LASTMODDATE="2015-06-29T23:33:05.0195493Z">
     <mets:agent ID="id1" ROLE="CREATOR" TYPE="ORGANIZATION">
@@ -26,12 +23,6 @@ ve structMap jsou všechny komponenty bez ADMID, navíc tam chybí komponenta (I
               <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
               <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
             </nsesss:Popis>
-            <nsesss:Souvislosti>
-              <nsesss:KrizovyOdkaz pevny="ne">
-                <nsesss:PlneUrcenySpisovyZnak/>
-                <nsesss:Identifikator zdroj="spravny">slavia</nsesss:Identifikator>
-              </nsesss:KrizovyOdkaz>
-            </nsesss:Souvislosti>
             <nsesss:Pristupnost>
               <nsesss:BezpecnostniKategorie>
                 <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.BK">10</nsesss:Identifikator>
@@ -108,7 +99,6 @@ ve structMap jsou všechny komponenty bez ADMID, navíc tam chybí komponenta (I
                       <nsesss:SkartacniRezim>
                         <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.ISR">2005/087.1</nsesss:Identifikator>
                         <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
-                        
                         <nsesss:Oduvodneni>Vyplývá ze spisového plánu organizace</nsesss:Oduvodneni>
                         <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
                         <nsesss:SkartacniLhuta>1</nsesss:SkartacniLhuta>
@@ -116,7 +106,7 @@ ve structMap jsou všechny komponenty bez ADMID, navíc tam chybí komponenta (I
                       </nsesss:SkartacniRezim>
                     </nsesss:Vyrazovani>
                     <nsesss:Manipulace>
-                      <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                      <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
                       <nsesss:DatumOtevreni datum="2008-03-20T00:00:00.000+01:00">2008-03-20</nsesss:DatumOtevreni>
                       <nsesss:DatumUzavreni datum="2999-01-01T00:00:00.000+01:00">2999-01-01</nsesss:DatumUzavreni>
                     </nsesss:Manipulace>
@@ -157,7 +147,6 @@ ve structMap jsou všechny komponenty bez ADMID, navíc tam chybí komponenta (I
                 </nsesss:Schvaleni>
               </nsesss:Schvalovani>
               <nsesss:DatumOdeslani datum="2012-01-25T09:51:20.000+01:00">2012-01-25</nsesss:DatumOdeslani>
-              <nsesss:OdeslaneMnozstvi>2 listy</nsesss:OdeslaneMnozstvi>
               <nsesss:Prijemce>
                 <nsesss:Subjekt>
                   <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.SE">MP12SE03079T</nsesss:IdentifikatorOrganizace>
@@ -171,7 +160,6 @@ ve structMap jsou všechny komponenty bez ADMID, navíc tam chybí komponenta (I
               <nsesss:SkartacniRezim>
                 <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.ISR">2005/087.1</nsesss:Identifikator>
                 <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
-                
                 <nsesss:Oduvodneni>Vyplývá ze spisového plánu organizace</nsesss:Oduvodneni>
                 <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
                 <nsesss:SkartacniLhuta>1</nsesss:SkartacniLhuta>
@@ -181,9 +169,25 @@ ve structMap jsou všechny komponenty bez ADMID, navíc tam chybí komponenta (I
                 <nsesss:RokSpousteciUdalosti>2012</nsesss:RokSpousteciUdalosti>
                 <nsesss:RokSkartacniOperace>2014</nsesss:RokSkartacniOperace>
               </nsesss:DataceVyrazeni>
+              <nsesss:SkartacniRizeni>
+                <nsesss:Datum datum="2018-01-01T00:00:00.000">2018-01-01</nsesss:Datum>
+                <nsesss:Mnozstvi>12 balíků</nsesss:Mnozstvi>
+                <nsesss:SkartacniOperace>trvalé uložení</nsesss:SkartacniOperace>
+                <nsesss:Posuzovatel>
+                  <nsesss:Subjekt>
+                    <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.ISU">MP12SE00A013</nsesss:IdentifikatorOrganizace>
+                    <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
+                    <nsesss:IdentifikatorFyzickeOsoby zdroj="Gordic.Ginis.MP12.SZ">MP12SZ00CZU4</nsesss:IdentifikatorFyzickeOsoby>
+                    <nsesss:NazevFyzickeOsoby>GDPR anonymizováno</nsesss:NazevFyzickeOsoby>
+                    <nsesss:OrganizacniUtvar>Odbor provozní</nsesss:OrganizacniUtvar>
+                    <nsesss:PracovniPozice>objednávky a faktury OPR</nsesss:PracovniPozice>
+                    <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
+                  </nsesss:Subjekt>
+                </nsesss:Posuzovatel>
+              </nsesss:SkartacniRizeni>
             </nsesss:Vyrazovani>
             <nsesss:Manipulace>
-              <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+              <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
               <nsesss:SpravceSpisovny>
                 <nsesss:Subjekt>
                   <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.SE">MP12SE00A013</nsesss:IdentifikatorOrganizace>
@@ -192,11 +196,10 @@ ve structMap jsou všechny komponenty bez ADMID, navíc tam chybí komponenta (I
                   <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
                 </nsesss:Subjekt>
               </nsesss:SpravceSpisovny>
-              <nsesss:UkladaciJednotka>karton č. 5</nsesss:UkladaciJednotka>
             </nsesss:Manipulace>
           </nsesss:EvidencniUdaje>
           <nsesss:Komponenty>
-            <nsesss:Komponenta ID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" druh="průvodní dopis" forma_uchovani="originál" poradi="1" verze="1">
+            <nsesss:Komponenta ID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" druh="průvodní dopis" forma_uchovani="kontejner" poradi="1" verze="1">
               <nsesss:EvidencniUdaje>
                 <nsesss:Identifikace>
                   <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.E">MP120B04D1FC</nsesss:Identifikator>
@@ -303,11 +306,50 @@ ve structMap jsou všechny komponenty bez ADMID, navíc tam chybí komponenta (I
       </mets:mdWrap>
     </mets:digiprovMD>
   </mets:amdSec>
+  <mets:amdSec ID="amd004">
+    <mets:digiprovMD ID="id_bla4">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tp:HodnotaID>123456</tp:HodnotaID>
+                <tp:ZdrojID>ERMS XY</tp:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2018-03-05T08:00:00</tp:DatumVzniku>
+              <tp:DatumCasOd>2018-03-05T08:00:00</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-03-05T08:00:00</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tp:HodnotaID>MP120B04D1FC</tp:HodnotaID>
+                  <tp:ZdrojID>Gordic.Ginis.MP12.E</tp:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti/>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
+  <mets:fileSec>
+    <mets:fileGrp>
+      <mets:file CHECKSUM="b9a6111074193733ed2a2e873d17b43f4191d92be59e0918d1b9c230bbccc86d" CHECKSUMTYPE="SHA-256" CREATED="2015-11-09T17:02:33" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" ID="MP120B04D1FC" MIMETYPE="application/msword" OWNERID="MP120B04D1FC" SIZE="489060">
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty/soubor1.doc" xlink:type="simple"/>
+      </mets:file>
+    </mets:fileGrp>
+  </mets:fileSec>
   <mets:structMap>
-    <mets:div DMDID="MP12P00BTZ3Z_Gordic.Ginis.V.S.2005" TYPE="spisový plán">
-      <mets:div DMDID="MP12P00BTZ3Z_Gordic.Ginis.V.S.2005-087.1" TYPE="věcná skupina">
-        <mets:div DMDID="MP12P00BTZ3Z" TYPE="dokument">
-				</mets:div>
+    <mets:div ADMID="amd001" DMDID="MP12P00BTZ3Z_Gordic.Ginis.V.S.2005" TYPE="spisový plán">
+      <mets:div ADMID="amd002" DMDID="MP12P00BTZ3Z_Gordic.Ginis.V.S.2005-087.1" TYPE="věcná skupina">
+        <mets:div ADMID="amd003" DMDID="MP12P00BTZ3Z" TYPE="dokument">
+          <mets:div ADMID="amd004" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" TYPE="komponenta">
+            <mets:fptr FILEID="MP120B04D1FC"/>
+          </mets:div>
+        </mets:div>
       </mets:div>
     </mets:div>
   </mets:structMap>

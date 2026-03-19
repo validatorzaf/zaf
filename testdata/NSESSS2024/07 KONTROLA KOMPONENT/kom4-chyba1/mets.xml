@@ -30,9 +30,14 @@
                 <nsesss:BezpecnostniStupen>Dokument ke zveřejnění</nsesss:BezpecnostniStupen>
               </nsesss:BezpecnostniKategorie>
             </nsesss:Pristupnost>
-            <nsesss:Neevidence>
-              <nsesss:Oduvodneni>Dokumentu nebylo přiděleno evidenční číslo</nsesss:Oduvodneni>
-            </nsesss:Neevidence>
+            <nsesss:Evidence>
+                <nsesss:EvidencniCislo>č.j.DDFN-305/2012</nsesss:EvidencniCislo>
+                <nsesss:PoradoveCislo>305</nsesss:PoradoveCislo>
+                <nsesss:UrceneCasoveObdobi>
+                    <nsesss:Rok>2012</nsesss:Rok>
+                </nsesss:UrceneCasoveObdobi>
+              <nsesss:NazevEvidenceDokumentu>ERMS</nsesss:NazevEvidenceDokumentu>
+            </nsesss:Evidence>
             <nsesss:Jazyky>
               <nsesss:Jazyk>cze</nsesss:Jazyk>
             </nsesss:Jazyky>
@@ -384,10 +389,10 @@
   <mets:fileSec>
     <mets:fileGrp>
       <mets:file CHECKSUM="9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08" CHECKSUMTYPE="SHA-256" CREATED="2015-11-09T17:02:33" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" ID="MP120B04D1FC" MIMETYPE="text/plain" OWNERID="MP120B04D1FC" SIZE="4">
-        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\soubor.txt" xlink:type="simple"/>
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty/soubor.txt" xlink:type="simple"/>
       </mets:file>
       <mets:file CHECKSUM="48c05aceba6e2ae7444817e876647db3b5cdd5958f06f92bb002c1190fae54e0" CHECKSUMTYPE="SHA-256" CREATED="2015-11-09T17:02:33" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FD" ID="MP120B04D1FD" MIMETYPE="application/pdf" OWNERID="MP120B04D1FD" SIZE="6791">
-        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\soubor.pdf" xlink:type="simple"/>
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty/soubor.pdf" xlink:type="simple"/>
       </mets:file>
     </mets:fileGrp>
   </mets:fileSec>

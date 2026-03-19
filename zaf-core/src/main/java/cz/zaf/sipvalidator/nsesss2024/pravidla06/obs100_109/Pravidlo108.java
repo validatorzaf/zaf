@@ -16,7 +16,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 public class Pravidlo108 extends K06PravidloBase {
 

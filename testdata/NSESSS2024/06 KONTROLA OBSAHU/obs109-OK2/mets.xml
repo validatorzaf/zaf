@@ -99,7 +99,6 @@
                       <nsesss:SkartacniRezim>
                         <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.ISR">2005/087.1</nsesss:Identifikator>
                         <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
-                        
                         <nsesss:Oduvodneni>Vyplývá ze spisového plánu organizace</nsesss:Oduvodneni>
                         <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
                         <nsesss:SkartacniLhuta>1</nsesss:SkartacniLhuta>
@@ -107,7 +106,7 @@
                       </nsesss:SkartacniRezim>
                     </nsesss:Vyrazovani>
                     <nsesss:Manipulace>
-                      <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+                      <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
                       <nsesss:DatumOtevreni datum="2008-03-20T00:00:00.000+01:00">2008-03-20</nsesss:DatumOtevreni>
                       <nsesss:DatumUzavreni datum="2999-01-01T00:00:00.000+01:00">2999-01-01</nsesss:DatumUzavreni>
                     </nsesss:Manipulace>
@@ -148,7 +147,6 @@
                 </nsesss:Schvaleni>
               </nsesss:Schvalovani>
               <nsesss:DatumOdeslani datum="2012-01-25T09:51:20.000+01:00">2012-01-25</nsesss:DatumOdeslani>
-              <nsesss:OdeslaneMnozstvi>2 listy</nsesss:OdeslaneMnozstvi>
               <nsesss:Prijemce>
                 <nsesss:Subjekt>
                   <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.SE">MP12SE03079T</nsesss:IdentifikatorOrganizace>
@@ -162,7 +160,6 @@
               <nsesss:SkartacniRezim>
                 <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.ISR">2005/087.1</nsesss:Identifikator>
                 <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
-                
                 <nsesss:Oduvodneni>Vyplývá ze spisového plánu organizace</nsesss:Oduvodneni>
                 <nsesss:SkartacniZnak>S</nsesss:SkartacniZnak>
                 <nsesss:SkartacniLhuta>1</nsesss:SkartacniLhuta>
@@ -190,7 +187,7 @@
               </nsesss:SkartacniRizeni>
             </nsesss:Vyrazovani>
             <nsesss:Manipulace>
-              <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
+              <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
               <nsesss:SpravceSpisovny>
                 <nsesss:Subjekt>
                   <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.SE">MP12SE00A013</nsesss:IdentifikatorOrganizace>
@@ -199,11 +196,10 @@
                   <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
                 </nsesss:Subjekt>
               </nsesss:SpravceSpisovny>
-              <nsesss:UkladaciJednotka>karton č. 5</nsesss:UkladaciJednotka>
             </nsesss:Manipulace>
           </nsesss:EvidencniUdaje>
           <nsesss:Komponenty>
-            <nsesss:Komponenta ID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" druh="průvodní dopis" forma_uchovani="originál" poradi="1" verze="1">
+            <nsesss:Komponenta ID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" druh="průvodní dopis" forma_uchovani="kontejner" poradi="1" verze="1">
               <nsesss:EvidencniUdaje>
                 <nsesss:Identifikace>
                   <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.E">MP120B04D1FC</nsesss:Identifikator>
@@ -339,11 +335,19 @@
       </mets:mdWrap>
     </mets:digiprovMD>
   </mets:amdSec>
+  <mets:fileSec>
+    <mets:fileGrp>
+      <mets:file CHECKSUM="b9a6111074193733ed2a2e873d17b43f4191d92be59e0918d1b9c230bbccc86d" CHECKSUMTYPE="SHA-256" CREATED="2015-11-09T17:02:33" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" ID="MP120B04D1FC" MIMETYPE="application/zip" OWNERID="MP120B04D1FC" SIZE="489060">
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty/soubor1.zip" xlink:type="simple"/>
+      </mets:file>
+    </mets:fileGrp>
+  </mets:fileSec>
   <mets:structMap>
     <mets:div ADMID="amd001" DMDID="MP12P00BTZ3Z_Gordic.Ginis.V.S.2005" TYPE="spisový plán">
       <mets:div ADMID="amd002" DMDID="MP12P00BTZ3Z_Gordic.Ginis.V.S.2005-087.1" TYPE="věcná skupina">
         <mets:div ADMID="amd003" DMDID="MP12P00BTZ3Z" TYPE="dokument">
           <mets:div ADMID="amd004" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" TYPE="komponenta">
+            <mets:fptr FILEID="MP120B04D1FC"/>
           </mets:div>
         </mets:div>
       </mets:div>

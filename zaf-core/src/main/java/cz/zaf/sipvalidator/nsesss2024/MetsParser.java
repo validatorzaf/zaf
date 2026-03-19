@@ -28,6 +28,7 @@ import cz.zaf.sipvalidator.nsesss.NamedNodeAggregator;
 import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
 import cz.zaf.sipvalidator.sip.SipInfo;
 import cz.zaf.sipvalidator.sip.SipInfo.SipType;
+import java.util.Collections;
 
 /**
  * METS parser
@@ -176,27 +177,33 @@ public class MetsParser {
             }
             sipInfo.setType(sipType);
 
-            dw.addAggregator(new NamedNodeAggregator(NsesssV4.IDENTIFIKATOR, nodeQueryCache));
-            dw.addAggregator(new NamedNodeAggregator(NsesssV4.SPISOVY_PLAN, nodeQueryCache));
-            dw.addAggregator(new NamedNodeAggregator(NsesssV4.VECNA_SKUPINA, nodeQueryCache));
-            dw.addAggregator(new NamedNodeAggregator(NsesssV4.TYPOVY_SPIS, nodeQueryCache));
-            dw.addAggregator(new NamedNodeAggregator(NsesssV4.DIL, nodeQueryCache));
-            dw.addAggregator(new NamedNodeAggregator(NsesssV4.SPIS, nodeQueryCache));
-            dw.addAggregator(new NamedNodeAggregator(NsesssV4.DOKUMENT, nodeQueryCache));
-            dw.addAggregator(new NamedNodeAggregator(NsesssV4.KOMPONENTA, nodeQueryCache));
-            dw.addAggregator(new NamedNodeAggregator(NsesssV4.SOUCAST, nodeQueryCache));
             dw.addAggregator(new NamedNodeAggregator(NsesssV4.CAS_OVERENI, nodeQueryCache));
             dw.addAggregator(new NamedNodeAggregator(NsesssV4.CAS_POUZITI, nodeQueryCache));
-            dw.addAggregator(new NamedNodeAggregator(NsesssV4.POSUZOVANY_OKAMZIK, nodeQueryCache));
-            dw.addAggregator(new NamedNodeAggregator(NsesssV4.PLATNOST, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(NsesssV4.DOKUMENT, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(NsesssV4.DIL, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(NsesssV4.IDENTIFIKATOR, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(NsesssV4.JAZYK, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(NsesssV4.KOMPONENTA, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(NsesssV4.KOMPONENTY, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(NsesssV4.MANIPULACE, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(NsesssV4.MATERSKA_ENTITA, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(NsesssV4.MATERSKE_ENTITY, nodeQueryCache));
+            
             dw.addAggregator(new NamedNodeAggregator(NsesssV4.NAZEV, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(NsesssV4.PLATNOST, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(NsesssV4.PLNE_URCENY_SPISOVY_ZNAK, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(NsesssV4.POSUZOVANY_OKAMZIK, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(NsesssV4.SKARTACNI_RIZENI, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(NsesssV4.SOUCAST, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(NsesssV4.SPIS, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(NsesssV4.SPISOVY_PLAN, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(NsesssV4.TYPOVY_SPIS, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(NsesssV4.URCENE_CASOVE_OBDOBI, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(NsesssV4.URCENO_PRO_TYPOVE_SPISY, nodeQueryCache));
+            dw.addAggregator(new NamedNodeAggregator(NsesssV4.VECNA_SKUPINA, nodeQueryCache));
             dw.addAggregator(new NamedNodeAggregator(NsesssV4.VYRIZENI, nodeQueryCache));
             dw.addAggregator(new NamedNodeAggregator(NsesssV4.VYRIZENI_UZAVRENI, nodeQueryCache));
-            dw.addAggregator(new NamedNodeAggregator(NsesssV4.SKARTACNI_RIZENI, nodeQueryCache));
-            dw.addAggregator(new NamedNodeAggregator(NsesssV4.JAZYK, nodeQueryCache));
-            dw.addAggregator(new NamedNodeAggregator(NsesssV4.MANIPULACE, nodeQueryCache));
-            dw.addAggregator(new NamedNodeAggregator(NsesssV4.URCENE_CASOVE_OBDOBI, nodeQueryCache));
-            dw.addAggregator(new NamedNodeAggregator(NsesssV4.PLNE_URCENY_SPISOVY_ZNAK, nodeQueryCache));
+
             // pevne krizove odkazy
             dw.addAggregator(new NodeAggregator() {
                 List<Element> nodes = new ArrayList<>();
@@ -272,6 +279,7 @@ public class MetsParser {
     public List<Element> getNodes(String nodeName) {
         List<Element> nodes = this.nodeQueryCache.get(nodeName);
         if (nodes == null) {
+//            return Collections.emptyList();
             throw new RuntimeException("Element pro vyhodnocení pravidla není načten z důvodu jiné chyby, název elementu: " + nodeName);
         }
         return nodes;
@@ -284,6 +292,19 @@ public class MetsParser {
 
     public List<Element> getDokumenty() {
         return getNodes(NsesssV4.DOKUMENT);
+    }
+    
+    public List<Element> getSpisy() {
+        return getNodes(NsesssV4.SPIS);
+    }
+    
+    public List<Element> getEntity(String... entity) {
+        List<Element> list = new ArrayList<>();
+        for(String entita : entity){
+            List<Element> listEntit = getNodes(entita);
+            list.addAll(listEntit);
+        }
+        return list;
     }
 
     public List<Element> getNazvy() {

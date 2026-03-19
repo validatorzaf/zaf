@@ -173,7 +173,7 @@
                 <nsesss:RokSkartacniOperace>2014</nsesss:RokSkartacniOperace>
               </nsesss:DataceVyrazeni>
               <nsesss:SkartacniRizeni>
-                <nsesss:Datum datum="2023-01-01T00:00:00.000">2023-01-01</nsesss:Datum>
+                <nsesss:Datum datum="2023-01-01T00:00:00.000">2100-01-01</nsesss:Datum>
                 <nsesss:Mnozstvi>12 balíků</nsesss:Mnozstvi>
                 <nsesss:SkartacniOperace>trvalé uložení</nsesss:SkartacniOperace>
                 <nsesss:Posuzovatel>

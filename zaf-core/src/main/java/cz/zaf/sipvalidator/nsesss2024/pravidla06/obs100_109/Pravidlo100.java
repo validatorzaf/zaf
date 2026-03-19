@@ -11,10 +11,10 @@ import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
-import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.K06_Obsahova;
+import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
+import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 //
 // Obsahova 100
@@ -41,7 +41,7 @@ public class Pravidlo100 extends K06PravidloBase {
     @Override
     protected void kontrola() {
         // získání všech komponent ve výstupním datovém formátu
-        List<Element> komponenty = metsParser.getNodes(NsesssV3.KOMPONENTA);
+        List<Element> komponenty = metsParser.getNodes(NsesssV4.KOMPONENTA);
         if (CollectionUtils.isEmpty(komponenty)) {
             return;
         }

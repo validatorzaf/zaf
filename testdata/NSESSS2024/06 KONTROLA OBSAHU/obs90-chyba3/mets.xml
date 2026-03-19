@@ -92,7 +92,7 @@
                               <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
                               <nsesss:DatumOtevreni>2012-01-01</nsesss:DatumOtevreni>
                             </nsesss:Manipulace>
-							<nsesss:UrcenoProTypoveSpisy>ano</nsesss:UrcenoProTypoveSpisy>
+                            <nsesss:UrcenoProTypoveSpisy>ano</nsesss:UrcenoProTypoveSpisy>
                           </nsesss:EvidencniUdaje>
                         </nsesss:VecnaSkupina>
                       </nsesss:MaterskaEntita>

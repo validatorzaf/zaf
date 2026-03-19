@@ -15,11 +15,11 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.sipvalidator.nsesss2017.JmenaElementu;
-import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
-import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
-import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
+import cz.zaf.sipvalidator.nsesss2024.JmenaElementu;
+import cz.zaf.sipvalidator.nsesss2024.K06_Obsahova;
+import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
+import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 //
 // Pokud jakýkoli element <nsesss:Dokument> obsahuje v hierarchii dětských
@@ -49,7 +49,7 @@ public class Pravidlo103 extends K06PravidloBase {
 
         List<Element> dokumentNodes = metsParser.getDokumenty();
         for (Element dokumentNode : dokumentNodes) {
-            Node analogDokNode = ValuesGetter.getXChild(dokumentNode, NsesssV3.EVIDENCNI_UDAJE,
+            Node analogDokNode = ValuesGetter.getXChild(dokumentNode, NsesssV4.EVIDENCNI_UDAJE,
                                                         "nsesss:Manipulace",
                                                         "nsesss:AnalogovyDokument");
             if (analogDokNode != null) {
@@ -61,7 +61,7 @@ public class Pravidlo103 extends K06PravidloBase {
         }
 
         // Zjisteni seznamu komponent ciste digitalnich dokumentu
-        List<Element> komponenty = metsParser.getNodes(NsesssV3.KOMPONENTA);
+        List<Element> komponenty = metsParser.getNodes(NsesssV4.KOMPONENTA);
         if (CollectionUtils.isEmpty(komponenty)) {
             return;
         }

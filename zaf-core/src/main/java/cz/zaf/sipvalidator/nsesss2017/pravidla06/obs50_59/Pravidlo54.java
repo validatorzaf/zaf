@@ -43,7 +43,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06PravidloBase;
 // uvedena v sekci structMap právě jednou
 // (atribut DMDID obsahuje ID libovolného výskytu příslušné
 // entity/objektu).
-//
+
 public class Pravidlo54 extends K06PravidloBase {
 
     static final public String OBS54 = "obs54";

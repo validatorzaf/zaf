@@ -387,10 +387,10 @@ základní entita vyřízena/uzavřena do 31. 7. 2012
   <mets:fileSec>
     <mets:fileGrp>
       <mets:file CHECKSUM="9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08" CHECKSUMTYPE="SHA-256" CREATED="2015-11-09T17:02:33" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" ID="MP120B04D1FC" MIMETYPE="text/plain" OWNERID="MP120B04D1FC" SIZE="4">
-        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\soubor.txt" xlink:type="simple"/>
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty/soubor.txt" xlink:type="simple"/>
       </mets:file>
       <mets:file CHECKSUM="441DA9AF48DF93EDB4DB435217D0A68C759AD38072BFF87D9F910B7511F1E0BF" CHECKSUMTYPE="SHA-256" CREATED="2015-11-09T17:02:33" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FD" ID="MP120B04D1FD" MIMETYPE="application/pdf" OWNERID="MP120B04D1FD" SIZE="489194">
-        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\soubor.pdf" xlink:type="simple"/>
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty/soubor.pdf" xlink:type="simple"/>
       </mets:file>
     </mets:fileGrp>
   </mets:fileSec>

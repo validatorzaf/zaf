@@ -116,7 +116,7 @@
               </nsesss:MaterskeEntity>
             </nsesss:Trideni>
             <nsesss:Vyrizeni>
-              <nsesss:Datum datum="2012-10-10T00:00:00.000+01:00">2012-10-10</nsesss:Datum>
+              <nsesss:Datum datum="2011-10-10T00:00:00.000+01:00">2011-10-10</nsesss:Datum>
               <nsesss:Zpusob>vzetí na vědomí</nsesss:Zpusob>
               <nsesss:ObsahVyrizeni>, Vyřízeno vzetím na vědomí.</nsesss:ObsahVyrizeni>
               <nsesss:Oduvodneni>Vyřízeno vzetím na vědomí</nsesss:Oduvodneni>
@@ -340,7 +340,7 @@
   <mets:fileSec>
     <mets:fileGrp>
       <mets:file CHECKSUM="84d8ab6ea4e6d5ca792697f0ce2e2104f6eec001c26d82c4d248e19d629a1f77680efe40c2c7f14551675f5efeec6e19adda0c274693ffa653600657cb12c5ed" CHECKSUMTYPE="SHA-512" CREATED="2010-06-03T11:23:22" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" ID="MP120B04D1FC" MIMETYPE="application/msword" OWNERID="MP120B04D1FC" SIZE="22016">
-        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\MHMP0B02WXPJ_MHMPAWXZWQZ5" xlink:type="simple"/>
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty/MHMP0B02WXPJ_MHMPAWXZWQZ5" xlink:type="simple"/>
       </mets:file>
     </mets:fileGrp>
   </mets:fileSec>
