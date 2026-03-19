@@ -65,9 +65,11 @@ public class Rule12 extends EadRule {
 								throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt.", ctx.formatEadPosition(name));
 							}
 							found = name;
+							ctx.markValidatedAttribute(name, "localtype");
+							ctx.markValidatedElement(p);
 						}
-					} 
-					
+					}
+
 				}
 			}
 		}
@@ -83,7 +85,9 @@ public class Rule12 extends EadRule {
 			throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt.", ctx.formatEadPosition(parts.get(1)));
 		}
 		Part part = parts.get(0);
-		
+		ctx.markValidatedElement(part);
+		ctx.markValidatedContent(part);
+
 		// Kontrola obsahu part
 		List<Serializable> partContentList = part.getContent();
 		if(partContentList.size()!=1) {

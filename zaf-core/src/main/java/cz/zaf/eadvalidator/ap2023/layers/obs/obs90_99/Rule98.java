@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -38,33 +39,30 @@ public class Rule98 extends EadRule {
     @Override
     protected void evalImpl() {
         Document doc = ctx.getDocument();
+        var ead = ctx.getEad();
+        
+        List<Element> rootInheritedElements = findInheritableElementsWithAltrender(doc.getDocumentElement());
+        if(CollectionUtils.isNotEmpty(rootInheritedElements)) {
+            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
+                    "Na kořeni archivního popisu nemohou být elementy s nastaveným atributem altrender.",
+                    formatDomPosition(rootInheritedElements.get(0)));        	
+        }
 
         ctx.getEadLevelIterator().iterate((c, parent) -> {
-            String cId = c.getId();
-            if (cId == null) {
-                return;
-            }
-            Element cDom = findCElement(doc, cId);
-            if (cDom == null) {
-                return;
+            Element cDom = ctx.getDOMElement(c);
+
+            // Find elements with altrender attribute in this C (not descending into nested C elements)
+            List<Element> inheritedElements = findInheritableElementsWithAltrender(cDom);
+            if(CollectionUtils.isEmpty(inheritedElements)) {
+            	return;
             }
 
             Element parentDom;
             if (parent != null) {
-                String parentId = parent.getId();
-                if (parentId == null) {
-                    return;
-                }
-                parentDom = findCElement(doc, parentId);
+            	parentDom = ctx.getDOMElement(parent);
             } else {
-                parentDom = findArchdescElement(doc);
+                parentDom = ctx.getDOMElement(ead.getArchdesc());
             }
-            if (parentDom == null) {
-                return;
-            }
-
-            // Find elements with altrender attribute in this C (not descending into nested C elements)
-            List<Element> inheritedElements = findInheritableElementsWithAltrender(cDom);
 
             for (Element elem : inheritedElements) {
                 String altrender = elem.getAttribute("altrender");
@@ -73,6 +71,8 @@ public class Rule98 extends EadRule {
                             "Atribut altrender obsahuje nepovolenou hodnotu: " + altrender + ".",
                             formatDomPosition(elem));
                 }
+                // mark attribute as validated
+                ctx.markValidatedAttributeDom(elem, "altrender");
 
                 // Find candidate elements with the same local name in the parent
                 List<Element> candidates = findInheritableElements(parentDom, elem.getLocalName());
@@ -94,31 +94,6 @@ public class Rule98 extends EadRule {
                 }
             }
         });
-    }
-
-    /**
-     * Find a C element in the DOM by its id attribute.
-     */
-    private Element findCElement(Document doc, String id) {
-        NodeList elements = doc.getDocumentElement().getElementsByTagNameNS(EadNS.NS_EADS, "c");
-        for (int i = 0; i < elements.getLength(); i++) {
-            Element elem = (Element) elements.item(i);
-            if (id.equals(elem.getAttribute("id"))) {
-                return elem;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Find the archdesc element in the DOM.
-     */
-    private Element findArchdescElement(Document doc) {
-        NodeList elements = doc.getDocumentElement().getElementsByTagNameNS(EadNS.NS_EADS, "archdesc");
-        if (elements.getLength() > 0) {
-            return (Element) elements.item(0);
-        }
-        return null;
     }
 
     /**

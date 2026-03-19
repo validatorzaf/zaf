@@ -37,6 +37,8 @@ public class Rule24 extends EadRule {
                     throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut identifier obsahuje nepovolenou hodnotu: " + identifier + ".", ctx.formatEadPosition(term));
                 }
                 profile = identifier;
+                ctx.markValidatedAttribute(localcontrol, "localtype");
+                ctx.markValidatedAttribute(term, "identifier");
             }
             if ("FINDING_AID_TYPE".equals(localtype)) {
                 if(term==null) {
@@ -47,6 +49,8 @@ public class Rule24 extends EadRule {
                     throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut identifier obsahuje nepovolenou hodnotu: " + identifier + ".", ctx.formatEadPosition(term));
                 }
                 type = identifier;
+                ctx.markValidatedAttribute(localcontrol, "localtype");
+                ctx.markValidatedAttribute(term, "identifier");
             }
         }
 

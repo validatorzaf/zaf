@@ -36,6 +36,8 @@ public class Rule03 extends EadRule {
 		if(StringUtils.isEmpty(value)) {
 			throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Nenalezen platný atribut xmlns:cam");
 		}
+		
+		ctx.markValidatedAttributeDom(eadRoot, "xmlns:cam");
 
 		// For profile CZ_EAD3_PROFILE_20260501 and newer, allow both CAM v1 and v2
 		String profileIdentifier = findProfileIdentifier(eadRoot);

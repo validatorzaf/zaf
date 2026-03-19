@@ -35,5 +35,7 @@ public class Rule21 extends EadRule {
         if ((!StringUtils.isNumeric(content)) || (content.length() != 9)) {
                 throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element agencycode obsahuje nesprávnou hodnotu: " + content + ".", ctx.formatEadPosition(agencycode));
         }
+        ctx.markValidatedAttribute(agencycode, "localtype");
+        ctx.markValidatedContent(agencycode);
     }
 }

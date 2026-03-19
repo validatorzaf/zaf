@@ -43,6 +43,8 @@ public class Rule03 extends EadRule {
                 continue;
             }
             if (Ap2023Constants.LOCALTYPE_INTERNAL_REV_ID.equals(otherId.getLocaltype())) {
+                ctx.markValidatedAttribute(otherId, "localtype");
+                ctx.markValidatedContent(otherId);
                 // kontrola hodnoty
                 String content = otherId.getContent();
                 if (StringUtils.isBlank(content)) {

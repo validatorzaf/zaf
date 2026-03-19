@@ -65,6 +65,9 @@ public class Rule104 extends EadRule {
                 if (descriptivenote == null) {
                     throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen požadovaný element descriptivenote.", ctx.formatEadPosition(relation));
                 }
+                ctx.markValidatedElement(relationentry);
+                ctx.markValidatedContent(relationentry);
+                ctx.markValidatedElement(descriptivenote);
             }
         }
     }

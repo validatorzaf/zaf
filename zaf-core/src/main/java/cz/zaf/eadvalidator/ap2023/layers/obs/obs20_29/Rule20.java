@@ -36,5 +36,7 @@ public class Rule20 extends EadRule {
         if (!Ap2023Constants.LOCALTYPE_INSTITUTION_ID.equals(value)) {
             throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut localtype má chybnou hodnotu: " + value, ctx.formatEadPosition(agencycode));
         }
+        ctx.markValidatedElement(agencycode);
+        ctx.markValidatedAttribute(agencycode, "localtype");
     }
 }

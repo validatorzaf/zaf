@@ -51,6 +51,10 @@ public class Rule70 extends EadRule {
                         if (!"internal".equals(atrAudience)) {
                             throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Chybná hodnota atributu audience: " + atrAudience + ".", ctx.formatEadPosition(didNote));
                         }
+                        ctx.markValidatedAttributeOnly(didNote, "localtype");
+                        ctx.markValidatedAttributeOnly(didNote, "audience");
+                        ctx.markValidatedElement(didNote);
+                        ctx.markValidatedContent(didNote);
                     }
                 }
             }

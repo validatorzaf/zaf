@@ -32,6 +32,7 @@ public class Rule64 extends EadRule {
     private void validate(List<Object> childList) {
         for (Object child : childList) {
             if (child instanceof Accruals mainElement) {
+                ctx.markValidatedElement(mainElement);
                 List<Object> cHistChilds = mainElement.getChronlistOrListOrTable();
                 checkSingleElementP(cHistChilds, mainElement);
             }

@@ -71,6 +71,8 @@ public class Rule51 extends EadRule {
             }
 
             Unitid unitid = refUnitids.get(0);
+            ctx.markValidatedAttribute(unitid, "localtype");
+            ctx.markValidatedContent(unitid);
             String ref = getUnitidTextContent(unitid);
             if (ref == null) {
                 throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU,

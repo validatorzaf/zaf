@@ -39,10 +39,10 @@ public class Rule37a extends EadRule {
         if (!isValidUUID(id)) {
             throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Neodpovídající hodnota atributu id: " + id + ".", ctx.formatEadPosition(parent));
         }
-
+        ctx.markValidatedAttribute(parent, "id");
     }
 
-    private boolean isValidUUID(String id) {
+    public static boolean isValidUUID(String id) {
         if (StringUtils.isBlank(id)) {
             return false;
         }

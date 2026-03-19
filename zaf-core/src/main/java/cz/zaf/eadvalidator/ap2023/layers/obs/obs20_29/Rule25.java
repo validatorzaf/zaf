@@ -38,6 +38,8 @@ public class Rule25 extends EadRule {
         for(ProfileRevision value: ProfileRevision.values()) {
         	if(value.name().equals(identifier)) {
 				ctx.setProfileRevision(value);
+				ctx.markValidatedAttribute(localControl, "localtype");
+				ctx.markValidatedAttribute(term, "identifier");
 				return;
 			}
         }

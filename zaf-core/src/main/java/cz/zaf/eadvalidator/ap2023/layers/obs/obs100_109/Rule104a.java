@@ -55,6 +55,8 @@ public class Rule104a extends EadRule {
                         if (StringUtils.isBlank(content)) {
                             throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Nenalezena hodnota elementu relationentry.", ctx.formatEadPosition(re));
                         }
+                        ctx.markValidatedElement(re);
+                        ctx.markValidatedContent(re);
                     }
                 }
             }

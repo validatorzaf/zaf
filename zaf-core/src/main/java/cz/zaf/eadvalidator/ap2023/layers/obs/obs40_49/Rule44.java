@@ -38,6 +38,7 @@ public class Rule44 extends EadRule {
                 if (!StringUtils.equals("FINDING_AID_INTRO", localtype)) {
                     throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Nepovolená hodnota atributu localtype: " + localtype + ".", ctx.formatEadPosition(odd));
                 }
+                ctx.markValidatedAttribute(odd, "localtype");
                 List<Object> chronlistOrListOrTable = odd.getChronlistOrListOrTable();
                 P pFound = null;
                 for (Object child : chronlistOrListOrTable) {
@@ -46,6 +47,8 @@ public class Rule44 extends EadRule {
                             throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element p.", ctx.formatEadPosition(p));
                         }
                         pFound = p;
+                        ctx.markValidatedElement(p);
+                        ctx.markValidatedContent(p);
                         validateContent(p);
                     }
                 }

@@ -43,6 +43,8 @@ public abstract class EadRule extends BaseRule<EadValidationContext> {
     }
 
     public P validateP(P p) {
+        ctx.markValidatedElement(p);
+        ctx.markValidatedContent(p);
         // Kontrola obsahu p
         List<Serializable> pContentList = p.getContent();
         if (pContentList.size() != 1) {

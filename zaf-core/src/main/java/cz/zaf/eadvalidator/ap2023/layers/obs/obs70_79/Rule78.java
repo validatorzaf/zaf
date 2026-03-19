@@ -73,6 +73,13 @@ public class Rule78 extends EadRule {
                     } catch (NumberFormatException nfe) {
                         throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity obsajuje neočekávanou hodnotu: " + contentQuantity + ".", ctx.formatEadPosition(quantity));
                     }
+                    ctx.markValidatedAttribute(physdescstructured, "physdescstructuredtype");
+                    ctx.markValidatedAttributeOnly(physdescstructured, "otherphysdescstructuredtype");
+                    ctx.markValidatedAttributeOnly(physdescstructured, "coverage");
+                    ctx.markValidatedElement(unittype);
+                    ctx.markValidatedContent(unittype);
+                    ctx.markValidatedElement(quantity);
+                    ctx.markValidatedContent(quantity);
                 }
             }
         }

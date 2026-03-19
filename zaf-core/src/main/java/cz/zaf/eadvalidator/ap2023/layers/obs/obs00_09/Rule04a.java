@@ -28,7 +28,7 @@ public class Rule04a extends EadRule {
 	protected void evalImpl() {
 		Ead ead = ctx.getEad();
 		// must exist / ze schematu
-		Titlestmt titleStmt = ead.getControl().getFiledesc().getTitlestmt();
+		Titlestmt titleStmt = ead.getControl().getFiledesc().getTitlestmt();		
 		List<Titleproper> titlepropes = titleStmt.getTitleproper();
 		if(CollectionUtils.isEmpty(titlepropes)) {
 			throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybi element titleproper.", ctx.formatEadPosition(titleStmt));
@@ -36,7 +36,10 @@ public class Rule04a extends EadRule {
 		if(titlepropes.size()>1) {
 			throw new ZafException(BaseCode.DUPLICITA, "Opakování elementů titleproper.", ctx.formatEadPosition(titlepropes.get(1)));
 		}
+		ctx.markValidatedElement(titleStmt);
 		Titleproper titleproper = titlepropes.get(0);
+		ctx.markValidatedElement(titleproper);
+		ctx.markValidatedContent(titleproper);
 		List<Serializable> content = titleproper.getContent();
 		if(CollectionUtils.isEmpty(content)) {
 			throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybi hodnota elementu titleproper.", ctx.formatEadPosition(titleproper));

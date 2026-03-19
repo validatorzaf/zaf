@@ -43,6 +43,7 @@ public class Rule13 extends EadRule {
         for (Object obj : publisherOrDateOrAddress) {
             if (obj instanceof P p) {
                 if (isWanted(p)) {
+                	ctx.markValidatedElement(p);
                     return;
                 }
             }
@@ -60,21 +61,25 @@ public class Rule13 extends EadRule {
                 if (obj instanceof Persname persname) {
 					String localtype = persname.getLocaltype();
 					if (StringUtils.equals("ORIGINATOR", localtype)) {
+						ctx.markValidatedAttribute(persname, "localtype");
 						return true;
 					}
 				} else if (obj instanceof Famname famname) {
 					String localtype = famname.getLocaltype();
 					if (StringUtils.equals("ORIGINATOR", localtype)) {
+						ctx.markValidatedAttribute(famname, "localtype");
 						return true;
 					}
 				} else if (obj instanceof Corpname corpname) {
 					String localtype = corpname.getLocaltype();
 					if (StringUtils.equals("ORIGINATOR", localtype)) {
+						ctx.markValidatedAttribute(corpname, "localtype");
 						return true;
 					}
 				} else if (obj instanceof Name name) {
                     String localtype = name.getLocaltype();
                     if (StringUtils.equals("ORIGINATOR", localtype)) {
+                        ctx.markValidatedAttribute(name, "localtype");
                         return true;
                     }
                 }

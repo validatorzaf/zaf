@@ -38,6 +38,8 @@ public class Rule49 extends EadRule {
         List<Object> list = did.getMDid();
         for (Object object : list) {
             if (object instanceof Container container) {
+                ctx.markValidatedElement(container);
+                ctx.markValidatedContent(container);
                 validateContent(container);
             }
         }

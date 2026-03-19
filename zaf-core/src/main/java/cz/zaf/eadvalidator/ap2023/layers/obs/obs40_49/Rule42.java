@@ -129,11 +129,17 @@ public class Rule42 extends EadRule {
                 String audience = unittitle.getAudience();
                 String lang = unittitle.getLang();
                 siblingsList.add(new ComparedObect("unittitle", audience, lang, unittitle));
-            }
+                if(audience!=null) {
+                	ctx.markValidatedAttributeOnly(unittitle, "audience");
+                }
+            } else
             if (object instanceof Didnote didnote) {
                 String audience = didnote.getAudience();
                 String lang = didnote.getLang();
                 siblingsList.add(new ComparedObect("didnote", audience, lang, didnote));
+                if(audience!=null) {
+                	ctx.markValidatedAttributeOnly(didnote, "audience");
+                }
             }
         }
     }

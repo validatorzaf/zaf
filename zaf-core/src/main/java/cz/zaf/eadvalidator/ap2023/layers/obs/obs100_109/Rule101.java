@@ -36,6 +36,8 @@ public class Rule101 extends EadRule {
     private void validate(List<Object> list) {
         for (Object mDescBaseObject : list) {
             if (mDescBaseObject instanceof Relations relations) {
+            	ctx.markValidatedElement(relations);
+            	
                 List<Relation> listRelation = relations.getRelation();
                 for (Relation relation : listRelation) {
                     String relationtype = relation.getRelationtype();
@@ -45,6 +47,9 @@ public class Rule101 extends EadRule {
                         if (StringUtils.isEmpty(linkrole) || StringUtils.isEmpty(linktitle)) {
                             throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Nenalezena požadovaná hodnota atributu linkrole a linktitle.", ctx.formatEadPosition(relation));
                         }
+                        ctx.markValidatedAttribute(relation, "relationtype");
+                        ctx.markValidatedAttributeOnly(relation, "linktitle");
+                        ctx.markValidatedAttributeOnly(relation, "linkrole");
                     }
                 }
             }

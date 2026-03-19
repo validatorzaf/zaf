@@ -87,11 +87,17 @@ public class Rule43 extends EadRule {
                 }
             }
             if (object instanceof Langmaterial langmaterial) {
+            	boolean existsLanguage = false;
                 List<Object> languageOrLanguageset = langmaterial.getLanguageOrLanguageset();
                 for (Object objLang : languageOrLanguageset) {
                     if (objLang instanceof Language language) {
                         validateLanguage(language);
+                        existsLanguage = true;
                     }
+                }
+                
+                if(existsLanguage) {
+                	ctx.markValidatedElement(langmaterial);
                 }
             }
         }
@@ -112,7 +118,7 @@ public class Rule43 extends EadRule {
         List<Languagedeclaration> languagedeclarationList = control.getLanguagedeclaration();
         for (Languagedeclaration languagedeclaration : languagedeclarationList) {
             Language language = languagedeclaration.getLanguage();
-            validateLanguage(language);
+            validateLanguage(language);            
         }
     }
 
@@ -124,6 +130,7 @@ public class Rule43 extends EadRule {
         if (languageName == null) {
             throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Chybná hodnota atributu lang: " + lang + ".", ctx.formatEadPosition(object));
         }
+        ctx.markValidatedAttributeOnly(object, "lang");
     }
 
     private void validateLanguage(Language language) {
@@ -140,6 +147,8 @@ public class Rule43 extends EadRule {
         if (!StringUtils.equals(languageContent, languageName)) {
             throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Chybná hodnota elementu language: " + languageContent + ".", ctx.formatEadPosition(language));
         }
+        ctx.markValidatedAttribute(language, "langcode");
+        ctx.markValidatedContent(language);
     }
 
 }

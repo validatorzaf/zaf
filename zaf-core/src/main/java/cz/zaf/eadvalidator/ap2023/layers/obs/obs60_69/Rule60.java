@@ -41,6 +41,7 @@ public class Rule60 extends EadRule {
                     //hlídá schéma
                     throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt elementu.", ctx.formatEadPosition(mainElement));
                 }
+                ctx.markValidatedElement(mainElement);
                 List<Object> cHistChilds = mainElement.getChronlistOrListOrTable();
                 //když chybí p = hlídá schéma
                 checkSingleElementP(cHistChilds, mainElement);

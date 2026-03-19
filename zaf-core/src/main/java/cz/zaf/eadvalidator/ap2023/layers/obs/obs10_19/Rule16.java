@@ -43,6 +43,8 @@ public class Rule16 extends EadRule {
                         if (contentObj instanceof Persname persname) {
                             String localtype = persname.getLocaltype();
                             if (StringUtils.equals("ARRANGER", localtype)) {
+                                ctx.markValidatedAttribute(persname, "localtype");
+                                ctx.markValidatedElement(p);
                                 validate(persname);
                             }
                         }
@@ -55,6 +57,7 @@ public class Rule16 extends EadRule {
     private void validate(Persname persname) {
         List<Part> listPart = persname.getPart();
         for (Part part : listPart) {
+            ctx.markValidatedElement(part);
             List<Serializable> content = part.getContent();
             Ref found = null;
             for (Object pCont : content) {
@@ -65,6 +68,7 @@ public class Rule16 extends EadRule {
                             throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element ref.", ctx.formatEadPosition(ref));
                         }
                         found = ref;
+                        ctx.markValidatedAttribute(ref, "target");
                         Object target = ref.getTarget();
                         if (target == null) {
                             throw new ZafException(BaseCode.CHYBNY_ATRIBUT, "Chybí odkaz atributu target.", ctx.formatEadPosition(ref));
@@ -89,6 +93,7 @@ public class Rule16 extends EadRule {
             if (StringUtils.isBlank(str)) {
                 throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Prázdná hodnota elementu.", ctx.formatEadPosition(ref));
             }
+            ctx.markValidatedContent(ref);
         } else {
             throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybný typ hodnoty v elementu.", ctx.formatEadPosition(ref));
         }

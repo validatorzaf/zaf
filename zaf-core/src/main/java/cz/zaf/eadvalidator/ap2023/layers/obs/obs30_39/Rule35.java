@@ -25,6 +25,7 @@ public class Rule35 extends EadRule {
         if (!StringUtils.equals("fonds", level)) {
             throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut level elementu archdesc není vyplněn.", ctx.formatEadPosition(archdesc));
         }
+        ctx.markValidatedAttribute(archdesc, "level");        
     }
 
 }

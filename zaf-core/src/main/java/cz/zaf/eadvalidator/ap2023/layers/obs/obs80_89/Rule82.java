@@ -78,6 +78,13 @@ public class Rule82 extends EadRule {
                         throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element unittype obsahuje nepovolenou hodnotu: " + contentUnitType + ".", ctx.formatEadPosition(unittype));
                     }
 
+                    ctx.markValidatedAttribute(physdescstructured, "physdescstructuredtype");
+                    ctx.markValidatedAttributeOnly(physdescstructured, "otherphysdescstructuredtype");
+                    ctx.markValidatedAttributeOnly(physdescstructured, "coverage");
+                    ctx.markValidatedElement(unittype);
+                    ctx.markValidatedContent(unittype);
+                    ctx.markValidatedElement(quantity);
+                    ctx.markValidatedContent(quantity);
                     if (root) {
                         if (rootValues.containsKey(contentUnitType)) {
                             throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element unittype obsahuje již zaznamenanou hodnotu.", ctx.formatEadPosition(unittype));

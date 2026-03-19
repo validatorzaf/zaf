@@ -34,6 +34,7 @@ public class Rule62 extends EadRule {
     private void validate(List<Object> childList) {
         for (Object child : childList) {
             if (child instanceof Scopecontent mainElement) {
+                ctx.markValidatedElement(mainElement);
                 List<Object> cHistChilds = mainElement.getChronlistOrListOrTable();
                 checkSingleElementP(cHistChilds, mainElement);
             }

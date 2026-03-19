@@ -28,5 +28,6 @@ public class Rule06 extends EadRule {
 		if(publStmt==null) {
 			throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybi element.", ctx.formatEadPosition(fileDesc));
 		}
+		ctx.markValidatedElement(publStmt);
 	}
 }

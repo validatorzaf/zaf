@@ -132,6 +132,13 @@ public class Rule79 extends EadRule {
                     if (root) {
                         descUnitCount = value;
                     }
+                    ctx.markValidatedAttribute(physdescstructured, "physdescstructuredtype");
+                    ctx.markValidatedAttributeOnly(physdescstructured, "otherphysdescstructuredtype");
+                    ctx.markValidatedAttributeOnly(physdescstructured, "coverage");
+                    ctx.markValidatedElement(unittype);
+                    ctx.markValidatedContent(unittype);
+                    ctx.markValidatedElement(quantity);
+                    ctx.markValidatedContent(quantity);
                 } catch (NumberFormatException e) {
                     throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
                             "Element quantity neobsahuje platné celé číslo: " + contentQuantity + ".",

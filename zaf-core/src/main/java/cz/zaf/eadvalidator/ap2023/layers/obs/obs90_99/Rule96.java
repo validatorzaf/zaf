@@ -44,6 +44,7 @@ public class Rule96 extends EadRule {
                 if (StringUtils.isBlank(identifier)) {
                     throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Hodnota atributu identifier elemetu dao není zadána.", ctx.formatEadPosition(dao));
                 }
+                ctx.markValidatedAttributeOnly(dao, "identifier");
             }
         }
     }

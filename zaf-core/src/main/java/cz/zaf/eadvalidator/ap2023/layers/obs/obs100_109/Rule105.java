@@ -62,6 +62,8 @@ public class Rule105 extends EadRule {
                 P p = pList.get(0);
                 //ptr nejde zavolat
                 validatePart(p);
+                ctx.markValidatedElement(descriptivenote);
+                ctx.markValidatedElement(p);
             }
         }
     }
@@ -84,6 +86,7 @@ public class Rule105 extends EadRule {
                     if (!(target instanceof Source source)) {
                         throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nenalezena očekávaná hodnota atributu target.", ctx.formatEadPosition(ptr));
                     }
+                    ctx.markValidatedAttribute(ptr, "target");
                 }
             }
         }

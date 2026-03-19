@@ -49,6 +49,8 @@ public class Rule07 extends EadRule {
 						throw new ZafException(BaseCode.DUPLICITA, "Duplicitní element.", ctx.formatEadPosition(date));
 					}
 					found = date;
+					ctx.markValidatedAttribute(date, "localtype");
+					ctx.markValidatedContent(date);
 					List<Serializable> content = date.getContent();
 					if(content.size()!=1) {
 						throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Chybná hodnota elementu.", ctx.formatEadPosition(date));

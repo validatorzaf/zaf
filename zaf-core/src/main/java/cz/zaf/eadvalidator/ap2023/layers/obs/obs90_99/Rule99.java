@@ -68,6 +68,7 @@ public class Rule99 extends EadRule {
                             "Nenalezen očekávaný element (persname, famname, corpname nebo name).",
                             ctx.formatEadPosition(origination));
                 }
+                ctx.markValidatedElement(origination);
             }
         }
     }
@@ -87,6 +88,9 @@ public class Rule99 extends EadRule {
         }
 
         validatePart(partList.get(0));
+        ctx.markValidatedAttribute(element, "localtype");
+        Part part = partList.get(0);
+        ctx.markValidatedElement(part);
     }
 
     private void validatePart(Part part) {
@@ -109,6 +113,7 @@ public class Rule99 extends EadRule {
                                 "Nenalezena očekávaná hodnota atributu target.",
                                 ctx.formatEadPosition(ref));
                     }
+                    ctx.markValidatedAttribute(ref, "target");
                 }
             }
         }

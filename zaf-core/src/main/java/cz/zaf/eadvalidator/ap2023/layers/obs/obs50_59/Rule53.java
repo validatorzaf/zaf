@@ -39,6 +39,8 @@ public class Rule53 extends EadRule {
             if (obj instanceof Unittitle unittitle) {
                 String localtype = unittitle.getLocaltype();
                 if (localtype == null) {
+                    ctx.markValidatedElement(unittitle);
+                    ctx.markValidatedContent(unittitle);
                     validateContent(unittitle);
                 }
             }

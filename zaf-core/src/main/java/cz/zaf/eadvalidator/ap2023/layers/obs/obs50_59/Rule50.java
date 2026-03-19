@@ -89,6 +89,8 @@ public class Rule50 extends EadRule {
                         throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut localtype obsahuje nepovolenou hodnotu: " + localtype + ".", ctx.formatEadPosition(unitid));
                     }
                 }
+                ctx.markValidatedAttribute(unitid, "localtype");
+                ctx.markValidatedAttributeOnly(unitid, "label");
             }
         }
     }

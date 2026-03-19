@@ -110,7 +110,13 @@ public class Rule83 extends EadRule {
                         if (!"1".equals(contentQuantity)) {
                             throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity neobsajuje očekávanou hodnotu 1.", ctx.formatEadPosition(quantity));
                         }
-                    }                    
+                    }
+                    ctx.markValidatedAttribute(physdescstructured, "physdescstructuredtype");
+                    ctx.markValidatedAttributeOnly(physdescstructured, "coverage");
+                    ctx.markValidatedElement(unittype);
+                    ctx.markValidatedContent(unittype);
+                    ctx.markValidatedElement(quantity);
+                    ctx.markValidatedContent(quantity);
                 }
             }
         }

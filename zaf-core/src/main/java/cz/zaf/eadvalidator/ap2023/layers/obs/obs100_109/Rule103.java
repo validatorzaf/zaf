@@ -138,6 +138,7 @@ public class Rule103 extends EadRule {
                 if (!StringUtils.equals(title, linktitle)) {
                     //může mít cokoli nezávisle na tabulce
                 }
+                ctx.markValidatedAttributeOnly(relation, "linkrole");
             }
         }
     }

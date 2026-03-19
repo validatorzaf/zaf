@@ -43,6 +43,7 @@ public class Rule15 extends EadRule {
                             String localtype = persname.getLocaltype();
                             if (StringUtils.equals("ARRANGER", localtype)) {
                                 found = persname;
+                                ctx.markValidatedElement(p);
                             }
                         }
                     }
@@ -52,6 +53,7 @@ public class Rule15 extends EadRule {
         if (found == null) {
             throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element se zpracovatelem.", ctx.formatEadPosition(publicationstmt));
         }
+        ctx.markValidatedAttribute(found, "localtype");
     }
 
 }

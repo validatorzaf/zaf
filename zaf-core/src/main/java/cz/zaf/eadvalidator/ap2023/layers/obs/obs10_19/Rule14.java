@@ -42,7 +42,7 @@ public class Rule14 extends EadRule {
         if (publicationstmt == null) {
 			return;
 		}
-        
+
         List<Object> publisherOrDateOrAddress = publicationstmt.getPublisherOrDateOrAddress();
         for (Object pobj : publisherOrDateOrAddress) {
             if (pobj instanceof P p) {
@@ -53,24 +53,32 @@ public class Rule14 extends EadRule {
                         if (contentObj instanceof Persname persname) {
                             String localtype = persname.getLocaltype();
                             if (Ap2023Constants.LOCALTYPE_ORIGINATOR.equals(localtype)) {
+                                ctx.markValidatedAttribute(persname, "localtype");
+                                ctx.markValidatedElement(p);
                                 validate(persname, persname.getPart());
                             }
                         } else
                         if (contentObj instanceof Famname famname) {
                             String localtype = famname.getLocaltype();
                             if (Ap2023Constants.LOCALTYPE_ORIGINATOR.equals(localtype)) {
+                                ctx.markValidatedAttribute(famname, "localtype");
+                                ctx.markValidatedElement(p);
                                 validate(famname, famname.getPart());
                             }
                         } else
                         if (contentObj instanceof Corpname corpname) {
                             String localtype = corpname.getLocaltype();
                             if (Ap2023Constants.LOCALTYPE_ORIGINATOR.equals(localtype)) {
+                                ctx.markValidatedAttribute(corpname, "localtype");
+                                ctx.markValidatedElement(p);
                                 validate(corpname, corpname.getPart());
                             }
                         } else
                         if (contentObj instanceof Name name) {
                             String localtype = name.getLocaltype();
                             if (Ap2023Constants.LOCALTYPE_ORIGINATOR.equals(localtype)) {
+                                ctx.markValidatedAttribute(name, "localtype");
+                                ctx.markValidatedElement(p);
                                 validate(name, name.getPart());
                             }
                         }
@@ -88,6 +96,7 @@ public class Rule14 extends EadRule {
             throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezeno více elementů Part.", ctx.formatEadPosition(parent));
         }
         for (Part part : listPart) {
+            ctx.markValidatedElement(part);
             List<Serializable> content = part.getContent();
             Ref found = null;
             for (Object pCont : content) {
@@ -98,6 +107,7 @@ public class Rule14 extends EadRule {
                             throw new ZafException(BaseCode.DUPLICITA, " ref.", ctx.formatEadPosition(ref));
                         }
                         found = ref;
+                        ctx.markValidatedAttribute(ref, "target");
                         Object target = ref.getTarget();
                         if (target == null) {
                             throw new ZafException(BaseCode.CHYBNY_ATRIBUT, "Chybí odkaz atributu target.", ctx.formatEadPosition(ref));

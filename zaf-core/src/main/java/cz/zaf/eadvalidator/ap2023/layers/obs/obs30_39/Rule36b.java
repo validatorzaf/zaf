@@ -47,10 +47,12 @@ public class Rule36b extends EadRule {
                 if (StringUtils.isBlank(encodinganalog)) {
                     throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí nebo je prázdný atribut encodinganalog.", ctx.formatEadPosition(fileplan));
                 }
+                ctx.markValidatedAttribute(fileplan, "encodinganalog");
                 Head head = fileplan.getHead();
                 if (head == null) {
                     throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybí element head.", ctx.formatEadPosition(fileplan));
                 }
+                ctx.markValidatedElement(head);
                 List<Object> chronlistOrListOrTable = fileplan.getChronlistOrListOrTable();
                 P oneP = null;
                 Chronlist oneChronlist = null;
@@ -86,15 +88,20 @@ public class Rule36b extends EadRule {
         if (chronitemList.size() != 1) {
             throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nalezen nepovolený element chronitem.", ctx.formatEadPosition(chronlist));
         }
+        ctx.markValidatedElement(chronlist);
         Chronitem chronitem = chronitemList.get(0);
+        ctx.markValidatedElement(chronitem);
         Daterange daterange = chronitem.getDaterange();
         if (daterange == null) {
             throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element daterange.", ctx.formatEadPosition(chronitem));
         }
+        ctx.markValidatedElement(daterange);
         Event event = chronitem.getEvent();
         if (event == null) {
             throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element event.", ctx.formatEadPosition(chronitem));
         }
+        ctx.markValidatedElement(event);
+        ctx.markValidatedContent(event);
         validateContent(event);
     }
 

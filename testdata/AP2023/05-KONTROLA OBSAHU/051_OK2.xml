@@ -110,7 +110,6 @@
 						<ead:unittype>lio</ead:unittype>
 						<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet>
 						<ead:physfacet localtype="MATERIAL">paper</ead:physfacet>
-						<ead:physfacet localtype="EXTRA_PART">ANALOG</ead:physfacet>
 					</ead:physdescstructured>
 					<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part">
 						<ead:quantity>1</ead:quantity>
@@ -122,14 +121,13 @@
 			<!-- obs51 OK: correct ordering with +/- extensions using / separator (series->series subseries): 1-1 < 1 < 1+1 < 2 -->
 
 			<!-- Subseries 1-1 -->
-			<ead:c id="uuid-b1b2c3d4-0001-0000-0000-000000000001" level="series" base="http://archiv.cz/dids/b1b2c3d4-0001-0000-0000-000000000001">
+			<ead:c level="series" base="http://archiv.cz/dids/b1b2c3d4-0001-0000-0000-000000000001">
 				<ead:did>
 					<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole">
 						<ead:quantity>1</ead:quantity>
 						<ead:unittype>lio</ead:unittype>
 						<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet>
 						<ead:physfacet localtype="MATERIAL">paper</ead:physfacet>
-						<ead:physfacet localtype="EXTRA_PART">ANALOG</ead:physfacet>
 					</ead:physdescstructured>
 					<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part">
 						<ead:quantity>1</ead:quantity>
@@ -138,14 +136,13 @@
 					<ead:unitid localtype="REFERENCNI_OZNACENI" label="referenční označení">CZ100000010//153//1/1-1</ead:unitid>
 				</ead:did>
 
-				<ead:c id="uuid-c1c2c3d4-0001-0000-0000-000000000001" level="item" base="http://archiv.cz/dids/c1c2c3d4-0001-0000-0000-000000000001">
+				<ead:c level="item" base="http://archiv.cz/dids/c1c2c3d4-0001-0000-0000-000000000001">
 					<ead:did>
 						<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole">
 							<ead:quantity>1</ead:quantity>
 							<ead:unittype>lio</ead:unittype>
 							<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet>
 							<ead:physfacet localtype="MATERIAL">paper</ead:physfacet>
-							<ead:physfacet localtype="EXTRA_PART">ANALOG</ead:physfacet>
 						</ead:physdescstructured>
 						<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part">
 							<ead:quantity>1</ead:quantity>
@@ -167,14 +164,13 @@
 			</ead:c>
 
 			<!-- Subseries 1 -->
-			<ead:c id="uuid-b1b2c3d4-0002-0000-0000-000000000002" level="series" base="http://archiv.cz/dids/b1b2c3d4-0002-0000-0000-000000000002">
+			<ead:c level="series" base="http://archiv.cz/dids/b1b2c3d4-0002-0000-0000-000000000002">
 				<ead:did>
 					<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole">
 						<ead:quantity>1</ead:quantity>
 						<ead:unittype>lio</ead:unittype>
 						<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet>
 						<ead:physfacet localtype="MATERIAL">paper</ead:physfacet>
-						<ead:physfacet localtype="EXTRA_PART">ANALOG</ead:physfacet>
 					</ead:physdescstructured>
 					<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part">
 						<ead:quantity>1</ead:quantity>
@@ -183,14 +179,13 @@
 					<ead:unitid localtype="REFERENCNI_OZNACENI" label="referenční označení">CZ100000010//153//1/1</ead:unitid>
 				</ead:did>
 
-				<ead:c id="uuid-c1c2c3d4-0002-0000-0000-000000000002" level="item" base="http://archiv.cz/dids/c1c2c3d4-0002-0000-0000-000000000002">
+				<ead:c level="item" base="http://archiv.cz/dids/c1c2c3d4-0002-0000-0000-000000000002">
 					<ead:did>
 						<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole">
 							<ead:quantity>1</ead:quantity>
 							<ead:unittype>lio</ead:unittype>
 							<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet>
 							<ead:physfacet localtype="MATERIAL">paper</ead:physfacet>
-							<ead:physfacet localtype="EXTRA_PART">ANALOG</ead:physfacet>
 						</ead:physdescstructured>
 						<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part">
 							<ead:quantity>1</ead:quantity>
@@ -212,14 +207,13 @@
 			</ead:c>
 
 			<!-- Subseries 1+1 -->
-			<ead:c id="uuid-b1b2c3d4-0003-0000-0000-000000000003" level="series" base="http://archiv.cz/dids/b1b2c3d4-0003-0000-0000-000000000003">
+			<ead:c level="series" base="http://archiv.cz/dids/b1b2c3d4-0003-0000-0000-000000000003">
 				<ead:did>
 					<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole">
 						<ead:quantity>1</ead:quantity>
 						<ead:unittype>lio</ead:unittype>
 						<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet>
 						<ead:physfacet localtype="MATERIAL">paper</ead:physfacet>
-						<ead:physfacet localtype="EXTRA_PART">ANALOG</ead:physfacet>
 					</ead:physdescstructured>
 					<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part">
 						<ead:quantity>1</ead:quantity>
@@ -228,14 +222,13 @@
 					<ead:unitid localtype="REFERENCNI_OZNACENI" label="referenční označení">CZ100000010//153//1/1+1</ead:unitid>
 				</ead:did>
 
-				<ead:c id="uuid-c1c2c3d4-0003-0000-0000-000000000003" level="item" base="http://archiv.cz/dids/c1c2c3d4-0003-0000-0000-000000000003">
+				<ead:c level="item" base="http://archiv.cz/dids/c1c2c3d4-0003-0000-0000-000000000003">
 					<ead:did>
 						<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole">
 							<ead:quantity>1</ead:quantity>
 							<ead:unittype>lio</ead:unittype>
 							<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet>
 							<ead:physfacet localtype="MATERIAL">paper</ead:physfacet>
-							<ead:physfacet localtype="EXTRA_PART">ANALOG</ead:physfacet>
 						</ead:physdescstructured>
 						<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part">
 							<ead:quantity>1</ead:quantity>
@@ -257,14 +250,13 @@
 			</ead:c>
 
 			<!-- Subseries 2 -->
-			<ead:c id="uuid-b1b2c3d4-0004-0000-0000-000000000004" level="series" base="http://archiv.cz/dids/b1b2c3d4-0004-0000-0000-000000000004">
+			<ead:c level="series" base="http://archiv.cz/dids/b1b2c3d4-0004-0000-0000-000000000004">
 				<ead:did>
 					<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole">
 						<ead:quantity>1</ead:quantity>
 						<ead:unittype>lio</ead:unittype>
 						<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet>
 						<ead:physfacet localtype="MATERIAL">paper</ead:physfacet>
-						<ead:physfacet localtype="EXTRA_PART">ANALOG</ead:physfacet>
 					</ead:physdescstructured>
 					<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part">
 						<ead:quantity>1</ead:quantity>
@@ -273,14 +265,13 @@
 					<ead:unitid localtype="REFERENCNI_OZNACENI" label="referenční označení">CZ100000010//153//1/2</ead:unitid>
 				</ead:did>
 
-				<ead:c id="uuid-c1c2c3d4-0004-0000-0000-000000000004" level="item" base="http://archiv.cz/dids/c1c2c3d4-0004-0000-0000-000000000004">
+				<ead:c level="item" base="http://archiv.cz/dids/c1c2c3d4-0004-0000-0000-000000000004">
 					<ead:did>
 						<ead:physdescstructured physdescstructuredtype="materialtype" coverage="whole">
 							<ead:quantity>1</ead:quantity>
 							<ead:unittype>lio</ead:unittype>
 							<ead:physfacet localtype="IMPRINT_COUNT">100</ead:physfacet>
 							<ead:physfacet localtype="MATERIAL">paper</ead:physfacet>
-							<ead:physfacet localtype="EXTRA_PART">ANALOG</ead:physfacet>
 						</ead:physdescstructured>
 						<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part">
 							<ead:quantity>1</ead:quantity>

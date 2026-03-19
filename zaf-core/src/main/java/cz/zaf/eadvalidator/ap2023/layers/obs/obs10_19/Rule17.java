@@ -54,6 +54,9 @@ public class Rule17 extends EadRule {
                                     throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element part.", ctx.formatEadPosition(listPart.get(1)));
                                 }
                                 found = p;
+                                ctx.markValidatedAttribute(name, "localtype");
+                                ctx.markValidatedElement(listPart.get(0));
+                                ctx.markValidatedElement(p);
                             }
                         }
                     }

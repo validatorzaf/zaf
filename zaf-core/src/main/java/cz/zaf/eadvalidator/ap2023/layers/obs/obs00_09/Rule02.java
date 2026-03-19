@@ -37,6 +37,8 @@ public class Rule02 extends EadRule {
 								ctx.formatEadPosition(otherId));
 					}
 					found = otherId;
+					ctx.markValidatedAttribute(otherId, "localtype");
+					ctx.markValidatedContent(otherId);
 
 					// kontrola hodnoty
 					String content = otherId.getContent();

@@ -104,7 +104,12 @@ public class Rule80 extends EadRule {
                         throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity neobsahuje kladné číslo zarovnané na dvě desetinná místa.", ctx.formatEadPosition(quantity));
                     }
                     isBM = true;
-
+                    ctx.markValidatedAttribute(physdescstructured, "physdescstructuredtype");
+                    ctx.markValidatedAttributeOnly(physdescstructured, "coverage");
+                    ctx.markValidatedElement(unittype);
+                    ctx.markValidatedContent(unittype);
+                    ctx.markValidatedElement(quantity);
+                    ctx.markValidatedContent(quantity);
                 } else if (StringUtils.equals("byte", contentUnitType)) {
                     if (foundByte != null) {
                         List<Unittype> list = List.of(foundByte, unittype);
@@ -115,6 +120,12 @@ public class Rule80 extends EadRule {
                         throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity neobsahuje kladné celé číslo.", ctx.formatEadPosition(quantity));
                     }
                     isByte = true;
+                    ctx.markValidatedAttribute(physdescstructured, "physdescstructuredtype");
+                    ctx.markValidatedAttributeOnly(physdescstructured, "coverage");
+                    ctx.markValidatedElement(unittype);
+                    ctx.markValidatedContent(unittype);
+                    ctx.markValidatedElement(quantity);
+                    ctx.markValidatedContent(quantity);
                 } else {
                     throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element unittype obsahuje nepovolenou hodnotu: " + contentUnitType + ".", ctx.formatEadPosition(unittype));
                 }

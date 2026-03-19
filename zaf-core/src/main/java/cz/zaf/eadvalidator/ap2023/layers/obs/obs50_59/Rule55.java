@@ -56,6 +56,7 @@ public class Rule55 extends EadRule {
         List<Object> mDid = did.getMDid();
         for (Object object : mDid) {
             if (object instanceof Unitdatestructured unitDateStructured) {
+                ctx.markValidatedElement(unitDateStructured);
                 Daterange daterange = unitDateStructured.getDaterange();
                 if(daterange == null) {
                     throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element daterange.", ctx.formatEadPosition(unitDateStructured));
@@ -65,6 +66,7 @@ public class Rule55 extends EadRule {
                     throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Chybí hodnota atributu altrender.", ctx.formatEadPosition(daterange));
                 }
                 validateAltrender(altrender, daterange);
+                ctx.markValidatedAttribute(daterange, "altrender");
                 Fromdate fromdate = daterange.getFromdate();
                 if(fromdate == null){
                     throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element fromdate.", ctx.formatEadPosition(daterange));
@@ -73,7 +75,11 @@ public class Rule55 extends EadRule {
                 if(todate == null){
                     throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element todate.", ctx.formatEadPosition(daterange));
                 }
+                ctx.markValidatedElement(fromdate);
+                ctx.markValidatedContent(fromdate);
                 validateDate(fromdate.getContent(), fromdate);
+                ctx.markValidatedElement(todate);
+                ctx.markValidatedContent(todate);
                 validateDate(todate.getContent(), todate);
             }
         }

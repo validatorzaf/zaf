@@ -32,5 +32,6 @@ public class Rule19 extends EadRule {
         if (!"CZ".equals(value)) {
             throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut countrycode má chybnou hodnotu: " + value, ctx.formatEadPosition(magency));
         }
+        ctx.markValidatedAttribute(magency, "countrycode");
     }
 }

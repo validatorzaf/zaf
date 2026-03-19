@@ -88,6 +88,7 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule96;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule97;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule98;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule99;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs900_999.Rule999;
 
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
 
@@ -2062,6 +2063,26 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
                     Rule103.CODE, Rule104.CODE
                 },
                 new String[]{Rule105.CODE});
+    }
+
+    @Test
+    void testObs_999_chyba01() {
+        testPopis("05-KONTROLA OBSAHU/999_chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[]{
+                    Rule01.CODE, Rule03.CODE, Rule04.CODE, Rule04a.CODE,
+                    Rule18.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE,
+                    Rule31.CODE, Rule35.CODE, Rule36.CODE, Rule37.CODE,
+                    Rule42.CODE, Rule43.CODE, Rule44.CODE, Rule49.CODE,
+                    Rule50.CODE, Rule51.CODE, Rule52.CODE, Rule53.CODE, Rule54.CODE, Rule55.CODE, Rule56.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+                    Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule74.CODE, Rule74a.CODE, Rule74b.CODE, Rule74c.CODE, Rule75.CODE, Rule77.CODE, Rule78.CODE, Rule79.CODE,
+                    Rule80.CODE, Rule83.CODE, Rule84.CODE, Rule89.CODE,
+                    Rule93.CODE, Rule94.CODE, Rule95.CODE, Rule96.CODE, Rule97.CODE, Rule98.CODE, Rule99.CODE,
+                    Rule101.CODE, Rule103.CODE, Rule104.CODE, Rule105.CODE
+                },
+                new String[]{Rule999.CODE});
     }
 
     private void testPopis(String path,

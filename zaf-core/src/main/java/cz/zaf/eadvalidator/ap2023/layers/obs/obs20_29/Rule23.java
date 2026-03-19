@@ -50,7 +50,10 @@ public class Rule23 extends EadRule {
         if(!findingAidType.getFindingAidName().equals(content)) {
         	throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybně uveden název typu archivní pomůcky, očekávaná hodnota: "+findingAidType.getFindingAidName()+", hodnota elementu: "+content, ctx.formatEadPosition(term));
         }
-        
+        ctx.markValidatedAttribute(localControl, "localtype");
+        ctx.markValidatedAttribute(term, "identifier");
+        ctx.markValidatedContent(term);
+
     }
 
     private Localcontrol getSingleLocalControl(String localTypeValue) {

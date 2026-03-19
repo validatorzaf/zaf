@@ -11,6 +11,7 @@ import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.eadvalidator.ap2023.Ap2023Constants;
 import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.schema.ead3.Archdesc;
+import cz.zaf.schema.ead3.Dsc;
 import cz.zaf.schemas.ead.EadNS;
 
 public class Rule36 extends EadRule {
@@ -49,7 +50,18 @@ public class Rule36 extends EadRule {
 		if(!EadNS.LEVEL_FONDS.equals(archDesc.getLevel())) {
 			throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí atribut level=\"fonds\" na kořeni", ctx.formatEadPosition(archDesc));
 		}
-		
+		ctx.markValidatedAttribute(archDesc, "level");
+        // Mark did as validated in advance
+        if(archDesc.getDid()!=null) {
+        	ctx.markValidatedElement(archDesc.getDid());
+        }
+        // mark dsc as validated
+		for(Object obj: archDesc.getAccessrestrictOrAccrualsOrAcqinfo()) {
+			if(obj instanceof Dsc dsc) {
+				ctx.markValidatedElement(dsc);
+			}
+		}        
+
 		if(StringUtils.isNotBlank(archDesc.getOtherlevel())) {
 			throw new ZafException(BaseCode.CHYBNY_ATRIBUT, "Chybně uvedený atribut otherlevel na kořeni", ctx.formatEadPosition(archDesc));
 		}
@@ -58,11 +70,17 @@ public class Rule36 extends EadRule {
 			// zjisteni aktualni urovne
 			String levelType = c.getLevel();
 			String otherLevel = c.getOtherlevel();
+			ctx.markValidatedAttribute(c, "level");
+	        // Mark did as validated in advance
+	        if(c.getDid()!=null) {
+	        	ctx.markValidatedElement(c.getDid());
+	        }		
 			if(EadNS.LEVEL_OTHERLEVEL.equals(levelType)) {
 				if(StringUtils.isBlank(otherLevel)) {
 					throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí atribut otherlevel na elementu", ctx.formatEadPosition(c));					
 				}
 				levelType = otherLevel;
+				ctx.markValidatedAttributeOnly(c, "otherlevel");
 			} else {
 				if(!StringUtils.isBlank(otherLevel)) {
 					throw new ZafException(BaseCode.CHYBNY_ATRIBUT, "Chybně uvedený atribut otherlevel na elementu", ctx.formatEadPosition(c));

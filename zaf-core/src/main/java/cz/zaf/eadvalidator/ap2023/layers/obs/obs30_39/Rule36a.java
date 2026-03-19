@@ -8,6 +8,8 @@ import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.eadvalidator.ap2023.Ap2023Constants;
 import cz.zaf.eadvalidator.ap2023.EadRule;
+import cz.zaf.schema.ead3.Archdesc;
+import cz.zaf.schema.ead3.Dsc;
 import cz.zaf.schemas.ead.EadNS;
 
 
@@ -33,6 +35,18 @@ public class Rule36a extends EadRule {
 
     @Override
     protected void evalImpl() {
+		Archdesc archDesc = ctx.getEad().getArchdesc();
+        // Mark did as validated in advance
+        if(archDesc.getDid()!=null) {
+        	ctx.markValidatedElement(archDesc.getDid());
+        }
+        // mark dsc as validated
+		for(Object obj: archDesc.getAccessrestrictOrAccrualsOrAcqinfo()) {
+			if(obj instanceof Dsc dsc) {
+				ctx.markValidatedElement(dsc);
+			}
+		}        
+    	
         ctx.getEadLevelIterator().iterate((c, parent) -> {
             String level = c.getLevel();
             String otherLevel = c.getOtherlevel();
@@ -42,11 +56,18 @@ public class Rule36a extends EadRule {
             if (!allowed.contains(level)) {
                 throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Chybná hodnota atributu level: " + level + ".", ctx.formatEadPosition(c));
             }
+            ctx.markValidatedAttribute(c, "level");
+	        // Mark did as validated in advance
+	        if(c.getDid()!=null) {
+	        	ctx.markValidatedElement(c.getDid());
+	        }		
+            
             if(EadNS.LEVEL_OTHERLEVEL.equals(level) ) {
                 // check itempart
                 if(otherLevel==null) {
                     throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Atribut otherlevel nesmí být prázdný pro typ úrovně otherLevel.", ctx.formatEadPosition(c));
                 }
+                ctx.markValidatedAttributeOnly(c, "otherlevel");
             } else {
                 if(otherLevel!=null) {
                     throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut otherlevel musí být prázdný pro typ úrovně " + level + ".", ctx.formatEadPosition(c));

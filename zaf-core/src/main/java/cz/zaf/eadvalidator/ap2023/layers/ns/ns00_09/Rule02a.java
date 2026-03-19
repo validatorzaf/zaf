@@ -41,6 +41,8 @@ public class Rule02a extends EadRule {
 		if(!EadNS.NS_EADS.equals(value)) {
 			throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Chybná hodnota atributu "+getXmlnsEad()+": "+value+"."); 
 		}
+		
+		ctx.markValidatedAttributeDom(eadRoot, "xmlns");
 	}
 	
 	String getXmlnsEad() {
