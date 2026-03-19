@@ -1,6 +1,5 @@
 package cz.zaf.sipvalidator.nsesss2024.pravidla06.obs60_69;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.w3c.dom.Element;

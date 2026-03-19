@@ -1,19 +1,12 @@
 package cz.zaf.sipvalidator.nsesss2024.pravidla06.obs100_109;
 
-import java.time.LocalDate;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.apache.commons.lang3.StringUtils;
-import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
