@@ -136,7 +136,7 @@
 						
 						<ead:unitid localtype="PORADOVE_CISLO" label="pořadové číslo">123</ead:unitid> <!-- obs50, obs51 -->
 						<ead:unittitle>Text</ead:unittitle> <!-- obs53 -->
-						<ead:unittitle localtype="FORMAL_TITLE">Formální název</ead:unittitle> <!-- obs54 -->
+						<ead:unittitle>Formální název</ead:unittitle> <!-- obs54 -->
 						<ead:unittitle lang="hun">Text maďarsky</ead:unittitle> <!-- obs43 -->
 						
 						<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="quantity" coverage="whole"> <!-- obs79 -->

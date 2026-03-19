@@ -23,7 +23,7 @@ import org.apache.commons.collections4.CollectionUtils;
 public class Rule42 extends EadRule {
 
     static final public String CODE = "obs42";
-    static final public String RULE_TEXT = "Elementy <unittitle>, <scopecontent>, <accruals> nebo <didnote> se mohou vyskytovat vícekrát v rámci rodičovského elementu, pokud se liší hodnotou atributu \"lang\", existencí atributu \"audience\" nebo hodnotou atributu \"audience\".";
+    static final public String RULE_TEXT = "Elementy <unittitle>, <scopecontent>, <accruals> nebo <didnote> se mohou vyskytovat vícekrát v rámci rodičovského elementu, pokud se liší hodnotou atributu \"lang\", existencí atributu \"audience\" nebo hodnotou atributu \"audience\", případně mají nastavenu hodnotu atributu localtype v souladu s ostatními pravidly.";
     static final public String RULE_ERROR = "Dvojice elementů  <unittitle>, <scopecontent>, <relation>, <accruals> nebo <didnote> na stejné úrovni má špatně uvedené nebo vyplněné atributy \"audience\".";
     static final public String RULE_SOURCE = "Část 3.6 profilu EAD3 MV ČR";
 
@@ -31,11 +31,15 @@ public class Rule42 extends EadRule {
 
     private static class ComparedObect {
 
-        String name, audience, lang;
+        String name, audience, lang, localtype;
         // Link to source object to display potential conflict
         Object srcObject;
-
+        
         public ComparedObect(@Nonnull final String name, final String audience, final String lang, final Object srcObject) {
+        	this(name, audience, lang, null, srcObject);
+        }
+
+        public ComparedObect(@Nonnull final String name, final String audience, final String lang, final String localtype, final Object srcObject) {
             if (name == null) {
                 throw new IllegalStateException("missing object name");
             }
@@ -54,6 +58,7 @@ public class Rule42 extends EadRule {
             }
 
             this.srcObject = srcObject;
+            this.localtype = localtype;
         }
 
         public String getAudience() {
@@ -80,7 +85,8 @@ public class Rule42 extends EadRule {
         	if (otherObj instanceof ComparedObect co) {
 				return Objects.equals(name, co.name) &&
 					Objects.equals(audience, co.audience) &&
-					Objects.equals(lang, co.lang);				
+					Objects.equals(lang, co.lang) &&
+					Objects.equals(localtype, co.localtype);				
 			} else {
 				return false;
 			}
@@ -116,8 +122,8 @@ public class Rule42 extends EadRule {
             getFromDid(didC);
 
             List<Object> listC = c.getMDescBase();
-            siblingsList = new ArrayList<>();
             getFromMain(listC);
+            
             compare();
         });
     }
@@ -128,7 +134,11 @@ public class Rule42 extends EadRule {
             if (object instanceof Unittitle unittitle) {
                 String audience = unittitle.getAudience();
                 String lang = unittitle.getLang();
-                siblingsList.add(new ComparedObect("unittitle", audience, lang, unittitle));
+                String localtype = null;
+                if("FORMAL_TITLE".equals(unittitle.getLocaltype())) {
+                	localtype = unittitle.getLocaltype();
+                }
+                siblingsList.add(new ComparedObect("unittitle", audience, lang, localtype, unittitle));
                 if(audience!=null) {
                 	ctx.markValidatedAttributeOnly(unittitle, "audience");
                 }
