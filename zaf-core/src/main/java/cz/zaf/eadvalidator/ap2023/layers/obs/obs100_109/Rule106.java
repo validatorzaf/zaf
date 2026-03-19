@@ -35,11 +35,10 @@ public class Rule106 extends EadRule {
             throw new ZafException(BaseCode.CHYBI_ELEMENT, "Element sources neobsahuje žádný element source.", ctx.formatEadPosition(sources));
         }
 
+        ctx.markValidatedElement(sources);
         for (Source source : sourceList) {
             validateSource(source);
-        }
-
-        ctx.markValidatedElement(sources);
+        }        
     }
 
     private void validateSource(Source source) {
