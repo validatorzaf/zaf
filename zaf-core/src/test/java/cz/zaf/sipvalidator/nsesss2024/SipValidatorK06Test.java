@@ -986,7 +986,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
 
     @Test
     void testK06_41_01() {
-        testPackageK06("obs41-CHYBA1", ValidationStatus.ERROR,
+        testPackageK06("obs41-chyba1", ValidationStatus.ERROR,
                 ZakladniProfilValidace.PREJIMKA,
                 new String[]{},
                 new String[]{Pravidlo41.OBS41});
@@ -994,7 +994,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
 
     @Test
     void testK06_41_02() {
-        testPackageK06("obs41-CHYBA2", ValidationStatus.ERROR,
+        testPackageK06("obs41-chyba2", ValidationStatus.ERROR,
                 ZakladniProfilValidace.PREJIMKA,
                 new String[]{},
                 new String[]{Pravidlo41.OBS41});
