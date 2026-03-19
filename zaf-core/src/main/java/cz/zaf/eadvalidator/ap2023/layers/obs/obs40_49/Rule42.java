@@ -160,11 +160,19 @@ public class Rule42 extends EadRule {
                 String audience = scopecontent.getAudience();
                 String lang = scopecontent.getLang();
                 siblingsList.add(new ComparedObect("scopecontent", audience, lang, scopecontent));
-            }
+
+                if(audience!=null) {
+                	ctx.markValidatedAttributeOnly(scopecontent, "audience");
+                }
+            } else
             if (object instanceof Accruals accruals) {
                 String audience = accruals.getAudience();
                 String lang = accruals.getLang();
                 siblingsList.add(new ComparedObect("accruals", audience, lang, accruals));
+                
+                if(audience!=null) {
+                	ctx.markValidatedAttributeOnly(accruals, "audience");
+                }                
             }
         }
     }
