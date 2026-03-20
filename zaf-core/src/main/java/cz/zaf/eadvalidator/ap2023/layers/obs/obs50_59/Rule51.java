@@ -205,8 +205,9 @@ public class Rule51 extends EadRule {
         if (EadNS.LEVEL_SERIES.equals(parentLevel) && EadNS.LEVEL_SERIES.equals(childLevel)) {
             return false;
         }
-        // Within file group: file → file (sub-file)
-        if (EadNS.LEVEL_FILE.equals(parentLevel) && EadNS.LEVEL_FILE.equals(childLevel)) {
+        // Within file group: file → file (sub-file), file → item
+        if (EadNS.LEVEL_FILE.equals(parentLevel) && (EadNS.LEVEL_FILE.equals(childLevel) || 
+        		EadNS.LEVEL_ITEM.equals(childLevel) ) ) {
             return false;
         }
         // Within item group: item → item, item → itempart
