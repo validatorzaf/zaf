@@ -38,6 +38,7 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule21;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule22;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule23;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule24;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule24a;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule25;
 
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule31;
@@ -118,8 +119,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule20.class,
             Rule21.class,
             Rule22.class,
-            Rule23.class,
-            Rule24.class,
+            Rule24a.class,
             Rule25.class,
             Rule31.class,
             Rule35.class,
@@ -277,6 +277,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule20.class,
             Rule21.class, 
             Rule22.class,
+            Rule24a.class,
             Rule25.class,
             Rule31.class,
             Rule35a.class,
@@ -325,13 +326,14 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule93.class,
             Rule94.class,
             Rule95.class,
+            Rule96.class,
             Rule97.class,
             Rule98.class,
             Rule101.class,
             Rule103.class,
             Rule104a.class,
-            Rule106.class
-            // Rule999.class
+            Rule106.class,
+            Rule999.class
    );
 
     //kontextuální popis - tím popíše arrchiválii a je to uloženo v AIP
@@ -347,6 +349,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule20.class,
             Rule21.class,
             Rule22.class,
+            Rule24a.class,
             Rule25.class,
             Rule31.class,
             Rule35.class,
@@ -393,6 +396,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule93.class,
             Rule94.class,
             Rule95.class,
+            Rule96.class,
             Rule97.class,
             Rule98.class,
             Rule99.class,

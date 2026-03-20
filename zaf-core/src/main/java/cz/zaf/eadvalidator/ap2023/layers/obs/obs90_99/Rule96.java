@@ -13,7 +13,7 @@ import java.util.List;
 public class Rule96 extends EadRule {
 
     static final public String CODE = "obs96";
-    static final public String RULE_TEXT = "Každý element <dao> má neprázdný atribut \"identifier\".";
+    static final public String RULE_TEXT = "Každý element <dao> má neprázdný atribut \"identifier\". Současně může být uveden i atribut coverge.";
     static final public String RULE_ERROR = "Některý element <dao> nemá atribut \"identifier\" nebo je tento atribut prázdný.";
     static final public String RULE_SOURCE = "Část 7.1 profilu EAD3 MV ČR";
 
@@ -45,6 +45,9 @@ public class Rule96 extends EadRule {
                     throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Hodnota atributu identifier elemetu dao není zadána.", ctx.formatEadPosition(dao));
                 }
                 ctx.markValidatedAttributeOnly(dao, "identifier");
+                if(dao.getCoverage()!=null) {
+                	ctx.markValidatedAttributeOnly(dao, "coverage");
+                }
             }
         }
     }

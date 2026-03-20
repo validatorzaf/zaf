@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ead relatedencoding="nacr.cz/2018" xmlns="http://ead3.archivists.org/schema/" xmlns:cam="http://cam.tacr.cz/2019">
+<ead xmlns="http://ead3.archivists.org/schema/" xmlns:cam="http://cam.tacr.cz/2019">
     <control>
         <recordid>07b3c504-6659-40af-8b72-78bacb62ebe2</recordid>
         <filedesc encodinganalog="843">
@@ -8,7 +8,6 @@
             </titlestmt>
         </filedesc>
         <maintenancestatus value="derived"/>
-        <publicationstatus value="inprocess"/>
         <maintenanceagency countrycode="CZ">
             <agencycode localtype="CZ_MVCR_INSTITUTION_ID">100000010</agencycode>
             <agencyname>Národní archiv</agencyname>
@@ -102,8 +101,8 @@
             <chronlist>
                 <chronitem>
                     <daterange>
-                            <fromdate standarddate="1971-06-01" />
-                            <todate standarddate="2010-04-30" />
+                        <fromdate standarddate="1971-06-01" />
+                        <todate standarddate="2010-04-30" />
                     </daterange>
                     <event>Platnost spisového plánu</event>
                 </chronitem>

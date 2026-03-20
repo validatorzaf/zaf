@@ -48,6 +48,12 @@ public class Rule36b extends EadRule {
                     throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí nebo je prázdný atribut encodinganalog.", ctx.formatEadPosition(fileplan));
                 }
                 ctx.markValidatedAttribute(fileplan, "encodinganalog");
+                
+                // check id
+                if(fileplan.getId()!=null) {
+                	ctx.markValidatedAttribute(fileplan, "id");
+                }
+                
                 Head head = fileplan.getHead();
                 if (head == null) {
                     throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybí element head.", ctx.formatEadPosition(fileplan));
@@ -94,8 +100,28 @@ public class Rule36b extends EadRule {
         Daterange daterange = chronitem.getDaterange();
         if (daterange == null) {
             throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element daterange.", ctx.formatEadPosition(chronitem));
-        }
+        }                
         ctx.markValidatedElement(daterange);
+        var fromdate = daterange.getFromdate();
+        if(fromdate!=null) {
+        	if(fromdate.getStandarddate()==null) {
+        		throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Není nastaven atribut standarddate", ctx.formatEadPosition(fromdate));
+        	}
+        	ctx.markValidatedAttribute(fromdate, "standarddate");
+        	// TODO: check format of fromdate.getStandarddate()
+        }
+        var todate = daterange.getTodate();
+        if(todate!=null) {
+        	if(todate.getStandarddate()==null) {
+        		throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Není nastaven atribut standarddate", ctx.formatEadPosition(todate));
+        	}
+            ctx.markValidatedAttribute(todate, "standarddate");
+            // TODO: check format of todate.getStandarddate() 
+        }
+        if(fromdate==null && todate==null) {
+        	throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element fromdate ani todate.", ctx.formatEadPosition(daterange));
+        }
+        
         Event event = chronitem.getEvent();
         if (event == null) {
             throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element event.", ctx.formatEadPosition(chronitem));

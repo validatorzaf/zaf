@@ -16,11 +16,7 @@
 			<ead:agencycode localtype="CZ_MVCR_INSTITUTION_ID">100000010</ead:agencycode> <!-- obs20; obs21 -->
 			<ead:agencyname>Národní archiv</ead:agencyname> <!-- obs22 -->
 		</ead:maintenanceagency>
-		
-		<ead:localcontrol localtype="FINDING_AID_TYPE"> <!-- obs23 -->
-			<ead:term identifier="INVENTAR">inventář</ead:term> <!-- obs26, obs28, obs29 -->
-		</ead:localcontrol>
-		
+				
 		<ead:localcontrol localtype="RULES"> <!-- obs24 -->
 			<ead:term identifier="CZ_ZP1958">základní pravidla z roku 1958</ead:term> <!-- obs26, obs27 -->
 		</ead:localcontrol>
