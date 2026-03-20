@@ -404,8 +404,8 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule103.class, 
             Rule104.class,
             Rule105.class,
-            Rule106.class
-            // Rule999.class
+            Rule106.class,
+            Rule999.class
                         );
 
 	public ContentValidationLayer(ValidationSubprofile profilValidace, String innerFileName) {
