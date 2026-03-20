@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Element;
 
+import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.mets.MetsElements;
 import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
@@ -53,7 +54,8 @@ public class Pravidlo110 extends K06PravidloBase {
                     String atrID = elKomponenta.getAttribute("ID");
                     Element elMetsFile = getMetsFile(atrID, listMetsFile);
                     if (elMetsFile == null) {
-                        nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen žádný element <mets:file> na který odkazuje element <nsesss:Komponenta> s ID: " + atrID + ".", getMistoChyby(elKomponenta), kontrola.getEntityId(elKomponenta));
+                        new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen žádný element <mets:file> na který odkazuje element <nsesss:Komponenta> s ID: " + atrID + ".", 
+                            getMistoChyby(elKomponenta)).addEntity(kontrola.getEntityId(elKomponenta));
                     }
                     String mimetype = elMetsFile.getAttribute("MIMETYPE");
                     if (StringUtils.isBlank(mimetype)) {

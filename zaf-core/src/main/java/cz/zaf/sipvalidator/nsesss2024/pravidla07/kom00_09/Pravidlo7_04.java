@@ -189,7 +189,7 @@ public class Pravidlo7_04 extends K07PravidloBase {
         }
         String href = ValuesGetter.getValueOfAttribut(flocatNode, "xlink:href");
         // TODO: Dává toto smysl, asi musí být vždy komponenty
-        if (!href.startsWith("komponenty")) {
+        if (href==null||!href.startsWith("komponenty")) {
             return;
         }
         href = HelperString.replaceSeparators(href);
