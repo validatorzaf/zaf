@@ -36,6 +36,13 @@ public class EadValidatedNodes {
 	 */
 	private Map<Integer, List<Element>> lineToDomMap;
 
+	/**
+	 * Map from element local name to DOM elements with that name (in document order).
+	 * Used as fallback when line-based matching fails (e.g. multi-line start tags
+	 * where SAX and StAX report different line numbers).
+	 */
+	private Map<String, List<Element>> nameToElementsMap;
+
 	private final EadLoader eadLoader;
 
 	public EadValidatedNodes(EadLoader eadLoader) {
@@ -255,21 +262,46 @@ public class EadValidatedNodes {
 		int line = loc.getLineNumber();
 
 		List<Element> candidates = lineToDomMap.get(line);
-		if (candidates == null || candidates.isEmpty()) {
-			return null;
+		if (candidates != null && !candidates.isEmpty()) {
+			// If we know the expected name, filter by it
+			if (expectedName != null) {
+				for (Element candidate : candidates) {
+					if (expectedName.equals(candidate.getLocalName())) {
+						return candidate;
+					}
+				}
+			}
+
+			// Fallback: return first element on the line
+			return candidates.get(0);
 		}
 
-		// If we know the expected name, filter by it
+		// Line-based lookup failed (can happen when start tag spans multiple lines:
+		// SAX reports the line of closing '>' while StAX reports the line of opening '<').
+		// Fall back to name-based lookup finding the element whose line is closest to
+		// (and >= ) the StAX-reported line.
 		if (expectedName != null) {
-			for (Element candidate : candidates) {
-				if (expectedName.equals(candidate.getLocalName())) {
-					return candidate;
+			List<Element> byName = nameToElementsMap.get(expectedName);
+			if (byName != null) {
+				Element bestMatch = null;
+				int bestLine = Integer.MAX_VALUE;
+				for (Element candidate : byName) {
+					Object lineObj = candidate.getUserData(PositionalXMLReader.LINE_NUMBER_KEY_NAME);
+					if (lineObj instanceof Integer candidateLine) {
+						// SAX line >= StAX line for the same element; pick the closest one
+						if (candidateLine >= line && candidateLine < bestLine) {
+							bestLine = candidateLine;
+							bestMatch = candidate;
+						}
+					}
+				}
+				if (bestMatch != null) {
+					return bestMatch;
 				}
 			}
 		}
 
-		// Fallback: return first element on the line
-		return candidates.get(0);
+		return null;
 	}
 
 	/**
@@ -343,6 +375,7 @@ public class EadValidatedNodes {
 			return;
 		}
 		lineToDomMap = new HashMap<>();
+		nameToElementsMap = new HashMap<>();
 		Document doc = eadLoader.getDocument();
 		if (doc != null && doc.getDocumentElement() != null) {
 			buildLineMap(doc.getDocumentElement());
@@ -353,6 +386,11 @@ public class EadValidatedNodes {
 		Object lineNumber = element.getUserData(PositionalXMLReader.LINE_NUMBER_KEY_NAME);
 		if (lineNumber instanceof Integer line) {
 			lineToDomMap.computeIfAbsent(line, k -> new ArrayList<>()).add(element);
+		}
+
+		String localName = element.getLocalName();
+		if (localName != null) {
+			nameToElementsMap.computeIfAbsent(localName, k -> new ArrayList<>()).add(element);
 		}
 
 		NodeList children = element.getChildNodes();

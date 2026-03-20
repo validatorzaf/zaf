@@ -53,7 +53,7 @@ public class Rule79 extends EadRule {
             if (descUnitCount != expectedCount) {
                 throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
                         "Kořen archivního popisu neobsahuje správný součet všech jednotek popisu. "
-                        + "Očekávaná hodnota: " + expectedCount + ", skutečná hodnota: " + descUnitCount + ".",
+                        + "Očekávaná hodnota: " + expectedCount + ", zapsaná hodnota: " + descUnitCount + ".",
                         ctx.formatEadPosition(archDesc));
             }
         }

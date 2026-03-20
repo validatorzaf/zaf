@@ -101,7 +101,7 @@ public class Rule80 extends EadRule {
                     }
                     foundBM = unittype;
                     if (!isPositiveWithTwoDecimals(contentQuantity)) {
-                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity neobsahuje kladné číslo zarovnané na dvě desetinná místa.", ctx.formatEadPosition(quantity));
+                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity neobsahuje kladné číslo zarovnané maximálně na dvě desetinná místa. Zjištěná hodnota: "+contentQuantity+"", ctx.formatEadPosition(quantity));
                     }
                     isBM = true;
                     ctx.markValidatedAttribute(physdescstructured, "physdescstructuredtype");

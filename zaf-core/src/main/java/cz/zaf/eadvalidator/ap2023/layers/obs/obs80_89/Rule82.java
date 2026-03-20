@@ -17,7 +17,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import org.apache.commons.lang3.math.NumberUtils;
 
 public class Rule82 extends EadRule {
 
@@ -42,10 +41,12 @@ public class Rule82 extends EadRule {
         Did didA = archDesc.getDid();
         rootValues = new HashMap<>();
         componentValues = new HashMap<>();
+
         readPhysdescstructuredRoot(didA);
 
         ctx.getEadLevelIterator().iterate((c, parent) -> {
             Did didC = c.getDid();
+
             readPhysdescstructured(didC);
         });
 
@@ -60,9 +61,9 @@ public class Rule82 extends EadRule {
                 String physdescstructuredtype = physdescstructured.getPhysdescstructuredtype();
                 String otherphysdescstructuredtype = physdescstructured.getOtherphysdescstructuredtype();
                 String coverage = physdescstructured.getCoverage();
-                if (StringUtils.equals("otherphysdescstructuredtype", physdescstructuredtype) &&
-                		StringUtils.equals("UNIT_TYPE", otherphysdescstructuredtype) && 
-                		StringUtils.equals("part", coverage)) {
+                if (EadNS.PHYSDESCSTRUCTURED_TYPE_OTHERTYPE.equals(physdescstructuredtype) &&
+                		"UNIT_TYPE".equals(otherphysdescstructuredtype) && 
+                		"part".equals(coverage)) {
                     Unittype unittype = physdescstructured.getUnittype();
                     Quantity quantity = physdescstructured.getQuantity();
                     if (unittype == null) {
