@@ -56,10 +56,10 @@
 		    </div>
 			<div class="cell valign-top">
 			  <strong th:text="${pravidlo.errorDescription}"></strong><br />
-				<span th:if="${pravidlo.errorReport}">[[#{result.detail.error}]]: <span th:text="${pravidlo.errorReport}"></span><br /></span>
+				<span th:if="${pravidlo.errorReport}">[[#{result.detail.error}]]: <span th:utext="${#strings.replace(#strings.escapeXml(pravidlo.errorReport),'&#10;','&lt;br /&gt;')}"></span><br /></span>
                 <span th:if="${pravidlo.errorLocation}">[[#{result.detail.location}]]: <span th:text="${pravidlo.errorLocation}"></span><br /></span>
 				<div class="pravidlo">[[#{result.detail.rule}]] <span th:text="${pravidlo.code}"></span>:
-				  <span th:text="${pravidlo.text}"></span>
+				  <span th:utext="${#strings.replace(#strings.escapeXml(pravidlo.text),'&#10;','&lt;br /&gt;')}"></span>
 				  <span th:if="${pravidlo.source}"> (<span th:text="${pravidlo.source}"></span>)</span>
 				</div>
 			</div>
