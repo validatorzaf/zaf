@@ -1,15 +1,9 @@
 package cz.zaf.sipvalidator.nsesss2024;
 
-import java.util.List;
-
-import cz.zaf.common.validation.Rule;
-import cz.zaf.common.validation.RuleEvaluationContext;
 import cz.zaf.common.validation.ValidationLayerType;
 
 /**
  * Urovne kontroly
- * 
- *
  */
 public enum TypUrovenKontroly
         implements ValidationLayerType {
@@ -23,17 +17,13 @@ public enum TypUrovenKontroly
     KOMPONENT(K07_Komponent.NAME);
 
     private final String description;
-	
+
     private TypUrovenKontroly(final String description) {
-        this.description = description;        
-	}
+        this.description = description;
+    }
 
     @Override
     public String getDescription() {
         return description;
     }
-    
-    List<Rule<? extends RuleEvaluationContext>> getRules() {
-		return null;
-	}
 }
