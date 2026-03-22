@@ -49,9 +49,9 @@
                             <unittitle>Název dokumentu, věc-doručený dokument</unittitle>
                             <unitid localtype="CISLO_JEDNACI" label="číslo jednací">č.j.DDFN-101/2009</unitid>
                             <unitdatestructured>
-                                <daterange altrender="Y">
-                                    <fromdate standarddate="2009-08-13">2009</fromdate>
-                                    <todate standarddate="2009-12-13">2009</todate>
+                                <daterange altrender="YM-D">
+                                    <fromdate standarddate="2009-08-01T00:00:00">srpen 2009</fromdate>
+                                    <todate standarddate="2009-12-13T23:59:59">2009</todate>
                                 </daterange>
                             </unitdatestructured>
                             <physdescstructured physdescstructuredtype="materialtype" coverage="whole">

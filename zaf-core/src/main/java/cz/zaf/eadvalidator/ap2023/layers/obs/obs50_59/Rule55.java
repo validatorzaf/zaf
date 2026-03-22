@@ -2,6 +2,7 @@ package cz.zaf.eadvalidator.ap2023.layers.obs.obs50_59;
 
 import org.apache.commons.lang3.StringUtils;
 
+import cz.zaf.common.cz.UnitdateFormatType;
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.eadvalidator.ap2023.EadRule;
@@ -21,20 +22,6 @@ public class Rule55 extends EadRule {
     static final public String RULE_ERROR = "Některý element <daterange> nemá atribut \"altrender\" nebo tento atribut obsahuje nepovolenou hodnotu. Případně element <daterange> neobsahuje právě jen element <fromdate> a/nebo právě jeden <todate>. Případně je element <fromdate> a/nebo <todate> prázdný.";
     static final public String RULE_SOURCE = "Část 5.8 profilu EAD3 MV ČR";
     
-    public static enum UnitdateFormatType {
-		C("C"), Y("Y"), YM("YM"), D("D"), DT("DT");
-		
-		private final String value;
-		
-		UnitdateFormatType(String value) {
-			this.value = value;
-		}
-		
-		public String getValue() {
-			return value;
-		}
-	}
-
     public Rule55() {
         super(CODE, RULE_TEXT, RULE_ERROR, RULE_SOURCE);
     }
