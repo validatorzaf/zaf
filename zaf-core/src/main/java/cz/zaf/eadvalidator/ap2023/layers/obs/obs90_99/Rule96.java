@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.eadvalidator.ap2023.EadRule;
+import cz.zaf.eadvalidator.ap2023.profile.ProfileRevision;
 import cz.zaf.schema.ead3.Archdesc;
 import cz.zaf.schema.ead3.Dao;
 import cz.zaf.schema.ead3.Did;
@@ -13,8 +14,8 @@ import java.util.List;
 public class Rule96 extends EadRule {
 
     static final public String CODE = "obs96";
-    static final public String RULE_TEXT = "Každý element <dao> má neprázdný atribut \"identifier\". Současně může být uveden i atribut coverge.";
-    static final public String RULE_ERROR = "Některý element <dao> nemá atribut \"identifier\" nebo je tento atribut prázdný.";
+    static final public String RULE_TEXT = "Platné před květem 2026: Každý element <dao> má neprázdný atribut \"identifier\"..";
+    static final public String RULE_ERROR = "Element <dao> nemá atribut \"identifier\" nebo je tento atribut prázdný.";
     static final public String RULE_SOURCE = "Část 7.1 profilu EAD3 MV ČR";
 
     public Rule96() {
@@ -23,6 +24,12 @@ public class Rule96 extends EadRule {
 
     @Override
     protected void evalImpl() {
+    	if(ctx.getProfileRevision()!=ProfileRevision.CZ_EAD3_PROFILE_20230601 && 
+    			ctx.getProfileRevision()!=ProfileRevision.CZ_EAD3_PROFILE_20240301) {
+    		// applies only on older profiles
+    		return;
+    	}
+    	
         Archdesc archDesc = ctx.getEad().getArchdesc();
         Did didA = archDesc.getDid();
         validateDid(didA);

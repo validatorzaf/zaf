@@ -95,6 +95,8 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule93;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule94;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule95;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule96;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule96a;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule96b;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule97;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule98;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule99;
@@ -167,6 +169,8 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule94.class,
             Rule95.class,
             Rule96.class,
+            Rule96a.class,
+            Rule96b.class,
             Rule97.class,
             Rule98.class,
             Rule99.class,
@@ -253,6 +257,8 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule94.class,
             Rule95.class,
             Rule96.class,
+            Rule96a.class,
+            Rule96b.class,
             Rule97.class,
             Rule98.class,
             Rule99.class,
@@ -327,6 +333,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule94.class,
             Rule95.class,
             Rule96.class,
+            Rule96a.class,
             Rule97.class,
             Rule98.class,
             Rule101.class,
@@ -397,6 +404,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule94.class,
             Rule95.class,
             Rule96.class,
+            Rule96a.class,
             Rule97.class,
             Rule98.class,
             Rule99.class,
