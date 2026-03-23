@@ -96,7 +96,7 @@ public class Pravidlo65 extends K06PravidloBase {
     
     private int getRokSkLhutaRokVyrazeni(Element nadrazenaEntita, Element elSkLhutaRokVyrazeni) {
         if (elSkLhutaRokVyrazeni == null) {
-            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:" + elSkLhutaRokVyrazeni.getNodeName() + ">.", getMistoChyby(nadrazenaEntita),
+            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:" + NsesssV4.SKARTACNI_LHUTA + ">.", getMistoChyby(nadrazenaEntita),
                     kontrola.getEntityId(nadrazenaEntita));
         }
         int skartacniLhutaEntita = 0;
