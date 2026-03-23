@@ -108,11 +108,12 @@
 				<ead:quantity>1</ead:quantity>
 				<ead:unittype>kar</ead:unittype>
 			</ead:physdescstructured>
-
 			<ead:langmaterial altrender="majority">
 				<ead:language langcode="esx">blíže neurčený eskymácko-aleutský jazyk</ead:language> <!-- obs91 -->
 			</ead:langmaterial>
-
+			<ead:langmaterial altrender="majority">
+				<ead:language langcode="esx">blíže neurčený eskymácko-aleutský jazyk</ead:language> <!-- obs91 -->
+			</ead:langmaterial>
 		</ead:did>
 		
 		<ead:dsc>

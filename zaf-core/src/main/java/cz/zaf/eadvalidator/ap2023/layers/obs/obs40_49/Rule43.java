@@ -87,18 +87,12 @@ public class Rule43 extends EadRule {
                 }
             }
             if (object instanceof Langmaterial langmaterial) {
-            	boolean existsLanguage = false;
                 List<Object> languageOrLanguageset = langmaterial.getLanguageOrLanguageset();
                 for (Object objLang : languageOrLanguageset) {
                     if (objLang instanceof Language language) {
                         validateLanguage(language);
-                        existsLanguage = true;
                     }
-                }
-                
-                if(existsLanguage) {
-                	ctx.markValidatedElement(langmaterial);
-                }
+                }                
             }
         }
     }
