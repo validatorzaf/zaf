@@ -175,6 +175,7 @@
 								<ead:todate standarddate="2001-09-30T23:59:59">září 2001</ead:todate> <!-- obs58, obs59 -->
 							</ead:daterange>
 						</ead:unitdatestructured>
+                        <ead:unitdate>něco k dataci</ead:unitdate>
 						
 						<ead:didnote localtype="INTERNAL" audience="internal">Text</ead:didnote> <!-- obs70 -->
 						
