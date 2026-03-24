@@ -43,16 +43,29 @@ public class GenerateDoc {
 			List<Rule<? extends RuleEvaluationContext>> rules = this.validatorInfo.getRules(layer, subProfile);
 			for(Rule<? extends RuleEvaluationContext> rule: rules) {
 				int code = 0;
+				int extraCode = 0;
+				boolean firstPart = true;
 				for(int i = 0; i<rule.getCode().length(); i++) {
 					char c = rule.getCode().charAt(i);
 					if(c>='0'&&c<='9') {
 						code = code*10+(c-'0');
+						firstPart = false;
+					} else {						
+						if(firstPart) {
+							// skip prefix
+							continue;
+						}
+						if(extraCode==0 && c>='a' && c<='z') {
+							extraCode = c - 'a' + 1;
+						} else {
+							throw new IllegalStateException("Unrecognized rule code: "+rule.getCode());
+						}
 					}
 				}
+				int ruleId = code *100 + extraCode;
+				ruleMap.put(ruleId, rule);
 				
-				ruleMap.put(code, rule);
-				
-				List<ValidationSubprofile> activationList = activeProfiles.computeIfAbsent(code, r -> new ArrayList<>());
+				List<ValidationSubprofile> activationList = activeProfiles.computeIfAbsent(ruleId, r -> new ArrayList<>());
 				activationList.add(subProfile);
 			}
 		}
