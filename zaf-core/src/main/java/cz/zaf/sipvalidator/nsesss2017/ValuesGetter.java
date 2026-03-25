@@ -308,38 +308,11 @@ public class ValuesGetter {
         }
         return xParent; 
     }
-    
-    public static boolean isXParent(Element node, String... parentNames) {
-        if (node == null) {
-            return false;
-        }
-        Element xParent = getParent(node, parentNames[0]);
-        if (xParent == null) {
-            return false;
-        }
-        String p_name = xParent.getNodeName();
-        int s = parentNames.length; 
-        if (s == 1) {
-            return p_name.equals(parentNames[0]);
-        }
         
-        for(int i = 1; i < s; i++){
-            Element nextParent = getParent(xParent, parentNames[i]);
-            if (nextParent == null) {
-                return false;
-            }
-            xParent = nextParent;
-            p_name = xParent.getNodeName();
-        }
-        
-        boolean bol = (p_name.equals(parentNames[s-1]));
-        return bol;
-    }
-    
     public static boolean isXParent(Node foundedParent, Node xParent){
         Node nextParent = xParent.getParentNode();
         if(nextParent == null) return false;
-        while(nextParent == foundedParent){
+        if(nextParent == foundedParent){
             return true;
         }
         return isXParent(foundedParent, nextParent);

@@ -167,7 +167,7 @@ public class MetsParser {
                         break;
                     case NsesssV4.DIL:
                         zakladniEntity.add(elem);
-                        if (sipType == SipType.DIL) {
+                        if (sipType == null) {
                             sipType = SipType.DIL;
                         }
                         break;
@@ -279,7 +279,6 @@ public class MetsParser {
     public List<Element> getNodes(String nodeName) {
         List<Element> nodes = this.nodeQueryCache.get(nodeName);
         if (nodes == null) {
-//            return Collections.emptyList();
             throw new RuntimeException("Element pro vyhodnocení pravidla není načten z důvodu jiné chyby, název elementu: " + nodeName);
         }
         return nodes;
