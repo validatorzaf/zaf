@@ -1,4 +1,4 @@
-= NSESSS2024 (ve vývoji)
+= NSESSS2024
 
 Kontrola datových balíčků SIP probíhá podle 
 https://www.mvcr.cz/clanek/narodni-standard-pro-elektronicke-systemy-spisove-sluzby.aspx[národního standardu pro elektronické systémy spisové služby z r. 2024] na základě sestavených xref:NSESSS2024_pravidla[pravidel].
