@@ -54,9 +54,14 @@ public class Pravidlo28 extends K06PravidloBase {
         Element elZakladniEntita = zaklEntity.get(0);
         if (elZakladniEntita.getNodeName().equals(NsesssV4.DOKUMENT)) {
             Element elDatum = ValuesGetter.getXChild(elZakladniEntita, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.VYRIZENI, NsesssV4.DATUM);
-            String datumVyrizeni = elDatum.getTextContent();
-            jePredVcetne(elDatum, datumVyrizeni);
-            
+            if (elDatum == null) {
+                nastavChybu(BaseCode.CHYBI_ELEMENT,
+                        "Nenalezen element <" + NsesssV4.DATUM + "> pro vyřízení.",
+                        getMistoChyby(elZakladniEntita), kontrola.getEntityId(elZakladniEntita));
+            } else {
+                String datumVyrizeni = elDatum.getTextContent();
+                jePredVcetne(elDatum, datumVyrizeni);
+            }
         }
 
     }
@@ -66,14 +71,14 @@ public class Pravidlo28 extends K06PravidloBase {
             Date date = DateUtils.parseDate(dateStr, "yyyy-MM-dd");
             Date limit = DateUtils.parseDate("2026-12-31", "yyyy-MM-dd");
             boolean valid = !date.after(limit);
-            if(!valid){
+            if (!valid) {
                 nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
-                    "Datum vyřízení Dokumentu je po 31. 12. 2026. Datum vyřízení: " + dateStr + ".", elDatum);
+                        "Datum vyřízení Dokumentu je po 31. 12. 2026. Datum vyřízení: " + dateStr + ".", elDatum);
             }
-            
+
         } catch (ParseException e) {
             nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
                     "Datum vyřízení je v nesprávném formátu: " + dateStr + ".", elDatum);
-        }    
+        }
     }
 }
