@@ -22,8 +22,8 @@ public class Rule103 extends EadRule {
     private static final Map<String, String> allowed = new HashMap<>();
 
     static {
-        allowed.put("AUTHOR", " autor");
-        allowed.put("AUTHOR_DIALOGS", "	autor dialogu");
+        allowed.put("AUTHOR", "autor");
+        allowed.put("AUTHOR_DIALOGS", "autor dialogu");
         allowed.put("AUTHOR_ACCOMP_TEXT", "autor doprovodného textu");
         allowed.put("COMPOSER", "autor hudby/skladatel");
         allowed.put("CHOREOGRAPHER", "autor choreografie/choreograf");
@@ -138,6 +138,7 @@ public class Rule103 extends EadRule {
                 if (!StringUtils.equals(title, linktitle)) {
                     //může mít cokoli nezávisle na tabulce
                 }
+                ctx.markValidatedAttributeOnly(relation, "linkrole");
             }
         }
     }

@@ -24,30 +24,48 @@ public class Rule24 extends EadRule {
     protected void evalImpl() {
         Control control = ctx.getEad().getControl();
         List<Localcontrol> localcontrols = control.getLocalcontrol();
-        String profile = "", type = "";
+        String rules = null, type = null;
         for (Localcontrol localcontrol : localcontrols) {
             String localtype = localcontrol.getLocaltype();
+            Term term = localcontrol.getTerm();
             if (StringUtils.equals("RULES", localtype)) {
-                Term term = localcontrol.getTerm();
+                if(term == null) {
+                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybí element term.", ctx.formatEadPosition(localcontrol));
+                }
                 String identifier = term.getIdentifier();
-                if (!(StringUtils.equals("CZ_ZP1958", identifier) || StringUtils.equals("CZ_ZP2013", identifier))) {
+                if (!("CZ_ZP1958".equals(identifier) || "CZ_ZP2013".equals(identifier))) {
                     throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut identifier obsahuje nepovolenou hodnotu: " + identifier + ".", ctx.formatEadPosition(term));
                 }
-                profile = identifier;
+                rules = identifier;
+                ctx.markValidatedAttribute(localcontrol, "localtype");
+                ctx.markValidatedAttribute(term, "identifier");
             }
-            if (StringUtils.equals("FINDING_AID_TYPE", localtype)) {
-                Term term = localcontrol.getTerm();
+            if ("FINDING_AID_TYPE".equals(localtype)) {
+                if(term==null) {
+                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element <term>.", ctx.formatEadPosition(localcontrol));
+                }
                 String identifier = term.getIdentifier();
                 if (!(StringUtils.equals("PROZ_INV_SEZNAM", identifier) || StringUtils.equals("MANIP_SEZNAM", identifier) || StringUtils.equals("INVENTAR", identifier) || StringUtils.equals("KATALOG", identifier))) {
                     throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut identifier obsahuje nepovolenou hodnotu: " + identifier + ".", ctx.formatEadPosition(term));
                 }
                 type = identifier;
+                ctx.markValidatedAttribute(localcontrol, "localtype");
+                ctx.markValidatedAttribute(term, "identifier");
             }
         }
 
-        if (type.equals("PROZ_INV_SEZNAM") && !profile.equals("CZ_ZP1958")) {
-            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Hodnota: " + type + " neodpovídá profilu: " + profile + ".", ctx.formatEadPosition(control));
+        if(rules==null) {
+        	throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybí element obsahující informace o pravidlech.", ctx.formatEadPosition(control));
         }
+
+        if(type==null) {
+        	throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybí element obsahující informace o typu pomůcky.", ctx.formatEadPosition(control));
+        }
+
+        if (type.equals("PROZ_INV_SEZNAM") && !rules.equals("CZ_ZP1958")) {
+            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Hodnota: " + type + " neodpovídá profilu: " + rules + ".", ctx.formatEadPosition(control));
+        }
+        
     }
 
 }

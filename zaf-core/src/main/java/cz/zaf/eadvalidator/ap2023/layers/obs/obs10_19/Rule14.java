@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.eadvalidator.ap2023.Ap2023Constants;
 import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.schema.ead3.Corpname;
 import cz.zaf.schema.ead3.Famname;
@@ -41,7 +42,7 @@ public class Rule14 extends EadRule {
         if (publicationstmt == null) {
 			return;
 		}
-        
+
         List<Object> publisherOrDateOrAddress = publicationstmt.getPublisherOrDateOrAddress();
         for (Object pobj : publisherOrDateOrAddress) {
             if (pobj instanceof P p) {
@@ -51,25 +52,33 @@ public class Rule14 extends EadRule {
                         Object contentObj = jaxbElem.getValue();
                         if (contentObj instanceof Persname persname) {
                             String localtype = persname.getLocaltype();
-                            if (StringUtils.equals("ORIGINATOR", localtype)) {
+                            if (Ap2023Constants.LOCALTYPE_ORIGINATOR.equals(localtype)) {
+                                ctx.markValidatedAttribute(persname, "localtype");
+                                ctx.markValidatedElement(p);
                                 validate(persname, persname.getPart());
                             }
                         } else
                         if (contentObj instanceof Famname famname) {
                             String localtype = famname.getLocaltype();
-                            if (StringUtils.equals("ORIGINATOR", localtype)) {
+                            if (Ap2023Constants.LOCALTYPE_ORIGINATOR.equals(localtype)) {
+                                ctx.markValidatedAttribute(famname, "localtype");
+                                ctx.markValidatedElement(p);
                                 validate(famname, famname.getPart());
                             }
                         } else
                         if (contentObj instanceof Corpname corpname) {
                             String localtype = corpname.getLocaltype();
-                            if (StringUtils.equals("ORIGINATOR", localtype)) {
+                            if (Ap2023Constants.LOCALTYPE_ORIGINATOR.equals(localtype)) {
+                                ctx.markValidatedAttribute(corpname, "localtype");
+                                ctx.markValidatedElement(p);
                                 validate(corpname, corpname.getPart());
                             }
                         } else
                         if (contentObj instanceof Name name) {
                             String localtype = name.getLocaltype();
-                            if (StringUtils.equals("ORIGINATOR", localtype)) {
+                            if (Ap2023Constants.LOCALTYPE_ORIGINATOR.equals(localtype)) {
+                                ctx.markValidatedAttribute(name, "localtype");
+                                ctx.markValidatedElement(p);
                                 validate(name, name.getPart());
                             }
                         }
@@ -84,9 +93,10 @@ public class Rule14 extends EadRule {
             throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Nenalezen element Part.", ctx.formatEadPosition(parent));
         }
         if(listPart.size() != 1){
-            throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nenalezeno více elementů Part.", ctx.formatEadPosition(listPart));
+            throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezeno více elementů Part.", ctx.formatEadPosition(parent));
         }
         for (Part part : listPart) {
+            ctx.markValidatedElement(part);
             List<Serializable> content = part.getContent();
             Ref found = null;
             for (Object pCont : content) {
@@ -94,9 +104,10 @@ public class Rule14 extends EadRule {
                     Object obj = jaxbElem.getValue();
                     if (obj instanceof Ref ref) {
                         if (found != null) {
-                            throw new ZafException(BaseCode.DUPLICITA, "Nenalezen nepovolený element ref.", ctx.formatEadPosition(ref));
+                            throw new ZafException(BaseCode.DUPLICITA, " ref.", ctx.formatEadPosition(ref));
                         }
                         found = ref;
+                        ctx.markValidatedAttribute(ref, "target");
                         Object target = ref.getTarget();
                         if (target == null) {
                             throw new ZafException(BaseCode.CHYBNY_ATRIBUT, "Chybí odkaz atributu target.", ctx.formatEadPosition(ref));
@@ -119,7 +130,7 @@ public class Rule14 extends EadRule {
         }
         Serializable partContent = content.get(0);
         if (partContent instanceof String str) {
-            if (!StringUtils.isNotBlank(str)) {
+            if (StringUtils.isBlank(str)) {
                 throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Prázdná hodnota elementu.", ctx.formatEadPosition(ref));
             }
         } else {

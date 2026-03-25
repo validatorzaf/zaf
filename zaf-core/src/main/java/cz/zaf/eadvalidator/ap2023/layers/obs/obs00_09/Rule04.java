@@ -28,6 +28,7 @@ public class Rule04 extends EadRule {
 		if(StringUtils.isEmpty(encAnal)) {
 			throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybi nebo je prázdný atribut encodinganalog.", ctx.formatEadPosition(filedesc));			
 		}
+		ctx.markValidatedAttribute(filedesc, "encodinganalog");
 		// zkusime prevest na cislo
 		try {
 			int faId = Integer.parseInt(encAnal);

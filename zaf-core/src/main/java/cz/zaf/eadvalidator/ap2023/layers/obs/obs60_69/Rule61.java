@@ -40,6 +40,7 @@ public class Rule61 extends EadRule {
                 if (mainElementCOunt > 1) {
                     throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt elementu.", ctx.formatEadPosition(mainElement));
                 }
+                ctx.markValidatedElement(mainElement);
                 List<Object> cHistChilds = mainElement.getChronlistOrListOrTable();
                 checkSingleElementP(cHistChilds, mainElement);
             }

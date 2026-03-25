@@ -5,7 +5,6 @@
  */
 package cz.zaf.sipvalidator.nsesss2024;
 
-import cz.zaf.sipvalidator.nsesss2017.*;
 import static org.w3c.dom.Node.ELEMENT_NODE;
 
 import java.util.Collections;

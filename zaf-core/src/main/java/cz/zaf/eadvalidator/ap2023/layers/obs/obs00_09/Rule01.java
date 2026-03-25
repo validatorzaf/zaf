@@ -24,18 +24,24 @@ public class Rule01 extends EadRule {
 	@Override
 	protected void evalImpl() {
 		Ead ead = ctx.getEad();
+		ctx.markValidatedElement(ead);
+		ctx.markValidatedElement(ead.getControl());
 		// must exist / ze schematu
 		Recordid recordId = ead.getControl().getRecordid();
-		String value = ead.getControl().getRecordid().getContent();
+		ctx.markValidatedElement(recordId);
+		ctx.markValidatedContent(recordId);
+		
+		String value = recordId.getContent();
 		if(StringUtils.isEmpty(value)) {
 			throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element recorddid je prázdný", ctx.formatEadPosition(recordId));
-		}
+		}		
+
 		// check UUID format
 		try {
 	        UUID.fromString(value);
 	    } catch (IllegalArgumentException e) {
 	    	throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element recorddid má chybnou hodnotu: "+ value, ctx.formatEadPosition(recordId), e);
-	    }		
+	    }
 	}
 
 }

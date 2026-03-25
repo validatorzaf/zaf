@@ -46,8 +46,8 @@ public class Rule104a extends EadRule {
                         if (CollectionUtils.isEmpty(relationentry)) {
                             throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element relationentry.", ctx.formatEadPosition(relation));
                         }
-                        if (relationentry.size() != 1) {
-                            throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nenalezen nepovolený element relationentry.", ctx.formatEadPosition(relationentry));
+                        if (relationentry.size() > 1) {
+                            throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element relationentry.", ctx.formatEadPosition(relationentry.get(1)));
                         }
                         Relationentry re = relationentry.get(0);
                         String content = re.getContent();
@@ -55,6 +55,8 @@ public class Rule104a extends EadRule {
                         if (StringUtils.isBlank(content)) {
                             throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Nenalezena hodnota elementu relationentry.", ctx.formatEadPosition(re));
                         }
+                        ctx.markValidatedElement(re);
+                        ctx.markValidatedContent(re);
                     }
                 }
             }

@@ -104,17 +104,14 @@ public abstract class TestHelper {
                 	sb.append("Vstup: ").append(path).append(", Očekávaný stav: ").append(stavKontroly)
                 	.append(", výsledný stav: ").append(result.getValidationStatus());
                 	if(stavKontroly==ValidationStatus.OK) {
-                		// was expected OK, have to write failed states
-                        for (String pravidloOk : pravidlaOk) {
-                            RuleValidationError prav = result.getPravidlo(pravidloOk);
-							if (prav != null) {
-								sb.append("\nChybné pravidlo: ").append(prav.getId());
-								if(prav.getVypisChyby()!=null) {
-									sb.append(", vypisChyby: ").append(prav.getVypisChyby());
-								}
-								if(prav.getMistoChyby()!=null) {
-									sb.append(", mistoChyby: ").append(prav.getMistoChyby());
-								}							
+                		// was expected OK, have to write failed states                		
+                        for (var prav : result.getPravidla()) {
+							sb.append("\nChybné pravidlo: ").append(prav.getId());
+							if(prav.getVypisChyby()!=null) {
+								sb.append(", vypisChyby: ").append(prav.getVypisChyby());
+							}
+							if(prav.getMistoChyby()!=null) {
+								sb.append(", mistoChyby: ").append(prav.getMistoChyby());
 							}
                         }
                 	}

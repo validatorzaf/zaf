@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- val1 error: objectxmlwrap uses CAMv2 namespace but CAMv1 element names (ent instead of entity) -->
+<ead:ead xmlns:ead="http://ead3.archivists.org/schema/" xmlns:cam="http://cam.tacr.cz/2025">
+	<ead:control>
+		<ead:recordid>d0f7e14f-a655-4902-a6fd-e141bbe6ca6b</ead:recordid>
+		<ead:otherrecordid localtype="CZ_MVCR_FINDING_AID_ID">5</ead:otherrecordid>
+		<ead:otherrecordid localtype="INTERNAL_REV_ID">rev1</ead:otherrecordid>
+
+		<ead:filedesc encodinganalog="123">
+			<ead:titlestmt>
+				<ead:titleproper>Jméno AS</ead:titleproper>
+				<ead:subtitle>Název hotové pomůcky</ead:subtitle>
+			</ead:titlestmt>
+		</ead:filedesc>
+
+		<ead:maintenancestatus value="derived"></ead:maintenancestatus>
+		<ead:maintenanceagency countrycode="CZ">
+			<ead:agencycode localtype="CZ_MVCR_INSTITUTION_ID">100000010</ead:agencycode>
+			<ead:agencyname>Národní archiv</ead:agencyname>
+		</ead:maintenanceagency>
+
+		<ead:localcontrol localtype="CZ_FINDING_AID_EAD_PROFILE">
+			<ead:term identifier="CZ_EAD3_PROFILE_20260501">profil platný od května 2026</ead:term>
+		</ead:localcontrol>
+
+		<ead:maintenancehistory>
+			<ead:maintenanceevent>
+				<ead:eventtype value="created"></ead:eventtype>
+				<ead:eventdatetime standarddatetime="2024-01-01T01:23:45.678+01:00">2024-01-01T01:23:45.678+01:00</ead:eventdatetime>
+				<ead:agenttype value="machine"></ead:agenttype>
+				<ead:agent>Agent 1.0</ead:agent>
+			</ead:maintenanceevent>
+		</ead:maintenancehistory>
+
+		<ead:sources>
+			<ead:source id="ap7523">
+				<ead:objectxmlwrap>
+					<cam:ent eid="100000" euid="fb15d8ee-724e-4bd4-b08e-a0d7e4038ac8" ens="ERS_APPROVED" ent="PERSON_INDIVIDUAL">
+					  <cam:revi>
+					    <cam:rid>55c98631-03ea-4981-9abf-e3f8eb451d25</cam:rid>
+					    <cam:usr>Irena</cam:usr>
+					    <cam:modt>2023-08-30T08:49:09.14</cam:modt>
+					  </cam:revi>
+                      <cam:prts>
+                        <cam:p pid="5147942d-00cd-46d4-9a57-909f7b253f4c" t="PT_NAME">
+                          <cam:itms>
+                            <cam:si t="NM_MAIN" uuid="3881889c-49b0-4c79-8264-e92ca3700650">z Eichendorffu</cam:si>
+                          </cam:itms>
+                        </cam:p>
+                      </cam:prts>
+                    </cam:ent>
+				</ead:objectxmlwrap>
+			</ead:source>
+		</ead:sources>
+	</ead:control>
+	<ead:archdesc level="fonds" base="http://archiv.cz/dids/80bb604a-052e-4e49-b86e-e4a91b95bf59">
+		<ead:did>
+		</ead:did>
+	</ead:archdesc>
+</ead:ead>

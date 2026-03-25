@@ -122,20 +122,20 @@
 
 						<ead:unittitle audience="internal">Něco skrytého</ead:unittitle> <!-- obs41, obs42 -->
 						<ead:container>Uložení</ead:container> <!-- obs49 -->
-						<ead:unitid localtype="REFERENCNI_OZNACENI" label="referenční označení">CZ620100//153//1/4//1</ead:unitid> <!-- obs50, obs51 -->
+						<ead:unitid localtype="REFERENCNI_OZNACENI" label="referenční označení">CZ100000010//153//1/4//1</ead:unitid> <!-- obs50, obs51 -->
 						<ead:unittitle>Text</ead:unittitle> <!-- obs53 -->
 						
 						<ead:unitdatestructured>
-							<ead:dateset>
-								<ead:daterange>
-									<ead:fromdate standarddate="2001-10-01T00:00:00">1. října 2001</ead:fromdate>
-									<ead:todate standarddate="2001-10-01T23:59:59">1. října 2001</ead:todate>
-								</ead:daterange>
-								<ead:daterange localtype="ERROR">
-									<ead:fromdate standarddate="1980-12-31T00:00:00">31. prosince 1980</ead:fromdate>
-									<ead:todate standarddate="1980-12-31T23:59:59">31. prosince 1980</ead:todate>
-								</ead:daterange>
-							  <ead:dateset>
+							<ead:daterange altrender="D-D"> <!-- obs55 -->
+								<ead:fromdate standarddate="2001-10-01T00:00:00">1. října 2001</ead:fromdate> <!-- obs57 -->
+								<ead:todate standarddate="2001-10-02T23:59:59">2. října 2001</ead:todate> <!-- obs58, obs59 -->
+							</ead:daterange>
+						</ead:unitdatestructured>
+						<ead:unitdatestructured>
+							<ead:daterange localtype="ERROR" altrender="YM"><!-- obs55 -->
+								<ead:fromdate standarddate="2001-09-01T00:00:00">září 2001</ead:fromdate> <!-- obs57 -->
+								<ead:todate standarddate="2001-09-30T23:59:59">září 2001</ead:todate> <!-- obs58, obs59 -->
+							</ead:daterange>
 						</ead:unitdatestructured>
 						
 						<ead:didnote localtype="INTERNAL" audience="internal">Text</ead:didnote> <!-- obs70 -->

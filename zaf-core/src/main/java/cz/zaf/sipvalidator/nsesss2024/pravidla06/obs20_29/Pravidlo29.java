@@ -10,14 +10,17 @@ import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
 import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
+import java.text.ParseException;
 
 import java.util.ArrayList;
+import java.util.Date;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
 
 //OBSAHOVÁ č.29 Pokud existuje jakýkoli element <nsesss:KrizovyOdkaz> a obsahuje atribut pevny s hodnotou ano, 
 // potom pro každý jeho výskyt obsahuje element <mets:dmdSec> v hierarchii dětských elementů <mets:mdWrap>, <mets:xmlData> dětský element <nsesss:Spis>, 
 // který se nenachází v rodičovském dílu (<nsesss:Dil>), se stejnou hodnotou v dětském elementu <nsesss:Identifikator> a v jeho atributu zdroj. 
 // Anebo stejným způsobem dětský element <nsesss:Dil> nebo <nsesss:Spis> nebo <nsesss:Dokument>, pokud byl vyřízen/uzavřen do 31. 12. 2026 včetně.
-
 public class Pravidlo29 extends K06PravidloBase {
 
     static final public String OBS29 = "obs29";
@@ -47,17 +50,21 @@ public class Pravidlo29 extends K06PravidloBase {
 
             for (int i = 0; i < pevneKrizoveOdkazy.size(); i++) {
                 Element krizovyOdkaz = pevneKrizoveOdkazy.get(i);
-                Element materska_zakl_entita_eu = ValuesGetter.getXParent(krizovyOdkaz, "nsesss:Souvislosti",
+                Element materska_zakl_entita_eu = ValuesGetter.getXParent(krizovyOdkaz, NsesssV4.SOUVISLOSTI,
                         NsesssV4.EVIDENCNI_UDAJE);
 
                 if (materska_zakl_entita_eu == null) {
                     nastavChybu(BaseCode.NEPOVOLENY_ELEMENT,
                             "Element <nsesss:KrizovyOdkaz> je špatně zatříděn. Nenalezeny elementy <nsesss:Souvislosti> a <nsesss:EvidencniUdaje>.",
-                            krizovyOdkaz);
+                            getMistoChyby(krizovyOdkaz));
                 }
                 Node za_ent = materska_zakl_entita_eu.getParentNode();
-                Node identifikator_me = ValuesGetter.getXChild(materska_zakl_entita_eu, "nsesss:Identifikace",
-                        "nsesss:Identifikator");
+                if (za_ent == null) {
+                    nastavChybu(BaseCode.CHYBI_ELEMENT,
+                            "Element <nsesss:KrizovyOdkaz> je špatně zatříděn. Nenalezena základní entita.",
+                            getMistoChyby(krizovyOdkaz));
+                }
+                Node identifikator_me = ValuesGetter.getXChild(materska_zakl_entita_eu, NsesssV4.IDENTIFIKACE, NsesssV4.IDENTIFIKATOR);
                 if (identifikator_me == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT,
                             "Základní entitě náležící k elementu <nsesss:KrizovyOdkaz> chybí element <nsesss:Identifikator>.",
@@ -84,7 +91,7 @@ public class Pravidlo29 extends K06PravidloBase {
                 String zdroj_ko = ValuesGetter.getValueOfAttribut(identifikator_ko, "zdroj");
                 String ident_ko = identifikator_ko.getTextContent();
 
-                if (zdroj_me.equals(zdroj_ko) && ident_me.equals(ident_ko)) {
+                if (StringUtils.equals(zdroj_me, zdroj_ko) && StringUtils.equals(ident_me, ident_ko)) {
                     nastavChybu(BaseCode.CHYBA_KRIZOVEHO_ODKAZU, "Element <nsesss:KrizovyOdkaz> odkazuje na vlastní základní entitu.",
                             krizovyOdkaz);
                 }
@@ -93,8 +100,8 @@ public class Pravidlo29 extends K06PravidloBase {
                 List<Element> listElChybnych = new ArrayList<>();
                 for (Element zaklEntita : zaklEntity) {
                     Node id_ze = ValuesGetter.getXChild(zaklEntita, NsesssV4.EVIDENCNI_UDAJE,
-                            "nsesss:Identifikace",
-                            "nsesss:Identifikator");
+                            NsesssV4.IDENTIFIKACE,
+                            NsesssV4.IDENTIFIKATOR);
                     if (id_ze == null) {
                         nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Identifikator> základní entity.",
                                 zaklEntita);
@@ -105,7 +112,8 @@ public class Pravidlo29 extends K06PravidloBase {
                     }
                     String hodnotaZdrojMatEnt = ValuesGetter.getValueOfAttribut(id_ze, "zdroj");
                     String hodnotaIdentMatEnt = id_ze.getTextContent();
-                    if (zdroj_ko.equals(hodnotaZdrojMatEnt) && ident_ko.equals(hodnotaIdentMatEnt)) {
+
+                    if (StringUtils.equals(zdroj_ko, hodnotaZdrojMatEnt) && StringUtils.equals(ident_ko, hodnotaIdentMatEnt)) {
                         pocitadlo++;
                         listElChybnych.add(zaklEntita);
                     }
@@ -121,7 +129,48 @@ public class Pravidlo29 extends K06PravidloBase {
                             "Element <nsesss:KrizovyOdkaz> s id: " + ident_ko + " a zdrojem: " + zdroj_ko + " odkazuje na více základních entit.",
                             listElChybnych);
                 }
+
+                if (pocitadlo == 1) {
+                    Element elZakladnientita = listElChybnych.get(0);
+                    Element elDatum = getDatum(elZakladnientita);
+                    if (elDatum == null) {
+                        nastavChybu(BaseCode.CHYBI_ELEMENT,
+                                "Nenalezen element <" + NsesssV4.DATUM + ">.",
+                                getMistoChyby(elZakladnientita), kontrola.getEntityId(elZakladnientita));
+                    } else {
+                        String datumVyrizeni = elDatum.getTextContent();
+                        jePredVcetne(elZakladnientita, datumVyrizeni);
+                    }
+                }
             }
         }
+    }
+
+    private static void jePredVcetne(Element elDatum, String dateStr) {
+        try {
+            Date date = DateUtils.parseDate(dateStr, "yyyy-MM-dd");
+            Date limit = DateUtils.parseDate("2026-12-31", "yyyy-MM-dd");
+            boolean valid = !date.after(limit);
+            if (!valid) {
+                nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
+                        "Datum vyřízení Dokumentu je po 31. 12. 2026. Datum vyřízení: " + dateStr + ".", elDatum);
+            }
+
+        } catch (ParseException e) {
+            nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
+                    "Datum vyřízení je v nesprávném formátu: " + dateStr + ".", elDatum);
+        }
+    }
+
+    private Element getDatum(Element elZakladniEntita) {
+        Element elDatum = ValuesGetter.getXChild(elZakladniEntita, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.VYRIZENI, NsesssV4.DATUM);
+        if (elDatum == null) {
+            elDatum = ValuesGetter.getXChild(elZakladniEntita, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.VYRIZENI_UZAVRENI, NsesssV4.DATUM);
+        }
+        if (elDatum == null) {
+            elDatum = ValuesGetter.getXChild(elZakladniEntita, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.UZAVRENI, NsesssV4.DATUM);
+        }
+
+        return elDatum;
     }
 }

@@ -33,6 +33,7 @@ public class Rule93 extends EadRule {
             if (child instanceof Bibliography bibliography) {
                 List<Object> bibliographyChildren = bibliography.getChronlistOrListOrTable();
                 checkSingleElementP(bibliographyChildren, bibliography);
+                ctx.markValidatedElement(bibliography);
             }
         }
     }

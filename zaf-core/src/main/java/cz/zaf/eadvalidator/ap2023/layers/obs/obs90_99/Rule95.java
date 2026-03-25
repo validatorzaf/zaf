@@ -41,6 +41,7 @@ public class Rule95 extends EadRule {
                 if (!(StringUtils.equals("derived", daotype) || StringUtils.equals("borndigital", daotype))) {
                     throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nepovolená hodnota atributu daotype.", ctx.formatEadPosition(dao));
                 }
+                ctx.markValidatedAttribute(dao, "daotype");
             }
         }
     }

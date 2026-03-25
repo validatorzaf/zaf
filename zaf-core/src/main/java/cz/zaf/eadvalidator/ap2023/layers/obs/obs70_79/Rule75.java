@@ -14,7 +14,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import org.apache.commons.lang3.math.NumberUtils;
 
 public class Rule75 extends EadRule {
 
@@ -53,6 +52,8 @@ public class Rule75 extends EadRule {
                 Set<String> existingDimensions = new HashSet<>();
                 for (Object pOrD : physfacetOrDimensions) {
                     if (pOrD instanceof Dimensions dimensions) {
+                    	ctx.markValidatedElement(dimensions);
+                    	
                         List<Serializable> contents = dimensions.getContent();
                         for (Object content : contents) {
                             if (content instanceof JAXBElement) {
@@ -81,6 +82,9 @@ public class Rule75 extends EadRule {
         if (!allowed.contains(localtype)) {
             throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Chybná hodnota atributu localtype: " + localtype + ".", ctx.formatEadPosition(dimensions));
         }
+        ctx.markValidatedAttribute(dimensions, "localtype");
+        ctx.markValidatedAttributeOnly(dimensions, "unit");
+        ctx.markValidatedContent(dimensions);
         chceckContent(dimensions);
         return localtype;
     }
@@ -95,17 +99,14 @@ public class Rule75 extends EadRule {
             if (StringUtils.isEmpty(str)) {
                 throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Prázdná hodnota elementu.", ctx.formatEadPosition(dimensions));
             }
-            if (!NumberUtils.isCreatable(str)) {
+            try {
+            	Float.valueOf(str);
+            } catch (NumberFormatException nfe) {
                 throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element dimensions obsahuje nepovolenou hodnotu: " + str + ".", ctx.formatEadPosition(dimensions));
             }
-
         } else {
             throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybný typ hodnoty v elementu.", ctx.formatEadPosition(dimensions));
         }
-    }
-
-    private void duplicityError(String localtype, Dimensions dimensions) {
-        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Hodnota atributu localtype: " + localtype + " elementu dimensions uvedena vícekrát.", ctx.formatEadPosition(dimensions));
     }
 
 }

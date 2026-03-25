@@ -12,9 +12,7 @@ import cz.zaf.schema.ead3.Relations;
 import cz.zaf.schema.ead3.Source;
 import jakarta.xml.bind.JAXBElement;
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Rule105 extends EadRule {
 
@@ -64,6 +62,8 @@ public class Rule105 extends EadRule {
                 P p = pList.get(0);
                 //ptr nejde zavolat
                 validatePart(p);
+                ctx.markValidatedElement(descriptivenote);
+                ctx.markValidatedElement(p);
             }
         }
     }
@@ -84,10 +84,15 @@ public class Rule105 extends EadRule {
                     //objekt je přímo ten source (element) - ověřit že je to source
                     Object target = ptr.getTarget();
                     if (!(target instanceof Source source)) {
-                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nenalezena očkávaná hodnota atributu target.", ctx.formatEadPosition(ptr));
+                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nenalezena očekávaná hodnota atributu target.", ctx.formatEadPosition(ptr));
                     }
+                    ctx.markValidatedAttribute(ptr, "target");
                 }
             }
+        }
+
+        if(found == null) {
+            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen požadovaný element ptr.", ctx.formatEadPosition(p));
         }
     }
 

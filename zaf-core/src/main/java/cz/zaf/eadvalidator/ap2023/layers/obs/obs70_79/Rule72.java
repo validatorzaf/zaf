@@ -33,6 +33,7 @@ public class Rule72 extends EadRule {
     private void validate(List<Object> childList) {
         for (Object child : childList) {
             if (child instanceof Processinfo mainElement) {
+                ctx.markValidatedElement(mainElement);
                 List<Object> cHistChilds = mainElement.getChronlistOrListOrTable();
                 checkSingleElementP(cHistChilds, mainElement);
             }

@@ -37,6 +37,8 @@ public class Rule05 extends EadRule {
 			throw new ZafException(BaseCode.DUPLICITA, "Opakování elementů subtitle.", ctx.formatEadPosition(subtitles.get(1)));
 		}
 		Subtitle subtitle = subtitles.get(0);
+		ctx.markValidatedElement(subtitle);
+		ctx.markValidatedContent(subtitle);
 		List<Serializable> content = subtitle.getContent();
 		if(CollectionUtils.isEmpty(content)) {
 			throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybi hodnota element.", ctx.formatEadPosition(subtitle));

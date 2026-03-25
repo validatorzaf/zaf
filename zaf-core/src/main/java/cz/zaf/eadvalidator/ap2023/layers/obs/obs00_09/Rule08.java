@@ -9,12 +9,12 @@ import org.apache.commons.lang3.StringUtils;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.eadvalidator.ap2023.Ap2023Constants;
 import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.schema.ead3.Date;
 import cz.zaf.schema.ead3.Ead;
 import cz.zaf.schema.ead3.Filedesc;
 import cz.zaf.schema.ead3.Publicationstmt;
-import cz.zaf.schemas.ead.EadNS;
 
 public class Rule08 extends EadRule {
 	
@@ -38,17 +38,19 @@ public class Rule08 extends EadRule {
 		}
 		List<Object> pdas = publStmt.getPublisherOrDateOrAddress();
 		if(CollectionUtils.isEmpty(pdas)) {
-			throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybi element.", ctx.formatEadPosition(pdas));
+			throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybi element.", ctx.formatEadPosition(publStmt));
 		}
 		Date found = null;
 		for(Object pda: pdas) {
 			if(pda instanceof Date) {
 				Date date = (Date)pda;
-				if(EadNS.LOCALTYPE_DESCRIPTION_DATE.equals(date.getLocaltype())) {
+				if(Ap2023Constants.LOCALTYPE_DESCRIPTION_DATE.equals(date.getLocaltype())) {
 					if(found!=null) {
 						throw new ZafException(BaseCode.DUPLICITA, "Duplicitní element.", ctx.formatEadPosition(date));
 					}
 					found = date;
+					ctx.markValidatedAttribute(date, "localtype");
+					ctx.markValidatedContent(date);
 					List<Serializable> content = date.getContent();
 					if(content.size()!=1) {
 						throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Chybná hodnota elementu.", ctx.formatEadPosition(date));
@@ -66,7 +68,7 @@ public class Rule08 extends EadRule {
 			}
 		}
 		if(found==null) {
-			throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybi element.", ctx.formatEadPosition(pdas));
+			throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybi element.", ctx.formatEadPosition(publStmt));
 		}
 	}
 }

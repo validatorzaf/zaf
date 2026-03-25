@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:nsesss="http://www.mvcr.cz/nsesss/v4" xmlns:tp="http://www.mvcr.cz/nsesss/2023/log" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="METS_MUJESS00040003" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu" OBJID="METS_MUJESS00040003" PROFILE="mets.xsd" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v4 http://www.mvcr.cz/nsesss/v4/nsesss.xsd http://www.mvcr.cz/nsesss/2023/log https://www.mvcr.cz/nsesss/v4/nsesss-TrP.xsd">
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:nsesss="http://www.mvcr.cz/nsesss/v4" xmlns:tp="http://www.mvcr.cz/nsesss/2023/log" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="METS_MUJESS00040003" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu" OBJID="METS_MUJESS00040003" PROFILE="mets.xsd" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v4 https://www.mvcr.cz/nsesss/v4/nsesss.xsd http://www.mvcr.cz/nsesss/2023/log https://www.mvcr.cz/nsesss/v4/nsesss-TrP.xsd">
   <mets:metsHdr CREATEDATE="2019-05-13T08:41:06.1210384+02:00" LASTMODDATE="2019-05-13T08:41:06.1210384+02:00">
     <mets:agent ID="IC15049248" ROLE="CREATOR" TYPE="ORGANIZATION">
       <mets:name>GDPR anonymizováno</mets:name>
@@ -139,6 +139,7 @@
               <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
               <nsesss:DatumOtevreni datum="2012-07-10T12:21:13.713">2012-07-10</nsesss:DatumOtevreni>
               <nsesss:DatumUzavreni datum="2012-09-06T00:00:00">2012-09-06</nsesss:DatumUzavreni>
+              <nsesss:Umisteni>umisteno</nsesss:Umisteni>
             </nsesss:Manipulace>
           </nsesss:EvidencniUdaje>
           <nsesss:Dokumenty>
@@ -637,7 +638,7 @@
   <mets:fileSec>
     <mets:fileGrp ID="fileGrp_1" USE="Original">
       <mets:file ADMID="Komp_MUJESSTP10308220.MUJESS00046028" CHECKSUM="D6529609EE374E8F71FF10E7638D04EAB1004041227C9665A2D872503BDC4C4B04B2F28FA43842E6304A3F6DA5B8965DC1496315FE46B33C00871BF91928636B" CHECKSUMTYPE="SHA-512" CREATED="2019-05-13T08:29:12.78" DMDID="Komp_MUJESS00046028" ID="MUJESS00046028" MIMETYPE="application/pdf" SIZE="185858">
-        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\00046028_Zkouška.pdf" xlink:type="simple"/>
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty/00046028_Zkouška.pdf" xlink:type="simple"/>
       </mets:file>
     </mets:fileGrp>
   </mets:fileSec>

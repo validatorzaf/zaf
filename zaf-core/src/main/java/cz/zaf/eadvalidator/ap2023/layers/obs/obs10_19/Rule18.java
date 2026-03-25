@@ -30,6 +30,7 @@ public class Rule18 extends EadRule {
         if (!StringUtils.equals("derived", value)) {
             throw new ZafException(BaseCode.CHYBNY_ATRIBUT, "Atribut value neobsahuje požadovanou hodnotu.", ctx.formatEadPosition(maintenancestatus));
         }
-        
+        ctx.markValidatedAttribute(maintenancestatus, "value");
+
     }
 }

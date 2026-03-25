@@ -7,7 +7,7 @@ package cz.zaf.sipvalidator.nsesss2024;
  */
 public class NsesssV4 {
     // Verze pravidel NSESSS
-    public final static String ZAF_RULE_VERSION = "1";
+    public final static String ZAF_RULE_VERSION = "2";
 
     public final static String ANALOGOVY_DOKUMENT = "nsesss:AnalogovyDokument";
     public final static String AUTOR = "nsesss:Autor";
@@ -92,14 +92,18 @@ public class NsesssV4 {
     public final static String SOUCAST = "nsesss:Soucast";
     public final static String SOUVISLOSTI = "nsesss:Souvislosti";
     public final static String SPIS = "nsesss:Spis";
+    public final static String SPISY = "nsesss:Spisy";
     public final static String SPISOVY_PLAN = "nsesss:SpisovyPlan";
     public final static String SPOUSTECI_UDALOST = "nsesss:SpousteciUdalost";
     public final static String SUBJEKT = "nsesss:Subjekt";
     public final static String TRIDENI = "nsesss:Trideni";
+    public final static String TRVALY_SKARTACNI_SOUHLAS = "nsesss:TrvalySkartacniSouhlas";
     public final static String TYP_DOKUMENTU = "nsesss:TypDokumentu";
     public final static String TYPOVY_SPIS = "nsesss:TypovySpis";
     public final static String UKLADACI_JEDNOTKA = "nsesss:UkladaciJednotka";
+    public final static String UMISTENI = "nsesss:Umisteni";
     public final static String URCENE_CASOVE_OBDOBI = "nsesss:UrceneCasoveObdobi";
+    public final static String URCENO_PRO_TYPOVE_SPISY = "nsesss:UrcenoProTypoveSpisy";
     public final static String UZAVRENI = "nsesss:Uzavreni";
     public final static String VECNA_SKUPINA = "nsesss:VecnaSkupina";
     public final static String VLASTNI_DOKUMENT = "nsesss:VlastniDokument";

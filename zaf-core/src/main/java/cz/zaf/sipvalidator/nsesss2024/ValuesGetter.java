@@ -339,7 +339,7 @@ public class ValuesGetter {
     public static boolean isXParent(Node foundedParent, Node xParent){
         Node nextParent = xParent.getParentNode();
         if(nextParent == null) return false;
-        while(nextParent == foundedParent){
+        if(nextParent == foundedParent){
             return true;
         }
         return isXParent(foundedParent, nextParent);

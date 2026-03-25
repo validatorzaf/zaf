@@ -7,10 +7,10 @@ import org.apache.commons.lang3.StringUtils;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.eadvalidator.ap2023.Ap2023Constants;
 import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.schema.ead3.Ead;
 import cz.zaf.schema.ead3.Otherrecordid;
-import cz.zaf.schemas.ead.EadNS;
 
 public class Rule03 extends EadRule {
 
@@ -39,10 +39,12 @@ public class Rule03 extends EadRule {
                         ctx.formatEadPosition(otherId));
             }
             // ignorujeme
-            if (EadNS.LOCALTYPE_FINDING_AID_ID.equals(otherId.getLocaltype())) {
+            if (Ap2023Constants.LOCALTYPE_FINDING_AID_ID.equals(otherId.getLocaltype())) {
                 continue;
             }
-            if (EadNS.LOCALTYPE_INTERNAL_REV_ID.equals(otherId.getLocaltype())) {
+            if (Ap2023Constants.LOCALTYPE_INTERNAL_REV_ID.equals(otherId.getLocaltype())) {
+                ctx.markValidatedAttribute(otherId, "localtype");
+                ctx.markValidatedContent(otherId);
                 // kontrola hodnoty
                 String content = otherId.getContent();
                 if (StringUtils.isBlank(content)) {

@@ -42,6 +42,7 @@ public class Rule54 extends EadRule {
             if (obj instanceof Unittitle unittitle) {
                 String localtype = unittitle.getLocaltype();
                 if (StringUtils.equals("FORMAL_TITLE", localtype)) {
+                    ctx.markValidatedAttribute(unittitle, "localtype");
                     boolean firstCondition = validateContent(obj, false, unittitle.getContent());
                     if (!firstCondition) {
                         Part found = null;

@@ -15,8 +15,8 @@ import org.apache.commons.lang3.StringUtils;
 public class Rule15 extends EadRule {
 
     static final public String CODE = "obs15";
-    static final public String RULE_TEXT = "Element <publicationstmt> obsahuje alespoň jednoho zpracovatele, tj. jeden element <p>, který obsahuje právě jeden element <persname> s atributem \"localtype\" o hodnotě \"ARRANGER\".";
-    static final public String RULE_ERROR = "Struktura elementu <publicationstmt> neobsahuje právě jeden element <persname> s atributem \"localtype\" o hodnotě \"ARRANGER\" vnořený do elementu <p>.";
+    static final public String RULE_TEXT = "Element <publicationstmt> obsahuje alespoň jednoho zpracovatele, tj. alespoň jeden element <p>, který obsahuje právě jeden element <persname> s atributem \"localtype\" o hodnotě \"ARRANGER\".";
+    static final public String RULE_ERROR = "Struktura elementu <publicationstmt> neobsahuje alespoň jeden element <persname> s atributem \"localtype\" o hodnotě \"ARRANGER\" vnořený do elementu <p>.";
     static final public String RULE_SOURCE = "Část 4.1.7 profilu EAD3 MV ČR";
 
     public Rule15() {
@@ -41,7 +41,7 @@ public class Rule15 extends EadRule {
                         Object contentObj = jaxbElem.getValue();
                         if (contentObj instanceof Persname persname) {
                             String localtype = persname.getLocaltype();
-                            if (StringUtils.equals("ARRANGER", localtype)) {
+                            if ("ARRANGER".equals(localtype)) {
                                 found = persname;
                             }
                         }

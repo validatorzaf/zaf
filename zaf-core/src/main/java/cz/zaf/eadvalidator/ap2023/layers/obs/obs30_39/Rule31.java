@@ -35,6 +35,7 @@ public class Rule31 extends EadRule {
         if (maintenancehistory == null) {
             throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element maintenancehistory.", ctx.formatEadPosition(control));
         }
+        ctx.markValidatedElement(maintenancehistory);
         List<Maintenanceevent> maintenanceeventList = maintenancehistory.getMaintenanceevent();
         if (maintenanceeventList.isEmpty()) {
             throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen požadovaný element maintenanceevent.", ctx.formatEadPosition(maintenancehistory));
@@ -44,6 +45,12 @@ public class Rule31 extends EadRule {
             //Eventtype 31 - povinný ze schématu
             Eventtype eventtype = maintenanceevent.getEventtype();
             if (!"created".equals(eventtype.getValue())) {
+                throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Neočekávaná hodnota atributu eventtype, hodnota: "+eventtype.getValue()+".", ctx.formatEadPosition(maintenanceevent));
+            }
+            ctx.markValidatedElement(maintenanceevent);
+            ctx.markValidatedAttribute(eventtype, "value");
+
+            if (found != null) {
                 throw new ZafException(BaseCode.DUPLICITA, "Nalezen duplicitní element maintenanceevent.", ctx.formatEadPosition(maintenanceevent));
             }
 
@@ -58,7 +65,8 @@ public class Rule31 extends EadRule {
             if (!isDateValid) {
                 throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut eventdatetime neobsahuje hodnotu v očekávaném formátu.", ctx.formatEadPosition(maintenanceevent));
             }
-            
+            ctx.markValidatedAttribute(eventdatetime, "standarddatetime");
+
             if (StringUtils.isNotEmpty(content) && !StringUtils.equals(content, standarddatetime)) {
                 throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "V elementu eventdatetime je uvedena odlišná hodnota atributu standarddatetime("+standarddatetime
                 		+") od jeho obsahu ("+content+").", 
@@ -70,12 +78,15 @@ public class Rule31 extends EadRule {
             if (!"machine".equals(agenttype.getValue())) {
                 throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut agenttype:value neobsahuje očekávanou hodnotu machine.", ctx.formatEadPosition(agenttype));
             }
+            ctx.markValidatedAttribute(agenttype, "value");
 
             //34 Agent
             Agent agent = maintenanceevent.getAgent();
             if (StringUtils.isBlank(agent.getContent())) {
                 throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element agent není vyplněn.", ctx.formatEadPosition(agent));
             }
+            ctx.markValidatedElement(agent);
+            ctx.markValidatedContent(agent);
 
             found = maintenanceevent;
         }

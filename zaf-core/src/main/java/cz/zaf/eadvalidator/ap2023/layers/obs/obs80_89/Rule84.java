@@ -75,6 +75,8 @@ public class Rule84 extends EadRule {
         } else {
             throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybný typ hodnoty v elementu.", ctx.formatEadPosition(materialspec));
         }
+        ctx.markValidatedAttribute(materialspec, "localtype");
+        ctx.markValidatedContent(materialspec);
     }
 
     private void duplicityError(Materialspec materialspec, String localtype) {

@@ -25,6 +25,7 @@ public class Rule35a extends EadRule {
         if (!validate(level)) {
             throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut level elementu archdesc není vyplněn.", ctx.formatEadPosition(archdesc));
         }
+        ctx.markValidatedAttribute(archdesc, "level");
         if(StringUtils.equals("otherlevel", level)){
             String otherlevel = archdesc.getOtherlevel();
             if(StringUtils.isEmpty(otherlevel)){
@@ -33,6 +34,7 @@ public class Rule35a extends EadRule {
             if(!StringUtils.equals("balicek", otherlevel)){
                 throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut otherlevel elementu archdesc neobsahuje očekávanou hodnotu \"balicek\", ale hodnotu: " + otherlevel + ".", ctx.formatEadPosition(archdesc));
             }
+            ctx.markValidatedAttributeOnly(archdesc, "otherlevel");
         }
     }
     

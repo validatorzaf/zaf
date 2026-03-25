@@ -34,20 +34,20 @@ public class Pravidlo20 extends K06PravidloBase {
 
         for (Element elMetsAgent : listElMetsAgent) {
             List<Element> listElMetsName = ValuesGetter.getChildNodes(elMetsAgent, "mets:name");
-            int size = listElMetsName.size();
-            if (size == 0) {
+            if (CollectionUtils.isEmpty(listElMetsName)) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT,
-                        "Element <mets:agent> neobsahuje žádný dětský element <mets:name>.", elMetsAgent);
+                        "Element <mets:agent> neobsahuje žádný dětský element <mets:name>.", getMistoChyby(elMetsAgent));
             }
+            int size = listElMetsName.size();
             if (size > 1) {
                 nastavChybu(BaseCode.NEPOVOLENY_ELEMENT,
-                        "Element <mets:agent> neobsahuje právě jeden dětský element <mets:name>.", elMetsAgent);
+                        "Element <mets:agent> neobsahuje právě jeden dětský element <mets:name>.", getMistoChyby(elMetsAgent));
             }
-
-            String hodnotaElMetsName = elMetsAgent.getTextContent();
+            Element elMetsName = listElMetsName.get(0);
+            String hodnotaElMetsName = elMetsName.getTextContent();
             if (StringUtils.isBlank(hodnotaElMetsName)) {
                 nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU,
-                        "Element <mets:agent> má nevyplněnou hodnotu u dětského elementu <mets:name>.", elMetsAgent);
+                        "Element <mets:agent> má nevyplněnou hodnotu u dětského elementu <mets:name>.", getMistoChyby(elMetsAgent));
             }
         }
     }

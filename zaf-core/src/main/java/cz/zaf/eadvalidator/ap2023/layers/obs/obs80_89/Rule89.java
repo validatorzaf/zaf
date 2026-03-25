@@ -44,6 +44,8 @@ public class Rule89 extends EadRule {
     private void validateRelation(List<Object> childrenList) {
         for (Object child : childrenList) {
             if (child instanceof Relations relations) {
+            	ctx.markValidatedElement(relations);
+            	
                 List<Relation> relationList = relations.getRelation();
                 for (Relation relation : relationList) {
                     String relationtype = relation.getRelationtype();
@@ -53,6 +55,8 @@ public class Rule89 extends EadRule {
                         if (geogname == null) {
                             throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element geogname.", ctx.formatEadPosition(relation));
                         }
+                        ctx.markValidatedAttribute(relation, "relationtype");
+                        ctx.markValidatedAttributeOnly(relation, "otherrelationtype");
                         validateGeogname(geogname);
                     }
                 }
@@ -73,9 +77,17 @@ public class Rule89 extends EadRule {
             throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element geographiccoordinates.", ctx.formatEadPosition(geogname));
         }
 
-        validatePartContent(part.get(0));
+        ctx.markValidatedElement(geogname);
 
-        validateGeographiccoordinatesContent(geographiccoordinates.get(0));
+        Part partElem = part.get(0);
+        validatePartContent(partElem);
+        ctx.markValidatedElement(partElem);
+        ctx.markValidatedContent(partElem);
+
+        Geographiccoordinates geoCoord = geographiccoordinates.get(0);
+        validateGeographiccoordinatesContent(geoCoord);
+        ctx.markValidatedAttribute(geoCoord, "coordinatesystem");
+        ctx.markValidatedContent(geoCoord);
 
     }
 
@@ -86,7 +98,7 @@ public class Rule89 extends EadRule {
         }
         Serializable partContent = content.get(0);
         if (partContent instanceof String str) {
-            if (!StringUtils.isNotBlank(str)) {
+            if (StringUtils.isBlank(str)) {
                 throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Prázdná hodnota elementu.", ctx.formatEadPosition(part));
             }
             if (!StringUtils.equals("5.2.6 Souřadnice", str)) {

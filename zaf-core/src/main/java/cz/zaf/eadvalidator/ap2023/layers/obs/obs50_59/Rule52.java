@@ -37,7 +37,7 @@ public class Rule52 extends EadRule {
         for (Object object : mDidDid) {
             if (object instanceof Unitid unitid) {
                 String localtype = unitid.getLocaltype();
-                if (localtype.equals("INV_CISLO")) {
+                if ("INV_CISLO".equals(localtype)) {
                     String profile = ctx.getDescriptionRules().name();
                     if (!"CZ_ZP1958".equals(profile)) {
                         throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut localtype neobsahuje očekávanou hodnotu: CZ_ZP1958, ale hodnotu: " + profile + ".", ctx.formatEadPosition(unitid));

@@ -51,7 +51,7 @@ public class Pravidlo52 extends K06PravidloBase {
                 }
 
                 if (href.contains("\\")) {
-                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Relativní cesta ke komponentě obsahuje Backslash.", elFlocat);
+                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Relativní cesta ke komponentě obsahuje Backslash: " + href + ".", elFlocat);
                 }
 
                 href = HelperString.replaceSeparators(href);

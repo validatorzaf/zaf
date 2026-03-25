@@ -10,6 +10,8 @@ import cz.zaf.schema.ead3.Did;
 import cz.zaf.schema.ead3.P;
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
+
 public class Rule97 extends EadRule {
 
     static final public String CODE = "obs97";
@@ -40,13 +42,14 @@ public class Rule97 extends EadRule {
                 Descriptivenote descriptivenote = dao.getDescriptivenote();
                 if (descriptivenote != null) {
                     List<P> pList = descriptivenote.getP();
-                    if (pList == null) {
+                    if (CollectionUtils.isEmpty(pList)) {
                         throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element p.", ctx.formatEadPosition(descriptivenote));
                     }
                     if (pList.size() > 1) {
-                        throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element p.", ctx.formatEadPosition(pList));
+                        throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element p.", ctx.formatEadPosition(pList.get(1)));
                     }
                     validateP(pList.get(0));
+                    ctx.markValidatedElement(descriptivenote);
                 }
             }
         }

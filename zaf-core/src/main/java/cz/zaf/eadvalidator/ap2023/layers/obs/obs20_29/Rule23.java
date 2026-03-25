@@ -2,6 +2,7 @@ package cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.eadvalidator.ap2023.Ap2023Constants;
 import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.eadvalidator.ap2023.profile.FindingAidType;
 import cz.zaf.schema.ead3.Control;
@@ -9,7 +10,6 @@ import cz.zaf.schema.ead3.Ead;
 import cz.zaf.schema.ead3.Localcontrol;
 import cz.zaf.schema.ead3.Term;
 import java.util.List;
-import cz.zaf.schemas.ead.EadNS;
 
 public class Rule23 extends EadRule {
 
@@ -24,9 +24,9 @@ public class Rule23 extends EadRule {
 
     @Override
     protected void evalImpl() {
-        Localcontrol localControl = getSingleLocalControl(EadNS.LOCALTYPE_FINDING_AID_TYPE);
+        Localcontrol localControl = getSingleLocalControl(Ap2023Constants.LOCALTYPE_FINDING_AID_TYPE);
         if(localControl==null) {
-            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nenalezen element <localControl localType=\""+EadNS.LOCALTYPE_FINDING_AID_TYPE+"\">.",
+            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nenalezen element <localControl localType=\""+Ap2023Constants.LOCALTYPE_FINDING_AID_TYPE+"\">.",
             		ctx.formatEadPosition(ctx.getEad().getControl()));        	
         }
         Term term = localControl.getTerm();
@@ -50,7 +50,10 @@ public class Rule23 extends EadRule {
         if(!findingAidType.getFindingAidName().equals(content)) {
         	throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybně uveden název typu archivní pomůcky, očekávaná hodnota: "+findingAidType.getFindingAidName()+", hodnota elementu: "+content, ctx.formatEadPosition(term));
         }
-        
+        ctx.markValidatedAttribute(localControl, "localtype");
+        ctx.markValidatedAttribute(term, "identifier");
+        ctx.markValidatedContent(term);
+
     }
 
     private Localcontrol getSingleLocalControl(String localTypeValue) {

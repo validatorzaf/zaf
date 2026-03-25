@@ -52,7 +52,7 @@
 		</ead:localcontrol>
 		
 		<ead:localcontrol localtype="CZ_FINDING_AID_EAD_PROFILE"> <!-- obs25 -->
-			<ead:term identifier="CZ_EAD3_PROFILE_20240301">profil platný od března 2024</ead:term> <!-- obs26, obs30 -->
+			<ead:term identifier="CZ_EAD3_PROFILE_20240301">profil platný od března 2024</ead:term>
 		</ead:localcontrol>
 		
 		<ead:maintenancehistory>
@@ -92,6 +92,11 @@
 				<ead:unittype>bm</ead:unittype> <!-- obs48, obs81 -->
 			</ead:physdescstructured>
 			
+			<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="quantity" coverage="whole"> <!-- obs81 -->
+				<ead:quantity>3</ead:quantity>
+				<ead:unittype>desc_units</ead:unittype>
+			</ead:physdescstructured>
+
 			<ead:physdescstructured physdescstructuredtype="otherphysdescstructuredtype" otherphysdescstructuredtype="UNIT_TYPE" coverage="part"> <!-- obs40 -->
 				<ead:quantity>1</ead:quantity>
 				<ead:unittype>lio</ead:unittype>
@@ -135,13 +140,13 @@
 						<ead:unittitle>Něco veřejného</ead:unittitle> <!-- obs41, obs42 -->
 						<ead:unittitle audience="internal">Něco skrytého</ead:unittitle> <!-- obs41, obs42 -->
 						<ead:container>Uložení</ead:container> <!-- obs49 -->
-						<ead:unitid localtype="REFERENCNI_OZNACENI" label="referenční označení">CZ620100//153//1/4//1</ead:unitid> <!-- obs50, obs51 -->
+						<ead:unitid localtype="REFERENCNI_OZNACENI" label="referenční označení">CZ100000010//153//1/4//1</ead:unitid> <!-- obs50, obs51 -->
 						<ead:unittitle>Text</ead:unittitle> <!-- obs53 -->
 						
 						<ead:unitdatestructured>
-							<ead:daterange localtype="CONTENT" altrender="C"> <!-- obs55 -->
+							<ead:daterange altrender="D-D"> <!-- obs55 -->
 								<ead:fromdate standarddate="2001-10-01T00:00:00">1. října 2001</ead:fromdate> <!-- obs57 -->
-								<ead:todate standarddate="2001-10-02T00:00:00">2. října 2001</ead:todate> <!-- obs58, obs59 -->
+								<ead:todate standarddate="2001-10-02T23:59:59">2. října 2001</ead:todate> <!-- obs58, obs59 -->
 							</ead:daterange>
 						</ead:unitdatestructured>
 						

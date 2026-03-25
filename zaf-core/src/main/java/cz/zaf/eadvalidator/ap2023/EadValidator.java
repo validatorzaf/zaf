@@ -39,7 +39,7 @@ public class EadValidator implements ValidatorListener<EadValidationContext> {
         List<ValidationLayer<EadValidationContext>> validations = new ArrayList<>(5);
         validations.add(new EncodingValidationLayer(innerFileName));
         validations.add(new WellFormedLayer(innerFileName));
-        validations.add(new NamespaceValidationLayer(innerFileName));
+        validations.add(new NamespaceValidationLayer(profilValidace, innerFileName));
         validations.add(new SchemaValidationLayer(innerFileName));
         validations.add(new ContentValidationLayer(profilValidace, innerFileName));
         return validations;
@@ -54,7 +54,7 @@ public class EadValidator implements ValidatorListener<EadValidationContext> {
     		eadNsPrefix = "ead";
     	}
 
-        EadValidationContext context = new EadValidationContext(eadLoader, excludeChecks, eadNsPrefix);
+        EadValidationContext context = new EadValidationContext(eadLoader, excludeChecks, eadNsPrefix, validationProfile);
 
         BaseValidator<EadValidationContext> validator = new BaseValidator<>(validations);
         validator.registerListener(this);

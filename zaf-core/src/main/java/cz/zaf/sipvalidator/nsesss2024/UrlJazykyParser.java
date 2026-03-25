@@ -6,7 +6,6 @@
 package cz.zaf.sipvalidator.nsesss2024;
 
 
-import cz.zaf.sipvalidator.nsesss2017.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;

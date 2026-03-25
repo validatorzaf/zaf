@@ -65,6 +65,8 @@ public class Rule74b extends EadRule {
                                 if (!founded.add(localtype)) {
                                     throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element physfacet.", ctx.formatEadPosition(physfacet));
                                 }
+                                ctx.markValidatedAttribute(physfacet, "localtype");
+                                ctx.markValidatedContent(physfacet);
                                 chceckContent(physfacet);
                             }
                         }

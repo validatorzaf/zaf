@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.eadvalidator.ap2023.Ap2023Constants;
 import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.schema.ead3.Ead;
 import cz.zaf.schema.ead3.Filedesc;
@@ -17,7 +18,6 @@ import cz.zaf.schema.ead3.P;
 import cz.zaf.schema.ead3.Part;
 import cz.zaf.schema.ead3.Publicationstmt;
 import jakarta.xml.bind.JAXBElement;
-import cz.zaf.schemas.ead.EadNS;
 
 public class Rule11 extends EadRule {
 	
@@ -42,7 +42,7 @@ public class Rule11 extends EadRule {
 		
 		List<Object> pdas = publStmt.getPublisherOrDateOrAddress();
 		if(CollectionUtils.isEmpty(pdas)) {
-			throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybi element.", ctx.formatEadPosition(pdas));
+			throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybi element.", ctx.formatEadPosition(publStmt));
 		}
 		Name found=null;
 		for(Object pda: pdas) {
@@ -61,13 +61,15 @@ public class Rule11 extends EadRule {
 					
 					if(pCont instanceof Name) {
 						Name name = (Name)pCont;
-						if(EadNS.LOCALTYPE_FINDING_AID_APPROVED_BY.equals(name.getLocaltype())) {
+						if(Ap2023Constants.LOCALTYPE_FINDING_AID_APPROVED_BY.equals(name.getLocaltype())) {
 							if(found!=null) {
 								throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt.", ctx.formatEadPosition(name));
 							}
 							found = name;
+							ctx.markValidatedAttribute(name, "localtype");
+							ctx.markValidatedElement(p);
 						}
-					} 
+					}
 				}
 			}
 		}
@@ -83,7 +85,9 @@ public class Rule11 extends EadRule {
 			throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt.", ctx.formatEadPosition(parts.get(1)));
 		}
 		Part part = parts.get(0);
-		
+		ctx.markValidatedElement(part);
+		ctx.markValidatedContent(part);
+
 		// Kontrola obsahu part
 		List<Serializable> partContentList = part.getContent();
 		if(partContentList.size()!=1) {

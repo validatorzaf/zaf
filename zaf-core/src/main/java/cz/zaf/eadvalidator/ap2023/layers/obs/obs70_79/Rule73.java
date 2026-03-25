@@ -42,13 +42,15 @@ public class Rule73 extends EadRule {
     private void validate(List<Object> childList) {
         for (Object child : childList) {
             if (child instanceof Physdesc physdesc) {
+                ctx.markValidatedElement(physdesc);
+                ctx.markValidatedContent(physdesc);
                 List<Serializable> physdescContentList = physdesc.getContent();
                 if (physdescContentList.size() != 1) {
                     throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybná hodnota v elementu.", ctx.formatEadPosition(physdesc));
                 }
                 Serializable partContent = physdescContentList.get(0);
                 if (partContent instanceof String str) {
-                    if (!StringUtils.isNotBlank(str)) {
+                    if (StringUtils.isBlank(str)) {
                         throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Prázdná hodnota elementu.", ctx.formatEadPosition(physdesc));
                     }
                 } else {

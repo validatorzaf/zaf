@@ -28,7 +28,7 @@ public class Rule02 extends EadRule {
 		@SuppressWarnings("unchecked")
 		Map<String, String> nsMapping = (Map<String, String>) eadRoot.getUserData(PositionalXMLReader.NS_MAPPING);
 		
-		String ns = ctx.getPrefixNsEad()!=null?ctx.getPrefixNsEad():"";
+		String ns = ctx.getPrefixNsEad();
 		String value = (nsMapping!=null)?nsMapping.get(ns):null;
 				
 		if(StringUtils.isEmpty(value)) {
@@ -37,9 +37,11 @@ public class Rule02 extends EadRule {
 		if(!EadNS.NS_EADS.equals(value)) {
 			throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Chybná hodnota atributu "+getXmlnsEad()+": "+value+"."); 
 		}
+		
+		ctx.markValidatedAttributeDom(eadRoot, "xmlns:ead");
 	}
 	
 	String getXmlnsEad() {
-		return StringUtils.isEmpty(ctx.getPrefixNsEad())?"xmlns":"xmlns:"+ctx.getPrefixNsEad();
+		return "xmlns:"+ctx.getPrefixNsEad();
 	}
 }

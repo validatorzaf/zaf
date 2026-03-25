@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:nsesss="http://www.mvcr.cz/nsesss/v4" xmlns:tp="http://www.mvcr.cz/nsesss/2023/log" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu" OBJID="GS_ea183e38-a932-4a68-bb16-4a7871ab56a7" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v4 http://www.mvcr.cz/nsesss/v4/nsesss.xsd http://www.mvcr.cz/nsesss/2023/log https://www.mvcr.cz/nsesss/v4/nsesss-TrP.xsd">
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:nsesss="http://www.mvcr.cz/nsesss/v4" xmlns:tp="http://www.mvcr.cz/nsesss/2023/log" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu" OBJID="GS_ea183e38-a932-4a68-bb16-4a7871ab56a7" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v4 https://www.mvcr.cz/nsesss/v4/nsesss.xsd http://www.mvcr.cz/nsesss/2023/log https://www.mvcr.cz/nsesss/v4/nsesss-TrP.xsd">
   <mets:metsHdr CREATEDATE="2015-06-29T23:33:05.0195493Z" LASTMODDATE="2015-06-29T23:33:05.0195493Z">
     <mets:agent ID="id1" ROLE="CREATOR" TYPE="ORGANIZATION">
       <mets:name>GDPR anonymizováno</mets:name>
@@ -147,7 +147,7 @@
               </nsesss:MaterskaEntita>
             </nsesss:Trideni>
             <nsesss:Uzavreni>
-              <nsesss:Datum datum="2012-10-10T00:00:00.000+01:00">2012-10-10</nsesss:Datum>
+              <nsesss:Datum datum="2027-10-10T00:00:00.000+01:00">2027-10-10</nsesss:Datum>
               <nsesss:Zpracovatel>
                 <nsesss:Subjekt>
                   <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.ISU">MP12SE00A013</nsesss:IdentifikatorOrganizace>
@@ -219,7 +219,7 @@
                   <nsesss:PlneUrcenySpisovyZnak>87.1</nsesss:PlneUrcenySpisovyZnak>
                 </nsesss:Trideni>
                 <nsesss:VyrizeniUzavreni>
-                  <nsesss:Datum datum="2012-10-10T00:00:00.000+01:00">2012-10-10</nsesss:Datum>
+                  <nsesss:Datum datum="2037-10-10T00:00:00.000+01:00">2037-10-10</nsesss:Datum>
                   <nsesss:Zpusob>vzetí na vědomí</nsesss:Zpusob>
                   <nsesss:Zpracovatel>
                     <nsesss:Subjekt>
@@ -303,7 +303,7 @@
                       </nsesss:DruhDokumentu>
                     </nsesss:Trideni>
                     <nsesss:Vyrizeni>
-                      <nsesss:Datum datum="2012-10-10T00:00:00.000+01:00">2012-10-10</nsesss:Datum>
+                      <nsesss:Datum datum="2037-10-10T00:00:00.000+01:00">2037-10-10</nsesss:Datum>
                       <nsesss:Zpusob>vzetí na vědomí</nsesss:Zpusob>
                       <nsesss:ObsahVyrizeni>, Vyřízeno vzetím na vědomí.</nsesss:ObsahVyrizeni>
                       <nsesss:Oduvodneni>Vyřízeno vzetím na vědomí</nsesss:Oduvodneni>
@@ -495,7 +495,7 @@
               </nsesss:MaterskaEntita>
             </nsesss:Trideni>
             <nsesss:VyrizeniUzavreni>
-              <nsesss:Datum datum="2012-10-10T00:00:00.000+01:00">2012-10-10</nsesss:Datum>
+              <nsesss:Datum datum="2047-10-10T00:00:00.000+01:00">2047-10-10</nsesss:Datum>
               <nsesss:Zpusob>vzetí na vědomí</nsesss:Zpusob>
               <nsesss:Zpracovatel>
                 <nsesss:Subjekt>
@@ -580,7 +580,7 @@
                   </nsesss:DruhDokumentu>
                 </nsesss:Trideni>
                 <nsesss:Vyrizeni>
-                  <nsesss:Datum datum="2012-10-10T00:00:00.000+01:00">2012-10-10</nsesss:Datum>
+                  <nsesss:Datum datum="2057-10-10T00:00:00.000+01:00">2057-10-10</nsesss:Datum>
                   <nsesss:Zpusob>vzetí na vědomí</nsesss:Zpusob>
                   <nsesss:ObsahVyrizeni>, Vyřízeno vzetím na vědomí.</nsesss:ObsahVyrizeni>
                   <nsesss:Oduvodneni>Vyřízeno vzetím na vědomí</nsesss:Oduvodneni>

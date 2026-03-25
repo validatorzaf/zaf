@@ -38,6 +38,7 @@ public class Rule44 extends EadRule {
                 if (!StringUtils.equals("FINDING_AID_INTRO", localtype)) {
                     throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Nepovolená hodnota atributu localtype: " + localtype + ".", ctx.formatEadPosition(odd));
                 }
+                ctx.markValidatedAttribute(odd, "localtype");
                 List<Object> chronlistOrListOrTable = odd.getChronlistOrListOrTable();
                 P pFound = null;
                 for (Object child : chronlistOrListOrTable) {
@@ -46,6 +47,8 @@ public class Rule44 extends EadRule {
                             throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element p.", ctx.formatEadPosition(p));
                         }
                         pFound = p;
+                        ctx.markValidatedElement(p);
+                        ctx.markValidatedContent(p);
                         validateContent(p);
                     }
                 }
@@ -63,7 +66,7 @@ public class Rule44 extends EadRule {
         }
         Serializable partContent = content.get(0);
         if (partContent instanceof String str) {
-            if (!StringUtils.isNotBlank(str)) {
+            if (StringUtils.isBlank(str)) {
                 throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Prázdná hodnota elementu.", ctx.formatEadPosition(p));
             }
         } else {
@@ -77,10 +80,13 @@ public class Rule44 extends EadRule {
         List<Localcontrol> localcontrols = control.getLocalcontrol();
         for (Localcontrol localcontrol : localcontrols) {
             String localtype = localcontrol.getLocaltype();
-            if (localtype.equals("RULES")) {
+            if ("RULES".equals(localtype)) {
                 Term term = localcontrol.getTerm();
+                if(term==null) {
+                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybí element term.", ctx.formatEadPosition(localcontrol));
+                }
                 String identifier = term.getIdentifier();
-                if (!StringUtils.equals("CZ_ZP1958", identifier)) {
+                if (!"CZ_ZP1958".equals(identifier)) {
                     throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut identifier obsahuje nepovolenou hodnotu: " + identifier + ".", ctx.formatEadPosition(term));
                 }
             }

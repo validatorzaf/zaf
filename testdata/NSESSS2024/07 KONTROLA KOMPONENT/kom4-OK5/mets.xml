@@ -2,7 +2,7 @@
 <!--
 základní entita vyřízena/uzavřena do 31. 7. 2012
 -->
-<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:nsesss="http://www.mvcr.cz/nsesss/v4" xmlns:tp="http://www.mvcr.cz/nsesss/2023/log" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu" OBJID="NA_01" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v4 http://www.mvcr.cz/nsesss/v4/nsesss.xsd http://www.mvcr.cz/nsesss/2023/log https://www.mvcr.cz/nsesss/v4/nsesss-TrP.xsd">
+<mets:mets xmlns:mets="http://www.loc.gov/METS/" xmlns:nsesss="http://www.mvcr.cz/nsesss/v4" xmlns:tp="http://www.mvcr.cz/nsesss/2023/log" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" LABEL="Datový balíček pro předávání dokumentů a jejich metadat do archivu" OBJID="NA_01" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v4 https://www.mvcr.cz/nsesss/v4/nsesss.xsd http://www.mvcr.cz/nsesss/2023/log https://www.mvcr.cz/nsesss/v4/nsesss-TrP.xsd">
   <mets:metsHdr CREATEDATE="2016-01-22T08:23:50" LASTMODDATE="2016-01-22T08:23:50">
     <mets:agent ID="IDa1" ROLE="CREATOR" TYPE="ORGANIZATION">
       <mets:name>GDPR anonymizováno</mets:name>
@@ -193,6 +193,7 @@ základní entita vyřízena/uzavřena do 31. 7. 2012
               <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
               <nsesss:DatumOtevreni>2012-08-17</nsesss:DatumOtevreni>
               <nsesss:DatumUzavreni>2012-11-30</nsesss:DatumUzavreni>
+              <nsesss:Umisteni>umisteno</nsesss:Umisteni>
             </nsesss:Manipulace>
           </nsesss:EvidencniUdaje>
           <nsesss:Dokumenty>
@@ -877,7 +878,7 @@ základní entita vyřízena/uzavřena do 31. 7. 2012
   <mets:fileSec>
     <mets:fileGrp>
       <mets:file CHECKSUM="441DA9AF48DF93EDB4DB435217D0A68C759AD38072BFF87D9F910B7511F1E0BF" CHECKSUMTYPE="SHA-256" CREATED="2015-11-09T17:02:33" DMDID="ID5" ID="MP120B04D1FD" MIMETYPE="application/pdf" OWNERID="MP120B04D1FD" SIZE="489194">
-        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty\soubor.pdf" xlink:type="simple"/>
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty/soubor.pdf" xlink:type="simple"/>
       </mets:file>
     </mets:fileGrp>
   </mets:fileSec>

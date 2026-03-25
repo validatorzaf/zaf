@@ -45,6 +45,7 @@ public class Rule71 extends EadRule {
                 if (!("ARCHIVIST_NOTE".equals(atrLocalType) || "RULES".equals(atrLocalType) || "DESCRIPTION_DATE".equals(atrLocalType))) {
                     throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nepovolená hodnota atributu localtype: " + atrLocalType + ".", ctx.formatEadPosition(processinfo));
                 }
+                ctx.markValidatedAttribute(processinfo, "localtype");
             }
         }
     }

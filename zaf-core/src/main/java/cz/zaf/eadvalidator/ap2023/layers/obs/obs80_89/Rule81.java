@@ -1,7 +1,5 @@
 package cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89;
 
-import org.apache.commons.lang3.StringUtils;
-
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.eadvalidator.ap2023.EadRule;
@@ -30,30 +28,41 @@ public class Rule81 extends EadRule {
 
     private void validate(Did did) {
         List<Object> childList = did.getMDid();
-        Physdescstructured found = null;
+        // used to check if exists at most once
+        Physdescstructured foundQuantity = null;
         int other = 0;
         for (Object child : childList) {
             if (child instanceof Physdescstructured physdescstructured) {
+                // ze schematu non null            
                 String physdescstructuredtype = physdescstructured.getPhysdescstructuredtype();
+                // muze byt null
                 String otherphysdescstructuredtype = physdescstructured.getOtherphysdescstructuredtype();
+                // muze byt null
                 String coverage = physdescstructured.getCoverage();
-                if (StringUtils.equals("otherphysdescstructuredtype", physdescstructuredtype) && StringUtils.equals("quantity", otherphysdescstructuredtype) && StringUtils.equals("whole", coverage)) {
-                    if (found != null) {
-                        List<Physdescstructured> list = List.of(found, physdescstructured);
-                        throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nenalezen nepovolený element physdescstructured.", ctx.formatEadPosition(list));
+                if ("otherphysdescstructuredtype".equals(physdescstructuredtype) && 
+                    "quantity".equals(otherphysdescstructuredtype) && 
+                    "whole".equals(coverage)) {
+                    if (foundQuantity != null) {
+                        throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element physdescstructured.", ctx.formatEadPosition(child));
                     }
-                    found = physdescstructured;
+                    foundQuantity = physdescstructured;
                 }
-                if (StringUtils.equals("spaceoccupied", physdescstructuredtype) && StringUtils.equals("whole", coverage)) {
+                if ("spaceoccupied".equals(physdescstructuredtype) && 
+                    otherphysdescstructuredtype==null &&
+                    "whole".equals(coverage)) {
                     other++;
                 }
             }
         }
+        if(foundQuantity == null) {
+            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen požadovaný element physdescstructured s atributem otherphysdescstructuredtype=\"quantity\" a coverage=\"whole\".", ctx.formatEadPosition(did));
+        }
+
         if (other == 0) {
-            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen požadovaný element physdescstructured.", ctx.formatEadPosition(did));
+            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen požadovaný element physdescstructured s atributem physdescstructuredtype=\"spaceoccupied\" a coverage=\"whole\".", ctx.formatEadPosition(did));
         }
         if (other > 2) {
-            throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element physdescstructured.", ctx.formatEadPosition(did));
+            throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezeno více elementů physdescstructured s atributem physdescstructuredtype=\"spaceoccupied\" a coverage=\"whole\".", ctx.formatEadPosition(did));
         }
     }
 

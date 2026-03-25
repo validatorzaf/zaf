@@ -4,3 +4,13 @@
 == v1, 9.10.2025
 
 * Přidána základní sada pravidel pro archivní pomůcky
+
+== v2, 24.3.2026
+
+* Nové pravidlo <<AP2023_ns2a>>
+* Upraveno pravidlo <<AP2023_ns3>> - přidání nového schématu CAMv2
+* Nové pravidlo <<AP2023_val2>>
+* Nová obsahová pravidla <<AP2023_obs4>>, <<AP2023_obs24a>>, <<AP2023_obs35a>>, <<AP2023_obs36a>>, <<AP2023_obs36b>>, <<AP2023_obs37>>, <<AP2023_obs38>>, <<AP2023_obs45>>, <<AP2023_obs45a>>, <<AP2023_obs51>>, <<AP2023_obs57>>, <<AP2023_obs58>>
+* Nová obsahová pravidla (část 2) <<AP2023_obs74>>, <<AP2023_obs74a>>, <<AP2023_obs74b>>, <<AP2023_obs74c>>, <<AP2023_obs74d>>, <<AP2023_obs79>>, <<AP2023_obs96a>>, <<AP2023_obs96b>>, <<AP2023_obs98>>, <<AP2023_obs104a>>, <<AP2023_obs106>>, <<AP2023_obs999>>
+* Upřesněno <<AP2023_obs42>>, <<AP2023_obs78>>, <<AP2023_obs80>>, <<AP2023_obs96>>
+* Drobnější upřesnění pravidel <<AP2023_obs15>>, <<AP2023_obs62>>, <<AP2023_obs70>>

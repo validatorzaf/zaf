@@ -53,7 +53,7 @@ public class Rule104 extends EadRule {
                     throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen požadovaný element relationentry.", ctx.formatEadPosition(relation));
                 }
                 if (relationentrys.size() != 1) {
-                    throw new ZafException(BaseCode.DUPLICITA, "Nenalezen nepovolený element relationentry.", ctx.formatEadPosition(relation));
+                    throw new ZafException(BaseCode.DUPLICITA, "Nalezen nepovolený element relationentry.", ctx.formatEadPosition(relation));
                 }
                 Relationentry relationentry = relationentrys.get(0);
                 String content = relationentry.getContent();
@@ -65,6 +65,9 @@ public class Rule104 extends EadRule {
                 if (descriptivenote == null) {
                     throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen požadovaný element descriptivenote.", ctx.formatEadPosition(relation));
                 }
+                ctx.markValidatedElement(relationentry);
+                ctx.markValidatedContent(relationentry);
+                ctx.markValidatedElement(descriptivenote);
             }
         }
     }
