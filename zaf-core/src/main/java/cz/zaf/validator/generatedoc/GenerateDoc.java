@@ -107,7 +107,7 @@ public class GenerateDoc {
 	}
 
     public static void main(String[] args) {
-    	ValidatorType validationProfile = ValidatorType.NSESSS2017;
+    	ValidatorType validationProfile = ValidatorType.NSESSS2024;
     	
     	for(int pos = 0; pos < args.length; pos++) {
     		String arg = args[pos];
