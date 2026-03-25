@@ -4,3 +4,7 @@
 == v1, 9.10.2025
 
 * Přidána základní sada pravidel pro archivní pomůcky
+
+== v2, 25.3.2026
+
+* Dokončená úplná sada pravidel nsesss2024
