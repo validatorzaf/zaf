@@ -1,5 +1,6 @@
 package cz.zaf.validator;
 
+import java.io.InputStream;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.nio.charset.StandardCharsets;
@@ -184,7 +185,7 @@ public class CmdValidator {
     		if(inputFileName.endsWith(".zip")) {
     			detectPkgTypeZip(inputPath);
     		} else {
-    			validationProfile = ValidatorType.AP2023;
+    			detectFileType(inputPath);
     		}
     	} else
     	// we have to detect file type
@@ -210,7 +211,25 @@ public class CmdValidator {
     	}
     }
     
-    private boolean detectPkgTypeZip(Path inputPath) {
+    /**
+     * Try to detect type of input XML
+     * @param inputPath
+     */
+    private void detectFileType(Path inputPath) {
+		validationProfile = ValidatorType.AP2023;		
+		try ( InputStream is = Files.newInputStream(inputPath); ) {
+			// read from InputStream at most 65536 bytes
+			String data = readStringFromStream(is);
+			if(data.contains("\"FINDING_AID_TYPE\"")) {
+				ap2023Profile = AP2023Profile.FINDING_AID;
+			}
+		} catch (IOException e) {
+			// ignore error
+		}
+		
+	}
+
+	private boolean detectPkgTypeZip(Path inputPath) {
     	try(ZipFile zipFile = new ZipFile(inputPath.toFile())) {
             // zipFile.setCharset(Charset.forName(zipEncoding)); // extrakce českých znaků
             boolean isvalidZipFile = zipFile.isValidZipFile();
@@ -232,15 +251,9 @@ public class CmdValidator {
             	if(fileName.endsWith("/mets.xml")) {
             		// mets found
             		// extract mets.xml to the memory
-					try ( ZipInputStream is = zipFile.getInputStream(fileHeader); ) {
+					try ( InputStream is = zipFile.getInputStream(fileHeader); ) {
 						// read from InputStream at most 65536 bytes
-						byte[] buffer = new byte[65536];
-						int bytesRead;
-						StringBuilder sb = new StringBuilder();
-						while ((bytesRead = is.read(buffer)) != -1) {
-							sb.append(new String(buffer, 0, bytesRead));
-						}
-						String metsData = sb.toString();
+						String metsData = readStringFromStream(is);
 						if(metsData.contains("PROFILE=\"https://stands.nacr.cz/da/2023/aip.xml\"")) {
 							validationProfile = ValidatorType.DAAIP2024;
 							// Detect subprofile
@@ -271,6 +284,23 @@ public class CmdValidator {
 
     	return true;
     }
+
+	/**
+	 * Read at most 65536 bytes from input stream as a string
+	 * @param is
+	 * @return
+	 * @throws IOException 
+	 */
+	private String readStringFromStream(InputStream is) throws IOException {
+		byte[] buffer = new byte[65536];
+		
+		int bytesRead;
+		StringBuilder sb = new StringBuilder();
+		while ((bytesRead = is.read(buffer)) != -1) {
+			sb.append(new String(buffer, 0, bytesRead));
+		}
+		return sb.toString();
+	}
 
 	private cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace detectSubProfileNSESSS2017(String metsData) {
 		// Detect subprofile
