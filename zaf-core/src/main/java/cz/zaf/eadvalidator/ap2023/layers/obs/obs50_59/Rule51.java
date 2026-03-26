@@ -108,7 +108,7 @@ public class Rule51 extends EadRule {
 
                 // Extract the first segment (this level's number) before any deeper separators
                 String firstSegment = extractFirstSegment(suffix);
-                validateSegmentNumber(firstSegment, unitid);
+                validateSegmentNumber(ref, firstSegment, unitid);
 
                 // 3. Check ordering among siblings
                 // parentKey is always non-null here (parent != null implied by parentRef != null)
@@ -238,11 +238,17 @@ public class Rule51 extends EadRule {
     /**
      * Validates that a segment contains a valid number (optionally with +/- extension).
      * Valid formats: "1", "42", "1+1", "1-1", "1-1+2"
+     * @param segment 
      */
-    private void validateSegmentNumber(String segment, Unitid unitid) {
+    private void validateSegmentNumber(String ref, String segment, Unitid unitid) {
+    	if(StringUtils.isEmpty(segment)) {
+            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
+                    "Hodnota referenčního označení ("+ ref +") obsahuje prázdný segment.",
+                    ctx.formatEadPosition(unitid));    		
+    	}
         if (parseSegmentParts(segment) == null) {
             throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
-                    "Hodnota referenčního označení obsahuje neplatné číslo: " + segment,
+                    "Hodnota referenčního označení ("+ ref +") obsahuje neplatné číslo v části: " + segment,
                     ctx.formatEadPosition(unitid));
         }
     }
