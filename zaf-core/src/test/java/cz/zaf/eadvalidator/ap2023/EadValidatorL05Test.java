@@ -85,6 +85,7 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule81;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule82;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule83;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule84;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule85;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule89;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule93;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule94;
@@ -116,7 +117,7 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
                     Rule50.CODE, Rule51.CODE, Rule52.CODE, Rule53.CODE, Rule54.CODE, Rule55.CODE, Rule56.CODE,
                     Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
                     Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule74.CODE, Rule74a.CODE, Rule74b.CODE, Rule74c.CODE, Rule74d.CODE, Rule75.CODE, Rule77.CODE, Rule78.CODE, Rule79.CODE,
-                    Rule80.CODE, Rule81.CODE, Rule82.CODE, Rule83.CODE, Rule84.CODE, Rule89.CODE,
+                    Rule80.CODE, Rule81.CODE, Rule82.CODE, Rule83.CODE, Rule84.CODE, Rule85.CODE, Rule89.CODE,
                     Rule93.CODE, Rule94.CODE, Rule95.CODE, Rule96.CODE, Rule97.CODE, Rule98.CODE, Rule99.CODE,
                     Rule101.CODE, Rule103.CODE, Rule104.CODE, Rule104a.CODE, Rule105.CODE
                 },
@@ -136,7 +137,7 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
                     Rule50.CODE, Rule51.CODE, Rule52.CODE, Rule53.CODE, Rule54.CODE, Rule55.CODE, Rule56.CODE,
                     Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
                     Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule74.CODE, Rule74a.CODE, Rule74b.CODE, Rule74c.CODE, Rule74d.CODE, Rule75.CODE, Rule77.CODE, Rule78.CODE, Rule79.CODE,
-                    Rule80.CODE, Rule81.CODE, Rule82.CODE, Rule83.CODE, Rule84.CODE, Rule89.CODE,
+                    Rule80.CODE, Rule81.CODE, Rule82.CODE, Rule83.CODE, Rule84.CODE, Rule85.CODE, Rule89.CODE,
                     Rule93.CODE, Rule94.CODE, Rule95.CODE, Rule96.CODE, Rule97.CODE, Rule98.CODE, Rule99.CODE,
                     Rule101.CODE, Rule103.CODE, Rule104.CODE, Rule104a.CODE, Rule105.CODE
                 },
@@ -155,7 +156,7 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
                     Rule50.CODE, Rule51.CODE, Rule52.CODE, Rule53.CODE, Rule54.CODE, Rule55.CODE, Rule56.CODE,
                     Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
                     Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule74.CODE, Rule74a.CODE, Rule74b.CODE, Rule74c.CODE, Rule74d.CODE, Rule75.CODE, Rule77.CODE, Rule78.CODE,
-                    Rule80.CODE, Rule83.CODE, Rule84.CODE, Rule89.CODE,
+                    Rule80.CODE, Rule83.CODE, Rule84.CODE, Rule85.CODE, Rule89.CODE,
                     Rule93.CODE, Rule94.CODE, Rule95.CODE, Rule97.CODE, Rule98.CODE,
                     Rule101.CODE, Rule103.CODE, Rule104a.CODE
                 },
@@ -175,7 +176,7 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
                     Rule50.CODE, Rule51.CODE, Rule52.CODE, Rule53.CODE, Rule54.CODE, Rule55.CODE, Rule56.CODE,
                     Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
                     Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule74.CODE, Rule74a.CODE, Rule74b.CODE, Rule74c.CODE, Rule74d.CODE, Rule75.CODE, Rule77.CODE, Rule78.CODE, Rule79.CODE,
-                    Rule80.CODE, Rule81.CODE, Rule82.CODE, Rule83.CODE, Rule84.CODE, Rule89.CODE,
+                    Rule80.CODE, Rule81.CODE, Rule82.CODE, Rule83.CODE, Rule84.CODE, Rule85.CODE, Rule89.CODE,
                     Rule93.CODE, Rule94.CODE, Rule95.CODE, Rule96.CODE, Rule97.CODE, Rule98.CODE, Rule99.CODE,
                     Rule101.CODE, Rule103.CODE, Rule104.CODE, Rule104a.CODE, Rule105.CODE
                 },
@@ -1924,6 +1925,22 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
                     Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule74.CODE, Rule74a.CODE, Rule74b.CODE, Rule74c.CODE, Rule74d.CODE, Rule74d.CODE, Rule75.CODE, Rule77.CODE, Rule78.CODE, Rule79.CODE,
                     Rule80.CODE, Rule81.CODE, Rule82.CODE, Rule83.CODE},
                 new String[]{Rule84.CODE});
+    }
+
+    @Test
+    void testObs_85_chyba01() {
+        testPomucka("05-KONTROLA OBSAHU/085_chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule01.CODE, Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule04a.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE, Rule08.CODE, Rule09.CODE,
+                    Rule11.CODE, Rule12.CODE, Rule13.CODE, Rule14.CODE, Rule15.CODE, Rule16.CODE, Rule17.CODE, Rule18.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule23.CODE, Rule24.CODE, Rule25.CODE,
+                    Rule31.CODE, Rule35.CODE, Rule36.CODE, Rule36a.CODE, Rule36b.CODE, Rule37.CODE,
+                    Rule43.CODE, Rule44.CODE, Rule49.CODE,
+                    Rule50.CODE, Rule51.CODE, Rule52.CODE, Rule53.CODE, Rule54.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+                    Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule74.CODE, Rule74a.CODE, Rule74b.CODE, Rule74c.CODE, Rule74d.CODE, Rule74d.CODE, Rule75.CODE, Rule77.CODE, Rule78.CODE, Rule79.CODE,
+                    Rule80.CODE, Rule81.CODE, Rule82.CODE, Rule83.CODE, Rule84.CODE, Rule999.CODE},
+                new String[]{Rule85.CODE});
     }
 
     @Test
