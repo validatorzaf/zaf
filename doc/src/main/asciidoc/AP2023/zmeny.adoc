@@ -14,3 +14,10 @@
 * Nová obsahová pravidla (část 2) <<AP2023_obs74>>, <<AP2023_obs74a>>, <<AP2023_obs74b>>, <<AP2023_obs74c>>, <<AP2023_obs74d>>, <<AP2023_obs79>>, <<AP2023_obs96a>>, <<AP2023_obs96b>>, <<AP2023_obs98>>, <<AP2023_obs104a>>, <<AP2023_obs106>>, <<AP2023_obs999>>
 * Upřesněno <<AP2023_obs42>>, <<AP2023_obs78>>, <<AP2023_obs80>>, <<AP2023_obs96>>
 * Drobnější upřesnění pravidel <<AP2023_obs15>>, <<AP2023_obs62>>, <<AP2023_obs70>>
+
+
+== v3, 26.3.2026
+
+* Nově pravidlo <<AP2023_obs85>>
+* Upraveno pravidlo <<AP2023_obs31>> - znění chyby
+* Upraveno pravidlo <<AP2023_obs79>> - z důvodu pomůcek k části AS, počítání počtu JP
