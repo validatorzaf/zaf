@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.eadvalidator.ap2023.EadRule;
+import cz.zaf.eadvalidator.ap2023.profile.ProfileRevision;
 import cz.zaf.schema.ead3.Agent;
 import cz.zaf.schema.ead3.Agenttype;
 import cz.zaf.schema.ead3.Control;
@@ -12,6 +13,8 @@ import cz.zaf.schema.ead3.Eventdatetime;
 import cz.zaf.schema.ead3.Eventtype;
 import cz.zaf.schema.ead3.Maintenanceevent;
 import cz.zaf.schema.ead3.Maintenancehistory;
+
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -21,7 +24,7 @@ public class Rule31 extends EadRule {
 
     static final public String CODE = "obs31";
     static final public String RULE_TEXT = "Existuje právě jeden element <maintenanceevent>, který obsahuje povinné části dle specifikace. Kontroluje se existence podřízených elementů: eventtype, eventdatetime, agenttype a agent a jejich správné uvedení.";
-    static final public String RULE_ERROR = "Neexistuje element <maintenanceevent>, který neobsahuje všechny povinné části dle specifikace.";
+    static final public String RULE_ERROR = "Neexistuje element <maintenanceevent>, který obsahuje všechny povinné části dle specifikace.";
     static final public String RULE_SOURCE = "Část 2.7 profilu EAD3 MV ČR";
 
     public Rule31() {
@@ -56,22 +59,7 @@ public class Rule31 extends EadRule {
 
             //Eventdatetime 32
             Eventdatetime eventdatetime = maintenanceevent.getEventdatetime();
-            String standarddatetime = eventdatetime.getStandarddatetime();
-            String content = eventdatetime.getContent();
-            if (StringUtils.isBlank(standarddatetime)) {
-                throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Element eventdatetime nemá vyplněn atribut eventdatetime.", ctx.formatEadPosition(maintenanceevent));
-            }
-            boolean isDateValid = isIso8601(standarddatetime);
-            if (!isDateValid) {
-                throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut eventdatetime neobsahuje hodnotu v očekávaném formátu.", ctx.formatEadPosition(maintenanceevent));
-            }
-            ctx.markValidatedAttribute(eventdatetime, "standarddatetime");
-
-            if (StringUtils.isNotEmpty(content) && !StringUtils.equals(content, standarddatetime)) {
-                throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "V elementu eventdatetime je uvedena odlišná hodnota atributu standarddatetime("+standarddatetime
-                		+") od jeho obsahu ("+content+").", 
-                		ctx.formatEadPosition(eventdatetime));
-            }
+            validateEventdatetime(eventdatetime);
 
             //33 Agenttype
             Agenttype agenttype = maintenanceevent.getAgenttype();
@@ -96,13 +84,43 @@ public class Rule31 extends EadRule {
 
     }
 
-    private boolean isIso8601(String standarddatetime) {
+    private void validateEventdatetime(Eventdatetime eventdatetime) {
+        String standarddatetime = eventdatetime.getStandarddatetime();
+        String content = eventdatetime.getContent();
+        if (StringUtils.isBlank(standarddatetime)) {
+            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Element eventdatetime nemá vyplněn atribut standarddatetime.", ctx.formatEadPosition(eventdatetime));
+        }
+        
+        
+        DateTimeParseException dateTimeParseException = null;
         try {
             OffsetDateTime.parse(standarddatetime, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
-            return true;
         } catch (DateTimeParseException e) {
-            return false;
+        	dateTimeParseException = e;
+            if(ctx.getProfileRevision()==ProfileRevision.CZ_EAD3_PROFILE_20230601||
+            		ctx.getProfileRevision()==ProfileRevision.CZ_EAD3_PROFILE_20240301) {
+            	// try to parse as an ISO8601 without time zone (valid only for older profiles)
+            	try {
+            		LocalDateTime.parse(content);
+            		dateTimeParseException = null;
+            	} catch(DateTimeParseException e2) {
+            		// nop
+            	}
+            }
         }
-    }
+        if(dateTimeParseException!=null) {
+            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, 
+            		"Atribut eventdatetime neobsahuje hodnotu v očekávaném formátu.", ctx.formatEadPosition(eventdatetime), 
+            		dateTimeParseException);
+        }
+
+        ctx.markValidatedAttribute(eventdatetime, "standarddatetime");
+
+        if (StringUtils.isNotEmpty(content) && !StringUtils.equals(content, standarddatetime)) {
+            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "V elementu eventdatetime je uvedena odlišná hodnota atributu standarddatetime("+standarddatetime
+            		+") od jeho obsahu ("+content+").", 
+            		ctx.formatEadPosition(eventdatetime));
+        }		
+	}
 
 }
