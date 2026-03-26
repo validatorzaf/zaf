@@ -197,7 +197,7 @@
 						</ead:physdescstructured>
 						
 						<ead:materialspec localtype="SCALE">1:200, text</ead:materialspec> <!-- obs84 -->
-                        <ead:materialspec localtype="SCALE_RATIO">1:200</ead:materialspec> <!-- obs85 -->
+                        <ead:materialspec localtype="SCALE_RATIO">A:200</ead:materialspec> <!-- obs85 -->
 						<ead:materialspec localtype="ORIENTATION">na sever</ead:materialspec> <!-- obs89 -->
 						<ead:materialspec localtype="VOLUME">Ročník XVI, číslo 2</ead:materialspec> <!-- obs90 -->
 						
