@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>ZAF 2.0.2: Dokumentace</title>
+<title>ZAF 2.0.3: Dokumentace</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -524,7 +524,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>ZAF 2.0.2: Dokumentace</h1>
+<h1>ZAF 2.0.3: Dokumentace</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Obsah</div>
 <ul class="sectlevel1">
@@ -974,7 +974,7 @@ Ty jsou také dostupné v repozitáři pro Maven a je možné je přímo použí
 <pre class="CodeRay highlight"><code data-lang="xml">  <span class="tag">&lt;dependency&gt;</span>
     <span class="tag">&lt;groupId&gt;</span>cz.zaf<span class="tag">&lt;/groupId&gt;</span>
     <span class="tag">&lt;artifactId&gt;</span>zaf-core<span class="tag">&lt;/artifactId&gt;</span>
-    <span class="tag">&lt;version&gt;</span>2.0.2<span class="tag">&lt;/version&gt;</span>
+    <span class="tag">&lt;version&gt;</span>2.0.3<span class="tag">&lt;/version&gt;</span>
   <span class="tag">&lt;/dependency&gt;</span></code></pre>
 </div>
 </div>
@@ -2678,7 +2678,7 @@ Zdroj
 Popis chyby
 </td>
 <td class="hdlist2">
-<p>Neexistuje element &lt;maintenanceevent&gt;, který neobsahuje všechny povinné části dle specifikace.</p>
+<p>Neexistuje element &lt;maintenanceevent&gt;, který obsahuje všechny povinné části dle specifikace.</p>
 </td>
 </tr>
 <tr>
@@ -4952,7 +4952,8 @@ Aktivní
 Pravidlo
 </td>
 <td class="hdlist2">
-<p>Pokud element &lt;physdescstructured&gt; má atribut "physdescstructuredtype" o hodnotě "otherphysdescstructuredtype" a zároveň atribut "otherphysdescstructured" o hodnotě "quantity", má atribut "coverage" o hodnotě "whole". Pokud se element nachází na kořeni archivního popisu, podřízený element &lt;unittype&gt; obsahuje hodnotu "desc_units". V ostatních případech obsahuje podřízený element &lt;unittype&gt; některou z hodnot "byte", "pieces", "pages" nebo "sheets". Pokud se element nachází na kořeni archivního popisu, podřízený element &lt;quantity&gt; obsahuje součet všech jednotek popisu včetně jednotky popisu, v níž se sám nachází. V ostatních případech obsahuje podřízený element &lt;quantity&gt; kladné celé číslo.</p>
+<p>Pokud element &lt;physdescstructured&gt; má atribut "physdescstructuredtype" o hodnotě "otherphysdescstructuredtype" a zároveň atribut "otherphysdescstructured" o hodnotě "quantity", má atribut "coverage" o hodnotě "whole".
+Pokud se element nachází na kořeni archivního popisu, element &lt;unittype&gt; obsahuje hodnotu "desc_units". V ostatních případech obsahuje podřízený element &lt;unittype&gt; některou z hodnot "byte", "pieces", "pages" nebo "sheets". Pokud se element nachází na kořeni archivního popisu, podřízený element &lt;quantity&gt; obsahuje součet všech jednotek popisu popsaných pomůckou. V ostatních případech obsahuje podřízený element &lt;quantity&gt; kladné celé číslo.</p>
 </td>
 </tr>
 <tr>
@@ -5213,7 +5214,54 @@ Zdroj
 Popis chyby
 </td>
 <td class="hdlist2">
-<p>Některý element &lt;materialspec&gt; s atributem "localtype" o hodnotě "SCALE", nebo "ORIENTATION", nebo "VOLUME" neobsahuje prostou textovou hodnotu.</p>
+<p>Element &lt;materialspec&gt; neobsahuje prostou textovou hodnotu.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Aktivní
+</td>
+<td class="hdlist2">
+<p>archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="AP2023_obs85">obs85</h5>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Pravidlo
+</td>
+<td class="hdlist2">
+<p>Každý element &lt;materialspec&gt; s atributem "localtype" o hodnotě "SCALE_RATIO" obsahuje prostou textovou hodnotu ve formátu M:N nebo [M:N].</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Kód
+</td>
+<td class="hdlist2">
+<p>obs85</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Zdroj
+</td>
+<td class="hdlist2">
+<p>Část 6.9.1 profilu EAD3 MV ČR</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Popis chyby
+</td>
+<td class="hdlist2">
+<p>Element &lt;materialspec&gt; s atributem "localtype" o hodnotě "SCALE_RATIO" neobsahuje prostou textovou podobu měřítka.</p>
 </td>
 </tr>
 <tr>
@@ -6064,6 +6112,22 @@ Aktivní
 </li>
 <li>
 <p>Drobnější upřesnění pravidel <a href="#AP2023_obs15">obs15</a>, <a href="#AP2023_obs62">obs62</a>, <a href="#AP2023_obs70">obs70</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_v3_26_3_2026">v3, 26.3.2026</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Nově pravidlo <a href="#AP2023_obs85">obs85</a></p>
+</li>
+<li>
+<p>Upraveno pravidlo <a href="#AP2023_obs31">obs31</a> - znění chyby</p>
+</li>
+<li>
+<p>Upraveno pravidlo <a href="#AP2023_obs79">obs79</a> - z důvodu pomůcek k části AS, počítání počtu JP</p>
 </li>
 </ul>
 </div>
@@ -20888,7 +20952,7 @@ Aktivní
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-03-25 17:55:56 UTC
+Last updated 2026-03-26 09:15:39 UTC
 </div>
 </div>
 </body>
