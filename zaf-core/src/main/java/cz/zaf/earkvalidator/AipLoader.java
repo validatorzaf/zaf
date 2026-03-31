@@ -23,7 +23,7 @@ import org.xml.sax.SAXException;
 import cz.zaf.common.FileOps;
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.result.ValidationResultImpl;
-import cz.zaf.common.xml.PositionalXMLReader2;
+import cz.zaf.common.xml.PositionalXMLReader;
 import cz.zaf.earkvalidator.eark.EarkConstants;
 import cz.zaf.schema.mets_1_12_1.Mets;
 import jakarta.xml.bind.JAXBContext;
@@ -268,7 +268,7 @@ public class AipLoader implements AutoCloseable {
     	document = null;
     	
         try (InputStream is = Files.newInputStream(getMetsPath())) {
-            PositionalXMLReader2 xmlReader = new PositionalXMLReader2();
+            PositionalXMLReader xmlReader = new PositionalXMLReader();
             document = xmlReader.readXML(is);
         } catch (SAXException e) {
             metsParserError = e;

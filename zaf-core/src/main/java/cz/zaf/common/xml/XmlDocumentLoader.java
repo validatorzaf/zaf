@@ -75,7 +75,7 @@ public class XmlDocumentLoader<T> {
     	document = null;
     	
         try (InputStream is = Files.newInputStream(getSourceFile())) {
-            PositionalXMLReader2 xmlReader = new PositionalXMLReader2();
+            PositionalXMLReader xmlReader = new PositionalXMLReader();
             document = xmlReader.readXML(is);
         } catch (SAXException e) {
             parserError = e;
