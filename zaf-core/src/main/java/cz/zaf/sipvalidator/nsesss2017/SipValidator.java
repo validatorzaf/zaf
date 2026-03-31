@@ -68,13 +68,6 @@ public class SipValidator extends SipValidatorBase {
     @Override
     public void layerValidationStarted(KontrolaNsessContext context,
                                        ValidationLayer<KontrolaNsessContext> layer) {
-        if (layer.getClass() == K03_Spravnosti.class) {
-            // nacteni dokumentu pokud zaciname kontrolovat jeho spravnost a jedna se o XML
-            MetsParser metsParser = new MetsParser();
-            metsParser.parse(context.getSip());
-
-            context.setMetsParser(metsParser);
-        }
     }
 
     @Override

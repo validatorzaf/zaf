@@ -6,7 +6,6 @@ import java.util.List;
 import cz.zaf.common.validation.ValidationLayer;
 import cz.zaf.sipvalidator.nsesss2024.SipValidatorBase;
 import cz.zaf.sipvalidator.nsesss2024.KontrolaNsessContext;
-import cz.zaf.sipvalidator.nsesss2024.MetsParser;
 import cz.zaf.sipvalidator.nsesss2024.profily.ProfilValidace;
 
 /**
@@ -71,13 +70,6 @@ public class SipValidator extends SipValidatorBase {
     @Override
     public void layerValidationStarted(KontrolaNsessContext context,
                                        ValidationLayer<KontrolaNsessContext> layer) {
-        if (layer.getClass() == K03_Spravnosti.class) {
-            // nacteni dokumentu pokud zaciname kontrolovat jeho spravnost a jedna se o XML
-            MetsParser metsParser = new MetsParser();
-            metsParser.parse(context.getSip());
-
-            context.setMetsParser(metsParser);
-        }
     }
 
     @Override
