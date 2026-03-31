@@ -93,6 +93,7 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule81;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule82;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule83;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule84;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule85;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs80_89.Rule89;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule93;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99.Rule94;
@@ -170,6 +171,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule80.class,
             Rule83.class,
             Rule84.class,
+            Rule85.class,
             Rule89.class,
             Rule93.class,
             Rule94.class,
@@ -261,6 +263,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule82.class,
             Rule83.class,
             Rule84.class,
+            Rule85.class,
             Rule89.class,
             Rule93.class,
             Rule94.class,
@@ -340,6 +343,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule80.class,
             Rule83.class,
             Rule84.class,
+            Rule85.class,
             Rule89.class,
             Rule93.class,
             Rule94.class,
@@ -414,6 +418,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
             Rule80.class,
             Rule83.class,
             Rule84.class,
+            Rule85.class,
             Rule89.class,
             Rule93.class,
             Rule94.class,

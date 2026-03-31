@@ -26,6 +26,8 @@ autora viz licenční ustanovení jednotlivých částí softwaru.
 
 Stanislav Bečvář, Hlavní město Praha, Magistrát hlavního města Prahy, Odbor „Archiv hlavního města Prahy“
 
+Tomáš Dvořák, Hlavní město Praha, Magistrát hlavního města Prahy, Odbor „Archiv hlavního města Prahy“
+
 Petr Pytelka, LightComp v.o.s.
 
 Karel Žáček, LightComp v.o.s.

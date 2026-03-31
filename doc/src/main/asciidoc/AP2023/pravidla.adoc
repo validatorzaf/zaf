@@ -395,7 +395,7 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 Pravidlo:: Existuje právě jeden element <maintenanceevent>, který obsahuje povinné části dle specifikace. Kontroluje se existence podřízených elementů: eventtype, eventdatetime, agenttype a agent a jejich správné uvedení.
 Kód:: obs31
 Zdroj:: Část 2.7 profilu EAD3 MV ČR
-Popis chyby:: Neexistuje element <maintenanceevent>, který neobsahuje všechny povinné části dle specifikace.
+Popis chyby:: Neexistuje element <maintenanceevent>, který obsahuje všechny povinné části dle specifikace.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs35]]
@@ -950,7 +950,8 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Pokud element <physdescstructured> má atribut "physdescstructuredtype" o hodnotě "otherphysdescstructuredtype" a zároveň atribut "otherphysdescstructured" o hodnotě "quantity", má atribut "coverage" o hodnotě "whole". Pokud se element nachází na kořeni archivního popisu, podřízený element <unittype> obsahuje hodnotu "desc_units". V ostatních případech obsahuje podřízený element <unittype> některou z hodnot "byte", "pieces", "pages" nebo "sheets". Pokud se element nachází na kořeni archivního popisu, podřízený element <quantity> obsahuje součet všech jednotek popisu včetně jednotky popisu, v níž se sám nachází. V ostatních případech obsahuje podřízený element <quantity> kladné celé číslo.
+Pravidlo:: Pokud element <physdescstructured> má atribut "physdescstructuredtype" o hodnotě "otherphysdescstructuredtype" a zároveň atribut "otherphysdescstructured" o hodnotě "quantity", má atribut "coverage" o hodnotě "whole".
+Pokud se element nachází na kořeni archivního popisu, element <unittype> obsahuje hodnotu "desc_units". V ostatních případech obsahuje podřízený element <unittype> některou z hodnot "byte", "pieces", "pages" nebo "sheets". Pokud se element nachází na kořeni archivního popisu, podřízený element <quantity> obsahuje součet všech jednotek popisu popsaných pomůckou. V ostatních případech obsahuje podřízený element <quantity> kladné celé číslo.
 Kód:: obs79
 Zdroj:: Část 6.7.4 profilu EAD3 MV ČR
 Popis chyby:: Element <physdescstructured> s atributem "physdescstructured" o hodnotě "otherphysdescstructuredtype" a zároveň s atributem "otherphysdescstructured" o hodnotě "quantity" má špatně nastavený atribut "coverage" a/nebo v něm obsažené elementy element <unittype> a/nebo <quantity> obsahují nepovolenou hodnotu, příp. je použita hodnota "unit_desc" na jiné úrovni než na kořeni archivního popisu nebo není správně proveden součet jednotek popisu na kořeni archivního souboru.
@@ -1010,7 +1011,18 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 Pravidlo:: Každý element <materialspec> s atributem "localtype" o hodnotě "SCALE", nebo "ORIENTATION", nebo "VOLUME" obsahuje prostou textovou hodnotu.
 Kód:: obs84
 Zdroj:: Část 6.9, 6.11 a 6.13 profilu EAD3 MV ČR
-Popis chyby:: Některý element <materialspec> s atributem "localtype" o hodnotě "SCALE", nebo "ORIENTATION", nebo "VOLUME" neobsahuje prostou textovou hodnotu.
+Popis chyby:: Element <materialspec> neobsahuje prostou textovou hodnotu.
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
+
+[[AP2023_obs85]]
+== obs85
+
+[horizontal]
+
+Pravidlo:: Každý element <materialspec> s atributem "localtype" o hodnotě "SCALE_RATIO" obsahuje prostou textovou hodnotu ve formátu M:N nebo [M:N].
+Kód:: obs85
+Zdroj:: Část 6.9.1 profilu EAD3 MV ČR
+Popis chyby:: Element <materialspec> s atributem "localtype" o hodnotě "SCALE_RATIO" neobsahuje prostou textovou podobu měřítka.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs89]]

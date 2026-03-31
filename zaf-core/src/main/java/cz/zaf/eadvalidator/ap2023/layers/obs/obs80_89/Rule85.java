@@ -11,14 +11,14 @@ import cz.zaf.schema.ead3.Materialspec;
 import java.io.Serializable;
 import java.util.List;
 
-public class Rule84 extends EadRule {
+public class Rule85 extends EadRule {
 
-    static final public String CODE = "obs84";
-    static final public String RULE_TEXT = "Každý element <materialspec> s atributem \"localtype\" o hodnotě \"SCALE\", nebo \"ORIENTATION\", nebo \"VOLUME\" obsahuje prostou textovou hodnotu.";
-    static final public String RULE_ERROR = "Element <materialspec> neobsahuje prostou textovou hodnotu.";
-    static final public String RULE_SOURCE = "Část 6.9, 6.11 a 6.13 profilu EAD3 MV ČR";
+    static final public String CODE = "obs85";
+    static final public String RULE_TEXT = "Každý element <materialspec> s atributem \"localtype\" o hodnotě \"SCALE_RATIO\" obsahuje prostou textovou hodnotu ve formátu M:N nebo [M:N].";
+    static final public String RULE_ERROR = "Element <materialspec> s atributem \"localtype\" o hodnotě \"SCALE_RATIO\" neobsahuje prostou textovou podobu měřítka.";
+    static final public String RULE_SOURCE = "Část 6.9.1 profilu EAD3 MV ČR";
 
-    public Rule84() {
+    public Rule85() {
         super(CODE, RULE_TEXT, RULE_ERROR, RULE_SOURCE);
     }
 
@@ -36,51 +36,51 @@ public class Rule84 extends EadRule {
 
     private void validate(Did did) {
         List<Object> childList = did.getMDid();
-        int scaleCount = 0;
-        int orientationCOunt = 0;
-        int volumeCOunt = 0;
 
         for (Object child : childList) {
             if (child instanceof Materialspec materialspec) {
                 String localtype = materialspec.getLocaltype();
-                if (StringUtils.equals("SCALE", localtype)) {
-                    scaleCount++;
+                if ("SCALE_RATIO".equals(localtype)) {
+                    ctx.markValidatedAttribute(materialspec, "localtype");
+                    ctx.markValidatedContent(materialspec);
+
                     validateContent(materialspec);
-                }
-                if (StringUtils.equals("ORIENTATION", localtype)) {
-                    orientationCOunt++;
-                    validateContent(materialspec);
-                }
-                if (StringUtils.equals("VOLUME", localtype)) {
-                    volumeCOunt++;
-                    validateContent(materialspec);
-                }
-                if (scaleCount > 1 || orientationCOunt > 1 || volumeCOunt > 1) {
-                    duplicityError(materialspec, localtype);
                 }
             }
         }
     }
 
     private void validateContent(Materialspec materialspec) {
+    	
         List<Serializable> content = materialspec.getContent();
         if (content.size() != 1) {
-            throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybí hodnota v elementu.", ctx.formatEadPosition(materialspec));
+            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Chybná hodnota v elementu.", ctx.formatEadPosition(materialspec));
         }
         Serializable partContent = content.get(0);
         if (partContent instanceof String str) {
             if (StringUtils.isBlank(str)) {
                 throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Prázdná hodnota elementu.", ctx.formatEadPosition(materialspec));
             }
+            
+            if(str.length()>5) {
+            	// ? odhad
+            	if(str.charAt(0)=='[' && str.charAt(str.length()-1)==']') {
+            		str=str.substring(1, str.length()-2);
+            	}
+            }
+            String parts[] = str.split(":");
+            if(parts.length!=2) {
+            	throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Hodnota elementu.", ctx.formatEadPosition(materialspec));
+            }
+            for(var part: parts) {
+            	try {
+            		Integer.parseInt(part);
+            	} catch(NumberFormatException nfe) {
+            		throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Měřítko neobsahuje číslo, chybná část: "+part, ctx.formatEadPosition(materialspec));
+            	}
+            }
         } else {
             throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Chybný typ hodnoty v elementu.", ctx.formatEadPosition(materialspec));
         }
-        ctx.markValidatedAttribute(materialspec, "localtype");
-        ctx.markValidatedContent(materialspec);
     }
-
-    private void duplicityError(Materialspec materialspec, String localtype) {
-        throw new ZafException(BaseCode.DUPLICITA, "Nalezen duplicitní element materialspec s atributem localtype o hodnotě: " + localtype + ".", ctx.formatEadPosition(materialspec));
-    }
-
 }

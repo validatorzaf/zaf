@@ -175,7 +175,7 @@
 								<ead:todate standarddate="2001-09-30T23:59:59">září 2001</ead:todate> <!-- obs58, obs59 -->
 							</ead:daterange>
 						</ead:unitdatestructured>
-                        <ead:unitdate></ead:unitdate>
+                        <ead:unitdate>něco k dataci</ead:unitdate>
 						
 						<ead:didnote localtype="INTERNAL" audience="internal">Text</ead:didnote> <!-- obs70 -->
 						
@@ -196,7 +196,8 @@
 							<ead:unittype>s</ead:unittype>
 						</ead:physdescstructured>
 						
-						<ead:materialspec localtype="SCALE">1:200</ead:materialspec> <!-- obs84 -->
+						<ead:materialspec localtype="SCALE">1:200, text</ead:materialspec> <!-- obs84 -->
+                        <ead:materialspec localtype="SCALE_RATIO">A:200</ead:materialspec> <!-- obs85 -->
 						<ead:materialspec localtype="ORIENTATION">na sever</ead:materialspec> <!-- obs89 -->
 						<ead:materialspec localtype="VOLUME">Ročník XVI, číslo 2</ead:materialspec> <!-- obs90 -->
 						
