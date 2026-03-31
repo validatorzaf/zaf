@@ -5,7 +5,6 @@ import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06KontrolaContext;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs00_09.Pravidlo1;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs00_09.Pravidlo2;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs00_09.Pravidlo3;
-import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs00_09.Pravidlo9;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs100_109.Pravidlo100;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs100_109.Pravidlo101;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs100_109.Pravidlo102;
@@ -123,7 +122,6 @@ public enum ZakladniProfilValidace
                 new Pravidlo1(),
                 new Pravidlo2(),
                 new Pravidlo3(),
-                new Pravidlo9(),
                 new Pravidlo10(),
                 new Pravidlo11(),
                 new Pravidlo12(),
@@ -237,14 +235,13 @@ public enum ZakladniProfilValidace
             return prav;
         }
     },
+    //
     SKARTACE_METADATA("skartační řízení (jen metadata)") {
         @Override
         public Rule<K06KontrolaContext>[] createObsahovaPravidla() {
             Rule[] prav = {
                 new Pravidlo1(),
                 new Pravidlo2(),
-                //new Pravidlo3(),
-                new Pravidlo9(),
                 new Pravidlo10(),
                 new Pravidlo11(),
                 new Pravidlo12(),
@@ -354,8 +351,6 @@ public enum ZakladniProfilValidace
             Rule[] prav = {
                 new Pravidlo1(),
                 new Pravidlo2(),
-                // new Pravidlo3(),
-                new Pravidlo9(),
                 new Pravidlo10(),
                 new Pravidlo11(),
                 new Pravidlo12(),
@@ -473,7 +468,6 @@ public enum ZakladniProfilValidace
                 new Pravidlo1(),
                 // new Pravidlo2(), 
                 new Pravidlo3(),
-                new Pravidlo9(),
                 new Pravidlo10(),
                 new Pravidlo11(),
                 new Pravidlo12(),

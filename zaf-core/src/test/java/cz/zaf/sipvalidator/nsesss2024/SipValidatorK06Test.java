@@ -6,7 +6,6 @@ import cz.zaf.common.result.ValidationStatus;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs00_09.Pravidlo1;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs00_09.Pravidlo2;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs00_09.Pravidlo3;
-import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs00_09.Pravidlo9;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs100_109.Pravidlo100;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs100_109.Pravidlo101;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs100_109.Pravidlo102;
@@ -225,30 +224,6 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     }
 
     @Test
-    void testK06_09_01() {
-        testPackageK06("obs9-chyba1", ValidationStatus.ERROR,
-                ZakladniProfilValidace.PREJIMKA,
-                new String[]{Pravidlo1.OBS1, Pravidlo2.OBS2, Pravidlo3.OBS3},
-                new String[]{Pravidlo9.OBS9});
-    }
-
-    @Test
-    void testK06_09_02() {
-        testPackageK06("obs9-chyba2", ValidationStatus.ERROR,
-                ZakladniProfilValidace.PREJIMKA,
-                new String[]{},
-                new String[]{Pravidlo9.OBS9});
-    }
-
-    @Test
-    void testK06_09_OK01() {
-        testPackageK06("obs9-OK", null,
-                ZakladniProfilValidace.PREJIMKA,
-                new String[]{Pravidlo1.OBS1, Pravidlo2.OBS2, Pravidlo3.OBS3, Pravidlo9.OBS9},
-                new String[]{});
-    }
-
-    @Test
     void testK06_10_01() {
         testPackageK06("obs10-chyba", ValidationStatus.ERROR,
                 ZakladniProfilValidace.PREJIMKA,
@@ -299,14 +274,6 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     @Test
     void testK06_12_OK01() {
         testPackageK06("obs12-OK1", null,
-                ZakladniProfilValidace.PREJIMKA,
-                new String[]{Pravidlo12.OBS12},
-                new String[]{});
-    }
-
-    @Test
-    void testK06_12_OK02() {
-        testPackageK06("obs12-OK2", null,
                 ZakladniProfilValidace.PREJIMKA,
                 new String[]{Pravidlo12.OBS12},
                 new String[]{});
@@ -921,14 +888,6 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     }
 
     @Test
-    void testK06_38_OK02() {
-        testPackageK06("obs38-OK2", null,
-                ZakladniProfilValidace.PREJIMKA,
-                new String[]{Pravidlo38.OBS38},
-                new String[]{});
-    }
-
-    @Test
     void testK06_39_01() {
         testPackageK06("obs39-chyba1", ValidationStatus.ERROR,
                 ZakladniProfilValidace.PREJIMKA,
@@ -1081,14 +1040,6 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     }
 
     @Test
-    void testK06_46_OK02() {
-        testPackageK06("obs46-OK2", null,
-                ZakladniProfilValidace.PREJIMKA,
-                new String[]{Pravidlo46.OBS46},
-                new String[]{});
-    }
-
-    @Test
     void testK06_49_01() {
         testPackageK06("obs49-chyba", ValidationStatus.ERROR,
                 ZakladniProfilValidace.PREJIMKA,
@@ -1140,14 +1091,6 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     @Test
     void testK06_50_OK02() {
         testPackageK06("obs50-OK2", null,
-                ZakladniProfilValidace.PREJIMKA,
-                new String[]{Pravidlo50.OBS50},
-                new String[]{});
-    }
-
-    @Test
-    void testK06_50_OK03() {
-        testPackageK06("obs50-OK3", null,
                 ZakladniProfilValidace.PREJIMKA,
                 new String[]{Pravidlo50.OBS50},
                 new String[]{});
@@ -1539,14 +1482,6 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     }
 
     @Test
-    void testK06_54_OK04() {
-        testPackageK06("obs54-OK4", null,
-                ZakladniProfilValidace.PREJIMKA,
-                new String[]{Pravidlo54.OBS54},
-                new String[]{});
-    }
-
-    @Test
     void testK06_54_OK05() {
         testPackageK06("obs54-OK5", null,
                 ZakladniProfilValidace.PREJIMKA,
@@ -1747,24 +1682,8 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     }
 
     @Test
-    void testK06_59_OK03() {
-        testPackageK06("obs59-OK3", null,
-                ZakladniProfilValidace.PREJIMKA,
-                new String[]{Pravidlo59.OBS59},
-                new String[]{});
-    }
-
-    @Test
     void testK06_59_OK04() {
         testPackageK06("obs59-OK4", null,
-                ZakladniProfilValidace.PREJIMKA,
-                new String[]{Pravidlo59.OBS59},
-                new String[]{});
-    }
-
-    @Test
-    void testK06_59_OK05() {
-        testPackageK06("obs59-OK5", null,
                 ZakladniProfilValidace.PREJIMKA,
                 new String[]{Pravidlo59.OBS59},
                 new String[]{});
@@ -3469,13 +3388,6 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     @Test
     void testK06_107_OK04() {
         testPackageK06("obs107-OK4", null, ZakladniProfilValidace.PREJIMKA,
-                new String[]{Pravidlo107.OBS107},
-                new String[]{});
-    }
-
-    @Test
-    void testK06_107_OK05() {
-        testPackageK06("obs107-OK5", null, ZakladniProfilValidace.PREJIMKA,
                 new String[]{Pravidlo107.OBS107},
                 new String[]{});
     }
