@@ -237,10 +237,6 @@ public class CmdParamsReader {
 		switch (arg) {
 		case "AUTO":
 			return true;
-		case "0":
-			params.setNsesss2017Profile(cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace.DEVEL);
-			params.setNsesss2024Profile(cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.DEVEL);
-			break;
 		case "1":
 		case "METADATA":
 		case "SIP_METADATA":
