@@ -109,7 +109,7 @@
                       </nsesss:SkartacniRezim>
                     </nsesss:Vyrazovani>
                     <nsesss:Manipulace>
-                      <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+                      <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
                       <nsesss:DatumOtevreni datum="2008-05-02T08:54:31.000+01:00">2008-05-02</nsesss:DatumOtevreni>
                     </nsesss:Manipulace>
                   </nsesss:EvidencniUdaje>
@@ -175,7 +175,7 @@
               </nsesss:SkartacniRizeni>
             </nsesss:Vyrazovani>
             <nsesss:Manipulace>
-              <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+              <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
               <nsesss:SpravceSpisovny>
                 <nsesss:Subjekt>
                   <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.S00B.SE">S00BSE00A01S</nsesss:IdentifikatorOrganizace>

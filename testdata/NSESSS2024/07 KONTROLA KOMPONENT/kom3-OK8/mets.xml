@@ -116,7 +116,7 @@
                       </nsesss:SkartacniRezim>
                     </nsesss:Vyrazovani>
                     <nsesss:Manipulace>
-                      <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+                      <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
                       <nsesss:DatumOtevreni datum="2005-12-21T10:39:10.000+01:00">2005-12-21</nsesss:DatumOtevreni>
                     </nsesss:Manipulace>
                   </nsesss:EvidencniUdaje>
@@ -172,7 +172,7 @@
               </nsesss:SkartacniRizeni>
             </nsesss:Vyrazovani>
             <nsesss:Manipulace>
-              <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+              <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
               <nsesss:SpravceSpisovny>
                 <nsesss:Subjekt>
                   <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MHMP.SE">MHMPSE009Q14</nsesss:IdentifikatorOrganizace>

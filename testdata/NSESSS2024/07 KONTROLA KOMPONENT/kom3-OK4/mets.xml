@@ -107,7 +107,7 @@
                       </nsesss:SkartacniRezim>
                     </nsesss:Vyrazovani>
                     <nsesss:Manipulace>
-                      <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+                      <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
                       <nsesss:DatumOtevreni datum="2008-03-20T00:00:00.000+01:00">2008-03-20</nsesss:DatumOtevreni>
                       <nsesss:DatumUzavreni datum="2999-01-01T00:00:00.000+01:00">2999-01-01</nsesss:DatumUzavreni>
                     </nsesss:Manipulace>
@@ -147,15 +147,6 @@
                   </nsesss:Schvalovatel>
                 </nsesss:Schvaleni>
               </nsesss:Schvalovani>
-              <nsesss:DatumOdeslani datum="2012-01-25T09:51:20.000+01:00">2012-01-25</nsesss:DatumOdeslani>
-              <nsesss:Prijemce>
-                <nsesss:Subjekt>
-                  <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.SE">MP12SE03079T</nsesss:IdentifikatorOrganizace>
-                  <nsesss:NazevOrganizace>GDPR anonymizováno</nsesss:NazevOrganizace>
-                  <nsesss:SidloOrganizace>GDPR anonymizováno</nsesss:SidloOrganizace>
-                  <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
-                </nsesss:Subjekt>
-              </nsesss:Prijemce>
             </nsesss:Vyrizeni>
             <nsesss:Vyrazovani>
               <nsesss:SkartacniRezim>
@@ -189,7 +180,7 @@
               </nsesss:SkartacniRizeni>
             </nsesss:Vyrazovani>
             <nsesss:Manipulace>
-              <nsesss:AnalogovyDokument>ne</nsesss:AnalogovyDokument>
+              <nsesss:AnalogovyDokument>ano</nsesss:AnalogovyDokument>
               <nsesss:SpravceSpisovny>
                 <nsesss:Subjekt>
                   <nsesss:IdentifikatorOrganizace zdroj="Gordic.Ginis.MP12.SE">MP12SE00A013</nsesss:IdentifikatorOrganizace>
@@ -198,13 +189,29 @@
                   <nsesss:ElektronickyKontakt>GDPR anonymizováno</nsesss:ElektronickyKontakt>
                 </nsesss:Subjekt>
               </nsesss:SpravceSpisovny>
+              <nsesss:UkladaciJednotka>karton 1</nsesss:UkladaciJednotka>
             </nsesss:Manipulace>
           </nsesss:EvidencniUdaje>
           <nsesss:Komponenty>
-            <nsesss:Komponenta ID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" druh="průvodní dopis" forma_uchovani="originál" poradi="1" verze="1">
+            <nsesss:Komponenta ID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" druh="průvodní dopis" forma_uchovani="kontejner" poradi="1" verze="1">
               <nsesss:EvidencniUdaje>
                 <nsesss:Identifikace>
                   <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.E">MP120B04D1FC</nsesss:Identifikator>
+                </nsesss:Identifikace>
+                <nsesss:Popis>
+                  <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
+                  <nsesss:Komentar>GDPR anonymizováno</nsesss:Komentar>
+                </nsesss:Popis>
+                <nsesss:Trideni>
+                  <nsesss:JednoduchySpisovyZnak>2005/087.1</nsesss:JednoduchySpisovyZnak>
+                  <nsesss:PlneUrcenySpisovyZnak>2005/087.1</nsesss:PlneUrcenySpisovyZnak>
+                </nsesss:Trideni>
+              </nsesss:EvidencniUdaje>
+            </nsesss:Komponenta>
+            <nsesss:Komponenta ID="xMP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" druh="průvodní dopis" forma_uchovani="originál" poradi="2" verze="1">
+              <nsesss:EvidencniUdaje>
+                <nsesss:Identifikace>
+                  <nsesss:Identifikator zdroj="Gordic.Ginis.MP12.E">xMP120B04D1FC</nsesss:Identifikator>
                 </nsesss:Identifikace>
                 <nsesss:Popis>
                   <nsesss:Nazev>GDPR anonymizováno</nsesss:Nazev>
@@ -337,10 +344,42 @@
       </mets:mdWrap>
     </mets:digiprovMD>
   </mets:amdSec>
+  <mets:amdSec ID="amd005">
+    <mets:digiprovMD ID="id_bla5">
+      <mets:mdWrap MDTYPE="OTHER" MDTYPEVERSION="4.0" MIMETYPE="text/xml" OTHERMDTYPE="TP">
+        <mets:xmlData>
+          <tp:TransakcniLogObjektu>
+            <tp:TransLogInfo>
+              <tp:Identifikator>
+                <tp:HodnotaID>123456</tp:HodnotaID>
+                <tp:ZdrojID>ERMS XY</tp:ZdrojID>
+              </tp:Identifikator>
+              <tp:DatumVzniku>2018-03-05T08:00:00</tp:DatumVzniku>
+              <tp:DatumCasOd>2018-03-05T08:00:00</tp:DatumCasOd>
+              <tp:DatumCasDo>2018-03-05T08:00:00</tp:DatumCasDo>
+              <tp:Objekt>
+                <tp:TypObjektu>
+                  <tp:TypObjektuId>Komponenta</tp:TypObjektuId>
+                </tp:TypObjektu>
+                <tp:Identifikator>
+                  <tp:HodnotaID>xMP120B04D1FC</tp:HodnotaID>
+                  <tp:ZdrojID>Gordic.Ginis.MP12.E</tp:ZdrojID>
+                </tp:Identifikator>
+              </tp:Objekt>
+            </tp:TransLogInfo>
+            <tp:Udalosti/>
+          </tp:TransakcniLogObjektu>
+        </mets:xmlData>
+      </mets:mdWrap>
+    </mets:digiprovMD>
+  </mets:amdSec>
   <mets:fileSec>
     <mets:fileGrp>
       <mets:file CHECKSUM="bb5d73fbb5e63174cee5af2d3d5556483cac0749f507cfa0a3b59a1fde05b7cf" CHECKSUMTYPE="SHA-256" CREATED="2015-11-09T17:02:33" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" ID="MP120B04D1FC" MIMETYPE="application/zip" OWNERID="MP120B04D1FC" SIZE="489216">
         <mets:FLocat LOCTYPE="URL" xlink:href="komponenty/soubor1.zip" xlink:type="simple"/>
+      </mets:file>
+      <mets:file CHECKSUM="b9a6111074193733ed2a2e873d17b43f4191d92be59e0918d1b9c230bbccc86d" CHECKSUMTYPE="SHA-256" CREATED="2015-11-09T17:02:33" DMDID="xMP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" ID="xMP120B04D1FC" MIMETYPE="application/pdf" OWNERID="MP120B04D1FC" SIZE="489060">
+        <mets:FLocat LOCTYPE="URL" xlink:href="komponenty/soubor1.pdf" xlink:type="simple"/>
       </mets:file>
     </mets:fileGrp>
   </mets:fileSec>
@@ -350,6 +389,9 @@
         <mets:div ADMID="amd003" DMDID="MP12P00BTZ3Z" TYPE="dokument">
           <mets:div ADMID="amd004" DMDID="MP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" TYPE="komponenta">
             <mets:fptr FILEID="MP120B04D1FC"/>
+          </mets:div>
+          <mets:div ADMID="amd005" DMDID="xMP12P00BTZ3Z_MP120C03J2HJ_MP120B04D1FC" TYPE="komponenta">
+            <mets:fptr FILEID="xMP120B04D1FC"/>
           </mets:div>
         </mets:div>
       </mets:div>
