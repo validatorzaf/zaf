@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cz.zaf.common.validation.ValidationLayer;
-import cz.zaf.sipvalidator.nsesss2024.SipValidatorBase;
-import cz.zaf.sipvalidator.nsesss2024.KontrolaNsessContext;
 import cz.zaf.sipvalidator.nsesss2024.profily.ProfilValidace;
 
 /**
@@ -14,17 +12,16 @@ import cz.zaf.sipvalidator.nsesss2024.profily.ProfilValidace;
  */
 public class SipValidator extends SipValidatorBase {
 
-    K00_SkodlivehoKodu ksk;
+    private String hrozba;
 
     public SipValidator(final ProfilValidace profilValidace,
                         final List<String> excludeChecks) {
     	super(pripravKontroly(profilValidace), excludeChecks);
-    	ksk = (K00_SkodlivehoKodu)kontroly.get(0);
-    }    
-    
+    }
+
     /**
      * Pripravi seznam kontrol
-     * 
+     *
      * @param profilValidace
      *            validační profil
      * @return Seznam připravených úrovní kontroly
@@ -33,12 +30,12 @@ public class SipValidator extends SipValidatorBase {
         List<ValidationLayer<KontrolaNsessContext>> kontroly = new ArrayList<>(7);
 
         kontroly.add(new K00_SkodlivehoKodu());
-        
+
         K01_DatoveStruktury kds = new K01_DatoveStruktury();
         kontroly.add(kds);
-        
+
         K02_ZnakoveSady kko = new K02_ZnakoveSady();
-        kontroly.add(kko);        
+        kontroly.add(kko);
 
         K03_Spravnosti kwf = new K03_Spravnosti();
         kontroly.add(kwf);
@@ -51,7 +48,7 @@ public class SipValidator extends SipValidatorBase {
 
         K06_Obsahova oks = new K06_Obsahova(profilValidace.createObsahovaPravidla());
         kontroly.add(oks);
-        
+
         K07_Komponent kfs = new K07_Komponent(profilValidace.createFormatovaPravidla());
         kontroly.add(kfs);
         return kontroly;
@@ -59,12 +56,17 @@ public class SipValidator extends SipValidatorBase {
 
     /**
      * Nastaveni hrozby pro kontrolu skodliveho kodu
-     * 
+     *
      * @param hrozba
      *            textový popis hrozby, null pokud nebyla nalezena
      */
     public void setHrozba(String hrozba) {
-        ksk.setHrozba(hrozba);
+        this.hrozba = hrozba;
+    }
+
+    @Override
+    protected void prepareContext(KontrolaNsessContext ctx) {
+        ctx.setHrozba(hrozba);
     }
 
     @Override

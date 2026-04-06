@@ -96,7 +96,7 @@ public class ValidatorNsesss2024 implements Validator, ValidationProfileInfo {
 				List<Rule<? extends RuleEvaluationContext>> result = new ArrayList<>();
 				switch (typUrovne) {
 				case SKODLIVY_KOD:
-					result.addAll(new K00_SkodlivehoKodu().getRules());
+					result.addAll(KontrolaBase.instantiateRules(K00_SkodlivehoKodu.getRuleClasses()));
 					break;
 				case DATOVE_STRUKTURY:
 					result.addAll(KontrolaBase.instantiateRules(K01_DatoveStruktury.getRuleClasses()));
