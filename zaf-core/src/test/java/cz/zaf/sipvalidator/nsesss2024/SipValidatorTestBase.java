@@ -101,18 +101,22 @@ public abstract class SipValidatorTestBase {
 
         ValidationLayerResult result = sipInfo.getUrovenKontroly(typUrovneKontroly);
         if (result == null) {
-            log.error("Missing result for SIP: {}, urovenKontroly: {}", path, typUrovneKontroly);
+        	StringBuilder sb = new StringBuilder();
+        	sb.append("Missing result for SIP: ").append(path).append(", urovenKontroly: ").append(typUrovneKontroly)
+        		.append("\n");
             var cnt = sipInfo.getValidationLayerResults().size();
             if (cnt > 0) {
                 // try to read last validation
                 result = sipInfo.getKontrola(cnt - 1);
                 var ruleResults = result.getPravidla();
                 for (var ruleResult : ruleResults) {
-                    log.error("Failed rule in previouse layer: {}, {}, misto: {}", ruleResult.getId(),
-                              ruleResult.getVypisChyby(), ruleResult.getMistoChyby());
+                    sb.append("Failed rule in previouse layer: ").append(ruleResult.getId()).append(", ")
+                    	.append(ruleResult.getVypisChyby())
+                    	.append(", misto: ")
+                    	.append(ruleResult.getMistoChyby());
                 }
             }
-            fail("Result is null, path: " + path);
+            fail(sb.toString());
         }
 
         TestHelper.checkTestResult(path, stavKontroly, result, pravidlaOk, pravidlaChybna);

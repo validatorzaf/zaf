@@ -152,13 +152,13 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
                     new String[] { Pravidlo7_03.KOD });
     }
 
-    /*@Test
+    @Test
     void testK07_03_07() {
         testPackage("kom3-chyba7", ValidationStatus.ERROR,
                     ZakladniProfilValidace.PREJIMKA,
                     new String[] {},
                     new String[] { Pravidlo7_03.KOD });
-    }*/
+    }
 
     @Test
     void testK07_03_OK01() {
