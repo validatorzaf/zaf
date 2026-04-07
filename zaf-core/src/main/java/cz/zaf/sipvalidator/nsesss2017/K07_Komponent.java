@@ -1,6 +1,10 @@
 package cz.zaf.sipvalidator.nsesss2017;
 
-import cz.zaf.sipvalidator.nsesss2017.pravidla07.K07PravidloBase;
+import java.util.List;
+
+import cz.zaf.common.validation.BaseRule;
+import cz.zaf.common.validation.Rule;
+import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 
 /**
  * Kontrola komponent
@@ -9,15 +13,19 @@ public class K07_Komponent extends KontrolaBase<KontrolaNsessContext> {
 
     static final public String NAME = "kontrola komponent";
 
-    private K07PravidloBase[] pravidla;
+	private List<Class<? extends BaseRule<KontrolaNsessContext>>> ruleClasses;
 
-    public K07_Komponent(final K07PravidloBase[] pravidla) {
+    public K07_Komponent(final ProfilValidace profilValidace) {
         super(TypUrovenKontroly.KOMPONENT);
-        this.pravidla = pravidla;
+        ruleClasses = profilValidace.getComponentRuleClasses();
     }
 
     @Override
     protected void validateImpl() {
-        provedKontrolu(ctx, pravidla);
+        provedKontrolu(ctx, createRules());
     }
+
+	public List<? extends Rule<KontrolaNsessContext>> createRules() {
+		return createRules(ruleClasses);
+	}
 }

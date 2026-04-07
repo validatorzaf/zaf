@@ -1,5 +1,8 @@
 package cz.zaf.sipvalidator.nsesss2017;
 
+import java.util.List;
+
+import cz.zaf.common.validation.Rule;
 import cz.zaf.sipvalidator.nsesss2017.pravidla00.vir00_09.Pravidlo1;
 
 /**
@@ -20,10 +23,14 @@ public class K00_SkodlivehoKodu
 
     @Override
     public void validateImpl() {
-        this.provedKontrolu(ctx, createRules(ruleClasses));
+        this.provedKontrolu(ctx, createRules());
     }
 
     public static Class<?>[] getRuleClasses() {
         return ruleClasses;
     }
+
+	public List<? extends Rule<KontrolaNsessContext>> createRules() {
+		return createRules(ruleClasses);
+	}
 }

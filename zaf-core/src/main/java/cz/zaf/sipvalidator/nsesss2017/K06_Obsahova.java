@@ -16,7 +16,9 @@ import org.w3c.dom.Node;
 import cz.zaf.common.exceptions.codes.ErrorCode;
 import cz.zaf.common.result.EntityId;
 import cz.zaf.common.result.IndetifierWithSource;
+import cz.zaf.common.validation.BaseRule;
 import cz.zaf.common.validation.Rule;
+import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo;
 
 /**
@@ -29,7 +31,6 @@ public class K06_Obsahova
     static final public String NAME = "kontrola obsahu";
 
     SipInfo sipSoubor;
-    private Rule<KontrolaNsessContext>[] seznamPravidel;
 
     MetsParser metsParser;
 
@@ -40,9 +41,11 @@ public class K06_Obsahova
      */
     Map<String, Rule<KontrolaNsessContext>> kontroly = new HashMap<>();
 
-    public K06_Obsahova(Rule<KontrolaNsessContext>[] obsahovaPravidla) {
+	private List<Class<? extends BaseRule<KontrolaNsessContext>>> ruleClasses;
+
+    public K06_Obsahova(ProfilValidace profilValidace) {
         super(TypUrovenKontroly.OBSAHOVA);
-        this.seznamPravidel = obsahovaPravidla;
+        ruleClasses = profilValidace.getContentRuleClasses();
     }
 
     static public String getJmenoIdentifikator(Element node) {
@@ -246,7 +249,7 @@ public class K06_Obsahova
     @Override
     public void validateImpl() {
 
-        provedKontrolu(ctx, seznamPravidel);
+        provedKontrolu(ctx, createRules());
 
     }
 
@@ -258,4 +261,7 @@ public class K06_Obsahova
         return metsParser;
     }
 
+	public List<? extends Rule<KontrolaNsessContext>> createRules() {
+		return createRules(ruleClasses);
+	}
 }

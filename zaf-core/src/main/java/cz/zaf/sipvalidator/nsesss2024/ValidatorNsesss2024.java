@@ -11,7 +11,6 @@ import cz.zaf.common.validation.ValidationLayerType;
 import cz.zaf.common.validation.ValidationSubprofile;
 import cz.zaf.common.validation.Validator;
 import cz.zaf.common.validation.ValidatorInfo;
-import cz.zaf.sipvalidator.nsesss2024.pravidla07.K07PravidloBase;
 import cz.zaf.sipvalidator.nsesss2024.profily.ProfilValidace;
 import cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace;
 import cz.zaf.sipvalidator.sip.SipLoader;
@@ -111,12 +110,8 @@ public class ValidatorNsesss2024 implements Validator, ValidationProfileInfo {
 				case PROTI_SCHEMATU:
 					result.addAll(new K05_ProtiSchematu().createRules());
 					break;
-				case OBSAHOVA: {					
-					Rule<KontrolaNsessContext>[] rules = profilValidace.createObsahovaPravidla();
-					for (Rule<KontrolaNsessContext> rule : rules) {
-						result.add(rule);
-					}
-				}
+				case OBSAHOVA: 				
+					result.addAll(new K06_Obsahova(profilValidace).createRules());
 					break;
 				case KOMPONENT:
 					result.addAll(new K07_Komponent(profilValidace).createRules());

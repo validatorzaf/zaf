@@ -14,6 +14,7 @@ import org.w3c.dom.Node;
 import cz.zaf.common.exceptions.codes.ErrorCode;
 import cz.zaf.common.result.EntityId;
 import cz.zaf.common.result.IndetifierWithSource;
+import cz.zaf.common.validation.BaseRule;
 import cz.zaf.common.validation.Rule;
 import cz.zaf.sipvalidator.nsesss2024.profily.ProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo;
@@ -33,11 +34,11 @@ public class K06_Obsahova
 
     private List<Element> zakladniEntity;
 
-	private ProfilValidace profileValidace;
+	private List<Class<? extends BaseRule<KontrolaNsessContext>>> ruleClasses;
 
     public K06_Obsahova(ProfilValidace profilValidace) {
         super(TypUrovenKontroly.OBSAHOVA);
-        this.profileValidace = profilValidace;
+        ruleClasses = profilValidace.getContentRuleClasses();
     }
 
     static public String getJmenoIdentifikator(Element node) {
@@ -240,8 +241,7 @@ public class K06_Obsahova
 
     @Override
     public void validateImpl() {
-        Rule<KontrolaNsessContext>[] seznamPravidel = profileValidace.createObsahovaPravidla();
-        provedKontrolu(ctx, seznamPravidel);
+        provedKontrolu(ctx, createRules());
 
     }
 
@@ -253,4 +253,7 @@ public class K06_Obsahova
         return metsParser;
     }
 
+	public List<? extends Rule<KontrolaNsessContext>> createRules() {
+		return createRules(ruleClasses);
+	}    
 }
