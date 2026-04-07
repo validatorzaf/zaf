@@ -48,6 +48,8 @@ public class PositionalXMLReader {
     final private Map<String, String> nsMapping = new HashMap<>();
     // Explicitly applied NS
     final private Set<String> appliedNs = new HashSet<>();
+    // Flag indicating that namespace mapping changed since last element
+    private boolean nsMappingChanged = false;
 
     final Stack<Element> elementStack = new Stack<Element>();
     final StringBuilder textBuffer = new StringBuilder();
@@ -77,9 +79,10 @@ public class PositionalXMLReader {
             }
             el.setUserData(LINE_NUMBER_KEY_NAME, this.locator.getLineNumber(), null);
             el.setUserData(COLUMN_NUMBER, this.locator.getColumnNumber(), null);
-            if (nsMapping.size() > 0) {
-                // copy current namespace mapping
+            if (nsMappingChanged && nsMapping.size() > 0) {
+                // copy current namespace mapping only when it changed
                 el.setUserData(NS_MAPPING, new HashMap<>(nsMapping), null);
+                nsMappingChanged = false;
             }
             elementStack.push(el);
         }
@@ -114,12 +117,14 @@ public class PositionalXMLReader {
         @Override
         public void startPrefixMapping(String prefix, String uri) {
             nsMapping.put(prefix, uri);
+            nsMappingChanged = true;
         }
 
         @Override
         public void endPrefixMapping(String prefix) {
             String ns = nsMapping.remove(prefix);
             appliedNs.remove(prefix);
+            nsMappingChanged = true;
             Objects.nonNull(ns);
         }
     };
