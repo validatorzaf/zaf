@@ -6,9 +6,7 @@
 package cz.zaf.sipvalidator.nsesss2024;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -17,6 +15,7 @@ import cz.zaf.common.exceptions.codes.ErrorCode;
 import cz.zaf.common.result.EntityId;
 import cz.zaf.common.result.IndetifierWithSource;
 import cz.zaf.common.validation.Rule;
+import cz.zaf.sipvalidator.nsesss2024.profily.ProfilValidace;
 import cz.zaf.sipvalidator.sip.SipInfo;
 
 /**
@@ -29,20 +28,16 @@ public class K06_Obsahova
     static final public String NAME = "kontrola obsahu";
 
     SipInfo sipSoubor;
-    private Rule<KontrolaNsessContext>[] seznamPravidel;
 
     MetsParser metsParser;
 
     private List<Element> zakladniEntity;
 
-    /**
-     * Mapa kontrol
-     */
-    Map<String, Rule<KontrolaNsessContext>> kontroly = new HashMap<>();
+	private ProfilValidace profileValidace;
 
-    public K06_Obsahova(Rule<KontrolaNsessContext>[] obsahovaPravidla) {
+    public K06_Obsahova(ProfilValidace profilValidace) {
         super(TypUrovenKontroly.OBSAHOVA);
-        this.seznamPravidel = obsahovaPravidla;
+        this.profileValidace = profilValidace;
     }
 
     static public String getJmenoIdentifikator(Element node) {
@@ -245,7 +240,7 @@ public class K06_Obsahova
 
     @Override
     public void validateImpl() {
-
+        Rule<KontrolaNsessContext>[] seznamPravidel = profileValidace.createObsahovaPravidla();
         provedKontrolu(ctx, seznamPravidel);
 
     }

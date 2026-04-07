@@ -94,36 +94,32 @@ public class ValidatorNsesss2024 implements Validator, ValidationProfileInfo {
 				List<Rule<?>> result = new ArrayList<>();
 				switch (typUrovne) {
 				case SKODLIVY_KOD:
-					result.addAll(KontrolaBase.instantiateRules(K00_SkodlivehoKodu.getRuleClasses()));
+					result.addAll(new K00_SkodlivehoKodu().createRules());
 					break;
 				case DATOVE_STRUKTURY:
-					result.addAll(KontrolaBase.instantiateRules(K01_DatoveStruktury.getRuleClasses()));
+					result.addAll(new K01_DatoveStruktury().createRules());					
 					break;
 				case ZNAKOVE_SADY:
-					result.addAll(KontrolaBase.instantiateRules(K02_ZnakoveSady.getRuleClasses()));
+					result.addAll(new K02_ZnakoveSady().createRules());
 					break;
 				case SPRAVNOSTI:
-					result.addAll(KontrolaBase.instantiateRules(K03_Spravnosti.getRuleClasses()));
+					result.addAll(new K03_Spravnosti().createRules());
 					break;
 				case JMENNE_PROSTORY_XML:
-					result.addAll(KontrolaBase.instantiateRules(K04_JmennychProstoruXML.getRuleClasses()));
+					result.addAll(new K04_JmennychProstoruXML().createRules());
 					break;
 				case PROTI_SCHEMATU:
-					result.addAll(KontrolaBase.instantiateRules(K05_ProtiSchematu.getRuleClasses()));
+					result.addAll(new K05_ProtiSchematu().createRules());
 					break;
-				case OBSAHOVA: {
+				case OBSAHOVA: {					
 					Rule<KontrolaNsessContext>[] rules = profilValidace.createObsahovaPravidla();
 					for (Rule<KontrolaNsessContext> rule : rules) {
 						result.add(rule);
 					}
 				}
 					break;
-				case KOMPONENT: {
-					K07PravidloBase[] rules = profilValidace.createFormatovaPravidla();
-					for (K07PravidloBase rule : rules) {
-						result.add(rule);
-					}
-				}
+				case KOMPONENT:
+					result.addAll(new K07_Komponent(profilValidace).createRules());
 					break;
 				default:
 					throw new IllegalStateException("Unexpected layer type: " + layerType);

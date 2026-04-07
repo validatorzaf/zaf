@@ -1,6 +1,11 @@
 package cz.zaf.sipvalidator.nsesss2024.profily;
 
+import java.util.Collections;
+import java.util.List;
+
+import cz.zaf.common.validation.BaseRule;
 import cz.zaf.common.validation.Rule;
+import cz.zaf.eadvalidator.ap2023.EadValidationContext;
 import cz.zaf.sipvalidator.nsesss2024.KontrolaNsessContext;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs00_09.Pravidlo1;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs00_09.Pravidlo2;
@@ -217,12 +222,11 @@ public enum ZakladniProfilValidace
             };
             return prav;
         }
-
+        
         @Override
-        public K07PravidloBase[] createFormatovaPravidla() {
-            K07PravidloBase[] prav = {};
-            return prav;
-        }
+        public List<Class<? extends BaseRule<KontrolaNsessContext>>> getComponentRuleClasses() {
+			return Collections.emptyList();
+		}
     },
     SKARTACE_UPLNY("skartační řízení (s komponentami)") {
         @Override
@@ -331,14 +335,14 @@ public enum ZakladniProfilValidace
         }
 
         @Override
-        public K07PravidloBase[] createFormatovaPravidla() {
-            K07PravidloBase[] prav = {
-                new Pravidlo7_01(),
-                new Pravidlo7_02(),
-                new Pravidlo7_03(),
-                new Pravidlo7_04(),};
-            return prav;
-        }
+        public List<Class<? extends BaseRule<KontrolaNsessContext>>> getComponentRuleClasses() {
+			return List.of(
+					Pravidlo7_01.class,
+					Pravidlo7_02.class,
+					Pravidlo7_03.class,
+					Pravidlo7_04.class
+					);
+		}
     },
     PREJIMKA("přejímka") {
         @Override
@@ -452,14 +456,14 @@ public enum ZakladniProfilValidace
         }
 
         @Override
-        public K07PravidloBase[] createFormatovaPravidla() {
-            K07PravidloBase[] prav = {
-                new Pravidlo7_01(),
-                new Pravidlo7_02(),
-                new Pravidlo7_03(),
-                new Pravidlo7_04(),};
-            return prav;
-        }
+        public List<Class<? extends BaseRule<KontrolaNsessContext>>> getComponentRuleClasses() {
+			return List.of(
+					Pravidlo7_01.class,
+					Pravidlo7_02.class,
+					Pravidlo7_03.class,
+					Pravidlo7_04.class
+					);
+		}
     };
 
     final String nazev;

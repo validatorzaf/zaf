@@ -46,10 +46,10 @@ public class SipValidator extends SipValidatorBase {
         K05_ProtiSchematu vxml = new K05_ProtiSchematu();
         kontroly.add(vxml);
 
-        K06_Obsahova oks = new K06_Obsahova(profilValidace.createObsahovaPravidla());
+        K06_Obsahova oks = new K06_Obsahova(profilValidace);
         kontroly.add(oks);
 
-        K07_Komponent kfs = new K07_Komponent(profilValidace.createFormatovaPravidla());
+        K07_Komponent kfs = new K07_Komponent(profilValidace);
         kontroly.add(kfs);
         return kontroly;
     }

@@ -1,5 +1,8 @@
 package cz.zaf.sipvalidator.nsesss2024;
 
+import java.util.List;
+
+import cz.zaf.common.validation.Rule;
 import cz.zaf.sipvalidator.nsesss2024.pravidla01.dat00_09.Pravidlo1;
 import cz.zaf.sipvalidator.nsesss2024.pravidla01.dat00_09.Pravidlo1a;
 import cz.zaf.sipvalidator.nsesss2024.pravidla01.dat00_09.Pravidlo2;
@@ -26,10 +29,14 @@ public class K01_DatoveStruktury
 
     @Override
     public void validateImpl() {
-        this.provedKontrolu(ctx, createRules(ruleClasses));
+        this.provedKontrolu(ctx, createRules());
     }
 
     public static Class<?>[] getRuleClasses() {
         return ruleClasses;
     }
+
+	public List<? extends Rule<KontrolaNsessContext>> createRules() {
+		return createRules(ruleClasses);
+	}
 }
