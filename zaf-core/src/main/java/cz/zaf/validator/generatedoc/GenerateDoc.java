@@ -9,7 +9,6 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import cz.zaf.common.validation.Rule;
-import cz.zaf.common.validation.RuleEvaluationContext;
 import cz.zaf.common.validation.ValidationLayerType;
 import cz.zaf.common.validation.ValidationSubprofile;
 import cz.zaf.common.validation.ValidatorInfo;
@@ -38,10 +37,10 @@ public class GenerateDoc {
     	// collect rules for all subprofiles
     	Map<Integer, List<ValidationSubprofile> > activeProfiles = new HashMap<>();
     	
-    	Map<Integer, Rule<? extends RuleEvaluationContext> > ruleMap = new TreeMap<>();
+    	Map<Integer, Rule<?> > ruleMap = new TreeMap<>();
 		for(ValidationSubprofile subProfile: this.validatorInfo.getValidationSubprofiles()) {
-			List<Rule<? extends RuleEvaluationContext>> rules = this.validatorInfo.getRules(layer, subProfile);
-			for(Rule<? extends RuleEvaluationContext> rule: rules) {
+			List<Rule<?>> rules = this.validatorInfo.getRules(layer, subProfile);
+			for(Rule<?> rule: rules) {
 				int code = 0;
 				int extraCode = 0;
 				boolean firstPart = true;
@@ -71,14 +70,14 @@ public class GenerateDoc {
 		}
 		
 		for(Integer ruleCode: ruleMap.keySet()) {
-			Rule<? extends RuleEvaluationContext> rule = ruleMap.get(ruleCode);
+			Rule<?> rule = ruleMap.get(ruleCode);
 			write(out, rule, activeProfiles.get(ruleCode));
 		}
 		
 	}
 
 	private void write(PrintStream out, 
-			Rule<? extends RuleEvaluationContext> rule, 
+			Rule<?> rule, 
 			List<ValidationSubprofile> subprofiles) {
 		
         String aktivniText;

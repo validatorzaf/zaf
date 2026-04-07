@@ -24,5 +24,5 @@ public interface ValidatorInfo {
 	 * @param validationLayerType
 	 * @return
 	 */
-	List< Rule<? extends RuleEvaluationContext> > getRules(ValidationLayerType layerType, ValidationSubprofile subProfile);
+	List<Rule<?>> getRules(ValidationLayerType layerType, ValidationSubprofile subProfile);
 }

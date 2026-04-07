@@ -7,7 +7,6 @@ import java.util.List;
 import cz.zaf.common.result.ValidationProfileInfo;
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.validation.Rule;
-import cz.zaf.common.validation.RuleEvaluationContext;
 import cz.zaf.common.validation.ValidationLayerType;
 import cz.zaf.common.validation.ValidationSubprofile;
 import cz.zaf.common.validation.Validator;
@@ -82,7 +81,7 @@ public class ValidatorNsesss2017 implements Validator, ValidationProfileInfo {
     		}
     		
     		@Override
-    		public List<Rule<? extends RuleEvaluationContext>> getRules(ValidationLayerType layerType,
+    		public List<Rule<?>> getRules(ValidationLayerType layerType,
     				ValidationSubprofile subProfile) {
     			if(!(layerType instanceof TypUrovenKontroly)) {
         			throw new IllegalStateException("Unexpected layer type: "+layerType);
@@ -92,7 +91,7 @@ public class ValidatorNsesss2017 implements Validator, ValidationProfileInfo {
     			}
     			TypUrovenKontroly typUrovne = (TypUrovenKontroly) layerType;
     			ProfilValidace profilValidace = (ProfilValidace) subProfile;
-				List<Rule<? extends RuleEvaluationContext>> result = new ArrayList<>();
+				List<Rule<?>> result = new ArrayList<>();
 				List<? extends PravidloBase> pravidla = null;
 				switch (typUrovne) {
 				case SKODLIVY_KOD:

@@ -11,7 +11,6 @@ import org.w3c.dom.Node;
 
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.validation.BaseValidationContext;
-import cz.zaf.common.validation.RuleEvaluationContext;
 import cz.zaf.common.validation.ValidationSubprofile;
 import cz.zaf.eadvalidator.ap2023.profile.DescriptionRules;
 import cz.zaf.eadvalidator.ap2023.profile.FindingAidType;
@@ -21,8 +20,7 @@ import cz.zaf.schema.ead3.Ead;
 import jakarta.xml.bind.annotation.XmlType;
 
 public class EadValidationContext
-	extends BaseValidationContext
-	implements RuleEvaluationContext {
+	extends BaseValidationContext {
 
     private EadLoader eadLoader;
 	private Element rootElement;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import cz.zaf.common.validation.BaseRule;
 import cz.zaf.common.validation.BaseValidationLayer;
+import cz.zaf.common.validation.Rule;
 import cz.zaf.earkvalidator.AipValidationContext;
 import cz.zaf.earkvalidator.ValidationLayers;
 import cz.zaf.earkvalidator.layers.fls.fls00_09.Rule01;
@@ -50,7 +51,7 @@ public class FilesValidationLayer extends BaseValidationLayer<AipValidationConte
 		this.provedKontrolu(ctx, createRules());		
 	}
 
-	public List<? extends BaseRule<AipValidationContext>> createRules() {
+	public List<? extends Rule<AipValidationContext>> createRules() {
 		return createRules(ruleClasses);
 	}
 

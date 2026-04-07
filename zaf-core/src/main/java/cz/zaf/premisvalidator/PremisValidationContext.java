@@ -11,7 +11,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
-import cz.zaf.common.validation.RuleEvaluationContext;
 import cz.zaf.schema.premis3.AgentComplexType;
 import cz.zaf.schema.premis3.AgentIdentifierComplexType;
 import cz.zaf.schema.premis3.IntellectualEntity;
@@ -20,7 +19,7 @@ import cz.zaf.schema.premis3.ObjectIdentifierComplexType;
 import cz.zaf.schema.premis3.PremisComplexType;
 import jakarta.xml.bind.annotation.XmlType;
 
-public class PremisValidationContext implements RuleEvaluationContext {
+public class PremisValidationContext {
 	
 	private Path activeFile;
 	private PremisLoader loader;

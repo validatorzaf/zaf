@@ -4,6 +4,7 @@ import java.util.List;
 
 import cz.zaf.common.validation.BaseRule;
 import cz.zaf.common.validation.BaseValidationLayer;
+import cz.zaf.common.validation.Rule;
 import cz.zaf.earkvalidator.ValidationLayers;
 import cz.zaf.earkvalidator.layers.dat.dat00_09.Rule01;
 import cz.zaf.earkvalidator.layers.dat.dat00_09.Rule02;
@@ -76,7 +77,7 @@ public class DataValidationLayer extends BaseValidationLayer<AipValidationContex
 		provedKontrolu(ctx, rules);
 	}
 
-	public List<? extends BaseRule<AipValidationContext>> createRules() {
+	public List<? extends Rule<AipValidationContext>> createRules() {
 		return createRules(ruleClasses);
 	}
 

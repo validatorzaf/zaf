@@ -6,11 +6,10 @@ import java.util.List;
 
 import org.w3c.dom.Document;
 
-import cz.zaf.common.validation.RuleEvaluationContext;
 import cz.zaf.sipvalidator.sip.KontrolaContext;
 import cz.zaf.sipvalidator.sip.SipInfo;
 
-public class KontrolaNsessContext extends KontrolaContext implements RuleEvaluationContext {
+public class KontrolaNsessContext extends KontrolaContext {
 
     public static final String KOMPONENTY_DIR = "komponenty";
 

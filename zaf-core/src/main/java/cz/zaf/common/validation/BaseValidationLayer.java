@@ -16,7 +16,7 @@ import cz.zaf.common.result.RuleValidationError;
 import cz.zaf.common.result.ValidationLayerResult;
 import cz.zaf.common.result.ValidationStatus;
 
-public abstract class BaseValidationLayer<T extends ValidationLayerContext, RCtx extends RuleEvaluationContext>
+public abstract class BaseValidationLayer<T extends ValidationLayerContext, RCtx>
         implements ValidationLayer<T> {
 
     static Logger log = LoggerFactory.getLogger(BaseValidationLayer.class);
@@ -112,32 +112,21 @@ public abstract class BaseValidationLayer<T extends ValidationLayerContext, RCtx
         validationResult.add(p);
     }
     
-	public List<? extends BaseRule<RCtx> > createRules(List<Class<? extends BaseRule<RCtx> >> ruleClasses) {
-    	List<BaseRule<RCtx>> rules = new ArrayList<>(ruleClasses.size());
-    	for (Class<? extends BaseRule<RCtx> > ruleClass : ruleClasses) {
-			try {
-				Constructor<? extends BaseRule<RCtx>> constr = ruleClass.getDeclaredConstructor();
-				BaseRule<RCtx> rule = constr.newInstance();
-				rules.add(rule);
-			} catch (Exception e) {
-				throw new IllegalStateException("Nelze vytvořit třídu pravidla: " + ruleClass.getName());
-			}
-		}
-		return rules;
+	public List<Rule<RCtx>> createRules(List<Class<? extends BaseRule<RCtx>>> ruleClasses) {
+		return createRules(ruleClasses.toArray(new Class<?>[0]));
 	}
-	    
-    
+
     /**
      * Create rules from classes.
      * @param ruleClasses
      * @return
      */
+    @SuppressWarnings("unchecked")
     protected List<Rule<RCtx>> createRules(Class<?>[] ruleClasses) {
     	List<Rule<RCtx>> rules = new ArrayList<>(ruleClasses.length);
     	for (Class<?> ruleClass : ruleClasses) {
 			try {
 				Constructor<?> constr = ruleClass.getDeclaredConstructor();
-				@SuppressWarnings("unchecked")
 				Rule<RCtx> rule = (Rule<RCtx>)constr.newInstance();
 				rules.add(rule);
 			} catch (Exception e) {

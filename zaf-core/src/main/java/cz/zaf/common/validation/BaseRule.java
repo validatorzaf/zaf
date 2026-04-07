@@ -2,7 +2,7 @@ package cz.zaf.common.validation;
 
 import java.util.Objects;
 
-public abstract class BaseRule<Ctx extends RuleEvaluationContext> implements Rule<Ctx> {
+public abstract class BaseRule<Ctx> implements Rule<Ctx> {
 
     final protected String code;
     final protected String ruleText;
