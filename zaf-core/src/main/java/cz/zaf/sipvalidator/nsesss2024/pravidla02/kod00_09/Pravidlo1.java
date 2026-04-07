@@ -21,13 +21,13 @@ public class Pravidlo1 extends PravidloBase {
     @Override
     protected void kontrola() {
         
-        if (!ctx.getContext().maMetsXml()) {
+        if (!ctx.maMetsXml()) {
             throw new ZafException(BaseCode.CHYBA, "Soubor mets.xml neexistuje.");
         }
         
         Result detected;
         try {
-        	detected = EncodingDetector.detect(ctx.getContext().getSip().getCestaMets(), false);
+        	detected = EncodingDetector.detect(ctx.getSip().getCestaMets(), false);
         } catch(Exception e) {
             String chybaKodovani = "Chyba při detekci kódování: " + e.toString();
             throw new ZafException(BaseCode.CHYBA, chybaKodovani, e);        	

@@ -47,7 +47,7 @@ public class Pravidlo67 extends K06PravidloBase {
                             all.add(elSpis);
                             nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
                                     "Element <nsesss:Dil> obsahuje skartační znak: " + skartacniZnak + ". V něm zatříděný element <nsesss:Spis> obsahuje skartační znak: " + skZnakSpis + ".",
-                                    getMistoChyby(zakladniEntita) + " " + getMistoChyby(elSpis), kontrola.getEntityId(all));
+                                    getMistoChyby(zakladniEntita) + " " + getMistoChyby(elSpis), getEntityId(all));
                         }
                         checkDokumenty(elSpis, skZnakSpis);
                     }
@@ -74,7 +74,7 @@ public class Pravidlo67 extends K06PravidloBase {
                     all.add(elDokument);
                     nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
                             "Element <" + parentName + "> obsahuje skartační znak: " + skartacniZnakParent + ". V něm zatříděný element <nsesss:Dokument> obsahuje skartační znak: " + skZnakDokument + ".",
-                            getMistoChyby(elParent) + " " + getMistoChyby(elDokument), kontrola.getEntityId(all));
+                            getMistoChyby(elParent) + " " + getMistoChyby(elDokument), getEntityId(all));
                 }
             }
         }
@@ -83,7 +83,7 @@ public class Pravidlo67 extends K06PravidloBase {
     private String getSkartacniZnak(Element elEntita) {
         Element elSkartacniZnak = ValuesGetter.getXChild(elEntita, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.VYRAZOVANI, NsesssV4.SKARTACNI_REZIM, NsesssV4.SKARTACNI_ZNAK);
         if (elSkartacniZnak == null) {
-            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen dětský element <nsesss:SkartacniZnak> elementu <" + elEntita.getNodeName() + ">.", getMistoChyby(elEntita), kontrola.getEntityId(elEntita));
+            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen dětský element <nsesss:SkartacniZnak> elementu <" + elEntita.getNodeName() + ">.", getMistoChyby(elEntita), getEntityId(elEntita));
         }
         return elSkartacniZnak.getTextContent();
     }

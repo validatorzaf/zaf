@@ -33,7 +33,7 @@ public class Pravidlo69 extends K06PravidloBase {
                 Element elVyrizeni = ValuesGetter.getXChild(ze, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.VYRIZENI);
                 if (elVyrizeni == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Vyrizeni>. " + getJmenoIdentifikator(ze),
-                            ze, kontrola.getEntityId(ze));
+                            ze, getEntityId(ze));
                 }
             }
         }

@@ -27,9 +27,9 @@ public class Pravidlo93 extends K06PravidloBase {
         for (Element nazev : nazvy) {
             String str = nazev.getTextContent();
             if (!HelperString.hasContent(str)) {
-                Element entita = kontrola.getEntity(nazev);
+                Element entita = getEntity(nazev);
                 nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element <nsesss:Nazev> obsahuje prázdnou hodnotu. " + getJmenoIdentifikator(nazev),
-                        nazev, kontrola.getEntityId(entita));
+                        nazev, getEntityId(entita));
             }
         }
     }

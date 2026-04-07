@@ -20,8 +20,8 @@ public class Pravidlo1 extends PravidloBase {
     @Override
     protected void kontrola() {
         MetsParser metsParser = new MetsParser();
-        metsParser.parse(ctx.getContext().getSip());
-        ctx.getContext().setMetsParser(metsParser);
+        metsParser.parse(ctx.getSip());
+        ctx.setMetsParser(metsParser);
         if (metsParser.parserError != null) {
             throw new ZafException(BaseCode.CHYBA, metsParser.parserError);
         }

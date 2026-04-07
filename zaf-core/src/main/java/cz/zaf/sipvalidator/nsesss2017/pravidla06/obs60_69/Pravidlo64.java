@@ -48,19 +48,19 @@ public class Pravidlo64 extends K06PravidloBase {
         Element elvyrazovani = ValuesGetter.getXChild(elDokument, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.VYRAZOVANI);
         if (elvyrazovani == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Vyrazovani>. "
-                    + getJmenoIdentifikator(elDokument), elDokument, kontrola.getEntityId(elDokument));
+                    + getJmenoIdentifikator(elDokument), elDokument, getEntityId(elDokument));
         }
 
         // ziskani skartacni lhuty
         Element elSkartacniRezim = ValuesGetter.getXChild(elvyrazovani, NsesssV3.SKARTACNI_REZIM);
         if (elSkartacniRezim == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:SkartacniRezim>. "
-                    + getJmenoIdentifikator(elDokument), elDokument, kontrola.getEntityId(elDokument));
+                    + getJmenoIdentifikator(elDokument), elDokument, getEntityId(elDokument));
         }
         Element elSkartacniLhuta = ValuesGetter.getXChild(elSkartacniRezim, NsesssV3.SKARTACNI_LHUTA);
         if (elSkartacniLhuta == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:SkartacniLhuta>. "
-                    + getJmenoIdentifikator(elDokument), elSkartacniRezim, kontrola.getEntityId(elDokument));
+                    + getJmenoIdentifikator(elDokument), elSkartacniRezim, getEntityId(elDokument));
         }
         String hodnotaElSkartacniLhuta = elSkartacniLhuta.getTextContent();
 
@@ -70,25 +70,25 @@ public class Pravidlo64 extends K06PravidloBase {
         if (elRokSousteciUdalosti == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:RokSpousteciUdalosti>. "
                     + getJmenoIdentifikator(elDokument),
-                        elDokument, kontrola.getEntityId(elDokument));
+                        elDokument, getEntityId(elDokument));
         }
 
         String rokSpousteciUdalosti = elRokSousteciUdalosti.getTextContent();
 
         try {
-            int hodnotaOperace = kontrola.getContext().getLocalDate().getYear();
+            int hodnotaOperace = kontrola.getLocalDate().getYear();
             int hodnotaLhuta = Integer.parseInt(hodnotaElSkartacniLhuta);
             int hodnotaUdalosti = Integer.parseInt(rokSpousteciUdalosti);
             if (hodnotaOperace < (hodnotaLhuta + hodnotaUdalosti + 1)) {
                 nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Rok skartační operace: " + hodnotaOperace
                         + ", lhůta: " + hodnotaLhuta
                         + ", událost: " + hodnotaUdalosti + ". " + getJmenoIdentifikator(elDokument),
-                            elDokument, kontrola.getEntityId(elDokument));
+                            elDokument, getEntityId(elDokument));
             }
         } catch (NumberFormatException e) {
             nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Zápis roku je uveden ve špatném formátu. "
                     + getJmenoIdentifikator(elDokument),
-                        elDokument, kontrola.getEntityId(elDokument));
+                        elDokument, getEntityId(elDokument));
         }
     }
 }

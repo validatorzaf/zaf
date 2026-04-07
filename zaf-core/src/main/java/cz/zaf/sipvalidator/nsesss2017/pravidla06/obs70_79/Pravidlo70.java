@@ -46,7 +46,7 @@ public class Pravidlo70 extends K06PravidloBase {
                             NsesssV3.EVIDENCNI_UDAJE).getParentNode();
                     
                     nastavChybu(BaseCode.NEPOVOLENY_ELEMENT, "Element <nsesss:Identifikator> se opakuje přes nesplnění podmínky pravidla. "
-                            + getJmenoIdentifikator(entita), identifikator, kontrola.getEntityId(entita));
+                            + getJmenoIdentifikator(entita), identifikator, getEntityId(entita));
                 }
             }
         }

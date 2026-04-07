@@ -58,17 +58,17 @@ public class Pravidlo98 extends K06PravidloBase {
                 NsesssV3.JEDNODUCHY_SPISOVY_ZNAK);
         if (n_zakl_jsz == null) {
             String detailChyby = "Nenalezen element <nsesss:JednoduchySpisovyZnak> základní entity. "
-                    + kontrola.getJmenoIdentifikator(zakladniEntita);
+                    + getJmenoIdentifikator(zakladniEntita);
             nastavChybu(BaseCode.CHYBI_ELEMENT, detailChyby, getMistoChyby(zakladniEntita),
-                    kontrola.getEntityId(zakladniEntita));
+                    getEntityId(zakladniEntita));
         }
         Element n_zakl_pusz = ValuesGetter.getXChild(zakladniEntita, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
                 NsesssV3.PLNE_URCENY_SPISOVY_ZNAK);
         if (n_zakl_pusz == null) {
             String detailChyby = "Nenalezen element <nsesss:PlneUrcenySpisovyZnak> základní entity. "
-                    + kontrola.getJmenoIdentifikator(zakladniEntita);
+                    + getJmenoIdentifikator(zakladniEntita);
             nastavChybu(BaseCode.CHYBI_ELEMENT, detailChyby, getMistoChyby(zakladniEntita),
-                    kontrola.getEntityId(zakladniEntita));
+                    getEntityId(zakladniEntita));
         }
         String jednoduchySpZnZaklEnt = n_zakl_jsz.getTextContent();
         String plneUrcenySpZnZaklEnt = n_zakl_pusz.getTextContent();
@@ -81,16 +81,16 @@ public class Pravidlo98 extends K06PravidloBase {
                     NsesssV3.JEDNODUCHY_SPISOVY_ZNAK);
             if (n_j == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak>. "
-                        + kontrola.getJmenoIdentifikator(dokument),
-                        getMistoChyby(dokument), kontrola.getEntityId(dokument));
+                        + getJmenoIdentifikator(dokument),
+                        getMistoChyby(dokument), getEntityId(dokument));
             }
             jednoduchy = n_j.getTextContent();
             Element n_p = ValuesGetter.getXChild(dokument, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
                     NsesssV3.PLNE_URCENY_SPISOVY_ZNAK);
             if (n_p == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. "
-                        + kontrola.getJmenoIdentifikator(dokument), getMistoChyby(dokument),
-                        kontrola.getEntityId(dokument));
+                        + getJmenoIdentifikator(dokument), getMistoChyby(dokument),
+                        getEntityId(dokument));
             }
 
             plneUrceny = n_p.getTextContent();
@@ -98,11 +98,11 @@ public class Pravidlo98 extends K06PravidloBase {
             boolean b = jednoduchySpZnZaklEnt.equals(jednoduchy) && plneUrcenySpZnZaklEnt.equals(plneUrceny);
             if (!b) {
                 List<Element> zakladniEntitaPlusDokument = Arrays.asList(zakladniEntita, dokument);
-                nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Nesplněna podmínka pravidla. " + kontrola.getJmenoIdentifikator(zakladniEntita)
-                        + " " + kontrola.getJmenoIdentifikator(dokument),
+                nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Nesplněna podmínka pravidla. " + getJmenoIdentifikator(zakladniEntita)
+                        + " " + getJmenoIdentifikator(dokument),
                         getMistoChyby(n_zakl_jsz) + " " + getMistoChyby(n_zakl_pusz)
                         + " " + getMistoChyby(n_j) + " " + getMistoChyby(n_p),
-                        kontrola.getEntityId(zakladniEntitaPlusDokument));
+                        getEntityId(zakladniEntitaPlusDokument));
             }
         }
     }

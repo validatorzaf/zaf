@@ -42,7 +42,7 @@ public class Pravidlo94 extends K06PravidloBase {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak>. "
                         + getJmenoIdentifikator(puzNode), getMistoChyby(jzNode));
             }
-            Element entita = kontrola.getEntity(jzNode);
+            Element entita = getEntity(jzNode);
             String jednoduchy = jzNode.getTextContent();
             String plneUrceny = puzNode.getTextContent();
             if (!jednoduchy.equals(plneUrceny)) {
@@ -50,7 +50,7 @@ public class Pravidlo94 extends K06PravidloBase {
                     nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Část plně určeného spis. znaku za oddělovačem neodpovídá jedn. spis. znaku. "
                             + getJmenoIdentifikator(puzNode),
                             getMistoChyby(puzNode) + " " + getMistoChyby(jzNode),
-                            kontrola.getEntityId(entita));
+                            getEntityId(entita));
                 }
             }
         }

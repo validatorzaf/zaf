@@ -12,7 +12,6 @@ import cz.zaf.common.validation.ValidationLayerType;
 import cz.zaf.common.validation.ValidationSubprofile;
 import cz.zaf.common.validation.Validator;
 import cz.zaf.common.validation.ValidatorInfo;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06KontrolaContext;
 import cz.zaf.sipvalidator.nsesss2017.pravidla07.K07PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
@@ -97,7 +96,7 @@ public class ValidatorNsesss2017 implements Validator, ValidationProfileInfo {
 				List<? extends PravidloBase> pravidla = null;
 				switch (typUrovne) {
 				case SKODLIVY_KOD:
-					pravidla = new K00_SkodlivehoKodu().getRules();
+					result.addAll(KontrolaBase.instantiateRules(K00_SkodlivehoKodu.getRuleClasses()));
 					break;
 				case DATOVE_STRUKTURY:
 					pravidla = K01_DatoveStruktury.getRules();
@@ -115,8 +114,8 @@ public class ValidatorNsesss2017 implements Validator, ValidationProfileInfo {
 					pravidla = K05_ProtiSchematu.getRules();
 					break;
 				case OBSAHOVA: {
-					Rule<K06KontrolaContext>[] rules = profilValidace.createObsahovaPravidla();
-					for (Rule<K06KontrolaContext> rule : rules) {
+					Rule<KontrolaNsessContext>[] rules = profilValidace.createObsahovaPravidla();
+					for (Rule<KontrolaNsessContext> rule : rules) {
 						result.add(rule);
 					}
 				}

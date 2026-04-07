@@ -30,14 +30,14 @@ public class Pravidlo87 extends K06PravidloBase {
         for (Element elVyrizeni : vyrizeni) {
             Element datumOdeslani = ValuesGetter.getXChild(elVyrizeni, NsesssV3.DATUM_ODESLANI);
             Element prijemce = ValuesGetter.getXChild(elVyrizeni, NsesssV3.PRIJEMCE);
-            Element entita = kontrola.getEntity(elVyrizeni);
+            Element entita = getEntity(elVyrizeni);
             if (datumOdeslani != null && prijemce == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Prijemce>. " + getJmenoIdentifikator(elVyrizeni),
-                        elVyrizeni, kontrola.getEntityId(entita));
+                        elVyrizeni, getEntityId(entita));
             }
             if (prijemce != null && datumOdeslani == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:DatumOdeslani>. " + getJmenoIdentifikator(elVyrizeni),
-                        elVyrizeni, kontrola.getEntityId(entita));
+                        elVyrizeni, getEntityId(entita));
             }
         }
     }

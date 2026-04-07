@@ -38,11 +38,11 @@ public class Pravidlo78 extends K06PravidloBase {
                     NsesssV3.VYRAZOVANI, NsesssV3.SKARTACNI_RIZENI);
             if (node == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Element <nsesss:SkartacniRizeni> není správně zatříděn. " + getJmenoIdentifikator(zakladnientita),
-                        zakladnientita, kontrola.getEntityId(zakladnientita));
+                        zakladnientita, getEntityId(zakladnientita));
             }
             if (!skartacniRizeniSet.remove(node)) {
                 nastavChybu(BaseCode.CHYBNY_ELEMENT, "Element <nsesss:SkartacniRizeni> není správně zatříděn. " + getJmenoIdentifikator(zakladnientita),
-                        zakladnientita, kontrola.getEntityId(zakladnientita));
+                        zakladnientita, getEntityId(zakladnientita));
             }
         }
 

@@ -35,7 +35,7 @@ public class Pravidlo86 extends K06PravidloBase {
                 } else {
                     if (!jeZakladniEntitou(elDokument)) {
                         nastavChybu(BaseCode.CHYBNY_ELEMENT, "Element <nsesss:MaterskeEntity> je obsažen v elementu <nsess:Dokument> jenž není základní entitou. " + getJmenoIdentifikator(elDokument),
-                                getMistoChyby(elDokument), kontrola.getEntityId(elDokument));
+                                getMistoChyby(elDokument), getEntityId(elDokument));
                     }
                 }
             }

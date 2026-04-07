@@ -43,7 +43,7 @@ public class Pravidlo1 extends PravidloBase {
 		Validator nasValidator = schema.newValidator();
 		nasValidator.setErrorHandler(new ValidationRuleErrorHandler());
 		
-        SipInfo file = ctx.getContext().getSip();
+        SipInfo file = ctx.getSip();
         try (InputStream is = Files.newInputStream(file.getCestaMets())) {
             Source xmlFile = new StreamSource(is);
             

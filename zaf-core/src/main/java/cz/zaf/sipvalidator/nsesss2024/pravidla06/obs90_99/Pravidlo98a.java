@@ -35,11 +35,11 @@ public class Pravidlo98a extends K06PravidloBase {
                 Element elDokument = ValuesGetter.getXParent(elKomponenta, NsesssV4.KOMPONENTY, NsesssV4.DOKUMENT);
                 Element elAnalogovyDokument = ValuesGetter.getXChild(elDokument, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.MANIPULACE, NsesssV4.ANALOGOVY_DOKUMENT);
                 if (elAnalogovyDokument == null) {
-                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:AnalogovyDokument>.", getMistoChyby(elDokument), kontrola.getEntityId(elDokument));
+                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:AnalogovyDokument>.", getMistoChyby(elDokument), getEntityId(elDokument));
                 }
                 String strAnDok = elAnalogovyDokument.getTextContent();
                 if (!StringUtils.equals(strAnDok, "ano")) {
-                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element <nsesss:AnalogovyDokument> neobsahuje hodnotu ano, ale hodnotu:" + strAnDok + ".", getMistoChyby(elDokument), kontrola.getEntityId(elDokument));
+                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element <nsesss:AnalogovyDokument> neobsahuje hodnotu ano, ale hodnotu:" + strAnDok + ".", getMistoChyby(elDokument), getEntityId(elDokument));
                 }
             }
         }

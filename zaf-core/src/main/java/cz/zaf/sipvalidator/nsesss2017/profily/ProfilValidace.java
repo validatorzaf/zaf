@@ -2,7 +2,7 @@ package cz.zaf.sipvalidator.nsesss2017.profily;
 
 import cz.zaf.common.validation.Rule;
 import cz.zaf.common.validation.ValidationSubprofile;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06KontrolaContext;
+import cz.zaf.sipvalidator.nsesss2017.KontrolaNsessContext;
 import cz.zaf.sipvalidator.nsesss2017.pravidla07.K07PravidloBase;
 
 /**
@@ -20,7 +20,7 @@ public interface ProfilValidace extends ValidationSubprofile {
      * 
      * @return Pole pravidel
      */
-    public Rule<K06KontrolaContext>[] createObsahovaPravidla();
+    public Rule<KontrolaNsessContext>[] createObsahovaPravidla();
 
     /**
      * Vrátí seznam připravených obsahových kontrol

@@ -19,7 +19,7 @@ public class Pravidlo1 extends PravidloBase {
 
     @Override
     protected void kontrola() {
-        String hrozba = ctx.getContext().getHrozba();
+        String hrozba = ctx.getHrozba();
         if (StringUtils.isNotEmpty(hrozba)) {
             throw new ZafException(BaseCode.CHYBA, hrozba);
         }

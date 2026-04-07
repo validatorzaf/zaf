@@ -42,7 +42,7 @@ public class Pravidlo59a extends K06PravidloBase {
                     if (jeStarsiNez(elDatum, datum)) {
                         Element elEvidenciJednotka = ValuesGetter.getXChild(entita, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.EVIDENCE, NsesssV4.EVIDENCNI_CISLO);
                         if (elEvidenciJednotka == null) {
-                            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:EvidencniCislo>.", getMistoChyby(entita), kontrola.getEntityId(entita));
+                            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:EvidencniCislo>.", getMistoChyby(entita), getEntityId(entita));
                         }
                     }
                 }

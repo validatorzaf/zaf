@@ -25,7 +25,7 @@ abstract public class K07PravidloEachFile extends K07PravidloBase {
 
     @Override
     final protected void kontrola() {
-        List<Element> nodeListMetsFile = ctx.getMetsFiles();
+        List<Element> nodeListMetsFile = ctx.getMetsParser().getNodes(MetsElements.FILE);
         for (Element metsFile : nodeListMetsFile) {
             Element elFlocat = ValuesGetter.getXChild(metsFile, MetsElements.FLOCAT);
             if (elFlocat == null) {

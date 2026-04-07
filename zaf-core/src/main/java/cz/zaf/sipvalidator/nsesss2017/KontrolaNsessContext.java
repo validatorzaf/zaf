@@ -6,10 +6,11 @@ import java.util.List;
 
 import org.w3c.dom.Document;
 
+import cz.zaf.common.validation.RuleEvaluationContext;
 import cz.zaf.sipvalidator.sip.KontrolaContext;
 import cz.zaf.sipvalidator.sip.SipInfo;
 
-public class KontrolaNsessContext extends KontrolaContext {
+public class KontrolaNsessContext extends KontrolaContext implements RuleEvaluationContext {
 
     public static final String KOMPONENTY_DIR = "komponenty";
 
@@ -57,5 +58,20 @@ public class KontrolaNsessContext extends KontrolaContext {
 
     public void setMetsParser(final MetsParser metsParser) {
         this.metsParser = metsParser;
+    }
+
+    /**
+     * Popis hrozby škodlivého kódu
+     *
+     * Null pokud hrozba nebyla nalezena.
+     */
+    private String hrozba;
+
+    public String getHrozba() {
+        return hrozba;
+    }
+
+    public void setHrozba(String hrozba) {
+        this.hrozba = hrozba;
     }
 }

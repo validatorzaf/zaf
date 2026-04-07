@@ -31,20 +31,20 @@ public class Pravidlo71 extends K06PravidloBase {
             Element nodeOtevreni = ValuesGetter.findFirstChild(manip_node, NsesssV4.DATUM_OTEVRENI);
             Element nodeUzavreni = ValuesGetter.findFirstChild(manip_node, NsesssV4.DATUM_UZAVRENI);
             if (nodeOtevreni != null && nodeUzavreni != null) {
-                Element entita = kontrola.getEntity(manip_node);
+                Element entita = getEntity(manip_node);
                 Date datumOtevreni = null;
                 Date datumZavreni = null;
                 try {
                     datumOtevreni = ValuesGetter.vytvorDate(nodeOtevreni, "yyyy-MM-dd");
                 } catch (ParseException ex) {
                     nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element <nsesss:DatumOtevreni> neobsahuje údaj ve správném formátu. "
-                            + getJmenoIdentifikator(manip_node), nodeOtevreni, kontrola.getEntityId(entita));
+                            + getJmenoIdentifikator(manip_node), nodeOtevreni, getEntityId(entita));
                 }
                 try {
                     datumZavreni = ValuesGetter.vytvorDate(nodeUzavreni, "yyyy-MM-dd");
                 } catch (ParseException ex) {
                     nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element <nsesss:DatumUzavreni> neobsahuje údaj ve správném formátu. "
-                            + getJmenoIdentifikator(manip_node), nodeUzavreni, kontrola.getEntityId(entita));
+                            + getJmenoIdentifikator(manip_node), nodeUzavreni, getEntityId(entita));
                 }
 
                 boolean jeToChronologicky = datumZavreni.after(datumOtevreni);
@@ -52,7 +52,7 @@ public class Pravidlo71 extends K06PravidloBase {
                 if (!jeToChronologicky && !jeToStejny) {
                     nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element <nsesss:DatumOtevreni> obsahuje větší hodnotu než element <nsesss:DatumUzavreni>. "
                             + getJmenoIdentifikator(manip_node),
-                            getMistoChyby(nodeOtevreni) + " " + getMistoChyby(nodeUzavreni), kontrola.getEntityId(entita));
+                            getMistoChyby(nodeOtevreni) + " " + getMistoChyby(nodeUzavreni), getEntityId(entita));
                 }
             }
         }

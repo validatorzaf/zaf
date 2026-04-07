@@ -49,13 +49,13 @@ public class Pravidlo110 extends K06PravidloBase {
                 String atrFormaUchovani = elKomponenta.getAttribute("forma_uchovani");
                 if (StringUtils.equals(atrFormaUchovani, "kontejner")) {
                     if (CollectionUtils.isEmpty(listMetsFile)) {
-                        nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen žádný element <mets:file> na který odkazuje element <nsesss:Komponenta>.", getMistoChyby(elKomponenta), kontrola.getEntityId(elKomponenta));
+                        nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen žádný element <mets:file> na který odkazuje element <nsesss:Komponenta>.", getMistoChyby(elKomponenta), getEntityId(elKomponenta));
                     }
                     String atrID = elKomponenta.getAttribute("ID");
                     Element elMetsFile = getMetsFile(atrID, listMetsFile);
                     if (elMetsFile == null) {
                         new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen žádný element <mets:file> na který odkazuje element <nsesss:Komponenta> s ID: " + atrID + ".", 
-                            getMistoChyby(elKomponenta)).addEntity(kontrola.getEntityId(elKomponenta));
+                            getMistoChyby(elKomponenta)).addEntity(getEntityId(elKomponenta));
                     }
                     String mimetype = elMetsFile.getAttribute("MIMETYPE");
                     if (StringUtils.isBlank(mimetype)) {

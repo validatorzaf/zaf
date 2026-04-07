@@ -32,21 +32,21 @@ public class Pravidlo61a extends K06PravidloBase {
         for (Element dokument : dokuments) {
             Element ad = ValuesGetter.getXChild(dokument, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.MANIPULACE, NsesssV3.ANALOGOVY_DOKUMENT);
             if (ad == null) {
-                nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:AnalogovyDokument>. Dokumentu " + kontrola.getIdentifikatory(dokument) + ".",
-                        dokument, kontrola.getEntityId(dokument));
+                nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:AnalogovyDokument>. Dokumentu " + getIdentifikatory(dokument) + ".",
+                        dokument, getEntityId(dokument));
             }
             String hodnotaAnalogovyDokument = ad.getTextContent();
             Element elVlastniDokument = ValuesGetter.getXChild(dokument, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.PUVOD, NsesssV3.VLASTNI_DOKUMENT);
             if ("ano".equals(hodnotaAnalogovyDokument) && elVlastniDokument != null) {
                 Element elMnozstvi = ValuesGetter.getXChild(elVlastniDokument, NsesssV3.VYTVORENE_MNOZSTVI);
                 if (elMnozstvi == null) {
-                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen povinný element <nsesss:VytvoreneMnozstvi>. Dokumentu " + kontrola.getIdentifikatory(dokument) + ".",
-                            dokument, kontrola.getEntityId(dokument));
+                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen povinný element <nsesss:VytvoreneMnozstvi>. Dokumentu " + getIdentifikatory(dokument) + ".",
+                            dokument, getEntityId(dokument));
                 } else {
                     String hodnotaElMnozstvi = elMnozstvi.getTextContent();
                     if (StringUtils.isBlank(hodnotaElMnozstvi)) {
-                        nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element <nsesss:VytvoreneMnozstvi> obsahuje prázdnou hodnotu. Dokumentu " + kontrola.getIdentifikatory(dokument) + ".",
-                                elMnozstvi, kontrola.getEntityId(dokument));
+                        nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element <nsesss:VytvoreneMnozstvi> obsahuje prázdnou hodnotu. Dokumentu " + getIdentifikatory(dokument) + ".",
+                                elMnozstvi, getEntityId(dokument));
                     }
                 }
             }

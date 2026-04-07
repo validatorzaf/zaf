@@ -136,7 +136,7 @@ public class Pravidlo29 extends K06PravidloBase {
                     if (elDatum == null) {
                         nastavChybu(BaseCode.CHYBI_ELEMENT,
                                 "Nenalezen element <" + NsesssV4.DATUM + ">.",
-                                getMistoChyby(elZakladnientita), kontrola.getEntityId(elZakladnientita));
+                                getMistoChyby(elZakladnientita), getEntityId(elZakladnientita));
                     } else {
                         String datumVyrizeni = elDatum.getTextContent();
                         jePredVcetne(elZakladnientita, datumVyrizeni);

@@ -43,13 +43,13 @@ public class Pravidlo77 extends K06PravidloBase {
                     if (mnozstvi == null) {
                         nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Mnozstvi> základní entity. "
                                 + getJmenoIdentifikator(zakladnientita),
-                                zakladnientita, kontrola.getEntityId(zakladnientita));
+                                zakladnientita, getEntityId(zakladnientita));
                     } else {
                         String hodnotaMnozstvi = mnozstvi.getTextContent();
                         if (StringUtils.isBlank(hodnotaMnozstvi)) {
                             nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element <nsesss:Mnozstvi> obsahuje prázdnou hodnotu. "
                                     + getJmenoIdentifikator(zakladnientita),
-                                    mnozstvi, kontrola.getEntityId(zakladnientita));
+                                    mnozstvi, getEntityId(zakladnientita));
                         }
                     }
                 }

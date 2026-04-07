@@ -27,13 +27,13 @@ public class Pravidlo3 extends PravidloBase {
         boolean stav = false;
         String vypisChyby;
 
-        SipInfo sipInfo = this.ctx.getContext().getSip();
+        SipInfo sipInfo = this.ctx.getSip();
 
         if (maJenPovoleneSoubory(sipInfo)) {
-            if (ctx.getContext().maMetsXml()) {
+            if (ctx.maMetsXml()) {
                 StringBuilder sb = new StringBuilder();
                 sb.append("SIP balíček obsahuje právě jeden soubor \"mets.xml\"");
-                if (Files.isDirectory(ctx.getContext().getKomponentyPath().toAbsolutePath())) {
+                if (Files.isDirectory(ctx.getKomponentyPath().toAbsolutePath())) {
                     sb.append(" a složku komponenty.");
                 } else {
                     sb.append(".");

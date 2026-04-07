@@ -20,7 +20,7 @@ public class Pravidlo1 extends PravidloBase {
 
     @Override
     protected void kontrola() {
-        Node metsMets = this.ctx.getContext().getMainDocument().getDocumentElement();
+        Node metsMets = this.ctx.getMainDocument().getDocumentElement();
 
         if (metsMets == null || !metsMets.getNodeName().equals("mets:mets")) {
         	String detailChyby = "Datový balíček SIP neobsahuje kořenový element <mets:mets>.";

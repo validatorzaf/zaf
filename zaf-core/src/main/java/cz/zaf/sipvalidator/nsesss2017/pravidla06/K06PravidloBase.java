@@ -16,6 +16,7 @@ import cz.zaf.common.result.EntityId;
 import cz.zaf.common.validation.BaseRule;
 import cz.zaf.common.xml.PositionalXMLReader;
 import cz.zaf.sipvalidator.nsesss2017.K06_Obsahova;
+import cz.zaf.sipvalidator.nsesss2017.KontrolaNsessContext;
 import cz.zaf.sipvalidator.nsesss2017.MetsParser;
 import cz.zaf.sipvalidator.nsesss2017.NsesssV3;
 import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
@@ -26,7 +27,7 @@ import cz.zaf.sipvalidator.nsesss2017.ValuesGetter;
  * Kazde takove pravidlo vytvari prave jeden zaznam ve vystupu
  *
  */
-public abstract class K06PravidloBase extends BaseRule<K06KontrolaContext> {
+public abstract class K06PravidloBase extends BaseRule<KontrolaNsessContext> {
 
     /**
      * Výstupní datový formát: Neprovádění kontroly, pokud byla základní entita
@@ -34,7 +35,7 @@ public abstract class K06PravidloBase extends BaseRule<K06KontrolaContext> {
      */
     final public static LocalDate ROZHODNE_DATUM_VYSTUPNI_FORMAT = LocalDate.parse("2012-07-31");
 
-    protected K06KontrolaContext kontrola;
+    protected KontrolaNsessContext kontrola;
 
     /**
      * Volitelný seznam entit, kde byla identifikována chyba
@@ -56,7 +57,7 @@ public abstract class K06PravidloBase extends BaseRule<K06KontrolaContext> {
     protected abstract void kontrola();
 
     @Override
-    public void eval(final K06KontrolaContext kontrolaCtx) {
+    public void eval(final KontrolaNsessContext kontrolaCtx) {
         this.kontrola = kontrolaCtx;
         this.metsParser = kontrola.getMetsParser();
         kontrola();
@@ -76,7 +77,7 @@ public abstract class K06PravidloBase extends BaseRule<K06KontrolaContext> {
      * @return Seznam základních entit, null při neexistenci
      */
     protected List<Element> predpokladZakladniEntity() {
-        List<Element> zaklEntity = kontrola.getZakladniEnity();
+        List<Element> zaklEntity = getZakladniEnity();
         if (CollectionUtils.isEmpty(zaklEntity)) {
             nastavChybu("Chybí základní entita/entity. Předpokladem kontroly je existence alespoň jedné základní entity.");
             return null;
@@ -170,6 +171,26 @@ public abstract class K06PravidloBase extends BaseRule<K06KontrolaContext> {
     static public void nastavChybu(ErrorCode errorCode, String detailChyby, final String mistoChyby,
             final List<EntityId> entityIds) {
         throw pripravChybu(errorCode, detailChyby).setMistoChyby(mistoChyby).addEntity(entityIds);
+    }
+
+    protected List<Element> getZakladniEnity() {
+        return metsParser.getZakladniEntity();
+    }
+
+    protected EntityId getEntityId(Element element) {
+        return K06_Obsahova.getEntityId(element);
+    }
+
+    protected List<EntityId> getEntityId(List<Element> listElementu) {
+        return K06_Obsahova.getEntityId(listElementu);
+    }
+
+    protected String getIdentifikatory(Element element) {
+        return K06_Obsahova.getIdentifikatory(element);
+    }
+
+    protected Element getEntity(Element element) {
+        return K06_Obsahova.getEntity(element);
     }
 
     protected String getJmenoIdentifikator(Element node) {

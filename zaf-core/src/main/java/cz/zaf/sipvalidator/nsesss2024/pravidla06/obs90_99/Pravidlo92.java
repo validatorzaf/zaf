@@ -29,17 +29,17 @@ public class Pravidlo92 extends K06PravidloBase {
         }
         for (int i = 0; i < identifikatory.size(); i++) {
             Element identif = identifikatory.get(i);
-            Element entita = kontrola.getEntity(identif);
+            Element entita = getEntity(identif);
             if (!ValuesGetter.hasAttribut(identif, "zdroj")) {
                 nastavChybu(BaseCode.CHYBI_ATRIBUT, "Elementu <nsesss:Identifikátor> chybí atribut zdroj. " + getJmenoIdentifikator(identif),
-                        getMistoChyby(identif), kontrola.getEntityId(entita));
+                        getMistoChyby(identif), getEntityId(entita));
             }
             String str = ValuesGetter.getValueOfAttribut(identif, "zdroj");
             if (str.equals("IČ") || str.equals("IČO")) {
                 String hodnota = identif.getTextContent();
                 if (!ValidateIC.validate(hodnota)) {
                     nastavChybu(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "IČO není ve správném formátu. " + getJmenoIdentifikator(identif),
-                            getMistoChyby(identif), kontrola.getEntityId(entita));
+                            getMistoChyby(identif), getEntityId(entita));
 
                 }
             }

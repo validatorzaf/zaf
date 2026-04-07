@@ -7,7 +7,6 @@ package cz.zaf.sipvalidator.nsesss2017;
 
 import java.util.List;
 
-import cz.zaf.common.validation.SimpleRuleContext;
 import cz.zaf.sipvalidator.nsesss2017.pravidla04.ns00_09.Pravidlo1;
 import cz.zaf.sipvalidator.nsesss2017.pravidla04.ns00_09.Pravidlo2;
 
@@ -16,7 +15,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla04.ns00_09.Pravidlo2;
  * 
  */
 public class K04_JmennychProstoruXML
-        extends KontrolaBase<SimpleRuleContext<KontrolaNsessContext>> {
+        extends KontrolaBase<KontrolaNsessContext> {
             
     static final public String NAME = "jmenných prostorů";
 
@@ -28,9 +27,7 @@ public class K04_JmennychProstoruXML
 	@Override
     public void validateImpl() {
 
-        SimpleRuleContext<KontrolaNsessContext> namespCheckContext = new SimpleRuleContext<>(ctx);
-
-        this.provedKontrolu(namespCheckContext, getRules());
+        this.provedKontrolu(ctx, getRules());
 	}
 
 

@@ -7,7 +7,6 @@ package cz.zaf.sipvalidator.nsesss2017;
 
 import java.util.List;
 
-import cz.zaf.common.validation.SimpleRuleContext;
 import cz.zaf.sipvalidator.nsesss2017.pravidla03.wf00_09.Pravidlo1;
 
 /**
@@ -15,7 +14,7 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla03.wf00_09.Pravidlo1;
  * 
  */
 public class K03_Spravnosti
-        extends KontrolaBase<SimpleRuleContext<KontrolaNsessContext>> {
+        extends KontrolaBase<KontrolaNsessContext> {
 
     static final public String NAME = "správnosti XML";
 
@@ -26,9 +25,7 @@ public class K03_Spravnosti
     @Override
     public void validateImpl() {
 
-        SimpleRuleContext<KontrolaNsessContext> wfCheckContext = new SimpleRuleContext<>(ctx);
-
-        this.provedKontrolu(wfCheckContext, getRules());
+        this.provedKontrolu(ctx, getRules());
         
     }
 

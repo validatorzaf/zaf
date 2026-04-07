@@ -1,13 +1,12 @@
 package cz.zaf.sipvalidator.nsesss2024;
 
-import cz.zaf.common.validation.SimpleRuleContext;
 import cz.zaf.sipvalidator.nsesss2024.pravidla00.vir00_09.Pravidlo1;
 
 /**
  * Kontrola skodliveho kodu
  */
 public class K00_SkodlivehoKodu
-        extends KontrolaBase<SimpleRuleContext<KontrolaNsessContext>> {
+        extends KontrolaBase<KontrolaNsessContext> {
 
     static public final String NAME = "škodlivého kódu";
 
@@ -21,8 +20,7 @@ public class K00_SkodlivehoKodu
 
     @Override
     public void validateImpl() {
-        SimpleRuleContext<KontrolaNsessContext> virtCheckContext = new SimpleRuleContext<>(ctx);
-        this.provedKontrolu(virtCheckContext, createRules(ruleClasses));
+        this.provedKontrolu(ctx, createRules(ruleClasses));
     }
 
     public static Class<?>[] getRuleClasses() {

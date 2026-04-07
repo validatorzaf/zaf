@@ -32,11 +32,11 @@ public class Pravidlo93a extends K06PravidloBase {
         for (Element elentita : listEntit) {
             Element elJsZ = ValuesGetter.getXChild(elentita, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI, NsesssV4.JEDNODUCHY_SPISOVY_ZNAK);
             if (elJsZ == null) {
-                nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak>.", getMistoChyby(elentita), kontrola.getEntityId(elentita));
+                nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak>.", getMistoChyby(elentita), getEntityId(elentita));
             }
             String jsz = elJsZ.getTextContent();
             if (StringUtils.isBlank(jsz)) {
-                nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element <nsesss:JednoduchySpisovyZnak> je prázdný.", getMistoChyby(elentita), kontrola.getEntityId(elentita));
+                nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element <nsesss:JednoduchySpisovyZnak> je prázdný.", getMistoChyby(elentita), getEntityId(elentita));
             }
         }
 

@@ -17,7 +17,6 @@ import cz.zaf.common.exceptions.codes.ErrorCode;
 import cz.zaf.common.result.EntityId;
 import cz.zaf.common.result.IndetifierWithSource;
 import cz.zaf.common.validation.Rule;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06KontrolaContext;
 import cz.zaf.sipvalidator.sip.SipInfo;
 
 /**
@@ -25,12 +24,12 @@ import cz.zaf.sipvalidator.sip.SipInfo;
  *
  */
 public class K06_Obsahova
-        extends KontrolaBase<K06KontrolaContext> {
+        extends KontrolaBase<KontrolaNsessContext> {
 
     static final public String NAME = "kontrola obsahu";
 
     SipInfo sipSoubor;
-    private Rule<K06KontrolaContext>[] seznamPravidel;
+    private Rule<KontrolaNsessContext>[] seznamPravidel;
 
     MetsParser metsParser;
 
@@ -39,9 +38,9 @@ public class K06_Obsahova
     /**
      * Mapa kontrol
      */
-    Map<String, Rule<K06KontrolaContext>> kontroly = new HashMap<>();
+    Map<String, Rule<KontrolaNsessContext>> kontroly = new HashMap<>();
 
-    public K06_Obsahova(Rule<K06KontrolaContext>[] obsahovaPravidla) {
+    public K06_Obsahova(Rule<KontrolaNsessContext>[] obsahovaPravidla) {
         super(TypUrovenKontroly.OBSAHOVA);
         this.seznamPravidel = obsahovaPravidla;
     }
@@ -224,7 +223,7 @@ public class K06_Obsahova
      * @param detailChyby
      * @param mistoChyby
      */
-    void pridejChybu(final Rule<K06KontrolaContext> rule,
+    void pridejChybu(final Rule<KontrolaNsessContext> rule,
                      ErrorCode errorCode,
                      String detailChyby,
                      String mistoChyby) {
@@ -247,8 +246,7 @@ public class K06_Obsahova
     @Override
     public void validateImpl() {
 
-        K06KontrolaContext k06KontrolaContext = new K06KontrolaContext(ctx.getMetsParser(), ctx);
-        provedKontrolu(k06KontrolaContext, seznamPravidel);
+        provedKontrolu(ctx, seznamPravidel);
 
     }
 

@@ -30,15 +30,15 @@ public class Pravidlo63 extends K06PravidloBase {
             boolean maZpusobSHodnotou = ValuesGetter.getObsahujeRodicElementSHodnotou(elVyrizeni, NsesssV4.ZPUSOB, "jiný způsob");
             if (maZpusobSHodnotou) {
                 Element elOduvodneni = ValuesGetter.getXChild(elVyrizeni, NsesssV4.ODUVODNENI);
-                Element elDokument = kontrola.getEntity(elVyrizeni);
+                Element elDokument = getEntity(elVyrizeni);
                 if (elOduvodneni == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen povinný element <nsesss:Oduvodneni>. " + getJmenoIdentifikator(elVyrizeni),
-                            elVyrizeni, kontrola.getEntityId(elDokument));
+                            elVyrizeni, getEntityId(elDokument));
                 }
                 String hodnotaElOduvodneni = elOduvodneni.getTextContent();
                 if (StringUtils.isBlank(hodnotaElOduvodneni)) {
                     nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element <nsesss:Oduvodneni> má prázdnou hodnotu. " + getJmenoIdentifikator(elVyrizeni),
-                            elOduvodneni, kontrola.getEntityId(elDokument));
+                            elOduvodneni, getEntityId(elDokument));
                 }
             }
         }
@@ -47,15 +47,15 @@ public class Pravidlo63 extends K06PravidloBase {
             boolean maZpusobSHodnotou = ValuesGetter.getObsahujeRodicElementSHodnotou(elVyrizeniUzavreni, NsesssV4.ZPUSOB, "jiný způsob");
             if (maZpusobSHodnotou) {
                 Element elOduvodneni = ValuesGetter.getXChild(elVyrizeniUzavreni, NsesssV4.ODUVODNENI);
-                Element elDokument = kontrola.getEntity(elVyrizeniUzavreni);
+                Element elDokument = getEntity(elVyrizeniUzavreni);
                 if (elOduvodneni == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen povinný element <nsesss:Oduvodneni>. " + getJmenoIdentifikator(elVyrizeniUzavreni),
-                            elVyrizeniUzavreni, kontrola.getEntityId(elDokument));
+                            elVyrizeniUzavreni, getEntityId(elDokument));
                 }
                 String hodnotaElOduvodneni = elOduvodneni.getTextContent();
                 if (StringUtils.isBlank(hodnotaElOduvodneni)) {
                     nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element <nsesss:Oduvodneni> má prázdnou hodnotu. " + getJmenoIdentifikator(elVyrizeniUzavreni),
-                            elOduvodneni, kontrola.getEntityId(elDokument));
+                            elOduvodneni, getEntityId(elDokument));
                 }
             }
         }

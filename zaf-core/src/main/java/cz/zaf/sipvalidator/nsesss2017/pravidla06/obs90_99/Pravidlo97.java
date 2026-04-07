@@ -42,12 +42,12 @@ public class Pravidlo97 extends K06PravidloBase {
         if (n0_j == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak> základní entity. "
                     + getJmenoIdentifikator(zakladniEntitaPrvni), getMistoChyby(zakladniEntitaPrvni),
-                    kontrola.getEntityId(zakladniEntitaPrvni));
+                    getEntityId(zakladniEntitaPrvni));
         }
         if (n0_p == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:PlneUrcenySpisovyZnak> základní entity. "
                     + getJmenoIdentifikator(zakladniEntitaPrvni), getMistoChyby(zakladniEntitaPrvni),
-                    kontrola.getEntityId(zakladniEntitaPrvni));
+                    getEntityId(zakladniEntitaPrvni));
         }
         
         String jednoduchy = n0_j.getTextContent();
@@ -61,13 +61,13 @@ public class Pravidlo97 extends K06PravidloBase {
             if (n_j == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak> základní entity. "
                         + getJmenoIdentifikator(zakladniEntita), getMistoChyby(zakladniEntita),
-                        kontrola.getEntityId(zakladniEntita));
+                        getEntityId(zakladniEntita));
             }
             
             if (n_p == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:PlneUrcenySpisovyZnak> základní entity. "
                         + getJmenoIdentifikator(zakladniEntita), getMistoChyby(zakladniEntita),
-                        kontrola.getEntityId(zakladniEntita));
+                        getEntityId(zakladniEntita));
             }
             
             String jednoduchySpZnZaklEnt = n_j.getTextContent();
@@ -76,7 +76,7 @@ public class Pravidlo97 extends K06PravidloBase {
             if (!b) {
                 nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Nesplněna podmínka pravidla. " + getJmenoIdentifikator(zakladniEntita),
                         getMistoChyby(n0_j) + " " + getMistoChyby(n0_p) + " " + getMistoChyby(n_j) + " " + getMistoChyby(n_p),
-                        kontrola.getEntityId(zakladniEntita));
+                        getEntityId(zakladniEntita));
             }
         }
     }

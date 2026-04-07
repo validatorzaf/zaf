@@ -51,7 +51,7 @@ public class Pravidlo67 extends K06PravidloBase {
             List<Element> dokumenty = metsParser.getDokumenty();
             if (dokumenty == null || dokumenty.isEmpty()) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen žádný dětský element <nsesss:Dokument>.",
-                        spisyDily, kontrola.getEntityId(spisyDily));
+                        spisyDily, getEntityId(spisyDily));
             }
             // priprava sk. znaku dle zakladnich entit
             Map<Element, Set<String>> skZnaky = new HashMap<>();
@@ -66,13 +66,13 @@ public class Pravidlo67 extends K06PravidloBase {
                 if (dokumentyNode == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen rodičovský element <nsesss:Dokumenty> elementu <nsesss:Dokument>. "
                             + getJmenoIdentifikator(dokument),
-                            dokument, kontrola.getEntityId(dokument));
+                            dokument, getEntityId(dokument));
                 }
                 Element rodicNode = (Element) dokumentyNode.getParentNode();
                 if (rodicNode == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen rodičovský element elementu <nsesss:Dokumenty>. "
                             + getJmenoIdentifikator(dokument),
-                            dokument, kontrola.getEntityId(dokument));
+                            dokument, getEntityId(dokument));
                 }
                 Set<String> skZnakyDokumentu = skZnaky.computeIfAbsent(rodicNode, n -> new HashSet<>());
                 
@@ -81,7 +81,7 @@ public class Pravidlo67 extends K06PravidloBase {
                 if (elSkartacniZnak == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen dětský element <nsesss:SkartacniZnak> elementu <nsesss:Dokument>. "
                             + getJmenoIdentifikator(dokument),
-                            dokument, kontrola.getEntityId(rodicNode));
+                            dokument, getEntityId(rodicNode));
                 }
                 String znak = elSkartacniZnak.getTextContent();
                 skZnakyDokumentu.add(znak);
@@ -92,7 +92,7 @@ public class Pravidlo67 extends K06PravidloBase {
                 if (skZnakyDokumentu == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen žádný element <nsesss:SkartacniZnak> dětských elementů <nsesss:Dokument> základní entity."
                             + getJmenoIdentifikator(spisDil),
-                            spisDil, kontrola.getEntityId(spisDil));
+                            spisDil, getEntityId(spisDil));
                 }
                 kontrola(spisDil, skZnakyDokumentu);
             }
@@ -106,7 +106,7 @@ public class Pravidlo67 extends K06PravidloBase {
         if (n == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen dětský element <nsesss:SkartacniZnak> základní entity. "
                     + getJmenoIdentifikator(zakladnientita),
-                    zakladnientita, kontrola.getEntityId(zakladnientita));
+                    zakladnientita, getEntityId(zakladnientita));
         }
         String skZnakME = n.getTextContent();
         
@@ -115,24 +115,24 @@ public class Pravidlo67 extends K06PravidloBase {
                 if (!skZnakyDokumentu.contains("A")) {
                     nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Spis se skartačním znakem A neobsahuje žádný dokument se skartačním znakem A. "
                             + getJmenoIdentifikator(zakladnientita),
-                            n, kontrola.getEntityId(zakladnientita));
+                            n, getEntityId(zakladnientita));
                 }
                 break;
             case "V":
                 if (skZnakyDokumentu.contains("A")) {
                     nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Spis se skartačním znakem V obsahuje dokument se skartačním znakem A. "
                             + getJmenoIdentifikator(zakladnientita),
-                            zakladnientita, kontrola.getEntityId(zakladnientita));
+                            zakladnientita, getEntityId(zakladnientita));
                 }
                 if (!skZnakyDokumentu.contains("V")) {
                     nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Spis se skartačním znakem V neobsahuje žádný dokument se skartačním znakem V. "
-                            + getJmenoIdentifikator(zakladnientita), n, kontrola.getEntityId(zakladnientita));
+                            + getJmenoIdentifikator(zakladnientita), n, getEntityId(zakladnientita));
                 }
                 break;
             case "S":
                 if (skZnakyDokumentu.contains("A") || skZnakyDokumentu.contains("V")) {
                     nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Spis se skartačním znakem S obsahuje dokument se skartačním znakem A nebo V. "
-                            + getJmenoIdentifikator(zakladnientita), zakladnientita, kontrola.getEntityId(zakladnientita));
+                            + getJmenoIdentifikator(zakladnientita), zakladnientita, getEntityId(zakladnientita));
                     
                 }
                 break;
