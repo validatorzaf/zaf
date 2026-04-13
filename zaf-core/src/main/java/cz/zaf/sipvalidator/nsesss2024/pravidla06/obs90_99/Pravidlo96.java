@@ -12,22 +12,17 @@ import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 import java.util.Arrays;
 
-// OBSAHOVÁ č.96 Každá základní entita a každá entita typový spis
-// (<nsesss:TypovySpis>) obsahuje v hierarchii dětských elementů
-// <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy
-// <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> se stejnými
-// hodnotami, jaké obsahují v hierarchii dětských elementů
-// <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy
-// <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> rodičovské
-// entity věcná skupina (<nsesss:VecnaSkupina>) nebo součást
-// (<nsesss:Soucast>).",
+// OBSAHOVÁ č.96 Každá entita věcná skupina (<nsesss:VecnaSkupina>) nebo součást (<nsesss:Soucast>), která se nachází v rodičovské entitě 
+// věcná skupina (<nsesss:VecnaSkupina>) nebo typový spis (<nsesss:TypovySpis>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> element 
+// <nsesss:PlneUrcenySpisovyZnak> s hodnotou obsahující hodnotu elementu <nsesss:PlneUrcenySpisovyZnak> rodičovské entity, oddělovač a hodnotu elementu 
+// <nsesss:JednoduchySpisovyZnak> výchozí entity.
 public class Pravidlo96 extends K06PravidloBase {
 
     static final public String OBS96 = "obs96";
 
     public Pravidlo96() {
         super(OBS96,
-                "Každá základní entita a každá entita typový spis (<nsesss:TypovySpis>) obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> se stejnými hodnotami, jaké obsahují v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> elementy <nsesss:JednoduchySpisovyZnak> a <nsesss:PlneUrcenySpisovyZnak> rodičovské entity věcná skupina (<nsesss:VecnaSkupina>) nebo součást (<nsesss:Soucast>).",
+                "Každá entita věcná skupina (<nsesss:VecnaSkupina>) nebo součást (<nsesss:Soucast>), která se nachází v rodičovské entitě věcná skupina (<nsesss:VecnaSkupina>) nebo typový spis (<nsesss:TypovySpis>), obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Trideni> element <nsesss:PlneUrcenySpisovyZnak> s hodnotou obsahující hodnotu elementu <nsesss:PlneUrcenySpisovyZnak> rodičovské entity, oddělovač a hodnotu elementu <nsesss:JednoduchySpisovyZnak> výchozí entity.",
                 "Chybně jsou uvedeny spisové znaky.",
                 "§ 12 odst. 3 a 4 vyhlášky č. 259/2012 Sb.");
     }

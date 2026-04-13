@@ -22,7 +22,7 @@ public class Pravidlo7_02 extends K07PravidloEachFile {
         super(KOD,
                 "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut CHECKSUM s hodnotou kontrolního součtu příslušné komponenty podle kryptografického algoritmu uvedeného v atributu CHECKSUMTYPE.",
                 "Celistvost komponenty (počítačového souboru) je narušena nebo chybí možnost jejího ověření.",
-                "Bod 2.15. přílohy č. 3 NSESSS.");
+                "Bod 1.15 přílohy č. 2 NSESSS.");
     }
 
     @Override

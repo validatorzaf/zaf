@@ -19,7 +19,7 @@ public class Pravidlo31 extends K06PravidloBase {
         super(OBS31,
                 "Každý element <mets:amdSec> obsahuje právě jeden dětský element <mets:digiprovMD>.",
                 "Chybí povinná část (transakční protokol) struktury datového balíčku SIP.",
-                "Bod 1.11 přílohy č. 2 NSESSS."
+                "Bod 1.10 přílohy č. 2 NSESSS."
         );
     }
 

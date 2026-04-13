@@ -14,7 +14,7 @@ public class Pravidlo1a extends PravidloBase {
 
     public Pravidlo1a() {
         super(KOD,
-                "Název datového balíčku (ZIP nebo adresář) obsahuje pouze písmena latinské abecedy bez diakritiky, čísla a znaky „_“ (podtržítko) a „–“ (pomlčka) a jeho délka nepřekračuje 64 znaků.",
+                "Název datového balíčku SIP (ZIP nebo adresář) obsahuje pouze písmena latinské abecedy bez diakritiky, čísla a znaky „_“ (podtržítko) a „–“ (pomlčka) a jeho délka nepřekračuje 64 znaků.",
                 "Uvedeno je chybně označení datového balíčku SIP.",
                 "Požadavek 9.2.12 NSESSS.");
     }

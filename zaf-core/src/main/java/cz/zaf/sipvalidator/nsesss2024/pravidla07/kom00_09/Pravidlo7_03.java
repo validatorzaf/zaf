@@ -41,7 +41,7 @@ public class Pravidlo7_03 extends K07PravidloEachFile {
         super(KOD,
                 "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut MIMETYPE s hodnotou identifikace souborového formátu příslušné komponenty.",
                 "Komponenta (počítačový soubor) má uvedený chybný datový formát.",
-                "Bod 2.15. přílohy č. 3 NSESSS."
+                "Bod 1.15 přílohy č. 2 NSESSS."
         );
     }
 

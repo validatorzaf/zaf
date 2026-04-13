@@ -20,8 +20,8 @@ public class Pravidlo59a extends K06PravidloBase {
     public Pravidlo59a() {
         super(OBS59A,
                 "Každá entita dokument (<nsesss:Dokument>), nebo pokud existuje jakýkoli element <nsesss:Spis>, který obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:VyrizeniUzavreni> element <nsesss:Datum> s hodnotou větší než 31. 7. 2012, obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Evidence> element <nsesss:EvidencniCislo>.",
-                "Uveden je vícekrát stejný spisový plán, věcná skupina, typový spis, součást, díl, spis, dokument, komponenta, bezpečnostní kategorie, skartační režim nebo typ dokumentu nebo je vícekrát použit stejný identifikátor.",
-                "Příloha č. 2 NSESSS, nsesss-common.xsd, ř. 127.");
+                "Chybí evidenční číslo spisu nebo dokumentu.",
+                "Příloha č. 2 NSESSS, nsesss-common.xsd, ř. 411.");
     }
 
     //OBSAHOVÁ č.59a Každá entita dokument (<nsesss:Dokument>), nebo pokud existuje jakýkoli element <nsesss:Spis>, který obsahuje v hierarchii dětských elementů 
