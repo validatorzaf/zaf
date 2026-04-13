@@ -1456,6 +1456,54 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
                 new String[]{},
                 new String[]{Pravidlo54.OBS54});
     }
+    
+        @Test
+    void testK06_54_35() {
+        testPackageK06("obs54-chyba35", ValidationStatus.ERROR,
+                ZakladniProfilValidace.PREJIMKA,
+                new String[]{},
+                new String[]{Pravidlo54.OBS54});
+    }
+    
+        @Test
+    void testK06_54_36() {
+        testPackageK06("obs54-chyba36", ValidationStatus.ERROR,
+                ZakladniProfilValidace.PREJIMKA,
+                new String[]{},
+                new String[]{Pravidlo54.OBS54});
+    }
+    
+        @Test
+    void testK06_54_37() {
+        testPackageK06("obs54-chyba37", ValidationStatus.ERROR,
+                ZakladniProfilValidace.PREJIMKA,
+                new String[]{},
+                new String[]{Pravidlo54.OBS54});
+    }
+    
+        @Test
+    void testK06_54_38() {
+        testPackageK06("obs54-chyba38", ValidationStatus.ERROR,
+                ZakladniProfilValidace.PREJIMKA,
+                new String[]{},
+                new String[]{Pravidlo54.OBS54});
+    }
+    
+        @Test
+    void testK06_54_39() {
+        testPackageK06("obs54-chyba39", ValidationStatus.ERROR,
+                ZakladniProfilValidace.PREJIMKA,
+                new String[]{},
+                new String[]{Pravidlo54.OBS54});
+    }
+    
+        @Test
+    void testK06_54_40() {
+        testPackageK06("obs54-chyba40", ValidationStatus.ERROR,
+                ZakladniProfilValidace.PREJIMKA,
+                new String[]{},
+                new String[]{Pravidlo54.OBS54});
+    }
 
     @Test
     void testK06_54_OK01() {
@@ -1484,6 +1532,22 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     @Test
     void testK06_54_OK05() {
         testPackageK06("obs54-OK5", null,
+                ZakladniProfilValidace.PREJIMKA,
+                new String[]{Pravidlo54.OBS54},
+                new String[]{});
+    }
+    
+        @Test
+    void testK06_54_OK06() {
+        testPackageK06("obs54-OK6", null,
+                ZakladniProfilValidace.PREJIMKA,
+                new String[]{Pravidlo54.OBS54},
+                new String[]{});
+    }
+    
+        @Test
+    void testK06_54_OK07() {
+        testPackageK06("obs54-OK7", null,
                 ZakladniProfilValidace.PREJIMKA,
                 new String[]{Pravidlo54.OBS54},
                 new String[]{});
@@ -1881,9 +1945,25 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
                 new String[]{Pravidlo65.OBS65});
     }
 
+        @Test
+    void testK06_65_02() {
+        testPackageK06("obs65-chyba2", ValidationStatus.ERROR,
+                ZakladniProfilValidace.PREJIMKA,
+                new String[]{},
+                new String[]{Pravidlo65.OBS65});
+    }
+    
     @Test
     void testK06_65_03() {
         testPackageK06("obs65-chyba3", ValidationStatus.ERROR,
+                ZakladniProfilValidace.PREJIMKA,
+                new String[]{},
+                new String[]{Pravidlo65.OBS65});
+    }
+    
+        @Test
+    void testK06_65_04() {
+        testPackageK06("obs65-chyba4", ValidationStatus.ERROR,
                 ZakladniProfilValidace.PREJIMKA,
                 new String[]{},
                 new String[]{Pravidlo65.OBS65});
@@ -2020,6 +2100,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
     @Test
     void testK06_65_OK07() {
         testPackageK06("obs65-OK7", null,
+                ZakladniProfilValidace.PREJIMKA,
+                new String[]{Pravidlo65.OBS65},
+                new String[]{});
+    }
+    
+        @Test
+    void testK06_65_OK08() {
+        testPackageK06("obs65-OK8", null,
                 ZakladniProfilValidace.PREJIMKA,
                 new String[]{Pravidlo65.OBS65},
                 new String[]{});
@@ -2639,6 +2727,14 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
                 ZakladniProfilValidace.PREJIMKA,
                 new String[]{Pravidlo86.OBS86},
                 new String[]{});
+    }
+    
+        @Test
+    void testK06_86_01() {
+        testPackageK06("obs86-chyba", ValidationStatus.ERROR,
+                ZakladniProfilValidace.PREJIMKA,
+                new String[]{},
+                new String[]{Pravidlo86.OBS86});
     }
 
     @Test

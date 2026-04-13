@@ -40,6 +40,7 @@ public class Pravidlo65 extends K06PravidloBase {
         }
         
         int aktualniRok = this.kontrola.getLocalDate().getYear();
+        System.out.println("");
         for (int i = 0; i < zakladniEntity.size(); i++) {
             Element elZakladniEntita = zakladniEntity.get(i);
             String nazevZakladniEntity = elZakladniEntita.getNodeName();
