@@ -33,67 +33,90 @@ public class Pravidlo64 extends K06PravidloBase {
         if (zakladniEntity == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezena žádná základní entita.");
         }
+        int aktualniRok = this.kontrola.getLocalDate().getYear();
         for (int i = 0; i < zakladniEntity.size(); i++) {
             Element elZakladniEntita = zakladniEntity.get(i);
             if (elZakladniEntita.getNodeName().equals(NsesssV4.DOKUMENT)) {
-                kontrolaDokumentu(elZakladniEntita);
+                kontrolaZakladniEntity(elZakladniEntita, aktualniRok);
             }
         }
     }
 
-    private void kontrolaDokumentu(Element elDokument) {
-        Element elvyrazovani = ValuesGetter.getXChild(elDokument, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.VYRAZOVANI);
-        if (elvyrazovani == null) {
-            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Vyrazovani>. "
-                    + getJmenoIdentifikator(elDokument), elDokument, getEntityId(elDokument));
+    private void kontrolaZakladniEntity(Element elZakladniEntita, int aktualniRok) {
+        int rokSpousteciUdalosti = getRokSpousteciUdalosti(elZakladniEntita);
+        Element elSkartacniLhuta = getRokLhutyNeboVyrazeni(elZakladniEntita, NsesssV4.SKARTACNI_LHUTA);
+        if (elSkartacniLhuta != null) {
+            int skartacniLhuta = getRokSkLhutaRokVyrazeni(elZakladniEntita, elSkartacniLhuta);
+            if (!(rokSpousteciUdalosti + 1 + skartacniLhuta <= aktualniRok)) {
+                nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Součet je vyšší než aktuální rok. Rok spouštěcí události: " + rokSpousteciUdalosti
+                        + ", skartační lhůta: " + skartacniLhuta
+                        + ", aktuální rok: " + aktualniRok + ".",
+                        getMistoChyby(elZakladniEntita), getEntityId(elZakladniEntita));
+            }
+        } else {
+            Element elRokVyrazeni = getRokLhutyNeboVyrazeni(elZakladniEntita, NsesssV4.ROK_VYRAZENI);
+            if (elRokVyrazeni == null) {
+                nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <" + NsesssV4.SKARTACNI_LHUTA + ">, ani element <" + NsesssV4.ROK_VYRAZENI + ">.",
+                        getMistoChyby(elZakladniEntita),
+                        getEntityId(elZakladniEntita));
+            } else {
+                int rokVyrazeni = getRokSkLhutaRokVyrazeni(elZakladniEntita, elRokVyrazeni);
+                if (!(rokVyrazeni <= aktualniRok)) {
+                    nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Rok vyřazení: " + rokVyrazeni + ", je větší než aktuální rok: " + aktualniRok + ".",
+                            getMistoChyby(elZakladniEntita), getEntityId(elZakladniEntita));
+                }
+            }
         }
+    }
 
-        // ziskani skartacni lhuty
-        Element elSkartacniRezim = ValuesGetter.getXChild(elvyrazovani, NsesssV4.SKARTACNI_REZIM);
+    private int getRokSpousteciUdalosti(Element entita) {
+        Element elRokSpousteciUdalosti = ValuesGetter.getXChild(entita, NsesssV4.EVIDENCNI_UDAJE,
+                NsesssV4.VYRAZOVANI,
+                NsesssV4.DATACE_VYRAZENI,
+                NsesssV4.ROK_SPOUSTECI_UDALOSTI);
+        if (elRokSpousteciUdalosti == null) {
+            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:RokSpousteciUdalosti>."
+                    + getJmenoIdentifikator(entita),
+                    entita, getEntityId(entita));
+        }
+        int rokSpousteciUdalostiEntita = 0;
+        try {
+            rokSpousteciUdalostiEntita = Integer.parseInt(elRokSpousteciUdalosti.getTextContent());
+        } catch (NumberFormatException e) {
+            nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
+                    "Hodnota roku elementu <nsesss:RokSpousteciUdalosti> je uvedena ve špatném formátu: "
+                    + elRokSpousteciUdalosti.getTextContent() + ". "
+                    + getJmenoIdentifikator(entita),
+                    elRokSpousteciUdalosti, getEntityId(entita));
+        }
+        return rokSpousteciUdalostiEntita;
+    }
+
+    private Element getRokLhutyNeboVyrazeni(Element elEntita, String elementName) {
+        Element elSkartacniRezim = ValuesGetter.getXChild(elEntita, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.VYRAZOVANI, NsesssV4.SKARTACNI_REZIM);
         if (elSkartacniRezim == null) {
             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:SkartacniRezim>. "
-                    + getJmenoIdentifikator(elDokument), elDokument, getEntityId(elDokument));
-        }
-        Element elSkLhutaRokVyrazeni = rokLhutyNeboVyrazeni(elSkartacniRezim);
-        if (elSkLhutaRokVyrazeni == null) {
-            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:SkartacniLhuta> nebo <nsesss:RokVyrazeni>. "
-                    + getJmenoIdentifikator(elDokument), elSkartacniRezim, getEntityId(elDokument));
-        }
-        String hodnotaSkLhutaRokVyrazeni = elSkLhutaRokVyrazeni.getTextContent();
-
-        // zjisteni roku spousteci udalosti
-        Element elRokSousteciUdalosti = ValuesGetter.getXChild(elvyrazovani, NsesssV4.DATACE_VYRAZENI,
-                                                               NsesssV4.ROK_SPOUSTECI_UDALOSTI);
-        if (elRokSousteciUdalosti == null) {
-            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:RokSpousteciUdalosti>. "
-                    + getJmenoIdentifikator(elDokument),
-                        elDokument, getEntityId(elDokument));
+                    + getJmenoIdentifikator(elEntita), elEntita, getEntityId(elEntita));
         }
 
-        String rokSpousteciUdalosti = elRokSousteciUdalosti.getTextContent();
-
-        try {
-            int hodnotaOperace = kontrola.getLocalDate().getYear();
-            int hodnotaLhuta = Integer.parseInt(hodnotaSkLhutaRokVyrazeni);
-            int hodnotaUdalosti = Integer.parseInt(rokSpousteciUdalosti);
-            if (hodnotaOperace < (hodnotaLhuta + hodnotaUdalosti + 1)) {
-                nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Rok skartační operace: " + hodnotaOperace
-                        + ", lhůta: " + hodnotaLhuta
-                        + ", událost: " + hodnotaUdalosti + ". " + getJmenoIdentifikator(elDokument),
-                            elDokument, getEntityId(elDokument));
-            }
-        } catch (NumberFormatException e) {
-            nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Zápis roku je uveden ve špatném formátu. "
-                    + getJmenoIdentifikator(elDokument),
-                        elDokument, getEntityId(elDokument));
-        }
-    }
-    
-    private Element rokLhutyNeboVyrazeni(Element elSkartacniRezim){
-        Element element = ValuesGetter.getXChild(elSkartacniRezim, NsesssV4.SKARTACNI_LHUTA);
-        if (element == null) {
-            element = ValuesGetter.getXChild(elSkartacniRezim, NsesssV4.ROK_VYRAZENI);
-        }
+        Element element = ValuesGetter.getXChild(elSkartacniRezim, elementName);
         return element;
     }
+
+    private int getRokSkLhutaRokVyrazeni(Element nadrazenaEntita, Element elSkLhutaRokVyrazeni) {
+        if (elSkLhutaRokVyrazeni == null) {
+            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:" + NsesssV4.SKARTACNI_LHUTA + ">.", getMistoChyby(nadrazenaEntita),
+                    getEntityId(nadrazenaEntita));
+        }
+        int skartacniLhutaEntita = 0;
+        try {
+            skartacniLhutaEntita = Integer.parseInt(elSkLhutaRokVyrazeni.getTextContent());
+        } catch (NumberFormatException e) {
+            nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
+                    "Hodnota roku elementu <" + elSkLhutaRokVyrazeni.getNodeName() + "> je uvedena ve špatném formátu: "
+                    + elSkLhutaRokVyrazeni.getTextContent() + ".", getMistoChyby(elSkLhutaRokVyrazeni), getEntityId(nadrazenaEntita));
+        }
+        return skartacniLhutaEntita;
+    }
+
 }
