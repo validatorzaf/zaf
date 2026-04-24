@@ -48,23 +48,22 @@ public class BaseValidator<T extends ValidationLayerContext> {
  	
         ValidationLayer<T> activeLayer = null;
         
-
+        ValidationResult validationResult = context.getValidationResult();
+        int iPos = 0;
         try {
         	// validation layers might be dynamically added
         	// validationLayers is mutable ArrayList
-            for (int i = 0; i<validationLayers.size(); i++) {
-                activeLayer = validationLayers.get(i);
+            for ( ; iPos<validationLayers.size(); iPos++) {
+                activeLayer = validationLayers.get(iPos);
 
                 final ValidationLayer<T> vl = activeLayer; 
                 listeners.forEach(l -> l.layerValidationStarted(context, vl));
 
-                // po selhane kontrole se jiz nepokracuje
-                ValidationResult validationResult = context.getValidationResult();
-                // add resultinnerFileName
+                // add result
                 ValidationLayerResult vlr = new ValidationLayerResult(activeLayer.getType(), activeLayer.getInnerFileName());
-                context.addLayerResult(vlr);
                 // vychozi stav je ok
                 vlr.setStav(ValidationStatus.OK);
+                validationResult.getValidationLayerResults().add(vlr);
 
                 activeLayer.validate(context, vlr);
 
@@ -84,6 +83,16 @@ public class BaseValidator<T extends ValidationLayerContext> {
             }
             log.error(sb.toString() + ", detail: " + e.toString(), e);
             throw new IllegalStateException(sb.toString(), e);
+        } finally {
+        	iPos++;
+            for ( ; iPos<validationLayers.size(); iPos++) {
+            	activeLayer = validationLayers.get(iPos);
+            	// add results for unprocessed layers
+            	// new layer is by defaut non executed
+            	ValidationLayerResult vlr = new ValidationLayerResult(activeLayer.getType(), activeLayer.getInnerFileName());
+            	validationResult.getValidationLayerResults().add(vlr);
+            }
+        	
         }
     }
 }

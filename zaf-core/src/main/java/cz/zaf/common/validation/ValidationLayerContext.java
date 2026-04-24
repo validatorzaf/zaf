@@ -12,10 +12,6 @@ public interface ValidationLayerContext {
      */
     ValidationResult getValidationResult();
 
-    default void addLayerResult(ValidationLayerResult vlr) {
-        getValidationResult().getValidationLayerResults().add(vlr);
-    }
-
     /**
      * Return if rule is excluded
      * 
