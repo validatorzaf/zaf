@@ -1,6 +1,7 @@
 package cz.zaf.validator;
 
 import java.io.PrintStream;
+import java.util.EnumSet;
 
 import cz.zaf.common.MessageProvider;
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
@@ -244,36 +245,45 @@ public class CmdParamsReader {
 					cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace.SKARTACE_METADATA);
 			params.setNsesss2024Profile(
 					cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.SKARTACE_METADATA);
+			params.setProfileAllowedTypes(EnumSet.of(ValidatorType.NSESSS2017, ValidatorType.NSESSS2024));
 			break;
 		case "2":
 		case "KOMPLET":
 		case "SIP_PREVIEW":
 			params.setNsesss2017Profile(cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace.SKARTACE_UPLNY);
 			params.setNsesss2024Profile(cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.SKARTACE_UPLNY);
+			params.setProfileAllowedTypes(EnumSet.of(ValidatorType.NSESSS2017, ValidatorType.NSESSS2024));
 			break;
 		case "3":
 		case "PREJIMKA":
 		case "SIP":
 			params.setNsesss2017Profile(cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace.PREJIMKA);
 			params.setNsesss2024Profile(cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.PREJIMKA);
+			params.setProfileAllowedTypes(EnumSet.of(ValidatorType.NSESSS2017, ValidatorType.NSESSS2024));
 			break;
 		case "FA":
 			params.setAp2023Profile(AP2023Profile.FINDING_AID);
+			params.setProfileAllowedTypes(EnumSet.of(ValidatorType.AP2023));
 			return true;
 		case "AD":
 			params.setAp2023Profile(AP2023Profile.ARCH_DESC);
+			params.setProfileAllowedTypes(EnumSet.of(ValidatorType.AP2023));
 			return true;
 		case "AIP":
 			params.setDa2024Profile(DAAIP2024Profile.AIP);
+			params.setProfileAllowedTypes(EnumSet.of(ValidatorType.DAAIP2024));
 			return true;
 		case "DIP_METADATA":
 			params.setDa2024Profile(DAAIP2024Profile.DIP_METADATA);
+			params.setProfileAllowedTypes(EnumSet.of(ValidatorType.DAAIP2024));
 			return true;
 		case "DIP_CONTENT":
 			params.setDa2024Profile(DAAIP2024Profile.DIP_CONTENT);
+			params.setProfileAllowedTypes(EnumSet.of(ValidatorType.DAAIP2024));
 			return true;
 		case "SIP_CHANGE":
 			params.setDa2024Profile(DAAIP2024Profile.SIP_CHANGE);
+			params.setProfileAllowedTypes(EnumSet.of(ValidatorType.DAAIP2024));
 			return true;
 		default:
 			error.println(messages.getOrDefault("cmd.error.param_profile_unrecog", "Unknown validation profile: {0}", arg));

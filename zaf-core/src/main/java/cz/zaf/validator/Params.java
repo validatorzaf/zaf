@@ -1,6 +1,7 @@
 package cz.zaf.validator;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
 
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
@@ -56,6 +57,12 @@ public class Params {
      * Validation profile
      */
     private ValidatorType validationProfile = null;
+
+    /**
+     * Set of validator types allowed by the user-supplied -p parameter.
+     * null means no restriction (no -p, or -p AUTO).
+     */
+    private EnumSet<ValidatorType> profileAllowedTypes = null;
     
     /**
      * Popis hrozby
@@ -132,11 +139,19 @@ public class Params {
     
 
 	public void setValidationProfile(final ValidatorType validationProfile) {
-		this.validationProfile = validationProfile;		
+		this.validationProfile = validationProfile;
 	}
-	
+
 	public ValidatorType getValidationProfile() {
 		return validationProfile;
+	}
+
+	public EnumSet<ValidatorType> getProfileAllowedTypes() {
+		return profileAllowedTypes;
+	}
+
+	public void setProfileAllowedTypes(EnumSet<ValidatorType> profileAllowedTypes) {
+		this.profileAllowedTypes = profileAllowedTypes;
 	}
 
     public cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace getNsesss2017Profile() {
