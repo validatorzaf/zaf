@@ -122,7 +122,7 @@ Pokročilé funkce validátoru je možné řídit pomocí systémových parametr
 
 Validace jednotlivého SIPu se zápisem výstupu do protokolu:
 
-`java -jar CmdValidator.jar -d 3 C:\testy3\D34520.zip -o c:\temp\out.xml`
+`java -jar CmdValidator.jar -p SIP C:\testy3\D34520.zip -o c:\temp\out.xml`
 
 
 Validace SIPů uložených v adresáři:
@@ -132,7 +132,7 @@ Validace SIPů uložených v adresáři:
 
 Validace SIPů uložených v adresáři s využitím jiné verze VeraPDF:
 
-`java -Dzaf.vera.path=C:\verapdf\greenfield-apps.jar -jar CmdValidator.jar -d 3 -b "C:\temp\SIP1580724295329"`
+`java -Dzaf.vera.path=C:\verapdf\greenfield-apps.jar -jar CmdValidator.jar -p SIP -b "C:\temp\SIP1580724295329"`
 
 
 
@@ -264,4 +264,4 @@ Spuštění s logováním vnitřní činnosti slouží pro diagnostické účely
 
 Příklad:
 
-`java -Dorg.slf4j.simpleLogger.defaultLogLevel=DEBUG -jar CmdValidator.jar -d 3 C:\testy3\D34520.zip -o c:\temp\out.xml`
+`java -Dorg.slf4j.simpleLogger.defaultLogLevel=DEBUG -jar CmdValidator.jar -p SIP C:\testy3\D34520.zip -o c:\temp\out.xml`
