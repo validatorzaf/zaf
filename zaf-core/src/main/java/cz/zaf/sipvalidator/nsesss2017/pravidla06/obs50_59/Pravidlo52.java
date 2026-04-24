@@ -37,7 +37,7 @@ public class Pravidlo52 extends K06PravidloBase {
 
         List<Element> nodeListFlocat = metsParser.getNodes(MetsElements.FLOCAT);
         if (!nodeListFlocat.isEmpty()) {
-            Path sipPath = kontrola.getContext().getSip().getCesta().toAbsolutePath();
+            Path sipPath = kontrola.getSip().getCesta().toAbsolutePath();
             String prefix = sipPath.toAbsolutePath().toString();
 
             Set<String> souboryZXML = new HashSet<>();
@@ -51,7 +51,7 @@ public class Pravidlo52 extends K06PravidloBase {
                 }       
                 href = HelperString.replaceSeparators(href);
 
-                Path kompPath = kontrola.getContext().getKomponentaPath(href);
+                Path kompPath = kontrola.getKomponentaPath(href);
                 if (!Files.isRegularFile(kompPath)) {
                     if (href.contains(File.separator)) {
                         int s = href.lastIndexOf(File.separator);
@@ -62,7 +62,7 @@ public class Pravidlo52 extends K06PravidloBase {
                 }
                 souboryZXML.add(href);
             }
-            Path sourceDir = this.kontrola.getContext().getKomponentyPath().toAbsolutePath();
+            Path sourceDir = this.kontrola.getKomponentyPath().toAbsolutePath();
             try (Stream<Path> stream = Files.walk(sourceDir)) {
                 stream.filter(Files::isRegularFile)
                         .forEach(file -> {

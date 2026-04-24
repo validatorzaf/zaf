@@ -51,12 +51,12 @@ public class Pravidlo88 extends K06PravidloBase {
                                 NsesssV4.ODESLANE_MNOZSTVI);
                         if (elOdeslaneMnozstvi == null) {
                             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:OdeslaneMnozstvi>. "
-                                    + getJmenoIdentifikator(dokument), getMistoChyby(dokument), kontrola.getEntityId(dokument));
+                                    + getJmenoIdentifikator(dokument), getMistoChyby(dokument), getEntityId(dokument));
                         } else {
                             String hodnotaElOdeslaneMnozstvi = elOdeslaneMnozstvi.getTextContent();
                             if (StringUtils.isBlank(hodnotaElOdeslaneMnozstvi)) {
                                 nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element <nsesss:OdeslaneMnozstvi> obsahuje prázdnou hodnotu. "
-                                        + getJmenoIdentifikator(dokument), getMistoChyby(elOdeslaneMnozstvi), kontrola.getEntityId(dokument));
+                                        + getJmenoIdentifikator(dokument), getMistoChyby(elOdeslaneMnozstvi), getEntityId(dokument));
                             }
                         }
                     }

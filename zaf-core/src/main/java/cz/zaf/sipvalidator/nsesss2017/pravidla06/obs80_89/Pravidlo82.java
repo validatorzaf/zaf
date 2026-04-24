@@ -27,13 +27,13 @@ public class Pravidlo82 extends K06PravidloBase {
     protected void kontrola() {
         List<Element> urceneCasoveObdobi = metsParser.getNodes(NsesssV3.URCENE_CASOVE_OBDOBI);
         for (Element urcenecasoveobdobi : urceneCasoveObdobi) {
-            Element elEntita = kontrola.getEntity(urcenecasoveobdobi);
+            Element elEntita = getEntity(urcenecasoveobdobi);
             Element nodeDo = ValuesGetter.getXChild(urcenecasoveobdobi, NsesssV3.MESIC_DO);
             if (nodeDo != null) {
                 Element nodeOd = ValuesGetter.getXChild(urcenecasoveobdobi, NsesssV3.MESIC_OD);
                 if (nodeOd == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:MesicOd>.", urcenecasoveobdobi,
-                            kontrola.getEntityId(elEntita));
+                            getEntityId(elEntita));
                 }
                 Date dateOd = null, dateDo = null;
                 try {
@@ -42,16 +42,16 @@ public class Pravidlo82 extends K06PravidloBase {
                 } catch (ParseException ex) {
                     nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Hodnoty dat jsou v nepovoleném formátu.",
                             getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo),
-                            kontrola.getEntityId(elEntita));
+                            getEntityId(elEntita));
                 }
                 if (dateOd == null || dateDo == null) {
                     nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Hodnoty dat v nepovoleném formátu.",
                             getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo),
-                            kontrola.getEntityId(elEntita));
+                            getEntityId(elEntita));
                 } else if (!dateOd.before(dateDo)) {
                     nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Nesplněna podmínka pravidla. OD: " + dateOd + ". DO: " + dateDo + ".",
                             getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo),
-                            kontrola.getEntityId(elEntita));
+                            getEntityId(elEntita));
                 }
             }
         }

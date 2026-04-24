@@ -1,13 +1,15 @@
 package cz.zaf.sipvalidator.nsesss2024;
 
-import cz.zaf.common.validation.SimpleRuleContext;
+import java.util.List;
+
+import cz.zaf.common.validation.Rule;
 import cz.zaf.sipvalidator.nsesss2024.pravidla02.kod00_09.Pravidlo1;
 
 /**
  * Kontroluje kódování SIP souboru.
  */
 public class K02_ZnakoveSady
-        extends KontrolaBase<SimpleRuleContext<KontrolaNsessContext>> {
+        extends KontrolaBase<KontrolaNsessContext> {
 
     static final public String NAME = "znakové sady";
 
@@ -21,11 +23,14 @@ public class K02_ZnakoveSady
 
     @Override
     public void validateImpl() {
-        SimpleRuleContext<KontrolaNsessContext> kodCheckContext = new SimpleRuleContext<>(ctx);
-        this.provedKontrolu(kodCheckContext, createRules(ruleClasses));
+        this.provedKontrolu(ctx, createRules());
     }
 
     public static Class<?>[] getRuleClasses() {
         return ruleClasses;
     }
+
+	public List<? extends Rule<KontrolaNsessContext>> createRules() {
+		return createRules(ruleClasses);
+	}
 }

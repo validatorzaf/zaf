@@ -72,7 +72,7 @@
 	<h3 style="cursor: pointer;" th:with="tableId='checklist' + ${iterStat.index}, iconId='icon' + ${iterStat.index}" th:attr="onclick=|toggleContent('${tableId}','${iconId}')|">
 		<span th:id="${iconId}">&#x2b;</span>
 		[[#{result.completedChecks}]]</h3>
-    <table style="display: none;" th:attr="id='checklist' + ${iterStat.index}">
+    <table class="checklist" style="display: none;" th:attr="id='checklist' + ${iterStat.index}">
 	  <tr>
 		<th th:text="#{result.detail.check}">Check</th>
 		<th th:text="#{result.detail.result}">Result</th>

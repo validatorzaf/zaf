@@ -14,14 +14,14 @@ public class Pravidlo1a extends PravidloBase {
 
     public Pravidlo1a() {
         super(KOD,
-                "Název souboru v datovém formátu ZIP obsahuje pouze písmena latinské abecedy bez diakritiky, čísla a znaky „_“ (podtržítko) a „–“ (pomlčka) a jeho délka nepřekračuje 64 znaků.",
+                "Název datového balíčku SIP (ZIP nebo adresář) obsahuje pouze písmena latinské abecedy bez diakritiky, čísla a znaky „_“ (podtržítko) a „–“ (pomlčka) a jeho délka nepřekračuje 64 znaků.",
                 "Uvedeno je chybně označení datového balíčku SIP.",
                 "Požadavek 9.2.12 NSESSS.");
     }
 
     @Override
     protected void kontrola() {
-        SipInfo sipInfo = this.ctx.getContext().getSip();
+        SipInfo sipInfo = this.ctx.getSip();
         LoadType loadtype = sipInfo.getLoadType();
 
         switch (loadtype) {

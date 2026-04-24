@@ -57,7 +57,7 @@ public class Pravidlo28 extends K06PravidloBase {
             if (elDatum == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT,
                         "Nenalezen element <" + NsesssV4.DATUM + "> pro vyřízení.",
-                        getMistoChyby(elZakladniEntita), kontrola.getEntityId(elZakladniEntita));
+                        getMistoChyby(elZakladniEntita), getEntityId(elZakladniEntita));
             } else {
                 String datumVyrizeni = elDatum.getTextContent();
                 jePredVcetne(elDatum, datumVyrizeni);

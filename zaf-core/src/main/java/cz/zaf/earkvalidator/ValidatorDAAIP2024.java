@@ -11,9 +11,7 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import cz.zaf.common.result.ValidationProfileInfo;
 import cz.zaf.common.result.ValidationResult;
-import cz.zaf.common.validation.BaseRule;
 import cz.zaf.common.validation.Rule;
-import cz.zaf.common.validation.RuleEvaluationContext;
 import cz.zaf.common.validation.ValidationLayerType;
 import cz.zaf.common.validation.ValidationSubprofile;
 import cz.zaf.common.validation.Validator;
@@ -101,7 +99,7 @@ public class ValidatorDAAIP2024 implements Validator {
 			}
 
 			@Override
-			public List<Rule<? extends RuleEvaluationContext>> getRules(ValidationLayerType layerType,
+			public List<Rule<?>> getRules(ValidationLayerType layerType,
 					ValidationSubprofile subProfile)
 			{
 				if(!(layerType instanceof ValidationLayers)) {
@@ -113,7 +111,7 @@ public class ValidatorDAAIP2024 implements Validator {
 				ValidationLayers layer = (ValidationLayers) layerType;
 				DAAIP2024Profile profile = (DAAIP2024Profile) subProfile;
 				
-				List<? extends BaseRule<AipValidationContext> > rules = null;
+				List<? extends Rule<AipValidationContext> > rules = null;
 				
 				switch (layer) {
 				case DATA:
@@ -165,7 +163,7 @@ public class ValidatorDAAIP2024 implements Validator {
 			}
 
 			@Override
-			public List<Rule<? extends RuleEvaluationContext>> getRules(ValidationLayerType layerType,
+			public List<Rule<?>> getRules(ValidationLayerType layerType,
 					ValidationSubprofile subProfile) {
 				if(!(layerType instanceof cz.zaf.premisvalidator.ValidationLayers)) {
 					throw new IllegalStateException("Unexpected layer type: "+layerType);
@@ -176,7 +174,7 @@ public class ValidatorDAAIP2024 implements Validator {
 				cz.zaf.premisvalidator.ValidationLayers layer = (cz.zaf.premisvalidator.ValidationLayers) layerType;
 				PremisProfile profile = (PremisProfile) subProfile;
 
-				List<? extends BaseRule<PremisValidationContext>> rules = null;
+				List<? extends Rule<PremisValidationContext>> rules = null;
 				switch(layer) {
 				case ENCODING:
 					rules = PremisValidationLayer.createPremisRules(cz.zaf.premisvalidator.layers.enc.Encoding.ruleClasses);
@@ -196,9 +194,9 @@ public class ValidatorDAAIP2024 implements Validator {
 				default:
 					throw new IllegalStateException("Unrecognized layer: " + layer);
 				}
-				List<Rule<? extends RuleEvaluationContext>> result = new ArrayList<>();
+				List<Rule<?>> result = new ArrayList<>();
 				if(rules!=null) {
-					for(BaseRule<PremisValidationContext> rule: rules) {
+					for(Rule<PremisValidationContext> rule: rules) {
 						result.add(rule);
 					}
 				}

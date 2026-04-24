@@ -34,8 +34,8 @@ public class Pravidlo61 extends K06PravidloBase {
             Element ad = ValuesGetter.getXChild(dokument, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.MANIPULACE,
                     NsesssV3.ANALOGOVY_DOKUMENT);
             if (ad == null) {
-                nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:AnalogovyDokument>. Dokumentu " + kontrola.getIdentifikatory(dokument) + ".",
-                        dokument, kontrola.getEntityId(dokument));
+                nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:AnalogovyDokument>. Dokumentu " + getIdentifikatory(dokument) + ".",
+                        dokument, getEntityId(dokument));
             }
             String hodnotaAnalogovyDokument = ad.getTextContent();
             Element elDorucenyDokument = ValuesGetter.getXChild(dokument, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.PUVOD, NsesssV3.DORUCENY_DOKUMENT);
@@ -43,13 +43,13 @@ public class Pravidlo61 extends K06PravidloBase {
                 Element elDoruceneMnozstvi = ValuesGetter.getXChild(elDorucenyDokument, NsesssV3.DORUCENE_MNOZSTVI);
                 if (elDoruceneMnozstvi == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen povinný element <nsesss:DoruceneMnozstvi>. Dokumentu "
-                            + kontrola.getIdentifikatory(dokument) + ".", dokument, kontrola.getEntityId(dokument));
+                            + getIdentifikatory(dokument) + ".", dokument, getEntityId(dokument));
                 }
 
                 String hodnotaElDoruceneMnozstvi = elDoruceneMnozstvi.getTextContent();
                 if (StringUtils.isBlank(hodnotaElDoruceneMnozstvi)) {
                     nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element <nsesss:DoruceneMnozstvi> obsahuje prázdnou hodnotu. Dokumentu "
-                            + kontrola.getIdentifikatory(dokument) + ".", dokument, kontrola.getEntityId(dokument));
+                            + getIdentifikatory(dokument) + ".", dokument, getEntityId(dokument));
                 }
             }
         }

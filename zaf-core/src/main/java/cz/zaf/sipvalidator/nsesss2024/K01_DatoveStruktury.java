@@ -1,6 +1,8 @@
 package cz.zaf.sipvalidator.nsesss2024;
 
-import cz.zaf.common.validation.SimpleRuleContext;
+import java.util.List;
+
+import cz.zaf.common.validation.Rule;
 import cz.zaf.sipvalidator.nsesss2024.pravidla01.dat00_09.Pravidlo1;
 import cz.zaf.sipvalidator.nsesss2024.pravidla01.dat00_09.Pravidlo1a;
 import cz.zaf.sipvalidator.nsesss2024.pravidla01.dat00_09.Pravidlo2;
@@ -10,7 +12,7 @@ import cz.zaf.sipvalidator.nsesss2024.pravidla01.dat00_09.Pravidlo3;
  * Kontrola datové struktury
  */
 public class K01_DatoveStruktury
-        extends KontrolaBase<SimpleRuleContext<KontrolaNsessContext>>
+        extends KontrolaBase<KontrolaNsessContext>
 {
     static final public String NAME = "datové struktury";
 
@@ -27,11 +29,14 @@ public class K01_DatoveStruktury
 
     @Override
     public void validateImpl() {
-        SimpleRuleContext<KontrolaNsessContext> datCheckContext = new SimpleRuleContext<>(ctx);
-        this.provedKontrolu(datCheckContext, createRules(ruleClasses));
+        this.provedKontrolu(ctx, createRules());
     }
 
     public static Class<?>[] getRuleClasses() {
         return ruleClasses;
     }
+
+	public List<? extends Rule<KontrolaNsessContext>> createRules() {
+		return createRules(ruleClasses);
+	}
 }

@@ -60,10 +60,10 @@ public class Pravidlo109 extends K06PravidloBase {
                         if (elKomponenta != null) {
                             String atrFormaUchovani = elKomponenta.getAttribute("forma_uchovani");
                             if (StringUtils.isBlank(atrFormaUchovani)) {
-                                nastavChybu(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Atribut forma_uchovani elementu <nsesss:Komponenta> není vyplněn.", getMistoChyby(elKomponenta), kontrola.getEntityId(elKomponenta));
+                                nastavChybu(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Atribut forma_uchovani elementu <nsesss:Komponenta> není vyplněn.", getMistoChyby(elKomponenta), getEntityId(elKomponenta));
                             }
                             if (!StringUtils.equals(atrFormaUchovani, "kontejner")) {
-                                nastavChybu(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut forma_uchovani elementu <nsesss:Komponenta> obsahuje nepovolenou hodnotu: " + atrFormaUchovani + ".", getMistoChyby(elKomponenta), kontrola.getEntityId(elKomponenta));
+                                nastavChybu(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut forma_uchovani elementu <nsesss:Komponenta> obsahuje nepovolenou hodnotu: " + atrFormaUchovani + ".", getMistoChyby(elKomponenta), getEntityId(elKomponenta));
                             }
                         }
                     }

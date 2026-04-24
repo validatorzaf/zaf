@@ -26,13 +26,13 @@ public class Pravidlo83 extends K06PravidloBase {
     protected void kontrola() {
         List<Element> urceneCasoveObdobi = metsParser.getNodes(NsesssV3.URCENE_CASOVE_OBDOBI);
         for (Element ucobdobi : urceneCasoveObdobi) {
-            Element elEntita = kontrola.getEntity(ucobdobi);
+            Element elEntita = getEntity(ucobdobi);
             Element nodeDo = ValuesGetter.getXChild(ucobdobi, NsesssV3.ROK_DO);
             if (nodeDo != null) {
                 Element nodeOd = ValuesGetter.getXChild(ucobdobi, NsesssV3.ROK_OD);
                 if (nodeOd == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:RokOd>.", ucobdobi,
-                            kontrola.getEntityId(elEntita));
+                            getEntityId(elEntita));
                 }
                 Integer intOd = vratRok(nodeOd);
                 Integer intDo = vratRok(nodeDo);
@@ -40,7 +40,7 @@ public class Pravidlo83 extends K06PravidloBase {
                 if (!(intOd < intDo)) {
                     nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Nesplněna podmínka pravidla. OD: " + intOd + ". DO: " + intDo + ".",
                             getMistoChyby(nodeOd) + " " + getMistoChyby(nodeDo),
-                            kontrola.getEntityId(elEntita));
+                            getEntityId(elEntita));
                 }
             }
         }

@@ -1,14 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.zaf.common.xml;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 import java.util.Stack;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -17,6 +15,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -27,7 +26,6 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * Nacteni XML, vytvoreni DOM a obohaceni o pozici
- * 
  *
  */
 public class PositionalXMLReader {
@@ -38,15 +36,20 @@ public class PositionalXMLReader {
     final static SAXParserFactory factory = SAXParserFactory.newInstance();
     final static DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
     {
-    	// Namespaces are used
-    	factory.setValidating(false);
-    	docBuilderFactory.setNamespaceAware(true);
-    	docBuilderFactory.setValidating(false);
+        // Namespaces are used
+        factory.setNamespaceAware(true);
+        factory.setValidating(false);
+        docBuilderFactory.setNamespaceAware(true);
+        docBuilderFactory.setValidating(false);
     }
 
     Document doc;
     SAXParser parser;
-    Map<String, String> nsMapping = new HashMap<>();
+    final private Map<String, String> nsMapping = new HashMap<>();
+    // Explicitly applied NS
+    final private Set<String> appliedNs = new HashSet<>();
+    // Flag indicating that namespace mapping changed since last element
+    private boolean nsMappingChanged = false;
 
     final Stack<Element> elementStack = new Stack<Element>();
     final StringBuilder textBuffer = new StringBuilder();
@@ -63,15 +66,23 @@ public class PositionalXMLReader {
                                  final Attributes attributes)
                 throws SAXException {
             addTextIfNeeded();
-            final Element el = doc.createElement(qName);
-            for (int i = 0; i < attributes.getLength(); i++) {
-                el.setAttribute(attributes.getQName(i), attributes.getValue(i));
+            final Element el = doc.createElementNS(uri, qName);
+            addNsIfNeeded(el);
+            if (attributes != null) {
+                var attrCnt = attributes.getLength();
+                for (int i = 0; i < attrCnt; i++) {
+                    String attrNs = attributes.getURI(i);
+                    String attrQName = attributes.getQName(i);
+                    String attrValue = attributes.getValue(i);
+                    el.setAttributeNS(attrNs, attrQName, attrValue);
+                }
             }
             el.setUserData(LINE_NUMBER_KEY_NAME, this.locator.getLineNumber(), null);
             el.setUserData(COLUMN_NUMBER, this.locator.getColumnNumber(), null);
-            if(nsMapping.size()>0) {
-            	el.setUserData(NS_MAPPING, nsMapping, null);
-            	nsMapping = new HashMap<>();
+            if (nsMappingChanged && nsMapping.size() > 0) {
+                // copy current namespace mapping only when it changed
+                el.setUserData(NS_MAPPING, new HashMap<>(nsMapping), null);
+                nsMappingChanged = false;
             }
             elementStack.push(el);
         }
@@ -102,15 +113,19 @@ public class PositionalXMLReader {
                 textBuffer.delete(0, textBuffer.length());
             }
         }
-        
+
         @Override
-        public void startPrefixMapping (String prefix, String uri) {
-        	nsMapping.put(prefix, uri);
+        public void startPrefixMapping(String prefix, String uri) {
+            nsMapping.put(prefix, uri);
+            nsMappingChanged = true;
         }
-        
+
         @Override
         public void endPrefixMapping(String prefix) {
-        	
+            String ns = nsMapping.remove(prefix);
+            appliedNs.remove(prefix);
+            nsMappingChanged = true;
+            Objects.nonNull(ns);
         }
     };
 
@@ -132,7 +147,7 @@ public class PositionalXMLReader {
 
     /**
      * Return formatted position of node in XML
-     * 
+     *
      * @param node
      * @return
      */
@@ -152,5 +167,23 @@ public class PositionalXMLReader {
         }
         sb.append(", element <").append(node.getNodeName()).append(">.");
         return sb.toString();
+    }
+
+    private void addNsIfNeeded(Element el) {
+        if (appliedNs.size() == nsMapping.size()) {
+            return;
+        }
+        for (var ns : nsMapping.keySet()) {
+            if (appliedNs.contains(ns)) {
+                continue;
+            }
+            String nsUri = nsMapping.get(ns);
+            if (StringUtils.isEmpty(ns)) {
+                el.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", nsUri);
+            } else {
+                el.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:" + ns, nsUri);
+            }
+            appliedNs.add(ns);
+        }
     }
 }

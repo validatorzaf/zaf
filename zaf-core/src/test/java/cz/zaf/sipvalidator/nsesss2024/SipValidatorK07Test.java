@@ -12,6 +12,7 @@ import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs50_59.Pravidlo54;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs70_79.Pravidlo77;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs80_89.Pravidlo85;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs80_89.Pravidlo88;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs90_99.Pravidlo94;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs90_99.Pravidlo95;
 import cz.zaf.sipvalidator.nsesss2024.pravidla07.kom00_09.Pravidlo7_01;
 import cz.zaf.sipvalidator.nsesss2024.pravidla07.kom00_09.Pravidlo7_02;
@@ -75,7 +76,7 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
     void testK07_01_OK01() {
         testPackage("kom1-OK", null,
                     ZakladniProfilValidace.PREJIMKA,
-                    new String[] { Pravidlo7_01.KOD },
+                    new String[] { Pravidlo7_01.KOD, Pravidlo7_03.KOD },
                     new String[] {});
     }
 
@@ -151,25 +152,17 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
                     new String[] { Pravidlo7_03.KOD });
     }
 
-    /*@Test
+    @Test
     void testK07_03_07() {
         testPackage("kom3-chyba7", ValidationStatus.ERROR,
                     ZakladniProfilValidace.PREJIMKA,
                     new String[] {},
                     new String[] { Pravidlo7_03.KOD });
-    }*/
+    }
 
     @Test
     void testK07_03_OK01() {
         testPackage("kom3-OK1", null,
-                    ZakladniProfilValidace.PREJIMKA,
-                    new String[] { Pravidlo7_03.KOD },
-                    new String[] {});
-    }
-
-    @Test
-    void testK07_03_OK02() {
-        testPackage("kom3-OK2", null,
                     ZakladniProfilValidace.PREJIMKA,
                     new String[] { Pravidlo7_03.KOD },
                     new String[] {});
@@ -183,14 +176,14 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
                     new String[] {});
     }
     
-//komponenta originál a přitom musí být i kontejner
-//    @Test
-//    void testK07_03_OK04() {
-//        testPackage("kom3-OK4", null,
-//                    ZakladniProfilValidace.PREJIMKA,
-//                    new String[] { Pravidlo7_03.KOD },
-//                    new String[] {});
-//    }
+
+    @Test
+    void testK07_03_OK04() {
+        testPackage("kom3-OK4", null,
+                    ZakladniProfilValidace.PREJIMKA,
+                    new String[] { Pravidlo7_03.KOD },
+                    new String[] {});
+    }
 
     @Test
     void testK07_03_OK05() {
@@ -201,16 +194,15 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
                     new String[] { Pravidlo105.OBS105 });
     }
 
-    /*@Test
+    @Test
     void testK07_03_OK06() {
         testPackage("kom3-OK6", null,
                     ZakladniProfilValidace.PREJIMKA,
                     new String[] { Pravidlo7_03.KOD },
                     new String[] {},
                     new String[] { Pravidlo103.OBS103 });
-    }*/
+    }
 
-    /*
     @Test
     void testK07_03_OK07() {
         testPackage("kom3-OK7", null,
@@ -218,9 +210,8 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
                     new String[] { Pravidlo7_03.KOD },
                     new String[] {},
                     new String[] { Pravidlo102.OBS102, Pravidlo103.OBS103 });
-    }*/
+    }
 
-    /*
     @Test
     void testK07_03_OK08() {
         testPackage("kom3-OK8", null,
@@ -228,9 +219,8 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
                     new String[] { Pravidlo7_03.KOD },
                     new String[] {},
                     new String[] { Pravidlo102.OBS102, Pravidlo103.OBS103 });
-    }*/
+    }
 
-    /*
     @Test
     void testK07_03_OK09() {
         testPackage("kom3-OK9", null,
@@ -239,7 +229,7 @@ public class SipValidatorK07Test extends SipValidatorTestBase {
                     new String[] {},
                     new String[] { Pravidlo94.OBS94, Pravidlo95.OBS95, Pravidlo102.OBS102, Pravidlo103.OBS103,
                             Pravidlo105.OBS105 });
-    }*/
+    }
 
     @Test
     void testK07_03_OK10() {

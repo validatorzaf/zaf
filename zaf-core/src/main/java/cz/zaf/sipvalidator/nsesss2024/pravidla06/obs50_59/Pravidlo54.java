@@ -25,15 +25,15 @@ import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 
 //
-// OBSAHOVÁ č.54: Každý element mets:div obsahuje dětský element podle struktury entit/objektů (od spisového plánu po komponentu) v sekci dmdSec s 
-// atributem TYPE s hodnotou příslušné entity/objektu a s atributem DMDID s hodnotou příslušné entity/objektu v atributu ID a s atributem ADMID s hodnotou, 
-// která odpovídá hodnotě atributu ID příslušné entity/objektu v sekci amdSec (entita/objekt v hierarchii dětských elementů 
-// mets:digiprovMD, mets:mdWrap, mets:xmlData, tp:TransakcniLogObjektu, tp:TransLogInfo, tp:Objekt, tp:Identifikator, tp:HodnotaID a tp:ZdrojID odpovídá v 
-// hodnotách hodnotám elementu nsesss:Identifikator a jeho atributu zdroj příslušné entity/objektu v sekci dmdSec). Uvedená entita/objekt je v sekci dmdSec, 
-// amdSec a structMap uvedena právě jednou. Pokud existuje jakýkoli element nsesss:KrizovyOdkaz a obsahuje atribut pevny s hodnotou ano, potom je entita/objekt typu 
-// součást, typový spis, věcná skupina nebo spisový plán v sekci dmdSec uvedená multiplicitně. V takovém případě je stejná entita/objekt uvedena v sekci structMap 
-// právě jednou (atribut DMDID obsahuje ID libovolného výskytu příslušné entity/objektu).
-//
+// OBSAHOVÁ č.54: Každý element mets:div obsahuje dětský element podle struktury entit/objektů (od spisového plánu po komponentu) v sekci dmdSec s atributem TYPE 
+// s hodnotou příslušné entity/objektu a s atributem DMDID s hodnotou příslušné entity/objektu v atributu ID a s atributem ADMID s hodnotou, která odpovídá 
+// hodnotě atributu ID příslušné entity/objektu v sekci amdSec (entita/objekt v hierarchii dětských elementů 
+// mets:digiprovMD, mets:mdWrap, mets:xmlData, tp:TransakcniLogObjektu, tp:TransLogInfo, tp:Objekt, tp:Identifikator, tp:HodnotaID a tp:ZdrojID odpovídá 
+// v hodnotách hodnotám elementu nsesss:Identifikator a jeho atributu zdroj příslušné entity/objektu v sekci dmdSec). 
+// Uvedená entita/objekt je v sekci dmdSec, amdSec a structMap uvedena právě jednou. Pokud existuje jakýkoli element nsesss:KrizovyOdkaz a obsahuje atribut pevny s hodnotou ano,
+// potom je entita/objekt typu součást, typový spis, věcná skupina nebo spisový plán v sekci dmdSec uvedená multiplicitně. V takovém případě je stejná entita/objekt uvedena 
+// v sekci structMap právě jednou (atribut DMDID obsahuje ID libovolného výskytu příslušné entity/objektu).
+
 public class Pravidlo54 extends K06PravidloBase {
 
     static final public String OBS54 = "obs54";
@@ -57,9 +57,9 @@ public class Pravidlo54 extends K06PravidloBase {
 
     public Pravidlo54() {
         super(OBS54,
-                "Pokud neexistuje žádný element <nsesss:KrizovyOdkaz> s atributem pevny s hodnotou ano, potom každý element <mets:div> obsahuje dětský element podle struktury entit/objektů (od spisového plánu po komponentu) v sekci dmdSec s atributem TYPE s hodnotou příslušné entity/objektu a s atributem DMDID s hodnotou příslušné entity/objektu v atributu ID a s atributem ADMID s hodnotou, která odpovídá hodnotě atributu ID příslušné entity/objektu v sekci amdSec (entita/objekt v hierarchii dětských elementů <mets:digiprovMD>, <mets:mdWrap>, <mets:xmlData>, <tp:TransakcniLogObjektu>, <tp:TransLogInfo>, <tp:Objekt>, <tp:Identifikator>, <tp:HodnotaID> a <tp:ZdrojID> odpovídá v hodnotách hodnotám elementu <nsesss:Identifikator> a jeho atributu zdroj příslušné entity/objektu v sekci dmdSec).",
+                "Každý element mets:div obsahuje dětský element podle struktury entit/objektů (od spisového plánu po komponentu) v sekci dmdSec s atributem TYPE s hodnotou příslušné entity/objektu a s atributem DMDID s hodnotou příslušné entity/objektu v atributu ID a s atributem ADMID s hodnotou, která odpovídá hodnotě atributu ID příslušné entity/objektu v sekci amdSec (entita/objekt v hierarchii dětských elementů mets:digiprovMD, mets:mdWrap, mets:xmlData, tp:TransakcniLogObjektu, tp:TransLogInfo, tp:Objekt, tp:Identifikator, tp:HodnotaID a tp:ZdrojID odpovídá v hodnotách hodnotám elementu nsesss:Identifikator a jeho atributu zdroj příslušné entity/objektu v sekci dmdSec). Uvedená entita/objekt je v sekci dmdSec, amdSec a structMap uvedena právě jednou. Pokud existuje jakýkoli element nsesss:KrizovyOdkaz a obsahuje atribut pevny s hodnotou ano, potom je entita/objekt typu součást, typový spis, věcná skupina nebo spisový plán v sekci dmdSec uvedená multiplicitně. V takovém případě je stejná entita/objekt uvedena v sekci structMap právě jednou (atribut DMDID obsahuje ID libovolného výskytu příslušné entity/objektu).",
                 "Chybí spisový plán, věcná skupina, typový spis, součást, díl, spis, dokument nebo komponenta ve strukturální mapě a jejich provázání na transakční protokol.",
-                "Bod 1.17 a 1.18 přílohy č. 2 NSESSS; Informační list NA, čá. 2/2018, příloha k č. 20/2018 (20.3).");
+                "Bod 1.17 a 1.18 přílohy č. 2 NSESSS; Informační list NA, roč. 2018, čá. 2, příloha k č. 20/2018 (20.3).");
 
     }
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import cz.zaf.common.validation.BaseRule;
 import cz.zaf.common.validation.BaseValidationLayer;
+import cz.zaf.common.validation.Rule;
 import cz.zaf.common.validation.ValidationSubprofile;
 import cz.zaf.eadvalidator.ap2023.EadValidationContext;
 import cz.zaf.eadvalidator.ap2023.ValidationLayers;
@@ -446,7 +447,7 @@ public class ContentValidationLayer extends BaseValidationLayer<EadValidationCon
 		this.provedKontrolu(ctx, createRules());
 	}
 
-	public List<? extends BaseRule<EadValidationContext>> createRules() {
+	public List<? extends Rule<EadValidationContext>> createRules() {
 		
 		List<Class<? extends BaseRule<EadValidationContext>>> ruleClasses;
 		if(profilValidace==AP2023Profile.ARCH_DESC) {

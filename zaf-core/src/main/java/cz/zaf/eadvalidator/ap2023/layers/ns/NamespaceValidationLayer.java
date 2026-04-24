@@ -4,6 +4,7 @@ import java.util.List;
 
 import cz.zaf.common.validation.BaseRule;
 import cz.zaf.common.validation.BaseValidationLayer;
+import cz.zaf.common.validation.Rule;
 import cz.zaf.common.validation.ValidationSubprofile;
 import cz.zaf.eadvalidator.ap2023.EadValidationContext;
 import cz.zaf.eadvalidator.ap2023.ValidationLayers;
@@ -40,7 +41,7 @@ public class NamespaceValidationLayer extends BaseValidationLayer<EadValidationC
 		
 	}
 
-	public List<? extends BaseRule<EadValidationContext>> createRules() {
+	public List<? extends Rule<EadValidationContext>> createRules() {
 		if(profilValidace==AP2023Profile.EARK_INHERENT_DESC || 
 				profilValidace==AP2023Profile.EARK_CONTEXTUAL_DESC)
 		{

@@ -11,11 +11,10 @@ import org.w3c.dom.Element;
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.validation.BaseValidationContext;
 import cz.zaf.common.validation.InnerFileValidator;
-import cz.zaf.common.validation.RuleEvaluationContext;
 import cz.zaf.schema.mets_1_12_1.Mets;
 import jakarta.xml.bind.annotation.XmlType;
 
-public class AipValidationContext extends BaseValidationContext implements RuleEvaluationContext {
+public class AipValidationContext extends BaseValidationContext {
 	
 	/**
 	 * AIP loader

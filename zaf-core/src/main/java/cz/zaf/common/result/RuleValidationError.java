@@ -8,7 +8,6 @@ import org.apache.commons.lang3.Validate;
 
 import cz.zaf.common.exceptions.codes.ErrorCode;
 import cz.zaf.common.validation.Rule;
-import cz.zaf.common.validation.RuleEvaluationContext;
 import cz.zaf.schema.validace_v1.TEntity;
 import cz.zaf.schema.validace_v1.TIdentifikator;
 import cz.zaf.schema.validace_v1.TPravidlo;
@@ -69,7 +68,7 @@ public class RuleValidationError {
      */
     final private List<EntityId> entityIds;
 
-    public RuleValidationError(final Rule<? extends RuleEvaluationContext> rule,
+    public RuleValidationError(final Rule<?> rule,
                          final String vypisChyby,
                          final String mistoChyby,
                          final ErrorCode errorCode,

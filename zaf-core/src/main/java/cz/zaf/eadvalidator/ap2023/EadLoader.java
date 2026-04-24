@@ -23,7 +23,7 @@ import org.xml.sax.SAXException;
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.result.ValidationResultImpl;
 import cz.zaf.common.validation.ValidationInput;
-import cz.zaf.common.xml.PositionalXMLReader2;
+import cz.zaf.common.xml.PositionalXMLReader;
 import cz.zaf.schema.ead3.Ead;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBElement;
@@ -99,7 +99,7 @@ public class EadLoader implements Closeable, ValidationInput {
     	document = null;
     	
         try (InputStream is = Files.newInputStream(filePath)) {
-            PositionalXMLReader2 xmlReader = new PositionalXMLReader2();
+            PositionalXMLReader xmlReader = new PositionalXMLReader();
             document = xmlReader.readXML(is);
         } catch (SAXException e) {
             parserError = e;

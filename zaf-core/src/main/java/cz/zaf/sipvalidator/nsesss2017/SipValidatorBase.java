@@ -28,11 +28,19 @@ abstract public class SipValidatorBase implements ValidatorListener<KontrolaNses
     public void validate(SipLoader sipLoader) {
 
         SipInfo sip = sipLoader.getSip();
-        
+
         // provedeni kontrol
         KontrolaNsessContext ctx = new KontrolaNsessContext(sip, excludeChecks);
+        prepareContext(ctx);
         BaseValidator<KontrolaNsessContext> validator = new BaseValidator<>(kontroly);
         validator.registerListener(this);
         validator.validate(ctx);
+    }
+
+    /**
+     * Připraví kontext před spuštěním validace.
+     * Podtřídy mohou přepsat pro nastavení dalších vlastností kontextu.
+     */
+    protected void prepareContext(KontrolaNsessContext ctx) {
     }
 }

@@ -24,7 +24,7 @@ public class Pravidlo2 extends PravidloBase {
     protected void kontrola() {
         String detailChyby = null;
 
-        Node metsMets = this.ctx.getContext().getMetsParser().getMetsRootNode();
+        Node metsMets = this.ctx.getMetsParser().getMetsRootNode();
         if (metsMets == null) {
             detailChyby = "Datový balíček SIP neobsahuje kořenový element <mets:mets>.";
             throw new ZafException(BaseCode.CHYBA, detailChyby);

@@ -8,6 +8,7 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.UUID;
 
@@ -177,6 +178,15 @@ public class CmdValidator {
 	}
     
     private void identifikujTypBalicku() {
+    	EnumSet<ValidatorType> allowedTypes = params.getProfileAllowedTypes();
+
+    	// If the user-supplied -p parameter narrows detection to a single validator
+    	// type, use it directly without examining input contents.
+    	if (allowedTypes != null && allowedTypes.size() == 1) {
+    		validationProfile = allowedTypes.iterator().next();
+    		return;
+    	}
+
     	Path inputPath = Paths.get(params.getInputPath());
     	if(Files.isRegularFile(inputPath)) {
     		// pokud je soubor, tak musí být pomůcka
@@ -196,19 +206,36 @@ public class CmdValidator {
 	    	// read fist 100 characters from METS.xml if exists
 	    	try {
 	    		String metsData = Files.readString(inputPath.resolve("METS.xml"), StandardCharsets.UTF_8);
-	    		if(metsData.contains("PROFILE=\"https://stands.nacr.cz/da/2023/aip.xml\"")) {
+	    		if(isTypeAllowed(allowedTypes, ValidatorType.DAAIP2024) &&
+	    		   metsData.contains("PROFILE=\"https://stands.nacr.cz/da/2023/aip.xml\"")) {
 	    			validationProfile = ValidatorType.DAAIP2024;
-	    			// Detect subprofile
-	    			da2024Profile = detectSubProfileDAAIP2024(metsData);
+	    			// Detect subprofile only when user did not supply one via -p
+	    			if (!isUserProfileFor(ValidatorType.DAAIP2024)) {
+	    				da2024Profile = detectSubProfileDAAIP2024(metsData);
+	    			}
 	    		} else
-	    		if(metsData.contains("=\"http://www.mvcr.cz/nsesss/v4\"")) {
+	    		if(isTypeAllowed(allowedTypes, ValidatorType.NSESSS2024) &&
+	    		   metsData.contains("=\"http://www.mvcr.cz/nsesss/v4\"")) {
 	    			validationProfile = ValidatorType.NSESSS2024;
 	    		}
-	    		
+
     		} catch (IOException e) {
 	    		// ignore
-	    	}	    	
+	    	}
     	}
+    }
+
+    private boolean isTypeAllowed(EnumSet<ValidatorType> allowedTypes, ValidatorType type) {
+    	return allowedTypes == null || allowedTypes.contains(type);
+    }
+
+    /**
+     * Returns true if the user explicitly supplied a -p value that is valid
+     * for the given validator type (so autodetection must not overwrite it).
+     */
+    private boolean isUserProfileFor(ValidatorType type) {
+    	EnumSet<ValidatorType> allowedTypes = params.getProfileAllowedTypes();
+    	return allowedTypes != null && allowedTypes.contains(type);
     }
     
     /**
@@ -216,7 +243,12 @@ public class CmdValidator {
      * @param inputPath
      */
     private void detectFileType(Path inputPath) {
-		validationProfile = ValidatorType.AP2023;		
+		validationProfile = ValidatorType.AP2023;
+		// If the user supplied -p for AP2023 explicitly, keep their value
+		// and skip content-based subprofile detection.
+		if (isUserProfileFor(ValidatorType.AP2023)) {
+			return;
+		}
 		try ( InputStream is = Files.newInputStream(inputPath); ) {
 			// read from InputStream at most 65536 bytes
 			String data = readStringFromStream(is);
@@ -226,10 +258,11 @@ public class CmdValidator {
 		} catch (IOException e) {
 			// ignore error
 		}
-		
+
 	}
 
 	private boolean detectPkgTypeZip(Path inputPath) {
+    	EnumSet<ValidatorType> allowedTypes = params.getProfileAllowedTypes();
     	try(ZipFile zipFile = new ZipFile(inputPath.toFile())) {
             // zipFile.setCharset(Charset.forName(zipEncoding)); // extrakce českých znaků
             boolean isvalidZipFile = zipFile.isValidZipFile();
@@ -254,24 +287,33 @@ public class CmdValidator {
 					try ( InputStream is = zipFile.getInputStream(fileHeader); ) {
 						// read from InputStream at most 65536 bytes
 						String metsData = readStringFromStream(is);
-						if(metsData.contains("PROFILE=\"https://stands.nacr.cz/da/2023/aip.xml\"")) {
+						if(isTypeAllowed(allowedTypes, ValidatorType.DAAIP2024) &&
+						   metsData.contains("PROFILE=\"https://stands.nacr.cz/da/2023/aip.xml\"")) {
 							validationProfile = ValidatorType.DAAIP2024;
-							// Detect subprofile
-							da2024Profile = detectSubProfileDAAIP2024(metsData);
+							// Detect subprofile only when user did not supply one via -p
+							if (!isUserProfileFor(ValidatorType.DAAIP2024)) {
+								da2024Profile = detectSubProfileDAAIP2024(metsData);
+							}
 							return true;
 						}
-						if(metsData.contains("=\"http://www.mvcr.cz/nsesss/v4\"")) {
+						if(isTypeAllowed(allowedTypes, ValidatorType.NSESSS2024) &&
+						   metsData.contains("=\"http://www.mvcr.cz/nsesss/v4\"")) {
 							validationProfile = ValidatorType.NSESSS2024;
-							nsesss2024Profile = detectSubProfileNSESSS2024(metsData);
+							if (!isUserProfileFor(ValidatorType.NSESSS2024)) {
+								nsesss2024Profile = detectSubProfileNSESSS2024(metsData);
+							}
 							return true;
 						}
-						if(metsData.contains("=\"http://www.mvcr.cz/nsesss/v3\"")) {
+						if(isTypeAllowed(allowedTypes, ValidatorType.NSESSS2017) &&
+						   metsData.contains("=\"http://www.mvcr.cz/nsesss/v3\"")) {
 							validationProfile = ValidatorType.NSESSS2017;
-							nsesss2017Profile = detectSubProfileNSESSS2017(metsData);
+							if (!isUserProfileFor(ValidatorType.NSESSS2017)) {
+								nsesss2017Profile = detectSubProfileNSESSS2017(metsData);
+							}
 							return true;
 						}
 					}
-            		
+
             	}
             }
     	} catch (ZipException e) {

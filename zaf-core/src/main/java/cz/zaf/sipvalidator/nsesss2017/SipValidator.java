@@ -12,31 +12,30 @@ import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
  */
 public class SipValidator extends SipValidatorBase {
 
-    K00_SkodlivehoKodu ksk;
+    private String hrozba;
 
     public SipValidator(final ProfilValidace profilValidace,
                         final List<String> excludeChecks) {
     	super(pripravKontroly(profilValidace), excludeChecks);
-    	ksk = (K00_SkodlivehoKodu)kontroly.get(0);
     }
 
     /**
      * Pripravi seznam kontrol
-     * 
+     *
      * @param profilValidace
      *            validační profil
      * @return Seznam připravených úrovní kontroly
      */
     static protected List<ValidationLayer<KontrolaNsessContext>> pripravKontroly(ProfilValidace profilValidace) {
         List<ValidationLayer<KontrolaNsessContext>> kontroly = new ArrayList<>(7);
-        
+
         kontroly.add(new K00_SkodlivehoKodu());
-        
+
         K01_DatoveStruktury kds = new K01_DatoveStruktury();
         kontroly.add(kds);
-        
+
         K02_ZnakoveSady kko = new K02_ZnakoveSady();
-        kontroly.add(kko);        
+        kontroly.add(kko);
 
         K03_Spravnosti kwf = new K03_Spravnosti();
         kontroly.add(kwf);
@@ -47,34 +46,32 @@ public class SipValidator extends SipValidatorBase {
         K05_ProtiSchematu vxml = new K05_ProtiSchematu();
         kontroly.add(vxml);
 
-        K06_Obsahova oks = new K06_Obsahova(profilValidace.createObsahovaPravidla());
+        K06_Obsahova oks = new K06_Obsahova(profilValidace);
         kontroly.add(oks);
-        
-        K07_Komponent kfs = new K07_Komponent(profilValidace.createFormatovaPravidla());
+
+        K07_Komponent kfs = new K07_Komponent(profilValidace);
         kontroly.add(kfs);
         return kontroly;
     }
 
     /**
      * Nastaveni hrozby pro kontrolu skodliveho kodu
-     * 
+     *
      * @param hrozba
      *            textový popis hrozby, null pokud nebyla nalezena
      */
     public void setHrozba(String hrozba) {
-        ksk.setHrozba(hrozba);
+        this.hrozba = hrozba;
+    }
+
+    @Override
+    protected void prepareContext(KontrolaNsessContext ctx) {
+        ctx.setHrozba(hrozba);
     }
 
     @Override
     public void layerValidationStarted(KontrolaNsessContext context,
                                        ValidationLayer<KontrolaNsessContext> layer) {
-        if (layer.getClass() == K03_Spravnosti.class) {
-            // nacteni dokumentu pokud zaciname kontrolovat jeho spravnost a jedna se o XML
-            MetsParser metsParser = new MetsParser();
-            metsParser.parse(context.getSip());
-
-            context.setMetsParser(metsParser);
-        }
     }
 
     @Override

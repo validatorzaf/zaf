@@ -43,18 +43,18 @@ public class Pravidlo93a extends K06PravidloBase {
                 if (jsz == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(vs),
                             vs,
-                            kontrola.getEntityId(vs));
+                            getEntityId(vs));
                 }
                 Element pusz = ValuesGetter.getXChild(vs, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.TRIDENI,
                         NsesssV3.PLNE_URCENY_SPISOVY_ZNAK);
                 if (pusz == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(vs),
-                            vs, kontrola.getEntityId(vs));
+                            vs, getEntityId(vs));
                 }
                 if (!jsz.getTextContent().equals(pusz.getTextContent())) {
                     nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Elementy neobsahují stejné hodnoty. " + getJmenoIdentifikator(vs),
                             getMistoChyby(jsz) + " " + getMistoChyby(pusz),
-                            kontrola.getEntityId(vs));
+                            getEntityId(vs));
                 }
             }
         }

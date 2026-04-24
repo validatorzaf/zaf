@@ -35,15 +35,15 @@ public class Pravidlo90 extends K06PravidloBase {
             for (Element elTypovySpis : listTypoveSpisy) {
                 Element elVecnaSkupina = ValuesGetter.getXChild(elTypovySpis, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI, NsesssV4.MATERSKA_ENTITA, NsesssV4.VECNA_SKUPINA);
                 if (elVecnaSkupina == null) {
-                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezena rodičovská entita věcná skupina typového spisu.", getMistoChyby(elTypovySpis), kontrola.getEntityId(elTypovySpis));
+                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezena rodičovská entita věcná skupina typového spisu.", getMistoChyby(elTypovySpis), getEntityId(elTypovySpis));
                 }
                 Element elUrcenoProTypoveSpisy = ValuesGetter.getXChild(elVecnaSkupina, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.URCENO_PRO_TYPOVE_SPISY);
                 if (elUrcenoProTypoveSpisy == null) {
-                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:UrcenoProTypoveSpisy>.", getMistoChyby(elVecnaSkupina), kontrola.getEntityId(elVecnaSkupina));
+                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:UrcenoProTypoveSpisy>.", getMistoChyby(elVecnaSkupina), getEntityId(elVecnaSkupina));
                 }
                 String strUrcenoProTypoveSpisy = elUrcenoProTypoveSpisy.getTextContent();
                 if (!StringUtils.equals(strUrcenoProTypoveSpisy, "ano")) {
-                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element <nsesss:UrcenoProTypoveSpisy> neobsahuje hodnotu ano.", getMistoChyby(elUrcenoProTypoveSpisy), kontrola.getEntityId(elVecnaSkupina));
+                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element <nsesss:UrcenoProTypoveSpisy> neobsahuje hodnotu ano.", getMistoChyby(elUrcenoProTypoveSpisy), getEntityId(elVecnaSkupina));
                 }
             }
         }
@@ -55,7 +55,7 @@ public class Pravidlo90 extends K06PravidloBase {
                     if (elVecnaSKupina != null) {
                         Element elTypovySpis = ValuesGetter.getXParent(elVecnaSKupina, NsesssV4.MATERSKA_ENTITA, NsesssV4.TRIDENI, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TYPOVY_SPIS);
                         if (elTypovySpis == null) {
-                            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen dětský element <nsesss:TypovySpis> elementu <nsesss:VecnaSkupina>, která obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje> element <nsesss:UrcenoProTypoveSpisy> s hodnotou ano.", getMistoChyby(elVecnaSKupina), kontrola.getEntityId(elVecnaSKupina));
+                            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen dětský element <nsesss:TypovySpis> elementu <nsesss:VecnaSkupina>, která obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje> element <nsesss:UrcenoProTypoveSpisy> s hodnotou ano.", getMistoChyby(elVecnaSKupina), getEntityId(elVecnaSKupina));
                         }
                     }
                 }

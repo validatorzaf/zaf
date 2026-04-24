@@ -40,10 +40,10 @@ public class Pravidlo66 extends K06PravidloBase {
                 if (elDatum != null) {
                     String datumVyrizeniUzavreni = elDatum.getTextContent();
                     if ((jeVyrizenaPo(elDatum, datumVyrizeniUzavreni) && skartacniZank.equals("V"))) {
-                        nastavChybu(BaseCode.CHYBI_ELEMENT, "Element <nsesss:SkartacniZnak> obsahuje nepovolenou hodnotu: " + skartacniZank + ".", getMistoChyby(entita), kontrola.getEntityId(entita));
+                        nastavChybu(BaseCode.CHYBI_ELEMENT, "Element <nsesss:SkartacniZnak> obsahuje nepovolenou hodnotu: " + skartacniZank + ".", getMistoChyby(entita), getEntityId(entita));
                     }
                 } else {
-                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Element <nsesss:SkartacniZnak> obsahuje nepovolenou hodnotu: " + skartacniZank + ".", getMistoChyby(entita), kontrola.getEntityId(entita));
+                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Element <nsesss:SkartacniZnak> obsahuje nepovolenou hodnotu: " + skartacniZank + ".", getMistoChyby(entita), getEntityId(entita));
                 }
             }
         }
@@ -52,7 +52,7 @@ public class Pravidlo66 extends K06PravidloBase {
     private String getSkartacniZnak(Element entita) {
         Element elSkartacniZnak = ValuesGetter.getXChild(entita, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.VYRAZOVANI, NsesssV4.SKARTACNI_REZIM, NsesssV4.SKARTACNI_ZNAK);
         if (elSkartacniZnak == null) {
-            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:SkartacniZnak>.", getMistoChyby(entita), kontrola.getEntityId(entita));
+            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:SkartacniZnak>.", getMistoChyby(entita), getEntityId(entita));
         }
         return elSkartacniZnak.getTextContent();
     }
@@ -66,7 +66,7 @@ public class Pravidlo66 extends K06PravidloBase {
             elDatum = ValuesGetter.getXChild(elEntita, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.UZAVRENI, NsesssV4.DATUM);
         }
         if (elDatum == null) {
-            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Datum>.", getMistoChyby(elEntita), kontrola.getEntityId(elEntita));
+            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Datum>.", getMistoChyby(elEntita), getEntityId(elEntita));
         }
 
         return elDatum;

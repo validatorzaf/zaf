@@ -34,19 +34,19 @@ public class Pravidlo79 extends K06PravidloBase {
             Element dataceVyrazeni = ValuesGetter.getSourozencePrvnihoSeJmenem(skrizeni, NsesssV4.DATACE_VYRAZENI);
             if (dataceVyrazeni == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:DataceVyrazeni>. " + getJmenoIdentifikator(skrizeni),
-                        skrizeni, kontrola.getEntityId(skrizeni));
+                        skrizeni, getEntityId(skrizeni));
             }
             Element rokSkOperace = ValuesGetter.getXChild(dataceVyrazeni, NsesssV4.ROK_SKARTACNI_OPERACE);
             if (rokSkOperace == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:RokSkartacniOperace>. " + getJmenoIdentifikator(skrizeni),
-                        dataceVyrazeni, kontrola.getEntityId(skrizeni));
+                        dataceVyrazeni, getEntityId(skrizeni));
             }
             Integer rokOperace = vratRok(rokSkOperace); //když null zavolá nastavChybu() sám
 
             Element datum = ValuesGetter.getXChild(skrizeni, NsesssV4.DATUM);
             if (datum == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Datum>. " + getJmenoIdentifikator(skrizeni),
-                        skrizeni, kontrola.getEntityId(skrizeni));
+                        skrizeni, getEntityId(skrizeni));
             }
             Integer rokSkRizeni = vratRok(datum);
 
@@ -55,7 +55,7 @@ public class Pravidlo79 extends K06PravidloBase {
                         + ". Rok skartační operace: " + rokOperace
                         + ". " + getJmenoIdentifikator(skrizeni),
                         getMistoChyby(datum) + " " + getMistoChyby(rokSkOperace),
-                        kontrola.getEntityId(skrizeni));
+                        getEntityId(skrizeni));
             }
         }
     }

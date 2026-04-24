@@ -29,16 +29,16 @@ public class Pravidlo75 extends K06PravidloBase {
     protected void kontrola() {
         List<Element> posuzovanyOkamzik = metsParser.getNodes(NsesssV4.PLATNOST);
         for (Element platnost : posuzovanyOkamzik) {
-            Element elEntita = kontrola.getEntity(platnost);
+            Element elEntita = getEntity(platnost);
             Element nodeOd = ValuesGetter.findFirstChild(platnost, NsesssV4.PLATNOST_OD);
             if (nodeOd == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:PlatnostOd>.", platnost,
-                        kontrola.getEntityId(elEntita));
+                        getEntityId(elEntita));
             }
             Element nodeDo = ValuesGetter.findFirstChild(platnost, NsesssV4.PLATNOST_DO);
             if (nodeDo == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:PlatnostDo>.", platnost,
-                        kontrola.getEntityId(elEntita));
+                        getEntityId(elEntita));
             }
             Date od = null;
             Date po = null;
@@ -46,13 +46,13 @@ public class Pravidlo75 extends K06PravidloBase {
                 od = ValuesGetter.vytvorDate(nodeOd, "yyyy-MM-dd");
             } catch (ParseException ex) {
                 nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Hodnota data je ve špatném formátu.", platnost,
-                        kontrola.getEntityId(elEntita));
+                        getEntityId(elEntita));
             }
             try {
                 po = ValuesGetter.vytvorDate(nodeDo, "yyyy-MM-dd");
             } catch (ParseException ex) {
                 nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Hodnota data je ve špatném formátu.", platnost,
-                        kontrola.getEntityId(elEntita));
+                        getEntityId(elEntita));
             }
 
             if (po != null) {
@@ -62,7 +62,7 @@ public class Pravidlo75 extends K06PravidloBase {
                     list.add(nodeOd);
                     list.add(nodeDo);
                     nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element <nsesss:PlatnostOd> obsahuje větší hodnotu než element <nsesss:PlatnostDo>.", list,
-                            kontrola.getEntityId(elEntita));
+                            getEntityId(elEntita));
                 }
             }
         }

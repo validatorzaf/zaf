@@ -12,7 +12,7 @@ public class Pravidlo2 extends PravidloBase {
 
     public Pravidlo2() {
         super(KOD,
-                "Soubor v datovém formátu ZIP po rozbalení obsahuje právě jednu složku. Ta má stejný název jako je název souboru v datovém formátu ZIP.",
+                "Pokud je datový balíček SIP komprimován do souboru v datovém formátu ZIP, po rozbalení obsahuje právě jednu složku. Ta má stejný název jako je název souboru v datovém formátu ZIP.",
                 "Uvedeno je chybně označení datového balíčku SIP.",
                 "Požadavek 9.2.11 NSESSS.");
     }
@@ -21,7 +21,7 @@ public class Pravidlo2 extends PravidloBase {
     // po rozbalení obsahuje právě jednu složku. Ta má stejný název jako je název souboru v datovém formátu ZIP.
     @Override
     protected void kontrola() {
-        SipInfo sipInfo = this.ctx.getContext().getSip();
+        SipInfo sipInfo = this.ctx.getSip();
 
         LoadType loadtype = sipInfo.getLoadType();
         boolean stav = false;

@@ -1,33 +1,36 @@
 package cz.zaf.sipvalidator.nsesss2017;
 
+import java.lang.reflect.Constructor;
+import java.util.ArrayList;
 import java.util.List;
 
 import cz.zaf.common.validation.BaseValidationLayer;
-import cz.zaf.common.validation.RuleEvaluationContext;
+import cz.zaf.common.validation.Rule;
 import cz.zaf.common.validation.ValidationLayerType;
 
-abstract public class KontrolaBase<KontrolaContext extends RuleEvaluationContext>
+abstract public class KontrolaBase<KontrolaContext>
         extends BaseValidationLayer<KontrolaNsessContext, KontrolaContext> {
-	
-	/**
-	 * List of rule classes
-	 */
-	protected List<Class<? extends PravidloBase >> ruleClasses;
 
     protected KontrolaBase(final ValidationLayerType validationType) {
         super(validationType);
     }
 
-    /*
-	@Override
-	protected void validateImpl() {
-		SimpleRuleContext<KontrolaContext> virtContext = new SimpleRuleContext<>();
-		
-		var rules = createRules();		
-		provedKontrolu(this, rules);
-	}
-	
-	public List<? extends Rule<KontrolaContext> > createRules() {
-		return createRules(ruleClasses);
-	}*/
+    /**
+     * Instantiate rules from class array. Static variant usable from
+     * contexts without a layer instance (e.g. ValidatorInfo).
+     */
+    public static List<Rule<?>> instantiateRules(Class<?>[] ruleClasses) {
+        List<Rule<?>> rules = new ArrayList<>(ruleClasses.length);
+        for (Class<?> ruleClass : ruleClasses) {
+            try {
+                Constructor<?> constr = ruleClass.getDeclaredConstructor();
+                @SuppressWarnings("unchecked")
+                Rule<?> rule = (Rule<?>) constr.newInstance();
+                rules.add(rule);
+            } catch (Exception e) {
+                throw new IllegalStateException("Nelze vytvořit třídu pravidla: " + ruleClass.getName(), e);
+            }
+        }
+        return rules;
+    }
 }

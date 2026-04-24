@@ -7,7 +7,6 @@ package cz.zaf.common.result;
  */
 public enum ValidationStatus {
 	NOT_EXCECUTED,
-	//PROBIHA,
 	OK,
 	ERROR
 }

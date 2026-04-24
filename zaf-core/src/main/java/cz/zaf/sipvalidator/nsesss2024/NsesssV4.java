@@ -7,7 +7,7 @@ package cz.zaf.sipvalidator.nsesss2024;
  */
 public class NsesssV4 {
     // Verze pravidel NSESSS
-    public final static String ZAF_RULE_VERSION = "2";
+    public final static String ZAF_RULE_VERSION = "3";
 
     public final static String ANALOGOVY_DOKUMENT = "nsesss:AnalogovyDokument";
     public final static String AUTOR = "nsesss:Autor";

@@ -37,7 +37,7 @@ public class Pravidlo86 extends K06PravidloBase {
                             NsesssV3.MATERSKE_ENTITY);
                     if (elMaterskeEntity == null) {
                         nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:MaterskeEntity>. " + getJmenoIdentifikator(zakladnientita),
-                                getMistoChyby(zakladnientita), kontrola.getEntityId(zakladnientita));
+                                getMistoChyby(zakladnientita), getEntityId(zakladnientita));
                     }
                 }
             }

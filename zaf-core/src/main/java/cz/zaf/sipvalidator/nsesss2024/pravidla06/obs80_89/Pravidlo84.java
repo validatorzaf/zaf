@@ -31,17 +31,17 @@ public class Pravidlo84 extends K06PravidloBase {
             boolean maZpusobSHodnotou = ValuesGetter.getObsahujeRodicElementSHodnotou(elVyrizeni, NsesssV4.ZPUSOB,
                     "jiný způsob");
             if (maZpusobSHodnotou) {
-                Element entita = kontrola.getEntity(elVyrizeni);
+                Element entita = getEntity(elVyrizeni);
                 Element obs_vyr = ValuesGetter.getXChild(elVyrizeni, NsesssV4.OBSAH_VYRIZENI);
                 if (obs_vyr == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:ObsahVyrizeni>. " + getJmenoIdentifikator(elVyrizeni),
-                            elVyrizeni, kontrola.getEntityId(entita));
+                            elVyrizeni, getEntityId(entita));
                 } else {
                     String hodnotaElObsVyrizeni = obs_vyr.getTextContent();
                     if (StringUtils.isBlank(hodnotaElObsVyrizeni)) {
                         nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element <nsesss:ObsahVyrizeni> obsahuje prázdnou hodnotu. "
                                 + getJmenoIdentifikator(elVyrizeni),
-                                obs_vyr, kontrola.getEntityId(entita));
+                                obs_vyr, getEntityId(entita));
                     }
                 }
             }

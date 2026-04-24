@@ -42,13 +42,13 @@ public class Pravidlo85 extends K06PravidloBase {
                         if (uklalaciJednotka == null) {
                             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:UkladaciJednotka>. " + getJmenoIdentifikator(
                                     dokument),
-                                    getMistoChyby(analog), kontrola.getEntityId(dokument));
+                                    getMistoChyby(analog), getEntityId(dokument));
                         } else {
                             String hodnotaElUkladJednotky = uklalaciJednotka.getTextContent();
                             if (StringUtils.isBlank(hodnotaElUkladJednotky)) {
                                 nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element <nsesss:UkladaciJednotka> obsahuje prázdnou hodnotu. "
                                         + getJmenoIdentifikator(dokument), getMistoChyby(uklalaciJednotka),
-                                        kontrola.getEntityId(dokument));
+                                        getEntityId(dokument));
                             }
                         }
                     }

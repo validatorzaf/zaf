@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -95,6 +96,8 @@ public class ValidationService {
 
 		private cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace nsesss2024Profile;
 
+		private EnumSet<ValidatorType> profileAllowedTypes;
+
 		public ValidationJob(Path requestPath, String originalFilename,
 				final boolean batchMode, 
 				final ValidatorType validationProfile) throws IOException {
@@ -170,6 +173,12 @@ public class ValidationService {
 
 
 
+		public void setProfileAllowedTypes(EnumSet<ValidatorType> profileAllowedTypes) {
+			this.profileAllowedTypes = profileAllowedTypes;
+		}
+
+
+
 		@Override
 		public void run() {
 			jobStatus = JobStatus.PROCESSING;
@@ -183,28 +192,21 @@ public class ValidationService {
 				
 				if(validationProfile!=null) {
 					params.setValidationProfile(validationProfile);
-					switch(validationProfile) {
-					case AP2023:
-						if(ap2023Profile!=null) {
-							params.setAp2023Profile(ap2023Profile);
-						}
-						break;
-					case DAAIP2024:
-						if(daaip2024Profile!=null) {
-							params.setDa2024Profile(daaip2024Profile);
-						}
-						break;
-					case NSESSS2017:
-						if(nsesss2017Profile!=null) {
-							params.setNsesss2017Profile(nsesss2017Profile);
-						}
-						break;
-					case NSESSS2024:
-						if(nsesss2024Profile!=null) {
-							params.setNsesss2024Profile(nsesss2024Profile);
-						}
-						break;
-					}
+				}
+				if(ap2023Profile!=null) {
+					params.setAp2023Profile(ap2023Profile);
+				}
+				if(daaip2024Profile!=null) {
+					params.setDa2024Profile(daaip2024Profile);
+				}
+				if(nsesss2017Profile!=null) {
+					params.setNsesss2017Profile(nsesss2017Profile);
+				}
+				if(nsesss2024Profile!=null) {
+					params.setNsesss2024Profile(nsesss2024Profile);
+				}
+				if(profileAllowedTypes!=null) {
+					params.setProfileAllowedTypes(profileAllowedTypes);
 				}
 
 				CmdValidator cmdValidator = new CmdValidator(params);
@@ -251,66 +253,27 @@ public class ValidationService {
 			log.debug("Storing file to the working folder: {}", requestPath);
 			
 			ValidatorType validationProfile = null;
-			java.util.function.Consumer<ValidationJob> jobCustomizer = null;
 			if(validationType!=null) {
 				switch(validationType) {
 				case AP2023:
 					validationProfile = ValidatorType.AP2023;
-					jobCustomizer = vj -> {
-						if ("FA".equals(paramValidationProfile)) {
-							vj.setAp2023Profile(AP2023Profile.FINDING_AID);
-						} else if ("DA".equals(paramValidationProfile)) {
-							vj.setAp2023Profile(AP2023Profile.ARCH_DESC);
-						}
-					};
 					break;
-				case DAAIP2024: 
+				case DAAIP2024:
 					validationProfile = ValidatorType.DAAIP2024;
-					if(paramValidationProfile!=null&&!"AUTO".equals(paramValidationProfile)) {
-						jobCustomizer = vj -> vj.setDaaip2024Profile(DAAIP2024Profile.valueOf(paramValidationProfile));						
-					}
 					break;
 				case NSESSS2017:
 					validationProfile = ValidatorType.NSESSS2017;
-					if(paramValidationProfile!=null) {
-						jobCustomizer = vj -> {
-							if("SIP_METADATA".equals(paramValidationProfile)) {
-								vj.setNsesss2017Profile(ZakladniProfilValidace.SKARTACE_METADATA);
-							} else 
-							if("SIP_PREVIEW".equals(paramValidationProfile)) {
-								vj.setNsesss2017Profile(ZakladniProfilValidace.SKARTACE_UPLNY);
-							} else
-							if("SIP".equals(paramValidationProfile)) {
-								vj.setNsesss2017Profile(ZakladniProfilValidace.PREJIMKA);
-							}
-						};
-					}
 					break;
 				case NSESSS2024:
 					validationProfile = ValidatorType.NSESSS2024;
-					if(paramValidationProfile!=null) {
-						jobCustomizer = vj -> {
-							if("SIP_METADATA".equals(paramValidationProfile)) {
-								vj.setNsesss2024Profile(cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.SKARTACE_METADATA);
-							} else 
-							if("SIP_PREVIEW".equals(paramValidationProfile)) {
-								vj.setNsesss2024Profile(cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.SKARTACE_UPLNY);
-							} else
-							if("SIP".equals(paramValidationProfile)) {
-								vj.setNsesss2024Profile(cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.PREJIMKA);
-							}
-						};
-					}
 					break;
 				}
 			}
-			
+
 			ValidationJob job = new ValidationJob(requestPath, data.getOriginalFilename(),
 					batchMode!=null && batchMode,
 					validationProfile);
-			if(jobCustomizer!=null) {
-				jobCustomizer.accept(job);
-			}
+			applyRuleProfile(job, paramValidationProfile);
 			// copy input stream to the file
 			Files.copy(data.getInputStream(), job.getDataPath());
 			
@@ -325,6 +288,52 @@ public class ValidationService {
 			throw new RuntimeException("Failed to store request, path: " + requestPath, e);
 		}
 		return requestValidationId;
+	}
+
+	/**
+	 * Maps the web-service ruleProfile value to the applicable profile fields
+	 * and the set of validator types that value restricts detection to.
+	 *
+	 * When validationType is AUTO (null), this lets CmdValidator's autodetection
+	 * narrow by the user's ruleProfile and preserve it as the resulting profile.
+	 */
+	private void applyRuleProfile(ValidationJob job, String paramValidationProfile) {
+		if(paramValidationProfile==null || "AUTO".equals(paramValidationProfile)) {
+			return;
+		}
+		switch(paramValidationProfile) {
+		case "SIP_METADATA":
+			job.setNsesss2017Profile(ZakladniProfilValidace.SKARTACE_METADATA);
+			job.setNsesss2024Profile(cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.SKARTACE_METADATA);
+			job.setProfileAllowedTypes(EnumSet.of(ValidatorType.NSESSS2017, ValidatorType.NSESSS2024));
+			break;
+		case "SIP_PREVIEW":
+			job.setNsesss2017Profile(ZakladniProfilValidace.SKARTACE_UPLNY);
+			job.setNsesss2024Profile(cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.SKARTACE_UPLNY);
+			job.setProfileAllowedTypes(EnumSet.of(ValidatorType.NSESSS2017, ValidatorType.NSESSS2024));
+			break;
+		case "SIP":
+			job.setNsesss2017Profile(ZakladniProfilValidace.PREJIMKA);
+			job.setNsesss2024Profile(cz.zaf.sipvalidator.nsesss2024.profily.ZakladniProfilValidace.PREJIMKA);
+			job.setProfileAllowedTypes(EnumSet.of(ValidatorType.NSESSS2017, ValidatorType.NSESSS2024));
+			break;
+		case "FA":
+			job.setAp2023Profile(AP2023Profile.FINDING_AID);
+			job.setProfileAllowedTypes(EnumSet.of(ValidatorType.AP2023));
+			break;
+		case "AD":
+		case "DA":
+			job.setAp2023Profile(AP2023Profile.ARCH_DESC);
+			job.setProfileAllowedTypes(EnumSet.of(ValidatorType.AP2023));
+			break;
+		case "AIP":
+		case "DIP_METADATA":
+		case "DIP_CONTENT":
+		case "SIP_CHANGE":
+			job.setDaaip2024Profile(DAAIP2024Profile.valueOf(paramValidationProfile));
+			job.setProfileAllowedTypes(EnumSet.of(ValidatorType.DAAIP2024));
+			break;
+		}
 	}
 
 	public RequestProcessState getStatus(String validationRequestId) {

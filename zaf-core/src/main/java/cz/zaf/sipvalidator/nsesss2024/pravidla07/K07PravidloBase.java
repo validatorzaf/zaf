@@ -7,13 +7,14 @@ import cz.zaf.common.exceptions.ZafXmlPositionException;
 import cz.zaf.common.exceptions.codes.ErrorCode;
 import cz.zaf.common.validation.BaseRule;
 import cz.zaf.common.xml.PositionalXMLReader;
+import cz.zaf.sipvalidator.nsesss2024.KontrolaNsessContext;
 
 /**
  * Vychozi trida pro implementaci pravidel kontrol komponent
  */
-abstract public class K07PravidloBase extends BaseRule<K07KontrolaContext> {
+abstract public class K07PravidloBase extends BaseRule<KontrolaNsessContext> {
 
-    protected K07KontrolaContext ctx;
+    protected KontrolaNsessContext ctx;
 
     public K07PravidloBase(final String kodPravidla,
                            final String textPravidla,
@@ -23,7 +24,7 @@ abstract public class K07PravidloBase extends BaseRule<K07KontrolaContext> {
     }
 
     @Override
-    final public void eval(K07KontrolaContext ctx) {
+    final public void eval(KontrolaNsessContext ctx) {
         this.ctx = ctx;
         kontrola();
         this.ctx = null;

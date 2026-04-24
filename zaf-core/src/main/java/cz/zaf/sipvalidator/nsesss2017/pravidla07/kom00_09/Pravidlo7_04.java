@@ -193,7 +193,7 @@ public class Pravidlo7_04 extends K07PravidloBase {
             return;
         }
         href = HelperString.replaceSeparators(href);
-        Path cestaKeKomponente = this.ctx.getContext().getKomponentaPath(href).toAbsolutePath();
+        Path cestaKeKomponente = this.ctx.getKomponentaPath(href).toAbsolutePath();
 
         if (Files.isRegularFile(cestaKeKomponente)) {
             try {

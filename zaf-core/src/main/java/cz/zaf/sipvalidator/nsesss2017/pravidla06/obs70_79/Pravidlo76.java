@@ -42,14 +42,14 @@ public class Pravidlo76 extends K06PravidloBase {
                 if (an_ze == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Element <" + zakladnientita.getNodeName() + "> "
                             + "neobsahuje dětský element <nsesss:AnalogovyDokument>. " + getJmenoIdentifikator(zakladnientita),
-                            getMistoChyby(zakladnientita), kontrola.getEntityId(zakladnientita));
+                            getMistoChyby(zakladnientita), getEntityId(zakladnientita));
                 }
                 String analogovyzakladni = an_ze.getTextContent();
 
                 List<Element> dokumenty = metsParser.getDokumenty();
                 if (CollectionUtils.isEmpty(dokumenty)) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen žádný element <nsesss:Dokument>. " + getJmenoIdentifikator(zakladnientita),
-                            zakladnientita, kontrola.getEntityId(zakladnientita));
+                            zakladnientita, getEntityId(zakladnientita));
                 }
                 for (int j = 0; j < dokumenty.size(); j++) {
                     Element dokument = dokumenty.get(j);
@@ -58,7 +58,7 @@ public class Pravidlo76 extends K06PravidloBase {
                     if (node == null) {
                         nastavChybu(BaseCode.CHYBI_ELEMENT, "Element <nsesss:Dokument> neobsahuje dětský element <nsesss:AnalogovyDokument>. "
                                 + getJmenoIdentifikator(dokument),
-                                dokument, kontrola.getEntityId(dokument));
+                                dokument, getEntityId(dokument));
                     }
                     String hodnota = node.getTextContent();
                     if ("ano".equals(hodnota) && "ne".equals(analogovyzakladni)) {
@@ -66,7 +66,7 @@ public class Pravidlo76 extends K06PravidloBase {
                         nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element <nsesss:Dokument> nemá stejnou hodnotu jako jeho základní entita. "
                                 + getJmenoIdentifikator(zakladnientita) + " " + getJmenoIdentifikator(dokument),
                                 getMistoChyby(zakladnientita) + " " + getMistoChyby(dokument),
-                                kontrola.getEntityId(zakladniEntitaPlusDokument));
+                                getEntityId(zakladniEntitaPlusDokument));
                     }
                 }
             }
@@ -76,7 +76,7 @@ public class Pravidlo76 extends K06PravidloBase {
                 if (and == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Element <nsesss:Dokument> neobsahuje dětský element <nsesss:AnalogovyDokument>. "
                             + getJmenoIdentifikator(zakladnientita),
-                            getMistoChyby(zakladnientita), kontrola.getEntityId(zakladnientita));
+                            getMistoChyby(zakladnientita), getEntityId(zakladnientita));
                 }
                 String analogovyzakladni = and.getTextContent();
                 if ("ano".equals(analogovyzakladni)) {
@@ -86,7 +86,7 @@ public class Pravidlo76 extends K06PravidloBase {
                     if (CollectionUtils.isEmpty(vecneSkupiny)) {
                         nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:VecnaSkupina>. "
                                 + getJmenoIdentifikator(zakladnientita),
-                                zakladnientita, kontrola.getEntityId(zakladnientita));
+                                zakladnientita, getEntityId(zakladnientita));
                     }
                     for (Element vs : vecneSkupiny) {
                         Element elAnalogovyDokumentVecSkupiny = ValuesGetter.getXChild(vs, NsesssV3.EVIDENCNI_UDAJE, NsesssV3.MANIPULACE,
@@ -94,7 +94,7 @@ public class Pravidlo76 extends K06PravidloBase {
                         if (elAnalogovyDokumentVecSkupiny == null) {
                             nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:AnalogovyDokument>. "
                                     + getJmenoIdentifikator(vs),
-                                    vs, kontrola.getEntityId(vs));
+                                    vs, getEntityId(vs));
                         }
                         String ad = elAnalogovyDokumentVecSkupiny.getTextContent();
                         if ("ne".equals(ad)) {
@@ -102,7 +102,7 @@ public class Pravidlo76 extends K06PravidloBase {
                             nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element <nsesss:Dokument> nemá stejnou hodnotu jako jeho věcná skupina. "
                                     + getJmenoIdentifikator(zakladnientita) + " " + getJmenoIdentifikator(vs),
                                     getMistoChyby(zakladnientita) + " " + getMistoChyby(elAnalogovyDokumentVecSkupiny),
-                                    kontrola.getEntityId(dokumentPlusVecnaSkupina));
+                                    getEntityId(dokumentPlusVecnaSkupina));
                         }
                     }
                 }

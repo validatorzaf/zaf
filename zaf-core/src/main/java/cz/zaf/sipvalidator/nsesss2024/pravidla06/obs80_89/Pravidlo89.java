@@ -32,12 +32,12 @@ public class Pravidlo89 extends K06PravidloBase {
                 Element elTrvalySkartacniSouhlas = ValuesGetter.getXChild(elVecnaKupina, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRVALY_SKARTACNI_SOUHLAS);
                 if (elTrvalySkartacniSouhlas == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:TrvalySkartacniSouhlas>.",
-                            getMistoChyby(elVecnaKupina), kontrola.getEntityId(elVecnaKupina));
+                            getMistoChyby(elVecnaKupina), getEntityId(elVecnaKupina));
                 }
                 String hodnota = elTrvalySkartacniSouhlas.getTextContent();
                 if (!StringUtils.equals(hodnota, "ne")) {
                     nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element <nsesss:TrvalySkartacniSouhlas> není správně vyplněn.",
-                            getMistoChyby(elTrvalySkartacniSouhlas), kontrola.getEntityId(elVecnaKupina));
+                            getMistoChyby(elTrvalySkartacniSouhlas), getEntityId(elVecnaKupina));
                 }
             }
         }

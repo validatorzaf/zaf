@@ -27,8 +27,8 @@ public class Pravidlo72 extends K06PravidloBase {
         for (Element cas : casy) {
             boolean maDatum = ValuesGetter.hasAttribut(cas, "datum");
             if (!maDatum) {
-                Element elEntita = kontrola.getEntity(cas);
-                nastavChybu(BaseCode.CHYBI_ATRIBUT, "Element <nsesss:CasPouziti> neobsahuje atribut datum.", cas, kontrola.getEntityId(elEntita));
+                Element elEntita = getEntity(cas);
+                nastavChybu(BaseCode.CHYBI_ATRIBUT, "Element <nsesss:CasPouziti> neobsahuje atribut datum.", cas, getEntityId(elEntita));
             }
         }
     }

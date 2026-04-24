@@ -21,7 +21,7 @@ public class Pravidlo1 extends PravidloBase {
 
     @Override
     protected void kontrola() {
-        SipInfo sipInfo = this.ctx.getContext().getSip();
+        SipInfo sipInfo = this.ctx.getSip();
         LoadType loadtype = sipInfo.getLoadType();
 
        switch (loadtype) {

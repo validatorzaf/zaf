@@ -12,6 +12,7 @@ import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.eadvalidator.ap2023.Ap2023Constants;
 import cz.zaf.eadvalidator.ap2023.EadRule;
+import cz.zaf.eadvalidator.ap2023.profile.ProfileRevision;
 import cz.zaf.schema.ead3.Archdesc;
 import cz.zaf.schema.ead3.C;
 import cz.zaf.schema.ead3.Did;
@@ -30,7 +31,7 @@ import cz.zaf.schemas.ead.EadNS;
 public class Rule51 extends EadRule {
 
     static final public String CODE = "obs51";
-    static final public String RULE_TEXT = "Pokud některý element <unitid> obsažený v elementu <did> má atribut \"localtype\" o hodnotě \"REFERENCNI_OZNACENI\", hodnota téhož elementu odpovídá hodnotě referenčního označení rodičovské jednotce popisu a oddělovače (lomítka) podle kontextu úrovní popisu. Hodnota referenčního označení je vyšší než přechozí jednotka popisu v rodičovské jednotce popisu. Hodnota referenčního označení obsahuje na začátku CZ a číslo archivu v elementu <agencycode>.";
+    static final public String RULE_TEXT = "Pokud některý element <unitid> obsažený v elementu <did> má atribut \"localtype\" o hodnotě \"REFERENCNI_OZNACENI\", hodnota téhož elementu odpovídá hodnotě referenčního označení rodičovské jednotce popisu a oddělovače (lomítka) podle kontextu úrovní popisu. Hodnota referenčního označení je vyšší než přechozí jednotka popisu v rodičovské jednotce popisu. Hodnota referenčního označení obsahuje na začátku CZ a číslo archivu v elementu <agencycode>. Na rozhraní složka/jednotlivost pro profily před květnem 2026 je umožněna varianta s jedním i dvěma lomítky.";
     static final public String RULE_ERROR = "Některý element <unitid> s atributem \"localtype\" o hodnotě \"REFERENCNI_OZNACENI\" neobsahuje hodnotu v požadovaném formátu.";
     static final public String RULE_SOURCE = "Část 5.4 profilu EAD3 MV ČR";
 
@@ -89,7 +90,7 @@ public class Rule51 extends EadRule {
             if (parentRef != null) {
                 String parentLevel = getEffectiveLevel(parent);
                 String childLevel = getEffectiveLevel(c);
-                String separator = isNewLevelGroup(parentLevel, childLevel) ? "//" : "/";
+                String separator = isNewLevelGroup(parentLevel, childLevel, parentRef, ref) ? "//" : "/";
                 String expectedStart = parentRef + separator;
 
                 if (!ref.startsWith(expectedStart)) {
@@ -195,8 +196,10 @@ public class Rule51 extends EadRule {
      * "//" separates different level groups (e.g., fonds→series, series→file).
      * "/" separates sub-levels within the same group (e.g., fonds→subfonds,
      * series→series, file→file, item→itempart).
+     * @param ref 
+     * @param parentRef 
      */
-    private boolean isNewLevelGroup(String parentLevel, String childLevel) {
+    private boolean isNewLevelGroup(String parentLevel, String childLevel, String parentRef, String ref) {
         // Within fond group: fonds → subfonds
         if (EadNS.LEVEL_FONDS.equals(parentLevel) && EadNS.LEVEL_SUBFONDS.equals(childLevel)) {
             return false;
@@ -206,10 +209,29 @@ public class Rule51 extends EadRule {
             return false;
         }
         // Within file group: file → file (sub-file), file → item
-        if (EadNS.LEVEL_FILE.equals(parentLevel) && (EadNS.LEVEL_FILE.equals(childLevel) || 
-        		EadNS.LEVEL_ITEM.equals(childLevel) ) ) {
-            return false;
+        if (EadNS.LEVEL_FILE.equals(parentLevel)) {
+        	// file → file
+        	if(EadNS.LEVEL_FILE.equals(childLevel)) {
+        		return false;
+        	}
+        	// file → item
+        	if(EadNS.LEVEL_ITEM.equals(childLevel)) {
+                // Exception for older profiles
+        		// allow also start of new group
+                if(ctx.getProfileRevision()==ProfileRevision.CZ_EAD3_PROFILE_20230601||
+                		ctx.getProfileRevision()==ProfileRevision.CZ_EAD3_PROFILE_20240301) {
+                	if(parentRef.length()<ref.length()) {
+                        // prepare suffix with leading slashes
+                        String suffix = ref.substring(parentRef.length());
+                        if(suffix.startsWith("//")) {
+                        	return true;
+                        }
+                	}
+                }
+                return false;
+        	}
         }
+
         // Within item group: item → item, item → itempart
         if (EadNS.LEVEL_ITEM.equals(parentLevel)
                 && (EadNS.LEVEL_ITEM.equals(childLevel) || Ap2023Constants.LEVEL_ITEMPART.equals(childLevel))) {

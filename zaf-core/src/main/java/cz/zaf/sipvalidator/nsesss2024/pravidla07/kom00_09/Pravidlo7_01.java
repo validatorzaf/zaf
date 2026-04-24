@@ -22,7 +22,7 @@ public class Pravidlo7_01 extends K07PravidloEachFile {
         super(KOD,
                 "Pokud existuje jakýkoli element <mets:file>, každý obsahuje atribut SIZE s hodnotou velikosti příslušné komponenty v bytech.",
                 "Chybí velikost komponenty (počítačového souboru) nebo je uvedena chybně.",
-                "Bod 2.15. přílohy č. 3 NSESSS.");
+                "Bod 1.15 přílohy č. 2 NSESSS.");
     }
 
     @Override

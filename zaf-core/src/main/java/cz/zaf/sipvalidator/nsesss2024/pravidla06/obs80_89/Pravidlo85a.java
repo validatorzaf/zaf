@@ -37,11 +37,11 @@ public class Pravidlo85a extends K06PravidloBase {
                     if (StringUtils.equals(strAnalDok, "ano")) {
                         Element elUmisteni = ValuesGetter.getXChild(elManipulace, NsesssV4.UMISTENI);
                         if (elUmisteni == null) {
-                            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Umisteni>.", getMistoChyby(elManipulace), kontrola.getEntityId(elEntita));
+                            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Umisteni>.", getMistoChyby(elManipulace), getEntityId(elEntita));
                         }
                         String strUmisteni = elUmisteni.getTextContent();
                         if (StringUtils.isBlank(strUmisteni)) {
-                            nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element <nsesss:Umisteni> není vyplněn.", getMistoChyby(elUmisteni), kontrola.getEntityId(elEntita));
+                            nastavChybu(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element <nsesss:Umisteni> není vyplněn.", getMistoChyby(elUmisteni), getEntityId(elEntita));
                         }
                     }
                 }

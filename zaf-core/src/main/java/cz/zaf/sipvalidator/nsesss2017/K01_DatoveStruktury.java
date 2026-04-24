@@ -8,7 +8,7 @@ package cz.zaf.sipvalidator.nsesss2017;
 
 import java.util.List;
 
-import cz.zaf.common.validation.SimpleRuleContext;
+import cz.zaf.common.validation.Rule;
 import cz.zaf.sipvalidator.nsesss2017.pravidla01.dat00_09.Pravidlo1;
 import cz.zaf.sipvalidator.nsesss2017.pravidla01.dat00_09.Pravidlo2;
 import cz.zaf.sipvalidator.nsesss2017.pravidla01.dat00_09.Pravidlo3;
@@ -16,13 +16,19 @@ import cz.zaf.sipvalidator.nsesss2017.pravidla01.dat00_09.Pravidlo3;
 
 /**
  * Kontrola datové struktury
- * 
+ *
  */
 public class K01_DatoveStruktury
-        extends KontrolaBase<SimpleRuleContext<KontrolaNsessContext>>
+        extends KontrolaBase<KontrolaNsessContext>
 {
-	
+
     static final public String NAME = "datové struktury";
+
+    private static final Class<?>[] ruleClasses = {
+        Pravidlo1.class,
+        Pravidlo2.class,
+        Pravidlo3.class
+    };
 
     public K01_DatoveStruktury() {
         super(TypUrovenKontroly.DATOVE_STRUKTURY);
@@ -32,16 +38,14 @@ public class K01_DatoveStruktury
 	@Override
     public void validateImpl() {
 
-        SimpleRuleContext<KontrolaNsessContext> datCheckContext = new SimpleRuleContext<>(ctx);
-        this.provedKontrolu(datCheckContext, getRules());
+        this.provedKontrolu(ctx, createRules());
 	}
 
+    public static Class<?>[] getRuleClasses() {
+        return ruleClasses;
+    }
 
-	public static List<? extends PravidloBase> getRules() {
-		return List.of(
-                new Pravidlo1(),
-                new Pravidlo2(),
-                new Pravidlo3()
-				);
+	public List<? extends Rule<KontrolaNsessContext>> createRules() {
+		return createRules(ruleClasses);
 	}
 }

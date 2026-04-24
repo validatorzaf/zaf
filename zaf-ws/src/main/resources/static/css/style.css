@@ -148,6 +148,22 @@ strong.kontrola {
     margin-top: 0.625rem;
 }
 
+.checklist {
+    width: auto;
+}
+
+.checklist th,
+.checklist td {
+    padding: 0.125rem 1.5rem 0.125rem 0;
+    text-align: left;
+}
+
+.checklist th:last-child,
+.checklist td:last-child {
+    padding-right: 0;
+    min-width: 8rem;
+}
+
 @media screen and (min-width: 501px) {
     body {
         margin: 1.25rem;

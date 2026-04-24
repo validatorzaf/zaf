@@ -33,14 +33,14 @@ public class Pravidlo80 extends K06PravidloBase {
             Element datum = ValuesGetter.getXChild(skrizeni, "nsesss:Datum");
             if (datum == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:Datum>. " + getJmenoIdentifikator(skrizeni),
-                        skrizeni, kontrola.getEntityId(skrizeni));
+                        skrizeni, getEntityId(skrizeni));
             }
             Integer date = vratRok(datum);
 
-            int year = kontrola.getContext().getLocalDate().getYear();
+            int year = kontrola.getLocalDate().getYear();
             if (!(date <= year)) {
                 nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Hodnota elementu <nsesss:Datum> (" + date + ") je vyšší než aktuální rok. "
-                        + getJmenoIdentifikator(skrizeni), datum, kontrola.getEntityId(skrizeni));
+                        + getJmenoIdentifikator(skrizeni), datum, getEntityId(skrizeni));
             }
         }
     }

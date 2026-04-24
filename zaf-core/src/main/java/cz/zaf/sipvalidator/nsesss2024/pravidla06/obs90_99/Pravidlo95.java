@@ -48,13 +48,13 @@ public class Pravidlo95 extends K06PravidloBase {
 
             if (pu_entita == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:PlneUrcenySpisovyZnak>. " + getJmenoIdentifikator(entita),
-                        entita, kontrola.getEntityId(entita));
+                        entita, getEntityId(entita));
             }
 
             Element je_entita = ValuesGetter.getSourozencePrvnihoSeJmenem(pu_entita, NsesssV4.JEDNODUCHY_SPISOVY_ZNAK);
             if (je_entita == null) {
                 nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:JednoduchySpisovyZnak>. " + getJmenoIdentifikator(entita),
-                        entita, kontrola.getEntityId(entita));
+                        entita, getEntityId(entita));
             }
 
             Element pu_rodic = ValuesGetter.getXChild(entita, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.TRIDENI,
@@ -80,13 +80,13 @@ public class Pravidlo95 extends K06PravidloBase {
                 if (pu_rodic.getNodeName().equals(NsesssV4.SPISOVY_PLAN)) {
                     if (K06_Obsahova.spisZnakObsahujeOddelovac(pu_entita.getTextContent())) {
                         nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Spisový znak nejvyšší věcné skupiny v sobě nesmí obsahovat oddělovač. "
-                                + getJmenoIdentifikator(entita), entita, kontrola.getEntityId(entita));
+                                + getJmenoIdentifikator(entita), entita, getEntityId(entita));
                     }
                 } else {
                     String entita_jsz = je_entita.getTextContent();
                     String entita_pus = pu_entita.getTextContent();
                     String rodic_pus = pu_rodic.getTextContent();
-                    Element elElntitaPuRodic = kontrola.getEntity(pu_rodic);
+                    Element elElntitaPuRodic = getEntity(pu_rodic);
                     List<Element> listChybnychEntit = Arrays.asList(elElntitaPuRodic, entita);
                     boolean zacina = entita_pus.startsWith(rodic_pus);
                     if (!zacina) {
@@ -96,7 +96,7 @@ public class Pravidlo95 extends K06PravidloBase {
                                 + getJmenoIdentifikator(entita) + " " + getJmenoIdentifikator(pu_rodic),
                                 getMistoChyby(je_entita) + " " + getMistoChyby(pu_entita) + " "
                                 + getMistoChyby(pu_rodic),
-                                kontrola.getEntityId(listChybnychEntit));
+                                getEntityId(listChybnychEntit));
                     }
                     boolean konci = entita_pus.endsWith(entita_jsz);
                     if (!konci) {
@@ -106,7 +106,7 @@ public class Pravidlo95 extends K06PravidloBase {
                                 + getJmenoIdentifikator(entita) + " " + getJmenoIdentifikator(pu_rodic),
                                 getMistoChyby(je_entita) + " " + getMistoChyby(pu_entita) + " "
                                 + getMistoChyby(pu_rodic),
-                                kontrola.getEntityId(listChybnychEntit));
+                                getEntityId(listChybnychEntit));
                     }
                 }
             }

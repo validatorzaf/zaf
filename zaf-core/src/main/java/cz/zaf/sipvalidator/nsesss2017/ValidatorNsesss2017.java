@@ -7,13 +7,10 @@ import java.util.List;
 import cz.zaf.common.result.ValidationProfileInfo;
 import cz.zaf.common.result.ValidationResult;
 import cz.zaf.common.validation.Rule;
-import cz.zaf.common.validation.RuleEvaluationContext;
 import cz.zaf.common.validation.ValidationLayerType;
 import cz.zaf.common.validation.ValidationSubprofile;
 import cz.zaf.common.validation.Validator;
 import cz.zaf.common.validation.ValidatorInfo;
-import cz.zaf.sipvalidator.nsesss2017.pravidla06.K06KontrolaContext;
-import cz.zaf.sipvalidator.nsesss2017.pravidla07.K07PravidloBase;
 import cz.zaf.sipvalidator.nsesss2017.profily.ProfilValidace;
 import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
 import cz.zaf.sipvalidator.sip.SipLoader;
@@ -83,7 +80,7 @@ public class ValidatorNsesss2017 implements Validator, ValidationProfileInfo {
     		}
     		
     		@Override
-    		public List<Rule<? extends RuleEvaluationContext>> getRules(ValidationLayerType layerType,
+    		public List<Rule<?>> getRules(ValidationLayerType layerType,
     				ValidationSubprofile subProfile) {
     			if(!(layerType instanceof TypUrovenKontroly)) {
         			throw new IllegalStateException("Unexpected layer type: "+layerType);
@@ -93,49 +90,34 @@ public class ValidatorNsesss2017 implements Validator, ValidationProfileInfo {
     			}
     			TypUrovenKontroly typUrovne = (TypUrovenKontroly) layerType;
     			ProfilValidace profilValidace = (ProfilValidace) subProfile;
-				List<Rule<? extends RuleEvaluationContext>> result = new ArrayList<>();
-				List<? extends PravidloBase> pravidla = null;
+				List<Rule<?>> result = new ArrayList<>();
 				switch (typUrovne) {
 				case SKODLIVY_KOD:
-					pravidla = new K00_SkodlivehoKodu().getRules();
+					result.addAll(KontrolaBase.instantiateRules(K00_SkodlivehoKodu.getRuleClasses()));
 					break;
 				case DATOVE_STRUKTURY:
-					pravidla = K01_DatoveStruktury.getRules();
+					result.addAll(new K01_DatoveStruktury().createRules());
 					break;
 				case ZNAKOVE_SADY:
-					pravidla = K02_ZnakoveSady.getRules();
+					result.addAll(new K02_ZnakoveSady().createRules());
 					break;
 				case SPRAVNOSTI:
-					pravidla = K03_Spravnosti.getRules();
+					result.addAll(new K03_Spravnosti().createRules());
 					break;
 				case JMENNE_PROSTORY_XML:
-					pravidla = K04_JmennychProstoruXML.getRules();
+					result.addAll(new K04_JmennychProstoruXML().createRules());
 					break;
 				case PROTI_SCHEMATU:
-					pravidla = K05_ProtiSchematu.getRules();
+					result.addAll(new K05_ProtiSchematu().createRules());
 					break;
-				case OBSAHOVA: {
-					Rule<K06KontrolaContext>[] rules = profilValidace.createObsahovaPravidla();
-					for (Rule<K06KontrolaContext> rule : rules) {
-						result.add(rule);
-					}
-				}
+				case OBSAHOVA:
+					result.addAll(new K06_Obsahova(profilValidace).createRules());
 					break;
-				case KOMPONENT: {
-					K07PravidloBase[] rules = profilValidace.createFormatovaPravidla();
-					for (K07PravidloBase rule : rules) {
-						result.add(rule);
-					}
-				}
+				case KOMPONENT:
+					result.addAll(new K07_Komponent(profilValidace).createRules());
 					break;
 				default:
 					throw new IllegalStateException("Unexpected layer type: " + layerType);
-				}
-
-				if (pravidla != null) {
-					for (PravidloBase p : pravidla) {
-						result.add(p);
-					}
 				}
 				return result;
 			}

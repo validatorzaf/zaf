@@ -3,6 +3,7 @@ package cz.zaf.eadvalidator.ap2023.layers.obs.obs10_19;
 import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.eadvalidator.ap2023.EadRule;
+import cz.zaf.eadvalidator.ap2023.profile.ProfileRevision;
 import cz.zaf.schema.ead3.Filedesc;
 import cz.zaf.schema.ead3.P;
 import cz.zaf.schema.ead3.Persname;
@@ -10,12 +11,11 @@ import cz.zaf.schema.ead3.Publicationstmt;
 import jakarta.xml.bind.JAXBElement;
 import java.io.Serializable;
 import java.util.List;
-import org.apache.commons.lang3.StringUtils;
 
 public class Rule15 extends EadRule {
 
     static final public String CODE = "obs15";
-    static final public String RULE_TEXT = "Element <publicationstmt> obsahuje alespoň jednoho zpracovatele, tj. alespoň jeden element <p>, který obsahuje právě jeden element <persname> s atributem \"localtype\" o hodnotě \"ARRANGER\".";
+    static final public String RULE_TEXT = "Element <publicationstmt> obsahuje alespoň jednoho zpracovatele, tj. alespoň jeden element <p>, který obsahuje právě jeden element <persname> s atributem \"localtype\" o hodnotě \"ARRANGER\". Pravidlo není vynucováno pro profily vydané před květnem 2026.";
     static final public String RULE_ERROR = "Struktura elementu <publicationstmt> neobsahuje alespoň jeden element <persname> s atributem \"localtype\" o hodnotě \"ARRANGER\" vnořený do elementu <p>.";
     static final public String RULE_SOURCE = "Část 4.1.7 profilu EAD3 MV ČR";
 
@@ -50,6 +50,10 @@ public class Rule15 extends EadRule {
             }
         }
         if (found == null) {
+        	if(ctx.getProfileRevision()!=ProfileRevision.CZ_EAD3_PROFILE_20260501) {
+        		return;
+        	}
+        	
             throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element se zpracovatelem.", ctx.formatEadPosition(publicationstmt));
         }
     }

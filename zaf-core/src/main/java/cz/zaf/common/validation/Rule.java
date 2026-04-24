@@ -5,7 +5,7 @@ package cz.zaf.common.validation;
  * 
  * This is abstract interface with rule definition.
  */
-public interface Rule<Ctx extends RuleEvaluationContext> {
+public interface Rule<Ctx> {
 
     /**
      * Rule code

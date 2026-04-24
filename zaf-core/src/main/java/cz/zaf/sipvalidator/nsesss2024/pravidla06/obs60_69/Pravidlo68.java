@@ -44,13 +44,13 @@ public class Pravidlo68 extends K06PravidloBase {
 
                 if (vecnaskupina == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezena rodičovská entita věcná skupina základní entity. "
-                            + getJmenoIdentifikator(zakladnientita), zakladnientita, kontrola.getEntityId(zakladnientita));
+                            + getJmenoIdentifikator(zakladnientita), zakladnientita, getEntityId(zakladnientita));
                 }
                 Element sr = ValuesGetter.getXChild(vecnaskupina, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.VYRAZOVANI,
                         NsesssV4.SKARTACNI_REZIM);
                 if (sr == null) {
                     nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:SkartacniRezim>. " + getJmenoIdentifikator(vecnaskupina),
-                            vecnaskupina, kontrola.getEntityId(zakladnientita));
+                            vecnaskupina, getEntityId(zakladnientita));
                 }
             }
         }

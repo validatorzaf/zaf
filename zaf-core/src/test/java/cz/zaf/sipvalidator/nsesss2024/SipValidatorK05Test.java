@@ -40,6 +40,13 @@ public class SipValidatorK05Test extends SipValidatorTestBase {
                        new String[] { Pravidlo1.VAL1 });
     }
 
+        @Test
+    void testK05_04() {
+        testPackageK05("val1-chyba4", ValidationStatus.ERROR,
+                       new String[] {},
+                       new String[] { Pravidlo1.VAL1 });
+    }
+    
     @Test
     void testK05_OK01() {
         testPackageK05("val1-OK1", ValidationStatus.OK,

@@ -32,12 +32,16 @@
 				</ead:p>
 			</ead:publicationstmt>
 		</ead:filedesc>
-		
+
 		<ead:maintenancestatus value="new"></ead:maintenancestatus>
 		<ead:maintenanceagency>
 			<ead:agencycode></ead:agencycode>
 			<ead:agencyname></ead:agencyname>
 		</ead:maintenanceagency>
+
+		<ead:localcontrol localtype="CZ_FINDING_AID_EAD_PROFILE"> <!-- obs25 -->
+			<ead:term identifier="CZ_EAD3_PROFILE_20260501">profil platný od května 2026</ead:term>
+		</ead:localcontrol>
 		
 		<ead:maintenancehistory>
 			<ead:maintenanceevent>

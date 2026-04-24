@@ -3,7 +3,6 @@ package cz.zaf.sipvalidator.nsesss2017;
 import java.util.List;
 
 import cz.zaf.common.validation.Rule;
-import cz.zaf.common.validation.RuleEvaluationContext;
 import cz.zaf.common.validation.ValidationLayerType;
 
 /**
@@ -33,7 +32,7 @@ public enum TypUrovenKontroly
         return description;
     }
     
-    List<Rule<? extends RuleEvaluationContext>> getRules() {
+    List<Rule<?>> getRules() {
 		return null;
 	}
 }
