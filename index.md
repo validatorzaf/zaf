@@ -27,7 +27,7 @@ Dokumentace k validátoru je součástí jednotlivých sestavení. Aktuální do
 
 ### Aktuální verze
 
-Výdána verze 2.0.3
+Výdána verze 2.0.4
 
 [Online validátor na webu](https://vlas1.lightcomp.cz/zaf)
 

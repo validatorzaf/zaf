@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>ZAF 2.0.3: Dokumentace</title>
+<title>ZAF 2.0.4: Dokumentace</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -524,7 +524,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>ZAF 2.0.3: Dokumentace</h1>
+<h1>ZAF 2.0.4: Dokumentace</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Obsah</div>
 <ul class="sectlevel1">
@@ -828,7 +828,7 @@ je nastaveno <strong>UTF-8</strong>. Dříve se v českém prostředí využíva
 <p>Validace jednotlivého SIPu se zápisem výstupu do protokolu:</p>
 </div>
 <div class="paragraph">
-<p><code>java -jar CmdValidator.jar -d 3 C:\testy3\D34520.zip -o c:\temp\out.xml</code></p>
+<p><code>java -jar CmdValidator.jar -p SIP C:\testy3\D34520.zip -o c:\temp\out.xml</code></p>
 </div>
 <div class="paragraph">
 <p>Validace SIPů uložených v adresáři:</p>
@@ -840,7 +840,7 @@ je nastaveno <strong>UTF-8</strong>. Dříve se v českém prostředí využíva
 <p>Validace SIPů uložených v adresáři s využitím jiné verze VeraPDF:</p>
 </div>
 <div class="paragraph">
-<p><code>java -Dzaf.vera.path=C:\verapdf\greenfield-apps.jar -jar CmdValidator.jar -d 3 -b "C:\temp\SIP1580724295329"</code></p>
+<p><code>java -Dzaf.vera.path=C:\verapdf\greenfield-apps.jar -jar CmdValidator.jar -p SIP -b "C:\temp\SIP1580724295329"</code></p>
 </div>
 </div>
 </div>
@@ -974,7 +974,7 @@ Ty jsou také dostupné v repozitáři pro Maven a je možné je přímo použí
 <pre class="CodeRay highlight"><code data-lang="xml">  <span class="tag">&lt;dependency&gt;</span>
     <span class="tag">&lt;groupId&gt;</span>cz.zaf<span class="tag">&lt;/groupId&gt;</span>
     <span class="tag">&lt;artifactId&gt;</span>zaf-core<span class="tag">&lt;/artifactId&gt;</span>
-    <span class="tag">&lt;version&gt;</span>2.0.3<span class="tag">&lt;/version&gt;</span>
+    <span class="tag">&lt;version&gt;</span>2.0.4<span class="tag">&lt;/version&gt;</span>
   <span class="tag">&lt;/dependency&gt;</span></code></pre>
 </div>
 </div>
@@ -1017,7 +1017,7 @@ Konkrétní nastavení logování záleží na způsobu využití nástroje ZAF.
 <p>Příklad:</p>
 </div>
 <div class="paragraph">
-<p><code>java -Dorg.slf4j.simpleLogger.defaultLogLevel=DEBUG -jar CmdValidator.jar -d 3 C:\testy3\D34520.zip -o c:\temp\out.xml</code></p>
+<p><code>java -Dorg.slf4j.simpleLogger.defaultLogLevel=DEBUG -jar CmdValidator.jar -p SIP C:\testy3\D34520.zip -o c:\temp\out.xml</code></p>
 </div>
 </div>
 </div>
@@ -2090,7 +2090,7 @@ Aktivní
 Pravidlo
 </td>
 <td class="hdlist2">
-<p>Element &lt;publicationstmt&gt; obsahuje alespoň jednoho zpracovatele, tj. alespoň jeden element &lt;p&gt;, který obsahuje právě jeden element &lt;persname&gt; s atributem "localtype" o hodnotě "ARRANGER".</p>
+<p>Element &lt;publicationstmt&gt; obsahuje alespoň jednoho zpracovatele, tj. alespoň jeden element &lt;p&gt;, který obsahuje právě jeden element &lt;persname&gt; s atributem "localtype" o hodnotě "ARRANGER". Pravidlo není vynucováno pro profily vydané před květnem 2026.</p>
 </td>
 </tr>
 <tr>
@@ -3445,7 +3445,7 @@ Aktivní
 Pravidlo
 </td>
 <td class="hdlist2">
-<p>Pokud některý element &lt;unitid&gt; obsažený v elementu &lt;did&gt; má atribut "localtype" o hodnotě "REFERENCNI_OZNACENI", hodnota téhož elementu odpovídá hodnotě referenčního označení rodičovské jednotce popisu a oddělovače (lomítka) podle kontextu úrovní popisu. Hodnota referenčního označení je vyšší než přechozí jednotka popisu v rodičovské jednotce popisu. Hodnota referenčního označení obsahuje na začátku CZ a číslo archivu v elementu &lt;agencycode&gt;.</p>
+<p>Pokud některý element &lt;unitid&gt; obsažený v elementu &lt;did&gt; má atribut "localtype" o hodnotě "REFERENCNI_OZNACENI", hodnota téhož elementu odpovídá hodnotě referenčního označení rodičovské jednotce popisu a oddělovače (lomítka) podle kontextu úrovní popisu. Hodnota referenčního označení je vyšší než přechozí jednotka popisu v rodičovské jednotce popisu. Hodnota referenčního označení obsahuje na začátku CZ a číslo archivu v elementu &lt;agencycode&gt;. Na rozhraní složka/jednotlivost pro profily před květnem 2026 je umožněna varianta s jedním i dvěma lomítky.</p>
 </td>
 </tr>
 <tr>
@@ -6128,6 +6128,19 @@ Aktivní
 </li>
 <li>
 <p>Upraveno pravidlo <a href="#AP2023_obs79">obs79</a> - z důvodu pomůcek k části AS, počítání počtu JP</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_v4_24_4_2026">v4, 24.4.2026</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Upraveno pravidlo <a href="#AP2023_obs15">obs15</a> - nevynucování pravidla u profilů před květnem 2026</p>
+</li>
+<li>
+<p>Upraveno pravidlo <a href="#AP2023_obs51">obs51</a> - možnost uvádění dvou lomítek na rozhraní složka-jednotlivost u profilů před květnem 2026</p>
 </li>
 </ul>
 </div>
@@ -15532,6 +15545,53 @@ Aktivní
 <div class="sect3">
 <h4 id="_datové_struktury">datové struktury</h4>
 <div class="sect4">
+<h5 id="NSESSS2024_dat1">dat1</h5>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Pravidlo
+</td>
+<td class="hdlist2">
+<p>Datový balíček SIP je soubor v datovém formátu ZIP (jeho MIME Content-type je detekován jako application/zip) nebo složka.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Kód
+</td>
+<td class="hdlist2">
+<p>dat1</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Zdroj
+</td>
+<td class="hdlist2">
+<p>Požadavek 9.2.11 NSESSS.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Popis chyby
+</td>
+<td class="hdlist2">
+<p>Datový balíček SIP je chybně strukturován.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Aktivní
+</td>
+<td class="hdlist2">
+<p>skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
 <h5 id="NSESSS2024_dat1a">dat1a</h5>
 <div class="hdlist">
 <table>
@@ -15540,7 +15600,7 @@ Aktivní
 Pravidlo
 </td>
 <td class="hdlist2">
-<p>Název souboru v datovém formátu ZIP obsahuje pouze písmena latinské abecedy bez diakritiky, čísla a znaky „_“ (podtržítko) a „–“ (pomlčka) a jeho délka nepřekračuje 64 znaků.</p>
+<p>Název datového balíčku SIP (ZIP nebo adresář) obsahuje pouze písmena latinské abecedy bez diakritiky, čísla a znaky „_“ (podtržítko) a „–“ (pomlčka) a jeho délka nepřekračuje 64 znaků.</p>
 </td>
 </tr>
 <tr>
@@ -15572,7 +15632,7 @@ Popis chyby
 Aktivní
 </td>
 <td class="hdlist2">
-<p>skartační řízení (jen metadata), skartační řízení (jen metadata), skartační řízení (s komponentami), skartační řízení (s komponentami), přejímka, přejímka</p>
+<p>skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka</p>
 </td>
 </tr>
 </table>
@@ -15587,7 +15647,7 @@ Aktivní
 Pravidlo
 </td>
 <td class="hdlist2">
-<p>Soubor v datovém formátu ZIP po rozbalení obsahuje právě jednu složku. Ta má stejný název jako je název souboru v datovém formátu ZIP.</p>
+<p>Pokud je datový balíček SIP komprimován do souboru v datovém formátu ZIP, po rozbalení obsahuje právě jednu složku. Ta má stejný název jako je název souboru v datovém formátu ZIP.</p>
 </td>
 </tr>
 <tr>
@@ -15831,7 +15891,7 @@ Aktivní
 Pravidlo
 </td>
 <td class="hdlist2">
-<p>Element &lt;mets:mets&gt; obsahuje atribut xsi:schemaLocation s hodnotou <a href="http://www.loc.gov/METS/" class="bare">http://www.loc.gov/METS/</a> <a href="http://www.loc.gov/standards/mets/mets.xsd" class="bare">http://www.loc.gov/standards/mets/mets.xsd</a> <a href="http://www.mvcr.cz/nsesss/v4" class="bare">http://www.mvcr.cz/nsesss/v4</a> <a href="https://www.mvcr.cz/nsesss/v4/nsesss.xsd" class="bare">https://www.mvcr.cz/nsesss/v4/nsesss.xsd</a> <a href="http://www.mvcr.cz/nsesss/2023/log" class="bare">http://www.mvcr.cz/nsesss/2023/log</a> <a href="https://www.mvcr.cz/nsesss/v4/nsesss-TrP.xsd" class="bare">https://www.mvcr.cz/nsesss/v4/nsesss-TrP.xsd</a>.</p>
+<p>Element &lt;mets:mets&gt; obsahuje atribut xsi:schemaLocation s hodnotou <a href="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v4 https://www.mvcr.cz/nsesss/v4/nsesss.xsd http://www.mvcr.cz/nsesss/2023/log" class="bare">http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.mvcr.cz/nsesss/v4 https://www.mvcr.cz/nsesss/v4/nsesss.xsd http://www.mvcr.cz/nsesss/2023/log</a> <a href="https://www.mvcr.cz/nsesss/v4/nsesss-TrP.xsd" class="bare">https://www.mvcr.cz/nsesss/v4/nsesss-TrP.xsd</a>.</p>
 </td>
 </tr>
 <tr>
@@ -15881,7 +15941,7 @@ Aktivní
 Pravidlo
 </td>
 <td class="hdlist2">
-<p>Soubor je validní proti schématům mets.xsd (v1.12), xlink.xsd (v2), nsesss.xsd (v4), nsesss-TrP.xsd.</p>
+<p>Soubor je validní proti schématům mets.xsd (v1.12), nsesss.xsd (v4), nsesss-TrP.xsd.</p>
 </td>
 </tr>
 <tr>
@@ -15905,7 +15965,7 @@ Zdroj
 Popis chyby
 </td>
 <td class="hdlist2">
-<p>Datový balíček SIP není validní proti schématům <a href="http://www.loc.gov/standards/mets/mets.xsd, http://www.loc.gov/standards/mets/xlink.xsd, http://www.mvcr.cz/nsesss/v4/nsesss.xsd" class="bare">http://www.loc.gov/standards/mets/mets.xsd, http://www.loc.gov/standards/mets/xlink.xsd, http://www.mvcr.cz/nsesss/v4/nsesss.xsd</a> a <a href="https://www.mvcr.cz/nsesss/v4/nsesss-TrP.xsd" class="bare">https://www.mvcr.cz/nsesss/v4/nsesss-TrP.xsd</a>.</p>
+<p>Datový balíček SIP není validní proti schématům <a href="http://www.loc.gov/standards/mets/mets.xsd" class="bare">http://www.loc.gov/standards/mets/mets.xsd</a>, <a href="http://www.mvcr.cz/nsesss/v4/nsesss.xsd" class="bare">http://www.mvcr.cz/nsesss/v4/nsesss.xsd</a> a <a href="https://www.mvcr.cz/nsesss/v4/nsesss-TrP.xsd" class="bare">https://www.mvcr.cz/nsesss/v4/nsesss-TrP.xsd</a>.</p>
 </td>
 </tr>
 <tr>
@@ -16058,53 +16118,6 @@ Aktivní
 </td>
 <td class="hdlist2">
 <p>přejímka</p>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect4">
-<h5 id="NSESSS2024_obs9">obs9</h5>
-<div class="hdlist">
-<table>
-<tr>
-<td class="hdlist1">
-Pravidlo
-</td>
-<td class="hdlist2">
-<p>Element &lt;mets:mets&gt; obsahuje atribut xmlns:xlink s hodnotou <a href="http://www.w3.org/1999/xlink" class="bare">http://www.w3.org/1999/xlink</a>.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Kód
-</td>
-<td class="hdlist2">
-<p>obs9</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Zdroj
-</td>
-<td class="hdlist2">
-<p>Bod 1.1 přílohy č. 2 NSESSS.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Popis chyby
-</td>
-<td class="hdlist2">
-<p>Uvedena je chybně adresa jmenného prostoru schématu XML.</p>
-</td>
-</tr>
-<tr>
-<td class="hdlist1">
-Aktivní
-</td>
-<td class="hdlist2">
-<p>skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka</p>
 </td>
 </tr>
 </table>
@@ -16910,6 +16923,100 @@ Aktivní
 </div>
 </div>
 <div class="sect4">
+<h5 id="NSESSS2024_obs28">obs28</h5>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Pravidlo
+</td>
+<td class="hdlist2">
+<p>Pokud neexistuje žádný element &lt;nsesss:KrizovyOdkaz&gt; s atributem pevny s hodnotou ano, potom element &lt;mets:dmdSec&gt; obsahuje v hierarchii dětských elementů &lt;mets:mdWrap&gt;, &lt;mets:xmlData&gt; právě jeden dětský element &lt;nsesss:Dil&gt; nebo &lt;nsesss:Spis&gt;. Anebo právě jeden dětský element &lt;nsesss:Dokument&gt;, pokud byl vyřízen do 31. 12. 2026 včetně.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Kód
+</td>
+<td class="hdlist2">
+<p>obs28</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Zdroj
+</td>
+<td class="hdlist2">
+<p>§ 12 odst. 1 vyhlášky č. 259/2012 Sb.; bod 1.8 přílohy č. 2 NSESSS; příloha č. 2 NSESSS, nsesss.xsd, ř. 14.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Popis chyby
+</td>
+<td class="hdlist2">
+<p>Datový balíček SIP neobsahuje díl, spis ani dokument.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Aktivní
+</td>
+<td class="hdlist2">
+<p>skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="NSESSS2024_obs29">obs29</h5>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Pravidlo
+</td>
+<td class="hdlist2">
+<p>Pokud existuje jakýkoli element &lt;nsesss:KrizovyOdkaz&gt; a obsahuje atribut pevny s hodnotou ano, potom pro každý jeho výskyt obsahuje element &lt;mets:dmdSec&gt; v hierarchii dětských elementů &lt;mets:mdWrap&gt;, &lt;mets:xmlData&gt; dětský element &lt;nsesss:Spis&gt;, který se nenachází v rodičovském dílu (&lt;nsesss:Dil&gt;), se stejnou hodnotou v dětském elementu &lt;nsesss:Identifikator&gt; a v jeho atributu zdroj. Anebo stejným způsobem dětský element &lt;nsesss:Dil&gt; nebo &lt;nsesss:Spis&gt; nebo &lt;nsesss:Dokument&gt;, pokud byl vyřízen/uzavřen do 31. 12. 2026 včetně.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Kód
+</td>
+<td class="hdlist2">
+<p>obs29</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Zdroj
+</td>
+<td class="hdlist2">
+<p>Požadavek 4.1.2, 4.1.3 a 4.1.4 NSESSS; bod 1.8 přílohy č. 2 NSESSS; příloha č. 2 NSESSS, nsesss.xsd, ř. 14.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Popis chyby
+</td>
+<td class="hdlist2">
+<p>Chybí popis dílu, spisu nebo dokumentu, který je v datovém balíčku SIP připojen pevným křížovým odkazem.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Aktivní
+</td>
+<td class="hdlist2">
+<p>skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
 <h5 id="NSESSS2024_obs30">obs30</h5>
 <div class="hdlist">
 <table>
@@ -16981,7 +17088,7 @@ Kód
 Zdroj
 </td>
 <td class="hdlist2">
-<p>Bod 1.11 přílohy č. 2 NSESSS.</p>
+<p>Bod 1.10 přílohy č. 2 NSESSS.</p>
 </td>
 </tr>
 <tr>
@@ -17811,7 +17918,7 @@ Aktivní
 Pravidlo
 </td>
 <td class="hdlist2">
-<p>Pokud neexistuje žádný element &lt;nsesss:KrizovyOdkaz&gt; s atributem pevny s hodnotou ano, potom každý element &lt;mets:div&gt; obsahuje dětský element podle struktury entit/objektů (od spisového plánu po komponentu) v sekci dmdSec s atributem TYPE s hodnotou příslušné entity/objektu a s atributem DMDID s hodnotou příslušné entity/objektu v atributu ID a s atributem ADMID s hodnotou, která odpovídá hodnotě atributu ID příslušné entity/objektu v sekci amdSec (entita/objekt v hierarchii dětských elementů &lt;mets:digiprovMD&gt;, &lt;mets:mdWrap&gt;, &lt;mets:xmlData&gt;, &lt;tp:TransakcniLogObjektu&gt;, &lt;tp:TransLogInfo&gt;, &lt;tp:Objekt&gt;, &lt;tp:Identifikator&gt;, &lt;tp:HodnotaID&gt; a &lt;tp:ZdrojID&gt; odpovídá v hodnotách hodnotám elementu &lt;nsesss:Identifikator&gt; a jeho atributu zdroj příslušné entity/objektu v sekci dmdSec).</p>
+<p>Každý element mets:div obsahuje dětský element podle struktury entit/objektů (od spisového plánu po komponentu) v sekci dmdSec s atributem TYPE s hodnotou příslušné entity/objektu a s atributem DMDID s hodnotou příslušné entity/objektu v atributu ID a s atributem ADMID s hodnotou, která odpovídá hodnotě atributu ID příslušné entity/objektu v sekci amdSec (entita/objekt v hierarchii dětských elementů mets:digiprovMD, mets:mdWrap, mets:xmlData, tp:TransakcniLogObjektu, tp:TransLogInfo, tp:Objekt, tp:Identifikator, tp:HodnotaID a tp:ZdrojID odpovídá v hodnotách hodnotám elementu nsesss:Identifikator a jeho atributu zdroj příslušné entity/objektu v sekci dmdSec). Uvedená entita/objekt je v sekci dmdSec, amdSec a structMap uvedena právě jednou. Pokud existuje jakýkoli element nsesss:KrizovyOdkaz a obsahuje atribut pevny s hodnotou ano, potom je entita/objekt typu součást, typový spis, věcná skupina nebo spisový plán v sekci dmdSec uvedená multiplicitně. V takovém případě je stejná entita/objekt uvedena v sekci structMap právě jednou (atribut DMDID obsahuje ID libovolného výskytu příslušné entity/objektu).</p>
 </td>
 </tr>
 <tr>
@@ -17827,7 +17934,7 @@ Kód
 Zdroj
 </td>
 <td class="hdlist2">
-<p>Bod 1.17 a 1.18 přílohy č. 2 NSESSS; Informační list NA, čá. 2/2018, příloha k č. 20/2018 (20.3).</p>
+<p>Bod 1.17 a 1.18 přílohy č. 2 NSESSS; Informační list NA, roč. 2018, čá. 2, příloha k č. 20/2018 (20.3).</p>
 </td>
 </tr>
 <tr>
@@ -18109,7 +18216,7 @@ Kód
 Zdroj
 </td>
 <td class="hdlist2">
-<p>Příloha č. 2 NSESSS, nsesss-common.xsd, ř. 127.</p>
+<p>Příloha č. 2 NSESSS, nsesss-common.xsd, ř. 411.</p>
 </td>
 </tr>
 <tr>
@@ -18117,7 +18224,7 @@ Zdroj
 Popis chyby
 </td>
 <td class="hdlist2">
-<p>Uveden je vícekrát stejný spisový plán, věcná skupina, typový spis, součást, díl, spis, dokument, komponenta, bezpečnostní kategorie, skartační režim nebo typ dokumentu nebo je vícekrát použit stejný identifikátor.</p>
+<p>Chybí evidenční číslo spisu nebo dokumentu.</p>
 </td>
 </tr>
 <tr>
@@ -19644,7 +19751,7 @@ Aktivní
 Pravidlo
 </td>
 <td class="hdlist2">
-<p>Pokud existuje jakýkoli element &lt;nsesss:Identifikator&gt; s atributem zdroj s hodnotou IČ nebo IČO, hodnota obsahuje číslo o osmi číslicích, přičemž vážený součet prvních sedmi číslic má po dělení jedenácti zbytek, který po odečtení od 11 a následném vydělení 10 má zbytek roven poslední číslici.</p>
+<p>Pokud existuje jakýkoli element &lt;nsesss:Identifikator&gt; s atributem zdroj s hodnotou IČ nebo IČO, hodnota obsahuje číslo o osmi číslicích, přičemž vážený součet prvních sedmi číslic (váhy 8 až 2) se vydělí 11 a zbytek určuje kontrolní (osmou) číslici takto: pokud je zbytek 0, kontrolní číslice je 1; pokud je zbytek 1, kontrolní číslice je 0; pokud je jiný zbytek, kontrolní číslice je rozdíl zbytku od 11.</p>
 </td>
 </tr>
 <tr>
@@ -19723,7 +19830,7 @@ Popis chyby
 Aktivní
 </td>
 <td class="hdlist2">
-<p>skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka</p>
+<p>skartační řízení (jen metadata), skartační řízení (s komponentami), skartační řízení (s komponentami), přejímka</p>
 </td>
 </tr>
 </table>
@@ -19817,7 +19924,7 @@ Popis chyby
 Aktivní
 </td>
 <td class="hdlist2">
-<p>skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka</p>
+<p>skartační řízení (jen metadata), přejímka</p>
 </td>
 </tr>
 </table>
@@ -19926,7 +20033,7 @@ Aktivní
 Pravidlo
 </td>
 <td class="hdlist2">
-<p>Každá základní entita a každá entita typový spis (&lt;nsesss:TypovySpis&gt;) obsahuje v hierarchii dětských elementů &lt;nsesss:EvidencniUdaje&gt;, &lt;nsesss:Trideni&gt; elementy &lt;nsesss:JednoduchySpisovyZnak&gt; a &lt;nsesss:PlneUrcenySpisovyZnak&gt; se stejnými hodnotami, jaké obsahují v hierarchii dětských elementů &lt;nsesss:EvidencniUdaje&gt;, &lt;nsesss:Trideni&gt; elementy &lt;nsesss:JednoduchySpisovyZnak&gt; a &lt;nsesss:PlneUrcenySpisovyZnak&gt; rodičovské entity věcná skupina (&lt;nsesss:VecnaSkupina&gt;) nebo součást (&lt;nsesss:Soucast&gt;).</p>
+<p>Každá entita věcná skupina (&lt;nsesss:VecnaSkupina&gt;) nebo součást (&lt;nsesss:Soucast&gt;), která se nachází v rodičovské entitě věcná skupina (&lt;nsesss:VecnaSkupina&gt;) nebo typový spis (&lt;nsesss:TypovySpis&gt;), obsahuje v hierarchii dětských elementů &lt;nsesss:EvidencniUdaje&gt;, &lt;nsesss:Trideni&gt; element &lt;nsesss:PlneUrcenySpisovyZnak&gt; s hodnotou obsahující hodnotu elementu &lt;nsesss:PlneUrcenySpisovyZnak&gt; rodičovské entity, oddělovač a hodnotu elementu &lt;nsesss:JednoduchySpisovyZnak&gt; výchozí entity.</p>
 </td>
 </tr>
 <tr>
@@ -20759,7 +20866,7 @@ Kód
 Zdroj
 </td>
 <td class="hdlist2">
-<p>Bod 2.15. přílohy č. 3 NSESSS.</p>
+<p>Bod 1.15 přílohy č. 2 NSESSS.</p>
 </td>
 </tr>
 <tr>
@@ -20806,7 +20913,7 @@ Kód
 Zdroj
 </td>
 <td class="hdlist2">
-<p>Bod 2.15. přílohy č. 3 NSESSS.</p>
+<p>Bod 1.15 přílohy č. 2 NSESSS.</p>
 </td>
 </tr>
 <tr>
@@ -20853,7 +20960,7 @@ Kód
 Zdroj
 </td>
 <td class="hdlist2">
-<p>Bod 2.15. přílohy č. 3 NSESSS.</p>
+<p>Bod 1.15 přílohy č. 2 NSESSS.</p>
 </td>
 </tr>
 <tr>
@@ -20946,13 +21053,38 @@ Aktivní
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_v3_24_4_2026">v3, 24.4.2026</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Odstraněn profil vývojářské validace; pravidla jsou nyní uplatňována pouze v profilech skartačního řízení a přejímky</p>
+</li>
+<li>
+<p>Odstraněno pravidlo obs9 (chybně zařazené pravidlo)</p>
+</li>
+<li>
+<p>Upraveno znění pravidla dat1a</p>
+</li>
+<li>
+<p>Přepracováno pravidlo obs64 – kontrola se nově provádí pro všechny základní entity (dokument, díl i spis) a porovnává součet roku spouštěcí události, skartační lhůty a roku vyřazení vůči aktuálnímu roku</p>
+</li>
+<li>
+<p>Úpravy zařazení pravidel obs86, obs92 a obs94</p>
+</li>
+<li>
+<p>Textové úpravy znění pravidel (zejména obs54, obs96 a kom1–kom3)</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-03-26 09:15:39 UTC
+Last updated 2026-04-24 08:33:21 UTC
 </div>
 </div>
 </body>
