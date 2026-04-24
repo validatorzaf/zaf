@@ -260,7 +260,7 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Element <publicationstmt> obsahuje alespoň jednoho zpracovatele, tj. alespoň jeden element <p>, který obsahuje právě jeden element <persname> s atributem "localtype" o hodnotě "ARRANGER".
+Pravidlo:: Element <publicationstmt> obsahuje alespoň jednoho zpracovatele, tj. alespoň jeden element <p>, který obsahuje právě jeden element <persname> s atributem "localtype" o hodnotě "ARRANGER". Pravidlo není vynucováno pro profily vydané před květnem 2026.
 Kód:: obs15
 Zdroj:: Část 4.1.7 profilu EAD3 MV ČR
 Popis chyby:: Struktura elementu <publicationstmt> neobsahuje alespoň jeden element <persname> s atributem "localtype" o hodnotě "ARRANGER" vnořený do elementu <p>.
@@ -580,7 +580,7 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Pokud některý element <unitid> obsažený v elementu <did> má atribut "localtype" o hodnotě "REFERENCNI_OZNACENI", hodnota téhož elementu odpovídá hodnotě referenčního označení rodičovské jednotce popisu a oddělovače (lomítka) podle kontextu úrovní popisu. Hodnota referenčního označení je vyšší než přechozí jednotka popisu v rodičovské jednotce popisu. Hodnota referenčního označení obsahuje na začátku CZ a číslo archivu v elementu <agencycode>.
+Pravidlo:: Pokud některý element <unitid> obsažený v elementu <did> má atribut "localtype" o hodnotě "REFERENCNI_OZNACENI", hodnota téhož elementu odpovídá hodnotě referenčního označení rodičovské jednotce popisu a oddělovače (lomítka) podle kontextu úrovní popisu. Hodnota referenčního označení je vyšší než přechozí jednotka popisu v rodičovské jednotce popisu. Hodnota referenčního označení obsahuje na začátku CZ a číslo archivu v elementu <agencycode>. Na rozhraní složka/jednotlivost pro profily před květnem 2026 je umožněna varianta s jedním i dvěma lomítky.
 Kód:: obs51
 Zdroj:: Část 5.4 profilu EAD3 MV ČR
 Popis chyby:: Některý element <unitid> s atributem "localtype" o hodnotě "REFERENCNI_OZNACENI" neobsahuje hodnotu v požadovaném formátu.

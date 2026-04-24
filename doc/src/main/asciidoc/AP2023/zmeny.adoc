@@ -21,3 +21,9 @@
 * Nově pravidlo <<AP2023_obs85>>
 * Upraveno pravidlo <<AP2023_obs31>> - znění chyby
 * Upraveno pravidlo <<AP2023_obs79>> - z důvodu pomůcek k části AS, počítání počtu JP
+
+
+== v4, 24.4.2026
+
+* Upraveno pravidlo <<AP2023_obs15>> - nevynucování pravidla u profilů před květnem 2026
+* Upraveno pravidlo <<AP2023_obs51>> - možnost uvádění dvou lomítek na rozhraní složka-jednotlivost u profilů před květnem 2026

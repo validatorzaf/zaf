@@ -64,7 +64,7 @@ public class ValidatorAp2023 implements Validator, ValidationProfileInfo {
 
     @Override
     public String getRuleVersion() {
-        return "3";
+        return "4";
     }
 
 	public static ValidatorInfo getValidatorInfo() {
