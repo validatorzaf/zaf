@@ -8,3 +8,13 @@
 == v2, 25.3.2026
 
 * Dokončená úplná sada pravidel nsesss2024
+
+== v3, 24.4.2026
+
+* Odstraněn profil vývojářské validace; pravidla jsou nyní uplatňována pouze v profilech skartačního řízení a přejímky
+* Odstraněno pravidlo obs9 (chybně zařazené pravidlo)
+* Upraveno znění pravidla dat1a
+* Přepracováno pravidlo obs64 – kontrola se nově provádí pro všechny základní entity (dokument, díl i spis) a porovnává součet roku spouštěcí události, skartační lhůty a roku vyřazení vůči aktuálnímu roku
+* Úpravy zařazení pravidel obs86, obs92 a obs94
+* Textové úpravy znění pravidel (zejména obs54, obs96 a kom1–kom3)
+
