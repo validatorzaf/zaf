@@ -34,10 +34,10 @@ public class Rule25 extends EadRule {
             throw new ZafException(BaseCode.CHYBI_ELEMENT, "Element <localcontrol> neobsahuje element <term>.", ctx.formatEadPosition(localControl));	        
         }
         String identifier = term.getIdentifier();
-        // Try to recognize valid profile base on constants values in ProfileRevision
+        // Profile revision itself is detected lazily from DOM by EadValidationContext.
+        // Here we only validate the structure and confirm the identifier is a known value.
         for(ProfileRevision value: ProfileRevision.values()) {
         	if(value.name().equals(identifier)) {
-				ctx.setProfileRevision(value);
 				ctx.markValidatedAttribute(localControl, "localtype");
 				ctx.markValidatedAttribute(term, "identifier");
 				return;

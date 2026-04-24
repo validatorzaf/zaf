@@ -15,6 +15,7 @@ import cz.zaf.common.validation.ValidationSubprofile;
 import cz.zaf.eadvalidator.ap2023.profile.DescriptionRules;
 import cz.zaf.eadvalidator.ap2023.profile.FindingAidType;
 import cz.zaf.eadvalidator.ap2023.profile.ProfileRevision;
+import cz.zaf.eadvalidator.ap2023.profile.ProfileRevisionDetector;
 import cz.zaf.schema.ead3.C;
 import cz.zaf.schema.ead3.Ead;
 import jakarta.xml.bind.annotation.XmlType;
@@ -34,8 +35,10 @@ public class EadValidationContext
 	
 	/**
 	 * Aktualni verze profilu
-	 * 
-	 * Vyplňuje se při zpracování pravidla ob25
+	 *
+	 * Detekuje se líně z DOM při prvním čtení přes {@link #getProfileRevision()},
+	 * jakmile je k dispozici kořenový element (po vrstvě WellFormed). Strukturu
+	 * a atributy příslušného elementu validuje obs/Rule25.
 	 */
 	private ProfileRevision profileRevision;
 	private DescriptionRules descriptionRules;
@@ -134,10 +137,13 @@ public class EadValidationContext
 	}
 
 	public void setProfileRevision(final ProfileRevision profileRevision) {
-		this.profileRevision = profileRevision;		
+		this.profileRevision = profileRevision;
 	}
-	
+
 	public ProfileRevision getProfileRevision() {
+		if (profileRevision == null && rootElement != null) {
+			profileRevision = ProfileRevisionDetector.detect(rootElement);
+		}
 		return profileRevision;
 	}
 
