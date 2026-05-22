@@ -222,13 +222,13 @@ public class VeraValidatorProxy {
             }
         } else {
             // Use internal validator
-            InputStream veraAppStream = VeraValidatorProxy.class.getResourceAsStream("/verapdf/greenfield-apps.jar");
+            InputStream veraAppStream = VeraValidatorProxy.class.getResourceAsStream("/verapdf/cli.jar");
             if (veraAppStream == null) {
                 log.error("Failed to load verapdf from resources");
                 throw new RuntimeException("Failed to load verapdf from resources");
             }
             // extract to temp directory
-            File greenFieldAppJar = File.createTempFile("zaf-greenfield-apps", ".jar");
+            File greenFieldAppJar = File.createTempFile("zaf-verapdf-cli", ".jar");
             greenFieldAppJar.deleteOnExit();
             veraAppPath = greenFieldAppJar.toPath();
 
