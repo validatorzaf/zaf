@@ -132,7 +132,7 @@ Validace SIPů uložených v adresáři:
 
 Validace SIPů uložených v adresáři s využitím jiné verze VeraPDF:
 
-`java -Dzaf.vera.path=C:\verapdf\greenfield-apps.jar -jar CmdValidator.jar -p SIP -b "C:\temp\SIP1580724295329"`
+`java -Dzaf.vera.path=C:\verapdf\cli.jar -jar CmdValidator.jar -p SIP -b "C:\temp\SIP1580724295329"`
 
 
 
