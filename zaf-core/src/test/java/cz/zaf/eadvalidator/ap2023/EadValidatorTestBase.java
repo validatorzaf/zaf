@@ -25,6 +25,16 @@ public class EadValidatorTestBase {
                            ValidationLayerType validationType,
                            ValidationStatus stavKontroly,
                            String[] pravidlaOk, String[] pravidlaChybna) {
+        ValidationLayerResult vlr = validateEad(inputPath, validationProfile, validationType);
+        testEadResults(inputPath, vlr, stavKontroly, pravidlaOk, pravidlaChybna);
+    }
+
+    /**
+     * Run the validation and return result of the given layer
+     */
+    protected ValidationLayerResult validateEad(String inputPath,
+                           AP2023Profile validationProfile,
+                           ValidationLayerType validationType) {
         log.debug("Loading EAD: {}, urovenKontroly: {}", inputPath, validationProfile);
         ValidatorAp2023 vap = new ValidatorAp2023(validationProfile, null);
 
@@ -46,13 +56,13 @@ public class EadValidatorTestBase {
         for (ValidationLayerResult vlr : result.getValidationLayerResults()) {
         	lastTestLayerResult = vlr;
             if (vlr.getValidationType() == validationType) {
-            	testEadResults(inputPath, vlr, stavKontroly, pravidlaOk, pravidlaChybna);
-                return;
+            	return vlr;
             }
         }
 
-        fail("Validation results not found, name: " + validationType + ", last layer: " 
+        fail("Validation results not found, name: " + validationType + ", last layer: "
         		+ ((lastTestLayerResult != null)?lastTestLayerResult.getValidationName():"null"));
+        return null;
     }
 
     protected void testEadResults(String inputPath,

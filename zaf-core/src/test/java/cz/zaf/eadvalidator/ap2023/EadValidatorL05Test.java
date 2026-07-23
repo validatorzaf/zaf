@@ -1,7 +1,14 @@
 package cz.zaf.eadvalidator.ap2023;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
+import cz.zaf.common.exceptions.codes.BaseCode;
+import cz.zaf.common.result.RuleValidationError;
+import cz.zaf.common.result.ValidationLayerResult;
 import cz.zaf.common.result.ValidationStatus;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule01;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs00_09.Rule02;
@@ -1014,6 +1021,27 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
                     Rule43.CODE, Rule44.CODE, Rule49.CODE, Rule51.CODE,
                     Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE, Rule72.CODE},
                 new String[]{Rule50.CODE});
+    }
+
+    @Test
+    void testObs_50_chyba02() {
+        // Více chybných <unitid> v různých úrovních popisu,
+        // pravidlo obs50 hlásí každý chybný <unitid> samostatnou chybou
+        ValidationLayerResult vlr = validateEad(PATH_TESTDATA + "/05-KONTROLA OBSAHU/050_chyba2.xml",
+                AP2023Profile.FINDING_AID,
+                ValidationLayers.OBSAH);
+        assertEquals(ValidationStatus.ERROR, vlr.getValidationStatus());
+
+        List<RuleValidationError> obs50Errors = vlr.getPravidla().stream()
+                .filter(p -> Rule50.CODE.equals(p.getId()))
+                .toList();
+        assertEquals(4, obs50Errors.size(), () -> "Očekávány 4 chyby obs50, nalezeno: " + obs50Errors);
+
+        // chyby jsou hlášeny v pořadí dle dokumentu
+        assertEquals(BaseCode.CHYBI_ATRIBUT, obs50Errors.get(0).getKodChyby()); // archdesc: chybí localtype
+        assertEquals(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, obs50Errors.get(1).getKodChyby()); // série: nepovolený localtype
+        assertEquals(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, obs50Errors.get(2).getKodChyby()); // jednotlivost: chybná hodnota label
+        assertEquals(BaseCode.CHYBI_ATRIBUT, obs50Errors.get(3).getKodChyby()); // jednotlivost: chybí label
     }
 
     @Test
