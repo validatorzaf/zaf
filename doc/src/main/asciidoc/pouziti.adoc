@@ -99,6 +99,21 @@ Pokročilé funkce validátoru je možné řídit pomocí systémových parametr
    
   `-Dzaf.vera.jvm.params=-Xmx1g`
 
+*zaf.vera.profile*::
+  Cesta k vlastnímu validačnímu profilu VeraPDF (XML). Pokud je nastavena,
+  je validátor VeraPDF spuštěn s volbou `--profile` a validace probíhá výhradně
+  proti tomuto profilu namísto výchozí sady profilů. Příklad:
+
+  `-Dzaf.vera.profile=C:\profily\custom-profile.xml`
+
+*zaf.vera.params*::
+  Dodatečné volby předané validátoru VeraPDF na příkazové řádce.
+  Volby `--format` a `--servermode` jsou vyhrazeny pro ZAF a nelze je
+  touto cestou měnit. Hodnoty obsahující mezery je nutné uzavřít do uvozovek.
+  Příklad:
+
+  `-Dzaf.vera.params="--profile /adresar/profily/custom-profile.xml"`
+
 *zaf.siegfried.path*::
   Úplná cesta ke spustitelnému souboru aplikace SiegFried. Pokud je cesta nastavena 
   použije se tato aplikace pro ověření správnosti mimeType viz 

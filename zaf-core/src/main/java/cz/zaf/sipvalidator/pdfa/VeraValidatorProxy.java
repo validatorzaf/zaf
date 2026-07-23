@@ -55,10 +55,26 @@ public class VeraValidatorProxy {
 
     /**
      * JVM options
-     * 
+     *
      * Extra JVM parameters
      */
     public static final String ZAF_VERA_JVM_PARAMS = "zaf.vera.jvm.params";
+
+    /**
+     * Path to a custom VeraPDF validation profile (XML)
+     *
+     * When set, VeraPDF is started with option --profile and validates
+     * only against this profile instead of the default set of profiles.
+     */
+    public static final String ZAF_VERA_PROFILE = "zaf.vera.profile";
+
+    /**
+     * Extra VeraPDF CLI options
+     *
+     * Additional options appended to the VeraPDF command line.
+     * Options --format and --servermode are reserved and managed by ZAF.
+     */
+    public static final String ZAF_VERA_PARAMS = "zaf.vera.params";
 
     // 10 minutes
     public static int inactivityDelay = 10;
@@ -76,6 +92,16 @@ public class VeraValidatorProxy {
      * Collection of JVM params
      */
     private List<String> jvmParams;
+
+    /**
+     * Path to a custom validation profile, might be null
+     */
+    private Path veraProfilePath;
+
+    /**
+     * Collection of extra VeraPDF CLI params
+     */
+    private List<String> veraParams;
 
     final private ExecutorService executor = Executors.newSingleThreadExecutor();
 
@@ -107,22 +133,75 @@ public class VeraValidatorProxy {
                                final String javaBin) {
         this.veraAppPath = veraAppPath;
         this.javaBin = javaBin;
-        String jvmOptions = System.getProperty(ZAF_VERA_JVM_PARAMS);
-        
+
         // read JVM options
-        if (StringUtils.isNotBlank(jvmOptions)) {
-            // TODO: implement better parsing
-            String[] opts = jvmOptions.split(" ");
-            if(opts!=null&&opts.length>0) {
-                jvmParams = new ArrayList<>(opts.length);
-                for(String opt: opts) {
-                    opt = opt.trim();
-                    if(StringUtils.isNoneEmpty(opt)) {
-                        jvmParams.add(opt);
-                    }
-                }
+        jvmParams = parseCliParams(System.getProperty(ZAF_VERA_JVM_PARAMS));
+
+        // read custom validation profile
+        String profileParam = System.getProperty(ZAF_VERA_PROFILE);
+        if (StringUtils.isNotBlank(profileParam)) {
+            veraProfilePath = Paths.get(profileParam);
+            if (!Files.isRegularFile(veraProfilePath)) {
+                String errorMsg = new StringBuilder()
+                        .append("Incorrect value of parameter '")
+                        .append(ZAF_VERA_PROFILE)
+                        .append("': ")
+                        .append(profileParam)
+                        .append(". Valid path to the validation profile (.xml) is expected.").toString();
+                log.error(errorMsg);
+                throw new RuntimeException(errorMsg);
             }
         }
+
+        // read extra VeraPDF CLI options
+        veraParams = parseCliParams(System.getProperty(ZAF_VERA_PARAMS));
+        for (String veraParam : veraParams) {
+            if (veraParam.equals("--format") || veraParam.equals("--servermode")) {
+                String errorMsg = new StringBuilder()
+                        .append("Incorrect value of parameter '")
+                        .append(ZAF_VERA_PARAMS)
+                        .append("': option ")
+                        .append(veraParam)
+                        .append(" is reserved and managed by ZAF.").toString();
+                log.error(errorMsg);
+                throw new RuntimeException(errorMsg);
+            }
+        }
+    }
+
+    /**
+     * Parse command line options from a single string
+     *
+     * Options are separated by whitespace. Values containing whitespace
+     * have to be enclosed in double quotes, quotes are removed from the result.
+     *
+     * @param value string with options, might be null
+     * @return list of parsed options, empty list if value is blank
+     */
+    static List<String> parseCliParams(String value) {
+        List<String> result = new ArrayList<>();
+        if (StringUtils.isBlank(value)) {
+            return result;
+        }
+        StringBuilder sb = new StringBuilder();
+        boolean inQuotes = false;
+        for (int i = 0; i < value.length(); i++) {
+            char c = value.charAt(i);
+            if (c == '"') {
+                inQuotes = !inQuotes;
+            } else if (Character.isWhitespace(c) && !inQuotes) {
+                if (sb.length() > 0) {
+                    result.add(sb.toString());
+                    sb.setLength(0);
+                }
+            } else {
+                sb.append(c);
+            }
+        }
+        if (sb.length() > 0) {
+            result.add(sb.toString());
+        }
+        return result;
     }
 
     public static int getInactivityDelay() {
@@ -280,13 +359,16 @@ public class VeraValidatorProxy {
     private Process createProcess(String pdfPath, boolean serverMode) throws IOException {
         List<String> params = new ArrayList<>(10);
         params.add(javaBin);
-        if (jvmParams != null && jvmParams.size() > 0) {
-            params.addAll(jvmParams);
-        }
+        params.addAll(jvmParams);
         params.addAll(Arrays.asList("-classpath",
                                     this.veraAppPath.toAbsolutePath().toString(),
                                     "org.verapdf.apps.GreenfieldCliWrapper",
                                     "--format", "xml"));
+        if (veraProfilePath != null) {
+            params.add("--profile");
+            params.add(veraProfilePath.toAbsolutePath().toString());
+        }
+        params.addAll(veraParams);
         if (serverMode) {
             params.add("--servermode");
         }
@@ -466,21 +548,6 @@ public class VeraValidatorProxy {
     }
 
     private ValidationResult singleRun(Path pdfPath) {
-        
-        List<String> params = new ArrayList<>(10);
-        params.add(javaBin);
-        if (jvmParams != null && jvmParams.size() > 0) {
-            params.addAll(jvmParams);
-        }
-        params.addAll(Arrays.asList("-classpath",
-                                    this.veraAppPath.toAbsolutePath().toString(),
-                                    "org.verapdf.apps.GreenfieldCliWrapper",
-                                    "--format", "xml",
-                                    pdfPath.toAbsolutePath().toString()));
-
-        ProcessBuilder pb = new ProcessBuilder(params);
-
-        pb.redirectErrorStream(true);
 
         ValidationResult vr = new ValidationResult();
         try {
