@@ -35,22 +35,35 @@ public class Rule38 extends EadRule {
     			ctx.getProfileRevision()==ProfileRevision.CZ_EAD3_PROFILE_20240301);
     	
         Archdesc archDesc = ctx.getEad().getArchdesc();
-        boolean archDescHasOtherfindaid = validateLevel(archDesc.getAccessrestrictOrAccrualsOrAcqinfo(), archDesc);
+        List<Object> archDescChildren = archDesc.getAccessrestrictOrAccrualsOrAcqinfo();
+        // presence of otherfindaid is read non-throwing so it stays available
+        // even when validateLevel below reports an error and continues
+        boolean archDescHasOtherfindaid = hasOtherfindaid(archDescChildren);
+        try {
+            validateLevel(archDescChildren, archDesc);
+        } catch (ZafException e) {
+            // sběr chyby a pokračování v kontrole úrovní popisu
+            ctx.addError(e);
+        }
 
         ctx.getEadLevelIterator().iterate((c, parent) -> {
-            boolean parentHasOtherfindaid;
-            if (parent == null) {
-                parentHasOtherfindaid = archDescHasOtherfindaid;
-            } else {
-                parentHasOtherfindaid = hasOtherfindaid(parent.getMDescBase());
-            }
+            try {
+                boolean parentHasOtherfindaid;
+                if (parent == null) {
+                    parentHasOtherfindaid = archDescHasOtherfindaid;
+                } else {
+                    parentHasOtherfindaid = hasOtherfindaid(parent.getMDescBase());
+                }
 
-            boolean childHasOtherfindaid = validateLevel(c.getMDescBase(), c);
+                boolean childHasOtherfindaid = validateLevel(c.getMDescBase(), c);
 
-            if (childHasOtherfindaid && !parentHasOtherfindaid) {
-                throw new ZafException(BaseCode.CHYBNY_ELEMENT,
-                        "Element otherfindaid je uveden v podřízené úrovni, ale chybí v rodičovské úrovni.",
-                        ctx.formatEadPosition(c));
+                if (childHasOtherfindaid && !parentHasOtherfindaid) {
+                    throw new ZafException(BaseCode.CHYBNY_ELEMENT,
+                            "Element otherfindaid je uveden v podřízené úrovni, ale chybí v rodičovské úrovni.",
+                            ctx.formatEadPosition(c));
+                }
+            } catch (ZafException e) {
+                ctx.addError(e);
             }
         });
     }

@@ -1045,6 +1045,24 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
     }
 
     @Test
+    void testObs_65_chyba03() {
+        // Neplatný <accessrestrict> (prázdný <p>) na více úrovních popisu.
+        // Pravidlo obs65 pokračuje ve vyhodnocení a hlásí každou vadnou úroveň zvlášť
+        // (dříve se ukončilo po první chybě).
+        ValidationLayerResult vlr = validateEad(PATH_TESTDATA + "/05-KONTROLA OBSAHU/065_chyba3.xml",
+                AP2023Profile.FINDING_AID,
+                ValidationLayers.OBSAH);
+        assertEquals(ValidationStatus.ERROR, vlr.getValidationStatus());
+
+        List<RuleValidationError> obs65Errors = vlr.getPravidla().stream()
+                .filter(p -> Rule65.CODE.equals(p.getId()))
+                .toList();
+        // jedna chyba na každou vadnou úroveň: archdesc, série, jednotlivost
+        assertEquals(3, obs65Errors.size(), () -> "Očekávány 3 chyby obs65, nalezeno: " + obs65Errors);
+        obs65Errors.forEach(e -> assertEquals(BaseCode.CHYBI_HODNOTA_ELEMENTU, e.getKodChyby()));
+    }
+
+    @Test
     void testObs_51_OK01() {
         testPomucka("05-KONTROLA OBSAHU/051_OK1.xml",
                 ValidationStatus.OK,

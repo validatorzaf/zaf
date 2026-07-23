@@ -36,12 +36,17 @@ public class Rule69 extends EadRule {
         for (Object child : childList) {
             if (child instanceof Altformavail mainElement) {
                 mainElementCOunt++;
-                if (mainElementCOunt > 1) {
-                    throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt elementu.", ctx.formatEadPosition(mainElement));
+                try {
+                    if (mainElementCOunt > 1) {
+                        throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt elementu.", ctx.formatEadPosition(mainElement));
+                    }
+                    ctx.markValidatedElement(mainElement);
+                    List<Object> cHistChilds = mainElement.getChronlistOrListOrTable();
+                    checkSingleElementP(cHistChilds, mainElement);
+                } catch (ZafException e) {
+                    // sběr chyby a pokračování v kontrole dalších úrovní
+                    ctx.addError(e);
                 }
-                ctx.markValidatedElement(mainElement);
-                List<Object> cHistChilds = mainElement.getChronlistOrListOrTable();
-                checkSingleElementP(cHistChilds, mainElement);
             }
         }
     }

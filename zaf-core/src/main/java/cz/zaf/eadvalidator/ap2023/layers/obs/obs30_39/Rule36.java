@@ -26,7 +26,7 @@ public class Rule36 extends EadRule {
 			+ "Pokud má hodnotu \"\"otherlevel\"\", má element <c> dále atribut \"\"otherlevel\"\" o hodnotě \"\"itempart\"\".\"";
 	static final public String RULE_ERROR = "Některý z elementů <c> nemá atribut \"level\" nebo tento atribut obsahuje nepovolenou hodnotu.";
 	static final public String RULE_SOURCE = "Část 3.1 profilu EAD3 MV ČR";
-	
+
 	/**
 	 * Mapa povolenych typu urovne a jejich moznych rodicovskych urovni
 	 */
@@ -38,7 +38,7 @@ public class Rule36 extends EadRule {
 		allowedlevelTypes.put(EadNS.LEVEL_ITEM, Set.of(EadNS.LEVEL_SERIES, EadNS.LEVEL_FILE));
 		allowedlevelTypes.put(Ap2023Constants.LEVEL_ITEMPART, Set.of(EadNS.LEVEL_ITEM));
 	}
-	
+
 	public Rule36() {
 		super(CODE, RULE_TEXT, RULE_ERROR, RULE_SOURCE);
 	}
@@ -47,62 +47,71 @@ public class Rule36 extends EadRule {
 	protected void evalImpl() {
 		// shodne s obs35
 		Archdesc archDesc = ctx.getEad().getArchdesc();
-		if(!EadNS.LEVEL_FONDS.equals(archDesc.getLevel())) {
-			throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí atribut level=\"fonds\" na kořeni", ctx.formatEadPosition(archDesc));
-		}
-		ctx.markValidatedAttribute(archDesc, "level");
-        // Mark did as validated in advance
-        if(archDesc.getDid()!=null) {
-        	ctx.markValidatedElement(archDesc.getDid());
-        }
-        // mark dsc as validated
-		for(Object obj: archDesc.getAccessrestrictOrAccrualsOrAcqinfo()) {
-			if(obj instanceof Dsc dsc) {
-				ctx.markValidatedElement(dsc);
+		try {
+			if(!EadNS.LEVEL_FONDS.equals(archDesc.getLevel())) {
+				throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí atribut level=\"fonds\" na kořeni", ctx.formatEadPosition(archDesc));
 			}
-		}        
-
-		if(StringUtils.isNotBlank(archDesc.getOtherlevel())) {
-			throw new ZafException(BaseCode.CHYBNY_ATRIBUT, "Chybně uvedený atribut otherlevel na kořeni", ctx.formatEadPosition(archDesc));
-		}
-		
-		ctx.getEadLevelIterator().iterate((c, parent) -> {
-			// zjisteni aktualni urovne
-			String levelType = c.getLevel();
-			String otherLevel = c.getOtherlevel();
-			ctx.markValidatedAttribute(c, "level");
+			ctx.markValidatedAttribute(archDesc, "level");
 	        // Mark did as validated in advance
-	        if(c.getDid()!=null) {
-	        	ctx.markValidatedElement(c.getDid());
-	        }		
-			if(EadNS.LEVEL_OTHERLEVEL.equals(levelType)) {
-				if(StringUtils.isBlank(otherLevel)) {
-					throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí atribut otherlevel na elementu", ctx.formatEadPosition(c));					
-				}
-				levelType = otherLevel;
-				ctx.markValidatedAttributeOnly(c, "otherlevel");
-			} else {
-				if(!StringUtils.isBlank(otherLevel)) {
-					throw new ZafException(BaseCode.CHYBNY_ATRIBUT, "Chybně uvedený atribut otherlevel na elementu", ctx.formatEadPosition(c));
+	        if(archDesc.getDid()!=null) {
+	        	ctx.markValidatedElement(archDesc.getDid());
+	        }
+	        // mark dsc as validated
+			for(Object obj: archDesc.getAccessrestrictOrAccrualsOrAcqinfo()) {
+				if(obj instanceof Dsc dsc) {
+					ctx.markValidatedElement(dsc);
 				}
 			}
-			Set<String> allowedParents = allowedlevelTypes.get(levelType);
-			if(allowedParents==null) {
-				throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nepovolená hodnota atributu level na elementu", ctx.formatEadPosition(c));
+
+			if(StringUtils.isNotBlank(archDesc.getOtherlevel())) {
+				throw new ZafException(BaseCode.CHYBNY_ATRIBUT, "Chybně uvedený atribut otherlevel na kořeni", ctx.formatEadPosition(archDesc));
 			}
-			
-			// zjisteni urovne rodice
-			String parentLevelType;
-			if(parent==null) {
-				parentLevelType = EadNS.LEVEL_FONDS; 
-			} else {
-				parentLevelType = parent.getLevel();
-				if(EadNS.LEVEL_OTHERLEVEL.equals(parentLevelType)) {
-					parentLevelType = parent.getOtherlevel();
+		} catch (ZafException e) {
+			// sběr chyby a pokračování v kontrole úrovní popisu
+			ctx.addError(e);
+		}
+
+		ctx.getEadLevelIterator().iterate((c, parent) -> {
+			try {
+				// zjisteni aktualni urovne
+				String levelType = c.getLevel();
+				String otherLevel = c.getOtherlevel();
+				ctx.markValidatedAttribute(c, "level");
+		        // Mark did as validated in advance
+		        if(c.getDid()!=null) {
+		        	ctx.markValidatedElement(c.getDid());
+		        }
+				if(EadNS.LEVEL_OTHERLEVEL.equals(levelType)) {
+					if(StringUtils.isBlank(otherLevel)) {
+						throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí atribut otherlevel na elementu", ctx.formatEadPosition(c));
+					}
+					levelType = otherLevel;
+					ctx.markValidatedAttributeOnly(c, "otherlevel");
+				} else {
+					if(!StringUtils.isBlank(otherLevel)) {
+						throw new ZafException(BaseCode.CHYBNY_ATRIBUT, "Chybně uvedený atribut otherlevel na elementu", ctx.formatEadPosition(c));
+					}
 				}
-			}			
-			if(!allowedParents.contains(parentLevelType)) {
-				throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nepovolená hodnota atributu level na elementu ve vztahu k rodiči", ctx.formatEadPosition(c));
+				Set<String> allowedParents = allowedlevelTypes.get(levelType);
+				if(allowedParents==null) {
+					throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nepovolená hodnota atributu level na elementu", ctx.formatEadPosition(c));
+				}
+
+				// zjisteni urovne rodice
+				String parentLevelType;
+				if(parent==null) {
+					parentLevelType = EadNS.LEVEL_FONDS;
+				} else {
+					parentLevelType = parent.getLevel();
+					if(EadNS.LEVEL_OTHERLEVEL.equals(parentLevelType)) {
+						parentLevelType = parent.getOtherlevel();
+					}
+				}
+				if(!allowedParents.contains(parentLevelType)) {
+					throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nepovolená hodnota atributu level na elementu ve vztahu k rodiči", ctx.formatEadPosition(c));
+				}
+			} catch (ZafException e) {
+				ctx.addError(e);
 			}
 		});
 	}

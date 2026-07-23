@@ -23,29 +23,38 @@ public class Rule37 extends EadRule {
     @Override
     protected void evalImpl() {
         Archdesc archDesc = ctx.getEad().getArchdesc();
-        String baseA = archDesc.getBase();
-        if(baseA!=null) {
-        	validateBase(baseA, archDesc);
-        }
-        String aid = archDesc.getId();
-        if(aid!=null) {
-        	validateID(archDesc, aid);
-        }
-        if(aid==null&&baseA==null) {
-        	throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Chybí hodnota atributu id nebo base.", ctx.formatEadPosition(archDesc));
+        try {
+            String baseA = archDesc.getBase();
+            if(baseA!=null) {
+            	validateBase(baseA, archDesc);
+            }
+            String aid = archDesc.getId();
+            if(aid!=null) {
+            	validateID(archDesc, aid);
+            }
+            if(aid==null&&baseA==null) {
+            	throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Chybí hodnota atributu id nebo base.", ctx.formatEadPosition(archDesc));
+            }
+        } catch (ZafException e) {
+            // sběr chyby a pokračování v kontrole úrovní popisu
+            ctx.addError(e);
         }
 
         ctx.getEadLevelIterator().iterate((c, parent) -> {
-            String baseC = c.getBase();
-            if(baseC!=null) {
-            	validateBase(baseC, c);
-            }
-            String cid = c.getId();
-            if(cid!=null) {
-            	validateID(c, cid);
-            }
-            if(baseC==null&&cid==null) {
-            	throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Chybí hodnota atributu id nebo base.", ctx.formatEadPosition(c));
+            try {
+                String baseC = c.getBase();
+                if(baseC!=null) {
+                	validateBase(baseC, c);
+                }
+                String cid = c.getId();
+                if(cid!=null) {
+                	validateID(c, cid);
+                }
+                if(baseC==null&&cid==null) {
+                	throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Chybí hodnota atributu id nebo base.", ctx.formatEadPosition(c));
+                }
+            } catch (ZafException e) {
+                ctx.addError(e);
             }
         });
 
