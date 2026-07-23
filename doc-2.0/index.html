@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>ZAF 2.0.4: Dokumentace</title>
+<title>ZAF 2.0.5: Dokumentace</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -524,7 +524,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>ZAF 2.0.4: Dokumentace</h1>
+<h1>ZAF 2.0.5: Dokumentace</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Obsah</div>
 <ul class="sectlevel1">
@@ -797,6 +797,29 @@ Příklad:</p>
 </div>
 </div>
 </dd>
+<dt class="hdlist1"><strong>zaf.vera.profile</strong></dt>
+<dd>
+<p>Cesta k vlastnímu validačnímu profilu VeraPDF (XML). Pokud je nastavena,
+je validátor VeraPDF spuštěn s volbou <code>--profile</code> a validace probíhá výhradně
+proti tomuto profilu namísto výchozí sady profilů. Příklad:</p>
+<div class="literalblock">
+<div class="content">
+<pre>`-Dzaf.vera.profile=C:\profily\custom-profile.xml`</pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1"><strong>zaf.vera.params</strong></dt>
+<dd>
+<p>Dodatečné volby předané validátoru VeraPDF na příkazové řádce.
+Volby <code>--format</code> a <code>--servermode</code> jsou vyhrazeny pro ZAF a nelze je
+touto cestou měnit. Hodnoty obsahující mezery je nutné uzavřít do uvozovek.
+Příklad:</p>
+<div class="literalblock">
+<div class="content">
+<pre>`-Dzaf.vera.params="--profile /adresar/profily/custom-profile.xml"`</pre>
+</div>
+</div>
+</dd>
 <dt class="hdlist1"><strong>zaf.siegfried.path</strong></dt>
 <dd>
 <p>Úplná cesta ke spustitelnému souboru aplikace SiegFried. Pokud je cesta nastavena
@@ -840,7 +863,7 @@ je nastaveno <strong>UTF-8</strong>. Dříve se v českém prostředí využíva
 <p>Validace SIPů uložených v adresáři s využitím jiné verze VeraPDF:</p>
 </div>
 <div class="paragraph">
-<p><code>java -Dzaf.vera.path=C:\verapdf\greenfield-apps.jar -jar CmdValidator.jar -p SIP -b "C:\temp\SIP1580724295329"</code></p>
+<p><code>java -Dzaf.vera.path=C:\verapdf\cli.jar -jar CmdValidator.jar -p SIP -b "C:\temp\SIP1580724295329"</code></p>
 </div>
 </div>
 </div>
@@ -974,7 +997,7 @@ Ty jsou také dostupné v repozitáři pro Maven a je možné je přímo použí
 <pre class="CodeRay highlight"><code data-lang="xml">  <span class="tag">&lt;dependency&gt;</span>
     <span class="tag">&lt;groupId&gt;</span>cz.zaf<span class="tag">&lt;/groupId&gt;</span>
     <span class="tag">&lt;artifactId&gt;</span>zaf-core<span class="tag">&lt;/artifactId&gt;</span>
-    <span class="tag">&lt;version&gt;</span>2.0.4<span class="tag">&lt;/version&gt;</span>
+    <span class="tag">&lt;version&gt;</span>2.0.5<span class="tag">&lt;/version&gt;</span>
   <span class="tag">&lt;/dependency&gt;</span></code></pre>
 </div>
 </div>
@@ -3398,7 +3421,7 @@ Aktivní
 Pravidlo
 </td>
 <td class="hdlist2">
-<p>Element &lt;unitid&gt; obsažený v elementu &lt;did&gt; má atributy "localtype" a "label" s povolenými typy označení (dle specifikace 5.5.1), přičemž hodnoty obou atributů si odpovídají. Pokud má atribut "localtype" hodnotu "JINE", hodnota atributu "label" není prázdná.</p>
+<p>Element &lt;unitid&gt; obsažený v elementu &lt;did&gt; má atributy "localtype" a "label" s povolenými typy označení (dle specifikace 5.5.1) nebo hodnotou "ID" pro bezvýznamový prvek popisu (dle specifikace 3.9), přičemž hodnoty obou atributů si odpovídají. Pokud má atribut "localtype" hodnotu "JINE", hodnota atributu "label" není prázdná.</p>
 </td>
 </tr>
 <tr>
@@ -3414,7 +3437,7 @@ Kód
 Zdroj
 </td>
 <td class="hdlist2">
-<p>Část 5.4 a 5.5 profilu EAD3 MV ČR</p>
+<p>Část 3.9, 5.4 a 5.5 profilu EAD3 MV ČR</p>
 </td>
 </tr>
 <tr>
@@ -3423,6 +3446,53 @@ Popis chyby
 </td>
 <td class="hdlist2">
 <p>Některý element &lt;unitid&gt; nemá "localtype" a/nebo "label" nebo tyto atributy neobsahují povolenou hodnotu, případně si hodnoty neodpovídají.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Aktivní
+</td>
+<td class="hdlist2">
+<p>archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="AP2023_obs50a">obs50a</h5>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Pravidlo
+</td>
+<td class="hdlist2">
+<p>Pokud element &lt;did&gt; obsahuje element &lt;unitid&gt; s atributem "localtype" o hodnotě "ID" (bezvýznamový prvek popisu), je tento element jediným elementem v elementu &lt;did&gt; a jeho hodnota se shoduje s hodnotou atributu "id" jednotky popisu.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Kód
+</td>
+<td class="hdlist2">
+<p>obs50a</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Zdroj
+</td>
+<td class="hdlist2">
+<p>Část 3.9 profilu EAD3 MV ČR</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Popis chyby
+</td>
+<td class="hdlist2">
+<p>Některý element &lt;unitid&gt; s atributem "localtype" o hodnotě "ID" není jediným elementem v elementu &lt;did&gt; nebo jeho hodnota neodpovídá hodnotě atributu "id" jednotky popisu.</p>
 </td>
 </tr>
 <tr>
@@ -6141,6 +6211,19 @@ Aktivní
 </li>
 <li>
 <p>Upraveno pravidlo <a href="#AP2023_obs51">obs51</a> - možnost uvádění dvou lomítek na rozhraní složka-jednotlivost u profilů před květnem 2026</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_v5_23_7_2026">v5, 23.7.2026</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Upraveno pravidlo <a href="#AP2023_obs50">obs50</a> - povolena hodnota "ID" atributu "localtype" pro bezvýznamový prvek popisu (část 3.9 profilu)</p>
+</li>
+<li>
+<p>Nové pravidlo <a href="#AP2023_obs50a">obs50a</a> - kontrola bezvýznamového prvku popisu (JP bez prvků popisu): element &lt;unitid&gt; s atributem "localtype" o hodnotě "ID" musí být jediným elementem v elementu &lt;did&gt; a jeho hodnota se shoduje s hodnotou atributu "id" jednotky popisu</p>
 </li>
 </ul>
 </div>
@@ -21084,7 +21167,7 @@ Aktivní
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-04-24 08:33:21 UTC
+Last updated 2026-07-23 16:40:50 UTC
 </div>
 </div>
 </body>
