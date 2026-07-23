@@ -45,30 +45,35 @@ public class Rule99 extends EadRule {
         List<Object> didChildren = did.getMDid();
         for (Object didChild : didChildren) {
             if (didChild instanceof Origination origination) {
-                List<Object> originationChildList = origination.getCorpnameOrFamnameOrName();
+                try {
+                    List<Object> originationChildList = origination.getCorpnameOrFamnameOrName();
 
-                // Must contain exactly one child element
-                if (originationChildList.size() != 1) {
-                    throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
-                            "Element origination musí obsahovat právě jeden podřízený element, nalezeno: " + originationChildList.size() + ".",
-                            ctx.formatEadPosition(origination));
-                }
+                    // Must contain exactly one child element
+                    if (originationChildList.size() != 1) {
+                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
+                                "Element origination musí obsahovat právě jeden podřízený element, nalezeno: " + originationChildList.size() + ".",
+                                ctx.formatEadPosition(origination));
+                    }
 
-                Object originationChild = originationChildList.get(0);
-                if (originationChild instanceof Persname persname) {
-                    validate(persname, persname.getLocaltype(), persname.getPart());
-                } else if (originationChild instanceof Corpname corpname) {
-                    validate(corpname, corpname.getLocaltype(), corpname.getPart());
-                } else if (originationChild instanceof Famname famname) {
-                    validate(famname, famname.getLocaltype(), famname.getPart());
-                } else if (originationChild instanceof Name name) {
-                    validate(name, name.getLocaltype(), name.getPart());
-                } else {
-                    throw new ZafException(BaseCode.CHYBI_ELEMENT,
-                            "Nenalezen očekávaný element (persname, famname, corpname nebo name).",
-                            ctx.formatEadPosition(origination));
+                    Object originationChild = originationChildList.get(0);
+                    if (originationChild instanceof Persname persname) {
+                        validate(persname, persname.getLocaltype(), persname.getPart());
+                    } else if (originationChild instanceof Corpname corpname) {
+                        validate(corpname, corpname.getLocaltype(), corpname.getPart());
+                    } else if (originationChild instanceof Famname famname) {
+                        validate(famname, famname.getLocaltype(), famname.getPart());
+                    } else if (originationChild instanceof Name name) {
+                        validate(name, name.getLocaltype(), name.getPart());
+                    } else {
+                        throw new ZafException(BaseCode.CHYBI_ELEMENT,
+                                "Nenalezen očekávaný element (persname, famname, corpname nebo name).",
+                                ctx.formatEadPosition(origination));
+                    }
+                    ctx.markValidatedElement(origination);
+                } catch (ZafException e) {
+                    // sběr chyby a pokračování v kontrole dalších elementů
+                    ctx.addError(e);
                 }
-                ctx.markValidatedElement(origination);
             }
         }
     }

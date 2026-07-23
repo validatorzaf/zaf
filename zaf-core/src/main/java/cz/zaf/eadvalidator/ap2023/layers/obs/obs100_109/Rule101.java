@@ -40,16 +40,21 @@ public class Rule101 extends EadRule {
             	
                 List<Relation> listRelation = relations.getRelation();
                 for (Relation relation : listRelation) {
-                    String relationtype = relation.getRelationtype();
-                    if (StringUtils.equals("cpfrelation", relationtype) || StringUtils.equals("resourcerelation", relationtype)) {
-                        String linkrole = relation.getLinkrole();
-                        String linktitle = relation.getLinktitle();
-                        if (StringUtils.isEmpty(linkrole) || StringUtils.isEmpty(linktitle)) {
-                            throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Nenalezena požadovaná hodnota atributu linkrole a linktitle.", ctx.formatEadPosition(relation));
+                    try {
+                        String relationtype = relation.getRelationtype();
+                        if (StringUtils.equals("cpfrelation", relationtype) || StringUtils.equals("resourcerelation", relationtype)) {
+                            String linkrole = relation.getLinkrole();
+                            String linktitle = relation.getLinktitle();
+                            if (StringUtils.isEmpty(linkrole) || StringUtils.isEmpty(linktitle)) {
+                                throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Nenalezena požadovaná hodnota atributu linkrole a linktitle.", ctx.formatEadPosition(relation));
+                            }
+                            ctx.markValidatedAttribute(relation, "relationtype");
+                            ctx.markValidatedAttributeOnly(relation, "linktitle");
+                            ctx.markValidatedAttributeOnly(relation, "linkrole");
                         }
-                        ctx.markValidatedAttribute(relation, "relationtype");
-                        ctx.markValidatedAttributeOnly(relation, "linktitle");
-                        ctx.markValidatedAttributeOnly(relation, "linkrole");
+                    } catch (ZafException e) {
+                        // sběr chyby a pokračování v kontrole dalších elementů
+                        ctx.addError(e);
                     }
                 }
             }

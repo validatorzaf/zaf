@@ -37,11 +37,16 @@ public class Rule53 extends EadRule {
         List<Object> mDid = did.getMDid();
         for (Object obj : mDid) {
             if (obj instanceof Unittitle unittitle) {
-                String localtype = unittitle.getLocaltype();
-                if (localtype == null) {
-                    ctx.markValidatedElement(unittitle);
-                    ctx.markValidatedContent(unittitle);
-                    validateContent(unittitle);
+                try {
+                    String localtype = unittitle.getLocaltype();
+                    if (localtype == null) {
+                        ctx.markValidatedElement(unittitle);
+                        ctx.markValidatedContent(unittitle);
+                        validateContent(unittitle);
+                    }
+                } catch (ZafException e) {
+                    // sběr chyby a pokračování v kontrole dalších elementů
+                    ctx.addError(e);
                 }
             }
         }

@@ -48,23 +48,32 @@ public class Rule58  extends EadRule {
         List<Object> mDid = did.getMDid();
         for (Object object : mDid) {
             if (object instanceof Unitdate unitDate) {
-            	List<Serializable> content = unitDate.getContent();
-                if(CollectionUtils.isEmpty(content)) {
-                    throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element unitdate je prázdný.", ctx.formatEadPosition(unitDate));
+                try {
+                    validateUnitdate(unitDate);
+                } catch (ZafException e) {
+                    // sběr chyby a pokračování v kontrole dalších elementů
+                    ctx.addError(e);
                 }
-                if(content.size()>1) {
-                	throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element unitdate obsahuje více vnořených elementů, měl by obsahovat přímo text.", ctx.formatEadPosition(unitDate));
-                }
-                var cnt = content.get(0);
-                if(cnt instanceof String) {
-                	// ok - nop
-                } else {
-                	throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element unitdate obsahuje element, měl by obsahovat přímo text. Hodnota: " + cnt, ctx.formatEadPosition(unitDate));
-                }
-                
-                ctx.markValidatedElement(unitDate);
-                ctx.markValidatedContent(object);
             }
         }
+    }
+
+    private void validateUnitdate(Unitdate unitDate) {
+        List<Serializable> content = unitDate.getContent();
+        if (CollectionUtils.isEmpty(content)) {
+            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element unitdate je prázdný.", ctx.formatEadPosition(unitDate));
+        }
+        if (content.size() > 1) {
+            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element unitdate obsahuje více vnořených elementů, měl by obsahovat přímo text.", ctx.formatEadPosition(unitDate));
+        }
+        var cnt = content.get(0);
+        if (cnt instanceof String) {
+            // ok - nop
+        } else {
+            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element unitdate obsahuje element, měl by obsahovat přímo text. Hodnota: " + cnt, ctx.formatEadPosition(unitDate));
+        }
+
+        ctx.markValidatedElement(unitDate);
+        ctx.markValidatedContent(unitDate);
     }
 }

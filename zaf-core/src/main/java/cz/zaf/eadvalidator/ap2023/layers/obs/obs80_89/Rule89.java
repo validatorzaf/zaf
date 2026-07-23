@@ -48,16 +48,21 @@ public class Rule89 extends EadRule {
             	
                 List<Relation> relationList = relations.getRelation();
                 for (Relation relation : relationList) {
-                    String relationtype = relation.getRelationtype();
-                    String otherrelationtype = relation.getOtherrelationtype();
-                    if (StringUtils.equals("otherrelationtype", relationtype) && StringUtils.equals("COORDINATES", otherrelationtype)) {
-                        Geogname geogname = relation.getGeogname();
-                        if (geogname == null) {
-                            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element geogname.", ctx.formatEadPosition(relation));
+                    try {
+                        String relationtype = relation.getRelationtype();
+                        String otherrelationtype = relation.getOtherrelationtype();
+                        if (StringUtils.equals("otherrelationtype", relationtype) && StringUtils.equals("COORDINATES", otherrelationtype)) {
+                            Geogname geogname = relation.getGeogname();
+                            if (geogname == null) {
+                                throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element geogname.", ctx.formatEadPosition(relation));
+                            }
+                            ctx.markValidatedAttribute(relation, "relationtype");
+                            ctx.markValidatedAttributeOnly(relation, "otherrelationtype");
+                            validateGeogname(geogname);
                         }
-                        ctx.markValidatedAttribute(relation, "relationtype");
-                        ctx.markValidatedAttributeOnly(relation, "otherrelationtype");
-                        validateGeogname(geogname);
+                    } catch (ZafException e) {
+                        // sběr chyby a pokračování v kontrole dalších elementů
+                        ctx.addError(e);
                     }
                 }
             }

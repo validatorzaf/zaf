@@ -160,36 +160,42 @@ public abstract class BaseValidationLayer<T extends ValidationLayerContext, RCtx
             return;
         }
 
-        // reset promennych pred spustenim
-        String mistoChyby = null;
-        String detailChyby = null;
-        ErrorCode errorCode = null;
-        List<EntityId> entityIds = null;
+        ZafException zafException = null;
+        Exception unknownException = null;
 
         try {
             pravidlo.eval(kontrolaCtx);
-            // vse ok
-            return;
         } catch (ZafException e) {
-            errorCode = e.getErrorCode();
-            detailChyby = e.getMessage();
-            mistoChyby = e.getMistoChyby();
-
-            entityIds = e.getEntityIds();
+            zafException = e;
+        } catch (TooManyRuleErrorsException e) {
+            // maximal number of errors reached and the evaluation was aborted,
+            // errors collected so far are reported below
         } catch (Exception e) {
-            errorCode = BaseCode.NEZNAMA_CHYBA;
-            detailChyby = e.getLocalizedMessage();
-            if(detailChyby==null) {
-            	detailChyby = e.getMessage();
+            unknownException = e;
+        }
+
+        // report recoverable errors collected during the evaluation,
+        // in order of detection
+        if (kontrolaCtx instanceof RuleErrorCollector collector) {
+            for (ZafException e : collector.takeErrors()) {
+                pridejChybu(pravidlo, e.getErrorCode(), e.getMessage(), e.getMistoChyby(), e.getEntityIds());
             }
         }
 
-        pridejChybu(pravidlo,
-                    errorCode,
-                    detailChyby,
-                    mistoChyby,
-                    entityIds);
-
+        // exception which aborted the evaluation is reported as the last error
+        if (zafException != null) {
+            pridejChybu(pravidlo,
+                        zafException.getErrorCode(),
+                        zafException.getMessage(),
+                        zafException.getMistoChyby(),
+                        zafException.getEntityIds());
+        } else if (unknownException != null) {
+            String detailChyby = unknownException.getLocalizedMessage();
+            if(detailChyby==null) {
+            	detailChyby = unknownException.getMessage();
+            }
+            pridejChybu(pravidlo, BaseCode.NEZNAMA_CHYBA, detailChyby, null, null);
+        }
     }
 
     /**

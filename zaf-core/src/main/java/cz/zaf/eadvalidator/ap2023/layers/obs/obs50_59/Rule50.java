@@ -16,13 +16,15 @@ import java.util.List;
 public class Rule50 extends EadRule {
 
     static final public String CODE = "obs50";
-    static final public String RULE_TEXT = "Element <unitid> obsažený v elementu <did> má atributy \"localtype\" a \"label\" s povolenými typy označení (dle specifikace 5.5.1), přičemž hodnoty obou atributů si odpovídají. Pokud má atribut \"localtype\" hodnotu \"JINE\", hodnota atributu \"label\" není prázdná.";
+    static final public String RULE_TEXT = "Element <unitid> obsažený v elementu <did> má atributy \"localtype\" a \"label\" s povolenými typy označení (dle specifikace 5.5.1) nebo hodnotou \"ID\" pro bezvýznamový prvek popisu (dle specifikace 3.9), přičemž hodnoty obou atributů si odpovídají. Pokud má atribut \"localtype\" hodnotu \"JINE\", hodnota atributu \"label\" není prázdná.";
     static final public String RULE_ERROR = "Některý element <unitid> nemá \"localtype\" a/nebo \"label\" nebo tyto atributy neobsahují povolenou hodnotu, případně si hodnoty neodpovídají.";
-    static final public String RULE_SOURCE = "Část 5.4 a 5.5 profilu EAD3 MV ČR";
+    static final public String RULE_SOURCE = "Část 3.9, 5.4 a 5.5 profilu EAD3 MV ČR";
 
     static private final Map<String, String> allowedTypes = new HashMap<>();
 
     static {
+        // bezvýznamový prvek popisu (část 3.9 profilu), další podmínky kontroluje obs50a
+        allowedTypes.put(Rule50a.LOCALTYPE_ID, "identifikátor jednotky popisu");
         allowedTypes.put("REFERENCNI_OZNACENI", "referenční označení");
         allowedTypes.put("PORADOVE_CISLO", "pořadové číslo");
         allowedTypes.put("INV_CISLO", "inventární číslo");
@@ -71,26 +73,38 @@ public class Rule50 extends EadRule {
     private void validate(List<Object> mDidDid) {
         for (Object obj : mDidDid) {
             if (obj instanceof Unitid unitid) {
-                String localtype = unitid.getLocaltype();
-                if (StringUtils.isEmpty(localtype)) {
-                    throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí nebo je prázdný atribut localtype.", ctx.formatEadPosition(unitid));
+                try {
+                    validateUnitid(unitid);
+                } catch (ZafException zfe) {
+                    // recoverable error, report it and continue with next unitid
+                    ctx.addError(zfe);
                 }
-                String label = unitid.getLabel();
-                if (StringUtils.isEmpty(label)) {
-                    throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí nebo je prázdný atribut label, localtype: " + localtype + ".", ctx.formatEadPosition(unitid));
-                }
-                if (allowedTypes.containsKey(localtype)) {
-                    String value = allowedTypes.get(localtype);
-                    if (!label.equals(value)) {
-                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut label neobsahuje očekávanou hodnotu, ale hodnotu: " + label + ".", ctx.formatEadPosition(unitid));
-                    }
-                } else {
-                    if (!localtype.equals("JINE")) {
-                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut localtype obsahuje nepovolenou hodnotu: " + localtype + ".", ctx.formatEadPosition(unitid));
-                    }
-                }
-                ctx.markValidatedAttribute(unitid, "localtype");
-                ctx.markValidatedAttributeOnly(unitid, "label");
+            }
+        }
+    }
+
+    private void validateUnitid(Unitid unitid) {
+        // marking has to be done after the presence check,
+        // marking of a missing attribute throws IllegalStateException
+        String localtype = unitid.getLocaltype();
+        if (StringUtils.isEmpty(localtype)) {
+            throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí nebo je prázdný atribut localtype.", ctx.formatEadPosition(unitid));
+        }
+        ctx.markValidatedAttribute(unitid, "localtype");
+
+        String label = unitid.getLabel();
+        if (StringUtils.isEmpty(label)) {
+            throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí nebo je prázdný atribut label, localtype: " + localtype + ".", ctx.formatEadPosition(unitid));
+        }
+        ctx.markValidatedAttributeOnly(unitid, "label");
+        if (allowedTypes.containsKey(localtype)) {
+            String value = allowedTypes.get(localtype);
+            if (!label.equals(value)) {
+                throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut label neobsahuje očekávanou hodnotu, ale hodnotu: " + label + ".", ctx.formatEadPosition(unitid));
+            }
+        } else {
+            if (!localtype.equals("JINE")) {
+                throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut localtype obsahuje nepovolenou hodnotu: " + localtype + ".", ctx.formatEadPosition(unitid));
             }
         }
     }

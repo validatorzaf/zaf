@@ -45,38 +45,46 @@ public class Rule57  extends EadRule {
         List<Object> mDid = did.getMDid();
         for (Object object : mDid) {
             if (object instanceof Unitdatestructured unitDateStructured) {
-                Daterange daterange = unitDateStructured.getDaterange();
-                if(daterange == null) {
-                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element daterange.", ctx.formatEadPosition(unitDateStructured));
-                }
-                String altrender = daterange.getAltrender();
-                if(StringUtils.isEmpty(altrender)){
-                    throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Chybí hodnota atributu altrender.", ctx.formatEadPosition(daterange));
-                }
-                var formats = altrender.split("-", -1);
-                var convFormats = new UnitdateFormatType[formats.length];
-                for(int i = 0; i<formats.length; i++) {
-                	try {
-                		convFormats[i] = UnitdateFormatType.valueOf( formats[i] ); 
-                	} catch (DateTimeParseException dpe) {
-            			throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, 
-            					"Chybná hodnota atributu \"altrender\", hodnota: " + altrender + ".", 
-            					ctx.formatEadPosition(unitDateStructured), dpe);                		
-                	}
-                }
-                
-                Fromdate fromdate = daterange.getFromdate();
-                if(fromdate != null){
-                	validateFromdate(fromdate, convFormats[0]);
-                }
-                Todate todate = daterange.getTodate();
-                if(todate != null){
-                	validateTodate(todate, convFormats[(convFormats.length>1)?1:0]);
+                try {
+                    validateUnitdatestructured(unitDateStructured);
+                } catch (ZafException e) {
+                    // sběr chyby a pokračování v kontrole dalších elementů
+                    ctx.addError(e);
                 }
             }
         }
-}
+    }
 
+    private void validateUnitdatestructured(Unitdatestructured unitDateStructured) {
+        Daterange daterange = unitDateStructured.getDaterange();
+        if (daterange == null) {
+            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element daterange.", ctx.formatEadPosition(unitDateStructured));
+        }
+        String altrender = daterange.getAltrender();
+        if (StringUtils.isEmpty(altrender)) {
+            throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Chybí hodnota atributu altrender.", ctx.formatEadPosition(daterange));
+        }
+        var formats = altrender.split("-", -1);
+        var convFormats = new UnitdateFormatType[formats.length];
+        for (int i = 0; i < formats.length; i++) {
+            try {
+                convFormats[i] = UnitdateFormatType.valueOf(formats[i]);
+            } catch (DateTimeParseException dpe) {
+                throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
+                        "Chybná hodnota atributu \"altrender\", hodnota: " + altrender + ".",
+                        ctx.formatEadPosition(unitDateStructured), dpe);
+            }
+        }
+
+        Fromdate fromdate = daterange.getFromdate();
+        if (fromdate != null) {
+            validateFromdate(fromdate, convFormats[0]);
+        }
+        Todate todate = daterange.getTodate();
+        if (todate != null) {
+            validateTodate(todate, convFormats[(convFormats.length > 1) ? 1 : 0]);
+        }
+    }
 	private void validateTodate(Todate todate, UnitdateFormatType format) {
 		String srcdate = todate.getStandarddate();
 		boolean estimate = false;

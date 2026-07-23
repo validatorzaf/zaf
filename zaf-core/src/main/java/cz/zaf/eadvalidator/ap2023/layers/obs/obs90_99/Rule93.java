@@ -1,5 +1,6 @@
 package cz.zaf.eadvalidator.ap2023.layers.obs.obs90_99;
 
+import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.schema.ead3.Archdesc;
 import cz.zaf.schema.ead3.Bibliography;
@@ -31,9 +32,14 @@ public class Rule93 extends EadRule {
     private void validate(List<Object> list) {
         for (Object child : list) {
             if (child instanceof Bibliography bibliography) {
-                List<Object> bibliographyChildren = bibliography.getChronlistOrListOrTable();
-                checkSingleElementP(bibliographyChildren, bibliography);
-                ctx.markValidatedElement(bibliography);
+                try {
+                    List<Object> bibliographyChildren = bibliography.getChronlistOrListOrTable();
+                    checkSingleElementP(bibliographyChildren, bibliography);
+                    ctx.markValidatedElement(bibliography);
+                } catch (ZafException e) {
+                    // sběr chyby a pokračování v kontrole dalších elementů
+                    ctx.addError(e);
+                }
             }
         }
     }

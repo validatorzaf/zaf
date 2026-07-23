@@ -39,17 +39,22 @@ public class Rule97 extends EadRule {
         List<Object> didChildren = did.getMDid();
         for (Object didChild : didChildren) {
             if (didChild instanceof Dao dao) {
-                Descriptivenote descriptivenote = dao.getDescriptivenote();
-                if (descriptivenote != null) {
-                    List<P> pList = descriptivenote.getP();
-                    if (CollectionUtils.isEmpty(pList)) {
-                        throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element p.", ctx.formatEadPosition(descriptivenote));
+                try {
+                    Descriptivenote descriptivenote = dao.getDescriptivenote();
+                    if (descriptivenote != null) {
+                        List<P> pList = descriptivenote.getP();
+                        if (CollectionUtils.isEmpty(pList)) {
+                            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element p.", ctx.formatEadPosition(descriptivenote));
+                        }
+                        if (pList.size() > 1) {
+                            throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element p.", ctx.formatEadPosition(pList.get(1)));
+                        }
+                        validateP(pList.get(0));
+                        ctx.markValidatedElement(descriptivenote);
                     }
-                    if (pList.size() > 1) {
-                        throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element p.", ctx.formatEadPosition(pList.get(1)));
-                    }
-                    validateP(pList.get(0));
-                    ctx.markValidatedElement(descriptivenote);
+                } catch (ZafException e) {
+                    // sběr chyby a pokračování v kontrole dalších elementů
+                    ctx.addError(e);
                 }
             }
         }

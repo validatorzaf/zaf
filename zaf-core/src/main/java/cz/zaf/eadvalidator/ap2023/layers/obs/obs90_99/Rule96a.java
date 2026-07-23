@@ -47,33 +47,37 @@ public class Rule96a extends EadRule {
         List<Object> didChildren = did.getMDid();
         for (Object didChild : didChildren) {
             if (didChild instanceof Dao dao) {
-                String identifier = dao.getIdentifier();
-                if(identifier == null){
-                    throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Nenalezen atribut identifier elementu dao.", ctx.formatEadPosition(dao));
-                }
-                if (StringUtils.isBlank(identifier)) {
-                    throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Hodnota atributu identifier elemetu dao není zadána.", ctx.formatEadPosition(dao));
-                }
-                ctx.markValidatedAttribute(dao, "identifier");
-                
-                String href = dao.getHref();
-                
-                String coverage = dao.getCoverage();
-                if(coverage!=null) {
-                	// mark as validated
-                	ctx.markValidatedAttribute(dao, "coverage");
-                }
+                try {
+                    String identifier = dao.getIdentifier();
+                    if (identifier == null) {
+                        throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Nenalezen atribut identifier elementu dao.", ctx.formatEadPosition(dao));
+                    }
+                    if (StringUtils.isBlank(identifier)) {
+                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Hodnota atributu identifier elemetu dao není zadána.", ctx.formatEadPosition(dao));
+                    }
+                    ctx.markValidatedAttribute(dao, "identifier");
 
-                // pokud coverage neni pozadovano vzdy a neodkazuje na balicek 
-                // -> je nepovinne
-                if(!requiresCoverage && href==null) {
-                	return;
-                }
-                if(coverage==null) {
-                	throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Nenalezen atribut coverage elementu dao.", ctx.formatEadPosition(dao));
+                    String href = dao.getHref();
+
+                    String coverage = dao.getCoverage();
+                    if (coverage != null) {
+                        // mark as validated
+                        ctx.markValidatedAttribute(dao, "coverage");
+                    }
+
+                    // pokud coverage neni pozadovano vzdy a neodkazuje na balicek
+                    // -> je nepovinne
+                    if (!requiresCoverage && href == null) {
+                        continue;
+                    }
+                    if (coverage == null) {
+                        throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Nenalezen atribut coverage elementu dao.", ctx.formatEadPosition(dao));
+                    }
+                } catch (ZafException e) {
+                    // sběr chyby a pokračování v kontrole dalších elementů
+                    ctx.addError(e);
                 }
             }
         }
     }
-
 }

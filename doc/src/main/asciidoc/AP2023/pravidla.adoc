@@ -569,10 +569,21 @@ Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, k
 
 [horizontal]
 
-Pravidlo:: Element <unitid> obsažený v elementu <did> má atributy "localtype" a "label" s povolenými typy označení (dle specifikace 5.5.1), přičemž hodnoty obou atributů si odpovídají. Pokud má atribut "localtype" hodnotu "JINE", hodnota atributu "label" není prázdná.
+Pravidlo:: Element <unitid> obsažený v elementu <did> má atributy "localtype" a "label" s povolenými typy označení (dle specifikace 5.5.1) nebo hodnotou "ID" pro bezvýznamový prvek popisu (dle specifikace 3.9), přičemž hodnoty obou atributů si odpovídají. Pokud má atribut "localtype" hodnotu "JINE", hodnota atributu "label" není prázdná.
 Kód:: obs50
-Zdroj:: Část 5.4 a 5.5 profilu EAD3 MV ČR
+Zdroj:: Část 3.9, 5.4 a 5.5 profilu EAD3 MV ČR
 Popis chyby:: Některý element <unitid> nemá "localtype" a/nebo "label" nebo tyto atributy neobsahují povolenou hodnotu, případně si hodnoty neodpovídají.
+Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
+
+[[AP2023_obs50a]]
+== obs50a
+
+[horizontal]
+
+Pravidlo:: Pokud element <did> obsahuje element <unitid> s atributem "localtype" o hodnotě "ID" (bezvýznamový prvek popisu), je tento element jediným elementem v elementu <did> a jeho hodnota se shoduje s hodnotou atributu "id" jednotky popisu.
+Kód:: obs50a
+Zdroj:: Část 3.9 profilu EAD3 MV ČR
+Popis chyby:: Některý element <unitid> s atributem "localtype" o hodnotě "ID" není jediným elementem v elementu <did> nebo jeho hodnota neodpovídá hodnotě atributu "id" jednotky popisu.
 Aktivní:: archivní pomůcka, archivní popis, inherentní popis v balíčku, kontextový popis v balíčku
 
 [[AP2023_obs51]]

@@ -23,11 +23,20 @@ public class Rule37a extends EadRule {
     protected void evalImpl() {
         Archdesc archDesc = ctx.getEad().getArchdesc();
         String aid = archDesc.getId();
-        validateID(archDesc, aid);
+        try {
+            validateID(archDesc, aid);
+        } catch (ZafException e) {
+            // sběr chyby a pokračování v kontrole úrovní popisu
+            ctx.addError(e);
+        }
 
         ctx.getEadLevelIterator().iterate((c, parent) -> {
             String cid = c.getId();
-            validateID(c, cid);
+            try {
+                validateID(c, cid);
+            } catch (ZafException e) {
+                ctx.addError(e);
+            }
         });
 
     }

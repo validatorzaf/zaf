@@ -46,28 +46,33 @@ public class Rule104 extends EadRule {
     private void validate(Relations relations) {
         List<Relation> listRelation = relations.getRelation();
         for (Relation relation : listRelation) {
-            String relationtype = relation.getRelationtype();
-            if (StringUtils.equals("cpfrelation", relationtype) || StringUtils.equals("resourcerelation", relationtype)) {
-                List<Relationentry> relationentrys = relation.getRelationentry();
-                if (relationentrys.isEmpty()) {
-                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen požadovaný element relationentry.", ctx.formatEadPosition(relation));
-                }
-                if (relationentrys.size() != 1) {
-                    throw new ZafException(BaseCode.DUPLICITA, "Nalezen nepovolený element relationentry.", ctx.formatEadPosition(relation));
-                }
-                Relationentry relationentry = relationentrys.get(0);
-                String content = relationentry.getContent();
-                if (StringUtils.isBlank(content)) {
-                    throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element relationentry neobsahuje žádnou hodnotu.", ctx.formatEadPosition(relationentry));
-                }
+            try {
+                String relationtype = relation.getRelationtype();
+                if (StringUtils.equals("cpfrelation", relationtype) || StringUtils.equals("resourcerelation", relationtype)) {
+                    List<Relationentry> relationentrys = relation.getRelationentry();
+                    if (relationentrys.isEmpty()) {
+                        throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen požadovaný element relationentry.", ctx.formatEadPosition(relation));
+                    }
+                    if (relationentrys.size() != 1) {
+                        throw new ZafException(BaseCode.DUPLICITA, "Nalezen nepovolený element relationentry.", ctx.formatEadPosition(relation));
+                    }
+                    Relationentry relationentry = relationentrys.get(0);
+                    String content = relationentry.getContent();
+                    if (StringUtils.isBlank(content)) {
+                        throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element relationentry neobsahuje žádnou hodnotu.", ctx.formatEadPosition(relationentry));
+                    }
 
-                Descriptivenote descriptivenote = relation.getDescriptivenote();
-                if (descriptivenote == null) {
-                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen požadovaný element descriptivenote.", ctx.formatEadPosition(relation));
+                    Descriptivenote descriptivenote = relation.getDescriptivenote();
+                    if (descriptivenote == null) {
+                        throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen požadovaný element descriptivenote.", ctx.formatEadPosition(relation));
+                    }
+                    ctx.markValidatedElement(relationentry);
+                    ctx.markValidatedContent(relationentry);
+                    ctx.markValidatedElement(descriptivenote);
                 }
-                ctx.markValidatedElement(relationentry);
-                ctx.markValidatedContent(relationentry);
-                ctx.markValidatedElement(descriptivenote);
+            } catch (ZafException e) {
+                // sběr chyby a pokračování v kontrole dalších elementů
+                ctx.addError(e);
             }
         }
     }

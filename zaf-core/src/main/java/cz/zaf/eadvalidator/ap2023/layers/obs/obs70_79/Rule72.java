@@ -1,5 +1,6 @@
 package cz.zaf.eadvalidator.ap2023.layers.obs.obs70_79;
 
+import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.schema.ead3.Archdesc;
 import cz.zaf.schema.ead3.Processinfo;
@@ -33,9 +34,13 @@ public class Rule72 extends EadRule {
     private void validate(List<Object> childList) {
         for (Object child : childList) {
             if (child instanceof Processinfo mainElement) {
-                ctx.markValidatedElement(mainElement);
-                List<Object> cHistChilds = mainElement.getChronlistOrListOrTable();
-                checkSingleElementP(cHistChilds, mainElement);
+                try {
+                    ctx.markValidatedElement(mainElement);
+                    List<Object> cHistChilds = mainElement.getChronlistOrListOrTable();
+                    checkSingleElementP(cHistChilds, mainElement);
+                } catch (ZafException e) {
+                    ctx.addError(e);
+                }
             }
         }
     }

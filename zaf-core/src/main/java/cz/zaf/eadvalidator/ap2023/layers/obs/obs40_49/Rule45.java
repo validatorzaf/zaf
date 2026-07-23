@@ -25,11 +25,20 @@ public class Rule45 extends EadRule {
 	protected void evalImpl() {
         Archdesc archDesc = ctx.getEad().getArchdesc();
         Did didA = archDesc.getDid();
-        validateRootLangMaterial(didA);
+        try {
+            validateRootLangMaterial(didA);
+        } catch (ZafException e) {
+            // sběr chyby a pokračování v kontrole úrovní popisu
+            ctx.addError(e);
+        }
 
         ctx.getEadLevelIterator().iterate((c, parent) -> {
             Did didC = c.getDid();
-            validateLangMaterial(didC);
+            try {
+                validateLangMaterial(didC);
+            } catch (ZafException e) {
+                ctx.addError(e);
+            }
         });		
 	}
 

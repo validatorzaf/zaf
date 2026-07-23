@@ -185,7 +185,8 @@ public class Rule42 extends EadRule {
 
         for (ComparedObect co : siblingsList) {
             if (!seen.add(co)) {
-                throw new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt elementu.", ctx.formatEadPosition(co.getSrcObject()));
+                // sběr chyby a pokračování – nahlásí všechny duplicity v úrovni
+                ctx.addError(new ZafException(BaseCode.DUPLICITA, "Opakovaný výskyt elementu.", ctx.formatEadPosition(co.getSrcObject())));
             }
         }
     }

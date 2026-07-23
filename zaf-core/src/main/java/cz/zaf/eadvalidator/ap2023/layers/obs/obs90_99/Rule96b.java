@@ -41,25 +41,29 @@ public class Rule96b extends EadRule {
         List<Object> didChildren = did.getMDid();
         for (Object didChild : didChildren) {
             if (didChild instanceof Dao dao) {
-            	String href = dao.getHref();
-                String daotype = dao.getDaotype();
-                if("borndigital".equals(daotype)) {
-                	if(href==null) {
-                		throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Nenalezen atribut href elementu dao pro digitální archiválii.", ctx.formatEadPosition(dao));
-                	}
-                } else {
-                    // neni digitalni archivalie, neni nutna dalsi kontrola
-                	if(href!=null) {
-                		// digitalizat muze byt ulozen v balicku
-                		ctx.markValidatedAttributeOnly(dao, "href");
-                	}
-                	return;
-                }                
-                
-                // href ma nastavenu hodnotu (neni null)
-                ctx.markValidatedAttributeOnly(dao, "href");
+                try {
+                    String href = dao.getHref();
+                    String daotype = dao.getDaotype();
+                    if ("borndigital".equals(daotype)) {
+                        if (href == null) {
+                            throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Nenalezen atribut href elementu dao pro digitální archiválii.", ctx.formatEadPosition(dao));
+                        }
+                    } else {
+                        // neni digitalni archivalie, neni nutna dalsi kontrola
+                        if (href != null) {
+                            // digitalizat muze byt ulozen v balicku
+                            ctx.markValidatedAttributeOnly(dao, "href");
+                        }
+                        continue;
+                    }
+
+                    // href ma nastavenu hodnotu (neni null)
+                    ctx.markValidatedAttributeOnly(dao, "href");
+                } catch (ZafException e) {
+                    // sběr chyby a pokračování v kontrole dalších elementů
+                    ctx.addError(e);
+                }
             }
         }
     }
-
 }

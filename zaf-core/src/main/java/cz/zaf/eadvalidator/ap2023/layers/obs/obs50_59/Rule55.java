@@ -43,33 +43,42 @@ public class Rule55 extends EadRule {
         List<Object> mDid = did.getMDid();
         for (Object object : mDid) {
             if (object instanceof Unitdatestructured unitDateStructured) {
-                ctx.markValidatedElement(unitDateStructured);
-                Daterange daterange = unitDateStructured.getDaterange();
-                if(daterange == null) {
-                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element daterange.", ctx.formatEadPosition(unitDateStructured));
+                try {
+                    validateUnitdatestructured(unitDateStructured);
+                } catch (ZafException e) {
+                    // sběr chyby a pokračování v kontrole dalších elementů
+                    ctx.addError(e);
                 }
-                String altrender = daterange.getAltrender();
-                if(StringUtils.isEmpty(altrender)){
-                    throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Chybí hodnota atributu altrender.", ctx.formatEadPosition(daterange));
-                }
-                validateAltrender(altrender, daterange);
-                ctx.markValidatedAttribute(daterange, "altrender");
-                Fromdate fromdate = daterange.getFromdate();
-                if(fromdate == null){
-                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element fromdate.", ctx.formatEadPosition(daterange));
-                }
-                Todate todate = daterange.getTodate();
-                if(todate == null){
-                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element todate.", ctx.formatEadPosition(daterange));
-                }
-                ctx.markValidatedElement(fromdate);
-                ctx.markValidatedContent(fromdate);
-                validateDate(fromdate.getContent(), fromdate);
-                ctx.markValidatedElement(todate);
-                ctx.markValidatedContent(todate);
-                validateDate(todate.getContent(), todate);
             }
         }
+    }
+
+    private void validateUnitdatestructured(Unitdatestructured unitDateStructured) {
+        ctx.markValidatedElement(unitDateStructured);
+        Daterange daterange = unitDateStructured.getDaterange();
+        if(daterange == null) {
+            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element daterange.", ctx.formatEadPosition(unitDateStructured));
+        }
+        String altrender = daterange.getAltrender();
+        if(StringUtils.isEmpty(altrender)){
+            throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Chybí hodnota atributu altrender.", ctx.formatEadPosition(daterange));
+        }
+        validateAltrender(altrender, daterange);
+        ctx.markValidatedAttribute(daterange, "altrender");
+        Fromdate fromdate = daterange.getFromdate();
+        if(fromdate == null){
+            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element fromdate.", ctx.formatEadPosition(daterange));
+        }
+        Todate todate = daterange.getTodate();
+        if(todate == null){
+            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element todate.", ctx.formatEadPosition(daterange));
+        }
+        ctx.markValidatedElement(fromdate);
+        ctx.markValidatedContent(fromdate);
+        validateDate(fromdate.getContent(), fromdate);
+        ctx.markValidatedElement(todate);
+        ctx.markValidatedContent(todate);
+        validateDate(todate.getContent(), todate);
     }
 
     private void validateAltrender(String altrender, Daterange daterange) {

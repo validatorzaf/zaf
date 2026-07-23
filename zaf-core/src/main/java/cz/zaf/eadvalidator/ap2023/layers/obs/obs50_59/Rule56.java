@@ -66,8 +66,13 @@ public class Rule56 extends EadRule {
         List<Object> mDidList = did.getMDid();
         for (Object didChild : mDidList) {
             if (didChild instanceof Unitdatestructured unitdatestructured) {
-                var daterange = unitdatestructured.getDaterange();
-                validateDaterange(daterange);
+                try {
+                    var daterange = unitdatestructured.getDaterange();
+                    validateDaterange(daterange);
+                } catch (ZafException e) {
+                    // sběr chyby a pokračování v kontrole dalších elementů
+                    ctx.addError(e);
+                }
             }
         }
     }

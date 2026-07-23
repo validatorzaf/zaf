@@ -46,32 +46,37 @@ public class Rule36a extends EadRule {
 				ctx.markValidatedElement(dsc);
 			}
 		}        
-    	
+
         ctx.getEadLevelIterator().iterate((c, parent) -> {
-            String level = c.getLevel();
-            String otherLevel = c.getOtherlevel();
-            if (StringUtils.isEmpty(level)) {
-                throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí hodnota atributu level.", ctx.formatEadPosition(c));
-            }
-            if (!allowed.contains(level)) {
-                throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Chybná hodnota atributu level: " + level + ".", ctx.formatEadPosition(c));
-            }
-            ctx.markValidatedAttribute(c, "level");
-	        // Mark did as validated in advance
-	        if(c.getDid()!=null) {
-	        	ctx.markValidatedElement(c.getDid());
-	        }		
-            
-            if(EadNS.LEVEL_OTHERLEVEL.equals(level) ) {
-                // check itempart
-                if(otherLevel==null) {
-                    throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Atribut otherlevel nesmí být prázdný pro typ úrovně otherLevel.", ctx.formatEadPosition(c));
+            try {
+                String level = c.getLevel();
+                String otherLevel = c.getOtherlevel();
+                if (StringUtils.isEmpty(level)) {
+                    throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí hodnota atributu level.", ctx.formatEadPosition(c));
                 }
-                ctx.markValidatedAttributeOnly(c, "otherlevel");
-            } else {
-                if(otherLevel!=null) {
-                    throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut otherlevel musí být prázdný pro typ úrovně " + level + ".", ctx.formatEadPosition(c));
+                if (!allowed.contains(level)) {
+                    throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Chybná hodnota atributu level: " + level + ".", ctx.formatEadPosition(c));
                 }
+                ctx.markValidatedAttribute(c, "level");
+    	        // Mark did as validated in advance
+    	        if(c.getDid()!=null) {
+    	        	ctx.markValidatedElement(c.getDid());
+    	        }
+
+                if(EadNS.LEVEL_OTHERLEVEL.equals(level) ) {
+                    // check itempart
+                    if(otherLevel==null) {
+                        throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Atribut otherlevel nesmí být prázdný pro typ úrovně otherLevel.", ctx.formatEadPosition(c));
+                    }
+                    ctx.markValidatedAttributeOnly(c, "otherlevel");
+                } else {
+                    if(otherLevel!=null) {
+                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut otherlevel musí být prázdný pro typ úrovně " + level + ".", ctx.formatEadPosition(c));
+                    }
+                }
+            } catch (ZafException e) {
+                // sběr chyby a pokračování v kontrole dalších úrovní
+                ctx.addError(e);
             }
         });
     }

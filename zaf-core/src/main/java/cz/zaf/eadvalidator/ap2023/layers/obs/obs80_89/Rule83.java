@@ -44,82 +44,90 @@ public class Rule83 extends EadRule {
         String levelC = c.getLevel();
         for (Object child : childList) {
             if (child instanceof Physdescstructured physdescstructured) {
-                String physdescstructuredtype = physdescstructured.getPhysdescstructuredtype();                
-                if (EadNS.PHYSDESCSTRUCTURED_TYPE_MATERIALTYPE.equals(physdescstructuredtype)) {
-                    String coverage = physdescstructured.getCoverage();
-                    if(!"whole".equals(coverage)) {
-                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut coverage nemá hodnotu whole.", ctx.formatEadPosition(physdescstructured));
-                    }
-                    Unittype unittype = physdescstructured.getUnittype();
-                    if (unittype == null) {
-                        throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element unittype.", ctx.formatEadPosition(physdescstructured));
-                    }
-                    Quantity quantity = physdescstructured.getQuantity();
-                    if (quantity == null) {
-                        throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element quantity.", ctx.formatEadPosition(physdescstructured));
-                    }
-                    String contentUnitType = unittype.getContent();
-                    if (StringUtils.isEmpty(contentUnitType)) {
-                        throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element unittype neobsahuje žádnou hodnotu.", ctx.formatEadPosition(unittype));
-                    }
-                    if (!allowed.contains(contentUnitType)) {
-                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element unittype obsajuje nepovolenou hodnotu: " + contentUnitType + ".", ctx.formatEadPosition(unittype));
-                    }
-
-                    // kontrola deklarovaneho typu ve vztahu k urovni
-                    // neuplatni se pro inherentni popis, kde mohou být jiné typy úrovní
-                    if(AP2023Profile.EARK_INHERENT_DESC!=ctx.getValidationProfile()) {
-						if (EadNS.LEVEL_FILE.equals(contentUnitType) || EadNS.LEVEL_ITEM.equals(contentUnitType)) {
-							if (!levelC.equals(contentUnitType)) {
-								throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
-										"Element unittype neobsajuje očekávanou hodnotu: " + levelC + ", ale hodnotu: "
-												+ contentUnitType + ".",
-										ctx.formatEadPosition(unittype));
-							}
-						} else if (Ap2023Constants.LEVEL_ITEMPART.equals(contentUnitType)) {
-							if (!EadNS.LEVEL_OTHERLEVEL.equals(levelC)) {
-								throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
-										"Element unittype neobsajuje očekávanou hodnotu: " + levelC + ", ale hodnotu: "
-												+ contentUnitType + ".",
-										ctx.formatEadPosition(unittype));
-							}
-							if (!Ap2023Constants.LEVEL_ITEMPART.equals(c.getOtherlevel())) {
-								throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
-										"Element unittype obsajuje hodnotu: " + Ap2023Constants.LEVEL_ITEMPART
-												+ ", což neodpovídá hodnotě atributu otherlevel: " + contentUnitType
-												+ ".",
-										ctx.formatEadPosition(unittype));
-							}
-						}
-                    }
-
-                    String contentQuantity = quantity.getContent();
-                    if (!StringUtils.isEmpty(contentQuantity)) {
-                    	// try to parse int
-                    	try {
-                    		var value = Integer.valueOf(contentQuantity);
-                    		if(value<1) {
-                    			throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity neobsajuje celé kladné číslo, hodnota: " + contentQuantity + ".", ctx.formatEadPosition(quantity));
-                    		}
-                    	} catch (NumberFormatException nfe) {
-                    		throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity není číslo.", ctx.formatEadPosition(quantity));
-                    	}
-                    }
-                    // Jednotlivost musi mit pocet 1
-                    if (EadNS.LEVEL_ITEM.equals(contentUnitType)) {
-                        if (!"1".equals(contentQuantity)) {
-                            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity neobsajuje očekávanou hodnotu 1.", ctx.formatEadPosition(quantity));
-                        }
-                    }
-                    ctx.markValidatedAttribute(physdescstructured, "physdescstructuredtype");
-                    ctx.markValidatedAttributeOnly(physdescstructured, "coverage");
-                    ctx.markValidatedElement(unittype);
-                    ctx.markValidatedContent(unittype);
-                    ctx.markValidatedElement(quantity);
-                    ctx.markValidatedContent(quantity);
+                try {
+                    validatePhysdescstructured(physdescstructured, c, levelC);
+                } catch (ZafException e) {
+                    // sběr chyby a pokračování v kontrole dalších elementů
+                    ctx.addError(e);
                 }
             }
         }
     }
 
+    private void validatePhysdescstructured(Physdescstructured physdescstructured, C c, String levelC) {
+        String physdescstructuredtype = physdescstructured.getPhysdescstructuredtype();
+        if (EadNS.PHYSDESCSTRUCTURED_TYPE_MATERIALTYPE.equals(physdescstructuredtype)) {
+            String coverage = physdescstructured.getCoverage();
+            if (!"whole".equals(coverage)) {
+                throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut coverage nemá hodnotu whole.", ctx.formatEadPosition(physdescstructured));
+            }
+            Unittype unittype = physdescstructured.getUnittype();
+            if (unittype == null) {
+                throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element unittype.", ctx.formatEadPosition(physdescstructured));
+            }
+            Quantity quantity = physdescstructured.getQuantity();
+            if (quantity == null) {
+                throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element quantity.", ctx.formatEadPosition(physdescstructured));
+            }
+            String contentUnitType = unittype.getContent();
+            if (StringUtils.isEmpty(contentUnitType)) {
+                throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Element unittype neobsahuje žádnou hodnotu.", ctx.formatEadPosition(unittype));
+            }
+            if (!allowed.contains(contentUnitType)) {
+                throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element unittype obsajuje nepovolenou hodnotu: " + contentUnitType + ".", ctx.formatEadPosition(unittype));
+            }
+
+            // kontrola deklarovaneho typu ve vztahu k urovni
+            // neuplatni se pro inherentni popis, kde mohou být jiné typy úrovní
+            if (AP2023Profile.EARK_INHERENT_DESC != ctx.getValidationProfile()) {
+                if (EadNS.LEVEL_FILE.equals(contentUnitType) || EadNS.LEVEL_ITEM.equals(contentUnitType)) {
+                    if (!levelC.equals(contentUnitType)) {
+                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
+                                "Element unittype neobsajuje očekávanou hodnotu: " + levelC + ", ale hodnotu: "
+                                        + contentUnitType + ".",
+                                ctx.formatEadPosition(unittype));
+                    }
+                } else if (Ap2023Constants.LEVEL_ITEMPART.equals(contentUnitType)) {
+                    if (!EadNS.LEVEL_OTHERLEVEL.equals(levelC)) {
+                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
+                                "Element unittype neobsajuje očekávanou hodnotu: " + levelC + ", ale hodnotu: "
+                                        + contentUnitType + ".",
+                                ctx.formatEadPosition(unittype));
+                    }
+                    if (!Ap2023Constants.LEVEL_ITEMPART.equals(c.getOtherlevel())) {
+                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU,
+                                "Element unittype obsajuje hodnotu: " + Ap2023Constants.LEVEL_ITEMPART
+                                        + ", což neodpovídá hodnotě atributu otherlevel: " + contentUnitType
+                                        + ".",
+                                ctx.formatEadPosition(unittype));
+                    }
+                }
+            }
+
+            String contentQuantity = quantity.getContent();
+            if (!StringUtils.isEmpty(contentQuantity)) {
+                // try to parse int
+                try {
+                    var value = Integer.valueOf(contentQuantity);
+                    if (value < 1) {
+                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity neobsajuje celé kladné číslo, hodnota: " + contentQuantity + ".", ctx.formatEadPosition(quantity));
+                    }
+                } catch (NumberFormatException nfe) {
+                    throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity není číslo.", ctx.formatEadPosition(quantity));
+                }
+            }
+            // Jednotlivost musi mit pocet 1
+            if (EadNS.LEVEL_ITEM.equals(contentUnitType)) {
+                if (!"1".equals(contentQuantity)) {
+                    throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity neobsajuje očekávanou hodnotu 1.", ctx.formatEadPosition(quantity));
+                }
+            }
+            ctx.markValidatedAttribute(physdescstructured, "physdescstructuredtype");
+            ctx.markValidatedAttributeOnly(physdescstructured, "coverage");
+            ctx.markValidatedElement(unittype);
+            ctx.markValidatedContent(unittype);
+            ctx.markValidatedElement(quantity);
+            ctx.markValidatedContent(quantity);
+        }
+    }
 }

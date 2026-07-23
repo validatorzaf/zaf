@@ -66,13 +66,18 @@ public class Rule74d extends EadRule {
                 String localtype = physfacet.getLocaltype();
                 if (!StringUtils.isEmpty(localtype)) {
                     if (localtype.equals("EXTRA_PART")) {
-                        if (found != null) {
-                            throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element physfacet.", ctx.formatEadPosition(physfacet));
+                        try {
+                            if (found != null) {
+                                throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element physfacet.", ctx.formatEadPosition(physfacet));
+                            }
+                            found = physfacet;
+                            ctx.markValidatedAttribute(physfacet, "localtype");
+                            ctx.markValidatedContent(physfacet);
+                            chceckContent(physfacet);
+                        } catch (ZafException e) {
+                            // sběr chyby a pokračování v kontrole dalších elementů
+                            ctx.addError(e);
                         }
-                        found = physfacet;
-                        ctx.markValidatedAttribute(physfacet, "localtype");
-                        ctx.markValidatedContent(physfacet);
-                        chceckContent(physfacet);
                     }
                 }
             }

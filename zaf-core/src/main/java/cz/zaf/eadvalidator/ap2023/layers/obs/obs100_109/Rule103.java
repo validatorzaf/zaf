@@ -123,22 +123,27 @@ public class Rule103 extends EadRule {
     private void validate(Relations relations) {
         List<Relation> listRelation = relations.getRelation();
         for (Relation relation : listRelation) {
-            String relationtype = relation.getRelationtype();
-            if (StringUtils.equals("cpfrelation", relationtype) || StringUtils.equals("resourcerelation", relationtype)) {
-                String linkrole = relation.getLinkrole();
-                String linktitle = relation.getLinktitle();
-                if (StringUtils.isEmpty(linkrole) || StringUtils.isEmpty(linktitle)) {
-                    throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Nenalezena požadovaná hodnota atributu.", ctx.formatEadPosition(relation));
+            try {
+                String relationtype = relation.getRelationtype();
+                if (StringUtils.equals("cpfrelation", relationtype) || StringUtils.equals("resourcerelation", relationtype)) {
+                    String linkrole = relation.getLinkrole();
+                    String linktitle = relation.getLinktitle();
+                    if (StringUtils.isEmpty(linkrole) || StringUtils.isEmpty(linktitle)) {
+                        throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Nenalezena požadovaná hodnota atributu.", ctx.formatEadPosition(relation));
+                    }
+                    boolean containsRole = allowed.containsKey(linkrole);
+                    if (!containsRole) {
+                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nenalezena požadovaná hodnota atributu linkrole.", ctx.formatEadPosition(relation));
+                    }
+                    String title = allowed.get(linkrole);
+                    if (!StringUtils.equals(title, linktitle)) {
+                        //může mít cokoli nezávisle na tabulce
+                    }
+                    ctx.markValidatedAttributeOnly(relation, "linkrole");
                 }
-                boolean containsRole = allowed.containsKey(linkrole);
-                if (!containsRole) {
-                    throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nenalezena požadovaná hodnota atributu linkrole.", ctx.formatEadPosition(relation));
-                }
-                String title = allowed.get(linkrole);
-                if (!StringUtils.equals(title, linktitle)) {
-                    //může mít cokoli nezávisle na tabulce
-                }
-                ctx.markValidatedAttributeOnly(relation, "linkrole");
+            } catch (ZafException e) {
+                // sběr chyby a pokračování v kontrole dalších elementů
+                ctx.addError(e);
             }
         }
     }

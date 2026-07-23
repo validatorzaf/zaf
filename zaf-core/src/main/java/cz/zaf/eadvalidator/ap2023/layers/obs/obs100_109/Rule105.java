@@ -48,22 +48,27 @@ public class Rule105 extends EadRule {
     private void validate(Relations relations) {
         List<Relation> listRelation = relations.getRelation();
         for (Relation relation : listRelation) {
-            Descriptivenote descriptivenote = relation.getDescriptivenote();
-            if (descriptivenote != null) {
+            try {
+                Descriptivenote descriptivenote = relation.getDescriptivenote();
+                if (descriptivenote != null) {
 
-                List<P> pList = descriptivenote.getP();
+                    List<P> pList = descriptivenote.getP();
 
-                if (pList.isEmpty()) {
-                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen požadovaný element p.", ctx.formatEadPosition(descriptivenote));
+                    if (pList.isEmpty()) {
+                        throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen požadovaný element p.", ctx.formatEadPosition(descriptivenote));
+                    }
+                    if (pList.size() != 1) {
+                        throw new ZafException(BaseCode.DUPLICITA, "Nalezen nepovolený element p.", ctx.formatEadPosition(descriptivenote));
+                    }
+                    P p = pList.get(0);
+                    //ptr nejde zavolat
+                    validatePart(p);
+                    ctx.markValidatedElement(descriptivenote);
+                    ctx.markValidatedElement(p);
                 }
-                if (pList.size() != 1) {
-                    throw new ZafException(BaseCode.DUPLICITA, "Nalezen nepovolený element p.", ctx.formatEadPosition(descriptivenote));
-                }
-                P p = pList.get(0);
-                //ptr nejde zavolat
-                validatePart(p);
-                ctx.markValidatedElement(descriptivenote);
-                ctx.markValidatedElement(p);
+            } catch (ZafException e) {
+                // sběr chyby a pokračování v kontrole dalších elementů
+                ctx.addError(e);
             }
         }
     }

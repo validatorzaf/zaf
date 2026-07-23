@@ -42,21 +42,26 @@ public class Rule84 extends EadRule {
 
         for (Object child : childList) {
             if (child instanceof Materialspec materialspec) {
-                String localtype = materialspec.getLocaltype();
-                if (StringUtils.equals("SCALE", localtype)) {
-                    scaleCount++;
-                    validateContent(materialspec);
-                }
-                if (StringUtils.equals("ORIENTATION", localtype)) {
-                    orientationCOunt++;
-                    validateContent(materialspec);
-                }
-                if (StringUtils.equals("VOLUME", localtype)) {
-                    volumeCOunt++;
-                    validateContent(materialspec);
-                }
-                if (scaleCount > 1 || orientationCOunt > 1 || volumeCOunt > 1) {
-                    duplicityError(materialspec, localtype);
+                try {
+                    String localtype = materialspec.getLocaltype();
+                    if (StringUtils.equals("SCALE", localtype)) {
+                        scaleCount++;
+                        validateContent(materialspec);
+                    }
+                    if (StringUtils.equals("ORIENTATION", localtype)) {
+                        orientationCOunt++;
+                        validateContent(materialspec);
+                    }
+                    if (StringUtils.equals("VOLUME", localtype)) {
+                        volumeCOunt++;
+                        validateContent(materialspec);
+                    }
+                    if (scaleCount > 1 || orientationCOunt > 1 || volumeCOunt > 1) {
+                        duplicityError(materialspec, localtype);
+                    }
+                } catch (ZafException e) {
+                    // sběr chyby a pokračování v kontrole dalších elementů
+                    ctx.addError(e);
                 }
             }
         }

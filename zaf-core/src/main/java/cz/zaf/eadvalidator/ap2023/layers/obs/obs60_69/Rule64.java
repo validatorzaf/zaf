@@ -1,5 +1,6 @@
 package cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69;
 
+import cz.zaf.common.exceptions.ZafException;
 import cz.zaf.eadvalidator.ap2023.EadRule;
 import cz.zaf.schema.ead3.Accruals;
 import cz.zaf.schema.ead3.Archdesc;
@@ -32,9 +33,13 @@ public class Rule64 extends EadRule {
     private void validate(List<Object> childList) {
         for (Object child : childList) {
             if (child instanceof Accruals mainElement) {
-                ctx.markValidatedElement(mainElement);
-                List<Object> cHistChilds = mainElement.getChronlistOrListOrTable();
-                checkSingleElementP(cHistChilds, mainElement);
+                try {
+                    ctx.markValidatedElement(mainElement);
+                    List<Object> cHistChilds = mainElement.getChronlistOrListOrTable();
+                    checkSingleElementP(cHistChilds, mainElement);
+                } catch (ZafException e) {
+                    ctx.addError(e);
+                }
             }
         }
     }
