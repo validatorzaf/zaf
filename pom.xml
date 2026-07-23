@@ -217,11 +217,11 @@
     <distributionManagement>
         <repository>
             <id>LightCompReleaseRepository</id>
-            <url>https://artifactory.lightcomp.cz/artifactory/distributions</url>
+            <url>https://mvn.lightcomp.cz/distributions</url>
         </repository>
         <snapshotRepository>
             <id>frnkRepo</id>
-            <url>https://artifactory.lightcomp.cz/artifactory/libs-snapshot-local</url>
+            <url>https://mvn.lightcomp.cz/libs-snapshot</url>
         </snapshotRepository>
 
     </distributionManagement>
