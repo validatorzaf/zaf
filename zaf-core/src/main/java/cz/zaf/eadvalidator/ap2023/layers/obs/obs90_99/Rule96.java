@@ -44,19 +44,23 @@ public class Rule96 extends EadRule {
         List<Object> didChildren = did.getMDid();
         for (Object didChild : didChildren) {
             if (didChild instanceof Dao dao) {
-                String identifier = dao.getIdentifier();
-                if(identifier == null){
-                    throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Nenalezen atribut identifier elementu dao.", ctx.formatEadPosition(dao));
-                }
-                if (StringUtils.isBlank(identifier)) {
-                    throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Hodnota atributu identifier elemetu dao není zadána.", ctx.formatEadPosition(dao));
-                }
-                ctx.markValidatedAttributeOnly(dao, "identifier");
-                if(dao.getCoverage()!=null) {
-                	ctx.markValidatedAttributeOnly(dao, "coverage");
+                try {
+                    String identifier = dao.getIdentifier();
+                    if (identifier == null) {
+                        throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Nenalezen atribut identifier elementu dao.", ctx.formatEadPosition(dao));
+                    }
+                    if (StringUtils.isBlank(identifier)) {
+                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Hodnota atributu identifier elemetu dao není zadána.", ctx.formatEadPosition(dao));
+                    }
+                    ctx.markValidatedAttributeOnly(dao, "identifier");
+                    if (dao.getCoverage() != null) {
+                        ctx.markValidatedAttributeOnly(dao, "coverage");
+                    }
+                } catch (ZafException e) {
+                    // sběr chyby a pokračování v kontrole dalších elementů
+                    ctx.addError(e);
                 }
             }
         }
     }
-
 }

@@ -60,9 +60,14 @@ public class Rule75 extends EadRule {
                                 JAXBElement<?> inner = (JAXBElement<?>) content;
                                 Object value = inner.getValue();
                                 if (value instanceof Dimensions dimensionsDimensions) {
-                                    String localtype = validateDimensions(dimensionsDimensions);
-                                    if (!existingDimensions.add(localtype)) {
-                                        throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen další element dimensions s localtype: " + localtype + ".", ctx.formatEadPosition(dimensions));
+                                    try {
+                                        String localtype = validateDimensions(dimensionsDimensions);
+                                        if (!existingDimensions.add(localtype)) {
+                                            throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen další element dimensions s localtype: " + localtype + ".", ctx.formatEadPosition(dimensions));
+                                        }
+                                    } catch (ZafException e) {
+                                        // sběr chyby a pokračování v kontrole dalších elementů
+                                        ctx.addError(e);
                                     }
                                 }
                             }

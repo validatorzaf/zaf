@@ -36,12 +36,17 @@ public class Rule52 extends EadRule {
     private void validate(List<Object> mDidDid) {
         for (Object object : mDidDid) {
             if (object instanceof Unitid unitid) {
-                String localtype = unitid.getLocaltype();
-                if ("INV_CISLO".equals(localtype)) {
-                    String profile = ctx.getDescriptionRules().name();
-                    if (!"CZ_ZP1958".equals(profile)) {
-                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut localtype neobsahuje očekávanou hodnotu: CZ_ZP1958, ale hodnotu: " + profile + ".", ctx.formatEadPosition(unitid));
+                try {
+                    String localtype = unitid.getLocaltype();
+                    if ("INV_CISLO".equals(localtype)) {
+                        String profile = ctx.getDescriptionRules().name();
+                        if (!"CZ_ZP1958".equals(profile)) {
+                            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut localtype neobsahuje očekávanou hodnotu: CZ_ZP1958, ale hodnotu: " + profile + ".", ctx.formatEadPosition(unitid));
+                        }
                     }
+                } catch (ZafException e) {
+                    // sběr chyby a pokračování v kontrole dalších elementů
+                    ctx.addError(e);
                 }
             }
         }

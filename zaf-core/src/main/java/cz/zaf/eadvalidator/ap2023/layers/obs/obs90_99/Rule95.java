@@ -37,11 +37,16 @@ public class Rule95 extends EadRule {
         List<Object> didChildren = did.getMDid();
         for (Object didChild : didChildren) {
             if (didChild instanceof Dao dao) {
-                String daotype = dao.getDaotype();
-                if (!(StringUtils.equals("derived", daotype) || StringUtils.equals("borndigital", daotype))) {
-                    throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nepovolená hodnota atributu daotype.", ctx.formatEadPosition(dao));
+                try {
+                    String daotype = dao.getDaotype();
+                    if (!(StringUtils.equals("derived", daotype) || StringUtils.equals("borndigital", daotype))) {
+                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Nepovolená hodnota atributu daotype.", ctx.formatEadPosition(dao));
+                    }
+                    ctx.markValidatedAttribute(dao, "daotype");
+                } catch (ZafException e) {
+                    // sběr chyby a pokračování v kontrole dalších elementů
+                    ctx.addError(e);
                 }
-                ctx.markValidatedAttribute(dao, "daotype");
             }
         }
     }

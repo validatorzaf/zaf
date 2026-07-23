@@ -40,23 +40,28 @@ public class Rule104a extends EadRule {
             if (mDescBaseObject instanceof Relations relations) {
                 List<Relation> listRelation = relations.getRelation();
                 for (Relation relation : listRelation) {
-                    String relationtype = relation.getRelationtype();
-                    if (StringUtils.equals("cpfrelation", relationtype) || StringUtils.equals("resourcerelation", relationtype)) {
-                        List<Relationentry> relationentry = relation.getRelationentry();
-                        if (CollectionUtils.isEmpty(relationentry)) {
-                            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element relationentry.", ctx.formatEadPosition(relation));
-                        }
-                        if (relationentry.size() > 1) {
-                            throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element relationentry.", ctx.formatEadPosition(relationentry.get(1)));
-                        }
-                        Relationentry re = relationentry.get(0);
-                        String content = re.getContent();
+                    try {
+                        String relationtype = relation.getRelationtype();
+                        if (StringUtils.equals("cpfrelation", relationtype) || StringUtils.equals("resourcerelation", relationtype)) {
+                            List<Relationentry> relationentry = relation.getRelationentry();
+                            if (CollectionUtils.isEmpty(relationentry)) {
+                                throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element relationentry.", ctx.formatEadPosition(relation));
+                            }
+                            if (relationentry.size() > 1) {
+                                throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element relationentry.", ctx.formatEadPosition(relationentry.get(1)));
+                            }
+                            Relationentry re = relationentry.get(0);
+                            String content = re.getContent();
 
-                        if (StringUtils.isBlank(content)) {
-                            throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Nenalezena hodnota elementu relationentry.", ctx.formatEadPosition(re));
+                            if (StringUtils.isBlank(content)) {
+                                throw new ZafException(BaseCode.CHYBI_HODNOTA_ELEMENTU, "Nenalezena hodnota elementu relationentry.", ctx.formatEadPosition(re));
+                            }
+                            ctx.markValidatedElement(re);
+                            ctx.markValidatedContent(re);
                         }
-                        ctx.markValidatedElement(re);
-                        ctx.markValidatedContent(re);
+                    } catch (ZafException e) {
+                        // sběr chyby a pokračování v kontrole dalších elementů
+                        ctx.addError(e);
                     }
                 }
             }

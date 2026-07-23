@@ -39,12 +39,17 @@ public class Rule85 extends EadRule {
 
         for (Object child : childList) {
             if (child instanceof Materialspec materialspec) {
-                String localtype = materialspec.getLocaltype();
-                if ("SCALE_RATIO".equals(localtype)) {
-                    ctx.markValidatedAttribute(materialspec, "localtype");
-                    ctx.markValidatedContent(materialspec);
+                try {
+                    String localtype = materialspec.getLocaltype();
+                    if ("SCALE_RATIO".equals(localtype)) {
+                        ctx.markValidatedAttribute(materialspec, "localtype");
+                        ctx.markValidatedContent(materialspec);
 
-                    validateContent(materialspec);
+                        validateContent(materialspec);
+                    }
+                } catch (ZafException e) {
+                    // sběr chyby a pokračování v kontrole dalších elementů
+                    ctx.addError(e);
                 }
             }
         }

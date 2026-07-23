@@ -43,45 +43,54 @@ public class Rule78 extends EadRule {
         List<Object> childList = did.getMDid();
         for (Object child : childList) {
             if (child instanceof Physdescstructured physdescstructured) {
-                String physdescstructuredtype = physdescstructured.getPhysdescstructuredtype();
-                String otherphysdescstructuredtype = physdescstructured.getOtherphysdescstructuredtype();
-
-                if (EadNS.PHYSDESCSTRUCTURED_TYPE_OTHERTYPE.equals(physdescstructuredtype) &&
-                        "duration".equals(otherphysdescstructuredtype)) {
-                    String coverage = physdescstructured.getCoverage();
-                    if(!"whole".equals(coverage)) {
-                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut coverage nemá hodnotu whole", ctx.formatEadPosition(physdescstructured));
-                    }
-                    Unittype unittype = physdescstructured.getUnittype();
-                    Quantity quantity = physdescstructured.getQuantity();
-                    if (unittype == null) {
-                        throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element unittype.", ctx.formatEadPosition(physdescstructured));
-                    }
-                    if (quantity == null) {
-                        throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element quantity.", ctx.formatEadPosition(physdescstructured));
-                    }
-                    String contentUnitType = unittype.getContent();
-                    String contentQuantity = quantity.getContent();
-                    if (!"s".equals(contentUnitType)) {
-                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element unittype neobsajuje očekávanou hodnotu.", ctx.formatEadPosition(unittype));
-                    }
-                    try {
-                        var value = Integer.parseInt(contentQuantity);
-                        if (value <= 0) {
-                            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity neobsajuje kladné celé číslo.", ctx.formatEadPosition(quantity));
-                        }
-                    } catch (NumberFormatException nfe) {
-                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity obsajuje neočekávanou hodnotu: " + contentQuantity + ".", ctx.formatEadPosition(quantity));
-                    }
-                    ctx.markValidatedAttribute(physdescstructured, "physdescstructuredtype");
-                    ctx.markValidatedAttributeOnly(physdescstructured, "otherphysdescstructuredtype");
-                    ctx.markValidatedAttributeOnly(physdescstructured, "coverage");
-                    ctx.markValidatedElement(unittype);
-                    ctx.markValidatedContent(unittype);
-                    ctx.markValidatedElement(quantity);
-                    ctx.markValidatedContent(quantity);
+                try {
+                    validatePhysdescstructured(physdescstructured);
+                } catch (ZafException e) {
+                    // sběr chyby a pokračování v kontrole dalších elementů
+                    ctx.addError(e);
                 }
             }
+        }
+    }
+
+    private void validatePhysdescstructured(Physdescstructured physdescstructured) {
+        String physdescstructuredtype = physdescstructured.getPhysdescstructuredtype();
+        String otherphysdescstructuredtype = physdescstructured.getOtherphysdescstructuredtype();
+
+        if (EadNS.PHYSDESCSTRUCTURED_TYPE_OTHERTYPE.equals(physdescstructuredtype) &&
+                "duration".equals(otherphysdescstructuredtype)) {
+            String coverage = physdescstructured.getCoverage();
+            if (!"whole".equals(coverage)) {
+                throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, "Atribut coverage nemá hodnotu whole", ctx.formatEadPosition(physdescstructured));
+            }
+            Unittype unittype = physdescstructured.getUnittype();
+            Quantity quantity = physdescstructured.getQuantity();
+            if (unittype == null) {
+                throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element unittype.", ctx.formatEadPosition(physdescstructured));
+            }
+            if (quantity == null) {
+                throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element quantity.", ctx.formatEadPosition(physdescstructured));
+            }
+            String contentUnitType = unittype.getContent();
+            String contentQuantity = quantity.getContent();
+            if (!"s".equals(contentUnitType)) {
+                throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element unittype neobsajuje očekávanou hodnotu.", ctx.formatEadPosition(unittype));
+            }
+            try {
+                var value = Integer.parseInt(contentQuantity);
+                if (value <= 0) {
+                    throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity neobsajuje kladné celé číslo.", ctx.formatEadPosition(quantity));
+                }
+            } catch (NumberFormatException nfe) {
+                throw new ZafException(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element quantity obsajuje neočekávanou hodnotu: " + contentQuantity + ".", ctx.formatEadPosition(quantity));
+            }
+            ctx.markValidatedAttribute(physdescstructured, "physdescstructuredtype");
+            ctx.markValidatedAttributeOnly(physdescstructured, "otherphysdescstructuredtype");
+            ctx.markValidatedAttributeOnly(physdescstructured, "coverage");
+            ctx.markValidatedElement(unittype);
+            ctx.markValidatedContent(unittype);
+            ctx.markValidatedElement(quantity);
+            ctx.markValidatedContent(quantity);
         }
     }
 }

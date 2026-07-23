@@ -61,13 +61,18 @@ public class Rule74b extends EadRule {
                         if (object instanceof Physfacet physfacet) {
                             boolean isWanted = isWantedPhysfacet(physfacet);
                             if (isWanted) {
-                                String localtype = physfacet.getLocaltype();
-                                if (!founded.add(localtype)) {
-                                    throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element physfacet.", ctx.formatEadPosition(physfacet));
+                                try {
+                                    String localtype = physfacet.getLocaltype();
+                                    if (!founded.add(localtype)) {
+                                        throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element physfacet.", ctx.formatEadPosition(physfacet));
+                                    }
+                                    ctx.markValidatedAttribute(physfacet, "localtype");
+                                    ctx.markValidatedContent(physfacet);
+                                    chceckContent(physfacet);
+                                } catch (ZafException e) {
+                                    // sběr chyby a pokračování v kontrole dalších elementů
+                                    ctx.addError(e);
                                 }
-                                ctx.markValidatedAttribute(physfacet, "localtype");
-                                ctx.markValidatedContent(physfacet);
-                                chceckContent(physfacet);
                             }
                         }
                     }

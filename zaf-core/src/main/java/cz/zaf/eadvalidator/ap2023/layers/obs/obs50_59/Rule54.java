@@ -40,34 +40,43 @@ public class Rule54 extends EadRule {
         List<Object> mDid = did.getMDid();
         for (Object obj : mDid) {
             if (obj instanceof Unittitle unittitle) {
-                String localtype = unittitle.getLocaltype();
-                if (StringUtils.equals("FORMAL_TITLE", localtype)) {
-                    ctx.markValidatedAttribute(unittitle, "localtype");
-                    boolean firstCondition = validateContent(obj, false, unittitle.getContent());
-                    if (!firstCondition) {
-                        Part found = null;
-                        List<Serializable> content = unittitle.getContent();
-                        for (Object cont : content) {
-                            if (cont instanceof JAXBElement) {
-                                JAXBElement<?> inner = (JAXBElement<?>) cont;
-                                Object value = inner.getValue();
-                                if (value instanceof Title title) {
-                                    List<Part> parts = title.getPart();
-                                    for (Part part : parts) {
-                                        if (found != null) {
-                                            throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element part.", ctx.formatEadPosition(part));
-                                        }
-                                        List<Serializable> contentPart = part.getContent();
-                                        validateContent(part, true, contentPart);
-                                        found = part;
-                                    }
+                try {
+                    validateUnittitle(unittitle);
+                } catch (ZafException e) {
+                    // sběr chyby a pokračování v kontrole dalších elementů
+                    ctx.addError(e);
+                }
+            }
+        }
+    }
+
+    private void validateUnittitle(Unittitle unittitle) {
+        String localtype = unittitle.getLocaltype();
+        if (StringUtils.equals("FORMAL_TITLE", localtype)) {
+            ctx.markValidatedAttribute(unittitle, "localtype");
+            boolean firstCondition = validateContent(unittitle, false, unittitle.getContent());
+            if (!firstCondition) {
+                Part found = null;
+                List<Serializable> content = unittitle.getContent();
+                for (Object cont : content) {
+                    if (cont instanceof JAXBElement) {
+                        JAXBElement<?> inner = (JAXBElement<?>) cont;
+                        Object value = inner.getValue();
+                        if (value instanceof Title title) {
+                            List<Part> parts = title.getPart();
+                            for (Part part : parts) {
+                                if (found != null) {
+                                    throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element part.", ctx.formatEadPosition(part));
                                 }
+                                List<Serializable> contentPart = part.getContent();
+                                validateContent(part, true, contentPart);
+                                found = part;
                             }
                         }
-                        if (found == null) {
-                            throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Element unittitle neobsahuje textovou hodnotu ani element title s elementem part.", ctx.formatEadPosition(unittitle));
-                        }
                     }
+                }
+                if (found == null) {
+                    throw new ZafException(BaseCode.CHYBNY_ELEMENT, "Element unittitle neobsahuje textovou hodnotu ani element title s elementem part.", ctx.formatEadPosition(unittitle));
                 }
             }
         }

@@ -43,49 +43,56 @@ public class Rule36b extends EadRule {
     private void validate(List<Object> childList) {
         for (Object obj : childList) {
             if (obj instanceof Fileplan fileplan) {
-                String encodinganalog = fileplan.getEncodinganalog();
-                if (StringUtils.isBlank(encodinganalog)) {
-                    throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí nebo je prázdný atribut encodinganalog.", ctx.formatEadPosition(fileplan));
+                try {
+                    validateFileplan(fileplan);
+                } catch (ZafException e) {
+                    // sběr chyby a pokračování v kontrole dalších elementů
+                    ctx.addError(e);
                 }
-                ctx.markValidatedAttribute(fileplan, "encodinganalog");
-                
-                // check id
-                if(fileplan.getId()!=null) {
-                	ctx.markValidatedAttribute(fileplan, "id");
-                }
-                
-                Head head = fileplan.getHead();
-                if (head == null) {
-                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybí element head.", ctx.formatEadPosition(fileplan));
-                }
-                ctx.markValidatedElement(head);
-                List<Object> chronlistOrListOrTable = fileplan.getChronlistOrListOrTable();
-                P oneP = null;
-                Chronlist oneChronlist = null;
-                for (Object child : chronlistOrListOrTable) {
-                    if (child instanceof P p) {
-                        if (oneP != null) {
-                            throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element p.", ctx.formatEadPosition(fileplan));
-                        }
-                        oneP = p;
-                    }
-                    if (child instanceof Chronlist chronlist) {
-                        if (oneChronlist != null) {
-                            throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element chronlist.", ctx.formatEadPosition(fileplan));
-                        }
-                        oneChronlist = chronlist;
-                        validateChronlist(chronlist);
-                    }
-                }
-
-                if(oneChronlist==null) {
-                    throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element chronlist.", ctx.formatEadPosition(fileplan));
-                }
-
             }
         }
     }
 
+    private void validateFileplan(Fileplan fileplan) {
+        String encodinganalog = fileplan.getEncodinganalog();
+        if (StringUtils.isBlank(encodinganalog)) {
+            throw new ZafException(BaseCode.CHYBI_ATRIBUT, "Chybí nebo je prázdný atribut encodinganalog.", ctx.formatEadPosition(fileplan));
+        }
+        ctx.markValidatedAttribute(fileplan, "encodinganalog");
+
+        // check id
+        if (fileplan.getId() != null) {
+            ctx.markValidatedAttribute(fileplan, "id");
+        }
+
+        Head head = fileplan.getHead();
+        if (head == null) {
+            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Chybí element head.", ctx.formatEadPosition(fileplan));
+        }
+        ctx.markValidatedElement(head);
+        List<Object> chronlistOrListOrTable = fileplan.getChronlistOrListOrTable();
+        P oneP = null;
+        Chronlist oneChronlist = null;
+        for (Object child : chronlistOrListOrTable) {
+            if (child instanceof P p) {
+                if (oneP != null) {
+                    throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element p.", ctx.formatEadPosition(fileplan));
+                }
+                oneP = p;
+            }
+            if (child instanceof Chronlist chronlist) {
+                if (oneChronlist != null) {
+                    throw new ZafException(BaseCode.NEPOVOLENY_ELEMENT, "Nalezen nepovolený element chronlist.", ctx.formatEadPosition(fileplan));
+                }
+                oneChronlist = chronlist;
+                validateChronlist(chronlist);
+            }
+        }
+
+        if (oneChronlist == null) {
+            throw new ZafException(BaseCode.CHYBI_ELEMENT, "Nenalezen element chronlist.", ctx.formatEadPosition(fileplan));
+        }
+    }
     private void validateChronlist(Chronlist chronlist) {
         List<Chronitem> chronitemList = chronlist.getChronitem();
         if (chronitemList.isEmpty()) {

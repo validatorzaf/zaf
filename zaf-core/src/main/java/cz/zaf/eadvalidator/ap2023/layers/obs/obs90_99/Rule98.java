@@ -40,12 +40,12 @@ public class Rule98 extends EadRule {
     protected void evalImpl() {
         Document doc = ctx.getDocument();
         var ead = ctx.getEad();
-        
+
         List<Element> rootInheritedElements = findInheritableElementsWithAltrender(doc.getDocumentElement());
-        if(CollectionUtils.isNotEmpty(rootInheritedElements)) {
-            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
+        if (CollectionUtils.isNotEmpty(rootInheritedElements)) {
+            ctx.addError(new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
                     "Na kořeni archivního popisu nemohou být elementy s nastaveným atributem altrender.",
-                    formatDomPosition(rootInheritedElements.get(0)));        	
+                    formatDomPosition(rootInheritedElements.get(0))));
         }
 
         ctx.getEadLevelIterator().iterate((c, parent) -> {
@@ -53,53 +53,54 @@ public class Rule98 extends EadRule {
 
             // Find elements with altrender attribute in this C (not descending into nested C elements)
             List<Element> inheritedElements = findInheritableElementsWithAltrender(cDom);
-            if(CollectionUtils.isEmpty(inheritedElements)) {
-            	return;
+            if (CollectionUtils.isEmpty(inheritedElements)) {
+                return;
             }
 
             Element parentDom;
             if (parent != null) {
-            	parentDom = ctx.getDOMElement(parent);
+                parentDom = ctx.getDOMElement(parent);
             } else {
                 parentDom = ctx.getDOMElement(ead.getArchdesc());
             }
 
             for (Element elem : inheritedElements) {
-                String altrender = elem.getAttribute("altrender");
-                if (!"inherited".equals(altrender)) {
-                    throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
-                            "Atribut altrender obsahuje nepovolenou hodnotu: " + altrender + ".",
-                            formatDomPosition(elem));
-                }
-                // mark attribute as validated
-                ctx.markValidatedAttributeDom(elem, "altrender");
-
-                // Find candidate elements with the same local name in the parent
-                List<Element> candidates = findInheritableElements(parentDom, elem.getLocalName());
-
-                boolean found = false;
-                for (Element candidate : candidates) {
-                    if (elementsMatchIgnoringAltrender(elem, candidate)) {
-                        found = true;
-                        break;
+                try {
+                    String altrender = elem.getAttribute("altrender");
+                    if (!"inherited".equals(altrender)) {
+                        throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
+                                "Atribut altrender obsahuje nepovolenou hodnotu: " + altrender + ".",
+                                formatDomPosition(elem));
                     }
-                }
+                    // mark attribute as validated
+                    ctx.markValidatedAttributeDom(elem, "altrender");
 
-                if (!found) {
-                    throw new ZafException(BaseCode.CHYBI_ELEMENT,
-                            "V nadřazené jednotce popisu neexistuje element <"
-                                    + ctx.getEadElementName(elem.getLocalName())
-                                    + "> se shodnou strukturou jako element s atributem altrender=\"inherited\".",
-                            formatDomPosition(elem));
+                    // Find candidate elements with the same local name in the parent
+                    List<Element> candidates = findInheritableElements(parentDom, elem.getLocalName());
+
+                    boolean found = false;
+                    for (Element candidate : candidates) {
+                        if (elementsMatchIgnoringAltrender(elem, candidate)) {
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found) {
+                        throw new ZafException(BaseCode.CHYBI_ELEMENT,
+                                "V nadřazené jednotce popisu neexistuje element <"
+                                        + ctx.getEadElementName(elem.getLocalName())
+                                        + "> se shodnou strukturou jako element s atributem altrender=\"inherited\".",
+                                formatDomPosition(elem));
+                    }
+                } catch (ZafException e) {
+                    // sběr chyby a pokračování v kontrole dalších elementů
+                    ctx.addError(e);
                 }
             }
         });
     }
 
-    /**
-     * Find elements of inheritable types that have the altrender attribute,
-     * within the given C/archdesc element. Does not descend into nested C elements.
-     */
     private List<Element> findInheritableElementsWithAltrender(Element root) {
         List<Element> result = new ArrayList<>();
         collectInheritableElementsWithAltrender(root, result);

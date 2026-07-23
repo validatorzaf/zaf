@@ -83,16 +83,24 @@ public class Rule43 extends EadRule {
             if (object instanceof Unittitle unittitle) {
                 String lang = unittitle.getLang();
                 if (lang != null) {
-                    validateLang(lang, object);
+                    try {
+                        validateLang(lang, object);
+                    } catch (ZafException e) {
+                        ctx.addError(e);
+                    }
                 }
             }
             if (object instanceof Langmaterial langmaterial) {
                 List<Object> languageOrLanguageset = langmaterial.getLanguageOrLanguageset();
                 for (Object objLang : languageOrLanguageset) {
                     if (objLang instanceof Language language) {
-                        validateLanguage(language);
+                        try {
+                            validateLanguage(language);
+                        } catch (ZafException e) {
+                            ctx.addError(e);
+                        }
                     }
-                }                
+                }
             }
         }
     }
@@ -102,7 +110,11 @@ public class Rule43 extends EadRule {
             if (object instanceof Scopecontent scopecontent) {
                 String lang = scopecontent.getLang();
                 if (lang != null) {
-                    validateLang(lang, object);
+                    try {
+                        validateLang(lang, object);
+                    } catch (ZafException e) {
+                        ctx.addError(e);
+                    }
                 }
             }
         }
@@ -112,7 +124,11 @@ public class Rule43 extends EadRule {
         List<Languagedeclaration> languagedeclarationList = control.getLanguagedeclaration();
         for (Languagedeclaration languagedeclaration : languagedeclarationList) {
             Language language = languagedeclaration.getLanguage();
-            validateLanguage(language);            
+            try {
+                validateLanguage(language);
+            } catch (ZafException e) {
+                ctx.addError(e);
+            }
         }
     }
 
@@ -144,5 +160,4 @@ public class Rule43 extends EadRule {
         ctx.markValidatedAttribute(language, "langcode");
         ctx.markValidatedContent(language);
     }
-
 }
