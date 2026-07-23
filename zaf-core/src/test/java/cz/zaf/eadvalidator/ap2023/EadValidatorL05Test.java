@@ -40,6 +40,7 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule21;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule22;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule23;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule24;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule24a;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs20_29.Rule25;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule31;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs30_39.Rule35;
@@ -57,12 +58,14 @@ import cz.zaf.eadvalidator.ap2023.layers.obs.obs40_49.Rule45;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs40_49.Rule45a;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs40_49.Rule49;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs50_59.Rule50;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs50_59.Rule50a;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs50_59.Rule51;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs50_59.Rule52;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs50_59.Rule53;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs50_59.Rule54;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs50_59.Rule55;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs50_59.Rule56;
+import cz.zaf.eadvalidator.ap2023.layers.obs.obs50_59.Rule57;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs50_59.Rule58;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule60;
 import cz.zaf.eadvalidator.ap2023.layers.obs.obs60_69.Rule61;
@@ -1060,6 +1063,53 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
         // jedna chyba na každou vadnou úroveň: archdesc, série, jednotlivost
         assertEquals(3, obs65Errors.size(), () -> "Očekávány 3 chyby obs65, nalezeno: " + obs65Errors);
         obs65Errors.forEach(e -> assertEquals(BaseCode.CHYBI_HODNOTA_ELEMENTU, e.getKodChyby()));
+    }
+
+    @Test
+    void testObs_50a_OK01() {
+        // bezvýznamový prvek popisu (unitid s localtype="ID") na archdesc i na c
+        testInherent("05-KONTROLA OBSAHU/050a_OK1.xml",
+                ValidationStatus.OK,
+                new String[]{
+                    Rule01.CODE, Rule03.CODE, Rule04.CODE, Rule04a.CODE, Rule14.CODE, Rule16.CODE, Rule18.CODE, Rule19.CODE,
+                    Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule24a.CODE, Rule25.CODE,
+                    Rule31.CODE, Rule35a.CODE, Rule36a.CODE, Rule36b.CODE, Rule37a.CODE, Rule38.CODE,
+                    Rule42.CODE, Rule43.CODE, Rule44.CODE, Rule45a.CODE, Rule49.CODE,
+                    Rule50.CODE, Rule50a.CODE, Rule51.CODE, Rule52.CODE, Rule53.CODE, Rule54.CODE, Rule55.CODE, Rule56.CODE, Rule57.CODE, Rule58.CODE,
+                    Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+                    Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule74.CODE, Rule74a.CODE, Rule74b.CODE, Rule74c.CODE, Rule74d.CODE, Rule75.CODE, Rule77.CODE, Rule78.CODE, Rule79.CODE,
+                    Rule80.CODE, Rule83.CODE, Rule84.CODE, Rule85.CODE, Rule89.CODE,
+                    Rule93.CODE, Rule94.CODE, Rule95.CODE, Rule96.CODE, Rule96a.CODE, Rule97.CODE, Rule98.CODE,
+                    Rule101.CODE, Rule103.CODE, Rule104a.CODE, Rule106.CODE
+                },
+                new String[]{});
+    }
+
+    @Test
+    void testObs_50a_chyba01() {
+        // hodnota bezvýznamového prvku popisu se neshoduje s atributem "id" jednotky popisu
+        testInherent("05-KONTROLA OBSAHU/050a_chyba1.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule50.CODE},
+                new String[]{Rule50a.CODE});
+    }
+
+    @Test
+    void testObs_50a_chyba02() {
+        // bezvýznamový prvek popisu není jediným elementem v <did>
+        testInherent("05-KONTROLA OBSAHU/050a_chyba2.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule50.CODE},
+                new String[]{Rule50a.CODE});
+    }
+
+    @Test
+    void testObs_50a_chyba03() {
+        // bezvýznamový prvek popisu má prázdnou hodnotu
+        testInherent("05-KONTROLA OBSAHU/050a_chyba3.xml",
+                ValidationStatus.ERROR,
+                new String[]{Rule50.CODE},
+                new String[]{Rule50a.CODE});
     }
 
     @Test

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ead xmlns="http://ead3.archivists.org/schema/" xmlns:cam="http://cam.tacr.cz/2019">
+	<control>
+		<recordid>d0f7e14f-a655-4902-a6fd-e141bbe6ca6b</recordid> <!-- obs1 -->
+		<otherrecordid localtype="INTERNAL_REV_ID">rev1</otherrecordid> <!-- obs3 -->
+
+		<filedesc encodinganalog="123"> <!-- obs4 -->
+			<titlestmt>
+				<titleproper>Jméno AS</titleproper>
+			</titlestmt>
+		</filedesc>
+
+		<maintenancestatus value="derived"></maintenancestatus> <!-- obs18 -->
+		<maintenanceagency countrycode="CZ"> <!-- obs19 -->
+			<agencycode localtype="CZ_MVCR_INSTITUTION_ID">100000010</agencycode> <!-- obs20; obs21 -->
+			<agencyname>Národní archiv</agencyname> <!-- obs22 -->
+		</maintenanceagency>
+
+		<localcontrol localtype="RULES"> <!-- obs27 -->
+			<term identifier="CZ_ZP2013">základní pravidla od roku 2013</term>
+		</localcontrol>
+
+		<localcontrol localtype="CZ_FINDING_AID_EAD_PROFILE"> <!-- obs25 -->
+			<term identifier="CZ_EAD3_PROFILE_20240301">profil platný od března 2024</term>
+		</localcontrol>
+
+		<maintenancehistory>
+			<maintenanceevent> <!-- obs31 -->
+				<eventtype value="created"></eventtype>
+				<eventdatetime standarddatetime="2024-01-01T01:23:45.678+01:00">2024-01-01T01:23:45.678+01:00</eventdatetime> <!-- obs32 -->
+				<agenttype value="machine"></agenttype> <!-- obs33 -->
+				<agent>Agent 1.0</agent> <!-- obs34 -->
+			</maintenanceevent>
+		</maintenancehistory>
+	</control>
+	<archdesc id="uuid-f47ac10b-58cc-4372-a567-0e02b2c3d479" level="fonds"> <!-- obs35, obs37 -->
+		<did>
+			<!-- bezvýznamový prvek popisu; obs50, obs50a -->
+			<unitid localtype="ID" label="identifikátor jednotky popisu">uuid-f47ac10b-58cc-4372-a567-0e02b2c3d479</unitid>
+		</did>
+
+		<dsc>
+			<c id="uuid-c1d5a9f4-3b2e-4c7d-8e91-0f2a6b3d5c4e" level="series"> <!-- obs36, obs37 -->
+				<did>
+					<physdescstructured physdescstructuredtype="materialtype" coverage="whole">
+						<quantity>1</quantity>
+						<unittype>lio</unittype> <!-- obs39 -->
+					</physdescstructured>
+					<unitid localtype="UKLADACI_ZNAK" label="ukládací znak / spisový znak">F</unitid> <!-- obs50 -->
+					<unittitle>Investice</unittitle>
+				</did>
+
+				<c id="uuid-9a1c3b7e-2f44-4d3e-8c5a-1b2f4e7d9a6c" level="item"> <!-- obs37 -->
+					<did>
+						<physdescstructured physdescstructuredtype="materialtype" coverage="whole"> <!-- obs43 -->
+							<quantity>1</quantity>
+							<unittype>lio</unittype> <!-- obs39 -->
+						</physdescstructured>
+						<unitid localtype="CISLO_JEDNACI" label="číslo jednací">09-07666</unitid> <!-- obs50 -->
+						<unittitle>Text</unittitle> <!-- obs53 -->
+					</did>
+				</c>
+
+				<c id="uuid-3f8e1c2a-5d6b-4e7f-9a0b-1c2d3e4f5a6b" level="item"> <!-- obs37 -->
+					<did>
+						<!-- bezvýznamový prvek popisu; obs50, obs50a -->
+						<unitid localtype="ID" label="identifikátor jednotky popisu"></unitid>
+					</did>
+				</c>
+			</c>
+		</dsc>
+	</archdesc>
+</ead>

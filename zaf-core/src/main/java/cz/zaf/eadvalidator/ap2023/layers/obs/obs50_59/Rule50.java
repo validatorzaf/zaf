@@ -16,13 +16,15 @@ import java.util.List;
 public class Rule50 extends EadRule {
 
     static final public String CODE = "obs50";
-    static final public String RULE_TEXT = "Element <unitid> obsažený v elementu <did> má atributy \"localtype\" a \"label\" s povolenými typy označení (dle specifikace 5.5.1), přičemž hodnoty obou atributů si odpovídají. Pokud má atribut \"localtype\" hodnotu \"JINE\", hodnota atributu \"label\" není prázdná.";
+    static final public String RULE_TEXT = "Element <unitid> obsažený v elementu <did> má atributy \"localtype\" a \"label\" s povolenými typy označení (dle specifikace 5.5.1) nebo hodnotou \"ID\" pro bezvýznamový prvek popisu (dle specifikace 3.9), přičemž hodnoty obou atributů si odpovídají. Pokud má atribut \"localtype\" hodnotu \"JINE\", hodnota atributu \"label\" není prázdná.";
     static final public String RULE_ERROR = "Některý element <unitid> nemá \"localtype\" a/nebo \"label\" nebo tyto atributy neobsahují povolenou hodnotu, případně si hodnoty neodpovídají.";
-    static final public String RULE_SOURCE = "Část 5.4 a 5.5 profilu EAD3 MV ČR";
+    static final public String RULE_SOURCE = "Část 3.9, 5.4 a 5.5 profilu EAD3 MV ČR";
 
     static private final Map<String, String> allowedTypes = new HashMap<>();
 
     static {
+        // bezvýznamový prvek popisu (část 3.9 profilu), další podmínky kontroluje obs50a
+        allowedTypes.put(Rule50a.LOCALTYPE_ID, "identifikátor jednotky popisu");
         allowedTypes.put("REFERENCNI_OZNACENI", "referenční označení");
         allowedTypes.put("PORADOVE_CISLO", "pořadové číslo");
         allowedTypes.put("INV_CISLO", "inventární číslo");

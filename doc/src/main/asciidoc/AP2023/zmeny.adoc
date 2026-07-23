@@ -27,3 +27,9 @@
 
 * Upraveno pravidlo <<AP2023_obs15>> - nevynucování pravidla u profilů před květnem 2026
 * Upraveno pravidlo <<AP2023_obs51>> - možnost uvádění dvou lomítek na rozhraní složka-jednotlivost u profilů před květnem 2026
+
+
+== v5, 23.7.2026
+
+* Upraveno pravidlo <<AP2023_obs50>> - povolena hodnota "ID" atributu "localtype" pro bezvýznamový prvek popisu (část 3.9 profilu)
+* Nové pravidlo <<AP2023_obs50a>> - kontrola bezvýznamového prvku popisu (JP bez prvků popisu): element <unitid> s atributem "localtype" o hodnotě "ID" musí být jediným elementem v elementu <did> a jeho hodnota se shoduje s hodnotou atributu "id" jednotky popisu
