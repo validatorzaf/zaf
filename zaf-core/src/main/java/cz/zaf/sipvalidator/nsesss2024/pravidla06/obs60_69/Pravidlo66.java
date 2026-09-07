@@ -3,14 +3,10 @@ package cz.zaf.sipvalidator.nsesss2024.pravidla06.obs60_69;
 import cz.zaf.common.exceptions.codes.BaseCode;
 import cz.zaf.sipvalidator.nsesss2024.NsesssV4;
 import cz.zaf.sipvalidator.nsesss2024.ValuesGetter;
-import java.util.Arrays;
 import java.util.List;
-
 import org.w3c.dom.Element;
-
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.K06PravidloBase;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Date;
 import org.apache.commons.lang3.time.DateUtils;
 
@@ -18,6 +14,10 @@ import org.apache.commons.lang3.time.DateUtils;
 // OBSAHOVÁ č.66 Každá entita Díl (<nsesss:Dokument>), Spis (<nsesss:Dokument>) a Dokument (<nsesss:Dokument>) obsahuje v hierarchii dětských elementů 
 // <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:SkartacniRezim> element <nsesss:SkartacniZnak> s hodnotou A nebo S, 
 // pokud byla daná entita  vyřízena/uzavřena po 31. 12. 2026.
+//Každá entita Díl (nsesss:Dokument), Spis (nsesss:Dokument) a Dokument (nsesss:Dokument) obsahuje v hierarchii dětských elementů 
+// nsesss:EvidencniUdaje, nsesss:Vyrazovani, nsesss:SkartacniRezim element nsesss:SkartacniZnak s hodnotou A nebo S, 
+// pokud byla daná entita vyřízena/uzavřena po 31. 12. 2026. 
+// Stejnou hodnotu elementu nsesss:SkartacniZnak obsahuje dokument zatříděný do spisu nebo dílu, pokud byla rodičovská entita vyřízena/uzavřena po 31. 12. 2026.
 //
 public class Pravidlo66 extends K06PravidloBase {
 
@@ -34,16 +34,28 @@ public class Pravidlo66 extends K06PravidloBase {
     protected void kontrola() {
         List<Element> listVsech = metsParser.getEntity(NsesssV4.DIL, NsesssV4.SPIS, NsesssV4.DOKUMENT);
         for (Element entita : listVsech) {
-            String skartacniZank = getSkartacniZnak(entita);
-            if (!(skartacniZank.equals("A") || skartacniZank.equals("S"))) {
+            String name = entita.getNodeName();
+            String skartacniZnak = getSkartacniZnak(entita);
+            if (!(skartacniZnak.equals("A") || skartacniZnak.equals("S"))) {
                 Element elDatum = getDatumVyrizeniUzavreni(entita);
                 if (elDatum != null) {
                     String datumVyrizeniUzavreni = elDatum.getTextContent();
-                    if ((jeVyrizenaPo(elDatum, datumVyrizeniUzavreni) && skartacniZank.equals("V"))) {
-                        nastavChybu(BaseCode.CHYBI_ELEMENT, "Element <nsesss:SkartacniZnak> obsahuje nepovolenou hodnotu: " + skartacniZank + ".", getMistoChyby(entita), getEntityId(entita));
+                    if ((jeVyrizenaPo(elDatum, datumVyrizeniUzavreni))) {
+                        if (skartacniZnak.equals("V")) {
+                            nastavChybu(BaseCode.CHYBI_ELEMENT, "Element <nsesss:SkartacniZnak> obsahuje nepovolenou hodnotu: " + skartacniZnak + ".", getMistoChyby(entita), getEntityId(entita));
+                        }
+                        if (name.equals(NsesssV4.DIL) || name.equals(NsesssV4.SPIS)) {
+                            List<Element> zatrideneDokumenty = getZatrideneDokumenty(entita);
+                            for (Element elDokument : zatrideneDokumenty) {
+                                String skZnDokument = getSkartacniZnak(elDokument);
+                                if (!skartacniZnak.equals(skZnDokument)) {
+                                    nastavChybu(BaseCode.CHYBNA_HODNOTA_ELEMENTU, "Element <nsesss:SkartacniZnak> zatříděného dokumentu obsahuje nepovolenou hodnotu: " + skZnDokument + ".", getMistoChyby(elDokument), getEntityId(elDokument));
+                                }
+                            }
+                        }
                     }
                 } else {
-                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Element <nsesss:SkartacniZnak> obsahuje nepovolenou hodnotu: " + skartacniZank + ".", getMistoChyby(entita), getEntityId(entita));
+                    nastavChybu(BaseCode.CHYBI_ELEMENT, "Element <nsesss:SkartacniZnak> obsahuje nepovolenou hodnotu: " + skartacniZnak + ".", getMistoChyby(entita), getEntityId(entita));
                 }
             }
         }
@@ -84,5 +96,16 @@ public class Pravidlo66 extends K06PravidloBase {
                     "Datum vyřízení je v nesprávném formátu: " + dateStr + ".", elDatum);
         }
         return valid;
+    }
+
+    private List<Element> getZatrideneDokumenty(Element entita) {
+        String name = entita.getNodeName();
+        Element elDokumenty = ValuesGetter.getXChild(entita, NsesssV4.DOKUMENTY);
+        if (elDokumenty == null) {
+            nastavChybu(BaseCode.CHYBI_ELEMENT, "Element <" + name + "> neobsahuje element : " + NsesssV4.DOKUMENTY + ".", getMistoChyby(entita), getEntityId(entita));
+        }
+        List<Element> listDokumenty = ValuesGetter.getChildNodes(entita, NsesssV4.DOKUMENT);
+
+        return listDokumenty;
     }
 }

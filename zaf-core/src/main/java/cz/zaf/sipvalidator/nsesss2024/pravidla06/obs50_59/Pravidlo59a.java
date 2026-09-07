@@ -27,6 +27,10 @@ public class Pravidlo59a extends K06PravidloBase {
     //OBSAHOVÁ č.59a Každá entita dokument (<nsesss:Dokument>), nebo pokud existuje jakýkoli element <nsesss:Spis>, který obsahuje v hierarchii dětských elementů 
     //<nsesss:EvidencniUdaje>, <nsesss:VyrizeniUzavreni> element <nsesss:Datum> s hodnotou větší než 31. 7. 2012, 
     //obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Evidence> element <nsesss:EvidencniCislo>.
+    //Každá entita dokument (nsesss:Dokument), která obsahuje element nsesss:Evidence v elementu nsesss:EvidencniUdaje, 
+    // nebo pokud existuje jakýkoli element nsesss:Spis, který obsahuje v hierarchii dětských elementů 
+    //  nsesss:EvidencniUdaje, nsesss:VyrizeniUzavreni element nsesss:Datum s hodnotou větší než 31. 7. 2012, 
+    // obsahuje v hierarchii dětských elementů nsesss:EvidencniUdaje, nsesss:Evidence element nsesss:EvidencniCislo.
     @Override
     protected void kontrola() {
         List<Element> dokumenty = metsParser.getDokumenty();
@@ -42,12 +46,25 @@ public class Pravidlo59a extends K06PravidloBase {
                     if (jeStarsiNez(elDatum, datum)) {
                         Element elEvidenciJednotka = ValuesGetter.getXChild(entita, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.EVIDENCE, NsesssV4.EVIDENCNI_CISLO);
                         if (elEvidenciJednotka == null) {
-                            nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:EvidencniCislo>.", getMistoChyby(entita), getEntityId(entita));
+                            if (!isNeevidence(entita)) {
+                                nastavChybu(BaseCode.CHYBI_ELEMENT, "Nenalezen element <nsesss:EvidencniCislo>.", getMistoChyby(entita), getEntityId(entita));
+                            }
                         }
                     }
                 }
             }
         }
+    }
+
+    private boolean isNeevidence(Element entita) {
+        String name = entita.getNodeName();
+        if (name.equals(NsesssV4.DOKUMENT)) {
+            Element elNeevidence = ValuesGetter.getXChild(entita, NsesssV4.EVIDENCNI_UDAJE, NsesssV4.NEEVIDENCE);
+            if (elNeevidence != null) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private Element getDatum(Element elZakladniEntita) {
