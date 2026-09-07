@@ -720,6 +720,39 @@ Zdroj:: Příloha č. 2 NSESSS, nsesss-common.xsd, ř. 1360.
 Popis chyby:: Chybí odůvodnění vyřízení jiným způsobem.
 Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
 
+[[NSESSS2024_obs63a]]
+== obs63a
+
+[horizontal]
+
+Pravidlo:: Pokud je základní entitou dokument (nsesss:Dokument), potom v hierarchii dětských elementů nsesss:EvidencniUdaje, nsesss:Vyrizeni je hodnota roku v elementu nsesss:Datum nižší než aktuální rok.
+Kód:: obs63a
+Zdroj:: Příloha č. 2 NSESSS, nsesss-common.xsd, ř. 1360.
+Popis chyby:: Chybí odůvodnění vyřízení jiným způsobem.
+Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs63b]]
+== obs63b
+
+[horizontal]
+
+Pravidlo:: Pokud je základní entitou spis (nsesss:Spis), potom v hierarchii dětských elementů nsesss:EvidencniUdaje, nsesss:VyrizeniUzavreni je hodnota roku v elementu nsesss:Datum nižší než aktuální rok.
+Kód:: obs63b
+Zdroj:: Příloha č. 2 NSESSS, nsesss-common.xsd, ř. 1360.
+Popis chyby:: Chybí odůvodnění vyřízení jiným způsobem.
+Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
+[[NSESSS2024_obs63c]]
+== obs63c
+
+[horizontal]
+
+Pravidlo:: Pokud je základní entitou díl (nsesss:Dil), potom v hierarchii dětských elementů nsesss:EvidencniUdaje, nsesss:Uzavreni je hodnota roku v elementu nsesss:Datum nižší než aktuální rok.
+Kód:: obs63c
+Zdroj:: Příloha č. 2 NSESSS, nsesss-common.xsd, ř. 1360.
+Popis chyby:: Chybí odůvodnění vyřízení jiným způsobem.
+Aktivní:: skartační řízení (jen metadata), skartační řízení (s komponentami), přejímka
+
 [[NSESSS2024_obs64]]
 == obs64
 
