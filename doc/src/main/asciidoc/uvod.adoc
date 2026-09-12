@@ -1,18 +1,77 @@
 ﻿[[intro]]
 = Úvod
 
-Validátor ZAF je knihovna pro kontrolu datových balíčků SIP, AIP balíčků ve výměnném formátu a archivního popisu ve formátu EAD dle českého profilu.
+Validátor ZAF je knihovna pro kontrolu datových balíčků a archivního popisu
+v prostředí české digitální archivace. Kromě knihovny je k dispozici také
+jako samostatná řádková aplikace.
 
-Aplikace provádí načtení balíčků SIP (příp. rozbalení ze souborů ZIP),
-kontrolu a uložení xref:pouziti.adoc#pouziti_schema_xsd[výsledků kontroly] do souboru XML vytvořeného podle schématu XSD. Pokud je v rámci jednoho z typů kontrol
-nalezena chyba, další typy kontrol se neprovádí.
+[[intro_predmet]]
+== Předmět kontroly
 
-Vývoj a další rozvoj Validátoru ZAF probíhá ve spolupráci Hlavního města Prahy, Magistrátu hlavního města Prahy, 
-odboru Archiv hlavního města Prahy; https://udauk.cuni.cz/ARCH-1.html[Univerzity Karlovy, Ústavu dějin a archivu Univerzity Karlovy] a Lightcomp, v.o.s.
+[cols="1,2,3"]
+|===
+| Typ validace | Předmět kontroly | Standard
 
-Validátor ZAF je vyvíjen se snahou o zjištění shody a případných chyb validovaných balíčků SIP s NSESSS.
-Použití Validátoru ZAF neprokazuje splnění požadavků na balíčky SIP ze strany archivů rozhodujících 
-ve skartačním řízení. Výsledky validace Validátorem ZAF nemusí být shodné s výsledky zjištěnými validátory digitálních archivů.
+| NSESSS2017
+| datové balíčky SIP
+| https://www.mvcr.cz/clanek/narodni-standard-pro-elektronicke-systemy-spisove-sluzby.aspx[národní standard pro elektronické systémy spisové služby z r. 2017]
+
+| NSESSS2024
+| datové balíčky SIP
+| https://www.mvcr.cz/clanek/narodni-standard-pro-elektronicke-systemy-spisove-sluzby.aspx[národní standard pro elektronické systémy spisové služby z r. 2024]
+
+| AP2023
+| archivní popis a archivní pomůcky ve formátu EAD3
+| https://stands.nacr.cz/ead/[profil standardu EAD3 pro archivní pomůcky v České republice]
+
+| DAAIP2024
+| výměnné balíčky AIP a DIP (METS, PREMIS)
+| https://stands.nacr.cz/da-aip/[standard výměnného formátu digitálních archiválií verze 1.0 mezi digitálními archivy v České republice]
+|===
+
+Podrobné znění uplatňovaných pravidel je uvedeno u jednotlivých typů validace,
+viz xref:NSESSS2017_pravidla[NSESSS2017],
+xref:NSESSS2024_pravidla[NSESSS2024],
+xref:AP2023_pravidla[AP2023] a
+xref:DAAIP2024_pravidla[DAAIP2024].
+
+Typ validace je ve výchozím nastavení rozpoznán automaticky ze vstupních dat,
+lze jej vynutit přepínačem xref:pouziti.adoc#pouziti[`-t|--type`]. Pro každý typ
+validace je k dispozici několik profilů pravidel (přepínač `-p|--profile`),
+například kontrola jen metadat oproti úplnému balíčku nebo archivní popis
+oproti archivní pomůcce.
+
+[[intro_prubeh]]
+== Průběh kontroly
+
+Aplikace provádí načtení vstupu (příp. rozbalení ze souboru ZIP), kontrolu
+a uložení xref:pouziti.adoc#pouziti_schema_xsd[výsledků kontroly] do souboru XML
+vytvořeného podle schématu XSD.
+
+Kontroly jsou rozděleny do vrstev, například datová struktura, kódování,
+správnost XML, jmenné prostory, soulad se schématem XSD, obsahové kontroly
+a kontrola komponent. Konkrétní sada vrstev závisí na typu validace. Pokud je
+v rámci jedné vrstvy nalezena chyba, další vrstvy se již neprovádí.
+
+Kontrola škodlivého kódu probíhá externě a aplikace pouze načítá výsledky této
+kontroly podle použitých přepínačů.
+
+[[intro_pouziti]]
+== Způsoby použití
+
+Validátor ZAF je možné použít dvěma způsoby:
+
+* jako xref:pouziti.adoc#CmdValidator[řádkovou aplikaci CmdValidator],
+* jako xref:pouziti.adoc#ZafKnihovna[knihovnu pro jazyk Java] integrovanou přímo do jiné aplikace.
+
+[[intro_omezeni]]
+== Rozsah a omezení platnosti výsledků
+
+Validátor ZAF je vyvíjen se snahou o zjištění shody a případných chyb
+validovaných balíčků a archivního popisu s příslušnými standardy.
+Použití Validátoru ZAF neprokazuje splnění požadavků na balíčky SIP ze strany
+archivů rozhodujících ve skartačním řízení. Výsledky validace Validátorem ZAF
+nemusí být shodné s výsledky zjištěnými validátory digitálních archivů.
 
 == Licenční podmínky
 
@@ -22,7 +81,12 @@ Součástí software jsou programové knihovny a aplikace šířené pod permisi
 licencí. V těchto částech softwaru platí příslušné podmínky a vyloučení odpovědnosti původního
 autora viz licenční ustanovení jednotlivých částí softwaru.
 
-== Autoři
+== Vývoj a autoři
+
+Vývoj a další rozvoj Validátoru ZAF probíhá ve spolupráci http://www.ahmp.cz/[Hlavního města Prahy,
+Magistrátu hlavního města Prahy, odboru Archiv hlavního města Prahy];
+https://udauk.cuni.cz/ARCH-1.html[Univerzity Karlovy, Ústavu dějin a archivu Univerzity Karlovy]
+a https://lightcomp.cz/[Lightcomp, v.o.s.]
 
 Stanislav Bečvář, Hlavní město Praha, Magistrát hlavního města Prahy, Odbor „Archiv hlavního města Prahy“
 
