@@ -170,7 +170,12 @@
             <plugin>
                 <groupId>org.jvnet.jaxb</groupId>
                 <artifactId>jaxb-maven-plugin</artifactId>
-                <version>4.0.8</version>			
+                <version>4.0.8</version>
+                <configuration>
+                    <!-- Překlad vzdálených schemaLocation (loc.gov) na lokální kopie schémat.
+                         Bez katalogu build závisí na dostupnosti www.loc.gov, které vrací HTTP 403. -->
+                    <catalog>${project.basedir}/src/main/resources/schema/catalog.xml</catalog>
+                </configuration>
                 <executions>
                     <execution>
                         <id>jaxb2-validacexsd</id>
