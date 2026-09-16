@@ -25,7 +25,7 @@ public class Pravidlo66 extends K06PravidloBase {
 
     public Pravidlo66() {
         super(OBS66,
-                "Každá entita Díl (<nsesss:Dokument>), Spis (<nsesss:Dokument>) a Dokument (<nsesss:Dokument>) obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:SkartacniRezim> element <nsesss:SkartacniZnak> s hodnotou A nebo S, pokud byla daná entita  vyřízena/uzavřena po 31. 12. 2026.",
+                "Každá entita Díl (<nsesss:Dokument>), Spis (<nsesss:Dokument>) a Dokument (<nsesss:Dokument>) obsahuje v hierarchii dětských elementů <nsesss:EvidencniUdaje>, <nsesss:Vyrazovani>, <nsesss:SkartacniRezim> element <nsesss:SkartacniZnak> s hodnotou A nebo S, pokud byla daná entita vyřízena/uzavřena po 31. 12. 2026. Stejnou hodnotu elementu <nsesss:SkartacniZnak> obsahuje dokument zatříděný do spisu nebo dílu, pokud byla rodičovská entita vyřízena/uzavřena po 31. 12. 2026.",
                 "Uveden je chybně skartační znak \"V\".",
                 "§ 15 odst. 2 vyhlášky č. 259/2012 Sb.; požadavek 6.1.5 NSESSS.");
     }

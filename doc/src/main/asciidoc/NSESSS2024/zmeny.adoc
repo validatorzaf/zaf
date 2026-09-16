@@ -18,3 +18,9 @@
 * Úpravy zařazení pravidel obs86, obs92 a obs94
 * Textové úpravy znění pravidel (zejména obs54, obs96 a kom1–kom3)
 
+== v4, 16.9.2026
+
+* Nová pravidla <<NSESSS2024_obs63a,obs63a>>, <<NSESSS2024_obs63b,obs63b>> a <<NSESSS2024_obs63c,obs63c>> – kontrola, že rok vyřízení dokumentu, vyřízení/uzavření spisu a uzavření dílu je nižší než aktuální rok
+* Změna pravidla <<NSESSS2024_obs59a,obs59a>> – evidenční číslo se nevyžaduje u dokumentu, který obsahuje element <nsesss:Neevidence>
+* Změna pravidla <<NSESSS2024_obs66,obs66>> – shodný skartační znak se nově vyžaduje i u dokumentů zatříděných do spisu nebo dílu, pokud byla rodičovská entita vyřízena/uzavřena po 31. 12. 2026
+* Textové úpravy znění pravidel obs59a a obs66 podle výše uvedených změn
