@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    XML katalog pro překlad vzdálených schemaLocation na lokální kopie schémat.
+
+    Bez něj se XJC (jaxb-maven-plugin) pokouší při generování zdrojů stáhnout
+    xlink.xsd z www.loc.gov, což končí HTTP 403 a pádem buildu.
+-->
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <!-- METS v1.12.1 importuje xlink.xsd absolutní URL -->
+    <system systemId="http://www.loc.gov/standards/xlink/xlink.xsd" uri="mets/xlink.xsd"/>
+    <system systemId="https://www.loc.gov/standards/xlink/xlink.xsd" uri="mets/xlink.xsd"/>
+    <!-- varianta URL používaná ve starších METS schématech a v SIP balíčcích -->
+    <system systemId="http://www.loc.gov/standards/mets/xlink.xsd" uri="mets/xlink.xsd"/>
+    <system systemId="https://www.loc.gov/standards/mets/xlink.xsd" uri="mets/xlink.xsd"/>
+
+    <public publicId="http://www.w3.org/1999/xlink" uri="mets/xlink.xsd"/>
+    <uri name="http://www.w3.org/1999/xlink" uri="mets/xlink.xsd"/>
+</catalog>

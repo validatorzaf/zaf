@@ -220,7 +220,7 @@
             <url>https://mvn.lightcomp.cz/distributions</url>
         </repository>
         <snapshotRepository>
-            <id>frnkRepo</id>
+            <id>LightCompSnapshotRepository</id>
             <url>https://mvn.lightcomp.cz/libs-snapshot</url>
         </snapshotRepository>
 

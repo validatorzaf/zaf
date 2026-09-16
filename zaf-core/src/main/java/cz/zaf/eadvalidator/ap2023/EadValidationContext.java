@@ -14,8 +14,8 @@ import cz.zaf.common.validation.BaseValidationContext;
 import cz.zaf.common.validation.ValidationSubprofile;
 import cz.zaf.eadvalidator.ap2023.profile.DescriptionRules;
 import cz.zaf.eadvalidator.ap2023.profile.FindingAidType;
+import cz.zaf.eadvalidator.ap2023.profile.LocalControlDetector;
 import cz.zaf.eadvalidator.ap2023.profile.ProfileRevision;
-import cz.zaf.eadvalidator.ap2023.profile.ProfileRevisionDetector;
 import cz.zaf.schema.ead3.C;
 import cz.zaf.schema.ead3.Ead;
 import jakarta.xml.bind.annotation.XmlType;
@@ -34,15 +34,26 @@ public class EadValidationContext
 	private EadValidatedNodes validatedNodes;
 	
 	/**
-	 * Aktualni verze profilu
+	 * Hodnoty deklarované v elementech &lt;localcontrol&gt;.
 	 *
-	 * Detekuje se líně z DOM při prvním čtení přes {@link #getProfileRevision()},
-	 * jakmile je k dispozici kořenový element (po vrstvě WellFormed). Strukturu
-	 * a atributy příslušného elementu validuje obs/Rule25.
+	 * Detekují se líně z DOM při prvním čtení příslušným getterem, jakmile je
+	 * k dispozici kořenový element (po vrstvě WellFormed). Detekce je záměrně
+	 * nezávislá na pravidlech - pravidlo, které danou hodnotu validuje, nemusí
+	 * být v aktivním profilu vůbec obsaženo, může být uživatelem vyloučeno
+	 * (excludeChecks) nebo může skončit chybou dříve, než se k hodnotě dostane.
+	 * Strukturu a atributy příslušných elementů validují obs/Rule23,
+	 * obs/Rule24 (resp. obs/Rule24a) a obs/Rule25.
+	 *
+	 * Hodnota null je platný stav - znamená, že element chybí nebo obsahuje
+	 * neznámý identifikátor. Příznaky *Detected zabraňují opakované detekci
+	 * v takovém případě.
 	 */
 	private ProfileRevision profileRevision;
+	private boolean profileRevisionDetected;
 	private DescriptionRules descriptionRules;
+	private boolean descriptionRulesDetected;
 	private FindingAidType findingAidType;
+	private boolean findingAidTypeDetected;
 	
 	// Consider moving to the BaseValidationContext
 	private final ValidationSubprofile validationProfile;
@@ -138,29 +149,44 @@ public class EadValidationContext
 
 	public void setProfileRevision(final ProfileRevision profileRevision) {
 		this.profileRevision = profileRevision;
+		this.profileRevisionDetected = true;
 	}
 
 	public ProfileRevision getProfileRevision() {
-		if (profileRevision == null && rootElement != null) {
-			profileRevision = ProfileRevisionDetector.detect(rootElement);
+		if (!profileRevisionDetected && rootElement != null) {
+			profileRevision = LocalControlDetector.detect(rootElement,
+					Ap2023Constants.LOCALTYPE_FINDING_AID_EAD_PROFILE, ProfileRevision.class);
+			profileRevisionDetected = true;
 		}
 		return profileRevision;
 	}
 
 	public void setDescriptionRules(final DescriptionRules descRules) {
-		this.descriptionRules = descRules;		
+		this.descriptionRules = descRules;
+		this.descriptionRulesDetected = true;
 	}
-	
+
 	public DescriptionRules getDescriptionRules() {
+		if (!descriptionRulesDetected && rootElement != null) {
+			descriptionRules = LocalControlDetector.detect(rootElement,
+					Ap2023Constants.LOCALTYPE_RULES, DescriptionRules.class);
+			descriptionRulesDetected = true;
+		}
 		return descriptionRules;
 	}
 
 	public FindingAidType getFindingAidType() {
-		return findingAidType;		
+		if (!findingAidTypeDetected && rootElement != null) {
+			findingAidType = LocalControlDetector.detect(rootElement,
+					Ap2023Constants.LOCALTYPE_FINDING_AID_TYPE, FindingAidType.class);
+			findingAidTypeDetected = true;
+		}
+		return findingAidType;
 	}
 
 	public void setFindingAidType(final FindingAidType findingAidType) {
-		this.findingAidType = findingAidType;		
+		this.findingAidType = findingAidType;
+		this.findingAidTypeDetected = true;
 	}
 
 	public String getPrefixNsEad() {

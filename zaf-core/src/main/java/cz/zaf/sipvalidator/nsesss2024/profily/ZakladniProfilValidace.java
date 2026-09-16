@@ -70,6 +70,9 @@ import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs60_69.Pravidlo61;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs60_69.Pravidlo61a;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs60_69.Pravidlo62;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs60_69.Pravidlo63;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs60_69.Pravidlo63a;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs60_69.Pravidlo63b;
+import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs60_69.Pravidlo63c;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs60_69.Pravidlo64;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs60_69.Pravidlo65;
 import cz.zaf.sipvalidator.nsesss2024.pravidla06.obs60_69.Pravidlo66;
@@ -171,6 +174,9 @@ public enum ZakladniProfilValidace
 	                Pravidlo61a.class,
 	                Pravidlo62.class,
 	                Pravidlo63.class,
+                        Pravidlo63a.class,
+                        Pravidlo63b.class,
+                        Pravidlo63c.class,
 	                Pravidlo64.class,
 	                Pravidlo65.class,
 	                Pravidlo66.class,
@@ -281,6 +287,9 @@ public enum ZakladniProfilValidace
                 Pravidlo61a.class,
                 Pravidlo62.class,
                 Pravidlo63.class,
+                Pravidlo63a.class,
+                Pravidlo63b.class,
+                Pravidlo63c.class,
                 Pravidlo64.class,
                 Pravidlo65.class,
                 Pravidlo66.class,
@@ -396,6 +405,9 @@ public enum ZakladniProfilValidace
                 Pravidlo61a.class,
                 Pravidlo62.class,
                 Pravidlo63.class,
+                Pravidlo63a.class,
+                Pravidlo63b.class,
+                Pravidlo63c.class,                
                 Pravidlo64.class,
                 Pravidlo65.class,
                 Pravidlo66.class,
