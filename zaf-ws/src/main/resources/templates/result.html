@@ -13,7 +13,7 @@
 <body>
   <div class="container">
     <h1 th:text="#{app.title}">ZAF Validator</h1>
-    <p class="mt2rem"><a th:href="@{./}" th:text="#{result.newFile}">Upload new file</a> <a style="padding-left: 1rem" th:href="@{'/download/' + ${requestId}}" class="btn-download" download th:text="#{result.downloadResult}">Download result</a></p>
+    <p class="mt2rem"><a th:href="@{./}" th:text="#{result.newFile}">Upload new file</a> <a style="padding-left: 1rem" th:href="@{'download/' + ${requestId}}" class="btn-download" download th:text="#{result.downloadResult}">Download result</a></p>
    		<table class="mt2rem">
 			<tr>
 				<td th:text="#{result.requestId}">Request ID:</td>
