@@ -29,9 +29,24 @@ public class Rule02 extends AipRule {
 		if(loader.getAipSrcType()!=AipSrcType.FILE) {
 			return;
 		}
+		// Kontrola, zda byl soubor rozbalen
+		switch(loader.getLoadStatus()) {
+		case OK:
+			break;
+		case ERR_ZIP_INCORRECT_STRUCTURE:
+			String fileName = loader.getAipSrcPath().getFileName().toString();
+			int pos = fileName.lastIndexOf('.');
+			String expectedDir = pos>0?fileName.substring(0, pos):fileName;
+			throw new ZafException(BaseCode.CHYBA, "Kontejner musí obsahovat jedinou složku nejvyšší úrovně pojmenovanou shodně se jménem souboru: "
+					+ expectedDir);
+		case ERR_UNZIP_FAILED:
+		case ERR_UNKNOWN:
+		default:
+			throw new ZafException(BaseCode.CHYBA, "Soubor s balíčkem není platný ZIP soubor.");
+		}
 		// Kontrola zda soubor existuje
 		Path srcPath = loader.getAipPath();
-		if(!Files.exists(srcPath)) {
+		if(srcPath == null || !Files.exists(srcPath)) {
 			return;
 		}
 		// Kontrola zda slozka obsahuje datové soubory

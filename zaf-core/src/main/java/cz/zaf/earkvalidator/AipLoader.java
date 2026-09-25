@@ -203,7 +203,10 @@ public class AipLoader implements AutoCloseable {
 		});
 		
 		if(!unzipped) {
-			loadStatus = LoadStatus.ERR_UNZIP_FAILED;
+			// keep more specific status from the callback
+			if(loadStatus == null) {
+				loadStatus = LoadStatus.ERR_UNZIP_FAILED;
+			}
 			return null;
 		}
 
@@ -213,6 +216,10 @@ public class AipLoader implements AutoCloseable {
 
 	public AipSrcType getAipSrcType() {
 		return aipSrcType;
+	}
+
+	public LoadStatus getLoadStatus() {
+		return loadStatus;
 	}
 
 	@Override
