@@ -70,6 +70,15 @@ public class DatTest extends AipValidatorTestBase {
                 new String[] { Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE });
     }
 
+    // Jmeno ZIP souboru neodpovida jmenu slozky v nem
+    @Test
+    void testDAT_02_CHYBA03() {
+    	testDat("01-KONTROLA DATA/02-CHYBA03.zip",
+                ValidationStatus.ERROR,
+                new String[] { Rule01.CODE },
+                new String[] { Rule02.CODE, Rule03.CODE, Rule04.CODE, Rule05.CODE, Rule06.CODE, Rule07.CODE });
+    }
+
     @Test
     void testDAT_03_CHYBA01() throws IOException {
     	testDat("01-KONTROLA DATA/03-CHYBA01/8b58672e-7893-45c3-ab37-2b133389329d",
