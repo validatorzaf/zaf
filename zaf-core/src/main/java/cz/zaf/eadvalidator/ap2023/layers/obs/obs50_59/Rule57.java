@@ -1,6 +1,7 @@
 package cz.zaf.eadvalidator.ap2023.layers.obs.obs50_59;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 
@@ -23,22 +24,22 @@ public class Rule57  extends EadRule {
     static final public String RULE_TEXT = "Element <fromdate> má buď atribut \"standarddate\", nebo \"notbefore\" a současně element <todate> má buď atribut \"standarddate\", nebo \"notafter\". Dále hodnota použitého atributu odpovídá zápisu data a času dle ČSN ISO  8601 (xs:datetime) a formátu datace podle hodnoty atributu \"altrender\" použitého v rodičovském elementu <daterange>. Nakonec hodnota použitého atributu v elementu <todate> je větší než hodnota použitého atributu v elementu <fromdate>.";
     static final public String RULE_ERROR = "Element <fromdate> nemá atribut \"standarddate\" nebo \"notbefore\" anebo element <todate> nemá atribut \"standarddate\" nebo \"notafter\". Případně hodnota použitého atributu neobsahuje hodnotu v požadovaném formátu, nebo neodpovídá platnému časovému rozsahu.";
     static final public String RULE_SOURCE = "Část 5.8 profilu EAD3 MV ČR";
-    
+
     public Rule57() {
     	super(CODE, RULE_TEXT, RULE_ERROR, RULE_SOURCE);
     }
-    
+
 	@Override
 	protected void evalImpl() {
         Archdesc archDesc = ctx.getEad().getArchdesc();
-        
+
         Did didA = archDesc.getDid();
         validate(didA);
 
         ctx.getEadLevelIterator().iterate((c, parent) -> {
             Did didC = c.getDid();
             validate(didC);
-        });		
+        });
 	}
 
     private void validate(Did did) {
@@ -69,80 +70,108 @@ public class Rule57  extends EadRule {
         for (int i = 0; i < formats.length; i++) {
             try {
                 convFormats[i] = UnitdateFormatType.valueOf(formats[i]);
-            } catch (DateTimeParseException dpe) {
+            } catch (IllegalArgumentException iae) {
                 throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
                         "Chybná hodnota atributu \"altrender\", hodnota: " + altrender + ".",
-                        ctx.formatEadPosition(unitDateStructured), dpe);
+                        ctx.formatEadPosition(daterange), iae);
             }
         }
+        UnitdateFormatType fromFormat = convFormats[0];
+        UnitdateFormatType toFormat = convFormats[(convFormats.length > 1) ? 1 : 0];
 
         Fromdate fromdate = daterange.getFromdate();
+        LocalDateTime fromLdt = null;
         if (fromdate != null) {
-            validateFromdate(fromdate, convFormats[0]);
+            fromLdt = validateFromdate(fromdate, fromFormat);
         }
         Todate todate = daterange.getTodate();
+        LocalDateTime toLdt = null;
         if (todate != null) {
-            validateTodate(todate, convFormats[(convFormats.length > 1) ? 1 : 0]);
+            toLdt = validateTodate(todate, toFormat);
+        }
+        if (fromLdt == null || toLdt == null) {
+            return;
+        }
+
+        // todate has to be greater than fromdate
+        // (for DT-DT the interval can be single point in time)
+        boolean validOrder = (fromFormat == UnitdateFormatType.DT && toFormat == UnitdateFormatType.DT) ?
+                !toLdt.isBefore(fromLdt) : toLdt.isAfter(fromLdt);
+        if (!validOrder) {
+            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
+                    "Konec intervalu (" + format(toLdt) + ") není větší než jeho začátek (" + format(fromLdt) + ").",
+                    ctx.formatEadPosition(daterange));
+        }
+
+        // single format -> interval has to cover exactly one unit (century, year, month, day)
+        if (convFormats.length == 1 && !fromFormat.validateSingleUnit(fromLdt, toLdt)) {
+            throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
+                    "Interval " + format(fromLdt) + " - " + format(toLdt) + " neodpovídá formátu datace \"" + altrender
+                            + "\", interval musí odpovídat právě jednomu celku daného formátu.",
+                    ctx.formatEadPosition(daterange));
         }
     }
-	private void validateTodate(Todate todate, UnitdateFormatType format) {
+
+    private static String format(LocalDateTime ldt) {
+        return DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(ldt);
+    }
+
+	private LocalDateTime validateTodate(Todate todate, UnitdateFormatType format) {
 		String srcdate = todate.getStandarddate();
-		boolean estimate = false;
+		String attrName = "standarddate";
 		if(srcdate==null) {
 			srcdate = todate.getNotafter();
 			if(srcdate==null) {
 				throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Není nastaven ani jeden z atributů standarddate, či notafter.", ctx.formatEadPosition(todate));
 			}
-			estimate = true;
-			ctx.markValidatedAttribute(todate, "notafter");
-		} else {
-			ctx.markValidatedAttribute(todate, "standarddate");
+			attrName = "notafter";
 		}
-		
+		ctx.markValidatedAttribute(todate, attrName);
+
 		LocalDateTime ldt;
 		try {
 			ldt = LocalDateTime.parse(srcdate);
-		} catch(DateTimeParseException dpe) {			
-			throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, 
-						"Chybná hodnota atributu " + (estimate?"standarddate":"notafter") + ", hodnota: " + srcdate + ".", 
+		} catch(DateTimeParseException dpe) {
+			throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
+						"Chybná hodnota atributu " + attrName + ", hodnota: " + srcdate + ".",
 						ctx.formatEadPosition(todate), dpe);
 		}
-				
-		// check its precision regarding defined format		
+
+		// check its precision regarding defined format
 		if(!format.validateTo(ldt)) {
-			throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, 
-					"Chybná hodnota atributu " + (estimate?"standarddate":"notafter") + ", hodnota: " + srcdate + " a uváděné přenosti: " + format + ".", 
+			throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
+					"Chybná hodnota atributu " + attrName + ", hodnota: " + srcdate + " a uváděné přesnosti: " + format + ".",
 					ctx.formatEadPosition(todate));
 		}
+		return ldt;
 	}
 
-	private void validateFromdate(Fromdate fromdate, UnitdateFormatType format) {
+	private LocalDateTime validateFromdate(Fromdate fromdate, UnitdateFormatType format) {
 		String srcdate = fromdate.getStandarddate();
-		boolean estimate = false;
+		String attrName = "standarddate";
 		if(srcdate==null) {
 			srcdate = fromdate.getNotbefore();
 			if(srcdate==null) {
 				throw new ZafException(BaseCode.CHYBI_HODNOTA_ATRIBUTU, "Není nastaven ani jeden z atributů standarddate, či notbefore.", ctx.formatEadPosition(fromdate));
 			}
-			ctx.markValidatedAttribute(fromdate, "notbefore");
-			estimate = true;
-		} else {
-			ctx.markValidatedAttribute(fromdate, "standarddate");
+			attrName = "notbefore";
 		}
-		
+		ctx.markValidatedAttribute(fromdate, attrName);
+
 		LocalDateTime ldt;
 		try {
 			ldt = LocalDateTime.parse(srcdate);
 		} catch(DateTimeParseException dpe) {
-			throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, 
-					"Chybná hodnota atributu " + (estimate?"standarddate":"notbefore") + ", hodnota: " + srcdate + ".", 
+			throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
+					"Chybná hodnota atributu " + attrName + ", hodnota: " + srcdate + ".",
 					ctx.formatEadPosition(fromdate), dpe);
 		}
-		// check its precision regarding defined format		
+		// check its precision regarding defined format
 		if(!format.validateFrom(ldt)) {
-			throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU, 
-					"Chybná hodnota atributu " + (estimate?"standarddate":"notbefore") + ", hodnota: " + srcdate + " a uváděné přenosti: " + format + ".", 
+			throw new ZafException(BaseCode.CHYBNA_HODNOTA_ATRIBUTU,
+					"Chybná hodnota atributu " + attrName + ", hodnota: " + srcdate + " a uváděné přesnosti: " + format + ".",
 					ctx.formatEadPosition(fromdate));
 		}
+		return ldt;
 	}
 }

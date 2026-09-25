@@ -129,4 +129,34 @@ public class UnitdateFormatTypeTest {
 		assertTrue( UnitdateFormatType.C.validateTo(ldt19001231t) );
 
 	}
+
+	@Test
+	public void testSingleUnit() {
+		LocalDateTime f18010101 = LocalDateTime.parse("1801-01-01T00:00:00");
+		LocalDateTime t19001231 = LocalDateTime.parse("1900-12-31T23:59:59");
+		LocalDateTime f20170101 = LocalDateTime.parse("2017-01-01T00:00:00");
+		LocalDateTime t20171231 = LocalDateTime.parse("2017-12-31T23:59:59");
+		LocalDateTime f20150101 = LocalDateTime.parse("2015-01-01T00:00:00");
+		LocalDateTime f20240201 = LocalDateTime.parse("2024-02-01T00:00:00");
+		LocalDateTime t20240229 = LocalDateTime.parse("2024-02-29T23:59:59");
+		LocalDateTime t20240331 = LocalDateTime.parse("2024-03-31T23:59:59");
+		LocalDateTime f20240229 = LocalDateTime.parse("2024-02-29T00:00:00");
+
+		// C
+		assertTrue( UnitdateFormatType.C.validateSingleUnit(f18010101, t19001231) );
+		assertFalse( UnitdateFormatType.C.validateSingleUnit(f18010101, LocalDateTime.parse("2000-12-31T23:59:59")) );
+		// Y
+		assertTrue( UnitdateFormatType.Y.validateSingleUnit(f20170101, t20171231) );
+		assertFalse( UnitdateFormatType.Y.validateSingleUnit(f20150101, t20171231) );
+		// YM
+		assertTrue( UnitdateFormatType.YM.validateSingleUnit(f20240201, t20240229) );
+		assertFalse( UnitdateFormatType.YM.validateSingleUnit(f20240201, t20240331) );
+		assertFalse( UnitdateFormatType.YM.validateSingleUnit(f20170101, t20171231) );
+		// D
+		assertTrue( UnitdateFormatType.D.validateSingleUnit(f20240229, t20240229) );
+		assertFalse( UnitdateFormatType.D.validateSingleUnit(f20240201, t20240229) );
+		assertFalse( UnitdateFormatType.D.validateSingleUnit(f20170101, t20171231) );
+		// DT
+		assertTrue( UnitdateFormatType.DT.validateSingleUnit(f20170101, t20171231) );
+	}
 }

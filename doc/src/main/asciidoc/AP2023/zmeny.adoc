@@ -33,3 +33,8 @@
 
 * Upraveno pravidlo <<AP2023_obs50>> - povolena hodnota "ID" atributu "localtype" pro bezvýznamový prvek popisu (část 3.9 profilu)
 * Nové pravidlo <<AP2023_obs50a>> - kontrola bezvýznamového prvku popisu (JP bez prvků popisu): element <unitid> s atributem "localtype" o hodnotě "ID" musí být jediným elementem v elementu <did> a jeho hodnota se shoduje s hodnotou atributu "id" jednotky popisu
+
+
+== v6, 25.9.2026
+
+* Upraveno pravidlo <<AP2023_obs57>> - při uvedení jediného formátu datace v atributu "altrender" (C, Y, YM, D) musí interval odpovídat právě jednomu celku daného formátu (např. "Y" právě jednomu kalendářnímu roku, "D" právě jednomu dni), doplněna kontrola, že hodnota v elementu <todate> je větší než hodnota v elementu <fromdate>
