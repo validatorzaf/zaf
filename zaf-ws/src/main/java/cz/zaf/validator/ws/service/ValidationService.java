@@ -98,6 +98,11 @@ public class ValidationService {
 
 		private EnumSet<ValidatorType> profileAllowedTypes;
 
+		/**
+		 * Error message if validation failed
+		 */
+		private volatile String errorMessage;
+
 		public ValidationJob(Path requestPath, String originalFilename,
 				final boolean batchMode, 
 				final ValidatorType validationProfile) throws IOException {
@@ -213,6 +218,7 @@ public class ValidationService {
 				cmdValidator.validate();
 			} catch (Exception e) {
 				log.error("Failed to validate, path: {}", requestPath, e);
+				errorMessage = e.getMessage()!=null?e.getMessage():e.getClass().getName();
 			}
 			
 			jobStatus = JobStatus.DONE;
@@ -347,6 +353,9 @@ public class ValidationService {
 					return RequestProcessState.PROCESSING;
 				}
 				// job is finished -> return result
+				if(vj.errorMessage!=null) {
+					return RequestProcessState.ERROR;
+				}
 				try {
 					Object result = vj.futureResult.get();
 					return RequestProcessState.FINISHED;
@@ -358,6 +367,16 @@ public class ValidationService {
 		return null;
 	}
 	
+	/**
+	 * Return error message of failed validation
+	 * @param validationRequestId
+	 * @return error message or null
+	 */
+	synchronized public String getErrorMessage(String validationRequestId) {
+		ValidationJob vj = jobsMap.get(validationRequestId);
+		return vj!=null?vj.errorMessage:null;
+	}
+
 	synchronized private Path getResultPath(String validationRequestId) {
 		ValidationJob vj = jobsMap.get(validationRequestId);
 		if(vj==null) {
