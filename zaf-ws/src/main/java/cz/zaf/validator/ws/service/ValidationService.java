@@ -5,8 +5,10 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
@@ -103,10 +105,16 @@ public class ValidationService {
 		 */
 		private volatile String errorMessage;
 
-		public ValidationJob(Path requestPath, String originalFilename,
-				final boolean batchMode, 
+		/**
+		 * Date when request was received
+		 */
+		private final LocalDate receivedDate;
+
+		public ValidationJob(Path requestPath, LocalDate receivedDate, String originalFilename,
+				final boolean batchMode,
 				final ValidatorType validationProfile) throws IOException {
 			this.requestPath = requestPath;
+			this.receivedDate = receivedDate;
 			this.inputDirPath = requestPath.resolve(INPUT_DIR_NAME);
 			this.batchMode = batchMode;
 			this.validationProfile = validationProfile;
@@ -252,8 +260,9 @@ public class ValidationService {
 		}
 		
 		String requestValidationId = UUID.randomUUID().toString();
-		Path filePath = Paths.get(workingFolder).toAbsolutePath();
-		Path requestPath = filePath.resolve(requestValidationId);
+		// requests are stored in subfolders: yyyy/MM/dd/requestId
+		LocalDate receivedDate = LocalDate.now();
+		Path requestPath = getWorkdirRoot().resolve(getDayPath(receivedDate)).resolve(requestValidationId);
 		try {
 			Files.createDirectories(requestPath);
 			log.debug("Storing file to the working folder: {}", requestPath);
@@ -276,7 +285,7 @@ public class ValidationService {
 				}
 			}
 
-			ValidationJob job = new ValidationJob(requestPath, data.getOriginalFilename(),
+			ValidationJob job = new ValidationJob(requestPath, receivedDate, data.getOriginalFilename(),
 					batchMode!=null && batchMode,
 					validationProfile);
 			applyRuleProfile(job, paramValidationProfile);
@@ -367,6 +376,42 @@ public class ValidationService {
 		return null;
 	}
 	
+	/**
+	 * Return root of the working folder
+	 */
+	public Path getWorkdirRoot() {
+		return Paths.get(workingFolder!=null?workingFolder:"").toAbsolutePath();
+	}
+
+	/**
+	 * Return relative path of the folder for requests received on given day
+	 * @param date
+	 * @return path yyyy/MM/dd
+	 */
+	public static Path getDayPath(LocalDate date) {
+		return Paths.get(String.format("%04d", date.getYear()),
+				String.format("%02d", date.getMonthValue()),
+				String.format("%02d", date.getDayOfMonth()));
+	}
+
+	/**
+	 * Remove finished jobs received before given date from the list of known jobs
+	 * @param date
+	 * @return number of removed jobs
+	 */
+	synchronized public int removeJobsReceivedBefore(LocalDate date) {
+		int cnt = 0;
+		Iterator<ValidationJob> it = jobsMap.values().iterator();
+		while(it.hasNext()) {
+			ValidationJob vj = it.next();
+			if(vj.receivedDate.isBefore(date) && vj.futureResult!=null && vj.futureResult.isDone()) {
+				it.remove();
+				cnt++;
+			}
+		}
+		return cnt;
+	}
+
 	/**
 	 * Return error message of failed validation
 	 * @param validationRequestId
