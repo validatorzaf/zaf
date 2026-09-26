@@ -188,7 +188,7 @@ public class ZafWsController implements ValidationApi {
 
 		ReceivedValidationRequest rvr = new ReceivedValidationRequest(); 
 		rvr.setValidationRequestId(this.validationService.validate(data, batchMode, 
-				validationType, requestId, ruleProfile!=null?ruleProfile.name():null)
+				validationType, requestId, ruleProfile!=null?ruleProfile.name():null, "API")
 				);
 				
 		return ResponseEntity.ok(rvr);

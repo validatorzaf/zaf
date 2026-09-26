@@ -88,7 +88,7 @@ public class ZafUIController {
 			
 			
 			String valRequestId = validationService.validate(file, batch, validationType, UUID.randomUUID().toString(),
-					validationProfile);
+					validationProfile, "UI");
 			int counter = 0;
 			do {
 				RequestProcessState rps = validationService.getStatus(valRequestId);
