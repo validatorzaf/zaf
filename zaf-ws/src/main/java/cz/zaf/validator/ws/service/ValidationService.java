@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.time.OffsetDateTime;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -24,9 +25,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import cz.zaf.api.rest.model.RequestProcessState;
 import cz.zaf.api.rest.model.ValidationType;
+import cz.zaf.common.ZafInfo;
 import cz.zaf.common.xml.SchemaResourceLoader;
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
+import cz.zaf.schema.validation_v2.TCheckResult;
+import cz.zaf.schema.validation_v2.TPackage;
 import cz.zaf.schema.validation_v2.Validation;
 import cz.zaf.schemas.validation_v2.ValidationV2NS;
 import cz.zaf.sipvalidator.nsesss2017.profily.ZakladniProfilValidace;
@@ -52,6 +56,12 @@ public class ValidationService {
 
 	// TODO: initialize in PostConstruct to allow parametrization
 	ExecutorService execService = Executors.newFixedThreadPool(2);
+
+	private final UsageLogService usageLogService;
+
+	public ValidationService(final UsageLogService usageLogService) {
+		this.usageLogService = usageLogService;
+	}
 	
 	Map<String, ValidationJob> jobsMap = new HashMap<>();
 	
@@ -110,11 +120,17 @@ public class ValidationService {
 		 */
 		private final LocalDate receivedDate;
 
-		public ValidationJob(Path requestPath, LocalDate receivedDate, String originalFilename,
+		/**
+		 * Usage record, completed after validation
+		 */
+		private final UsageLogService.Record usageRecord;
+
+		public ValidationJob(Path requestPath, UsageLogService.Record usageRecord, String originalFilename,
 				final boolean batchMode,
 				final ValidatorType validationProfile) throws IOException {
 			this.requestPath = requestPath;
-			this.receivedDate = receivedDate;
+			this.usageRecord = usageRecord;
+			this.receivedDate = usageRecord.received.toLocalDate();
 			this.inputDirPath = requestPath.resolve(INPUT_DIR_NAME);
 			this.batchMode = batchMode;
 			this.validationProfile = validationProfile;
@@ -195,7 +211,8 @@ public class ValidationService {
 		@Override
 		public void run() {
 			jobStatus = JobStatus.PROCESSING;
-			
+			long startTime = System.currentTimeMillis();
+
 			try {
 				Params params = new Params();
 				params.setInputPath(getDataPath().toString());
@@ -228,8 +245,41 @@ public class ValidationService {
 				log.error("Failed to validate, path: {}", requestPath, e);
 				errorMessage = e.getMessage()!=null?e.getMessage():e.getClass().getName();
 			}
-			
+
+			writeUsage(startTime);
 			jobStatus = JobStatus.DONE;
+		}
+
+		private void writeUsage(long startTime) {
+			try {
+				UsageLogService.Record rec = usageRecord;
+				rec.waitMs = startTime - rec.received.toInstant().toEpochMilli();
+				rec.processingMs = System.currentTimeMillis() - startTime;
+				rec.appVersion = ZafInfo.getAppVersion();
+				rec.errorMessage = errorMessage;
+				rec.result = UsageLogService.Result.FAILED;
+				if(errorMessage==null && Files.exists(getOutputPath())) {
+					Validation result = readResult(getOutputPath());
+					rec.validationType = result.getValidationType();
+					rec.validationProfile = result.getValidationProfile();
+					for(TPackage pkg: result.getPackage()) {
+						int pkgErrors = pkg.getCheck().stream()
+								.filter(c -> c.getStatus() == TCheckResult.ERROR)
+								.mapToInt(c -> c.getRule().size())
+								.sum();
+						rec.packages++;
+						rec.errors += pkgErrors;
+						if(pkgErrors > 0) {
+							rec.invalidPackages++;
+						}
+					}
+					rec.result = rec.invalidPackages > 0 ? UsageLogService.Result.INVALID : UsageLogService.Result.VALID;
+				}
+				usageLogService.write(rec);
+			} catch (Exception e) {
+				// usage protocol must not break validation
+				log.error("Failed to prepare usage record, path: {}", requestPath, e);
+			}
 		}
 
 		private Path getOutputPath() {
@@ -253,16 +303,26 @@ public class ValidationService {
 	public String validate(MultipartFile data, @Valid Boolean batchMode,
 			@Valid ValidationType validationType, 
 			@Valid String requestId,
-			String paramValidationProfile) {
+			String paramValidationProfile,
+			String channel) {
 		// Store file to the working folder
 		if(workingFolder==null) {
 			workingFolder = "";
 		}
 		
 		String requestValidationId = UUID.randomUUID().toString();
+		UsageLogService.Record usageRecord = new UsageLogService.Record();
+		usageRecord.received = OffsetDateTime.now();
+		usageRecord.requestId = requestValidationId;
+		usageRecord.channel = channel;
+		usageRecord.fileName = data.getOriginalFilename();
+		usageRecord.fileSize = data.getSize();
+		usageRecord.batch = batchMode!=null && batchMode;
+		usageRecord.requestedType = validationType!=null?validationType.name():"AUTO";
+		usageRecord.requestedProfile = StringUtils.isNotEmpty(paramValidationProfile)?paramValidationProfile:"AUTO";
 		// requests are stored in subfolders: yyyy/MM/dd/requestId
-		LocalDate receivedDate = LocalDate.now();
-		Path requestPath = getWorkdirRoot().resolve(getDayPath(receivedDate)).resolve(requestValidationId);
+		Path requestPath = getWorkdirRoot().resolve(getDayPath(usageRecord.received.toLocalDate()))
+				.resolve(requestValidationId);
 		try {
 			Files.createDirectories(requestPath);
 			log.debug("Storing file to the working folder: {}", requestPath);
@@ -285,7 +345,7 @@ public class ValidationService {
 				}
 			}
 
-			ValidationJob job = new ValidationJob(requestPath, receivedDate, data.getOriginalFilename(),
+			ValidationJob job = new ValidationJob(requestPath, usageRecord, data.getOriginalFilename(),
 					batchMode!=null && batchMode,
 					validationProfile);
 			applyRuleProfile(job, paramValidationProfile);
@@ -446,13 +506,9 @@ public class ValidationService {
 
 	public Validation getResult(String validationRequestId) {
 		Path resultPath = getResultPath(validationRequestId);
-		
-		// load xml using jaxbContext from resultPath
-        try (InputStream is = Files.newInputStream(resultPath)) {
-        	Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        	unmarshaller.setSchema(SchemaResourceLoader.get(ValidationV2NS.SCHEMA_RESOURCE));
-        	Object resultObj = unmarshaller.unmarshal(is);
-        	return (Validation)resultObj;
+
+        try {
+        	return readResult(resultPath);
         } catch (IOException e) {
 			throw new RuntimeException("Failed to read result, request id: " + validationRequestId,
 					e);
@@ -460,6 +516,16 @@ public class ValidationService {
 			throw new RuntimeException("Failed to read result, request id: " + validationRequestId,
 					e);
 		}
+	}
+
+	private static Validation readResult(Path resultPath) throws IOException, JAXBException {
+		// load xml using jaxbContext from resultPath
+        try (InputStream is = Files.newInputStream(resultPath)) {
+        	Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        	unmarshaller.setSchema(SchemaResourceLoader.get(ValidationV2NS.SCHEMA_RESOURCE));
+        	Object resultObj = unmarshaller.unmarshal(is);
+        	return (Validation)resultObj;
+        }
 	}
 
 }
