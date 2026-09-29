@@ -1910,7 +1910,7 @@ public class SipValidatorK06Test extends SipValidatorTestBase {
 
     @Test
     void testK06_63a_OK01() {
-        testPackageK06("obs63-OK", null,
+        testPackageK06("obs63a-OK", null,
                 ZakladniProfilValidace.PREJIMKA,
                 new String[]{Pravidlo63a.OBS63A},
                 new String[]{});
