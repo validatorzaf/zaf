@@ -101,3 +101,125 @@ function changeLanguage(select) {
   currentUrl.searchParams.set('lang', lang);
   window.location.href = currentUrl.toString();
 }
+
+// Send form in background and show progress of upload and validation
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('validationForm');
+  const progress = document.getElementById('progress');
+  // without support the form is submitted in standard way
+  if (!form || !progress || !window.FormData || !window.XMLHttpRequest) return;
+
+  const submitButton = document.getElementById('submitButton');
+  const progressText = document.getElementById('progressText');
+  const progressBar = document.getElementById('progressBar');
+  const progressDetail = document.getElementById('progressDetail');
+  const msg = progress.dataset;
+  const submitText = submitButton.textContent;
+  let running = false;
+  let timer = null;
+
+  function formatSize(bytes) {
+    if (bytes < 1024 * 1024) {
+      return (bytes / 1024).toFixed(1) + ' KB';
+    }
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+
+  function formatTime(seconds) {
+    const min = Math.floor(seconds / 60);
+    const sec = seconds % 60;
+    return min + ':' + String(sec).padStart(2, '0');
+  }
+
+  function setFormDisabled(disabled) {
+    Array.from(form.elements).forEach(el => el.disabled = disabled);
+    submitButton.textContent = disabled ? submitButton.dataset.runningText : submitText;
+  }
+
+  function stopTimer() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  function showUpload(fileName, loaded, total) {
+    const percent = total > 0 ? Math.round(loaded * 100 / total) : 0;
+    progressText.textContent = msg.msgUploading + ': ' + fileName;
+    progressBar.style.width = percent + '%';
+    progressDetail.textContent = formatSize(loaded) + ' / ' + formatSize(total) + ' (' + percent + ' %)';
+  }
+
+  function showValidating() {
+    if (timer) return;
+    progress.classList.add('progress-indeterminate');
+    progressBar.style.width = '';
+    progressText.textContent = msg.msgValidating;
+    const started = Date.now();
+    const updateElapsed = () => {
+      progressDetail.textContent = msg.msgElapsed + ': ' + formatTime(Math.floor((Date.now() - started) / 1000));
+    };
+    updateElapsed();
+    timer = setInterval(updateElapsed, 1000);
+  }
+
+  function showError(detail) {
+    stopTimer();
+    running = false;
+    progress.classList.remove('progress-indeterminate');
+    progress.classList.add('progress-error');
+    progressText.textContent = msg.msgError;
+    progressDetail.textContent = detail;
+    setFormDisabled(false);
+  }
+
+  // warn user that leaving the page cancels the validation
+  window.addEventListener('beforeunload', e => {
+    if (running) {
+      e.preventDefault();
+      e.returnValue = '';
+    }
+  });
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (running) return;
+
+    // read data before the form is disabled
+    const data = new FormData(form);
+    const file = form.elements['file'].files[0];
+    const fileName = file ? file.name : '';
+    const fileSize = file ? file.size : 0;
+
+    running = true;
+    setFormDisabled(true);
+    progress.hidden = false;
+    progress.classList.remove('progress-error', 'progress-indeterminate');
+    showUpload(fileName, 0, fileSize);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', form.action);
+    xhr.upload.addEventListener('progress', ev => {
+      if (ev.lengthComputable) {
+        showUpload(fileName, ev.loaded, ev.total);
+      }
+    });
+    // upload finished, server is validating
+    xhr.upload.addEventListener('load', showValidating);
+    xhr.addEventListener('load', () => {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        stopTimer();
+        running = false;
+        // display returned page (result or form with error message)
+        document.open();
+        document.write(xhr.responseText);
+        document.close();
+        window.scrollTo(0, 0);
+      } else {
+        showError('HTTP ' + xhr.status + (xhr.statusText ? ' ' + xhr.statusText : ''));
+      }
+    });
+    xhr.addEventListener('error', () => showError(''));
+    xhr.send(data);
+  });
+});

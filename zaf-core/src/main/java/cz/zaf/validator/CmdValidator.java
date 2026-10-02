@@ -28,6 +28,7 @@ import cz.zaf.eadvalidator.ap2023.ValidatorAp2023;
 import cz.zaf.eadvalidator.ap2023.profile.AP2023Profile;
 import cz.zaf.earkvalidator.ValidatorDAAIP2024;
 import cz.zaf.earkvalidator.profile.DAAIP2024Profile;
+import cz.zaf.schemas.eark.CSIPExtensionMETS_NS;
 import cz.zaf.sipvalidator.formats.MimetypeDetectorFactory;
 import cz.zaf.sipvalidator.formats.VystupniFormat;
 import cz.zaf.sipvalidator.nsesss2017.ValidatorNsesss2017;
@@ -217,12 +218,26 @@ public class CmdValidator {
 	    		if(isTypeAllowed(allowedTypes, ValidatorType.NSESSS2024) &&
 	    		   metsData.contains("=\"http://www.mvcr.cz/nsesss/v4\"")) {
 	    			validationProfile = ValidatorType.NSESSS2024;
+	    		} else
+	    		if(isTypeAllowed(allowedTypes, ValidatorType.DAAIP2024) && isCsipMets(metsData)) {
+	    			// E-ARK package without valid PROFILE, DA validator will report it
+	    			validationProfile = ValidatorType.DAAIP2024;
+	    			if (!isUserProfileFor(ValidatorType.DAAIP2024)) {
+	    				da2024Profile = detectSubProfileDAAIP2024(metsData);
+	    			}
 	    		}
 
     		} catch (IOException e) {
 	    		// ignore
 	    	}
     	}
+    }
+
+    /**
+     * Check if METS uses E-ARK CSIP extension (DA/AIP package with missing or wrong PROFILE)
+     */
+    private boolean isCsipMets(String metsData) {
+    	return metsData.contains("=\"" + CSIPExtensionMETS_NS.NS_CSIP + "\"");
     }
 
     private boolean isTypeAllowed(EnumSet<ValidatorType> allowedTypes, ValidatorType type) {
@@ -312,6 +327,14 @@ public class CmdValidator {
 							}
 							return true;
 						}
+						if(isTypeAllowed(allowedTypes, ValidatorType.DAAIP2024) && isCsipMets(metsData)) {
+							// E-ARK package without valid PROFILE, DA validator will report it
+							validationProfile = ValidatorType.DAAIP2024;
+							if (!isUserProfileFor(ValidatorType.DAAIP2024)) {
+								da2024Profile = detectSubProfileDAAIP2024(metsData);
+							}
+							return true;
+						}
 					}
 
             	}
@@ -391,7 +414,7 @@ public class CmdValidator {
         	if(da2024Profile==null) {
         		da2024Profile = detectSubProfileDAAIP2024(null);
         	}
-        	return new ValidatorDAAIP2024(params.getDa2024Profile(), params.getExcludeChecks(),
+        	return new ValidatorDAAIP2024(da2024Profile, params.getExcludeChecks(),
         			params.getWorkDir(), params.isKeepFiles());
         case NSESSS2024:
 			return new ValidatorNsesss2024(params.getHrozba(), 

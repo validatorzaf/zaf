@@ -20,7 +20,7 @@
 		<th:block th:if="${errorMessage != null}">
 			<p class="status chyba" th:text="${errorMessage}"></p>
 		</th:block>
-		<form method="post" enctype="multipart/form-data" th:action="@{upload}">
+		<form id="validationForm" method="post" enctype="multipart/form-data" th:action="@{upload}">
 			<table class="package-form">
 				<tr>
 					<td>
@@ -78,11 +78,19 @@
 				<tr>
 					<td></td>
 					<td>
-						<button type="submit" th:text="#{validationForm.submit}">Run validation</button>
+						<button id="submitButton" type="submit" th:text="#{validationForm.submit}"
+							th:attr="data-running-text=#{validationForm.running}">Run validation</button>
 					</td>
 				</tr>
 			</table>
 		</form>
+		<!-- Progress of upload and validation, controlled by scripts.js -->
+		<div id="progress" class="progress" hidden aria-live="polite"
+			th:attr="data-msg-uploading=#{progress.uploading},data-msg-validating=#{progress.validating},data-msg-elapsed=#{progress.elapsed},data-msg-error=#{progress.error}">
+			<div id="progressText" class="progress-text"></div>
+			<div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+			<div id="progressDetail" class="progress-detail"></div>
+		</div>
 		<div id="footer">
 		  <!-- Left side -->
 		  <div>

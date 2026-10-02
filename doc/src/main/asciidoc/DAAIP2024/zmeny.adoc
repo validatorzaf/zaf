@@ -4,3 +4,7 @@
 == v1, 1.11.2024
 První verze pravidel
 
+== v2, 2.10.2026
+
+* Upraveno pravidlo <<DAAIP2024_dat02,dat02>> - při chybné struktuře balíčku v kontejneru ZIP je hlášena srozumitelná chyba (dříve neočekávané selhání validace)
+* Balíček s METS dle E-ARK CSIP bez platného atributu PROFILE je nově automaticky rozpoznán jako DA/AIP a chybu hlásí pravidlo <<DAAIP2024_obs05,obs05>> (dříve chyba "Unknown validation profile")

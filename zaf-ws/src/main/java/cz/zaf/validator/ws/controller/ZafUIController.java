@@ -88,13 +88,16 @@ public class ZafUIController {
 			
 			
 			String valRequestId = validationService.validate(file, batch, validationType, UUID.randomUUID().toString(),
-					validationProfile);
+					validationProfile, "UI");
 			int counter = 0;
 			do {
 				RequestProcessState rps = validationService.getStatus(valRequestId);
 				if(rps==RequestProcessState.ERROR) {
-					throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Validation error.");					
-				} else 
+					String errorMessage = validationService.getErrorMessage(valRequestId);
+					model.addAttribute("errorMessage", "Validation error, request id: " + valRequestId +
+							(errorMessage!=null?", " + errorMessage:""));
+					return "index";
+				} else
 				if(rps==RequestProcessState.FINISHED) {
 					break;
 				}

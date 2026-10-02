@@ -2,6 +2,7 @@ package cz.zaf.eadvalidator.ap2023;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -1334,6 +1335,66 @@ public class EadValidatorL05Test extends EadValidatorTestBase {
                     Rule50.CODE, Rule51.CODE, Rule52.CODE, Rule53.CODE, Rule54.CODE, Rule55.CODE,
                     Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE, Rule72.CODE},
                 new String[]{Rule56.CODE});
+    }
+
+    static final String[] OBS57_OK_RULES = {
+            Rule01.CODE, Rule03.CODE, Rule04.CODE, Rule04a.CODE, Rule14.CODE, Rule16.CODE, Rule18.CODE, Rule19.CODE,
+            Rule20.CODE, Rule21.CODE, Rule22.CODE, Rule24a.CODE, Rule25.CODE,
+            Rule31.CODE, Rule35a.CODE, Rule36a.CODE, Rule36b.CODE, Rule37a.CODE, Rule38.CODE,
+            Rule42.CODE, Rule43.CODE, Rule44.CODE, Rule45a.CODE, Rule49.CODE,
+            Rule50.CODE, Rule50a.CODE, Rule51.CODE, Rule52.CODE, Rule53.CODE, Rule54.CODE, Rule55.CODE, Rule56.CODE, Rule58.CODE,
+            Rule60.CODE, Rule61.CODE, Rule62.CODE, Rule63.CODE, Rule64.CODE, Rule65.CODE, Rule66.CODE, Rule67.CODE, Rule68.CODE, Rule69.CODE,
+            Rule70.CODE, Rule71.CODE, Rule72.CODE, Rule73.CODE, Rule74.CODE, Rule74a.CODE, Rule74b.CODE, Rule74c.CODE, Rule74d.CODE, Rule75.CODE, Rule77.CODE, Rule78.CODE, Rule79.CODE,
+            Rule80.CODE, Rule83.CODE, Rule84.CODE, Rule85.CODE, Rule89.CODE,
+            Rule93.CODE, Rule94.CODE, Rule95.CODE, Rule96.CODE, Rule96a.CODE, Rule97.CODE, Rule98.CODE,
+            Rule101.CODE, Rule103.CODE, Rule104a.CODE, Rule106.CODE
+    };
+
+    @Test
+    void testObs_57_OK01() {
+        // jeden celek (C, Y, YM, D, DT) i intervaly (C-C, Y-Y, YM-D, D-D)
+        String[] okRules = Arrays.copyOf(OBS57_OK_RULES, OBS57_OK_RULES.length + 1);
+        okRules[OBS57_OK_RULES.length] = Rule57.CODE;
+        testInherent("05-KONTROLA OBSAHU/057_OK1.xml",
+                ValidationStatus.OK,
+                okRules,
+                new String[]{});
+    }
+
+    @Test
+    void testObs_57_chyba01() {
+        // altrender="D" pro interval celého roku
+        testInherent("05-KONTROLA OBSAHU/057_chyba1.xml",
+                ValidationStatus.ERROR,
+                OBS57_OK_RULES,
+                new String[]{Rule57.CODE});
+    }
+
+    @Test
+    void testObs_57_chyba02() {
+        // todate je menší než fromdate
+        testInherent("05-KONTROLA OBSAHU/057_chyba2.xml",
+                ValidationStatus.ERROR,
+                OBS57_OK_RULES,
+                new String[]{Rule57.CODE});
+    }
+
+    @Test
+    void testObs_57_chyba03() {
+        // altrender="YM" pro interval dvou měsíců
+        testInherent("05-KONTROLA OBSAHU/057_chyba3.xml",
+                ValidationStatus.ERROR,
+                OBS57_OK_RULES,
+                new String[]{Rule57.CODE});
+    }
+
+    @Test
+    void testObs_57_chyba04() {
+        // altrender="Y" pro interval více let
+        testInherent("05-KONTROLA OBSAHU/057_chyba4.xml",
+                ValidationStatus.ERROR,
+                OBS57_OK_RULES,
+                new String[]{Rule57.CODE});
     }
 
     @Test
