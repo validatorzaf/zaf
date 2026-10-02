@@ -37,7 +37,7 @@ the result passed to it via the `--threat` switch.
 | --- | --- |
 | `zaf-core` | Validation library and the `CmdValidator` entry point — the whole rule engine lives here |
 | `zaf-cmd` | Packaging of the standalone command line application |
-| `zaf-ws` | Internal service wrapping the validator in a REST API and an optional web UI; not part of the public distribution |
+| `zaf-ws` | Web service wrapping the validator in a REST API and an optional web UI |
 | `doc` | AsciiDoc documentation, including the full rule catalogue for every validation type |
 
 ## Requirements

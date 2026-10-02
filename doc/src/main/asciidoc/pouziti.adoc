@@ -290,3 +290,110 @@ Spuštění s logováním vnitřní činnosti slouží pro diagnostické účely
 Příklad:
 
 `java -Dorg.slf4j.simpleLogger.defaultLogLevel=DEBUG -jar CmdValidator.jar -p SIP C:\testy3\D34520.zip -o c:\temp\out.xml`
+
+[[pouziti_ws]]
+== Webová služba (zaf-ws)
+
+Modul `zaf-ws` zpřístupňuje validátor jako webovou službu s REST API a volitelným
+webovým rozhraním.
+
+Služba je aplikace Spring Boot a spouští se příkazem:
+
+`java -jar zaf-ws.jar`
+
+Konfigurace se načítá ze souboru `zaf-ws.yml` (případně `zaf-ws.properties`)
+v aktuálním adresáři nebo v podadresáři `config`. Jednotlivé parametry lze
+zadat i z příkazové řádky, např. `--zaf.ui.enabled=true`.
+
+[[pouziti_ws_api]]
+=== REST API
+
+Popis rozhraní je uveden ve formátu OpenAPI (soubor `zaf-api.yaml`). Validace probíhá asynchronně:
+
+* `POST /validation/validate` - předání balíčku k validaci, vrací identifikátor požadavku
+* `GET /validation/status/{validationRequestId}` - stav zpracování požadavku
+* `GET /validation/result/{validationRequestId}` - výsledek validace
+
+[[pouziti_ws_ui]]
+=== Webové rozhraní
+
+Při zapnutí parametrem `zaf.ui.enabled` je na adrese `/` dostupné webové rozhraní
+pro nahrání balíčku. Rozhraní zobrazuje průběh nahrávání a validace a umožňuje
+stažení výsledku validace. Odkazy jsou relativní, služba proto může být provozována
+i za reverzní proxy s prefixem cesty.
+
+[[pouziti_ws_parametry]]
+=== Konfigurační parametry
+
+*zaf.workdir.path*::
+  Pracovní adresář pro přijaté požadavky. Požadavky se ukládají do podadresářů
+  `rrrr/MM/dd/<id požadavku>`. Výchozí je aktuální adresář.
+
+*zaf.workdir.retention-days*::
+  Počet dní, po které se přijaté požadavky v pracovním adresáři uchovávají.
+  Starší denní adresáře jsou automaticky mazány. Hodnota `0` (výchozí) znamená
+  uchovávat bez omezení. Jiný obsah pracovního adresáře se nemaže.
+
+*zaf.workdir.cleanup-cron*::
+  Čas spouštění mazání starých požadavků ve formátu Spring cron.
+  Výchozí hodnota `0 0 3 * * *` (denně ve 3:00).
+
+*zaf.usage.enabled*::
+  Zapnutí protokolu využití (výchozí `true`), viz <<pouziti_ws_protokol>>.
+
+*zaf.usage.path*::
+  Adresář pro soubory protokolu využití. Výchozí je podadresář `usage`
+  v pracovním adresáři.
+
+*zaf.ui.enabled*::
+  Zapnutí webového rozhraní (výchozí `false`).
+
+*zaf.server.url*, *zaf.server.name*::
+  Adresa a název serveru uváděné v popisu OpenAPI.
+
+*spring.servlet.multipart.max-file-size*, *spring.servlet.multipart.max-request-size*::
+  Maximální velikost nahrávaného souboru (standardní parametry Spring Boot).
+
+Příklad konfigurace (`zaf-ws.yml`):
+
+[source,yaml]
+----
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+zaf:
+  workdir:
+    path: /var/zaf/workdir
+    retention-days: 30
+  ui:
+    enabled: true
+  usage:
+    path: /var/zaf/usage
+----
+
+[[pouziti_ws_protokol]]
+=== Protokol využití
+
+Služba zapisuje pro každý požadavek na validaci jeden řádek do souboru CSV.
+Soubory jsou vytvářeny po měsících (`usage-rrrr-MM.csv`), oddělovačem je středník,
+kódování UTF-8. Protokol obsahuje pouze technické údaje, neobsahuje názvy
+souborů ani adresy klientů.
+
+Sloupce protokolu:
+
+[horizontal]
+timestamp:: čas přijetí požadavku
+requestId:: identifikátor požadavku
+channel:: způsob předání - `API` nebo `UI`
+fileExtension, fileSize:: přípona a velikost předaného souboru
+batch:: příznak dávkového zpracování
+requestedType, requestedProfile:: požadovaný typ a profil validace
+validationType, validationProfile:: skutečně použitý typ a profil validace
+result:: výsledek - `VALID`, `INVALID` (některý balíček není validní) nebo `FAILED` (validaci nebylo možné provést)
+packages, invalidPackages, errors:: počet balíčků, nevalidních balíčků a chyb
+waitMs, processingMs:: doba čekání ve frontě a doba zpracování v ms
+appVersion:: verze validátoru
+errorMessage:: popis chyby při selhání validace

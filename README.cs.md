@@ -37,7 +37,7 @@ předaný přepínačem `--threat`.
 | --- | --- |
 | `zaf-core` | validační knihovna a vstupní bod `CmdValidator` – obsahuje celý výkonný kód pravidel |
 | `zaf-cmd` | sestavení samostatné řádkové aplikace |
-| `zaf-ws` | interní služba zpřístupňující validátor přes REST API a volitelné webové rozhraní; není součástí veřejné distribuce |
+| `zaf-ws` | webová služba zpřístupňující validátor přes REST API a volitelné webové rozhraní |
 | `doc` | dokumentace ve formátu AsciiDoc včetně úplného katalogu pravidel pro všechny typy validace |
 
 ## Požadavky
