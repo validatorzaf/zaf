@@ -27,9 +27,9 @@ Dokumentace k validátoru je součástí jednotlivých sestavení. Aktuální do
 
 ### Aktuální verze
 
-Výdána verze 2.0.6
+Výdána verze 2.0.7
 
-[Online validátor na webu](https://vlas1.lightcomp.cz/zaf)
+[Online validátor na webu](https://www.lightcomp.cz/zaf)
 
 Jednotlivé verze jsou dostupné na [GitHub Releases](https://github.com/validatorzaf/zaf/releases) a 
 v repozitáři pro Maven [https://pkgs.lightcomp.cz/maven/public-release/cz/zaf/zaf-cmd/](https://pkgs.lightcomp.cz/maven/public-release/cz/zaf/zaf-cmd/).

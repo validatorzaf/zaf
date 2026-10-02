@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>ZAF 2.0.6: Dokumentace</title>
+<title>ZAF 2.0.7: Dokumentace</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -524,7 +524,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>ZAF 2.0.6: Dokumentace</h1>
+<h1>ZAF 2.0.7: Dokumentace</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Obsah</div>
 <ul class="sectlevel1">
@@ -545,6 +545,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <li><a href="#pouziti_schema_xsd">Výsledek validace</a></li>
 <li><a href="#ZafKnihovna">Java knihovna - přímá integrace</a></li>
 <li><a href="#pouziti_logovani">Možnosti logování</a></li>
+<li><a href="#pouziti_ws">Webová služba (zaf-ws)</a></li>
 </ul>
 </li>
 <li><a href="#_ap2023">AP2023</a>
@@ -1115,7 +1116,7 @@ Ty jsou také dostupné v repozitáři pro Maven a je možné je přímo použí
 <pre class="CodeRay highlight"><code data-lang="xml">  <span class="tag">&lt;dependency&gt;</span>
     <span class="tag">&lt;groupId&gt;</span>cz.zaf<span class="tag">&lt;/groupId&gt;</span>
     <span class="tag">&lt;artifactId&gt;</span>zaf-core<span class="tag">&lt;/artifactId&gt;</span>
-    <span class="tag">&lt;version&gt;</span>2.0.6<span class="tag">&lt;/version&gt;</span>
+    <span class="tag">&lt;version&gt;</span>2.0.7<span class="tag">&lt;/version&gt;</span>
   <span class="tag">&lt;/dependency&gt;</span></code></pre>
 </div>
 </div>
@@ -1159,6 +1160,229 @@ Konkrétní nastavení logování záleží na způsobu využití nástroje ZAF.
 </div>
 <div class="paragraph">
 <p><code>java -Dorg.slf4j.simpleLogger.defaultLogLevel=DEBUG -jar CmdValidator.jar -p SIP C:\testy3\D34520.zip -o c:\temp\out.xml</code></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pouziti_ws">Webová služba (zaf-ws)</h3>
+<div class="paragraph">
+<p>Modul <code>zaf-ws</code> zpřístupňuje validátor jako webovou službu s REST API a volitelným
+webovým rozhraním.</p>
+</div>
+<div class="paragraph">
+<p>Služba je aplikace Spring Boot a spouští se příkazem:</p>
+</div>
+<div class="paragraph">
+<p><code>java -jar zaf-ws.jar</code></p>
+</div>
+<div class="paragraph">
+<p>Konfigurace se načítá ze souboru <code>zaf-ws.yml</code> (případně <code>zaf-ws.properties</code>)
+v aktuálním adresáři nebo v podadresáři <code>config</code>. Jednotlivé parametry lze
+zadat i z příkazové řádky, např. <code>--zaf.ui.enabled=true</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="pouziti_ws_api">REST API</h4>
+<div class="paragraph">
+<p>Popis rozhraní je uveden ve formátu OpenAPI (soubor <code>zaf-api.yaml</code>). Validace probíhá asynchronně:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>POST /validation/validate</code> - předání balíčku k validaci, vrací identifikátor požadavku</p>
+</li>
+<li>
+<p><code>GET /validation/status/{validationRequestId}</code> - stav zpracování požadavku</p>
+</li>
+<li>
+<p><code>GET /validation/result/{validationRequestId}</code> - výsledek validace</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="pouziti_ws_ui">Webové rozhraní</h4>
+<div class="paragraph">
+<p>Při zapnutí parametrem <code>zaf.ui.enabled</code> je na adrese <code>/</code> dostupné webové rozhraní
+pro nahrání balíčku. Rozhraní zobrazuje průběh nahrávání a validace a umožňuje
+stažení výsledku validace. Odkazy jsou relativní, služba proto může být provozována
+i za reverzní proxy s prefixem cesty.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="pouziti_ws_parametry">Konfigurační parametry</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>zaf.workdir.path</strong></dt>
+<dd>
+<p>Pracovní adresář pro přijaté požadavky. Požadavky se ukládají do podadresářů
+<code>rrrr/MM/dd/&lt;id požadavku&gt;</code>. Výchozí je aktuální adresář.</p>
+</dd>
+<dt class="hdlist1"><strong>zaf.workdir.retention-days</strong></dt>
+<dd>
+<p>Počet dní, po které se přijaté požadavky v pracovním adresáři uchovávají.
+Starší denní adresáře jsou automaticky mazány. Hodnota <code>0</code> (výchozí) znamená
+uchovávat bez omezení. Jiný obsah pracovního adresáře se nemaže.</p>
+</dd>
+<dt class="hdlist1"><strong>zaf.workdir.cleanup-cron</strong></dt>
+<dd>
+<p>Čas spouštění mazání starých požadavků ve formátu Spring cron.
+Výchozí hodnota <code>0 0 3 * * *</code> (denně ve 3:00).</p>
+</dd>
+<dt class="hdlist1"><strong>zaf.usage.enabled</strong></dt>
+<dd>
+<p>Zapnutí protokolu využití (výchozí <code>true</code>), viz <a href="#pouziti_ws_protokol">Protokol využití</a>.</p>
+</dd>
+<dt class="hdlist1"><strong>zaf.usage.path</strong></dt>
+<dd>
+<p>Adresář pro soubory protokolu využití. Výchozí je podadresář <code>usage</code>
+v pracovním adresáři.</p>
+</dd>
+<dt class="hdlist1"><strong>zaf.ui.enabled</strong></dt>
+<dd>
+<p>Zapnutí webového rozhraní (výchozí <code>false</code>).</p>
+</dd>
+<dt class="hdlist1"><strong>zaf.server.url</strong>, <strong>zaf.server.name</strong></dt>
+<dd>
+<p>Adresa a název serveru uváděné v popisu OpenAPI.</p>
+</dd>
+<dt class="hdlist1"><strong>spring.servlet.multipart.max-file-size</strong>, <strong>spring.servlet.multipart.max-request-size</strong></dt>
+<dd>
+<p>Maximální velikost nahrávaného souboru (standardní parametry Spring Boot).</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Příklad konfigurace (<code>zaf-ws.yml</code>):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">spring</span>:
+  <span class="key">servlet</span>:
+    <span class="key">multipart</span>:
+      <span class="key">max-file-size</span>: <span class="string"><span class="content">100MB</span></span>
+      <span class="key">max-request-size</span>: <span class="string"><span class="content">100MB</span></span>
+
+<span class="key">zaf</span>:
+  <span class="key">workdir</span>:
+    <span class="key">path</span>: <span class="string"><span class="content">/var/zaf/workdir</span></span>
+    <span class="key">retention-days</span>: <span class="string"><span class="content">30</span></span>
+  <span class="key">ui</span>:
+    <span class="key">enabled</span>: <span class="string"><span class="content">true</span></span>
+  <span class="key">usage</span>:
+    <span class="key">path</span>: <span class="string"><span class="content">/var/zaf/usage</span></span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="pouziti_ws_protokol">Protokol využití</h4>
+<div class="paragraph">
+<p>Služba zapisuje pro každý požadavek na validaci jeden řádek do souboru CSV.
+Soubory jsou vytvářeny po měsících (<code>usage-rrrr-MM.csv</code>), oddělovačem je středník,
+kódování UTF-8. Protokol obsahuje pouze technické údaje, neobsahuje názvy
+souborů ani adresy klientů.</p>
+</div>
+<div class="paragraph">
+<p>Sloupce protokolu:</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+timestamp
+</td>
+<td class="hdlist2">
+<p>čas přijetí požadavku</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+requestId
+</td>
+<td class="hdlist2">
+<p>identifikátor požadavku</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+channel
+</td>
+<td class="hdlist2">
+<p>způsob předání - <code>API</code> nebo <code>UI</code></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+fileExtension, fileSize
+</td>
+<td class="hdlist2">
+<p>přípona a velikost předaného souboru</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+batch
+</td>
+<td class="hdlist2">
+<p>příznak dávkového zpracování</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+requestedType, requestedProfile
+</td>
+<td class="hdlist2">
+<p>požadovaný typ a profil validace</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+validationType, validationProfile
+</td>
+<td class="hdlist2">
+<p>skutečně použitý typ a profil validace</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+result
+</td>
+<td class="hdlist2">
+<p>výsledek - <code>VALID</code>, <code>INVALID</code> (některý balíček není validní) nebo <code>FAILED</code> (validaci nebylo možné provést)</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+packages, invalidPackages, errors
+</td>
+<td class="hdlist2">
+<p>počet balíčků, nevalidních balíčků a chyb</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+waitMs, processingMs
+</td>
+<td class="hdlist2">
+<p>doba čekání ve frontě a doba zpracování v ms</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+appVersion
+</td>
+<td class="hdlist2">
+<p>verze validátoru</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+errorMessage
+</td>
+<td class="hdlist2">
+<p>popis chyby při selhání validace</p>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -6346,6 +6570,16 @@ Aktivní
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_v6_25_9_2026">v6, 25.9.2026</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Upraveno pravidlo <a href="#AP2023_obs57">obs57</a> - při uvedení jediného formátu datace v atributu "altrender" (C, Y, YM, D) musí interval odpovídat právě jednomu celku daného formátu (např. "Y" právě jednomu kalendářnímu roku, "D" právě jednomu dni), doplněna kontrola, že hodnota v elementu &lt;todate&gt; je větší než hodnota v elementu &lt;fromdate&gt;</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -10473,6 +10707,19 @@ Aktivní
 <h4 id="_v1_1_11_2024">v1, 1.11.2024</h4>
 <div class="paragraph">
 <p>První verze pravidel</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_v2_2_10_2026">v2, 2.10.2026</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Upraveno pravidlo <a href="#DAAIP2024_dat02">dat02</a> - při chybné struktuře balíčku v kontejneru ZIP je hlášena srozumitelná chyba (dříve neočekávané selhání validace)</p>
+</li>
+<li>
+<p>Balíček s METS dle E-ARK CSIP bez platného atributu PROFILE je nově automaticky rozpoznán jako DA/AIP a chybu hlásí pravidlo <a href="#DAAIP2024_obs05">obs05</a> (dříve chyba "Unknown validation profile")</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -21445,7 +21692,7 @@ Aktivní
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-09-16 13:20:32 UTC
+Last updated 2026-10-02 04:56:55 UTC
 </div>
 </div>
 </body>
